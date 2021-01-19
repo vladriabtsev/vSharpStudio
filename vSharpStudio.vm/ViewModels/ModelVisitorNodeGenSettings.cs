@@ -8,7 +8,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public class ModelVisitorNodeGenSettings : ModelVisitorBase
     {
-        Action<INodeGenSettings> _act = null;
+        new Action<INodeGenSettings> _act = null;
         public void NodeGenSettingsApplyAction(IConfig curr, Action<INodeGenSettings> act)
         {
             Contract.Requires(curr != null);

@@ -193,12 +193,14 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.GroupConstants.IsHasChanged);
 
             vm.Config.Model.GroupConstants.NodeAddNewSubNode();
-            Assert.IsTrue(vm.Config.IsChanged);
-            Assert.IsTrue(vm.Config.IsHasChanged);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsChanged);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsHasChanged);
             Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstants[0].IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
+            Assert.IsTrue(vm.Config.Model.GroupConstants.IsHasChanged);
+            Assert.IsTrue(vm.Config.Model.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.IsChanged);
+            Assert.IsTrue(vm.Config.IsHasChanged);
+            Assert.IsFalse(vm.Config.IsChanged);
 
             vm.CommandConfigSave.Execute(null);
             Assert.IsFalse(vm.Config.IsChanged);

@@ -44,7 +44,15 @@ namespace ViewModelBase
         }
         private bool _IsEditable = true;
         [BrowsableAttribute(false)]
-        public virtual bool IsChanged { get { return _IsChanged; } set { SetProperty(ref _IsChanged, value); } }
+        public virtual bool IsChanged
+        {
+            get { return _IsChanged; }
+            set
+            {
+                if (IsNotifying)
+                    SetProperty(ref _IsChanged, value);
+            }
+        }
         protected bool _IsChanged;
         [BrowsableAttribute(false)]
         public bool IsInEdit { get; private set; }

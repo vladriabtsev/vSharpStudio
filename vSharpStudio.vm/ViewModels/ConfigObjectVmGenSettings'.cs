@@ -315,7 +315,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else
                     throw new Exception();
-                p = p.Parent;
             }
             return "";
         }
@@ -414,7 +413,6 @@ namespace vSharpStudio.vm.ViewModels
         public bool TrySetSettings(string guidAppPrjGen, IvPluginGeneratorNodeSettings setting)
         {
             bool res = false;
-            DictionaryExt<string, IvPluginGeneratorNodeSettings> dic = null;
             if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
             {
                 this._DicGenNodeSettings[guidAppPrjGen] = setting;

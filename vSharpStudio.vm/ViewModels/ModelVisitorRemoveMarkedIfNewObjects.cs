@@ -201,7 +201,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (t.IsMarkedForDeletion && t.IsNew)
                     {
-                        (p.GroupListDocuments as GroupListDocuments).ListDocuments.Remove(t as Document);
+                        p.GroupListDocuments.ListDocuments.Remove(t as Document);
                     }
                 }
                 var lst2 = p.GroupSharedProperties.ListProperties.ToList();
@@ -209,7 +209,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (t.IsMarkedForDeletion && t.IsNew)
                     {
-                        (p.GroupSharedProperties as GroupListProperties).ListProperties.Remove(t as Property);
+                        p.GroupSharedProperties.ListProperties.Remove(t as Property);
                     }
                 }
             }

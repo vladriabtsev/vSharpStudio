@@ -30,7 +30,7 @@ namespace GenFromProto
         }
         private bool IsBaseWithParent(string mesName)
         {
-            var res = JsonDoc.Files[root.Name].Messages[mesName].IsBaseWithParent;
+            var res = JsonDoc.Files[root.Name].Messages[mesName].IsConfigObjectBase;
             return res;
         }
     }

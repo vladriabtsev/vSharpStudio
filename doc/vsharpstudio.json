@@ -5324,16 +5324,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_weight",
-              "description": "",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "settings",
               "description": "string node_settings_vm_guid = 6;",
               "label": "",

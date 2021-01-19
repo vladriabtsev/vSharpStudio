@@ -32,6 +32,7 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
     //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // <#=Helper.FilePos() #>
 <# } #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) {
+        if (IsSkip(field)) continue;
         this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];  
          this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>

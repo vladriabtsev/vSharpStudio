@@ -60,7 +60,7 @@ namespace GenFromProto
         {
             get
             {
-                if (this.DocMes.IsBaseWithParent)
+                if (this.DocMes.IsConfigObjectBase)
                 {
                     if (field.Name == "guid" || field.Name == "name" || field.Name == "sorting_value" || field.Name == "name_ui")
                         return false;

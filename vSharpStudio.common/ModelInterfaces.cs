@@ -42,115 +42,100 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     
     public partial interface IUserSettings // ModelInterfaces.tt Line: 29
     {
-    	IReadOnlyList<IUserSettingsOpenedConfig> ListOpenConfigHistory { get; } // ModelInterfaces.tt Line: 43
+    	IReadOnlyList<IUserSettingsOpenedConfig> ListOpenConfigHistory { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IUserSettingsOpenedConfig // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn { get; } // ModelInterfaces.tt Line: 50
-    	string ConfigPath { get; } // ModelInterfaces.tt Line: 50
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn { get; } // ModelInterfaces.tt Line: 51
+    	string ConfigPath { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IGroupListPlugins // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPlugin> ListPlugins { get; } // ModelInterfaces.tt Line: 43
+    	IReadOnlyList<IPlugin> ListPlugins { get; } // ModelInterfaces.tt Line: 44
     	IPlugin this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IPlugin // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Version { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGenerator> ListGenerators { get; } // ModelInterfaces.tt Line: 43
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	string Version { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGenerator> ListGenerators { get; } // ModelInterfaces.tt Line: 44
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IPluginGenerator // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface ISettingsConfig // ModelInterfaces.tt Line: 29
     {
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
+    	string Name { get; } // ModelInterfaces.tt Line: 51
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// current migration version, increased by one on each deployment
     	///////////////////////////////////////////////////
-    	int VersionMigrationCurrent { get; } // ModelInterfaces.tt Line: 50
+    	int VersionMigrationCurrent { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// min version supported by current version for migration
     	///////////////////////////////////////////////////
-    	int VersionMigrationSupportFromMin { get; } // ModelInterfaces.tt Line: 50
+    	int VersionMigrationSupportFromMin { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IConfigShortHistory // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	IConfig CurrentConfig { get; } // ModelInterfaces.tt Line: 54
-    	IConfig PrevStableConfig { get; } // ModelInterfaces.tt Line: 54
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	string Name { get; } // ModelInterfaces.tt Line: 51
+    	IConfig CurrentConfig { get; } // ModelInterfaces.tt Line: 55
+    	IConfig PrevStableConfig { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IGroupListBaseConfigLinks // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IBaseConfigLink> ListBaseConfigLinks { get; } // ModelInterfaces.tt Line: 43
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IBaseConfigLink> ListBaseConfigLinks { get; } // ModelInterfaces.tt Line: 44
     	IBaseConfigLink this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IBaseConfigLink // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IConfig ConfigBase { get; } // ModelInterfaces.tt Line: 54
-    	string RelativeConfigFilePath { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IConfig ConfigBase { get; } // ModelInterfaces.tt Line: 55
+    	string RelativeConfigFilePath { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     ///////////////////////////////////////////////////
@@ -160,166 +145,143 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IConfig : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	int Version { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNeedCurrentUpdate { get; } // ModelInterfaces.tt Line: 50
-    	IGroupListBaseConfigLinks GroupConfigLinks { get; } // ModelInterfaces.tt Line: 54
-    	IConfigModel Model { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListPlugins GroupPlugins { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListAppSolutions GroupAppSolutions { get; } // ModelInterfaces.tt Line: 54
+    	int Version { get; } // ModelInterfaces.tt Line: 51
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNeedCurrentUpdate { get; } // ModelInterfaces.tt Line: 51
+    	IGroupListBaseConfigLinks GroupConfigLinks { get; } // ModelInterfaces.tt Line: 55
+    	IConfigModel Model { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListPlugins GroupPlugins { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListAppSolutions GroupAppSolutions { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IAppDbSettings // ModelInterfaces.tt Line: 29
     {
-    	string PluginGuid { get; } // ModelInterfaces.tt Line: 50
-    	string PluginName { get; } // ModelInterfaces.tt Line: 50
-    	string Version { get; } // ModelInterfaces.tt Line: 50
-    	string PluginGenGuid { get; } // ModelInterfaces.tt Line: 50
-    	string PluginGenName { get; } // ModelInterfaces.tt Line: 50
-    	string ConnGuid { get; } // ModelInterfaces.tt Line: 50
-    	string ConnName { get; } // ModelInterfaces.tt Line: 50
+    	string PluginGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PluginName { get; } // ModelInterfaces.tt Line: 51
+    	string Version { get; } // ModelInterfaces.tt Line: 51
+    	string PluginGenGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PluginGenName { get; } // ModelInterfaces.tt Line: 51
+    	string ConnGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ConnName { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IPluginGroupGeneratorsDefaultSettings // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Guid of group generators
     	///////////////////////////////////////////////////
-    	string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 50
-    	string Settings { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 51
+    	string Settings { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IGroupListAppSolutions // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
+    	string Description { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// List NET solutions
     	///////////////////////////////////////////////////
-    	IReadOnlyList<IAppSolution> ListAppSolutions { get; } // ModelInterfaces.tt Line: 43
+    	IReadOnlyList<IAppSolution> ListAppSolutions { get; } // ModelInterfaces.tt Line: 44
     	IAppSolution this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGroupGeneratorsDefaultSettings> ListGroupGeneratorsDefultSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGroupGeneratorsDefaultSettings> ListGroupGeneratorsDefultSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IPluginGroupGeneratorsSettings // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 50
-    	string Settings { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 51
+    	string Settings { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IAppSolution // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// List NET projects
     	/// App solution relative path to configuration file path
     	///////////////////////////////////////////////////
-    	string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IAppProject> ListAppProjects { get; } // ModelInterfaces.tt Line: 43
-    	IReadOnlyList<IPluginGroupGeneratorsSettings> ListGroupGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IAppProject> ListAppProjects { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<IPluginGroupGeneratorsSettings> ListGroupGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IAppProject // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// App project relative path to .net solution file path
     	///////////////////////////////////////////////////
-    	string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	string Namespace { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 43
+    	string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	string Namespace { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IPluginGeneratorNodeSettings // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
     	
     	///////////////////////////////////////////////////
     	/// Guid of solution-project-generator node
     	///////////////////////////////////////////////////
-    	string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 50
-    	
-    	///////////////////////////////////////////////////
-    	/// Name of solution-project-generator node
-    	///////////////////////////////////////////////////
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingWeight { get; } // ModelInterfaces.tt Line: 50
+    	string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 51
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// string node_settings_vm_guid = 6;
     	///////////////////////////////////////////////////
-    	string Settings { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	string Settings { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IPluginGeneratorSettings // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	string Name { get; } // ModelInterfaces.tt Line: 51
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Guid of solution-project-generator node
     	///////////////////////////////////////////////////
-    	string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 50
-    	string Settings { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 51
+    	string Settings { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     ///////////////////////////////////////////////////
@@ -328,41 +290,38 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     
     public partial interface IAppProjectGenerator // ModelInterfaces.tt Line: 29
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	string PluginGuid { get; } // ModelInterfaces.tt Line: 50
-    	string DescriptionPlugin { get; } // ModelInterfaces.tt Line: 50
-    	string PluginGeneratorGuid { get; } // ModelInterfaces.tt Line: 50
-    	string DescriptionGenerator { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	string PluginGuid { get; } // ModelInterfaces.tt Line: 51
+    	string DescriptionPlugin { get; } // ModelInterfaces.tt Line: 51
+    	string PluginGeneratorGuid { get; } // ModelInterfaces.tt Line: 51
+    	string DescriptionGenerator { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Relative folder path to project file
     	///////////////////////////////////////////////////
-    	string RelativePathToGenFolder { get; } // ModelInterfaces.tt Line: 50
+    	string RelativePathToGenFolder { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Generator output file name
     	///////////////////////////////////////////////////
-    	string GenFileName { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	string GeneratorSettings { get; } // ModelInterfaces.tt Line: 50
-    	IPluginGeneratorSettings GeneratorSettingsVm { get; } // ModelInterfaces.tt Line: 54
-    	string ConnStr { get; } // ModelInterfaces.tt Line: 50
-    	string PluginGroupSettingsGuid { get; } // ModelInterfaces.tt Line: 50
-    	string ConnStrToPrevStable { get; } // ModelInterfaces.tt Line: 50
-    	bool IsGenerateSqlSqriptToUpdatePrevStable { get; } // ModelInterfaces.tt Line: 50
+    	string GenFileName { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	string GeneratorSettings { get; } // ModelInterfaces.tt Line: 51
+    	IPluginGeneratorSettings GeneratorSettingsVm { get; } // ModelInterfaces.tt Line: 55
+    	string ConnStr { get; } // ModelInterfaces.tt Line: 51
+    	string PluginGroupSettingsGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ConnStrToPrevStable { get; } // ModelInterfaces.tt Line: 51
+    	bool IsGenerateSqlSqriptToUpdatePrevStable { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Generator output file name
     	///////////////////////////////////////////////////
-    	string GenScriptFileName { get; } // ModelInterfaces.tt Line: 50
+    	string GenScriptFileName { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IPluginGeneratorNodeDefaultSettings // ModelInterfaces.tt Line: 29
@@ -371,8 +330,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	///////////////////////////////////////////////////
     	/// Guid of solution-project-generator node
     	///////////////////////////////////////////////////
-    	string NodeSettingsVmGuid { get; } // ModelInterfaces.tt Line: 50
-    	string Settings { get; } // ModelInterfaces.tt Line: 50
+    	string NodeSettingsVmGuid { get; } // ModelInterfaces.tt Line: 51
+    	string Settings { get; } // ModelInterfaces.tt Line: 51
     }
     
     ///////////////////////////////////////////////////
@@ -381,11 +340,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     
     public partial interface IDbSettings // ModelInterfaces.tt Line: 29
     {
-    	string DbSchema { get; } // ModelInterfaces.tt Line: 50
-    	DbIdGeneratorMethod IdGenerator { get; } // ModelInterfaces.tt Line: 50
-    	EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 50
-    	string PKeyName { get; } // ModelInterfaces.tt Line: 50
-    	string PKeyFieldGuid { get; } // ModelInterfaces.tt Line: 50
+    	string DbSchema { get; } // ModelInterfaces.tt Line: 51
+    	DbIdGeneratorMethod IdGenerator { get; } // ModelInterfaces.tt Line: 51
+    	EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 51
+    	string PKeyName { get; } // ModelInterfaces.tt Line: 51
+    	string PKeyFieldGuid { get; } // ModelInterfaces.tt Line: 51
     }
     
     ///////////////////////////////////////////////////
@@ -395,46 +354,43 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IConfigModel : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	int Version { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	uint CompositeNameMaxLength { get; } // ModelInterfaces.tt Line: 50
-    	bool IsUseCompositeNames { get; } // ModelInterfaces.tt Line: 50
-    	bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	int Version { get; } // ModelInterfaces.tt Line: 51
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	uint CompositeNameMaxLength { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseCompositeNames { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// GENERAL DB SETTINGS
     	///////////////////////////////////////////////////
-    	IDbSettings DbSettings { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListConstants GroupConstants { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListCatalogs GroupCatalogs { get; } // ModelInterfaces.tt Line: 54
-    	IGroupDocuments GroupDocuments { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListJournals GroupJournals { get; } // ModelInterfaces.tt Line: 54
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	IDbSettings DbSettings { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListConstants GroupConstants { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListCatalogs GroupCatalogs { get; } // ModelInterfaces.tt Line: 55
+    	IGroupDocuments GroupDocuments { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListJournals GroupJournals { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IDataType // ModelInterfaces.tt Line: 29
     {
-    	EnumDataType DataTypeEnum { get; } // ModelInterfaces.tt Line: 50
-    	uint Length { get; } // ModelInterfaces.tt Line: 50
-    	uint Accuracy { get; } // ModelInterfaces.tt Line: 50
-    	string ObjectGuid { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<string> ListObjectGuids { get; } // ModelInterfaces.tt Line: 41
-    	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 50
-    	bool IsPositive { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNullable { get; } // ModelInterfaces.tt Line: 50
-    	bool IsPKey { get; } // ModelInterfaces.tt Line: 50
-    	bool IsRefParent { get; } // ModelInterfaces.tt Line: 50
+    	EnumDataType DataTypeEnum { get; } // ModelInterfaces.tt Line: 51
+    	uint Length { get; } // ModelInterfaces.tt Line: 51
+    	uint Accuracy { get; } // ModelInterfaces.tt Line: 51
+    	string ObjectGuid { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<string> ListObjectGuids { get; } // ModelInterfaces.tt Line: 42
+    	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 51
+    	bool IsPositive { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNullable { get; } // ModelInterfaces.tt Line: 51
+    	bool IsPKey { get; } // ModelInterfaces.tt Line: 51
+    	bool IsRefParent { get; } // ModelInterfaces.tt Line: 51
     }
     
     ///////////////////////////////////////////////////
@@ -444,19 +400,16 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IGroupListCommon : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IGroupListRoles GroupRoles { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListMainViewForms GroupViewForms { get; } // ModelInterfaces.tt Line: 54
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IGroupListRoles GroupRoles { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListMainViewForms GroupViewForms { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     ///////////////////////////////////////////////////
@@ -466,36 +419,30 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IRole : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListRoles : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IRole> ListRoles { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IRole> ListRoles { get; } // ModelInterfaces.tt Line: 44
     	IRole this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     ///////////////////////////////////////////////////
@@ -505,18 +452,15 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IMainViewForm : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IGroupListMainViewForms GroupListViewForms { get; } // ModelInterfaces.tt Line: 54
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IGroupListMainViewForms GroupListViewForms { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     ///////////////////////////////////////////////////
@@ -526,128 +470,110 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IGroupListMainViewForms : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IMainViewForm> ListMainViewForms { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IMainViewForm> ListMainViewForms { get; } // ModelInterfaces.tt Line: 44
     	IMainViewForm this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListPropertiesTabs : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPropertiesTab> ListPropertiesTabs { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPropertiesTab> ListPropertiesTabs { get; } // ModelInterfaces.tt Line: 44
     	IPropertiesTab this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IPropertiesTab : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 54
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
     	
     	///////////////////////////////////////////////////
     	/// Create Index for foreign key navigation property
     	///////////////////////////////////////////////////
-    	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListProperties : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IProperty> ListProperties { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IProperty> ListProperties { get; } // ModelInterfaces.tt Line: 44
     	IProperty this[int index] { get; }
     	int Count();
     	
     	///////////////////////////////////////////////////
     	/// Last generated Protobuf field position
     	///////////////////////////////////////////////////
-    	uint LastGenPosition { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	uint LastGenPosition { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IProperty : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IDataType DataType { get; } // ModelInterfaces.tt Line: 54
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IDataType DataType { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position
     	/// Reserved positions: 1 - primary key
     	///////////////////////////////////////////////////
-    	uint Position { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	uint Position { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListConstants : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IConstant> ListConstants { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IConstant> ListConstants { get; } // ModelInterfaces.tt Line: 44
     	IConstant this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     ///////////////////////////////////////////////////
@@ -657,347 +583,299 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IConstant : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IDataType DataType { get; } // ModelInterfaces.tt Line: 54
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IDataType DataType { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListEnumerations : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IEnumeration> ListEnumerations { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IEnumeration> ListEnumerations { get; } // ModelInterfaces.tt Line: 44
     	IEnumeration this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IEnumeration : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Enumeration element type
     	///////////////////////////////////////////////////
-    	EnumEnumerationType DataTypeEnum { get; } // ModelInterfaces.tt Line: 50
+    	EnumEnumerationType DataTypeEnum { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Length of string if 'STRING' is selected as enumeration element type
     	///////////////////////////////////////////////////
-    	int DataTypeLength { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IEnumerationPair> ListEnumerationPairs { get; } // ModelInterfaces.tt Line: 43
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	int DataTypeLength { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IEnumerationPair> ListEnumerationPairs { get; } // ModelInterfaces.tt Line: 44
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IEnumerationPair : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	string Value { get; } // ModelInterfaces.tt Line: 50
-    	bool IsDefault { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	string Value { get; } // ModelInterfaces.tt Line: 51
+    	bool IsDefault { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface ICatalogItemsGroup : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 54
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface ICatalogSettings // ModelInterfaces.tt Line: 29
     {
-    	int MaxCatalogItemNameLength { get; } // ModelInterfaces.tt Line: 50
-    	int MaxCatalogItemDescriptionLength { get; } // ModelInterfaces.tt Line: 50
-    	int MaxCatalogItemTreeLevels { get; } // ModelInterfaces.tt Line: 50
-    	bool SeparatePropertiesForGroups { get; } // ModelInterfaces.tt Line: 50
+    	int MaxCatalogItemNameLength { get; } // ModelInterfaces.tt Line: 51
+    	int MaxCatalogItemDescriptionLength { get; } // ModelInterfaces.tt Line: 51
+    	int MaxCatalogItemTreeLevels { get; } // ModelInterfaces.tt Line: 51
+    	bool SeparatePropertiesForGroups { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface ICatalog : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	ICatalogSettings CatalogSettings { get; } // ModelInterfaces.tt Line: 54
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	ICatalogItemsGroup GroupItems { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 54
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	ICatalogSettings CatalogSettings { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	ICatalogItemsGroup GroupItems { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListCatalogs : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 44
     	ICatalog this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupDocuments : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 50
-    	IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 54
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 51
+    	IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IDocument : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 54
-    	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 54
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListDocuments : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 43
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 44
     	IDocument this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListJournals : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// repeated proto_property list_shared_properties = 6;
     	///////////////////////////////////////////////////
-    	IReadOnlyList<IJournal> ListJournals { get; } // ModelInterfaces.tt Line: 43
+    	IReadOnlyList<IJournal> ListJournals { get; } // ModelInterfaces.tt Line: 44
     	IJournal this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IJournal : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// repeated proto_group_properties list_properties = 6;
     	///////////////////////////////////////////////////
-    	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 43
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 44
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListForms : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// repeated proto_property list_shared_properties = 6;
     	///////////////////////////////////////////////////
-    	IReadOnlyList<IForm> ListForms { get; } // ModelInterfaces.tt Line: 43
+    	IReadOnlyList<IForm> ListForms { get; } // ModelInterfaces.tt Line: 44
     	IForm this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IForm : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// repeated proto_group_properties list_properties = 6;
     	/// repeated proto_document list_forms = 7;
     	///////////////////////////////////////////////////
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IGroupListReports : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// repeated proto_property list_shared_properties = 6;
     	///////////////////////////////////////////////////
-    	IReadOnlyList<IReport> ListReports { get; } // ModelInterfaces.tt Line: 43
+    	IReadOnlyList<IReport> ListReports { get; } // ModelInterfaces.tt Line: 44
     	IReport this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IReport : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	ulong SortingValue { get; } // ModelInterfaces.tt Line: 50
-    	string NameUi { get; } // ModelInterfaces.tt Line: 50
-    	string Description { get; } // ModelInterfaces.tt Line: 50
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 50
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 50
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// repeated proto_group_properties list_properties = 6;
     	/// repeated proto_document list_documents = 7;
     	///////////////////////////////////////////////////
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 43
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IModelRow // ModelInterfaces.tt Line: 29
     {
-    	string GroupName { get; } // ModelInterfaces.tt Line: 50
-    	string Name { get; } // ModelInterfaces.tt Line: 50
-    	string Guid { get; } // ModelInterfaces.tt Line: 50
-    	bool IsIncluded { get; } // ModelInterfaces.tt Line: 50
+    	string GroupName { get; } // ModelInterfaces.tt Line: 51
+    	string Name { get; } // ModelInterfaces.tt Line: 51
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	bool IsIncluded { get; } // ModelInterfaces.tt Line: 51
     }
 }

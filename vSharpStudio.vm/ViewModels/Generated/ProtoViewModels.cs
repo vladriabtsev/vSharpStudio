@@ -44,12 +44,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             UserSettings vm = new UserSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Clone.tt Line: 47
             foreach (var t in from.ListOpenConfigHistory) // Clone.tt Line: 48
                 vm.ListOpenConfigHistory.Add(UserSettingsOpenedConfig.Clone((UserSettingsOpenedConfig)t, isDeep));
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -119,7 +119,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Clone.tt Line: 190
             foreach (var t in m.ListOpenConfigHistory) // Clone.tt Line: 191
@@ -127,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 var tvm = UserSettingsOpenedConfig.ConvertToVM(t, new UserSettingsOpenedConfig()); // Clone.tt Line: 196
                 vm.ListOpenConfigHistory.Add(tvm);
             }
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -200,12 +200,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             UserSettingsOpenedConfig vm = new UserSettingsOpenedConfig();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.OpenedLastTimeOn = from.OpenedLastTimeOn; // Clone.tt Line: 65
             vm.ConfigPath = from.ConfigPath; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -242,12 +242,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.OpenedLastTimeOn = m.OpenedLastTimeOn; // Clone.tt Line: 221
             vm.ConfigPath = m.ConfigPath; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -276,7 +276,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -293,11 +293,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [BrowsableAttribute(false)]
-        public Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn // Property.tt Line: 58
+        public Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn // Property.tt Line: 55
         { 
             get { return this._OpenedLastTimeOn; }
             set
@@ -314,12 +314,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private Google.Protobuf.WellKnownTypes.Timestamp _OpenedLastTimeOn;
-        partial void OnOpenedLastTimeOnChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 82
+        partial void OnOpenedLastTimeOnChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 79
         partial void OnOpenedLastTimeOnChanged();
         //IGoogle.Protobuf.WellKnownTypes.Timestamp IUserSettingsOpenedConfig.OpenedLastTimeOn { get { return this._OpenedLastTimeOn; } }
         
         [BrowsableAttribute(false)]
-        public string ConfigPath // Property.tt Line: 58
+        public string ConfigPath // Property.tt Line: 55
         { 
             get { return this._ConfigPath; }
             set
@@ -336,7 +336,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _ConfigPath = string.Empty;
-        partial void OnConfigPathChanging(ref string to); // Property.tt Line: 82
+        partial void OnConfigPathChanging(ref string to); // Property.tt Line: 79
         partial void OnConfigPathChanged();
         #endregion Properties
     }
@@ -372,7 +372,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListPlugins vm = new GroupListPlugins(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -385,7 +385,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -463,7 +463,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -479,7 +479,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -519,7 +519,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -535,12 +535,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -556,11 +556,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
         [BrowsableAttribute(false)]
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -576,7 +576,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [BrowsableAttribute(false)]
@@ -606,7 +606,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListPlugins.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<Plugin> items) 
         { 
@@ -614,7 +613,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListPlugins.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListPlugins.Count; }
         int IGroupListPlugins.Count() { return this.Count(); }
@@ -623,11 +621,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListPlugins.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -644,11 +641,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -665,12 +662,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -687,11 +684,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -708,11 +705,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -727,7 +724,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         [BrowsableAttribute(false)]
         override public bool IsChanged // Class.tt Line: 101
@@ -735,7 +732,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -786,7 +783,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Plugin vm = new Plugin(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Version = from.Version; // Clone.tt Line: 65
@@ -801,7 +798,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -881,7 +878,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Version = m.Version; // Clone.tt Line: 221
@@ -899,7 +896,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -941,7 +938,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -957,11 +954,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [ReadOnly(true)]
-        public string Version // Property.tt Line: 58
+        public string Version // Property.tt Line: 55
         { 
             get { return this._Version; }
             set
@@ -978,12 +975,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Version = string.Empty;
-        partial void OnVersionChanging(ref string to); // Property.tt Line: 82
+        partial void OnVersionChanging(ref string to); // Property.tt Line: 79
         partial void OnVersionChanged();
         
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -999,11 +996,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
         [ReadOnly(true)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -1020,11 +1017,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -1040,7 +1037,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [BrowsableAttribute(false)]
@@ -1065,7 +1062,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListGeneratorsChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -1082,11 +1079,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -1103,11 +1100,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -1124,11 +1121,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -1145,11 +1142,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -1164,7 +1161,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         [BrowsableAttribute(false)]
         override public bool IsChanged // Class.tt Line: 101
@@ -1172,7 +1169,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -1219,7 +1216,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             PluginGenerator vm = new PluginGenerator(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -1230,7 +1227,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -1273,7 +1270,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -1284,7 +1281,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -1319,7 +1316,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -1335,12 +1332,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -1356,11 +1353,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
         [ReadOnly(true)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -1377,11 +1374,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -1397,11 +1394,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -1418,11 +1415,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -1439,12 +1436,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -1461,11 +1458,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -1482,11 +1479,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -1501,7 +1498,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         [BrowsableAttribute(false)]
         override public bool IsChanged // Class.tt Line: 101
@@ -1509,7 +1506,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -1548,14 +1545,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             SettingsConfig vm = new SettingsConfig();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Name = from.Name; // Clone.tt Line: 65
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.VersionMigrationCurrent = from.VersionMigrationCurrent; // Clone.tt Line: 65
             vm.VersionMigrationSupportFromMin = from.VersionMigrationSupportFromMin; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -1594,14 +1591,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Name = m.Name; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.VersionMigrationCurrent = m.VersionMigrationCurrent; // Clone.tt Line: 221
             vm.VersionMigrationSupportFromMin = m.VersionMigrationSupportFromMin; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -1633,7 +1630,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -1650,12 +1647,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -1672,11 +1669,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _NameUi = string.Empty;
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -1693,14 +1690,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         
         ///////////////////////////////////////////////////
         /// current migration version, increased by one on each deployment
         ///////////////////////////////////////////////////
-        public int VersionMigrationCurrent // Property.tt Line: 58
+        public int VersionMigrationCurrent // Property.tt Line: 55
         { 
             get { return this._VersionMigrationCurrent; }
             set
@@ -1717,14 +1714,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _VersionMigrationCurrent;
-        partial void OnVersionMigrationCurrentChanging(ref int to); // Property.tt Line: 82
+        partial void OnVersionMigrationCurrentChanging(ref int to); // Property.tt Line: 79
         partial void OnVersionMigrationCurrentChanged();
         
         
         ///////////////////////////////////////////////////
         /// min version supported by current version for migration
         ///////////////////////////////////////////////////
-        public int VersionMigrationSupportFromMin // Property.tt Line: 58
+        public int VersionMigrationSupportFromMin // Property.tt Line: 55
         { 
             get { return this._VersionMigrationSupportFromMin; }
             set
@@ -1741,7 +1738,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _VersionMigrationSupportFromMin;
-        partial void OnVersionMigrationSupportFromMinChanging(ref int to); // Property.tt Line: 82
+        partial void OnVersionMigrationSupportFromMinChanging(ref int to); // Property.tt Line: 79
         partial void OnVersionMigrationSupportFromMinChanged();
         #endregion Properties
     }
@@ -1767,7 +1764,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             ConfigShortHistory vm = new ConfigShortHistory();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -1775,7 +1772,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.CurrentConfig = vSharpStudio.vm.ViewModels.Config.Clone(vm, from.CurrentConfig, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.PrevStableConfig = vSharpStudio.vm.ViewModels.Config.Clone(vm, from.PrevStableConfig, isDeep);
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -1815,7 +1812,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -1825,7 +1822,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (vm.PrevStableConfig == null) // Clone.tt Line: 213
                 vm.PrevStableConfig = new Config(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.PrevStableConfig, (Config)vm.PrevStableConfig); // Clone.tt Line: 219
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -1859,7 +1856,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -1876,12 +1873,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -1898,10 +1895,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public Config CurrentConfig // Property.tt Line: 58
+        public Config CurrentConfig // Property.tt Line: 55
         { 
             get { return this._CurrentConfig; }
             set
@@ -1918,12 +1915,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private Config _CurrentConfig;
-        IConfig IConfigShortHistory.CurrentConfig { get { return (this as ConfigShortHistory).CurrentConfig; } } // Property.tt Line: 80
-        partial void OnCurrentConfigChanging(ref Config to); // Property.tt Line: 82
+        IConfig IConfigShortHistory.CurrentConfig { get { return (this as ConfigShortHistory).CurrentConfig; } } // Property.tt Line: 77
+        partial void OnCurrentConfigChanging(ref Config to); // Property.tt Line: 79
         partial void OnCurrentConfigChanged();
         //IConfig IConfigShortHistory.CurrentConfig { get { return this._CurrentConfig; } }
         
-        public Config PrevStableConfig // Property.tt Line: 58
+        public Config PrevStableConfig // Property.tt Line: 55
         { 
             get { return this._PrevStableConfig; }
             set
@@ -1940,8 +1937,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private Config _PrevStableConfig;
-        IConfig IConfigShortHistory.PrevStableConfig { get { return (this as ConfigShortHistory).PrevStableConfig; } } // Property.tt Line: 80
-        partial void OnPrevStableConfigChanging(ref Config to); // Property.tt Line: 82
+        IConfig IConfigShortHistory.PrevStableConfig { get { return (this as ConfigShortHistory).PrevStableConfig; } } // Property.tt Line: 77
+        partial void OnPrevStableConfigChanging(ref Config to); // Property.tt Line: 79
         partial void OnPrevStableConfigChanged();
         //IConfig IConfigShortHistory.PrevStableConfig { get { return this._PrevStableConfig; } }
         #endregion Properties
@@ -1983,7 +1980,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListBaseConfigLinks vm = new GroupListBaseConfigLinks(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -2000,7 +1997,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -2115,7 +2112,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -2138,7 +2135,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -2185,7 +2182,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -2201,12 +2198,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -2222,10 +2219,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -2241,10 +2238,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -2261,7 +2258,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
@@ -2291,7 +2288,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListBaseConfigLinks.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<BaseConfigLink> items) 
         { 
@@ -2299,7 +2295,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListBaseConfigLinks.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListBaseConfigLinks.Count; }
         int IGroupListBaseConfigLinks.Count() { return this.Count(); }
@@ -2308,11 +2303,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListBaseConfigLinks.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -2329,11 +2323,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -2350,11 +2344,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -2371,11 +2365,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -2392,11 +2386,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -2411,7 +2405,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -2440,7 +2434,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -2492,7 +2486,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             BaseConfigLink vm = new BaseConfigLink(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -2509,7 +2503,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -2591,7 +2585,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -2612,7 +2606,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -2657,7 +2651,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -2673,12 +2667,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -2694,10 +2688,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -2713,11 +2707,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(5)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -2734,11 +2728,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public Config ConfigBase // Property.tt Line: 58
+        public Config ConfigBase // Property.tt Line: 55
         { 
             get { return this._ConfigBase; }
             set
@@ -2755,14 +2749,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private Config _ConfigBase;
-        IConfig IBaseConfigLink.ConfigBase { get { return (this as BaseConfigLink).ConfigBase; } } // Property.tt Line: 80
-        partial void OnConfigBaseChanging(ref Config to); // Property.tt Line: 82
+        IConfig IBaseConfigLink.ConfigBase { get { return (this as BaseConfigLink).ConfigBase; } } // Property.tt Line: 77
+        partial void OnConfigBaseChanging(ref Config to); // Property.tt Line: 79
         partial void OnConfigBaseChanged();
         //IConfig IBaseConfigLink.ConfigBase { get { return this._ConfigBase; } }
         
         [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
-        public string RelativeConfigFilePath // Property.tt Line: 58
+        public string RelativeConfigFilePath // Property.tt Line: 55
         { 
             get { return this._RelativeConfigFilePath; }
             set
@@ -2779,11 +2773,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _RelativeConfigFilePath = string.Empty;
-        partial void OnRelativeConfigFilePathChanging(ref string to); // Property.tt Line: 82
+        partial void OnRelativeConfigFilePathChanging(ref string to); // Property.tt Line: 79
         partial void OnRelativeConfigFilePathChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -2800,11 +2794,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -2821,12 +2815,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -2843,11 +2837,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -2864,11 +2858,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -2883,7 +2877,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -2912,7 +2906,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -2967,7 +2961,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Config vm = new Config(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -2992,7 +2986,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.GroupAppSolutions = vSharpStudio.vm.ViewModels.GroupListAppSolutions.Clone(vm, from.GroupAppSolutions, isDeep);
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -3047,7 +3041,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -3077,7 +3071,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -3128,7 +3122,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -3144,11 +3138,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -3164,12 +3158,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
         [PropertyOrderAttribute(4)]
         [ReadOnly(true)]
-        public int Version // Property.tt Line: 58
+        public int Version // Property.tt Line: 55
         { 
             get { return this._Version; }
             set
@@ -3186,10 +3180,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _Version;
-        partial void OnVersionChanging(ref int to); // Property.tt Line: 82
+        partial void OnVersionChanging(ref int to); // Property.tt Line: 79
         partial void OnVersionChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -3205,10 +3199,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -3224,11 +3218,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(5)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -3245,11 +3239,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(6)]
-        public Google.Protobuf.WellKnownTypes.Timestamp LastUpdated // Property.tt Line: 58
+        public Google.Protobuf.WellKnownTypes.Timestamp LastUpdated // Property.tt Line: 55
         { 
             get { return this._LastUpdated; }
             set
@@ -3266,12 +3260,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private Google.Protobuf.WellKnownTypes.Timestamp _LastUpdated;
-        partial void OnLastUpdatedChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 82
+        partial void OnLastUpdatedChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 79
         partial void OnLastUpdatedChanged();
         //IGoogle.Protobuf.WellKnownTypes.Timestamp IConfig.LastUpdated { get { return this._LastUpdated; } }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -3288,11 +3282,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -3309,11 +3303,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -3330,11 +3324,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -3351,11 +3345,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -3370,11 +3364,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNeedCurrentUpdate // Property.tt Line: 58
+        public bool IsNeedCurrentUpdate // Property.tt Line: 55
         { 
             get { return this._IsNeedCurrentUpdate; }
             set
@@ -3391,11 +3385,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNeedCurrentUpdate;
-        partial void OnIsNeedCurrentUpdateChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNeedCurrentUpdateChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNeedCurrentUpdateChanged();
         
         [BrowsableAttribute(false)]
-        public GroupListBaseConfigLinks GroupConfigLinks // Property.tt Line: 58
+        public GroupListBaseConfigLinks GroupConfigLinks // Property.tt Line: 55
         { 
             get { return this._GroupConfigLinks; }
             set
@@ -3412,13 +3406,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListBaseConfigLinks _GroupConfigLinks;
-        IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return (this as Config).GroupConfigLinks; } } // Property.tt Line: 80
-        partial void OnGroupConfigLinksChanging(ref GroupListBaseConfigLinks to); // Property.tt Line: 82
+        IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return (this as Config).GroupConfigLinks; } } // Property.tt Line: 77
+        partial void OnGroupConfigLinksChanging(ref GroupListBaseConfigLinks to); // Property.tt Line: 79
         partial void OnGroupConfigLinksChanged();
         //IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return this._GroupConfigLinks; } }
         
         [BrowsableAttribute(false)]
-        public ConfigModel Model // Property.tt Line: 58
+        public ConfigModel Model // Property.tt Line: 55
         { 
             get { return this._Model; }
             set
@@ -3435,13 +3429,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigModel _Model;
-        IConfigModel IConfig.Model { get { return (this as Config).Model; } } // Property.tt Line: 80
-        partial void OnModelChanging(ref ConfigModel to); // Property.tt Line: 82
+        IConfigModel IConfig.Model { get { return (this as Config).Model; } } // Property.tt Line: 77
+        partial void OnModelChanging(ref ConfigModel to); // Property.tt Line: 79
         partial void OnModelChanged();
         //IConfigModel IConfig.Model { get { return this._Model; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPlugins GroupPlugins // Property.tt Line: 58
+        public GroupListPlugins GroupPlugins // Property.tt Line: 55
         { 
             get { return this._GroupPlugins; }
             set
@@ -3458,13 +3452,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListPlugins _GroupPlugins;
-        IGroupListPlugins IConfig.GroupPlugins { get { return (this as Config).GroupPlugins; } } // Property.tt Line: 80
-        partial void OnGroupPluginsChanging(ref GroupListPlugins to); // Property.tt Line: 82
+        IGroupListPlugins IConfig.GroupPlugins { get { return (this as Config).GroupPlugins; } } // Property.tt Line: 77
+        partial void OnGroupPluginsChanging(ref GroupListPlugins to); // Property.tt Line: 79
         partial void OnGroupPluginsChanged();
         //IGroupListPlugins IConfig.GroupPlugins { get { return this._GroupPlugins; } }
         
         [BrowsableAttribute(false)]
-        public GroupListAppSolutions GroupAppSolutions // Property.tt Line: 58
+        public GroupListAppSolutions GroupAppSolutions // Property.tt Line: 55
         { 
             get { return this._GroupAppSolutions; }
             set
@@ -3481,8 +3475,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListAppSolutions _GroupAppSolutions;
-        IGroupListAppSolutions IConfig.GroupAppSolutions { get { return (this as Config).GroupAppSolutions; } } // Property.tt Line: 80
-        partial void OnGroupAppSolutionsChanging(ref GroupListAppSolutions to); // Property.tt Line: 82
+        IGroupListAppSolutions IConfig.GroupAppSolutions { get { return (this as Config).GroupAppSolutions; } } // Property.tt Line: 77
+        partial void OnGroupAppSolutionsChanging(ref GroupListAppSolutions to); // Property.tt Line: 79
         partial void OnGroupAppSolutionsChanged();
         //IGroupListAppSolutions IConfig.GroupAppSolutions { get { return this._GroupAppSolutions; } }
         [BrowsableAttribute(false)]
@@ -3491,7 +3485,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -3530,7 +3524,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             AppDbSettings vm = new AppDbSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.PluginGuid = from.PluginGuid; // Clone.tt Line: 65
             vm.PluginName = from.PluginName; // Clone.tt Line: 65
@@ -3539,7 +3533,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.PluginGenName = from.PluginGenName; // Clone.tt Line: 65
             vm.ConnGuid = from.ConnGuid; // Clone.tt Line: 65
             vm.ConnName = from.ConnName; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -3580,7 +3574,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.PluginGuid = m.PluginGuid; // Clone.tt Line: 221
             vm.PluginName = m.PluginName; // Clone.tt Line: 221
@@ -3589,7 +3583,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.PluginGenName = m.PluginGenName; // Clone.tt Line: 221
             vm.ConnGuid = m.ConnGuid; // Clone.tt Line: 221
             vm.ConnName = m.ConnName; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -3624,7 +3618,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [PropertyOrderAttribute(1)]
         [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
         [Description("Default DB Plugin")]
-        public string PluginGuid // Property.tt Line: 58
+        public string PluginGuid // Property.tt Line: 55
         { 
             get { return this._PluginGuid; }
             set
@@ -3641,12 +3635,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGuid = string.Empty;
-        partial void OnPluginGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnPluginGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPluginGuidChanged();
         
         [PropertyOrderAttribute(2)]
         [ReadOnly(true)]
-        public string PluginName // Property.tt Line: 58
+        public string PluginName // Property.tt Line: 55
         { 
             get { return this._PluginName; }
             set
@@ -3663,12 +3657,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginName = string.Empty;
-        partial void OnPluginNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnPluginNameChanging(ref string to); // Property.tt Line: 79
         partial void OnPluginNameChanged();
         
         [PropertyOrderAttribute(3)]
         [ReadOnly(true)]
-        public string Version // Property.tt Line: 58
+        public string Version // Property.tt Line: 55
         { 
             get { return this._Version; }
             set
@@ -3685,13 +3679,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Version = string.Empty;
-        partial void OnVersionChanging(ref string to); // Property.tt Line: 82
+        partial void OnVersionChanging(ref string to); // Property.tt Line: 79
         partial void OnVersionChanged();
         
         [PropertyOrderAttribute(4)]
         [Editor(typeof(EditorDbPluginGenSelection), typeof(EditorDbPluginGenSelection))]
         [Description("Default DB Plugin generator")]
-        public string PluginGenGuid // Property.tt Line: 58
+        public string PluginGenGuid // Property.tt Line: 55
         { 
             get { return this._PluginGenGuid; }
             set
@@ -3708,12 +3702,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGenGuid = string.Empty;
-        partial void OnPluginGenGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnPluginGenGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPluginGenGuidChanged();
         
         [PropertyOrderAttribute(5)]
         [ReadOnly(true)]
-        public string PluginGenName // Property.tt Line: 58
+        public string PluginGenName // Property.tt Line: 55
         { 
             get { return this._PluginGenName; }
             set
@@ -3730,13 +3724,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGenName = string.Empty;
-        partial void OnPluginGenNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnPluginGenNameChanging(ref string to); // Property.tt Line: 79
         partial void OnPluginGenNameChanged();
         
         [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorDbConnSelection), typeof(EditorDbConnSelection))]
         [Description("Default DB connection string")]
-        public string ConnGuid // Property.tt Line: 58
+        public string ConnGuid // Property.tt Line: 55
         { 
             get { return this._ConnGuid; }
             set
@@ -3753,12 +3747,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _ConnGuid = string.Empty;
-        partial void OnConnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnConnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnConnGuidChanged();
         
         [PropertyOrderAttribute(7)]
         [ReadOnly(true)]
-        public string ConnName // Property.tt Line: 58
+        public string ConnName // Property.tt Line: 55
         { 
             get { return this._ConnName; }
             set
@@ -3775,7 +3769,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _ConnName = string.Empty;
-        partial void OnConnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnConnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnConnNameChanged();
         #endregion Properties
     }
@@ -3799,7 +3793,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             PluginGroupGeneratorsDefaultSettings vm = new PluginGroupGeneratorsDefaultSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.AppGroupGeneratorsGuid = from.AppGroupGeneratorsGuid; // Clone.tt Line: 65
@@ -3809,7 +3803,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -3851,7 +3845,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.AppGroupGeneratorsGuid = m.AppGroupGeneratorsGuid; // Clone.tt Line: 221
@@ -3861,7 +3855,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -3895,7 +3889,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -3912,14 +3906,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         
         ///////////////////////////////////////////////////
         /// Guid of group generators
         ///////////////////////////////////////////////////
-        public string AppGroupGeneratorsGuid // Property.tt Line: 58
+        public string AppGroupGeneratorsGuid // Property.tt Line: 55
         { 
             get { return this._AppGroupGeneratorsGuid; }
             set
@@ -3936,10 +3930,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _AppGroupGeneratorsGuid = string.Empty;
-        partial void OnAppGroupGeneratorsGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnAppGroupGeneratorsGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnAppGroupGeneratorsGuidChanged();
         
-        public string Settings // Property.tt Line: 58
+        public string Settings // Property.tt Line: 55
         { 
             get { return this._Settings; }
             set
@@ -3956,11 +3950,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // Property.tt Line: 82
+        partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -3977,11 +3971,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -3998,12 +3992,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -4020,11 +4014,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -4041,11 +4035,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -4060,7 +4054,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         #endregion Properties
     }
@@ -4097,7 +4091,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListAppSolutions vm = new GroupListAppSolutions(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -4114,7 +4108,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ListGroupGeneratorsDefultSettings = new ObservableCollection<PluginGroupGeneratorsDefaultSettings>(); // Clone.tt Line: 47
             foreach (var t in from.ListGroupGeneratorsDefultSettings) // Clone.tt Line: 48
                 vm.ListGroupGeneratorsDefultSettings.Add(PluginGroupGeneratorsDefaultSettings.Clone((PluginGroupGeneratorsDefaultSettings)t, isDeep));
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -4229,7 +4223,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -4252,7 +4246,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 var tvm = PluginGroupGeneratorsDefaultSettings.ConvertToVM(t, new PluginGroupGeneratorsDefaultSettings()); // Clone.tt Line: 196
                 vm.ListGroupGeneratorsDefultSettings.Add(tvm);
             }
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -4299,7 +4293,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -4315,11 +4309,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -4335,11 +4329,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
         [BrowsableAttribute(false)]
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -4355,11 +4349,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -4376,7 +4370,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         
@@ -4410,7 +4404,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListAppSolutions.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<AppSolution> items) 
         { 
@@ -4418,7 +4411,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListAppSolutions.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListAppSolutions.Count; }
         int IGroupListAppSolutions.Count() { return this.Count(); }
@@ -4427,11 +4419,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListAppSolutions.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -4448,11 +4439,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -4469,11 +4460,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -4490,11 +4481,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -4511,11 +4502,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -4530,7 +4521,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -4559,7 +4550,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -4606,7 +4597,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             PluginGroupGeneratorsSettings vm = new PluginGroupGeneratorsSettings(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -4618,7 +4609,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -4662,7 +4653,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -4674,7 +4665,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -4710,7 +4701,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -4726,11 +4717,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [ReadOnly(true)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -4746,10 +4737,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public string AppGroupGeneratorsGuid // Property.tt Line: 58
+        public string AppGroupGeneratorsGuid // Property.tt Line: 55
         { 
             get { return this._AppGroupGeneratorsGuid; }
             set
@@ -4766,10 +4757,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _AppGroupGeneratorsGuid = string.Empty;
-        partial void OnAppGroupGeneratorsGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnAppGroupGeneratorsGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnAppGroupGeneratorsGuidChanged();
         
-        public string Settings // Property.tt Line: 58
+        public string Settings // Property.tt Line: 55
         { 
             get { return this._Settings; }
             set
@@ -4786,11 +4777,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // Property.tt Line: 82
+        partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         
         [BrowsableAttribute(false)]
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -4806,11 +4797,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -4827,11 +4818,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -4848,12 +4839,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -4870,11 +4861,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -4891,11 +4882,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -4910,7 +4901,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         [BrowsableAttribute(false)]
         override public bool IsChanged // Class.tt Line: 101
@@ -4918,7 +4909,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -4974,7 +4965,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             AppSolution vm = new AppSolution(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -4993,7 +4984,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListGroupGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListGroupGeneratorsSettings.Add(PluginGroupGeneratorsSettings.Clone(vm, (PluginGroupGeneratorsSettings)t, isDeep));
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -5110,7 +5101,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -5135,7 +5126,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 var tvm = PluginGroupGeneratorsSettings.ConvertToVM(t, new PluginGroupGeneratorsSettings(vm)); // Clone.tt Line: 204
                 vm.ListGroupGeneratorsSettings.Add(tvm);
             }
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -5184,7 +5175,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -5200,11 +5191,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -5220,10 +5211,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -5239,10 +5230,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -5258,11 +5249,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(5)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -5279,7 +5270,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         
@@ -5291,7 +5282,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [DisplayName("Path")]
         [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
         [Description(".NET solution file path relative to configuration file path")]
-        public string RelativeAppSolutionPath // Property.tt Line: 58
+        public string RelativeAppSolutionPath // Property.tt Line: 55
         { 
             get { return this._RelativeAppSolutionPath; }
             set
@@ -5308,11 +5299,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _RelativeAppSolutionPath = string.Empty;
-        partial void OnRelativeAppSolutionPathChanging(ref string to); // Property.tt Line: 82
+        partial void OnRelativeAppSolutionPathChanging(ref string to); // Property.tt Line: 79
         partial void OnRelativeAppSolutionPathChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -5329,11 +5320,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -5350,11 +5341,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -5371,11 +5362,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -5392,11 +5383,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -5411,7 +5402,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -5461,7 +5452,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -5512,7 +5503,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             AppProject vm = new AppProject(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -5529,7 +5520,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListAppProjectGenerators) // Clone.tt Line: 52
                 vm.ListAppProjectGenerators.Add(AppProjectGenerator.Clone(vm, (AppProjectGenerator)t, isDeep));
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -5611,7 +5602,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -5631,7 +5622,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 var tvm = AppProjectGenerator.ConvertToVM(t, new AppProjectGenerator(vm)); // Clone.tt Line: 204
                 vm.ListAppProjectGenerators.Add(tvm);
             }
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -5675,7 +5666,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -5691,11 +5682,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -5711,10 +5702,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -5730,10 +5721,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -5749,11 +5740,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(5)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -5770,7 +5761,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         
@@ -5780,7 +5771,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]
         [Description(".NET project file path relative to solution file path")]
-        public string RelativeAppProjectPath // Property.tt Line: 58
+        public string RelativeAppProjectPath // Property.tt Line: 55
         { 
             get { return this._RelativeAppProjectPath; }
             set
@@ -5797,11 +5788,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _RelativeAppProjectPath = string.Empty;
-        partial void OnRelativeAppProjectPathChanging(ref string to); // Property.tt Line: 82
+        partial void OnRelativeAppProjectPathChanging(ref string to); // Property.tt Line: 79
         partial void OnRelativeAppProjectPathChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -5818,11 +5809,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -5839,11 +5830,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -5860,11 +5851,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -5881,11 +5872,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -5900,13 +5891,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [PropertyOrderAttribute(9)]
         [DisplayName("Namespace")]
         [Description("Project namespace name")]
-        public string Namespace // Property.tt Line: 58
+        public string Namespace // Property.tt Line: 55
         { 
             get { return this._Namespace; }
             set
@@ -5923,7 +5914,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Namespace = string.Empty;
-        partial void OnNamespaceChanging(ref string to); // Property.tt Line: 82
+        partial void OnNamespaceChanging(ref string to); // Property.tt Line: 79
         partial void OnNamespaceChanged();
         
         [BrowsableAttribute(false)]
@@ -5952,7 +5943,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -5999,17 +5990,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             PluginGeneratorNodeSettings vm = new PluginGeneratorNodeSettings(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
-            vm.SortingWeight = from.SortingWeight; // Clone.tt Line: 65
             vm.Settings = from.Settings; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -6022,7 +6012,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Name = from.Name; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
-            to.SortingWeight = from.SortingWeight; // Clone.tt Line: 141
             to.Settings = from.Settings; // Clone.tt Line: 141
             to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
@@ -6051,17 +6040,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.AppProjectGeneratorGuid = m.AppProjectGeneratorGuid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
-            vm.SortingWeight = m.SortingWeight; // Clone.tt Line: 221
             vm.Settings = m.Settings; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -6075,7 +6063,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Name = vm.Name; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
-            m.SortingWeight = vm.SortingWeight; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
             m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
@@ -6095,7 +6082,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -6111,14 +6098,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         
         ///////////////////////////////////////////////////
         /// Guid of solution-project-generator node
         ///////////////////////////////////////////////////
-        public string AppProjectGeneratorGuid // Property.tt Line: 58
+        public string AppProjectGeneratorGuid // Property.tt Line: 55
         { 
             get { return this._AppProjectGeneratorGuid; }
             set
@@ -6135,14 +6122,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _AppProjectGeneratorGuid = string.Empty;
-        partial void OnAppProjectGeneratorGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnAppProjectGeneratorGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnAppProjectGeneratorGuidChanged();
         
         
         ///////////////////////////////////////////////////
         /// Name of solution-project-generator node
         ///////////////////////////////////////////////////
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -6158,10 +6145,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -6177,10 +6164,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -6196,34 +6183,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
-        
-        public ulong SortingWeight // Property.tt Line: 58
-        { 
-            get { return this._SortingWeight; }
-            set
-            {
-                if (this._SortingWeight != value)
-                {
-                    this.OnSortingWeightChanging(ref value);
-                    this._SortingWeight = value;
-                    this.OnSortingWeightChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private ulong _SortingWeight;
-        partial void OnSortingWeightChanging(ref ulong to); // Property.tt Line: 82
-        partial void OnSortingWeightChanged();
         
         
         ///////////////////////////////////////////////////
         /// string node_settings_vm_guid = 6;
         ///////////////////////////////////////////////////
-        public string Settings // Property.tt Line: 58
+        public string Settings // Property.tt Line: 55
         { 
             get { return this._Settings; }
             set
@@ -6240,11 +6207,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // Property.tt Line: 82
+        partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -6259,7 +6226,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         [BrowsableAttribute(false)]
         override public bool IsChanged // Class.tt Line: 101
@@ -6267,7 +6234,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -6306,7 +6273,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             PluginGeneratorSettings vm = new PluginGeneratorSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -6314,7 +6281,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 65
             vm.Settings = from.Settings; // Clone.tt Line: 65
             vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -6354,7 +6321,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -6362,7 +6329,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.AppProjectGeneratorGuid = m.AppProjectGeneratorGuid; // Clone.tt Line: 221
             vm.Settings = m.Settings; // Clone.tt Line: 221
             vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -6394,7 +6361,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -6411,11 +6378,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -6432,11 +6399,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
         [PropertyOrderAttribute(2)]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -6453,14 +6420,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _NameUi = string.Empty;
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         
         ///////////////////////////////////////////////////
         /// Guid of solution-project-generator node
         ///////////////////////////////////////////////////
-        public string AppProjectGeneratorGuid // Property.tt Line: 58
+        public string AppProjectGeneratorGuid // Property.tt Line: 55
         { 
             get { return this._AppProjectGeneratorGuid; }
             set
@@ -6477,10 +6444,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _AppProjectGeneratorGuid = string.Empty;
-        partial void OnAppProjectGeneratorGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnAppProjectGeneratorGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnAppProjectGeneratorGuidChanged();
         
-        public string Settings // Property.tt Line: 58
+        public string Settings // Property.tt Line: 55
         { 
             get { return this._Settings; }
             set
@@ -6497,11 +6464,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // Property.tt Line: 82
+        partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -6516,7 +6483,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         #endregion Properties
     }
@@ -6553,7 +6520,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             AppProjectGenerator vm = new AppProjectGenerator(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -6579,7 +6546,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 65
             vm.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 65
             vm.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -6637,7 +6604,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -6664,7 +6631,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ConnStrToPrevStable = m.ConnStrToPrevStable; // Clone.tt Line: 221
             vm.IsGenerateSqlSqriptToUpdatePrevStable = m.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 221
             vm.GenScriptFileName = m.GenScriptFileName; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -6715,7 +6682,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -6731,11 +6698,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [Description("Connection string name for DB connection generator")]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -6751,10 +6718,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -6770,10 +6737,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -6789,11 +6756,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -6810,14 +6777,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(4)]
         [DisplayName("Plugin")]
         [Description("Plugins with generators")]
         [Editor(typeof(EditorPluginSelection), typeof(ITypeEditor))]
-        public string PluginGuid // Property.tt Line: 58
+        public string PluginGuid // Property.tt Line: 55
         { 
             get { return this._PluginGuid; }
             set
@@ -6834,13 +6801,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGuid = string.Empty;
-        partial void OnPluginGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnPluginGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPluginGuidChanged();
         
         [PropertyOrderAttribute(5)]
         [DisplayName("Description")]
         [ReadOnly(true)]
-        public string DescriptionPlugin // Property.tt Line: 58
+        public string DescriptionPlugin // Property.tt Line: 55
         { 
             get { return this._DescriptionPlugin; }
             set
@@ -6857,14 +6824,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _DescriptionPlugin = string.Empty;
-        partial void OnDescriptionPluginChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionPluginChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionPluginChanged();
         
         [PropertyOrderAttribute(6)]
         [DisplayName("Generator")]
         [Description("Plugin generator")]
         [Editor(typeof(EditorPluginGeneratorSelection), typeof(ITypeEditor))]
-        public string PluginGeneratorGuid // Property.tt Line: 58
+        public string PluginGeneratorGuid // Property.tt Line: 55
         { 
             get { return this._PluginGeneratorGuid; }
             set
@@ -6881,13 +6848,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGeneratorGuid = string.Empty;
-        partial void OnPluginGeneratorGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnPluginGeneratorGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPluginGeneratorGuidChanged();
         
         [PropertyOrderAttribute(7)]
         [DisplayName("Description")]
         [ReadOnly(true)]
-        public string DescriptionGenerator // Property.tt Line: 58
+        public string DescriptionGenerator // Property.tt Line: 55
         { 
             get { return this._DescriptionGenerator; }
             set
@@ -6904,7 +6871,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _DescriptionGenerator = string.Empty;
-        partial void OnDescriptionGeneratorChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionGeneratorChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionGeneratorChanged();
         
         
@@ -6915,7 +6882,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [DisplayName("Output Folder")]
         [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
         [Description("Get is returning relative folder path to project file")]
-        public string RelativePathToGenFolder // Property.tt Line: 58
+        public string RelativePathToGenFolder // Property.tt Line: 55
         { 
             get { return this._RelativePathToGenFolder; }
             set
@@ -6932,7 +6899,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _RelativePathToGenFolder = string.Empty;
-        partial void OnRelativePathToGenFolderChanging(ref string to); // Property.tt Line: 82
+        partial void OnRelativePathToGenFolderChanging(ref string to); // Property.tt Line: 79
         partial void OnRelativePathToGenFolderChanged();
         
         
@@ -6942,7 +6909,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [DisplayName("Output File")]
         [PropertyOrderAttribute(9)]
         [Description("Generator output file name")]
-        public string GenFileName // Property.tt Line: 58
+        public string GenFileName // Property.tt Line: 55
         { 
             get { return this._GenFileName; }
             set
@@ -6959,11 +6926,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _GenFileName = string.Empty;
-        partial void OnGenFileNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnGenFileNameChanging(ref string to); // Property.tt Line: 79
         partial void OnGenFileNameChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -6980,11 +6947,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -7001,12 +6968,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -7023,11 +6990,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -7044,11 +7011,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -7063,11 +7030,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
-        public string GeneratorSettings // Property.tt Line: 58
+        public string GeneratorSettings // Property.tt Line: 55
         { 
             get { return this._GeneratorSettings; }
             set
@@ -7084,12 +7051,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _GeneratorSettings = string.Empty;
-        partial void OnGeneratorSettingsChanging(ref string to); // Property.tt Line: 82
+        partial void OnGeneratorSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnGeneratorSettingsChanged();
         
         [PropertyOrderAttribute(29)]
         [BrowsableAttribute(false)]
-        public PluginGeneratorSettings GeneratorSettingsVm // Property.tt Line: 58
+        public PluginGeneratorSettings GeneratorSettingsVm // Property.tt Line: 55
         { 
             get { return this._GeneratorSettingsVm; }
             set
@@ -7106,14 +7073,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private PluginGeneratorSettings _GeneratorSettingsVm;
-        IPluginGeneratorSettings IAppProjectGenerator.GeneratorSettingsVm { get { return (this as AppProjectGenerator).GeneratorSettingsVm; } } // Property.tt Line: 80
-        partial void OnGeneratorSettingsVmChanging(ref PluginGeneratorSettings to); // Property.tt Line: 82
+        IPluginGeneratorSettings IAppProjectGenerator.GeneratorSettingsVm { get { return (this as AppProjectGenerator).GeneratorSettingsVm; } } // Property.tt Line: 77
+        partial void OnGeneratorSettingsVmChanging(ref PluginGeneratorSettings to); // Property.tt Line: 79
         partial void OnGeneratorSettingsVmChanged();
         //IPluginGeneratorSettings IAppProjectGenerator.GeneratorSettingsVm { get { return this._GeneratorSettingsVm; } }
         
         [PropertyOrderAttribute(9)]
         [Description("Db connection string. Directly editable or generated based on settings")]
-        public string ConnStr // Property.tt Line: 58
+        public string ConnStr // Property.tt Line: 55
         { 
             get { return this._ConnStr; }
             set
@@ -7130,11 +7097,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _ConnStr = string.Empty;
-        partial void OnConnStrChanging(ref string to); // Property.tt Line: 82
+        partial void OnConnStrChanging(ref string to); // Property.tt Line: 79
         partial void OnConnStrChanged();
         
         [BrowsableAttribute(false)]
-        public string PluginGroupSettingsGuid // Property.tt Line: 58
+        public string PluginGroupSettingsGuid // Property.tt Line: 55
         { 
             get { return this._PluginGroupSettingsGuid; }
             set
@@ -7151,13 +7118,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PluginGroupSettingsGuid = string.Empty;
-        partial void OnPluginGroupSettingsGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnPluginGroupSettingsGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPluginGroupSettingsGuidChanged();
         
         [PropertyOrderAttribute(13)]
         [DisplayName("Stable DB")]
         [Description("Db connection string to previous stable version")]
-        public string ConnStrToPrevStable // Property.tt Line: 58
+        public string ConnStrToPrevStable // Property.tt Line: 55
         { 
             get { return this._ConnStrToPrevStable; }
             set
@@ -7174,13 +7141,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _ConnStrToPrevStable = string.Empty;
-        partial void OnConnStrToPrevStableChanging(ref string to); // Property.tt Line: 82
+        partial void OnConnStrToPrevStableChanging(ref string to); // Property.tt Line: 79
         partial void OnConnStrToPrevStableChanged();
         
         [PropertyOrderAttribute(14)]
         [DisplayName("Migrate DB")]
         [Description("Generate Sql script to update stable DB version to current state")]
-        public bool IsGenerateSqlSqriptToUpdatePrevStable // Property.tt Line: 58
+        public bool IsGenerateSqlSqriptToUpdatePrevStable // Property.tt Line: 55
         { 
             get { return this._IsGenerateSqlSqriptToUpdatePrevStable; }
             set
@@ -7197,7 +7164,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsGenerateSqlSqriptToUpdatePrevStable;
-        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged();
         
         
@@ -7207,7 +7174,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [DisplayName("SQL file")]
         [PropertyOrderAttribute(15)]
         [Description("SQL script output file name")]
-        public string GenScriptFileName // Property.tt Line: 58
+        public string GenScriptFileName // Property.tt Line: 55
         { 
             get { return this._GenScriptFileName; }
             set
@@ -7224,7 +7191,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _GenScriptFileName = string.Empty;
-        partial void OnGenScriptFileNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnGenScriptFileNameChanging(ref string to); // Property.tt Line: 79
         partial void OnGenScriptFileNameChanged();
         [BrowsableAttribute(false)]
         override public bool IsChanged // Class.tt Line: 101
@@ -7232,7 +7199,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -7271,11 +7238,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             PluginGeneratorNodeDefaultSettings vm = new PluginGeneratorNodeDefaultSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 65
             vm.Settings = from.Settings; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -7311,11 +7278,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.NodeSettingsVmGuid = m.NodeSettingsVmGuid; // Clone.tt Line: 221
             vm.Settings = m.Settings; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -7346,7 +7313,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         /// Guid of solution-project-generator node
         ///////////////////////////////////////////////////
-        public string NodeSettingsVmGuid // Property.tt Line: 58
+        public string NodeSettingsVmGuid // Property.tt Line: 55
         { 
             get { return this._NodeSettingsVmGuid; }
             set
@@ -7363,10 +7330,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _NodeSettingsVmGuid = string.Empty;
-        partial void OnNodeSettingsVmGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnNodeSettingsVmGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnNodeSettingsVmGuidChanged();
         
-        public string Settings // Property.tt Line: 58
+        public string Settings // Property.tt Line: 55
         { 
             get { return this._Settings; }
             set
@@ -7383,7 +7350,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Settings = string.Empty;
-        partial void OnSettingsChanging(ref string to); // Property.tt Line: 82
+        partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         #endregion Properties
     }
@@ -7411,14 +7378,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             DbSettings vm = new DbSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.DbSchema = from.DbSchema; // Clone.tt Line: 65
             vm.IdGenerator = from.IdGenerator; // Clone.tt Line: 65
             vm.PKeyType = from.PKeyType; // Clone.tt Line: 65
             vm.PKeyName = from.PKeyName; // Clone.tt Line: 65
             vm.PKeyFieldGuid = from.PKeyFieldGuid; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -7457,14 +7424,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.DbSchema = m.DbSchema; // Clone.tt Line: 221
             vm.IdGenerator = (DbIdGeneratorMethod)m.IdGenerator; // Clone.tt Line: 221
             vm.PKeyType = (EnumPrimaryKeyType)m.PKeyType; // Clone.tt Line: 221
             vm.PKeyName = m.PKeyName; // Clone.tt Line: 221
             vm.PKeyFieldGuid = m.PKeyFieldGuid; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -7497,7 +7464,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [PropertyOrderAttribute(1)]
         [DisplayName("Schema")]
         [Description("DB schema name for all object in this configuration")]
-        public string DbSchema // Property.tt Line: 58
+        public string DbSchema // Property.tt Line: 55
         { 
             get { return this._DbSchema; }
             set
@@ -7514,13 +7481,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _DbSchema = string.Empty;
-        partial void OnDbSchemaChanging(ref string to); // Property.tt Line: 82
+        partial void OnDbSchemaChanging(ref string to); // Property.tt Line: 79
         partial void OnDbSchemaChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("Id method")]
         [Description("Primary key generation method")]
-        public DbIdGeneratorMethod IdGenerator // Property.tt Line: 58
+        public DbIdGeneratorMethod IdGenerator // Property.tt Line: 55
         { 
             get { return this._IdGenerator; }
             set
@@ -7537,13 +7504,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private DbIdGeneratorMethod _IdGenerator;
-        partial void OnIdGeneratorChanging(ref DbIdGeneratorMethod to); // Property.tt Line: 82
+        partial void OnIdGeneratorChanging(ref DbIdGeneratorMethod to); // Property.tt Line: 79
         partial void OnIdGeneratorChanged();
         
         [PropertyOrderAttribute(3)]
         [DisplayName("Id type")]
         [Description("Primary key field type")]
-        public EnumPrimaryKeyType PKeyType // Property.tt Line: 58
+        public EnumPrimaryKeyType PKeyType // Property.tt Line: 55
         { 
             get { return this._PKeyType; }
             set
@@ -7560,13 +7527,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private EnumPrimaryKeyType _PKeyType;
-        partial void OnPKeyTypeChanging(ref EnumPrimaryKeyType to); // Property.tt Line: 82
+        partial void OnPKeyTypeChanging(ref EnumPrimaryKeyType to); // Property.tt Line: 79
         partial void OnPKeyTypeChanged();
         
         [PropertyOrderAttribute(4)]
         [DisplayName("Id name")]
         [Description("Primary key field name")]
-        public string PKeyName // Property.tt Line: 58
+        public string PKeyName // Property.tt Line: 55
         { 
             get { return this._PKeyName; }
             set
@@ -7583,11 +7550,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PKeyName = string.Empty;
-        partial void OnPKeyNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnPKeyNameChanging(ref string to); // Property.tt Line: 79
         partial void OnPKeyNameChanged();
         
         [BrowsableAttribute(false)]
-        public string PKeyFieldGuid // Property.tt Line: 58
+        public string PKeyFieldGuid // Property.tt Line: 55
         { 
             get { return this._PKeyFieldGuid; }
             set
@@ -7604,7 +7571,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PKeyFieldGuid = string.Empty;
-        partial void OnPKeyFieldGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnPKeyFieldGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPKeyFieldGuidChanged();
         #endregion Properties
     }
@@ -7652,7 +7619,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             ConfigModel vm = new ConfigModel(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Version = from.Version; // Clone.tt Line: 65
@@ -7687,7 +7654,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -7785,7 +7752,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Version = m.Version; // Clone.tt Line: 221
@@ -7831,7 +7798,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -7898,7 +7865,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -7914,12 +7881,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(2)]
         [ReadOnly(true)]
-        public int Version // Property.tt Line: 58
+        public int Version // Property.tt Line: 55
         { 
             get { return this._Version; }
             set
@@ -7936,11 +7903,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _Version;
-        partial void OnVersionChanging(ref int to); // Property.tt Line: 82
+        partial void OnVersionChanging(ref int to); // Property.tt Line: 79
         partial void OnVersionChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -7956,11 +7923,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
         [BrowsableAttribute(false)]
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -7976,11 +7943,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -7996,11 +7963,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -8017,13 +7984,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(8)]
         [Category("Composite Names Generation")]
         [DisplayName("Max length")]
-        public uint CompositeNameMaxLength // Property.tt Line: 58
+        public uint CompositeNameMaxLength // Property.tt Line: 55
         { 
             get { return this._CompositeNameMaxLength; }
             set
@@ -8040,14 +8007,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private uint _CompositeNameMaxLength;
-        partial void OnCompositeNameMaxLengthChanging(ref uint to); // Property.tt Line: 82
+        partial void OnCompositeNameMaxLengthChanging(ref uint to); // Property.tt Line: 79
         partial void OnCompositeNameMaxLengthChanged();
         
         [PropertyOrderAttribute(9)]
         [Description("Use parent-child composite names.")]
         [Category("Composite Names Generation")]
         [DisplayName("Use Composite")]
-        public bool IsUseCompositeNames // Property.tt Line: 58
+        public bool IsUseCompositeNames // Property.tt Line: 55
         { 
             get { return this._IsUseCompositeNames; }
             set
@@ -8064,14 +8031,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsUseCompositeNames;
-        partial void OnIsUseCompositeNamesChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsUseCompositeNamesChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsUseCompositeNamesChanged();
         
         [PropertyOrderAttribute(10)]
         [Description("Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.")]
         [Category("Composite Names Generation")]
         [DisplayName("Use Prefix")]
-        public bool IsUseGroupPrefix // Property.tt Line: 58
+        public bool IsUseGroupPrefix // Property.tt Line: 55
         { 
             get { return this._IsUseGroupPrefix; }
             set
@@ -8088,11 +8055,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsUseGroupPrefix;
-        partial void OnIsUseGroupPrefixChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsUseGroupPrefixChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsUseGroupPrefixChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -8109,11 +8076,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -8130,11 +8097,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -8151,11 +8118,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -8172,11 +8139,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -8191,7 +8158,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         
@@ -8202,7 +8169,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [ExpandableObjectAttribute()]
         [Description("General DB generator settings")]
         [DisplayName("DB settings")]
-        public DbSettings DbSettings // Property.tt Line: 58
+        public DbSettings DbSettings // Property.tt Line: 55
         { 
             get { return this._DbSettings; }
             set
@@ -8219,13 +8186,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private DbSettings _DbSettings;
-        IDbSettings IConfigModel.DbSettings { get { return (this as ConfigModel).DbSettings; } } // Property.tt Line: 80
-        partial void OnDbSettingsChanging(ref DbSettings to); // Property.tt Line: 82
+        IDbSettings IConfigModel.DbSettings { get { return (this as ConfigModel).DbSettings; } } // Property.tt Line: 77
+        partial void OnDbSettingsChanging(ref DbSettings to); // Property.tt Line: 79
         partial void OnDbSettingsChanged();
         //IDbSettings IConfigModel.DbSettings { get { return this._DbSettings; } }
         
         [BrowsableAttribute(false)]
-        public GroupListCommon GroupCommon // Property.tt Line: 58
+        public GroupListCommon GroupCommon // Property.tt Line: 55
         { 
             get { return this._GroupCommon; }
             set
@@ -8242,13 +8209,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListCommon _GroupCommon;
-        IGroupListCommon IConfigModel.GroupCommon { get { return (this as ConfigModel).GroupCommon; } } // Property.tt Line: 80
-        partial void OnGroupCommonChanging(ref GroupListCommon to); // Property.tt Line: 82
+        IGroupListCommon IConfigModel.GroupCommon { get { return (this as ConfigModel).GroupCommon; } } // Property.tt Line: 77
+        partial void OnGroupCommonChanging(ref GroupListCommon to); // Property.tt Line: 79
         partial void OnGroupCommonChanged();
         //IGroupListCommon IConfigModel.GroupCommon { get { return this._GroupCommon; } }
         
         [BrowsableAttribute(false)]
-        public GroupListConstants GroupConstants // Property.tt Line: 58
+        public GroupListConstants GroupConstants // Property.tt Line: 55
         { 
             get { return this._GroupConstants; }
             set
@@ -8265,13 +8232,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListConstants _GroupConstants;
-        IGroupListConstants IConfigModel.GroupConstants { get { return (this as ConfigModel).GroupConstants; } } // Property.tt Line: 80
-        partial void OnGroupConstantsChanging(ref GroupListConstants to); // Property.tt Line: 82
+        IGroupListConstants IConfigModel.GroupConstants { get { return (this as ConfigModel).GroupConstants; } } // Property.tt Line: 77
+        partial void OnGroupConstantsChanging(ref GroupListConstants to); // Property.tt Line: 79
         partial void OnGroupConstantsChanged();
         //IGroupListConstants IConfigModel.GroupConstants { get { return this._GroupConstants; } }
         
         [BrowsableAttribute(false)]
-        public GroupListEnumerations GroupEnumerations // Property.tt Line: 58
+        public GroupListEnumerations GroupEnumerations // Property.tt Line: 55
         { 
             get { return this._GroupEnumerations; }
             set
@@ -8288,13 +8255,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListEnumerations _GroupEnumerations;
-        IGroupListEnumerations IConfigModel.GroupEnumerations { get { return (this as ConfigModel).GroupEnumerations; } } // Property.tt Line: 80
-        partial void OnGroupEnumerationsChanging(ref GroupListEnumerations to); // Property.tt Line: 82
+        IGroupListEnumerations IConfigModel.GroupEnumerations { get { return (this as ConfigModel).GroupEnumerations; } } // Property.tt Line: 77
+        partial void OnGroupEnumerationsChanging(ref GroupListEnumerations to); // Property.tt Line: 79
         partial void OnGroupEnumerationsChanged();
         //IGroupListEnumerations IConfigModel.GroupEnumerations { get { return this._GroupEnumerations; } }
         
         [BrowsableAttribute(false)]
-        public GroupListCatalogs GroupCatalogs // Property.tt Line: 58
+        public GroupListCatalogs GroupCatalogs // Property.tt Line: 55
         { 
             get { return this._GroupCatalogs; }
             set
@@ -8311,13 +8278,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListCatalogs _GroupCatalogs;
-        IGroupListCatalogs IConfigModel.GroupCatalogs { get { return (this as ConfigModel).GroupCatalogs; } } // Property.tt Line: 80
-        partial void OnGroupCatalogsChanging(ref GroupListCatalogs to); // Property.tt Line: 82
+        IGroupListCatalogs IConfigModel.GroupCatalogs { get { return (this as ConfigModel).GroupCatalogs; } } // Property.tt Line: 77
+        partial void OnGroupCatalogsChanging(ref GroupListCatalogs to); // Property.tt Line: 79
         partial void OnGroupCatalogsChanged();
         //IGroupListCatalogs IConfigModel.GroupCatalogs { get { return this._GroupCatalogs; } }
         
         [BrowsableAttribute(false)]
-        public GroupDocuments GroupDocuments // Property.tt Line: 58
+        public GroupDocuments GroupDocuments // Property.tt Line: 55
         { 
             get { return this._GroupDocuments; }
             set
@@ -8334,13 +8301,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupDocuments _GroupDocuments;
-        IGroupDocuments IConfigModel.GroupDocuments { get { return (this as ConfigModel).GroupDocuments; } } // Property.tt Line: 80
-        partial void OnGroupDocumentsChanging(ref GroupDocuments to); // Property.tt Line: 82
+        IGroupDocuments IConfigModel.GroupDocuments { get { return (this as ConfigModel).GroupDocuments; } } // Property.tt Line: 77
+        partial void OnGroupDocumentsChanging(ref GroupDocuments to); // Property.tt Line: 79
         partial void OnGroupDocumentsChanged();
         //IGroupDocuments IConfigModel.GroupDocuments { get { return this._GroupDocuments; } }
         
         [BrowsableAttribute(false)]
-        public GroupListJournals GroupJournals // Property.tt Line: 58
+        public GroupListJournals GroupJournals // Property.tt Line: 55
         { 
             get { return this._GroupJournals; }
             set
@@ -8357,8 +8324,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListJournals _GroupJournals;
-        IGroupListJournals IConfigModel.GroupJournals { get { return (this as ConfigModel).GroupJournals; } } // Property.tt Line: 80
-        partial void OnGroupJournalsChanging(ref GroupListJournals to); // Property.tt Line: 82
+        IGroupListJournals IConfigModel.GroupJournals { get { return (this as ConfigModel).GroupJournals; } } // Property.tt Line: 77
+        partial void OnGroupJournalsChanging(ref GroupListJournals to); // Property.tt Line: 79
         partial void OnGroupJournalsChanged();
         //IGroupListJournals IConfigModel.GroupJournals { get { return this._GroupJournals; } }
         
@@ -8388,7 +8355,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -8428,7 +8395,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             DataType vm = new DataType();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 65
             vm.Length = from.Length; // Clone.tt Line: 65
@@ -8441,7 +8408,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
             vm.IsPKey = from.IsPKey; // Clone.tt Line: 65
             vm.IsRefParent = from.IsRefParent; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -8489,7 +8456,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.DataTypeEnum = (EnumDataType)m.DataTypeEnum; // Clone.tt Line: 221
             vm.Length = m.Length; // Clone.tt Line: 221
@@ -8505,7 +8472,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
             vm.IsPKey = m.IsPKey; // Clone.tt Line: 221
             vm.IsRefParent = m.IsRefParent; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -8543,7 +8510,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         
         [PropertyOrderAttribute(1)]
         [DisplayName("Type")]
-        public EnumDataType DataTypeEnum // Property.tt Line: 58
+        public EnumDataType DataTypeEnum // Property.tt Line: 55
         { 
             get { return this._DataTypeEnum; }
             set
@@ -8560,13 +8527,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private EnumDataType _DataTypeEnum;
-        partial void OnDataTypeEnumChanging(ref EnumDataType to); // Property.tt Line: 82
+        partial void OnDataTypeEnumChanging(ref EnumDataType to); // Property.tt Line: 79
         partial void OnDataTypeEnumChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("Length")]
         [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]
-        public uint Length // Property.tt Line: 58
+        public uint Length // Property.tt Line: 55
         { 
             get { return this._Length; }
             set
@@ -8583,13 +8550,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private uint _Length;
-        partial void OnLengthChanging(ref uint to); // Property.tt Line: 82
+        partial void OnLengthChanging(ref uint to); // Property.tt Line: 79
         partial void OnLengthChanged();
         
         [PropertyOrderAttribute(3)]
         [DisplayName("Accuracy")]
         [Description("Number of decimal places for numeric data)")]
-        public uint Accuracy // Property.tt Line: 58
+        public uint Accuracy // Property.tt Line: 55
         { 
             get { return this._Accuracy; }
             set
@@ -8606,12 +8573,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private uint _Accuracy;
-        partial void OnAccuracyChanging(ref uint to); // Property.tt Line: 82
+        partial void OnAccuracyChanging(ref uint to); // Property.tt Line: 79
         partial void OnAccuracyChanged();
         
         [PropertyOrderAttribute(4)]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-        public string ObjectGuid // Property.tt Line: 58
+        public string ObjectGuid // Property.tt Line: 55
         { 
             get { return this._ObjectGuid; }
             set
@@ -8628,7 +8595,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _ObjectGuid = string.Empty;
-        partial void OnObjectGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnObjectGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnObjectGuidChanged();
         
         [PropertyOrderAttribute(5)]
@@ -8655,7 +8622,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [PropertyOrderAttribute(9)]
         [DisplayName("FK Index")]
         [Description("Create Index if this property is using foreign key (for Catalog or Document type)")]
-        public bool IsIndexFk // Property.tt Line: 58
+        public bool IsIndexFk // Property.tt Line: 55
         { 
             get { return this._IsIndexFk; }
             set
@@ -8672,13 +8639,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsIndexFk;
-        partial void OnIsIndexFkChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsIndexFkChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsIndexFkChanged();
         
         [PropertyOrderAttribute(11)]
         [DisplayName("Positive")]
         [Description("Expected always >= 0")]
-        public bool IsPositive // Property.tt Line: 58
+        public bool IsPositive // Property.tt Line: 55
         { 
             get { return this._IsPositive; }
             set
@@ -8695,13 +8662,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsPositive;
-        partial void OnIsPositiveChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsPositiveChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsPositiveChanged();
         
         [PropertyOrderAttribute(12)]
         [DisplayName("Can be NULL")]
         [Description("If unchecked always expected data")]
-        public bool IsNullable // Property.tt Line: 58
+        public bool IsNullable // Property.tt Line: 55
         { 
             get { return this._IsNullable; }
             set
@@ -8718,11 +8685,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNullable;
-        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNullableChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsPKey // Property.tt Line: 58
+        public bool IsPKey // Property.tt Line: 55
         { 
             get { return this._IsPKey; }
             set
@@ -8739,11 +8706,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsPKey;
-        partial void OnIsPKeyChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsPKeyChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsPKeyChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsRefParent // Property.tt Line: 58
+        public bool IsRefParent // Property.tt Line: 55
         { 
             get { return this._IsRefParent; }
             set
@@ -8760,7 +8727,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsRefParent;
-        partial void OnIsRefParentChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsRefParentChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsRefParentChanged();
         #endregion Properties
     }
@@ -8802,7 +8769,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListCommon vm = new GroupListCommon(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -8823,7 +8790,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -8907,7 +8874,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -8934,7 +8901,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -8982,7 +8949,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -8998,11 +8965,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -9018,10 +8985,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -9037,12 +9004,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -9058,11 +9025,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -9079,11 +9046,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public GroupListRoles GroupRoles // Property.tt Line: 58
+        public GroupListRoles GroupRoles // Property.tt Line: 55
         { 
             get { return this._GroupRoles; }
             set
@@ -9100,13 +9067,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListRoles _GroupRoles;
-        IGroupListRoles IGroupListCommon.GroupRoles { get { return (this as GroupListCommon).GroupRoles; } } // Property.tt Line: 80
-        partial void OnGroupRolesChanging(ref GroupListRoles to); // Property.tt Line: 82
+        IGroupListRoles IGroupListCommon.GroupRoles { get { return (this as GroupListCommon).GroupRoles; } } // Property.tt Line: 77
+        partial void OnGroupRolesChanging(ref GroupListRoles to); // Property.tt Line: 79
         partial void OnGroupRolesChanged();
         //IGroupListRoles IGroupListCommon.GroupRoles { get { return this._GroupRoles; } }
         
         [BrowsableAttribute(false)]
-        public GroupListMainViewForms GroupViewForms // Property.tt Line: 58
+        public GroupListMainViewForms GroupViewForms // Property.tt Line: 55
         { 
             get { return this._GroupViewForms; }
             set
@@ -9123,13 +9090,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListMainViewForms _GroupViewForms;
-        IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return (this as GroupListCommon).GroupViewForms; } } // Property.tt Line: 80
-        partial void OnGroupViewFormsChanging(ref GroupListMainViewForms to); // Property.tt Line: 82
+        IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return (this as GroupListCommon).GroupViewForms; } } // Property.tt Line: 77
+        partial void OnGroupViewFormsChanging(ref GroupListMainViewForms to); // Property.tt Line: 79
         partial void OnGroupViewFormsChanged();
         //IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return this._GroupViewForms; } }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -9146,11 +9113,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -9167,12 +9134,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -9189,11 +9156,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -9210,11 +9177,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -9229,7 +9196,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -9258,7 +9225,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -9313,7 +9280,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Role vm = new Role(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -9330,7 +9297,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -9410,7 +9377,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -9431,7 +9398,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -9473,7 +9440,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -9489,11 +9456,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -9509,10 +9476,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -9528,12 +9495,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -9549,11 +9516,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -9570,11 +9537,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -9591,12 +9558,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -9613,11 +9580,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -9634,11 +9601,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -9655,11 +9622,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -9674,7 +9641,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -9703,7 +9670,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -9759,7 +9726,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListRoles vm = new GroupListRoles(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -9779,7 +9746,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -9895,7 +9862,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -9922,7 +9889,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -9970,7 +9937,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -9986,11 +9953,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -10006,10 +9973,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -10025,12 +9992,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -10046,11 +10013,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -10067,7 +10034,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
@@ -10097,7 +10064,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListRoles.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<Role> items) 
         { 
@@ -10105,7 +10071,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListRoles.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListRoles.Count; }
         int IGroupListRoles.Count() { return this.Count(); }
@@ -10114,11 +10079,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListRoles.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -10135,11 +10099,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -10156,11 +10120,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -10177,11 +10141,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -10198,11 +10162,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -10217,7 +10181,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -10246,7 +10210,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -10302,7 +10266,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             MainViewForm vm = new MainViewForm(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -10321,7 +10285,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -10403,7 +10367,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -10427,7 +10391,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -10472,7 +10436,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -10488,11 +10452,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -10508,10 +10472,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -10527,12 +10491,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -10548,11 +10512,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -10569,11 +10533,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public GroupListMainViewForms GroupListViewForms // Property.tt Line: 58
+        public GroupListMainViewForms GroupListViewForms // Property.tt Line: 55
         { 
             get { return this._GroupListViewForms; }
             set
@@ -10590,13 +10554,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListMainViewForms _GroupListViewForms;
-        IGroupListMainViewForms IMainViewForm.GroupListViewForms { get { return (this as MainViewForm).GroupListViewForms; } } // Property.tt Line: 80
-        partial void OnGroupListViewFormsChanging(ref GroupListMainViewForms to); // Property.tt Line: 82
+        IGroupListMainViewForms IMainViewForm.GroupListViewForms { get { return (this as MainViewForm).GroupListViewForms; } } // Property.tt Line: 77
+        partial void OnGroupListViewFormsChanging(ref GroupListMainViewForms to); // Property.tt Line: 79
         partial void OnGroupListViewFormsChanged();
         //IGroupListMainViewForms IMainViewForm.GroupListViewForms { get { return this._GroupListViewForms; } }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -10613,11 +10577,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -10634,12 +10598,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -10656,11 +10620,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -10677,11 +10641,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -10696,7 +10660,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -10725,7 +10689,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -10785,7 +10749,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListMainViewForms vm = new GroupListMainViewForms(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -10805,7 +10769,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -10921,7 +10885,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -10948,7 +10912,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -10996,7 +10960,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -11012,11 +10976,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -11032,10 +10996,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -11051,12 +11015,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -11072,11 +11036,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -11093,7 +11057,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
@@ -11123,7 +11087,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListMainViewForms.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<MainViewForm> items) 
         { 
@@ -11131,7 +11094,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListMainViewForms.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListMainViewForms.Count; }
         int IGroupListMainViewForms.Count() { return this.Count(); }
@@ -11140,11 +11102,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListMainViewForms.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -11161,11 +11122,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -11182,12 +11143,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -11204,11 +11165,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -11225,11 +11186,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -11244,7 +11205,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -11273,7 +11234,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -11329,7 +11290,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListPropertiesTabs vm = new GroupListPropertiesTabs(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -11349,7 +11310,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -11465,7 +11426,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -11492,7 +11453,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -11540,7 +11501,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -11556,11 +11517,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -11576,10 +11537,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -11595,12 +11556,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -11616,11 +11577,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -11637,7 +11598,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
@@ -11667,7 +11628,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListPropertiesTabs.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<PropertiesTab> items) 
         { 
@@ -11675,7 +11635,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListPropertiesTabs.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListPropertiesTabs.Count; }
         int IGroupListPropertiesTabs.Count() { return this.Count(); }
@@ -11684,11 +11643,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListPropertiesTabs.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -11705,11 +11663,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -11726,12 +11684,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -11748,11 +11706,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -11769,11 +11727,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -11788,7 +11746,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -11817,7 +11775,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -11870,7 +11828,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             PropertiesTab vm = new PropertiesTab(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -11892,7 +11850,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -11977,7 +11935,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -12005,7 +11963,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -12054,7 +12012,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -12070,11 +12028,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -12090,10 +12048,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -12109,12 +12067,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -12130,11 +12088,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -12151,11 +12109,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public GroupListProperties GroupProperties // Property.tt Line: 58
+        public GroupListProperties GroupProperties // Property.tt Line: 55
         { 
             get { return this._GroupProperties; }
             set
@@ -12172,13 +12130,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListProperties _GroupProperties;
-        IGroupListProperties IPropertiesTab.GroupProperties { get { return (this as PropertiesTab).GroupProperties; } } // Property.tt Line: 80
-        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 82
+        IGroupListProperties IPropertiesTab.GroupProperties { get { return (this as PropertiesTab).GroupProperties; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 79
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties IPropertiesTab.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 58
+        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 55
         { 
             get { return this._GroupPropertiesTabs; }
             set
@@ -12195,8 +12153,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListPropertiesTabs _GroupPropertiesTabs;
-        IGroupListPropertiesTabs IPropertiesTab.GroupPropertiesTabs { get { return (this as PropertiesTab).GroupPropertiesTabs; } } // Property.tt Line: 80
-        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 82
+        IGroupListPropertiesTabs IPropertiesTab.GroupPropertiesTabs { get { return (this as PropertiesTab).GroupPropertiesTabs; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 79
         partial void OnGroupPropertiesTabsChanged();
         //IGroupListPropertiesTabs IPropertiesTab.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
         
@@ -12205,7 +12163,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// Create Index for foreign key navigation property
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(4)]
-        public bool IsIndexFk // Property.tt Line: 58
+        public bool IsIndexFk // Property.tt Line: 55
         { 
             get { return this._IsIndexFk; }
             set
@@ -12222,11 +12180,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsIndexFk;
-        partial void OnIsIndexFkChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsIndexFkChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsIndexFkChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -12243,12 +12201,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -12265,11 +12223,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -12286,11 +12244,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -12307,11 +12265,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -12326,7 +12284,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -12355,7 +12313,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -12411,7 +12369,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListProperties vm = new GroupListProperties(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -12432,7 +12390,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -12549,7 +12507,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -12577,7 +12535,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -12626,7 +12584,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -12642,11 +12600,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -12662,10 +12620,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -12681,12 +12639,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -12702,11 +12660,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -12723,7 +12681,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
@@ -12753,7 +12711,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListProperties.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<Property> items) 
         { 
@@ -12761,7 +12718,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListProperties.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListProperties.Count; }
         int IGroupListProperties.Count() { return this.Count(); }
@@ -12770,7 +12726,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListProperties.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         
@@ -12778,7 +12733,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// Last generated Protobuf field position
         ///////////////////////////////////////////////////
         [ReadOnly(true)]
-        public uint LastGenPosition // Property.tt Line: 58
+        public uint LastGenPosition // Property.tt Line: 55
         { 
             get { return this._LastGenPosition; }
             set
@@ -12795,11 +12750,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private uint _LastGenPosition;
-        partial void OnLastGenPositionChanging(ref uint to); // Property.tt Line: 82
+        partial void OnLastGenPositionChanging(ref uint to); // Property.tt Line: 79
         partial void OnLastGenPositionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -12816,11 +12771,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -12837,12 +12792,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -12859,11 +12814,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -12880,11 +12835,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -12899,7 +12854,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -12928,7 +12883,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -12980,7 +12935,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Property vm = new Property(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -13000,7 +12955,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -13083,7 +13038,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -13108,7 +13063,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -13154,7 +13109,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -13170,11 +13125,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -13190,10 +13145,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -13209,12 +13164,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -13230,11 +13185,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -13251,13 +13206,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(4)]
         [ExpandableObjectAttribute()]
         [DisplayName("Type")]
-        public DataType DataType // Property.tt Line: 58
+        public DataType DataType // Property.tt Line: 55
         { 
             get { return this._DataType; }
             set
@@ -13274,13 +13229,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private DataType _DataType;
-        IDataType IProperty.DataType { get { return (this as Property).DataType; } } // Property.tt Line: 80
-        partial void OnDataTypeChanging(ref DataType to); // Property.tt Line: 82
+        IDataType IProperty.DataType { get { return (this as Property).DataType; } } // Property.tt Line: 77
+        partial void OnDataTypeChanging(ref DataType to); // Property.tt Line: 79
         partial void OnDataTypeChanged();
         //IDataType IProperty.DataType { get { return this._DataType; } }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -13297,11 +13252,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -13318,12 +13273,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -13340,11 +13295,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -13361,11 +13316,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -13380,7 +13335,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         
@@ -13389,7 +13344,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         /// Reserved positions: 1 - primary key
         ///////////////////////////////////////////////////
         [ReadOnly(true)]
-        public uint Position // Property.tt Line: 58
+        public uint Position // Property.tt Line: 55
         { 
             get { return this._Position; }
             set
@@ -13406,7 +13361,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private uint _Position;
-        partial void OnPositionChanging(ref uint to); // Property.tt Line: 82
+        partial void OnPositionChanging(ref uint to); // Property.tt Line: 79
         partial void OnPositionChanged();
         
         [BrowsableAttribute(false)]
@@ -13435,7 +13390,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -13491,7 +13446,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListConstants vm = new GroupListConstants(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -13511,7 +13466,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -13627,7 +13582,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -13654,7 +13609,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -13702,7 +13657,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -13718,11 +13673,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -13738,10 +13693,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -13757,12 +13712,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -13778,11 +13733,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -13799,7 +13754,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
@@ -13829,7 +13784,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListConstants.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<Constant> items) 
         { 
@@ -13837,7 +13791,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListConstants.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListConstants.Count; }
         int IGroupListConstants.Count() { return this.Count(); }
@@ -13846,11 +13799,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListConstants.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -13867,11 +13819,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -13888,12 +13840,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -13910,11 +13862,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -13931,11 +13883,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -13950,7 +13902,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -13979,7 +13931,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -14035,7 +13987,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Constant vm = new Constant(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -14054,7 +14006,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -14136,7 +14088,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -14160,7 +14112,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -14205,7 +14157,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -14221,11 +14173,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -14241,10 +14193,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -14260,12 +14212,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -14281,11 +14233,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -14302,13 +14254,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(4)]
         [ExpandableObjectAttribute()]
         [DisplayName("Type")]
-        public DataType DataType // Property.tt Line: 58
+        public DataType DataType // Property.tt Line: 55
         { 
             get { return this._DataType; }
             set
@@ -14325,13 +14277,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private DataType _DataType;
-        IDataType IConstant.DataType { get { return (this as Constant).DataType; } } // Property.tt Line: 80
-        partial void OnDataTypeChanging(ref DataType to); // Property.tt Line: 82
+        IDataType IConstant.DataType { get { return (this as Constant).DataType; } } // Property.tt Line: 77
+        partial void OnDataTypeChanging(ref DataType to); // Property.tt Line: 79
         partial void OnDataTypeChanged();
         //IDataType IConstant.DataType { get { return this._DataType; } }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -14348,11 +14300,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -14369,12 +14321,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -14391,11 +14343,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -14412,11 +14364,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -14431,7 +14383,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -14460,7 +14412,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -14516,7 +14468,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListEnumerations vm = new GroupListEnumerations(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -14536,7 +14488,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -14652,7 +14604,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -14679,7 +14631,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -14727,7 +14679,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -14743,11 +14695,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -14763,10 +14715,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -14782,12 +14734,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -14803,11 +14755,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -14824,7 +14776,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
@@ -14854,7 +14806,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListEnumerations.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<Enumeration> items) 
         { 
@@ -14862,7 +14813,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListEnumerations.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListEnumerations.Count; }
         int IGroupListEnumerations.Count() { return this.Count(); }
@@ -14871,11 +14821,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListEnumerations.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -14892,11 +14841,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -14913,12 +14862,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -14935,11 +14884,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -14956,11 +14905,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -14975,7 +14924,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -15004,7 +14953,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -15060,7 +15009,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Enumeration vm = new Enumeration(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -15082,7 +15031,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -15200,7 +15149,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -15229,7 +15178,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -15279,7 +15228,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -15295,11 +15244,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -15315,10 +15264,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -15334,12 +15283,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -15355,11 +15304,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -15376,7 +15325,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         
@@ -15385,7 +15334,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(4)]
         [DisplayName("Type")]
-        public EnumEnumerationType DataTypeEnum // Property.tt Line: 58
+        public EnumEnumerationType DataTypeEnum // Property.tt Line: 55
         { 
             get { return this._DataTypeEnum; }
             set
@@ -15402,7 +15351,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private EnumEnumerationType _DataTypeEnum;
-        partial void OnDataTypeEnumChanging(ref EnumEnumerationType to); // Property.tt Line: 82
+        partial void OnDataTypeEnumChanging(ref EnumEnumerationType to); // Property.tt Line: 79
         partial void OnDataTypeEnumChanged();
         
         
@@ -15411,7 +15360,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         ///////////////////////////////////////////////////
         [PropertyOrderAttribute(5)]
         [DisplayName("Length")]
-        public int DataTypeLength // Property.tt Line: 58
+        public int DataTypeLength // Property.tt Line: 55
         { 
             get { return this._DataTypeLength; }
             set
@@ -15428,7 +15377,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _DataTypeLength;
-        partial void OnDataTypeLengthChanging(ref int to); // Property.tt Line: 82
+        partial void OnDataTypeLengthChanging(ref int to); // Property.tt Line: 79
         partial void OnDataTypeLengthChanged();
         
         [DisplayName("Elements")]
@@ -15454,7 +15403,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListEnumerationPairsChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -15471,12 +15420,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -15493,11 +15442,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -15514,11 +15463,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -15535,11 +15484,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -15554,7 +15503,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -15583,7 +15532,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -15634,7 +15583,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             EnumerationPair vm = new EnumerationPair(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -15653,7 +15602,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -15735,7 +15684,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -15758,7 +15707,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -15802,7 +15751,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -15818,13 +15767,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
         [DisplayName("Name")]
         [Description("Enumeration element name")]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -15840,10 +15789,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -15859,12 +15808,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(4)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -15880,12 +15829,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(5)]
         [Description("Description of enumeration element")]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -15902,13 +15851,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(3)]
         [DisplayName("Value")]
         [Description("Enumeration element value")]
-        public string Value // Property.tt Line: 58
+        public string Value // Property.tt Line: 55
         { 
             get { return this._Value; }
             set
@@ -15925,13 +15874,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Value = string.Empty;
-        partial void OnValueChanging(ref string to); // Property.tt Line: 82
+        partial void OnValueChanging(ref string to); // Property.tt Line: 79
         partial void OnValueChanged();
         
         [PropertyOrderAttribute(3)]
         [DisplayName("Is default")]
         [Description("Used as default value for enumeration")]
-        public bool IsDefault // Property.tt Line: 58
+        public bool IsDefault // Property.tt Line: 55
         { 
             get { return this._IsDefault; }
             set
@@ -15948,11 +15897,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsDefault;
-        partial void OnIsDefaultChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsDefaultChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsDefaultChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -15969,11 +15918,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -15990,12 +15939,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -16012,11 +15961,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -16033,11 +15982,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -16052,7 +16001,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -16081,7 +16030,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -16134,7 +16083,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             CatalogItemsGroup vm = new CatalogItemsGroup(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -16155,7 +16104,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -16239,7 +16188,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -16266,7 +16215,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -16314,7 +16263,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -16330,11 +16279,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -16350,10 +16299,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -16369,12 +16318,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -16390,11 +16339,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -16411,11 +16360,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -16432,13 +16381,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -16455,11 +16404,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -16476,11 +16425,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -16497,11 +16446,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -16516,11 +16465,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
-        public GroupListProperties GroupProperties // Property.tt Line: 58
+        public GroupListProperties GroupProperties // Property.tt Line: 55
         { 
             get { return this._GroupProperties; }
             set
@@ -16537,13 +16486,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListProperties _GroupProperties;
-        IGroupListProperties ICatalogItemsGroup.GroupProperties { get { return (this as CatalogItemsGroup).GroupProperties; } } // Property.tt Line: 80
-        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 82
+        IGroupListProperties ICatalogItemsGroup.GroupProperties { get { return (this as CatalogItemsGroup).GroupProperties; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 79
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties ICatalogItemsGroup.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 58
+        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 55
         { 
             get { return this._GroupPropertiesTabs; }
             set
@@ -16560,8 +16509,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListPropertiesTabs _GroupPropertiesTabs;
-        IGroupListPropertiesTabs ICatalogItemsGroup.GroupPropertiesTabs { get { return (this as CatalogItemsGroup).GroupPropertiesTabs; } } // Property.tt Line: 80
-        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 82
+        IGroupListPropertiesTabs ICatalogItemsGroup.GroupPropertiesTabs { get { return (this as CatalogItemsGroup).GroupPropertiesTabs; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 79
         partial void OnGroupPropertiesTabsChanged();
         //IGroupListPropertiesTabs ICatalogItemsGroup.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
         
@@ -16591,7 +16540,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -16630,13 +16579,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             CatalogSettings vm = new CatalogSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.MaxCatalogItemNameLength = from.MaxCatalogItemNameLength; // Clone.tt Line: 65
             vm.MaxCatalogItemDescriptionLength = from.MaxCatalogItemDescriptionLength; // Clone.tt Line: 65
             vm.MaxCatalogItemTreeLevels = from.MaxCatalogItemTreeLevels; // Clone.tt Line: 65
             vm.SeparatePropertiesForGroups = from.SeparatePropertiesForGroups; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -16674,13 +16623,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.MaxCatalogItemNameLength = m.MaxCatalogItemNameLength; // Clone.tt Line: 221
             vm.MaxCatalogItemDescriptionLength = m.MaxCatalogItemDescriptionLength; // Clone.tt Line: 221
             vm.MaxCatalogItemTreeLevels = m.MaxCatalogItemTreeLevels; // Clone.tt Line: 221
             vm.SeparatePropertiesForGroups = m.SeparatePropertiesForGroups; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -16712,7 +16661,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         [PropertyOrderAttribute(1)]
         [DisplayName("Name length")]
         [Description("Maximum catalog item name length. If negative, than unlimited length. If zero, than not use")]
-        public int MaxCatalogItemNameLength // Property.tt Line: 58
+        public int MaxCatalogItemNameLength // Property.tt Line: 55
         { 
             get { return this._MaxCatalogItemNameLength; }
             set
@@ -16729,13 +16678,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _MaxCatalogItemNameLength;
-        partial void OnMaxCatalogItemNameLengthChanging(ref int to); // Property.tt Line: 82
+        partial void OnMaxCatalogItemNameLengthChanging(ref int to); // Property.tt Line: 79
         partial void OnMaxCatalogItemNameLengthChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("Description length")]
         [Description("Maximum catalog item description length. If negative, than unlimited length. If zero, than not use")]
-        public int MaxCatalogItemDescriptionLength // Property.tt Line: 58
+        public int MaxCatalogItemDescriptionLength // Property.tt Line: 55
         { 
             get { return this._MaxCatalogItemDescriptionLength; }
             set
@@ -16752,13 +16701,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _MaxCatalogItemDescriptionLength;
-        partial void OnMaxCatalogItemDescriptionLengthChanging(ref int to); // Property.tt Line: 82
+        partial void OnMaxCatalogItemDescriptionLengthChanging(ref int to); // Property.tt Line: 79
         partial void OnMaxCatalogItemDescriptionLengthChanged();
         
         [PropertyOrderAttribute(3)]
         [DisplayName("Levels")]
         [Description("Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping")]
-        public int MaxCatalogItemTreeLevels // Property.tt Line: 58
+        public int MaxCatalogItemTreeLevels // Property.tt Line: 55
         { 
             get { return this._MaxCatalogItemTreeLevels; }
             set
@@ -16775,13 +16724,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private int _MaxCatalogItemTreeLevels;
-        partial void OnMaxCatalogItemTreeLevelsChanging(ref int to); // Property.tt Line: 82
+        partial void OnMaxCatalogItemTreeLevelsChanging(ref int to); // Property.tt Line: 79
         partial void OnMaxCatalogItemTreeLevelsChanged();
         
         [PropertyOrderAttribute(4)]
         [DisplayName("Group properties")]
         [Description("Separate set of properties for groups")]
-        public bool SeparatePropertiesForGroups // Property.tt Line: 58
+        public bool SeparatePropertiesForGroups // Property.tt Line: 55
         { 
             get { return this._SeparatePropertiesForGroups; }
             set
@@ -16798,7 +16747,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _SeparatePropertiesForGroups;
-        partial void OnSeparatePropertiesForGroupsChanging(ref bool to); // Property.tt Line: 82
+        partial void OnSeparatePropertiesForGroupsChanging(ref bool to); // Property.tt Line: 79
         partial void OnSeparatePropertiesForGroupsChanged();
         #endregion Properties
     }
@@ -16840,7 +16789,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Catalog vm = new Catalog(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -16869,7 +16818,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -16961,7 +16910,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -17000,7 +16949,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -17060,7 +17009,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -17076,11 +17025,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -17096,10 +17045,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -17115,12 +17064,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -17136,11 +17085,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -17157,14 +17106,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(4)]
         [ExpandableObjectAttribute()]
         [DisplayName("Parameters")]
         [Description("Catalog settings")]
-        public CatalogSettings CatalogSettings // Property.tt Line: 58
+        public CatalogSettings CatalogSettings // Property.tt Line: 55
         { 
             get { return this._CatalogSettings; }
             set
@@ -17181,13 +17130,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private CatalogSettings _CatalogSettings;
-        ICatalogSettings ICatalog.CatalogSettings { get { return (this as Catalog).CatalogSettings; } } // Property.tt Line: 80
-        partial void OnCatalogSettingsChanging(ref CatalogSettings to); // Property.tt Line: 82
+        ICatalogSettings ICatalog.CatalogSettings { get { return (this as Catalog).CatalogSettings; } } // Property.tt Line: 77
+        partial void OnCatalogSettingsChanging(ref CatalogSettings to); // Property.tt Line: 79
         partial void OnCatalogSettingsChanged();
         //ICatalogSettings ICatalog.CatalogSettings { get { return this._CatalogSettings; } }
         
         [BrowsableAttribute(true)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -17204,12 +17153,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -17226,11 +17175,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -17247,11 +17196,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -17268,11 +17217,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -17287,11 +17236,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
-        public CatalogItemsGroup GroupItems // Property.tt Line: 58
+        public CatalogItemsGroup GroupItems // Property.tt Line: 55
         { 
             get { return this._GroupItems; }
             set
@@ -17308,13 +17257,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private CatalogItemsGroup _GroupItems;
-        ICatalogItemsGroup ICatalog.GroupItems { get { return (this as Catalog).GroupItems; } } // Property.tt Line: 80
-        partial void OnGroupItemsChanging(ref CatalogItemsGroup to); // Property.tt Line: 82
+        ICatalogItemsGroup ICatalog.GroupItems { get { return (this as Catalog).GroupItems; } } // Property.tt Line: 77
+        partial void OnGroupItemsChanging(ref CatalogItemsGroup to); // Property.tt Line: 79
         partial void OnGroupItemsChanged();
         //ICatalogItemsGroup ICatalog.GroupItems { get { return this._GroupItems; } }
         
         [BrowsableAttribute(false)]
-        public GroupListProperties GroupProperties // Property.tt Line: 58
+        public GroupListProperties GroupProperties // Property.tt Line: 55
         { 
             get { return this._GroupProperties; }
             set
@@ -17331,13 +17280,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListProperties _GroupProperties;
-        IGroupListProperties ICatalog.GroupProperties { get { return (this as Catalog).GroupProperties; } } // Property.tt Line: 80
-        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 82
+        IGroupListProperties ICatalog.GroupProperties { get { return (this as Catalog).GroupProperties; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 79
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties ICatalog.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 58
+        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 55
         { 
             get { return this._GroupPropertiesTabs; }
             set
@@ -17354,13 +17303,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListPropertiesTabs _GroupPropertiesTabs;
-        IGroupListPropertiesTabs ICatalog.GroupPropertiesTabs { get { return (this as Catalog).GroupPropertiesTabs; } } // Property.tt Line: 80
-        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 82
+        IGroupListPropertiesTabs ICatalog.GroupPropertiesTabs { get { return (this as Catalog).GroupPropertiesTabs; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 79
         partial void OnGroupPropertiesTabsChanged();
         //IGroupListPropertiesTabs ICatalog.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
         
         [BrowsableAttribute(false)]
-        public GroupListForms GroupForms // Property.tt Line: 58
+        public GroupListForms GroupForms // Property.tt Line: 55
         { 
             get { return this._GroupForms; }
             set
@@ -17377,13 +17326,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListForms _GroupForms;
-        IGroupListForms ICatalog.GroupForms { get { return (this as Catalog).GroupForms; } } // Property.tt Line: 80
-        partial void OnGroupFormsChanging(ref GroupListForms to); // Property.tt Line: 82
+        IGroupListForms ICatalog.GroupForms { get { return (this as Catalog).GroupForms; } } // Property.tt Line: 77
+        partial void OnGroupFormsChanging(ref GroupListForms to); // Property.tt Line: 79
         partial void OnGroupFormsChanged();
         //IGroupListForms ICatalog.GroupForms { get { return this._GroupForms; } }
         
         [BrowsableAttribute(false)]
-        public GroupListReports GroupReports // Property.tt Line: 58
+        public GroupListReports GroupReports // Property.tt Line: 55
         { 
             get { return this._GroupReports; }
             set
@@ -17400,8 +17349,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListReports _GroupReports;
-        IGroupListReports ICatalog.GroupReports { get { return (this as Catalog).GroupReports; } } // Property.tt Line: 80
-        partial void OnGroupReportsChanging(ref GroupListReports to); // Property.tt Line: 82
+        IGroupListReports ICatalog.GroupReports { get { return (this as Catalog).GroupReports; } } // Property.tt Line: 77
+        partial void OnGroupReportsChanging(ref GroupListReports to); // Property.tt Line: 79
         partial void OnGroupReportsChanged();
         //IGroupListReports ICatalog.GroupReports { get { return this._GroupReports; } }
         
@@ -17431,7 +17380,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -17487,7 +17436,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListCatalogs vm = new GroupListCatalogs(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -17508,7 +17457,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -17625,7 +17574,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -17653,7 +17602,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -17702,7 +17651,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -17718,11 +17667,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -17738,10 +17687,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -17757,12 +17706,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -17778,11 +17727,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -17799,13 +17748,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(4)]
         [DisplayName("Db prefix")]
         [Description("Prefix for catalog db table names. Used if set to use in config model")]
-        public string PrefixForDbTables // Property.tt Line: 58
+        public string PrefixForDbTables // Property.tt Line: 55
         { 
             get { return this._PrefixForDbTables; }
             set
@@ -17822,7 +17771,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PrefixForDbTables = string.Empty;
-        partial void OnPrefixForDbTablesChanging(ref string to); // Property.tt Line: 82
+        partial void OnPrefixForDbTablesChanging(ref string to); // Property.tt Line: 79
         partial void OnPrefixForDbTablesChanged();
         
         [BrowsableAttribute(false)]
@@ -17852,7 +17801,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListCatalogs.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<Catalog> items) 
         { 
@@ -17860,7 +17808,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListCatalogs.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListCatalogs.Count; }
         int IGroupListCatalogs.Count() { return this.Count(); }
@@ -17869,11 +17816,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListCatalogs.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -17890,11 +17836,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -17911,12 +17857,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -17933,11 +17879,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -17954,11 +17900,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -17973,7 +17919,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -18002,7 +17948,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -18055,7 +18001,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupDocuments vm = new GroupDocuments(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -18077,7 +18023,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -18162,7 +18108,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -18190,7 +18136,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -18239,7 +18185,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -18255,11 +18201,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -18275,10 +18221,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -18294,12 +18240,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -18315,11 +18261,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -18336,13 +18282,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(4)]
         [DisplayName("Db prefix")]
         [Description("Prefix for document db table names. Used if set to use in config model")]
-        public string PrefixForDbTables // Property.tt Line: 58
+        public string PrefixForDbTables // Property.tt Line: 55
         { 
             get { return this._PrefixForDbTables; }
             set
@@ -18359,12 +18305,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _PrefixForDbTables = string.Empty;
-        partial void OnPrefixForDbTablesChanging(ref string to); // Property.tt Line: 82
+        partial void OnPrefixForDbTablesChanging(ref string to); // Property.tt Line: 79
         partial void OnPrefixForDbTablesChanged();
         
         [BrowsableAttribute(false)]
         [Description("Properties for all documents")]
-        public GroupListProperties GroupSharedProperties // Property.tt Line: 58
+        public GroupListProperties GroupSharedProperties // Property.tt Line: 55
         { 
             get { return this._GroupSharedProperties; }
             set
@@ -18381,13 +18327,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListProperties _GroupSharedProperties;
-        IGroupListProperties IGroupDocuments.GroupSharedProperties { get { return (this as GroupDocuments).GroupSharedProperties; } } // Property.tt Line: 80
-        partial void OnGroupSharedPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 82
+        IGroupListProperties IGroupDocuments.GroupSharedProperties { get { return (this as GroupDocuments).GroupSharedProperties; } } // Property.tt Line: 77
+        partial void OnGroupSharedPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 79
         partial void OnGroupSharedPropertiesChanged();
         //IGroupListProperties IGroupDocuments.GroupSharedProperties { get { return this._GroupSharedProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListDocuments GroupListDocuments // Property.tt Line: 58
+        public GroupListDocuments GroupListDocuments // Property.tt Line: 55
         { 
             get { return this._GroupListDocuments; }
             set
@@ -18404,13 +18350,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListDocuments _GroupListDocuments;
-        IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return (this as GroupDocuments).GroupListDocuments; } } // Property.tt Line: 80
-        partial void OnGroupListDocumentsChanging(ref GroupListDocuments to); // Property.tt Line: 82
+        IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return (this as GroupDocuments).GroupListDocuments; } } // Property.tt Line: 77
+        partial void OnGroupListDocumentsChanging(ref GroupListDocuments to); // Property.tt Line: 79
         partial void OnGroupListDocumentsChanged();
         //IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return this._GroupListDocuments; } }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -18427,11 +18373,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -18448,12 +18394,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -18470,11 +18416,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -18491,11 +18437,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -18510,7 +18456,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -18539,7 +18485,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -18594,7 +18540,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Document vm = new Document(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -18619,7 +18565,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -18707,7 +18653,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -18740,7 +18686,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -18794,7 +18740,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -18810,11 +18756,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -18830,10 +18776,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -18849,12 +18795,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -18870,11 +18816,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -18891,11 +18837,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -18912,12 +18858,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -18934,11 +18880,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -18955,11 +18901,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -18976,11 +18922,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -18995,11 +18941,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
-        public GroupListProperties GroupProperties // Property.tt Line: 58
+        public GroupListProperties GroupProperties // Property.tt Line: 55
         { 
             get { return this._GroupProperties; }
             set
@@ -19016,13 +18962,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListProperties _GroupProperties;
-        IGroupListProperties IDocument.GroupProperties { get { return (this as Document).GroupProperties; } } // Property.tt Line: 80
-        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 82
+        IGroupListProperties IDocument.GroupProperties { get { return (this as Document).GroupProperties; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 79
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties IDocument.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 58
+        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 55
         { 
             get { return this._GroupPropertiesTabs; }
             set
@@ -19039,13 +18985,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListPropertiesTabs _GroupPropertiesTabs;
-        IGroupListPropertiesTabs IDocument.GroupPropertiesTabs { get { return (this as Document).GroupPropertiesTabs; } } // Property.tt Line: 80
-        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 82
+        IGroupListPropertiesTabs IDocument.GroupPropertiesTabs { get { return (this as Document).GroupPropertiesTabs; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 79
         partial void OnGroupPropertiesTabsChanged();
         //IGroupListPropertiesTabs IDocument.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
         
         [BrowsableAttribute(false)]
-        public GroupListForms GroupForms // Property.tt Line: 58
+        public GroupListForms GroupForms // Property.tt Line: 55
         { 
             get { return this._GroupForms; }
             set
@@ -19062,13 +19008,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListForms _GroupForms;
-        IGroupListForms IDocument.GroupForms { get { return (this as Document).GroupForms; } } // Property.tt Line: 80
-        partial void OnGroupFormsChanging(ref GroupListForms to); // Property.tt Line: 82
+        IGroupListForms IDocument.GroupForms { get { return (this as Document).GroupForms; } } // Property.tt Line: 77
+        partial void OnGroupFormsChanging(ref GroupListForms to); // Property.tt Line: 79
         partial void OnGroupFormsChanged();
         //IGroupListForms IDocument.GroupForms { get { return this._GroupForms; } }
         
         [BrowsableAttribute(false)]
-        public GroupListReports GroupReports // Property.tt Line: 58
+        public GroupListReports GroupReports // Property.tt Line: 55
         { 
             get { return this._GroupReports; }
             set
@@ -19085,8 +19031,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListReports _GroupReports;
-        IGroupListReports IDocument.GroupReports { get { return (this as Document).GroupReports; } } // Property.tt Line: 80
-        partial void OnGroupReportsChanging(ref GroupListReports to); // Property.tt Line: 82
+        IGroupListReports IDocument.GroupReports { get { return (this as Document).GroupReports; } } // Property.tt Line: 77
+        partial void OnGroupReportsChanging(ref GroupListReports to); // Property.tt Line: 79
         partial void OnGroupReportsChanged();
         //IGroupListReports IDocument.GroupReports { get { return this._GroupReports; } }
         
@@ -19116,7 +19062,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -19172,7 +19118,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListDocuments vm = new GroupListDocuments(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -19192,7 +19138,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -19308,7 +19254,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -19335,7 +19281,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -19383,7 +19329,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -19399,11 +19345,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -19419,10 +19365,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -19438,12 +19384,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -19459,11 +19405,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -19480,7 +19426,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
@@ -19510,7 +19456,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListDocuments.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<Document> items) 
         { 
@@ -19518,7 +19463,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListDocuments.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListDocuments.Count; }
         int IGroupListDocuments.Count() { return this.Count(); }
@@ -19527,11 +19471,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListDocuments.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -19548,11 +19491,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -19569,12 +19512,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -19591,11 +19534,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -19612,11 +19555,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -19631,7 +19574,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -19660,7 +19603,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -19716,7 +19659,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListJournals vm = new GroupListJournals(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -19736,7 +19679,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -19852,7 +19795,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -19879,7 +19822,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -19927,7 +19870,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -19943,11 +19886,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -19963,10 +19906,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -19982,12 +19925,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -20003,11 +19946,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -20024,7 +19967,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         
@@ -20058,7 +20001,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListJournals.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<Journal> items) 
         { 
@@ -20066,7 +20008,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListJournals.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListJournals.Count; }
         int IGroupListJournals.Count() { return this.Count(); }
@@ -20075,11 +20016,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListJournals.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -20096,11 +20036,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -20117,12 +20057,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -20139,11 +20079,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -20160,11 +20100,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -20179,7 +20119,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -20208,7 +20148,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -20264,7 +20204,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Journal vm = new Journal(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -20284,7 +20224,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -20400,7 +20340,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -20427,7 +20367,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -20475,7 +20415,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -20491,11 +20431,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -20511,10 +20451,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -20530,12 +20470,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -20551,11 +20491,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -20572,7 +20512,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         
@@ -20601,7 +20541,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListDocumentsChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -20618,12 +20558,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -20640,11 +20580,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -20661,11 +20601,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -20682,11 +20622,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -20701,7 +20641,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -20730,7 +20670,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -20786,7 +20726,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListForms vm = new GroupListForms(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -20806,7 +20746,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -20922,7 +20862,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -20949,7 +20889,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -20997,7 +20937,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -21013,11 +20953,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -21033,10 +20973,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -21052,12 +20992,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -21073,11 +21013,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -21094,7 +21034,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         
@@ -21128,7 +21068,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListForms.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<Form> items) 
         { 
@@ -21136,7 +21075,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListForms.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListForms.Count; }
         int IGroupListForms.Count() { return this.Count(); }
@@ -21145,11 +21083,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListForms.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -21166,11 +21103,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -21187,12 +21124,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -21209,11 +21146,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -21230,11 +21167,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -21249,7 +21186,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -21278,7 +21215,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -21329,7 +21266,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Form vm = new Form(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -21346,7 +21283,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -21426,7 +21363,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -21447,7 +21384,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -21489,7 +21426,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -21505,11 +21442,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -21525,10 +21462,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -21544,12 +21481,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -21565,11 +21502,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -21586,11 +21523,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -21607,12 +21544,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -21629,11 +21566,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -21650,11 +21587,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -21671,11 +21608,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -21690,7 +21627,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         
@@ -21724,7 +21661,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -21780,7 +21717,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GroupListReports vm = new GroupListReports(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -21800,7 +21737,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -21916,7 +21853,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -21943,7 +21880,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -21991,7 +21928,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -22007,11 +21944,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -22027,10 +21964,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -22046,12 +21983,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -22067,11 +22004,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -22088,7 +22025,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         
@@ -22122,7 +22059,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListReports.Add(item); 
             item.Parent = this;
-            this.IsChanged = true;
         }
         public void AddRange(IEnumerable<Report> items) 
         { 
@@ -22130,7 +22066,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.ListReports.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
-            this.IsChanged = true;
         }
         public int Count() { return this.ListReports.Count; }
         int IGroupListReports.Count() { return this.Count(); }
@@ -22139,11 +22074,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(item != null);
             this.ListReports.Remove(item); 
             item.Parent = null;
-            this.IsChanged = true;
         }
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -22160,11 +22094,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -22181,12 +22115,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -22203,11 +22137,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -22224,11 +22158,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -22243,7 +22177,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
@@ -22272,7 +22206,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -22323,7 +22257,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             Report vm = new Report(parent);
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
@@ -22340,7 +22274,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 70
                 vm.SetNewGuid();
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -22420,7 +22354,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
@@ -22441,7 +22375,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -22483,7 +22417,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #region Properties
         
         [ReadOnly(true)]
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -22499,11 +22433,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
         [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -22519,10 +22453,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public ulong SortingValue // Property.tt Line: 58
+        public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
             set
@@ -22538,12 +22472,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 82
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
-        public string NameUi // Property.tt Line: 58
+        public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
             set
@@ -22559,11 +22493,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
         [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 58
+        public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
             set
@@ -22580,11 +22514,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 82
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 58
+        public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
             set
@@ -22601,12 +22535,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
-        public bool IsMarkedForDeletion // Property.tt Line: 58
+        public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
             set
@@ -22623,11 +22557,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 58
+        public bool IsHasNew // Property.tt Line: 55
         { 
             get { return this._IsHasNew; }
             set
@@ -22644,11 +22578,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 58
+        public bool IsHasMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -22665,11 +22599,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 58
+        public bool IsHasChanged // Property.tt Line: 55
         { 
             get { return this._IsHasChanged; }
             set
@@ -22684,7 +22618,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsHasChangedChanged();
         
         
@@ -22718,7 +22652,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
                 {
                     this.OnIsChangedChanging(ref value);
                     this._IsChanged = value;
@@ -22756,13 +22690,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             ModelRow vm = new ModelRow();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.GroupName = from.GroupName; // Clone.tt Line: 65
             vm.Name = from.Name; // Clone.tt Line: 65
             vm.Guid = from.Guid; // Clone.tt Line: 65
             vm.IsIncluded = from.IsIncluded; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -22783,13 +22717,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.GroupName = m.GroupName; // Clone.tt Line: 221
             vm.Name = m.Name; // Clone.tt Line: 221
             vm.Guid = m.Guid; // Clone.tt Line: 221
             vm.IsIncluded = m.IsIncluded; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -22807,7 +22741,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public string GroupName // Property.tt Line: 58
+        public string GroupName // Property.tt Line: 55
         { 
             get { return this._GroupName; }
             set
@@ -22822,10 +22756,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _GroupName = string.Empty;
-        partial void OnGroupNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnGroupNameChanging(ref string to); // Property.tt Line: 79
         partial void OnGroupNameChanged();
         
-        public string Name // Property.tt Line: 58
+        public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
             set
@@ -22840,10 +22774,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // Property.tt Line: 82
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        public string Guid // Property.tt Line: 58
+        public string Guid // Property.tt Line: 55
         { 
             get { return this._Guid; }
             set
@@ -22858,10 +22792,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 82
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
-        public bool IsIncluded // Property.tt Line: 58
+        public bool IsIncluded // Property.tt Line: 55
         { 
             get { return this._IsIncluded; }
             set
@@ -22876,7 +22810,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private bool _IsIncluded;
-        partial void OnIsIncludedChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsIncludedChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsIncludedChanged();
         #endregion Properties
     }

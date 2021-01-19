@@ -23,8 +23,8 @@ namespace vSharpStudio.wpf.Converters
             //    return Application.Current.Resources.MergedDictionaries[0][iconName];
             var res = Application.Current.FindResource(iconName);
             return res;
-            Trace.WriteLine("##### ERROR ##### Converter '" + typeof(ConverterIconNameToResource).Name + "'. Application resorces doesn't contain icon resource with name: " + iconName);
-            return null;
+            //Trace.WriteLine("##### ERROR ##### Converter '" + typeof(ConverterIconNameToResource).Name + "'. Application resorces doesn't contain icon resource with name: " + iconName);
+            //return null;
         }
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

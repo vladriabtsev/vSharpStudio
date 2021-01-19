@@ -56,15 +56,17 @@ namespace vSharpStudio.vm.ViewModels
         }
         void RefillChildren()
         {
+            VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
             this.Children.Add(this.GroupProperties, 3);
             this.Children.Add(this.GroupPropertiesTabs, 4);
+            VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
-            (this.GroupProperties as GroupListProperties).AddAllAppGenSettingsVmsToNode();
-            (this.GroupPropertiesTabs as GroupListPropertiesTabs).AddAllAppGenSettingsVmsToNode();
+            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
+            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
         }
 
         public CatalogItemsGroup(ITreeConfigNode parent, string name)
@@ -80,7 +82,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = name;
             foreach (var t in listProperties)
             {
-                (this.GroupProperties as GroupListProperties).ListProperties.Add(t);
+                this.GroupProperties.ListProperties.Add(t);
             }
         }
         public PropertiesTab AddPropertiesTab(string name)

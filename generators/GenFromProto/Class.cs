@@ -571,7 +571,7 @@ namespace GenFromProto
         get { return this._IsChanged; }
         set
         {
-            if (this._IsChanged != value)
+            if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
             {
                 this.OnIsChangedChanging(ref value);
                 this._IsChanged = value;

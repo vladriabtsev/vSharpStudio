@@ -30,7 +30,7 @@ namespace GenFromProto
         {
             
             #line 6 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
- if (this.Doc.IsBaseWithParent) { 
+ if (this.Doc.IsConfigObjectBase) { 
             
             #line default
             #line hidden
@@ -53,7 +53,7 @@ namespace GenFromProto
             #line hidden
             
             #line 14 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
- if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { 
+ if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { 
             
             #line default
             #line hidden
@@ -205,7 +205,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("    vm.IsNotNotifying = true;\r\n    vm.IsValidate = false;\r\n");
+            this.Write("    vm.IsNotifying = false;\r\n    vm.IsValidate = false;\r\n");
             
             #line 37 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
     foreach (var field in message.Fields.InDeclarationOrder()) { 
@@ -283,7 +283,7 @@ namespace GenFromProto
             this.Write(".Add(t);\r\n");
             
             #line 46 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
- } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { 
+ } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { 
             
             #line default
             #line hidden
@@ -646,8 +646,8 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("    vm.IsNotNotifying = false;\r\n    vm.IsValidate = true;\r\n    return vm;\r\n}\r\npub" +
-                    "lic static void Update(");
+            this.Write("    vm.IsNotifying = true;\r\n    vm.IsValidate = true;\r\n    return vm;\r\n}\r\npublic " +
+                    "static void Update(");
             
             #line 77 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
@@ -1179,7 +1179,7 @@ if (this.Doc.IsDefaultBase) {
             #line default
             #line hidden
             this.Write("\r\n{\r\n    Contract.Requires(vm != null);\r\n    if (m == null)\r\n    {\r\n        retur" +
-                    "n vm;\r\n    }\r\n    vm.IsNotNotifying = true;\r\n    vm.IsValidate = false;\r\n");
+                    "n vm;\r\n    }\r\n    vm.IsNotifying = false;\r\n    vm.IsValidate = false;\r\n");
             
             #line 179 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
     foreach (var field in message.Fields.InDeclarationOrder()) { 
@@ -1240,7 +1240,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write(".Add(t);\r\n    }\r\n");
             
             #line 189 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
-        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { 
+        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { 
             
             #line default
             #line hidden
@@ -1387,7 +1387,7 @@ if (this.Doc.IsDefaultBase) {
             this.Write("\r\n    {\r\n");
             
             #line 203 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
-          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { 
+          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { 
             
             #line default
             #line hidden
@@ -1643,8 +1643,8 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("    vm.IsNotNotifying = false;\r\n    vm.IsValidate = true;\r\n    return vm;\r\n}\r\n// " +
-                    "Conversion from \'");
+            this.Write("    vm.IsNotifying = true;\r\n    vm.IsValidate = true;\r\n    return vm;\r\n}\r\n// Conv" +
+                    "ersion from \'");
             
             #line 235 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));

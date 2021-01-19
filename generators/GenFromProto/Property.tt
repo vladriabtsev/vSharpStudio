@@ -34,7 +34,6 @@ public void Add(<#= field.MessageType.Name.ToNameCs() #> item) // <#=Helper.File
     Contract.Requires(item != null);
     this.<#=FieldName#>.Add(item); 
     item.Parent = this;
-    this.IsChanged = true;
 }
 public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items) 
 { 
@@ -42,7 +41,6 @@ public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items
     this.<#=FieldName#>.AddRange(items); 
     foreach (var t in items)
         t.Parent = this;
-    this.IsChanged = true;
 }
 public int Count() { return this.<#=FieldName#>.Count; }
 int I<#= message.Name.ToNameCs() #>.Count() { return this.Count(); }
@@ -51,7 +49,6 @@ public void Remove(<#= field.MessageType.Name.ToNameCs() #> item)
     Contract.Requires(item != null);
     this.<#=FieldName#>.Remove(item); 
     item.Parent = null;
-    this.IsChanged = true;
 }
 <#   } #>
 <# } else { //if (field.IsMessage() && !field.IsCsSimple() && !field.IsAny()) {#>

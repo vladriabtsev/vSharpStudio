@@ -9,8 +9,6 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class EnumerationPairValidator
     {
-        string prevValue = null;
-
         public EnumerationPairValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);

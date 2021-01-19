@@ -37,14 +37,17 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnInit()
         {
-            this.Name = Defaults.DocumentsGroupName;
+            this._Name = Defaults.DocumentsGroupName;
             this.PrefixForDbTables = "Doc";
             this.IsEditable = false;
+
+            VmBindable.IsNotifyingStatic = false;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupSharedProperties.Parent = this;
             this.Children.Add(this.GroupSharedProperties, 7);
             this.GroupListDocuments.Parent = this;
             this.Children.Add(this.GroupListDocuments, 8);
+            VmBindable.IsNotifyingStatic = true;
             //this.GroupSharedProperties.ListProperties.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;

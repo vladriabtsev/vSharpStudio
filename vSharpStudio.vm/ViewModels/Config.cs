@@ -99,11 +99,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         void RefillChildren()
         {
+            VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
             this.Children.Add(this.GroupConfigLinks, 0);
             this.Children.Add(this.Model, 1);
             this.Children.Add(this.GroupPlugins, 9);
             this.Children.Add(this.GroupAppSolutions, 10);
+            VmBindable.IsNotifyingStatic = true;
         }
         public Config(ConfigShortHistory history)
             : this((ITreeConfigNode)null)
@@ -380,12 +382,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in this.GroupAppSolutions.ListAppSolutions)
             {
-                (t as AppSolution).SaveGroupSettings();
+                t.SaveGroupSettings();
                 foreach (var tt in t.ListAppProjects)
                 {
                     foreach (var ttt in tt.ListAppProjectGenerators)
                     {
-                        (ttt as AppProjectGenerator).SaveSettings();
+                        ttt.SaveSettings();
                     }
                 }
             }

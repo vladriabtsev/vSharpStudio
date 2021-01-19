@@ -56,19 +56,21 @@ namespace vSharpStudio.vm.ViewModels
         }
         void RefillChildren()
         {
+            VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
             this.Children.Add(this.GroupProperties, 6);
             this.Children.Add(this.GroupPropertiesTabs, 7);
             this.Children.Add(this.GroupForms, 8);
             this.Children.Add(this.GroupReports, 9);
+            VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
-            (this.GroupProperties as GroupListProperties).AddAllAppGenSettingsVmsToNode();
-            (this.GroupPropertiesTabs as GroupListPropertiesTabs).AddAllAppGenSettingsVmsToNode();
-            (this.GroupForms as GroupListForms).AddAllAppGenSettingsVmsToNode();
-            (this.GroupReports as GroupListReports).AddAllAppGenSettingsVmsToNode();
+            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
+            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
+            this.GroupForms.AddAllAppGenSettingsVmsToNode();
+            this.GroupReports.AddAllAppGenSettingsVmsToNode();
         }
         #region Tree operations
         public override bool NodeCanUp()

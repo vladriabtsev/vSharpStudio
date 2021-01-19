@@ -65,11 +65,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Parent is GroupDocuments)
             {
-                this.Name = "Shared";
+                this._Name = "Shared";
             }
             else
             {
-                this.Name = "Properties";
+                this._Name = "Properties";
             }
             this.ListProperties.OnAddingAction = (t) =>
             {
@@ -91,11 +91,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Parent is GroupDocuments)
             {
-                this.Name = "Shared";
+                this._Name = "Shared";
             }
             else
             {
-                this.Name = "Properties";
+                this._Name = "Properties";
             }
         }
 

@@ -1118,7 +1118,6 @@ main view forms hierarchy parent
 | name | [string](#string) |  | Name of solution-project-generator node |
 | name_ui | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  |  |
-| sorting_weight | [uint64](#uint64) |  |  |
 | settings | [string](#string) |  | string node_settings_vm_guid = 6; |
 | is_has_changed | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 

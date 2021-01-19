@@ -110,7 +110,7 @@ namespace GenFromProto
                         fs.Write(bytes, 0, bytes.Count());
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw;
                 }

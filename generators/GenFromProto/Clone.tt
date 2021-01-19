@@ -3,7 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<# if (this.Doc.IsBaseWithParent) { #>
+<# if (this.Doc.IsConfigObjectBase) { #>
 
 public override void Sort(Type type) // <#=Helper.FilePos() #>
 {
@@ -11,7 +11,7 @@ public override void Sort(Type type) // <#=Helper.FilePos() #>
       foreach (var field in message.Fields.InDeclarationOrder()) {
         if (field.IsRepeated) { 
           isort++; #>
-<# if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { #>
+<# if (!field.IsAny() && field.IsMessage() && JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
     if (type == typeof(<#= field.ToTypeCs() #>)) // <#=Helper.FilePos() #>
     {
         this.<#= field.Name.ToNameCs() #>.Sort();
@@ -32,7 +32,7 @@ public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase(
 <# } else { #>
     <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
 <# } #>
-    vm.IsNotNotifying = true;
+    vm.IsNotifying = false;
     vm.IsValidate = false;
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
@@ -43,7 +43,7 @@ public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase(
 <# } else if (!field.IsMessage()) { #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(t);
-<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { #>
+<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
@@ -70,7 +70,7 @@ if (this.Doc.IsDefaultBase) {
     if (isNewGuid) // <#=Helper.FilePos() #>
         vm.SetNewGuid();
 <# } #>
-    vm.IsNotNotifying = false;
+    vm.IsNotifying = true;
     vm.IsValidate = true;
     return vm;
 }
@@ -174,7 +174,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     {
         return vm;
     }
-    vm.IsNotNotifying = true;
+    vm.IsNotifying = false;
     vm.IsValidate = false;
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { 
         if (field.IsAny())
@@ -186,7 +186,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     {
         vm.<#= field.Name.ToNameCs() #>.Add(t);
     }
-<#        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { #>
+<#        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
@@ -200,7 +200,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     vm.<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=Helper.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
-<#          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsBaseWithParent) { #>
+<#          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>(vm)); // <#=Helper.FilePos() #>
 <#          } else { #>
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t); // <#=Helper.FilePos() #>
@@ -228,7 +228,7 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     vm.IsChanged = false;
     vm.IsHasChanged = false;
 <# } #>
-    vm.IsNotNotifying = false;
+    vm.IsNotifying = true;
     vm.IsValidate = true;
     return vm;
 }

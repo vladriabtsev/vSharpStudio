@@ -43,10 +43,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             DbConnectionStringSettings vm = new DbConnectionStringSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.StringSettings = from.StringSettings; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -81,10 +81,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.StringSettings = m.StringSettings; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -110,7 +110,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public string StringSettings // Property.tt Line: 58
+        public string StringSettings // Property.tt Line: 55
         { 
             get { return this._StringSettings; }
             set
@@ -127,7 +127,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private string _StringSettings = string.Empty;
-        partial void OnStringSettingsChanging(ref string to); // Property.tt Line: 82
+        partial void OnStringSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnStringSettingsChanged();
         #endregion Properties
     }
@@ -151,10 +151,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             PluginsGroupSettings vm = new PluginsGroupSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsGroupParam1 = from.IsGroupParam1; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -189,10 +189,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsGroupParam1 = m.IsGroupParam1; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -218,7 +218,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsGroupParam1 // Property.tt Line: 58
+        public bool IsGroupParam1 // Property.tt Line: 55
         { 
             get { return this._IsGroupParam1; }
             set
@@ -235,7 +235,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsGroupParam1;
-        partial void OnIsGroupParam1Changing(ref bool to); // Property.tt Line: 82
+        partial void OnIsGroupParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsGroupParam1Changed();
         #endregion Properties
     }
@@ -259,12 +259,12 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GeneratorDbSchemaSettings vm = new GeneratorDbSchemaSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsSchemaParam1 = from.IsSchemaParam1; // Clone.tt Line: 65
             vm.IsSchemaParam2 = from.IsSchemaParam2.HasValue ? from.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 58
             vm.SchemaParam3 = from.SchemaParam3; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -301,12 +301,12 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsSchemaParam1 = m.IsSchemaParam1; // Clone.tt Line: 221
             vm.IsSchemaParam2 = m.IsSchemaParam2.HasValue ? (bool?)m.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 221
             vm.SchemaParam3 = m.SchemaParam3; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -337,7 +337,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsSchemaParam1 // Property.tt Line: 58
+        public bool IsSchemaParam1 // Property.tt Line: 55
         { 
             get { return this._IsSchemaParam1; }
             set
@@ -354,10 +354,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsSchemaParam1;
-        partial void OnIsSchemaParam1Changing(ref bool to); // Property.tt Line: 82
+        partial void OnIsSchemaParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsSchemaParam1Changed();
         
-        public bool? IsSchemaParam2 // Property.tt Line: 58
+        public bool? IsSchemaParam2 // Property.tt Line: 55
         { 
             get { return this._IsSchemaParam2; }
             set
@@ -374,11 +374,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool? _IsSchemaParam2;
-        partial void OnIsSchemaParam2Changing(ref bool? to); // Property.tt Line: 82
+        partial void OnIsSchemaParam2Changing(ref bool? to); // Property.tt Line: 79
         partial void OnIsSchemaParam2Changed();
         //Ibool? IGeneratorDbSchemaSettings.IsSchemaParam2 { get { return this._IsSchemaParam2; } }
         
-        public string SchemaParam3 // Property.tt Line: 58
+        public string SchemaParam3 // Property.tt Line: 55
         { 
             get { return this._SchemaParam3; }
             set
@@ -395,7 +395,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private string _SchemaParam3 = string.Empty;
-        partial void OnSchemaParam3Changing(ref string to); // Property.tt Line: 82
+        partial void OnSchemaParam3Changing(ref string to); // Property.tt Line: 79
         partial void OnSchemaParam3Changed();
         #endregion Properties
     }
@@ -419,13 +419,13 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GeneratorDbSchemaNodeSettings vm = new GeneratorDbSchemaNodeSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsParam1 = from.IsParam1; // Clone.tt Line: 65
             vm.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 58
             vm.IsConstantParam1 = from.IsConstantParam1; // Clone.tt Line: 65
             vm.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -463,13 +463,13 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsParam1 = m.IsParam1; // Clone.tt Line: 221
             vm.IsIncluded = m.IsIncluded.HasValue ? (bool?)m.IsIncluded.Value : (bool?)null; // Clone.tt Line: 221
             vm.IsConstantParam1 = m.IsConstantParam1; // Clone.tt Line: 221
             vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -501,7 +501,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsParam1 // Property.tt Line: 58
+        public bool IsParam1 // Property.tt Line: 55
         { 
             get { return this._IsParam1; }
             set
@@ -518,10 +518,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsParam1;
-        partial void OnIsParam1Changing(ref bool to); // Property.tt Line: 82
+        partial void OnIsParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsParam1Changed();
         
-        public bool? IsIncluded // Property.tt Line: 58
+        public bool? IsIncluded // Property.tt Line: 55
         { 
             get { return this._IsIncluded; }
             set
@@ -538,11 +538,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool? _IsIncluded;
-        partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 82
+        partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 79
         partial void OnIsIncludedChanged();
         //Ibool? IGeneratorDbSchemaNodeSettings.IsIncluded { get { return this._IsIncluded; } }
         
-        public bool IsConstantParam1 // Property.tt Line: 58
+        public bool IsConstantParam1 // Property.tt Line: 55
         { 
             get { return this._IsConstantParam1; }
             set
@@ -559,10 +559,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsConstantParam1;
-        partial void OnIsConstantParam1Changing(ref bool to); // Property.tt Line: 82
+        partial void OnIsConstantParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsConstantParam1Changed();
         
-        public bool IsCatalogFormParam1 // Property.tt Line: 58
+        public bool IsCatalogFormParam1 // Property.tt Line: 55
         { 
             get { return this._IsCatalogFormParam1; }
             set
@@ -579,7 +579,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsCatalogFormParam1;
-        partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 82
+        partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsCatalogFormParam1Changed();
         #endregion Properties
     }
@@ -603,14 +603,14 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GeneratorDbAccessSettings vm = new GeneratorDbAccessSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsAccessParam1 = from.IsAccessParam1; // Clone.tt Line: 65
             vm.IsAccessParam2 = from.IsAccessParam2.HasValue ? from.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 58
             vm.AccessParam3 = from.AccessParam3; // Clone.tt Line: 65
             vm.AccessParam4 = from.AccessParam4; // Clone.tt Line: 56
             vm.IsGenerateNotValidCode = from.IsGenerateNotValidCode; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -649,14 +649,14 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsAccessParam1 = m.IsAccessParam1; // Clone.tt Line: 221
             vm.IsAccessParam2 = m.IsAccessParam2.HasValue ? (bool?)m.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 221
             vm.AccessParam3 = m.AccessParam3; // Clone.tt Line: 221
             vm.AccessParam4 = m.AccessParam4.HasValue ? (string)m.AccessParam4.Value : (string)null; // Clone.tt Line: 221
             vm.IsGenerateNotValidCode = m.IsGenerateNotValidCode; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -691,7 +691,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsAccessParam1 // Property.tt Line: 58
+        public bool IsAccessParam1 // Property.tt Line: 55
         { 
             get { return this._IsAccessParam1; }
             set
@@ -708,10 +708,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsAccessParam1;
-        partial void OnIsAccessParam1Changing(ref bool to); // Property.tt Line: 82
+        partial void OnIsAccessParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsAccessParam1Changed();
         
-        public bool? IsAccessParam2 // Property.tt Line: 58
+        public bool? IsAccessParam2 // Property.tt Line: 55
         { 
             get { return this._IsAccessParam2; }
             set
@@ -728,11 +728,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool? _IsAccessParam2;
-        partial void OnIsAccessParam2Changing(ref bool? to); // Property.tt Line: 82
+        partial void OnIsAccessParam2Changing(ref bool? to); // Property.tt Line: 79
         partial void OnIsAccessParam2Changed();
         //Ibool? IGeneratorDbAccessSettings.IsAccessParam2 { get { return this._IsAccessParam2; } }
         
-        public string AccessParam3 // Property.tt Line: 58
+        public string AccessParam3 // Property.tt Line: 55
         { 
             get { return this._AccessParam3; }
             set
@@ -749,10 +749,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private string _AccessParam3 = string.Empty;
-        partial void OnAccessParam3Changing(ref string to); // Property.tt Line: 82
+        partial void OnAccessParam3Changing(ref string to); // Property.tt Line: 79
         partial void OnAccessParam3Changed();
         
-        public string AccessParam4 // Property.tt Line: 58
+        public string AccessParam4 // Property.tt Line: 55
         { 
             get { return this._AccessParam4; }
             set
@@ -769,11 +769,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private string _AccessParam4;
-        partial void OnAccessParam4Changing(ref string to); // Property.tt Line: 82
+        partial void OnAccessParam4Changing(ref string to); // Property.tt Line: 79
         partial void OnAccessParam4Changed();
         //Istring IGeneratorDbAccessSettings.AccessParam4 { get { return this._AccessParam4; } }
         
-        public bool IsGenerateNotValidCode // Property.tt Line: 58
+        public bool IsGenerateNotValidCode // Property.tt Line: 55
         { 
             get { return this._IsGenerateNotValidCode; }
             set
@@ -790,7 +790,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsGenerateNotValidCode;
-        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 82
+        partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsGenerateNotValidCodeChanged();
         #endregion Properties
     }
@@ -814,13 +814,13 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             GeneratorDbAccessNodeSettings vm = new GeneratorDbAccessNodeSettings();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsParam1 = from.IsParam1; // Clone.tt Line: 65
             vm.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 58
             vm.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 65
             vm.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 65
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -858,13 +858,13 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsParam1 = m.IsParam1; // Clone.tt Line: 221
             vm.IsIncluded = m.IsIncluded.HasValue ? (bool?)m.IsIncluded.Value : (bool?)null; // Clone.tt Line: 221
             vm.IsPropertyParam1 = m.IsPropertyParam1; // Clone.tt Line: 221
             vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -896,7 +896,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool IsParam1 // Property.tt Line: 58
+        public bool IsParam1 // Property.tt Line: 55
         { 
             get { return this._IsParam1; }
             set
@@ -913,10 +913,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsParam1;
-        partial void OnIsParam1Changing(ref bool to); // Property.tt Line: 82
+        partial void OnIsParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsParam1Changed();
         
-        public bool? IsIncluded // Property.tt Line: 58
+        public bool? IsIncluded // Property.tt Line: 55
         { 
             get { return this._IsIncluded; }
             set
@@ -933,11 +933,11 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool? _IsIncluded;
-        partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 82
+        partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 79
         partial void OnIsIncludedChanged();
         //Ibool? IGeneratorDbAccessNodeSettings.IsIncluded { get { return this._IsIncluded; } }
         
-        public bool IsPropertyParam1 // Property.tt Line: 58
+        public bool IsPropertyParam1 // Property.tt Line: 55
         { 
             get { return this._IsPropertyParam1; }
             set
@@ -954,10 +954,10 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsPropertyParam1;
-        partial void OnIsPropertyParam1Changing(ref bool to); // Property.tt Line: 82
+        partial void OnIsPropertyParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsPropertyParam1Changed();
         
-        public bool IsCatalogFormParam1 // Property.tt Line: 58
+        public bool IsCatalogFormParam1 // Property.tt Line: 55
         { 
             get { return this._IsCatalogFormParam1; }
             set
@@ -974,7 +974,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 22
             }
         }
         private bool _IsCatalogFormParam1;
-        partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 82
+        partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsCatalogFormParam1Changed();
         #endregion Properties
     }

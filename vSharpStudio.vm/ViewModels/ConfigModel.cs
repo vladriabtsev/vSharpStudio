@@ -80,6 +80,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         void RefillChildren()
         {
+            VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
             this.Children.Add(this.GroupCommon, 6);
             this.Children.Add(this.GroupConstants, 7);
@@ -87,6 +88,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupCatalogs, 9);
             this.Children.Add(this.GroupDocuments, 10);
             this.Children.Add(this.GroupJournals, 11);
+            VmBindable.IsNotifyingStatic = true;
         }
 
         #region Validation
@@ -454,7 +456,7 @@ namespace vSharpStudio.vm.ViewModels
             var dt = (DataType)this.GetIdDataType();
             dt.IsPKey = true;
             if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
-                (this.DbSettings as DbSettings).PKeyFieldGuid = System.Guid.NewGuid().ToString();
+                this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
             var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
             return res;
         }

@@ -87,7 +87,7 @@ namespace GenFromProto
             }
         }
         private bool IsDefaultBase { get { return this.Doc.IsDefaultBase; } }
-        private bool IsBaseWithParent { get { return this.Doc.IsBaseWithParent; } }
+        private bool IsBaseWithParent { get { return this.Doc.IsConfigObjectBase; } }
         private bool IsObservable(FieldDescriptor field)
         {
             return field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase());

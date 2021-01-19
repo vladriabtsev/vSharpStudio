@@ -282,7 +282,6 @@
                             p.Parent.Sort(this.GetType());
                         }
                     }
-                    this.IsChanged = true;
                 }
             }
         }
@@ -697,7 +696,7 @@
         }
         protected void OnRemoveChild()
         {
-            if (this.IsNotNotifying)
+            if (this.IsNotifying)
                 return;
             bool isHasNew = false, isHasMarked = false, isHasChanged = false;
             var pp = (IEditableNodeGroup)this;
@@ -717,7 +716,7 @@
         }
         protected void OnNodeIsNewChanged()
         {
-            if (this.IsNotNotifying)
+            if (this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;
@@ -746,7 +745,7 @@
         }
         protected void OnNodeIsHasNewChanged()
         {
-            if (this.IsNotNotifying)
+            if (this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;
@@ -775,7 +774,9 @@
         }
         protected void OnNodeIsChangedChanged()
         {
-            if (this.IsNotNotifying)
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;
@@ -807,7 +808,9 @@
         }
         protected void OnNodeIsHasChangedChanged()
         {
-            if (this.IsNotNotifying)
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
                 return;
             if (this is IConfig)
             {
@@ -841,7 +844,7 @@
         }
         protected void OnNodeIsMarkedForDeletionChanged()
         {
-            if (this.IsNotNotifying)
+            if (this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;
@@ -870,7 +873,7 @@
         }
         protected void OnNodeIsHasMarkedForDeletionChanged()
         {
-            if (this.IsNotNotifying)
+            if (this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;

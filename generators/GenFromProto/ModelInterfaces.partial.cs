@@ -30,5 +30,18 @@ namespace GenFromProto
             if (!Program.RunOptions.IsReadonly)
                 Setter = "set; ";
         }
+        bool IsSkip(FieldDescriptor field)
+        {
+            if (MessageDoc.IsConfigObjectBase)
+            {
+                if (field.Name == "guid")
+                    return true;
+                if (field.Name == "name")
+                    return true;
+                if (field.Name == "sorting_value")
+                    return true;
+            }
+            return false;
+        }
     }
 }

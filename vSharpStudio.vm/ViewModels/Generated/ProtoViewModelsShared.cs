@@ -43,11 +43,11 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
         {
             Contract.Requires(from != null);
             TestSharedMesssage vm = new TestSharedMesssage();
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.BoolValue = from.BoolValue.HasValue ? from.BoolValue.Value : (bool?)null; // Clone.tt Line: 58
             vm.StringValue = from.StringValue; // Clone.tt Line: 56
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -83,11 +83,11 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
             {
                 return vm;
             }
-            vm.IsNotNotifying = true;
+            vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.BoolValue = m.BoolValue.HasValue ? (bool?)m.BoolValue.Value : (bool?)null; // Clone.tt Line: 221
             vm.StringValue = m.StringValue.HasValue ? (string)m.StringValue.Value : (string)null; // Clone.tt Line: 221
-            vm.IsNotNotifying = false;
+            vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
@@ -119,7 +119,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
         #endregion Procedures
         #region Properties
         
-        public bool? BoolValue // Property.tt Line: 58
+        public bool? BoolValue // Property.tt Line: 55
         { 
             get { return this._BoolValue; }
             set
@@ -136,11 +136,11 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
             }
         }
         private bool? _BoolValue;
-        partial void OnBoolValueChanging(ref bool? to); // Property.tt Line: 82
+        partial void OnBoolValueChanging(ref bool? to); // Property.tt Line: 79
         partial void OnBoolValueChanged();
         //Ibool? ITestSharedMesssage.BoolValue { get { return this._BoolValue; } }
         
-        public string StringValue // Property.tt Line: 58
+        public string StringValue // Property.tt Line: 55
         { 
             get { return this._StringValue; }
             set
@@ -157,7 +157,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
             }
         }
         private string _StringValue;
-        partial void OnStringValueChanging(ref string to); // Property.tt Line: 82
+        partial void OnStringValueChanging(ref string to); // Property.tt Line: 79
         partial void OnStringValueChanged();
         //Istring ITestSharedMesssage.StringValue { get { return this._StringValue; } }
         #endregion Properties

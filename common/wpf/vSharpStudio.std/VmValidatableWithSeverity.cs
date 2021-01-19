@@ -148,7 +148,7 @@ namespace ViewModelBase
             NotifyPropertyChanged(nameof(this.HasWarnings));
             NotifyPropertyChanged(nameof(this.HasInfos));
         }
-        protected void ValidateProperty<T>
+        protected void ValidateProperty
             (Expression<Func<T>> property)
         {
             var propertyName = this.GetPropertyName<T>(property);

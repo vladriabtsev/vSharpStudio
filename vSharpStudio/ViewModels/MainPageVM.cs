@@ -890,7 +890,7 @@ namespace vSharpStudio.ViewModels
                                 if (ex != null)
                                     throw ex;
                             }
-                            catch (CancellationException ex)
+                            catch (CancellationException)
                             {
                                 isException = true;
                             }

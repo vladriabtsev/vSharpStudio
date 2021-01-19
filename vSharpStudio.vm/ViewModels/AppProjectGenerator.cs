@@ -229,11 +229,11 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             }
-            (cfg.Model as ConfigModel)._DicGenNodeSettings.TryRemove(this.Guid);
+            cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
         }
         partial void OnPluginGuidChanged()
         {
-            if (this.IsNotNotifying)
+            if (this.IsNotifying)
                 return;
             this.PluginGeneratorGuid = string.Empty;
             UpdateListGenerators();
@@ -276,7 +276,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGeneratorGuidChanging(ref string to)
         {
-            if (this.IsNotNotifying)
+            if (this.IsNotifying)
                 return;
             if (cfg._DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 cfg._DicActiveAppProjectGenerators.Remove(this.Guid);
@@ -289,14 +289,14 @@ namespace vSharpStudio.vm.ViewModels
             this.DescriptionGenerator = string.Empty;
             //this.DicGenNodeSettings.TryRemove(this.Guid);
             this._PluginGenerator = null;
-            (cfg.Model as ConfigModel)._DicGenNodeSettings.TryRemove(this.Guid);
+            cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
             this.DynamicGeneratorSettings = null;
             this.DynamicMainConnStrSettings = null;
             this.DynamicModelNodeSettings = null;
         }
         partial void OnPluginGeneratorGuidChanged()
         {
-            if (this.IsNotNotifying)
+            if (this.IsNotifying)
                 return;
             if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                 return;
@@ -337,7 +337,7 @@ namespace vSharpStudio.vm.ViewModels
                         continue;
                     if (tt.Generator.Guid == this.PluginGeneratorGuid)
                     {
-                        var groupSettins = (ttt as Plugin).VPlugin.GetPluginGroupSolutionSettingsVmFromJson(null);
+                        var groupSettins = ttt.VPlugin.GetPluginGroupSolutionSettingsVmFromJson(null);
                         if (groupSettins == null)
                         {
                             this.PluginGroupSettingsGuid = string.Empty;
@@ -493,13 +493,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnRelativePathToGenFolderChanging(ref string to)
         {
-            if (this.IsNotNotifying || string.IsNullOrWhiteSpace(to))
+            if (this.IsNotifying || string.IsNullOrWhiteSpace(to))
                 return;
             to = Path.GetFullPath(to);
         }
         partial void OnRelativePathToGenFolderChanged()
         {
-            if (this.IsNotNotifying)
+            if (this.IsNotifying)
                 return;
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 throw new Exception("Config is not saved yet");

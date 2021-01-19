@@ -46,7 +46,7 @@ namespace vSharpStudio.Unit
         //    Assert.IsFalse(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "!Property"));
         //    Assert.IsFalse(ConfigObjectVmGenSettings<Property, PropertyValidator>.SearchInModelPathByPattern(prop.ModelPath, "!Catalog.*.Property"));
         //}
-        private string pluginsFolderPath = "";
+        //private string pluginsFolderPath = "";
         [TestMethod]
         public void Plugin003CanLoadPlugin()
         {

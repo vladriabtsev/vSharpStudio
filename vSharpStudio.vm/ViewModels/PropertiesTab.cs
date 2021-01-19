@@ -41,21 +41,25 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIndexFk = true;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
-            (this.GroupProperties as GroupListProperties).ListProperties.OnAddingAction = (t) =>
+            this.GroupProperties.ListProperties.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
-            (this.GroupProperties as GroupListProperties).ListProperties.OnAddedAction = (t) =>
+            this.GroupProperties.ListProperties.OnAddedAction = (t) =>
             {
                 t.OnAdded();
             };
+
+            VmBindable.IsNotifyingStatic = false;
             this.Children.Add(this.GroupProperties, 7);
+            VmBindable.IsNotifyingStatic = true;
+
             this.GroupPropertiesTabs.Parent = this;
-            (this.GroupProperties as GroupListProperties).ListProperties.OnAddingAction = (t) =>
+            this.GroupProperties.ListProperties.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
-            (this.GroupPropertiesTabs as GroupListPropertiesTabs).ListPropertiesTabs.OnAddedAction = (t) =>
+            this.GroupPropertiesTabs.ListPropertiesTabs.OnAddedAction = (t) =>
             {
                 t.OnAdded();
             };
@@ -64,8 +68,8 @@ namespace vSharpStudio.vm.ViewModels
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
-            (this.GroupProperties as GroupListProperties).AddAllAppGenSettingsVmsToNode();
-            (this.GroupPropertiesTabs as GroupListPropertiesTabs).AddAllAppGenSettingsVmsToNode();
+            this.GroupProperties.AddAllAppGenSettingsVmsToNode();
+            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
         }
 
         #region Tree operations

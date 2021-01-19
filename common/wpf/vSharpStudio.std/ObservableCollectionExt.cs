@@ -261,7 +261,7 @@ namespace ViewModelBase
           this.Add(itm);
         }
       }
-      catch (Exception ex)
+      catch (Exception)
       {
 
       }

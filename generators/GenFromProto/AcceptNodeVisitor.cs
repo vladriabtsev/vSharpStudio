@@ -129,7 +129,7 @@ namespace GenFromProto
             this.Write("\r\n\r\n");
             
             #line 32 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
- } } catch(Exception ex) { 
+ } } catch(Exception) { 
 } 
             
             #line default

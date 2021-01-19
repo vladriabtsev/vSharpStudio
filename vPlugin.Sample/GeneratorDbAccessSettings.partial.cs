@@ -20,24 +20,15 @@ namespace vPlugin.Sample
         }
         public string GenerateCode(IConfig model)
         {
-            string s = "";
             if (this.IsAccessParam1)
             {
-                s = "kuku";
+                // do something 
             }
             var visitor = new MyModelVisitor(this);
             visitor.Run(model.Model);
             return visitor.Result;
         }
     }
-    //internal static class Utils
-    //{
-    //    internal static IGeneratorDbAccessNodeSettings NodeAllSettings(this IGetNodeSetting node)
-    //    {
-    //        var res = node.GetSettings(GeneratorDbAccessNodeSettings.GuidStatic);
-    //        return (IGeneratorDbAccessNodeSettings)res;
-    //    }
-    //}
     public class MyModelVisitor : ModelVisitorBase
     {
 
