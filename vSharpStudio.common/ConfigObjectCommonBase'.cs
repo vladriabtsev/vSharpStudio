@@ -696,7 +696,9 @@
         }
         protected void OnRemoveChild()
         {
-            if (this.IsNotifying)
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
                 return;
             bool isHasNew = false, isHasMarked = false, isHasChanged = false;
             var pp = (IEditableNodeGroup)this;
@@ -716,7 +718,9 @@
         }
         protected void OnNodeIsNewChanged()
         {
-            if (this.IsNotifying)
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;
@@ -745,7 +749,9 @@
         }
         protected void OnNodeIsHasNewChanged()
         {
-            if (this.IsNotifying)
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;
@@ -844,7 +850,9 @@
         }
         protected void OnNodeIsMarkedForDeletionChanged()
         {
-            if (this.IsNotifying)
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;
@@ -873,7 +881,9 @@
         }
         protected void OnNodeIsHasMarkedForDeletionChanged()
         {
-            if (this.IsNotifying)
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
                 return;
             if (this is IConfig)
                 return;
