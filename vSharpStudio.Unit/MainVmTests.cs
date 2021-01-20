@@ -217,6 +217,14 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstants.IsHasChanged);
+
+            vm.Config.Model.DbSettings.PKeyName = "kuku";
+            Assert.IsTrue(vm.Config.Model.IsChanged);
+            Assert.IsFalse(vm.Config.Model.IsHasChanged);
+            Assert.IsFalse(vm.Config.IsChanged);
+            Assert.IsTrue(vm.Config.IsHasChanged);
+
+            //TODO add test propogation of IsChanged for different setting
         }
         [TestMethod]
         public void Main009_Diff()
@@ -785,6 +793,7 @@ namespace vSharpStudio.Unit
             // create object and save
             var c1 = vm.Config.Model.GroupEnumerations.AddEnumeration("c1", EnumEnumerationType.BYTE_VALUE);
             var p1 = c1.AddEnumerationPair("e1", "123");
+            p1.IsDefault = true;
             var p2 = c1.AddEnumerationPair("e2", "124");
             var p3 = c1.AddEnumerationPair("e3", "125");
             var c2 = vm.Config.Model.GroupEnumerations.AddEnumeration("c2", EnumEnumerationType.INTEGER_VALUE);

@@ -421,6 +421,43 @@ namespace vSharpStudio.vm.ViewModels
             //    }
             //}
         }
+        public string IsHasMarkedPath
+        {
+            get
+            {
+                var sb = new StringBuilder();
+                if (this.IsHasChanged)
+                {
+                    sb.AppendLine("Config");
+                    IsHasMarkedPath2(sb, this.GetListChildren());
+                }
+                return sb.ToString();
+            }
+        }
+        private void IsHasMarkedPath2(StringBuilder sb, IEnumerable<ITreeConfigNode> children)
+        {
+            foreach (var t in children)
+            {
+                var p = t as IEditableNodeGroup;
+                if (p != null)
+                {
+                    if (p.IsHasChanged)
+                    {
+                        sb.Append(t.GetType().Name);
+                        sb.Append(" IsHasChanged=");
+                        sb.Append(p.IsHasChanged);
+                        if (t is IEditableNode)
+                        {
+                            sb.Append(" IsChanged=");
+                            sb.Append((t as IEditableNode).IsChanged);
+                        }
+                        sb.AppendLine();
+                        IsHasMarkedPath2(sb, t.GetListChildren());
+                        break;
+                    }
+                }
+            }
+        }
         public string IsHasChangedPath
         {
             get
@@ -434,7 +471,6 @@ namespace vSharpStudio.vm.ViewModels
                 return sb.ToString();
             }
         }
-
         private void IsHasChangedPath2(StringBuilder sb, IEnumerable<ITreeConfigNode> children)
         {
             foreach (var t in children)

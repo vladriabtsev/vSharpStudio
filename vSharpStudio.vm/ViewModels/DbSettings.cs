@@ -17,6 +17,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnInit()
         {
+            this.IsNotifying = false;
             this.DbSchema = "v";
             this.PKeyName = "Id";
             this.PKeyFieldGuid = System.Guid.NewGuid().ToString();
@@ -24,10 +25,16 @@ namespace vSharpStudio.vm.ViewModels
             //this.VersionFieldGuid = System.Guid.NewGuid().ToString();
             this.IdGenerator = DbIdGeneratorMethod.HiLo;
             this.PKeyType = EnumPrimaryKeyType.INT;
+            this.IsNotifying = true;
         }
 
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
+        protected override void OnIsChangedChanged()
+        {
+            if (this.IsChanged)
+                this.Parent.IsChanged = true;
+        }
         [BrowsableAttribute(false)]
         public string PKeyTypeStr
         {

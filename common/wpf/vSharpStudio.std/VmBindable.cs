@@ -284,9 +284,9 @@ namespace ViewModelBase
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
         protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (VmBindable.IsNotifyingStatic)
+            if (!VmBindable.IsNotifyingStatic)
                 return;
-            if (IsNotifying)
+            if (!IsNotifying)
                 return;
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

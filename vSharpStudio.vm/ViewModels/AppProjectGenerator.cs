@@ -233,7 +233,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGuidChanged()
         {
-            if (this.IsNotifying)
+            if (!this.IsNotifying)
                 return;
             this.PluginGeneratorGuid = string.Empty;
             UpdateListGenerators();
@@ -276,7 +276,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGeneratorGuidChanging(ref string to)
         {
-            if (this.IsNotifying)
+            if (!this.IsNotifying)
                 return;
             if (cfg._DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 cfg._DicActiveAppProjectGenerators.Remove(this.Guid);
@@ -296,7 +296,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGeneratorGuidChanged()
         {
-            if (this.IsNotifying)
+            if (!this.IsNotifying)
                 return;
             if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                 return;
@@ -493,13 +493,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnRelativePathToGenFolderChanging(ref string to)
         {
-            if (this.IsNotifying || string.IsNullOrWhiteSpace(to))
+            if (!this.IsNotifying || string.IsNullOrWhiteSpace(to))
                 return;
             to = Path.GetFullPath(to);
         }
         partial void OnRelativePathToGenFolderChanged()
         {
-            if (this.IsNotifying)
+            if (!this.IsNotifying)
                 return;
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 throw new Exception("Config is not saved yet");

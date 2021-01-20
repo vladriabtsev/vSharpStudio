@@ -28,9 +28,11 @@
         {
             if (_logger == null)
                 _logger = Logger.CreateLogger<T>();
+            this.IsNotifying = false;
             this.Parent = parent;
             this.ListInModels = new List<IModelRow>();
             this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
+            this.IsNotifying = true;
         }
         private void ConfigObjectCommonBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -747,37 +749,6 @@
                 }
             }
         }
-        protected void OnNodeIsHasNewChanged()
-        {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
-            if (!this.IsNotifying)
-                return;
-            if (this is IConfig)
-                return;
-            if (this is IEditableNodeGroup)
-            {
-                var p = (IEditableNodeGroup)this;
-                var pp = (IEditableNodeGroup)this.Parent;
-                if (p.IsHasNew)
-                {
-                    pp.IsHasNew = true;
-                }
-                else
-                {
-                    foreach (var t in this.GetListSiblings())
-                    {
-                        var pt = (IEditableNodeGroup)t;
-                        if (pt.IsHasNew)
-                        {
-                            pp.IsHasNew = true;
-                            return;
-                        }
-                    }
-                    pp.IsHasNew = false;
-                }
-            }
-        }
         protected void OnNodeIsChangedChanged()
         {
             if (!VmBindable.IsNotifyingStatic)
@@ -812,42 +783,6 @@
                 }
             }
         }
-        protected void OnNodeIsHasChangedChanged()
-        {
-            if (!VmBindable.IsNotifyingStatic)
-                return;
-            if (!this.IsNotifying)
-                return;
-            if (this is IConfig)
-            {
-                var cfgn = this as IConfig;
-                if (cfgn.IsHasChanged && !cfgn.IsNeedCurrentUpdate)
-                    cfgn.SetIsNeedCurrentUpdate(true);
-                return;
-            }
-            if (this is IEditableNodeGroup)
-            {
-                var p = (IEditableNodeGroup)this;
-                var pp = (IEditableNodeGroup)this.Parent;
-                if (p.IsHasChanged)
-                {
-                    pp.IsHasChanged = true;
-                }
-                else
-                {
-                    foreach (var t in this.GetListSiblings())
-                    {
-                        var pt = (IEditableNodeGroup)t;
-                        if (pt.IsHasChanged)
-                        {
-                            pp.IsHasChanged = true;
-                            return;
-                        }
-                    }
-                    pp.IsHasChanged = false;
-                }
-            }
-        }
         protected void OnNodeIsMarkedForDeletionChanged()
         {
             if (!VmBindable.IsNotifyingStatic)
@@ -879,7 +814,128 @@
                 }
             }
         }
-        protected void OnNodeIsHasMarkedForDeletionChanged()
+
+        [BrowsableAttribute(false)]
+        public bool IsHasNew
+        {
+            get { return this._IsHasNew; }
+            set
+            {
+                if (this._IsHasNew != value)
+                {
+                    this.OnIsHasNewChanging(ref value);
+                    this._IsHasNew = value;
+                    this.OnIsHasNewChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private bool _IsHasNew;
+        partial void OnIsHasNewChanging(ref bool to); 
+        private void OnIsHasNewChanged()
+        {
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
+                return;
+            if (this is IConfig)
+                return;
+            if (this is IEditableNodeGroup)
+            {
+                var p = (IEditableNodeGroup)this;
+                var pp = (IEditableNodeGroup)this.Parent;
+                if (p.IsHasNew)
+                {
+                    pp.IsHasNew = true;
+                }
+                else
+                {
+                    foreach (var t in this.GetListSiblings())
+                    {
+                        var pt = (IEditableNodeGroup)t;
+                        if (pt.IsHasNew)
+                        {
+                            pp.IsHasNew = true;
+                            return;
+                        }
+                    }
+                    pp.IsHasNew = false;
+                }
+            }
+        }
+        [BrowsableAttribute(false)]
+        public bool IsHasChanged
+        {
+            get { return this._IsHasChanged; }
+            set
+            {
+                if (this._IsHasChanged != value)
+                {
+                    //this.OnIsHasChangedChanging(ref value);
+                    this._IsHasChanged = value;
+                    this.OnIsHasChangedChanged();
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        private bool _IsHasChanged;
+        //partial void OnIsHasChangedChanging(ref bool to);
+        private void OnIsHasChangedChanged()
+        {
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
+                return;
+            if (this is IConfig)
+            {
+                var cfgn = this as IConfig;
+                if ((cfgn as IEditableNodeGroup).IsHasChanged && !cfgn.IsNeedCurrentUpdate)
+                    cfgn.SetIsNeedCurrentUpdate(true);
+                return;
+            }
+            if (this is IEditableNodeGroup)
+            {
+                var p = (IEditableNodeGroup)this;
+                var pp = (IEditableNodeGroup)this.Parent;
+                if (p.IsHasChanged)
+                {
+                    pp.IsHasChanged = true;
+                }
+                else
+                {
+                    foreach (var t in this.GetListSiblings())
+                    {
+                        var pt = (IEditableNodeGroup)t;
+                        if (pt.IsHasChanged)
+                        {
+                            pp.IsHasChanged = true;
+                            return;
+                        }
+                    }
+                    pp.IsHasChanged = false;
+                }
+            }
+        }
+        [BrowsableAttribute(false)]
+        public bool IsHasMarkedForDeletion 
+        {
+            get { return this._IsHasMarkedForDeletion; }
+            set
+            {
+                if (this._IsHasMarkedForDeletion != value)
+                {
+                    this.OnIsHasMarkedForDeletionChanging(ref value);
+                    this._IsHasMarkedForDeletion = value;
+                    this.OnIsHasMarkedForDeletionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private bool _IsHasMarkedForDeletion;
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to); 
+        private void OnIsHasMarkedForDeletionChanged()
         {
             if (!VmBindable.IsNotifyingStatic)
                 return;

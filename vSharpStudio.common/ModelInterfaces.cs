@@ -58,10 +58,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IPlugin this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IPlugin // ModelInterfaces.tt Line: 29
@@ -70,20 +67,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGenerator> ListGenerators { get; } // ModelInterfaces.tt Line: 44
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IPluginGenerator // ModelInterfaces.tt Line: 29
     {
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface ISettingsConfig // ModelInterfaces.tt Line: 29
@@ -118,10 +109,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IBaseConfigLink this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -131,10 +119,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IConfig ConfigBase { get; } // ModelInterfaces.tt Line: 55
     	string RelativeConfigFilePath { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -150,10 +135,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	bool IsNeedCurrentUpdate { get; } // ModelInterfaces.tt Line: 51
     	IGroupListBaseConfigLinks GroupConfigLinks { get; } // ModelInterfaces.tt Line: 55
     	IConfigModel Model { get; } // ModelInterfaces.tt Line: 55
@@ -182,10 +164,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 51
     	string Settings { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IGroupListAppSolutions // ModelInterfaces.tt Line: 29
@@ -199,10 +178,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IAppSolution this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGroupGeneratorsDefaultSettings> ListGroupGeneratorsDefultSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -211,10 +187,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 51
     	string Settings { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IAppSolution // ModelInterfaces.tt Line: 29
@@ -228,10 +201,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	///////////////////////////////////////////////////
     	string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IAppProject> ListAppProjects { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGroupGeneratorsSettings> ListGroupGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
@@ -246,10 +216,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	///////////////////////////////////////////////////
     	string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	string Namespace { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
     }
@@ -267,7 +234,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	/// string node_settings_vm_guid = 6;
     	///////////////////////////////////////////////////
     	string Settings { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IPluginGeneratorSettings // ModelInterfaces.tt Line: 29
@@ -281,7 +247,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	///////////////////////////////////////////////////
     	string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 51
     	string Settings { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     }
     
     ///////////////////////////////////////////////////
@@ -307,10 +272,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	///////////////////////////////////////////////////
     	string GenFileName { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	string GeneratorSettings { get; } // ModelInterfaces.tt Line: 51
     	IPluginGeneratorSettings GeneratorSettingsVm { get; } // ModelInterfaces.tt Line: 55
     	string ConnStr { get; } // ModelInterfaces.tt Line: 51
@@ -361,10 +323,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsUseCompositeNames { get; } // ModelInterfaces.tt Line: 51
     	bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// GENERAL DB SETTINGS
@@ -405,10 +364,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListRoles GroupRoles { get; } // ModelInterfaces.tt Line: 55
     	IGroupListMainViewForms GroupViewForms { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -423,9 +379,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -438,10 +391,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IRole this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -456,10 +406,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	IGroupListMainViewForms GroupListViewForms { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -476,10 +423,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IMainViewForm this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -492,10 +436,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IPropertiesTab this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -513,9 +454,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -533,10 +471,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	///////////////////////////////////////////////////
     	uint LastGenPosition { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -547,10 +482,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	IDataType DataType { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position
@@ -569,10 +501,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IConstant this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -587,10 +516,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	IDataType DataType { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -603,10 +529,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IEnumeration this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -628,9 +551,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IEnumerationPair> ListEnumerationPairs { get; } // ModelInterfaces.tt Line: 44
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -642,10 +562,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Value { get; } // ModelInterfaces.tt Line: 51
     	bool IsDefault { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -656,9 +573,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
@@ -680,9 +594,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	ICatalogSettings CatalogSettings { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	ICatalogItemsGroup GroupItems { get; } // ModelInterfaces.tt Line: 55
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
@@ -701,10 +612,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	ICatalog this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -717,10 +625,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -731,9 +636,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
@@ -750,10 +652,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IDocument this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -770,10 +669,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IJournal this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -789,9 +685,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 44
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -808,10 +701,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IForm this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -822,9 +712,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// repeated proto_group_properties list_properties = 6;
@@ -846,10 +733,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReport this[int index] { get; }
     	int Count();
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -860,9 +744,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsHasChanged { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// repeated proto_group_properties list_properties = 6;

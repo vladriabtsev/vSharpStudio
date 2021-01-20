@@ -108,13 +108,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnRelativeAppProjectPathChanging(ref string to)
         {
-            if (this.IsNotifying || to == null)
+            if (!this.IsNotifying || to == null)
                 return;
             to = Path.GetFullPath(to);
         }
         partial void OnRelativeAppProjectPathChanged()
         {
-            if (this.IsNotifying)
+            if (!this.IsNotifying)
                 return;
             var cfg = this.GetConfig();
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))

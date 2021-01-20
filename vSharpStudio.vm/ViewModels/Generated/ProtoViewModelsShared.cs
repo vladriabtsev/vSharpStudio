@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
     {
         #region CTOR
         public TestSharedMesssage() 
-            : base(TestSharedMesssageValidator.Validator) // Class.tt Line: 43
+            : base(TestSharedMesssageValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();

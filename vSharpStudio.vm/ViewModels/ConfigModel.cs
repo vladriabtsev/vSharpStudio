@@ -23,7 +23,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup, INodeGenSettings
+    public partial class ConfigModel : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup, INodeGenSettings, IEditableNode
     {
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -64,6 +64,8 @@ namespace vSharpStudio.vm.ViewModels
             // TODO validate
             this.IsUseGroupPrefix = true;
 
+            this.DbSettings.Parent = this;
+
             //this.DbSettings.DbSchema = "dbo";
             //this.DbSettings.IdGenerator = DbIdGeneratorMethod.HiLo;
             //this.DbSettings.PKeyFieldGuid= System.Guid.NewGuid().ToString();
@@ -88,6 +90,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupCatalogs, 9);
             this.Children.Add(this.GroupDocuments, 10);
             this.Children.Add(this.GroupJournals, 11);
+            this.DbSettings.Parent = this;
             VmBindable.IsNotifyingStatic = true;
         }
 
@@ -641,6 +644,11 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             return lst;
+        }
+
+        public void Remove()
+        {
+            throw new NotImplementedException();
         }
         //public IProperty GetVersionProperty(IvPluginDbGenerator dbGen)
         //{

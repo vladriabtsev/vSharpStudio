@@ -50,10 +50,14 @@ namespace ViewModelBase
             set
             {
                 if (IsNotifying)
+                {
                     SetProperty(ref _IsChanged, value);
+                    OnIsChangedChanged();
+                }
             }
         }
         protected bool _IsChanged;
+        protected virtual void OnIsChangedChanged() { }
         [BrowsableAttribute(false)]
         public bool IsInEdit { get; private set; }
         public void BeginEdit()

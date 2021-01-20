@@ -84,13 +84,13 @@ namespace vSharpStudio.vm.ViewModels
             //            if (to == null || to.Length < 2 || to[1] != ':')
             //                throw new Exception("Full path is expected");
             //#endif
-            if (this.IsNotifying || to == null)
+            if (!this.IsNotifying || to == null)
                 return;
             to = Path.GetFullPath(to);
         }
         partial void OnRelativeAppSolutionPathChanged()
         {
-            if (this.IsNotifying)
+            if (!this.IsNotifying)
                 return;
             if (this._RelativeAppSolutionPath != null &&
                 this._RelativeAppSolutionPath.Length > 1 &&

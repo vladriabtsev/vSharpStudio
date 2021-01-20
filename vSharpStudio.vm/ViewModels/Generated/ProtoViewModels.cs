@@ -28,11 +28,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public UserSettings() 
-            : base(UserSettingsValidator.Validator) // Class.tt Line: 43
+            : base(UserSettingsValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Class.tt Line: 52
+            this.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Class.tt Line: 54
             this.OnInit();
             this.IsValidate = true;
         }
@@ -185,7 +185,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public UserSettingsOpenedConfig() 
-            : base(UserSettingsOpenedConfigValidator.Validator) // Class.tt Line: 43
+            : base(UserSettingsOpenedConfigValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -350,11 +350,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListPlugins(ITreeConfigNode parent) 
             : base(parent, GroupListPluginsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListPlugins = new ConfigNodesCollection<Plugin>(this); // Class.tt Line: 26
+            this.ListPlugins = new ConfigNodesCollection<Plugin>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -381,10 +383,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListPlugins) // Clone.tt Line: 52
                 vm.ListPlugins.Add(Plugin.Clone(vm, (Plugin)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -433,10 +432,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -475,10 +471,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListPlugins.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -494,10 +487,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListPlugins) // Clone.tt Line: 242
                 m.ListPlugins.Add(Plugin.ConvertToProto((Plugin)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
         }
         
@@ -644,27 +634,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -686,48 +655,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -741,14 +670,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PluginValidator : ValidatorBase<Plugin, PluginValidator> { } // Class.tt Line: 6
@@ -761,11 +687,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Plugin(ITreeConfigNode parent) 
             : base(parent, PluginValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListGenerators = new ConfigNodesCollection<PluginGenerator>(this); // Class.tt Line: 26
+            this.ListGenerators = new ConfigNodesCollection<PluginGenerator>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -794,10 +722,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListGenerators) // Clone.tt Line: 52
                 vm.ListGenerators.Add(PluginGenerator.Clone(vm, (PluginGenerator)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -848,10 +773,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -892,10 +814,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListGenerators.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -913,10 +832,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListGenerators) // Clone.tt Line: 242
                 m.ListGenerators.Add(PluginGenerator.ConvertToProto((PluginGenerator)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
         }
         
@@ -1083,27 +999,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -1123,48 +1018,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -1178,14 +1033,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PluginGeneratorValidator : ValidatorBase<PluginGenerator, PluginGeneratorValidator> { } // Class.tt Line: 6
@@ -1198,10 +1050,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public PluginGenerator(ITreeConfigNode parent) 
             : base(parent, PluginGeneratorValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -1223,10 +1077,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -1240,10 +1091,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Description = from.Description; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -1277,10 +1125,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -1295,10 +1140,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
         }
         
@@ -1418,27 +1260,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -1460,48 +1281,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -1515,14 +1296,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class SettingsConfigValidator : ValidatorBase<SettingsConfig, SettingsConfigValidator> { } // Class.tt Line: 6
@@ -1530,7 +1308,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public SettingsConfig() 
-            : base(SettingsConfigValidator.Validator) // Class.tt Line: 43
+            : base(SettingsConfigValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -1747,12 +1525,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public ConfigShortHistory() 
-            : base(ConfigShortHistoryValidator.Validator) // Class.tt Line: 43
+            : base(ConfigShortHistoryValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.CurrentConfig = new Config(this); // Class.tt Line: 61
-            this.PrevStableConfig = new Config(this); // Class.tt Line: 61
+            this.CurrentConfig = new Config(this); // Class.tt Line: 63
+            this.PrevStableConfig = new Config(this); // Class.tt Line: 63
             this.OnInit();
             this.IsValidate = true;
         }
@@ -1953,12 +1731,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListBaseConfigLinks(ITreeConfigNode parent) 
             : base(parent, GroupListBaseConfigLinksValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -1990,10 +1770,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListBaseConfigLinks) // Clone.tt Line: 52
                 vm.ListBaseConfigLinks.Add(BaseConfigLink.Clone(vm, (BaseConfigLink)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -2046,10 +1823,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -2125,10 +1899,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListBaseConfigLinks.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -2151,10 +1922,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListBaseConfigLinks) // Clone.tt Line: 242
                 m.ListBaseConfigLinks.Add(BaseConfigLink.ConvertToProto((BaseConfigLink)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -2327,27 +2095,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -2367,46 +2114,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -2429,7 +2136,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -2443,14 +2150,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class BaseConfigLinkValidator : ValidatorBase<BaseConfigLink, BaseConfigLinkValidator> { } // Class.tt Line: 6
@@ -2463,12 +2167,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public BaseConfigLink(ITreeConfigNode parent) 
             : base(parent, BaseConfigLinkValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ConfigBase = new Config(this); // Class.tt Line: 32
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ConfigBase = new Config(this); // Class.tt Line: 33
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -2496,10 +2202,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ConfigBase = vSharpStudio.vm.ViewModels.Config.Clone(vm, from.ConfigBase, isDeep);
             vm.RelativeConfigFilePath = from.RelativeConfigFilePath; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -2519,10 +2222,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vSharpStudio.vm.ViewModels.Config.Update((Config)to.ConfigBase, from.ConfigBase, isDeep);
             to.RelativeConfigFilePath = from.RelativeConfigFilePath; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -2596,10 +2296,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.ConfigBase, (Config)vm.ConfigBase); // Clone.tt Line: 219
             vm.RelativeConfigFilePath = m.RelativeConfigFilePath; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -2622,10 +2319,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.ConfigBase = vSharpStudio.vm.ViewModels.Config.ConvertToProto((Config)vm.ConfigBase); // Clone.tt Line: 270
             m.RelativeConfigFilePath = vm.RelativeConfigFilePath; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -2797,27 +2491,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -2841,46 +2514,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -2901,7 +2534,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -2915,14 +2548,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { } // Class.tt Line: 6
@@ -2939,14 +2569,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Config(ITreeConfigNode parent) 
             : base(parent, ConfigValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupConfigLinks = new GroupListBaseConfigLinks(); // Class.tt Line: 30
-            this.Model = new ConfigModel(this); // Class.tt Line: 32
-            this.GroupPlugins = new GroupListPlugins(); // Class.tt Line: 30
-            this.GroupAppSolutions = new GroupListAppSolutions(); // Class.tt Line: 30
+            this.GroupConfigLinks = new GroupListBaseConfigLinks(); // Class.tt Line: 31
+            this.Model = new ConfigModel(this); // Class.tt Line: 33
+            this.GroupPlugins = new GroupListPlugins(); // Class.tt Line: 31
+            this.GroupAppSolutions = new GroupListAppSolutions(); // Class.tt Line: 31
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -2971,10 +2603,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.LastUpdated = from.LastUpdated; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.IsNeedCurrentUpdate = from.IsNeedCurrentUpdate; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupConfigLinks = vSharpStudio.vm.ViewModels.GroupListBaseConfigLinks.Clone(vm, from.GroupConfigLinks, isDeep);
@@ -3002,10 +2631,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Description = from.Description; // Clone.tt Line: 141
             to.LastUpdated = from.LastUpdated; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             to.IsNeedCurrentUpdate = from.IsNeedCurrentUpdate; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListBaseConfigLinks.Update((GroupListBaseConfigLinks)to.GroupConfigLinks, from.GroupConfigLinks, isDeep);
@@ -3051,10 +2677,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.LastUpdated = m.LastUpdated; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.IsNeedCurrentUpdate = m.IsNeedCurrentUpdate; // Clone.tt Line: 221
             if (vm.GroupConfigLinks == null) // Clone.tt Line: 213
                 vm.GroupConfigLinks = new GroupListBaseConfigLinks(vm); // Clone.tt Line: 215
@@ -3088,10 +2711,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.LastUpdated = vm.LastUpdated; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             m.IsNeedCurrentUpdate = vm.IsNeedCurrentUpdate; // Clone.tt Line: 276
             m.GroupConfigLinks = vSharpStudio.vm.ViewModels.GroupListBaseConfigLinks.ConvertToProto((GroupListBaseConfigLinks)vm.GroupConfigLinks); // Clone.tt Line: 270
             m.Model = vSharpStudio.vm.ViewModels.ConfigModel.ConvertToProto((ConfigModel)vm.Model); // Clone.tt Line: 270
@@ -3286,27 +2906,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -3326,46 +2925,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
         public bool IsNeedCurrentUpdate // Property.tt Line: 55
@@ -3480,7 +3039,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnGroupAppSolutionsChanged();
         //IGroupListAppSolutions IConfig.GroupAppSolutions { get { return this._GroupAppSolutions; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -3494,14 +3053,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class AppDbSettingsValidator : ValidatorBase<AppDbSettings, AppDbSettingsValidator> { } // Class.tt Line: 6
@@ -3509,7 +3065,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public AppDbSettings() 
-            : base(AppDbSettingsValidator.Validator) // Class.tt Line: 43
+            : base(AppDbSettingsValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -3778,7 +3334,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public PluginGroupGeneratorsDefaultSettings() 
-            : base(PluginGroupGeneratorsDefaultSettingsValidator.Validator) // Class.tt Line: 43
+            : base(PluginGroupGeneratorsDefaultSettingsValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -3799,10 +3355,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.AppGroupGeneratorsGuid = from.AppGroupGeneratorsGuid; // Clone.tt Line: 65
             vm.Settings = from.Settings; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -3815,10 +3368,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.AppGroupGeneratorsGuid = from.AppGroupGeneratorsGuid; // Clone.tt Line: 141
             to.Settings = from.Settings; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -3851,10 +3401,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.AppGroupGeneratorsGuid = m.AppGroupGeneratorsGuid; // Clone.tt Line: 221
             vm.Settings = m.Settings; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -3868,10 +3415,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.AppGroupGeneratorsGuid = vm.AppGroupGeneratorsGuid; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
         }
         
@@ -3974,27 +3518,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -4016,46 +3539,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         #endregion Properties
     }
     public partial class GroupListAppSolutionsValidator : ValidatorBase<GroupListAppSolutions, GroupListAppSolutionsValidator> { } // Class.tt Line: 6
@@ -4068,12 +3551,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListAppSolutions(ITreeConfigNode parent) 
             : base(parent, GroupListAppSolutionsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListAppSolutions = new ConfigNodesCollection<AppSolution>(this); // Class.tt Line: 26
-            this.ListGroupGeneratorsDefultSettings = new ObservableCollection<PluginGroupGeneratorsDefaultSettings>(); // Class.tt Line: 24
+            this.ListAppSolutions = new ConfigNodesCollection<AppSolution>(this); // Class.tt Line: 27
+            this.ListGroupGeneratorsDefultSettings = new ObservableCollection<PluginGroupGeneratorsDefaultSettings>(); // Class.tt Line: 25
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -4101,10 +3586,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListAppSolutions) // Clone.tt Line: 52
                 vm.ListAppSolutions.Add(AppSolution.Clone(vm, (AppSolution)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListGroupGeneratorsDefultSettings = new ObservableCollection<PluginGroupGeneratorsDefaultSettings>(); // Clone.tt Line: 47
             foreach (var t in from.ListGroupGeneratorsDefultSettings) // Clone.tt Line: 48
                 vm.ListGroupGeneratorsDefultSettings.Add(PluginGroupGeneratorsDefaultSettings.Clone((PluginGroupGeneratorsDefaultSettings)t, isDeep));
@@ -4157,10 +3639,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListGroupGeneratorsDefultSettings.ToList())
@@ -4236,10 +3715,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListAppSolutions.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListGroupGeneratorsDefultSettings = new ObservableCollection<PluginGroupGeneratorsDefaultSettings>(); // Clone.tt Line: 190
             foreach (var t in m.ListGroupGeneratorsDefultSettings) // Clone.tt Line: 191
             {
@@ -4262,10 +3738,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListAppSolutions) // Clone.tt Line: 242
                 m.ListAppSolutions.Add(AppSolution.ConvertToProto((AppSolution)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListGroupGeneratorsDefultSettings) // Clone.tt Line: 242
                 m.ListGroupGeneratorsDefultSettings.Add(PluginGroupGeneratorsDefaultSettings.ConvertToProto((PluginGroupGeneratorsDefaultSettings)t)); // Clone.tt Line: 246
             return m;
@@ -4443,27 +3916,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -4483,46 +3935,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
         public ObservableCollection<PluginGroupGeneratorsDefaultSettings> ListGroupGeneratorsDefultSettings // Property.tt Line: 8
@@ -4545,7 +3957,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListGroupGeneratorsDefultSettingsChanging(ObservableCollection<PluginGroupGeneratorsDefaultSettings> to); // Property.tt Line: 27
         partial void OnListGroupGeneratorsDefultSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -4559,14 +3971,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PluginGroupGeneratorsSettingsValidator : ValidatorBase<PluginGroupGeneratorsSettings, PluginGroupGeneratorsSettingsValidator> { } // Class.tt Line: 6
@@ -4579,10 +3988,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public PluginGroupGeneratorsSettings(ITreeConfigNode parent) 
             : base(parent, PluginGroupGeneratorsSettingsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -4605,10 +4016,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Settings = from.Settings; // Clone.tt Line: 65
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4623,10 +4031,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Settings = from.Settings; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -4661,10 +4066,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Settings = m.Settings; // Clone.tt Line: 221
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4680,10 +4082,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Settings = vm.Settings; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
         }
         
@@ -4821,27 +4220,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -4863,48 +4241,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -4918,14 +4256,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // Class.tt Line: 6
@@ -4938,12 +4273,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public AppSolution(ITreeConfigNode parent) 
             : base(parent, AppSolutionValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListAppProjects = new ConfigNodesCollection<AppProject>(this); // Class.tt Line: 26
-            this.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(this); // Class.tt Line: 26
+            this.ListAppProjects = new ConfigNodesCollection<AppProject>(this); // Class.tt Line: 27
+            this.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -4974,10 +4311,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListAppProjects = new ConfigNodesCollection<AppProject>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListAppProjects) // Clone.tt Line: 52
                 vm.ListAppProjects.Add(AppProject.Clone(vm, (AppProject)t, isDeep));
@@ -4999,10 +4333,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Description = from.Description; // Clone.tt Line: 141
             to.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListAppProjects.ToList())
@@ -5110,10 +4441,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.RelativeAppSolutionPath = m.RelativeAppSolutionPath; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListAppProjects = new ConfigNodesCollection<AppProject>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListAppProjects) // Clone.tt Line: 201
             {
@@ -5142,10 +4470,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.RelativeAppSolutionPath = vm.RelativeAppSolutionPath; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListAppProjects) // Clone.tt Line: 242
                 m.ListAppProjects.Add(AppProject.ConvertToProto((AppProject)t)); // Clone.tt Line: 246
             foreach (var t in vm.ListGroupGeneratorsSettings) // Clone.tt Line: 242
@@ -5324,27 +4649,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -5364,46 +4668,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<AppProject> ListAppProjects // Property.tt Line: 8
@@ -5447,7 +4711,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListGroupGeneratorsSettingsChanging(ObservableCollection<PluginGroupGeneratorsSettings> to); // Property.tt Line: 27
         partial void OnListGroupGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -5461,14 +4725,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class AppProjectValidator : ValidatorBase<AppProject, AppProjectValidator> { } // Class.tt Line: 6
@@ -5481,11 +4742,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public AppProject(ITreeConfigNode parent) 
             : base(parent, AppProjectValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(this); // Class.tt Line: 26
+            this.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -5512,10 +4775,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.Namespace = from.Namespace; // Clone.tt Line: 65
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListAppProjectGenerators) // Clone.tt Line: 52
@@ -5535,10 +4795,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Description = from.Description; // Clone.tt Line: 141
             to.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             to.Namespace = from.Namespace; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -5611,10 +4868,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.RelativeAppProjectPath = m.RelativeAppProjectPath; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.Namespace = m.Namespace; // Clone.tt Line: 221
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListAppProjectGenerators) // Clone.tt Line: 201
@@ -5638,10 +4892,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.RelativeAppProjectPath = vm.RelativeAppProjectPath; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             m.Namespace = vm.Namespace; // Clone.tt Line: 276
             foreach (var t in vm.ListAppProjectGenerators) // Clone.tt Line: 242
                 m.ListAppProjectGenerators.Add(AppProjectGenerator.ConvertToProto((AppProjectGenerator)t)); // Clone.tt Line: 246
@@ -5813,27 +5064,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -5853,46 +5083,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         
         [PropertyOrderAttribute(9)]
         [DisplayName("Namespace")]
@@ -5938,7 +5128,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListAppProjectGeneratorsChanging(ObservableCollection<AppProjectGenerator> to); // Property.tt Line: 27
         partial void OnListAppProjectGeneratorsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -5952,14 +5142,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PluginGeneratorNodeSettingsValidator : ValidatorBase<PluginGeneratorNodeSettings, PluginGeneratorNodeSettingsValidator> { } // Class.tt Line: 6
@@ -5972,10 +5159,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public PluginGeneratorNodeSettings(ITreeConfigNode parent) 
             : base(parent, PluginGeneratorNodeSettingsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -5998,7 +5187,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.Settings = from.Settings; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -6013,7 +5201,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.Settings = from.Settings; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -6048,7 +5235,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.Settings = m.Settings; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -6064,7 +5250,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
         }
         
@@ -6209,27 +5394,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private string _Settings = string.Empty;
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
-        
         [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -6243,14 +5409,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PluginGeneratorSettingsValidator : ValidatorBase<PluginGeneratorSettings, PluginGeneratorSettingsValidator> { } // Class.tt Line: 6
@@ -6258,7 +5421,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public PluginGeneratorSettings() 
-            : base(PluginGeneratorSettingsValidator.Validator) // Class.tt Line: 43
+            : base(PluginGeneratorSettingsValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -6280,7 +5443,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 65
             vm.Settings = from.Settings; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -6294,7 +5456,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 141
             to.Settings = from.Settings; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -6328,7 +5489,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.AppProjectGeneratorGuid = m.AppProjectGeneratorGuid; // Clone.tt Line: 221
             vm.Settings = m.Settings; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -6343,7 +5503,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.AppProjectGeneratorGuid = vm.AppProjectGeneratorGuid; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             return m;
         }
         
@@ -6466,25 +5625,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private string _Settings = string.Empty;
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         #endregion Properties
     }
     public partial class AppProjectGeneratorValidator : ValidatorBase<AppProjectGenerator, AppProjectGeneratorValidator> { } // Class.tt Line: 6
@@ -6501,11 +5641,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public AppProjectGenerator(ITreeConfigNode parent) 
             : base(parent, AppProjectGeneratorValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GeneratorSettingsVm = new PluginGeneratorSettings(); // Class.tt Line: 30
+            this.GeneratorSettingsVm = new PluginGeneratorSettings(); // Class.tt Line: 31
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -6534,10 +5676,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.RelativePathToGenFolder = from.RelativePathToGenFolder; // Clone.tt Line: 65
             vm.GenFileName = from.GenFileName; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GeneratorSettingsVm = vSharpStudio.vm.ViewModels.PluginGeneratorSettings.Clone(from.GeneratorSettingsVm, isDeep);
@@ -6566,10 +5705,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.RelativePathToGenFolder = from.RelativePathToGenFolder; // Clone.tt Line: 141
             to.GenFileName = from.GenFileName; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             to.GeneratorSettings = from.GeneratorSettings; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.PluginGeneratorSettings.Update((PluginGeneratorSettings)to.GeneratorSettingsVm, from.GeneratorSettingsVm, isDeep);
@@ -6618,10 +5754,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.RelativePathToGenFolder = m.RelativePathToGenFolder; // Clone.tt Line: 221
             vm.GenFileName = m.GenFileName; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.GeneratorSettings = m.GeneratorSettings; // Clone.tt Line: 221
             if (vm.GeneratorSettingsVm == null) // Clone.tt Line: 213
                 vm.GeneratorSettingsVm = new PluginGeneratorSettings(); // Clone.tt Line: 217
@@ -6652,10 +5785,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.RelativePathToGenFolder = vm.RelativePathToGenFolder; // Clone.tt Line: 276
             m.GenFileName = vm.GenFileName; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 276
             m.GeneratorSettingsVm = vSharpStudio.vm.ViewModels.PluginGeneratorSettings.ConvertToProto((PluginGeneratorSettings)vm.GeneratorSettingsVm); // Clone.tt Line: 270
             m.ConnStr = vm.ConnStr; // Clone.tt Line: 276
@@ -6950,27 +6080,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -6992,46 +6101,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
         public string GeneratorSettings // Property.tt Line: 55
@@ -7194,7 +6263,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnGenScriptFileNameChanging(ref string to); // Property.tt Line: 79
         partial void OnGenScriptFileNameChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -7208,14 +6277,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PluginGeneratorNodeDefaultSettingsValidator : ValidatorBase<PluginGeneratorNodeDefaultSettings, PluginGeneratorNodeDefaultSettingsValidator> { } // Class.tt Line: 6
@@ -7223,7 +6289,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public PluginGeneratorNodeDefaultSettings() 
-            : base(PluginGeneratorNodeDefaultSettingsValidator.Validator) // Class.tt Line: 43
+            : base(PluginGeneratorNodeDefaultSettingsValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -7363,7 +6429,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public DbSettings() 
-            : base(DbSettingsValidator.Validator) // Class.tt Line: 43
+            : base(DbSettingsValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -7590,18 +6656,20 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public ConfigModel(ITreeConfigNode parent) 
             : base(parent, ConfigModelValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.DbSettings = new DbSettings(); // Class.tt Line: 30
-            this.GroupCommon = new GroupListCommon(this); // Class.tt Line: 32
-            this.GroupConstants = new GroupListConstants(this); // Class.tt Line: 32
-            this.GroupEnumerations = new GroupListEnumerations(this); // Class.tt Line: 32
-            this.GroupCatalogs = new GroupListCatalogs(this); // Class.tt Line: 32
-            this.GroupDocuments = new GroupDocuments(this); // Class.tt Line: 32
-            this.GroupJournals = new GroupListJournals(this); // Class.tt Line: 32
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.DbSettings = new DbSettings(); // Class.tt Line: 31
+            this.GroupCommon = new GroupListCommon(this); // Class.tt Line: 33
+            this.GroupConstants = new GroupListConstants(this); // Class.tt Line: 33
+            this.GroupEnumerations = new GroupListEnumerations(this); // Class.tt Line: 33
+            this.GroupCatalogs = new GroupListCatalogs(this); // Class.tt Line: 33
+            this.GroupDocuments = new GroupDocuments(this); // Class.tt Line: 33
+            this.GroupJournals = new GroupListJournals(this); // Class.tt Line: 33
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -7631,10 +6699,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsUseCompositeNames = from.IsUseCompositeNames; // Clone.tt Line: 65
             vm.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.Clone(from.DbSettings, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -7672,10 +6737,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.IsUseCompositeNames = from.IsUseCompositeNames; // Clone.tt Line: 141
             to.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.DbSettings.Update((DbSettings)to.DbSettings, from.DbSettings, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -7764,10 +6826,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsUseCompositeNames = m.IsUseCompositeNames; // Clone.tt Line: 221
             vm.IsUseGroupPrefix = m.IsUseGroupPrefix; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             if (vm.DbSettings == null) // Clone.tt Line: 213
                 vm.DbSettings = new DbSettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.DbSettings.ConvertToVM(m.DbSettings, (DbSettings)vm.DbSettings); // Clone.tt Line: 219
@@ -7817,10 +6876,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.IsUseCompositeNames = vm.IsUseCompositeNames; // Clone.tt Line: 276
             m.IsUseGroupPrefix = vm.IsUseGroupPrefix; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             m.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.ConvertToProto((DbSettings)vm.DbSettings); // Clone.tt Line: 270
             m.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToProto((GroupListCommon)vm.GroupCommon); // Clone.tt Line: 270
             m.GroupConstants = vSharpStudio.vm.ViewModels.GroupListConstants.ConvertToProto((GroupListConstants)vm.GroupConstants); // Clone.tt Line: 270
@@ -8080,27 +7136,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -8120,46 +7155,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         
         
         ///////////////////////////////////////////////////
@@ -8350,7 +7345,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -8364,14 +7359,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { } // Class.tt Line: 6
@@ -8379,11 +7371,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public DataType() 
-            : base(DataTypeValidator.Validator) // Class.tt Line: 43
+            : base(DataTypeValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListObjectGuids = new ObservableCollection<string>(); // Class.tt Line: 52
+            this.ListObjectGuids = new ObservableCollection<string>(); // Class.tt Line: 54
             this.OnInit();
             this.IsValidate = true;
         }
@@ -8745,13 +7737,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListCommon(ITreeConfigNode parent) 
             : base(parent, GroupListCommonValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupRoles = new GroupListRoles(this); // Class.tt Line: 32
-            this.GroupViewForms = new GroupListMainViewForms(this); // Class.tt Line: 32
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.GroupRoles = new GroupListRoles(this); // Class.tt Line: 33
+            this.GroupViewForms = new GroupListMainViewForms(this); // Class.tt Line: 33
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -8781,10 +7775,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.Clone(vm, from.GroupViewForms, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -8808,10 +7799,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListMainViewForms.Update((GroupListMainViewForms)to.GroupViewForms, from.GroupViewForms, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -8888,10 +7876,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.GroupViewForms = new GroupListMainViewForms(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToVM(m.GroupViewForms, (GroupListMainViewForms)vm.GroupViewForms); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -8918,10 +7903,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.GroupRoles = vSharpStudio.vm.ViewModels.GroupListRoles.ConvertToProto((GroupListRoles)vm.GroupRoles); // Clone.tt Line: 270
             m.GroupViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToProto((GroupListMainViewForms)vm.GroupViewForms); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -9116,27 +8098,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -9160,46 +8121,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -9220,7 +8141,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -9234,14 +8155,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class RoleValidator : ValidatorBase<Role, RoleValidator> { } // Class.tt Line: 6
@@ -9258,11 +8176,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Role(ITreeConfigNode parent) 
             : base(parent, RoleValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -9289,9 +8209,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -9312,9 +8229,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Description = from.Description; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -9386,9 +8300,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -9414,9 +8325,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -9584,67 +8492,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -9665,7 +8512,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -9679,14 +8526,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListRolesValidator : ValidatorBase<GroupListRoles, GroupListRolesValidator> { } // Class.tt Line: 6
@@ -9699,12 +8543,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListRoles(ITreeConfigNode parent) 
             : base(parent, GroupListRolesValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListRoles = new ConfigNodesCollection<Role>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListRoles = new ConfigNodesCollection<Role>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -9737,10 +8583,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListRoles) // Clone.tt Line: 52
                 vm.ListRoles.Add(Role.Clone(vm, (Role)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -9796,10 +8639,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -9876,10 +8716,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListRoles.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -9906,10 +8743,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListRoles) // Clone.tt Line: 242
                 m.ListRoles.Add(Role.ConvertToProto((Role)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -10103,27 +8937,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -10143,46 +8956,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -10205,7 +8978,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -10219,14 +8992,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class MainViewFormValidator : ValidatorBase<MainViewForm, MainViewFormValidator> { } // Class.tt Line: 6
@@ -10243,12 +9013,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public MainViewForm(ITreeConfigNode parent) 
             : base(parent, MainViewFormValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupListViewForms = new GroupListMainViewForms(this); // Class.tt Line: 32
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.GroupListViewForms = new GroupListMainViewForms(this); // Class.tt Line: 33
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -10276,10 +9048,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupListViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.Clone(vm, from.GroupListViewForms, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -10301,10 +9070,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListMainViewForms.Update((GroupListMainViewForms)to.GroupListViewForms, from.GroupListViewForms, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -10378,10 +9144,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.GroupListViewForms = new GroupListMainViewForms(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToVM(m.GroupListViewForms, (GroupListMainViewForms)vm.GroupListViewForms); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -10407,10 +9170,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.GroupListViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToProto((GroupListMainViewForms)vm.GroupListViewForms); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -10580,27 +9340,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -10624,46 +9363,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -10684,7 +9383,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -10698,14 +9397,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListMainViewFormsValidator : ValidatorBase<GroupListMainViewForms, GroupListMainViewFormsValidator> { } // Class.tt Line: 6
@@ -10722,12 +9418,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListMainViewForms(ITreeConfigNode parent) 
             : base(parent, GroupListMainViewFormsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListMainViewForms = new ConfigNodesCollection<MainViewForm>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListMainViewForms = new ConfigNodesCollection<MainViewForm>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -10760,10 +9458,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListMainViewForms) // Clone.tt Line: 52
                 vm.ListMainViewForms.Add(MainViewForm.Clone(vm, (MainViewForm)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -10819,10 +9514,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -10899,10 +9591,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListMainViewForms.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -10929,10 +9618,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListMainViewForms) // Clone.tt Line: 242
                 m.ListMainViewForms.Add(MainViewForm.ConvertToProto((MainViewForm)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -11125,27 +9811,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -11169,46 +9834,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -11229,7 +9854,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -11243,14 +9868,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListPropertiesTabsValidator : ValidatorBase<GroupListPropertiesTabs, GroupListPropertiesTabsValidator> { } // Class.tt Line: 6
@@ -11263,12 +9885,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListPropertiesTabs(ITreeConfigNode parent) 
             : base(parent, GroupListPropertiesTabsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -11301,10 +9925,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListPropertiesTabs) // Clone.tt Line: 52
                 vm.ListPropertiesTabs.Add(PropertiesTab.Clone(vm, (PropertiesTab)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -11360,10 +9981,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -11440,10 +10058,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListPropertiesTabs.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -11470,10 +10085,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListPropertiesTabs) // Clone.tt Line: 242
                 m.ListPropertiesTabs.Add(PropertiesTab.ConvertToProto((PropertiesTab)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -11666,27 +10278,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -11710,46 +10301,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -11770,7 +10321,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -11784,14 +10335,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PropertiesTabValidator : ValidatorBase<PropertiesTab, PropertiesTabValidator> { } // Class.tt Line: 6
@@ -11804,13 +10352,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public PropertiesTab(ITreeConfigNode parent) 
             : base(parent, PropertiesTabValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 32
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 32
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
+            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -11842,9 +10392,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -11870,9 +10417,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -11951,9 +10495,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -11982,9 +10523,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -12227,67 +10765,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -12308,7 +10785,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -12322,14 +10799,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListPropertiesValidator : ValidatorBase<GroupListProperties, GroupListPropertiesValidator> { } // Class.tt Line: 6
@@ -12342,12 +10816,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListProperties(ITreeConfigNode parent) 
             : base(parent, GroupListPropertiesValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListProperties = new ConfigNodesCollection<Property>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListProperties = new ConfigNodesCollection<Property>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -12381,10 +10857,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListProperties.Add(Property.Clone(vm, (Property)t, isDeep));
             vm.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -12441,10 +10914,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
             to.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -12522,10 +10992,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
             vm.LastGenPosition = m.LastGenPosition; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -12553,10 +11020,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 m.ListProperties.Add(Property.ConvertToProto((Property)t)); // Clone.tt Line: 246
             m.LastGenPosition = vm.LastGenPosition; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -12774,27 +11238,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -12818,46 +11261,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -12878,7 +11281,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -12892,14 +11295,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { } // Class.tt Line: 6
@@ -12912,12 +11312,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Property(ITreeConfigNode parent) 
             : base(parent, PropertyValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.DataType = new DataType(); // Class.tt Line: 30
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.DataType = new DataType(); // Class.tt Line: 31
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -12945,10 +11347,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 62
                 vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -12971,10 +11370,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             to.Position = from.Position; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -13049,10 +11445,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.DataType = new DataType(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -13079,10 +11472,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             m.Position = vm.Position; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -13255,27 +11645,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -13297,46 +11666,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
         
         
         ///////////////////////////////////////////////////
@@ -13385,7 +11714,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -13399,14 +11728,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListConstantsValidator : ValidatorBase<GroupListConstants, GroupListConstantsValidator> { } // Class.tt Line: 6
@@ -13419,12 +11745,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListConstants(ITreeConfigNode parent) 
             : base(parent, GroupListConstantsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListConstants = new ConfigNodesCollection<Constant>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListConstants = new ConfigNodesCollection<Constant>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -13457,10 +11785,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListConstants) // Clone.tt Line: 52
                 vm.ListConstants.Add(Constant.Clone(vm, (Constant)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -13516,10 +11841,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -13596,10 +11918,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListConstants.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -13626,10 +11945,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListConstants) // Clone.tt Line: 242
                 m.ListConstants.Add(Constant.ConvertToProto((Constant)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -13822,27 +12138,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -13866,46 +12161,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -13926,7 +12181,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -13940,14 +12195,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { } // Class.tt Line: 6
@@ -13964,12 +12216,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Constant(ITreeConfigNode parent) 
             : base(parent, ConstantValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.DataType = new DataType(); // Class.tt Line: 30
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.DataType = new DataType(); // Class.tt Line: 31
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -13997,10 +12251,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 62
                 vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -14022,10 +12273,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -14099,10 +12347,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.DataType = new DataType(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -14128,10 +12373,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -14303,27 +12545,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -14347,46 +12568,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -14407,7 +12588,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -14421,14 +12602,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListEnumerationsValidator : ValidatorBase<GroupListEnumerations, GroupListEnumerationsValidator> { } // Class.tt Line: 6
@@ -14441,12 +12619,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListEnumerations(ITreeConfigNode parent) 
             : base(parent, GroupListEnumerationsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListEnumerations = new ConfigNodesCollection<Enumeration>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListEnumerations = new ConfigNodesCollection<Enumeration>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -14479,10 +12659,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListEnumerations) // Clone.tt Line: 52
                 vm.ListEnumerations.Add(Enumeration.Clone(vm, (Enumeration)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -14538,10 +12715,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -14618,10 +12792,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListEnumerations.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -14648,10 +12819,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListEnumerations) // Clone.tt Line: 242
                 m.ListEnumerations.Add(Enumeration.ConvertToProto((Enumeration)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -14844,27 +13012,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -14888,46 +13035,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -14948,7 +13055,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -14962,14 +13069,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { } // Class.tt Line: 6
@@ -14982,12 +13086,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Enumeration(ITreeConfigNode parent) 
             : base(parent, EnumerationValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -15023,9 +13129,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListEnumerationPairs.Add(EnumerationPair.Clone(vm, (EnumerationPair)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -15084,9 +13187,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -15166,9 +13266,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -15198,9 +13295,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 m.ListEnumerationPairs.Add(EnumerationPair.ConvertToProto((EnumerationPair)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -15446,67 +13540,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -15527,7 +13560,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -15541,14 +13574,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class EnumerationPairValidator : ValidatorBase<EnumerationPair, EnumerationPairValidator> { } // Class.tt Line: 6
@@ -15561,11 +13591,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public EnumerationPair(ITreeConfigNode parent) 
             : base(parent, EnumerationPairValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -15593,10 +13625,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Value = from.Value; // Clone.tt Line: 65
             vm.IsDefault = from.IsDefault; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -15618,10 +13647,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Value = from.Value; // Clone.tt Line: 141
             to.IsDefault = from.IsDefault; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -15694,10 +13720,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Value = m.Value; // Clone.tt Line: 221
             vm.IsDefault = m.IsDefault; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -15724,10 +13747,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Value = vm.Value; // Clone.tt Line: 276
             m.IsDefault = vm.IsDefault; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -15921,27 +13941,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -15965,46 +13964,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -16025,7 +13984,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -16039,14 +13998,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class CatalogItemsGroupValidator : ValidatorBase<CatalogItemsGroup, CatalogItemsGroupValidator> { } // Class.tt Line: 6
@@ -16059,13 +14015,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public CatalogItemsGroup(ITreeConfigNode parent) 
             : base(parent, CatalogItemsGroupValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 32
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 32
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
+            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -16092,9 +14050,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -16119,9 +14074,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Description = from.Description; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -16197,9 +14149,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             if (vm.GroupProperties == null) // Clone.tt Line: 213
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // Clone.tt Line: 219
@@ -16231,9 +14180,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
             m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
@@ -16408,67 +14354,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public GroupListProperties GroupProperties // Property.tt Line: 55
         { 
             get { return this._GroupProperties; }
@@ -16535,7 +14420,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -16549,14 +14434,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class CatalogSettingsValidator : ValidatorBase<CatalogSettings, CatalogSettingsValidator> { } // Class.tt Line: 6
@@ -16564,7 +14446,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
     {
         #region CTOR
         public CatalogSettings() 
-            : base(CatalogSettingsValidator.Validator) // Class.tt Line: 43
+            : base(CatalogSettingsValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
@@ -16761,17 +14643,19 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Catalog(ITreeConfigNode parent) 
             : base(parent, CatalogValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.CatalogSettings = new CatalogSettings(); // Class.tt Line: 30
-            this.GroupItems = new CatalogItemsGroup(this); // Class.tt Line: 32
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 32
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 32
-            this.GroupForms = new GroupListForms(this); // Class.tt Line: 32
-            this.GroupReports = new GroupListReports(this); // Class.tt Line: 32
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.CatalogSettings = new CatalogSettings(); // Class.tt Line: 31
+            this.GroupItems = new CatalogItemsGroup(this); // Class.tt Line: 33
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
+            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
+            this.GroupForms = new GroupListForms(this); // Class.tt Line: 33
+            this.GroupReports = new GroupListReports(this); // Class.tt Line: 33
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -16800,9 +14684,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.CatalogSettings = vSharpStudio.vm.ViewModels.CatalogSettings.Clone(from.CatalogSettings, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupItems = vSharpStudio.vm.ViewModels.CatalogItemsGroup.Clone(vm, from.GroupItems, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -16835,9 +14716,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vSharpStudio.vm.ViewModels.CatalogSettings.Update((CatalogSettings)to.CatalogSettings, from.CatalogSettings, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.CatalogItemsGroup.Update((CatalogItemsGroup)to.GroupItems, from.GroupItems, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -16922,9 +14800,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vSharpStudio.vm.ViewModels.CatalogSettings.ConvertToVM(m.CatalogSettings, (CatalogSettings)vm.CatalogSettings); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             if (vm.GroupItems == null) // Clone.tt Line: 213
                 vm.GroupItems = new CatalogItemsGroup(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.CatalogItemsGroup.ConvertToVM(m.GroupItems, (CatalogItemsGroup)vm.GroupItems); // Clone.tt Line: 219
@@ -16966,9 +14841,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.CatalogSettings = vSharpStudio.vm.ViewModels.CatalogSettings.ConvertToProto((CatalogSettings)vm.CatalogSettings); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             m.GroupItems = vSharpStudio.vm.ViewModels.CatalogItemsGroup.ConvertToProto((CatalogItemsGroup)vm.GroupItems); // Clone.tt Line: 270
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
             m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
@@ -17179,67 +15051,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public CatalogItemsGroup GroupItems // Property.tt Line: 55
         { 
             get { return this._GroupItems; }
@@ -17375,7 +15186,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -17389,14 +15200,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListCatalogsValidator : ValidatorBase<GroupListCatalogs, GroupListCatalogsValidator> { } // Class.tt Line: 6
@@ -17409,12 +15217,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListCatalogs(ITreeConfigNode parent) 
             : base(parent, GroupListCatalogsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListCatalogs = new ConfigNodesCollection<Catalog>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListCatalogs = new ConfigNodesCollection<Catalog>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -17448,10 +15258,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListCatalogs) // Clone.tt Line: 52
                 vm.ListCatalogs.Add(Catalog.Clone(vm, (Catalog)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -17508,10 +15315,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -17589,10 +15393,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListCatalogs.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -17620,10 +15421,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListCatalogs) // Clone.tt Line: 242
                 m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -17839,27 +15637,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -17883,46 +15660,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -17943,7 +15680,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -17957,14 +15694,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupDocumentsValidator : ValidatorBase<GroupDocuments, GroupDocumentsValidator> { } // Class.tt Line: 6
@@ -17977,13 +15711,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupDocuments(ITreeConfigNode parent) 
             : base(parent, GroupDocumentsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupSharedProperties = new GroupListProperties(this); // Class.tt Line: 32
-            this.GroupListDocuments = new GroupListDocuments(this); // Class.tt Line: 32
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.GroupSharedProperties = new GroupListProperties(this); // Class.tt Line: 33
+            this.GroupListDocuments = new GroupListDocuments(this); // Class.tt Line: 33
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -18014,10 +15750,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.Clone(vm, from.GroupListDocuments, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -18042,10 +15775,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListDocuments.Update((GroupListDocuments)to.GroupListDocuments, from.GroupListDocuments, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -18123,10 +15853,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.GroupListDocuments = new GroupListDocuments(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToVM(m.GroupListDocuments, (GroupListDocuments)vm.GroupListDocuments); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -18154,10 +15881,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.GroupSharedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupSharedProperties); // Clone.tt Line: 270
             m.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToProto((GroupListDocuments)vm.GroupListDocuments); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -18376,27 +16100,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -18420,46 +16123,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -18480,7 +16143,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -18494,14 +16157,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { } // Class.tt Line: 6
@@ -18514,15 +16174,17 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Document(ITreeConfigNode parent) 
             : base(parent, DocumentValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 32
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 32
-            this.GroupForms = new GroupListForms(this); // Class.tt Line: 32
-            this.GroupReports = new GroupListReports(this); // Class.tt Line: 32
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
+            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
+            this.GroupForms = new GroupListForms(this); // Class.tt Line: 33
+            this.GroupReports = new GroupListReports(this); // Class.tt Line: 33
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -18549,9 +16211,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -18580,9 +16239,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Description = from.Description; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -18662,9 +16318,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             if (vm.GroupProperties == null) // Clone.tt Line: 213
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // Clone.tt Line: 219
@@ -18702,9 +16355,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
             m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
@@ -18884,67 +16534,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public GroupListProperties GroupProperties // Property.tt Line: 55
         { 
             get { return this._GroupProperties; }
@@ -19057,7 +16646,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -19071,14 +16660,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListDocumentsValidator : ValidatorBase<GroupListDocuments, GroupListDocumentsValidator> { } // Class.tt Line: 6
@@ -19091,12 +16677,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListDocuments(ITreeConfigNode parent) 
             : base(parent, GroupListDocumentsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -19129,10 +16717,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListDocuments) // Clone.tt Line: 52
                 vm.ListDocuments.Add(Document.Clone(vm, (Document)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -19188,10 +16773,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -19268,10 +16850,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListDocuments.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -19298,10 +16877,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListDocuments) // Clone.tt Line: 242
                 m.ListDocuments.Add(Document.ConvertToProto((Document)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -19494,27 +17070,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -19538,46 +17093,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -19598,7 +17113,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -19612,14 +17127,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListJournalsValidator : ValidatorBase<GroupListJournals, GroupListJournalsValidator> { } // Class.tt Line: 6
@@ -19632,12 +17144,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListJournals(ITreeConfigNode parent) 
             : base(parent, GroupListJournalsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListJournals = new ConfigNodesCollection<Journal>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListJournals = new ConfigNodesCollection<Journal>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -19670,10 +17184,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListJournals) // Clone.tt Line: 52
                 vm.ListJournals.Add(Journal.Clone(vm, (Journal)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -19729,10 +17240,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -19809,10 +17317,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListJournals.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -19839,10 +17344,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListJournals) // Clone.tt Line: 242
                 m.ListJournals.Add(Journal.ConvertToProto((Journal)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -20039,27 +17541,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -20083,46 +17564,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -20143,7 +17584,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -20157,14 +17598,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class JournalValidator : ValidatorBase<Journal, JournalValidator> { } // Class.tt Line: 6
@@ -20177,12 +17615,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Journal(ITreeConfigNode parent) 
             : base(parent, JournalValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -20216,9 +17656,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListDocuments.Add(Document.Clone(vm, (Document)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -20275,9 +17712,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -20355,9 +17789,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -20385,9 +17816,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 m.ListDocuments.Add(Document.ConvertToProto((Document)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -20584,67 +18012,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -20665,7 +18032,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -20679,14 +18046,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListFormsValidator : ValidatorBase<GroupListForms, GroupListFormsValidator> { } // Class.tt Line: 6
@@ -20699,12 +18063,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListForms(ITreeConfigNode parent) 
             : base(parent, GroupListFormsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListForms = new ConfigNodesCollection<Form>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListForms = new ConfigNodesCollection<Form>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -20737,10 +18103,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListForms) // Clone.tt Line: 52
                 vm.ListForms.Add(Form.Clone(vm, (Form)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -20796,10 +18159,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -20876,10 +18236,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListForms.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -20906,10 +18263,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListForms) // Clone.tt Line: 242
                 m.ListForms.Add(Form.ConvertToProto((Form)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -21106,27 +18460,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -21150,46 +18483,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -21210,7 +18503,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -21224,14 +18517,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class FormValidator : ValidatorBase<Form, FormValidator> { } // Class.tt Line: 6
@@ -21244,11 +18534,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Form(ITreeConfigNode parent) 
             : base(parent, FormValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -21275,9 +18567,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -21298,9 +18587,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Description = from.Description; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -21372,9 +18658,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -21400,9 +18683,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -21569,67 +18849,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
         
         ///////////////////////////////////////////////////
         /// repeated proto_group_properties list_properties = 6;
@@ -21656,7 +18875,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -21670,14 +18889,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class GroupListReportsValidator : ValidatorBase<GroupListReports, GroupListReportsValidator> { } // Class.tt Line: 6
@@ -21690,12 +18906,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public GroupListReports(ITreeConfigNode parent) 
             : base(parent, GroupListReportsValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListReports = new ConfigNodesCollection<Report>(this); // Class.tt Line: 26
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListReports = new ConfigNodesCollection<Report>(this); // Class.tt Line: 27
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -21728,10 +18946,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in from.ListReports) // Clone.tt Line: 52
                 vm.ListReports.Add(Report.Clone(vm, (Report)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -21787,10 +19002,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -21867,10 +19079,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.ListReports.Add(tvm);
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -21897,10 +19106,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             foreach (var t in vm.ListReports) // Clone.tt Line: 242
                 m.ListReports.Add(Report.ConvertToProto((Report)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -22097,27 +19303,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -22141,46 +19326,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanged();
         
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
-        [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -22201,7 +19346,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -22215,14 +19360,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class ReportValidator : ValidatorBase<Report, ReportValidator> { } // Class.tt Line: 6
@@ -22235,11 +19377,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         public Report(ITreeConfigNode parent) 
             : base(parent, ReportValidator.Validator) // Class.tt Line: 15
         {
+            this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 26
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
         partial void OnInitBegin();
         partial void OnInit();
@@ -22266,9 +19410,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasNew = from.IsHasNew; // Clone.tt Line: 65
-            vm.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 65
-            vm.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -22289,9 +19430,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.Description = from.Description; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasNew = from.IsHasNew; // Clone.tt Line: 141
-            to.IsHasMarkedForDeletion = from.IsHasMarkedForDeletion; // Clone.tt Line: 141
-            to.IsHasChanged = from.IsHasChanged; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -22363,9 +19501,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasNew = m.IsHasNew; // Clone.tt Line: 221
-            vm.IsHasMarkedForDeletion = m.IsHasMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsHasChanged = m.IsHasChanged; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -22391,9 +19526,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasNew = vm.IsHasNew; // Clone.tt Line: 276
-            m.IsHasMarkedForDeletion = vm.IsHasMarkedForDeletion; // Clone.tt Line: 276
-            m.IsHasChanged = vm.IsHasChanged; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -22560,67 +19692,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
-        public bool IsHasNew // Property.tt Line: 55
-        { 
-            get { return this._IsHasNew; }
-            set
-            {
-                if (this._IsHasNew != value)
-                {
-                    this.OnIsHasNewChanging(ref value);
-                    this._IsHasNew = value;
-                    this.OnIsHasNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsHasMarkedForDeletion; }
-            set
-            {
-                if (this._IsHasMarkedForDeletion != value)
-                {
-                    this.OnIsHasMarkedForDeletionChanging(ref value);
-                    this._IsHasMarkedForDeletion = value;
-                    this.OnIsHasMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsHasChanged // Property.tt Line: 55
-        { 
-            get { return this._IsHasChanged; }
-            set
-            {
-                if (this._IsHasChanged != value)
-                {
-                    this.OnIsHasChangedChanging(ref value);
-                    this._IsHasChanged = value;
-                    this.OnIsHasChangedChanged();
-                    this.NotifyPropertyChanged();
-                }
-            }
-        }
-        private bool _IsHasChanged;
-        partial void OnIsHasChangedChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsHasChangedChanged();
-        
         
         ///////////////////////////////////////////////////
         /// repeated proto_group_properties list_properties = 6;
@@ -22647,7 +19718,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 101
+        override public bool IsChanged // Class.tt Line: 103
         { 
             get { return this._IsChanged; }
             set
@@ -22661,21 +19732,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 115
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
         partial void OnIsChangedChanged();
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-        partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
         partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
         #endregion Properties
     }
     public partial class ModelRowValidator : ValidatorBase<ModelRow, ModelRowValidator> { } // Class.tt Line: 6
     public partial class ModelRow : VmBindable, IModelRow // Class.tt Line: 7
     {
         #region CTOR
-        public ModelRow() // Class.tt Line: 43
+        public ModelRow() // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();

@@ -14,6 +14,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) 
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator) // <#=Helper.FilePos() #>
     {
+        this.IsNotifying = false;
         this.IsValidate = false;
         this.OnInitBegin();
 <#    foreach (var t in message.Fields.InDeclarationOrder())	{ 
@@ -37,6 +38,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <# } #>
         this.OnInit();
         this.IsValidate = true;
+        this.IsNotifying = true;
     }
 <# } else { #>
     public <#= message.Name.ToNameCs() #>()<# if (this.Doc.IsValidatableBase) { #> 
@@ -115,11 +117,8 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     partial void OnIsChangedChanging(ref bool v); // <#=Helper.FilePos() #>
     partial void OnIsChangedChanged();
     partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-    partial void OnIsHasNewChanged() { OnNodeIsHasNewChanged(); }
     partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-    partial void OnIsHasChangedChanged() { OnNodeIsHasChangedChanged(); }
     partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-    partial void OnIsHasMarkedForDeletionChanged() { OnNodeIsHasMarkedForDeletionChanged(); }
 <# } #>
     #endregion Properties
 }
