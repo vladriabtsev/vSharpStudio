@@ -94,15 +94,6 @@ namespace vSharpStudio.ViewModels
         public void OnFormLoaded()
         {
             this.IsBusy = true;
-            //if (App.ServiceCollection == null)
-            //{
-            //    ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
-            //    App.ServiceCollection = new ServiceCollection();
-            //    App.ServiceCollection.Add(ServiceDescriptor.Singleton<ILoggerFactory>(loggerFactory));
-            //}
-            //var Services = App.ServiceCollection.BuildServiceProvider();
-            //this.Logger = Services.GetRequiredService<ILoggerFactory>().CreateLogger<MainPageVM>();
-            //this.Logger.LogInformation("Application is starting.");
             _logger.LogDebug("*** Application is starting. ***".CallerInfo());
             if (File.Exists(USER_SETTINGS_FILE_PATH))
             {
@@ -149,54 +140,6 @@ namespace vSharpStudio.ViewModels
             {
                 _logger.LogDebug("Using empty Configuration".CallerInfo());
             }
-
-            // this.PathToProjectWithConnectionString = Directory.GetCurrentDirectory();
-            // this.Model.OnProviderSelectionChanged = (provider) =>
-            // {
-            //    this.ConnectionStringSettings = ConfigurationManager.ConnectionStrings;
-            //    this.Model.ListConnectionStringVMs.Clear();
-            //    this.Model.ListDbProviders.Clear();
-            //    for (int i = 0; i < this.ConnectionStringSettings.Count; i++)
-            //    {
-            //        string pr = this.ConnectionStringSettings[i].ProviderName;
-            //        if (string.IsNullOrEmpty(pr))
-            //        {
-            //            bool isFound = false;
-            //            foreach (var tt in this.Model.ListDbProviders)
-            //            {
-            //                if (tt == pr)
-            //                {
-            //                    isFound = true;
-            //                    break;
-            //                }
-            //            }
-            //            if (!isFound)
-            //                this.Model.ListDbProviders.Add(pr);
-            //        }
-            //        if (provider != null)
-            //        {
-            //            if (provider == pr)
-            //            {
-            //                this.Model.ListConnectionStringVMs.Add(new ConnStringVM()
-            //                {
-            //                    Name = this.ConnectionStringSettings[i].Name,
-            //                    ConnectionString = this.ConnectionStringSettings[i].ConnectionString,
-            //                    Provider = pr
-            //                });
-            //            }
-            //        }
-            //        else
-            //        {
-            //            this.Model.ListConnectionStringVMs.Add(new ConnStringVM()
-            //            {
-            //                Name = this.ConnectionStringSettings[i].Name,
-            //                ConnectionString = this.ConnectionStringSettings[i].ConnectionString,
-            //                Provider = pr
-            //            }); ;
-            //        }
-            //    }
-            // };
-            // this.Model.OnProviderSelectionChanged(null);
             this.IsBusy = false;
         }
         private void LoadConfig(Config config, string file_path, string indent, bool isRoot = false)
@@ -226,18 +169,13 @@ namespace vSharpStudio.ViewModels
             {
                 _logger.LogDebug("Load Base Config {Name} from {Path}".CallerInfo(), t.Name, t.RelativeConfigFilePath);
                 this.LoadConfig(t.ConfigBase as Config, Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
-                (t as BaseConfigLink).Name = t.ConfigBase.Name;
+                t.Name = t.ConfigBase.Name;
             }
-
-            // string json = File.ReadAllText(CFG_PATH);
-            // this.Model = new Config(json);
             this.CurrentCfgFilePath = file_path;
             Config.IsInitialized = false;
         }
-
         public Proto.Config.proto_config_short_history pconfig_history { get; private set; }
         public UserSettings UserSettings { get; private set; }
-
         public static readonly string USER_SETTINGS_FILE_PATH = @".\.vSharpStudio.settings";
         public static readonly string DEFAULT_CFG_FILEName = "vSharpStudio.vcfg";
         public static string CurrentCfgFolderPath { get; private set; }
@@ -263,7 +201,6 @@ namespace vSharpStudio.ViewModels
             }
         }
         private string _CurrentCfgFilePath;
-
         public static Config ConfigInstance;
 
         #region Plugins
@@ -273,7 +210,6 @@ namespace vSharpStudio.ViewModels
         // https://docs.microsoft.com/en-us/dotnet/framework/mef/
         [ImportMany(typeof(IvPlugin))]
         public IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>> _plugins = null;
-
         public void OnImportsSatisfied()
         {
             _logger.LogDebug("Loaded {Count} plugins".CallerInfo(), this._plugins.Count());
@@ -290,7 +226,6 @@ namespace vSharpStudio.ViewModels
             try
             {
                 cfg.IsInitialized = true;
-
                 // Restore plugins
                 List<PluginRow> lstGens = new List<PluginRow>();
                 cfg.DicGroupSettings = new Dictionary<string, IvPlugin>();
@@ -321,7 +256,7 @@ namespace vSharpStudio.ViewModels
                     if (!is_found)
                     {
                         p = new Plugin(cfg.GroupPlugins, t.Value);
-                        (cfg.GroupPlugins as GroupListPlugins).ListPlugins.Add(p);
+                        cfg.GroupPlugins.ListPlugins.Add(p);
                     }
                     // attaching plugin generators
                     foreach (var tt in t.Value.ListGenerators)
@@ -352,31 +287,6 @@ namespace vSharpStudio.ViewModels
                             PluginGenerator = pg
                         });
                     }
-                    //foreach (var ttt in p.ListGenerators)
-                    //{
-                    //    foreach (var tttt in ttt.ListSettings)
-                    //    {
-                    //        if (ttt.Generator != null)
-                    //        {
-                    //            if (tttt.IsPrivate)
-                    //            {
-                    //                Utils.TryCall(
-                    //                    () =>
-                    //                    {
-                    //                        tttt.GeneratorSettings = File.ReadAllText(tttt.FilePath);
-                    //                    }, "Private connection settins was not loaded. Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "' Connection settings name: '" + tttt.Name + "' File path: '" + tttt.FilePath + "'");
-                    //            }
-                    //            else
-                    //            {
-                    //                Utils.TryCall(
-                    //                    () =>
-                    //                {
-                    //                    tttt.SetVM(ttt.Generator.GetAppGenerationSettingsVmFromJson(tttt.GeneratorSettings));
-                    //                }, "Can't get MVVM settings model from Plugin: '" + p.Name + "' Generator: '" + ttt.Name + "'");
-                    //            }
-                    //        }
-                    //    }
-                    //}
                 }
                 var dic = new Dictionary<vPluginLayerTypeEnum, List<PluginRow>>();
                 foreach (var t in Enum.GetValues(typeof(vPluginLayerTypeEnum)))
@@ -408,33 +318,12 @@ namespace vSharpStudio.ViewModels
                 foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
                 {
                     // group plugins settings
-                    (t as AppSolution).RestoreGroupSettings();
-                    //foreach (var tt in t.ListGroupGeneratorsSettings)
-                    //{
-                    //    foreach (var ttt in cfg.DicPlugins)
-                    //    {
-                    //        if (ttt.Value.PluginGroupSolutionSettings != null && ttt.Value.PluginGroupSolutionSettings.Guid == tt.AppGroupGeneratorsGuid)
-                    //        {
-                    //            var setvm = ttt.Value.PluginGroupSolutionSettings.GetPluginGroupSolutionSettingsVm(tt.Settings);
-                    //            t.DicPluginsGroupSettings[tt.AppGroupGeneratorsGuid] = setvm;
-                    //            break;
-                    //        }
-                    //    }
-                    //}
+                    t.RestoreGroupSettings();
                     foreach (var tt in t.ListAppProjects)
                     {
                         foreach (var ttt in tt.ListAppProjectGenerators)
                         {
-                            //foreach (var tttt in ttt.ListGenerators)
-                            //{
-                            //    if (tttt.Generator == null)
-                            //        continue;
-                            //    if (tttt.Guid != ttt.PluginGeneratorGuid)
-                            //        continue;
-                            //    IvPluginGenerator gen = tttt.Generator;
-                            //    var lst = gen.GetListNodeGenerationSettings();
-                            //}
-                            (ttt as AppProjectGenerator).RestoreSettings();
+                            ttt.RestoreSettings();
                         }
                     }
                 }
@@ -456,7 +345,7 @@ namespace vSharpStudio.ViewModels
                     {
                         foreach (var ttt in tt.ListAppProjectGenerators)
                         {
-                            (ttt as AppProjectGenerator).UpdateListGenerators();
+                            ttt.UpdateListGenerators();
                         }
                     }
                 }
@@ -474,53 +363,39 @@ namespace vSharpStudio.ViewModels
             {
                 return this._ListDbDesignPlugins;
             }
-
             set
             {
                 this._ListDbDesignPlugins = value;
                 this.NotifyPropertyChanged();
             }
         }
-
         public List<IvPluginDbGenerator> _ListDbDesignPlugins;
-
         public PluginRow SelectedDbDesignPlugin
         {
             get
             {
                 return this._SelectedDbDesignPlugin;
             }
-
             set
             {
                 this._SelectedDbDesignPlugin = value;
                 this.NotifyPropertyChanged();
-
-                // this.Model.GroupSettings.
-                // var propvm = _SelectedDbDesignPlugin.GetSettingsMvvm()
             }
         }
-
         private PluginRow _SelectedDbDesignPlugin;
-
         public INotifyPropertyChanged SelectedDbDesignPluginSettings
         {
             get
             {
                 return this._SelectedDbDesignPluginSettings;
             }
-
             set
             {
                 this._SelectedDbDesignPluginSettings = value;
                 this.NotifyPropertyChanged();
-
-                // InitConnectionString();
             }
         }
-
         private INotifyPropertyChanged _SelectedDbDesignPluginSettings;
-
         private void AgregateCatalogs(string dir, string search, AggregateCatalog catalog)
         {
             var dirs = Directory.GetDirectories(dir);
@@ -531,11 +406,9 @@ namespace vSharpStudio.ViewModels
                 {
                     catalog.Catalogs.Add(dirCatalog);
                 }
-
                 this.AgregateCatalogs(t, search, catalog);
             }
         }
-
         private Action onPluginsLoaded = null;
         public void Compose(string pluginsFolderPath = null)
         {
@@ -563,7 +436,6 @@ namespace vSharpStudio.ViewModels
             {
                 return this._Config;
             }
-
             set
             {
                 this._Config = value;
@@ -573,9 +445,6 @@ namespace vSharpStudio.ViewModels
                 this._Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath);
                 this._Config.OnSelectedNodeChanged = () =>
                 {
-                    //this.validationListForSelectedNode.DataContext = this;
-                    //this.validationListForSelectedNode.dataGrid.ItemsSource = this.Config.SelectedNode.ValidationCollection;
-                    //this.propertyGrid.SelectedObject = this.Config.SelectedNode;
                     this.CommandAddNew.RaiseCanExecuteChanged();
                     this.CommandAddNewChild.RaiseCanExecuteChanged();
                     this.CommandAddClone.RaiseCanExecuteChanged();
@@ -591,13 +460,6 @@ namespace vSharpStudio.ViewModels
             }
         }
         private Config _Config;
-
-        //public Microsoft.EntityFrameworkCore.Metadata.IMutableModel GetEfModel()
-        //{
-        //    Migration.ConfigToModelVisitor visitor = new Migration.ConfigToModelVisitor();
-        //    this.Config.AcceptConfigNodeVisitor(visitor);
-        //    return visitor.Result;
-        //}
 
         #region Main
         public vCommand CommandNewConfig
@@ -674,14 +536,6 @@ namespace vSharpStudio.ViewModels
 
             this.pconfig_history.CurrentConfig = proto;
         }
-
-        //public void SaveConfigAsForTests(string file_path)
-        //{
-        //    this.PluginSettingsToModel();
-        //    this.SavePrepare();
-        //    File.WriteAllBytes(file_path, this.pconfig_history.ToByteArray());
-        //}
-
         internal void Save()
         {
             //TODO save and clean private ConnStr
@@ -691,10 +545,6 @@ namespace vSharpStudio.ViewModels
                 Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                 File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
                 UpdateUserSettingsSaveConfigs();
-                //if (this.UserSettings.ListOpenConfigHistory.Count > 0)
-                //    this.UserSettings.ListOpenConfigHistory[0].OpenedLastTimeOn = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
-                //else
-                //    throw new Exception();
                 ResetIsChangedBeforeSave();
                 File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
             }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
@@ -720,9 +570,6 @@ namespace vSharpStudio.ViewModels
         {
             SaveFileDialog openFileDialog = new SaveFileDialog();
             openFileDialog.Filter = "vConfig files (*.vcfg)|*.vcfg|All files (*.*)|*.*";
-
-            // openFileDialog.InitialDirectory = @"c:\temp\";
-            // openFileDialog.Multiselect = true;
             openFileDialog.CheckFileExists = false;
             openFileDialog.CheckPathExists = true;
             if (!string.IsNullOrEmpty(this._FilePathSaveAs))
@@ -824,7 +671,6 @@ namespace vSharpStudio.ViewModels
             {
                 return this._FilePathSaveAs;
             }
-
             set
             {
                 this._FilePathSaveAs = value;
@@ -839,7 +685,6 @@ namespace vSharpStudio.ViewModels
             {
                 return this._SaveToolTip;
             }
-
             set
             {
                 this._SaveToolTip = value;
@@ -931,7 +776,7 @@ namespace vSharpStudio.ViewModels
                     {
                         if (tpg.IsMarkedForDeletion)
                             continue;
-                        foreach (var tg in (tpg as AppProjectGenerator).ListGenerators)
+                        foreach (var tg in tpg.ListGenerators)
                         {
                             if (tg.Guid != tpg.PluginGeneratorGuid)
                                 continue;
@@ -965,7 +810,7 @@ namespace vSharpStudio.ViewModels
                                         sb.Append(tpg.PluginDbGenerator.ProviderName);
                                         sb.AppendLine("\",");
                                         sb.Append("\t\t\t\"connection_string\": \"");
-                                        var cnstr = (tpg as AppProjectGenerator).DynamicMainConnStrSettings.GenerateCode(this.Config);
+                                        var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config);
                                         sb.Append(cnstr);
                                         sb.AppendLine("\",");
                                         sb.Append("\t\t}");
@@ -1011,7 +856,7 @@ namespace vSharpStudio.ViewModels
                                             continue;
                                         if (!(tg.Generator is IvPluginGenerator))
                                             throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
-                                        code = (tpg.DynamicGeneratorSettings as IvPluginGeneratorSettings).GenerateCode(this.Config);
+                                        code = tpg.DynamicGeneratorSettings.GenerateCode(this.Config);
                                         //code = (tg.Generator as IvPluginGenerator) .GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
                                         break;
                                 }
@@ -1064,21 +909,6 @@ namespace vSharpStudio.ViewModels
             sb.Append(fileName);
             return sb.ToString();
         }
-
-        //async Task MyMethodAsync()
-        //{
-        //    // Code here runs in the original context.
-        //    await Task.FromResult(1);
-        //    // Code here runs in the original context.
-        //    await Task.FromResult(1).ConfigureAwait(continueOnCapturedContext: false);
-        //    // Code here runs in the original context.
-        //    var random = new Random();
-        //    int delay = random.Next(2); // Delay is either 0 or 1
-        //    await Task.Delay(delay).ConfigureAwait(continueOnCapturedContext: false);
-        //    // Code here might or might not run in the original context.
-        //    // The same is true when you await any Task
-        //    // that might complete very quickly.
-        //}
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
 #if Async
         private async Task<Exception> UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
