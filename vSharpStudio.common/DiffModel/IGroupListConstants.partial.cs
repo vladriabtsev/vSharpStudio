@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListConstants : ITreeConfigNode, IGetNodeSetting, ICompositeName
     {
+        IReadOnlyList<IConstant> GetIncludedConstants(string guidAppPrjGen);
     }
 }

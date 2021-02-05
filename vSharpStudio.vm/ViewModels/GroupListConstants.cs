@@ -110,5 +110,17 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+        public IReadOnlyList<IConstant> GetIncludedConstants(string guidAppPrjGen)
+        {
+            var res = new List<IConstant>();
+            foreach (var t in this.ListConstants)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
     }
 }

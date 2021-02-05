@@ -10,9 +10,6 @@ namespace vSharpStudio.common
 {
     public class ModelVisitorBase
     {
-        public static string DB_CONFIG_MODEL_TABLE = "_config_model_tables";
-        public static string DB_CONFIG_MODEL_FIELD = "_config_model_table_fields";
-        public static string DB_CONFIG_MODEL_TABLE_FK = "_config_model_table_fks";
         protected virtual void BeginVisit(IEnumerable<IConstant> lst) { }
         protected virtual void EndVisit(IEnumerable<IConstant> lst) { }
         protected virtual void BeginVisit(IEnumerable<IEnumeration> lst) { }

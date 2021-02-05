@@ -204,7 +204,7 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
-        public List<IProperty> GetIncludedProperties(string guidAppPrjGen)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
             var grd = (GroupDocuments)this.Parent.Parent;
@@ -216,6 +216,18 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+        public IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen)
+        {
+            var res = new List<IPropertiesTab>();
+            foreach (var t in this.GroupPropertiesTabs.ListPropertiesTabs)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {

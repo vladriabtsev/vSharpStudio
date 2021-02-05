@@ -85,7 +85,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(")\r\n    {\r\n        t.AcceptConfigNodeVisitor(visitor);\r\n    }\r\n");
+            this.Write(")\r\n    {\r\n        t.Accept");
+            
+            #line 24 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("NodeVisitor(visitor);\r\n    }\r\n");
             
             #line 26 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  } 
@@ -105,7 +112,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(".AcceptConfigNodeVisitor(visitor);\r\n");
+            this.Write(".Accept");
+            
+            #line 28 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("NodeVisitor(visitor);\r\n");
             
             #line 29 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
  } else if (this.Doc.IsValidatableBase) { 
@@ -119,7 +133,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(".AcceptConfigNodeVisitor(visitor); // ");
+            this.Write(".Accept");
+            
+            #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write("NodeVisitor(visitor); // ");
             
             #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));

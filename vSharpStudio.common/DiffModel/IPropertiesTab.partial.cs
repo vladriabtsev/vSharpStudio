@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IPropertiesTab : ITreeConfigNode, IGetNodeSetting, IDbTable
     {
+        IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen);
     }
 }

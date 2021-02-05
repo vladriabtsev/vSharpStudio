@@ -387,6 +387,117 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Connection string editor
 
+        public uint GetLengthFromMaxValue(System.Numerics.BigInteger maxValue)
+        {
+            uint length = 0;
+            System.Numerics.BigInteger m = maxValue;
+            while (m > 10)
+            {
+                m = m / 10;
+                length++;
+            }
+            return length;
+        }
+        // numerical
+        public IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive, bool isNullable = true)
+        {
+            uint length = this.GetLengthFromMaxValue(maxValue);
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.NUMERICAL;
+            dt.Length = length;
+            dt.IsPositive = isPositive;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        // numerical
+        public IDataType GetDataType(uint length, uint accuracy, bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.NUMERICAL;
+            dt.Length = length;
+            dt.Accuracy = accuracy;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        // numerical
+        public IDataType GetDataType(uint length, bool isPositive, bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.NUMERICAL;
+            dt.Length = length;
+            dt.IsPositive = isPositive;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        // string
+        public IDataType GetDataType(uint length, bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.STRING;
+            dt.Length = length;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        // catalog
+        public IDataType GetDataType(ICatalog obj, bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.CATALOG;
+            dt.ObjectGuid = obj.Guid;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        // document
+        public IDataType GetDataType(IDocument obj, bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.DOCUMENT;
+            dt.ObjectGuid = obj.Guid;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeBool(bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.BOOL;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeDate(bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.DATE;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeDateTime(bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.DATETIME;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeDateTimeZ(bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.DATETIMEZ;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeTime(bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.TIME;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeTimeZ(bool isNullable = true)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.TIMEZ;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
         public IDataType GetIdDataType()
         {
             DataType dt = default(DataType);

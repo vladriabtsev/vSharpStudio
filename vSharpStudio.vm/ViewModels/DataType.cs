@@ -296,6 +296,17 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private BigInteger _MaxNumericalValue;
+        static public uint GetLengthFromMaxValue(BigInteger maxValue)
+        {
+            uint length = 0;
+            BigInteger m = maxValue;
+            while (m > 10)
+            {
+                m = m / 10;
+                length++;
+            }
+            return length;
+        }
         [BrowsableAttribute(false)]
         public Type ClrType
         {
