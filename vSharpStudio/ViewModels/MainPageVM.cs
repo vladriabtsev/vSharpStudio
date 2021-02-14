@@ -932,6 +932,28 @@ namespace vSharpStudio.ViewModels
             });
             try
             {
+                #region Remove New which are Marked for Deletion
+                var lst = new List<string>();
+                // delete from current model
+                var vis1 = new ModelVisitorBase();
+                vis1.Run(this.Config, (v, n) =>
+                {
+                    if (n is IEditableNode)
+                    {
+                        var p = n as IEditableNode;
+                        if (p.IsMarkedForDeletion && p.IsNew)
+                        {
+                            lst.Add(n.Guid);
+                        }
+                    }
+                });
+                foreach (var tguid in lst)
+                {
+                    var n = this.Config.DicNodes[tguid];
+                    var p = n as IEditableNode;
+                    p.Remove();
+                }
+                #endregion Remove New which are Marked for Deletion
                 using (Transaction.Create(am))
                 {
                     // I. Model validation (no need for UNDO)
@@ -1092,28 +1114,6 @@ namespace vSharpStudio.ViewModels
                     // VIII. Generate Update SQL for previous stable DB
                     //TODO Generate Update SQL for previous stable DB
                 }
-                #region Remove New which are Marked for Deletion
-                var lst = new List<string>();
-                // delete from current model
-                var vis1 = new ModelVisitorBase();
-                vis1.Run(this.Config, (v, n) =>
-                {
-                    if (n is IEditableNode)
-                    {
-                        var p = n as IEditableNode;
-                        if (p.IsMarkedForDeletion && p.IsNew)
-                        {
-                            lst.Add(n.Guid);
-                        }
-                    }
-                });
-                foreach (var tguid in lst)
-                {
-                    var n = this.Config.DicNodes[tguid];
-                    var p = n as IEditableNode;
-                    p.Remove();
-                }
-                #endregion Remove New which are Marked for Deletion
             }
             catch (Exception ex)
             {

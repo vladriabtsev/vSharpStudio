@@ -12,6 +12,9 @@ namespace vSharpStudio.common
         IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
         // numerical
         IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive, bool isNullable = true);
+        // Any
+        IDataType GetDataType(int enumDataType, uint length, bool isPositive, bool isNullable);
+        IDataType GetDataType(EnumDataType enumDataType, uint length, bool isPositive, bool isNullable);
         // numerical
         IDataType GetDataType(uint length, uint accuracy, bool isNullable = true);
         // numerical

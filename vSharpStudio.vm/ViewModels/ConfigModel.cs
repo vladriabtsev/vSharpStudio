@@ -387,6 +387,24 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Connection string editor
 
+        public IDataType GetDataType(int enumDataType, uint length, bool isPositive, bool isNullable)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = Enum.Parse<EnumDataType>(enumDataType.ToString());
+            dt.Length = length;
+            dt.IsPositive = isPositive;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataType(EnumDataType enumDataType, uint length, bool isPositive, bool isNullable)
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = enumDataType;
+            dt.Length = length;
+            dt.IsPositive = isPositive;
+            dt.IsNullable = isNullable;
+            return dt;
+        }
         public uint GetLengthFromMaxValue(System.Numerics.BigInteger maxValue)
         {
             uint length = 0;
