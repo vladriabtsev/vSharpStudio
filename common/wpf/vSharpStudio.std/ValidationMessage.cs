@@ -79,6 +79,7 @@ namespace ViewModelBase
             }
         }
         public string Message { get; private set; }
+        public ulong _SortingNameValue { get; }
         public ulong SortingValue { get; set; }
         public ulong SortingWeight { get; set; }
         /// <summary>

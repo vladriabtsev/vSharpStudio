@@ -56,6 +56,34 @@
           ]
         },
         {
+          "name": "proto_enum_catalog_tree_icon",
+          "longName": "proto_enum_catalog_tree_icon",
+          "fullName": "proto_config.proto_enum_catalog_tree_icon",
+          "description": "",
+          "values": [
+            {
+              "name": "None",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "Item",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "Folder",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "Custom",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "proto_enum_data_type",
           "longName": "proto_enum_data_type",
           "fullName": "proto_config.proto_enum_data_type",
@@ -337,7 +365,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -448,7 +476,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -538,7 +566,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -659,7 +687,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -760,7 +788,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -810,7 +838,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]\n@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -861,7 +889,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -890,16 +918,6 @@
               "defaultValue": ""
             },
             {
-              "name": "catalog_settings",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Parameters\")]\n@attr [Description(\"Catalog settings\")]",
-              "label": "",
-              "type": "proto_catalog_settings",
-              "longType": "proto_catalog_settings",
-              "fullType": "proto_config.proto_catalog_settings",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "is_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -911,7 +929,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -970,6 +988,126 @@
               "defaultValue": ""
             },
             {
+              "name": "item_icon_type",
+              "description": "@attr [PropertyOrderAttribute(19)]\n@attr [DisplayName(\"Item Icon\")]\n@attr [Description(\"Catalog item icon type\")]",
+              "label": "",
+              "type": "proto_enum_catalog_tree_icon",
+              "longType": "proto_enum_catalog_tree_icon",
+              "fullType": "proto_config.proto_enum_catalog_tree_icon",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_name_property",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_name_length",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item name length. If zero, than unlimited length\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_name_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_description_property",
+              "description": "@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_description_length",
+              "description": "@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item description length. If zero, than unlimited length\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_description_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_tree",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Use Tree\")]\n@attr [Description(\"Use tree catalog structure\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_icon_type",
+              "description": "@attr [PropertyOrderAttribute(42)]\n@attr [DisplayName(\"Group Icon\")]\n@attr [Description(\"Catalog group icon type\")]",
+              "label": "",
+              "type": "proto_enum_catalog_tree_icon",
+              "longType": "proto_enum_catalog_tree_icon",
+              "fullType": "proto_config.proto_enum_catalog_tree_icon",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_tree_levels",
+              "description": "@attr [PropertyOrderAttribute(43)]\n@attr [DisplayName(\"Levels\")]\n@attr [Description(\"Maximum amount levels in catalog item groups. If zero, than unlimited\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "separate_properties_for_groups",
+              "description": "@attr [PropertyOrderAttribute(44)]\n@attr [DisplayName(\"Group properties\")]\n@attr [Description(\"Separate set of properties for groups\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_parent_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -1012,7 +1150,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -1093,57 +1231,6 @@
           ]
         },
         {
-          "name": "proto_catalog_settings",
-          "longName": "proto_catalog_settings",
-          "fullName": "proto_config.proto_catalog_settings",
-          "description": "@base VmValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "max_catalog_item_name_length",
-              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Name length\")]\n@attr [Description(\"Maximum catalog item name length. If negative, than unlimited length. If zero, than not use\")]",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "max_catalog_item_description_length",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Description length\")]\n@attr [Description(\"Maximum catalog item description length. If negative, than unlimited length. If zero, than not use\")]",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "max_catalog_item_tree_levels",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Levels\")]\n@attr [Description(\"Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping\")]",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "separate_properties_for_groups",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Group properties\")]\n@attr [Description(\"Separate set of properties for groups\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "proto_config",
           "longName": "proto_config",
           "fullName": "proto_config.proto_config",
@@ -1184,7 +1271,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -1356,7 +1443,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -1406,7 +1493,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1568,7 +1655,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -1608,7 +1695,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1699,7 +1786,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -1769,7 +1856,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1820,7 +1907,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -1880,7 +1967,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1931,7 +2018,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -1971,7 +2058,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -2022,7 +2109,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -2194,7 +2281,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -2265,7 +2352,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -2356,7 +2443,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -2447,7 +2534,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -2528,7 +2615,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -2609,7 +2696,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -2690,7 +2777,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -2771,7 +2858,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -2852,7 +2939,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -2984,7 +3071,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -3075,7 +3162,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -3156,7 +3243,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -3237,7 +3324,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -3318,7 +3405,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -3368,7 +3455,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -3419,7 +3506,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -3469,7 +3556,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -3873,7 +3960,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -3965,7 +4052,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -4158,7 +4245,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -4199,7 +4286,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -4269,7 +4356,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -4320,7 +4407,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -4370,7 +4457,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -4431,7 +4518,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -4471,7 +4558,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -4522,7 +4609,7 @@
             },
             {
               "name": "sorting_value",
-              "description": "",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "uint64",
               "longType": "uint64",
@@ -4562,7 +4649,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [DisplayName(\"For deletion\")]\n@attr [Description(\"Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",

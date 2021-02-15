@@ -120,6 +120,8 @@
         #region Sort
         [BrowsableAttribute(false)]
         public ulong SortingWeight { get; set; }
+        [BrowsableAttribute(false)]
+        public ulong _SortingNameValue { get; private set; }
         protected ulong _SortingValue
         {
             get
@@ -277,7 +279,8 @@
                     this.__Name = value.Trim();
                     if (this.ValidateProperty("Name"))
                     {
-                        this._SortingValue = this.EncodeNameToUlong(this.__Name) + this.SortingWeight;
+                        this._SortingNameValue = this.EncodeNameToUlong(this.__Name);
+                        this._SortingValue = _SortingNameValue + this.SortingWeight;
                         ITreeConfigNode p = (ITreeConfigNode)this;
                         if (p.Parent != null)
                         {

@@ -49,22 +49,35 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupPropertiesTabs.Parent = this;
             this.GroupForms.Parent = this;
             this.GroupReports.Parent = this;
-            var cs = this.CatalogSettings as CatalogSettings;
-            cs.MaxCatalogItemNameLength = 20;
-            cs.MaxCatalogItemDescriptionLength = 100;
-            cs.MaxCatalogItemTreeLevels = 0;
+            this.ItemIconType = EnumCatalogTreeIcon.None;
+            this.UseNameProperty = true;
+            this.MaxNameLength = 20;
+            this.PropertyNameGuid = System.Guid.NewGuid().ToString();
+            this.UseDescriptionProperty = false;
+            this.MaxDescriptionLength = 100;
+            this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
+            this.UseTree = false;
+            this.MaxTreeLevels = 2;
+            this.SeparatePropertiesForGroups = true;
+            this.GroupIconType = EnumCatalogTreeIcon.Folder;
+            this.PropertyParentGuid = System.Guid.NewGuid().ToString();
             this.RefillChildren();
+            HideProperties();
         }
         protected override void OnInitFromDto()
         {
             base.OnInitFromDto();
             this.RefillChildren();
+            HideProperties();
         }
-        void RefillChildren()
+        public void RefillChildren()
         {
             VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
-            this.Children.Add(this.GroupItems, 2);
+            if (this.UseTree && this.SeparatePropertiesForGroups)
+            {
+                this.Children.Add(this.GroupItems, 2);
+            }
             this.Children.Add(this.GroupProperties, 3);
             this.Children.Add(this.GroupPropertiesTabs, 4);
             this.Children.Add(this.GroupForms, 5);
@@ -235,7 +248,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
-            foreach(var t in this.GroupProperties.ListProperties)
+            foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {
@@ -255,6 +268,49 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             return res;
+        }
+        partial void OnUseNamePropertyChanged()
+        {
+            HideProperties();
+        }
+        partial void OnUseDescriptionPropertyChanged()
+        {
+            HideProperties();
+        }
+        partial void OnSeparatePropertiesForGroupsChanged()
+        {
+            this.RefillChildren();
+        }
+        partial void OnUseTreeChanged()
+        {
+            this.RefillChildren();
+            HideProperties();
+        }
+        private void HideProperties()
+        {
+            var lst = new List<string>();
+            if (!this.UseTree)
+            {
+                lst.Add(this.GetPropertyName(() => this.GroupIconType));
+                lst.Add(this.GetPropertyName(() => this.MaxTreeLevels));
+                lst.Add(this.GetPropertyName(() => this.SeparatePropertiesForGroups));
+            }
+            if (!this.UseNameProperty)
+            {
+                lst.Add(this.GetPropertyName(() => this.MaxNameLength));
+            }
+            if (!this.UseDescriptionProperty)
+            {
+                lst.Add(this.GetPropertyName(() => this.MaxDescriptionLength));
+            }
+            if (lst.Count == 0)
+            {
+                this.AutoGenerateProperties = true;
+            }
+            else
+            {
+                this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
+            }
         }
     }
 }

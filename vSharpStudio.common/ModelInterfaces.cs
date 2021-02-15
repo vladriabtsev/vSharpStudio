@@ -39,6 +39,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         BYTE_VALUE = 2,
         STRING_VALUE = 3,
     }
+    public enum EnumCatalogTreeIcon // ModelInterfaces.tt Line: 15
+    {
+        None = 0,
+        Item = 1,
+        Folder = 2,
+        Custom = 3,
+    }
     
     public partial interface IUserSettings // ModelInterfaces.tt Line: 29
     {
@@ -552,20 +559,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface ICatalogSettings // ModelInterfaces.tt Line: 29
-    {
-    	int MaxCatalogItemNameLength { get; } // ModelInterfaces.tt Line: 51
-    	int MaxCatalogItemDescriptionLength { get; } // ModelInterfaces.tt Line: 51
-    	int MaxCatalogItemTreeLevels { get; } // ModelInterfaces.tt Line: 51
-    	bool SeparatePropertiesForGroups { get; } // ModelInterfaces.tt Line: 51
-    }
-    
     public partial interface ICatalog : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
-    	ICatalogSettings CatalogSettings { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	ICatalogItemsGroup GroupItems { get; } // ModelInterfaces.tt Line: 55
@@ -573,6 +571,18 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
+    	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 51
+    	bool UseNameProperty { get; } // ModelInterfaces.tt Line: 51
+    	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
+    	bool UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
+    	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
+    	bool UseTree { get; } // ModelInterfaces.tt Line: 51
+    	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 51
+    	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 51
+    	bool SeparatePropertiesForGroups { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyParentGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

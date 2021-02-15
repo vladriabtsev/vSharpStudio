@@ -77,7 +77,7 @@ namespace vSharpStudio.vm.ViewModels
 
         protected override void OnInitFromDto()
         {
-            this._Name = "ConfigModel";
+            this._Name = "Model";
             //this.RefillChildren();
         }
         void RefillChildren()

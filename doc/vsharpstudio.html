@@ -211,10 +211,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_catalog_settings"><span class="badge">M</span>proto_catalog_settings</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_config"><span class="badge">M</span>proto_config</a>
                 </li>
               
@@ -389,6 +385,10 @@
               
                 <li>
                   <a href="#proto_config.enum_enumeration_type"><span class="badge">E</span>enum_enumeration_type</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enum_catalog_tree_icon"><span class="badge">E</span>proto_enum_catalog_tree_icon</a>
                 </li>
               
                 <li>
@@ -587,7 +587,7 @@
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -679,7 +679,7 @@ App project relative path to .net solution file path </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -759,8 +759,7 @@ Generator output file name </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -863,7 +862,7 @@ Generator output file name </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -949,7 +948,7 @@ App solution relative path to configuration file path </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -985,7 +984,8 @@ App solution relative path to configuration file path </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
+                  <td><p>@attr [BrowsableAttribute(false)]
+@attr [DisplayName(&#34;For deletion&#34;)]
 @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
                 </tr>
               
@@ -1031,7 +1031,7 @@ App solution relative path to configuration file path </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1050,16 +1050,6 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>catalog_settings</td>
-                  <td><a href="#proto_config.proto_catalog_settings">proto_catalog_settings</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [ExpandableObjectAttribute()]
-@attr [DisplayName(&#34;Parameters&#34;)]
-@attr [Description(&#34;Catalog settings&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>is_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -1070,8 +1060,7 @@ App solution relative path to configuration file path </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1105,6 +1094,108 @@ App solution relative path to configuration file path </p></td>
                 <tr>
                   <td>group_reports</td>
                   <td><a href="#proto_config.proto_group_list_reports">proto_group_list_reports</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>item_icon_type</td>
+                  <td><a href="#proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(19)]
+@attr [DisplayName(&#34;Item Icon&#34;)]
+@attr [Description(&#34;Catalog item icon type&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_name_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Use Name&#34;)]
+@attr [Description(&#34;Use Name property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_name_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [DisplayName(&#34;Max Length&#34;)]
+@attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_name_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_description_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(31)]
+@attr [DisplayName(&#34;Use Description&#34;)]
+@attr [Description(&#34;Use Description property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_description_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(32)]
+@attr [DisplayName(&#34;Max Length&#34;)]
+@attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_description_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_tree</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(41)]
+@attr [DisplayName(&#34;Use Tree&#34;)]
+@attr [Description(&#34;Use tree catalog structure&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_icon_type</td>
+                  <td><a href="#proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(42)]
+@attr [DisplayName(&#34;Group Icon&#34;)]
+@attr [Description(&#34;Catalog group icon type&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_tree_levels</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(43)]
+@attr [DisplayName(&#34;Levels&#34;)]
+@attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>separate_properties_for_groups</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(44)]
+@attr [DisplayName(&#34;Group properties&#34;)]
+@attr [Description(&#34;Separate set of properties for groups&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_parent_guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -1151,7 +1242,7 @@ App solution relative path to configuration file path </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1213,59 +1304,6 @@ App solution relative path to configuration file path </p></td>
 
         
       
-        <h3 id="proto_config.proto_catalog_settings">proto_catalog_settings</h3>
-        <p>@base VmValidatableWithSeverity</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>max_catalog_item_name_length</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)]
-@attr [DisplayName(&#34;Name length&#34;)]
-@attr [Description(&#34;Maximum catalog item name length. If negative, than unlimited length. If zero, than not use&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>max_catalog_item_description_length</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Description length&#34;)]
-@attr [Description(&#34;Maximum catalog item description length. If negative, than unlimited length. If zero, than not use&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>max_catalog_item_tree_levels</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;Levels&#34;)]
-@attr [Description(&#34;Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>separate_properties_for_groups</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;Group properties&#34;)]
-@attr [Description(&#34;Separate set of properties for groups&#34;)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="proto_config.proto_config">proto_config</h3>
         <p>Configuration config</p>
 
@@ -1302,7 +1340,7 @@ App solution relative path to configuration file path </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1442,7 +1480,7 @@ App solution relative path to configuration file path </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1478,8 +1516,7 @@ App solution relative path to configuration file path </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1623,7 +1660,7 @@ App solution relative path to configuration file path </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1652,8 +1689,7 @@ App solution relative path to configuration file path </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1726,7 +1762,7 @@ App solution relative path to configuration file path </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1781,8 +1817,7 @@ App solution relative path to configuration file path </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1829,7 +1864,7 @@ App solution relative path to configuration file path </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1877,8 +1912,7 @@ App solution relative path to configuration file path </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1923,7 +1957,7 @@ App solution relative path to configuration file path </p></td>
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1952,8 +1986,7 @@ App solution relative path to configuration file path </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2000,7 +2033,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2145,7 +2178,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2204,7 +2237,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2280,7 +2313,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2354,7 +2387,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2421,7 +2454,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2488,7 +2521,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2555,7 +2588,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2623,7 +2656,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2691,7 +2724,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2804,7 +2837,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2879,7 +2912,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -2946,7 +2979,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3014,7 +3047,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3081,7 +3114,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3118,8 +3151,7 @@ repeated proto_document list_forms = 7;
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3164,7 +3196,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3200,8 +3232,7 @@ repeated proto_document list_forms = 7;
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3536,8 +3567,7 @@ repeated proto_document list_forms = 7;
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -3620,7 +3650,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3783,8 +3813,7 @@ repeated proto_document list_forms = 7;
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -3822,7 +3851,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3873,8 +3902,7 @@ repeated proto_document list_forms = 7;
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3919,7 +3947,7 @@ repeated proto_document list_forms = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3957,8 +3985,7 @@ repeated proto_document list_forms = 7;
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -4012,7 +4039,7 @@ Reserved positions: 1 - primary key
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -4041,8 +4068,7 @@ Reserved positions: 1 - primary key
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -4089,7 +4115,7 @@ repeated proto_document list_documents = 7;
                   <td>sorting_value</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -4118,8 +4144,7 @@ repeated proto_document list_documents = 7;
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
-@attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -4305,6 +4330,41 @@ repeated proto_document list_documents = 7;
             
               <tr>
                 <td>STRING_VALUE</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>None</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Item</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Folder</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Custom</td>
                 <td>3</td>
                 <td><p></p></td>
               </tr>

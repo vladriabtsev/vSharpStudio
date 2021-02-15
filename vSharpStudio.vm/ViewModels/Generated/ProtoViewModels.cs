@@ -610,16 +610,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -970,16 +975,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -1205,8 +1215,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -1232,16 +1241,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -1926,6 +1940,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -2035,16 +2050,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -2276,6 +2296,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -2382,6 +2403,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
+        [BrowsableAttribute(false)]
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -2430,16 +2452,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -2685,6 +2712,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnVersionChanging(ref int to); // Property.tt Line: 79
         partial void OnVersionChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -2884,16 +2912,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -3698,16 +3731,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -3953,8 +3991,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -3980,16 +4017,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -4288,6 +4330,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -4446,16 +4489,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -4704,6 +4752,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -4862,16 +4911,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -5080,6 +5134,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -5128,16 +5183,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -5597,6 +5657,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -5807,8 +5868,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -5995,16 +6055,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -7026,16 +7091,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -7635,6 +7705,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -7768,16 +7839,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -8006,6 +8082,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -8088,8 +8165,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -8136,16 +8212,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -8420,6 +8501,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -8551,16 +8633,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -8800,6 +8887,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -8905,8 +8993,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -8953,16 +9040,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -9241,6 +9333,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -9372,16 +9465,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -9654,6 +9752,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -9785,16 +9884,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -10045,6 +10149,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -10198,8 +10303,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -10246,16 +10350,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -10534,6 +10643,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -10690,16 +10800,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -10939,6 +11054,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -11046,8 +11162,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -11120,16 +11235,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -11404,6 +11524,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -11535,16 +11656,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -11784,6 +11910,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -11891,8 +12018,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -11939,16 +12065,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -12223,6 +12354,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -12354,16 +12486,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -12652,6 +12789,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -12808,8 +12946,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -12856,16 +12993,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -13102,6 +13244,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -13231,8 +13374,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -13279,16 +13421,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -13537,6 +13684,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -13714,209 +13862,22 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        #endregion Properties
-    }
-    public partial class CatalogSettingsValidator : ValidatorBase<CatalogSettings, CatalogSettingsValidator> { } // Class.tt Line: 6
-    public partial class CatalogSettings : VmValidatableWithSeverity<CatalogSettings, CatalogSettingsValidator>, ICatalogSettings // Class.tt Line: 7
-    {
-        #region CTOR
-        public CatalogSettings() 
-            : base(CatalogSettingsValidator.Validator) // Class.tt Line: 45
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static CatalogSettings Clone(ICatalogSettings from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            CatalogSettings vm = new CatalogSettings();
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.MaxCatalogItemNameLength = from.MaxCatalogItemNameLength; // Clone.tt Line: 65
-            vm.MaxCatalogItemDescriptionLength = from.MaxCatalogItemDescriptionLength; // Clone.tt Line: 65
-            vm.MaxCatalogItemTreeLevels = from.MaxCatalogItemTreeLevels; // Clone.tt Line: 65
-            vm.SeparatePropertiesForGroups = from.SeparatePropertiesForGroups; // Clone.tt Line: 65
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(CatalogSettings to, ICatalogSettings from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.MaxCatalogItemNameLength = from.MaxCatalogItemNameLength; // Clone.tt Line: 141
-            to.MaxCatalogItemDescriptionLength = from.MaxCatalogItemDescriptionLength; // Clone.tt Line: 141
-            to.MaxCatalogItemTreeLevels = from.MaxCatalogItemTreeLevels; // Clone.tt Line: 141
-            to.SeparatePropertiesForGroups = from.SeparatePropertiesForGroups; // Clone.tt Line: 141
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override CatalogSettings Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return CatalogSettings.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(CatalogSettings from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            CatalogSettings.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_catalog_settings' to 'CatalogSettings'
-        public static CatalogSettings ConvertToVM(Proto.Config.proto_catalog_settings m, CatalogSettings vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.MaxCatalogItemNameLength = m.MaxCatalogItemNameLength; // Clone.tt Line: 221
-            vm.MaxCatalogItemDescriptionLength = m.MaxCatalogItemDescriptionLength; // Clone.tt Line: 221
-            vm.MaxCatalogItemTreeLevels = m.MaxCatalogItemTreeLevels; // Clone.tt Line: 221
-            vm.SeparatePropertiesForGroups = m.SeparatePropertiesForGroups; // Clone.tt Line: 221
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'CatalogSettings' to 'proto_catalog_settings'
-        public static Proto.Config.proto_catalog_settings ConvertToProto(CatalogSettings vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Config.proto_catalog_settings m = new Proto.Config.proto_catalog_settings(); // Clone.tt Line: 239
-            m.MaxCatalogItemNameLength = vm.MaxCatalogItemNameLength; // Clone.tt Line: 276
-            m.MaxCatalogItemDescriptionLength = vm.MaxCatalogItemDescriptionLength; // Clone.tt Line: 276
-            m.MaxCatalogItemTreeLevels = vm.MaxCatalogItemTreeLevels; // Clone.tt Line: 276
-            m.SeparatePropertiesForGroups = vm.SeparatePropertiesForGroups; // Clone.tt Line: 276
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [PropertyOrderAttribute(1)]
-        [DisplayName("Name length")]
-        [Description("Maximum catalog item name length. If negative, than unlimited length. If zero, than not use")]
-        public int MaxCatalogItemNameLength // Property.tt Line: 55
-        { 
-            get { return this._MaxCatalogItemNameLength; }
-            set
-            {
-                if (this._MaxCatalogItemNameLength != value)
-                {
-                    this.OnMaxCatalogItemNameLengthChanging(ref value);
-                    this._MaxCatalogItemNameLength = value;
-                    this.OnMaxCatalogItemNameLengthChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private int _MaxCatalogItemNameLength;
-        partial void OnMaxCatalogItemNameLengthChanging(ref int to); // Property.tt Line: 79
-        partial void OnMaxCatalogItemNameLengthChanged();
-        
-        [PropertyOrderAttribute(2)]
-        [DisplayName("Description length")]
-        [Description("Maximum catalog item description length. If negative, than unlimited length. If zero, than not use")]
-        public int MaxCatalogItemDescriptionLength // Property.tt Line: 55
-        { 
-            get { return this._MaxCatalogItemDescriptionLength; }
-            set
-            {
-                if (this._MaxCatalogItemDescriptionLength != value)
-                {
-                    this.OnMaxCatalogItemDescriptionLengthChanging(ref value);
-                    this._MaxCatalogItemDescriptionLength = value;
-                    this.OnMaxCatalogItemDescriptionLengthChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private int _MaxCatalogItemDescriptionLength;
-        partial void OnMaxCatalogItemDescriptionLengthChanging(ref int to); // Property.tt Line: 79
-        partial void OnMaxCatalogItemDescriptionLengthChanged();
-        
-        [PropertyOrderAttribute(3)]
-        [DisplayName("Levels")]
-        [Description("Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping")]
-        public int MaxCatalogItemTreeLevels // Property.tt Line: 55
-        { 
-            get { return this._MaxCatalogItemTreeLevels; }
-            set
-            {
-                if (this._MaxCatalogItemTreeLevels != value)
-                {
-                    this.OnMaxCatalogItemTreeLevelsChanging(ref value);
-                    this._MaxCatalogItemTreeLevels = value;
-                    this.OnMaxCatalogItemTreeLevelsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private int _MaxCatalogItemTreeLevels;
-        partial void OnMaxCatalogItemTreeLevelsChanging(ref int to); // Property.tt Line: 79
-        partial void OnMaxCatalogItemTreeLevelsChanged();
-        
-        [PropertyOrderAttribute(4)]
-        [DisplayName("Group properties")]
-        [Description("Separate set of properties for groups")]
-        public bool SeparatePropertiesForGroups // Property.tt Line: 55
-        { 
-            get { return this._SeparatePropertiesForGroups; }
-            set
-            {
-                if (this._SeparatePropertiesForGroups != value)
-                {
-                    this.OnSeparatePropertiesForGroupsChanging(ref value);
-                    this._SeparatePropertiesForGroups = value;
-                    this.OnSeparatePropertiesForGroupsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _SeparatePropertiesForGroups;
-        partial void OnSeparatePropertiesForGroupsChanging(ref bool to); // Property.tt Line: 79
-        partial void OnSeparatePropertiesForGroupsChanged();
         #endregion Properties
     }
     public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { } // Class.tt Line: 6
@@ -13932,7 +13893,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.CatalogSettings = new CatalogSettings(); // Class.tt Line: 31
             this.GroupItems = new CatalogItemsGroup(this); // Class.tt Line: 33
             this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
             this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
@@ -13966,8 +13926,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
-            if (isDeep) // Clone.tt Line: 62
-                vm.CatalogSettings = vSharpStudio.vm.ViewModels.CatalogSettings.Clone(from.CatalogSettings, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
@@ -13980,6 +13938,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
+            vm.ItemIconType = from.ItemIconType; // Clone.tt Line: 65
+            vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
+            vm.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 65
+            vm.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 65
+            vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 65
+            vm.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 65
+            vm.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 65
+            vm.UseTree = from.UseTree; // Clone.tt Line: 65
+            vm.GroupIconType = from.GroupIconType; // Clone.tt Line: 65
+            vm.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 65
+            vm.SeparatePropertiesForGroups = from.SeparatePropertiesForGroups; // Clone.tt Line: 65
+            vm.PropertyParentGuid = from.PropertyParentGuid; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -13998,8 +13968,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
-            if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.CatalogSettings.Update((CatalogSettings)to.CatalogSettings, from.CatalogSettings, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
@@ -14012,6 +13980,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
+            to.ItemIconType = from.ItemIconType; // Clone.tt Line: 141
+            to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
+            to.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 141
+            to.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 141
+            to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 141
+            to.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 141
+            to.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 141
+            to.UseTree = from.UseTree; // Clone.tt Line: 141
+            to.GroupIconType = from.GroupIconType; // Clone.tt Line: 141
+            to.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 141
+            to.SeparatePropertiesForGroups = from.SeparatePropertiesForGroups; // Clone.tt Line: 141
+            to.PropertyParentGuid = from.PropertyParentGuid; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -14081,9 +14061,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
-            if (vm.CatalogSettings == null) // Clone.tt Line: 213
-                vm.CatalogSettings = new CatalogSettings(); // Clone.tt Line: 217
-            vSharpStudio.vm.ViewModels.CatalogSettings.ConvertToVM(m.CatalogSettings, (CatalogSettings)vm.CatalogSettings); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             if (vm.GroupItems == null) // Clone.tt Line: 213
@@ -14101,6 +14078,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (vm.GroupReports == null) // Clone.tt Line: 213
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
+            vm.ItemIconType = (EnumCatalogTreeIcon)m.ItemIconType; // Clone.tt Line: 221
+            vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
+            vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
+            vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
+            vm.UseDescriptionProperty = m.UseDescriptionProperty; // Clone.tt Line: 221
+            vm.MaxDescriptionLength = m.MaxDescriptionLength; // Clone.tt Line: 221
+            vm.PropertyDescriptionGuid = m.PropertyDescriptionGuid; // Clone.tt Line: 221
+            vm.UseTree = m.UseTree; // Clone.tt Line: 221
+            vm.GroupIconType = (EnumCatalogTreeIcon)m.GroupIconType; // Clone.tt Line: 221
+            vm.MaxTreeLevels = m.MaxTreeLevels; // Clone.tt Line: 221
+            vm.SeparatePropertiesForGroups = m.SeparatePropertiesForGroups; // Clone.tt Line: 221
+            vm.PropertyParentGuid = m.PropertyParentGuid; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -14124,7 +14113,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
-            m.CatalogSettings = vSharpStudio.vm.ViewModels.CatalogSettings.ConvertToProto((CatalogSettings)vm.CatalogSettings); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.GroupItems = vSharpStudio.vm.ViewModels.CatalogItemsGroup.ConvertToProto((CatalogItemsGroup)vm.GroupItems); // Clone.tt Line: 270
@@ -14132,6 +14120,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
+            m.ItemIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.ItemIconType; // Clone.tt Line: 274
+            m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
+            m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
+            m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
+            m.UseDescriptionProperty = vm.UseDescriptionProperty; // Clone.tt Line: 276
+            m.MaxDescriptionLength = vm.MaxDescriptionLength; // Clone.tt Line: 276
+            m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // Clone.tt Line: 276
+            m.UseTree = vm.UseTree; // Clone.tt Line: 276
+            m.GroupIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.GroupIconType; // Clone.tt Line: 274
+            m.MaxTreeLevels = vm.MaxTreeLevels; // Clone.tt Line: 276
+            m.SeparatePropertiesForGroups = vm.SeparatePropertiesForGroups; // Clone.tt Line: 276
+            m.PropertyParentGuid = vm.PropertyParentGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -14145,8 +14145,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 return;
             }
             visitor.Visit(this);
-            this.CatalogSettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
             this.GroupItems.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
@@ -14206,6 +14204,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -14267,32 +14266,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [PropertyOrderAttribute(4)]
-        [ExpandableObjectAttribute()]
-        [DisplayName("Parameters")]
-        [Description("Catalog settings")]
-        public CatalogSettings CatalogSettings // Property.tt Line: 55
-        { 
-            get { return this._CatalogSettings; }
-            set
-            {
-                if (this._CatalogSettings != value)
-                {
-                    this.OnCatalogSettingsChanging(ref value);
-                    this._CatalogSettings = value;
-                    this.OnCatalogSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private CatalogSettings _CatalogSettings;
-        ICatalogSettings ICatalog.CatalogSettings { get { return (this as Catalog).CatalogSettings; } } // Property.tt Line: 77
-        partial void OnCatalogSettingsChanging(ref CatalogSettings to); // Property.tt Line: 79
-        partial void OnCatalogSettingsChanged();
-        //ICatalogSettings ICatalog.CatalogSettings { get { return this._CatalogSettings; } }
-        
         [BrowsableAttribute(false)]
         public bool IsNew // Property.tt Line: 55
         { 
@@ -14314,8 +14287,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -14451,6 +14423,276 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnGroupReportsChanged();
         //IGroupListReports ICatalog.GroupReports { get { return this._GroupReports; } }
         
+        [PropertyOrderAttribute(19)]
+        [DisplayName("Item Icon")]
+        [Description("Catalog item icon type")]
+        public EnumCatalogTreeIcon ItemIconType // Property.tt Line: 55
+        { 
+            get { return this._ItemIconType; }
+            set
+            {
+                if (this._ItemIconType != value)
+                {
+                    this.OnItemIconTypeChanging(ref value);
+                    this._ItemIconType = value;
+                    this.OnItemIconTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumCatalogTreeIcon _ItemIconType;
+        partial void OnItemIconTypeChanging(ref EnumCatalogTreeIcon to); // Property.tt Line: 79
+        partial void OnItemIconTypeChanged();
+        
+        [PropertyOrderAttribute(21)]
+        [DisplayName("Use Name")]
+        [Description("Use Name property for catalog item")]
+        public bool UseNameProperty // Property.tt Line: 55
+        { 
+            get { return this._UseNameProperty; }
+            set
+            {
+                if (this._UseNameProperty != value)
+                {
+                    this.OnUseNamePropertyChanging(ref value);
+                    this._UseNameProperty = value;
+                    this.OnUseNamePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseNameProperty;
+        partial void OnUseNamePropertyChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseNamePropertyChanged();
+        
+        [PropertyOrderAttribute(22)]
+        [DisplayName("Max Length")]
+        [Description("Maximum catalog item name length. If zero, than unlimited length")]
+        public uint MaxNameLength // Property.tt Line: 55
+        { 
+            get { return this._MaxNameLength; }
+            set
+            {
+                if (this._MaxNameLength != value)
+                {
+                    this.OnMaxNameLengthChanging(ref value);
+                    this._MaxNameLength = value;
+                    this.OnMaxNameLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _MaxNameLength;
+        partial void OnMaxNameLengthChanging(ref uint to); // Property.tt Line: 79
+        partial void OnMaxNameLengthChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyNameGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyNameGuid; }
+            set
+            {
+                if (this._PropertyNameGuid != value)
+                {
+                    this.OnPropertyNameGuidChanging(ref value);
+                    this._PropertyNameGuid = value;
+                    this.OnPropertyNameGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyNameGuid = string.Empty;
+        partial void OnPropertyNameGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyNameGuidChanged();
+        
+        [PropertyOrderAttribute(31)]
+        [DisplayName("Use Description")]
+        [Description("Use Description property for catalog item")]
+        public bool UseDescriptionProperty // Property.tt Line: 55
+        { 
+            get { return this._UseDescriptionProperty; }
+            set
+            {
+                if (this._UseDescriptionProperty != value)
+                {
+                    this.OnUseDescriptionPropertyChanging(ref value);
+                    this._UseDescriptionProperty = value;
+                    this.OnUseDescriptionPropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseDescriptionProperty;
+        partial void OnUseDescriptionPropertyChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseDescriptionPropertyChanged();
+        
+        [PropertyOrderAttribute(32)]
+        [DisplayName("Max Length")]
+        [Description("Maximum catalog item description length. If zero, than unlimited length")]
+        public uint MaxDescriptionLength // Property.tt Line: 55
+        { 
+            get { return this._MaxDescriptionLength; }
+            set
+            {
+                if (this._MaxDescriptionLength != value)
+                {
+                    this.OnMaxDescriptionLengthChanging(ref value);
+                    this._MaxDescriptionLength = value;
+                    this.OnMaxDescriptionLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _MaxDescriptionLength;
+        partial void OnMaxDescriptionLengthChanging(ref uint to); // Property.tt Line: 79
+        partial void OnMaxDescriptionLengthChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyDescriptionGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyDescriptionGuid; }
+            set
+            {
+                if (this._PropertyDescriptionGuid != value)
+                {
+                    this.OnPropertyDescriptionGuidChanging(ref value);
+                    this._PropertyDescriptionGuid = value;
+                    this.OnPropertyDescriptionGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDescriptionGuid = string.Empty;
+        partial void OnPropertyDescriptionGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyDescriptionGuidChanged();
+        
+        [PropertyOrderAttribute(41)]
+        [DisplayName("Use Tree")]
+        [Description("Use tree catalog structure")]
+        public bool UseTree // Property.tt Line: 55
+        { 
+            get { return this._UseTree; }
+            set
+            {
+                if (this._UseTree != value)
+                {
+                    this.OnUseTreeChanging(ref value);
+                    this._UseTree = value;
+                    this.OnUseTreeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseTree;
+        partial void OnUseTreeChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseTreeChanged();
+        
+        [PropertyOrderAttribute(42)]
+        [DisplayName("Group Icon")]
+        [Description("Catalog group icon type")]
+        public EnumCatalogTreeIcon GroupIconType // Property.tt Line: 55
+        { 
+            get { return this._GroupIconType; }
+            set
+            {
+                if (this._GroupIconType != value)
+                {
+                    this.OnGroupIconTypeChanging(ref value);
+                    this._GroupIconType = value;
+                    this.OnGroupIconTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumCatalogTreeIcon _GroupIconType;
+        partial void OnGroupIconTypeChanging(ref EnumCatalogTreeIcon to); // Property.tt Line: 79
+        partial void OnGroupIconTypeChanged();
+        
+        [PropertyOrderAttribute(43)]
+        [DisplayName("Levels")]
+        [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
+        public uint MaxTreeLevels // Property.tt Line: 55
+        { 
+            get { return this._MaxTreeLevels; }
+            set
+            {
+                if (this._MaxTreeLevels != value)
+                {
+                    this.OnMaxTreeLevelsChanging(ref value);
+                    this._MaxTreeLevels = value;
+                    this.OnMaxTreeLevelsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _MaxTreeLevels;
+        partial void OnMaxTreeLevelsChanging(ref uint to); // Property.tt Line: 79
+        partial void OnMaxTreeLevelsChanged();
+        
+        [PropertyOrderAttribute(44)]
+        [DisplayName("Group properties")]
+        [Description("Separate set of properties for groups")]
+        public bool SeparatePropertiesForGroups // Property.tt Line: 55
+        { 
+            get { return this._SeparatePropertiesForGroups; }
+            set
+            {
+                if (this._SeparatePropertiesForGroups != value)
+                {
+                    this.OnSeparatePropertiesForGroupsChanging(ref value);
+                    this._SeparatePropertiesForGroups = value;
+                    this.OnSeparatePropertiesForGroupsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _SeparatePropertiesForGroups;
+        partial void OnSeparatePropertiesForGroupsChanging(ref bool to); // Property.tt Line: 79
+        partial void OnSeparatePropertiesForGroupsChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyParentGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyParentGuid; }
+            set
+            {
+                if (this._PropertyParentGuid != value)
+                {
+                    this.OnPropertyParentGuidChanging(ref value);
+                    this._PropertyParentGuid = value;
+                    this.OnPropertyParentGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyParentGuid = string.Empty;
+        partial void OnPropertyParentGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyParentGuidChanged();
+        
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
@@ -14477,16 +14719,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -14765,6 +15012,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -14919,16 +15167,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -15171,6 +15424,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -15328,16 +15582,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -15606,6 +15865,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -15688,8 +15948,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -15828,16 +16087,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -16112,6 +16376,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -16243,16 +16508,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -16525,6 +16795,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -16660,16 +16931,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -16950,6 +17226,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -17057,8 +17334,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -17105,16 +17381,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -17389,6 +17670,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -17524,16 +17806,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -17758,6 +18045,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -17840,8 +18128,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -17893,16 +18180,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -18177,6 +18469,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -18312,16 +18605,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -18546,6 +18844,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
+        [BrowsableAttribute(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -18628,8 +18927,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [DisplayName("For deletion")]
-        [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+        [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -18681,16 +18979,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             get { return this._IsChanged; }
             set
             {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying && this._IsChanged != value)
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
                 {
-                    this.OnIsChangedChanging(ref value);
-                    this._IsChanged = value;
-                    this.OnIsChangedChanged();
-                    this.NotifyPropertyChanged();
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                    var cfg = (Config)this.GetConfig();
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 117
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 122
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -18880,7 +19183,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void Visit(Proto.Config.proto_enumeration p);
         void Visit(Proto.Config.proto_enumeration_pair p);
         void Visit(Proto.Config.proto_catalog_items_group p);
-        void Visit(Proto.Config.proto_catalog_settings p);
         void Visit(Proto.Config.proto_catalog p);
         void Visit(Proto.Config.proto_group_list_catalogs p);
         void Visit(Proto.Config.proto_group_documents p);
@@ -19287,21 +19589,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(CatalogSettings p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisitEnd(CatalogSettings p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
         protected override void OnVisit(Catalog p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
-            ValidateSubAndCollectErrors(p, p.CatalogSettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Catalog p) // ValidationVisitor.tt Line: 48
         {
@@ -19805,16 +20096,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(CatalogItemsGroup p) { }
         protected virtual void OnVisitEnd(CatalogItemsGroup p) { }
-        public void Visit(CatalogSettings p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(CatalogSettings p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(CatalogSettings p) { }
-        protected virtual void OnVisitEnd(CatalogSettings p) { }
         public void Visit(Catalog p)
         {
             this.OnVisit(p);

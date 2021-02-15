@@ -15,6 +15,7 @@ namespace ViewModelBase
     }
     public interface ISortingValue
     {
+        ulong _SortingNameValue { get; }
         ulong SortingValue { get; set; }
         ulong SortingWeight { get; set; }
     }
@@ -137,13 +138,13 @@ namespace ViewModelBase
         }
         public void Add(T item, ulong sortingWeight)
         {
-            if (sortingWeight > 0)
-            {
-                if (sortingWeight > VmBindable.MaxSortingWeight)
-                    throw new ArgumentException("sortingWeight is too big. Expected less then " + VmBindable.MaxSortingWeight);
-                item.SortingWeight = sortingWeight << (64 - VmBindable.MaxSortingWeightShift);
-                item.SortingValue = item.SortingValue + item.SortingWeight;
-            }
+                if (sortingWeight > 0)
+                {
+                    if (sortingWeight > VmBindable.MaxSortingWeight)
+                        throw new ArgumentException("sortingWeight is too big. Expected less then " + VmBindable.MaxSortingWeight);
+                    item.SortingWeight = sortingWeight << (64 - VmBindable.MaxSortingWeightShift);
+                    item.SortingValue = item._SortingNameValue + item.SortingWeight;
+                }
             lock (_lock)
             {
                 if (OnAddingAction != null)

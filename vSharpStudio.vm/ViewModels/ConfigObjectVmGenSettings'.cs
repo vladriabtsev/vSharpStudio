@@ -337,7 +337,7 @@ namespace vSharpStudio.vm.ViewModels
         public IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen)
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
-                throw new Exception();
+                return null;
             var res = DicGenNodeSettings[guidAppPrjGen];
             return res;
         }

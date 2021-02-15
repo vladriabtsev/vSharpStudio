@@ -92,8 +92,7 @@ message proto_plugin_generator {
     uint64 sorting_value = 4;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 }
 // @base VmValidatableWithSeverity
@@ -132,6 +131,7 @@ message proto_group_list_base_config_links {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -146,6 +146,7 @@ message proto_base_config_link {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
@@ -156,6 +157,7 @@ message proto_base_config_link {
     string relative_config_file_path = 7;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 11;
+    // @attr [BrowsableAttribute(false)]
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 13;
@@ -171,6 +173,7 @@ message proto_config {
     // @attr [PropertyOrderAttribute(4)]
     // @attr [ReadOnly(true)]
     int32 version = 3;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
     string name_ui = 5;
     // @attr [PropertyOrderAttribute(5)]
@@ -282,8 +285,7 @@ message proto_plugin_group_generators_settings {
     uint64 sorting_value = 5;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 }
 // @base ConfigObjectCommonBase
@@ -293,6 +295,7 @@ message proto_app_solution {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     string name_ui = 3;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
 
     // @attr [PropertyOrderAttribute(5)]
@@ -350,6 +353,7 @@ message proto_app_project {
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     string name_ui = 3;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
 
     // @attr [PropertyOrderAttribute(5)]
@@ -390,6 +394,7 @@ message proto_plugin_generator_node_settings {
     // Name of solution-project-generator node
     string name = 3;
     string name_ui = 4;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 5;
     //string node_settings_vm_guid = 6;
     string settings = 7;
@@ -414,6 +419,7 @@ message proto_app_project_generator {
     // @attr [Description("Connection string name for DB connection generator")]
     string name = 2;
     string name_ui = 3;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
@@ -448,8 +454,7 @@ message proto_app_project_generator {
     string gen_file_name = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 12;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 14;
 
     // @attr [BrowsableAttribute(false)]
@@ -677,6 +682,7 @@ message proto_group_list_common {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -697,6 +703,7 @@ message proto_role {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -705,8 +712,7 @@ message proto_role {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
 
     // @attr [BrowsableAttribute(false)]
@@ -717,6 +723,7 @@ message proto_group_list_roles {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -734,6 +741,7 @@ message proto_main_view_form {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -744,8 +752,7 @@ message proto_main_view_form {
     proto_group_list_main_view_forms group_list_view_forms = 6;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 10;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 12;
 
     // @attr [BrowsableAttribute(false)]
@@ -757,6 +764,7 @@ message proto_group_list_main_view_forms {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -777,6 +785,7 @@ message proto_group_list_properties_tabs {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -793,6 +802,7 @@ message proto_properties_tab {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -808,8 +818,7 @@ message proto_properties_tab {
     bool is_index_fk = 8;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
 
     // @attr [BrowsableAttribute(false)]
@@ -820,6 +829,7 @@ message proto_group_list_properties {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -839,6 +849,7 @@ message proto_property {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -851,8 +862,7 @@ message proto_property {
     proto_data_type data_type = 6;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 
     // Protobuf field position
@@ -871,6 +881,7 @@ message proto_group_list_constants {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -890,6 +901,7 @@ message proto_constant {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
     string name_ui = 4;
@@ -900,8 +912,7 @@ message proto_constant {
     proto_data_type data_type = 6;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 10;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 12;
 
     // @attr [BrowsableAttribute(false)]
@@ -916,6 +927,7 @@ message proto_group_list_enumerations {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -939,6 +951,7 @@ message proto_enumeration {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -958,8 +971,7 @@ message proto_enumeration {
     repeated proto_enumeration_pair list_enumeration_pairs = 8;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
 
     // @attr [BrowsableAttribute(false)]
@@ -972,6 +984,7 @@ message proto_enumeration_pair {
     // @attr [DisplayName("Name")]
     // @attr [Description("Enumeration element name")]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("UI name")]
@@ -989,8 +1002,7 @@ message proto_enumeration_pair {
     bool is_default = 7;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 10;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 12;
 
     // @attr [BrowsableAttribute(false)]
@@ -1005,6 +1017,7 @@ message proto_catalog_items_group {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1025,46 +1038,27 @@ message proto_catalog_items_group {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-// @base VmValidatableWithSeverity
-message proto_catalog_settings {
-    // @attr [PropertyOrderAttribute(1)]
-    // @attr [DisplayName("Name length")]
-    // @attr [Description("Maximum catalog item name length. If negative, than unlimited length. If zero, than not use")]
-    int32 max_catalog_item_name_length = 1;
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Description length")]
-    // @attr [Description("Maximum catalog item description length. If negative, than unlimited length. If zero, than not use")]
-    int32 max_catalog_item_description_length = 2;
-    // @attr [PropertyOrderAttribute(3)]
-    // @attr [DisplayName("Levels")]
-    // @attr [Description("Maximum ammount levels in catalog item groups. If negative, than unlimited. If zero, than flat catalog without groupping")]
-    int32 max_catalog_item_tree_levels = 3;
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Group properties")]
-    // @attr [Description("Separate set of properties for groups")]
-    bool separate_properties_for_groups = 4;
+enum proto_enum_catalog_tree_icon {
+    None = 0;
+    Item = 1;
+    Folder = 2;
+    Custom = 3;
 }
 message proto_catalog {
     // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [ExpandableObjectAttribute()]
-    // @attr [DisplayName("Parameters")]
-    // @attr [Description("Catalog settings")]
-    proto_catalog_settings catalog_settings = 6;
-
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
 
     // @attr [BrowsableAttribute(false)]
@@ -1078,6 +1072,51 @@ message proto_catalog {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_reports group_reports = 18;
 
+    // @attr [PropertyOrderAttribute(19)]
+    // @attr [DisplayName("Item Icon")]
+    // @attr [Description("Catalog item icon type")]
+    proto_enum_catalog_tree_icon item_icon_type = 19;
+
+    // @attr [PropertyOrderAttribute(21)]
+    // @attr [DisplayName("Use Name")]
+    // @attr [Description("Use Name property for catalog item")]
+    bool use_name_property = 21;
+    // @attr [PropertyOrderAttribute(22)]
+    // @attr [DisplayName("Max Length")]
+    // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
+    uint32 max_name_length = 22;
+    // @attr [BrowsableAttribute(false)]
+    string property_name_guid = 23;
+    // @attr [PropertyOrderAttribute(31)]
+    // @attr [DisplayName("Use Description")]
+    // @attr [Description("Use Description property for catalog item")]
+    bool use_description_property = 31;
+    // @attr [PropertyOrderAttribute(32)]
+    // @attr [DisplayName("Max Length")]
+    // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
+    uint32 max_description_length = 32;
+    // @attr [BrowsableAttribute(false)]
+    string property_description_guid = 33;
+
+    // @attr [PropertyOrderAttribute(41)]
+    // @attr [DisplayName("Use Tree")]
+    // @attr [Description("Use tree catalog structure")]
+    bool use_tree = 41;
+    // @attr [PropertyOrderAttribute(42)]
+    // @attr [DisplayName("Group Icon")]
+    // @attr [Description("Catalog group icon type")]
+    proto_enum_catalog_tree_icon group_icon_type = 42;
+    // @attr [PropertyOrderAttribute(43)]
+    // @attr [DisplayName("Levels")]
+    // @attr [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
+    uint32 max_tree_levels = 43;
+    // @attr [PropertyOrderAttribute(44)]
+    // @attr [DisplayName("Group properties")]
+    // @attr [Description("Separate set of properties for groups")]
+    bool separate_properties_for_groups = 44;
+    // @attr [BrowsableAttribute(false)]
+    string property_parent_guid = 45;
+
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1086,6 +1125,7 @@ message proto_group_list_catalogs {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1110,6 +1150,7 @@ message proto_group_documents {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1133,6 +1174,7 @@ message proto_document {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1141,8 +1183,7 @@ message proto_document {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
 
     // @attr [BrowsableAttribute(false)]
@@ -1161,6 +1202,7 @@ message proto_group_list_documents {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1181,6 +1223,7 @@ message proto_group_list_journals {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1198,6 +1241,7 @@ message proto_journal {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1209,8 +1253,7 @@ message proto_journal {
     repeated proto_document list_documents = 7;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
 
     // @attr [BrowsableAttribute(false)]
@@ -1225,6 +1268,7 @@ message proto_group_list_forms {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1242,6 +1286,7 @@ message proto_form {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1250,8 +1295,7 @@ message proto_form {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_forms = 7;
@@ -1267,6 +1311,7 @@ message proto_group_list_reports {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1284,6 +1329,7 @@ message proto_report {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
@@ -1292,8 +1338,7 @@ message proto_report {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
-    // @attr [DisplayName("For deletion")]
-    // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
+    // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_documents = 7;
