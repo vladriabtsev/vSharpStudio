@@ -57,8 +57,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPlugin> ListPlugins { get; } // ModelInterfaces.tt Line: 44
     	IPlugin this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IPlugin // ModelInterfaces.tt Line: 29
@@ -108,8 +106,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IBaseConfigLink> ListBaseConfigLinks { get; } // ModelInterfaces.tt Line: 44
     	IBaseConfigLink this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -134,8 +130,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } // ModelInterfaces.tt Line: 51
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	bool IsNeedCurrentUpdate { get; } // ModelInterfaces.tt Line: 51
     	IGroupListBaseConfigLinks GroupConfigLinks { get; } // ModelInterfaces.tt Line: 55
     	IConfigModel Model { get; } // ModelInterfaces.tt Line: 55
@@ -163,8 +157,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	///////////////////////////////////////////////////
     	string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 51
     	string Settings { get; } // ModelInterfaces.tt Line: 51
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IGroupListAppSolutions // ModelInterfaces.tt Line: 29
@@ -177,8 +169,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IAppSolution> ListAppSolutions { get; } // ModelInterfaces.tt Line: 44
     	IAppSolution this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGroupGeneratorsDefaultSettings> ListGroupGeneratorsDefultSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -322,8 +312,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	uint CompositeNameMaxLength { get; } // ModelInterfaces.tt Line: 51
     	bool IsUseCompositeNames { get; } // ModelInterfaces.tt Line: 51
     	bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 51
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// GENERAL DB SETTINGS
@@ -363,8 +351,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	IGroupListRoles GroupRoles { get; } // ModelInterfaces.tt Line: 55
     	IGroupListMainViewForms GroupViewForms { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -390,8 +376,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IRole> ListRoles { get; } // ModelInterfaces.tt Line: 44
     	IRole this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -422,8 +406,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IMainViewForm> ListMainViewForms { get; } // ModelInterfaces.tt Line: 44
     	IMainViewForm this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -435,8 +417,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPropertiesTab> ListPropertiesTabs { get; } // ModelInterfaces.tt Line: 44
     	IPropertiesTab this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -470,8 +450,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	/// Last generated Protobuf field position
     	///////////////////////////////////////////////////
     	uint LastGenPosition { get; } // ModelInterfaces.tt Line: 51
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -500,8 +478,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IConstant> ListConstants { get; } // ModelInterfaces.tt Line: 44
     	IConstant this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -528,8 +504,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IEnumeration> ListEnumerations { get; } // ModelInterfaces.tt Line: 44
     	IEnumeration this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -611,8 +585,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 44
     	ICatalog this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -624,8 +596,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 51
     	IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -651,8 +621,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 44
     	IDocument this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -668,8 +636,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IJournal> ListJournals { get; } // ModelInterfaces.tt Line: 44
     	IJournal this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -700,8 +666,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IForm> ListForms { get; } // ModelInterfaces.tt Line: 44
     	IForm this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -732,8 +696,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IReport> ListReports { get; } // ModelInterfaces.tt Line: 44
     	IReport this[int index] { get; }
     	int Count();
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

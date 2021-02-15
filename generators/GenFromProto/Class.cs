@@ -589,14 +589,24 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(@"
-    partial void OnIsChangedChanged();
-    partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
-    partial void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-    partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-");
+            this.Write("\r\n    protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }\r" +
+                    "\n");
+            
+            #line 119 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ if (!(message.Name.Contains("group") || message.Name.StartsWith("proto_config"))) { 
+            
+            #line default
+            #line hidden
+            this.Write("    partial void OnIsNewChanged() { OnNodeIsNewChanged(); }\r\n    partial void OnI" +
+                    "sMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }\r\n");
             
             #line 122 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 123 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default

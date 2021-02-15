@@ -19,8 +19,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListMainViewForms cn)
         {
@@ -30,8 +28,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListRoles cn)
         {
@@ -41,8 +37,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListConstants cn)
         {
@@ -52,8 +46,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListDocuments cn)
         {
@@ -63,8 +55,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListEnumerations cn)
         {
@@ -74,8 +64,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IEnumeration en)
         {
@@ -96,8 +84,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListJournals cn)
         {
@@ -107,8 +93,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListProperties cn)
         {
@@ -118,8 +102,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListPropertiesTabs cn)
         {
@@ -129,8 +111,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListReports cn)
         {
@@ -140,8 +120,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListBaseConfigLinks en)
         {
@@ -151,8 +129,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
         protected override void EndVisit(IGroupListAppSolutions en)
         {
@@ -172,8 +148,6 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;
             }
-            p.IsMarkedForDeletion = false;
-            p.IsNew = false;
         }
     }
 }

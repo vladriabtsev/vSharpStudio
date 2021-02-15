@@ -782,6 +782,42 @@
                     }
                 }
             }
+            else if (this is IEditableNodeGroup)
+            {
+                if (this.Parent is IEditableNodeGroup)
+                {
+                    var pp = (IEditableNodeGroup)this.Parent;
+                    if (this.IsChanged)
+                    {
+                        pp.IsHasChanged = true;
+                    }
+                    else
+                    {
+                        foreach (var t in this.GetListSiblings())
+                        {
+                            if (t is IEditableNode)
+                            {
+                                var pt = (IEditableNode)t;
+                                if (pt.IsChanged)
+                                {
+                                    pp.IsHasChanged = true;
+                                    return;
+                                }
+                            }
+                            else if (t is IEditableNodeGroup)
+                            {
+                                var pt = (IEditableNodeGroup)t;
+                                if (pt.IsHasChanged)
+                                {
+                                    pp.IsHasChanged = true;
+                                    return;
+                                }
+                            }
+                        }
+                        pp.IsHasChanged = false;
+                    }
+                }
+            }
         }
         protected void OnNodeIsMarkedForDeletionChanged()
         {
@@ -832,7 +868,7 @@
             }
         }
         private bool _IsHasNew;
-        partial void OnIsHasNewChanging(ref bool to); 
+        partial void OnIsHasNewChanging(ref bool to);
         private void OnIsHasNewChanged()
         {
             if (!VmBindable.IsNotifyingStatic)
@@ -918,7 +954,7 @@
             }
         }
         [BrowsableAttribute(false)]
-        public bool IsHasMarkedForDeletion 
+        public bool IsHasMarkedForDeletion
         {
             get { return this._IsHasMarkedForDeletion; }
             set
@@ -934,7 +970,7 @@
             }
         }
         private bool _IsHasMarkedForDeletion;
-        partial void OnIsHasMarkedForDeletionChanging(ref bool to); 
+        partial void OnIsHasMarkedForDeletionChanging(ref bool to);
         private void OnIsHasMarkedForDeletionChanged()
         {
             if (!VmBindable.IsNotifyingStatic)
