@@ -583,13 +583,14 @@ namespace GenFromProto
                     this.NotifyPropertyChanged();
                 }
                 var cfg = (Config)this.GetConfig();
-                cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
+                if (cfg.SelectedNode != null)
+                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
             }
         }
     }
     partial void OnIsChangedChanging(ref bool v); // ");
             
-            #line 122 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 123 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
@@ -597,7 +598,7 @@ namespace GenFromProto
             this.Write("\r\n    protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }\r" +
                     "\n");
             
-            #line 124 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 125 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  if (!(message.Name.Contains("group") || message.Name.StartsWith("proto_config") || message.Name.StartsWith("proto_model"))) { 
             
             #line default
@@ -605,13 +606,13 @@ namespace GenFromProto
             this.Write("    partial void OnIsNewChanged() { OnNodeIsNewChanged(); }\r\n    partial void OnI" +
                     "sMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }\r\n");
             
-            #line 127 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 128 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 128 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 129 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default
