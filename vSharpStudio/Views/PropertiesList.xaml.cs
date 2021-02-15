@@ -64,7 +64,7 @@ namespace vSharpStudio.Views
                 default:
                     break;
             }
-            if (!(grd.SelectedObject is ConfigModel))
+            if (!(grd.SelectedObject is Model))
             {
                 if (!(e.IsBrowsable ?? false) && grd.SelectedObject is IGetNodeSetting && grd.SelectedPropertyItem != null && grd.SelectedPropertyItem != null)
                 {

@@ -21,7 +21,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as ConfigModel;
+            var p = this.Parent as Model;
             return p.Children;
         }
         public override bool HasChildren()

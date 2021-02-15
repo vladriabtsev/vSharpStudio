@@ -2463,7 +2463,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.IsValidate = false;
             this.OnInitBegin();
             this.GroupConfigLinks = new GroupListBaseConfigLinks(); // Class.tt Line: 31
-            this.Model = new ConfigModel(this); // Class.tt Line: 33
+            this.Model = new Model(this); // Class.tt Line: 33
             this.GroupPlugins = new GroupListPlugins(); // Class.tt Line: 31
             this.GroupAppSolutions = new GroupListAppSolutions(); // Class.tt Line: 31
             this.OnInit();
@@ -2496,7 +2496,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupConfigLinks = vSharpStudio.vm.ViewModels.GroupListBaseConfigLinks.Clone(vm, from.GroupConfigLinks, isDeep);
             if (isDeep) // Clone.tt Line: 62
-                vm.Model = vSharpStudio.vm.ViewModels.ConfigModel.Clone(vm, from.Model, isDeep);
+                vm.Model = vSharpStudio.vm.ViewModels.Model.Clone(vm, from.Model, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.Clone(vm, from.GroupPlugins, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -2522,7 +2522,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListBaseConfigLinks.Update((GroupListBaseConfigLinks)to.GroupConfigLinks, from.GroupConfigLinks, isDeep);
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.ConfigModel.Update((ConfigModel)to.Model, from.Model, isDeep);
+                vSharpStudio.vm.ViewModels.Model.Update((Model)to.Model, from.Model, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListPlugins.Update((GroupListPlugins)to.GroupPlugins, from.GroupPlugins, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -2567,8 +2567,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.GroupConfigLinks = new GroupListBaseConfigLinks(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListBaseConfigLinks.ConvertToVM(m.GroupConfigLinks, (GroupListBaseConfigLinks)vm.GroupConfigLinks); // Clone.tt Line: 219
             if (vm.Model == null) // Clone.tt Line: 213
-                vm.Model = new ConfigModel(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.ConfigModel.ConvertToVM(m.Model, (ConfigModel)vm.Model); // Clone.tt Line: 219
+                vm.Model = new Model(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.Model.ConvertToVM(m.Model, (Model)vm.Model); // Clone.tt Line: 219
             if (vm.GroupPlugins == null) // Clone.tt Line: 213
                 vm.GroupPlugins = new GroupListPlugins(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToVM(m.GroupPlugins, (GroupListPlugins)vm.GroupPlugins); // Clone.tt Line: 219
@@ -2596,7 +2596,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.LastUpdated = vm.LastUpdated; // Clone.tt Line: 276
             m.IsNeedCurrentUpdate = vm.IsNeedCurrentUpdate; // Clone.tt Line: 276
             m.GroupConfigLinks = vSharpStudio.vm.ViewModels.GroupListBaseConfigLinks.ConvertToProto((GroupListBaseConfigLinks)vm.GroupConfigLinks); // Clone.tt Line: 270
-            m.Model = vSharpStudio.vm.ViewModels.ConfigModel.ConvertToProto((ConfigModel)vm.Model); // Clone.tt Line: 270
+            m.Model = vSharpStudio.vm.ViewModels.Model.ConvertToProto((Model)vm.Model); // Clone.tt Line: 270
             m.GroupPlugins = vSharpStudio.vm.ViewModels.GroupListPlugins.ConvertToProto((GroupListPlugins)vm.GroupPlugins); // Clone.tt Line: 270
             m.GroupAppSolutions = vSharpStudio.vm.ViewModels.GroupListAppSolutions.ConvertToProto((GroupListAppSolutions)vm.GroupAppSolutions); // Clone.tt Line: 270
             return m;
@@ -2811,7 +2811,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         //IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return this._GroupConfigLinks; } }
         
         [BrowsableAttribute(false)]
-        public ConfigModel Model // Property.tt Line: 55
+        public Model Model // Property.tt Line: 55
         { 
             get { return this._Model; }
             set
@@ -2827,11 +2827,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 }
             }
         }
-        private ConfigModel _Model;
-        IConfigModel IConfig.Model { get { return (this as Config).Model; } } // Property.tt Line: 77
-        partial void OnModelChanging(ref ConfigModel to); // Property.tt Line: 79
+        private Model _Model;
+        IModel IConfig.Model { get { return (this as Config).Model; } } // Property.tt Line: 77
+        partial void OnModelChanging(ref Model to); // Property.tt Line: 79
         partial void OnModelChanged();
-        //IConfigModel IConfig.Model { get { return this._Model; } }
+        //IModel IConfig.Model { get { return this._Model; } }
         
         [BrowsableAttribute(false)]
         public GroupListPlugins GroupPlugins // Property.tt Line: 55
@@ -6367,20 +6367,20 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnPKeyFieldGuidChanged();
         #endregion Properties
     }
-    public partial class ConfigModelValidator : ValidatorBase<ConfigModel, ConfigModelValidator> { } // Class.tt Line: 6
+    public partial class ModelValidator : ValidatorBase<Model, ModelValidator> { } // Class.tt Line: 6
     
     ///////////////////////////////////////////////////
     /// Configuration model
     ///////////////////////////////////////////////////
     [CategoryOrder("Db Names Generation", 5)]
-    public partial class ConfigModel : ConfigObjectVmGenSettings<ConfigModel, ConfigModelValidator>, IComparable<ConfigModel>, IConfigAcceptVisitor, IConfigModel // Class.tt Line: 7
+    public partial class Model : ConfigObjectVmGenSettings<Model, ModelValidator>, IComparable<Model>, IConfigAcceptVisitor, IModel // Class.tt Line: 7
     {
         #region CTOR
-        public ConfigModel() : this(default(ITreeConfigNode))
+        public Model() : this(default(ITreeConfigNode))
         {
         }
-        public ConfigModel(ITreeConfigNode parent) 
-            : base(parent, ConfigModelValidator.Validator) // Class.tt Line: 15
+        public Model(ITreeConfigNode parent) 
+            : base(parent, ModelValidator.Validator) // Class.tt Line: 15
         {
             this.IsNotifying = false;
             this.IsValidate = false;
@@ -6409,10 +6409,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static ConfigModel Clone(ITreeConfigNode parent, IConfigModel from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+        public static Model Clone(ITreeConfigNode parent, IModel from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Contract.Requires(from != null);
-            ConfigModel vm = new ConfigModel(parent);
+            Model vm = new Model(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
@@ -6447,7 +6447,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(ConfigModel to, IConfigModel from, bool isDeep = true) // Clone.tt Line: 77
+        public static void Update(Model to, IModel from, bool isDeep = true) // Clone.tt Line: 77
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
@@ -6513,23 +6513,23 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         // Clone.tt Line: 147
         #region IEditable
-        public override ConfigModel Backup()
+        public override Model Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return ConfigModel.Clone(this.Parent, this);
+            return Model.Clone(this.Parent, this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(ConfigModel from)
+        public override void Restore(Model from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            ConfigModel.Update(this, from, isDeep);
+            Model.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_config_model' to 'ConfigModel'
-        public static ConfigModel ConvertToVM(Proto.Config.proto_config_model m, ConfigModel vm) // Clone.tt Line: 170
+        // Conversion from 'proto_model' to 'Model'
+        public static Model ConvertToVM(Proto.Config.proto_model m, Model vm) // Clone.tt Line: 170
         {
             Contract.Requires(vm != null);
             if (m == null)
@@ -6581,11 +6581,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'ConfigModel' to 'proto_config_model'
-        public static Proto.Config.proto_config_model ConvertToProto(ConfigModel vm) // Clone.tt Line: 236
+        // Conversion from 'Model' to 'proto_model'
+        public static Proto.Config.proto_model ConvertToProto(Model vm) // Clone.tt Line: 236
         {
             Contract.Requires(vm != null);
-            Proto.Config.proto_config_model m = new Proto.Config.proto_config_model(); // Clone.tt Line: 239
+            Proto.Config.proto_model m = new Proto.Config.proto_model(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Version = vm.Version; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -6857,10 +6857,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private DbSettings _DbSettings;
-        IDbSettings IConfigModel.DbSettings { get { return (this as ConfigModel).DbSettings; } } // Property.tt Line: 77
+        IDbSettings IModel.DbSettings { get { return (this as Model).DbSettings; } } // Property.tt Line: 77
         partial void OnDbSettingsChanging(ref DbSettings to); // Property.tt Line: 79
         partial void OnDbSettingsChanged();
-        //IDbSettings IConfigModel.DbSettings { get { return this._DbSettings; } }
+        //IDbSettings IModel.DbSettings { get { return this._DbSettings; } }
         
         [BrowsableAttribute(false)]
         public GroupListCommon GroupCommon // Property.tt Line: 55
@@ -6880,10 +6880,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListCommon _GroupCommon;
-        IGroupListCommon IConfigModel.GroupCommon { get { return (this as ConfigModel).GroupCommon; } } // Property.tt Line: 77
+        IGroupListCommon IModel.GroupCommon { get { return (this as Model).GroupCommon; } } // Property.tt Line: 77
         partial void OnGroupCommonChanging(ref GroupListCommon to); // Property.tt Line: 79
         partial void OnGroupCommonChanged();
-        //IGroupListCommon IConfigModel.GroupCommon { get { return this._GroupCommon; } }
+        //IGroupListCommon IModel.GroupCommon { get { return this._GroupCommon; } }
         
         [BrowsableAttribute(false)]
         public GroupListConstants GroupConstants // Property.tt Line: 55
@@ -6903,10 +6903,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListConstants _GroupConstants;
-        IGroupListConstants IConfigModel.GroupConstants { get { return (this as ConfigModel).GroupConstants; } } // Property.tt Line: 77
+        IGroupListConstants IModel.GroupConstants { get { return (this as Model).GroupConstants; } } // Property.tt Line: 77
         partial void OnGroupConstantsChanging(ref GroupListConstants to); // Property.tt Line: 79
         partial void OnGroupConstantsChanged();
-        //IGroupListConstants IConfigModel.GroupConstants { get { return this._GroupConstants; } }
+        //IGroupListConstants IModel.GroupConstants { get { return this._GroupConstants; } }
         
         [BrowsableAttribute(false)]
         public GroupListEnumerations GroupEnumerations // Property.tt Line: 55
@@ -6926,10 +6926,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListEnumerations _GroupEnumerations;
-        IGroupListEnumerations IConfigModel.GroupEnumerations { get { return (this as ConfigModel).GroupEnumerations; } } // Property.tt Line: 77
+        IGroupListEnumerations IModel.GroupEnumerations { get { return (this as Model).GroupEnumerations; } } // Property.tt Line: 77
         partial void OnGroupEnumerationsChanging(ref GroupListEnumerations to); // Property.tt Line: 79
         partial void OnGroupEnumerationsChanged();
-        //IGroupListEnumerations IConfigModel.GroupEnumerations { get { return this._GroupEnumerations; } }
+        //IGroupListEnumerations IModel.GroupEnumerations { get { return this._GroupEnumerations; } }
         
         [BrowsableAttribute(false)]
         public GroupListCatalogs GroupCatalogs // Property.tt Line: 55
@@ -6949,10 +6949,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListCatalogs _GroupCatalogs;
-        IGroupListCatalogs IConfigModel.GroupCatalogs { get { return (this as ConfigModel).GroupCatalogs; } } // Property.tt Line: 77
+        IGroupListCatalogs IModel.GroupCatalogs { get { return (this as Model).GroupCatalogs; } } // Property.tt Line: 77
         partial void OnGroupCatalogsChanging(ref GroupListCatalogs to); // Property.tt Line: 79
         partial void OnGroupCatalogsChanged();
-        //IGroupListCatalogs IConfigModel.GroupCatalogs { get { return this._GroupCatalogs; } }
+        //IGroupListCatalogs IModel.GroupCatalogs { get { return this._GroupCatalogs; } }
         
         [BrowsableAttribute(false)]
         public GroupDocuments GroupDocuments // Property.tt Line: 55
@@ -6972,10 +6972,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupDocuments _GroupDocuments;
-        IGroupDocuments IConfigModel.GroupDocuments { get { return (this as ConfigModel).GroupDocuments; } } // Property.tt Line: 77
+        IGroupDocuments IModel.GroupDocuments { get { return (this as Model).GroupDocuments; } } // Property.tt Line: 77
         partial void OnGroupDocumentsChanging(ref GroupDocuments to); // Property.tt Line: 79
         partial void OnGroupDocumentsChanged();
-        //IGroupDocuments IConfigModel.GroupDocuments { get { return this._GroupDocuments; } }
+        //IGroupDocuments IModel.GroupDocuments { get { return this._GroupDocuments; } }
         
         [BrowsableAttribute(false)]
         public GroupListJournals GroupJournals // Property.tt Line: 55
@@ -6995,10 +6995,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private GroupListJournals _GroupJournals;
-        IGroupListJournals IConfigModel.GroupJournals { get { return (this as ConfigModel).GroupJournals; } } // Property.tt Line: 77
+        IGroupListJournals IModel.GroupJournals { get { return (this as Model).GroupJournals; } } // Property.tt Line: 77
         partial void OnGroupJournalsChanging(ref GroupListJournals to); // Property.tt Line: 79
         partial void OnGroupJournalsChanged();
-        //IGroupListJournals IConfigModel.GroupJournals { get { return this._GroupJournals; } }
+        //IGroupListJournals IModel.GroupJournals { get { return this._GroupJournals; } }
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -7017,7 +7017,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             }
         }
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        IReadOnlyList<IPluginGeneratorNodeSettings> IConfigModel.ListNodeGeneratorsSettings { get { return (this as ConfigModel).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
+        IReadOnlyList<IPluginGeneratorNodeSettings> IModel.ListNodeGeneratorsSettings { get { return (this as Model).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
@@ -18863,7 +18863,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void Visit(Proto.Config.proto_app_project_generator p);
         void Visit(Proto.Config.proto_plugin_generator_node_default_settings p);
         void Visit(Proto.Config.db_settings p);
-        void Visit(Proto.Config.proto_config_model p);
+        void Visit(Proto.Config.proto_model p);
         void Visit(Proto.Config.proto_data_type p);
         void Visit(Proto.Config.proto_group_list_common p);
         void Visit(Proto.Config.proto_role p);
@@ -19114,13 +19114,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(ConfigModel p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(Model p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
             ValidateSubAndCollectErrors(p, p.DbSettings); // ValidationVisitor.tt Line: 31
         }
-        protected override void OnVisitEnd(ConfigModel p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(Model p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
@@ -19635,16 +19635,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(DbSettings p) { }
         protected virtual void OnVisitEnd(DbSettings p) { }
-        public void Visit(ConfigModel p)
+        public void Visit(Model p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(ConfigModel p)
+        public void VisitEnd(Model p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(ConfigModel p) { }
-        protected virtual void OnVisitEnd(ConfigModel p) { }
+        protected virtual void OnVisit(Model p) { }
+        protected virtual void OnVisitEnd(Model p) { }
         public void Visit(DataType p)
         {
             this.OnVisit(p);
@@ -19942,8 +19942,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         System.Threading.CancellationToken Token { get; }
         void Visit(Config p);
         void VisitEnd(Config p);
-        void Visit(ConfigModel p);
-        void VisitEnd(ConfigModel p);
+        void Visit(Model p);
+        void VisitEnd(Model p);
         void Visit(GroupListCommon p);
         void VisitEnd(GroupListCommon p);
         void Visit(Role p);

@@ -1,20 +1,20 @@
  
-$8e694937-c6e9-4da0-9f1b-bc0c9c50574atest2 ×¯Àä–¶óƒ*test2:Óö¦¨Ê€¦ª<
-$ed9e5d36-c042-442c-b08b-ba55e712a051BaseConfigsº¾ØÎú×œi²×
-$958f9619-5da1-4c77-b893-6cdb6be7a9b5ConfigModel µª”’Ğáûô *ConfigModel@dHPª/
-v"Id2$993e32fd-ad95-49c0-bb08-d7acfc80d5dbªF
-$c8cbd0b8-ec00-4c35-980c-0bb88d965c24	Constants»õ”–­†üôp"	Constants²M
-$cef75d58-ee7e-4dd3-a886-49870c4822a1EnumerationsİÍ¾»«Òî…"EnumerationsºK
-$84b2b48d-72a0-4327-b057-5882e11eaa77Catalogs¦Ÿ¦Ûƒàâñ"Catalogs2CtlgÂ×
-$a2049823-87ff-4b68-8345-fce055837360	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
-$ecf865f5-8329-4c26-b233-4d273e323d66SharedÓŠ¼Î¶¨øûq"SharedBG
-$076e00cc-4995-4a36-b1fd-5167f984552e	Documents¸ÀÖŸŒÓ¸ı€"	DocumentsÊE
-$f21d2322-2c5f-47b4-89ee-5661adab901eJournalsÚ½Ì—¦„ç°±"JournalsÒÇ
-$187db7cc-eb10-46d0-b8ee-12200ba4e4e6Commonİ¡ÔÕ™ûô`"Common:>
-$1655ce28-e218-4aea-bd16-0a0ce567c5d2Roles—æÉ—¾ªŠõ"RolesBE
-$2f20aeb7-a1b8-469d-95c5-911a5ffecf9a	Constants»õ”–­†üt"	ConstantsÂı
+$f33707a5-5d8d-43d3-a8d5-8d0671428670test2 ×¯Àä–¶óƒ*test2:Îı¦œÜî“ª<
+$b2d1be93-0720-4e72-b58b-6080470859d9BaseConfigsº¾ØÎú×œi²×
+$2b488c8f-557c-40c8-b632-78b9541f29caConfigModel µª”’Ğáûô *ConfigModel@dHPª/
+v"Id2$c0709299-d3c9-49e9-af35-cb5f55fb7fbeªF
+$30dff14a-d479-4ba8-a16a-8aebd7aceac2	Constants»õ”–­†üôp"	Constants²M
+$51ba8314-f04f-4397-bd7d-6c34d79b9b9fEnumerationsİÍ¾»«Òî…"EnumerationsºK
+$684f3a16-a700-45f8-9025-d744955ae360Catalogs¦Ÿ¦Ûƒàâñ"Catalogs2CtlgÂ×
+$4e005514-29e0-485b-ac75-9913f18a1696	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
+$22d5ed7c-7f27-49f0-b9e0-c50330b6ff2bSharedÓŠ¼Î¶¨øûq"SharedBG
+$a2990c8e-7e35-484e-988b-78cbb123d881	Documents¸ÀÖŸŒÓ¸ı€"	DocumentsÊE
+$2e5e6f11-4a42-4e62-8396-4b6e18e2cb82JournalsÚ½Ì—¦„ç°±"JournalsÒÇ
+$dc78f19e-8250-48d1-b3c1-2c5e1668f278Commonİ¡ÔÕ™ûô`"Common:>
+$5d6cdb7c-3697-4c78-bca5-668cc2e4ab75Roles—æÉ—¾ªŠõ"RolesBE
+$34c15ee8-c2cd-45f4-bcb1-1653ec738109	Constants»õ”–­†üt"	ConstantsÂı
 
-$7919b9cf-448e-4fb9-8e32-ec64b0c5541aPlugins„™„§à›®ã!"º
+$c810ce5c-f01e-4d19-8002-61319499ade3Plugins„™„§à›®ã!"º
 $3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
 $1E35FCDB-6425-4C66-B047-6882738AF552
 RepositoryDB repository code generation ØŞèİ›ŸæòX"Õ
@@ -32,4 +32,4 @@ $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db
 $7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zX"Ö
 $16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
 $553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{XÊ6
-$576c8f54-7e58-4382-b4ba-97e92f6e6743AppsÈ ›½¾ä@
+$f0be7cdf-e3f0-4903-8940-958a0f779289AppsÈ ›½¾ä@

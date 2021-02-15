@@ -116,7 +116,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     }
     partial void OnIsChangedChanging(ref bool v); // <#=Helper.FilePos() #>
     protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-<# if (!(message.Name.Contains("group") || message.Name.StartsWith("proto_config"))) { #>
+<# if (!(message.Name.Contains("group") || message.Name.StartsWith("proto_config") || message.Name.StartsWith("proto_model"))) { #>
     partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
     partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
 <# } #>

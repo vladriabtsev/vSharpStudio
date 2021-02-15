@@ -183,7 +183,7 @@ message proto_config {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_base_config_links group_config_links = 101;
     // @attr [BrowsableAttribute(false)]
-    proto_config_model model = 102;
+    proto_model model = 102;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_plugins group_plugins = 104;
     // @attr [BrowsableAttribute(false)]
@@ -528,7 +528,7 @@ message db_settings {
 
 // Configuration model
 // @attr [CategoryOrder("Db Names Generation", 5)]
-message proto_config_model {
+message proto_model {
     // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [PropertyOrderAttribute(2)]

@@ -132,7 +132,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } // ModelInterfaces.tt Line: 51
     	bool IsNeedCurrentUpdate { get; } // ModelInterfaces.tt Line: 51
     	IGroupListBaseConfigLinks GroupConfigLinks { get; } // ModelInterfaces.tt Line: 55
-    	IConfigModel Model { get; } // ModelInterfaces.tt Line: 55
+    	IModel Model { get; } // ModelInterfaces.tt Line: 55
     	IGroupListPlugins GroupPlugins { get; } // ModelInterfaces.tt Line: 55
     	IGroupListAppSolutions GroupAppSolutions { get; } // ModelInterfaces.tt Line: 55
     }
@@ -303,7 +303,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     /// Configuration model
     ///////////////////////////////////////////////////
     
-    public partial interface IConfigModel : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IModel : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	int Version { get; } // ModelInterfaces.tt Line: 51

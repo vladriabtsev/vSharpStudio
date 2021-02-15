@@ -157,7 +157,7 @@ namespace vSharpStudio.common
             tn.DicFromFields[property.Guid] = property;
             tn.FromObject = from;
         }
-        public new void Run(IConfigModel model, Action<ModelVisitorBase, ITreeConfigNode> act = null)
+        public new void Run(IModel model, Action<ModelVisitorBase, ITreeConfigNode> act = null)
         {
             this._act = act;
             this.currModel = model;

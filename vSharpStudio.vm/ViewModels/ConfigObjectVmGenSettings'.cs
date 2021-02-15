@@ -162,9 +162,9 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
-                if (p is ConfigModel)
+                if (p is Model)
                 {
-                    var m = p as ConfigModel;
+                    var m = p as Model;
                     if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                     {
                         var settings = (IvPluginGeneratorNodeIncludable)(m.DicGenNodeSettings[guidAppPrjGen]);
@@ -225,9 +225,9 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
-                if (p is ConfigModel)
+                if (p is Model)
                 {
-                    var m = p as ConfigModel;
+                    var m = p as Model;
                     if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                     {
                         var setting = func(m.DicGenNodeSettings[guidAppPrjGen]);
@@ -284,9 +284,9 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
-                if (p is ConfigModel)
+                if (p is Model)
                 {
-                    var m = p as ConfigModel;
+                    var m = p as Model;
                     if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                     {
                         var setting = func(m.DicGenNodeSettings[guidAppPrjGen]);

@@ -34,8 +34,8 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IMainViewForm p) { }
         protected virtual void BeginVisit(IConfig c) { }
         protected virtual void EndVisit(IConfig c) { }
-        protected virtual void BeginVisit(IConfigModel m) { }
-        protected virtual void EndVisit(IConfigModel m) { }
+        protected virtual void BeginVisit(IModel m) { }
+        protected virtual void EndVisit(IModel m) { }
         protected virtual void BeginVisit(IGroupListCommon cn) { }
         protected virtual void EndVisit(IGroupListCommon cn) { }
         protected virtual void BeginVisit(IGroupListConstants cn) { }
@@ -183,7 +183,7 @@ namespace vSharpStudio.common
         }
 
         protected IConfig currCfg = null;
-        protected IConfigModel currModel = null;
+        protected IModel currModel = null;
         protected IEnumeration currEnum = null;
         protected IForm currForm = null;
         protected IReport currRep = null;
@@ -203,7 +203,7 @@ namespace vSharpStudio.common
 
         protected IPropertiesTab currPropTab => this.currPropTabStack.Peek();
 
-        public void Run(IConfigModel model, Action<ModelVisitorBase, ITreeConfigNode> act = null)
+        public void Run(IModel model, Action<ModelVisitorBase, ITreeConfigNode> act = null)
         {
             this._act = act;
             this.currModel = model;

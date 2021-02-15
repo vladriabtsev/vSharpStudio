@@ -593,7 +593,7 @@ namespace GenFromProto
                     "\n");
             
             #line 119 "C:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- if (!(message.Name.Contains("group") || message.Name.StartsWith("proto_config"))) { 
+ if (!(message.Name.Contains("group") || message.Name.StartsWith("proto_config") || message.Name.StartsWith("proto_model"))) { 
             
             #line default
             #line hidden

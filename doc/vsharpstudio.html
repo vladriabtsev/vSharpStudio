@@ -219,10 +219,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_config_model"><span class="badge">M</span>proto_config_model</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_config_short_history"><span class="badge">M</span>proto_config_short_history</a>
                 </li>
               
@@ -320,6 +316,10 @@
               
                 <li>
                   <a href="#proto_config.proto_main_view_form"><span class="badge">M</span>proto_main_view_form</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_model"><span class="badge">M</span>proto_model</a>
                 </li>
               
                 <li>
@@ -1342,7 +1342,7 @@ App solution relative path to configuration file path </p></td>
               
                 <tr>
                   <td>model</td>
-                  <td><a href="#proto_config.proto_config_model">proto_config_model</a></td>
+                  <td><a href="#proto_config.proto_model">proto_model</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -1358,155 +1358,6 @@ App solution relative path to configuration file path </p></td>
                   <td>group_app_solutions</td>
                   <td><a href="#proto_config.proto_group_list_app_solutions">proto_group_list_app_solutions</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_config_model">proto_config_model</h3>
-        <p>Configuration model</p><p>@attr [CategoryOrder("Db Names Generation", 5)]</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>version</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
-@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name_ui</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>composite_name_max_length</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(8)]
-@attr [Category(&#34;Composite Names Generation&#34;)]
-@attr [DisplayName(&#34;Max length&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_use_composite_names</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(9)]
-@attr [Description(&#34;Use parent-child composite names.&#34;)]
-@attr [Category(&#34;Composite Names Generation&#34;)]
-@attr [DisplayName(&#34;Use Composite&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_use_group_prefix</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(10)]
-@attr [Description(&#34;Composite names use their parent name as prefix. In a case of simple names all object&#39;s name will have only group name as a prefix.&#34;)]
-@attr [Category(&#34;Composite Names Generation&#34;)]
-@attr [DisplayName(&#34;Use Prefix&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>db_settings</td>
-                  <td><a href="#proto_config.db_settings">db_settings</a></td>
-                  <td></td>
-                  <td><p>GENERAL DB SETTINGS
-@attr [PropertyOrderAttribute(11)]
-@attr [ExpandableObjectAttribute()]
-@attr [Description(&#34;General DB generator settings&#34;)]
-@attr [DisplayName(&#34;DB settings&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_common</td>
-                  <td><a href="#proto_config.proto_group_list_common">proto_group_list_common</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_constants</td>
-                  <td><a href="#proto_config.proto_group_list_constants">proto_group_list_constants</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_enumerations</td>
-                  <td><a href="#proto_config.proto_group_list_enumerations">proto_group_list_enumerations</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_catalogs</td>
-                  <td><a href="#proto_config.proto_group_list_catalogs">proto_group_list_catalogs</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_documents</td>
-                  <td><a href="#proto_config.proto_group_documents">proto_group_documents</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_journals</td>
-                  <td><a href="#proto_config.proto_group_list_journals">proto_group_list_journals</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_node_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
-                  <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
@@ -3351,6 +3202,155 @@ repeated proto_document list_forms = 7;
                   <td></td>
                   <td><p>@attr [DisplayName(&#34;For deletion&#34;)]
 @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_model">proto_model</h3>
+        <p>Configuration model</p><p>@attr [CategoryOrder("Db Names Generation", 5)]</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>version</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>composite_name_max_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(8)]
+@attr [Category(&#34;Composite Names Generation&#34;)]
+@attr [DisplayName(&#34;Max length&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_composite_names</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(9)]
+@attr [Description(&#34;Use parent-child composite names.&#34;)]
+@attr [Category(&#34;Composite Names Generation&#34;)]
+@attr [DisplayName(&#34;Use Composite&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_group_prefix</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(10)]
+@attr [Description(&#34;Composite names use their parent name as prefix. In a case of simple names all object&#39;s name will have only group name as a prefix.&#34;)]
+@attr [Category(&#34;Composite Names Generation&#34;)]
+@attr [DisplayName(&#34;Use Prefix&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>db_settings</td>
+                  <td><a href="#proto_config.db_settings">db_settings</a></td>
+                  <td></td>
+                  <td><p>GENERAL DB SETTINGS
+@attr [PropertyOrderAttribute(11)]
+@attr [ExpandableObjectAttribute()]
+@attr [Description(&#34;General DB generator settings&#34;)]
+@attr [DisplayName(&#34;DB settings&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_common</td>
+                  <td><a href="#proto_config.proto_group_list_common">proto_group_list_common</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_constants</td>
+                  <td><a href="#proto_config.proto_group_list_constants">proto_group_list_constants</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_enumerations</td>
+                  <td><a href="#proto_config.proto_group_list_enumerations">proto_group_list_enumerations</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_catalogs</td>
+                  <td><a href="#proto_config.proto_group_list_catalogs">proto_group_list_catalogs</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_documents</td>
+                  <td><a href="#proto_config.proto_group_documents">proto_group_documents</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_journals</td>
+                  <td><a href="#proto_config.proto_group_list_journals">proto_group_list_journals</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>

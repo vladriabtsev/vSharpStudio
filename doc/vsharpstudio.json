@@ -1246,9 +1246,9 @@
               "name": "model",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
-              "type": "proto_config_model",
-              "longType": "proto_config_model",
-              "fullType": "proto_config.proto_config_model",
+              "type": "proto_model",
+              "longType": "proto_model",
+              "fullType": "proto_config.proto_model",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1269,187 +1269,6 @@
               "type": "proto_group_list_app_solutions",
               "longType": "proto_group_list_app_solutions",
               "fullType": "proto_config.proto_group_list_app_solutions",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_config_model",
-          "longName": "proto_config_model",
-          "fullName": "proto_config.proto_config_model",
-          "description": "Configuration model\n@attr [CategoryOrder(\"Db Names Generation\", 5)]",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "version",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "@attr [PropertyOrderAttribute(3)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "composite_name_max_length",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Max length\")]",
-              "label": "",
-              "type": "uint32",
-              "longType": "uint32",
-              "fullType": "uint32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_use_composite_names",
-              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Use parent-child composite names.\")]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Use Composite\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_use_group_prefix",
-              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.\")]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Use Prefix\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "db_settings",
-              "description": "GENERAL DB SETTINGS\n@attr [PropertyOrderAttribute(11)]\n@attr [ExpandableObjectAttribute()]\n@attr [Description(\"General DB generator settings\")]\n@attr [DisplayName(\"DB settings\")]",
-              "label": "",
-              "type": "db_settings",
-              "longType": "db_settings",
-              "fullType": "proto_config.db_settings",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_common",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_list_common",
-              "longType": "proto_group_list_common",
-              "fullType": "proto_config.proto_group_list_common",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_constants",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_list_constants",
-              "longType": "proto_group_list_constants",
-              "fullType": "proto_config.proto_group_list_constants",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_enumerations",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_list_enumerations",
-              "longType": "proto_group_list_enumerations",
-              "fullType": "proto_config.proto_group_list_enumerations",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_catalogs",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_list_catalogs",
-              "longType": "proto_group_list_catalogs",
-              "fullType": "proto_config.proto_group_list_catalogs",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_documents",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_documents",
-              "longType": "proto_group_documents",
-              "fullType": "proto_config.proto_group_documents",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_journals",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_list_journals",
-              "longType": "proto_group_list_journals",
-              "fullType": "proto_config.proto_group_list_journals",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_node_generators_settings",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_plugin_generator_node_settings",
-              "longType": "proto_plugin_generator_node_settings",
-              "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3655,6 +3474,187 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_model",
+          "longName": "proto_model",
+          "fullName": "proto_config.proto_model",
+          "description": "Configuration model\n@attr [CategoryOrder(\"Db Names Generation\", 5)]",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "version",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "composite_name_max_length",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Max length\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_composite_names",
+              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Use parent-child composite names.\")]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Use Composite\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_group_prefix",
+              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.\")]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Use Prefix\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "db_settings",
+              "description": "GENERAL DB SETTINGS\n@attr [PropertyOrderAttribute(11)]\n@attr [ExpandableObjectAttribute()]\n@attr [Description(\"General DB generator settings\")]\n@attr [DisplayName(\"DB settings\")]",
+              "label": "",
+              "type": "db_settings",
+              "longType": "db_settings",
+              "fullType": "proto_config.db_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_common",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_common",
+              "longType": "proto_group_list_common",
+              "fullType": "proto_config.proto_group_list_common",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_constants",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_constants",
+              "longType": "proto_group_list_constants",
+              "fullType": "proto_config.proto_group_list_constants",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_enumerations",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_enumerations",
+              "longType": "proto_group_list_enumerations",
+              "fullType": "proto_config.proto_group_list_enumerations",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_catalogs",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_catalogs",
+              "longType": "proto_group_list_catalogs",
+              "fullType": "proto_config.proto_group_list_catalogs",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_documents",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_documents",
+              "longType": "proto_group_documents",
+              "fullType": "proto_config.proto_group_documents",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_journals",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_journals",
+              "longType": "proto_group_list_journals",
+              "fullType": "proto_config.proto_group_list_journals",
               "ismap": false,
               "defaultValue": ""
             },
