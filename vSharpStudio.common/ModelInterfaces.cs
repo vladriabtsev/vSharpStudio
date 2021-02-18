@@ -46,6 +46,29 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         Folder = 2,
         Custom = 3,
     }
+    public enum EnumCatalogCodeUniqueScope // ModelInterfaces.tt Line: 15
+    {
+        NoScope = 0,
+        Group = 1,
+        Catalog = 2,
+    }
+    public enum EnumCatalogCodeType // ModelInterfaces.tt Line: 15
+    {
+        Number = 0,
+        Text = 1,
+        AutoNumber = 2,
+        AutoText = 3,
+    }
+    public enum FormOrientation // ModelInterfaces.tt Line: 15
+    {
+        Vertical = 0,
+        Horizontal = 1,
+    }
+    public enum FormView // ModelInterfaces.tt Line: 15
+    {
+        Auto = 0,
+        Design = 1,
+    }
     
     public partial interface IUserSettings // ModelInterfaces.tt Line: 29
     {
@@ -559,6 +582,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
+    public partial interface ICatalogCodePropertySettings // ModelInterfaces.tt Line: 29
+    {
+    	EnumCatalogCodeType Type { get; } // ModelInterfaces.tt Line: 51
+    	uint Length { get; } // ModelInterfaces.tt Line: 51
+    	string SequenceGuid { get; } // ModelInterfaces.tt Line: 51
+    	EnumCatalogCodeUniqueScope UniqueScope { get; } // ModelInterfaces.tt Line: 51
+    }
+    
     public partial interface ICatalog : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
@@ -572,6 +603,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
     	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 51
+    	bool UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
     	bool UseNameProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 51
     	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
@@ -595,6 +629,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 44
     	ICatalog this[int index] { get; }
     	int Count();
+    	string PropertyCode { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyName { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDescription { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -677,6 +714,39 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IForm this[int index] { get; }
     	int Count();
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+    }
+    
+    public partial interface IFormMarging // ModelInterfaces.tt Line: 29
+    {
+    	int Left { get; } // ModelInterfaces.tt Line: 51
+    	int Up { get; } // ModelInterfaces.tt Line: 51
+    	int Right { get; } // ModelInterfaces.tt Line: 51
+    	int Bottom { get; } // ModelInterfaces.tt Line: 51
+    }
+    
+    public partial interface IFormPadding // ModelInterfaces.tt Line: 29
+    {
+    	int Left { get; } // ModelInterfaces.tt Line: 51
+    	int Up { get; } // ModelInterfaces.tt Line: 51
+    	int Right { get; } // ModelInterfaces.tt Line: 51
+    	int Bottom { get; } // ModelInterfaces.tt Line: 51
+    }
+    
+    public partial interface IFormStackpanel // ModelInterfaces.tt Line: 29
+    {
+    	FormOrientation Orientation { get; } // ModelInterfaces.tt Line: 51
+    }
+    
+    public partial interface IFormGrid // ModelInterfaces.tt Line: 29
+    {
+    	IFormMarging Marging { get; } // ModelInterfaces.tt Line: 55
+    	IFormPadding Padding { get; } // ModelInterfaces.tt Line: 55
+    }
+    
+    public partial interface IFormDatagrid // ModelInterfaces.tt Line: 29
+    {
+    	IFormMarging Marging { get; } // ModelInterfaces.tt Line: 55
+    	IFormPadding Padding { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IForm : IGuid, IName // ModelInterfaces.tt Line: 29

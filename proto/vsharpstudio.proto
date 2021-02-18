@@ -1044,6 +1044,36 @@ enum proto_enum_catalog_tree_icon {
     Folder = 2;
     Custom = 3;
 }
+enum proto_enum_catalog_code_unique_scope {
+    NoScope = 0;
+    Group = 1;
+    Catalog = 2;
+}
+enum proto_enum_catalog_code_type {
+    Number = 0;
+    Text = 1;
+    AutoNumber = 2;
+    AutoText = 3;
+}
+// @base VmValidatableWithSeverity
+message proto_catalog_code_property_settings {
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Type")]
+    // @attr [Description("Code type")]
+    proto_enum_catalog_code_type type = 3;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Length")]
+    // @attr [Description("Length is number of decimal digits for numbers, string length for text")]
+    uint32 length = 4;
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [DisplayName("Sequence")]
+    // @attr [Description("Sequence for auto code generation")]
+    string sequence_guid = 5;
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Unique Scope")]
+    // @attr [Description("Code has to be unique in selected scope")]
+    proto_enum_catalog_code_unique_scope unique_scope = 7;
+}
 message proto_catalog {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -1078,44 +1108,55 @@ message proto_catalog {
     proto_enum_catalog_tree_icon item_icon_type = 19;
 
     // @attr [PropertyOrderAttribute(21)]
+    // @attr [DisplayName("Use Code")]
+    // @attr [Description("Use Code property for catalog item")]
+    bool use_code_property = 21;
+    // @attr [PropertyOrderAttribute(22)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Code")]
+    // @attr [Description("Code property settings for catalog item")]
+    proto_catalog_code_property_settings code_property_settings = 22;
+    // @attr [BrowsableAttribute(false)]
+    string property_code_guid = 23;
+    // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item")]
-    bool use_name_property = 21;
-    // @attr [PropertyOrderAttribute(22)]
+    bool use_name_property = 41;
+    // @attr [PropertyOrderAttribute(42)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
-    uint32 max_name_length = 22;
+    uint32 max_name_length = 42;
     // @attr [BrowsableAttribute(false)]
-    string property_name_guid = 23;
-    // @attr [PropertyOrderAttribute(31)]
+    string property_name_guid = 43;
+    // @attr [PropertyOrderAttribute(51)]
     // @attr [DisplayName("Use Description")]
     // @attr [Description("Use Description property for catalog item")]
-    bool use_description_property = 31;
-    // @attr [PropertyOrderAttribute(32)]
+    bool use_description_property = 51;
+    // @attr [PropertyOrderAttribute(52)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
-    uint32 max_description_length = 32;
+    uint32 max_description_length = 52;
     // @attr [BrowsableAttribute(false)]
-    string property_description_guid = 33;
+    string property_description_guid = 53;
 
-    // @attr [PropertyOrderAttribute(41)]
+    // @attr [PropertyOrderAttribute(61)]
     // @attr [DisplayName("Use Tree")]
     // @attr [Description("Use tree catalog structure")]
-    bool use_tree = 41;
-    // @attr [PropertyOrderAttribute(42)]
+    bool use_tree = 61;
+    // @attr [PropertyOrderAttribute(62)]
     // @attr [DisplayName("Group Icon")]
     // @attr [Description("Catalog group icon type")]
-    proto_enum_catalog_tree_icon group_icon_type = 42;
-    // @attr [PropertyOrderAttribute(43)]
+    proto_enum_catalog_tree_icon group_icon_type = 62;
+    // @attr [PropertyOrderAttribute(63)]
     // @attr [DisplayName("Levels")]
     // @attr [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
-    uint32 max_tree_levels = 43;
-    // @attr [PropertyOrderAttribute(44)]
+    uint32 max_tree_levels = 63;
+    // @attr [PropertyOrderAttribute(64)]
     // @attr [DisplayName("Group properties")]
     // @attr [Description("Separate set of properties for groups")]
-    bool separate_properties_for_groups = 44;
+    bool separate_properties_for_groups = 64;
     // @attr [BrowsableAttribute(false)]
-    string property_parent_guid = 45;
+    string property_parent_guid = 65;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -1138,6 +1179,20 @@ message proto_group_list_catalogs {
     string prefix_for_db_tables = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_catalog list_catalogs = 8;
+
+    // @attr [PropertyOrderAttribute(21)]
+    // @attr [DisplayName("Code property")]
+    // @attr [Description("Name of code auto generated property if it is used in catalog")]
+    string property_code = 21;
+    // @attr [PropertyOrderAttribute(22)]
+    // @attr [DisplayName("Name property")]
+    // @attr [Description("Name of name auto generated property if it is used in catalog")]
+    string property_name = 22;
+    // @attr [PropertyOrderAttribute(23)]
+    // @attr [DisplayName("Description property")]
+    // @attr [Description("Name of description auto generated property if it is used in catalog")]
+    string property_description = 23;
+
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1280,6 +1335,42 @@ message proto_group_list_forms {
     repeated proto_form list_forms = 7;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+enum proto_form_orientation {
+    Vertical = 0;
+    Horizontal = 1;
+}
+// @base VmValidatableWithSeverity
+message proto_form_marging {
+    int32 left = 1;
+    int32 up = 2;
+    int32 right = 3;
+    int32 bottom = 4;
+}
+// @base VmValidatableWithSeverity
+message proto_form_padding {
+    int32 left = 1;
+    int32 up = 2;
+    int32 right = 3;
+    int32 bottom = 4;
+}
+// @base VmValidatableWithSeverity
+message proto_form_stackpanel {
+    proto_form_orientation orientation = 1;
+}
+// @base VmValidatableWithSeverity
+message proto_form_grid {
+    proto_form_marging marging = 1;
+    proto_form_padding padding = 2;
+}
+// @base VmValidatableWithSeverity
+message proto_form_datagrid {
+    proto_form_marging marging = 1;
+    proto_form_padding padding = 2;
+}
+enum proto_form_view {
+    Auto = 0;
+    Design = 1;
 }
 message proto_form {
     // @attr [ReadOnly(true)]

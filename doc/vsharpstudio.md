@@ -11,6 +11,7 @@
     - [proto_app_solution](#proto_config.proto_app_solution)
     - [proto_base_config_link](#proto_config.proto_base_config_link)
     - [proto_catalog](#proto_config.proto_catalog)
+    - [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings)
     - [proto_catalog_items_group](#proto_config.proto_catalog_items_group)
     - [proto_config](#proto_config.proto_config)
     - [proto_config_short_history](#proto_config.proto_config_short_history)
@@ -20,6 +21,11 @@
     - [proto_enumeration](#proto_config.proto_enumeration)
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_form](#proto_config.proto_form)
+    - [proto_form_datagrid](#proto_config.proto_form_datagrid)
+    - [proto_form_grid](#proto_config.proto_form_grid)
+    - [proto_form_marging](#proto_config.proto_form_marging)
+    - [proto_form_padding](#proto_config.proto_form_padding)
+    - [proto_form_stackpanel](#proto_config.proto_form_stackpanel)
     - [proto_group_documents](#proto_config.proto_group_documents)
     - [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions)
     - [proto_group_list_base_config_links](#proto_config.proto_group_list_base_config_links)
@@ -57,9 +63,13 @@
   
     - [db_id_generator_method](#proto_config.db_id_generator_method)
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
+    - [proto_enum_catalog_code_type](#proto_config.proto_enum_catalog_code_type)
+    - [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope)
     - [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
+    - [proto_form_orientation](#proto_config.proto_form_orientation)
+    - [proto_form_view](#proto_config.proto_form_view)
   
   
   
@@ -243,18 +253,39 @@ Application project generator
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
 | item_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
-| use_name_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
-| max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
+| use_code_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
+| code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
+| property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| use_name_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
+| max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | property_name_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_description_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
-| max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
+| use_description_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
+| max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(52)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
 | property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
-| group_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
-| max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(43)] @attr [DisplayName(&#34;Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
-| separate_properties_for_groups | [bool](#bool) |  | @attr [PropertyOrderAttribute(44)] @attr [DisplayName(&#34;Group properties&#34;)] @attr [Description(&#34;Separate set of properties for groups&#34;)] |
+| use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(61)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
+| group_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(62)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
+| max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(63)] @attr [DisplayName(&#34;Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
+| separate_properties_for_groups | [bool](#bool) |  | @attr [PropertyOrderAttribute(64)] @attr [DisplayName(&#34;Group properties&#34;)] @attr [Description(&#34;Separate set of properties for groups&#34;)] |
 | property_parent_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_catalog_code_property_settings"></a>
+
+### proto_catalog_code_property_settings
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [proto_enum_catalog_code_type](#proto_config.proto_enum_catalog_code_type) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Type&#34;)] @attr [Description(&#34;Code type&#34;)] |
+| length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Length is number of decimal digits for numbers, string length for text&#34;)] |
+| sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Sequence&#34;)] @attr [Description(&#34;Sequence for auto code generation&#34;)] |
+| unique_scope | [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
 
 
 
@@ -473,6 +504,89 @@ Constant application wise value
 
 
 
+<a name="proto_config.proto_form_datagrid"></a>
+
+### proto_form_datagrid
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| marging | [proto_form_marging](#proto_config.proto_form_marging) |  |  |
+| padding | [proto_form_padding](#proto_config.proto_form_padding) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_form_grid"></a>
+
+### proto_form_grid
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| marging | [proto_form_marging](#proto_config.proto_form_marging) |  |  |
+| padding | [proto_form_padding](#proto_config.proto_form_padding) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_form_marging"></a>
+
+### proto_form_marging
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| left | [int32](#int32) |  |  |
+| up | [int32](#int32) |  |  |
+| right | [int32](#int32) |  |  |
+| bottom | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_form_padding"></a>
+
+### proto_form_padding
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| left | [int32](#int32) |  |  |
+| up | [int32](#int32) |  |  |
+| right | [int32](#int32) |  |  |
+| bottom | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_form_stackpanel"></a>
+
+### proto_form_stackpanel
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| orientation | [proto_form_orientation](#proto_config.proto_form_orientation) |  |  |
+
+
+
+
+
+
 <a name="proto_config.proto_group_documents"></a>
 
 ### proto_group_documents
@@ -551,6 +665,9 @@ Constant application wise value
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
+| property_code | [string](#string) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
+| property_name | [string](#string) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
+| property_description | [string](#string) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -1212,6 +1329,33 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 
 
+<a name="proto_config.proto_enum_catalog_code_type"></a>
+
+### proto_enum_catalog_code_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| Number | 0 |  |
+| Text | 1 |  |
+| AutoNumber | 2 |  |
+| AutoText | 3 |  |
+
+
+
+<a name="proto_config.proto_enum_catalog_code_unique_scope"></a>
+
+### proto_enum_catalog_code_unique_scope
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NoScope | 0 |  |
+| Group | 1 |  |
+| Catalog | 2 |  |
+
+
+
 <a name="proto_config.proto_enum_catalog_tree_icon"></a>
 
 ### proto_enum_catalog_tree_icon
@@ -1259,6 +1403,30 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | ---- | ------ | ----------- |
 | INT | 0 |  |
 | LONG | 1 |  |
+
+
+
+<a name="proto_config.proto_form_orientation"></a>
+
+### proto_form_orientation
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| Vertical | 0 |  |
+| Horizontal | 1 |  |
+
+
+
+<a name="proto_config.proto_form_view"></a>
+
+### proto_form_view
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| Auto | 0 |  |
+| Design | 1 |  |
 
 
  

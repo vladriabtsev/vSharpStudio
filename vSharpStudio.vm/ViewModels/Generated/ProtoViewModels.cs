@@ -620,7 +620,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -986,7 +986,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -1253,7 +1253,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -2063,7 +2063,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -2466,7 +2466,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -2927,7 +2927,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -3747,7 +3747,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -4034,7 +4034,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -4507,7 +4507,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -4930,7 +4930,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -5203,7 +5203,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -6076,7 +6076,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -7113,7 +7113,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -7862,7 +7862,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -8236,7 +8236,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -8658,7 +8658,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -9066,7 +9066,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -9492,7 +9492,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -9912,7 +9912,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -10379,7 +10379,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -10830,7 +10830,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -11266,7 +11266,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -11688,7 +11688,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -12098,7 +12098,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -12520,7 +12520,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -13028,7 +13028,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -13457,7 +13457,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -13899,13 +13899,205 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        #endregion Properties
+    }
+    public partial class CatalogCodePropertySettingsValidator : ValidatorBase<CatalogCodePropertySettings, CatalogCodePropertySettingsValidator> { } // Class.tt Line: 6
+    public partial class CatalogCodePropertySettings : VmValidatableWithSeverity<CatalogCodePropertySettings, CatalogCodePropertySettingsValidator>, ICatalogCodePropertySettings // Class.tt Line: 7
+    {
+        #region CTOR
+        public CatalogCodePropertySettings() 
+            : base(CatalogCodePropertySettingsValidator.Validator) // Class.tt Line: 45
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static CatalogCodePropertySettings Clone(ICatalogCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            CatalogCodePropertySettings vm = new CatalogCodePropertySettings();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Type = from.Type; // Clone.tt Line: 65
+            vm.Length = from.Length; // Clone.tt Line: 65
+            vm.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 65
+            vm.UniqueScope = from.UniqueScope; // Clone.tt Line: 65
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(CatalogCodePropertySettings to, ICatalogCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.Type = from.Type; // Clone.tt Line: 141
+            to.Length = from.Length; // Clone.tt Line: 141
+            to.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 141
+            to.UniqueScope = from.UniqueScope; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override CatalogCodePropertySettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return CatalogCodePropertySettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(CatalogCodePropertySettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            CatalogCodePropertySettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_catalog_code_property_settings' to 'CatalogCodePropertySettings'
+        public static CatalogCodePropertySettings ConvertToVM(Proto.Config.proto_catalog_code_property_settings m, CatalogCodePropertySettings vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Type = (EnumCatalogCodeType)m.Type; // Clone.tt Line: 221
+            vm.Length = m.Length; // Clone.tt Line: 221
+            vm.SequenceGuid = m.SequenceGuid; // Clone.tt Line: 221
+            vm.UniqueScope = (EnumCatalogCodeUniqueScope)m.UniqueScope; // Clone.tt Line: 221
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'CatalogCodePropertySettings' to 'proto_catalog_code_property_settings'
+        public static Proto.Config.proto_catalog_code_property_settings ConvertToProto(CatalogCodePropertySettings vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_catalog_code_property_settings m = new Proto.Config.proto_catalog_code_property_settings(); // Clone.tt Line: 239
+            m.Type = (Proto.Config.proto_enum_catalog_code_type)vm.Type; // Clone.tt Line: 274
+            m.Length = vm.Length; // Clone.tt Line: 276
+            m.SequenceGuid = vm.SequenceGuid; // Clone.tt Line: 276
+            m.UniqueScope = (Proto.Config.proto_enum_catalog_code_unique_scope)vm.UniqueScope; // Clone.tt Line: 274
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [PropertyOrderAttribute(3)]
+        [DisplayName("Type")]
+        [Description("Code type")]
+        public EnumCatalogCodeType Type // Property.tt Line: 55
+        { 
+            get { return this._Type; }
+            set
+            {
+                if (this._Type != value)
+                {
+                    this.OnTypeChanging(ref value);
+                    this._Type = value;
+                    this.OnTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumCatalogCodeType _Type;
+        partial void OnTypeChanging(ref EnumCatalogCodeType to); // Property.tt Line: 79
+        partial void OnTypeChanged();
+        
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Length")]
+        [Description("Length is number of decimal digits for numbers, string length for text")]
+        public uint Length // Property.tt Line: 55
+        { 
+            get { return this._Length; }
+            set
+            {
+                if (this._Length != value)
+                {
+                    this.OnLengthChanging(ref value);
+                    this._Length = value;
+                    this.OnLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _Length;
+        partial void OnLengthChanging(ref uint to); // Property.tt Line: 79
+        partial void OnLengthChanged();
+        
+        [PropertyOrderAttribute(5)]
+        [DisplayName("Sequence")]
+        [Description("Sequence for auto code generation")]
+        public string SequenceGuid // Property.tt Line: 55
+        { 
+            get { return this._SequenceGuid; }
+            set
+            {
+                if (this._SequenceGuid != value)
+                {
+                    this.OnSequenceGuidChanging(ref value);
+                    this._SequenceGuid = value;
+                    this.OnSequenceGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _SequenceGuid = string.Empty;
+        partial void OnSequenceGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnSequenceGuidChanged();
+        
+        [PropertyOrderAttribute(7)]
+        [DisplayName("Unique Scope")]
+        [Description("Code has to be unique in selected scope")]
+        public EnumCatalogCodeUniqueScope UniqueScope // Property.tt Line: 55
+        { 
+            get { return this._UniqueScope; }
+            set
+            {
+                if (this._UniqueScope != value)
+                {
+                    this.OnUniqueScopeChanging(ref value);
+                    this._UniqueScope = value;
+                    this.OnUniqueScopeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumCatalogCodeUniqueScope _UniqueScope;
+        partial void OnUniqueScopeChanging(ref EnumCatalogCodeUniqueScope to); // Property.tt Line: 79
+        partial void OnUniqueScopeChanged();
         #endregion Properties
     }
     public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { } // Class.tt Line: 6
@@ -13926,6 +14118,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
             this.GroupForms = new GroupListForms(this); // Class.tt Line: 33
             this.GroupReports = new GroupListReports(this); // Class.tt Line: 33
+            this.CodePropertySettings = new CatalogCodePropertySettings(); // Class.tt Line: 31
             this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
@@ -13967,6 +14160,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
             vm.ItemIconType = from.ItemIconType; // Clone.tt Line: 65
+            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
+            if (isDeep) // Clone.tt Line: 62
+                vm.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Clone(from.CodePropertySettings, isDeep);
+            vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 65
             vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
             vm.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 65
             vm.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 65
@@ -14009,6 +14206,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
             to.ItemIconType = from.ItemIconType; // Clone.tt Line: 141
+            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 138
+                vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Update((CatalogCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
+            to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 141
             to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
             to.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 141
             to.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 141
@@ -14107,6 +14308,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
             vm.ItemIconType = (EnumCatalogTreeIcon)m.ItemIconType; // Clone.tt Line: 221
+            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
+            if (vm.CodePropertySettings == null) // Clone.tt Line: 213
+                vm.CodePropertySettings = new CatalogCodePropertySettings(); // Clone.tt Line: 217
+            vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToVM(m.CodePropertySettings, (CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
+            vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
             vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
             vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
             vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
@@ -14149,6 +14355,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
             m.ItemIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.ItemIconType; // Clone.tt Line: 274
+            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
+            m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
+            m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
             m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
             m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
             m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
@@ -14182,6 +14391,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.GroupForms.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupReports.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.CodePropertySettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
@@ -14475,6 +14686,76 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnItemIconTypeChanged();
         
         [PropertyOrderAttribute(21)]
+        [DisplayName("Use Code")]
+        [Description("Use Code property for catalog item")]
+        public bool UseCodeProperty // Property.tt Line: 55
+        { 
+            get { return this._UseCodeProperty; }
+            set
+            {
+                if (this._UseCodeProperty != value)
+                {
+                    this.OnUseCodePropertyChanging(ref value);
+                    this._UseCodeProperty = value;
+                    this.OnUseCodePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseCodeProperty;
+        partial void OnUseCodePropertyChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseCodePropertyChanged();
+        
+        [PropertyOrderAttribute(22)]
+        [ExpandableObjectAttribute()]
+        [DisplayName("Code")]
+        [Description("Code property settings for catalog item")]
+        public CatalogCodePropertySettings CodePropertySettings // Property.tt Line: 55
+        { 
+            get { return this._CodePropertySettings; }
+            set
+            {
+                if (this._CodePropertySettings != value)
+                {
+                    this.OnCodePropertySettingsChanging(ref value);
+                    this._CodePropertySettings = value;
+                    this.OnCodePropertySettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private CatalogCodePropertySettings _CodePropertySettings;
+        ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return (this as Catalog).CodePropertySettings; } } // Property.tt Line: 77
+        partial void OnCodePropertySettingsChanging(ref CatalogCodePropertySettings to); // Property.tt Line: 79
+        partial void OnCodePropertySettingsChanged();
+        //ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return this._CodePropertySettings; } }
+        
+        [BrowsableAttribute(false)]
+        public string PropertyCodeGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyCodeGuid; }
+            set
+            {
+                if (this._PropertyCodeGuid != value)
+                {
+                    this.OnPropertyCodeGuidChanging(ref value);
+                    this._PropertyCodeGuid = value;
+                    this.OnPropertyCodeGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyCodeGuid = string.Empty;
+        partial void OnPropertyCodeGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyCodeGuidChanged();
+        
+        [PropertyOrderAttribute(41)]
         [DisplayName("Use Name")]
         [Description("Use Name property for catalog item")]
         public bool UseNameProperty // Property.tt Line: 55
@@ -14497,7 +14778,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnUseNamePropertyChanging(ref bool to); // Property.tt Line: 79
         partial void OnUseNamePropertyChanged();
         
-        [PropertyOrderAttribute(22)]
+        [PropertyOrderAttribute(42)]
         [DisplayName("Max Length")]
         [Description("Maximum catalog item name length. If zero, than unlimited length")]
         public uint MaxNameLength // Property.tt Line: 55
@@ -14541,7 +14822,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnPropertyNameGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyNameGuidChanged();
         
-        [PropertyOrderAttribute(31)]
+        [PropertyOrderAttribute(51)]
         [DisplayName("Use Description")]
         [Description("Use Description property for catalog item")]
         public bool UseDescriptionProperty // Property.tt Line: 55
@@ -14564,7 +14845,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnUseDescriptionPropertyChanging(ref bool to); // Property.tt Line: 79
         partial void OnUseDescriptionPropertyChanged();
         
-        [PropertyOrderAttribute(32)]
+        [PropertyOrderAttribute(52)]
         [DisplayName("Max Length")]
         [Description("Maximum catalog item description length. If zero, than unlimited length")]
         public uint MaxDescriptionLength // Property.tt Line: 55
@@ -14608,7 +14889,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnPropertyDescriptionGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyDescriptionGuidChanged();
         
-        [PropertyOrderAttribute(41)]
+        [PropertyOrderAttribute(61)]
         [DisplayName("Use Tree")]
         [Description("Use tree catalog structure")]
         public bool UseTree // Property.tt Line: 55
@@ -14631,7 +14912,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnUseTreeChanging(ref bool to); // Property.tt Line: 79
         partial void OnUseTreeChanged();
         
-        [PropertyOrderAttribute(42)]
+        [PropertyOrderAttribute(62)]
         [DisplayName("Group Icon")]
         [Description("Catalog group icon type")]
         public EnumCatalogTreeIcon GroupIconType // Property.tt Line: 55
@@ -14654,7 +14935,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnGroupIconTypeChanging(ref EnumCatalogTreeIcon to); // Property.tt Line: 79
         partial void OnGroupIconTypeChanged();
         
-        [PropertyOrderAttribute(43)]
+        [PropertyOrderAttribute(63)]
         [DisplayName("Levels")]
         [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
         public uint MaxTreeLevels // Property.tt Line: 55
@@ -14677,7 +14958,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         partial void OnMaxTreeLevelsChanging(ref uint to); // Property.tt Line: 79
         partial void OnMaxTreeLevelsChanged();
         
-        [PropertyOrderAttribute(44)]
+        [PropertyOrderAttribute(64)]
         [DisplayName("Group properties")]
         [Description("Separate set of properties for groups")]
         public bool SeparatePropertiesForGroups // Property.tt Line: 55
@@ -14757,7 +15038,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -14818,6 +15099,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             vm.ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListCatalogs) // Clone.tt Line: 52
                 vm.ListCatalogs.Add(Catalog.Clone(vm, (Catalog)t, isDeep));
+            vm.PropertyCode = from.PropertyCode; // Clone.tt Line: 65
+            vm.PropertyName = from.PropertyName; // Clone.tt Line: 65
+            vm.PropertyDescription = from.PropertyDescription; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -14873,6 +15157,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                     }
                 }
             }
+            to.PropertyCode = from.PropertyCode; // Clone.tt Line: 141
+            to.PropertyName = from.PropertyName; // Clone.tt Line: 141
+            to.PropertyDescription = from.PropertyDescription; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -14949,6 +15236,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                 var tvm = Catalog.ConvertToVM(t, new Catalog(vm)); // Clone.tt Line: 204
                 vm.ListCatalogs.Add(tvm);
             }
+            vm.PropertyCode = m.PropertyCode; // Clone.tt Line: 221
+            vm.PropertyName = m.PropertyName; // Clone.tt Line: 221
+            vm.PropertyDescription = m.PropertyDescription; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -14975,6 +15265,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             m.PrefixForDbTables = vm.PrefixForDbTables; // Clone.tt Line: 276
             foreach (var t in vm.ListCatalogs) // Clone.tt Line: 242
                 m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); // Clone.tt Line: 246
+            m.PropertyCode = vm.PropertyCode; // Clone.tt Line: 276
+            m.PropertyName = vm.PropertyName; // Clone.tt Line: 276
+            m.PropertyDescription = vm.PropertyDescription; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -15170,6 +15463,75 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             item.Parent = null;
         }
         
+        [PropertyOrderAttribute(21)]
+        [DisplayName("Code property")]
+        [Description("Name of code auto generated property if it is used in catalog")]
+        public string PropertyCode // Property.tt Line: 55
+        { 
+            get { return this._PropertyCode; }
+            set
+            {
+                if (this._PropertyCode != value)
+                {
+                    this.OnPropertyCodeChanging(ref value);
+                    this._PropertyCode = value;
+                    this.OnPropertyCodeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyCode = string.Empty;
+        partial void OnPropertyCodeChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyCodeChanged();
+        
+        [PropertyOrderAttribute(22)]
+        [DisplayName("Name property")]
+        [Description("Name of name auto generated property if it is used in catalog")]
+        public string PropertyName // Property.tt Line: 55
+        { 
+            get { return this._PropertyName; }
+            set
+            {
+                if (this._PropertyName != value)
+                {
+                    this.OnPropertyNameChanging(ref value);
+                    this._PropertyName = value;
+                    this.OnPropertyNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyName = string.Empty;
+        partial void OnPropertyNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyNameChanged();
+        
+        [PropertyOrderAttribute(23)]
+        [DisplayName("Description property")]
+        [Description("Name of description auto generated property if it is used in catalog")]
+        public string PropertyDescription // Property.tt Line: 55
+        { 
+            get { return this._PropertyDescription; }
+            set
+            {
+                if (this._PropertyDescription != value)
+                {
+                    this.OnPropertyDescriptionChanging(ref value);
+                    this._PropertyDescription = value;
+                    this.OnPropertyDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDescription = string.Empty;
+        partial void OnPropertyDescriptionChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyDescriptionChanged();
+        
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
@@ -15206,7 +15568,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -15622,7 +15984,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -16128,7 +16490,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -16550,7 +16912,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -16974,7 +17336,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -17425,7 +17787,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -17851,13 +18213,781 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        #endregion Properties
+    }
+    public partial class FormMargingValidator : ValidatorBase<FormMarging, FormMargingValidator> { } // Class.tt Line: 6
+    public partial class FormMarging : VmValidatableWithSeverity<FormMarging, FormMargingValidator>, IFormMarging // Class.tt Line: 7
+    {
+        #region CTOR
+        public FormMarging() 
+            : base(FormMargingValidator.Validator) // Class.tt Line: 45
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static FormMarging Clone(IFormMarging from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            FormMarging vm = new FormMarging();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Left = from.Left; // Clone.tt Line: 65
+            vm.Up = from.Up; // Clone.tt Line: 65
+            vm.Right = from.Right; // Clone.tt Line: 65
+            vm.Bottom = from.Bottom; // Clone.tt Line: 65
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(FormMarging to, IFormMarging from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.Left = from.Left; // Clone.tt Line: 141
+            to.Up = from.Up; // Clone.tt Line: 141
+            to.Right = from.Right; // Clone.tt Line: 141
+            to.Bottom = from.Bottom; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override FormMarging Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return FormMarging.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(FormMarging from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            FormMarging.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_form_marging' to 'FormMarging'
+        public static FormMarging ConvertToVM(Proto.Config.proto_form_marging m, FormMarging vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Left = m.Left; // Clone.tt Line: 221
+            vm.Up = m.Up; // Clone.tt Line: 221
+            vm.Right = m.Right; // Clone.tt Line: 221
+            vm.Bottom = m.Bottom; // Clone.tt Line: 221
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'FormMarging' to 'proto_form_marging'
+        public static Proto.Config.proto_form_marging ConvertToProto(FormMarging vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_form_marging m = new Proto.Config.proto_form_marging(); // Clone.tt Line: 239
+            m.Left = vm.Left; // Clone.tt Line: 276
+            m.Up = vm.Up; // Clone.tt Line: 276
+            m.Right = vm.Right; // Clone.tt Line: 276
+            m.Bottom = vm.Bottom; // Clone.tt Line: 276
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        public int Left // Property.tt Line: 55
+        { 
+            get { return this._Left; }
+            set
+            {
+                if (this._Left != value)
+                {
+                    this.OnLeftChanging(ref value);
+                    this._Left = value;
+                    this.OnLeftChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _Left;
+        partial void OnLeftChanging(ref int to); // Property.tt Line: 79
+        partial void OnLeftChanged();
+        
+        public int Up // Property.tt Line: 55
+        { 
+            get { return this._Up; }
+            set
+            {
+                if (this._Up != value)
+                {
+                    this.OnUpChanging(ref value);
+                    this._Up = value;
+                    this.OnUpChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _Up;
+        partial void OnUpChanging(ref int to); // Property.tt Line: 79
+        partial void OnUpChanged();
+        
+        public int Right // Property.tt Line: 55
+        { 
+            get { return this._Right; }
+            set
+            {
+                if (this._Right != value)
+                {
+                    this.OnRightChanging(ref value);
+                    this._Right = value;
+                    this.OnRightChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _Right;
+        partial void OnRightChanging(ref int to); // Property.tt Line: 79
+        partial void OnRightChanged();
+        
+        public int Bottom // Property.tt Line: 55
+        { 
+            get { return this._Bottom; }
+            set
+            {
+                if (this._Bottom != value)
+                {
+                    this.OnBottomChanging(ref value);
+                    this._Bottom = value;
+                    this.OnBottomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _Bottom;
+        partial void OnBottomChanging(ref int to); // Property.tt Line: 79
+        partial void OnBottomChanged();
+        #endregion Properties
+    }
+    public partial class FormPaddingValidator : ValidatorBase<FormPadding, FormPaddingValidator> { } // Class.tt Line: 6
+    public partial class FormPadding : VmValidatableWithSeverity<FormPadding, FormPaddingValidator>, IFormPadding // Class.tt Line: 7
+    {
+        #region CTOR
+        public FormPadding() 
+            : base(FormPaddingValidator.Validator) // Class.tt Line: 45
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static FormPadding Clone(IFormPadding from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            FormPadding vm = new FormPadding();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Left = from.Left; // Clone.tt Line: 65
+            vm.Up = from.Up; // Clone.tt Line: 65
+            vm.Right = from.Right; // Clone.tt Line: 65
+            vm.Bottom = from.Bottom; // Clone.tt Line: 65
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(FormPadding to, IFormPadding from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.Left = from.Left; // Clone.tt Line: 141
+            to.Up = from.Up; // Clone.tt Line: 141
+            to.Right = from.Right; // Clone.tt Line: 141
+            to.Bottom = from.Bottom; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override FormPadding Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return FormPadding.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(FormPadding from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            FormPadding.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_form_padding' to 'FormPadding'
+        public static FormPadding ConvertToVM(Proto.Config.proto_form_padding m, FormPadding vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Left = m.Left; // Clone.tt Line: 221
+            vm.Up = m.Up; // Clone.tt Line: 221
+            vm.Right = m.Right; // Clone.tt Line: 221
+            vm.Bottom = m.Bottom; // Clone.tt Line: 221
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'FormPadding' to 'proto_form_padding'
+        public static Proto.Config.proto_form_padding ConvertToProto(FormPadding vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_form_padding m = new Proto.Config.proto_form_padding(); // Clone.tt Line: 239
+            m.Left = vm.Left; // Clone.tt Line: 276
+            m.Up = vm.Up; // Clone.tt Line: 276
+            m.Right = vm.Right; // Clone.tt Line: 276
+            m.Bottom = vm.Bottom; // Clone.tt Line: 276
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        public int Left // Property.tt Line: 55
+        { 
+            get { return this._Left; }
+            set
+            {
+                if (this._Left != value)
+                {
+                    this.OnLeftChanging(ref value);
+                    this._Left = value;
+                    this.OnLeftChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _Left;
+        partial void OnLeftChanging(ref int to); // Property.tt Line: 79
+        partial void OnLeftChanged();
+        
+        public int Up // Property.tt Line: 55
+        { 
+            get { return this._Up; }
+            set
+            {
+                if (this._Up != value)
+                {
+                    this.OnUpChanging(ref value);
+                    this._Up = value;
+                    this.OnUpChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _Up;
+        partial void OnUpChanging(ref int to); // Property.tt Line: 79
+        partial void OnUpChanged();
+        
+        public int Right // Property.tt Line: 55
+        { 
+            get { return this._Right; }
+            set
+            {
+                if (this._Right != value)
+                {
+                    this.OnRightChanging(ref value);
+                    this._Right = value;
+                    this.OnRightChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _Right;
+        partial void OnRightChanging(ref int to); // Property.tt Line: 79
+        partial void OnRightChanged();
+        
+        public int Bottom // Property.tt Line: 55
+        { 
+            get { return this._Bottom; }
+            set
+            {
+                if (this._Bottom != value)
+                {
+                    this.OnBottomChanging(ref value);
+                    this._Bottom = value;
+                    this.OnBottomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _Bottom;
+        partial void OnBottomChanging(ref int to); // Property.tt Line: 79
+        partial void OnBottomChanged();
+        #endregion Properties
+    }
+    public partial class FormStackpanelValidator : ValidatorBase<FormStackpanel, FormStackpanelValidator> { } // Class.tt Line: 6
+    public partial class FormStackpanel : VmValidatableWithSeverity<FormStackpanel, FormStackpanelValidator>, IFormStackpanel // Class.tt Line: 7
+    {
+        #region CTOR
+        public FormStackpanel() 
+            : base(FormStackpanelValidator.Validator) // Class.tt Line: 45
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static FormStackpanel Clone(IFormStackpanel from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            FormStackpanel vm = new FormStackpanel();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Orientation = from.Orientation; // Clone.tt Line: 65
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(FormStackpanel to, IFormStackpanel from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.Orientation = from.Orientation; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override FormStackpanel Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return FormStackpanel.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(FormStackpanel from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            FormStackpanel.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_form_stackpanel' to 'FormStackpanel'
+        public static FormStackpanel ConvertToVM(Proto.Config.proto_form_stackpanel m, FormStackpanel vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Orientation = (FormOrientation)m.Orientation; // Clone.tt Line: 221
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'FormStackpanel' to 'proto_form_stackpanel'
+        public static Proto.Config.proto_form_stackpanel ConvertToProto(FormStackpanel vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_form_stackpanel m = new Proto.Config.proto_form_stackpanel(); // Clone.tt Line: 239
+            m.Orientation = (Proto.Config.proto_form_orientation)vm.Orientation; // Clone.tt Line: 274
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        public FormOrientation Orientation // Property.tt Line: 55
+        { 
+            get { return this._Orientation; }
+            set
+            {
+                if (this._Orientation != value)
+                {
+                    this.OnOrientationChanging(ref value);
+                    this._Orientation = value;
+                    this.OnOrientationChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private FormOrientation _Orientation;
+        partial void OnOrientationChanging(ref FormOrientation to); // Property.tt Line: 79
+        partial void OnOrientationChanged();
+        #endregion Properties
+    }
+    public partial class FormGridValidator : ValidatorBase<FormGrid, FormGridValidator> { } // Class.tt Line: 6
+    public partial class FormGrid : VmValidatableWithSeverity<FormGrid, FormGridValidator>, IFormGrid // Class.tt Line: 7
+    {
+        #region CTOR
+        public FormGrid() 
+            : base(FormGridValidator.Validator) // Class.tt Line: 45
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.Marging = new FormMarging(); // Class.tt Line: 60
+            this.Padding = new FormPadding(); // Class.tt Line: 60
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static FormGrid Clone(IFormGrid from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            FormGrid vm = new FormGrid();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            if (isDeep) // Clone.tt Line: 62
+                vm.Marging = vSharpStudio.vm.ViewModels.FormMarging.Clone(from.Marging, isDeep);
+            if (isDeep) // Clone.tt Line: 62
+                vm.Padding = vSharpStudio.vm.ViewModels.FormPadding.Clone(from.Padding, isDeep);
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(FormGrid to, IFormGrid from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            if (isDeep) // Clone.tt Line: 138
+                vSharpStudio.vm.ViewModels.FormMarging.Update((FormMarging)to.Marging, from.Marging, isDeep);
+            if (isDeep) // Clone.tt Line: 138
+                vSharpStudio.vm.ViewModels.FormPadding.Update((FormPadding)to.Padding, from.Padding, isDeep);
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override FormGrid Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return FormGrid.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(FormGrid from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            FormGrid.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_form_grid' to 'FormGrid'
+        public static FormGrid ConvertToVM(Proto.Config.proto_form_grid m, FormGrid vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            if (vm.Marging == null) // Clone.tt Line: 213
+                vm.Marging = new FormMarging(); // Clone.tt Line: 217
+            vSharpStudio.vm.ViewModels.FormMarging.ConvertToVM(m.Marging, (FormMarging)vm.Marging); // Clone.tt Line: 219
+            if (vm.Padding == null) // Clone.tt Line: 213
+                vm.Padding = new FormPadding(); // Clone.tt Line: 217
+            vSharpStudio.vm.ViewModels.FormPadding.ConvertToVM(m.Padding, (FormPadding)vm.Padding); // Clone.tt Line: 219
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'FormGrid' to 'proto_form_grid'
+        public static Proto.Config.proto_form_grid ConvertToProto(FormGrid vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_form_grid m = new Proto.Config.proto_form_grid(); // Clone.tt Line: 239
+            m.Marging = vSharpStudio.vm.ViewModels.FormMarging.ConvertToProto((FormMarging)vm.Marging); // Clone.tt Line: 270
+            m.Padding = vSharpStudio.vm.ViewModels.FormPadding.ConvertToProto((FormPadding)vm.Padding); // Clone.tt Line: 270
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            this.Marging.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.Padding.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        public FormMarging Marging // Property.tt Line: 55
+        { 
+            get { return this._Marging; }
+            set
+            {
+                if (this._Marging != value)
+                {
+                    this.OnMargingChanging(ref value);
+                    this._Marging = value;
+                    this.OnMargingChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private FormMarging _Marging;
+        IFormMarging IFormGrid.Marging { get { return (this as FormGrid).Marging; } } // Property.tt Line: 77
+        partial void OnMargingChanging(ref FormMarging to); // Property.tt Line: 79
+        partial void OnMargingChanged();
+        //IFormMarging IFormGrid.Marging { get { return this._Marging; } }
+        
+        public FormPadding Padding // Property.tt Line: 55
+        { 
+            get { return this._Padding; }
+            set
+            {
+                if (this._Padding != value)
+                {
+                    this.OnPaddingChanging(ref value);
+                    this._Padding = value;
+                    this.OnPaddingChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private FormPadding _Padding;
+        IFormPadding IFormGrid.Padding { get { return (this as FormGrid).Padding; } } // Property.tt Line: 77
+        partial void OnPaddingChanging(ref FormPadding to); // Property.tt Line: 79
+        partial void OnPaddingChanged();
+        //IFormPadding IFormGrid.Padding { get { return this._Padding; } }
+        #endregion Properties
+    }
+    public partial class FormDatagridValidator : ValidatorBase<FormDatagrid, FormDatagridValidator> { } // Class.tt Line: 6
+    public partial class FormDatagrid : VmValidatableWithSeverity<FormDatagrid, FormDatagridValidator>, IFormDatagrid // Class.tt Line: 7
+    {
+        #region CTOR
+        public FormDatagrid() 
+            : base(FormDatagridValidator.Validator) // Class.tt Line: 45
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.Marging = new FormMarging(); // Class.tt Line: 60
+            this.Padding = new FormPadding(); // Class.tt Line: 60
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static FormDatagrid Clone(IFormDatagrid from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            FormDatagrid vm = new FormDatagrid();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            if (isDeep) // Clone.tt Line: 62
+                vm.Marging = vSharpStudio.vm.ViewModels.FormMarging.Clone(from.Marging, isDeep);
+            if (isDeep) // Clone.tt Line: 62
+                vm.Padding = vSharpStudio.vm.ViewModels.FormPadding.Clone(from.Padding, isDeep);
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(FormDatagrid to, IFormDatagrid from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            if (isDeep) // Clone.tt Line: 138
+                vSharpStudio.vm.ViewModels.FormMarging.Update((FormMarging)to.Marging, from.Marging, isDeep);
+            if (isDeep) // Clone.tt Line: 138
+                vSharpStudio.vm.ViewModels.FormPadding.Update((FormPadding)to.Padding, from.Padding, isDeep);
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override FormDatagrid Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return FormDatagrid.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(FormDatagrid from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            FormDatagrid.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_form_datagrid' to 'FormDatagrid'
+        public static FormDatagrid ConvertToVM(Proto.Config.proto_form_datagrid m, FormDatagrid vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            if (vm.Marging == null) // Clone.tt Line: 213
+                vm.Marging = new FormMarging(); // Clone.tt Line: 217
+            vSharpStudio.vm.ViewModels.FormMarging.ConvertToVM(m.Marging, (FormMarging)vm.Marging); // Clone.tt Line: 219
+            if (vm.Padding == null) // Clone.tt Line: 213
+                vm.Padding = new FormPadding(); // Clone.tt Line: 217
+            vSharpStudio.vm.ViewModels.FormPadding.ConvertToVM(m.Padding, (FormPadding)vm.Padding); // Clone.tt Line: 219
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'FormDatagrid' to 'proto_form_datagrid'
+        public static Proto.Config.proto_form_datagrid ConvertToProto(FormDatagrid vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_form_datagrid m = new Proto.Config.proto_form_datagrid(); // Clone.tt Line: 239
+            m.Marging = vSharpStudio.vm.ViewModels.FormMarging.ConvertToProto((FormMarging)vm.Marging); // Clone.tt Line: 270
+            m.Padding = vSharpStudio.vm.ViewModels.FormPadding.ConvertToProto((FormPadding)vm.Padding); // Clone.tt Line: 270
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            this.Marging.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.Padding.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        public FormMarging Marging // Property.tt Line: 55
+        { 
+            get { return this._Marging; }
+            set
+            {
+                if (this._Marging != value)
+                {
+                    this.OnMargingChanging(ref value);
+                    this._Marging = value;
+                    this.OnMargingChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private FormMarging _Marging;
+        IFormMarging IFormDatagrid.Marging { get { return (this as FormDatagrid).Marging; } } // Property.tt Line: 77
+        partial void OnMargingChanging(ref FormMarging to); // Property.tt Line: 79
+        partial void OnMargingChanged();
+        //IFormMarging IFormDatagrid.Marging { get { return this._Marging; } }
+        
+        public FormPadding Padding // Property.tt Line: 55
+        { 
+            get { return this._Padding; }
+            set
+            {
+                if (this._Padding != value)
+                {
+                    this.OnPaddingChanging(ref value);
+                    this._Padding = value;
+                    this.OnPaddingChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private FormPadding _Padding;
+        IFormPadding IFormDatagrid.Padding { get { return (this as FormDatagrid).Padding; } } // Property.tt Line: 77
+        partial void OnPaddingChanging(ref FormPadding to); // Property.tt Line: 79
+        partial void OnPaddingChanged();
+        //IFormPadding IFormDatagrid.Padding { get { return this._Padding; } }
         #endregion Properties
     }
     public partial class FormValidator : ValidatorBase<Form, FormValidator> { } // Class.tt Line: 6
@@ -18226,7 +19356,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -18652,7 +19782,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -19027,7 +20157,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
                         this.NotifyPropertyChanged();
                     }
                     var cfg = (Config)this.GetConfig();
-                    if (cfg.SelectedNode != null)
+                    if (cfg != null && cfg.SelectedNode != null)
                         cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
@@ -19222,6 +20352,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void Visit(Proto.Config.proto_enumeration p);
         void Visit(Proto.Config.proto_enumeration_pair p);
         void Visit(Proto.Config.proto_catalog_items_group p);
+        void Visit(Proto.Config.proto_catalog_code_property_settings p);
         void Visit(Proto.Config.proto_catalog p);
         void Visit(Proto.Config.proto_group_list_catalogs p);
         void Visit(Proto.Config.proto_group_documents p);
@@ -19230,6 +20361,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         void Visit(Proto.Config.proto_group_list_journals p);
         void Visit(Proto.Config.proto_journal p);
         void Visit(Proto.Config.proto_group_list_forms p);
+        void Visit(Proto.Config.proto_form_marging p);
+        void Visit(Proto.Config.proto_form_padding p);
+        void Visit(Proto.Config.proto_form_stackpanel p);
+        void Visit(Proto.Config.proto_form_grid p);
+        void Visit(Proto.Config.proto_form_datagrid p);
         void Visit(Proto.Config.proto_form p);
         void Visit(Proto.Config.proto_group_list_reports p);
         void Visit(Proto.Config.proto_report p);
@@ -19628,10 +20764,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
+        protected override void OnVisit(CatalogCodePropertySettings p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(CatalogCodePropertySettings p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
         protected override void OnVisit(Catalog p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
+            ValidateSubAndCollectErrors(p, p.CodePropertySettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Catalog p) // ValidationVisitor.tt Line: 48
         {
@@ -19704,6 +20851,60 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListForms p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(FormMarging p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(FormMarging p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(FormPadding p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(FormPadding p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(FormStackpanel p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(FormStackpanel p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(FormGrid p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+            p.ValidateSubAndCollectErrors(p.Marging); // ValidationVisitor.tt Line: 41
+            p.ValidateSubAndCollectErrors(p.Padding); // ValidationVisitor.tt Line: 41
+        }
+        protected override void OnVisitEnd(FormGrid p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(FormDatagrid p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+            p.ValidateSubAndCollectErrors(p.Marging); // ValidationVisitor.tt Line: 41
+            p.ValidateSubAndCollectErrors(p.Padding); // ValidationVisitor.tt Line: 41
+        }
+        protected override void OnVisitEnd(FormDatagrid p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
@@ -20135,6 +21336,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(CatalogItemsGroup p) { }
         protected virtual void OnVisitEnd(CatalogItemsGroup p) { }
+        public void Visit(CatalogCodePropertySettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(CatalogCodePropertySettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(CatalogCodePropertySettings p) { }
+        protected virtual void OnVisitEnd(CatalogCodePropertySettings p) { }
         public void Visit(Catalog p)
         {
             this.OnVisit(p);
@@ -20215,6 +21426,56 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 22
         }
         protected virtual void OnVisit(GroupListForms p) { }
         protected virtual void OnVisitEnd(GroupListForms p) { }
+        public void Visit(FormMarging p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(FormMarging p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(FormMarging p) { }
+        protected virtual void OnVisitEnd(FormMarging p) { }
+        public void Visit(FormPadding p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(FormPadding p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(FormPadding p) { }
+        protected virtual void OnVisitEnd(FormPadding p) { }
+        public void Visit(FormStackpanel p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(FormStackpanel p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(FormStackpanel p) { }
+        protected virtual void OnVisitEnd(FormStackpanel p) { }
+        public void Visit(FormGrid p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(FormGrid p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(FormGrid p) { }
+        protected virtual void OnVisitEnd(FormGrid p) { }
+        public void Visit(FormDatagrid p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(FormDatagrid p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(FormDatagrid p) { }
+        protected virtual void OnVisitEnd(FormDatagrid p) { }
         public void Visit(Form p)
         {
             this.OnVisit(p);

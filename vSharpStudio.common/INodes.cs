@@ -9,7 +9,6 @@ namespace vSharpStudio.common
     public interface IDbTable: IGuid, ICompositeName
     {
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen);
-        //string GetDbSchema(string guidAppPrjGen, string guidSettings);
     }
     public interface ICanGoLeft
     {

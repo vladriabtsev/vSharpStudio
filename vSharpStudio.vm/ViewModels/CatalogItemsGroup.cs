@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class CatalogItemsGroup : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
+    public partial class CatalogItemsGroup : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IDbTable
     {
         public static readonly string DefaultName = "Items Group";
 
@@ -130,10 +130,22 @@ namespace vSharpStudio.vm.ViewModels
         [ExpandableObjectAttribute()]
         public dynamic Setting { get; set; }
 
-        public List<IProperty> GetIncludedProperties(string guidAppPrjGen)
+        [PropertyOrder(1)]
+        [ReadOnly(true)]
+        [DisplayName("Composite")]
+        [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
+        public string CompositeName
+        {
+            get
+            {
+                var p = this.Parent as Catalog;
+                return p.CompositeName + "Tree";
+            }
+        }
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
-            foreach(var t in this.GroupProperties.ListProperties)
+            foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {

@@ -583,7 +583,7 @@ namespace GenFromProto
                     this.NotifyPropertyChanged();
                 }
                 var cfg = (Config)this.GetConfig();
-                if (cfg.SelectedNode != null)
+                if (cfg != null && cfg.SelectedNode != null)
                     cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
             }
         }

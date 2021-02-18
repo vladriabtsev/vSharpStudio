@@ -13,7 +13,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, ITreeConfigNode
+    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, 
+        IDbTable, ITreeConfigNode
     {
         public static readonly string DefaultName = "Catalog";
 
@@ -50,6 +51,8 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupForms.Parent = this;
             this.GroupReports.Parent = this;
             this.ItemIconType = EnumCatalogTreeIcon.None;
+            this.UseCodeProperty = true;
+            this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
             this.UseNameProperty = true;
             this.MaxNameLength = 20;
             this.PropertyNameGuid = System.Guid.NewGuid().ToString();
@@ -58,7 +61,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
             this.UseTree = false;
             this.MaxTreeLevels = 2;
-            this.SeparatePropertiesForGroups = true;
+            this.SeparatePropertiesForGroups = false;
             this.GroupIconType = EnumCatalogTreeIcon.Folder;
             this.PropertyParentGuid = System.Guid.NewGuid().ToString();
             this.RefillChildren();
@@ -82,6 +85,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupPropertiesTabs, 4);
             this.Children.Add(this.GroupForms, 5);
             this.Children.Add(this.GroupReports, 6);
+            this.CodePropertySettings.Parent = this;
             VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()
@@ -269,6 +273,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        partial void OnUseCodePropertyChanged()
+        {
+            HideProperties();
+        }
         partial void OnUseNamePropertyChanged()
         {
             HideProperties();
@@ -294,6 +302,10 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(this.GetPropertyName(() => this.GroupIconType));
                 lst.Add(this.GetPropertyName(() => this.MaxTreeLevels));
                 lst.Add(this.GetPropertyName(() => this.SeparatePropertiesForGroups));
+            }
+            if (!this.UseCodeProperty)
+            {
+                lst.Add(this.GetPropertyName(() => this.CodePropertySettings));
             }
             if (!this.UseNameProperty)
             {

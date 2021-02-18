@@ -56,6 +56,57 @@
           ]
         },
         {
+          "name": "proto_enum_catalog_code_type",
+          "longName": "proto_enum_catalog_code_type",
+          "fullName": "proto_config.proto_enum_catalog_code_type",
+          "description": "",
+          "values": [
+            {
+              "name": "Number",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "Text",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "AutoNumber",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "AutoText",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_catalog_code_unique_scope",
+          "longName": "proto_enum_catalog_code_unique_scope",
+          "fullName": "proto_config.proto_enum_catalog_code_unique_scope",
+          "description": "",
+          "values": [
+            {
+              "name": "NoScope",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "Group",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "Catalog",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "proto_enum_catalog_tree_icon",
           "longName": "proto_enum_catalog_tree_icon",
           "fullName": "proto_config.proto_enum_catalog_tree_icon",
@@ -174,6 +225,42 @@
             },
             {
               "name": "LONG",
+              "number": "1",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_orientation",
+          "longName": "proto_form_orientation",
+          "fullName": "proto_config.proto_form_orientation",
+          "description": "",
+          "values": [
+            {
+              "name": "Vertical",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "Horizontal",
+              "number": "1",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_view",
+          "longName": "proto_form_view",
+          "fullName": "proto_config.proto_form_view",
+          "description": "",
+          "values": [
+            {
+              "name": "Auto",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "Design",
               "number": "1",
               "description": ""
             }
@@ -998,8 +1085,38 @@
               "defaultValue": ""
             },
             {
+              "name": "use_code_property",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "code_property_settings",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for catalog item\")]",
+              "label": "",
+              "type": "proto_catalog_code_property_settings",
+              "longType": "proto_catalog_code_property_settings",
+              "fullType": "proto_config.proto_catalog_code_property_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_code_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "use_name_property",
-              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1009,7 +1126,7 @@
             },
             {
               "name": "max_name_length",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item name length. If zero, than unlimited length\")]",
+              "description": "@attr [PropertyOrderAttribute(42)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item name length. If zero, than unlimited length\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1029,7 +1146,7 @@
             },
             {
               "name": "use_description_property",
-              "description": "@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
+              "description": "@attr [PropertyOrderAttribute(51)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1039,7 +1156,7 @@
             },
             {
               "name": "max_description_length",
-              "description": "@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item description length. If zero, than unlimited length\")]",
+              "description": "@attr [PropertyOrderAttribute(52)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item description length. If zero, than unlimited length\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1059,7 +1176,7 @@
             },
             {
               "name": "use_tree",
-              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Use Tree\")]\n@attr [Description(\"Use tree catalog structure\")]",
+              "description": "@attr [PropertyOrderAttribute(61)]\n@attr [DisplayName(\"Use Tree\")]\n@attr [Description(\"Use tree catalog structure\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1069,7 +1186,7 @@
             },
             {
               "name": "group_icon_type",
-              "description": "@attr [PropertyOrderAttribute(42)]\n@attr [DisplayName(\"Group Icon\")]\n@attr [Description(\"Catalog group icon type\")]",
+              "description": "@attr [PropertyOrderAttribute(62)]\n@attr [DisplayName(\"Group Icon\")]\n@attr [Description(\"Catalog group icon type\")]",
               "label": "",
               "type": "proto_enum_catalog_tree_icon",
               "longType": "proto_enum_catalog_tree_icon",
@@ -1079,7 +1196,7 @@
             },
             {
               "name": "max_tree_levels",
-              "description": "@attr [PropertyOrderAttribute(43)]\n@attr [DisplayName(\"Levels\")]\n@attr [Description(\"Maximum amount levels in catalog item groups. If zero, than unlimited\")]",
+              "description": "@attr [PropertyOrderAttribute(63)]\n@attr [DisplayName(\"Levels\")]\n@attr [Description(\"Maximum amount levels in catalog item groups. If zero, than unlimited\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1089,7 +1206,7 @@
             },
             {
               "name": "separate_properties_for_groups",
-              "description": "@attr [PropertyOrderAttribute(44)]\n@attr [DisplayName(\"Group properties\")]\n@attr [Description(\"Separate set of properties for groups\")]",
+              "description": "@attr [PropertyOrderAttribute(64)]\n@attr [DisplayName(\"Group properties\")]\n@attr [Description(\"Separate set of properties for groups\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1114,6 +1231,57 @@
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",
               "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_catalog_code_property_settings",
+          "longName": "proto_catalog_code_property_settings",
+          "fullName": "proto_config.proto_catalog_code_property_settings",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "type",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Type\")]\n@attr [Description(\"Code type\")]",
+              "label": "",
+              "type": "proto_enum_catalog_code_type",
+              "longType": "proto_enum_catalog_code_type",
+              "fullType": "proto_config.proto_enum_catalog_code_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "length",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Length\")]\n@attr [Description(\"Length is number of decimal digits for numbers, string length for text\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sequence_guid",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Sequence\")]\n@attr [Description(\"Sequence for auto code generation\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "unique_scope",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Unique Scope\")]\n@attr [Description(\"Code has to be unique in selected scope\")]",
+              "label": "",
+              "type": "proto_enum_catalog_code_unique_scope",
+              "longType": "proto_enum_catalog_code_unique_scope",
+              "fullType": "proto_config.proto_enum_catalog_code_unique_scope",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2079,6 +2247,191 @@
           ]
         },
         {
+          "name": "proto_form_datagrid",
+          "longName": "proto_form_datagrid",
+          "fullName": "proto_config.proto_form_datagrid",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "marging",
+              "description": "",
+              "label": "",
+              "type": "proto_form_marging",
+              "longType": "proto_form_marging",
+              "fullType": "proto_config.proto_form_marging",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "padding",
+              "description": "",
+              "label": "",
+              "type": "proto_form_padding",
+              "longType": "proto_form_padding",
+              "fullType": "proto_config.proto_form_padding",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_grid",
+          "longName": "proto_form_grid",
+          "fullName": "proto_config.proto_form_grid",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "marging",
+              "description": "",
+              "label": "",
+              "type": "proto_form_marging",
+              "longType": "proto_form_marging",
+              "fullType": "proto_config.proto_form_marging",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "padding",
+              "description": "",
+              "label": "",
+              "type": "proto_form_padding",
+              "longType": "proto_form_padding",
+              "fullType": "proto_config.proto_form_padding",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_marging",
+          "longName": "proto_form_marging",
+          "fullName": "proto_config.proto_form_marging",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "left",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "up",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "right",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "bottom",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_padding",
+          "longName": "proto_form_padding",
+          "fullName": "proto_config.proto_form_padding",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "left",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "up",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "right",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "bottom",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_stackpanel",
+          "longName": "proto_form_stackpanel",
+          "fullName": "proto_config.proto_form_stackpanel",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "orientation",
+              "description": "",
+              "label": "",
+              "type": "proto_form_orientation",
+              "longType": "proto_form_orientation",
+              "fullType": "proto_config.proto_form_orientation",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_group_documents",
           "longName": "proto_group_documents",
           "fullName": "proto_config.proto_group_documents",
@@ -2397,6 +2750,36 @@
               "type": "proto_catalog",
               "longType": "proto_catalog",
               "fullType": "proto_config.proto_catalog",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_code",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Code property\")]\n@attr [Description(\"Name of code auto generated property if it is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_name",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Name property\")]\n@attr [Description(\"Name of name auto generated property if it is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_description",
+              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Description property\")]\n@attr [Description(\"Name of description auto generated property if it is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },

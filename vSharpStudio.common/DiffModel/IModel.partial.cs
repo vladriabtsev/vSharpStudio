@@ -30,11 +30,12 @@ namespace vSharpStudio.common
         IDataType GetDataTypeTime(bool isNullable = true);
         IDataType GetDataTypeTimeZ(bool isNullable = true);
         IDataType GetIdDataType();
+        IDataType GetIdRefDataType();
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);
         //string GetVersionFieldGuid();
         string GetIdFieldName(IvPluginDbGenerator dbGen);
         string GetIdFieldGuid();
-        IProperty GetRefParentProperty(IvPluginDbGenerator dbGen, ICompositeName parent);
+        IProperty GetPropertyRefParent(IvPluginDbGenerator dbGen, ICompositeName parent);
         IReadOnlyList<IProperty> GetListDocSharedProperties(string guidAppPrjGen);
         IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen);
         IReadOnlyList<IEnumeration> GetListEnumerations(string guidAppPrjGen);

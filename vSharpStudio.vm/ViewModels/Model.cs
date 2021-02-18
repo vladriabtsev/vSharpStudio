@@ -516,6 +516,12 @@ namespace vSharpStudio.vm.ViewModels
             dt.IsNullable = isNullable;
             return dt;
         }
+        public IDataType GetIdRefDataType()
+        {
+            var dt = (DataType)GetIdDataType();
+            dt.IsNullable = true;
+            return dt;
+        }
         public IDataType GetIdDataType()
         {
             DataType dt = default(DataType);
@@ -572,7 +578,19 @@ namespace vSharpStudio.vm.ViewModels
         //    return this.DbSettings.VersionFieldGuid;
         //}
 
-        private IProperty GetIdProperty(IvPluginDbGenerator dbGen)
+        public IProperty GetPropertyInt(IvPluginDbGenerator dbGen, string guid, uint length, string name)
+        {
+            var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
+            var res = new Property(default(ITreeConfigNode), guid, name, dt);
+            return res;
+        }
+        public IProperty GetPropertyString(IvPluginDbGenerator dbGen, string guid, uint length, string name)
+        {
+            var dt = (DataType)this.GetDataType(length);
+            var res = new Property(default(ITreeConfigNode), guid, name, dt);
+            return res;
+        }
+        private IProperty GetPropertyId(IvPluginDbGenerator dbGen)
         {
             string fieldName = null;
             if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
@@ -592,9 +610,16 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
             return res;
         }
-        public IProperty GetRefParentProperty(IvPluginDbGenerator dbGen, ICompositeName parent)
+        public IProperty GetPropertyRefParent(IvPluginDbGenerator dbGen, string guid, string name)
         {
-            var dt = (DataType)GetIdDataType();
+            var dt = (DataType)this.GetIdDataType();
+            dt.IsRefParent = true;
+            var res = new Property(default(ITreeConfigNode), guid, name, dt);
+            return res;
+        }
+        public IProperty GetPropertyRefParent(IvPluginDbGenerator dbGen, ICompositeName parent)
+        {
+            var dt = (DataType)this.GetIdDataType();
             dt.IsRefParent = true;
             var res = new Property(default(ITreeConfigNode), (parent as IGuid).Guid, "Ref" + parent.CompositeName, dt);
             return res;
@@ -630,6 +655,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen)
         {
+            var refparent = "RefTreeParent";
+            IProperty prp = null;
             var cfg = (Config)this.GetConfig();
             var apg = (AppProjectGenerator)cfg.DicNodes[guidAppPrjGen];
             IvPluginDbGenerator dbGen = apg.PluginDbGenerator;
@@ -637,20 +664,49 @@ namespace vSharpStudio.vm.ViewModels
             if (node is IPropertiesTab)
             {
                 var p = node as IPropertiesTab;
-                lst.Add(this.GetIdProperty(dbGen));
-                lst.Add(this.GetRefParentProperty(dbGen, p.Parent.Parent as ICompositeName));
+                lst.Add(this.GetPropertyId(dbGen));
+                lst.Add(this.GetPropertyRefParent(dbGen, p.Parent.Parent as ICompositeName));
                 lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
             }
             else if (node is ICatalog)
             {
                 var p = node as ICatalog;
-                lst.Add(this.GetIdProperty(dbGen));
+                string gname = p.GroupItems.CompositeName;
+                lst.Add(this.GetPropertyId(dbGen));
+                if (p.UseTree)
+                {
+                    if (p.SeparatePropertiesForGroups)
+                    {
+                        prp = this.GetPropertyRefParent(dbGen, p.GroupItems.Guid, "Ref" + gname);
+                    }
+                    else
+                    {
+                        prp = this.GetPropertyRefParent(dbGen, p.GroupItems.Guid, refparent);
+                        (prp.DataType as DataType).IsNullable = true;
+                    }
+                    lst.Add(prp);
+                }
+                AddCodeNameDescriptionProperties(dbGen, lst, p);
+                lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
+            }
+            else if (node is ICatalogItemsGroup)
+            {
+                var cg = node as ICatalogItemsGroup;
+                var p = cg.Parent as ICatalog;
+                lst.Add(this.GetPropertyId(dbGen));
+                if (p.UseTree && p.SeparatePropertiesForGroups)
+                {
+                    prp = this.GetPropertyRefParent(dbGen, p.GroupItems.Guid, refparent);
+                    (prp.DataType as DataType).IsNullable = true;
+                    lst.Add(prp);
+                }
+                AddCodeNameDescriptionProperties(dbGen, lst, p);
                 lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
             }
             else if (node is IDocument)
             {
                 var p = node as IDocument;
-                lst.Add(this.GetIdProperty(dbGen));
+                lst.Add(this.GetPropertyId(dbGen));
                 lst.AddRange(this.GetGroupProperties((p.Parent.Parent as IGroupDocuments).GroupSharedProperties, guidAppPrjGen));
                 lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
             }
@@ -664,6 +720,42 @@ namespace vSharpStudio.vm.ViewModels
                 Debug.Assert(false);
             return lst;
         }
+
+        private void AddCodeNameDescriptionProperties(IvPluginDbGenerator dbGen, List<IProperty> lst, ICatalog p)
+        {
+            var gc = (IGroupListCatalogs)p.Parent;
+            IProperty prp = null;
+            if (p.UseCodeProperty)
+            {
+                switch (p.CodePropertySettings.Type)
+                {
+                    case EnumCatalogCodeType.AutoNumber:
+                        throw new NotImplementedException();
+                        break;
+                    case EnumCatalogCodeType.AutoText:
+                        throw new NotImplementedException();
+                        break;
+                    case EnumCatalogCodeType.Number:
+                        prp = this.GetPropertyInt(dbGen, p.PropertyNameGuid, p.MaxNameLength, gc.PropertyCode);
+                        break;
+                    case EnumCatalogCodeType.Text:
+                        prp = this.GetPropertyString(dbGen, p.PropertyNameGuid, p.MaxNameLength, gc.PropertyCode);
+                        break;
+                }
+                lst.Add(prp);
+            }
+            if (p.UseNameProperty)
+            {
+                prp = this.GetPropertyString(dbGen, p.PropertyNameGuid, p.MaxNameLength, gc.PropertyName);
+                lst.Add(prp);
+            }
+            if (p.UseDescriptionProperty)
+            {
+                prp = this.GetPropertyString(dbGen, p.PropertyDescriptionGuid, p.MaxDescriptionLength, gc.PropertyDescription);
+                lst.Add(prp);
+            }
+        }
+
         public IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen)
         {
             var lst = new List<IPropertiesTab>();
@@ -681,6 +773,17 @@ namespace vSharpStudio.vm.ViewModels
             else if (node is ICatalog)
             {
                 var p = node as ICatalog;
+                foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
+                {
+                    if (tt.IsIncluded(guidAppPrjGen))
+                    {
+                        lst.Add(tt);
+                    }
+                }
+            }
+            else if (node is ICatalogItemsGroup)
+            {
+                var p = node as ICatalogItemsGroup;
                 foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
                 {
                     if (tt.IsIncluded(guidAppPrjGen))

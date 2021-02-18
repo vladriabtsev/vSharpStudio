@@ -207,6 +207,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_catalog_code_property_settings"><span class="badge">M</span>proto_catalog_code_property_settings</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_catalog_items_group"><span class="badge">M</span>proto_catalog_items_group</a>
                 </li>
               
@@ -240,6 +244,26 @@
               
                 <li>
                   <a href="#proto_config.proto_form"><span class="badge">M</span>proto_form</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_datagrid"><span class="badge">M</span>proto_form_datagrid</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_grid"><span class="badge">M</span>proto_form_grid</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_marging"><span class="badge">M</span>proto_form_marging</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_padding"><span class="badge">M</span>proto_form_padding</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_stackpanel"><span class="badge">M</span>proto_form_stackpanel</a>
                 </li>
               
                 <li>
@@ -388,6 +412,14 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_catalog_code_type"><span class="badge">E</span>proto_enum_catalog_code_type</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enum_catalog_code_unique_scope"><span class="badge">E</span>proto_enum_catalog_code_unique_scope</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_catalog_tree_icon"><span class="badge">E</span>proto_enum_catalog_tree_icon</a>
                 </li>
               
@@ -397,6 +429,14 @@
               
                 <li>
                   <a href="#proto_config.proto_enum_primary_key_type"><span class="badge">E</span>proto_enum_primary_key_type</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_orientation"><span class="badge">E</span>proto_form_orientation</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_view"><span class="badge">E</span>proto_form_view</a>
                 </li>
               
               
@@ -1108,10 +1148,36 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>use_name_property</td>
+                  <td>use_code_property</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Use Code&#34;)]
+@attr [Description(&#34;Use Code property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>code_property_settings</td>
+                  <td><a href="#proto_config.proto_catalog_code_property_settings">proto_catalog_code_property_settings</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [ExpandableObjectAttribute()]
+@attr [DisplayName(&#34;Code&#34;)]
+@attr [Description(&#34;Code property settings for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_name_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(41)]
 @attr [DisplayName(&#34;Use Name&#34;)]
 @attr [Description(&#34;Use Name property for catalog item&#34;)] </p></td>
                 </tr>
@@ -1120,7 +1186,7 @@ App solution relative path to configuration file path </p></td>
                   <td>max_name_length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(22)]
+                  <td><p>@attr [PropertyOrderAttribute(42)]
 @attr [DisplayName(&#34;Max Length&#34;)]
 @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] </p></td>
                 </tr>
@@ -1136,7 +1202,7 @@ App solution relative path to configuration file path </p></td>
                   <td>use_description_property</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(31)]
+                  <td><p>@attr [PropertyOrderAttribute(51)]
 @attr [DisplayName(&#34;Use Description&#34;)]
 @attr [Description(&#34;Use Description property for catalog item&#34;)] </p></td>
                 </tr>
@@ -1145,7 +1211,7 @@ App solution relative path to configuration file path </p></td>
                   <td>max_description_length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(32)]
+                  <td><p>@attr [PropertyOrderAttribute(52)]
 @attr [DisplayName(&#34;Max Length&#34;)]
 @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] </p></td>
                 </tr>
@@ -1161,7 +1227,7 @@ App solution relative path to configuration file path </p></td>
                   <td>use_tree</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(41)]
+                  <td><p>@attr [PropertyOrderAttribute(61)]
 @attr [DisplayName(&#34;Use Tree&#34;)]
 @attr [Description(&#34;Use tree catalog structure&#34;)] </p></td>
                 </tr>
@@ -1170,7 +1236,7 @@ App solution relative path to configuration file path </p></td>
                   <td>group_icon_type</td>
                   <td><a href="#proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(42)]
+                  <td><p>@attr [PropertyOrderAttribute(62)]
 @attr [DisplayName(&#34;Group Icon&#34;)]
 @attr [Description(&#34;Catalog group icon type&#34;)] </p></td>
                 </tr>
@@ -1179,7 +1245,7 @@ App solution relative path to configuration file path </p></td>
                   <td>max_tree_levels</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(43)]
+                  <td><p>@attr [PropertyOrderAttribute(63)]
 @attr [DisplayName(&#34;Levels&#34;)]
 @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] </p></td>
                 </tr>
@@ -1188,7 +1254,7 @@ App solution relative path to configuration file path </p></td>
                   <td>separate_properties_for_groups</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(44)]
+                  <td><p>@attr [PropertyOrderAttribute(64)]
 @attr [DisplayName(&#34;Group properties&#34;)]
 @attr [Description(&#34;Separate set of properties for groups&#34;)] </p></td>
                 </tr>
@@ -1205,6 +1271,59 @@ App solution relative path to configuration file path </p></td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_catalog_code_property_settings">proto_catalog_code_property_settings</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#proto_config.proto_enum_catalog_code_type">proto_enum_catalog_code_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Type&#34;)]
+@attr [Description(&#34;Code type&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Length&#34;)]
+@attr [Description(&#34;Length is number of decimal digits for numbers, string length for text&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sequence_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)]
+@attr [DisplayName(&#34;Sequence&#34;)]
+@attr [Description(&#34;Sequence for auto code generation&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unique_scope</td>
+                  <td><a href="#proto_config.proto_enum_catalog_code_unique_scope">proto_enum_catalog_code_unique_scope</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+@attr [DisplayName(&#34;Unique Scope&#34;)]
+@attr [Description(&#34;Code has to be unique in selected scope&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -2005,6 +2124,182 @@ repeated proto_document list_forms = 7;
 
         
       
+        <h3 id="proto_config.proto_form_datagrid">proto_form_datagrid</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>marging</td>
+                  <td><a href="#proto_config.proto_form_marging">proto_form_marging</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>padding</td>
+                  <td><a href="#proto_config.proto_form_padding">proto_form_padding</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_form_grid">proto_form_grid</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>marging</td>
+                  <td><a href="#proto_config.proto_form_marging">proto_form_marging</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>padding</td>
+                  <td><a href="#proto_config.proto_form_padding">proto_form_padding</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_form_marging">proto_form_marging</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>left</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>up</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>right</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bottom</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_form_padding">proto_form_padding</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>left</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>up</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>right</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>bottom</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_form_stackpanel">proto_form_stackpanel</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>orientation</td>
+                  <td><a href="#proto_config.proto_form_orientation">proto_form_orientation</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_group_documents">proto_group_documents</h3>
         <p></p>
 
@@ -2269,6 +2564,33 @@ repeated proto_document list_forms = 7;
                   <td><a href="#proto_config.proto_catalog">proto_catalog</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Code property&#34;)]
+@attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [DisplayName(&#34;Name property&#34;)]
+@attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(23)]
+@attr [DisplayName(&#34;Description property&#34;)]
+@attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4337,6 +4659,70 @@ repeated proto_document list_documents = 7;
           </tbody>
         </table>
       
+        <h3 id="proto_config.proto_enum_catalog_code_type">proto_enum_catalog_code_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Number</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Text</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>AutoNumber</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>AutoText</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_catalog_code_unique_scope">proto_enum_catalog_code_unique_scope</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NoScope</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Group</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Catalog</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</h3>
         <p></p>
         <table class="enum-table">
@@ -4497,6 +4883,52 @@ repeated proto_document list_documents = 7;
             
               <tr>
                 <td>LONG</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_form_orientation">proto_form_orientation</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Vertical</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Horizontal</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_form_view">proto_form_view</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Auto</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Design</td>
                 <td>1</td>
                 <td><p></p></td>
               </tr>
