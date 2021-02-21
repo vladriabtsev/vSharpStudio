@@ -1138,6 +1138,14 @@ message proto_catalog {
     uint32 max_description_length = 52;
     // @attr [BrowsableAttribute(false)]
     string property_description_guid = 53;
+    // @attr [PropertyOrderAttribute(54)]
+    // @attr [DisplayName("Use Folders")]
+    // @attr [Description("User has choose explicitly item or folder type for catalog element ")]
+    bool use_folder_type_explicitly = 54;
+    // @attr [BrowsableAttribute(false)]
+    string property_is_folder_guid = 55;
+    // @attr [BrowsableAttribute(false)]
+    string property_is_open_guid = 56;
 
     // @attr [PropertyOrderAttribute(61)]
     // @attr [DisplayName("Use Tree")]
@@ -1154,7 +1162,7 @@ message proto_catalog {
     // @attr [PropertyOrderAttribute(64)]
     // @attr [DisplayName("Group properties")]
     // @attr [Description("Separate set of properties for groups")]
-    bool separate_properties_for_groups = 64;
+    bool use_separate_properties_for_groups = 64;
     // @attr [BrowsableAttribute(false)]
     string property_parent_guid = 65;
 
@@ -1183,15 +1191,23 @@ message proto_group_list_catalogs {
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Code property")]
     // @attr [Description("Name of code auto generated property if it is used in catalog")]
-    string property_code = 21;
+    string property_code_name = 21;
     // @attr [PropertyOrderAttribute(22)]
     // @attr [DisplayName("Name property")]
     // @attr [Description("Name of name auto generated property if it is used in catalog")]
-    string property_name = 22;
+    string property_name_name = 22;
     // @attr [PropertyOrderAttribute(23)]
     // @attr [DisplayName("Description property")]
     // @attr [Description("Name of description auto generated property if it is used in catalog")]
-    string property_description = 23;
+    string property_description_name = 23;
+    // @attr [PropertyOrderAttribute(25)]
+    // @attr [DisplayName("IsFolder property")]
+    // @attr [Description("Name of is folder auto generated property if it is used in catalog")]
+    string property_is_folder_name = 25;
+    // @attr [PropertyOrderAttribute(26)]
+    // @attr [DisplayName("IsOpen property")]
+    // @attr [Description("Name of is open auto generated property if folder is used in catalog")]
+    string property_is_open_name = 26;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -1369,8 +1385,8 @@ message proto_form_datagrid {
     proto_form_padding padding = 2;
 }
 enum proto_form_view {
-    Auto = 0;
-    Design = 1;
+    Selection = 0;
+    Editing = 1;
 }
 message proto_form {
     // @attr [ReadOnly(true)]
@@ -1390,6 +1406,14 @@ message proto_form {
     bool is_marked_for_deletion = 10;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_forms = 7;
+
+    // @attr [BrowsableAttribute(false)]
+    proto_form_view enum_form_type = 90;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_properties = 91;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_tree_properties = 92;
+
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

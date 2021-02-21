@@ -262,10 +262,13 @@ Application project generator
 | use_description_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(52)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
 | property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| use_folder_type_explicitly | [bool](#bool) |  | @attr [PropertyOrderAttribute(54)] @attr [DisplayName(&#34;Use Folders&#34;)] @attr [Description(&#34;User has choose explicitly item or folder type for catalog element &#34;)] |
+| property_is_folder_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_is_open_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(61)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
 | group_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(62)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
 | max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(63)] @attr [DisplayName(&#34;Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
-| separate_properties_for_groups | [bool](#bool) |  | @attr [PropertyOrderAttribute(64)] @attr [DisplayName(&#34;Group properties&#34;)] @attr [Description(&#34;Separate set of properties for groups&#34;)] |
+| use_separate_properties_for_groups | [bool](#bool) |  | @attr [PropertyOrderAttribute(64)] @attr [DisplayName(&#34;Group properties&#34;)] @attr [Description(&#34;Separate set of properties for groups&#34;)] |
 | property_parent_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -496,8 +499,13 @@ Constant application wise value
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | repeated proto_group_properties list_properties = 6; repeated proto_document list_forms = 7; @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)]
+
+repeated proto_group_properties list_properties = 6; repeated proto_document list_forms = 7; |
+| enum_form_type | [proto_form_view](#proto_config.proto_form_view) |  | @attr [BrowsableAttribute(false)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_guid_tree_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -665,9 +673,11 @@ Constant application wise value
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
-| property_code | [string](#string) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
-| property_name | [string](#string) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
-| property_description | [string](#string) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
+| property_code_name | [string](#string) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
+| property_name_name | [string](#string) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
+| property_description_name | [string](#string) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
+| property_is_folder_name | [string](#string) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
+| property_is_open_name | [string](#string) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;IsOpen property&#34;)] @attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -1425,8 +1435,8 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| Auto | 0 |  |
-| Design | 1 |  |
+| Selection | 0 |  |
+| Editing | 1 |  |
 
 
  

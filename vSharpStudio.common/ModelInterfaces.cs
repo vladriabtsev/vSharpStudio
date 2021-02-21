@@ -66,8 +66,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     }
     public enum FormView // ModelInterfaces.tt Line: 15
     {
-        Auto = 0,
-        Design = 1,
+        Selection = 0,
+        Editing = 1,
     }
     
     public partial interface IUserSettings // ModelInterfaces.tt Line: 29
@@ -612,10 +612,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
+    	bool UseFolderTypeExplicitly { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIsOpenGuid { get; } // ModelInterfaces.tt Line: 51
     	bool UseTree { get; } // ModelInterfaces.tt Line: 51
     	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 51
     	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 51
-    	bool SeparatePropertiesForGroups { get; } // ModelInterfaces.tt Line: 51
+    	bool UseSeparatePropertiesForGroups { get; } // ModelInterfaces.tt Line: 51
     	string PropertyParentGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
@@ -629,9 +632,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 44
     	ICatalog this[int index] { get; }
     	int Count();
-    	string PropertyCode { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyName { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyDescription { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyCodeName { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyNameName { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDescriptionName { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIsFolderName { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIsOpenName { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -755,12 +760,16 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
+    	/// 
     	/// repeated proto_group_properties list_properties = 6;
     	/// repeated proto_document list_forms = 7;
     	///////////////////////////////////////////////////
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	FormView EnumFormType { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 42
+    	IReadOnlyList<string> ListGuidTreeProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

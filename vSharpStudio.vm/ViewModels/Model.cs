@@ -578,13 +578,21 @@ namespace vSharpStudio.vm.ViewModels
         //    return this.DbSettings.VersionFieldGuid;
         //}
 
-        public IProperty GetPropertyInt(IvPluginDbGenerator dbGen, string guid, uint length, string name)
+        public IProperty GetPropertyBool(string guid, string name, bool isNullable)
+        {
+            var dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.BOOL;
+            dt.IsNullable = isNullable;
+            var res = new Property(default(ITreeConfigNode), guid, name, dt);
+            return res;
+        }
+        public IProperty GetPropertyInt(string guid, uint length, string name)
         {
             var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
             var res = new Property(default(ITreeConfigNode), guid, name, dt);
             return res;
         }
-        public IProperty GetPropertyString(IvPluginDbGenerator dbGen, string guid, uint length, string name)
+        public IProperty GetPropertyString(string guid, uint length, string name)
         {
             var dt = (DataType)this.GetDataType(length);
             var res = new Property(default(ITreeConfigNode), guid, name, dt);
@@ -608,16 +616,17 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
                 this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
             var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
+            res.IsPKey = true;
             return res;
         }
-        public IProperty GetPropertyRefParent(IvPluginDbGenerator dbGen, string guid, string name)
+        public IProperty GetPropertyRefParent(string guid, string name)
         {
             var dt = (DataType)this.GetIdDataType();
             dt.IsRefParent = true;
             var res = new Property(default(ITreeConfigNode), guid, name, dt);
             return res;
         }
-        public IProperty GetPropertyRefParent(IvPluginDbGenerator dbGen, ICompositeName parent)
+        public IProperty GetPropertyRefParent(ICompositeName parent)
         {
             var dt = (DataType)this.GetIdDataType();
             dt.IsRefParent = true;
@@ -665,38 +674,45 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var p = node as IPropertiesTab;
                 lst.Add(this.GetPropertyId(dbGen));
-                lst.Add(this.GetPropertyRefParent(dbGen, p.Parent.Parent as ICompositeName));
+                lst.Add(this.GetPropertyRefParent(p.Parent.Parent as ICompositeName));
                 lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
             }
             else if (node is ICatalog)
             {
                 var p = node as ICatalog;
+                var gc = p.Parent as IGroupListCatalogs;
                 string gname = p.GroupItems.CompositeName;
                 lst.Add(this.GetPropertyId(dbGen));
                 if (p.UseTree)
                 {
-                    if (p.SeparatePropertiesForGroups)
+                    if (p.UseSeparatePropertiesForGroups)
                     {
-                        prp = this.GetPropertyRefParent(dbGen, p.GroupItems.Guid, "Ref" + gname);
+                        prp = this.GetPropertyRefParent(p.GroupItems.Guid, "Ref" + gname);
                     }
                     else
                     {
-                        prp = this.GetPropertyRefParent(dbGen, p.GroupItems.Guid, refparent);
+                        prp = this.GetPropertyRefParent(p.GroupItems.Guid, refparent);
                         (prp.DataType as DataType).IsNullable = true;
                     }
                     lst.Add(prp);
                 }
                 AddCodeNameDescriptionProperties(dbGen, lst, p);
                 lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
+                if (p.UseTree && !p.UseSeparatePropertiesForGroups && p.UseFolderTypeExplicitly)
+                {
+                    prp = cfg.Model.GetPropertyBool(p.PropertyIsFolderGuid, gc.PropertyIsFolderName, false);
+                    lst.Add(prp);
+                }
             }
             else if (node is ICatalogItemsGroup)
             {
                 var cg = node as ICatalogItemsGroup;
                 var p = cg.Parent as ICatalog;
+                var gc = p.Parent as IGroupListCatalogs;
                 lst.Add(this.GetPropertyId(dbGen));
-                if (p.UseTree && p.SeparatePropertiesForGroups)
+                if (p.UseTree && p.UseSeparatePropertiesForGroups)
                 {
-                    prp = this.GetPropertyRefParent(dbGen, p.GroupItems.Guid, refparent);
+                    prp = this.GetPropertyRefParent(p.GroupItems.Guid, refparent);
                     (prp.DataType as DataType).IsNullable = true;
                     lst.Add(prp);
                 }
@@ -736,22 +752,22 @@ namespace vSharpStudio.vm.ViewModels
                         throw new NotImplementedException();
                         break;
                     case EnumCatalogCodeType.Number:
-                        prp = this.GetPropertyInt(dbGen, p.PropertyNameGuid, p.MaxNameLength, gc.PropertyCode);
+                        prp = this.GetPropertyInt(p.PropertyNameGuid, p.MaxNameLength, gc.PropertyCodeName);
                         break;
                     case EnumCatalogCodeType.Text:
-                        prp = this.GetPropertyString(dbGen, p.PropertyNameGuid, p.MaxNameLength, gc.PropertyCode);
+                        prp = this.GetPropertyString(p.PropertyNameGuid, p.MaxNameLength, gc.PropertyCodeName);
                         break;
                 }
                 lst.Add(prp);
             }
             if (p.UseNameProperty)
             {
-                prp = this.GetPropertyString(dbGen, p.PropertyNameGuid, p.MaxNameLength, gc.PropertyName);
+                prp = this.GetPropertyString(p.PropertyNameGuid, p.MaxNameLength, gc.PropertyNameName);
                 lst.Add(prp);
             }
             if (p.UseDescriptionProperty)
             {
-                prp = this.GetPropertyString(dbGen, p.PropertyDescriptionGuid, p.MaxDescriptionLength, gc.PropertyDescription);
+                prp = this.GetPropertyString(p.PropertyDescriptionGuid, p.MaxDescriptionLength, gc.PropertyDescriptionName);
                 lst.Add(prp);
             }
         }

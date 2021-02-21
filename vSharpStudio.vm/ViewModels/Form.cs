@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
@@ -38,6 +39,8 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconWindowsForm"; }
         partial void OnInit()
         {
+            this.ListGuidProperties = new ObservableCollection<string>();
+            this.ListGuidTreeProperties = new ObservableCollection<string>();
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.IsIncludableInModels = true;
         }

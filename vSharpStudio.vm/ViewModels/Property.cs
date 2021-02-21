@@ -65,6 +65,8 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = name;
             this._DataType = new DataType(type, length, accuracy);
         }
+        public bool IsPKey { get; set; }
+        public bool IsComputed { get; set; }
 
         public string ClrType
         {

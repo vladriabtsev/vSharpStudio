@@ -1224,6 +1224,29 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>use_folder_type_explicitly</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(54)]
+@attr [DisplayName(&#34;Use Folders&#34;)]
+@attr [Description(&#34;User has choose explicitly item or folder type for catalog element &#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_is_folder_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_is_open_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>use_tree</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -1251,7 +1274,7 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>separate_properties_for_groups</td>
+                  <td>use_separate_properties_for_groups</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(64)]
@@ -2105,6 +2128,30 @@ App solution relative path to configuration file path </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)]
+
+repeated proto_group_properties list_properties = 6;
+repeated proto_document list_forms = 7; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>enum_form_type</td>
+                  <td><a href="#proto_config.proto_form_view">proto_form_view</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_guid_properties</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_guid_tree_properties</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
@@ -2112,9 +2159,7 @@ App solution relative path to configuration file path </p></td>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
-                  <td><p>repeated proto_group_properties list_properties = 6;
-repeated proto_document list_forms = 7;
-@attr [BrowsableAttribute(false)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2567,7 +2612,7 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
-                  <td>property_code</td>
+                  <td>property_code_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(21)]
@@ -2576,7 +2621,7 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
-                  <td>property_name</td>
+                  <td>property_name_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(22)]
@@ -2585,12 +2630,30 @@ repeated proto_document list_forms = 7;
                 </tr>
               
                 <tr>
-                  <td>property_description</td>
+                  <td>property_description_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(23)]
 @attr [DisplayName(&#34;Description property&#34;)]
 @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_is_folder_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(25)]
+@attr [DisplayName(&#34;IsFolder property&#34;)]
+@attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_is_open_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(26)]
+@attr [DisplayName(&#34;IsOpen property&#34;)]
+@attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4922,13 +4985,13 @@ repeated proto_document list_documents = 7;
           <tbody>
             
               <tr>
-                <td>Auto</td>
+                <td>Selection</td>
                 <td>0</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
-                <td>Design</td>
+                <td>Editing</td>
                 <td>1</td>
                 <td><p></p></td>
               </tr>

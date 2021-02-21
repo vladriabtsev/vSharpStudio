@@ -38,9 +38,11 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = Defaults.CatalogsGroupName;
             this.PrefixForDbTables = "Ctlg";
             this.IsEditable = false;
-            this.PropertyCode = "Code";
-            this.PropertyName = "Name";
-            this.PropertyDescription = "Description";
+            this.PropertyCodeName = "Code";
+            this.PropertyNameName = "Name";
+            this.PropertyDescriptionName = "Description";
+            this.PropertyIsFolderName = "IsFolder";
+            this.PropertyIsOpenName = "IsOpen";
             Init();
         }
         protected override void OnInitFromDto()

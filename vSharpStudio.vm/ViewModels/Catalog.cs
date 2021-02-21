@@ -61,9 +61,11 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
             this.UseTree = false;
             this.MaxTreeLevels = 2;
-            this.SeparatePropertiesForGroups = false;
+            this.UseSeparatePropertiesForGroups = false;
             this.GroupIconType = EnumCatalogTreeIcon.Folder;
             this.PropertyParentGuid = System.Guid.NewGuid().ToString();
+            this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
+            this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
             this.RefillChildren();
             HideProperties();
         }
@@ -77,7 +79,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
-            if (this.UseTree && this.SeparatePropertiesForGroups)
+            if (this.UseTree && this.UseSeparatePropertiesForGroups)
             {
                 this.Children.Add(this.GroupItems, 2);
             }
@@ -285,7 +287,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             HideProperties();
         }
-        partial void OnSeparatePropertiesForGroupsChanged()
+        partial void OnUseSeparatePropertiesForGroupsChanged()
         {
             this.RefillChildren();
         }
@@ -301,7 +303,15 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(this.GetPropertyName(() => this.GroupIconType));
                 lst.Add(this.GetPropertyName(() => this.MaxTreeLevels));
-                lst.Add(this.GetPropertyName(() => this.SeparatePropertiesForGroups));
+                lst.Add(this.GetPropertyName(() => this.UseSeparatePropertiesForGroups));
+                lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
+            }
+            else
+            {
+                if (this.UseSeparatePropertiesForGroups)
+                {
+                    lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
+                }
             }
             if (!this.UseCodeProperty)
             {

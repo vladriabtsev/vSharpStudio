@@ -123,6 +123,14 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
+            dt.IsNullable = isNullable;
+            var node = new Property(this) { Name = name, DataType = dt };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
 
         #region Tree operations
         #endregion Tree operations

@@ -28,30 +28,47 @@ namespace vSharpStudio.vm.ViewModels
                     var gc = (IGroupListCatalogs)c.Parent;
                     if (c.UseCodeProperty)
                     {
-                        if (gc.PropertyCode == name)
+                        if (gc.PropertyCodeName == name)
                         {
                             var vf = new ValidationFailure(nameof(p.Name),
-                                $"Catalog parameter 'UseCodeProperty' is set to 'true'. Property name '{gc.PropertyCode}' can't be used here");
+                                $"Catalog parameter 'UseCodeProperty' is set to 'true'. Property name '{gc.PropertyCodeName}' is reserved for auto generated property");
                             vf.Severity = Severity.Error;
                             cntx.AddFailure(vf);
                         }
                     }
                     if (c.UseNameProperty)
                     {
-                        if (gc.PropertyName == name)
+                        if (gc.PropertyNameName == name)
                         {
                             var vf = new ValidationFailure(nameof(p.Name),
-                                $"Catalog parameter 'UseNameProperty' is set to 'true'. Property name '{gc.PropertyName}' can't be used here");
+                                $"Catalog parameter 'UseNameProperty' is set to 'true'. Property name '{gc.PropertyNameName}' is reserved for auto generated property");
                             vf.Severity = Severity.Error;
                             cntx.AddFailure(vf);
                         }
                     }
                     if (c.UseDescriptionProperty)
                     {
-                        if (gc.PropertyDescription == name)
+                        if (gc.PropertyDescriptionName == name)
                         {
                             var vf = new ValidationFailure(nameof(p.Name),
-                                $"Catalog parameter 'UseDescriptionProperty' is set to 'true'. Property name '{gc.PropertyDescription}' can't be used here");
+                                $"Catalog parameter 'UseDescriptionProperty' is set to 'true'. Property name '{gc.PropertyDescriptionName}' is reserved for auto generated property");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                    }
+                    if (c.UseTree && !c.UseSeparatePropertiesForGroups && c.UseFolderTypeExplicitly)
+                    {
+                        if (gc.PropertyIsFolderName == name)
+                        {
+                            var vf = new ValidationFailure(nameof(p.Name),
+                                $"Catalog parameter 'UseFolderTypeExplicitly' is set to 'true'. Property name '{gc.PropertyIsFolderName}' is reserved for auto generated property");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                        if (gc.PropertyIsOpenName == name)
+                        {
+                            var vf = new ValidationFailure(nameof(p.Name),
+                                $"Catalog parameter 'UseFolderTypeExplicitly' is set to 'true'. Property name '{gc.PropertyIsOpenName}' is reserved for auto generated property");
                             vf.Severity = Severity.Error;
                             cntx.AddFailure(vf);
                         }
