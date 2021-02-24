@@ -319,7 +319,7 @@
               "defaultValue": ""
             },
             {
-              "name": "p_key_field_guid",
+              "name": "p_key_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
@@ -1025,12 +1025,12 @@
               "defaultValue": ""
             },
             {
-              "name": "group_items",
+              "name": "folder",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
-              "type": "proto_catalog_items_group",
-              "longType": "proto_catalog_items_group",
-              "fullType": "proto_config.proto_catalog_items_group",
+              "type": "proto_catalog_folder",
+              "longType": "proto_catalog_folder",
+              "fullType": "proto_config.proto_catalog_folder",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1081,6 +1081,16 @@
               "type": "proto_enum_catalog_tree_icon",
               "longType": "proto_enum_catalog_tree_icon",
               "fullType": "proto_config.proto_enum_catalog_tree_icon",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_id_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1318,9 +1328,9 @@
           ]
         },
         {
-          "name": "proto_catalog_items_group",
-          "longName": "proto_catalog_items_group",
-          "fullName": "proto_config.proto_catalog_items_group",
+          "name": "proto_catalog_folder",
+          "longName": "proto_catalog_folder",
+          "fullName": "proto_config.proto_catalog_folder",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -1938,6 +1948,16 @@
               "type": "proto_group_list_reports",
               "longType": "proto_group_list_reports",
               "fullType": "proto_config.proto_group_list_reports",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_id_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4824,6 +4844,16 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_id_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },

@@ -6,5 +6,6 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupDocuments : ITreeConfigNode
     {
+        IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
     }
 }

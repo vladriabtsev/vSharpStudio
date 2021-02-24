@@ -33,22 +33,25 @@ namespace vSharpStudio.common
         IDataType GetIdRefDataType();
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);
 
+        IProperty GetPropertyId(string guid);
         IProperty GetPropertyBool(string guid, string name, bool isNullable);
         IProperty GetPropertyInt(string guid, uint length, string name);
         IProperty GetPropertyString(string guid, uint length, string name);
         IProperty GetPropertyRefParent(string guid, string name);
         IProperty GetPropertyRefParent(ICompositeName parent);
 
-        //string GetVersionFieldGuid();
-        string GetIdFieldName(IvPluginDbGenerator dbGen);
-        string GetIdFieldGuid();
-        IReadOnlyList<IProperty> GetListDocSharedProperties(string guidAppPrjGen);
-        IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen);
+        //string GetIdFieldName(IvPluginDbGenerator dbGen);
+        //string GetIdFieldGuid();
+
+        //IReadOnlyList<IPropertiesTab> GetListPropertiesTabs(ITreeConfigNode node, string guidAppPrjGen);
+        //IReadOnlyList<IProperty> GetGroupProperties(IGroupListProperties g, string guidAppPrjGen);
+        //IReadOnlyList<IProperty> GetListDocSharedProperties(string guidAppPrjGen);
+        //IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen);
         IReadOnlyList<IEnumeration> GetListEnumerations(string guidAppPrjGen);
         IReadOnlyList<IEnumerationPair> GetListEnumerationPairs(IEnumeration node, string guidAppPrjGen);
         IReadOnlyList<IConstant> GetListConstants(string guidAppPrjGen);
         IReadOnlyList<ICatalog> GetListCatalogs(string guidAppPrjGen);
-        IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen);
+        //IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen);
         IReadOnlyList<IDocument> GetListDocuments(string guidAppPrjGen);
     }
 }

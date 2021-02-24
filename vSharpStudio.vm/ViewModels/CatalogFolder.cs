@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class CatalogItemsGroup : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IDbTable
+    public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IDbTable
     {
         public static readonly string DefaultName = "Items Group";
 
@@ -69,13 +69,13 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
         }
 
-        public CatalogItemsGroup(ITreeConfigNode parent, string name)
+        public CatalogFolder(ITreeConfigNode parent, string name)
             : this(parent)
         {
             this.Name = name;
         }
 
-        public CatalogItemsGroup(ITreeConfigNode parent, string name, List<Property> listProperties)
+        public CatalogFolder(ITreeConfigNode parent, string name, List<Property> listProperties)
             : this(parent)
         {
             Contract.Requires(listProperties != null);
@@ -154,6 +154,18 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IProperty>();
             foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+        public IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen)
+        {
+            var res = new List<IPropertiesTab>();
+            foreach (var t in this.GroupPropertiesTabs.ListPropertiesTabs)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {

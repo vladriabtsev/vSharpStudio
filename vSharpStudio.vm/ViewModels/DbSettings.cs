@@ -20,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsNotifying = false;
             this.DbSchema = "v";
             this.PKeyName = "Id";
-            this.PKeyFieldGuid = System.Guid.NewGuid().ToString();
+            this.PKeyGuid = System.Guid.NewGuid().ToString();
             //this.VersionFieldName = "Version";
             //this.VersionFieldGuid = System.Guid.NewGuid().ToString();
             this.IdGenerator = DbIdGeneratorMethod.HiLo;

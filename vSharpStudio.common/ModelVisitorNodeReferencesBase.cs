@@ -225,8 +225,6 @@ namespace vSharpStudio.common
             this.Run(this.currCfg.Model, act);
 
             this.EndVisit(this.currCfg);
-
-            this.currCfg = null;
         }
     }
 }

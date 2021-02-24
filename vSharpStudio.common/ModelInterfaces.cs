@@ -326,7 +326,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	DbIdGeneratorMethod IdGenerator { get; } // ModelInterfaces.tt Line: 51
     	EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 51
     	string PKeyName { get; } // ModelInterfaces.tt Line: 51
-    	string PKeyFieldGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PKeyGuid { get; } // ModelInterfaces.tt Line: 51
     }
     
     ///////////////////////////////////////////////////
@@ -464,6 +464,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -570,7 +571,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface ICatalogItemsGroup : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface ICatalogFolder : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
@@ -597,12 +598,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	ICatalogItemsGroup GroupItems { get; } // ModelInterfaces.tt Line: 55
+    	ICatalogFolder Folder { get; } // ModelInterfaces.tt Line: 55
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
     	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	bool UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
     	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
@@ -662,6 +664,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

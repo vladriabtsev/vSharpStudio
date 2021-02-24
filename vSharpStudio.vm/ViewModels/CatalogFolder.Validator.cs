@@ -5,9 +5,9 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class CatalogItemsGroupValidator
+    public partial class CatalogFolderValidator
     {
-        public CatalogItemsGroupValidator()
+        public CatalogFolderValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
@@ -22,7 +22,7 @@ namespace vSharpStudio.vm.ViewModels
             // RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Catalog).WithMessage("Please select catalog name");
             // RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Document).WithMessage("Please select document name");
         }
-        private bool IsUnique(CatalogItemsGroup val)
+        private bool IsUnique(CatalogFolder val)
         {
             if (val.Parent == null)
             {

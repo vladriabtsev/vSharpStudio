@@ -39,6 +39,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
+            this.PropertyIdGuid = System.Guid.NewGuid().ToString();
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
@@ -204,6 +205,12 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+        /// <summary>
+        /// All included properties (shared and normal)
+        /// Shared included first
+        /// </summary>
+        /// <param name="guidAppPrjGen"></param>
+        /// <returns></returns>
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
@@ -228,6 +235,24 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IPropertiesTab>();
             foreach (var t in this.GroupPropertiesTabs.ListPropertiesTabs)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+        /// <summary>
+        /// Only shared properties
+        /// </summary>
+        /// <param name="guidAppPrjGen"></param>
+        /// <returns></returns>
+        public IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen)
+        {
+            var res = new List<IProperty>();
+            var grd = (GroupDocuments)this.Parent.Parent;
+            foreach (var t in grd.GroupSharedProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {

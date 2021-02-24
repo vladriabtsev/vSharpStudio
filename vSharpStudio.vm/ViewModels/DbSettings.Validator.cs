@@ -11,7 +11,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public DbSettingsValidator()
         {
-            this.RuleFor(x => x.PKeyName).NotEmpty().WithMessage(Config.ValidationMessages.PKEY_NAME_CANT_BE_EMPTY);
+            //this.RuleFor(x => x.PKeyName).NotEmpty().WithMessage(Config.ValidationMessages.PKEY_NAME_CANT_BE_EMPTY);
         }
     }
 }

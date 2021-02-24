@@ -28,9 +28,9 @@ namespace vSharpStudio.vm.ViewModels
                 var p = this.Parent as Catalog;
                 return p.Children;
             }
-            else if (this.Parent is CatalogItemsGroup)
+            else if (this.Parent is CatalogFolder)
             {
-                var p = this.Parent as CatalogItemsGroup;
+                var p = this.Parent as CatalogFolder;
                 return p.Children;
             }
             else if (this.Parent is Document)

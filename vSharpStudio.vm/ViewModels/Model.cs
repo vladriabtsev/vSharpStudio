@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.IO;
+using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -539,25 +540,25 @@ namespace vSharpStudio.vm.ViewModels
             dt.IsPKey = true;
             return dt;
         }
-        public string GetIdFieldName(IvPluginDbGenerator dbGen)
-        {
-            string fieldName = null;
-            if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
-            {
-                if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
-                    return null;
-                fieldName = this.DbSettings.PKeyName;
-            }
-            else
-            {
-                fieldName = dbGen.PKeyName;
-            }
-            return fieldName;
-        }
-        public string GetIdFieldGuid()
-        {
-            return this.DbSettings.PKeyFieldGuid;
-        }
+        //public string GetIdFieldName(IvPluginDbGenerator dbGen)
+        //{
+        //    string fieldName = null;
+        //    if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
+        //    {
+        //        if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
+        //            return null;
+        //        fieldName = this.DbSettings.PKeyName;
+        //    }
+        //    else
+        //    {
+        //        fieldName = dbGen.PKeyName;
+        //    }
+        //    return fieldName;
+        //}
+        //public string GetIdFieldGuid()
+        //{
+        //    return this.DbSettings.PKeyFieldGuid;
+        //}
         //public string GetVersionFieldName(IvPluginDbGenerator dbGen)
         //{
         //    string fieldName = null;
@@ -598,24 +599,32 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(default(ITreeConfigNode), guid, name, dt);
             return res;
         }
-        private IProperty GetPropertyId(IvPluginDbGenerator dbGen)
+        //private IProperty GetPropertyId(IvPluginDbGenerator dbGen)
+        //{
+        //    string fieldName = null;
+        //    if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
+        //    {
+        //        if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
+        //            return null;
+        //        fieldName = this.DbSettings.PKeyName;
+        //    }
+        //    else
+        //    {
+        //        fieldName = dbGen.PKeyName;
+        //    }
+        //    var dt = (DataType)this.GetIdDataType();
+        //    dt.IsPKey = true;
+        //    if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
+        //        this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
+        //    var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
+        //    res.IsPKey = true;
+        //    return res;
+        //}
+        public IProperty GetPropertyId(string idGuid)
         {
-            string fieldName = null;
-            if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
-            {
-                if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
-                    return null;
-                fieldName = this.DbSettings.PKeyName;
-            }
-            else
-            {
-                fieldName = dbGen.PKeyName;
-            }
             var dt = (DataType)this.GetIdDataType();
-            dt.IsPKey = true;
-            if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
-                this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
-            var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
+            dt.IsRefParent = true;
+            var res = new Property(default(ITreeConfigNode), idGuid, this.DbSettings.PKeyName, dt);
             res.IsPKey = true;
             return res;
         }
@@ -633,196 +642,235 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(default(ITreeConfigNode), (parent as IGuid).Guid, "Ref" + parent.CompositeName, dt);
             return res;
         }
-        private List<IProperty> GetGroupProperties(IGroupListProperties g, string guidAppPrjGen)
-        {
-            var res = new List<IProperty>();
-            foreach (var tt in g.ListProperties)
-            {
-                if (!tt.IsIncluded(guidAppPrjGen))
-                    continue;
-                res.Add(tt);
-            }
-            return res;
-        }
-        private List<IConstant> GetGroupProperties(IGroupListConstants g, string guidAppPrjGen)
-        {
-            var res = new List<IConstant>();
-            foreach (var tt in g.ListConstants)
-            {
-                if (!tt.IsIncluded(guidAppPrjGen))
-                    continue;
-                res.Add(tt);
-            }
-            return res;
-        }
-        public IReadOnlyList<IProperty> GetListDocSharedProperties(string guidAppPrjGen)
-        {
-            var res = new List<IProperty>();
-            var cfg = (Config)this.Parent;
-            res.AddRange(this.GetGroupProperties(cfg.Model.GroupDocuments.GroupSharedProperties, guidAppPrjGen));
-            return res;
-        }
-        public IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen)
-        {
-            var refparent = "RefTreeParent";
-            IProperty prp = null;
-            var cfg = (Config)this.GetConfig();
-            var apg = (AppProjectGenerator)cfg.DicNodes[guidAppPrjGen];
-            IvPluginDbGenerator dbGen = apg.PluginDbGenerator;
-            var lst = new List<IProperty>();
-            if (node is IPropertiesTab)
-            {
-                var p = node as IPropertiesTab;
-                lst.Add(this.GetPropertyId(dbGen));
-                lst.Add(this.GetPropertyRefParent(p.Parent.Parent as ICompositeName));
-                lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
-            }
-            else if (node is ICatalog)
-            {
-                var p = node as ICatalog;
-                var gc = p.Parent as IGroupListCatalogs;
-                string gname = p.GroupItems.CompositeName;
-                lst.Add(this.GetPropertyId(dbGen));
-                if (p.UseTree)
-                {
-                    if (p.UseSeparatePropertiesForGroups)
-                    {
-                        prp = this.GetPropertyRefParent(p.GroupItems.Guid, "Ref" + gname);
-                    }
-                    else
-                    {
-                        prp = this.GetPropertyRefParent(p.GroupItems.Guid, refparent);
-                        (prp.DataType as DataType).IsNullable = true;
-                    }
-                    lst.Add(prp);
-                }
-                AddCodeNameDescriptionProperties(dbGen, lst, p);
-                lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
-                if (p.UseTree && !p.UseSeparatePropertiesForGroups && p.UseFolderTypeExplicitly)
-                {
-                    prp = cfg.Model.GetPropertyBool(p.PropertyIsFolderGuid, gc.PropertyIsFolderName, false);
-                    lst.Add(prp);
-                }
-            }
-            else if (node is ICatalogItemsGroup)
-            {
-                var cg = node as ICatalogItemsGroup;
-                var p = cg.Parent as ICatalog;
-                var gc = p.Parent as IGroupListCatalogs;
-                lst.Add(this.GetPropertyId(dbGen));
-                if (p.UseTree && p.UseSeparatePropertiesForGroups)
-                {
-                    prp = this.GetPropertyRefParent(p.GroupItems.Guid, refparent);
-                    (prp.DataType as DataType).IsNullable = true;
-                    lst.Add(prp);
-                }
-                AddCodeNameDescriptionProperties(dbGen, lst, p);
-                lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
-            }
-            else if (node is IDocument)
-            {
-                var p = node as IDocument;
-                lst.Add(this.GetPropertyId(dbGen));
-                lst.AddRange(this.GetGroupProperties((p.Parent.Parent as IGroupDocuments).GroupSharedProperties, guidAppPrjGen));
-                lst.AddRange(this.GetGroupProperties(p.GroupProperties, guidAppPrjGen));
-            }
-            //else if (node is IGroupListConstants)
-            //{
-            //    var p = node as IGroupListConstants;
-            //    lst.Add(this.GetIdProperty(dbGen));
-            //    lst.AddRange(this.GetGroupProperties(p, guidAppPrjGen));
-            //}
-            else
-                Debug.Assert(false);
-            return lst;
-        }
+        //public IReadOnlyList<IProperty> GetGroupProperties(IGroupListProperties g, string guidAppPrjGen)
+        //{
+        //    var res = new List<IProperty>();
+        //    foreach (var tt in g.ListProperties)
+        //    {
+        //        if (!tt.IsIncluded(guidAppPrjGen))
+        //            continue;
+        //        res.Add(tt);
+        //    }
+        //    return res;
+        //}
+        //private List<IConstant> GetGroupProperties(IGroupListConstants g, string guidAppPrjGen)
+        //{
+        //    var res = new List<IConstant>();
+        //    foreach (var tt in g.ListConstants)
+        //    {
+        //        if (!tt.IsIncluded(guidAppPrjGen))
+        //            continue;
+        //        res.Add(tt);
+        //    }
+        //    return res;
+        //}
+        //public IReadOnlyList<IProperty> GetListDocSharedProperties(string guidAppPrjGen)
+        //{
+        //    var res = new List<IProperty>();
+        //    var cfg = (Config)this.Parent;
+        //    res.AddRange(this.GetListProperties(cfg.Model.GroupDocuments.GroupSharedProperties, guidAppPrjGen));
+        //    return res;
+        //}
+        //public IReadOnlyList<IPropertiesTab> GetListPropertiesTabs(ITreeConfigNode node, string guidAppPrjGen)
+        //{
+        //    var model = (Config)this.GetConfig().Model;
+        //    var lst = new List<IPropertiesTab>();
+        //    if (node is IPropertiesTab)
+        //    {
+        //        var p = node as IPropertiesTab;
+        //        foreach (var t in p.GroupPropertiesTabs.ListPropertiesTabs)
+        //        {
+        //            if (!t.IsIncluded(guidAppPrjGen))
+        //                continue;
+        //            lst.Add(t);
+        //        }
 
-        private void AddCodeNameDescriptionProperties(IvPluginDbGenerator dbGen, List<IProperty> lst, ICatalog p)
-        {
-            var gc = (IGroupListCatalogs)p.Parent;
-            IProperty prp = null;
-            if (p.UseCodeProperty)
-            {
-                switch (p.CodePropertySettings.Type)
-                {
-                    case EnumCatalogCodeType.AutoNumber:
-                        throw new NotImplementedException();
-                        break;
-                    case EnumCatalogCodeType.AutoText:
-                        throw new NotImplementedException();
-                        break;
-                    case EnumCatalogCodeType.Number:
-                        prp = this.GetPropertyInt(p.PropertyNameGuid, p.MaxNameLength, gc.PropertyCodeName);
-                        break;
-                    case EnumCatalogCodeType.Text:
-                        prp = this.GetPropertyString(p.PropertyNameGuid, p.MaxNameLength, gc.PropertyCodeName);
-                        break;
-                }
-                lst.Add(prp);
-            }
-            if (p.UseNameProperty)
-            {
-                prp = this.GetPropertyString(p.PropertyNameGuid, p.MaxNameLength, gc.PropertyNameName);
-                lst.Add(prp);
-            }
-            if (p.UseDescriptionProperty)
-            {
-                prp = this.GetPropertyString(p.PropertyDescriptionGuid, p.MaxDescriptionLength, gc.PropertyDescriptionName);
-                lst.Add(prp);
-            }
-        }
+        //    }
+        //    else if (node is ICatalog)
+        //    {
+        //        var p = node as ICatalog;
+        //        foreach (var t in p.GroupPropertiesTabs.ListPropertiesTabs)
+        //        {
+        //            if (!t.IsIncluded(guidAppPrjGen))
+        //                continue;
+        //            lst.Add(t);
+        //        }
+        //    }
+        //    else if (node is IDocument)
+        //    {
+        //        var p = node as IDocument;
+        //        foreach (var t in p.GroupPropertiesTabs.ListPropertiesTabs)
+        //        {
+        //            if (!t.IsIncluded(guidAppPrjGen))
+        //                continue;
+        //            lst.Add(t);
+        //        }
+        //    }
+        //    else
+        //        Debug.Assert(false);
+        //    return lst;
+        //}
+        //public IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen)
+        //{
+        //    var refparent = "RefTreeParent";
+        //    IProperty prp = null;
+        //    var cfg = (Config)this.GetConfig();
+        //    var apg = (AppProjectGenerator)cfg.DicNodes[guidAppPrjGen];
+        //    IvPluginDbGenerator dbGen = apg.PluginDbGenerator;
+        //    var lst = new List<IProperty>();
+        //    if (node is IPropertiesTab)
+        //    {
+        //        var p = node as IPropertiesTab;
+        //        lst.Add(this.GetPropertyId(dbGen));
+        //        lst.Add(this.GetPropertyRefParent(p.Parent.Parent as ICompositeName));
+        //        lst.AddRange(this.GetListProperties(p.GroupProperties, guidAppPrjGen));
+        //    }
+        //    else if (node is ICatalog)
+        //    {
+        //        var p = node as ICatalog;
+        //        var gc = p.Parent as IGroupListCatalogs;
+        //        string gname = p.GroupItems.CompositeName;
+        //        lst.Add(this.GetPropertyId(dbGen));
+        //        if (p.UseTree)
+        //        {
+        //            if (p.UseSeparatePropertiesForGroups)
+        //            {
+        //                prp = this.GetPropertyRefParent(p.GroupItems.Guid, "Ref" + gname);
+        //            }
+        //            else
+        //            {
+        //                prp = this.GetPropertyRefParent(p.GroupItems.Guid, refparent);
+        //                (prp.DataType as DataType).IsNullable = true;
+        //            }
+        //            lst.Add(prp);
+        //        }
+        //        AddCodeNameDescriptionProperties(dbGen, lst, p);
+        //        lst.AddRange(this.GetListProperties(p.GroupProperties, guidAppPrjGen));
+        //        if (p.UseTree && !p.UseSeparatePropertiesForGroups && p.UseFolderTypeExplicitly)
+        //        {
+        //            prp = cfg.Model.GetPropertyBool(p.PropertyIsFolderGuid, gc.PropertyIsFolderName, false);
+        //            lst.Add(prp);
+        //        }
+        //    }
+        //    else if (node is ICatalogItemsGroup)
+        //    {
+        //        var cg = node as ICatalogItemsGroup;
+        //        var p = cg.Parent as ICatalog;
+        //        var gc = p.Parent as IGroupListCatalogs;
+        //        lst.Add(this.GetPropertyId(dbGen));
+        //        if (p.UseTree && p.UseSeparatePropertiesForGroups)
+        //        {
+        //            prp = this.GetPropertyRefParent(p.GroupItems.Guid, refparent);
+        //            (prp.DataType as DataType).IsNullable = true;
+        //            lst.Add(prp);
+        //        }
+        //        AddCodeNameDescriptionProperties(dbGen, lst, p);
+        //        lst.AddRange(this.GetListProperties(p.GroupProperties, guidAppPrjGen));
+        //    }
+        //    else if (node is IDocument)
+        //    {
+        //        var p = node as IDocument;
+        //        lst.Add(this.GetPropertyId(dbGen));
+        //        lst.AddRange(this.GetListProperties((p.Parent.Parent as IGroupDocuments).GroupSharedProperties, guidAppPrjGen));
+        //        lst.AddRange(this.GetListProperties(p.GroupProperties, guidAppPrjGen));
+        //    }
+        //    //else if (node is IGroupListConstants)
+        //    //{
+        //    //    var p = node as IGroupListConstants;
+        //    //    lst.Add(this.GetIdProperty(dbGen));
+        //    //    lst.AddRange(this.GetGroupProperties(p, guidAppPrjGen));
+        //    //}
+        //    else
+        //        Debug.Assert(false);
+        //    return lst;
+        //}
 
-        public IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen)
-        {
-            var lst = new List<IPropertiesTab>();
-            if (node is IPropertiesTab)
-            {
-                var p = node as IPropertiesTab;
-                foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
-                {
-                    if (tt.IsIncluded(guidAppPrjGen))
-                    {
-                        lst.Add(tt);
-                    }
-                }
-            }
-            else if (node is ICatalog)
-            {
-                var p = node as ICatalog;
-                foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
-                {
-                    if (tt.IsIncluded(guidAppPrjGen))
-                    {
-                        lst.Add(tt);
-                    }
-                }
-            }
-            else if (node is ICatalogItemsGroup)
-            {
-                var p = node as ICatalogItemsGroup;
-                foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
-                {
-                    if (tt.IsIncluded(guidAppPrjGen))
-                    {
-                        lst.Add(tt);
-                    }
-                }
-            }
-            else if (node is IDocument)
-            {
-                var p = node as IDocument;
-                foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
-                {
-                    if (tt.IsIncluded(guidAppPrjGen))
-                    {
-                        lst.Add(tt);
-                    }
-                }
-            }
-            else
-                Debug.Assert(false);
-            return lst;
-        }
+        //private void AddCodeNameDescriptionProperties(IvPluginDbGenerator dbGen, List<IProperty> lst, ICatalog p)
+        //{
+        //    var gc = (IGroupListCatalogs)p.Parent;
+        //    IProperty prp = null;
+        //    if (p.UseCodeProperty)
+        //    {
+        //        switch (p.CodePropertySettings.Type)
+        //        {
+        //            case EnumCatalogCodeType.AutoNumber:
+        //                throw new NotImplementedException();
+        //                break;
+        //            case EnumCatalogCodeType.AutoText:
+        //                throw new NotImplementedException();
+        //                break;
+        //            case EnumCatalogCodeType.Number:
+        //                prp = this.GetPropertyInt(p.PropertyNameGuid, p.MaxNameLength, gc.PropertyCodeName);
+        //                break;
+        //            case EnumCatalogCodeType.Text:
+        //                prp = this.GetPropertyString(p.PropertyNameGuid, p.MaxNameLength, gc.PropertyCodeName);
+        //                break;
+        //        }
+        //        lst.Add(prp);
+        //    }
+        //    if (p.UseNameProperty)
+        //    {
+        //        prp = this.GetPropertyString(p.PropertyNameGuid, p.MaxNameLength, gc.PropertyNameName);
+        //        lst.Add(prp);
+        //    }
+        //    if (p.UseDescriptionProperty)
+        //    {
+        //        prp = this.GetPropertyString(p.PropertyDescriptionGuid, p.MaxDescriptionLength, gc.PropertyDescriptionName);
+        //        lst.Add(prp);
+        //    }
+        //}
+
+        //public IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen)
+        //{
+        //    var lst = new List<IPropertiesTab>();
+        //    if (node is IPropertiesTab)
+        //    {
+        //        var p = node as IPropertiesTab;
+        //        foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
+        //        {
+        //            if (tt.IsIncluded(guidAppPrjGen))
+        //            {
+        //                lst.Add(tt);
+        //            }
+        //        }
+        //    }
+        //    else if (node is ICatalog)
+        //    {
+        //        var p = node as ICatalog;
+        //        foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
+        //        {
+        //            if (tt.IsIncluded(guidAppPrjGen))
+        //            {
+        //                lst.Add(tt);
+        //            }
+        //        }
+        //    }
+        //    else if (node is ICatalogFolder)
+        //    {
+        //        var p = node as ICatalogFolder;
+        //        foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
+        //        {
+        //            if (tt.IsIncluded(guidAppPrjGen))
+        //            {
+        //                lst.Add(tt);
+        //            }
+        //        }
+        //    }
+        //    else if (node is IDocument)
+        //    {
+        //        var p = node as IDocument;
+        //        foreach (var tt in p.GroupPropertiesTabs.ListPropertiesTabs)
+        //        {
+        //            if (tt.IsIncluded(guidAppPrjGen))
+        //            {
+        //                lst.Add(tt);
+        //            }
+        //        }
+        //    }
+        //    else
+        //        Debug.Assert(false);
+        //    return lst;
+        //}
         public IReadOnlyList<IEnumeration> GetListEnumerations(string guidAppPrjGen)
         {
             var lst = new List<IEnumeration>();

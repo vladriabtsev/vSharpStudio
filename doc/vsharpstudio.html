@@ -211,7 +211,7 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_catalog_items_group"><span class="badge">M</span>proto_catalog_items_group</a>
+                  <a href="#proto_config.proto_catalog_folder"><span class="badge">M</span>proto_catalog_folder</a>
                 </li>
               
                 <li>
@@ -503,7 +503,7 @@
                 </tr>
               
                 <tr>
-                  <td>p_key_field_guid</td>
+                  <td>p_key_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -1104,8 +1104,8 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
-                  <td>group_items</td>
-                  <td><a href="#proto_config.proto_catalog_items_group">proto_catalog_items_group</a></td>
+                  <td>folder</td>
+                  <td><a href="#proto_config.proto_catalog_folder">proto_catalog_folder</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -1145,6 +1145,13 @@ App solution relative path to configuration file path </p></td>
                   <td><p>@attr [PropertyOrderAttribute(19)]
 @attr [DisplayName(&#34;Item Icon&#34;)]
 @attr [Description(&#34;Catalog item icon type&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -1356,7 +1363,7 @@ App solution relative path to configuration file path </p></td>
 
         
       
-        <h3 id="proto_config.proto_catalog_items_group">proto_catalog_items_group</h3>
+        <h3 id="proto_config.proto_catalog_folder">proto_catalog_folder</h3>
         <p></p>
 
         
@@ -1858,6 +1865,13 @@ App solution relative path to configuration file path </p></td>
                 <tr>
                   <td>group_reports</td>
                   <td><a href="#proto_config.proto_group_list_reports">proto_group_list_reports</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -4286,6 +4300,13 @@ repeated proto_document list_forms = 7; </p></td>
                 <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>

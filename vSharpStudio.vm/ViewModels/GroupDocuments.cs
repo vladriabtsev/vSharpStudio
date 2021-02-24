@@ -119,5 +119,22 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;
         }
+        /// <summary>
+        /// Only shared properties
+        /// </summary>
+        /// <param name="guidAppPrjGen"></param>
+        /// <returns></returns>
+        public IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen)
+        {
+            var res = new List<IProperty>();
+            foreach (var t in this.GroupSharedProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
     }
 }

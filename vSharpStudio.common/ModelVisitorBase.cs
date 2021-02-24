@@ -368,8 +368,6 @@ namespace vSharpStudio.common
             #endregion Journals
 
             this.EndVisit(this.currModel);
-
-            this.currCfg = null;
         }
         /// <summary>
         /// Visit and annotate config nodes.
@@ -467,8 +465,6 @@ namespace vSharpStudio.common
             this.Run(this.currCfg.Model, act);
 
             this.EndVisit(this.currCfg);
-
-            this.currCfg = null;
         }
 
         protected virtual void EndVisit(IPluginGroupGeneratorsSettings tt) { }

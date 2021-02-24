@@ -45,12 +45,13 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
-            this.GroupItems.Parent = this;
+            this.Folder.Parent = this;
             this.GroupProperties.Parent = this;
             this.GroupPropertiesTabs.Parent = this;
             this.GroupForms.Parent = this;
             this.GroupReports.Parent = this;
             this.ItemIconType = EnumCatalogTreeIcon.None;
+            this.PropertyIdGuid = System.Guid.NewGuid().ToString();
             this.UseCodeProperty = true;
             this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
             this.UseNameProperty = true;
@@ -81,7 +82,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Clear();
             if (this.UseTree && this.UseSeparatePropertiesForGroups)
             {
-                this.Children.Add(this.GroupItems, 2);
+                this.Children.Add(this.Folder, 2);
             }
             this.Children.Add(this.GroupProperties, 3);
             this.Children.Add(this.GroupPropertiesTabs, 4);
@@ -254,7 +255,56 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
+            GetSpecialProperties(res);
             foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+        private void GetSpecialProperties(List<IProperty> res)
+        {
+            var cfg = this.GetConfig();
+            var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            res.Add(prp);
+            if (this.UseCodeProperty)
+            {
+                switch (this.CodePropertySettings.Type)
+                {
+                    case EnumCatalogCodeType.AutoNumber:
+                        throw new NotImplementedException();
+                        break;
+                    case EnumCatalogCodeType.AutoText:
+                        throw new NotImplementedException();
+                        break;
+                    case EnumCatalogCodeType.Number:
+                        prp = cfg.Model.GetPropertyInt(this.PropertyNameGuid, this.MaxNameLength, cfg.Model.GroupCatalogs.PropertyCodeName);
+                        break;
+                    case EnumCatalogCodeType.Text:
+                        prp = cfg.Model.GetPropertyString(this.PropertyNameGuid, this.MaxNameLength, cfg.Model.GroupCatalogs.PropertyCodeName);
+                        break;
+                }
+                res.Add(prp);
+            }
+            if (this.UseNameProperty)
+            {
+                prp = cfg.Model.GetPropertyString(this.PropertyNameGuid, this.MaxNameLength, cfg.Model.GroupCatalogs.PropertyNameName);
+                res.Add(prp);
+            }
+            if (this.UseDescriptionProperty)
+            {
+                prp = cfg.Model.GetPropertyString(this.PropertyDescriptionGuid, this.MaxDescriptionLength, cfg.Model.GroupCatalogs.PropertyDescriptionName);
+                res.Add(prp);
+            }
+        }
+        public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjGen)
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res);
+            foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {
@@ -267,6 +317,18 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IPropertiesTab>();
             foreach (var t in this.GroupPropertiesTabs.ListPropertiesTabs)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+        public IReadOnlyList<IPropertiesTab> GetIncludedFolderPropertiesTabs(string guidAppPrjGen)
+        {
+            var res = new List<IPropertiesTab>();
+            foreach (var t in this.Folder.GroupPropertiesTabs.ListPropertiesTabs)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {

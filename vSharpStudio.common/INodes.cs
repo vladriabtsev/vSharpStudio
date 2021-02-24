@@ -8,7 +8,6 @@ namespace vSharpStudio.common
 {
     public interface IDbTable: IGuid, ICompositeName
     {
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen);
     }
     public interface ICanGoLeft
     {

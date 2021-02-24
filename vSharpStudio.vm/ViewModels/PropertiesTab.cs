@@ -39,6 +39,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this.IsIndexFk = true;
+            this.PropertyIdGuid = System.Guid.NewGuid().ToString();
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
             this.GroupProperties.ListProperties.OnAddingAction = (t) =>
@@ -206,6 +207,9 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
+            var cfg = this.GetConfig();
+            var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            res.Add(prp);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
