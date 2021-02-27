@@ -210,6 +210,9 @@ namespace vSharpStudio.vm.ViewModels
             var cfg = this.GetConfig();
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
+            var parent = this.Parent.Parent as ICompositeName;
+            prp = cfg.Model.GetPropertyRefParent((parent as IGuid).Guid, "Ref"+ parent.CompositeName);
+            res.Add(prp);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))

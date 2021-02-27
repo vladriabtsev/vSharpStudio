@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, 
+    public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
         IDbTable, ITreeConfigNode
     {
         public static readonly string DefaultName = "Catalog";
@@ -255,7 +255,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res);
+            GetSpecialProperties(res, false);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -265,11 +265,34 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        private void GetSpecialProperties(List<IProperty> res)
+        private void GetSpecialProperties(List<IProperty> res, bool isFolder)
         {
             var cfg = this.GetConfig();
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
+            if (isFolder)
+            {
+                    prp = cfg.Model.GetPropertyRefParent(this.PropertyParentGuid, "RefTreeParent");
+                    (prp.DataType as DataType).IsNullable = true;
+                    res.Add(prp);
+            }
+            else
+            {
+                if (this.UseTree)
+                {
+                    if (this.UseSeparatePropertiesForGroups)
+                    {
+                        prp = cfg.Model.GetPropertyRefParent(this.Guid, "Ref" + this.CompositeName+"Tree");
+                        res.Add(prp);
+                    }
+                    else
+                    {
+                        prp = cfg.Model.GetPropertyRefParent(this.PropertyParentGuid, "RefTreeParent");
+                        (prp.DataType as DataType).IsNullable = true;
+                        res.Add(prp);
+                    }
+                }
+            }
             if (this.UseCodeProperty)
             {
                 switch (this.CodePropertySettings.Type)
@@ -303,7 +326,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res);
+            GetSpecialProperties(res, true);
             foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))

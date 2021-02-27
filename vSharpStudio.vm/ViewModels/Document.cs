@@ -215,6 +215,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IProperty>();
             var grd = (GroupDocuments)this.Parent.Parent;
+            var cfg = this.GetConfig();
+            var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            res.Add(prp);
             foreach (var t in grd.GroupSharedProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))

@@ -623,7 +623,6 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyId(string idGuid)
         {
             var dt = (DataType)this.GetIdDataType();
-            dt.IsRefParent = true;
             var res = new Property(default(ITreeConfigNode), idGuid, this.DbSettings.PKeyName, dt);
             res.IsPKey = true;
             return res;
