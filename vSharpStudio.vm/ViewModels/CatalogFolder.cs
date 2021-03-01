@@ -38,9 +38,18 @@ namespace vSharpStudio.vm.ViewModels
         new public string IconName { get { return "iconFolder"; } }
         partial void OnInit()
         {
-            this._Name = "Groups";
+            this._Name = "Folder";
             this._Description = "Catalog items groups";
             this.IsIncludableInModels = true;
+
+            this.PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
+            this.MaxNameLength = 20;
+            this.PropertyNameGuid = System.Guid.NewGuid().ToString();
+            this.MaxDescriptionLength = 100;
+            this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
+            this.PropertyParentGuid = System.Guid.NewGuid().ToString();
+
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
@@ -146,13 +155,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                var p = this.Parent as Catalog;
-                return p.CompositeName + "Tree";
+                return GetCompositeName();
             }
         }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
+            GetSpecialProperties(res);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -173,6 +182,83 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             return res;
+        }
+        private void GetSpecialProperties(List<IProperty> res)
+        {
+            var cfg = this.GetConfig();
+            var ctlg = (Catalog)this.Parent;
+            var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            res.Add(prp);
+            prp = cfg.Model.GetPropertyRefParent(this.PropertyParentGuid, "RefTreeParent");
+            (prp.DataType as DataType).IsNullable = true;
+            res.Add(prp);
+            if (this.UseCodeProperty.HasValue)
+            {
+                if (this.UseCodeProperty.Value)
+                {
+                    switch (this.CodePropertySettings.Type)
+                    {
+                        case EnumCatalogCodeType.AutoNumber:
+                            throw new NotImplementedException();
+                            break;
+                        case EnumCatalogCodeType.AutoText:
+                            throw new NotImplementedException();
+                            break;
+                        case EnumCatalogCodeType.Number:
+                            prp = cfg.Model.GetPropertyInt(this.PropertyCodeGuid, this.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
+                            break;
+                        case EnumCatalogCodeType.Text:
+                            prp = cfg.Model.GetPropertyString(this.PropertyCodeGuid, this.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
+                            break;
+                    }
+                    res.Add(prp);
+                }
+            }
+            else if (ctlg.UseCodeProperty)
+            {
+                switch (ctlg.CodePropertySettings.Type)
+                {
+                    case EnumCatalogCodeType.AutoNumber:
+                        throw new NotImplementedException();
+                        break;
+                    case EnumCatalogCodeType.AutoText:
+                        throw new NotImplementedException();
+                        break;
+                    case EnumCatalogCodeType.Number:
+                        prp = cfg.Model.GetPropertyInt(ctlg.PropertyCodeGuid, ctlg.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
+                        break;
+                    case EnumCatalogCodeType.Text:
+                        prp = cfg.Model.GetPropertyString(ctlg.PropertyCodeGuid, ctlg.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
+                        break;
+                }
+                res.Add(prp);
+            }
+            if (this.UseNameProperty.HasValue)
+            {
+                if (this.UseCodeProperty.Value)
+                {
+                    prp = cfg.Model.GetPropertyString(this.PropertyNameGuid, this.MaxNameLength, cfg.Model.GroupCatalogs.PropertyNameName);
+                    res.Add(prp);
+                }
+            }
+            else if (ctlg.UseNameProperty)
+            {
+                prp = cfg.Model.GetPropertyString(ctlg.PropertyNameGuid, ctlg.MaxNameLength, cfg.Model.GroupCatalogs.PropertyNameName);
+                res.Add(prp);
+            }
+            if (this.UseDescriptionProperty.HasValue)
+            {
+                if (this.UseDescriptionProperty.Value)
+                {
+                    prp = cfg.Model.GetPropertyString(this.PropertyDescriptionGuid, this.MaxDescriptionLength, cfg.Model.GroupCatalogs.PropertyDescriptionName);
+                    res.Add(prp);
+                }
+            }
+            else if (ctlg.UseDescriptionProperty)
+            {
+                prp = cfg.Model.GetPropertyString(ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength, cfg.Model.GroupCatalogs.PropertyDescriptionName);
+                res.Add(prp);
+            }
         }
     }
 }

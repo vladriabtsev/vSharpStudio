@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -12,46 +13,39 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
-            this.RuleFor(x => x.Name).Must((o, name) => { return this.IsUnique(o); }).WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
-            // RuleFor(x => x.MinValueString).NotEmpty().WithMessage("Please provide minimum value").WithSeverity(Severity.Warning);
-            // RuleFor(x => x.MaxValueString).NotEmpty().WithMessage("Please provide maximum value").WithSeverity(Severity.Warning);
-            // RuleFor(x => x.MinValueString).Must(ParsableToBigInteger).WithMessage("Can't parse to integer");
-            // RuleFor(x => x.MaxValueString).Must(ParsableToBigInteger).WithMessage("Can't parse to integer");
-            // RuleFor(x => x.Length).GreaterThan(0u);
-            // RuleFor(x => x.Accuracy).LessThan(x => x.Length);
-            // RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Catalog).WithMessage("Please select catalog name");
-            // RuleFor(x => x.ObjectName).NotEmpty().When(x => x.DataTypeEnum == EnumDataType.Document).WithMessage("Please select document name");
-        }
-
-        private bool IsUnique(PropertiesTab val)
-        {
-            if (val.Parent == null)
+            this.RuleFor(x => x.Name).Custom((name, cntx) =>
             {
-                return true;
-            }
-
-            if (string.IsNullOrWhiteSpace(val.Name)) // handled by another rule
-            {
-                return true;
-            }
-
-            if (val.Parent is GroupListPropertiesTabs)
-            {
-                GroupListPropertiesTabs p = (GroupListPropertiesTabs)val.Parent;
-                foreach (var t in p.ListPropertiesTabs)
+                var p = (PropertiesTab)cntx.InstanceToValidate;
+                if (p.Parent == null)
+                    return;
+                var pg = (GroupListPropertiesTabs)p.Parent;
+                //if (pg.Parent == null)
+                //    return;
+                if (pg.Parent is Catalog)
                 {
-                    if ((val.Guid != t.Guid) && (val.Name == t.Name))
+                    var c = (Catalog)pg.Parent;
+                    if (c.UseTree && c.UseSeparatePropertiesForGroups)
                     {
-                        return false;
+                        if (name == c.Folder.Name)
+                        {
+                            var vf = new ValidationFailure(nameof(p.Name),
+                                $"Properties tab name can't be same as catalog folder name '{name}'");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
                     }
                 }
-            }
-            else
-            {
-                throw new Exception();
-            }
-
-            return true;
+                foreach (var t in pg.ListPropertiesTabs)
+                {
+                    if ((p.Guid != t.Guid) && (name == t.Name))
+                    {
+                        var vf = new ValidationFailure(nameof(p.Name),
+                            $"Not unique properties tab name '{name}'");
+                        vf.Severity = Severity.Error;
+                        cntx.AddFailure(vf);
+                    }
+                }
+            });
         }
     }
 }

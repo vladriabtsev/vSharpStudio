@@ -282,7 +282,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (this.UseSeparatePropertiesForGroups)
                     {
-                        prp = cfg.Model.GetPropertyRefParent(this.Guid, "Ref" + this.CompositeName+"Tree");
+                        prp = cfg.Model.GetPropertyRefParent(this.Guid, "Ref" + this.Folder.CompositeName);
                         res.Add(prp);
                     }
                     else
@@ -290,6 +290,12 @@ namespace vSharpStudio.vm.ViewModels
                         prp = cfg.Model.GetPropertyRefParent(this.PropertyParentGuid, "RefTreeParent");
                         (prp.DataType as DataType).IsNullable = true;
                         res.Add(prp);
+                        if (this.UseFolderTypeExplicitly)
+                        {
+                            var gr = this.Parent as IGroupListCatalogs;
+                            prp = cfg.Model.GetPropertyBool(this.PropertyIsFolderGuid, gr.PropertyIsFolderName, false);
+                            res.Add(prp);
+                        }
                     }
                 }
             }
@@ -304,10 +310,10 @@ namespace vSharpStudio.vm.ViewModels
                         throw new NotImplementedException();
                         break;
                     case EnumCatalogCodeType.Number:
-                        prp = cfg.Model.GetPropertyInt(this.PropertyNameGuid, this.MaxNameLength, cfg.Model.GroupCatalogs.PropertyCodeName);
+                        prp = cfg.Model.GetPropertyInt(this.PropertyCodeGuid, this.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
                         break;
                     case EnumCatalogCodeType.Text:
-                        prp = cfg.Model.GetPropertyString(this.PropertyNameGuid, this.MaxNameLength, cfg.Model.GroupCatalogs.PropertyCodeName);
+                        prp = cfg.Model.GetPropertyString(this.PropertyCodeGuid, this.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
                         break;
                 }
                 res.Add(prp);

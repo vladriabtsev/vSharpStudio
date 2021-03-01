@@ -179,6 +179,10 @@
             <ul>
               
                 <li>
+                  <a href="#proto_config.bool_nullable"><span class="badge">M</span>bool_nullable</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.db_settings"><span class="badge">M</span>db_settings</a>
                 </li>
               
@@ -455,6 +459,37 @@
       </div>
       <p></p>
 
+      
+        <h3 id="proto_config.bool_nullable">bool_nullable</h3>
+        <p>need extend code generator</p><p>import "vsharpstudioshared.proto";</p><p>// @base VmValidatableWithSeverity</p><p>message proto_test {</p><p>proto_shared.bool_nullable test1 = 11;</p><p>}</p><p>// @base VmValidatableWithSeverity</p><p>message proto_test2 {</p><p>proto_shared.test_shared_messsage test1 = 11;</p><p>}</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>has_value</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="proto_config.db_settings">db_settings</h3>
         <p>General DB settings</p><p>@base VmValidatableWithSeverity</p>
@@ -1435,6 +1470,96 @@ App solution relative path to configuration file path </p></td>
                 <tr>
                   <td>group_properties_tabs</td>
                   <td><a href="#proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_code_property</td>
+                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Use Code&#34;)]
+@attr [Description(&#34;Use Code property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>code_property_settings</td>
+                  <td><a href="#proto_config.proto_catalog_code_property_settings">proto_catalog_code_property_settings</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [ExpandableObjectAttribute()]
+@attr [DisplayName(&#34;Code&#34;)]
+@attr [Description(&#34;Code property settings for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_name_property</td>
+                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(41)]
+@attr [DisplayName(&#34;Use Name&#34;)]
+@attr [Description(&#34;Use Name property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_name_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(42)]
+@attr [DisplayName(&#34;Max Length&#34;)]
+@attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_name_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_description_property</td>
+                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(51)]
+@attr [DisplayName(&#34;Use Description&#34;)]
+@attr [Description(&#34;Use Description property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_description_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(52)]
+@attr [DisplayName(&#34;Max Length&#34;)]
+@attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_description_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_parent_guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>

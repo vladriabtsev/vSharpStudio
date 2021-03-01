@@ -15,7 +15,7 @@
           "name": "bool_nullable",
           "longName": "bool_nullable",
           "fullName": "proto_shared.bool_nullable",
-          "description": "all simple nullable (generator check suffics '_nullable')",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],

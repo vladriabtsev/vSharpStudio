@@ -20,6 +20,10 @@ message proto_test2 {
     proto_shared.test_shared_messsage test1 = 11;
 }
 */
+message bool_nullable {
+    bool has_value = 1;
+    bool value = 2;
+}
 
 /** 
  * @exclude
@@ -1038,6 +1042,43 @@ message proto_catalog_folder {
     proto_group_list_properties group_properties = 15;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties_tabs group_properties_tabs = 16;
+
+    // @attr [BrowsableAttribute(false)]
+    string property_id_guid = 20;
+    // @attr [PropertyOrderAttribute(21)]
+    // @attr [DisplayName("Use Code")]
+    // @attr [Description("Use Code property for catalog item")]
+    bool_nullable use_code_property = 21;
+    // @attr [PropertyOrderAttribute(22)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Code")]
+    // @attr [Description("Code property settings for catalog item")]
+    proto_catalog_code_property_settings code_property_settings = 22;
+    // @attr [BrowsableAttribute(false)]
+    string property_code_guid = 23;
+    // @attr [PropertyOrderAttribute(41)]
+    // @attr [DisplayName("Use Name")]
+    // @attr [Description("Use Name property for catalog item")]
+    bool_nullable use_name_property = 41;
+    // @attr [PropertyOrderAttribute(42)]
+    // @attr [DisplayName("Max Length")]
+    // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
+    uint32 max_name_length = 42;
+    // @attr [BrowsableAttribute(false)]
+    string property_name_guid = 43;
+    // @attr [PropertyOrderAttribute(51)]
+    // @attr [DisplayName("Use Description")]
+    // @attr [Description("Use Description property for catalog item")]
+    bool_nullable use_description_property = 51;
+    // @attr [PropertyOrderAttribute(52)]
+    // @attr [DisplayName("Max Length")]
+    // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
+    uint32 max_description_length = 52;
+    // @attr [BrowsableAttribute(false)]
+    string property_description_guid = 53;
+
+    // @attr [BrowsableAttribute(false)]
+    string property_parent_guid = 65;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

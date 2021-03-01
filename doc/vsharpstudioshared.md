@@ -26,7 +26,7 @@
 <a name="proto_shared.bool_nullable"></a>
 
 ### bool_nullable
-all simple nullable (generator check suffics &#39;_nullable&#39;)
+
 
 
 | Field | Type | Label | Description |

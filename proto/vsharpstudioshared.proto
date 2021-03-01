@@ -11,13 +11,14 @@ import "google/protobuf/any.proto";
 //import "connections.proto";
 
 package proto_shared; // 
-option csharp_namespace = "Proto.Config";
+option csharp_namespace = "Proto.Config2";
 
 /** 
  * @exclude
  * ####################################### N U L L A B L E ##########################################
  */
 // all simple nullable (generator check suffics '_nullable')
+
 message bool_nullable {
     bool has_value = 1;
     bool value = 2;

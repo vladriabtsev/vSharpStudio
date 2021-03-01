@@ -76,7 +76,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'test_shared_messsage' to 'TestSharedMesssage'
-        public static TestSharedMesssage ConvertToVM(Proto.Config.test_shared_messsage m, TestSharedMesssage vm) // Clone.tt Line: 170
+        public static TestSharedMesssage ConvertToVM(Proto.Config2.test_shared_messsage m, TestSharedMesssage vm) // Clone.tt Line: 170
         {
             Contract.Requires(vm != null);
             if (m == null)
@@ -92,15 +92,15 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
             return vm;
         }
         // Conversion from 'TestSharedMesssage' to 'test_shared_messsage'
-        public static Proto.Config.test_shared_messsage ConvertToProto(TestSharedMesssage vm) // Clone.tt Line: 236
+        public static Proto.Config2.test_shared_messsage ConvertToProto(TestSharedMesssage vm) // Clone.tt Line: 236
         {
             Contract.Requires(vm != null);
-            Proto.Config.test_shared_messsage m = new Proto.Config.test_shared_messsage(); // Clone.tt Line: 239
-            m.BoolValue = new Proto.Config.bool_nullable(); // Clone.tt Line: 253
+            Proto.Config2.test_shared_messsage m = new Proto.Config2.test_shared_messsage(); // Clone.tt Line: 239
+            m.BoolValue = new Proto.Config2.bool_nullable(); // Clone.tt Line: 253
             m.BoolValue.HasValue = vm.BoolValue.HasValue;
             if (vm.BoolValue.HasValue)
                 m.BoolValue.Value = vm.BoolValue.Value;
-            m.StringValue = new Proto.Config.string_nullable(); // Clone.tt Line: 249
+            m.StringValue = new Proto.Config2.string_nullable(); // Clone.tt Line: 249
             m.StringValue.Value = string.IsNullOrEmpty(vm.StringValue) ? "" : vm.StringValue;
             m.StringValue.HasValue = !string.IsNullOrEmpty(vm.StringValue);
             return m;
@@ -165,7 +165,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
     
     public interface IVisitorProto // IVisitorProto.tt Line: 7
     {
-        void Visit(Proto.Config.test_shared_messsage p);
+        void Visit(Proto.Config2.test_shared_messsage p);
     }
     
     public partial class ValidationSharedVisitor : SharedVisitor // ValidationVisitor.tt Line: 7

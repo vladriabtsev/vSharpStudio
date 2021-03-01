@@ -580,6 +580,17 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
+    	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
+    	bool? UseNameProperty { get; } // ModelInterfaces.tt Line: 51
+    	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
+    	bool? UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
+    	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyParentGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

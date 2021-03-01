@@ -270,6 +270,37 @@
       "extensions": [],
       "messages": [
         {
+          "name": "bool_nullable",
+          "longName": "bool_nullable",
+          "fullName": "proto_config.bool_nullable",
+          "description": "need extend code generator\nimport \"vsharpstudioshared.proto\";\n// @base VmValidatableWithSeverity\nmessage proto_test {\nproto_shared.bool_nullable test1 = 11;\n}\n// @base VmValidatableWithSeverity\nmessage proto_test2 {\nproto_shared.test_shared_messsage test1 = 11;\n}",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "has_value",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "db_settings",
           "longName": "db_settings",
           "fullName": "proto_config.db_settings",
@@ -1423,6 +1454,116 @@
               "type": "proto_group_list_properties_tabs",
               "longType": "proto_group_list_properties_tabs",
               "fullType": "proto_config.proto_group_list_properties_tabs",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_id_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_code_property",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item\")]",
+              "label": "",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_config.bool_nullable",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "code_property_settings",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for catalog item\")]",
+              "label": "",
+              "type": "proto_catalog_code_property_settings",
+              "longType": "proto_catalog_code_property_settings",
+              "fullType": "proto_config.proto_catalog_code_property_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_code_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_name_property",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
+              "label": "",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_config.bool_nullable",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_name_length",
+              "description": "@attr [PropertyOrderAttribute(42)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item name length. If zero, than unlimited length\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_name_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_description_property",
+              "description": "@attr [PropertyOrderAttribute(51)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
+              "label": "",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_config.bool_nullable",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_description_length",
+              "description": "@attr [PropertyOrderAttribute(52)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item description length. If zero, than unlimited length\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_description_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_parent_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
