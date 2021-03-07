@@ -48,7 +48,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyNameGuid = System.Guid.NewGuid().ToString();
             this.MaxDescriptionLength = 100;
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
-            this.PropertyParentGuid = System.Guid.NewGuid().ToString();
+            this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
 
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG
@@ -189,7 +189,7 @@ namespace vSharpStudio.vm.ViewModels
             var ctlg = (Catalog)this.Parent;
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
-            prp = cfg.Model.GetPropertyRefParent(this.PropertyParentGuid, "RefTreeParent");
+            prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent");
             (prp.DataType as DataType).IsNullable = true;
             res.Add(prp);
             if (this.UseCodeProperty.HasValue)
@@ -200,10 +200,8 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         case EnumCatalogCodeType.AutoNumber:
                             throw new NotImplementedException();
-                            break;
                         case EnumCatalogCodeType.AutoText:
                             throw new NotImplementedException();
-                            break;
                         case EnumCatalogCodeType.Number:
                             prp = cfg.Model.GetPropertyInt(this.PropertyCodeGuid, this.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
                             break;
@@ -220,10 +218,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     case EnumCatalogCodeType.AutoNumber:
                         throw new NotImplementedException();
-                        break;
                     case EnumCatalogCodeType.AutoText:
                         throw new NotImplementedException();
-                        break;
                     case EnumCatalogCodeType.Number:
                         prp = cfg.Model.GetPropertyInt(ctlg.PropertyCodeGuid, ctlg.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
                         break;

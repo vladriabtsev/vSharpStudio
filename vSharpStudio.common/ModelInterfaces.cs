@@ -348,7 +348,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	///////////////////////////////////////////////////
     	IDbSettings DbSettings { get; } // ModelInterfaces.tt Line: 55
     	IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListConstants GroupConstants { get; } // ModelInterfaces.tt Line: 55
+    	IGroupConstantGroups GroupConstantGroups { get; } // ModelInterfaces.tt Line: 55
     	IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 55
     	IGroupListCatalogs GroupCatalogs { get; } // ModelInterfaces.tt Line: 55
     	IGroupDocuments GroupDocuments { get; } // ModelInterfaces.tt Line: 55
@@ -465,6 +465,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -501,6 +502,16 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
+    public partial interface IGroupConstantGroups : IGuid, IName // ModelInterfaces.tt Line: 29
+    {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IGroupListConstants> ListConstantGroups { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+    }
+    
     public partial interface IGroupListConstants : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
@@ -509,6 +520,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IConstant> ListConstants { get; } // ModelInterfaces.tt Line: 44
     	IConstant this[int index] { get; }
     	int Count();
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -590,7 +603,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool? UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyParentGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -632,7 +645,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 51
     	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 51
     	bool UseSeparatePropertiesForGroups { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyParentGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyRefFolderGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

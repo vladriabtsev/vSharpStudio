@@ -66,7 +66,8 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.pconfig_history == null);
 
             // create object and save
-            vm.Config.Model.GroupConstants.NodeAddNewSubNode();
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            gr.NodeAddNewSubNode();
             var cnst = (Constant)vm.Config.SelectedNode;
             var ct = DateTime.UtcNow;
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
@@ -79,8 +80,8 @@ namespace vSharpStudio.Unit
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants.Count == 1);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants[0].Name == cnst.Name);
+            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
+            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
             Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
             Assert.IsTrue(vm.Config.Version == 0);
@@ -94,8 +95,8 @@ namespace vSharpStudio.Unit
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants.Count == 1);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants[0].Name == cnst.Name);
+            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
+            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
             Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
             Assert.IsTrue(vm.Config.Version == 1);
@@ -111,8 +112,8 @@ namespace vSharpStudio.Unit
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants.Count == 1);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.ListConstants[0].Name == cnst.Name);
+            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
+            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
             Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
             Assert.IsTrue(vm.Config.Version == 2);
@@ -159,17 +160,19 @@ namespace vSharpStudio.Unit
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
             vm.Config.Name = "test1";
-            var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var c1 = gr.AddConstant("c1");
             vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            gr = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0];
             // Load from previous save
             Assert.AreEqual(1, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.AreEqual("test1", vm.Config.Name);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstants.Count());
-            Assert.AreEqual("c1", vm.Config.Model.GroupConstants[0].Name);
+            Assert.AreEqual(1, gr.ListConstants.Count());
+            Assert.AreEqual("c1", gr.ListConstants[0].Name);
             Assert.IsTrue(vm.Config.DicNodes.ContainsKey(c1.Guid));
         }
         [TestMethod]
@@ -183,20 +186,23 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, vm.UserSettings.ListOpenConfigHistory.Count);
             Assert.IsTrue(vm.Config.IsChanged);
             Assert.IsFalse(vm.Config.IsHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsHasChanged);
 
             vm.CommandConfigSaveAs.Execute(@"..\..\..\TestApps\config.vcfg");
             Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsFalse(vm.Config.IsHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsHasChanged);
 
-            vm.Config.Model.GroupConstants.NodeAddNewSubNode();
-            Assert.IsTrue(vm.Config.Model.GroupConstants[0].IsChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants[0].IsHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
-            Assert.IsTrue(vm.Config.Model.GroupConstants.IsHasChanged);
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            gr.NodeAddNewSubNode();
+            Assert.IsTrue(gr.ListConstants[0].IsChanged);
+            Assert.IsFalse(gr.ListConstants[0].IsHasChanged);
+            Assert.IsTrue(gr.IsChanged);
+            Assert.IsTrue(gr.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
+            Assert.IsTrue(vm.Config.Model.GroupConstantGroups.IsHasChanged);
             Assert.IsTrue(vm.Config.Model.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.IsChanged);
             Assert.IsTrue(vm.Config.IsHasChanged);
@@ -205,18 +211,24 @@ namespace vSharpStudio.Unit
             vm.CommandConfigSave.Execute(null);
             Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsFalse(vm.Config.IsHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.IsHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants[0].IsChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants[0].IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].IsHasChanged);
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsFalse(vm.Config.IsHasChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.IsChanged);
-            Assert.IsFalse(vm.Config.Model.GroupConstants.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].IsHasChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].IsChanged);
+            Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].IsHasChanged);
 
             vm.Config.Model.DbSettings.PKeyName = "kuku";
             Assert.IsTrue(vm.Config.Model.IsChanged);
@@ -235,13 +247,14 @@ namespace vSharpStudio.Unit
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             vm.Config.Name = "main";
-            var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
-            var c2 = vm.Config.Model.GroupConstants.AddConstant("c2");
-            var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var c1 = gr.AddConstant("c1");
+            var c2 = gr.AddConstant("c2");
+            var c3 = gr.AddConstant("c3");
 
             var cfgDiff = vm.Config;
 
-            var c1Diff = (from p in cfgDiff.Model.GroupConstants.ListConstants where p.Name == "c1" select p).Single();
+            var c1Diff = (from p in gr.ListConstants where p.Name == "c1" select p).Single();
             Assert.AreEqual(c1Diff, cfgDiff.DicNodes[c1.Guid]);
         }
         //[TestMethod]
@@ -326,87 +339,88 @@ namespace vSharpStudio.Unit
             var cfg = vm.Config;
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsFalse(cfg.Model.GroupConstants.IsHasNew);
-            Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            Assert.IsFalse(gr.IsHasNew);
+            Assert.IsFalse(gr.IsHasMarkedForDeletion);
 
             // create object and save
-            var c1 = cfg.Model.GroupConstants.AddConstant("c1");
+            var c1 = gr.AddConstant("c1");
             Assert.IsTrue(c1.IsNew);
-            Assert.IsTrue(cfg.Model.GroupConstants.IsHasNew);
-            Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
+            Assert.IsTrue(gr.IsHasNew);
+            Assert.IsFalse(gr.IsHasMarkedForDeletion);
 
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
-            Assert.AreEqual(1, cfg.Model.GroupConstants.ListConstants.Count());
+            Assert.AreEqual(1, gr.ListConstants.Count());
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(c1.IsNewNode());
-            Assert.IsTrue(cfg.Model.GroupConstants.IsHasNew);
-            Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
+            Assert.IsTrue(gr.IsHasNew);
+            Assert.IsFalse(gr.IsHasMarkedForDeletion);
 
             // c1-new -> new
             vm.CommandConfigCurrentUpdate.Execute(null);
-            Assert.AreEqual(1, cfg.Model.GroupConstants.ListConstants.Count());
+            Assert.AreEqual(1, gr.ListConstants.Count());
             Assert.IsTrue(c1.IsNew);
-            Assert.IsTrue(cfg.Model.GroupConstants.IsHasNew);
-            Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
+            Assert.IsTrue(gr.IsHasNew);
+            Assert.IsFalse(gr.IsHasMarkedForDeletion);
 
             // c1-new -> not new, not del  
             vm.CommandConfigCreateStableVersion.Execute(null);
             // prev c1 not new, not del
-            Assert.AreEqual(1, cfg.Model.GroupConstants.ListConstants.Count());
+            Assert.AreEqual(1, gr.ListConstants.Count());
             Assert.IsFalse(c1.IsNew);
-            Assert.IsFalse(cfg.Model.GroupConstants.IsHasNew);
-            Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
+            Assert.IsFalse(gr.IsHasNew);
+            Assert.IsFalse(gr.IsHasMarkedForDeletion);
 
             Assert.IsFalse(c1.IsDeprecated());
             c1.IsMarkedForDeletion = true; // deprecate
             Assert.IsTrue(c1.IsDeprecated());
-            var c2 = cfg.Model.GroupConstants.AddConstant("c2");
+            var c2 = gr.AddConstant("c2");
             c2.IsMarkedForDeletion = true; // delete
-            var c3 = cfg.Model.GroupConstants.AddConstant("c3");
+            var c3 = gr.AddConstant("c3");
             c3.DataType.Length = 101;
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.IsTrue(c1.IsDeprecated());
-            Assert.AreEqual(3, cfg.Model.GroupConstants.ListConstants.Count());
-            Assert.IsTrue(cfg.Model.GroupConstants.IsHasNew);
-            Assert.IsTrue(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
+            Assert.AreEqual(3, gr.ListConstants.Count());
+            Assert.IsTrue(gr.IsHasNew);
+            Assert.IsTrue(gr.IsHasMarkedForDeletion);
 
             // c1- not new, del -> not new, del 
             // c2- new, del -> removed
             // c3- new -> new
             vm.CommandConfigCurrentUpdate.Execute(null);
             // prev c1 not new, not del
-            Assert.AreEqual(2, cfg.Model.GroupConstants.ListConstants.Count());
+            Assert.AreEqual(2, gr.ListConstants.Count());
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.IsFalse(c1.IsNew);
             Assert.IsTrue(c1.IsDeprecated());
             Assert.IsFalse(c3.IsMarkedForDeletion);
             Assert.IsTrue(c3.IsNew);
-            Assert.IsTrue(cfg.Model.GroupConstants.IsHasNew);
-            Assert.IsTrue(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
+            Assert.IsTrue(gr.IsHasNew);
+            Assert.IsTrue(gr.IsHasMarkedForDeletion);
 
             // c1- not new, del -> not new, del => previous not new, del
             // c3- new -> not new
             vm.CommandConfigCreateStableVersion.Execute(null);
             // prev c1 not new, del
-            Assert.AreEqual(2, cfg.Model.GroupConstants.ListConstants.Count());
+            Assert.AreEqual(2, gr.ListConstants.Count());
             Assert.IsFalse(c1.IsNew);
             Assert.IsTrue(c1.IsMarkedForDeletion);
-            Assert.AreEqual(c3, cfg.Model.GroupConstants.ListConstants[1]);
+            Assert.AreEqual(c3, gr.ListConstants[1]);
             Assert.IsFalse(c3.IsMarkedForDeletion);
             Assert.IsFalse(c3.IsNew);
-            Assert.IsFalse(cfg.Model.GroupConstants.IsHasNew);
-            Assert.IsTrue(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
+            Assert.IsFalse(gr.IsHasNew);
+            Assert.IsTrue(gr.IsHasMarkedForDeletion);
             Assert.IsTrue(c1.IsDeleted());
 
             // c1- not new, del -> removed
             // c3- new -> new
             vm.CommandConfigCreateStableVersion.Execute(null);
-            Assert.AreEqual(1, cfg.Model.GroupConstants.ListConstants.Count());
-            Assert.AreEqual(c3, cfg.Model.GroupConstants.ListConstants[0]);
+            Assert.AreEqual(1, gr.ListConstants.Count());
+            Assert.AreEqual(c3, gr.ListConstants[0]);
             Assert.IsFalse(c3.IsMarkedForDeletion);
             Assert.IsFalse(c3.IsNew);
-            Assert.IsFalse(cfg.Model.GroupConstants.IsHasNew);
-            Assert.IsFalse(cfg.Model.GroupConstants.IsHasMarkedForDeletion);
+            Assert.IsFalse(gr.IsHasNew);
+            Assert.IsFalse(gr.IsHasMarkedForDeletion);
         }
         [TestMethod]
         public void Main012_Diff_Enumerations()
@@ -513,7 +527,8 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
             #region constant
-            var cn1 = vm.Config.Model.GroupConstants.AddConstant("c1");
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var cn1 = gr.AddConstant("c1");
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
@@ -522,10 +537,10 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
             #region new
-            vm.Config.Model.GroupConstants.ListConstants.Remove(cn1);
+            gr.ListConstants.Remove(cn1);
             Assert.IsFalse(vm.Config.Model.IsHasNew);
 
-            cn1 = vm.Config.Model.GroupConstants.AddConstant("c1");
+            cn1 = gr.AddConstant("c1");
             Assert.IsTrue(vm.Config.Model.IsHasNew);
 
             cn1.IsNew = false;
@@ -549,7 +564,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
 
             #endregion deletion
-            vm.Config.Model.GroupConstants.ListConstants.Clear();
+            gr.ListConstants.Clear();
             #endregion constant
 
             #region enumeration
@@ -1178,34 +1193,35 @@ namespace vSharpStudio.Unit
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            vm.CommandConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILEName);
+
 
             // base config
             var vmb = new MainPageVM(false);
             vmb.OnFormLoaded();
-            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            vmb.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             vmb.Config.Name = "ext";
-            var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
-            //if (!Directory.Exists(path))
-            //{
-            //    Directory.CreateDirectory(path);
-            //}
+            var grb = vmb.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var c2 = grb.AddConstant("c2");
             vmb.CommandConfigSaveAs.Execute(pathExt + "kuku.vcfg");
-
-            vm.CommandConfigSaveAs.Execute(pathExt + MainPageVM.DEFAULT_CFG_FILEName);
 
             // create object and save
             var bcfg = vm.Config.GroupConfigLinks.AddBaseConfig("base", pathExt + "kuku.vcfg");
-            var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
+            var c1 = gr.AddConstant("c1");
             vm.CommandConfigSave.Execute(null);
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
-            Assert.IsTrue(vm.Config.Model.GroupConstants.Count() == 1);
-            Assert.IsTrue(vm.Config.Model.GroupConstants[0].Name == "c1");
+            gr = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0];
+            Assert.AreEqual(1, gr.ListConstants.Count);
+            Assert.IsTrue(gr.Count() == 1);
+            Assert.IsTrue(gr.ListConstants[0].Name == "c1");
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 1);
-            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstants.ListConstants.Count() == 1);
-            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstants[0].Name == "c2");
+            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstantGroups.ListConstantGroups.Count() == 1);
+            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count() == 1);
+            Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == "c2");
             Assert.IsTrue(vm.Config.GroupConfigLinks[0].ConfigBase.Name == "ext");
             Assert.IsTrue(vm.Config.GroupConfigLinks[0].Name == "ext");
         }
@@ -1219,15 +1235,17 @@ namespace vSharpStudio.Unit
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             vm.Config.Name = "main";
-            var c3 = vm.Config.Model.GroupConstants.AddConstant("c3");
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var c3 = gr.AddConstant("c3");
             Assert.IsTrue(vm.Config.GroupConfigLinks.Count() == 0);
 
             // base config
             var vmb = new MainPageVM(false);
             vmb.OnFormLoaded();
-            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            vmb.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             vmb.Config.Name = "ext";
-            var c2 = vmb.Config.Model.GroupConstants.AddConstant("c2");
+            var grb = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var c2 = grb.AddConstant("c2");
             if (!Directory.Exists(pathExt))
             {
                 Directory.CreateDirectory(pathExt);
@@ -1239,7 +1257,7 @@ namespace vSharpStudio.Unit
             // create object and save
             var bcfg = vm.Config.GroupConfigLinks.AddBaseConfig("base", pathExt + "kuku.vcfg");
             vm.Config.GroupConfigLinks.AddBaseConfig(bcfg);
-            var c1 = vm.Config.Model.GroupConstants.AddConstant("c1");
+            var c1 = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].AddConstant("c1");
             vm.CommandConfigSave.Execute(null);
 
             vm = new MainPageVM(true);

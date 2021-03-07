@@ -577,7 +577,7 @@ message proto_model {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_common group_common = 106;
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_constants group_constants = 101;
+    proto_group_constant_groups group_constant_groups = 101;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_enumerations group_enumerations = 102;
     // @attr [BrowsableAttribute(false)]
@@ -830,6 +830,9 @@ message proto_properties_tab {
     string property_id_guid = 20;
 
     // @attr [BrowsableAttribute(false)]
+    string property_ref_parent_guid = 65;
+
+    // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_properties {
@@ -884,6 +887,27 @@ message proto_property {
  * @exclude
  * ####################################### C O N S T A N T ##########################################
  */
+message proto_group_constant_groups {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [BrowsableAttribute(false)]
+    uint64 sorting_value = 3;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    string name_ui = 4;
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Db prefix")]
+    // @attr [Description("Prefix for constants db table names. Used if set to use in config model")]
+    string prefix_for_db_tables = 6;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_group_list_constants list_constant_groups = 8;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
 message proto_group_list_constants {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -898,6 +922,10 @@ message proto_group_list_constants {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_constant list_constants = 6;
+    // @attr [BrowsableAttribute(false)]
+    bool is_new = 9;
+    // @attr [BrowsableAttribute(false)]
+    bool is_marked_for_deletion = 11;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1078,7 +1106,7 @@ message proto_catalog_folder {
     string property_description_guid = 53;
 
     // @attr [BrowsableAttribute(false)]
-    string property_parent_guid = 65;
+    string property_ref_self_guid = 65;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -1211,7 +1239,9 @@ message proto_catalog {
     // @attr [Description("Separate set of properties for groups")]
     bool use_separate_properties_for_groups = 64;
     // @attr [BrowsableAttribute(false)]
-    string property_parent_guid = 65;
+    string property_ref_self_guid = 65;
+    // @attr [BrowsableAttribute(false)]
+    string property_ref_folder_guid = 66;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

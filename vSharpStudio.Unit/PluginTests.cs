@@ -104,7 +104,7 @@ namespace vSharpStudio.Unit
 
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupDocuments.ListNodeGeneratorsSettings.Count);
@@ -258,15 +258,15 @@ namespace vSharpStudio.Unit
             // 3. When new generator is selected: old generator has to be removed from all model nodes, 
             //     and new generator settings has to be added for all model nodes
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstants.DicGenNodeSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.DicGenNodeSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             gen.NodeRemove(false);
             Assert.AreEqual(1, vm.Config.GroupAppSolutions[0].ListAppProjects.Count);
             Assert.AreEqual(0, vm.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators.Count);
             Assert.AreEqual(0, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(0, vm.Config.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
@@ -276,8 +276,8 @@ namespace vSharpStudio.Unit
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstants.DicGenNodeSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.DicGenNodeSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(2, gen.ListGenerators.Count);
@@ -287,8 +287,9 @@ namespace vSharpStudio.Unit
             vm.Config.Model.GroupEnumerations.NodeAddNewSubNode();
             Assert.AreEqual(1, vm.Config.Model.GroupEnumerations[0].DicGenNodeSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
-            vm.Config.Model.GroupConstants.NodeAddNewSubNode();
-            Assert.AreEqual(1, vm.Config.Model.GroupConstants[0].ListNodeGeneratorsSettings.Count);
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            gr.NodeAddNewSubNode();
+            Assert.AreEqual(1, gr.ListConstants[0].ListNodeGeneratorsSettings.Count);
             vm.Config.Model.GroupCatalogs.NodeAddNewSubNode();
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
             vm.Config.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
@@ -339,8 +340,8 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].DicGenNodeSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupConstants[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm2.Config.Model.GroupConstants[0].DicGenNodeSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].DicGenNodeSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
@@ -349,7 +350,7 @@ namespace vSharpStudio.Unit
 
             var cfgDiff = vm2.Config;
             Assert.AreEqual(1, cfgDiff.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, cfgDiff.Model.GroupConstants.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, cfgDiff.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, cfgDiff.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
 
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
@@ -615,8 +616,9 @@ namespace vSharpStudio.Unit
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
 
             vm.Config.Name = "test1";
-            var c1 = vm.Config.Model.GroupConstants.NodeAddNewSubNode();
-            var c2 = vm.Config.Model.GroupConstants.NodeAddNewSubNode();
+            var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var c1 = gr.NodeAddNewSubNode();
+            var c2 = gr.NodeAddNewSubNode();
             vm.CommandConfigSaveAs.Execute(cfgPath);
 
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());

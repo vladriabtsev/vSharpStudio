@@ -10,8 +10,8 @@ namespace vSharpStudio.common
 {
     public class ModelVisitorBase
     {
-        protected virtual void BeginVisit(IEnumerable<IConstant> lst) { }
-        protected virtual void EndVisit(IEnumerable<IConstant> lst) { }
+        //protected virtual void BeginVisit(IEnumerable<IConstant> lst) { }
+        //protected virtual void EndVisit(IEnumerable<IConstant> lst) { }
         protected virtual void BeginVisit(IEnumerable<IEnumeration> lst) { }
         protected virtual void EndVisit(IEnumerable<IEnumeration> lst) { }
         protected virtual void BeginVisit(IEnumeration parent, IEnumerable<IEnumerationPair> lst) { }
@@ -38,6 +38,8 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IModel m) { }
         protected virtual void BeginVisit(IGroupListCommon cn) { }
         protected virtual void EndVisit(IGroupListCommon cn) { }
+        protected virtual void BeginVisit(IGroupConstantGroups cn) { }
+        protected virtual void EndVisit(IGroupConstantGroups cn) { }
         protected virtual void BeginVisit(IGroupListConstants cn) { }
         protected virtual void EndVisit(IGroupListConstants cn) { }
         protected virtual void BeginVisit(IConstant cn) { }
@@ -243,19 +245,24 @@ namespace vSharpStudio.common
             #endregion Common
 
             #region Constants
-            this.BeginVisit(currModel.GroupConstants);
+            this.BeginVisit(currModel.GroupConstantGroups);
             if (_act != null)
-                _act(this, this.currModel.GroupConstants);
-            this.BeginVisit(currModel.GroupConstants.ListConstants);
-            foreach (var tt in currModel.GroupConstants.ListConstants)
+                _act(this, this.currModel.GroupConstantGroups);
+            foreach (var t in currModel.GroupConstantGroups.ListConstantGroups)
             {
-                this.BeginVisit(tt);
+                this.BeginVisit(t);
                 if (_act != null)
-                    _act(this, tt);
-                this.EndVisit(tt);
+                    _act(this, t);
+                foreach (var tt in t.ListConstants)
+                {
+                    this.BeginVisit(tt);
+                    if (_act != null)
+                        _act(this, tt);
+                    this.EndVisit(tt);
+                }
+                this.EndVisit(t);
             }
-            this.EndVisit(currModel.GroupConstants.ListConstants);
-            this.EndVisit(currModel.GroupConstants);
+            this.EndVisit(currModel.GroupConstantGroups);
             #endregion Constants
 
             #region Enumerations

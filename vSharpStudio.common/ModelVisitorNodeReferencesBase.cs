@@ -72,13 +72,16 @@ namespace vSharpStudio.common
                 var md = new ModelNode() { NodeObject = t };
                 this.DicNodesWithReferences[t.Guid] = md;
             }
-            foreach (var t in currModel.GroupConstants.ListConstants)
+            foreach (var t in currModel.GroupConstantGroups.ListConstantGroups)
             {
-                var md = new ModelNode() { NodeObject = t };
-                this.DicNodesWithReferences[t.Guid] = md;
-                if (!string.IsNullOrWhiteSpace(t.DataType.ObjectGuid))
+                foreach (var tt in t.ListConstants)
                 {
-                    AddReferenceToNode(md, t, t.DataType);
+                    var md = new ModelNode() { NodeObject = tt };
+                    this.DicNodesWithReferences[tt.Guid] = md;
+                    if (!string.IsNullOrWhiteSpace(tt.DataType.ObjectGuid))
+                    {
+                        AddReferenceToNode(md, tt, tt.DataType);
+                    }
                 }
             }
             foreach (var t in currModel.GroupCatalogs.ListCatalogs)

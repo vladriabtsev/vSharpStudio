@@ -40,6 +40,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this.IsIndexFk = true;
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this.PropertyRefParentGuid = System.Guid.NewGuid().ToString();
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
             this.GroupProperties.ListProperties.OnAddingAction = (t) =>
@@ -211,7 +212,7 @@ namespace vSharpStudio.vm.ViewModels
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
             var parent = this.Parent.Parent as ICompositeName;
-            prp = cfg.Model.GetPropertyRefParent((parent as IGuid).Guid, "Ref"+ parent.CompositeName);
+            prp = cfg.Model.GetPropertyRefParent(this.PropertyRefParentGuid, "Ref"+ parent.CompositeName);
             res.Add(prp);
             foreach (var t in this.GroupProperties.ListProperties)
             {

@@ -38,7 +38,7 @@ namespace vSharpStudio.common
         IProperty GetPropertyInt(string guid, uint length, string name);
         IProperty GetPropertyString(string guid, uint length, string name);
         IProperty GetPropertyRefParent(string guid, string name);
-        IProperty GetPropertyRefParent(ICompositeName parent);
+        //IProperty GetPropertyRefParent(ICompositeName parent);
 
         //string GetIdFieldName(IvPluginDbGenerator dbGen);
         //string GetIdFieldGuid();
@@ -49,7 +49,8 @@ namespace vSharpStudio.common
         //IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen);
         IReadOnlyList<IEnumeration> GetListEnumerations(string guidAppPrjGen);
         IReadOnlyList<IEnumerationPair> GetListEnumerationPairs(IEnumeration node, string guidAppPrjGen);
-        IReadOnlyList<IConstant> GetListConstants(string guidAppPrjGen);
+        IReadOnlyList<IGroupListConstants> GetListConstantGroups(string guidAppPrjGen);
+        IReadOnlyList<IConstant> GetListConstants(IGroupListConstants group, string guidAppPrjGen);
         IReadOnlyList<ICatalog> GetListCatalogs(string guidAppPrjGen);
         //IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen);
         IReadOnlyList<IDocument> GetListDocuments(string guidAppPrjGen);

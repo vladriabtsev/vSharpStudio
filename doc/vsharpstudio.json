@@ -1286,7 +1286,17 @@
               "defaultValue": ""
             },
             {
-              "name": "property_parent_guid",
+              "name": "property_ref_self_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_ref_folder_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
@@ -1558,7 +1568,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_parent_guid",
+              "name": "property_ref_self_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
@@ -2653,6 +2663,97 @@
           ]
         },
         {
+          "name": "proto_group_constant_groups",
+          "longName": "proto_group_constant_groups",
+          "fullName": "proto_config.proto_group_constant_groups",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "prefix_for_db_tables",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Db prefix\")]\n@attr [Description(\"Prefix for constants db table names. Used if set to use in config model\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_constant_groups",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_group_list_constants",
+              "longType": "proto_group_list_constants",
+              "fullType": "proto_config.proto_group_list_constants",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_group_documents",
           "longName": "proto_group_documents",
           "fullName": "proto_config.proto_group_documents",
@@ -3193,6 +3294,26 @@
               "type": "proto_constant",
               "longType": "proto_constant",
               "fullType": "proto_config.proto_constant",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4320,12 +4441,12 @@
               "defaultValue": ""
             },
             {
-              "name": "group_constants",
+              "name": "group_constant_groups",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
-              "type": "proto_group_list_constants",
-              "longType": "proto_group_list_constants",
-              "fullType": "proto_config.proto_group_list_constants",
+              "type": "proto_group_constant_groups",
+              "longType": "proto_group_constant_groups",
+              "fullType": "proto_config.proto_group_constant_groups",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4990,6 +5111,16 @@
             },
             {
               "name": "property_id_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_ref_parent_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",

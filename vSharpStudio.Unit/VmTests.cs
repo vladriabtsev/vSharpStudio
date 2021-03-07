@@ -269,13 +269,15 @@ namespace vSharpStudio.Unit
             string mes1 = "test error message";
             string mes2 = "test error message2";
 
-            cfg.Model.GroupConstants.NodeAddNewSubNode();
+            var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            gr.NodeAddNewSubNode();
             ConstantValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Normal);
-            cfg.ValidateSubTreeFromNode(cfg.Model.GroupConstants);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].CountErrors == 1);
-            Assert.IsTrue(cfg.Model.GroupConstants.ValidationCollection.Count == 1);
-            Assert.IsTrue(cfg.Model.GroupConstants.CountErrors == 1);
+            cfg.ValidateSubTreeFromNode(cfg.Model.GroupConstantGroups);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ValidationCollection.Count == 1);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].CountErrors == 1);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].CountErrors == 1);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ValidationCollection.Count == 1);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.CountErrors == 1);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
             Assert.IsTrue(cfg.CountErrors == 1);
             Assert.IsTrue(cfg.CountInfos == 0);

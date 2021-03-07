@@ -36,6 +36,11 @@ namespace vSharpStudio.vm.ViewModels
             if (m is INodeGenSettings)
                 _act(m as INodeGenSettings);
         }
+        protected override void BeginVisit(IGroupConstantGroups cn)
+        {
+            if (cn is INodeGenSettings)
+                _act(cn as INodeGenSettings);
+        }
         protected override void BeginVisit(IGroupListConstants cn)
         {
             if (cn is INodeGenSettings)

@@ -12,6 +12,7 @@ using vSharpStudio.common;
 using Serilog;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog.Extensions.Logging;
+using Microsoft.CodeAnalysis.Operations;
 
 namespace vSharpStudio.Unit
 {
@@ -155,26 +156,29 @@ namespace vSharpStudio.Unit
         public void Config002CanSaveAndRestore()
         {
             var cfg = new Config();
-            cfg.Model.GroupConstants.NodeAddNewSubNode();
+            var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            gr.NodeAddNewSubNode();
             string json = cfg.ExportToJson();
             Assert.IsTrue(json.Length > 0);
             var cfg2 = new Config(json);
-            Assert.IsTrue(cfg2.Model.GroupConstants.Count() == 1);
-            Assert.IsTrue(cfg2.Model.GroupConstants[0].Name == typeof(Constant).Name + 1);
+            Assert.IsTrue(cfg2.Model.GroupConstantGroups.ListConstantGroups.Count() == 1);
+            Assert.IsTrue(cfg2.Model.GroupConstantGroups.ListConstantGroups[0].Name == "Gr");
+            //Assert.IsTrue(cfg2.Model.GroupConstantGroups.ListConstantGroups[0].Name == typeof(Constant).Name + 1);
         }
 
         [TestMethod]
         public void Config003CanSaveAndRestoreSortingValue()
         {
             var cfg = new Config();
-            cfg.Model.GroupConstants.NodeAddNewSubNode();
-            cfg.Model.GroupConstants.NodeAddNewSubNode();
-            cfg.Model.GroupConstants[1].NodeMoveUp();
+            var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            gr.NodeAddNewSubNode();
+            gr.NodeAddNewSubNode();
+            cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].NodeMoveUp();
             string json = cfg.ExportToJson();
             Assert.IsTrue(json.Length > 0);
             var cfg2 = new Config(json);
-            Assert.IsTrue(cfg2.Model.GroupConstants.Count() == 2);
-            Assert.IsTrue(cfg2.Model.GroupConstants[0].Name == typeof(Constant).Name + 2);
+            Assert.IsTrue(cfg2.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count() == 2);
+            Assert.IsTrue(cfg2.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == typeof(Constant).Name + 2);
         }
         // TODO business validation tests
         // [TestMethod]
@@ -196,7 +200,7 @@ namespace vSharpStudio.Unit
         public void Constant001GuidInit()
         {
             var cfg = new Config();
-            var c = cfg.Model.GroupConstants.NodeAddNewSubNode();
+            var c = cfg.Model.GroupConstantGroups.NodeAddNewSubNode();
             Assert.IsTrue(c.Guid.Length > 0);
         }
 
@@ -204,20 +208,22 @@ namespace vSharpStudio.Unit
         public void Constant002AddedParent()
         {
             var cfg = new Config();
-            cfg.Model.GroupConstants.NodeAddNewSubNode();
-            Assert.AreEqual(cfg.Model.GroupConstants[0].Parent.Guid, cfg.Model.GroupConstants.Guid);
-            cfg.Model.GroupConstants[0].NodeAddNew();
-            Assert.AreEqual(cfg.Model.GroupConstants[1].Parent.Guid, cfg.Model.GroupConstants.Guid);
+            var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            gr.NodeAddNewSubNode();
+            Assert.AreEqual(cfg.Model.GroupConstantGroups.ListConstantGroups[0].Parent.Guid, cfg.Model.GroupConstantGroups.Guid);
+            cfg.Model.GroupConstantGroups.ListConstantGroups[0].NodeAddNew();
+            Assert.AreEqual(cfg.Model.GroupConstantGroups.ListConstantGroups[1].Parent.Guid, cfg.Model.GroupConstantGroups.Guid);
         }
 
         [TestMethod]
         public void Constant003AddedDefaultName()
         {
             var cfg = new Config();
-            cfg.Model.GroupConstants.NodeAddNewSubNode();
-            Assert.AreEqual(Constant.DefaultName + "1", cfg.Model.GroupConstants[0].Name);
-            cfg.Model.GroupConstants[0].NodeAddNew();
-            Assert.AreEqual(Constant.DefaultName + "2", cfg.Model.GroupConstants[1].Name);
+            var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            gr.NodeAddNewSubNode();
+            Assert.AreEqual(Constant.DefaultName + "1", cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
+            cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].NodeAddNew();
+            Assert.AreEqual(Constant.DefaultName + "2", cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].Name);
         }
         #endregion Constant
 
@@ -279,8 +285,8 @@ namespace vSharpStudio.Unit
         {
             var cfg = new Config();
             VmBindable.isNotValidateForUnitTests = true;
-            var gc = (GroupListConstants)cfg.Model.GroupConstants;
-            var cnst = new Constant(cfg.Model.GroupConstants);
+            var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var cnst = new Constant(gc);
             gc.Add(cnst);
             var curr = cnst.SortingValue;
             cnst.Name = "abc1";
@@ -348,8 +354,8 @@ namespace vSharpStudio.Unit
         public void ITreeConfigNode002_RestoreSortingValueWhenObjectRestoredFromFile()
         {
             var cfg = new Config();
-            var cnst = new Constant(cfg.Model.GroupConstants);
-            var gc = (GroupListConstants)cfg.Model.GroupConstants;
+            var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var cnst = new Constant(gc);
             gc.Add(cnst);
             cnst.Name = "abc1";
             var curr = cnst.SortingValue;
@@ -357,34 +363,34 @@ namespace vSharpStudio.Unit
             string json = cfg.ExportToJson();
             var cfg2 = new Config(json);
 
-            Assert.IsTrue(cfg2.Model.GroupConstants[0].Name == cnst.Name);
-            Assert.IsTrue(cfg2.Model.GroupConstants[0].SortingValue == cnst.SortingValue);
+            Assert.IsTrue(cfg2.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
+            Assert.IsTrue(cfg2.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].SortingValue == cnst.SortingValue);
         }
 
         [TestMethod]
         public void ITreeConfigNode003_ReSortedWhenSortingValueIsChanged()
         {
             var cfg = new Config();
-            var cnst = new Constant(cfg.Model.GroupConstants);
-            var gc = (GroupListConstants)cfg.Model.GroupConstants;
+            var gc = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var cnst = new Constant(gc);
             gc.Add(cnst);
             cnst.Name = "abc1";
 
-            var cnst2 = new Constant(cfg.Model.GroupConstants);
+            var cnst2 = new Constant(gc);
             gc.Add(cnst2);
             cnst2.Name = "abc1";
 
             Assert.IsTrue(cnst.Guid != cnst2.Guid);
 
             cnst2.Name = "abc0";
-            Assert.IsTrue(cfg.Model.GroupConstants[0].SortingValue < cfg.Model.GroupConstants[1].SortingValue);
-            Assert.IsTrue(cfg.Model.GroupConstants[1].Guid == cnst.Guid);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].Guid == cnst2.Guid);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].SortingValue < cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].SortingValue);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].Guid == cnst.Guid);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Guid == cnst2.Guid);
 
             cnst2.Name = "abc2";
-            Assert.IsTrue(cfg.Model.GroupConstants[0].SortingValue < cfg.Model.GroupConstants[1].SortingValue);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].Guid == cnst.Guid);
-            Assert.IsTrue(cfg.Model.GroupConstants[1].Guid == cnst2.Guid);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].SortingValue < cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].SortingValue);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Guid == cnst.Guid);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].Guid == cnst2.Guid);
         }
 
         [TestMethod]
@@ -393,32 +399,35 @@ namespace vSharpStudio.Unit
             var cfg = new Config();
 
             #region Constants
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanLeft() == true);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanRight() == true);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanMoveUp() == false);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanMoveDown() == false);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanAddNew() == false);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanAddNewSubNode() == true);
 
-            Assert.IsTrue(cfg.Model.GroupConstants.NodeCanLeft() == false);
-            Assert.IsTrue(cfg.Model.GroupConstants.NodeCanRight() == true);
-            Assert.IsTrue(cfg.Model.GroupConstants.NodeCanMoveUp() == false);
-            Assert.IsTrue(cfg.Model.GroupConstants.NodeCanMoveDown() == false);
-            Assert.IsTrue(cfg.Model.GroupConstants.NodeCanAddNew() == false);
-            Assert.IsTrue(cfg.Model.GroupConstants.NodeCanAddNewSubNode() == true);
             Assert.IsTrue(cfg.SelectedNode == null);
-            cfg.Model.GroupConstants.NodeAddNewSubNode();
+            var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             Assert.IsTrue(cfg.SelectedNode != null);
-            Assert.IsTrue(cfg.SelectedNode == cfg.Model.GroupConstants[0]);
-            Assert.IsTrue(cfg.SelectedNode.Guid == cfg.Model.GroupConstants[0].Guid);
+            Assert.IsTrue(cfg.SelectedNode == gr);
+            Assert.IsTrue(cfg.SelectedNode.Guid == gr.Guid);
 
-            Assert.IsTrue(cfg.Model.GroupConstants.NodeCanRight() == true);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].NodeCanLeft() == true);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].NodeCanRight() == false);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].NodeCanMoveUp() == false);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].NodeCanMoveDown() == false);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].NodeCanAddNew() == true);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].NodeCanAddNewSubNode() == false);
+            cfg.Model.GroupConstantGroups.AddGroupConstants("Gr2");
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].NodeCanLeft() == true);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].NodeCanRight() == true);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].NodeCanMoveUp() == false);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].NodeCanMoveDown() == true);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[1].NodeCanMoveUp() == true);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[1].NodeCanMoveDown() == false);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].NodeCanAddNew() == true);
+            Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].NodeCanAddNewSubNode() == true);
 
-            cfg.Model.GroupConstants.NodeAddNewSubNode();
-            Assert.IsTrue(cfg.Model.GroupConstants[0].NodeCanMoveUp() == false);
-            Assert.IsTrue(cfg.Model.GroupConstants[0].NodeCanMoveDown() == true);
-            Assert.IsTrue(cfg.Model.GroupConstants[1].NodeCanMoveUp() == true);
-            Assert.IsTrue(cfg.Model.GroupConstants[1].NodeCanMoveDown() == false);
+            var cnst = gr.NodeAddNewSubNode();
+            var cnst2 = gr.NodeAddNewSubNode();
+            Assert.IsTrue(cnst.NodeCanMoveUp() == false);
+            Assert.IsTrue(cnst.NodeCanMoveDown() == true);
+            Assert.IsTrue(cnst2.NodeCanMoveUp() == true);
+            Assert.IsTrue(cnst2.NodeCanMoveDown() == false);
 
             #endregion Constants
 
@@ -558,11 +567,12 @@ namespace vSharpStudio.Unit
             cfg.Model.GroupEnumerations[0].DataTypeEnum = EnumEnumerationType.INTEGER_VALUE;
             cfg.Model.GroupEnumerations[0].ListEnumerationPairs.Add(new EnumerationPair(cfg.Model.GroupEnumerations[0]) { Name = "one", Value = "1" });
 
-            cfg.Model.GroupConstants.NodeAddNewSubNode();
-            cfg.Model.GroupConstants[0].DataType.DataTypeEnum = EnumDataType.BOOL;
-            cfg.Model.GroupConstants.NodeAddNewSubNode();
-            cfg.Model.GroupConstants[1].DataType.DataTypeEnum = EnumDataType.ENUMERATION;
-            cfg.Model.GroupConstants[1].DataType.ObjectGuid = cfg.Model.GroupEnumerations[0].Guid;
+            var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
+            var cnst1 = (Constant)gr.NodeAddNewSubNode();
+            cnst1.DataType.DataTypeEnum = EnumDataType.BOOL;
+            var cnst2 = (Constant)gr.NodeAddNewSubNode();
+            cnst2.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
+            cnst2.DataType.ObjectGuid = cfg.Model.GroupEnumerations[0].Guid;
 
             return cfg;
         }

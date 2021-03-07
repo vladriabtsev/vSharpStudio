@@ -64,7 +64,8 @@ namespace vSharpStudio.vm.ViewModels
             this.MaxTreeLevels = 2;
             this.UseSeparatePropertiesForGroups = false;
             this.GroupIconType = EnumCatalogTreeIcon.Folder;
-            this.PropertyParentGuid = System.Guid.NewGuid().ToString();
+            this.PropertyRefFolderGuid = System.Guid.NewGuid().ToString();
+            this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
             this.RefillChildren();
@@ -272,7 +273,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
             if (isFolder)
             {
-                    prp = cfg.Model.GetPropertyRefParent(this.PropertyParentGuid, "RefTreeParent");
+                    prp = cfg.Model.GetPropertyRefParent(this.Folder.PropertyRefSelfGuid, "RefTreeParent");
                     (prp.DataType as DataType).IsNullable = true;
                     res.Add(prp);
             }
@@ -282,12 +283,12 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (this.UseSeparatePropertiesForGroups)
                     {
-                        prp = cfg.Model.GetPropertyRefParent(this.Guid, "Ref" + this.Folder.CompositeName);
+                        prp = cfg.Model.GetPropertyRefParent(this.PropertyRefFolderGuid, "Ref" + this.Folder.CompositeName);
                         res.Add(prp);
                     }
                     else
                     {
-                        prp = cfg.Model.GetPropertyRefParent(this.PropertyParentGuid, "RefTreeParent");
+                        prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent");
                         (prp.DataType as DataType).IsNullable = true;
                         res.Add(prp);
                         if (this.UseFolderTypeExplicitly)
@@ -305,10 +306,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     case EnumCatalogCodeType.AutoNumber:
                         throw new NotImplementedException();
-                        break;
                     case EnumCatalogCodeType.AutoText:
                         throw new NotImplementedException();
-                        break;
                     case EnumCatalogCodeType.Number:
                         prp = cfg.Model.GetPropertyInt(this.PropertyCodeGuid, this.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
                         break;
