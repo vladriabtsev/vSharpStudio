@@ -305,7 +305,17 @@
             foreach (var t in lst)
             {
                 if (t is IPropertiesTab)
+                {
                     sb.Append(t.Name);
+                }
+                else if (t is IGroupListConstants)
+                {
+                    sb.Append(t.Name);
+                }
+                else if (t is IGroupConstantGroups)
+                {
+                    prefix = (t as IGroupConstantGroups).PrefixForDbTables;
+                }
                 else if (t is ICatalog)
                 {
                     sb.Append(t.Name);

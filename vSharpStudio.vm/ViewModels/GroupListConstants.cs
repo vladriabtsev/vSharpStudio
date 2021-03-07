@@ -63,7 +63,17 @@ namespace vSharpStudio.vm.ViewModels
             };
         }
 
-        public string CompositeName { get { return this.Name; } }
+        [PropertyOrder(1)]
+        [ReadOnly(true)]
+        [DisplayName("Composite")]
+        [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
+        public string CompositeName
+        {
+            get
+            {
+                return GetCompositeName();
+            }
+        }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
