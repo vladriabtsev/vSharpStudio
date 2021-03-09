@@ -20,7 +20,7 @@
 
     public partial class ConfigObjectCommonBase<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator>, IComparable<T>, IEquatable<T>
         where TValidator : AbstractValidator<T>
-        where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
+        where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
     {
         protected static ILogger _logger;
         public ConfigObjectCommonBase(ITreeConfigNode parent, TValidator validator)

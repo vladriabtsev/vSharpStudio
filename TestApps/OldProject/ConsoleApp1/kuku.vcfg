@@ -1,9 +1,9 @@
-Ù
-$1f205cfb-4ae4-4158-b7f6-2f17f8b39c46Config ⁄Ô˛¸œ·˚t*Config:∑∂¶Å∫Ìö™<
-$f19d9640-e63c-4563-be79-87fde146a320BaseConfigs∫æÿŒ˙◊úi≤À
-$6ceb69f0-3085-4837-867e-654e3d90d806Model Ûÿì÷Éõ© *Model@dHP™/
-v"Id2$d50ab53c-c357-4d16-847e-ff0081ba12b5™F
-$e4210da7-0084-46f2-94c1-35b484034ae3	Constantsªıîñ≠Ü¸Ùp"	Constants≤M
+˜
+$1f205cfb-4ae4-4158-b7f6-2f17f8b39c46Config ⁄Ô˛¸œ·˚t*Config:û⁄ïÇåÿÕ·Ä™<
+$f19d9640-e63c-4563-be79-87fde146a320BaseConfigs∫æÿŒ˙◊úi≤´
+$6ceb69f0-3085-4837-867e-654e3d90d806Model Ûÿì÷Éõ© *Model@dHP™	
+v"Id™L
+$e4210da7-0084-46f2-94c1-35b484034ae3	Constantsªıîñ≠Ü¸Ùp"	Constants2Cnst≤M
 $1d73ae3a-b955-4b71-ac15-a17b3824e379Enumerations›Õæª´“ÓÖÅ"Enumerations∫K
 $8952d7ae-d719-4711-a2c2-2ae760a1ac12Catalogs¶ü¶€É‡‚Òê"Catalogs2Ctlg¬◊
 $b061bbe0-9ce0-4662-a00a-10ae9eb3d830	Documents∏¿÷üå”∏˝†"	Documents2Doc:@
@@ -12,20 +12,23 @@ $dcfca215-4e43-418e-9be2-a83ccc290cf8	Documents∏¿÷üå”∏˝Ä"	Documents E
 $ff2dc047-5176-484e-b813-26e6aa75ab78Journals⁄ΩÃó¶ÑÁ∞±"Journals“«
 $bfb4b4de-9898-41d3-afcc-627df8e45ec2Common›°‘’ôè˚Ù`"Common:>
 $96277206-76c0-41f4-b4f7-ec7b84801597RolesóÊ…óæ™äı"RolesBE
-$9407e57f-a76a-4013-ad75-3913386ba221	Constantsªıîñ≠Ü¸t"	Constants¬€
-$affbbecf-3614-41fe-8747-a3aac433951aPluginsÑôÑß‡õÆ„ë"¢
-$3829EEAB-71BB-4BE2-91E6-70872B6FB85CBlazor"Blazor code generation plugin2Q
+$9407e57f-a76a-4013-ad75-3913386ba221	Constantsªıîñ≠Ü¸t"	Constants¬˚	
+$affbbecf-3614-41fe-8747-a3aac433951aPluginsÑôÑß‡õÆ„ë"ß
+$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin2Q
 $1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generationX"Ω
-$C94175E4-E8F4-4A84-871B-6994199A2076MsSql"7vSharpStudio plugin. Database design support for MS SQL2S
-$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migrationX"æ
-$16376EA9-1FBD-4945-8160-BCCC3262128BSqlite"7vSharpStudio plugin. Database design for Sqlite support2S
-$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migrationX"∆
-$3A29FC48-3892-498A-AE36-CB0C9916C6C9
+RepositoryDB repository code generationX"¬
+$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL2S
+$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migrationX"√
+$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support2S
+$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migrationX"À
+$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
 PostgreSql";vSharpStudio plugin. Database design support for PostgreSql2S
-$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migrationX"Ø
-$052C7318-3D73-4605-B1AE-749FC7E10412
+$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migrationX"¥
+$052C7318-3D73-4605-B1AE-749FC7E104120.1
 Repository"4vSharpStudio plugin. DB access layer repository code2C
 $E59B393E-AF34-4438-977F-7BF120E28A0C
-RepositoryDb Access LayerX 7
+RepositoryDb Access LayerX"Ñ
+$ED93228B-8D8E-456C-9688-37EEB1B2D835Sample"+vSharpStudio plugin with several generators2X
+$08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema2M
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer 7
 $d6b7bf70-f739-4f8e-a582-d51fa5abc580Apps»†éõΩæê‰†

@@ -8,7 +8,7 @@
 
     public class Defaults
     {
-        public const string ConstantsGroupName = "Constants";
+        public const string ConstantsGroupName = "Settings";
         public const string EnumerationsGroupName = "Enumerations";
         public const string CatalogsGroupName = "Catalogs";
         public const string DocumentsGroupName = "Documents";

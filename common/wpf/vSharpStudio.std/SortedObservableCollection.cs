@@ -30,7 +30,7 @@ namespace ViewModelBase
         object GetNext(object current);
     }
     public class SortedObservableCollection<T> : ObservableCollection<T>, IMoveUpDown
-      where T : ISortingValue
+      where T : ISortingValue //, IComparable<T> //IEquatable<T>
     {
         private object _lock = new object();
         public SortDirection SortDirection = SortDirection.Ascending;
@@ -138,13 +138,13 @@ namespace ViewModelBase
         }
         public void Add(T item, ulong sortingWeight)
         {
-                if (sortingWeight > 0)
-                {
-                    if (sortingWeight > VmBindable.MaxSortingWeight)
-                        throw new ArgumentException("sortingWeight is too big. Expected less then " + VmBindable.MaxSortingWeight);
-                    item.SortingWeight = sortingWeight << (64 - VmBindable.MaxSortingWeightShift);
-                    item.SortingValue = item._SortingNameValue + item.SortingWeight;
-                }
+            if (sortingWeight > 0)
+            {
+                if (sortingWeight > VmBindable.MaxSortingWeight)
+                    throw new ArgumentException("sortingWeight is too big. Expected less then " + VmBindable.MaxSortingWeight);
+                item.SortingWeight = sortingWeight << (64 - VmBindable.MaxSortingWeightShift);
+                item.SortingValue = item._SortingNameValue + item.SortingWeight;
+            }
             lock (_lock)
             {
                 if (OnAddingAction != null)
@@ -227,10 +227,7 @@ namespace ViewModelBase
         /// <param name="comparer">An <see cref="IComparer{T}"/> to compare keys.</param>
         public void Sort<TKey>(Func<T, TKey> keySelector, IComparer<TKey> comparer)
         {
-            lock (_lock)
-            {
-                InternalSort(Items.OrderBy(keySelector, comparer));
-            }
+            InternalSort(Items.OrderBy(keySelector, comparer));
         }
         public void Sort()
         {
@@ -250,20 +247,32 @@ namespace ViewModelBase
         /// <param name="sortedItems">An <see cref="IEnumerable{T}"/> to provide item orders.</param>
         private void InternalSort(IEnumerable<T> sortedItems)
         {
-            var sortedItemsList = sortedItems.ToList();
-            if (sortedItemsList.Count == 1)
-                return;
-            foreach (var item in sortedItemsList)
+            lock (_lock)
             {
-                var ifrom = IndexOf(item);
-                Debug.Assert(ifrom != -1);
-                var ito = sortedItemsList.IndexOf(item);
-                Debug.Assert(ito != -1);
-                base.MoveItem(ifrom, ito);
-                if (OnSortMovedAction != null)
-                    OnSortMovedAction(ifrom, ito);
+                var sortedItemsList = sortedItems.ToList();
+                if (sortedItemsList.Count == 1)
+                    return;
+                for (int i = 0; i < sortedItemsList.Count; i++)
+                {
+                    var item = sortedItemsList[i];
+                    var ifrom = -1;
+                    for (int j = 0; j < this.Count; j++)
+                    {
+                        if (this[j].Equals(item))
+                        {
+                            ifrom = j;
+                            break;
+                        }
+                    }
+                    Debug.Assert(ifrom != -1);
+                    var ito = i;
+                    Debug.Assert(ito != -1);
+                    base.MoveItem(ifrom, ito);
+                    if (OnSortMovedAction != null)
+                        OnSortMovedAction(ifrom, ito);
+                }
+                OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
             }
-            OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
         }
 
         #endregion Sort
