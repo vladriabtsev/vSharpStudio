@@ -116,7 +116,7 @@ namespace vSharpStudio.vm.ViewModels
             //TODO warning validation for potencial data. Validation against  previous current version and previous stable version.
         }
 
-        private static void ValidateSpecialProperties(string name, FluentValidation.Validators.CustomContext cntx, Property p, Catalog c, IGroupListCatalogs gc)
+        private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Catalog c, IGroupListCatalogs gc)
         {
             if (c.UseCodeProperty)
             {

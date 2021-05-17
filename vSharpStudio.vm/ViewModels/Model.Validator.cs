@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
             });
         }
 
-        private static void CheckObjectsWithDbTables(FluentValidation.Validators.CustomContext cntx, string recom, Model m, bool isCheckTabs)
+        private static void CheckObjectsWithDbTables(ValidationContext<Model> cntx, string recom, Model m, bool isCheckTabs)
         {
             var dic = new Dictionary<string, ITreeConfigNode>();
             foreach (var t in m.GroupCatalogs.ListCatalogs)
@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
 
-        private static void CheckTabs(FluentValidation.Validators.CustomContext cntx, Dictionary<string, ITreeConfigNode> dic, IGroupListPropertiesTabs tabs, string recom)
+        private static void CheckTabs(ValidationContext<Model> cntx, Dictionary<string, ITreeConfigNode> dic, IGroupListPropertiesTabs tabs, string recom)
         {
             foreach (var t in tabs.ListPropertiesTabs)
             {
