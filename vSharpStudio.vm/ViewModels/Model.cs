@@ -392,6 +392,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Connection string editor
 
+        #region Utils
         public IDataType GetDataType(int enumDataType, uint length, bool isPositive, bool isNullable)
         {
             DataType dt = new DataType();
@@ -638,13 +639,6 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(default(ITreeConfigNode), guid, name, dt);
             return res;
         }
-        //public IProperty GetPropertyRefParent(ICompositeName parent)
-        //{
-        //    var dt = (DataType)this.GetIdDataType();
-        //    dt.IsRefParent = true;
-        //    var res = new Property(default(ITreeConfigNode), (parent as IGuid).Guid, "Ref" + parent.CompositeName, dt);
-        //    return res;
-        //}
         public IReadOnlyList<IEnumeration> GetListEnumerations(string guidAppPrjGen)
         {
             var lst = new List<IEnumeration>();
@@ -729,110 +723,117 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst;
         }
+        public void VisitTabs(string appGenGuig, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action)
+        {
+            if (p is IPropertiesTab)
+            {
+                this.VisitTabs(appGenGuig, p as IPropertiesTab, action, typeOp);
+            }
+            else if (p is ICatalog)
+            {
+                this.VisitTabs(appGenGuig, p as ICatalog, action, typeOp);
+            }
+            else if (p is ICatalogFolder)
+            {
+                this.VisitTabs(appGenGuig, p as ICatalogFolder, action, typeOp);
+            }
+            else if (p is IDocument)
+            {
+                this.VisitTabs(appGenGuig, p as IDocument, action, typeOp);
+            }
+            else if (p is IGroupListConstants)
+            {
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+        }
+        private void TabsRecursive(string appGenGuig, IReadOnlyList<IPropertiesTab> lstt, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst)
+        {
+            foreach (var t in lstt)
+            {
+                var ti = new TableInfo()
+                {
+                    Node = t,
+                    List = t.GetIncludedProperties(appGenGuig),
+                    ClassName = t.Name,
+                    TableName = t.CompositeName,
+                    TableParent = (t.Parent.Parent as ICompositeName).CompositeName
+                };
+                if (typeOp == EnumVisitType.Load) // from current to top
+                {
+                    lst.Add(ti);
+                    List<TableInfo> lstReverse = new List<TableInfo>();
+                    for (int i = lst.Count - 1; i > -1; i--)
+                    {
+                        lstReverse.Add(lst[i]);
+                    }
+                    action(lstReverse);
+                    var lstt2 = t.GetIncludedPropertiesTabs(appGenGuig);
+                    TabsRecursive(appGenGuig, lstt2, action, typeOp, lst);
+                }
+                else if (typeOp == EnumVisitType.Remove)
+                {
+                    lst.Add(ti);
+                    List<TableInfo> lstReverse = new List<TableInfo>();
+                    for (int i = lst.Count - 1; i > -1; i--)
+                    {
+                        lstReverse.Add(lst[i]);
+                    }
+                    var lstt2 = t.GetIncludedPropertiesTabs(appGenGuig);
+                    TabsRecursive(appGenGuig, lstt2, action, typeOp, lst);
+                    action(lstReverse);
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+        private void VisitTabs(string appGenGuig, ICatalog p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
+        {
+            if (lst == null)
+                lst = new List<TableInfo>();
+            var lstt = p.GetIncludedPropertiesTabs(appGenGuig);
+            if (lstt.Count == 0)
+                return;
+            TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
+        }
+        private void VisitTabs(string appGenGuig, ICatalogFolder p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
+        {
+            if (lst == null)
+                lst = new List<TableInfo>();
+            var lstt = p.GetIncludedPropertiesTabs(appGenGuig);
+            if (lstt.Count == 0)
+                return;
+            TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
+        }
+        private void VisitTabs(string appGenGuig, IDocument p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
+        {
+            if (lst == null)
+                lst = new List<TableInfo>();
+            var lstt = p.GetIncludedPropertiesTabs(appGenGuig);
+            if (lstt.Count == 0)
+                return;
+            TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
+        }
+        private void VisitTabs(string appGenGuig, IPropertiesTab p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
+        {
+            if (lst == null)
+                lst = new List<TableInfo>();
+            var lstt = p.GetIncludedPropertiesTabs(appGenGuig);
+            if (lstt.Count == 0)
+                return;
+            TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
+        }
+        #endregion Utils
 
         public void Remove()
         {
             throw new NotImplementedException();
         }
-        //public IProperty GetVersionProperty(IvPluginDbGenerator dbGen)
-        //{
-        //    string fieldName = null;
-        //    if (string.IsNullOrWhiteSpace(dbGen.VersionFieldName))
-        //    {
-        //        if (string.IsNullOrWhiteSpace(this.DbSettings.VersionFieldName))
-        //            return null;
-        //        fieldName = this.DbSettings.VersionFieldName;
-        //    }
-        //    else
-        //    {
-        //        fieldName = dbGen.VersionFieldName;
-        //    }
-        //    var dt = new DataType(EnumDataType.STRING);
-        //    if (string.IsNullOrWhiteSpace(this.DbSettings.VersionFieldGuid))
-        //        this.DbSettings.VersionFieldGuid = System.Guid.NewGuid().ToString();
-        //    var res = new Property(default(ITreeConfigNode), this.DbSettings.VersionFieldGuid, fieldName, dt);
-        //    return res;
-        //}
-
-        //[BrowsableAttribute(false)]
-        //public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPlugins { get; set; }
-        //[ExpandableObjectAttribute()]
-        //public object TestSettings { get { return _TestSettings; } }
-        //private Test1 _TestSettings = new Test1();
-        ////[ExpandableObjectAttribute()]
-        //public List<object> DicPlugins { get { return _DicPlugins; } }
-        //private List<object> _DicPlugins = new List<object>() { new Test1(), new Test2() };
-        //[ExpandableObjectAttribute()]
-        //public DynamicClass TestSettings2 { get { return _TestSettings2; } }
-        //private DynamicClass _TestSettings2 = new DynamicClass(new List<Test1>()
-        //{
-        //    new Test1()
-        //});
-        //[ExpandableObjectAttribute()]
-        //public dynamic TestSettings3
-        //{
-        //    get
-        //    {
-        //        if (_TestSettings3 == null)
-        //        {
-        //            _TestSettings3 = new System.Dynamic.ExpandoObject();
-        //            _TestSettings3.EmployeeID = 42;
-        //            _TestSettings3.Designation = "unknown";
-        //            _TestSettings3.EmployeeName = "curt";
-        //        }
-        //        return _TestSettings3;
-        //    }
-        //}
-        //private dynamic _TestSettings3;
-        //      [ExpandableObjectAttribute()]
-        //      public object TestSettings4
-        //      {
-        //          get
-        //          {
-        //              if (_TestSettings4 == null)
-        //              {
-        //                  var list = new Dictionary<string, string> {
-        //  {
-        //    "EmployeeID",
-        //    "int"
-        //  }, {
-        //    "EmployeeName",
-        //    "String"
-        //  }, {
-        //    "Birthday",
-        //    "DateTime"
-        //  }
-        //};
-        //                  IEnumerable<DynamicProperty> props = list.Select(property => new DynamicProperty(property.Key, Type.GetType(property.Value))).ToList();
-
-        //                  Type t = DynamicExpression.CreateClass(props);
-        //                  object obj = Activator.CreateInstance(t);
-        //                  t.GetProperty("EmployeeID").SetValue(obj, 34, null);
-        //                  t.GetProperty("EmployeeName").SetValue(obj, "Albert", null);
-        //                  t.GetProperty("Birthday").SetValue(obj, new DateTime(1976, 3, 14), null);
-        //              }
-        //              return _TestSettings4;
-        //          }
-        //      }
-        //      private object _TestSettings4;
     }
-    //public class Test1
-    //{
-    //    public Test1()
-    //    {
-    //        this.Prop1 = new Test2();
-    //        this.Prop2 = new Test2();
-    //    }
-    //    [ExpandableObjectAttribute()]
-    //    public object Prop1 { get; set; }
-    //    [ExpandableObjectAttribute()]
-    //    public object Prop2 { get; set; }
-    //}
-    //public class Test2
-    //{
-    //    public string Prop21 { get; set; }
-    //    public int Prop22 { get; set; }
-    //}
     // https://stackoverflow.com/questions/3862226/how-to-dynamically-create-a-class
     //public class DynamicClass : System.Dynamic.DynamicObject
     //{

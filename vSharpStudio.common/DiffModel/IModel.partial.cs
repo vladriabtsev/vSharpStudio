@@ -54,5 +54,6 @@ namespace vSharpStudio.common
         IReadOnlyList<ICatalog> GetListCatalogs(string guidAppPrjGen);
         //IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen);
         IReadOnlyList<IDocument> GetListDocuments(string guidAppPrjGen);
+        void VisitTabs(string appGenGuig, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action);
     }
 }
