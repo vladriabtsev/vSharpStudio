@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
-namespace vSharpStudio.vm.ViewModels
+namespace vSharpStudio.common.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/microsoft.win32.openfiledialog?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(Microsoft.Win32.OpenFileDialog);k(SolutionItemsProject);k(SolutionItemsProject);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.0);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.8
     // https://docs.microsoft.com/en-us/windows/uwp/files/quickstart-using-file-and-folder-pickers

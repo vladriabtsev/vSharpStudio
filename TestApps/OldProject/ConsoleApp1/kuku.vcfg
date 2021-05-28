@@ -1,5 +1,5 @@
-÷
-$1f205cfb-4ae4-4158-b7f6-2f17f8b39c46Config ÚïşüÏáût*Config:Ú•‚ŒØÍá€ª<
+‚
+$1f205cfb-4ae4-4158-b7f6-2f17f8b39c46Config ÚïşüÏáût*Config:Â®À…ØÅÆK€ª<
 $f19d9640-e63c-4563-be79-87fde146a320BaseConfigsº¾ØÎú×œi²«
 $6ceb69f0-3085-4837-867e-654e3d90d806Model óØ“Öƒ›©Ê*Model@dHPª	
 v"IdªL
@@ -12,7 +12,7 @@ $dcfca215-4e43-418e-9be2-a83ccc290cf8	Documents¸ÀÖŸŒÓ¸ı€"	DocumentsÊE
 $ff2dc047-5176-484e-b813-26e6aa75ab78JournalsÚ½Ì—¦„ç°±"JournalsÒÇ
 $bfb4b4de-9898-41d3-afcc-627df8e45ec2Commonİ¡ÔÕ™ûô`"Common:>
 $96277206-76c0-41f4-b4f7-ec7b84801597Roles—æÉ—¾ªŠõ"RolesBE
-$9407e57f-a76a-4013-ad75-3913386ba221	Constants»õ”–­†üt"	ConstantsÂû	
+$9407e57f-a76a-4013-ad75-3913386ba221	Constants»õ”–­†üt"	ConstantsÂ¾
 $affbbecf-3614-41fe-8747-a3aac433951aPlugins„™„§à›®ã‘"§
 $3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin2Q
 $1E35FCDB-6425-4C66-B047-6882738AF552
@@ -27,8 +27,15 @@ $C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migrati
 $052C7318-3D73-4605-B1AE-749FC7E104120.1
 Repository"4vSharpStudio plugin. DB access layer repository code2C
 $E59B393E-AF34-4438-977F-7BF120E28A0C
-RepositoryDb Access LayerX"„
-$ED93228B-8D8E-456C-9688-37EEB1B2D835Sample"+vSharpStudio plugin with several generators2X
+RepositoryDb Access LayerX"‰
+$ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators2X
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema2M
-$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access LayerÊ7
-$d6b7bf70-f739-4f8e-a582-d51fa5abc580AppsÈ ›½¾ä 
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer"»
+$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code2J
+$1DD99931-125F-40A5-A397-98FD23D26F6D
+gRPC protogRPC proto buffer file2I
+$32B15714-E660-4E29-9291-D647A1774149gRPC servergRPC server services2I
+$039FEEF3-48AB-49E7-BBB1-C17B70608F52gRPC clientgRPC client servicesÊÿ
+$d6b7bf70-f739-4f8e-a582-d51fa5abc580AppsÈ ›½¾ä JÅ
+$c3bcc27f-8c41-4c81-babf-94fe0cc49f1a	Solution1	Solution1:/..\..\..\..\vSharpStudio.pro\Tests\ApiTests.slnŠU
+$7b44766e-e54b-4b98-a10d-abc6c2d40a19Project1Project12DbApi\DbApi.csprojŠkuku

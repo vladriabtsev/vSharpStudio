@@ -74,21 +74,27 @@ namespace vSharpStudio.vm.ViewModels
             if (gs == null)
             {
                 var t = gen.GetGenerationNodeSettingsVmFromJson(null, (ITreeConfigNode)this);
-                this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
-                this._DicGenNodeSettings[appProjectGeneratorGuid] = t;
-                gs = new PluginGeneratorNodeSettings((ITreeConfigNode)this);
-                gs.Name = appgen.Name;
-                gs.AppProjectGeneratorGuid = appgen.Guid;
-                gs.SettingsVm = t;
-                //_logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
-                ngs.ListNodeGeneratorsSettings.Add(gs);
+                if (t != null)
+                {
+                    this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
+                    this._DicGenNodeSettings[appProjectGeneratorGuid] = t;
+                    gs = new PluginGeneratorNodeSettings((ITreeConfigNode)this);
+                    gs.Name = appgen.Name;
+                    gs.AppProjectGeneratorGuid = appgen.Guid;
+                    gs.SettingsVm = t;
+                    //_logger.LogTrace("Adding Node Settings. {Path} NodeSettingsVmGuid={NodeSettingsVmGuid} Name={Name}".CallerInfo(), t.SearchPathInModel, gs.NodeSettingsVmGuid, appProjectGenerator.Name);
+                    ngs.ListNodeGeneratorsSettings.Add(gs);
+                }
             }
             else
             {
                 var t = gen.GetGenerationNodeSettingsVmFromJson(gs.Settings, (ITreeConfigNode)this);
-                this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
-                gs.SettingsVm = t;
-                this._DicGenNodeSettings[appProjectGeneratorGuid] = t;
+                if (t != null)
+                {
+                    this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
+                    gs.SettingsVm = t;
+                    this._DicGenNodeSettings[appProjectGeneratorGuid] = t;
+                }
             }
         }
         public void RestoreNodeAppGenSettingsVm()

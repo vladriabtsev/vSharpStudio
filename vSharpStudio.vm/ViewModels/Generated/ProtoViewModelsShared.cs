@@ -11,15 +11,16 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Contracts;
 using vSharpStudio.common;
+using vSharpStudio.common.ViewModels;
 using Google.Protobuf;
 
-namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 22
+namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
 {
     // TODO investigate  https://docs.microsoft.com/en-us/visualstudio/debugger/using-debuggertypeproxy-attribute?view=vs-2017
     // TODO create debugger display for Property, ... https://docs.microsoft.com/en-us/visualstudio/debugger/using-the-debuggerdisplay-attribute?view=vs-2017
     // TODO create visualizers for Property, Catalog, Document, Constants https://docs.microsoft.com/en-us/visualstudio/debugger/create-custom-visualizers-of-data?view=vs-2017
 
-    public interface ISharedAcceptVisitor // NameSpace.tt Line: 28
+    public interface ISharedAcceptVisitor // NameSpace.tt Line: 29
     {
         void AcceptSharedNodeVisitor(SharedVisitor visitor);
     }

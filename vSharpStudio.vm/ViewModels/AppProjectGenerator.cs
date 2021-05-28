@@ -142,9 +142,9 @@ namespace vSharpStudio.vm.ViewModels
                 if (_DynamicGeneratorSettings == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 {
                     this._DynamicGeneratorSettings = _PluginGenerator.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
-                    this.NotifyPropertyChanged();
                     if (this._DynamicGeneratorSettings != null)
                     {
+                        this.NotifyPropertyChanged();
                         this.ValidateProperty();
                     }
                 }
