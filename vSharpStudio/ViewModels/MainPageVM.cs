@@ -287,6 +287,14 @@ namespace vSharpStudio.ViewModels
                             PluginGenerator = pg
                         });
                     }
+                    // remove not existing generators
+                    for (int iii= p.ListGenerators.Count-1; iii>=0; iii--)
+                    {
+                        if (p.ListGenerators[iii].Generator==null)
+                        {
+                            p.ListGenerators.RemoveAt(iii);
+                        }
+                    }
                 }
                 var dic = new Dictionary<vPluginLayerTypeEnum, List<PluginRow>>();
                 foreach (var t in Enum.GetValues(typeof(vPluginLayerTypeEnum)))
