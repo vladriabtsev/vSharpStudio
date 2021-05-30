@@ -9,6 +9,8 @@ namespace vSharpStudio.common
 {
     public interface IvPluginGeneratorSettings : INotifyPropertyChanged
     {
+        IvPluginGenerator Generator { get; set; }
+        IAppProjectGenerator Parent { get; set; }
         /// <summary>
         /// Get protobuf model of settings from MVVM model (json format)
         /// </summary>

@@ -26,5 +26,7 @@ namespace vPlugin.Sample
         {
             return this.StringSettings;
         }
+        public IvPluginGenerator Generator { get; set; }
+        public IAppProjectGenerator Parent { get; set; }
     }
 }

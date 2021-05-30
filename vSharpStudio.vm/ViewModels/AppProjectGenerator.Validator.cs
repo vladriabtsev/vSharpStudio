@@ -5,6 +5,7 @@ using System.Text;
 using FluentValidation;
 using vSharpStudio.common;
 using FluentValidation.Results;
+using ViewModelBase;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -130,6 +131,36 @@ namespace vSharpStudio.vm.ViewModels
                         }
                     }
                 });
+            this.RuleFor(x => x.DynamicGeneratorSettings)
+                .Custom((settings, cntx) =>
+                {
+                    if (settings != null && settings is IValidatableWithSeverity)
+                    {
+                        var m = (IValidatableWithSeverity)settings;
+                        m.Validate();
+
+                        foreach (var t in m.ValidationCollection)
+                        {
+                            var r = new ValidationFailure(cntx.PropertyName, t.Message);
+                            switch (t.Severity)
+                            {
+                                case Severity.Error:
+                                    r.Severity = Severity.Error;
+                                    break;
+                                case Severity.Warning:
+                                    r.Severity = Severity.Warning;
+                                    break;
+                                case Severity.Info:
+                                    r.Severity = Severity.Info;
+                                    break;
+                                default:
+                                    throw new Exception();
+                            }
+                            cntx.AddFailure(r);
+                        }
+                    }
+                });
+
         }
 
         private bool IsUnique(AppProjectGenerator val)

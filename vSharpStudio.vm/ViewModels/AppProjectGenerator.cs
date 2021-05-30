@@ -144,6 +144,7 @@ namespace vSharpStudio.vm.ViewModels
                     this._DynamicGeneratorSettings = _PluginGenerator.GetAppGenerationSettingsVmFromJson(this.GeneratorSettings);
                     if (this._DynamicGeneratorSettings != null)
                     {
+                        this._DynamicGeneratorSettings.Parent = this;
                         this.NotifyPropertyChanged();
                         this.ValidateProperty();
                     }
@@ -273,6 +274,11 @@ namespace vSharpStudio.vm.ViewModels
             this.DynamicGeneratorSettings = null;
             this.DynamicMainConnStrSettings = null;
             this.DynamicModelNodeSettings = null;
+            // auto selection generator if it is only one
+            if (this.ListGenerators.Count == 1)
+            {
+                this.PluginGeneratorGuid = this.ListGenerators[0].Guid;
+            }
         }
         partial void OnPluginGeneratorGuidChanging(ref string to)
         {

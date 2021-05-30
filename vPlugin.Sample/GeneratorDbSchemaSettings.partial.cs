@@ -30,5 +30,7 @@ namespace vPlugin.Sample
             //return visitor.Result;
             return s;
         }
+        public IvPluginGenerator Generator { get; set; }
+        public IAppProjectGenerator Parent { get; set; }
     }
 }

@@ -28,6 +28,8 @@ namespace vPlugin.Sample
             visitor.Run(model.Model);
             return visitor.Result;
         }
+        public IvPluginGenerator Generator { get; set; }
+        public IAppProjectGenerator Parent { get; set; }
     }
     public class MyModelVisitor : ModelVisitorBase
     {
