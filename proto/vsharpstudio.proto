@@ -420,7 +420,7 @@ message proto_plugin_generator_settings {
 message proto_app_project_generator {
     // @attr [ReadOnly(true)]
     string guid = 1;
-    // @attr [Description("Connection string name for DB connection generator")]
+    // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     string name_ui = 3;
     // @attr [BrowsableAttribute(false)]
@@ -619,6 +619,12 @@ enum proto_enum_data_type {
     // @attr [DisplayName("DateTime Z")]
     // @attr [Description("Date and time with time zone")]
     DATETIMEZ = 7;
+    // @attr [DisplayName("DateTimeOffset")]
+    // @attr [Description("Date and time offset")]
+    DATETIMEOFFSET = 8;
+    // @attr [DisplayName("TimeSpan")]
+    // @attr [Description("Time span")]
+    TIMESPAN = 9;
 
     //CONSTANT = 7;
 
@@ -1122,7 +1128,7 @@ enum proto_enum_catalog_code_unique_scope {
     Group = 1;
     Catalog = 2;
 }
-enum proto_enum_catalog_code_type {
+enum proto_enum_code_type {
     Number = 0;
     Text = 1;
     AutoNumber = 2;
@@ -1133,7 +1139,7 @@ message proto_catalog_code_property_settings {
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("Type")]
     // @attr [Description("Code type")]
-    proto_enum_catalog_code_type type = 3;
+    proto_enum_code_type type = 3;
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Length")]
     // @attr [Description("Length is number of decimal digits for numbers, string length for text")]
@@ -1185,7 +1191,7 @@ message proto_catalog {
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item")]
-    bool use_code_property = 21;
+    bool_nullable use_code_property = 21;
     // @attr [PropertyOrderAttribute(22)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Code")]
@@ -1196,7 +1202,7 @@ message proto_catalog {
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item")]
-    bool use_name_property = 41;
+    bool_nullable use_name_property = 41;
     // @attr [PropertyOrderAttribute(42)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
@@ -1206,7 +1212,7 @@ message proto_catalog {
     // @attr [PropertyOrderAttribute(51)]
     // @attr [DisplayName("Use Description")]
     // @attr [Description("Use Description property for catalog item")]
-    bool use_description_property = 51;
+    bool_nullable use_description_property = 51;
     // @attr [PropertyOrderAttribute(52)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
@@ -1270,21 +1276,33 @@ message proto_group_list_catalogs {
     // @attr [Description("Name of code auto generated property if it is used in catalog")]
     string property_code_name = 21;
     // @attr [PropertyOrderAttribute(22)]
+    // @attr [DisplayName("Use Code")]
+    // @attr [Description("Use Code property for catalog item by default")]
+    bool use_code_property = 22;
+    // @attr [PropertyOrderAttribute(23)]
     // @attr [DisplayName("Name property")]
     // @attr [Description("Name of name auto generated property if it is used in catalog")]
-    string property_name_name = 22;
-    // @attr [PropertyOrderAttribute(23)]
+    string property_name_name = 23;
+    // @attr [PropertyOrderAttribute(24)]
+    // @attr [DisplayName("Use Name")]
+    // @attr [Description("Use Name property for catalog item by default")]
+    bool use_name_property = 24;
+    // @attr [PropertyOrderAttribute(25)]
     // @attr [DisplayName("Description property")]
     // @attr [Description("Name of description auto generated property if it is used in catalog")]
-    string property_description_name = 23;
-    // @attr [PropertyOrderAttribute(25)]
+    string property_description_name = 25;
+    // @attr [PropertyOrderAttribute(26)]
+    // @attr [DisplayName("Description")]
+    // @attr [Description("Use Description property for catalog item by default")]
+    bool use_description_property = 26;
+    // @attr [PropertyOrderAttribute(27)]
     // @attr [DisplayName("IsFolder property")]
     // @attr [Description("Name of is folder auto generated property if it is used in catalog")]
-    string property_is_folder_name = 25;
-    // @attr [PropertyOrderAttribute(26)]
+    string property_is_folder_name = 27;
+    // @attr [PropertyOrderAttribute(29)]
     // @attr [DisplayName("IsOpen property")]
     // @attr [Description("Name of is open auto generated property if folder is used in catalog")]
-    string property_is_open_name = 26;
+    string property_is_open_name = 29;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -1314,8 +1332,53 @@ message proto_group_documents {
     proto_group_list_properties group_shared_properties = 7;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_documents group_list_documents = 8;
+    // @attr [PropertyOrderAttribute(21)]
+    // @attr [DisplayName("Code property")]
+    // @attr [Description("Name of document code auto generated property if it is used in documents")]
+    string property_code_name = 21;
+    // @attr [PropertyOrderAttribute(22)]
+    // @attr [DisplayName("Use Code")]
+    // @attr [Description("Use Code property for document by default")]
+    bool use_code_property = 22;
+    // @attr [PropertyOrderAttribute(23)]
+    // @attr [DisplayName("Date property")]
+    // @attr [Description("Name of document date auto generated property if it is used in documents")]
+    string property_date_name = 23;
+    // @attr [PropertyOrderAttribute(24)]
+    // @attr [DisplayName("Use Date")]
+    // @attr [Description("Use Date property for document by default")]
+    bool use_date_property = 24;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+enum proto_enum_document_code_unique_scope {
+    Forever = 0;
+    Year = 1;
+    Quater = 2;
+    Month = 3;
+}
+// @base VmValidatableWithSeverity
+message proto_document_code_property_settings {
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Type")]
+    // @attr [Description("Code type")]
+    proto_enum_code_type type = 3;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Length")]
+    // @attr [Description("Length is number of decimal digits for numbers, string length for text")]
+    uint32 length = 4;
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [DisplayName("Sequence")]
+    // @attr [Description("Sequence for auto code generation")]
+    string sequence_guid = 5;
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Unique Scope")]
+    // @attr [Description("Code has to be unique in selected scope")]
+    proto_enum_document_code_unique_scope unique_scope = 7;
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("Date")]
+    // @attr [Description("Start date of scope period")]
+    string scope_period_start = 8;
 }
 message proto_document {
     // @attr [ReadOnly(true)]
@@ -1345,6 +1408,23 @@ message proto_document {
 
     // @attr [BrowsableAttribute(false)]
     string property_id_guid = 20;
+    // @attr [PropertyOrderAttribute(21)]
+    // @attr [DisplayName("Use Code")]
+    // @attr [Description("Use Code property for document")]
+    bool_nullable use_code_property = 21;
+    // @attr [PropertyOrderAttribute(22)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Code")]
+    // @attr [Description("Code property settings for Document")]
+    proto_document_code_property_settings code_property_settings = 22;
+    // @attr [BrowsableAttribute(false)]
+    string property_code_guid = 23;
+    // @attr [PropertyOrderAttribute(24)]
+    // @attr [DisplayName("Use Date")]
+    // @attr [Description("Use Date property for document")]
+    bool_nullable use_date_property = 24;
+    // @attr [BrowsableAttribute(false)]
+    string property_date_guid = 25;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

@@ -312,19 +312,22 @@ namespace vSharpStudio.Unit
             mvm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
 
             var cfg = mvm.Config;
+            int catPos = 8;
             cfg.Model.GroupCatalogs.NodeAddNewSubNode();
             cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == 2);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 2);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == catPos);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == catPos);
             cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == 3);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 3);
+            catPos++;
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == catPos);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == catPos);
             cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeRemove();
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == 3);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 3);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == catPos);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == catPos);
             cfg.Model.GroupCatalogs[0].GroupProperties[0].NodeAddNew();
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == 4);
-            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 4);
+            catPos++;
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[1].Position == catPos);
+            Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == catPos);
         }
         #endregion Property unique position for Protobuf
 

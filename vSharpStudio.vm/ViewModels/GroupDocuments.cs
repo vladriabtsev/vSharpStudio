@@ -40,6 +40,8 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = Defaults.DocumentsGroupName;
             this.PrefixForDbTables = "Doc";
             this.IsEditable = false;
+            this.PropertyCodeName = "DocNumber";
+            this.PropertyDateName = "DocDate";
 
             VmBindable.IsNotifyingStatic = false;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);

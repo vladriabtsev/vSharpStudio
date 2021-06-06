@@ -19,6 +19,7 @@
     - [proto_constant](#proto_config.proto_constant)
     - [proto_data_type](#proto_config.proto_data_type)
     - [proto_document](#proto_config.proto_document)
+    - [proto_document_code_property_settings](#proto_config.proto_document_code_property_settings)
     - [proto_enumeration](#proto_config.proto_enumeration)
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_form](#proto_config.proto_form)
@@ -65,10 +66,11 @@
   
     - [db_id_generator_method](#proto_config.db_id_generator_method)
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
-    - [proto_enum_catalog_code_type](#proto_config.proto_enum_catalog_code_type)
     - [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope)
     - [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon)
+    - [proto_enum_code_type](#proto_config.proto_enum_code_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
+    - [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
     - [proto_form_orientation](#proto_config.proto_form_orientation)
     - [proto_form_view](#proto_config.proto_form_view)
@@ -187,7 +189,7 @@ Application project generator
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Description(&#34;Connection string name for DB connection generator&#34;)] |
+| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
 | name_ui | [string](#string) |  |  |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
@@ -281,13 +283,13 @@ Application project generator
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
 | item_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
 | property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_code_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
+| use_code_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
 | property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_name_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
+| use_name_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | property_name_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_description_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
+| use_description_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(52)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
 | property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | use_folder_type_explicitly | [bool](#bool) |  | @attr [PropertyOrderAttribute(54)] @attr [DisplayName(&#34;Use Folders&#34;)] @attr [Description(&#34;User has choose explicitly item or folder type for catalog element &#34;)] |
@@ -314,7 +316,7 @@ Application project generator
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [proto_enum_catalog_code_type](#proto_config.proto_enum_catalog_code_type) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Type&#34;)] @attr [Description(&#34;Code type&#34;)] |
+| type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Type&#34;)] @attr [Description(&#34;Code type&#34;)] |
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Length is number of decimal digits for numbers, string length for text&#34;)] |
 | sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Sequence&#34;)] @attr [Description(&#34;Sequence for auto code generation&#34;)] |
 | unique_scope | [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
@@ -470,7 +472,31 @@ Constant application wise value
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
 | property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| use_code_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document&#34;)] |
+| code_property_settings | [proto_document_code_property_settings](#proto_config.proto_document_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for Document&#34;)] |
+| property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| use_date_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document&#34;)] |
+| property_date_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_document_code_property_settings"></a>
+
+### proto_document_code_property_settings
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Type&#34;)] @attr [Description(&#34;Code type&#34;)] |
+| length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Length is number of decimal digits for numbers, string length for text&#34;)] |
+| sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Sequence&#34;)] @attr [Description(&#34;Sequence for auto code generation&#34;)] |
+| unique_scope | [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
+| scope_period_start | [string](#string) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Date&#34;)] @attr [Description(&#34;Start date of scope period&#34;)] |
 
 
 
@@ -674,6 +700,10 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for document db table names. Used if set to use in config model&#34;)] |
 | group_shared_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] @attr [Description(&#34;Properties for all documents&#34;)] |
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [BrowsableAttribute(false)] |
+| property_code_name | [string](#string) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of document code auto generated property if it is used in documents&#34;)] |
+| use_code_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document by default&#34;)] |
+| property_date_name | [string](#string) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Date property&#34;)] @attr [Description(&#34;Name of document date auto generated property if it is used in documents&#34;)] |
+| use_date_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document by default&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -737,10 +767,13 @@ repeated proto_group_properties list_properties = 6; repeated proto_document lis
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
 | property_code_name | [string](#string) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
-| property_name_name | [string](#string) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
-| property_description_name | [string](#string) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
-| property_is_folder_name | [string](#string) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
-| property_is_open_name | [string](#string) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;IsOpen property&#34;)] @attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] |
+| use_code_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item by default&#34;)] |
+| property_name_name | [string](#string) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
+| use_name_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item by default&#34;)] |
+| property_description_name | [string](#string) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
+| use_description_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
+| property_is_folder_name | [string](#string) |  | @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
+| property_is_open_name | [string](#string) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;IsOpen property&#34;)] @attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -1406,20 +1439,6 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 
 
-<a name="proto_config.proto_enum_catalog_code_type"></a>
-
-### proto_enum_catalog_code_type
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| Number | 0 |  |
-| Text | 1 |  |
-| AutoNumber | 2 |  |
-| AutoText | 3 |  |
-
-
-
 <a name="proto_config.proto_enum_catalog_code_unique_scope"></a>
 
 ### proto_enum_catalog_code_unique_scope
@@ -1447,6 +1466,20 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 
 
+<a name="proto_config.proto_enum_code_type"></a>
+
+### proto_enum_code_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| Number | 0 |  |
+| Text | 1 |  |
+| AutoNumber | 2 |  |
+| AutoText | 3 |  |
+
+
+
 <a name="proto_config.proto_enum_data_type"></a>
 
 ### proto_enum_data_type
@@ -1462,12 +1495,28 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | DATE | 5 | @attr [DisplayName(&#34;Date&#34;)] @attr [Description(&#34;Date without time zone&#34;)] |
 | DATETIME | 6 | @attr [DisplayName(&#34;DateTime&#34;)] @attr [Description(&#34;Date and time without time zone&#34;)] |
 | DATETIMEZ | 7 | @attr [DisplayName(&#34;DateTime Z&#34;)] @attr [Description(&#34;Date and time with time zone&#34;)] |
+| DATETIMEOFFSET | 8 | @attr [DisplayName(&#34;DateTimeOffset&#34;)] @attr [Description(&#34;Date and time offset&#34;)] |
+| TIMESPAN | 9 | @attr [DisplayName(&#34;TimeSpan&#34;)] @attr [Description(&#34;Time span&#34;)] |
 | ENUMERATION | 10 | @attr [DisplayName(&#34;Enumeration&#34;)] @attr [Description(&#34;Enumeration type&#34;)] |
 | CATALOG | 11 | @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog type&#34;)] |
 | CATALOGS | 12 | @attr [DisplayName(&#34;Catalogs&#34;)] @attr [Description(&#34;List of catalogs&#34;)] |
 | DOCUMENT | 13 | @attr [DisplayName(&#34;Document&#34;)] @attr [Description(&#34;Document type&#34;)] |
 | DOCUMENTS | 14 | @attr [DisplayName(&#34;Documents&#34;)] @attr [Description(&#34;List of documents&#34;)] |
 | ANY | 15 | @attr [DisplayName(&#34;Any type&#34;)] @attr [Description(&#34;Any data type&#34;)] |
+
+
+
+<a name="proto_config.proto_enum_document_code_unique_scope"></a>
+
+### proto_enum_document_code_unique_scope
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| Forever | 0 |  |
+| Year | 1 |  |
+| Quater | 2 |  |
+| Month | 3 |  |
 
 
 

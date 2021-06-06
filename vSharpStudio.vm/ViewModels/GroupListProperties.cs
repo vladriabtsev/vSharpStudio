@@ -146,6 +146,37 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public uint GetNextPosition()
+        {
+            if (this.LastGenPosition == 0)
+            {
+                if (this.Parent is Catalog)
+                {
+                    this.LastGenPosition = 7;
+
+                }
+                else if (this.Parent is PropertiesTab)
+                {
+                    this.LastGenPosition = 2;
+                }
+                else if (this.Parent is CatalogFolder)
+                {
+                    this.LastGenPosition = 7;
+                }
+                else if (this.Parent is Document)
+                {
+                    this.LastGenPosition = 4;
+                }
+                else if (this.Parent is GroupDocuments)
+                {
+                    //this.LastGenPosition = 0;
+                }
+                else
+                    throw new NotImplementedException();
+            }
+            this.LastGenPosition++;
+            return this.LastGenPosition;
+        }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
             Property node = null;
@@ -160,13 +191,7 @@ namespace vSharpStudio.vm.ViewModels
 
             this.Add(node);
             node.DataType.Parent = node;
-            if (this.LastGenPosition == 0)
-            {
-                this.LastGenPosition = 1;
-            }
-
-            this.LastGenPosition++;
-            node.Position = this.LastGenPosition;
+            node.Position = this.GetNextPosition();
             if (node_impl == null)
             {
                 this.GetUniqueName(Property.DefaultName, node, this.ListProperties);

@@ -584,26 +584,6 @@ namespace vSharpStudio.vm.ViewModels
         //    return this.DbSettings.VersionFieldGuid;
         //}
 
-        public IProperty GetPropertyBool(string guid, string name, bool isNullable)
-        {
-            var dt = new DataType();
-            dt.DataTypeEnum = EnumDataType.BOOL;
-            dt.IsNullable = isNullable;
-            var res = new Property(default(ITreeConfigNode), guid, name, dt);
-            return res;
-        }
-        public IProperty GetPropertyInt(string guid, uint length, string name)
-        {
-            var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
-            var res = new Property(default(ITreeConfigNode), guid, name, dt);
-            return res;
-        }
-        public IProperty GetPropertyString(string guid, uint length, string name)
-        {
-            var dt = (DataType)this.GetDataType(length);
-            var res = new Property(default(ITreeConfigNode), guid, name, dt);
-            return res;
-        }
         //private IProperty GetPropertyId(IvPluginDbGenerator dbGen)
         //{
         //    string fieldName = null;
@@ -629,6 +609,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var dt = (DataType)this.GetIdDataType();
             var res = new Property(default(ITreeConfigNode), idGuid, this.DbSettings.PKeyName, dt);
+            res.Position = 1;
             res.IsPKey = true;
             return res;
         }
@@ -637,13 +618,102 @@ namespace vSharpStudio.vm.ViewModels
             var dt = (DataType)this.GetIdDataType();
             dt.IsRefParent = true;
             var res = new Property(default(ITreeConfigNode), guid, name, dt);
+            res.Position = 2;
             return res;
         }
+        public IProperty GetPropertyCatalogCode(string guid, uint length)
+        {
+            var dt = (DataType)this.GetDataType(length);
+            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyCodeName, dt);
+            res.Position = 3;
+            return res;
+        }
+        public IProperty GetPropertyCatalogCodeInt(string guid, uint length)
+        {
+            var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
+            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyCodeName, dt);
+            res.Position = 3;
+            return res;
+        }
+        public IProperty GetPropertyCatalogName(string guid, uint length)
+        {
+            var dt = (DataType)this.GetDataType(length);
+            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyNameName, dt);
+            res.Position = 4;
+            return res;
+        }
+        public IProperty GetPropertyCatalogDescription(string guid, uint length)
+        {
+            var dt = (DataType)this.GetDataType(length);
+            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyDescriptionName, dt);
+            res.Position = 5;
+            return res;
+        }
+        public IProperty GetPropertyIsFolder(string guid)
+        {
+            var dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.BOOL;
+            dt.IsNullable = false;
+            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyIsFolderName, dt);
+            res.Position = 6;
+            return res;
+        }
+        public IProperty GetPropertyIsOpen(string guid)
+        {
+            var dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.BOOL;
+            dt.IsNullable = false;
+            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyIsOpenName, dt);
+            res.Position = 7;
+            return res;
+        }
+        public IProperty GetPropertyDocumentDate(string guid)
+        {
+            var dt = (DataType)this.GetDataTypeDate();
+            var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyDateName, dt);
+            res.Position = 2;
+            return res;
+        }
+        public IProperty GetPropertyDocumentCodeString(string guid, uint length)
+        {
+            var dt = (DataType)this.GetDataType(length);
+            var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyCodeName, dt);
+            res.Position = 3;
+            return res;
+        }
+        public IProperty GetPropertyDocumentCodeInt(string guid, uint length)
+        {
+            var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
+            var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyCodeName, dt);
+            res.Position = 3;
+            return res;
+        }
+        //public IProperty GetPropertyString(string guid, uint length, string name)
+        //{
+        //    var dt = (DataType)this.GetDataType(length);
+        //    var res = new Property(default(ITreeConfigNode), guid, name, dt);
+        //    return res;
+        //}
+        //public IProperty GetPropertyBool(string guid, string name, bool isNullable)
+        //{
+        //    var dt = new DataType();
+        //    dt.DataTypeEnum = EnumDataType.BOOL;
+        //    dt.IsNullable = isNullable;
+        //    var res = new Property(default(ITreeConfigNode), guid, name, dt);
+        //    return res;
+        //}
+        //public IProperty GetPropertyInt(string guid, uint length, string name)
+        //{
+        //    var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
+        //    var res = new Property(default(ITreeConfigNode), guid, name, dt);
+        //    return res;
+        //}
+
         public IReadOnlyList<IEnumeration> GetListEnumerations(string guidAppPrjGen)
         {
             var lst = new List<IEnumeration>();
             var cfg = this.Parent as Config;
-            var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
+            //var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
             foreach (var tt in cfg.Model.GroupEnumerations.ListEnumerations)
             {
                 if (tt.IsIncluded(guidAppPrjGen))

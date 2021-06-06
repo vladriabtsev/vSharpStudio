@@ -19,6 +19,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Solution";
+        [BrowsableAttribute(false)]
+        public IConfig Config { get { return (IConfig)this.Parent.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()

@@ -13,7 +13,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
             this.RuleFor(x => x.Guid).Custom((guid, cntx) =>
             {
-                Plugin pg = (Plugin)cntx.InstanceToValidate;
+                var pg = (Plugin)cntx.InstanceToValidate;
                 GroupListPlugins lst = (GroupListPlugins)pg.Parent;
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Not unique Plugin Guid. Plugins: ");

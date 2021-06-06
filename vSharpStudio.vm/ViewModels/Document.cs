@@ -211,7 +211,7 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         /// <param name="guidAppPrjGen"></param>
         /// <returns></returns>
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
+        public IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
             var grd = (GroupDocuments)this.Parent.Parent;
@@ -233,6 +233,75 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             return res;
+        }
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res);
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+        public bool GetUseCodeProperty()
+        {
+            bool res = false;
+            if (this.UseCodeProperty.HasValue)
+            {
+                res = this.UseCodeProperty.Value;
+            }
+            else
+            {
+                res = (this.Parent.Parent as GroupDocuments).UseCodeProperty;
+            }
+            return res;
+        }
+        public bool GetUseDateProperty()
+        {
+            bool res = false;
+            if (this.UseDateProperty.HasValue)
+            {
+                res = this.UseDateProperty.Value;
+            }
+            else
+            {
+                res = (this.Parent.Parent as GroupDocuments).UseDateProperty;
+            }
+            return res;
+        }
+        private void GetSpecialProperties(List<IProperty> res)
+        {
+
+            var grd = (GroupDocuments)this.Parent.Parent;
+            var cfg = this.GetConfig();
+            var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            res.Add(prp);
+            if (this.GetUseDateProperty())
+            {
+                prp = cfg.Model.GetPropertyDocumentDate(this.PropertyDateGuid);
+                res.Add(prp);
+            }
+            if (this.GetUseCodeProperty())
+            {
+                switch (this.CodePropertySettings.Type)
+                {
+                    case EnumCodeType.AutoNumber:
+                        throw new NotImplementedException();
+                    case EnumCodeType.AutoText:
+                        throw new NotImplementedException();
+                    case EnumCodeType.Number:
+                        prp = cfg.Model.GetPropertyDocumentCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                        break;
+                    case EnumCodeType.Text:
+                        prp = cfg.Model.GetPropertyDocumentCodeString(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                        break;
+                }
+                res.Add(prp);
+            }
         }
         public IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen)
         {

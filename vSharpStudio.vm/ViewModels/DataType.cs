@@ -584,21 +584,49 @@ namespace vSharpStudio.vm.ViewModels
                 return GetProtoType();
             }
         }
-        private string GetProtoType()
+        // https://docs.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-5.0
+        public string GetProtoType(bool isGrpcService = false)
         {
+            IConfig cfg = null;
             // https://developers.google.com/protocol-buffers/docs/proto3#scalar
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.CATALOG:
-                    return "catalog";
+                    cfg = this.Parent.GetConfig();
+                    var p = (ICompositeName)(cfg.DicNodes[this.ObjectGuid]);
+                    return p.CompositeName.ToProtoName();
                 case EnumDataType.CATALOGS:
                     return "catalogs";
                 case EnumDataType.DOCUMENT:
-                    return "document";
+                    cfg = this.Parent.GetConfig();
+                    var d = (ICompositeName)(cfg.DicNodes[this.ObjectGuid]);
+                    return d.CompositeName.ToProtoName();
                 case EnumDataType.DOCUMENTS:
                     return "documents";
                 case EnumDataType.ENUMERATION:
-                    return "enumeration";
+                    cfg = this.Parent.GetConfig();
+                    var en = (IEnumeration)(cfg.DicNodes[this.ObjectGuid]);
+                    if (isGrpcService)
+                    {
+                        switch (en.DataTypeEnum)
+                        {
+                            case EnumEnumerationType.BYTE_VALUE:
+                            case EnumEnumerationType.INTEGER_VALUE:
+                            case EnumEnumerationType.SHORT_VALUE:
+                                return "int32";
+                            case EnumEnumerationType.STRING_VALUE:
+                                return "string";
+                            default:
+                                throw new NotImplementedException();
+                        }
+                    }
+                    else
+                    {
+                        //if (en.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
+                        //    return "enum" + en.Name.ToProtoName();
+                        //else
+                            return en.Name.ToProtoName();
+                    }
                 case EnumDataType.BOOL:
                     return "bool";
                 case EnumDataType.STRING:
@@ -652,6 +680,15 @@ namespace vSharpStudio.vm.ViewModels
 
                         return "bytes"; // need conversions
                     }
+                case EnumDataType.DATETIMEOFFSET:
+                case EnumDataType.DATE:
+                case EnumDataType.DATETIME:
+                case EnumDataType.DATETIMEZ:
+                case EnumDataType.TIME:
+                case EnumDataType.TIMEZ:
+                    return "google.protobuf.Timestamp";
+                case EnumDataType.TIMESPAN:
+                    return "google.protobuf.Duration";
                 default:
                     throw new Exception("Not supported operation");
             }

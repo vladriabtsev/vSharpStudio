@@ -25,6 +25,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         DATE = 5,
         DATETIME = 6,
         DATETIMEZ = 7,
+        DATETIMEOFFSET = 8,
+        TIMESPAN = 9,
         ENUMERATION = 10,
         CATALOG = 11,
         CATALOGS = 12,
@@ -52,12 +54,19 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         Group = 1,
         Catalog = 2,
     }
-    public enum EnumCatalogCodeType // ModelInterfaces.tt Line: 15
+    public enum EnumCodeType // ModelInterfaces.tt Line: 15
     {
         Number = 0,
         Text = 1,
         AutoNumber = 2,
         AutoText = 3,
+    }
+    public enum EnumDocumentCodeUniqueScope // ModelInterfaces.tt Line: 15
+    {
+        Forever = 0,
+        Year = 1,
+        Quater = 2,
+        Month = 3,
     }
     public enum FormOrientation // ModelInterfaces.tt Line: 15
     {
@@ -609,7 +618,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     
     public partial interface ICatalogCodePropertySettings // ModelInterfaces.tt Line: 29
     {
-    	EnumCatalogCodeType Type { get; } // ModelInterfaces.tt Line: 51
+    	EnumCodeType Type { get; } // ModelInterfaces.tt Line: 51
     	uint Length { get; } // ModelInterfaces.tt Line: 51
     	string SequenceGuid { get; } // ModelInterfaces.tt Line: 51
     	EnumCatalogCodeUniqueScope UniqueScope { get; } // ModelInterfaces.tt Line: 51
@@ -629,13 +638,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
     	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
     	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool UseNameProperty { get; } // ModelInterfaces.tt Line: 51
+    	bool? UseNameProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 51
     	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
+    	bool? UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
     	bool UseFolderTypeExplicitly { get; } // ModelInterfaces.tt Line: 51
@@ -660,8 +669,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	ICatalog this[int index] { get; }
     	int Count();
     	string PropertyCodeName { get; } // ModelInterfaces.tt Line: 51
+    	bool UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	string PropertyNameName { get; } // ModelInterfaces.tt Line: 51
+    	bool UseNameProperty { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDescriptionName { get; } // ModelInterfaces.tt Line: 51
+    	bool UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIsFolderName { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIsOpenName { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
@@ -675,7 +687,20 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 51
     	IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyCodeName { get; } // ModelInterfaces.tt Line: 51
+    	bool UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDateName { get; } // ModelInterfaces.tt Line: 51
+    	bool UseDateProperty { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+    }
+    
+    public partial interface IDocumentCodePropertySettings // ModelInterfaces.tt Line: 29
+    {
+    	EnumCodeType Type { get; } // ModelInterfaces.tt Line: 51
+    	uint Length { get; } // ModelInterfaces.tt Line: 51
+    	string SequenceGuid { get; } // ModelInterfaces.tt Line: 51
+    	EnumDocumentCodeUniqueScope UniqueScope { get; } // ModelInterfaces.tt Line: 51
+    	string ScopePeriodStart { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IDocument : IGuid, IName // ModelInterfaces.tt Line: 29
@@ -690,6 +715,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
+    	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	IDocumentCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
+    	bool? UseDateProperty { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDateGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

@@ -253,6 +253,45 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+        public bool GetUseCodeProperty()
+        {
+            bool res = false;
+            if (this.UseCodeProperty.HasValue)
+            {
+                res = this.UseCodeProperty.Value;
+            }
+            else
+            {
+                res = (this.Parent as GroupListCatalogs).UseCodeProperty;
+            }
+            return res;
+        }
+        public bool GetUseNameProperty()
+        {
+            bool res = false;
+            if (this.UseNameProperty.HasValue)
+            {
+                res = this.UseNameProperty.Value;
+            }
+            else
+            {
+                res = (this.Parent as GroupListCatalogs).UseNameProperty;
+            }
+            return res;
+        }
+        public bool GetUseDescriptionProperty()
+        {
+            bool res = false;
+            if (this.UseDescriptionProperty.HasValue)
+            {
+                res = this.UseDescriptionProperty.Value;
+            }
+            else
+            {
+                res = (this.Parent as GroupListCatalogs).UseDescriptionProperty;
+            }
+            return res;
+        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
@@ -293,38 +332,37 @@ namespace vSharpStudio.vm.ViewModels
                         res.Add(prp);
                         if (this.UseFolderTypeExplicitly)
                         {
-                            var gr = this.Parent as IGroupListCatalogs;
-                            prp = cfg.Model.GetPropertyBool(this.PropertyIsFolderGuid, gr.PropertyIsFolderName, false);
+                            prp = cfg.Model.GetPropertyIsFolder(this.PropertyIsFolderGuid);
                             res.Add(prp);
                         }
                     }
                 }
             }
-            if (this.UseCodeProperty)
+            if (this.GetUseCodeProperty())
             {
                 switch (this.CodePropertySettings.Type)
                 {
-                    case EnumCatalogCodeType.AutoNumber:
+                    case EnumCodeType.AutoNumber:
                         throw new NotImplementedException();
-                    case EnumCatalogCodeType.AutoText:
+                    case EnumCodeType.AutoText:
                         throw new NotImplementedException();
-                    case EnumCatalogCodeType.Number:
-                        prp = cfg.Model.GetPropertyInt(this.PropertyCodeGuid, this.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
+                    case EnumCodeType.Number:
+                        prp = cfg.Model.GetPropertyCatalogCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
                         break;
-                    case EnumCatalogCodeType.Text:
-                        prp = cfg.Model.GetPropertyString(this.PropertyCodeGuid, this.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
+                    case EnumCodeType.Text:
+                        prp = cfg.Model.GetPropertyCatalogCode(this.PropertyCodeGuid, this.CodePropertySettings.Length);
                         break;
                 }
                 res.Add(prp);
             }
-            if (this.UseNameProperty)
+            if (this.GetUseNameProperty())
             {
-                prp = cfg.Model.GetPropertyString(this.PropertyNameGuid, this.MaxNameLength, cfg.Model.GroupCatalogs.PropertyNameName);
+                prp = cfg.Model.GetPropertyCatalogName(this.PropertyNameGuid, this.MaxNameLength);
                 res.Add(prp);
             }
-            if (this.UseDescriptionProperty)
+            if (this.GetUseDescriptionProperty())
             {
-                prp = cfg.Model.GetPropertyString(this.PropertyDescriptionGuid, this.MaxDescriptionLength, cfg.Model.GroupCatalogs.PropertyDescriptionName);
+                prp = cfg.Model.GetPropertyCatalogDescription(this.PropertyDescriptionGuid, this.MaxDescriptionLength);
                 res.Add(prp);
             }
         }
@@ -403,15 +441,15 @@ namespace vSharpStudio.vm.ViewModels
                     lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
                 }
             }
-            if (!this.UseCodeProperty)
+            if (!this.GetUseCodeProperty())
             {
                 lst.Add(this.GetPropertyName(() => this.CodePropertySettings));
             }
-            if (!this.UseNameProperty)
+            if (!this.GetUseNameProperty())
             {
                 lst.Add(this.GetPropertyName(() => this.MaxNameLength));
             }
-            if (!this.UseDescriptionProperty)
+            if (!this.GetUseDescriptionProperty())
             {
                 lst.Add(this.GetPropertyName(() => this.MaxDescriptionLength));
             }

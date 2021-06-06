@@ -56,34 +56,6 @@
           ]
         },
         {
-          "name": "proto_enum_catalog_code_type",
-          "longName": "proto_enum_catalog_code_type",
-          "fullName": "proto_config.proto_enum_catalog_code_type",
-          "description": "",
-          "values": [
-            {
-              "name": "Number",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "Text",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "AutoNumber",
-              "number": "2",
-              "description": ""
-            },
-            {
-              "name": "AutoText",
-              "number": "3",
-              "description": ""
-            }
-          ]
-        },
-        {
           "name": "proto_enum_catalog_code_unique_scope",
           "longName": "proto_enum_catalog_code_unique_scope",
           "fullName": "proto_config.proto_enum_catalog_code_unique_scope",
@@ -129,6 +101,34 @@
             },
             {
               "name": "Custom",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_code_type",
+          "longName": "proto_enum_code_type",
+          "fullName": "proto_config.proto_enum_code_type",
+          "description": "",
+          "values": [
+            {
+              "name": "Number",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "Text",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "AutoNumber",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "AutoText",
               "number": "3",
               "description": ""
             }
@@ -181,6 +181,16 @@
               "description": "@attr [DisplayName(\"DateTime Z\")]\n@attr [Description(\"Date and time with time zone\")]"
             },
             {
+              "name": "DATETIMEOFFSET",
+              "number": "8",
+              "description": "@attr [DisplayName(\"DateTimeOffset\")]\n@attr [Description(\"Date and time offset\")]"
+            },
+            {
+              "name": "TIMESPAN",
+              "number": "9",
+              "description": "@attr [DisplayName(\"TimeSpan\")]\n@attr [Description(\"Time span\")]"
+            },
+            {
               "name": "ENUMERATION",
               "number": "10",
               "description": "@attr [DisplayName(\"Enumeration\")]\n@attr [Description(\"Enumeration type\")]"
@@ -209,6 +219,34 @@
               "name": "ANY",
               "number": "15",
               "description": "@attr [DisplayName(\"Any type\")]\n@attr [Description(\"Any data type\")]"
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_document_code_unique_scope",
+          "longName": "proto_enum_document_code_unique_scope",
+          "fullName": "proto_config.proto_enum_document_code_unique_scope",
+          "description": "",
+          "values": [
+            {
+              "name": "Forever",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "Year",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "Quater",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "Month",
+              "number": "3",
+              "description": ""
             }
           ]
         },
@@ -574,7 +612,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Description(\"Connection string name for DB connection generator\")]",
+              "description": "@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1129,9 +1167,9 @@
               "name": "use_code_property",
               "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_config.bool_nullable",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1159,9 +1197,9 @@
               "name": "use_name_property",
               "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_config.bool_nullable",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1189,9 +1227,9 @@
               "name": "use_description_property",
               "description": "@attr [PropertyOrderAttribute(51)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_config.bool_nullable",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1330,9 +1368,9 @@
               "name": "type",
               "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Type\")]\n@attr [Description(\"Code type\")]",
               "label": "",
-              "type": "proto_enum_catalog_code_type",
-              "longType": "proto_enum_catalog_code_type",
-              "fullType": "proto_config.proto_enum_catalog_code_type",
+              "type": "proto_enum_code_type",
+              "longType": "proto_enum_code_type",
+              "fullType": "proto_config.proto_enum_code_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2113,12 +2151,123 @@
               "defaultValue": ""
             },
             {
+              "name": "use_code_property",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for document\")]",
+              "label": "",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_config.bool_nullable",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "code_property_settings",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for Document\")]",
+              "label": "",
+              "type": "proto_document_code_property_settings",
+              "longType": "proto_document_code_property_settings",
+              "fullType": "proto_config.proto_document_code_property_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_code_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_date_property",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Date\")]\n@attr [Description(\"Use Date property for document\")]",
+              "label": "",
+              "type": "bool_nullable",
+              "longType": "bool_nullable",
+              "fullType": "proto_config.bool_nullable",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_date_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",
               "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_document_code_property_settings",
+          "longName": "proto_document_code_property_settings",
+          "fullName": "proto_config.proto_document_code_property_settings",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "type",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Type\")]\n@attr [Description(\"Code type\")]",
+              "label": "",
+              "type": "proto_enum_code_type",
+              "longType": "proto_enum_code_type",
+              "fullType": "proto_config.proto_enum_code_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "length",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Length\")]\n@attr [Description(\"Length is number of decimal digits for numbers, string length for text\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sequence_guid",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Sequence\")]\n@attr [Description(\"Sequence for auto code generation\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "unique_scope",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Unique Scope\")]\n@attr [Description(\"Code has to be unique in selected scope\")]",
+              "label": "",
+              "type": "proto_enum_document_code_unique_scope",
+              "longType": "proto_enum_document_code_unique_scope",
+              "fullType": "proto_config.proto_enum_document_code_unique_scope",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "scope_period_start",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Date\")]\n@attr [Description(\"Start date of scope period\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2843,6 +2992,46 @@
               "defaultValue": ""
             },
             {
+              "name": "property_code_name",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Code property\")]\n@attr [Description(\"Name of document code auto generated property if it is used in documents\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_code_property",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for document by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_date_name",
+              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Date property\")]\n@attr [Description(\"Name of document date auto generated property if it is used in documents\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_date_property",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Date\")]\n@attr [Description(\"Use Date property for document by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -3086,18 +3275,38 @@
               "defaultValue": ""
             },
             {
+              "name": "use_code_property",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "property_name_name",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Name property\")]\n@attr [Description(\"Name of name auto generated property if it is used in catalog\")]",
+              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Name property\")]\n@attr [Description(\"Name of name auto generated property if it is used in catalog\")]",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_name_property",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
             {
               "name": "property_description_name",
-              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Description property\")]\n@attr [Description(\"Name of description auto generated property if it is used in catalog\")]",
+              "description": "@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Description property\")]\n@attr [Description(\"Name of description auto generated property if it is used in catalog\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3106,8 +3315,18 @@
               "defaultValue": ""
             },
             {
+              "name": "use_description_property",
+              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Description\")]\n@attr [Description(\"Use Description property for catalog item by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "property_is_folder_name",
-              "description": "@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"IsFolder property\")]\n@attr [Description(\"Name of is folder auto generated property if it is used in catalog\")]",
+              "description": "@attr [PropertyOrderAttribute(27)]\n@attr [DisplayName(\"IsFolder property\")]\n@attr [Description(\"Name of is folder auto generated property if it is used in catalog\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3117,7 +3336,7 @@
             },
             {
               "name": "property_is_open_name",
-              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"IsOpen property\")]\n@attr [Description(\"Name of is open auto generated property if folder is used in catalog\")]",
+              "description": "@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"IsOpen property\")]\n@attr [Description(\"Name of is open auto generated property if folder is used in catalog\")]",
               "label": "",
               "type": "string",
               "longType": "string",

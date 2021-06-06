@@ -15,6 +15,8 @@ namespace vSharpStudio.vm.ViewModels
     {
         public static readonly string DefaultName = "Generator";
         private Config cfg;
+        [BrowsableAttribute(false)]
+        public IAppProject AppProject { get { return (IAppProject)this.Parent; } }
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         //protected override string GetNodeIconName() { return "iconFolder"; }
         #region ITree
@@ -381,11 +383,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (cfg.IsInitialized && !string.IsNullOrWhiteSpace(this.PluginGuid))
             {
-                Plugin plg = (Plugin)cfg.DicNodes[this.PluginGuid];
+                var plg = (Plugin)cfg.DicNodes[this.PluginGuid];
                 this.ListGenerators.Clear();
                 this.ListGenerators.AddRange(plg.ListGenerators);
-                //EditorPluginSelection.ListGenerators.Clear();
-                //EditorPluginSelection.ListGenerators.AddRange(plg.ListGenerators);
                 this.DescriptionPlugin = plg.Description;
             }
         }

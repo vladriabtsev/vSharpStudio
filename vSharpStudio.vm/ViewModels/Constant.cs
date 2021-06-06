@@ -37,6 +37,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
+            this.DataType.Parent = this;
         }
 
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)

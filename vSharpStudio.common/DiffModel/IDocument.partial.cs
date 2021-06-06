@@ -10,6 +10,7 @@ namespace vSharpStudio.common
     {
         IGroupListDocuments IParent { get; }
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen);
+        IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen);
         IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen);
         IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
     }

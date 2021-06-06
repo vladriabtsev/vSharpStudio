@@ -34,10 +34,21 @@ namespace vSharpStudio.common
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);
 
         IProperty GetPropertyId(string guid);
-        IProperty GetPropertyBool(string guid, string name, bool isNullable);
-        IProperty GetPropertyInt(string guid, uint length, string name);
-        IProperty GetPropertyString(string guid, uint length, string name);
         IProperty GetPropertyRefParent(string guid, string name);
+        IProperty GetPropertyCatalogCode(string guid, uint length);
+        IProperty GetPropertyCatalogCodeInt(string guid, uint length);
+        IProperty GetPropertyCatalogName(string guid, uint length);
+        IProperty GetPropertyCatalogDescription(string guid, uint length);
+        IProperty GetPropertyIsFolder(string guid);
+        IProperty GetPropertyIsOpen(string guid);
+        IProperty GetPropertyDocumentDate(string guid);
+        IProperty GetPropertyDocumentCodeString(string guid, uint length);
+        IProperty GetPropertyDocumentCodeInt(string guid, uint length);
+
+        //IProperty GetPropertyBool(string guid, string name, bool isNullable);
+        //IProperty GetPropertyInt(string guid, uint length, string name);
+        //IProperty GetPropertyString(string guid, uint length, string name);
+
         //IProperty GetPropertyRefParent(ICompositeName parent);
 
         //string GetIdFieldName(IvPluginDbGenerator dbGen);

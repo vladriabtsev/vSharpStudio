@@ -183,6 +183,45 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        public bool GetUseCodeProperty()
+        {
+            bool res = false;
+            if (this.UseCodeProperty.HasValue)
+            {
+                res = this.UseCodeProperty.Value;
+            }
+            else if (this.UseCodeProperty.HasValue)
+            {
+                res = (this.Parent as GroupListCatalogs).UseCodeProperty;
+            }
+            return res;
+        }
+        public bool GetUseNameProperty()
+        {
+            bool res = false;
+            if (this.UseNameProperty.HasValue)
+            {
+                res = this.UseNameProperty.Value;
+            }
+            else if (this.UseNameProperty.HasValue)
+            {
+                res = (this.Parent as GroupListCatalogs).UseNameProperty;
+            }
+            return res;
+        }
+        public bool GetUseDescriptionProperty()
+        {
+            bool res = false;
+            if (this.UseDescriptionProperty.HasValue)
+            {
+                res = this.UseDescriptionProperty.Value;
+            }
+            else if (this.UseDescriptionProperty.HasValue)
+            {
+                res = (this.Parent as GroupListCatalogs).UseDescriptionProperty;
+            }
+            return res;
+        }
         private void GetSpecialProperties(List<IProperty> res)
         {
             var cfg = this.GetConfig();
@@ -198,33 +237,33 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     switch (this.CodePropertySettings.Type)
                     {
-                        case EnumCatalogCodeType.AutoNumber:
+                        case EnumCodeType.AutoNumber:
                             throw new NotImplementedException();
-                        case EnumCatalogCodeType.AutoText:
+                        case EnumCodeType.AutoText:
                             throw new NotImplementedException();
-                        case EnumCatalogCodeType.Number:
-                            prp = cfg.Model.GetPropertyInt(this.PropertyCodeGuid, this.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
+                        case EnumCodeType.Number:
+                            prp = cfg.Model.GetPropertyCatalogCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
                             break;
-                        case EnumCatalogCodeType.Text:
-                            prp = cfg.Model.GetPropertyString(this.PropertyCodeGuid, this.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
+                        case EnumCodeType.Text:
+                            prp = cfg.Model.GetPropertyCatalogCode(this.PropertyCodeGuid, this.CodePropertySettings.Length);
                             break;
                     }
                     res.Add(prp);
                 }
             }
-            else if (ctlg.UseCodeProperty)
+            else if (ctlg.GetUseCodeProperty())
             {
                 switch (ctlg.CodePropertySettings.Type)
                 {
-                    case EnumCatalogCodeType.AutoNumber:
+                    case EnumCodeType.AutoNumber:
                         throw new NotImplementedException();
-                    case EnumCatalogCodeType.AutoText:
+                    case EnumCodeType.AutoText:
                         throw new NotImplementedException();
-                    case EnumCatalogCodeType.Number:
-                        prp = cfg.Model.GetPropertyInt(ctlg.PropertyCodeGuid, ctlg.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
+                    case EnumCodeType.Number:
+                        prp = cfg.Model.GetPropertyCatalogCodeInt(ctlg.PropertyCodeGuid, ctlg.CodePropertySettings.Length);
                         break;
-                    case EnumCatalogCodeType.Text:
-                        prp = cfg.Model.GetPropertyString(ctlg.PropertyCodeGuid, ctlg.CodePropertySettings.Length, cfg.Model.GroupCatalogs.PropertyCodeName);
+                    case EnumCodeType.Text:
+                        prp = cfg.Model.GetPropertyCatalogCode(ctlg.PropertyCodeGuid, ctlg.CodePropertySettings.Length);
                         break;
                 }
                 res.Add(prp);
@@ -233,26 +272,26 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.UseCodeProperty.Value)
                 {
-                    prp = cfg.Model.GetPropertyString(this.PropertyNameGuid, this.MaxNameLength, cfg.Model.GroupCatalogs.PropertyNameName);
+                    prp = cfg.Model.GetPropertyCatalogName(this.PropertyNameGuid, this.MaxNameLength);
                     res.Add(prp);
                 }
             }
-            else if (ctlg.UseNameProperty)
+            else if (ctlg.GetUseNameProperty())
             {
-                prp = cfg.Model.GetPropertyString(ctlg.PropertyNameGuid, ctlg.MaxNameLength, cfg.Model.GroupCatalogs.PropertyNameName);
+                prp = cfg.Model.GetPropertyCatalogName(ctlg.PropertyNameGuid, ctlg.MaxNameLength);
                 res.Add(prp);
             }
             if (this.UseDescriptionProperty.HasValue)
             {
                 if (this.UseDescriptionProperty.Value)
                 {
-                    prp = cfg.Model.GetPropertyString(this.PropertyDescriptionGuid, this.MaxDescriptionLength, cfg.Model.GroupCatalogs.PropertyDescriptionName);
+                    prp = cfg.Model.GetPropertyCatalogDescription(this.PropertyDescriptionGuid, this.MaxDescriptionLength);
                     res.Add(prp);
                 }
             }
-            else if (ctlg.UseDescriptionProperty)
+            else if (ctlg.GetUseDescriptionProperty())
             {
-                prp = cfg.Model.GetPropertyString(ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength, cfg.Model.GroupCatalogs.PropertyDescriptionName);
+                prp = cfg.Model.GetPropertyCatalogDescription(ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength);
                 res.Add(prp);
             }
         }

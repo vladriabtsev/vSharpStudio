@@ -10,7 +10,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.UniqueScope = common.EnumCatalogCodeUniqueScope.Catalog;
-            this.Type = common.EnumCatalogCodeType.Number;
+            this.Type = common.EnumCodeType.Number;
             this.Length = 5;
         }
         [BrowsableAttribute(false)]

@@ -9,6 +9,7 @@ namespace vSharpStudio.common
 {
     public partial interface IAppProject : ITreeConfigNode
     {
+        IAppSolution AppSolution { get; }
         string GetProjectFolderPath();
     }
 }

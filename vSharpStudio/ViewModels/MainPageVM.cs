@@ -288,9 +288,9 @@ namespace vSharpStudio.ViewModels
                         });
                     }
                     // remove not existing generators
-                    for (int iii= p.ListGenerators.Count-1; iii>=0; iii--)
+                    for (int iii = p.ListGenerators.Count - 1; iii >= 0; iii--)
                     {
-                        if (p.ListGenerators[iii].Generator==null)
+                        if (p.ListGenerators[iii].Generator == null)
                         {
                             p.ListGenerators.RemoveAt(iii);
                         }
@@ -796,7 +796,7 @@ namespace vSharpStudio.ViewModels
                                     case vPluginLayerTypeEnum.DbDesign:
                                         if (!(tg.Generator is IvPluginDbGenerator))
                                             throw new Exception("Generator type vPluginLayerTypeEnum.DbDesign has to have interface: " + typeof(IvPluginDbGenerator).Name);
-                                        string outFileConn = GetOuputFilePath(ts, tp, tpg, tpg.GenFileName);
+                                        string outFileConn = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
                                         bool first = false;
                                         StringBuilder sb = null;
                                         if (!dicAppSettings.ContainsKey(outFileConn))
@@ -846,7 +846,7 @@ namespace vSharpStudio.ViewModels
                                                 {
                                                     throw ex;
                                                 });
-                                                string outSqlFile = GetOuputFilePath(ts, tp, tpg, tpg.GenScriptFileName);
+                                                string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenScriptFileName);
                                                 // tg.GetRelativeToConfigDiskPath()
                                                 //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                                                 byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
@@ -868,7 +868,7 @@ namespace vSharpStudio.ViewModels
                                         //code = (tg.Generator as IvPluginGenerator) .GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
                                         break;
                                 }
-                                string outFile = GetOuputFilePath(ts, tp, tpg, tpg.GenFileName);
+                                string outFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
                                 // tg.GetRelativeToConfigDiskPath()
                                 //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
                                 byte[] bytes = Encoding.UTF8.GetBytes(code);
@@ -890,32 +890,6 @@ namespace vSharpStudio.ViewModels
                     }
                 }
             }
-        }
-        private string GetOuputFilePath(IAppSolution ts, IAppProject tp, IAppProjectGenerator tpg, string fileName)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(Path.GetDirectoryName(this.CurrentCfgFilePath));
-            sb.Append("\\");
-            var folder = Path.GetDirectoryName(ts.RelativeAppSolutionPath);
-            if (folder?.Length > 0)
-            {
-                sb.Append(folder);
-                sb.Append("\\");
-            }
-            folder = Path.GetDirectoryName(tp.RelativeAppProjectPath);
-            if (folder?.Length > 0)
-            {
-                sb.Append(folder);
-                sb.Append("\\");
-            }
-            if (!string.IsNullOrWhiteSpace(tpg.RelativePathToGenFolder))
-            {
-                sb.Append(tpg.RelativePathToGenFolder);
-                if (tpg.RelativePathToGenFolder[tpg.RelativePathToGenFolder.Length - 1] != '\\')
-                    sb.Append("\\");
-            }
-            sb.Append(fileName);
-            return sb.ToString();
         }
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
 #if Async

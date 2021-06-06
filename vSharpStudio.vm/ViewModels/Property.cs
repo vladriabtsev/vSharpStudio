@@ -41,6 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
+            this.DataType.Parent = this;
         }
         public void OnAdded()
         {
@@ -163,14 +164,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Property(this.Parent);
             var glp = (this.Parent as GroupListProperties);
             glp.Add(node);
-            // TODO can be more economical?
-            if (glp.LastGenPosition == 0)
-            {
-                glp.LastGenPosition = 1;
-            }
-
-            glp.LastGenPosition++;
-            node.Position = glp.LastGenPosition;
+            node.Position = glp.GetNextPosition();
             this.GetUniqueName(Property.DefaultName, node, (this.Parent as GroupListProperties).ListProperties);
             this.SetSelected(node);
             return node;

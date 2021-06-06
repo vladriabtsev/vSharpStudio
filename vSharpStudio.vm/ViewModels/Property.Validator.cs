@@ -118,7 +118,7 @@ namespace vSharpStudio.vm.ViewModels
 
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Catalog c, IGroupListCatalogs gc)
         {
-            if (c.UseCodeProperty)
+            if (c.GetUseCodeProperty())
             {
                 if (gc.PropertyCodeName == name)
                 {
@@ -128,7 +128,7 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             }
-            if (c.UseNameProperty)
+            if (c.GetUseNameProperty())
             {
                 if (gc.PropertyNameName == name)
                 {
@@ -138,7 +138,7 @@ namespace vSharpStudio.vm.ViewModels
                     cntx.AddFailure(vf);
                 }
             }
-            if (c.UseDescriptionProperty)
+            if (c.GetUseDescriptionProperty())
             {
                 if (gc.PropertyDescriptionName == name)
                 {

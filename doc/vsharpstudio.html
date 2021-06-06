@@ -239,6 +239,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_document_code_property_settings"><span class="badge">M</span>proto_document_code_property_settings</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enumeration"><span class="badge">M</span>proto_enumeration</a>
                 </li>
               
@@ -420,10 +424,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_enum_catalog_code_type"><span class="badge">E</span>proto_enum_catalog_code_type</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_enum_catalog_code_unique_scope"><span class="badge">E</span>proto_enum_catalog_code_unique_scope</a>
                 </li>
               
@@ -432,7 +432,15 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_code_type"><span class="badge">E</span>proto_enum_code_type</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_data_type"><span class="badge">E</span>proto_enum_data_type</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enum_document_code_unique_scope"><span class="badge">E</span>proto_enum_document_code_unique_scope</a>
                 </li>
               
                 <li>
@@ -744,7 +752,7 @@ App project relative path to .net solution file path </p></td>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [Description(&#34;Connection string name for DB connection generator&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -1195,7 +1203,7 @@ App solution relative path to configuration file path </p></td>
               
                 <tr>
                   <td>use_code_property</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(21)]
 @attr [DisplayName(&#34;Use Code&#34;)]
@@ -1221,7 +1229,7 @@ App solution relative path to configuration file path </p></td>
               
                 <tr>
                   <td>use_name_property</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(41)]
 @attr [DisplayName(&#34;Use Name&#34;)]
@@ -1246,7 +1254,7 @@ App solution relative path to configuration file path </p></td>
               
                 <tr>
                   <td>use_description_property</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(51)]
 @attr [DisplayName(&#34;Use Description&#34;)]
@@ -1368,7 +1376,7 @@ App solution relative path to configuration file path </p></td>
               
                 <tr>
                   <td>type</td>
-                  <td><a href="#proto_config.proto_enum_catalog_code_type">proto_enum_catalog_code_type</a></td>
+                  <td><a href="#proto_config.proto_enum_code_type">proto_enum_code_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(3)]
 @attr [DisplayName(&#34;Type&#34;)]
@@ -2013,10 +2021,114 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>use_code_property</td>
+                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Use Code&#34;)]
+@attr [Description(&#34;Use Code property for document&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>code_property_settings</td>
+                  <td><a href="#proto_config.proto_document_code_property_settings">proto_document_code_property_settings</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [ExpandableObjectAttribute()]
+@attr [DisplayName(&#34;Code&#34;)]
+@attr [Description(&#34;Code property settings for Document&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_date_property</td>
+                  <td><a href="#proto_config.bool_nullable">bool_nullable</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(24)]
+@attr [DisplayName(&#34;Use Date&#34;)]
+@attr [Description(&#34;Use Date property for document&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_date_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_document_code_property_settings">proto_document_code_property_settings</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#proto_config.proto_enum_code_type">proto_enum_code_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Type&#34;)]
+@attr [Description(&#34;Code type&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Length&#34;)]
+@attr [Description(&#34;Length is number of decimal digits for numbers, string length for text&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sequence_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(5)]
+@attr [DisplayName(&#34;Sequence&#34;)]
+@attr [Description(&#34;Sequence for auto code generation&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unique_scope</td>
+                  <td><a href="#proto_config.proto_enum_document_code_unique_scope">proto_enum_document_code_unique_scope</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+@attr [DisplayName(&#34;Unique Scope&#34;)]
+@attr [Description(&#34;Code has to be unique in selected scope&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_period_start</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(8)]
+@attr [DisplayName(&#34;Date&#34;)]
+@attr [Description(&#34;Start date of scope period&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -2642,6 +2754,42 @@ repeated proto_document list_forms = 7; </p></td>
                 </tr>
               
                 <tr>
+                  <td>property_code_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Code property&#34;)]
+@attr [Description(&#34;Name of document code auto generated property if it is used in documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_code_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [DisplayName(&#34;Use Code&#34;)]
+@attr [Description(&#34;Use Code property for document by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_date_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(23)]
+@attr [DisplayName(&#34;Date property&#34;)]
+@attr [Description(&#34;Name of document date auto generated property if it is used in documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_date_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(24)]
+@attr [DisplayName(&#34;Use Date&#34;)]
+@attr [Description(&#34;Use Date property for document by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -2847,28 +2995,55 @@ repeated proto_document list_forms = 7; </p></td>
                 </tr>
               
                 <tr>
+                  <td>use_code_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [DisplayName(&#34;Use Code&#34;)]
+@attr [Description(&#34;Use Code property for catalog item by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>property_name_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(22)]
+                  <td><p>@attr [PropertyOrderAttribute(23)]
 @attr [DisplayName(&#34;Name property&#34;)]
 @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_name_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(24)]
+@attr [DisplayName(&#34;Use Name&#34;)]
+@attr [Description(&#34;Use Name property for catalog item by default&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>property_description_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(23)]
+                  <td><p>@attr [PropertyOrderAttribute(25)]
 @attr [DisplayName(&#34;Description property&#34;)]
 @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_description_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(26)]
+@attr [DisplayName(&#34;Description&#34;)]
+@attr [Description(&#34;Use Description property for catalog item by default&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>property_is_folder_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(25)]
+                  <td><p>@attr [PropertyOrderAttribute(27)]
 @attr [DisplayName(&#34;IsFolder property&#34;)]
 @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] </p></td>
                 </tr>
@@ -2877,7 +3052,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td>property_is_open_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(26)]
+                  <td><p>@attr [PropertyOrderAttribute(29)]
 @attr [DisplayName(&#34;IsOpen property&#34;)]
 @attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] </p></td>
                 </tr>
@@ -4976,41 +5151,6 @@ repeated proto_document list_documents = 7;
           </tbody>
         </table>
       
-        <h3 id="proto_config.proto_enum_catalog_code_type">proto_enum_catalog_code_type</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>Number</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>Text</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>AutoNumber</td>
-                <td>2</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>AutoText</td>
-                <td>3</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
         <h3 id="proto_config.proto_enum_catalog_code_unique_scope">proto_enum_catalog_code_unique_scope</h3>
         <p></p>
         <table class="enum-table">
@@ -5068,6 +5208,41 @@ repeated proto_document list_documents = 7;
             
               <tr>
                 <td>Custom</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_code_type">proto_enum_code_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Number</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Text</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>AutoNumber</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>AutoText</td>
                 <td>3</td>
                 <td><p></p></td>
               </tr>
@@ -5140,6 +5315,20 @@ repeated proto_document list_documents = 7;
               </tr>
             
               <tr>
+                <td>DATETIMEOFFSET</td>
+                <td>8</td>
+                <td><p>@attr [DisplayName(&#34;DateTimeOffset&#34;)]
+@attr [Description(&#34;Date and time offset&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>TIMESPAN</td>
+                <td>9</td>
+                <td><p>@attr [DisplayName(&#34;TimeSpan&#34;)]
+@attr [Description(&#34;Time span&#34;)]</p></td>
+              </tr>
+            
+              <tr>
                 <td>ENUMERATION</td>
                 <td>10</td>
                 <td><p>@attr [DisplayName(&#34;Enumeration&#34;)]
@@ -5179,6 +5368,41 @@ repeated proto_document list_documents = 7;
                 <td>15</td>
                 <td><p>@attr [DisplayName(&#34;Any type&#34;)]
 @attr [Description(&#34;Any data type&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_document_code_unique_scope">proto_enum_document_code_unique_scope</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Forever</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Year</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Quater</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Month</td>
+                <td>3</td>
+                <td><p></p></td>
               </tr>
             
           </tbody>
