@@ -9,5 +9,6 @@ namespace vSharpStudio.common
         IAppProject AppProject { get; }
         IvPluginDbGenerator PluginDbGenerator { get; }
         IvPluginGeneratorSettings DynamicGeneratorSettings { get; }
+        IvPlugin Plugin { get; }
     }
 }

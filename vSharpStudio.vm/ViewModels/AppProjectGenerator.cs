@@ -261,6 +261,7 @@ namespace vSharpStudio.vm.ViewModels
             if (!string.IsNullOrWhiteSpace(this.PluginGuid))
             {
                 this.plugin = cfg.DicPlugins[this.PluginGuid];
+                this.Name = this.plugin.Name;
                 var groupSettings = this.plugin.GetPluginGroupSolutionSettingsVmFromJson(null);
                 if (groupSettings != null)
                 {

@@ -140,11 +140,11 @@ namespace vSharpStudio.vm.ViewModels
             this.ListAppProjectGenerators.Add(node);
             if (generationPath != null)
                 node.RelativePathToGenFolder = generationPath;
-            node.Name = name;
             node.PluginGuid = pluginGuid;
             node.PluginGeneratorGuid = generatorGuid;
             if (!string.IsNullOrWhiteSpace(outFile))
                 node.GenFileName = outFile;
+            node.Name = name;
             return node;
         }
 
