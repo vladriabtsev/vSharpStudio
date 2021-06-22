@@ -322,6 +322,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.IsNullable)
                     return "null";
+                return this.DefaultNotNullValue;
+            }
+        }
+        [BrowsableAttribute(false)]
+        public string DefaultNotNullValue
+        {
+            get
+            {
                 switch (this.DataTypeEnum)
                 {
                     //case EnumDataType.CATALOG:
@@ -348,7 +356,7 @@ namespace vSharpStudio.vm.ViewModels
                     case EnumDataType.BOOL:
                         return "false";
                     case EnumDataType.STRING:
-                        return "null";
+                        return "string.Empty";
                     case EnumDataType.NUMERICAL:
                         return "0";
                     default:
@@ -606,89 +614,58 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.ENUMERATION:
                     cfg = this.Parent.GetConfig();
                     var en = (IEnumeration)(cfg.DicNodes[this.ObjectGuid]);
-                    if (isGrpcService)
-                    {
-                        switch (en.DataTypeEnum)
-                        {
-                            case EnumEnumerationType.BYTE_VALUE:
-                            case EnumEnumerationType.INTEGER_VALUE:
-                            case EnumEnumerationType.SHORT_VALUE:
-                                return "int32";
-                            case EnumEnumerationType.STRING_VALUE:
-                                return "string";
-                            default:
-                                throw new NotImplementedException();
-                        }
-                    }
-                    else
-                    {
-                        //if (en.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
-                        //    return "enum" + en.Name.ToProtoName();
-                        //else
-                            return en.Name.ToProtoName();
-                    }
+                    var en_name = "enum_" + en.Name;
+                    if (this.IsNullable)
+                        return en_name + "_nullable";
+                    return en_name;
+                    //if (isGrpcService)
+                    //{
+                    //    switch (en.DataTypeEnum)
+                    //    {
+                    //        case EnumEnumerationType.BYTE_VALUE:
+                    //        case EnumEnumerationType.INTEGER_VALUE:
+                    //        case EnumEnumerationType.SHORT_VALUE:
+                    //            return "int32";
+                    //        case EnumEnumerationType.STRING_VALUE:
+                    //            return "string";
+                    //        default:
+                    //            throw new NotImplementedException();
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    //if (en.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
+                    //    //    return "enum" + en.Name.ToProtoName();
+                    //    //else
+                    //        return en.Name.ToProtoName();
+                    //}
                 case EnumDataType.BOOL:
-                    return "bool";
-                case EnumDataType.STRING:
-                    return "string";
-                case EnumDataType.NUMERICAL:
-                    if (this.Accuracy == 0)
-                    {
-                        if (this.IsPositive)
-                        {
-                            if (this.MaxNumericalValue <= uint.MaxValue)
-                            {
-                                return "uint32";
-                            }
-
-                            if (this.MaxNumericalValue <= long.MaxValue) // long, not ulong
-                            {
-                                return "uint64";
-                            }
-
-                            return "bytes"; // need conversions
-                        }
-                        else
-                        {
-                            if (this.MaxNumericalValue <= int.MaxValue)
-                            {
-                                return "int32";
-                            }
-
-                            if (this.MaxNumericalValue <= long.MaxValue)
-                            {
-                                return "int64";
-                            }
-
-                            return "bytes"; // need conversions
-                        }
-                    }
+                    if (this.IsNullable)
+                        return "bool_nullable";
                     else
-                    {
-                        // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
-                        // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
-                        // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
-                        if (this.Length <= 6)
-                        {
-                            return "float";
-                        }
-
-                        if (this.Length <= 15)
-                        {
-                            return "double";
-                        }
-
-                        return "bytes"; // need conversions
-                    }
+                        return "bool";
+                case EnumDataType.STRING:
+                    if (this.IsNullable)
+                        return "string_nullable";
+                    else
+                        return "string";
+                case EnumDataType.NUMERICAL:
+                    return CommonUtils.GetProtoTypeForNumeric(this.IsNullable, this.MaxNumericalValue, this.IsPositive, this.Accuracy, this.Length);
                 case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.DATE:
                 case EnumDataType.DATETIME:
                 case EnumDataType.DATETIMEZ:
                 case EnumDataType.TIME:
                 case EnumDataType.TIMEZ:
-                    return "google.protobuf.Timestamp";
+                    if (this.IsNullable)
+                        return "timestamp_nullable";
+                    else
+                        return "google.protobuf.Timestamp";
                 case EnumDataType.TIMESPAN:
-                    return "google.protobuf.Duration";
+                    if (this.IsNullable)
+                        return "duration_nullable";
+                    else
+                        return "google.protobuf.Duration";
                 default:
                     throw new Exception("Not supported operation");
             }

@@ -13607,6 +13607,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.Value = from.Value; // Clone.tt Line: 65
             vm.IsDefault = from.IsDefault; // Clone.tt Line: 65
+            vm.NumericValue = from.NumericValue; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
@@ -13629,6 +13630,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Description = from.Description; // Clone.tt Line: 141
             to.Value = from.Value; // Clone.tt Line: 141
             to.IsDefault = from.IsDefault; // Clone.tt Line: 141
+            to.NumericValue = from.NumericValue; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
@@ -13702,6 +13704,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.Value = m.Value; // Clone.tt Line: 221
             vm.IsDefault = m.IsDefault; // Clone.tt Line: 221
+            vm.NumericValue = m.NumericValue; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
@@ -13729,6 +13732,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             m.Value = vm.Value; // Clone.tt Line: 276
             m.IsDefault = vm.IsDefault; // Clone.tt Line: 276
+            m.NumericValue = vm.NumericValue; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
@@ -13858,7 +13862,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [PropertyOrderAttribute(3)]
+        [PropertyOrderAttribute(6)]
         [DisplayName("Value")]
         [Description("Enumeration element value")]
         public string Value // Property.tt Line: 55
@@ -13881,7 +13885,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnValueChanging(ref string to); // Property.tt Line: 79
         partial void OnValueChanged();
         
-        [PropertyOrderAttribute(3)]
+        [PropertyOrderAttribute(9)]
         [DisplayName("Is default")]
         [Description("Used as default value for enumeration")]
         public bool IsDefault // Property.tt Line: 55
@@ -13903,6 +13907,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsDefault;
         partial void OnIsDefaultChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsDefaultChanged();
+        
+        [PropertyOrderAttribute(8)]
+        [DisplayName("Numeric Value")]
+        [Description("Enumeration element numeric value")]
+        public int NumericValue // Property.tt Line: 55
+        { 
+            get { return this._NumericValue; }
+            set
+            {
+                if (this._NumericValue != value)
+                {
+                    this.OnNumericValueChanging(ref value);
+                    this._NumericValue = value;
+                    this.OnNumericValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _NumericValue;
+        partial void OnNumericValueChanging(ref int to); // Property.tt Line: 79
+        partial void OnNumericValueChanged();
         
         [BrowsableAttribute(false)]
         public bool IsNew // Property.tt Line: 55

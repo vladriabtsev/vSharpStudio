@@ -1034,14 +1034,18 @@ message proto_enumeration_pair {
     // @attr [PropertyOrderAttribute(5)]
     // @attr [Description("Description of enumeration element")]
     string description = 5;
-    // @attr [PropertyOrderAttribute(3)]
+    // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Value")]
     // @attr [Description("Enumeration element value")]
     string value = 6;
-    // @attr [PropertyOrderAttribute(3)]
+    // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Is default")]
     // @attr [Description("Used as default value for enumeration")]
     bool is_default = 7;
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("Numeric Value")]
+    // @attr [Description("Enumeration element numeric value")]
+    int32 numeric_value = 8;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 10;
     // @attr [BrowsableAttribute(false)]

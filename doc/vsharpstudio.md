@@ -541,8 +541,9 @@ Constant application wise value
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [Description(&#34;Description of enumeration element&#34;)] |
-| value | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Value&#34;)] @attr [Description(&#34;Enumeration element value&#34;)] |
-| is_default | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Is default&#34;)] @attr [Description(&#34;Used as default value for enumeration&#34;)] |
+| value | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Value&#34;)] @attr [Description(&#34;Enumeration element value&#34;)] |
+| is_default | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Is default&#34;)] @attr [Description(&#34;Used as default value for enumeration&#34;)] |
+| numeric_value | [int32](#int32) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Numeric Value&#34;)] @attr [Description(&#34;Enumeration element numeric value&#34;)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |

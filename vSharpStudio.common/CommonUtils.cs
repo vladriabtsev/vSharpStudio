@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Numerics;
 
 namespace vSharpStudio.common
 {
@@ -15,6 +16,70 @@ namespace vSharpStudio.common
             return rel;
         }
 #endif
+        public static string GetProtoTypeForNumeric(bool isNullable,  BigInteger max_value, bool is_positive, uint accuracy, uint length)
+        {
+            if (accuracy == 0)
+            {
+                if (is_positive)
+                {
+                    if (max_value <= uint.MaxValue)
+                    {
+                        if (isNullable)
+                            return "uint32_nullable";
+                        else
+                            return "uint32";
+                    }
+                    if (max_value <= long.MaxValue) // long, not ulong
+                    {
+                        if (isNullable)
+                            return "uint64_nullable";
+                        else
+                            return "uint64";
+                    }
+                    return "bytes"; // need conversions
+                }
+                else
+                {
+                    if (max_value <= int.MaxValue)
+                    {
+                        if (isNullable)
+                            return "int32_nullable";
+                        else
+                            return "int32";
+                    }
+
+                    if (max_value <= long.MaxValue)
+                    {
+                        if (isNullable)
+                            return "int64_nullable";
+                        else
+                            return "int64";
+                    }
+                    return "bytes"; // need conversions
+                }
+            }
+            else
+            {
+                // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
+                // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
+                // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
+                if (length <= 6)
+                {
+                    if (isNullable)
+                        return "float_nullable";
+                    else
+                        return "float";
+                }
+                if (length <= 15)
+                {
+                    if (isNullable)
+                        return "double_nullable";
+                    else
+                        return "double";
+                }
+                return "bytes"; // need conversions
+            }
+        }
         public static string ToProtoName(this string s)
         {
             var sb = new StringBuilder();
@@ -32,6 +97,32 @@ namespace vSharpStudio.common
                 {
                     sb.Append(c);
                 }
+            }
+            return sb.ToString();
+        }
+        public static string ToGrpcName(this string s)
+        {
+            var sb = new StringBuilder();
+            var c = s[0];
+            if (char.IsLower(c))
+            {
+                var cc = char.ToUpper(c);
+                sb.Append(cc);
+            }
+            else
+                sb.Append(c);
+            for (int i = 1; i < s.Length; i++)
+            {
+                c = s[i];
+                if (c=='_')
+                {
+                    i++;
+                    c = s[i];
+                    var cc = char.ToUpper(c);
+                    sb.Append(cc);
+                }
+                else
+                    sb.Append(c);
             }
             return sb.ToString();
         }

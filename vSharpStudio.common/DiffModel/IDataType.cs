@@ -14,6 +14,7 @@ namespace vSharpStudio.common
         string ProtoType { get; }
         string ClrTypeName { get; }
         string DefaultValue { get; }
+        string DefaultNotNullValue { get; }
         string ClrTypeNameNotNull { get; }
         Type ClrType { get; }
         BigInteger MaxNumericalValue { get; }
