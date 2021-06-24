@@ -106,5 +106,10 @@ namespace vPlugin.Sample
         {
             return new List<ValidationPluginMessage>();
         }
+        public List<ValidationPluginMessage> ValidateNode(ITreeConfigNode node, string guidAppPrjGen)
+        {
+            var res = new List<ValidationPluginMessage>();
+            return res;
+        }
     }
 }

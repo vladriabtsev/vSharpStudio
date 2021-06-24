@@ -9,6 +9,6 @@ namespace ViewModelBase
 	public interface IValidatable
 	{
 		bool Validate();
-		void ValidateAsync();
+        Task<bool> ValidateAsync();
 	}
 }

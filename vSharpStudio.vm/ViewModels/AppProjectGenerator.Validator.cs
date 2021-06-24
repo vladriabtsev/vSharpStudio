@@ -94,40 +94,28 @@ namespace vSharpStudio.vm.ViewModels
                     if (!string.IsNullOrEmpty(connStr))
                     {
                         var pg = (AppProjectGenerator)cntx.InstanceToValidate;
-                        if (string.IsNullOrWhiteSpace(pg.PluginGeneratorGuid))
+                        if (pg.PluginDbGenerator == null)
                             return;
                         var cfg = (Config)pg.GetConfig();
-                        foreach (var tg in pg.ListGenerators)
+                        var lst = pg.PluginDbGenerator.ValidateDbModel(connStr, cfg, pg.Guid);
+                        foreach (var t in lst)
                         {
-                            if (tg.Guid != pg.PluginGeneratorGuid)
-                                continue;
-                            if (tg.Generator != null)
+                            var r = new ValidationFailure(cntx.PropertyName, t.Message);
+                            switch (t.Level)
                             {
-                                if (tg.Generator.PluginGeneratorType != vPluginLayerTypeEnum.DbDesign)
-                                    return;
-                                IvPluginDbGenerator genDb = (IvPluginDbGenerator)tg.Generator;
-
-                                var lst = genDb.ValidateDbModel(connStr, cfg, pg.Guid);
-                                foreach (var t in lst)
-                                {
-                                    var r = new ValidationFailure(cntx.PropertyName, t.Message);
-                                    switch (t.Level)
-                                    {
-                                        case ValidationPluginMessage.EnumValidationMessage.Error:
-                                            r.Severity = Severity.Error;
-                                            break;
-                                        case ValidationPluginMessage.EnumValidationMessage.Warning:
-                                            r.Severity = Severity.Warning;
-                                            break;
-                                        case ValidationPluginMessage.EnumValidationMessage.Info:
-                                            r.Severity = Severity.Info;
-                                            break;
-                                        default:
-                                            throw new Exception();
-                                    }
-                                    cntx.AddFailure(r);
-                                }
+                                case ValidationPluginMessage.EnumValidationMessage.Error:
+                                    r.Severity = Severity.Error;
+                                    break;
+                                case ValidationPluginMessage.EnumValidationMessage.Warning:
+                                    r.Severity = Severity.Warning;
+                                    break;
+                                case ValidationPluginMessage.EnumValidationMessage.Info:
+                                    r.Severity = Severity.Info;
+                                    break;
+                                default:
+                                    throw new Exception();
                             }
+                            cntx.AddFailure(r);
                         }
                     }
                 });

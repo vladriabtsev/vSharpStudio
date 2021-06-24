@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using FluentValidation;
 
 namespace ViewModelBase
@@ -41,11 +42,12 @@ namespace ViewModelBase
             NotifyPropertyChanged(nameof(this.HasErrors));
             return isValid;
         }
-        public async void ValidateAsync()
+        public async Task<bool> ValidateAsync()
         {
             var res = await this._validator.ValidateAsync((T)this);
-            ValidationChange(res);
+            var isValid = ValidationChange(res);
             NotifyPropertyChanged(nameof(this.HasErrors));
+            return isValid;
         }
         protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {

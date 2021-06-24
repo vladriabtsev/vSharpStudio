@@ -38,10 +38,10 @@ namespace vSharpStudio.vm.ViewModels
         public IvPlugin Plugin { get { return this.plugin; } }
         private IvPlugin plugin;
         [BrowsableAttribute(false)]
-        private IvPluginGenerator PluginGenerator
+        public IvPluginGenerator PluginGenerator
         {
             get { return _PluginGenerator; }
-            set { _PluginGenerator = value; }
+            private set { _PluginGenerator = value; }
         }
         private IvPluginGenerator _PluginGenerator = null;
         [BrowsableAttribute(false)]

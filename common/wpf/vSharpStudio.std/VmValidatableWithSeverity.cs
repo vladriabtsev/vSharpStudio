@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ViewModelBase
 {
@@ -127,29 +129,34 @@ namespace ViewModelBase
             }
             return res.IsValid;
         }
+        protected virtual void OnValidated(ValidationResult val_res) { }
+        protected virtual Task[] OnValidatedAsync(ValidationResult val_res) { var tsks = new Task[0]; return tsks; }
         public bool Validate()
         {
             if (!this.IsValidate)
                 return true;
             var res = this._validator.Validate((T)this);
+            OnValidated(res);
             var isValid = ValidationChange(res);
             NotifyPropertyChanged(nameof(this.HasErrors));
             NotifyPropertyChanged(nameof(this.HasWarnings));
             NotifyPropertyChanged(nameof(this.HasInfos));
             return isValid;
         }
-        public async void ValidateAsync()
+        public async Task<bool> ValidateAsync()
         {
             if (!this.IsValidate)
-                return;
+                return true;
             var res = await this._validator.ValidateAsync((T)this);
-            ValidationChange(res);
+            var tsks = OnValidatedAsync(res);
+            await Task.WhenAll(tsks);
+            var isValid = ValidationChange(res);
             NotifyPropertyChanged(nameof(this.HasErrors));
             NotifyPropertyChanged(nameof(this.HasWarnings));
             NotifyPropertyChanged(nameof(this.HasInfos));
+            return isValid;
         }
-        protected void ValidateProperty
-            (Expression<Func<T>> property)
+        protected void ValidateProperty(Expression<Func<T>> property)
         {
             var propertyName = this.GetPropertyName<T>(property);
             ValidateProperty(propertyName);

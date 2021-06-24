@@ -44,5 +44,12 @@ namespace vSharpStudio.common
         /// </summary>
         string DefaultSettingsName { get; }
         ITreeConfigNode Parent { get; set; }
+        /// <summary>
+        /// Validate model node
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="guidAppPrjGen"></param>
+        /// <returns></returns>
+        List<ValidationPluginMessage> ValidateNode(ITreeConfigNode node, string guidAppPrjGen);
     }
 }

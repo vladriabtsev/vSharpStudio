@@ -6,12 +6,15 @@
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Text;
+    using System.Threading.Tasks;
     using FluentValidation;
+    using FluentValidation.Results;
     //using JetBrains.Annotations;
     using Microsoft.Extensions.Logging;
     using ViewModelBase;
@@ -48,6 +51,58 @@
         {
         }
         private static int _maxlen = 0;
+        protected override void OnValidated(FluentValidation.Results.ValidationResult res)
+        {
+            if (this is ITreeConfigNode)
+            {
+                var cfg = this.GetConfig();
+                if (cfg == null)
+                    return;
+                bool isValid = true;
+                foreach (var ts in cfg.GroupAppSolutions.ListAppSolutions)
+                {
+                    foreach (var tp in ts.ListAppProjects)
+                    {
+                        foreach (var tg in tp.ListAppProjectGenerators)
+                        {
+                            if (tg.PluginGenerator != null)
+                            {
+                                var lst = tg.PluginGenerator.ValidateNode(this as ITreeConfigNode, tg.Guid);
+                                foreach (var t in lst)
+                                {
+                                    Debug.Assert(!string.IsNullOrWhiteSpace(t.PropertyName));
+                                    Debug.Assert(!string.IsNullOrWhiteSpace(t.Message));
+                                    var r = new ValidationFailure(t.PropertyName, t.Message);
+                                    switch (t.Level)
+                                    {
+                                        case ValidationPluginMessage.EnumValidationMessage.Error:
+                                            r.Severity = Severity.Error;
+                                            isValid = false;
+                                            break;
+                                        case ValidationPluginMessage.EnumValidationMessage.Warning:
+                                            r.Severity = Severity.Warning;
+                                            break;
+                                        case ValidationPluginMessage.EnumValidationMessage.Info:
+                                            r.Severity = Severity.Info;
+                                            break;
+                                        default:
+                                            throw new Exception();
+                                    }
+                                    res.Errors.Add(r);
+                                }
+                            }
+                        }
+                    }
+                }
+                Debug.Assert(isValid || (!isValid && !res.IsValid));
+            }
+        }
+        protected override Task[] OnValidatedAsync(FluentValidation.Results.ValidationResult res)
+        {
+            var lst = new List<Task>();
+
+            return lst.ToArray();
+        }
         protected override void OnCountErrorsChanged()
         {
             this.NotifyPropertyChanged(nameof(this.IconStatus));
@@ -254,7 +309,9 @@
             {
                 p = p.Parent;
             }
-            return (IConfig)p;
+            if (p is IConfig)
+                return p as IConfig;
+            return null;
         }
         public T GetPrevious()
         {

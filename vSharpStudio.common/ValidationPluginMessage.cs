@@ -9,5 +9,6 @@ namespace vSharpStudio.common
         public enum EnumValidationMessage { Info, Warning, Error }
         public EnumValidationMessage Level { get; set; }
         public string Message { get; set; }
+        public string PropertyName { get; set; }
     }
 }
