@@ -11,7 +11,7 @@ namespace vSharpStudio.common
     public partial interface IDataType : IValidatableWithSeverity
     {
         ITreeConfigNode Parent { get; set; }
-        string ProtoType { get; }
+        //string ProtoType { get; }
         string ClrTypeName { get; }
         string DefaultValue { get; }
         string DefaultNotNullValue { get; }
@@ -21,6 +21,5 @@ namespace vSharpStudio.common
         EnumEnumerationType EnumerationType { get; }
         int EnumerationStrFieldLength { get; }
         bool IsEnumStr();
-        string GetProtoType(bool isGrpcService = false);
     }
 }

@@ -669,7 +669,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocumentDate(string guid)
         {
-            var dt = (DataType)this.GetDataTypeDate();
+            var dt = (DataType)this.GetDataTypeDateTime();
             var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyDateName, dt);
             res.Position = 2;
             return res;

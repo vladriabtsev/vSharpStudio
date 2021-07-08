@@ -1,20 +1,36 @@
-Ä
-$360388ea-a166-4f66-8fe7-1dad407a1476test2 ×¯Àä–¶óƒ*test2:‰ÉÓ†Ì©¥;ª<
-$39a284c4-cdb7-4bb8-991e-ef5af9d22189BaseConfigsº¾ØÎú×œi²”
-$18758a00-e931-42c6-a6ad-34830dc5ccf4Model óØ“Öƒ›©Ê*Model@dHPª/
-v"Id*$98f941da-a755-4ba3-96df-20d7f879bdf7ªJ
-$f1e233dc-d4de-4d2c-886a-df7dc9511dbcSettings‘°Áª¶ñ®ûq"Settings2Cnst²M
-$0c64a64e-d67e-404c-a022-9fda0415082bEnumerationsİÍ¾»«Òî…"Enumerationsº{
-$beca1a62-fcce-4007-bf99-00e6b122dc2aCatalogs¦Ÿ¦Ûƒàâñ"Catalogs2CtlgªCodeºNameÊDescriptionÚIsFolderêIsOpenÂí
-$027838e7-c6be-4649-becd-ad00f8709a64	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
-$418e177f-a9ac-4534-b0a6-d5c882608596SharedÓŠ¼Î¶¨øûq"SharedBG
-$05550078-361c-4d24-aa29-31137fab9dd5	Documents¸ÀÖŸŒÓ¸ı€"	Documentsª	DocNumberºDocDateÊE
-$9d8ef12c-51ac-49d5-afe0-5fd87da36808JournalsÚ½Ì—¦„ç°±"JournalsÒÆ
-$32e5d642-0e77-442b-b5ec-807f3e6bd5ebCommonİ¡ÔÕ™ûô`"Common:>
-$39ef8bed-b5f8-457e-a291-249d32de079fRoles—æÉ—¾ªŠõ"RolesBD
-$01f80b81-8d19-4f4b-96f8-21a64efddb63Settings‘°Áª¶ñ®û"SettingsÂä
-$c0112b34-3227-4d3f-b7ee-2d8dcbc59588Plugins„™„§à›®ã‘"§
+Ä
+$71eed7e6-a646-45a4-b36d-4a1945ea9ce6test2 ×¯Àä–¶óƒ*test2:‚¨™‡°½äzª<
+$2834ea95-8739-45b1-b3a0-ac2bcc5c541cBaseConfigsº¾ØÎú×œi²”
+$767bca76-d9f0-4c3e-b809-5a13ffdd390dModel óØ“Öƒ›©Ê*Model@dHPª/
+v"Id*$5be909b3-358e-465e-92a2-aa8c7b8c793fªJ
+$8ec9569a-7da4-4fc7-8b6b-7122b761db78Settings‘°Áª¶ñ®ûq"Settings2Cnst²M
+$9684568b-1a14-49bf-83df-03064c375accEnumerationsİÍ¾»«Òî…"Enumerationsº{
+$38f85e73-e8e8-4295-bff3-31c40825af0aCatalogs¦Ÿ¦Ûƒàâñ"Catalogs2CtlgªCodeºNameÊDescriptionÚIsFolderêIsOpenÂí
+$fd1b1e49-bff6-4e6d-8a65-48dba40a8de2	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
+$075a79ae-583e-4a7c-af84-2e877f54050fSharedÓŠ¼Î¶¨øûq"SharedBG
+$33ddeb50-8d65-436f-8c4e-65cfca12b009	Documents¸ÀÖŸŒÓ¸ı€"	Documentsª	DocNumberºDocDateÊE
+$f47f3de5-c468-479c-b37a-290e960c6343JournalsÚ½Ì—¦„ç°±"JournalsÒÆ
+$f2373acc-12c3-4508-8ff0-f5c7442174abCommonİ¡ÔÕ™ûô`"Common:>
+$97016aa3-1d2b-4ee2-a54b-b76f7a0708b1Roles—æÉ—¾ªŠõ"RolesBD
+$3a36fe01-9fdb-4fed-99cb-17208ba93a24Settings‘°Áª¶ñ®û"SettingsÂä
+$5bc00490-e9ff-4ab7-8d4f-801fc10d13bbPlugins„™„§à›®ã‘"º
+$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
+$1E35FCDB-6425-4C66-B047-6882738AF552
+RepositoryDB repository code generation ØŞèİ›ŸæòX"ã
+$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(Øç»Â±¨ë—2|
+$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions °Œ½¹¨ë—X"Õ
+$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
+$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{X"Ş
+$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
+PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
+$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{X"È
+$052C7318-3D73-4605-B1AE-749FC7E104120.1
+Repository"4vSharpStudio plugin. DB access layer repository code(ØŞèİ›Ÿæò2M
+$E59B393E-AF34-4438-977F-7BF120E28A0C
+RepositoryDb Access Layer ØŞèİ›ŸæòX"§
 $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
-$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zXÊ7
-$171c5091-7f25-43ae-b653-dde01074b366AppsÈ ›½¾ä 
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zX"Ö
+$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
+$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{XÊ7
+$f15c2af5-6a60-4954-9dad-fd66797a4d6fAppsÈ ›½¾ä 

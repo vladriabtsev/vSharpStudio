@@ -73,11 +73,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             get { return this.DataType.ClrTypeName; }
         }
-
-        public string ProtoType
-        {
-            get { return this.DataType.ProtoType; }
-        }
+        //public string ProtoType
+        //{
+        //    get { return this.DataType.ProtoType; }
+        //}
         public IDataType IDataType { get { return this._DataType; } }
         public string DefaultValue { get { return this.DataType.DefaultValue; } }
 

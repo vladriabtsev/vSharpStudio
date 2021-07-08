@@ -202,7 +202,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     break;
                 case EnumDataType.NUMERICAL:
-                    res += ", " + (p.IsPositive ? "+" : string.Empty) + " " + p.Length + (p.Accuracy > 0 ? "." + p.Accuracy : string.Empty) + " clr:" + p.ClrTypeName + " proto:" + p.ProtoType;
+                    res += ", " + (p.IsPositive ? "+" : string.Empty) + " " + p.Length + (p.Accuracy > 0 ? "." + p.Accuracy : string.Empty) + " clr:" + p.ClrTypeName; // + " proto:" + p.ProtoType;
                     break;
                 case EnumDataType.STRING:
                     res += ", Length:" + (p.Length > 0 ? p.Length.ToString() : " unlimited");
@@ -475,7 +475,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.ENUMERATION:
                     return this.EnumerationName + sn;
                 case EnumDataType.DATE:
-                    return "Date" + sn;
+                    return "DateTime" + sn;
                 case EnumDataType.DATETIME:
                     return "DateTime" + sn;
                 case EnumDataType.TIME:
@@ -584,92 +584,14 @@ namespace vSharpStudio.vm.ViewModels
                     throw new Exception("Not supported operation");
             }
         }
-        [PropertyOrderAttribute(12)]
-        public string ProtoType
-        {
-            get
-            {
-                return GetProtoType();
-            }
-        }
-        // https://docs.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-5.0
-        public string GetProtoType(bool isGrpcService = false)
-        {
-            IConfig cfg = null;
-            // https://developers.google.com/protocol-buffers/docs/proto3#scalar
-            switch (this.DataTypeEnum)
-            {
-                case EnumDataType.CATALOG:
-                    cfg = this.Parent.GetConfig();
-                    var p = (ICompositeName)(cfg.DicNodes[this.ObjectGuid]);
-                    return p.CompositeName.ToProtoName();
-                case EnumDataType.CATALOGS:
-                    return "catalogs";
-                case EnumDataType.DOCUMENT:
-                    cfg = this.Parent.GetConfig();
-                    var d = (ICompositeName)(cfg.DicNodes[this.ObjectGuid]);
-                    return d.CompositeName.ToProtoName();
-                case EnumDataType.DOCUMENTS:
-                    return "documents";
-                case EnumDataType.ENUMERATION:
-                    cfg = this.Parent.GetConfig();
-                    var en = (IEnumeration)(cfg.DicNodes[this.ObjectGuid]);
-                    var en_name = "enum_" + en.Name;
-                    if (this.IsNullable)
-                        return en_name + "_nullable";
-                    return en_name;
-                    //if (isGrpcService)
-                    //{
-                    //    switch (en.DataTypeEnum)
-                    //    {
-                    //        case EnumEnumerationType.BYTE_VALUE:
-                    //        case EnumEnumerationType.INTEGER_VALUE:
-                    //        case EnumEnumerationType.SHORT_VALUE:
-                    //            return "int32";
-                    //        case EnumEnumerationType.STRING_VALUE:
-                    //            return "string";
-                    //        default:
-                    //            throw new NotImplementedException();
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    //if (en.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
-                    //    //    return "enum" + en.Name.ToProtoName();
-                    //    //else
-                    //        return en.Name.ToProtoName();
-                    //}
-                case EnumDataType.BOOL:
-                    if (this.IsNullable)
-                        return "bool_nullable";
-                    else
-                        return "bool";
-                case EnumDataType.STRING:
-                    if (this.IsNullable)
-                        return "string_nullable";
-                    else
-                        return "string";
-                case EnumDataType.NUMERICAL:
-                    return CommonUtils.GetProtoTypeForNumeric(this.IsNullable, this.MaxNumericalValue, this.IsPositive, this.Accuracy, this.Length);
-                case EnumDataType.DATETIMEOFFSET:
-                case EnumDataType.DATE:
-                case EnumDataType.DATETIME:
-                case EnumDataType.DATETIMEZ:
-                case EnumDataType.TIME:
-                case EnumDataType.TIMEZ:
-                    if (this.IsNullable)
-                        return "timestamp_nullable";
-                    else
-                        return "google.protobuf.Timestamp";
-                case EnumDataType.TIMESPAN:
-                    if (this.IsNullable)
-                        return "duration_nullable";
-                    else
-                        return "google.protobuf.Duration";
-                default:
-                    throw new Exception("Not supported operation");
-            }
-        }
+        //[PropertyOrderAttribute(12)]
+        //public string ProtoType
+        //{
+        //    get
+        //    {
+        //        return Utils.GetProtoType(this);
+        //    }
+        //}
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
         /// <summary>
@@ -727,7 +649,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnDataTypeEnumChanged()
         {
             this.NotifyPropertyChanged(nameof(this.ClrTypeName));
-            this.NotifyPropertyChanged(nameof(this.ProtoType));
+            //this.NotifyPropertyChanged(nameof(this.ProtoType));
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.ANY:
@@ -803,7 +725,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._MaxNumericalValue = 0;
             this.NotifyPropertyChanged(nameof(this.ClrTypeName));
-            this.NotifyPropertyChanged(nameof(this.ProtoType));
+            //this.NotifyPropertyChanged(nameof(this.ProtoType));
             this.NotifyPropertyChanged(nameof(this.MaxValue));
             this.NotifyPropertyChanged(nameof(this.MinValue));
             this.ValidateProperty(nameof(this.Accuracy));
@@ -811,7 +733,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnAccuracyChanged()
         {
             this.NotifyPropertyChanged(nameof(this.ClrTypeName));
-            this.NotifyPropertyChanged(nameof(this.ProtoType));
+            //this.NotifyPropertyChanged(nameof(this.ProtoType));
             this.ValidateProperty(nameof(this.Length));
             this.NotifyPropertyChanged(nameof(this.MaxValue));
             this.NotifyPropertyChanged(nameof(this.MinValue));
@@ -827,7 +749,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnIsPositiveChanged()
         {
             this.NotifyPropertyChanged(nameof(this.ClrTypeName));
-            this.NotifyPropertyChanged(nameof(this.ProtoType));
+            //this.NotifyPropertyChanged(nameof(this.ProtoType));
             this.NotifyPropertyChanged(nameof(this.MaxValue));
             this.NotifyPropertyChanged(nameof(this.MinValue));
         }
