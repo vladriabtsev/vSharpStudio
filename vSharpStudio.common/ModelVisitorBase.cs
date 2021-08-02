@@ -297,13 +297,10 @@ namespace vSharpStudio.common
             #endregion Catalogs
 
             #region Documents
-            var sharedProps = currModel.GroupDocuments.GroupSharedProperties.ListProperties;
             this.BeginVisit(currModel.GroupDocuments);
             if (_act != null)
                 _act(this, this.currModel.GroupDocuments);
-            this.BeginVisit(currModel.GroupDocuments.GroupSharedProperties);
-            if (_act != null)
-                _act(this, this.currModel.GroupDocuments.GroupSharedProperties);
+            this.VisitProperties(currModel.GroupDocuments.GroupSharedProperties, currModel.GroupDocuments.GroupSharedProperties.ListProperties);
             this.BeginVisit(currModel.GroupDocuments.GroupListDocuments);
             if (_act != null)
                 _act(this, this.currModel.GroupDocuments.GroupListDocuments);
@@ -316,7 +313,6 @@ namespace vSharpStudio.common
                     _act(this, tt);
                 //if (tt.IsDeleted())
                 //    continue;
-                this.VisitProperties(currModel.GroupDocuments.GroupSharedProperties, sharedProps);
                 this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties);
                 this.VisitPropertiesTabs(tt.GroupPropertiesTabs, tt.GroupPropertiesTabs.ListPropertiesTabs);
                 this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms);
