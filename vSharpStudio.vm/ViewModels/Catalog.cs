@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        IDbTable, ITreeConfigNode
+        IDbTable, ITreeConfigNode, INodeWithProperties
     {
         public static readonly string DefaultName = "Catalog";
 

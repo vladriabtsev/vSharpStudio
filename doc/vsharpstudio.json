@@ -5289,28 +5289,18 @@
               "defaultValue": ""
             },
             {
-              "name": "group_properties",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "name": "max_amount_tab_records",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Max records\")]\n@attr [Description(\"Max amount of tab records, if zero then unlimited\")]",
               "label": "",
-              "type": "proto_group_list_properties",
-              "longType": "proto_group_list_properties",
-              "fullType": "proto_config.proto_group_list_properties",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_properties_tabs",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_list_properties_tabs",
-              "longType": "proto_group_list_properties_tabs",
-              "fullType": "proto_config.proto_group_list_properties_tabs",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "defaultValue": ""
             },
             {
               "name": "is_index_fk",
-              "description": "Create Index for foreign key navigation property\n@attr [PropertyOrderAttribute(4)]",
+              "description": "Create Index for foreign key navigation property\n@attr [PropertyOrderAttribute(5)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5335,6 +5325,36 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_properties",
+              "longType": "proto_group_list_properties",
+              "fullType": "proto_config.proto_group_list_properties",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_properties_tabs",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_properties_tabs",
+              "longType": "proto_group_list_properties_tabs",
+              "fullType": "proto_config.proto_group_list_properties_tabs",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "position",
+              "description": "Protobuf field position\nReserved positions: 1 - primary key\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "defaultValue": ""
             },

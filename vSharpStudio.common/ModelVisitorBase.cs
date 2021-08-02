@@ -14,8 +14,6 @@ namespace vSharpStudio.common
         //protected virtual void EndVisit(IEnumerable<IConstant> lst) { }
         protected virtual void BeginVisit(IEnumerable<IEnumeration> lst) { }
         protected virtual void EndVisit(IEnumerable<IEnumeration> lst) { }
-        protected virtual void BeginVisit(IEnumeration parent, IEnumerable<IEnumerationPair> lst) { }
-        protected virtual void EndVisit(IEnumeration parent, IEnumerable<IEnumerationPair> lst) { }
         protected virtual void BeginVisit(IEnumerable<ICatalog> lst) { }
         protected virtual void EndVisit(IEnumerable<ICatalog> lst) { }
         protected virtual void BeginVisit(IEnumerable<IDocument> lst) { }
@@ -62,32 +60,22 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IDocument d) { }
         protected virtual void BeginVisit(IGroupListProperties cn) { }
         protected virtual void EndVisit(IGroupListProperties cn) { }
-        protected virtual void BeginVisit(IGroupListProperties parent, IEnumerable<IProperty> lst) { }
-        protected virtual void EndVisit(IGroupListProperties parent, IEnumerable<IProperty> lst) { }
         protected virtual void BeginVisit(IProperty p) { }
         protected virtual void EndVisit(IProperty p) { }
         protected virtual void BeginVisit(IGroupListPropertiesTabs cn) { }
         protected virtual void EndVisit(IGroupListPropertiesTabs cn) { }
-        protected virtual void BeginVisit(IGroupListPropertiesTabs parent, IEnumerable<IPropertiesTab> lst) { }
-        protected virtual void EndVisit(IGroupListPropertiesTabs parent, IEnumerable<IPropertiesTab> lst) { }
         protected virtual void BeginVisit(IPropertiesTab t) { }
         protected virtual void EndVisit(IPropertiesTab t) { }
         protected virtual void BeginVisit(IGroupListForms cn) { }
         protected virtual void EndVisit(IGroupListForms cn) { }
-        protected virtual void BeginVisit(IGroupListForms parent, IEnumerable<IForm> lst) { }
-        protected virtual void EndVisit(IGroupListForms parent, IEnumerable<IForm> lst) { }
         protected virtual void BeginVisit(IForm p) { }
         protected virtual void EndVisit(IForm p) { }
         protected virtual void BeginVisit(IGroupListJournals cn) { }
         protected virtual void EndVisit(IGroupListJournals cn) { }
-        protected virtual void BeginVisit(IGroupListJournals parent, IEnumerable<IJournal> lst) { }
-        protected virtual void EndVisit(IGroupListJournals parent, IEnumerable<IJournal> lst) { }
         protected virtual void BeginVisit(IJournal cn) { }
         protected virtual void EndVisit(IJournal cn) { }
         protected virtual void BeginVisit(IGroupListReports cn) { }
         protected virtual void EndVisit(IGroupListReports cn) { }
-        protected virtual void BeginVisit(IGroupListReports parent, IEnumerable<IReport> lst) { }
-        protected virtual void EndVisit(IGroupListReports parent, IEnumerable<IReport> lst) { }
         protected virtual void BeginVisit(IReport p) { }
         protected virtual void EndVisit(IReport p) { }
         protected virtual void EndVisit(IGroupListBaseConfigLinks groupConfigLinks) { }
@@ -112,7 +100,6 @@ namespace vSharpStudio.common
             this.BeginVisit(parent);
             if (_act != null)
                 _act(this, parent);
-            this.BeginVisit(parent, lst);
             foreach (var t in lst)
             {
                 this.currProp = t;
@@ -122,7 +109,6 @@ namespace vSharpStudio.common
                 this.EndVisit(t);
                 this.currProp = null;
             }
-            this.EndVisit(parent, lst);
             this.EndVisit(parent);
         }
         private void VisitPropertiesTabs(IGroupListPropertiesTabs parent, IEnumerable<IPropertiesTab> lst)
@@ -130,7 +116,6 @@ namespace vSharpStudio.common
             this.BeginVisit(parent);
             if (_act != null)
                 _act(this, parent);
-            this.BeginVisit(parent, lst);
             foreach (var t in lst)
             {
                 this.BeginVisit(t);
@@ -144,7 +129,6 @@ namespace vSharpStudio.common
                 this.currPropTabStack.Pop();
                 this.EndVisit(t);
             }
-            this.EndVisit(parent, lst);
             this.EndVisit(parent);
         }
         private void VisitForms(IGroupListForms parent, IEnumerable<IForm> lst)
@@ -152,7 +136,6 @@ namespace vSharpStudio.common
             this.BeginVisit(parent);
             if (_act != null)
                 _act(this, parent);
-            this.BeginVisit(parent, lst);
             foreach (var t in lst)
             {
                 this.currForm = t;
@@ -162,7 +145,6 @@ namespace vSharpStudio.common
                 this.EndVisit(t);
                 this.currForm = null;
             }
-            this.EndVisit(parent, lst);
             this.EndVisit(parent);
         }
         private void VisitReports(IGroupListReports parent, IEnumerable<IReport> lst)
@@ -170,7 +152,6 @@ namespace vSharpStudio.common
             this.BeginVisit(parent);
             if (_act != null)
                 _act(this, parent);
-            this.BeginVisit(parent, lst);
             foreach (var t in lst)
             {
                 this.currRep = t;
@@ -180,7 +161,6 @@ namespace vSharpStudio.common
                 this.EndVisit(t);
                 this.currRep = null;
             }
-            this.EndVisit(parent, lst);
             this.EndVisit(parent);
         }
 
@@ -278,7 +258,6 @@ namespace vSharpStudio.common
                     _act(this, tt);
                 //if (tt.IsDeleted())
                 //    continue;
-                this.BeginVisit(tt, tt.ListEnumerationPairs);
                 foreach (var ttt in tt.ListEnumerationPairs)
                 {
                     this.BeginVisit(ttt);
@@ -286,7 +265,6 @@ namespace vSharpStudio.common
                         _act(this, ttt);
                     this.EndVisit(ttt);
                 }
-                this.EndVisit(tt, tt.ListEnumerationPairs);
                 this.EndVisit(tt);
                 this.currEnum = null;
             }

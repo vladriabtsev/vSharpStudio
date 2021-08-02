@@ -839,9 +839,11 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         lstReverse.Add(lst[i]);
                     }
-                    action(lstReverse);
+                    if (lstReverse.Count > 0)
+                        action(lstReverse);
                     var lstt2 = t.GetIncludedPropertiesTabs(appGenGuig);
                     TabsRecursive(appGenGuig, lstt2, action, typeOp, lst);
+                    lst.Remove(ti);
                 }
                 else if (typeOp == EnumVisitType.Remove)
                 {
@@ -853,7 +855,9 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     var lstt2 = t.GetIncludedPropertiesTabs(appGenGuig);
                     TabsRecursive(appGenGuig, lstt2, action, typeOp, lst);
-                    action(lstReverse);
+                    if (lstReverse.Count > 0)
+                        action(lstReverse);
+                    lst.Remove(ti);
                 }
                 else
                 {

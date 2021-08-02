@@ -326,6 +326,47 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         [BrowsableAttribute(false)]
+        public string PropValueValue
+        {
+            get
+            {
+                if (!this.IsNullable)
+                    return "";
+                switch (this.DataTypeEnum)
+                {
+                    //case EnumDataType.CATALOG:
+                    //    return "Catalog";
+                    //case EnumDataType.CATALOGS:
+                    //    return "Catalog";
+                    //case EnumDataType.DOCUMENT:
+                    //    return "Document";
+                    //case EnumDataType.DOCUMENTS:
+                    //    return "Documents";
+                    //case EnumDataType.DATE:
+                    //    return "Date" + sn;
+                    //case EnumDataType.DATETIME:
+                    //    return "DateTime" + sn;
+                    //case EnumDataType.TIME:
+                    //    return "Time" + sn;
+                    //case EnumDataType.DATETIMEZ:
+                    //    return "DateTimeZ" + sn;
+                    //case EnumDataType.TIMEZ:
+                    //    return "TimeZ" + sn;
+                    case EnumDataType.ENUMERATION:
+                        var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
+                        return en.DefaultValue;
+                    case EnumDataType.BOOL:
+                        return ".Value";
+                    case EnumDataType.STRING:
+                        return "";
+                    case EnumDataType.NUMERICAL:
+                        return ".Value";
+                    default:
+                        return "null";
+                }
+            }
+        }
+        [BrowsableAttribute(false)]
         public string DefaultNotNullValue
         {
             get
@@ -487,7 +528,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.BOOL:
                     return "bool" + sn;
                 case EnumDataType.STRING:
-                    return "string";
+                    return "string" + sn;
                 case EnumDataType.NUMERICAL:
                     if (this.Accuracy == 0)
                     {
@@ -584,14 +625,6 @@ namespace vSharpStudio.vm.ViewModels
                     throw new Exception("Not supported operation");
             }
         }
-        //[PropertyOrderAttribute(12)]
-        //public string ProtoType
-        //{
-        //    get
-        //    {
-        //        return Utils.GetProtoType(this);
-        //    }
-        //}
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
         /// <summary>

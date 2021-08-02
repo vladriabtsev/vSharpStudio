@@ -820,18 +820,26 @@ message proto_properties_tab {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_properties group_properties = 7;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_properties_tabs group_properties_tabs = 6;
-    // Create Index for foreign key navigation property
     // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Max records")]
+    // @attr [Description("Max amount of tab records, if zero then unlimited")]
+    int32 max_amount_tab_records = 6;
+    // Create Index for foreign key navigation property
+    // @attr [PropertyOrderAttribute(5)]
     bool is_index_fk = 8;
     // @attr [BrowsableAttribute(false)]
-    bool is_new = 9;
+    bool is_new = 11;
     // @attr [BrowsableAttribute(false)]
-    bool is_marked_for_deletion = 10;
+    bool is_marked_for_deletion = 12;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_properties group_properties = 13;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_properties_tabs group_properties_tabs = 14;
 
+    // Protobuf field position
+    // Reserved positions: 1 - primary key
+    // @attr [ReadOnly(true)]
+    uint32 position = 15;
     // @attr [BrowsableAttribute(false)]
     string property_id_guid = 20;
 

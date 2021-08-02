@@ -464,8 +464,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
+    	int MaxAmountTabRecords { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Create Index for foreign key navigation property
@@ -473,6 +472,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
+    	
+    	///////////////////////////////////////////////////
+    	/// Protobuf field position
+    	/// Reserved positions: 1 - primary key
+    	///////////////////////////////////////////////////
+    	uint Position { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44

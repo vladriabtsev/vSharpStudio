@@ -10,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} tabs:{GroupPropertiesTabs.ListPropertiesTabs.Count,nq}")]
-    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable
+    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
         public static readonly string DefaultName = "Tab";
 
@@ -66,6 +66,8 @@ namespace vSharpStudio.vm.ViewModels
                 t.OnAdded();
             };
             this.Children.Add(this.GroupPropertiesTabs, 9);
+            var glp = (this.Parent.Parent as INodeWithProperties);
+            this.Position = glp.GroupProperties.GetNextPosition();
         }
         public void OnAdded()
         {
@@ -132,6 +134,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = PropertiesTab.Clone(this.Parent, this, true, true);
             (this.Parent as GroupListPropertiesTabs).Add(node);
+            var glp = (this.Parent.Parent as INodeWithProperties);
+            node.Position = glp.GroupProperties.GetNextPosition();
             this.Name = this.Name + "2";
             this.SetSelected(node);
             return node;
@@ -140,6 +144,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new PropertiesTab(this.Parent);
             (this.Parent as GroupListPropertiesTabs).Add(node);
+            var glp = (this.Parent.Parent as INodeWithProperties);
+            node.Position = glp.GroupProperties.GetNextPosition();
             this.GetUniqueName(PropertiesTab.DefaultName, node, (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs);
             this.SetSelected(node);
             return node;
@@ -148,6 +154,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new PropertiesTab(this.GroupPropertiesTabs) { Name = name };
             this.GroupPropertiesTabs.NodeAddNewSubNode(node);
+            var glp = (this.Parent.Parent as INodeWithProperties);
+            node.Position = glp.GroupProperties.GetNextPosition();
             return node;
         }
         public Property AddProperty(string name)

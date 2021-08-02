@@ -4679,17 +4679,12 @@ repeated proto_document list_forms = 7; </p></td>
                 </tr>
               
                 <tr>
-                  <td>group_properties</td>
-                  <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
+                  <td>max_amount_tab_records</td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_properties_tabs</td>
-                  <td><a href="#proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Max records&#34;)]
+@attr [Description(&#34;Max amount of tab records, if zero then unlimited&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4697,7 +4692,7 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>Create Index for foreign key navigation property
-@attr [PropertyOrderAttribute(4)] </p></td>
+@attr [PropertyOrderAttribute(5)] </p></td>
                 </tr>
               
                 <tr>
@@ -4712,6 +4707,29 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_properties</td>
+                  <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_properties_tabs</td>
+                  <td><a href="#proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Protobuf field position
+Reserved positions: 1 - primary key
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>

@@ -9965,13 +9965,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
+            vm.MaxAmountTabRecords = from.MaxAmountTabRecords; // Clone.tt Line: 65
+            vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 65
+            vm.IsNew = from.IsNew; // Clone.tt Line: 65
+            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
-            vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 65
-            vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
+            vm.Position = from.Position; // Clone.tt Line: 65
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
             vm.PropertyRefParentGuid = from.PropertyRefParentGuid; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
@@ -9992,13 +9994,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
+            to.MaxAmountTabRecords = from.MaxAmountTabRecords; // Clone.tt Line: 141
+            to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 141
+            to.IsNew = from.IsNew; // Clone.tt Line: 141
+            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Update((GroupListPropertiesTabs)to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
-            to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 141
-            to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
+            to.Position = from.Position; // Clone.tt Line: 141
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
             to.PropertyRefParentGuid = from.PropertyRefParentGuid; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
@@ -10070,15 +10074,17 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
+            vm.MaxAmountTabRecords = m.MaxAmountTabRecords; // Clone.tt Line: 221
+            vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 221
+            vm.IsNew = m.IsNew; // Clone.tt Line: 221
+            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             if (vm.GroupProperties == null) // Clone.tt Line: 213
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // Clone.tt Line: 219
             if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 213
                 vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, (GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 219
-            vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 221
-            vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.Position = m.Position; // Clone.tt Line: 221
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
             vm.PropertyRefParentGuid = m.PropertyRefParentGuid; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
@@ -10104,11 +10110,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
-            m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
-            m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
+            m.MaxAmountTabRecords = vm.MaxAmountTabRecords; // Clone.tt Line: 276
             m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
+            m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
+            m.Position = vm.Position; // Clone.tt Line: 276
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
             m.PropertyRefParentGuid = vm.PropertyRefParentGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
@@ -10239,57 +10247,34 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
-        public GroupListProperties GroupProperties // Property.tt Line: 55
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Max records")]
+        [Description("Max amount of tab records, if zero then unlimited")]
+        public int MaxAmountTabRecords // Property.tt Line: 55
         { 
-            get { return this._GroupProperties; }
+            get { return this._MaxAmountTabRecords; }
             set
             {
-                if (this._GroupProperties != value)
+                if (this._MaxAmountTabRecords != value)
                 {
-                    this.OnGroupPropertiesChanging(ref value);
-                    this._GroupProperties = value;
-                    this.OnGroupPropertiesChanged();
+                    this.OnMaxAmountTabRecordsChanging(ref value);
+                    this._MaxAmountTabRecords = value;
+                    this.OnMaxAmountTabRecordsChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private GroupListProperties _GroupProperties;
-        IGroupListProperties IPropertiesTab.GroupProperties { get { return (this as PropertiesTab).GroupProperties; } } // Property.tt Line: 77
-        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 79
-        partial void OnGroupPropertiesChanged();
-        //IGroupListProperties IPropertiesTab.GroupProperties { get { return this._GroupProperties; } }
-        
-        [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 55
-        { 
-            get { return this._GroupPropertiesTabs; }
-            set
-            {
-                if (this._GroupPropertiesTabs != value)
-                {
-                    this.OnGroupPropertiesTabsChanging(ref value);
-                    this._GroupPropertiesTabs = value;
-                    this.OnGroupPropertiesTabsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private GroupListPropertiesTabs _GroupPropertiesTabs;
-        IGroupListPropertiesTabs IPropertiesTab.GroupPropertiesTabs { get { return (this as PropertiesTab).GroupPropertiesTabs; } } // Property.tt Line: 77
-        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 79
-        partial void OnGroupPropertiesTabsChanged();
-        //IGroupListPropertiesTabs IPropertiesTab.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
+        private int _MaxAmountTabRecords;
+        partial void OnMaxAmountTabRecordsChanging(ref int to); // Property.tt Line: 79
+        partial void OnMaxAmountTabRecordsChanged();
         
         
         ///////////////////////////////////////////////////
         /// Create Index for foreign key navigation property
         ///////////////////////////////////////////////////
-        [PropertyOrderAttribute(4)]
+        [PropertyOrderAttribute(5)]
         public bool IsIndexFk // Property.tt Line: 55
         { 
             get { return this._IsIndexFk; }
@@ -10351,6 +10336,78 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
+        
+        [BrowsableAttribute(false)]
+        public GroupListProperties GroupProperties // Property.tt Line: 55
+        { 
+            get { return this._GroupProperties; }
+            set
+            {
+                if (this._GroupProperties != value)
+                {
+                    this.OnGroupPropertiesChanging(ref value);
+                    this._GroupProperties = value;
+                    this.OnGroupPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private GroupListProperties _GroupProperties;
+        IGroupListProperties IPropertiesTab.GroupProperties { get { return (this as PropertiesTab).GroupProperties; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 79
+        partial void OnGroupPropertiesChanged();
+        //IGroupListProperties IPropertiesTab.GroupProperties { get { return this._GroupProperties; } }
+        
+        [BrowsableAttribute(false)]
+        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 55
+        { 
+            get { return this._GroupPropertiesTabs; }
+            set
+            {
+                if (this._GroupPropertiesTabs != value)
+                {
+                    this.OnGroupPropertiesTabsChanging(ref value);
+                    this._GroupPropertiesTabs = value;
+                    this.OnGroupPropertiesTabsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private GroupListPropertiesTabs _GroupPropertiesTabs;
+        IGroupListPropertiesTabs IPropertiesTab.GroupPropertiesTabs { get { return (this as PropertiesTab).GroupPropertiesTabs; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 79
+        partial void OnGroupPropertiesTabsChanged();
+        //IGroupListPropertiesTabs IPropertiesTab.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
+        
+        
+        ///////////////////////////////////////////////////
+        /// Protobuf field position
+        /// Reserved positions: 1 - primary key
+        ///////////////////////////////////////////////////
+        [ReadOnly(true)]
+        public uint Position // Property.tt Line: 55
+        { 
+            get { return this._Position; }
+            set
+            {
+                if (this._Position != value)
+                {
+                    this.OnPositionChanging(ref value);
+                    this._Position = value;
+                    this.OnPositionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _Position;
+        partial void OnPositionChanging(ref uint to); // Property.tt Line: 79
+        partial void OnPositionChanged();
         
         [BrowsableAttribute(false)]
         public string PropertyIdGuid // Property.tt Line: 55
