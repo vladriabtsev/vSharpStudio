@@ -114,9 +114,6 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
                     this.OnIsChangedChanged();
                     this.NotifyPropertyChanged();
                 }
-                var cfg = (Config)this.GetConfig();
-                if (cfg != null && cfg.SelectedNode != null)
-                    cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
             }
         }
     }

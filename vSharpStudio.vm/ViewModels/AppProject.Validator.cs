@@ -32,9 +32,6 @@ namespace vSharpStudio.vm.ViewModels
                     return lst != null && lst.Count > 0;
                 })
                 .WithMessage("Generators are not added yet").WithSeverity(Severity.Warning);
-            this.RuleFor(x => x.Namespace)
-                .NotEmpty()
-                .WithMessage("Namespace name is not entered");
         }
 
         private bool IsUnique(AppProject val)

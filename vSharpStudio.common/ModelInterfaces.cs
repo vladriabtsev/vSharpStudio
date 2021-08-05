@@ -246,7 +246,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	string Namespace { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
     }
     

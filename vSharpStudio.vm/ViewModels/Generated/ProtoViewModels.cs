@@ -620,13 +620,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -986,13 +983,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -1253,13 +1247,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -2063,13 +2054,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -2466,13 +2454,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -2927,13 +2912,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -3747,13 +3729,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -4034,13 +4013,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -4507,13 +4483,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -4563,7 +4536,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.Namespace = from.Namespace; // Clone.tt Line: 65
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListAppProjectGenerators) // Clone.tt Line: 52
                 vm.ListAppProjectGenerators.Add(AppProjectGenerator.Clone(vm, (AppProjectGenerator)t, isDeep));
@@ -4583,7 +4555,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.Namespace = from.Namespace; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListAppProjectGenerators.ToList())
@@ -4656,7 +4627,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.RelativeAppProjectPath = m.RelativeAppProjectPath; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.Namespace = m.Namespace; // Clone.tt Line: 221
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListAppProjectGenerators) // Clone.tt Line: 201
             {
@@ -4680,7 +4650,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.RelativeAppProjectPath = vm.RelativeAppProjectPath; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.Namespace = vm.Namespace; // Clone.tt Line: 276
             foreach (var t in vm.ListAppProjectGenerators) // Clone.tt Line: 242
                 m.ListAppProjectGenerators.Add(AppProjectGenerator.ConvertToProto((AppProjectGenerator)t)); // Clone.tt Line: 246
             return m;
@@ -4872,29 +4841,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [PropertyOrderAttribute(9)]
-        [DisplayName("Namespace")]
-        [Description("Project namespace name")]
-        public string Namespace // Property.tt Line: 55
-        { 
-            get { return this._Namespace; }
-            set
-            {
-                if (this._Namespace != value)
-                {
-                    this.OnNamespaceChanging(ref value);
-                    this._Namespace = value;
-                    this.OnNamespaceChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Namespace = string.Empty;
-        partial void OnNamespaceChanging(ref string to); // Property.tt Line: 79
-        partial void OnNamespaceChanged();
-        
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<AppProjectGenerator> ListAppProjectGenerators // Property.tt Line: 8
         { 
@@ -4930,13 +4876,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -5203,13 +5146,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -6076,13 +6016,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -7113,13 +7050,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -7862,13 +7796,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -8236,13 +8167,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -8658,13 +8586,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -9066,13 +8991,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -9492,13 +9414,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -9912,13 +9831,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -10486,13 +10402,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -10937,13 +10850,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -11373,13 +11283,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -11799,13 +11706,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -12269,13 +12173,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -12679,13 +12580,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -13101,13 +12999,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -13609,13 +13504,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -14065,13 +13957,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -14816,13 +14705,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -16096,13 +15982,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -16761,13 +16644,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -17285,13 +17165,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -18184,13 +18061,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -18606,13 +18480,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -19030,13 +18901,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -19481,13 +19349,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -19907,13 +19772,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -21146,13 +21008,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
@@ -21572,13 +21431,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
@@ -21947,13 +21803,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         this.OnIsChangedChanged();
                         this.NotifyPropertyChanged();
                     }
-                    var cfg = (Config)this.GetConfig();
-                    if (cfg != null && cfg.SelectedNode != null)
-                        cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 123
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }

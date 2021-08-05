@@ -463,10 +463,12 @@ namespace vSharpStudio.ViewModels
                     this.CommandSelectionRight.RaiseCanExecuteChanged();
                     this.CommandSelectionDown.RaiseCanExecuteChanged();
                     this.CommandSelectionUp.RaiseCanExecuteChanged();
-                    this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
+                    if (IsValidateSubTreeWhenModelChanged)
+                        this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
                 };
             }
         }
+        public bool IsValidateSubTreeWhenModelChanged = true;
         private Config _Config;
 
         #region Main

@@ -122,9 +122,12 @@ namespace vSharpStudio.vm.ViewModels
             var ngs = (INodeGenSettings)this;
             foreach (var t in ngs.ListNodeGeneratorsSettings.ToList())
             {
-                t.Settings = t.SettingsVm.SettingsAsJson;
-                if (t.Settings == t.SettingsVm.SettingsAsJsonDefault)
-                    t.Settings = string.Empty;
+                if ((t.SettingsVm as IEditableObjectExt).IsChanged)
+                {
+                    t.Settings = t.SettingsVm.SettingsAsJson;
+                    if (t.Settings == t.SettingsVm.SettingsAsJsonDefault)
+                        t.Settings = string.Empty;
+                }
                 //    ngs.ListNodeGeneratorsSettings.Remove(t);
             }
         }

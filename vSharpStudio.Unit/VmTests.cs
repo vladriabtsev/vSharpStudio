@@ -226,7 +226,7 @@ namespace vSharpStudio.Unit
             cfg.ValidateSubTreeFromNode(sol1, _logger); // .ConfigureAwait(continueOnCapturedContext: false);
 
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
-            Assert.IsTrue(sol1.ValidationCollection.Count == 6);
+            Assert.IsTrue(sol1.ValidationCollection.Count == 5);
             //var p = sol1.ValidationCollection[0];
             //Assert.IsTrue(p.Severity == FluentValidation.Severity.Error);
             //Assert.IsTrue(p.Message == mes1);

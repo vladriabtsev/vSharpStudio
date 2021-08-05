@@ -85,7 +85,6 @@ namespace vSharpStudio.Unit
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
             prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
-            prj.Namespace = "ns";
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
@@ -244,7 +243,6 @@ namespace vSharpStudio.Unit
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
             prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
-            prj.Namespace = "testns";
             //Assert.AreEqual(0, vm.Config.DicAppGenerators.Count);
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
@@ -569,7 +567,6 @@ namespace vSharpStudio.Unit
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
             prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
-            prj.Namespace = "ns";
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             Assert.AreEqual("", gen.ConnStr);
@@ -631,7 +628,6 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("Solution.sln", sln.RelativeAppSolutionPath);
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.Namespace = "Testnamespace";
             prj.RelativeAppProjectPath = prjPath;
             Assert.AreEqual(@"ConsoleApp1\ConsoleApp1.csproj", prj.RelativeAppProjectPath);
 

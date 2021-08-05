@@ -171,7 +171,6 @@ General DB settings
 | relative_app_project_path | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))] @attr [Description(&#34;.NET project file path relative to solution file path&#34;)] App project relative path to .net solution file path |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| namespace | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Namespace&#34;)] @attr [Description(&#34;Project namespace name&#34;)] |
 | list_app_project_generators | [proto_app_project_generator](#proto_config.proto_app_project_generator) | repeated | @attr [BrowsableAttribute(false)] |
 
 
