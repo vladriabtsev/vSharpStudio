@@ -13,7 +13,7 @@ namespace vSharpStudio.common
         // numerical
         IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive, bool isNullable = true);
         // Any
-        IDataType GetDataType(int enumDataType, uint length, bool isPositive, bool isNullable);
+        IDataType GetDataType(int enumDataType, uint length, uint accuracy, bool isPositive, bool isNullable, string objectGuid);
         IDataType GetDataType(EnumDataType enumDataType, uint length, bool isPositive, bool isNullable);
         // numerical
         IDataType GetDataType(uint length, uint accuracy, bool isNullable = true);

@@ -393,13 +393,15 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Connection string editor
 
         #region Utils
-        public IDataType GetDataType(int enumDataType, uint length, bool isPositive, bool isNullable)
+        public IDataType GetDataType(int enumDataType, uint length, uint accuracy, bool isPositive, bool isNullable, string objectGuid)
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = Enum.Parse<EnumDataType>(enumDataType.ToString());
             dt.Length = length;
+            dt.Accuracy = accuracy;
             dt.IsPositive = isPositive;
             dt.IsNullable = isNullable;
+            dt.ObjectGuid = objectGuid;
             return dt;
         }
         public IDataType GetDataType(EnumDataType enumDataType, uint length, bool isPositive, bool isNullable)

@@ -48,6 +48,8 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupPropertiesTabs.Parent = this;
             this.GroupForms.Parent = this;
             this.GroupReports.Parent = this;
+            this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDateGuid = System.Guid.NewGuid().ToString();
             this.RefillChildren();
         }
         protected override void OnInitFromDto()

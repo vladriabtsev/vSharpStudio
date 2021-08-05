@@ -52,6 +52,8 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IGroupListCatalogs cn) { }
         protected virtual void BeginVisit(ICatalog ct) { }
         protected virtual void EndVisit(ICatalog ct) { }
+        protected virtual void BeginVisit(ICatalogFolder ct) { }
+        protected virtual void EndVisit(ICatalogFolder ct) { }
         protected virtual void BeginVisit(IGroupDocuments cn) { }
         protected virtual void EndVisit(IGroupDocuments cn) { }
         protected virtual void BeginVisit(IGroupListDocuments cn) { }
@@ -283,8 +285,12 @@ namespace vSharpStudio.common
                 this.currCat = tt;
                 if (_act != null)
                     _act(this, tt);
-                //if (tt.IsDeleted())
-                //    continue;
+                this.BeginVisit(tt.Folder);
+                if (_act != null)
+                    _act(this, tt.Folder);
+                this.VisitProperties(tt.Folder.GroupProperties, tt.Folder.GroupProperties.ListProperties);
+                this.VisitPropertiesTabs(tt.Folder.GroupPropertiesTabs, tt.Folder.GroupPropertiesTabs.ListPropertiesTabs);
+                this.EndVisit(tt.Folder);
                 this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties);
                 this.VisitPropertiesTabs(tt.GroupPropertiesTabs, tt.GroupPropertiesTabs.ListPropertiesTabs);
                 this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms);
