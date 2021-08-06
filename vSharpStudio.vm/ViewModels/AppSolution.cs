@@ -158,6 +158,10 @@ namespace vSharpStudio.vm.ViewModels
                 return dicSolutionGroupGeneratorsSettings;
             }
         }
+        public object GetGroupSettings(string groupSettingsGuid)
+        {
+            return this.DicPluginsGroupSettings[groupSettingsGuid];
+        }
         public void SaveGroupSettings()
         {
             this.ListGroupGeneratorsSettings.Clear();
