@@ -111,5 +111,9 @@ namespace vPlugin.Sample
             var res = new List<ValidationPluginMessage>();
             return res;
         }
+        public List<ValidationPluginMessage> ValidateOnSelection(IAppSolution sln)
+        {
+            return new List<ValidationPluginMessage>();
+        }
     }
 }

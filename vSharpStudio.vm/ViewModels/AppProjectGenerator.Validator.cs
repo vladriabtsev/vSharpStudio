@@ -85,9 +85,27 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.PluginGuid)
                 .NotEmpty()
                 .WithMessage("Plugin is not selected");
+            this.RuleFor(x => x.PluginGuid)
+                .Custom((guid, cntx) =>
+                {
+                    if (string.IsNullOrWhiteSpace(guid))
+                        return;
+                    var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                    var lst = pg.Plugin.ValidateOnSelection(pg.AppProject.AppSolution);
+                    AddValidationResults(cntx, lst);
+                });
             this.RuleFor(x => x.PluginGeneratorGuid)
                 .NotEmpty()
                 .WithMessage("Generator is not selected");
+            this.RuleFor(x => x.PluginGeneratorGuid)
+                .Custom((guid, cntx) =>
+                {
+                    if (string.IsNullOrWhiteSpace(guid))
+                        return;
+                    var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                    var lst = pg.Plugin.ValidateOnSelection(pg.AppProject.AppSolution);
+                    AddValidationResults(cntx, lst);
+                });
             this.RuleFor(x => x.ConnStr)
                 .Custom((connStr, cntx) =>
                 {
@@ -98,25 +116,7 @@ namespace vSharpStudio.vm.ViewModels
                             return;
                         var cfg = (Config)pg.GetConfig();
                         var lst = pg.PluginDbGenerator.ValidateDbModel(connStr, cfg, pg.Guid);
-                        foreach (var t in lst)
-                        {
-                            var r = new ValidationFailure(cntx.PropertyName, t.Message);
-                            switch (t.Level)
-                            {
-                                case ValidationPluginMessage.EnumValidationMessage.Error:
-                                    r.Severity = Severity.Error;
-                                    break;
-                                case ValidationPluginMessage.EnumValidationMessage.Warning:
-                                    r.Severity = Severity.Warning;
-                                    break;
-                                case ValidationPluginMessage.EnumValidationMessage.Info:
-                                    r.Severity = Severity.Info;
-                                    break;
-                                default:
-                                    throw new Exception();
-                            }
-                            cntx.AddFailure(r);
-                        }
+                        AddValidationResults(cntx, lst);
                     }
                 });
             this.RuleFor(x => x.DynamicGeneratorSettings)
@@ -126,7 +126,6 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var m = (IValidatableWithSeverity)settings;
                         m.Validate();
-
                         foreach (var t in m.ValidationCollection)
                         {
                             var r = new ValidationFailure(cntx.PropertyName, t.Message);
@@ -148,9 +147,29 @@ namespace vSharpStudio.vm.ViewModels
                         }
                     }
                 });
-
         }
-
+        public static void AddValidationResults(ValidationContext<AppProjectGenerator> cntx, List<ValidationPluginMessage> lst)
+        {
+            foreach (var t in lst)
+            {
+                var r = new ValidationFailure(cntx.PropertyName, t.Message);
+                switch (t.Level)
+                {
+                    case ValidationPluginMessage.EnumValidationMessage.Error:
+                        r.Severity = Severity.Error;
+                        break;
+                    case ValidationPluginMessage.EnumValidationMessage.Warning:
+                        r.Severity = Severity.Warning;
+                        break;
+                    case ValidationPluginMessage.EnumValidationMessage.Info:
+                        r.Severity = Severity.Info;
+                        break;
+                    default:
+                        throw new Exception();
+                }
+                cntx.AddFailure(r);
+            }
+        }
         private bool IsUnique(AppProjectGenerator val)
         {
             if (val.Parent == null)

@@ -239,6 +239,7 @@ namespace vSharpStudio.vm.ViewModels
             if (!this.IsNotifying)
                 return;
             this.PluginGeneratorGuid = string.Empty;
+            this.GenFileName = string.Empty;
             UpdateListGenerators();
             if (cfg.IsInitialized)
             {

@@ -42,6 +42,12 @@ namespace vPlugin.Sample
             }
             return res;
         }
+
+        public List<ValidationPluginMessage> ValidateOnSelection(IAppSolution sln)
+        {
+            return new List<ValidationPluginMessage>();
+        }
+
         public List<IvPluginGenerator> ListGenerators { get; }
     }
 }

@@ -51,5 +51,6 @@ namespace vSharpStudio.common
         /// <param name="guidAppPrjGen"></param>
         /// <returns></returns>
         List<ValidationPluginMessage> ValidateNode(ITreeConfigNode node, string guidAppPrjGen);
+        List<ValidationPluginMessage> ValidateOnSelection(IAppSolution sln);
     }
 }
