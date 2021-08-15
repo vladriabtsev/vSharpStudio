@@ -91,7 +91,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (string.IsNullOrWhiteSpace(guid))
                         return;
                     var pg = (AppProjectGenerator)cntx.InstanceToValidate;
-                    var lst = pg.Plugin.ValidateOnSelection(pg.AppProject.AppSolution);
+                    var lst = pg.Plugin.ValidateOnSelection(pg.AppProject);
                     AddValidationResults(cntx, lst);
                 });
             this.RuleFor(x => x.PluginGeneratorGuid)
@@ -103,7 +103,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (string.IsNullOrWhiteSpace(guid))
                         return;
                     var pg = (AppProjectGenerator)cntx.InstanceToValidate;
-                    var lst = pg.Plugin.ValidateOnSelection(pg.AppProject.AppSolution);
+                    var lst = pg.Plugin.ValidateOnSelection(pg.AppProject);
                     AddValidationResults(cntx, lst);
                 });
             this.RuleFor(x => x.ConnStr)

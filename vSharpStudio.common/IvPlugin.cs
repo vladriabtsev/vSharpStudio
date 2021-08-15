@@ -63,6 +63,6 @@ namespace vSharpStudio.common
         /// Plugin generators
         /// </summary>
         List<IvPluginGenerator> ListGenerators { get; }
-        List<ValidationPluginMessage> ValidateOnSelection(IAppSolution sln);
+        List<ValidationPluginMessage> ValidateOnSelection(IAppProject prj);
     }
 }
