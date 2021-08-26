@@ -38,6 +38,9 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         new public string IconName { get { return "iconProperty"; } }
         //protected override string GetNodeIconName() { return "iconProperty"; }
+        [Browsable(false)]
+        public string ComplexObjectName { get; set; }
+        public string ComplexObjectNameWithDot() { if (!string.IsNullOrEmpty(this.ComplexObjectName)) return $"{this.ComplexObjectName}."; return ""; }
         partial void OnInit()
         {
             this.IsIncludableInModels = true;
@@ -78,7 +81,7 @@ namespace vSharpStudio.vm.ViewModels
         //    get { return this.DataType.ProtoType; }
         //}
         public IDataType IDataType { get { return this._DataType; } }
-        public string DefaultValue { get { return this.DataType.DefaultValue; } }
+        //public string DefaultValue { get { return this.DataType.DefaultValue; } }
 
         #region Tree operations
         public override bool NodeCanUp()

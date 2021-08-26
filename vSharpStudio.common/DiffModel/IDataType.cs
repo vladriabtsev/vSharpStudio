@@ -13,8 +13,8 @@ namespace vSharpStudio.common
         ITreeConfigNode Parent { get; set; }
         //string ProtoType { get; }
         string ClrTypeName { get; }
-        string DefaultValue { get; }
-        string DefaultNotNullValue { get; }
+        //string DefaultValue { get; }
+        //string DefaultNotNullValue { get; }
         string PropValueValue { get; }
         string ClrTypeNameNotNull { get; }
         Type ClrType { get; }

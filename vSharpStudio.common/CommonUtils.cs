@@ -22,6 +22,7 @@ namespace vSharpStudio.common
         }
         public static string GetProtoTypeForNumeric(bool isNullable,  BigInteger max_value, bool is_positive, uint accuracy, uint length)
         {
+            // https://docs.microsoft.com/en-us/dotnet/architecture/grpc-for-wcf-developers/protobuf-data-types
             if (accuracy == 0)
             {
                 if (is_positive)
@@ -29,14 +30,14 @@ namespace vSharpStudio.common
                     if (max_value <= uint.MaxValue)
                     {
                         if (isNullable)
-                            return "uint32_nullable";
+                            return "google.protobuf.UInt32Value";
                         else
                             return "uint32";
                     }
                     if (max_value <= long.MaxValue) // long, not ulong
                     {
                         if (isNullable)
-                            return "uint64_nullable";
+                            return "google.protobuf.UInt64Value";
                         else
                             return "uint64";
                     }
@@ -47,7 +48,7 @@ namespace vSharpStudio.common
                     if (max_value <= int.MaxValue)
                     {
                         if (isNullable)
-                            return "int32_nullable";
+                            return "google.protobuf.Int32Value";
                         else
                             return "int32";
                     }
@@ -55,7 +56,7 @@ namespace vSharpStudio.common
                     if (max_value <= long.MaxValue)
                     {
                         if (isNullable)
-                            return "int64_nullable";
+                            return "google.protobuf.Int64Value";
                         else
                             return "int64";
                     }
@@ -70,16 +71,23 @@ namespace vSharpStudio.common
                 if (length <= 6)
                 {
                     if (isNullable)
-                        return "float_nullable";
+                        return "google.protobuf.FloatValue";
                     else
                         return "float";
                 }
                 if (length <= 15)
                 {
                     if (isNullable)
-                        return "double_nullable";
+                        return "google.protobuf.DoubleValue";
                     else
                         return "double";
+                }
+                if (length <= 28)
+                {
+                    if (isNullable)
+                        return "DecimalValue_nullable";
+                    else
+                        return "DecimalValue";
                 }
                 return "bytes"; // need conversions
             }
@@ -163,6 +171,32 @@ namespace vSharpStudio.common
         private static string commentBegSummary = "/// <summary>";
         private static string commentEndSummary = "/// </summary>";
         private static string comment = "/// ";
+        public static string Comment(IGroupListConstants t, string indent = "")
+        {
+            var sb = new StringBuilder();
+            sb.Append(indent);
+            sb.Append(commentBegSummary);
+            sb.AppendLine();
+
+            sb.Append(indent);
+            sb.Append(comment);
+            sb.Append("UI name: ");
+            sb.Append(t.NameUi);
+            sb.AppendLine();
+
+            if (!string.IsNullOrWhiteSpace(t.Description))
+            {
+                sb.Append(indent);
+                sb.Append(comment);
+                //sb.Append("Description: ");
+                sb.Append(t.Description);
+                sb.AppendLine();
+            }
+
+            sb.Append(indent);
+            sb.Append(commentEndSummary);
+            return sb.ToString();
+        }
         public static string Comment(IEnumeration t, string indent = "")
         {
             var sb = new StringBuilder();

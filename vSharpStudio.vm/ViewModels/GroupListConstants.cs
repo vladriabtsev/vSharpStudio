@@ -161,6 +161,12 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Constant AddConstantString(string name, bool isNullable)
+        {
+            Constant node = new Constant(this) { Name = name, DataType = new DataType() { IsNullable = isNullable } };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Constant AddConstantEnumeration(string name, Enumeration en, bool isNullable)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };

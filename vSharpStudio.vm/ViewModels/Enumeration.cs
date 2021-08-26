@@ -69,6 +69,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
+                if (this.ListEnumerationPairs.Count == 0)
+                    return "Enum" + this.Name + ".";
                 EnumerationPair tt = null;
                 foreach (var t in this.ListEnumerationPairs)
                 {
@@ -78,6 +80,8 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     }
                 }
+                if (tt == null)
+                    tt = this.ListEnumerationPairs[0];
                 return "Enum" + this.Name + "." + tt.Name.ToUpper();
             }
         }

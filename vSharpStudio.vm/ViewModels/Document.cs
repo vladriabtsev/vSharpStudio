@@ -225,6 +225,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {
+                    t.ComplexObjectName = "SharedDocProperties";
                     res.Add(t);
                 }
             }
@@ -331,6 +332,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {
+                    t.ComplexObjectName = "SharedDocProperties";
                     res.Add(t);
                 }
             }

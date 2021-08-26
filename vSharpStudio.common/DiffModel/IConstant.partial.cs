@@ -8,6 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IConstant : ITreeConfigNode, IGetNodeSetting
     {
-        string DefaultValue { get; }
+        //string DefaultValue { get; }
     }
 }

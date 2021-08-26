@@ -315,16 +315,16 @@ namespace vSharpStudio.vm.ViewModels
                 return GetClrType();
             }
         }
-        [BrowsableAttribute(false)]
-        public string DefaultValue
-        {
-            get
-            {
-                if (this.IsNullable)
-                    return "null";
-                return this.DefaultNotNullValue;
-            }
-        }
+        //[BrowsableAttribute(false)]
+        //public string DefaultValue
+        //{
+        //    get
+        //    {
+        //        if (this.IsNullable)
+        //            return "null";
+        //        return this.DefaultNotNullValue;
+        //    }
+        //}
         [BrowsableAttribute(false)]
         public string PropValueValue
         {
@@ -366,45 +366,45 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        [BrowsableAttribute(false)]
-        public string DefaultNotNullValue
-        {
-            get
-            {
-                switch (this.DataTypeEnum)
-                {
-                    //case EnumDataType.CATALOG:
-                    //    return "Catalog";
-                    //case EnumDataType.CATALOGS:
-                    //    return "Catalog";
-                    //case EnumDataType.DOCUMENT:
-                    //    return "Document";
-                    //case EnumDataType.DOCUMENTS:
-                    //    return "Documents";
-                    //case EnumDataType.DATE:
-                    //    return "Date" + sn;
-                    //case EnumDataType.DATETIME:
-                    //    return "DateTime" + sn;
-                    //case EnumDataType.TIME:
-                    //    return "Time" + sn;
-                    //case EnumDataType.DATETIMEZ:
-                    //    return "DateTimeZ" + sn;
-                    //case EnumDataType.TIMEZ:
-                    //    return "TimeZ" + sn;
-                    case EnumDataType.ENUMERATION:
-                        var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
-                        return en.DefaultValue;
-                    case EnumDataType.BOOL:
-                        return "false";
-                    case EnumDataType.STRING:
-                        return "string.Empty";
-                    case EnumDataType.NUMERICAL:
-                        return "0";
-                    default:
-                        return "null";
-                }
-            }
-        }
+        //[BrowsableAttribute(false)]
+        //public string DefaultNotNullValue
+        //{
+        //    get
+        //    {
+        //        switch (this.DataTypeEnum)
+        //        {
+        //            //case EnumDataType.CATALOG:
+        //            //    return "Catalog";
+        //            //case EnumDataType.CATALOGS:
+        //            //    return "Catalog";
+        //            //case EnumDataType.DOCUMENT:
+        //            //    return "Document";
+        //            //case EnumDataType.DOCUMENTS:
+        //            //    return "Documents";
+        //            //case EnumDataType.DATE:
+        //            //    return "Date" + sn;
+        //            //case EnumDataType.DATETIME:
+        //            //    return "DateTime" + sn;
+        //            //case EnumDataType.TIME:
+        //            //    return "Time" + sn;
+        //            //case EnumDataType.DATETIMEZ:
+        //            //    return "DateTimeZ" + sn;
+        //            //case EnumDataType.TIMEZ:
+        //            //    return "TimeZ" + sn;
+        //            case EnumDataType.ENUMERATION:
+        //                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
+        //                return en.DefaultValue;
+        //            case EnumDataType.BOOL:
+        //                return "false";
+        //            case EnumDataType.STRING:
+        //                return "string.Empty";
+        //            case EnumDataType.NUMERICAL:
+        //                return "0";
+        //            default:
+        //                return "null";
+        //        }
+        //    }
+        //}
         private Type GetClrType()
         {
             switch (this.ClrTypeName)

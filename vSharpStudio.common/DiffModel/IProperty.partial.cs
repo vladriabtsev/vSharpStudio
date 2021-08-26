@@ -8,8 +8,10 @@ namespace vSharpStudio.common
 {
     public partial interface IProperty : IParent, ITreeConfigNode, IGetNodeSetting
     {
-        string DefaultValue { get; }
+        //string DefaultValue { get; }
         bool IsPKey { get; set; }
         bool IsComputed { get; set; }
+        string ComplexObjectName { get; set; }
+        string ComplexObjectNameWithDot();
     }
 }
