@@ -141,29 +141,29 @@
           "description": "",
           "values": [
             {
-              "name": "STRING",
+              "name": "CHAR",
               "number": "0",
+              "description": "@attr [DisplayName(\"Char\")]\n@attr [Description(\"Char type\")]"
+            },
+            {
+              "name": "STRING",
+              "number": "1",
               "description": "@attr [DisplayName(\"String\")]\n@attr [Description(\"String type. If length is zero, unlimited string length\")]"
             },
             {
               "name": "NUMERICAL",
-              "number": "1",
+              "number": "2",
               "description": "@attr [DisplayName(\"Numeric\")]\n@attr [Description(\"Numerical data type. Type depend on length and accuracy\")]"
             },
             {
               "name": "BOOL",
-              "number": "2",
+              "number": "3",
               "description": "@attr [DisplayName(\"Boolean\")]\n@attr [Description(\"Boolean type\")]"
             },
             {
               "name": "TIME",
-              "number": "3",
-              "description": "@attr [DisplayName(\"Time\")]\n@attr [Description(\"Time without time zone\")]"
-            },
-            {
-              "name": "TIMEZ",
               "number": "4",
-              "description": "@attr [DisplayName(\"Time Z\")]\n@attr [Description(\"Time with time zone\")]"
+              "description": "@attr [DisplayName(\"Time\")]\n@attr [Description(\"Time without time zone. DB value stored with accuracy 1 second\")]"
             },
             {
               "name": "DATE",
@@ -173,22 +173,12 @@
             {
               "name": "DATETIME",
               "number": "6",
-              "description": "@attr [DisplayName(\"DateTime\")]\n@attr [Description(\"Date and time without time zone\")]"
+              "description": "@attr [DisplayName(\"DateTime\")]\n@attr [Description(\"Date and time without time zone. DB value stored with accuracy approximatly 4 milliseconds\")]"
             },
             {
               "name": "DATETIMEZ",
               "number": "7",
-              "description": "@attr [DisplayName(\"DateTime Z\")]\n@attr [Description(\"Date and time with time zone\")]"
-            },
-            {
-              "name": "DATETIMEOFFSET",
-              "number": "8",
-              "description": "@attr [DisplayName(\"DateTimeOffset\")]\n@attr [Description(\"Date and time offset\")]"
-            },
-            {
-              "name": "TIMESPAN",
-              "number": "9",
-              "description": "@attr [DisplayName(\"TimeSpan\")]\n@attr [Description(\"Time span\")]"
+              "description": "@attr [DisplayName(\"DateTime Z\")]\n@attr [Description(\"Date and time with time zone. DB value stored with accuracy approximatly 4 milliseconds\")]"
             },
             {
               "name": "ENUMERATION",
@@ -265,6 +255,34 @@
               "name": "LONG",
               "number": "1",
               "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_time_acc_type",
+          "longName": "proto_enum_time_acc_type",
+          "fullName": "proto_config.proto_enum_time_acc_type",
+          "description": "",
+          "values": [
+            {
+              "name": "SECOND",
+              "number": "0",
+              "description": "@attr [DisplayName(\"Second\")]\n@attr [Description(\"One second accuracy\")]"
+            },
+            {
+              "name": "MINUTE",
+              "number": "1",
+              "description": "@attr [DisplayName(\"Minute\")]\n@attr [Description(\"One minute accuracy\")]"
+            },
+            {
+              "name": "HOUR",
+              "number": "2",
+              "description": "@attr [DisplayName(\"Hour\")]\n@attr [Description(\"One hour accuracy\")]"
+            },
+            {
+              "name": "TEN_MSEC",
+              "number": "3",
+              "description": "@attr [DisplayName(\"Ten ms\")]\n@attr [Description(\"Ten milliseconds accuracy\")]"
             }
           ]
         },
@@ -1920,8 +1938,18 @@
               "defaultValue": ""
             },
             {
+              "name": "is_nullable",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "length",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Length\")]\n@attr [Description(\"Maximum length of data (characters in string, or decimal digits for numeric data)\")]",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Length\")]\n@attr [Description(\"Maximum length of data (characters in string, or decimal digits for numeric data)\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1930,8 +1958,18 @@
               "defaultValue": ""
             },
             {
+              "name": "is_positive",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Positive\")]\n@attr [Description(\"Expected numerical value always \u003e= 0\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "accuracy",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Accuracy\")]\n@attr [Description(\"Number of decimal places for numeric data)\")]",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Accuracy\")]\n@attr [Description(\"Number of decimal places in fractional part for numeric data)\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1941,7 +1979,7 @@
             },
             {
               "name": "object_guid",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1951,41 +1989,11 @@
             },
             {
               "name": "list_object_guids",
-              "description": "@attr [PropertyOrderAttribute(5)]",
+              "description": "@attr [PropertyOrderAttribute(7)]",
               "label": "repeated",
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_index_fk",
-              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [DisplayName(\"FK Index\")]\n@attr [Description(\"Create Index if this property is using foreign key (for Catalog or Document type)\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_positive",
-              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Positive\")]\n@attr [Description(\"Expected always \u003e= 0\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_nullable",
-              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5441,7 +5449,7 @@
             },
             {
               "name": "data_type",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Type\")]",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "proto_data_type",
               "longType": "proto_data_type",
@@ -5466,6 +5474,76 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "accuracy_of_time",
+              "description": "@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Accuracy\")]\n@attr [Description(\"Accuracy of time\")]",
+              "label": "",
+              "type": "proto_enum_time_acc_type",
+              "longType": "proto_enum_time_acc_type",
+              "fullType": "proto_config.proto_enum_time_acc_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "min_value_requirement",
+              "description": "@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Min Value\")]\n@attr [Description(\"Minimum value of valid data\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_value_requirement",
+              "description": "@attr [PropertyOrderAttribute(33)]\n@attr [DisplayName(\"Max Value\")]\n@attr [Description(\"Maximum value of valid data\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "min_length_requirement",
+              "description": "@attr [PropertyOrderAttribute(34)]\n@attr [DisplayName(\"Min Length\")]\n@attr [Description(\"Minimum length of string\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_length_requirement",
+              "description": "@attr [PropertyOrderAttribute(35)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum length of string\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "min_date_requirement",
+              "description": "36\n@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_date_requirement",
+              "description": "37\n@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
               "ismap": false,
               "defaultValue": ""
             },

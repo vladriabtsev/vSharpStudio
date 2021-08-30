@@ -590,39 +590,30 @@ message proto_model {
  * ####################################### D A T A  T Y P E ##########################################
  */
 enum proto_enum_data_type {
+    // @attr [DisplayName("Char")]
+    // @attr [Description("Char type")]
+    CHAR = 0;
     // @attr [DisplayName("String")]
     // @attr [Description("String type. If length is zero, unlimited string length")]
-    STRING = 0;
+    STRING = 1;
     // @attr [DisplayName("Numeric")]
     // @attr [Description("Numerical data type. Type depend on length and accuracy")]
-    NUMERICAL = 1;
+    NUMERICAL = 2;
     // @attr [DisplayName("Boolean")]
     // @attr [Description("Boolean type")]
-    BOOL = 2;
+    BOOL = 3;
     // @attr [DisplayName("Time")]
-    // @attr [Description("Time without time zone")]
-    TIME = 3;
-    // @attr [DisplayName("Time Z")]
-    // @attr [Description("Time with time zone")]
-    TIMEZ = 4;
+    // @attr [Description("Time without time zone. DB value stored with accuracy 1 second")]
+    TIME = 4;
     // @attr [DisplayName("Date")]
     // @attr [Description("Date without time zone")]
     DATE = 5;
     // @attr [DisplayName("DateTime")]
-    // @attr [Description("Date and time without time zone")]
+    // @attr [Description("Date and time without time zone. DB value stored with accuracy approximatly 4 milliseconds")]
     DATETIME = 6;
     // @attr [DisplayName("DateTime Z")]
-    // @attr [Description("Date and time with time zone")]
+    // @attr [Description("Date and time with time zone. DB value stored with accuracy approximatly 4 milliseconds")]
     DATETIMEZ = 7;
-    // @attr [DisplayName("DateTimeOffset")]
-    // @attr [Description("Date and time offset")]
-    DATETIMEOFFSET = 8;
-    // @attr [DisplayName("TimeSpan")]
-    // @attr [Description("Time span")]
-    TIMESPAN = 9;
-
-    //CONSTANT = 7;
-
     // @attr [DisplayName("Enumeration")]
     // @attr [Description("Enumeration type")]
     ENUMERATION = 10;
@@ -643,40 +634,50 @@ enum proto_enum_data_type {
     // @attr [Description("Any data type")]
     ANY = 15;
 }
+enum proto_enum_time_acc_type {
+    // @attr [DisplayName("Second")]
+    // @attr [Description("One second accuracy")]
+    SECOND = 0;
+    // @attr [DisplayName("Minute")]
+    // @attr [Description("One minute accuracy")]
+    MINUTE = 1;
+    // @attr [DisplayName("Hour")]
+    // @attr [Description("One hour accuracy")]
+    HOUR = 2;
+    // @attr [DisplayName("Ten ms")]
+    // @attr [Description("Ten milliseconds accuracy")]
+    TEN_MSEC = 3;
+}
 // @base VmValidatableWithSeverity
 message proto_data_type {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Type")]
     proto_enum_data_type data_type_enum = 1; 
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Length")]
-    // @attr [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]
-    uint32 length = 2; 
-    // @attr [PropertyOrderAttribute(3)]
-    // @attr [DisplayName("Accuracy")]
-    // @attr [Description("Number of decimal places for numeric data)")]
-    uint32 accuracy = 3; 
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
-    string object_guid = 5;
-    // @attr [PropertyOrderAttribute(5)]
-    repeated string list_object_guids = 7;
-    // @attr [PropertyOrderAttribute(9)]
-    // @attr [DisplayName("FK Index")]
-    // @attr [Description("Create Index if this property is using foreign key (for Catalog or Document type)")]
-    bool is_index_fk = 9;
-    // @attr [PropertyOrderAttribute(11)]
-    // @attr [DisplayName("Positive")]
-    // @attr [Description("Expected always >= 0")]
-    bool is_positive = 11; 
-    // @attr [PropertyOrderAttribute(12)]
     // @attr [DisplayName("Can be NULL")]
     // @attr [Description("If unchecked always expected data")]
-    bool is_nullable = 12;
+    bool is_nullable = 2;
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Length")]
+    // @attr [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]
+    uint32 length = 3; 
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Positive")]
+    // @attr [Description("Expected numerical value always >= 0")]
+    bool is_positive = 4; 
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [DisplayName("Accuracy")]
+    // @attr [Description("Number of decimal places in fractional part for numeric data)")]
+    uint32 accuracy = 5; 
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
+    string object_guid = 6;
+    // @attr [PropertyOrderAttribute(7)]
+    repeated string list_object_guids = 7;
     // @attr [BrowsableAttribute(false)]
-    bool is_p_key = 13;
+    bool is_p_key = 21;
     // @attr [BrowsableAttribute(false)]
-    bool is_ref_parent = 14;
+    bool is_ref_parent = 22;
 }
 /** 
  * @exclude
@@ -876,19 +877,44 @@ message proto_property {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [ExpandableObjectAttribute()]
-    // @attr [DisplayName("Type")]
+    // @attr [BrowsableAttribute(false)]
     proto_data_type data_type = 6;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 
+    // @attr [PropertyOrderAttribute(31)]
+    // @attr [DisplayName("Accuracy")]
+    // @attr [Description("Accuracy of time")]
+    proto_enum_time_acc_type accuracy_of_time = 15;
+    // @attr [PropertyOrderAttribute(32)]
+    // @attr [DisplayName("Min Value")]
+    // @attr [Description("Minimum value of valid data")]
+    string min_value_requirement = 16;
+    // @attr [PropertyOrderAttribute(33)]
+    // @attr [DisplayName("Max Value")]
+    // @attr [Description("Maximum value of valid data")]
+    string max_value_requirement = 17;
+    // @attr [PropertyOrderAttribute(34)]
+    // @attr [DisplayName("Min Length")]
+    // @attr [Description("Minimum length of string")]
+    string min_length_requirement = 18;
+    // @attr [PropertyOrderAttribute(35)]
+    // @attr [DisplayName("Max Length")]
+    // @attr [Description("Maximum length of string")]
+    string max_length_requirement = 19;
+    // 36
+    // @attr [BrowsableAttribute(false)]
+    google.protobuf.Timestamp min_date_requirement = 20;
+    // 37
+    // @attr [BrowsableAttribute(false)]
+    google.protobuf.Timestamp max_date_requirement = 21;
+
     // Protobuf field position
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]
-    uint32 position = 15;
+    uint32 position = 110;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

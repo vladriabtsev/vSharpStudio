@@ -28,7 +28,7 @@ namespace vSharpStudio.common
         IDataType GetDataTypeDateTime(bool isNullable = true);
         IDataType GetDataTypeDateTimeZ(bool isNullable = true);
         IDataType GetDataTypeTime(bool isNullable = true);
-        IDataType GetDataTypeTimeZ(bool isNullable = true);
+        //IDataType GetDataTypeTimeZ(bool isNullable = true);
         IDataType GetIdDataType();
         IDataType GetIdRefDataType();
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);

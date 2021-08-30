@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Numerics;
 using System.Text;
 using FluentValidation;
+using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -45,6 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;
+            this.UpdateVisibility();
         }
         public void OnAdded()
         {
@@ -69,9 +71,12 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = name;
             this._DataType = new DataType(type, length, accuracy);
         }
+        [BrowsableAttribute(false)]
         public bool IsPKey { get; set; }
+        [BrowsableAttribute(false)]
         public bool IsComputed { get; set; }
 
+        [PropertyOrderAttribute(10)]
         public string ClrType
         {
             get { return this.DataType.ClrTypeName; }
@@ -80,6 +85,7 @@ namespace vSharpStudio.vm.ViewModels
         //{
         //    get { return this.DataType.ProtoType; }
         //}
+        [BrowsableAttribute(false)]
         public IDataType IDataType { get { return this._DataType; } }
         //public string DefaultValue { get { return this.DataType.DefaultValue; } }
 
@@ -177,5 +183,250 @@ namespace vSharpStudio.vm.ViewModels
             p.ListProperties.Remove(this);
         }
         #endregion Tree operations
+
+        #region Editing logic
+        private void OnDataTypeEnumChanged()
+        {
+            switch (this.DataType.DataTypeEnum)
+            {
+                case EnumDataType.CHAR:
+                case EnumDataType.ANY:
+                case EnumDataType.BOOL:
+                    this.Length = 0;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = string.Empty;
+                    this.ListObjectGuids.Clear();
+                    break;
+                case EnumDataType.DATE:
+                    this.Length = 0;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = string.Empty;
+                    this.ListObjectGuids.Clear();
+                    break;
+                case EnumDataType.DATETIME:
+                case EnumDataType.DATETIMEZ:
+                case EnumDataType.TIME:
+                    this.Length = 0;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = string.Empty;
+                    this.ListObjectGuids.Clear();
+                    break;
+                case EnumDataType.CATALOGS:
+                case EnumDataType.DOCUMENTS:
+                    this.Length = 0;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = string.Empty;
+                    this.ListObjectGuids.Clear();
+                    break;
+                case EnumDataType.CATALOG:
+                case EnumDataType.DOCUMENT:
+                case EnumDataType.ENUMERATION:
+                    this.Length = 0;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = string.Empty;
+                    this.ListObjectGuids.Clear();
+                    break;
+                case EnumDataType.NUMERICAL:
+                    this.Length = 6;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = string.Empty;
+                    this.ListObjectGuids.Clear();
+                    break;
+                case EnumDataType.STRING:
+                    this.Length = 25;
+                    this.Accuracy = 0;
+                    this.IsPositive = false;
+                    this.ObjectGuid = string.Empty;
+                    this.ListObjectGuids.Clear();
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+        private void UpdateVisibility()
+        {
+            var lst = new List<string>();
+            if (this.DataType.DataTypeEnum != EnumDataType.STRING)
+            {
+                lst.Add(this.GetPropertyName(() => this.MinLengthRequirement));
+                lst.Add(this.GetPropertyName(() => this.MaxLengthRequirement));
+            }
+            if (this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+            {
+                lst.Add(this.GetPropertyName(() => this.Accuracy));
+                lst.Add(this.GetPropertyName(() => this.IsPositive));
+                lst.Add(this.GetPropertyName(() => this.MinValueRequirement));
+                lst.Add(this.GetPropertyName(() => this.MaxValueRequirement));
+            }
+            if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+            {
+                lst.Add(this.GetPropertyName(() => this.Length));
+            }
+            if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
+            {
+                lst.Add(this.GetPropertyName(() => this.AccuracyOfTime));
+            }
+            if (this.DataType.DataTypeEnum != EnumDataType.DATE &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
+            {
+                lst.Add(this.GetPropertyName(() => this.MinDateRequirementEdit));
+                lst.Add(this.GetPropertyName(() => this.MaxDateRequirementEdit));
+            }
+            if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
+                this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
+            {
+                lst.Add(this.GetPropertyName(() => this.ListObjectGuids));
+            }
+            if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
+                this.DataType.DataTypeEnum != EnumDataType.DOCUMENT &&
+                this.DataType.DataTypeEnum != EnumDataType.ENUMERATION)
+            {
+                lst.Add(this.GetPropertyName(() => this.ObjectGuid));
+            }
+            if (this.Accuracy != 0)
+            {
+                lst.Add(this.GetPropertyName(() => this.IsPositive));
+            }
+            this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
+        }
+        [DisplayName("Type")]
+        [PropertyOrderAttribute(11)]
+        public EnumDataType DataTypeEnum
+        {
+            get { return this.DataType.DataTypeEnum; }
+            set
+            {
+                this.DataType.DataTypeEnum = value;
+                this.NotifyPropertyChanged();
+                this.ValidateProperty();
+                this.OnDataTypeEnumChanged();
+                this.UpdateVisibility();
+            }
+        }
+        [DisplayName("Length")]
+        [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]
+        [PropertyOrderAttribute(12)]
+        public uint Length
+        {
+            get { return this.DataType.Length; }
+            set
+            {
+                this.DataType.Length = value;
+                this.NotifyPropertyChanged();
+                this.ValidateProperty();
+            }
+        }
+        [DisplayName("Accuracy")]
+        [Description("Number of decimal places in fractional part for numeric data)")]
+        [PropertyOrderAttribute(13)]
+        public uint Accuracy
+        {
+            get { return this.DataType.Accuracy; }
+            set
+            {
+                this.DataType.Accuracy = value;
+                this.NotifyPropertyChanged();
+                this.ValidateProperty();
+                this.UpdateVisibility();
+            }
+        }
+        [DisplayName("Positive")]
+        [Description("Expected numerical value always >= 0")]
+        [PropertyOrderAttribute(14)]
+        public bool IsPositive
+        {
+            get { return this.DataType.IsPositive; }
+            set
+            {
+                this.DataType.IsPositive = value;
+                this.NotifyPropertyChanged();
+                this.ValidateProperty();
+            }
+        }
+        [DisplayName("Min Date")]
+        [Description("Minimum value of valid date")]
+        [PropertyOrderAttribute(36)]
+        public DateTime? MinDateRequirementEdit
+        {
+            get { return this.MinDateRequirement?.ToDateTime(); }
+            set
+            {
+                if (value != null)
+                {
+                    var t = DateTime.SpecifyKind(value.Value, DateTimeKind.Utc);
+                    this.MinDateRequirement = t.ToTimestamp();
+                }
+                else
+                {
+                    this.MinDateRequirement = null;
+                }
+                this.NotifyPropertyChanged();
+                this.ValidateProperty();
+            }
+        }
+        [DisplayName("Max Date")]
+        [Description("Maximum value of valid date")]
+        [PropertyOrderAttribute(37)]
+        public DateTime? MaxDateRequirementEdit
+        {
+            get { return this.MaxDateRequirement?.ToDateTime(); }
+            set
+            {
+                if (value != null)
+                {
+                    var t = DateTime.SpecifyKind(value.Value, DateTimeKind.Utc);
+                    this.MaxDateRequirement = t.ToTimestamp();
+                }
+                else
+                {
+                    this.MaxDateRequirement = null;
+                }
+                this.NotifyPropertyChanged();
+                this.ValidateProperty();
+            }
+        }
+        [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
+        [PropertyOrderAttribute(15)]
+        public string ObjectGuid
+        {
+            get { return this.DataType.ObjectGuid; }
+            set
+            {
+                this.DataType.ObjectGuid = value;
+                this.NotifyPropertyChanged();
+                this.ValidateProperty();
+            }
+        }
+        ////[DisplayName("Positive")]
+        ////[Description("Expected always >= 0")]
+        //[Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
+        //[PropertyOrderAttribute(6)]
+        //public string ObjectName
+        //{
+        //    get { return this.DataType.ObjectName; }
+        //    set
+        //    {
+        //        this.DataType.ObjectName = value;
+        //        this.NotifyPropertyChanged();
+        //        this.ValidateProperty();
+        //    }
+        //}
+        //[DisplayName("Positive")]
+        //[Description("Expected always >= 0")]
+        [PropertyOrderAttribute(16)]
+        public ObservableCollection<string> ListObjectGuids
+        {
+            get { return this.DataType.ListObjectGuids; }
+        }
+        #endregion Editing logic
     }
 }

@@ -448,6 +448,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_time_acc_type"><span class="badge">E</span>proto_enum_time_acc_type</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_form_orientation"><span class="badge">E</span>proto_form_orientation</a>
                 </li>
               
@@ -1836,28 +1840,46 @@ App solution relative path to configuration file path </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_nullable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Can be NULL&#34;)]
+@attr [Description(&#34;If unchecked always expected data&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
+                  <td><p>@attr [PropertyOrderAttribute(3)]
 @attr [DisplayName(&#34;Length&#34;)]
 @attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_positive</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Positive&#34;)]
+@attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>accuracy</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
+                  <td><p>@attr [PropertyOrderAttribute(5)]
 @attr [DisplayName(&#34;Accuracy&#34;)]
-@attr [Description(&#34;Number of decimal places for numeric data)&#34;)] </p></td>
+@attr [Description(&#34;Number of decimal places in fractional part for numeric data)&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>object_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
+                  <td><p>@attr [PropertyOrderAttribute(6)]
 @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
                 </tr>
               
@@ -1865,34 +1887,7 @@ App solution relative path to configuration file path </p></td>
                   <td>list_object_guids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [PropertyOrderAttribute(5)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_index_fk</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(9)]
-@attr [DisplayName(&#34;FK Index&#34;)]
-@attr [Description(&#34;Create Index if this property is using foreign key (for Catalog or Document type)&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_positive</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(11)]
-@attr [DisplayName(&#34;Positive&#34;)]
-@attr [Description(&#34;Expected always &gt;= 0&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_nullable</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(12)]
-@attr [DisplayName(&#34;Can be NULL&#34;)]
-@attr [Description(&#34;If unchecked always expected data&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)] </p></td>
                 </tr>
               
                 <tr>
@@ -4801,9 +4796,7 @@ Reserved positions: 1 - primary key
                   <td>data_type</td>
                   <td><a href="#proto_config.proto_data_type">proto_data_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [ExpandableObjectAttribute()]
-@attr [DisplayName(&#34;Type&#34;)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -4818,6 +4811,67 @@ Reserved positions: 1 - primary key
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>accuracy_of_time</td>
+                  <td><a href="#proto_config.proto_enum_time_acc_type">proto_enum_time_acc_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(31)]
+@attr [DisplayName(&#34;Accuracy&#34;)]
+@attr [Description(&#34;Accuracy of time&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>min_value_requirement</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(32)]
+@attr [DisplayName(&#34;Min Value&#34;)]
+@attr [Description(&#34;Minimum value of valid data&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_value_requirement</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(33)]
+@attr [DisplayName(&#34;Max Value&#34;)]
+@attr [Description(&#34;Maximum value of valid data&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>min_length_requirement</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(34)]
+@attr [DisplayName(&#34;Min Length&#34;)]
+@attr [Description(&#34;Minimum length of string&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_length_requirement</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(35)]
+@attr [DisplayName(&#34;Max Length&#34;)]
+@attr [Description(&#34;Maximum length of string&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>min_date_requirement</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>36
+@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_date_requirement</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>37
+@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -5277,38 +5331,38 @@ repeated proto_document list_documents = 7;
           <tbody>
             
               <tr>
-                <td>STRING</td>
+                <td>CHAR</td>
                 <td>0</td>
+                <td><p>@attr [DisplayName(&#34;Char&#34;)]
+@attr [Description(&#34;Char type&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>STRING</td>
+                <td>1</td>
                 <td><p>@attr [DisplayName(&#34;String&#34;)]
 @attr [Description(&#34;String type. If length is zero, unlimited string length&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>NUMERICAL</td>
-                <td>1</td>
+                <td>2</td>
                 <td><p>@attr [DisplayName(&#34;Numeric&#34;)]
 @attr [Description(&#34;Numerical data type. Type depend on length and accuracy&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>BOOL</td>
-                <td>2</td>
+                <td>3</td>
                 <td><p>@attr [DisplayName(&#34;Boolean&#34;)]
 @attr [Description(&#34;Boolean type&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>TIME</td>
-                <td>3</td>
-                <td><p>@attr [DisplayName(&#34;Time&#34;)]
-@attr [Description(&#34;Time without time zone&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>TIMEZ</td>
                 <td>4</td>
-                <td><p>@attr [DisplayName(&#34;Time Z&#34;)]
-@attr [Description(&#34;Time with time zone&#34;)]</p></td>
+                <td><p>@attr [DisplayName(&#34;Time&#34;)]
+@attr [Description(&#34;Time without time zone. DB value stored with accuracy 1 second&#34;)]</p></td>
               </tr>
             
               <tr>
@@ -5322,28 +5376,14 @@ repeated proto_document list_documents = 7;
                 <td>DATETIME</td>
                 <td>6</td>
                 <td><p>@attr [DisplayName(&#34;DateTime&#34;)]
-@attr [Description(&#34;Date and time without time zone&#34;)]</p></td>
+@attr [Description(&#34;Date and time without time zone. DB value stored with accuracy approximatly 4 milliseconds&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DATETIMEZ</td>
                 <td>7</td>
                 <td><p>@attr [DisplayName(&#34;DateTime Z&#34;)]
-@attr [Description(&#34;Date and time with time zone&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DATETIMEOFFSET</td>
-                <td>8</td>
-                <td><p>@attr [DisplayName(&#34;DateTimeOffset&#34;)]
-@attr [Description(&#34;Date and time offset&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>TIMESPAN</td>
-                <td>9</td>
-                <td><p>@attr [DisplayName(&#34;TimeSpan&#34;)]
-@attr [Description(&#34;Time span&#34;)]</p></td>
+@attr [Description(&#34;Date and time with time zone. DB value stored with accuracy approximatly 4 milliseconds&#34;)]</p></td>
               </tr>
             
               <tr>
@@ -5444,6 +5484,45 @@ repeated proto_document list_documents = 7;
                 <td>LONG</td>
                 <td>1</td>
                 <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_time_acc_type">proto_enum_time_acc_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SECOND</td>
+                <td>0</td>
+                <td><p>@attr [DisplayName(&#34;Second&#34;)]
+@attr [Description(&#34;One second accuracy&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MINUTE</td>
+                <td>1</td>
+                <td><p>@attr [DisplayName(&#34;Minute&#34;)]
+@attr [Description(&#34;One minute accuracy&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>HOUR</td>
+                <td>2</td>
+                <td><p>@attr [DisplayName(&#34;Hour&#34;)]
+@attr [Description(&#34;One hour accuracy&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>TEN_MSEC</td>
+                <td>3</td>
+                <td><p>@attr [DisplayName(&#34;Ten ms&#34;)]
+@attr [Description(&#34;Ten milliseconds accuracy&#34;)]</p></td>
               </tr>
             
           </tbody>

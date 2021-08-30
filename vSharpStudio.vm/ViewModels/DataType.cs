@@ -215,7 +215,35 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        [PropertyOrderAttribute(13)]
+        [PropertyOrderAttribute(14)]
+        [DisplayName("Min Len")]
+        [Description("Min value based on Length")]
+        public string MinValue
+        {
+            get
+            {
+                switch (this.DataTypeEnum)
+                {
+                    case EnumDataType.NUMERICAL:
+                        if (this.Accuracy > 0)
+                        {
+                            return "0.".PadRight((int)(this.Accuracy + 1), '0') + "1";
+                        }
+                        // if (this.Accuracy == 1)
+                        //    return "0.1";
+                        else
+                        {
+                            return "0";
+                        }
+
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+        [PropertyOrderAttribute(16)]
+        [DisplayName("Max Len")]
+        [Description("Max value based on Length")]
         public string MaxValue
         {
             get
@@ -248,30 +276,6 @@ namespace vSharpStudio.vm.ViewModels
                         else
                         {
                             return "unlimited";
-                        }
-
-                    default:
-                        return string.Empty;
-                }
-            }
-        }
-        [PropertyOrderAttribute(14)]
-        public string MinValue
-        {
-            get
-            {
-                switch (this.DataTypeEnum)
-                {
-                    case EnumDataType.NUMERICAL:
-                        if (this.Accuracy > 0)
-                        {
-                            return "0.".PadRight((int)(this.Accuracy + 1), '0') + "1";
-                        }
-                        // if (this.Accuracy == 1)
-                        //    return "0.1";
-                        else
-                        {
-                            return "0";
                         }
 
                     default:
@@ -315,16 +319,6 @@ namespace vSharpStudio.vm.ViewModels
                 return GetClrType();
             }
         }
-        //[BrowsableAttribute(false)]
-        //public string DefaultValue
-        //{
-        //    get
-        //    {
-        //        if (this.IsNullable)
-        //            return "null";
-        //        return this.DefaultNotNullValue;
-        //    }
-        //}
         [BrowsableAttribute(false)]
         public string PropValueValue
         {
@@ -366,45 +360,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        //[BrowsableAttribute(false)]
-        //public string DefaultNotNullValue
-        //{
-        //    get
-        //    {
-        //        switch (this.DataTypeEnum)
-        //        {
-        //            //case EnumDataType.CATALOG:
-        //            //    return "Catalog";
-        //            //case EnumDataType.CATALOGS:
-        //            //    return "Catalog";
-        //            //case EnumDataType.DOCUMENT:
-        //            //    return "Document";
-        //            //case EnumDataType.DOCUMENTS:
-        //            //    return "Documents";
-        //            //case EnumDataType.DATE:
-        //            //    return "Date" + sn;
-        //            //case EnumDataType.DATETIME:
-        //            //    return "DateTime" + sn;
-        //            //case EnumDataType.TIME:
-        //            //    return "Time" + sn;
-        //            //case EnumDataType.DATETIMEZ:
-        //            //    return "DateTimeZ" + sn;
-        //            //case EnumDataType.TIMEZ:
-        //            //    return "TimeZ" + sn;
-        //            case EnumDataType.ENUMERATION:
-        //                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
-        //                return en.DefaultValue;
-        //            case EnumDataType.BOOL:
-        //                return "false";
-        //            case EnumDataType.STRING:
-        //                return "string.Empty";
-        //            case EnumDataType.NUMERICAL:
-        //                return "0";
-        //            default:
-        //                return "null";
-        //        }
-        //    }
-        //}
         private Type GetClrType()
         {
             switch (this.ClrTypeName)
@@ -515,18 +470,23 @@ namespace vSharpStudio.vm.ViewModels
                     return "Documents";
                 case EnumDataType.ENUMERATION:
                     return this.EnumerationName + sn;
+                case EnumDataType.TIME:
+                //case EnumDataType.TIMEZ:
+                    return "TimeOnly" + sn;
                 case EnumDataType.DATE:
-                    return "DateTime" + sn;
+                    return "DateOnly" + sn;
+                case EnumDataType.DATETIMEZ:
+                    return "DateTimeOffset" + sn;
                 case EnumDataType.DATETIME:
                     return "DateTime" + sn;
-                case EnumDataType.TIME:
-                    return "Time" + sn;
-                case EnumDataType.DATETIMEZ:
-                    return "DateTimeZ" + sn;
-                case EnumDataType.TIMEZ:
-                    return "TimeZ" + sn;
+                //case EnumDataType.DATETIMEOFFSET:
+                //    return "DateTimeOffset" + sn;
+                //case EnumDataType.TIMESPAN:
+                //    return "TimeSpan" + sn;
                 case EnumDataType.BOOL:
                     return "bool" + sn;
+                case EnumDataType.CHAR:
+                    return "char" + sn;
                 case EnumDataType.STRING:
                     return "string" + sn;
                 case EnumDataType.NUMERICAL:
@@ -685,13 +645,16 @@ namespace vSharpStudio.vm.ViewModels
             //this.NotifyPropertyChanged(nameof(this.ProtoType));
             switch (this.DataTypeEnum)
             {
+                case EnumDataType.CHAR:
                 case EnumDataType.ANY:
                 case EnumDataType.BOOL:
-                case EnumDataType.DATETIME:
                 case EnumDataType.DATE:
-                case EnumDataType.TIME:
+                case EnumDataType.DATETIME:
                 case EnumDataType.DATETIMEZ:
-                case EnumDataType.TIMEZ:
+                //case EnumDataType.DATETIMEOFFSET:
+                case EnumDataType.TIME:
+                //case EnumDataType.TIMEZ:
+                //case EnumDataType.TIMESPAN:
                 case EnumDataType.CATALOGS:
                 case EnumDataType.DOCUMENTS:
                     this.VisibilityAccuracy = Visibility.Collapsed;

@@ -10,7 +10,11 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace ViewModelBase
 {
-    public class VmValidatableWithSeverityAndAttributes<T, TValidator> : VmValidatableWithSeverity<T, TValidator>
+    public interface IHidePropertiesForXceedPropertyGrid
+    {
+        void HidePropertiesForXceedPropertyGrid(string[] lstExclude = null);
+    }
+    public class VmValidatableWithSeverityAndAttributes<T, TValidator> : VmValidatableWithSeverity<T, TValidator>, IHidePropertiesForXceedPropertyGrid
         where TValidator : AbstractValidator<T>
         where T : VmValidatableWithSeverityAndAttributes<T, TValidator>
     {
@@ -23,7 +27,7 @@ namespace ViewModelBase
         [BrowsableAttribute(false)]
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions { get { return this._PropertyDefinitions; } set { SetProperty(ref _PropertyDefinitions, value); } }
         private Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection _PropertyDefinitions;
-        protected void HidePropertiesForXceedPropertyGrid(string[] lstExclude=null)
+        public void HidePropertiesForXceedPropertyGrid(string[] lstExclude=null)
         {
             //if (lstExclude.Count() > 0)
             //{

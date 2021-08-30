@@ -517,13 +517,13 @@ namespace vSharpStudio.vm.ViewModels
             dt.IsNullable = isNullable;
             return dt;
         }
-        public IDataType GetDataTypeTimeZ(bool isNullable = true)
-        {
-            DataType dt = new DataType();
-            dt.DataTypeEnum = EnumDataType.TIMEZ;
-            dt.IsNullable = isNullable;
-            return dt;
-        }
+        //public IDataType GetDataTypeTimeZ(bool isNullable = true)
+        //{
+        //    DataType dt = new DataType();
+        //    dt.DataTypeEnum = EnumDataType.TIMEZ;
+        //    dt.IsNullable = isNullable;
+        //    return dt;
+        //}
         public IDataType GetIdRefDataType()
         {
             var dt = (DataType)GetIdDataType();

@@ -126,6 +126,13 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyChar(string name, bool isNullable = false)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.CHAR, IsNullable = isNullable };
+            var node = new Property(this) { Name = name, DataType = dt };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyString(string name, uint length, bool isNullable = false)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length, IsNullable = isNullable };
@@ -140,6 +147,55 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyTime(string name, bool isNullable = false)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.TIME, IsNullable = isNullable };
+            var node = new Property(this) { Name = name, DataType = dt };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        //public Property AddPropertyTimeZ(string name, bool isNullable = false)
+        //{
+        //    var dt = new DataType() { DataTypeEnum = EnumDataType.TIMEZ, IsNullable = isNullable };
+        //    var node = new Property(this) { Name = name, DataType = dt };
+        //    this.NodeAddNewSubNode(node);
+        //    return node;
+        //}
+        public Property AddPropertyDate(string name, bool isNullable = false)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.DATE, IsNullable = isNullable };
+            var node = new Property(this) { Name = name, DataType = dt };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyDateTime(string name, bool isNullable = false)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIME, IsNullable = isNullable };
+            var node = new Property(this) { Name = name, DataType = dt };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyDateTimeZ(string name, bool isNullable = false)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEZ, IsNullable = isNullable };
+            var node = new Property(this) { Name = name, DataType = dt };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        //public Property AddPropertyDateTimeOffset(string name, bool isNullable = false)
+        //{
+        //    var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEOFFSET, IsNullable = isNullable };
+        //    var node = new Property(this) { Name = name, DataType = dt };
+        //    this.NodeAddNewSubNode(node);
+        //    return node;
+        //}
+        //public Property AddPropertyTimeSpan(string name, bool isNullable = false)
+        //{
+        //    var dt = new DataType() { DataTypeEnum = EnumDataType.TIMESPAN, IsNullable = isNullable };
+        //    var node = new Property(this) { Name = name, DataType = dt };
+        //    this.NodeAddNewSubNode(node);
+        //    return node;
+        //}
         public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };

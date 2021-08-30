@@ -14,7 +14,13 @@ namespace vSharpStudio.vm.ViewModels
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Contract.Requires(propertyItem != null);
-            DataType dt = (DataType)propertyItem.Instance;
+            DataType dt = null;
+            if (propertyItem.Instance is DataType)
+                dt = (DataType)propertyItem.Instance;
+            else if (propertyItem.Instance is Property)
+                dt = ((Property)propertyItem.Instance).DataType;
+            else
+                throw new Exception();
             ComboBox cbx = new ComboBox();
             cbx.DisplayMemberPath = "Name";
             cbx.SelectedValuePath = "Guid";

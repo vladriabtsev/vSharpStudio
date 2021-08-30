@@ -17,22 +17,27 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     }
     public enum EnumDataType // ModelInterfaces.tt Line: 15
     {
-        STRING = 0,
-        NUMERICAL = 1,
-        BOOL = 2,
-        TIME = 3,
-        TIMEZ = 4,
+        CHAR = 0,
+        STRING = 1,
+        NUMERICAL = 2,
+        BOOL = 3,
+        TIME = 4,
         DATE = 5,
         DATETIME = 6,
         DATETIMEZ = 7,
-        DATETIMEOFFSET = 8,
-        TIMESPAN = 9,
         ENUMERATION = 10,
         CATALOG = 11,
         CATALOGS = 12,
         DOCUMENT = 13,
         DOCUMENTS = 14,
         ANY = 15,
+    }
+    public enum EnumTimeAccType // ModelInterfaces.tt Line: 15
+    {
+        SECOND = 0,
+        MINUTE = 1,
+        HOUR = 2,
+        TEN_MSEC = 3,
     }
     public enum EnumEnumerationType // ModelInterfaces.tt Line: 15
     {
@@ -367,13 +372,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IDataType // ModelInterfaces.tt Line: 29
     {
     	EnumDataType DataTypeEnum { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNullable { get; } // ModelInterfaces.tt Line: 51
     	uint Length { get; } // ModelInterfaces.tt Line: 51
+    	bool IsPositive { get; } // ModelInterfaces.tt Line: 51
     	uint Accuracy { get; } // ModelInterfaces.tt Line: 51
     	string ObjectGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<string> ListObjectGuids { get; } // ModelInterfaces.tt Line: 42
-    	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 51
-    	bool IsPositive { get; } // ModelInterfaces.tt Line: 51
-    	bool IsNullable { get; } // ModelInterfaces.tt Line: 51
     	bool IsPKey { get; } // ModelInterfaces.tt Line: 51
     	bool IsRefParent { get; } // ModelInterfaces.tt Line: 51
     }
@@ -508,6 +512,21 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IDataType DataType { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	EnumTimeAccType AccuracyOfTime { get; } // ModelInterfaces.tt Line: 51
+    	string MinValueRequirement { get; } // ModelInterfaces.tt Line: 51
+    	string MaxValueRequirement { get; } // ModelInterfaces.tt Line: 51
+    	string MinLengthRequirement { get; } // ModelInterfaces.tt Line: 51
+    	string MaxLengthRequirement { get; } // ModelInterfaces.tt Line: 51
+    	
+    	///////////////////////////////////////////////////
+    	/// 36
+    	///////////////////////////////////////////////////
+    	Google.Protobuf.WellKnownTypes.Timestamp MinDateRequirement { get; } // ModelInterfaces.tt Line: 51
+    	
+    	///////////////////////////////////////////////////
+    	/// 37
+    	///////////////////////////////////////////////////
+    	Google.Protobuf.WellKnownTypes.Timestamp MaxDateRequirement { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position

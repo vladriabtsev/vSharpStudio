@@ -7081,14 +7081,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 65
+            vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
             vm.Length = from.Length; // Clone.tt Line: 65
+            vm.IsPositive = from.IsPositive; // Clone.tt Line: 65
             vm.Accuracy = from.Accuracy; // Clone.tt Line: 65
             vm.ObjectGuid = from.ObjectGuid; // Clone.tt Line: 65
             foreach (var t in from.ListObjectGuids) // Clone.tt Line: 44
                 vm.ListObjectGuids.Add(t);
-            vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 65
-            vm.IsPositive = from.IsPositive; // Clone.tt Line: 65
-            vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
             vm.IsPKey = from.IsPKey; // Clone.tt Line: 65
             vm.IsRefParent = from.IsRefParent; // Clone.tt Line: 65
             vm.IsNotifying = true;
@@ -7100,7 +7099,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             Contract.Requires(to != null);
             Contract.Requires(from != null);
             to.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 141
+            to.IsNullable = from.IsNullable; // Clone.tt Line: 141
             to.Length = from.Length; // Clone.tt Line: 141
+            to.IsPositive = from.IsPositive; // Clone.tt Line: 141
             to.Accuracy = from.Accuracy; // Clone.tt Line: 141
             to.ObjectGuid = from.ObjectGuid; // Clone.tt Line: 141
                 to.ListObjectGuids.Clear(); // Clone.tt Line: 127
@@ -7108,9 +7109,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 {
                     to.ListObjectGuids.Add(tt);
                 }
-            to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 141
-            to.IsPositive = from.IsPositive; // Clone.tt Line: 141
-            to.IsNullable = from.IsNullable; // Clone.tt Line: 141
             to.IsPKey = from.IsPKey; // Clone.tt Line: 141
             to.IsRefParent = from.IsRefParent; // Clone.tt Line: 141
         }
@@ -7142,7 +7140,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.DataTypeEnum = (EnumDataType)m.DataTypeEnum; // Clone.tt Line: 221
+            vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
             vm.Length = m.Length; // Clone.tt Line: 221
+            vm.IsPositive = m.IsPositive; // Clone.tt Line: 221
             vm.Accuracy = m.Accuracy; // Clone.tt Line: 221
             vm.ObjectGuid = m.ObjectGuid; // Clone.tt Line: 221
             vm.ListObjectGuids = new ObservableCollection<string>(); // Clone.tt Line: 184
@@ -7150,9 +7150,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             {
                 vm.ListObjectGuids.Add(t);
             }
-            vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 221
-            vm.IsPositive = m.IsPositive; // Clone.tt Line: 221
-            vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
             vm.IsPKey = m.IsPKey; // Clone.tt Line: 221
             vm.IsRefParent = m.IsRefParent; // Clone.tt Line: 221
             vm.IsNotifying = true;
@@ -7165,14 +7162,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             Contract.Requires(vm != null);
             Proto.Config.proto_data_type m = new Proto.Config.proto_data_type(); // Clone.tt Line: 239
             m.DataTypeEnum = (Proto.Config.proto_enum_data_type)vm.DataTypeEnum; // Clone.tt Line: 274
+            m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
             m.Length = vm.Length; // Clone.tt Line: 276
+            m.IsPositive = vm.IsPositive; // Clone.tt Line: 276
             m.Accuracy = vm.Accuracy; // Clone.tt Line: 276
             m.ObjectGuid = vm.ObjectGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListObjectGuids) // Clone.tt Line: 242
                 m.ListObjectGuids.Add(t); // Clone.tt Line: 244
-            m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 276
-            m.IsPositive = vm.IsPositive; // Clone.tt Line: 276
-            m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
             m.IsPKey = vm.IsPKey; // Clone.tt Line: 276
             m.IsRefParent = vm.IsRefParent; // Clone.tt Line: 276
             return m;
@@ -7214,6 +7210,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDataTypeEnumChanged();
         
         [PropertyOrderAttribute(2)]
+        [DisplayName("Can be NULL")]
+        [Description("If unchecked always expected data")]
+        public bool IsNullable // Property.tt Line: 55
+        { 
+            get { return this._IsNullable; }
+            set
+            {
+                if (this._IsNullable != value)
+                {
+                    this.OnIsNullableChanging(ref value);
+                    this._IsNullable = value;
+                    this.OnIsNullableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNullable;
+        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsNullableChanged();
+        
+        [PropertyOrderAttribute(3)]
         [DisplayName("Length")]
         [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]
         public uint Length // Property.tt Line: 55
@@ -7236,9 +7255,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnLengthChanging(ref uint to); // Property.tt Line: 79
         partial void OnLengthChanged();
         
-        [PropertyOrderAttribute(3)]
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Positive")]
+        [Description("Expected numerical value always >= 0")]
+        public bool IsPositive // Property.tt Line: 55
+        { 
+            get { return this._IsPositive; }
+            set
+            {
+                if (this._IsPositive != value)
+                {
+                    this.OnIsPositiveChanging(ref value);
+                    this._IsPositive = value;
+                    this.OnIsPositiveChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsPositive;
+        partial void OnIsPositiveChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsPositiveChanged();
+        
+        [PropertyOrderAttribute(5)]
         [DisplayName("Accuracy")]
-        [Description("Number of decimal places for numeric data)")]
+        [Description("Number of decimal places in fractional part for numeric data)")]
         public uint Accuracy // Property.tt Line: 55
         { 
             get { return this._Accuracy; }
@@ -7259,7 +7301,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnAccuracyChanging(ref uint to); // Property.tt Line: 79
         partial void OnAccuracyChanged();
         
-        [PropertyOrderAttribute(4)]
+        [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         public string ObjectGuid // Property.tt Line: 55
         { 
@@ -7281,7 +7323,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnObjectGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnObjectGuidChanged();
         
-        [PropertyOrderAttribute(5)]
+        [PropertyOrderAttribute(7)]
         public ObservableCollection<string> ListObjectGuids // Property.tt Line: 8
         { 
             get { return this._ListObjectGuids; }
@@ -7301,75 +7343,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IReadOnlyList<string> IDataType.ListObjectGuids { get { return (this as DataType).ListObjectGuids; } } // Property.tt Line: 26
         partial void OnListObjectGuidsChanging(ObservableCollection<string> to); // Property.tt Line: 27
         partial void OnListObjectGuidsChanged();
-        
-        [PropertyOrderAttribute(9)]
-        [DisplayName("FK Index")]
-        [Description("Create Index if this property is using foreign key (for Catalog or Document type)")]
-        public bool IsIndexFk // Property.tt Line: 55
-        { 
-            get { return this._IsIndexFk; }
-            set
-            {
-                if (this._IsIndexFk != value)
-                {
-                    this.OnIsIndexFkChanging(ref value);
-                    this._IsIndexFk = value;
-                    this.OnIsIndexFkChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsIndexFk;
-        partial void OnIsIndexFkChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsIndexFkChanged();
-        
-        [PropertyOrderAttribute(11)]
-        [DisplayName("Positive")]
-        [Description("Expected always >= 0")]
-        public bool IsPositive // Property.tt Line: 55
-        { 
-            get { return this._IsPositive; }
-            set
-            {
-                if (this._IsPositive != value)
-                {
-                    this.OnIsPositiveChanging(ref value);
-                    this._IsPositive = value;
-                    this.OnIsPositiveChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsPositive;
-        partial void OnIsPositiveChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsPositiveChanged();
-        
-        [PropertyOrderAttribute(12)]
-        [DisplayName("Can be NULL")]
-        [Description("If unchecked always expected data")]
-        public bool IsNullable // Property.tt Line: 55
-        { 
-            get { return this._IsNullable; }
-            set
-            {
-                if (this._IsNullable != value)
-                {
-                    this.OnIsNullableChanging(ref value);
-                    this._IsNullable = value;
-                    this.OnIsNullableChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsNullable;
-        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsNullableChanged();
         
         [BrowsableAttribute(false)]
         public bool IsPKey // Property.tt Line: 55
@@ -10903,6 +10876,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
+            vm.AccuracyOfTime = from.AccuracyOfTime; // Clone.tt Line: 65
+            vm.MinValueRequirement = from.MinValueRequirement; // Clone.tt Line: 65
+            vm.MaxValueRequirement = from.MaxValueRequirement; // Clone.tt Line: 65
+            vm.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 65
+            vm.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 65
+            vm.MinDateRequirement = from.MinDateRequirement; // Clone.tt Line: 65
+            vm.MaxDateRequirement = from.MaxDateRequirement; // Clone.tt Line: 65
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -10926,6 +10906,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
+            to.AccuracyOfTime = from.AccuracyOfTime; // Clone.tt Line: 141
+            to.MinValueRequirement = from.MinValueRequirement; // Clone.tt Line: 141
+            to.MaxValueRequirement = from.MaxValueRequirement; // Clone.tt Line: 141
+            to.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 141
+            to.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 141
+            to.MinDateRequirement = from.MinDateRequirement; // Clone.tt Line: 141
+            to.MaxDateRequirement = from.MaxDateRequirement; // Clone.tt Line: 141
             to.Position = from.Position; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -11001,6 +10988,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.AccuracyOfTime = (EnumTimeAccType)m.AccuracyOfTime; // Clone.tt Line: 221
+            vm.MinValueRequirement = m.MinValueRequirement; // Clone.tt Line: 221
+            vm.MaxValueRequirement = m.MaxValueRequirement; // Clone.tt Line: 221
+            vm.MinLengthRequirement = m.MinLengthRequirement; // Clone.tt Line: 221
+            vm.MaxLengthRequirement = m.MaxLengthRequirement; // Clone.tt Line: 221
+            vm.MinDateRequirement = m.MinDateRequirement; // Clone.tt Line: 221
+            vm.MaxDateRequirement = m.MaxDateRequirement; // Clone.tt Line: 221
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -11028,6 +11022,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            m.AccuracyOfTime = (Proto.Config.proto_enum_time_acc_type)vm.AccuracyOfTime; // Clone.tt Line: 274
+            m.MinValueRequirement = vm.MinValueRequirement; // Clone.tt Line: 276
+            m.MaxValueRequirement = vm.MaxValueRequirement; // Clone.tt Line: 276
+            m.MinLengthRequirement = vm.MinLengthRequirement; // Clone.tt Line: 276
+            m.MaxLengthRequirement = vm.MaxLengthRequirement; // Clone.tt Line: 276
+            m.MinDateRequirement = vm.MinDateRequirement; // Clone.tt Line: 276
+            m.MaxDateRequirement = vm.MaxDateRequirement; // Clone.tt Line: 276
             m.Position = vm.Position; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -11155,9 +11156,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [PropertyOrderAttribute(4)]
-        [ExpandableObjectAttribute()]
-        [DisplayName("Type")]
+        [BrowsableAttribute(false)]
         public DataType DataType // Property.tt Line: 55
         { 
             get { return this._DataType; }
@@ -11221,6 +11220,173 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
+        
+        [PropertyOrderAttribute(31)]
+        [DisplayName("Accuracy")]
+        [Description("Accuracy of time")]
+        public EnumTimeAccType AccuracyOfTime // Property.tt Line: 55
+        { 
+            get { return this._AccuracyOfTime; }
+            set
+            {
+                if (this._AccuracyOfTime != value)
+                {
+                    this.OnAccuracyOfTimeChanging(ref value);
+                    this._AccuracyOfTime = value;
+                    this.OnAccuracyOfTimeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumTimeAccType _AccuracyOfTime;
+        partial void OnAccuracyOfTimeChanging(ref EnumTimeAccType to); // Property.tt Line: 79
+        partial void OnAccuracyOfTimeChanged();
+        
+        [PropertyOrderAttribute(32)]
+        [DisplayName("Min Value")]
+        [Description("Minimum value of valid data")]
+        public string MinValueRequirement // Property.tt Line: 55
+        { 
+            get { return this._MinValueRequirement; }
+            set
+            {
+                if (this._MinValueRequirement != value)
+                {
+                    this.OnMinValueRequirementChanging(ref value);
+                    this._MinValueRequirement = value;
+                    this.OnMinValueRequirementChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _MinValueRequirement = string.Empty;
+        partial void OnMinValueRequirementChanging(ref string to); // Property.tt Line: 79
+        partial void OnMinValueRequirementChanged();
+        
+        [PropertyOrderAttribute(33)]
+        [DisplayName("Max Value")]
+        [Description("Maximum value of valid data")]
+        public string MaxValueRequirement // Property.tt Line: 55
+        { 
+            get { return this._MaxValueRequirement; }
+            set
+            {
+                if (this._MaxValueRequirement != value)
+                {
+                    this.OnMaxValueRequirementChanging(ref value);
+                    this._MaxValueRequirement = value;
+                    this.OnMaxValueRequirementChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _MaxValueRequirement = string.Empty;
+        partial void OnMaxValueRequirementChanging(ref string to); // Property.tt Line: 79
+        partial void OnMaxValueRequirementChanged();
+        
+        [PropertyOrderAttribute(34)]
+        [DisplayName("Min Length")]
+        [Description("Minimum length of string")]
+        public string MinLengthRequirement // Property.tt Line: 55
+        { 
+            get { return this._MinLengthRequirement; }
+            set
+            {
+                if (this._MinLengthRequirement != value)
+                {
+                    this.OnMinLengthRequirementChanging(ref value);
+                    this._MinLengthRequirement = value;
+                    this.OnMinLengthRequirementChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _MinLengthRequirement = string.Empty;
+        partial void OnMinLengthRequirementChanging(ref string to); // Property.tt Line: 79
+        partial void OnMinLengthRequirementChanged();
+        
+        [PropertyOrderAttribute(35)]
+        [DisplayName("Max Length")]
+        [Description("Maximum length of string")]
+        public string MaxLengthRequirement // Property.tt Line: 55
+        { 
+            get { return this._MaxLengthRequirement; }
+            set
+            {
+                if (this._MaxLengthRequirement != value)
+                {
+                    this.OnMaxLengthRequirementChanging(ref value);
+                    this._MaxLengthRequirement = value;
+                    this.OnMaxLengthRequirementChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _MaxLengthRequirement = string.Empty;
+        partial void OnMaxLengthRequirementChanging(ref string to); // Property.tt Line: 79
+        partial void OnMaxLengthRequirementChanged();
+        
+        
+        ///////////////////////////////////////////////////
+        /// 36
+        ///////////////////////////////////////////////////
+        [BrowsableAttribute(false)]
+        public Google.Protobuf.WellKnownTypes.Timestamp MinDateRequirement // Property.tt Line: 55
+        { 
+            get { return this._MinDateRequirement; }
+            set
+            {
+                if (this._MinDateRequirement != value)
+                {
+                    this.OnMinDateRequirementChanging(ref value);
+                    this._MinDateRequirement = value;
+                    this.OnMinDateRequirementChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private Google.Protobuf.WellKnownTypes.Timestamp _MinDateRequirement;
+        partial void OnMinDateRequirementChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 79
+        partial void OnMinDateRequirementChanged();
+        //IGoogle.Protobuf.WellKnownTypes.Timestamp IProperty.MinDateRequirement { get { return this._MinDateRequirement; } }
+        
+        
+        ///////////////////////////////////////////////////
+        /// 37
+        ///////////////////////////////////////////////////
+        [BrowsableAttribute(false)]
+        public Google.Protobuf.WellKnownTypes.Timestamp MaxDateRequirement // Property.tt Line: 55
+        { 
+            get { return this._MaxDateRequirement; }
+            set
+            {
+                if (this._MaxDateRequirement != value)
+                {
+                    this.OnMaxDateRequirementChanging(ref value);
+                    this._MaxDateRequirement = value;
+                    this.OnMaxDateRequirementChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private Google.Protobuf.WellKnownTypes.Timestamp _MaxDateRequirement;
+        partial void OnMaxDateRequirementChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 79
+        partial void OnMaxDateRequirementChanged();
+        //IGoogle.Protobuf.WellKnownTypes.Timestamp IProperty.MaxDateRequirement { get { return this._MaxDateRequirement; } }
         
         
         ///////////////////////////////////////////////////
