@@ -5529,21 +5529,21 @@
             },
             {
               "name": "min_date_requirement",
-              "description": "36\n@attr [BrowsableAttribute(false)]",
+              "description": "@attr [DisplayName(\"Min Date\")]\n@attr [Description(\"Minimum value of valid date\")]\n@attr [PropertyOrderAttribute(36)]",
               "label": "",
-              "type": "Timestamp",
-              "longType": "google.protobuf.Timestamp",
-              "fullType": "google.protobuf.Timestamp",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
             {
               "name": "max_date_requirement",
-              "description": "37\n@attr [BrowsableAttribute(false)]",
+              "description": "@attr [DisplayName(\"Max Date\")]\n@attr [Description(\"Maximum value of valid date\")]\n@attr [PropertyOrderAttribute(37)]",
               "label": "",
-              "type": "Timestamp",
-              "longType": "google.protobuf.Timestamp",
-              "fullType": "google.protobuf.Timestamp",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5869,6 +5869,37 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "timestamp_nullable",
+          "longName": "timestamp_nullable",
+          "fullName": "proto_config.timestamp_nullable",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "has_value",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
               "ismap": false,
               "defaultValue": ""
             }

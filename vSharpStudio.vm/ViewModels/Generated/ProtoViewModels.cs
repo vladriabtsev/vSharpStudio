@@ -11336,12 +11336,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnMaxLengthRequirementChanging(ref string to); // Property.tt Line: 79
         partial void OnMaxLengthRequirementChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// 36
-        ///////////////////////////////////////////////////
-        [BrowsableAttribute(false)]
-        public Google.Protobuf.WellKnownTypes.Timestamp MinDateRequirement // Property.tt Line: 55
+        [DisplayName("Min Date")]
+        [Description("Minimum value of valid date")]
+        [PropertyOrderAttribute(36)]
+        public string MinDateRequirement // Property.tt Line: 55
         { 
             get { return this._MinDateRequirement; }
             set
@@ -11357,17 +11355,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private Google.Protobuf.WellKnownTypes.Timestamp _MinDateRequirement;
-        partial void OnMinDateRequirementChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 79
+        private string _MinDateRequirement = string.Empty;
+        partial void OnMinDateRequirementChanging(ref string to); // Property.tt Line: 79
         partial void OnMinDateRequirementChanged();
-        //IGoogle.Protobuf.WellKnownTypes.Timestamp IProperty.MinDateRequirement { get { return this._MinDateRequirement; } }
         
-        
-        ///////////////////////////////////////////////////
-        /// 37
-        ///////////////////////////////////////////////////
-        [BrowsableAttribute(false)]
-        public Google.Protobuf.WellKnownTypes.Timestamp MaxDateRequirement // Property.tt Line: 55
+        [DisplayName("Max Date")]
+        [Description("Maximum value of valid date")]
+        [PropertyOrderAttribute(37)]
+        public string MaxDateRequirement // Property.tt Line: 55
         { 
             get { return this._MaxDateRequirement; }
             set
@@ -11383,10 +11378,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private Google.Protobuf.WellKnownTypes.Timestamp _MaxDateRequirement;
-        partial void OnMaxDateRequirementChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 79
+        private string _MaxDateRequirement = string.Empty;
+        partial void OnMaxDateRequirementChanging(ref string to); // Property.tt Line: 79
         partial void OnMaxDateRequirementChanged();
-        //IGoogle.Protobuf.WellKnownTypes.Timestamp IProperty.MaxDateRequirement { get { return this._MaxDateRequirement; } }
         
         
         ///////////////////////////////////////////////////

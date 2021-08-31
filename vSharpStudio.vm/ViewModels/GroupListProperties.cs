@@ -133,10 +133,12 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyString(string name, uint length, bool isNullable = false)
+        public Property AddPropertyString(string name, uint length, bool isNullable = false, uint? min_length = null, uint? max_length = null)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length, IsNullable = isNullable };
             var node = new Property(this) { Name = name, DataType = dt };
+            node.MinLengthRequirement = min_length?.ToString();
+            node.MaxLengthRequirement = max_length?.ToString();
             this.NodeAddNewSubNode(node);
             return node;
         }

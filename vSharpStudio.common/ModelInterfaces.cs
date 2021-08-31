@@ -517,16 +517,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string MaxValueRequirement { get; } // ModelInterfaces.tt Line: 51
     	string MinLengthRequirement { get; } // ModelInterfaces.tt Line: 51
     	string MaxLengthRequirement { get; } // ModelInterfaces.tt Line: 51
-    	
-    	///////////////////////////////////////////////////
-    	/// 36
-    	///////////////////////////////////////////////////
-    	Google.Protobuf.WellKnownTypes.Timestamp MinDateRequirement { get; } // ModelInterfaces.tt Line: 51
-    	
-    	///////////////////////////////////////////////////
-    	/// 37
-    	///////////////////////////////////////////////////
-    	Google.Protobuf.WellKnownTypes.Timestamp MaxDateRequirement { get; } // ModelInterfaces.tt Line: 51
+    	string MinDateRequirement { get; } // ModelInterfaces.tt Line: 51
+    	string MaxDateRequirement { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position

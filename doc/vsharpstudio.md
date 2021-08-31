@@ -63,6 +63,7 @@
     - [proto_settings_config](#proto_config.proto_settings_config)
     - [proto_user_settings](#proto_config.proto_user_settings)
     - [proto_user_settings_opened_config](#proto_config.proto_user_settings_opened_config)
+    - [timestamp_nullable](#proto_config.timestamp_nullable)
   
     - [db_id_generator_method](#proto_config.db_id_generator_method)
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
@@ -1315,8 +1316,8 @@ Configuration model
 | max_value_requirement | [string](#string) |  | @attr [PropertyOrderAttribute(33)] @attr [DisplayName(&#34;Max Value&#34;)] @attr [Description(&#34;Maximum value of valid data&#34;)] |
 | min_length_requirement | [string](#string) |  | @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Min Length&#34;)] @attr [Description(&#34;Minimum length of string&#34;)] |
 | max_length_requirement | [string](#string) |  | @attr [PropertyOrderAttribute(35)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum length of string&#34;)] |
-| min_date_requirement | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | 36 @attr [BrowsableAttribute(false)] |
-| max_date_requirement | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | 37 @attr [BrowsableAttribute(false)] |
+| min_date_requirement | [string](#string) |  | @attr [DisplayName(&#34;Min Date&#34;)] @attr [Description(&#34;Minimum value of valid date&#34;)] @attr [PropertyOrderAttribute(36)] |
+| max_date_requirement | [string](#string) |  | @attr [DisplayName(&#34;Max Date&#34;)] @attr [Description(&#34;Maximum value of valid date&#34;)] @attr [PropertyOrderAttribute(37)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -1414,6 +1415,22 @@ User&#39;s role
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | opened_last_time_on | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [BrowsableAttribute(false)] |
 | config_path | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.timestamp_nullable"></a>
+
+### timestamp_nullable
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| has_value | [bool](#bool) |  |  |
+| value | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
 
 

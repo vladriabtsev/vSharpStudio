@@ -278,8 +278,8 @@ namespace vSharpStudio.vm.ViewModels
                 this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
             {
-                lst.Add(this.GetPropertyName(() => this.MinDateRequirementEdit));
-                lst.Add(this.GetPropertyName(() => this.MaxDateRequirementEdit));
+                lst.Add(this.GetPropertyName(() => this.MinDateRequirement));
+                lst.Add(this.GetPropertyName(() => this.MaxDateRequirement));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
@@ -348,48 +348,6 @@ namespace vSharpStudio.vm.ViewModels
             set
             {
                 this.DataType.IsPositive = value;
-                this.NotifyPropertyChanged();
-                this.ValidateProperty();
-            }
-        }
-        [DisplayName("Min Date")]
-        [Description("Minimum value of valid date")]
-        [PropertyOrderAttribute(36)]
-        public DateTime? MinDateRequirementEdit
-        {
-            get { return this.MinDateRequirement?.ToDateTime(); }
-            set
-            {
-                if (value != null)
-                {
-                    var t = DateTime.SpecifyKind(value.Value, DateTimeKind.Utc);
-                    this.MinDateRequirement = t.ToTimestamp();
-                }
-                else
-                {
-                    this.MinDateRequirement = null;
-                }
-                this.NotifyPropertyChanged();
-                this.ValidateProperty();
-            }
-        }
-        [DisplayName("Max Date")]
-        [Description("Maximum value of valid date")]
-        [PropertyOrderAttribute(37)]
-        public DateTime? MaxDateRequirementEdit
-        {
-            get { return this.MaxDateRequirement?.ToDateTime(); }
-            set
-            {
-                if (value != null)
-                {
-                    var t = DateTime.SpecifyKind(value.Value, DateTimeKind.Utc);
-                    this.MaxDateRequirement = t.ToTimestamp();
-                }
-                else
-                {
-                    this.MaxDateRequirement = null;
-                }
                 this.NotifyPropertyChanged();
                 this.ValidateProperty();
             }

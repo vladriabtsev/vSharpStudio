@@ -24,7 +24,10 @@ message bool_nullable {
     bool has_value = 1;
     bool value = 2;
 }
-
+message timestamp_nullable {
+    bool has_value = 1;
+    google.protobuf.Timestamp value = 2;
+}
 /** 
  * @exclude
  *    ##### IMPORTANT #####
@@ -904,12 +907,14 @@ message proto_property {
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum length of string")]
     string max_length_requirement = 19;
-    // 36
-    // @attr [BrowsableAttribute(false)]
-    google.protobuf.Timestamp min_date_requirement = 20;
-    // 37
-    // @attr [BrowsableAttribute(false)]
-    google.protobuf.Timestamp max_date_requirement = 21;
+    // @attr [DisplayName("Min Date")]
+    // @attr [Description("Minimum value of valid date")]
+    // @attr [PropertyOrderAttribute(36)]
+    string min_date_requirement = 20;
+    // @attr [DisplayName("Max Date")]
+    // @attr [Description("Maximum value of valid date")]
+    // @attr [PropertyOrderAttribute(37)]
+    string max_date_requirement = 21;
 
     // Protobuf field position
     // Reserved positions: 1 - primary key
