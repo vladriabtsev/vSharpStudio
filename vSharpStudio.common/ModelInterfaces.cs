@@ -32,12 +32,20 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         DOCUMENTS = 14,
         ANY = 15,
     }
-    public enum EnumTimeAccType // ModelInterfaces.tt Line: 15
+    public enum EnumTimeAccuracyType // ModelInterfaces.tt Line: 15
     {
         SECOND = 0,
         MINUTE = 1,
         HOUR = 2,
-        TEN_MSEC = 3,
+        MS = 3,
+        MS10 = 4,
+        MS100 = 5,
+    }
+    public enum EnumDateTimeAccuracyType // ModelInterfaces.tt Line: 15
+    {
+        DT_SECOND = 0,
+        DT_MINUTE = 1,
+        DT_HOUR = 2,
     }
     public enum EnumEnumerationType // ModelInterfaces.tt Line: 15
     {
@@ -512,13 +520,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IDataType DataType { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	EnumTimeAccType AccuracyOfTime { get; } // ModelInterfaces.tt Line: 51
-    	string MinValueRequirement { get; } // ModelInterfaces.tt Line: 51
-    	string MaxValueRequirement { get; } // ModelInterfaces.tt Line: 51
+    	string RangeValuesRequirementStr { get; } // ModelInterfaces.tt Line: 51
     	string MinLengthRequirement { get; } // ModelInterfaces.tt Line: 51
     	string MaxLengthRequirement { get; } // ModelInterfaces.tt Line: 51
-    	string MinDateRequirement { get; } // ModelInterfaces.tt Line: 51
-    	string MaxDateRequirement { get; } // ModelInterfaces.tt Line: 51
+    	EnumTimeAccuracyType AccuracyForTime { get; } // ModelInterfaces.tt Line: 51
+    	EnumDateTimeAccuracyType AccuracyForDateTime { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position

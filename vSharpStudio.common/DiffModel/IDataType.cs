@@ -16,9 +16,12 @@ namespace vSharpStudio.common
         //string DefaultValue { get; }
         //string DefaultNotNullValue { get; }
         string PropValueValue { get; }
-        string ClrTypeNameNotNull { get; }
+        //string ClrTypeNameNotNull { get; }
         Type ClrType { get; }
-        BigInteger MaxNumericalValue { get; }
+        string MinValue { get; }
+        string MaxValue { get; }
+        string ClrLiteralSuf { get; }
+        BigInteger? MaxNumericalValue { get; }
         EnumEnumerationType EnumerationType { get; }
         int EnumerationStrFieldLength { get; }
         bool IsEnumStr();

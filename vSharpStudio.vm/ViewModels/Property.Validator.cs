@@ -11,6 +11,23 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class PropertyValidator
     {
+        public static PropertyRangeValuesRequirements GetRangeValidation(Property p)
+        {
+            return PropertyRangeValuesRequirements.GetRangeValidation(p);
+        }
+        private void ValidateRangeValuesRequirements(ValidationContext<Property> cntx, Property p)
+        {
+            var req = PropertyValidator.GetRangeValidation(p);
+            if (req.IsHasErrors)
+            {
+                foreach (var t in req.ListErrors)
+                {
+                    var vf = new ValidationFailure(nameof(p.RangeValuesRequirements), t);
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+            }
+        }
         public PropertyValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
@@ -255,65 +272,10 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             });
-            this.RuleFor(x => x.MinDateRequirement).Must((p, y) =>
-            {
-                if (string.IsNullOrWhiteSpace(y))
-                    return true;
-                DateTime res;
-                if (p.DataTypeEnum == EnumDataType.DATE || p.DataTypeEnum == EnumDataType.DATETIME || p.DataTypeEnum == EnumDataType.DATETIMEZ)
-                {
-                    // https://docs.microsoft.com/en-us/dotnet/standard/base-types/parsing-datetime
-                    if (!DateTime.TryParse(y, out res))
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }).WithMessage("Can't parse by DateTime.TryParse()");
-            this.RuleFor(x => x.MaxDateRequirement).Must((p, y) =>
-            {
-                if (string.IsNullOrWhiteSpace(y))
-                    return true;
-                DateTime res;
-                if (p.DataTypeEnum == EnumDataType.DATE || p.DataTypeEnum == EnumDataType.DATETIME || p.DataTypeEnum == EnumDataType.DATETIMEZ)
-                {
-                    // https://docs.microsoft.com/en-us/dotnet/standard/base-types/parsing-datetime
-                    if (!DateTime.TryParse(y, out res))
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }).WithMessage("Can't parse by DateTime.TryParse()");
-            this.RuleFor(x => x.MinValueRequirement).Custom((x, cntx) =>
+            this.RuleFor(x => x.RangeValuesRequirementStr).Custom((x, cntx) =>
             {
                 var p = (Property)cntx.InstanceToValidate;
-                if (string.IsNullOrWhiteSpace(x))
-                    return;
-                if (p.DataTypeEnum != EnumDataType.NUMERICAL)
-                    return;
-                var mes = CanParse(x, p);
-                if (!string.IsNullOrWhiteSpace(mes))
-                {
-                    var vf = new ValidationFailure(nameof(p.MinValueRequirement), mes);
-                    vf.Severity = Severity.Error;
-                    cntx.AddFailure(vf);
-                }
-            });
-            this.RuleFor(x => x.MaxValueRequirement).Custom((x, cntx) =>
-            {
-                var p = (Property)cntx.InstanceToValidate;
-                if (string.IsNullOrWhiteSpace(x))
-                    return;
-                if (p.DataTypeEnum != EnumDataType.NUMERICAL)
-                    return;
-                var mes = CanParse(x, p);
-                if (!string.IsNullOrWhiteSpace(mes))
-                {
-                    var vf = new ValidationFailure(nameof(p.MaxValueRequirement), mes);
-                    vf.Severity = Severity.Error;
-                    cntx.AddFailure(vf);
-                }
+                ValidateRangeValuesRequirements(cntx, p);
             });
 
             #region ObjectGuid
@@ -538,118 +500,6 @@ namespace vSharpStudio.vm.ViewModels
             });
             #endregion Loose data
         }
-
-        private static string CanParse(string x, Property p)
-        {
-            var dt = p.DataType;
-            if (p.Accuracy == 0)
-            {
-                if (p.IsPositive)
-                {
-                    if (dt.MaxNumericalValue <= byte.MaxValue)
-                    {
-                        byte res;
-                        if (!byte.TryParse(x, out res))
-                            return $"Can't parse value by byte.TryParse()";
-                    }
-                    else if (dt.MaxNumericalValue <= ushort.MaxValue)
-                    {
-                        ushort res;
-                        if (!ushort.TryParse(x, out res))
-                            return $"Can't parse value by ushort.TryParse()";
-                    }
-                    else if (dt.MaxNumericalValue <= uint.MaxValue)
-                    {
-                        uint res;
-                        if (!uint.TryParse(x, out res))
-                            return $"Can't parse value by uint.TryParse()";
-                    }
-                    else if (dt.MaxNumericalValue <= ulong.MaxValue) // long, not ulong
-                    {
-                        ulong res;
-                        if (!ulong.TryParse(x, out res))
-                            return $"Can't parse value by ulong.TryParse()";
-                    }
-                    else if (dt.Length <= 28)
-                    {
-                        decimal res;
-                        if (!decimal.TryParse(x, out res))
-                            return $"Can't parse value by decimal.TryParse()";
-                    }
-                    throw new Exception("Not supported operation");
-                    // return "BigInteger" + sn;
-                }
-                else
-                {
-                    if (dt.MaxNumericalValue <= sbyte.MaxValue)
-                    {
-                        sbyte res;
-                        if (!sbyte.TryParse(x, out res))
-                            return $"Can't parse value by sbyte.TryParse()";
-                    }
-                    else if (dt.MaxNumericalValue <= short.MaxValue)
-                    {
-                        short res;
-                        if (!short.TryParse(x, out res))
-                            return $"Can't parse value by short.TryParse()";
-                    }
-                    else if (dt.MaxNumericalValue <= int.MaxValue)
-                    {
-                        int res;
-                        if (!int.TryParse(x, out res))
-                            return $"Can't parse value by int.TryParse()";
-                    }
-                    else if (dt.MaxNumericalValue <= long.MaxValue)
-                    {
-                        long res;
-                        if (!long.TryParse(x, out res))
-                            return $"Can't parse value by long.TryParse()";
-                    }
-                    else if (dt.Length <= 28)
-                    {
-                        decimal res;
-                        if (!decimal.TryParse(x, out res))
-                            return $"Can't parse value by decimal.TryParse()";
-                    }
-                    throw new Exception("Not supported operation");
-                    // return "BigInteger" + sn;
-                }
-            }
-            else
-            {
-                // float   ±1.5 x 10−45   to ±3.4    x 10+38    ~6-9 digits
-                // double  ±5.0 × 10−324  to ±1.7    × 10+308   ~15-17 digits
-                // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
-                if (dt.Length == 0)
-                {
-                    //BigDecimal res;
-                    //if (!BigDecimal.TryParse(x, out res))
-                    //    return $"Can't parse value by BigDecimal.TryParse()";
-                }
-                else if (dt.Length <= 6)
-                {
-                    float res;
-                    if (!float.TryParse(x, out res))
-                        return $"Can't parse value by float.TryParse()";
-                }
-                else if (dt.Length <= 15)
-                {
-                    double res;
-                    if (!double.TryParse(x, out res))
-                        return $"Can't parse value by double.TryParse()";
-                }
-                else if (dt.Length < 29)
-                {
-                    decimal res;
-                    if (!decimal.TryParse(x, out res))
-                        return $"Can't parse value by decimal.TryParse()";
-                }
-                throw new Exception("Not supported operation");
-                // return "BigDecimal";
-            }
-            return null;
-        }
-
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Catalog c, IGroupListCatalogs gc)
         {
             if (c.GetUseCodeProperty())

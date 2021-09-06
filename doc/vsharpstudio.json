@@ -213,6 +213,29 @@
           ]
         },
         {
+          "name": "proto_enum_date_time_accuracy_type",
+          "longName": "proto_enum_date_time_accuracy_type",
+          "fullName": "proto_config.proto_enum_date_time_accuracy_type",
+          "description": "",
+          "values": [
+            {
+              "name": "DT_SECOND",
+              "number": "0",
+              "description": "@attr [DisplayName(\"Second\")]\n@attr [Description(\"One second accuracy\")]"
+            },
+            {
+              "name": "DT_MINUTE",
+              "number": "1",
+              "description": "@attr [DisplayName(\"Minute\")]\n@attr [Description(\"One minute accuracy\")]"
+            },
+            {
+              "name": "DT_HOUR",
+              "number": "2",
+              "description": "@attr [DisplayName(\"Hour\")]\n@attr [Description(\"One hour accuracy\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_document_code_unique_scope",
           "longName": "proto_enum_document_code_unique_scope",
           "fullName": "proto_config.proto_enum_document_code_unique_scope",
@@ -259,9 +282,9 @@
           ]
         },
         {
-          "name": "proto_enum_time_acc_type",
-          "longName": "proto_enum_time_acc_type",
-          "fullName": "proto_config.proto_enum_time_acc_type",
+          "name": "proto_enum_time_accuracy_type",
+          "longName": "proto_enum_time_accuracy_type",
+          "fullName": "proto_config.proto_enum_time_accuracy_type",
           "description": "",
           "values": [
             {
@@ -280,9 +303,19 @@
               "description": "@attr [DisplayName(\"Hour\")]\n@attr [Description(\"One hour accuracy\")]"
             },
             {
-              "name": "TEN_MSEC",
+              "name": "MS",
               "number": "3",
-              "description": "@attr [DisplayName(\"Ten ms\")]\n@attr [Description(\"Ten milliseconds accuracy\")]"
+              "description": "@attr [DisplayName(\"Millisecond\")]\n@attr [Description(\"One millisecond accuracy\")]"
+            },
+            {
+              "name": "MS10",
+              "number": "4",
+              "description": "@attr [DisplayName(\"Ten ms\")]\n@attr [Description(\"Ten millisecond accuracy\")]"
+            },
+            {
+              "name": "MS100",
+              "number": "5",
+              "description": "@attr [DisplayName(\"Hundred ms\")]\n@attr [Description(\"Hundred millisecond accuracy\")]"
             }
           ]
         },
@@ -5478,28 +5511,8 @@
               "defaultValue": ""
             },
             {
-              "name": "accuracy_of_time",
-              "description": "@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Accuracy\")]\n@attr [Description(\"Accuracy of time\")]",
-              "label": "",
-              "type": "proto_enum_time_acc_type",
-              "longType": "proto_enum_time_acc_type",
-              "fullType": "proto_config.proto_enum_time_acc_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "min_value_requirement",
-              "description": "@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Min Value\")]\n@attr [Description(\"Minimum value of valid data\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "max_value_requirement",
-              "description": "@attr [PropertyOrderAttribute(33)]\n@attr [DisplayName(\"Max Value\")]\n@attr [Description(\"Maximum value of valid data\")]",
+              "name": "range_values_requirement_str",
+              "description": "@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Expected\")]\n@attr [Description(\"Expected values or ranges of values. Use '-' to create range, and ';' to separate values or ranges\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5528,22 +5541,22 @@
               "defaultValue": ""
             },
             {
-              "name": "min_date_requirement",
-              "description": "@attr [DisplayName(\"Min Date\")]\n@attr [Description(\"Minimum value of valid date\")]\n@attr [PropertyOrderAttribute(36)]",
+              "name": "accuracy_for_time",
+              "description": "@attr [PropertyOrderAttribute(36)]\n@attr [DisplayName(\"Time accuracy\")]\n@attr [Description(\"Time accuracy for TimeOnly type. Business model is expecting selected accuracy\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_enum_time_accuracy_type",
+              "longType": "proto_enum_time_accuracy_type",
+              "fullType": "proto_config.proto_enum_time_accuracy_type",
               "ismap": false,
               "defaultValue": ""
             },
             {
-              "name": "max_date_requirement",
-              "description": "@attr [DisplayName(\"Max Date\")]\n@attr [Description(\"Maximum value of valid date\")]\n@attr [PropertyOrderAttribute(37)]",
+              "name": "accuracy_for_date_time",
+              "description": "@attr [PropertyOrderAttribute(37)]\n@attr [DisplayName(\"Time accuracy\")]\n@attr [Description(\"Time accuracy for DateTime or DateTimeOffset type. Business model is expecting selected accuracy\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_enum_date_time_accuracy_type",
+              "longType": "proto_enum_date_time_accuracy_type",
+              "fullType": "proto_config.proto_enum_date_time_accuracy_type",
               "ismap": false,
               "defaultValue": ""
             },

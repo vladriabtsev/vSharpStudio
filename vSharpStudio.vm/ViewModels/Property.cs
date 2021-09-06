@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
+using System.DirectoryServices;
 using System.Numerics;
 using System.Text;
 using FluentValidation;
@@ -44,6 +46,9 @@ namespace vSharpStudio.vm.ViewModels
         public string ComplexObjectNameWithDot() { if (!string.IsNullOrEmpty(this.ComplexObjectName)) return $"{this.ComplexObjectName}."; return ""; }
         partial void OnInit()
         {
+            this.MinLengthRequirement = "";
+            this.MaxLengthRequirement = "";
+            this.RangeValuesRequirementStr = "";
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;
             this.UpdateVisibility();
@@ -261,25 +266,19 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(this.GetPropertyName(() => this.Accuracy));
                 lst.Add(this.GetPropertyName(() => this.IsPositive));
-                lst.Add(this.GetPropertyName(() => this.MinValueRequirement));
-                lst.Add(this.GetPropertyName(() => this.MaxValueRequirement));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.STRING && this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
             {
                 lst.Add(this.GetPropertyName(() => this.Length));
             }
-            if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
-                this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
-                this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
+            if (this.DataType.DataTypeEnum != EnumDataType.TIME)
             {
-                lst.Add(this.GetPropertyName(() => this.AccuracyOfTime));
+                lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
             }
-            if (this.DataType.DataTypeEnum != EnumDataType.DATE &&
-                this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+            if (this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
             {
-                lst.Add(this.GetPropertyName(() => this.MinDateRequirement));
-                lst.Add(this.GetPropertyName(() => this.MaxDateRequirement));
+                lst.Add(this.GetPropertyName(() => this.AccuracyForDateTime));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
@@ -295,6 +294,15 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Accuracy != 0)
             {
                 lst.Add(this.GetPropertyName(() => this.IsPositive));
+            }
+            if (this.DataType.DataTypeEnum != EnumDataType.STRING &&
+                this.DataType.DataTypeEnum != EnumDataType.CHAR &&
+                this.DataType.DataTypeEnum != EnumDataType.DATE &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
+                this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
+            {
+                lst.Add(this.GetPropertyName(() => this.RangeValuesRequirements));
             }
             this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
         }
@@ -386,5 +394,10 @@ namespace vSharpStudio.vm.ViewModels
             get { return this.DataType.ListObjectGuids; }
         }
         #endregion Editing logic
+
+        [BrowsableAttribute(false)]
+        public PropertyRangeValuesRequirements RangeValuesRequirements { get; set; }
+        [BrowsableAttribute(false)]
+        public IPropertyRangeValuesRequirements RangeValuesRequirementsI { get { return RangeValuesRequirements; } }
     }
 }

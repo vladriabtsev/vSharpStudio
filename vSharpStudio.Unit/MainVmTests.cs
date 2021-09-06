@@ -1274,5 +1274,262 @@ namespace vSharpStudio.Unit
             // Assert.IsFalse(diffc.Config.IsDeprecated());
             // Assert.IsFalse(diffc.Config.IsRenamed());
         }
+        [TestMethod]
+        public void Main091_ValidationRequirements()
+        {
+            var vm = new MainPageVM(false);
+            var m = vm.Config.Model;
+            var gc = m.GroupCatalogs;
+            var c = gc.AddCatalog("Simple");
+
+            var p = c.GroupProperties.AddPropertyChar("char_notnullable");
+            #region char
+            p.RangeValuesRequirementStr = "'c'";
+            var v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.AreEqual("'c'", v.ListValues[0]);
+
+            p.RangeValuesRequirementStr = " 'c'";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.AreEqual("'c'", v.ListValues[0]);
+
+            p.RangeValuesRequirementStr = "'c' ";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.AreEqual("'c'", v.ListValues[0]);
+
+            p.RangeValuesRequirementStr = "'c';'b'";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(2, v.ListValues.Count);
+            Assert.AreEqual("'c'", v.ListValues[0]);
+            Assert.AreEqual("'b'", v.ListValues[1]);
+
+            p.RangeValuesRequirementStr = " 'c' ; 'b' ";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(2, v.ListValues.Count);
+            Assert.AreEqual("'c'", v.ListValues[0]);
+            Assert.AreEqual("'b'", v.ListValues[1]);
+
+            p.RangeValuesRequirementStr = "#'c'";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListBoundaries.Count);
+            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.AreEqual(null, v.ListBoundaries[0].BoundaryMin);
+            Assert.AreEqual("'c'", v.ListBoundaries[0].BoundaryMax);
+
+            p.RangeValuesRequirementStr = "'c'#";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListBoundaries.Count);
+            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.AreEqual("'c'", v.ListBoundaries[0].BoundaryMin);
+            Assert.AreEqual(null, v.ListBoundaries[0].BoundaryMax);
+
+            p.RangeValuesRequirementStr = "'a'#'c'";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListBoundaries.Count);
+            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.AreEqual("'a'", v.ListBoundaries[0].BoundaryMin);
+            Assert.AreEqual("'c'", v.ListBoundaries[0].BoundaryMax);
+
+            p.RangeValuesRequirementStr = "#'0';'a'#'c';'b';'d'#";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(3, v.ListBoundaries.Count);
+            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.AreEqual("'b'", v.ListValues[0]);
+
+
+
+            p.RangeValuesRequirementStr = "''";
+            v = p.RangeValuesRequirements;
+            Assert.IsTrue(v.IsHasErrors);
+            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
+            Assert.IsTrue(v.ListErrors[0].Contains("''"));
+
+            p.RangeValuesRequirementStr = "\"c\"";
+            v = p.RangeValuesRequirements;
+            Assert.IsTrue(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListErrors.Count);
+            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
+            Assert.IsTrue(v.ListErrors[0].Contains("\"c\""));
+
+            p.RangeValuesRequirementStr = "  ";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+
+            p.RangeValuesRequirementStr = "";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+
+            p.RangeValuesRequirementStr = null;
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            #endregion char
+
+            p = c.GroupProperties.AddPropertyString("str_unlimited", 0);
+            #region string requirements validation
+            p.RangeValuesRequirementStr = "\"\"";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.AreEqual("\"\"", v.ListValues[0]);
+
+            p.RangeValuesRequirementStr = "\"c\"";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.AreEqual("\"c\"", v.ListValues[0]);
+
+            p.RangeValuesRequirementStr = " \"c\"";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.AreEqual("\"c\"", v.ListValues[0]);
+
+            p.RangeValuesRequirementStr = "\"c\" ";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.AreEqual("\"c\"", v.ListValues[0]);
+
+            p.RangeValuesRequirementStr = "\"c\";\"b\"";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(2, v.ListValues.Count);
+            Assert.AreEqual("\"c\"", v.ListValues[0]);
+            Assert.AreEqual("\"b\"", v.ListValues[1]);
+
+            p.RangeValuesRequirementStr = " \"c\" ; \"b\" ";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(2, v.ListValues.Count);
+            Assert.AreEqual("\"c\"", v.ListValues[0]);
+            Assert.AreEqual("\"b\"", v.ListValues[1]);
+
+
+
+            p.RangeValuesRequirementStr = "'c'";
+            v = p.RangeValuesRequirements;
+            Assert.IsTrue(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListErrors.Count);
+            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
+            Assert.IsTrue(v.ListErrors[0].Contains("'c'"));
+
+            p.RangeValuesRequirementStr = "#\"c\"";
+            v = p.RangeValuesRequirements;
+            Assert.IsTrue(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListErrors.Count);
+            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
+            Assert.IsTrue(v.ListErrors[0].Contains("#\"c\""));
+
+            p.RangeValuesRequirementStr = "\"c\"#";
+            v = p.RangeValuesRequirements;
+            Assert.IsTrue(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListErrors.Count);
+            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
+            Assert.IsTrue(v.ListErrors[0].Contains("\"c\"#"));
+
+            p.RangeValuesRequirementStr = "\"a\"#\"c\"";
+            v = p.RangeValuesRequirements;
+            Assert.IsTrue(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListErrors.Count);
+            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
+            Assert.IsTrue(v.ListErrors[0].Contains("\"a\"#\"c\""));
+
+            p.RangeValuesRequirementStr = "";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            #endregion string requirements validation
+
+            #region date
+            #endregion date
+
+            p = c.GroupProperties.AddPropertyNumerical("intmax", 9, 0);
+            #region int requirements validation
+            p.RangeValuesRequirementStr = "1";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(0, v.ListBoundaries.Count);
+            Assert.AreEqual(1, v.ListValues.Count);
+            Assert.AreEqual("1", v.ListValues[0]);
+
+            p.RangeValuesRequirementStr = "#2";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListBoundaries.Count);
+            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.AreEqual(null, v.ListBoundaries[0].BoundaryMin);
+            Assert.AreEqual("2", v.ListBoundaries[0].BoundaryMax);
+
+            p.RangeValuesRequirementStr = "2#";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListBoundaries.Count);
+            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.AreEqual("2", v.ListBoundaries[0].BoundaryMin);
+            Assert.AreEqual(null, v.ListBoundaries[0].BoundaryMax);
+
+            p.RangeValuesRequirementStr = "3#7";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListBoundaries.Count);
+            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.AreEqual("3", v.ListBoundaries[0].BoundaryMin);
+            Assert.AreEqual("7", v.ListBoundaries[0].BoundaryMax);
+
+            p.RangeValuesRequirementStr = "-7#-3";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListBoundaries.Count);
+            Assert.AreEqual(0, v.ListValues.Count);
+            Assert.AreEqual("-7", v.ListBoundaries[0].BoundaryMin);
+            Assert.AreEqual("-3", v.ListBoundaries[0].BoundaryMax);
+
+            p.RangeValuesRequirementStr = "#2;5#7;9;11#";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            Assert.AreEqual(3, v.ListBoundaries.Count);
+            Assert.AreEqual(1, v.ListValues.Count);
+
+            p.RangeValuesRequirementStr = "5#2";
+            v = p.RangeValuesRequirements;
+            Assert.IsTrue(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListErrors.Count);
+            Assert.IsTrue(v.ListErrors[0].Contains("greater"));
+            Assert.IsTrue(v.ListErrors[0].Contains("5#2"));
+
+
+            p.RangeValuesRequirementStr = "bbb";
+            v = p.RangeValuesRequirements;
+            Assert.IsTrue(v.IsHasErrors);
+            Assert.AreEqual(1, v.ListErrors.Count);
+            Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
+            Assert.IsTrue(v.ListErrors[0].Contains("bbb"));
+
+            p.RangeValuesRequirementStr = "";
+            v = p.RangeValuesRequirements;
+            Assert.IsFalse(v.IsHasErrors);
+            #endregion int requirements validation
+        }
     }
 }

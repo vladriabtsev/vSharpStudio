@@ -637,7 +637,7 @@ enum proto_enum_data_type {
     // @attr [Description("Any data type")]
     ANY = 15;
 }
-enum proto_enum_time_acc_type {
+enum proto_enum_time_accuracy_type {
     // @attr [DisplayName("Second")]
     // @attr [Description("One second accuracy")]
     SECOND = 0;
@@ -647,9 +647,26 @@ enum proto_enum_time_acc_type {
     // @attr [DisplayName("Hour")]
     // @attr [Description("One hour accuracy")]
     HOUR = 2;
+    // @attr [DisplayName("Millisecond")]
+    // @attr [Description("One millisecond accuracy")]
+    MS = 3;
     // @attr [DisplayName("Ten ms")]
-    // @attr [Description("Ten milliseconds accuracy")]
-    TEN_MSEC = 3;
+    // @attr [Description("Ten millisecond accuracy")]
+    MS10 = 4;
+    // @attr [DisplayName("Hundred ms")]
+    // @attr [Description("Hundred millisecond accuracy")]
+    MS100 = 5;
+}
+enum proto_enum_date_time_accuracy_type {
+    // @attr [DisplayName("Second")]
+    // @attr [Description("One second accuracy")]
+    DT_SECOND = 0;
+    // @attr [DisplayName("Minute")]
+    // @attr [Description("One minute accuracy")]
+    DT_MINUTE = 1;
+    // @attr [DisplayName("Hour")]
+    // @attr [Description("One hour accuracy")]
+    DT_HOUR = 2;
 }
 // @base VmValidatableWithSeverity
 message proto_data_type {
@@ -887,18 +904,10 @@ message proto_property {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 
-    // @attr [PropertyOrderAttribute(31)]
-    // @attr [DisplayName("Accuracy")]
-    // @attr [Description("Accuracy of time")]
-    proto_enum_time_acc_type accuracy_of_time = 15;
     // @attr [PropertyOrderAttribute(32)]
-    // @attr [DisplayName("Min Value")]
-    // @attr [Description("Minimum value of valid data")]
-    string min_value_requirement = 16;
-    // @attr [PropertyOrderAttribute(33)]
-    // @attr [DisplayName("Max Value")]
-    // @attr [Description("Maximum value of valid data")]
-    string max_value_requirement = 17;
+    // @attr [DisplayName("Expected")]
+    // @attr [Description("Expected values or ranges of values. Use '-' to create range, and ';' to separate values or ranges")]
+    string range_values_requirement_str = 16;
     // @attr [PropertyOrderAttribute(34)]
     // @attr [DisplayName("Min Length")]
     // @attr [Description("Minimum length of string")]
@@ -907,15 +916,14 @@ message proto_property {
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum length of string")]
     string max_length_requirement = 19;
-    // @attr [DisplayName("Min Date")]
-    // @attr [Description("Minimum value of valid date")]
     // @attr [PropertyOrderAttribute(36)]
-    string min_date_requirement = 20;
-    // @attr [DisplayName("Max Date")]
-    // @attr [Description("Maximum value of valid date")]
+    // @attr [DisplayName("Time accuracy")]
+    // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
+    proto_enum_time_accuracy_type accuracy_for_time = 20;
     // @attr [PropertyOrderAttribute(37)]
-    string max_date_requirement = 21;
-
+    // @attr [DisplayName("Time accuracy")]
+    // @attr [Description("Time accuracy for DateTime or DateTimeOffset type. Business model is expecting selected accuracy")]
+    proto_enum_date_time_accuracy_type accuracy_for_date_time = 21;
     // Protobuf field position
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]

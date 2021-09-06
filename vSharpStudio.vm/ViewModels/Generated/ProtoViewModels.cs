@@ -10876,13 +10876,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.AccuracyOfTime = from.AccuracyOfTime; // Clone.tt Line: 65
-            vm.MinValueRequirement = from.MinValueRequirement; // Clone.tt Line: 65
-            vm.MaxValueRequirement = from.MaxValueRequirement; // Clone.tt Line: 65
+            vm.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 65
             vm.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 65
             vm.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 65
-            vm.MinDateRequirement = from.MinDateRequirement; // Clone.tt Line: 65
-            vm.MaxDateRequirement = from.MaxDateRequirement; // Clone.tt Line: 65
+            vm.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 65
+            vm.AccuracyForDateTime = from.AccuracyForDateTime; // Clone.tt Line: 65
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -10906,13 +10904,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.AccuracyOfTime = from.AccuracyOfTime; // Clone.tt Line: 141
-            to.MinValueRequirement = from.MinValueRequirement; // Clone.tt Line: 141
-            to.MaxValueRequirement = from.MaxValueRequirement; // Clone.tt Line: 141
+            to.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 141
             to.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 141
             to.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 141
-            to.MinDateRequirement = from.MinDateRequirement; // Clone.tt Line: 141
-            to.MaxDateRequirement = from.MaxDateRequirement; // Clone.tt Line: 141
+            to.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 141
+            to.AccuracyForDateTime = from.AccuracyForDateTime; // Clone.tt Line: 141
             to.Position = from.Position; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -10988,13 +10984,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.AccuracyOfTime = (EnumTimeAccType)m.AccuracyOfTime; // Clone.tt Line: 221
-            vm.MinValueRequirement = m.MinValueRequirement; // Clone.tt Line: 221
-            vm.MaxValueRequirement = m.MaxValueRequirement; // Clone.tt Line: 221
+            vm.RangeValuesRequirementStr = m.RangeValuesRequirementStr; // Clone.tt Line: 221
             vm.MinLengthRequirement = m.MinLengthRequirement; // Clone.tt Line: 221
             vm.MaxLengthRequirement = m.MaxLengthRequirement; // Clone.tt Line: 221
-            vm.MinDateRequirement = m.MinDateRequirement; // Clone.tt Line: 221
-            vm.MaxDateRequirement = m.MaxDateRequirement; // Clone.tt Line: 221
+            vm.AccuracyForTime = (EnumTimeAccuracyType)m.AccuracyForTime; // Clone.tt Line: 221
+            vm.AccuracyForDateTime = (EnumDateTimeAccuracyType)m.AccuracyForDateTime; // Clone.tt Line: 221
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -11022,13 +11016,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.AccuracyOfTime = (Proto.Config.proto_enum_time_acc_type)vm.AccuracyOfTime; // Clone.tt Line: 274
-            m.MinValueRequirement = vm.MinValueRequirement; // Clone.tt Line: 276
-            m.MaxValueRequirement = vm.MaxValueRequirement; // Clone.tt Line: 276
+            m.RangeValuesRequirementStr = vm.RangeValuesRequirementStr; // Clone.tt Line: 276
             m.MinLengthRequirement = vm.MinLengthRequirement; // Clone.tt Line: 276
             m.MaxLengthRequirement = vm.MaxLengthRequirement; // Clone.tt Line: 276
-            m.MinDateRequirement = vm.MinDateRequirement; // Clone.tt Line: 276
-            m.MaxDateRequirement = vm.MaxDateRequirement; // Clone.tt Line: 276
+            m.AccuracyForTime = (Proto.Config.proto_enum_time_accuracy_type)vm.AccuracyForTime; // Clone.tt Line: 274
+            m.AccuracyForDateTime = (Proto.Config.proto_enum_date_time_accuracy_type)vm.AccuracyForDateTime; // Clone.tt Line: 274
             m.Position = vm.Position; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -11221,74 +11213,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [PropertyOrderAttribute(31)]
-        [DisplayName("Accuracy")]
-        [Description("Accuracy of time")]
-        public EnumTimeAccType AccuracyOfTime // Property.tt Line: 55
-        { 
-            get { return this._AccuracyOfTime; }
-            set
-            {
-                if (this._AccuracyOfTime != value)
-                {
-                    this.OnAccuracyOfTimeChanging(ref value);
-                    this._AccuracyOfTime = value;
-                    this.OnAccuracyOfTimeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumTimeAccType _AccuracyOfTime;
-        partial void OnAccuracyOfTimeChanging(ref EnumTimeAccType to); // Property.tt Line: 79
-        partial void OnAccuracyOfTimeChanged();
-        
         [PropertyOrderAttribute(32)]
-        [DisplayName("Min Value")]
-        [Description("Minimum value of valid data")]
-        public string MinValueRequirement // Property.tt Line: 55
+        [DisplayName("Expected")]
+        [Description("Expected values or ranges of values. Use '-' to create range, and ';' to separate values or ranges")]
+        public string RangeValuesRequirementStr // Property.tt Line: 55
         { 
-            get { return this._MinValueRequirement; }
+            get { return this._RangeValuesRequirementStr; }
             set
             {
-                if (this._MinValueRequirement != value)
+                if (this._RangeValuesRequirementStr != value)
                 {
-                    this.OnMinValueRequirementChanging(ref value);
-                    this._MinValueRequirement = value;
-                    this.OnMinValueRequirementChanged();
+                    this.OnRangeValuesRequirementStrChanging(ref value);
+                    this._RangeValuesRequirementStr = value;
+                    this.OnRangeValuesRequirementStrChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _MinValueRequirement = string.Empty;
-        partial void OnMinValueRequirementChanging(ref string to); // Property.tt Line: 79
-        partial void OnMinValueRequirementChanged();
-        
-        [PropertyOrderAttribute(33)]
-        [DisplayName("Max Value")]
-        [Description("Maximum value of valid data")]
-        public string MaxValueRequirement // Property.tt Line: 55
-        { 
-            get { return this._MaxValueRequirement; }
-            set
-            {
-                if (this._MaxValueRequirement != value)
-                {
-                    this.OnMaxValueRequirementChanging(ref value);
-                    this._MaxValueRequirement = value;
-                    this.OnMaxValueRequirementChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _MaxValueRequirement = string.Empty;
-        partial void OnMaxValueRequirementChanging(ref string to); // Property.tt Line: 79
-        partial void OnMaxValueRequirementChanged();
+        private string _RangeValuesRequirementStr = string.Empty;
+        partial void OnRangeValuesRequirementStrChanging(ref string to); // Property.tt Line: 79
+        partial void OnRangeValuesRequirementStrChanged();
         
         [PropertyOrderAttribute(34)]
         [DisplayName("Min Length")]
@@ -11336,51 +11282,51 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnMaxLengthRequirementChanging(ref string to); // Property.tt Line: 79
         partial void OnMaxLengthRequirementChanged();
         
-        [DisplayName("Min Date")]
-        [Description("Minimum value of valid date")]
         [PropertyOrderAttribute(36)]
-        public string MinDateRequirement // Property.tt Line: 55
+        [DisplayName("Time accuracy")]
+        [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
+        public EnumTimeAccuracyType AccuracyForTime // Property.tt Line: 55
         { 
-            get { return this._MinDateRequirement; }
+            get { return this._AccuracyForTime; }
             set
             {
-                if (this._MinDateRequirement != value)
+                if (this._AccuracyForTime != value)
                 {
-                    this.OnMinDateRequirementChanging(ref value);
-                    this._MinDateRequirement = value;
-                    this.OnMinDateRequirementChanged();
+                    this.OnAccuracyForTimeChanging(ref value);
+                    this._AccuracyForTime = value;
+                    this.OnAccuracyForTimeChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _MinDateRequirement = string.Empty;
-        partial void OnMinDateRequirementChanging(ref string to); // Property.tt Line: 79
-        partial void OnMinDateRequirementChanged();
+        private EnumTimeAccuracyType _AccuracyForTime;
+        partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // Property.tt Line: 79
+        partial void OnAccuracyForTimeChanged();
         
-        [DisplayName("Max Date")]
-        [Description("Maximum value of valid date")]
         [PropertyOrderAttribute(37)]
-        public string MaxDateRequirement // Property.tt Line: 55
+        [DisplayName("Time accuracy")]
+        [Description("Time accuracy for DateTime or DateTimeOffset type. Business model is expecting selected accuracy")]
+        public EnumDateTimeAccuracyType AccuracyForDateTime // Property.tt Line: 55
         { 
-            get { return this._MaxDateRequirement; }
+            get { return this._AccuracyForDateTime; }
             set
             {
-                if (this._MaxDateRequirement != value)
+                if (this._AccuracyForDateTime != value)
                 {
-                    this.OnMaxDateRequirementChanging(ref value);
-                    this._MaxDateRequirement = value;
-                    this.OnMaxDateRequirementChanged();
+                    this.OnAccuracyForDateTimeChanging(ref value);
+                    this._AccuracyForDateTime = value;
+                    this.OnAccuracyForDateTimeChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _MaxDateRequirement = string.Empty;
-        partial void OnMaxDateRequirementChanging(ref string to); // Property.tt Line: 79
-        partial void OnMaxDateRequirementChanged();
+        private EnumDateTimeAccuracyType _AccuracyForDateTime;
+        partial void OnAccuracyForDateTimeChanging(ref EnumDateTimeAccuracyType to); // Property.tt Line: 79
+        partial void OnAccuracyForDateTimeChanged();
         
         
         ///////////////////////////////////////////////////

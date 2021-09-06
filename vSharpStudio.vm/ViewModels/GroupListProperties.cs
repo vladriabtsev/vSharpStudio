@@ -137,8 +137,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length, IsNullable = isNullable };
             var node = new Property(this) { Name = name, DataType = dt };
-            node.MinLengthRequirement = min_length?.ToString();
-            node.MaxLengthRequirement = max_length?.ToString();
+            if (min_length != null)
+                node.MinLengthRequirement = min_length.ToString();
+            if (max_length != null)
+                node.MaxLengthRequirement = max_length.ToString();
             this.NodeAddNewSubNode(node);
             return node;
         }

@@ -20,7 +20,7 @@ namespace vSharpStudio.common
         {
             return GetProtoTypeForNumeric(dt.IsNullable, dt.MaxNumericalValue, dt.IsPositive, dt.Accuracy, dt.Length);
         }
-        public static string GetProtoTypeForNumeric(bool isNullable,  BigInteger max_value, bool is_positive, uint accuracy, uint length)
+        public static string GetProtoTypeForNumeric(bool isNullable,  BigInteger? max_value, bool is_positive, uint accuracy, uint length)
         {
             // https://docs.microsoft.com/en-us/dotnet/architecture/grpc-for-wcf-developers/protobuf-data-types
             if (accuracy == 0)
