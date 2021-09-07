@@ -202,7 +202,7 @@ namespace vSharpStudio.vm.ViewModels
                 //this.AddValue(boundary.ToString());
                 return new Tuple<bool, IComparable?>(true, null);
             }
-            else if (p.DataTypeEnum == EnumDataType.DATETIME || p.DataTypeEnum == EnumDataType.DATETIMEZ || p.DataTypeEnum == EnumDataType.DATE)
+            else if (/*p.DataTypeEnum == EnumDataType.DATETIME ||*/ p.DataTypeEnum == EnumDataType.DATETIMEZ || p.DataTypeEnum == EnumDataType.DATE)
             {
                 DateTime res;
                 string err = "";

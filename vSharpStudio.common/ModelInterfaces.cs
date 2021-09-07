@@ -23,7 +23,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         BOOL = 3,
         TIME = 4,
         DATE = 5,
-        DATETIME = 6,
         DATETIMEZ = 7,
         ENUMERATION = 10,
         CATALOG = 11,
@@ -38,14 +37,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         MINUTE = 1,
         HOUR = 2,
         MS = 3,
-        MS10 = 4,
-        MS100 = 5,
-    }
-    public enum EnumDateTimeAccuracyType // ModelInterfaces.tt Line: 15
-    {
-        DT_SECOND = 0,
-        DT_MINUTE = 1,
-        DT_HOUR = 2,
+        MAX = 5,
     }
     public enum EnumEnumerationType // ModelInterfaces.tt Line: 15
     {
@@ -524,7 +516,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string MinLengthRequirement { get; } // ModelInterfaces.tt Line: 51
     	string MaxLengthRequirement { get; } // ModelInterfaces.tt Line: 51
     	EnumTimeAccuracyType AccuracyForTime { get; } // ModelInterfaces.tt Line: 51
-    	EnumDateTimeAccuracyType AccuracyForDateTime { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position

@@ -25,7 +25,7 @@ namespace vSharpStudio.common
         IDataType GetDataType(IDocument obj, bool isNullable = true);
         IDataType GetDataTypeBool(bool isNullable = true);
         IDataType GetDataTypeDate(bool isNullable = true);
-        IDataType GetDataTypeDateTime(bool isNullable = true);
+        //IDataType GetDataTypeDateTime(bool isNullable = true);
         IDataType GetDataTypeDateTimeZ(bool isNullable = true);
         IDataType GetDataTypeTime(bool isNullable = true);
         //IDataType GetDataTypeTimeZ(bool isNullable = true);

@@ -210,7 +210,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.ObjectGuid = string.Empty;
                     this.ListObjectGuids.Clear();
                     break;
-                case EnumDataType.DATETIME:
+                //case EnumDataType.DATETIME:
                 case EnumDataType.DATETIMEZ:
                 case EnumDataType.TIME:
                     this.Length = 0;
@@ -271,14 +271,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(this.GetPropertyName(() => this.Length));
             }
-            if (this.DataType.DataTypeEnum != EnumDataType.TIME)
-            {
-                lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
-            }
-            if (this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+            if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
+                //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
             {
-                lst.Add(this.GetPropertyName(() => this.AccuracyForDateTime));
+                lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOGS &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
@@ -298,7 +295,7 @@ namespace vSharpStudio.vm.ViewModels
             if (this.DataType.DataTypeEnum != EnumDataType.STRING &&
                 this.DataType.DataTypeEnum != EnumDataType.CHAR &&
                 this.DataType.DataTypeEnum != EnumDataType.DATE &&
-                this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+                //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
                 this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
             {

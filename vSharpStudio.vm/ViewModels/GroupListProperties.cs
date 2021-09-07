@@ -151,10 +151,11 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyTime(string name, bool isNullable = false)
+        public Property AddPropertyTime(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.TIME, IsNullable = isNullable };
             var node = new Property(this) { Name = name, DataType = dt };
+            node.AccuracyForTime = accuracy;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -172,17 +173,19 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyDateTime(string name, bool isNullable = false)
-        {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIME, IsNullable = isNullable };
-            var node = new Property(this) { Name = name, DataType = dt };
-            this.NodeAddNewSubNode(node);
-            return node;
-        }
-        public Property AddPropertyDateTimeZ(string name, bool isNullable = false)
+        //public Property AddPropertyDateTime(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
+        //{
+        //    var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIME, IsNullable = isNullable };
+        //    var node = new Property(this) { Name = name, DataType = dt };
+        //    node.AccuracyForTime = accuracy;
+        //    this.NodeAddNewSubNode(node);
+        //    return node;
+        //}
+        public Property AddPropertyDateTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEZ, IsNullable = isNullable };
             var node = new Property(this) { Name = name, DataType = dt };
+            node.AccuracyForTime = accuracy;
             this.NodeAddNewSubNode(node);
             return node;
         }

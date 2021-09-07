@@ -496,13 +496,13 @@ namespace vSharpStudio.vm.ViewModels
             dt.IsNullable = isNullable;
             return dt;
         }
-        public IDataType GetDataTypeDateTime(bool isNullable = true)
-        {
-            DataType dt = new DataType();
-            dt.DataTypeEnum = EnumDataType.DATETIME;
-            dt.IsNullable = isNullable;
-            return dt;
-        }
+        //public IDataType GetDataTypeDateTime(bool isNullable = true)
+        //{
+        //    DataType dt = new DataType();
+        //    dt.DataTypeEnum = EnumDataType.DATETIME;
+        //    dt.IsNullable = isNullable;
+        //    return dt;
+        //}
         public IDataType GetDataTypeDateTimeZ(bool isNullable = true)
         {
             DataType dt = new DataType();
@@ -671,8 +671,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocumentDate(string guid)
         {
-            var dt = (DataType)this.GetDataTypeDateTime();
+            var dt = (DataType)this.GetDataTypeDateTimeZ();
             var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyDateName, dt);
+            res.AccuracyForTime = EnumTimeAccuracyType.MAX;
             res.Position = 2;
             return res;
         }
