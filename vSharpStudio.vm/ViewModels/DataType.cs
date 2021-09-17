@@ -20,7 +20,6 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnInit()
         {
-            this.IsNullable = false;
             this.Length = 10;
             this.DataTypeEnum = EnumDataType.STRING;
         }
@@ -342,47 +341,6 @@ namespace vSharpStudio.vm.ViewModels
                 return GetClrType();
             }
         }
-        [BrowsableAttribute(false)]
-        public string PropValueValue
-        {
-            get
-            {
-                if (!this.IsNullable)
-                    return "";
-                switch (this.DataTypeEnum)
-                {
-                    //case EnumDataType.CATALOG:
-                    //    return "Catalog";
-                    //case EnumDataType.CATALOGS:
-                    //    return "Catalog";
-                    //case EnumDataType.DOCUMENT:
-                    //    return "Document";
-                    //case EnumDataType.DOCUMENTS:
-                    //    return "Documents";
-                    //case EnumDataType.DATE:
-                    //    return "Date" + sn;
-                    //case EnumDataType.DATETIME:
-                    //    return "DateTime" + sn;
-                    //case EnumDataType.TIME:
-                    //    return "Time" + sn;
-                    //case EnumDataType.DATETIMEZ:
-                    //    return "DateTimeZ" + sn;
-                    //case EnumDataType.TIMEZ:
-                    //    return "TimeZ" + sn;
-                    case EnumDataType.ENUMERATION:
-                        var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
-                        return en.DefaultValue;
-                    case EnumDataType.BOOL:
-                        return ".Value";
-                    case EnumDataType.STRING:
-                        return "";
-                    case EnumDataType.NUMERICAL:
-                        return ".Value";
-                    default:
-                        return "null";
-                }
-            }
-        }
         private Type GetClrType()
         {
             switch (this.ClrTypeName)
@@ -500,14 +458,6 @@ namespace vSharpStudio.vm.ViewModels
         private string _ClrTypeNameNotNull = null;
         private void ClrTypeNameCalc()
         {
-            string sn = string.Empty;
-            if (this.IsNullable)
-            {
-                //if (isWithoutNull)
-                //    sn = "";
-                //else
-                sn = "?";
-            }
             this.ClrLiteralSuf = "";
             // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/decimal
             switch (this.DataTypeEnum)
@@ -526,33 +476,35 @@ namespace vSharpStudio.vm.ViewModels
                     this.ClrTypeName = "Documents";
                     break;
                 case EnumDataType.ENUMERATION:
-                    this.ClrTypeName = this.EnumerationName + sn;
+                    this.ClrTypeName = this.EnumerationName;
                     break;
                 case EnumDataType.TIME:
                     //case EnumDataType.TIMEZ:
-                    this.ClrTypeName = $"TimeOnly{sn}";
+                    this.ClrTypeName = "TimeOnly";
                     break;
                 case EnumDataType.DATE:
-                    this.ClrTypeName = $"DateOnly{sn}";
+                    this.ClrTypeName = "DateOnly";
                     break;
                 case EnumDataType.DATETIMEZ:
-                    this.ClrTypeName = $"DateTimeOffset{sn}";
+                    this.ClrTypeName = "DateTimeOffset";
                     break;
+                case EnumDataType.DATETIMELOCAL:
+                case EnumDataType.DATETIMEUTC:
                 //case EnumDataType.DATETIME:
-                //    this.ClrTypeName = $"DateTime{sn}";
-                //    break;
+                    this.ClrTypeName = "DateTime";
+                    break;
                 //case EnumDataType.DATETIMEOFFSET:
                 //    return "DateTimeOffset" + sn;
                 //case EnumDataType.TIMESPAN:
                 //    return "TimeSpan" + sn;
                 case EnumDataType.BOOL:
-                    this.ClrTypeName = $"bool{sn}";
+                    this.ClrTypeName = "bool";
                     break;
                 case EnumDataType.CHAR:
-                    this.ClrTypeName = $"char{sn}";
+                    this.ClrTypeName = "char";
                     break;
                 case EnumDataType.STRING:
-                    this.ClrTypeName = $"string{sn}";
+                    this.ClrTypeName = "string";
                     break;
                 case EnumDataType.NUMERICAL:
                     BigInteger mv = 1;
@@ -570,31 +522,31 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             if (this.MaxNumericalValue <= byte.MaxValue)
                             {
-                                this.ClrTypeName = $"byte{sn}";
+                                this.ClrTypeName = "byte";
                                 this.ClrLiteralSuf = "U";
                                 break;
                             }
                             if (this.MaxNumericalValue <= ushort.MaxValue)
                             {
-                                this.ClrTypeName = $"ushort{sn}";
+                                this.ClrTypeName = "ushort";
                                 this.ClrLiteralSuf = "U";
                                 break;
                             }
                             if (this.MaxNumericalValue <= uint.MaxValue)
                             {
-                                this.ClrTypeName = $"uint{sn}";
+                                this.ClrTypeName = "uint";
                                 this.ClrLiteralSuf = "U";
                                 break;
                             }
                             if (this.MaxNumericalValue <= ulong.MaxValue) // long, not ulong
                             {
-                                this.ClrTypeName = $"ulong{sn}";
+                                this.ClrTypeName = "ulong";
                                 this.ClrLiteralSuf = "LU";
                                 break;
                             }
                             if (this.Length <= 28)
                             {
-                                this.ClrTypeName = $"decimal{sn}";
+                                this.ClrTypeName = "decimal";
                                 this.ClrLiteralSuf = "m";
                                 break;
                             }
@@ -605,28 +557,28 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             if (this.MaxNumericalValue <= sbyte.MaxValue)
                             {
-                                this.ClrTypeName = $"sbyte{sn}";
+                                this.ClrTypeName = "sbyte";
                                 break;
                             }
                             if (this.MaxNumericalValue <= short.MaxValue)
                             {
-                                this.ClrTypeName = $"short{sn}";
+                                this.ClrTypeName = "short";
                                 break;
                             }
                             if (this.MaxNumericalValue <= int.MaxValue)
                             {
-                                this.ClrTypeName = $"int{sn}";
+                                this.ClrTypeName = "int";
                                 break;
                             }
                             if (this.MaxNumericalValue <= long.MaxValue)
                             {
-                                this.ClrTypeName = $"long{sn}";
+                                this.ClrTypeName = "long";
                                 this.ClrLiteralSuf = "L";
                                 break;
                             }
                             if (this.Length <= 28)
                             {
-                                this.ClrTypeName = $"decimal{sn}";
+                                this.ClrTypeName = "decimal";
                                 this.ClrLiteralSuf = "m";
                                 break;
                             }
@@ -641,24 +593,24 @@ namespace vSharpStudio.vm.ViewModels
                         // decimal ±1.0 x 10-28   to ±7.9228 x 10+28     28-29 significant digits
                         if (this.Length == 0)
                         {
-                            this.ClrTypeName = $"BigDecimal{sn}";
+                            this.ClrTypeName = "BigDecimal";
                             break;
                         }
                         if (this.Length <= 6)
                         {
-                            this.ClrTypeName = $"float{sn}";
+                            this.ClrTypeName = "float";
                             this.ClrLiteralSuf = "f";
                             break;
                         }
                         if (this.Length <= 15)
                         {
-                            this.ClrTypeName = $"double{sn}";
+                            this.ClrTypeName = "double";
                             this.ClrLiteralSuf = "d";
                             break;
                         }
                         if (this.Length < 29)
                         {
-                            this.ClrTypeName = $"decimal{sn}";
+                            this.ClrTypeName = "decimal";
                             this.ClrLiteralSuf = "m";
                             break;
                         }
@@ -736,6 +688,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.ANY:
                 case EnumDataType.BOOL:
                 case EnumDataType.DATE:
+                case EnumDataType.DATETIMELOCAL:
+                case EnumDataType.DATETIMEUTC:
                 //case EnumDataType.DATETIME:
                 case EnumDataType.DATETIMEZ:
                 //case EnumDataType.DATETIMEOFFSET:
@@ -851,16 +805,16 @@ namespace vSharpStudio.vm.ViewModels
             MaxValueCalc();
             MinValueCalc();
         }
-        partial void OnIsNullableChanged()
-        {
-            if (!this.IsNotifying)
-                return;
-            if (this.Cfg == null)
-                return;
-            ClrTypeNameCalc();
-            MaxValueCalc();
-            MinValueCalc();
-        }
+        //partial void OnIsNullableChanged()
+        //{
+        //    if (!this.IsNotifying)
+        //        return;
+        //    if (this.Cfg == null)
+        //        return;
+        //    ClrTypeNameCalc();
+        //    MaxValueCalc();
+        //    MinValueCalc();
+        //}
         [BrowsableAttribute(false)]
         public Visibility VisibilityLength
         {

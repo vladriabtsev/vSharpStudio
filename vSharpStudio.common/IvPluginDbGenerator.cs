@@ -49,14 +49,13 @@ namespace vSharpStudio.common
         /// Generate DatabaseModel of a current DB
         /// </summary>
         /// <returns>Return DatabaseModel of a current DB</returns>
-        object GetDbModel(string connectionString, Action<Exception> onError = null);
+        object GetDbModel(string connectionString);
         /// <summary>
         /// 
         /// </summary>
         /// <param name="context">DbContext type</param>
-        /// <param name="onError"></param>
         /// <returns></returns>
-        object GetDbModel(object context, Action<Exception> onError = null);
+        object GetDbModel(object context);
         /// <summary>
         /// Return IMutableModel
         /// </summary>
@@ -64,8 +63,7 @@ namespace vSharpStudio.common
         /// <param name="operations">To do what model differ will not capable to do. Probably renaming tables and fields propery</param>
         /// <param name="target_model"></param>
         /// <param name="onNeedDbCreate"></param>
-        /// <param name="onError"></param>
-        string UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null);
+        string UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool> onNeedDbCreate = null);
         // void UpdateToModel2(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
         // void Backup(string filePath);
         // void Restore(string filePath);

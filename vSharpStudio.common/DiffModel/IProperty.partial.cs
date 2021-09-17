@@ -12,6 +12,7 @@ namespace vSharpStudio.common
         bool IsPKey { get; set; }
         bool IsComputed { get; set; }
         string ComplexObjectName { get; set; }
+        string PropValueValue { get; }
         IPropertyRangeValuesRequirements RangeValuesRequirementsI { get; }
         string ComplexObjectNameWithDot();
     }

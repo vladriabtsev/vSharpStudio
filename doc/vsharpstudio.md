@@ -71,7 +71,6 @@
     - [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon)
     - [proto_enum_code_type](#proto_config.proto_enum_code_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
-    - [proto_enum_date_time_accuracy_type](#proto_config.proto_enum_date_time_accuracy_type)
     - [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
@@ -439,7 +438,6 @@ Constant application wise value
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | data_type_enum | [proto_enum_data_type](#proto_config.proto_enum_data_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Type&#34;)] |
-| is_nullable | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data)&#34;)] |
@@ -1310,13 +1308,13 @@ Configuration model
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [BrowsableAttribute(false)] |
+| is_nullable | [bool](#bool) |  | @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| range_values_requirement_str | [string](#string) |  | @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Expected&#34;)] @attr [Description(&#34;Expected values or ranges of values. Use &#39;-&#39; to create range, and &#39;;&#39; to separate values or ranges&#34;)] |
+| range_values_requirement_str | [string](#string) |  | @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Expected&#34;)] @attr [Description(&#34;Expected values or ranges of values. Use &#39;#&#39; to create range, and &#39;;&#39; to separate values or ranges&#34;)] |
 | min_length_requirement | [string](#string) |  | @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Min Length&#34;)] @attr [Description(&#34;Minimum length of string&#34;)] |
 | max_length_requirement | [string](#string) |  | @attr [PropertyOrderAttribute(35)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum length of string&#34;)] |
 | accuracy_for_time | [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type) |  | @attr [PropertyOrderAttribute(36)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] |
-| accuracy_for_date_time | [proto_enum_date_time_accuracy_type](#proto_config.proto_enum_date_time_accuracy_type) |  | @attr [PropertyOrderAttribute(37)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for DateTime or DateTimeOffset type. Business model is expecting selected accuracy&#34;)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -1518,27 +1516,15 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | BOOL | 3 | @attr [DisplayName(&#34;Boolean&#34;)] @attr [Description(&#34;Boolean type&#34;)] |
 | TIME | 4 | @attr [DisplayName(&#34;Time&#34;)] @attr [Description(&#34;Time without time zone. DB value stored with accuracy 1 second&#34;)] |
 | DATE | 5 | @attr [DisplayName(&#34;Date&#34;)] @attr [Description(&#34;Date without time zone&#34;)] |
-| DATETIME | 6 | @attr [DisplayName(&#34;DateTime&#34;)] @attr [Description(&#34;Date and time without time zone. DB value stored with accuracy approximatly 4 milliseconds&#34;)] |
-| DATETIMEZ | 7 | @attr [DisplayName(&#34;DateTime Z&#34;)] @attr [Description(&#34;Date and time with time zone. DB value stored with accuracy approximatly 4 milliseconds&#34;)] |
+| DATETIMEZ | 7 | @attr [DisplayName(&#34;DateTime Z&#34;)] @attr [Description(&#34;Date and time with time zone.&#34;)] |
 | ENUMERATION | 10 | @attr [DisplayName(&#34;Enumeration&#34;)] @attr [Description(&#34;Enumeration type&#34;)] |
 | CATALOG | 11 | @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog type&#34;)] |
 | CATALOGS | 12 | @attr [DisplayName(&#34;Catalogs&#34;)] @attr [Description(&#34;List of catalogs&#34;)] |
 | DOCUMENT | 13 | @attr [DisplayName(&#34;Document&#34;)] @attr [Description(&#34;Document type&#34;)] |
 | DOCUMENTS | 14 | @attr [DisplayName(&#34;Documents&#34;)] @attr [Description(&#34;List of documents&#34;)] |
 | ANY | 15 | @attr [DisplayName(&#34;Any type&#34;)] @attr [Description(&#34;Any data type&#34;)] |
-
-
-
-<a name="proto_config.proto_enum_date_time_accuracy_type"></a>
-
-### proto_enum_date_time_accuracy_type
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| DT_SECOND | 0 | @attr [DisplayName(&#34;Second&#34;)] @attr [Description(&#34;One second accuracy&#34;)] |
-| DT_MINUTE | 1 | @attr [DisplayName(&#34;Minute&#34;)] @attr [Description(&#34;One minute accuracy&#34;)] |
-| DT_HOUR | 2 | @attr [DisplayName(&#34;Hour&#34;)] @attr [Description(&#34;One hour accuracy&#34;)] |
+| DATETIMELOCAL | 16 | @attr [DisplayName(&#34;DateTime Local&#34;)] @attr [Description(&#34;Local Date and time. Kind always expected equal DateTimeKind.Local&#34;)] |
+| DATETIMEUTC | 17 | @attr [DisplayName(&#34;DateTime UTC&#34;)] @attr [Description(&#34;UTC Date and time. Kind always expected equal DateTimeKind.Utc&#34;)] |
 
 
 
@@ -1579,8 +1565,7 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | MINUTE | 1 | @attr [DisplayName(&#34;Minute&#34;)] @attr [Description(&#34;One minute accuracy&#34;)] |
 | HOUR | 2 | @attr [DisplayName(&#34;Hour&#34;)] @attr [Description(&#34;One hour accuracy&#34;)] |
 | MS | 3 | @attr [DisplayName(&#34;Millisecond&#34;)] @attr [Description(&#34;One millisecond accuracy&#34;)] |
-| MS10 | 4 | @attr [DisplayName(&#34;Ten ms&#34;)] @attr [Description(&#34;Ten millisecond accuracy&#34;)] |
-| MS100 | 5 | @attr [DisplayName(&#34;Hundred ms&#34;)] @attr [Description(&#34;Hundred millisecond accuracy&#34;)] |
+| MAX | 5 | @attr [DisplayName(&#34;Max&#34;)] @attr [Description(&#34;Max (100 nanoseconds) accuracy&#34;)] |
 
 
 

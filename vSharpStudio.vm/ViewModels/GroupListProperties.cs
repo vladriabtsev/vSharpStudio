@@ -128,15 +128,17 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Property AddPropertyChar(string name, bool isNullable = false)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.CHAR, IsNullable = isNullable };
+            var dt = new DataType() { DataTypeEnum = EnumDataType.CHAR };
             var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyString(string name, uint length, bool isNullable = false, uint? min_length = null, uint? max_length = null)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length, IsNullable = isNullable };
+            var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length};
             var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
             if (min_length != null)
                 node.MinLengthRequirement = min_length.ToString();
             if (max_length != null)
@@ -146,15 +148,17 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Property AddPropertyNumerical(string name, uint length, uint accuracy, bool isNullable = false, bool isPositive = false)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy, IsNullable = isNullable, IsPositive = isPositive };
+            var dt = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy, IsPositive = isPositive };
             var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyTime(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.TIME, IsNullable = isNullable };
+            var dt = new DataType() { DataTypeEnum = EnumDataType.TIME };
             var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
             node.AccuracyForTime = accuracy;
             this.NodeAddNewSubNode(node);
             return node;
@@ -168,23 +172,35 @@ namespace vSharpStudio.vm.ViewModels
         //}
         public Property AddPropertyDate(string name, bool isNullable = false)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.DATE, IsNullable = isNullable };
+            var dt = new DataType() { DataTypeEnum = EnumDataType.DATE };
             var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
         }
-        //public Property AddPropertyDateTime(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
-        //{
-        //    var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIME, IsNullable = isNullable };
-        //    var node = new Property(this) { Name = name, DataType = dt };
-        //    node.AccuracyForTime = accuracy;
-        //    this.NodeAddNewSubNode(node);
-        //    return node;
-        //}
+        public Property AddPropertyDateTimeUtc(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEUTC };
+            var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
+            node.AccuracyForTime = accuracy;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Property AddPropertyDateTimeLocal(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMELOCAL };
+            var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
+            node.AccuracyForTime = accuracy;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyDateTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEZ, IsNullable = isNullable };
+            var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEZ };
             var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
             node.AccuracyForTime = accuracy;
             this.NodeAddNewSubNode(node);
             return node;
@@ -206,8 +222,8 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
-            dt.IsNullable = isNullable;
             var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
         }

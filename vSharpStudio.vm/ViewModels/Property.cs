@@ -46,6 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         public string ComplexObjectNameWithDot() { if (!string.IsNullOrEmpty(this.ComplexObjectName)) return $"{this.ComplexObjectName}."; return ""; }
         partial void OnInit()
         {
+            this.IsNullable = false;
             this.MinLengthRequirement = "";
             this.MaxLengthRequirement = "";
             this.RangeValuesRequirementStr = "";
@@ -84,7 +85,12 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(10)]
         public string ClrType
         {
-            get { return this.DataType.ClrTypeName; }
+            get
+            {
+                if (this.IsNullable)
+                    return this.DataType.ClrTypeName + "?";
+                return this.DataType.ClrTypeName;
+            }
         }
         //public string ProtoType
         //{
@@ -190,6 +196,10 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
 
         #region Editing logic
+        partial void OnIsNullableChanged()
+        {
+            this.NotifyPropertyChanged(() => this.ClrType);
+        }
         private void OnDataTypeEnumChanged()
         {
             switch (this.DataType.DataTypeEnum)
@@ -210,6 +220,8 @@ namespace vSharpStudio.vm.ViewModels
                     this.ObjectGuid = string.Empty;
                     this.ListObjectGuids.Clear();
                     break;
+                case EnumDataType.DATETIMELOCAL:
+                case EnumDataType.DATETIMEUTC:
                 //case EnumDataType.DATETIME:
                 case EnumDataType.DATETIMEZ:
                 case EnumDataType.TIME:
@@ -253,6 +265,7 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new NotSupportedException();
             }
+            this.NotifyPropertyChanged(() => this.ClrType);
         }
         private void UpdateVisibility()
         {
@@ -272,6 +285,8 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(this.GetPropertyName(() => this.Length));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC &&
                 //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
             {
@@ -295,6 +310,8 @@ namespace vSharpStudio.vm.ViewModels
             if (this.DataType.DataTypeEnum != EnumDataType.STRING &&
                 this.DataType.DataTypeEnum != EnumDataType.CHAR &&
                 this.DataType.DataTypeEnum != EnumDataType.DATE &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
+                this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC &&
                 //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ &&
                 this.DataType.DataTypeEnum != EnumDataType.NUMERICAL)
@@ -327,6 +344,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.DataType.Length = value;
                 this.NotifyPropertyChanged();
+                this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
             }
         }
@@ -340,6 +358,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.DataType.Accuracy = value;
                 this.NotifyPropertyChanged();
+                this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
                 this.UpdateVisibility();
             }
@@ -354,6 +373,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.DataType.IsPositive = value;
                 this.NotifyPropertyChanged();
+                this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
             }
         }
@@ -366,6 +386,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.DataType.ObjectGuid = value;
                 this.NotifyPropertyChanged();
+                this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
             }
         }
@@ -396,5 +417,46 @@ namespace vSharpStudio.vm.ViewModels
         public PropertyRangeValuesRequirements RangeValuesRequirements { get; set; }
         [BrowsableAttribute(false)]
         public IPropertyRangeValuesRequirements RangeValuesRequirementsI { get { return RangeValuesRequirements; } }
+        [BrowsableAttribute(false)]
+        public string PropValueValue
+        {
+            get
+            {
+                if (!this.IsNullable)
+                    return "";
+                switch (this.DataTypeEnum)
+                {
+                    //case EnumDataType.CATALOG:
+                    //    return "Catalog";
+                    //case EnumDataType.CATALOGS:
+                    //    return "Catalog";
+                    //case EnumDataType.DOCUMENT:
+                    //    return "Document";
+                    //case EnumDataType.DOCUMENTS:
+                    //    return "Documents";
+                    //case EnumDataType.DATE:
+                    //    return "Date" + sn;
+                    //case EnumDataType.DATETIME:
+                    //    return "DateTime" + sn;
+                    //case EnumDataType.TIME:
+                    //    return "Time" + sn;
+                    //case EnumDataType.DATETIMEZ:
+                    //    return "DateTimeZ" + sn;
+                    //case EnumDataType.TIMEZ:
+                    //    return "TimeZ" + sn;
+                    case EnumDataType.ENUMERATION:
+                        var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
+                        return en.DefaultValue;
+                    case EnumDataType.BOOL:
+                        return ".Value";
+                    case EnumDataType.STRING:
+                        return "";
+                    case EnumDataType.NUMERICAL:
+                        return ".Value";
+                    default:
+                        return "null";
+                }
+            }
+        }
     }
 }

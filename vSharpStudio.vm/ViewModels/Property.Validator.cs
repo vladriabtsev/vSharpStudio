@@ -22,7 +22,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 foreach (var t in req.ListErrors)
                 {
-                    var vf = new ValidationFailure(nameof(p.RangeValuesRequirements), t);
+                    var vf = new ValidationFailure(nameof(p.RangeValuesRequirementStr), t);
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
                 }

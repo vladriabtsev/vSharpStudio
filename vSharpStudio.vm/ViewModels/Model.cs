@@ -393,24 +393,22 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Connection string editor
 
         #region Utils
-        public IDataType GetDataType(int enumDataType, uint length, uint accuracy, bool isPositive, bool isNullable, string objectGuid)
+        public IDataType GetDataType(int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid)
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = Enum.Parse<EnumDataType>(enumDataType.ToString());
             dt.Length = length;
             dt.Accuracy = accuracy;
             dt.IsPositive = isPositive;
-            dt.IsNullable = isNullable;
             dt.ObjectGuid = objectGuid;
             return dt;
         }
-        public IDataType GetDataType(EnumDataType enumDataType, uint length, bool isPositive, bool isNullable)
+        public IDataType GetDataType(EnumDataType enumDataType, uint length, bool isPositive)
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = enumDataType;
             dt.Length = length;
             dt.IsPositive = isPositive;
-            dt.IsNullable = isNullable;
             return dt;
         }
         public uint GetLengthFromMaxValue(System.Numerics.BigInteger maxValue)
@@ -425,75 +423,79 @@ namespace vSharpStudio.vm.ViewModels
             return length;
         }
         // numerical
-        public IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive, bool isNullable = true)
+        public IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive)
         {
             uint length = this.GetLengthFromMaxValue(maxValue);
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.NUMERICAL;
             dt.Length = length;
             dt.IsPositive = isPositive;
-            dt.IsNullable = isNullable;
             return dt;
         }
         // numerical
-        public IDataType GetDataType(uint length, uint accuracy, bool isNullable = true)
+        public IDataType GetDataTypeNumerical(uint length, uint accuracy)
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.NUMERICAL;
             dt.Length = length;
             dt.Accuracy = accuracy;
-            dt.IsNullable = isNullable;
             return dt;
         }
         // numerical
-        public IDataType GetDataType(uint length, bool isPositive, bool isNullable = true)
+        public IDataType GetDataTypeNumerical(uint length, bool isPositive)
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.NUMERICAL;
             dt.Length = length;
             dt.IsPositive = isPositive;
-            dt.IsNullable = isNullable;
             return dt;
         }
         // string
-        public IDataType GetDataType(uint length, bool isNullable = true)
+        public IDataType GetDataTypeString(uint length)
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.STRING;
             dt.Length = length;
-            dt.IsNullable = isNullable;
             return dt;
         }
         // catalog
-        public IDataType GetDataType(ICatalog obj, bool isNullable = true)
+        public IDataType GetDataType(ICatalog obj)
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.CATALOG;
             dt.ObjectGuid = obj.Guid;
-            dt.IsNullable = isNullable;
             return dt;
         }
         // document
-        public IDataType GetDataType(IDocument obj, bool isNullable = true)
+        public IDataType GetDataType(IDocument obj)
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.DOCUMENT;
             dt.ObjectGuid = obj.Guid;
-            dt.IsNullable = isNullable;
             return dt;
         }
-        public IDataType GetDataTypeBool(bool isNullable = true)
+        public IDataType GetDataTypeBool()
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.BOOL;
-            dt.IsNullable = isNullable;
             return dt;
         }
-        public IDataType GetDataTypeDate(bool isNullable = true)
+        public IDataType GetDataTypeDate()
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.DATE;
-            dt.IsNullable = isNullable;
+            return dt;
+        }
+        public IDataType GetDataTypeDateTimeUtc()
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.DATETIMEUTC;
+            return dt;
+        }
+        public IDataType GetDataTypeDateTimeLocal()
+        {
+            DataType dt = new DataType();
+            dt.DataTypeEnum = EnumDataType.DATETIMELOCAL;
             return dt;
         }
         //public IDataType GetDataTypeDateTime(bool isNullable = true)
@@ -503,18 +505,16 @@ namespace vSharpStudio.vm.ViewModels
         //    dt.IsNullable = isNullable;
         //    return dt;
         //}
-        public IDataType GetDataTypeDateTimeZ(bool isNullable = true)
+        public IDataType GetDataTypeDateTimeZ()
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.DATETIMEZ;
-            dt.IsNullable = isNullable;
             return dt;
         }
-        public IDataType GetDataTypeTime(bool isNullable = true)
+        public IDataType GetDataTypeTime()
         {
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.TIME;
-            dt.IsNullable = isNullable;
             return dt;
         }
         //public IDataType GetDataTypeTimeZ(bool isNullable = true)
@@ -527,7 +527,6 @@ namespace vSharpStudio.vm.ViewModels
         public IDataType GetIdRefDataType()
         {
             var dt = (DataType)GetIdDataType();
-            dt.IsNullable = true;
             return dt;
         }
         public IDataType GetIdDataType()
@@ -625,7 +624,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyCatalogCode(string guid, uint length)
         {
-            var dt = (DataType)this.GetDataType(length);
+            var dt = (DataType)this.GetDataTypeString(length);
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyCodeName, dt);
             res.Position = 3;
             return res;
@@ -639,14 +638,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyCatalogName(string guid, uint length)
         {
-            var dt = (DataType)this.GetDataType(length);
+            var dt = (DataType)this.GetDataTypeString(length);
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyNameName, dt);
             res.Position = 4;
             return res;
         }
         public IProperty GetPropertyCatalogDescription(string guid, uint length)
         {
-            var dt = (DataType)this.GetDataType(length);
+            var dt = (DataType)this.GetDataTypeString(length);
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyDescriptionName, dt);
             res.Position = 5;
             return res;
@@ -655,8 +654,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var dt = new DataType();
             dt.DataTypeEnum = EnumDataType.BOOL;
-            dt.IsNullable = false;
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyIsFolderName, dt);
+            res.IsNullable = false;
             res.Position = 6;
             return res;
         }
@@ -664,8 +663,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             var dt = new DataType();
             dt.DataTypeEnum = EnumDataType.BOOL;
-            dt.IsNullable = false;
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyIsOpenName, dt);
+            res.IsNullable = false;
             res.Position = 7;
             return res;
         }
@@ -679,7 +678,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyDocumentCodeString(string guid, uint length)
         {
-            var dt = (DataType)this.GetDataType(length);
+            var dt = (DataType)this.GetDataTypeString(length);
             var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyCodeName, dt);
             res.Position = 3;
             return res;

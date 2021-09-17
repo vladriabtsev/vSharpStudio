@@ -30,6 +30,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         DOCUMENT = 13,
         DOCUMENTS = 14,
         ANY = 15,
+        DATETIMELOCAL = 16,
+        DATETIMEUTC = 17,
     }
     public enum EnumTimeAccuracyType // ModelInterfaces.tt Line: 15
     {
@@ -372,7 +374,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IDataType // ModelInterfaces.tt Line: 29
     {
     	EnumDataType DataTypeEnum { get; } // ModelInterfaces.tt Line: 51
-    	bool IsNullable { get; } // ModelInterfaces.tt Line: 51
     	uint Length { get; } // ModelInterfaces.tt Line: 51
     	bool IsPositive { get; } // ModelInterfaces.tt Line: 51
     	uint Accuracy { get; } // ModelInterfaces.tt Line: 51
@@ -510,6 +511,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	IDataType DataType { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNullable { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	string RangeValuesRequirementStr { get; } // ModelInterfaces.tt Line: 51

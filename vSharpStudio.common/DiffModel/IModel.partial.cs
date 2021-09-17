@@ -11,24 +11,24 @@ namespace vSharpStudio.common
     {
         IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
         // numerical
-        IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive, bool isNullable = true);
+        IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive);
         // Any
-        IDataType GetDataType(int enumDataType, uint length, uint accuracy, bool isPositive, bool isNullable, string objectGuid);
-        IDataType GetDataType(EnumDataType enumDataType, uint length, bool isPositive, bool isNullable);
+        IDataType GetDataType(int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid);
+        IDataType GetDataType(EnumDataType enumDataType, uint length, bool isPositive);
         // numerical
-        IDataType GetDataType(uint length, uint accuracy, bool isNullable = true);
+        IDataType GetDataTypeNumerical(uint length, uint accuracy);
         // numerical
-        IDataType GetDataType(uint length, bool isPositive, bool isNullable = true);
+        IDataType GetDataTypeNumerical(uint length, bool isPositive);
         // string
-        IDataType GetDataType(uint length, bool isNullable = true);
-        IDataType GetDataType(ICatalog obj, bool isNullable = true);
-        IDataType GetDataType(IDocument obj, bool isNullable = true);
-        IDataType GetDataTypeBool(bool isNullable = true);
-        IDataType GetDataTypeDate(bool isNullable = true);
-        //IDataType GetDataTypeDateTime(bool isNullable = true);
-        IDataType GetDataTypeDateTimeZ(bool isNullable = true);
-        IDataType GetDataTypeTime(bool isNullable = true);
-        //IDataType GetDataTypeTimeZ(bool isNullable = true);
+        IDataType GetDataTypeString(uint length);
+        IDataType GetDataType(ICatalog obj);
+        IDataType GetDataType(IDocument obj);
+        IDataType GetDataTypeBool();
+        IDataType GetDataTypeDate();
+        //IDataType GetDataTypeDateTime();
+        IDataType GetDataTypeDateTimeZ();
+        IDataType GetDataTypeTime();
+        //IDataType GetDataTypeTimeZ();
         IDataType GetIdDataType();
         IDataType GetIdRefDataType();
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);

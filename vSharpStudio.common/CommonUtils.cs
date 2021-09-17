@@ -16,9 +16,9 @@ namespace vSharpStudio.common
             return rel;
         }
 #endif
-        public static string GetProtoTypeForNumeric(IDataType dt)
+        public static string GetProtoTypeForNumeric(IProperty p)
         {
-            return GetProtoTypeForNumeric(dt.IsNullable, dt.MaxNumericalValue, dt.IsPositive, dt.Accuracy, dt.Length);
+            return GetProtoTypeForNumeric(p.IsNullable, p.DataType.MaxNumericalValue, p.DataType.IsPositive, p.DataType.Accuracy, p.DataType.Length);
         }
         public static string GetProtoTypeForNumeric(bool isNullable,  BigInteger? max_value, bool is_positive, uint accuracy, uint length)
         {

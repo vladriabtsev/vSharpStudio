@@ -298,6 +298,16 @@
                 return relative_path;
             return Path.Combine(cfg.CurrentCfgFolderPath, relative_path);
         }
+        private IConfig _cfg = null;
+        protected IConfig Cfg
+        {
+            get
+            {
+                if (this._cfg == null)
+                    this._cfg = this.GetConfig();
+                return this._cfg;
+            }
+        }
         public IConfig GetConfig()
         {
             ITreeConfigNode p = this.Parent;

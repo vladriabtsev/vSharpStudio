@@ -79,7 +79,17 @@ namespace vSharpStudio.vm.ViewModels
         //        return this.DataType.DefaultValue;
         //    }
         //}
-
+        [PropertyOrder(1)]
+        [ReadOnly(true)]
+        [DisplayName("Composite")]
+        [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
+        public string CompositeName
+        {
+            get
+            {
+                return GetCompositeName();
+            }
+        }
         #region Tree operations
         public override bool NodeCanUp()
         {

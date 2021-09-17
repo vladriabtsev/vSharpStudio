@@ -100,7 +100,9 @@ namespace vSharpStudio.ViewModels
                 var user_settings = File.ReadAllBytes(USER_SETTINGS_FILE_PATH);
                 var us = Proto.Config.proto_user_settings.Parser.ParseFrom(user_settings);
                 this.UserSettings = UserSettings.ConvertToVM(us, new UserSettings());
-                if (!string.IsNullOrWhiteSpace(this.UserSettings.ListOpenConfigHistory[0].ConfigPath) && File.Exists(this.UserSettings.ListOpenConfigHistory[0].ConfigPath))
+                if (this.UserSettings.ListOpenConfigHistory.Count > 0 && 
+                    !string.IsNullOrWhiteSpace(this.UserSettings.ListOpenConfigHistory[0].ConfigPath) && 
+                    File.Exists(this.UserSettings.ListOpenConfigHistory[0].ConfigPath))
                     this.CurrentCfgFilePath = this.UserSettings.ListOpenConfigHistory[0].ConfigPath;
                 else
                     this.UserSettings = new UserSettings();
@@ -822,32 +824,20 @@ namespace vSharpStudio.ViewModels
                                         sb.Append("\t\t\t\"connection_string\": \"");
                                         var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config);
                                         sb.Append(cnstr);
-                                        sb.AppendLine("\",");
+                                        sb.AppendLine("\"");
                                         sb.Append("\t\t}");
                                         code = sb.ToString();
                                         if (isDeleteDb)
                                         {
                                             tpg.PluginDbGenerator.EnsureDbDeleted(tpg.ConnStr);
                                         }
-                                        tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false, () =>
-                                        {
-                                            return true;
-                                        }, (ex) =>
-                                        {
-                                            throw ex;
-                                        });
+                                        tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false);
                                         if (isCurrentUpdate)
                                         {
                                             if (tpg.IsGenerateSqlSqriptToUpdatePrevStable)
                                             {
                                                 //TODO generate Stable DB update SQL script
-                                                var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true, () =>
-                                                {
-                                                    return true;
-                                                }, (ex) =>
-                                                {
-                                                    throw ex;
-                                                });
+                                                var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
                                                 string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenScriptFileName);
                                                 // tg.GetRelativeToConfigDiskPath()
                                                 //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
@@ -870,11 +860,14 @@ namespace vSharpStudio.ViewModels
                                         //code = (tg.Generator as IvPluginGenerator) .GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
                                         break;
                                 }
-                                string outFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
-                                // tg.GetRelativeToConfigDiskPath()
-                                //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                                byte[] bytes = Encoding.UTF8.GetBytes(code);
-                                File.WriteAllBytes(outFile, bytes);
+                                if (!string.IsNullOrWhiteSpace(code))
+                                {
+                                    string outFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
+                                    // tg.GetRelativeToConfigDiskPath()
+                                    //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                                    byte[] bytes = Encoding.UTF8.GetBytes(code);
+                                    File.WriteAllBytes(outFile, bytes);
+                                }
                             }
                         }
                     }

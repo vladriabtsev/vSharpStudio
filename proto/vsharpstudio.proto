@@ -612,7 +612,7 @@ enum proto_enum_data_type {
     // @attr [Description("Date without time zone")]
     DATE = 5;
     // @attr [DisplayName("DateTime Z")]
-    // @attr [Description("Date and time with time zone. DB value stored with accuracy approximatly 4 milliseconds")]
+    // @attr [Description("Date and time with time zone.")]
     DATETIMEZ = 7;
     // @attr [DisplayName("Enumeration")]
     // @attr [Description("Enumeration type")]
@@ -633,10 +633,12 @@ enum proto_enum_data_type {
     // @attr [DisplayName("Any type")]
     // @attr [Description("Any data type")]
     ANY = 15;
-
-    // @attr [DisplayName("DateTime")]
-    // @attr [Description("Date and time without time zone. DB value stored with accuracy approximatly 4 milliseconds")]
-    //DATETIME = 6;
+    // @attr [DisplayName("DateTime Local")]
+    // @attr [Description("Local Date and time. Kind always expected equal DateTimeKind.Local")]
+    DATETIMELOCAL = 16;
+    // @attr [DisplayName("DateTime UTC")]
+    // @attr [Description("UTC Date and time. Kind always expected equal DateTimeKind.Utc")]
+    DATETIMEUTC = 17;
 }
 enum proto_enum_time_accuracy_type {
     // @attr [DisplayName("Second")]
@@ -664,10 +666,6 @@ message proto_data_type {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Type")]
     proto_enum_data_type data_type_enum = 1; 
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Can be NULL")]
-    // @attr [Description("If unchecked always expected data")]
-    bool is_nullable = 2;
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("Length")]
     // @attr [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]
@@ -890,6 +888,10 @@ message proto_property {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     proto_data_type data_type = 6;
+    // @attr [PropertyOrderAttribute(20)]
+    // @attr [DisplayName("Can be NULL")]
+    // @attr [Description("If unchecked always expected data")]
+    bool is_nullable = 7;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]
@@ -897,7 +899,7 @@ message proto_property {
 
     // @attr [PropertyOrderAttribute(32)]
     // @attr [DisplayName("Expected")]
-    // @attr [Description("Expected values or ranges of values. Use '-' to create range, and ';' to separate values or ranges")]
+    // @attr [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
     string range_values_requirement_str = 16;
     // @attr [PropertyOrderAttribute(34)]
     // @attr [DisplayName("Min Length")]

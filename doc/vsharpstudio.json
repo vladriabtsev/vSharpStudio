@@ -171,14 +171,9 @@
               "description": "@attr [DisplayName(\"Date\")]\n@attr [Description(\"Date without time zone\")]"
             },
             {
-              "name": "DATETIME",
-              "number": "6",
-              "description": "@attr [DisplayName(\"DateTime\")]\n@attr [Description(\"Date and time without time zone. DB value stored with accuracy approximatly 4 milliseconds\")]"
-            },
-            {
               "name": "DATETIMEZ",
               "number": "7",
-              "description": "@attr [DisplayName(\"DateTime Z\")]\n@attr [Description(\"Date and time with time zone. DB value stored with accuracy approximatly 4 milliseconds\")]"
+              "description": "@attr [DisplayName(\"DateTime Z\")]\n@attr [Description(\"Date and time with time zone.\")]"
             },
             {
               "name": "ENUMERATION",
@@ -209,29 +204,16 @@
               "name": "ANY",
               "number": "15",
               "description": "@attr [DisplayName(\"Any type\")]\n@attr [Description(\"Any data type\")]"
-            }
-          ]
-        },
-        {
-          "name": "proto_enum_date_time_accuracy_type",
-          "longName": "proto_enum_date_time_accuracy_type",
-          "fullName": "proto_config.proto_enum_date_time_accuracy_type",
-          "description": "",
-          "values": [
-            {
-              "name": "DT_SECOND",
-              "number": "0",
-              "description": "@attr [DisplayName(\"Second\")]\n@attr [Description(\"One second accuracy\")]"
             },
             {
-              "name": "DT_MINUTE",
-              "number": "1",
-              "description": "@attr [DisplayName(\"Minute\")]\n@attr [Description(\"One minute accuracy\")]"
+              "name": "DATETIMELOCAL",
+              "number": "16",
+              "description": "@attr [DisplayName(\"DateTime Local\")]\n@attr [Description(\"Local Date and time. Kind always expected equal DateTimeKind.Local\")]"
             },
             {
-              "name": "DT_HOUR",
-              "number": "2",
-              "description": "@attr [DisplayName(\"Hour\")]\n@attr [Description(\"One hour accuracy\")]"
+              "name": "DATETIMEUTC",
+              "number": "17",
+              "description": "@attr [DisplayName(\"DateTime UTC\")]\n@attr [Description(\"UTC Date and time. Kind always expected equal DateTimeKind.Utc\")]"
             }
           ]
         },
@@ -308,14 +290,9 @@
               "description": "@attr [DisplayName(\"Millisecond\")]\n@attr [Description(\"One millisecond accuracy\")]"
             },
             {
-              "name": "MS10",
-              "number": "4",
-              "description": "@attr [DisplayName(\"Ten ms\")]\n@attr [Description(\"Ten millisecond accuracy\")]"
-            },
-            {
-              "name": "MS100",
+              "name": "MAX",
               "number": "5",
-              "description": "@attr [DisplayName(\"Hundred ms\")]\n@attr [Description(\"Hundred millisecond accuracy\")]"
+              "description": "@attr [DisplayName(\"Max\")]\n@attr [Description(\"Max (100 nanoseconds) accuracy\")]"
             }
           ]
         },
@@ -1967,16 +1944,6 @@
               "type": "proto_enum_data_type",
               "longType": "proto_enum_data_type",
               "fullType": "proto_config.proto_enum_data_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_nullable",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5491,6 +5458,16 @@
               "defaultValue": ""
             },
             {
+              "name": "is_nullable",
+              "description": "@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -5512,7 +5489,7 @@
             },
             {
               "name": "range_values_requirement_str",
-              "description": "@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Expected\")]\n@attr [Description(\"Expected values or ranges of values. Use '-' to create range, and ';' to separate values or ranges\")]",
+              "description": "@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Expected\")]\n@attr [Description(\"Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5547,16 +5524,6 @@
               "type": "proto_enum_time_accuracy_type",
               "longType": "proto_enum_time_accuracy_type",
               "fullType": "proto_config.proto_enum_time_accuracy_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "accuracy_for_date_time",
-              "description": "@attr [PropertyOrderAttribute(37)]\n@attr [DisplayName(\"Time accuracy\")]\n@attr [Description(\"Time accuracy for DateTime or DateTimeOffset type. Business model is expecting selected accuracy\")]",
-              "label": "",
-              "type": "proto_enum_date_time_accuracy_type",
-              "longType": "proto_enum_date_time_accuracy_type",
-              "fullType": "proto_config.proto_enum_date_time_accuracy_type",
               "ismap": false,
               "defaultValue": ""
             },

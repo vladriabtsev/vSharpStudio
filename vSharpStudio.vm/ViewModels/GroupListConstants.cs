@@ -161,16 +161,15 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Constant AddConstantString(string name, bool isNullable)
+        public Constant AddConstantString(string name)
         {
-            Constant node = new Constant(this) { Name = name, DataType = new DataType() { IsNullable = isNullable } };
+            Constant node = new Constant(this) { Name = name, DataType = new DataType() {  } };
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Constant AddConstantEnumeration(string name, Enumeration en, bool isNullable)
+        public Constant AddConstantEnumeration(string name, Enumeration en)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
-            dt.IsNullable = isNullable;
             var node = new Constant(this) { Name = name, DataType = dt };
             this.NodeAddNewSubNode(node);
             return node;
@@ -178,7 +177,6 @@ namespace vSharpStudio.vm.ViewModels
         public Constant AddConstantCatalog(string name, Catalog cat)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = cat.Guid };
-            dt.IsNullable = true;
             var node = new Constant(this) { Name = name, DataType = dt };
             this.NodeAddNewSubNode(node);
             return node;

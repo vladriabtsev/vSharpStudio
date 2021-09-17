@@ -135,8 +135,8 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
-            dt.IsNullable = isNullable;
             var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -229,7 +229,7 @@ namespace vSharpStudio.vm.ViewModels
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
             prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent");
-            (prp.DataType as DataType).IsNullable = true;
+            (prp as Property).IsNullable = true;
             res.Add(prp);
             if (this.UseCodeProperty.HasValue)
             {

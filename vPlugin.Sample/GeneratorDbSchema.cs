@@ -36,11 +36,11 @@ namespace vPlugin.Sample
             var res = new DbConnectionStringSettings(connectionString);
             return res;
         }
-        public object GetDbModel(string connectionString, Action<Exception> onError = null)
+        public object GetDbModel(string connectionString)
         {
             throw new NotImplementedException();
         }
-        public object GetDbModel(object context, Action<Exception> onError = null)
+        public object GetDbModel(object context)
         {
             throw new NotImplementedException();
         }
@@ -82,7 +82,7 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public string UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool> onNeedDbCreate = null, Action<Exception> onError = null)
+        public string UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool> onNeedDbCreate = null)
         {
             throw new NotImplementedException();
         }

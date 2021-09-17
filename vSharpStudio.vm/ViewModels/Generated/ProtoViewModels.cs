@@ -7081,7 +7081,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 65
-            vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
             vm.Length = from.Length; // Clone.tt Line: 65
             vm.IsPositive = from.IsPositive; // Clone.tt Line: 65
             vm.Accuracy = from.Accuracy; // Clone.tt Line: 65
@@ -7099,7 +7098,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             Contract.Requires(to != null);
             Contract.Requires(from != null);
             to.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 141
-            to.IsNullable = from.IsNullable; // Clone.tt Line: 141
             to.Length = from.Length; // Clone.tt Line: 141
             to.IsPositive = from.IsPositive; // Clone.tt Line: 141
             to.Accuracy = from.Accuracy; // Clone.tt Line: 141
@@ -7140,7 +7138,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.DataTypeEnum = (EnumDataType)m.DataTypeEnum; // Clone.tt Line: 221
-            vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
             vm.Length = m.Length; // Clone.tt Line: 221
             vm.IsPositive = m.IsPositive; // Clone.tt Line: 221
             vm.Accuracy = m.Accuracy; // Clone.tt Line: 221
@@ -7162,7 +7159,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             Contract.Requires(vm != null);
             Proto.Config.proto_data_type m = new Proto.Config.proto_data_type(); // Clone.tt Line: 239
             m.DataTypeEnum = (Proto.Config.proto_enum_data_type)vm.DataTypeEnum; // Clone.tt Line: 274
-            m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
             m.Length = vm.Length; // Clone.tt Line: 276
             m.IsPositive = vm.IsPositive; // Clone.tt Line: 276
             m.Accuracy = vm.Accuracy; // Clone.tt Line: 276
@@ -7208,29 +7204,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumDataType _DataTypeEnum;
         partial void OnDataTypeEnumChanging(ref EnumDataType to); // Property.tt Line: 79
         partial void OnDataTypeEnumChanged();
-        
-        [PropertyOrderAttribute(2)]
-        [DisplayName("Can be NULL")]
-        [Description("If unchecked always expected data")]
-        public bool IsNullable // Property.tt Line: 55
-        { 
-            get { return this._IsNullable; }
-            set
-            {
-                if (this._IsNullable != value)
-                {
-                    this.OnIsNullableChanging(ref value);
-                    this._IsNullable = value;
-                    this.OnIsNullableChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsNullable;
-        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsNullableChanged();
         
         [PropertyOrderAttribute(3)]
         [DisplayName("Length")]
@@ -10874,6 +10847,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = from.Description; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
+            vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 65
@@ -10901,6 +10875,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Description = from.Description; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
+            to.IsNullable = from.IsNullable; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             to.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 141
@@ -10980,6 +10955,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.DataType == null) // Clone.tt Line: 213
                 vm.DataType = new DataType(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
+            vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.RangeValuesRequirementStr = m.RangeValuesRequirementStr; // Clone.tt Line: 221
@@ -11011,6 +10987,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
+            m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.RangeValuesRequirementStr = vm.RangeValuesRequirementStr; // Clone.tt Line: 276
@@ -11167,6 +11144,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDataTypeChanged();
         //IDataType IProperty.DataType { get { return this._DataType; } }
         
+        [PropertyOrderAttribute(20)]
+        [DisplayName("Can be NULL")]
+        [Description("If unchecked always expected data")]
+        public bool IsNullable // Property.tt Line: 55
+        { 
+            get { return this._IsNullable; }
+            set
+            {
+                if (this._IsNullable != value)
+                {
+                    this.OnIsNullableChanging(ref value);
+                    this._IsNullable = value;
+                    this.OnIsNullableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNullable;
+        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsNullableChanged();
+        
         [BrowsableAttribute(false)]
         public bool IsNew // Property.tt Line: 55
         { 
@@ -11211,7 +11211,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [PropertyOrderAttribute(32)]
         [DisplayName("Expected")]
-        [Description("Expected values or ranges of values. Use '-' to create range, and ';' to separate values or ranges")]
+        [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
         public string RangeValuesRequirementStr // Property.tt Line: 55
         { 
             get { return this._RangeValuesRequirementStr; }
