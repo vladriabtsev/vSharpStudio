@@ -1989,7 +1989,7 @@
             },
             {
               "name": "list_object_guids",
-              "description": "@attr [PropertyOrderAttribute(7)]",
+              "description": "@attr [PropertyOrderAttribute(8)]",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -5464,6 +5464,16 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "default_value",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Default\")]\n@attr [Description(\"Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },

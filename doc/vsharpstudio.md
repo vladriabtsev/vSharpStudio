@@ -442,7 +442,7 @@ Constant application wise value
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data)&#34;)] |
 | object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
-| list_object_guids | [string](#string) | repeated | @attr [PropertyOrderAttribute(7)] |
+| list_object_guids | [string](#string) | repeated | @attr [PropertyOrderAttribute(8)] |
 | is_p_key | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_ref_parent | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
@@ -1309,6 +1309,7 @@ Configuration model
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [BrowsableAttribute(false)] |
 | is_nullable | [bool](#bool) |  | @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
+| default_value | [string](#string) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Default&#34;)] @attr [Description(&#34;Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)&#34;)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | range_values_requirement_str | [string](#string) |  | @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Expected&#34;)] @attr [Description(&#34;Expected values or ranges of values. Use &#39;#&#39; to create range, and &#39;;&#39; to separate values or ranges&#34;)] |

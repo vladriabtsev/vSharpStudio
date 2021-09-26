@@ -10,9 +10,13 @@ namespace vSharpStudio.common
     public interface IvPluginGenerator
     {
         /// <summary>
-        /// Unique identifier
+        /// Unique identifier of generator
         /// </summary>
         string Guid { get; }
+        /// <summary>
+        /// Unique identifier for group of generators. Generators wiil applied by groups
+        /// </summary>
+        string GroupGuid { get; }
         /// <summary>
         /// Short Plugin code generator name (without spaces)
         /// </summary>

@@ -681,8 +681,8 @@ message proto_data_type {
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     string object_guid = 6;
-    // @attr [PropertyOrderAttribute(7)]
-    repeated string list_object_guids = 7;
+    // @attr [PropertyOrderAttribute(8)]
+    repeated string list_object_guids = 8;
     // @attr [BrowsableAttribute(false)]
     bool is_p_key = 21;
     // @attr [BrowsableAttribute(false)]
@@ -892,6 +892,10 @@ message proto_property {
     // @attr [DisplayName("Can be NULL")]
     // @attr [Description("If unchecked always expected data")]
     bool is_nullable = 7;
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("Default")]
+    // @attr [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
+    string default_value = 8; 
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]

@@ -13,6 +13,12 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
     public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
+        [Browsable(false)]
+        // Can be used by a generator to keep calculated property data
+        public object Tag { get; set; }
+        [Browsable(false)]
+        public static IConfig Config { get; set; }
+
         #region ITree
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -38,6 +44,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;
+            this.DataType.PropertyChanged += DataType_PropertyChanged;
+        }
+
+        private void DataType_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            this.Tag = null;
         }
 
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
@@ -55,6 +67,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         public IDataType IDataType { get { return this._DataType; } }
+
         #region IConfigObject
         // public void Create()
         // {

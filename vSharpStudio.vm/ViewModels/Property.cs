@@ -18,6 +18,12 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode
     {
+        [Browsable(false)]
+        // Can be used by a generator to keep calculated property data
+        public object Tag { get; set; }
+        [Browsable(false)]
+        public static IConfig Config { get; set; }
+
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
@@ -199,6 +205,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnIsNullableChanged()
         {
             this.NotifyPropertyChanged(() => this.ClrType);
+            this.Tag = null;
         }
         private void OnDataTypeEnumChanged()
         {
@@ -266,6 +273,7 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotSupportedException();
             }
             this.NotifyPropertyChanged(() => this.ClrType);
+            this.Tag = null;
         }
         private void UpdateVisibility()
         {
@@ -296,12 +304,14 @@ namespace vSharpStudio.vm.ViewModels
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENTS)
             {
                 lst.Add(this.GetPropertyName(() => this.ListObjectGuids));
+                lst.Add(this.GetPropertyName(() => this.DefaultValue));
             }
             if (this.DataType.DataTypeEnum != EnumDataType.CATALOG &&
                 this.DataType.DataTypeEnum != EnumDataType.DOCUMENT &&
                 this.DataType.DataTypeEnum != EnumDataType.ENUMERATION)
             {
                 lst.Add(this.GetPropertyName(() => this.ObjectGuid));
+                lst.Add(this.GetPropertyName(() => this.DefaultValue));
             }
             if (this.Accuracy != 0)
             {
@@ -332,6 +342,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.ValidateProperty();
                 this.OnDataTypeEnumChanged();
                 this.UpdateVisibility();
+                this.Tag = null;
             }
         }
         [DisplayName("Length")]
@@ -346,6 +357,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
                 this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
+                this.Tag = null;
             }
         }
         [DisplayName("Accuracy")]
@@ -361,6 +373,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
                 this.UpdateVisibility();
+                this.Tag = null;
             }
         }
         [DisplayName("Positive")]
@@ -375,6 +388,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
                 this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
+                this.Tag = null;
             }
         }
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
@@ -388,6 +402,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
                 this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
+                this.Tag = null;
             }
         }
         ////[DisplayName("Positive")]

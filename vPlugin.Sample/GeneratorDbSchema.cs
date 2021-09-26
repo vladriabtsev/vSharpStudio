@@ -18,6 +18,7 @@ namespace vPlugin.Sample
         public bool IsStableDbConnection { get; set; }
         public string ProviderName { get; set; }
         public string Guid => "08744482-BE03-464B-81AB-DD482AB66103";
+        public string GroupGuid => "EDC3953C-9771-4B2D-9E6B-AF022614470F";
         public string Name => "AbstractDbSchema";
         public string NameUi => "Abstract Db Provider Name";
         public string DefaultSettingsName => throw new NotImplementedException();

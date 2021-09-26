@@ -278,6 +278,116 @@ namespace vSharpStudio.vm.ViewModels
                 ValidateRangeValuesRequirements(cntx, p);
             });
 
+            this.RuleFor(x => x.DefaultValue).Custom((x, cntx) =>
+            {
+                if (string.IsNullOrWhiteSpace(x))
+                    return;
+                var val = x.Trim();
+                var p = (Property)cntx.InstanceToValidate;
+                switch (p.DataType.DataTypeEnum)
+                {
+                    case EnumDataType.BOOL:
+                        if (!bool.TryParse(val, out bool v))
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"Can't parse by bool.Parse() default property value");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                        break;
+                    case EnumDataType.CHAR:
+                        if (val[0] != '\'')
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"Char value has to start with \' character");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                        if (val[val.Length - 1] != '\'')
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"Char value has to finish with \' character");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                        if (val.Length != 3)
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"Char value has to follow next format 'a'");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                        break;
+                    case EnumDataType.DATE:
+#if !NET6_0
+                        if (!DateTime.TryParse(val, out DateTime vd))
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"Can't parse by DateOnly.Parse() default property value");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+#else
+                        if (!DateOnly.TryParse(val, out DateOnly vd))
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"Can't parse by DateOnly.Parse() default property value");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+#endif
+                        break;
+                    case EnumDataType.DATETIMELOCAL:
+                    case EnumDataType.DATETIMEUTC:
+                    case EnumDataType.DATETIMEZ:
+                        if (!DateTime.TryParse(val, out DateTime vdt))
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"Can't parse by DateTime.Parse() default property value");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                        break;
+                    case EnumDataType.TIME:
+#if !NET6_0
+                        if (!DateTime.TryParse(val, out DateTime vt))
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"Can't parse by DateOnly.Parse() default property value");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+#else
+                        if (!TimeOnly.TryParse(val, out TimeOnly vt))
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"Can't parse by TimeOnly.Parse() default property value");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+#endif
+                        break;
+                    case EnumDataType.STRING:
+                        if (val[0] != '\"')
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"String value has to start with \" character");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                        if (val[val.Length - 1] != '\"')
+                        {
+                            var vf = new ValidationFailure(nameof(p.DefaultValue),
+                                $"String value has to finish with \" character");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            });
+
             #region ObjectGuid
             this.RuleFor(p => p.ObjectGuid).Must((p, y) =>
             {

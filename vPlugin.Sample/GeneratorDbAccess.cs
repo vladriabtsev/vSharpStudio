@@ -13,6 +13,7 @@ namespace vPlugin.Sample
         {
         }
         public string Guid => "7C2902AF-DF34-46FC-8911-A48EE7F9B2B0";
+        public string GroupGuid => "EDC3953C-9771-4B2D-9E6B-AF022614470F";
         public string Name => "DbAccess";
         public string NameUi => "Db Access Layer";
         public string DefaultSettingsName => throw new NotImplementedException();

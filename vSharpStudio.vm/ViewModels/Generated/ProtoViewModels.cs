@@ -7296,7 +7296,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnObjectGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnObjectGuidChanged();
         
-        [PropertyOrderAttribute(7)]
+        [PropertyOrderAttribute(8)]
         public ObservableCollection<string> ListObjectGuids // Property.tt Line: 8
         { 
             get { return this._ListObjectGuids; }
@@ -10848,6 +10848,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
             vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
+            vm.DefaultValue = from.DefaultValue; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 65
@@ -10876,6 +10877,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
             to.IsNullable = from.IsNullable; // Clone.tt Line: 141
+            to.DefaultValue = from.DefaultValue; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             to.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 141
@@ -10956,6 +10958,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.DataType = new DataType(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
             vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
+            vm.DefaultValue = m.DefaultValue; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.RangeValuesRequirementStr = m.RangeValuesRequirementStr; // Clone.tt Line: 221
@@ -10988,6 +10991,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
             m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
+            m.DefaultValue = vm.DefaultValue; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.RangeValuesRequirementStr = vm.RangeValuesRequirementStr; // Clone.tt Line: 276
@@ -11166,6 +11170,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsNullable;
         partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNullableChanged();
+        
+        [PropertyOrderAttribute(8)]
+        [DisplayName("Default")]
+        [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
+        public string DefaultValue // Property.tt Line: 55
+        { 
+            get { return this._DefaultValue; }
+            set
+            {
+                if (this._DefaultValue != value)
+                {
+                    this.OnDefaultValueChanging(ref value);
+                    this._DefaultValue = value;
+                    this.OnDefaultValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _DefaultValue = string.Empty;
+        partial void OnDefaultValueChanging(ref string to); // Property.tt Line: 79
+        partial void OnDefaultValueChanged();
         
         [BrowsableAttribute(false)]
         public bool IsNew // Property.tt Line: 55

@@ -41,6 +41,13 @@ namespace vSharpStudio.common
                         else
                             return "uint64";
                     }
+                    if (length <= 28)
+                    {
+                        if (isNullable)
+                            return "customTypes.DecimalValueNullable";
+                        else
+                            return "customTypes.DecimalValue";
+                    }
                     return "bytes"; // need conversions
                 }
                 else
@@ -52,13 +59,19 @@ namespace vSharpStudio.common
                         else
                             return "int32";
                     }
-
                     if (max_value <= long.MaxValue)
                     {
                         if (isNullable)
                             return "google.protobuf.Int64Value";
                         else
                             return "int64";
+                    }
+                    if (length <= 28)
+                    {
+                        if (isNullable)
+                            return "customTypes.DecimalValueNullable";
+                        else
+                            return "customTypes.DecimalValue";
                     }
                     return "bytes"; // need conversions
                 }
@@ -85,9 +98,9 @@ namespace vSharpStudio.common
                 if (length <= 28)
                 {
                     if (isNullable)
-                        return "DecimalValue_nullable";
+                        return "customTypes.DecimalValueNullable";
                     else
-                        return "DecimalValue";
+                        return "customTypes.DecimalValue";
                 }
                 return "bytes"; // need conversions
             }
@@ -128,6 +141,8 @@ namespace vSharpStudio.common
                 c = s[i];
                 if (c=='_')
                 {
+                    while (s[i + 1] == '_')
+                        i++;
                     i++;
                     c = s[i];
                     var cc = char.ToUpper(c);

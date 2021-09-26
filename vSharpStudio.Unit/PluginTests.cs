@@ -247,9 +247,9 @@ namespace vSharpStudio.Unit
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
-            gen.GenFileName = "test_file.cs";
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
+            gen.GenFileName = "test_file.cs";
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
 
@@ -268,9 +268,9 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
-            gen.GenFileName = "test_file.cs";
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
+            gen.GenFileName = "test_file.cs";
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);

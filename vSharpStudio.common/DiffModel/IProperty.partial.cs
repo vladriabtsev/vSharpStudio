@@ -15,6 +15,8 @@ namespace vSharpStudio.common
         string PropValueValue { get; }
         IPropertyRangeValuesRequirements RangeValuesRequirementsI { get; }
         string ComplexObjectNameWithDot();
+        object Tag { get; set; }
+        static IConfig Config { get; set; }
     }
     public interface IPropertyRangeValuesRequirements
     {

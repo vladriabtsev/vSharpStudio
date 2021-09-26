@@ -512,6 +512,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	IDataType DataType { get; } // ModelInterfaces.tt Line: 55
     	bool IsNullable { get; } // ModelInterfaces.tt Line: 51
+    	string DefaultValue { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	string RangeValuesRequirementStr { get; } // ModelInterfaces.tt Line: 51
