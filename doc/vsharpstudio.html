@@ -697,9 +697,19 @@
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(6)]
+@attr [DisplayName(&#34;Path&#34;)]
 @attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]
-@attr [Description(&#34;.NET project file path relative to solution file path&#34;)]
-App project relative path to .net solution file path </p></td>
+@attr [Description(&#34;.NET project file path relative to solution file path&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>referenced_project_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+@attr [DisplayName(&#34;Reference&#34;)]
+@attr [Description(&#34;Reference to Project&#34;)]
+@attr [Editor(typeof(EditorReferenceProjectSelection), typeof(ITypeEditor))] </p></td>
                 </tr>
               
                 <tr>
@@ -962,12 +972,10 @@ Generator output file name </p></td>
                   <td>relative_app_solution_path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>List NET projects
-@attr [PropertyOrderAttribute(6)]
+                  <td><p>@attr [PropertyOrderAttribute(6)]
 @attr [DisplayName(&#34;Path&#34;)]
 @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
-@attr [Description(&#34;.NET solution file path relative to configuration file path&#34;)]
-App solution relative path to configuration file path </p></td>
+@attr [Description(&#34;.NET solution file path relative to configuration file path&#34;)] </p></td>
                 </tr>
               
                 <tr>

@@ -230,11 +230,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     {
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
-    	
-    	///////////////////////////////////////////////////
-    	/// List NET projects
-    	/// App solution relative path to configuration file path
-    	///////////////////////////////////////////////////
     	string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
@@ -246,11 +241,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     {
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
-    	
-    	///////////////////////////////////////////////////
-    	/// App project relative path to .net solution file path
-    	///////////////////////////////////////////////////
     	string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 51
+    	string ReferencedProjectGuid { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44

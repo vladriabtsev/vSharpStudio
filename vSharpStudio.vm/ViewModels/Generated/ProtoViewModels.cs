@@ -4356,11 +4356,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// List NET projects
-        /// App solution relative path to configuration file path
-        ///////////////////////////////////////////////////
         [PropertyOrderAttribute(6)]
         [DisplayName("Path")]
         [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
@@ -4534,6 +4529,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 65
+            vm.ReferencedProjectGuid = from.ReferencedProjectGuid; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 51
@@ -4553,6 +4549,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
             to.RelativeAppProjectPath = from.RelativeAppProjectPath; // Clone.tt Line: 141
+            to.ReferencedProjectGuid = from.ReferencedProjectGuid; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
@@ -4625,6 +4622,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.RelativeAppProjectPath = m.RelativeAppProjectPath; // Clone.tt Line: 221
+            vm.ReferencedProjectGuid = m.ReferencedProjectGuid; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 200
@@ -4648,6 +4646,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
             m.RelativeAppProjectPath = vm.RelativeAppProjectPath; // Clone.tt Line: 276
+            m.ReferencedProjectGuid = vm.ReferencedProjectGuid; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             foreach (var t in vm.ListAppProjectGenerators) // Clone.tt Line: 242
@@ -4772,11 +4771,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// App project relative path to .net solution file path
-        ///////////////////////////////////////////////////
         [PropertyOrderAttribute(6)]
+        [DisplayName("Path")]
         [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]
         [Description(".NET project file path relative to solution file path")]
         public string RelativeAppProjectPath // Property.tt Line: 55
@@ -4798,6 +4794,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _RelativeAppProjectPath = string.Empty;
         partial void OnRelativeAppProjectPathChanging(ref string to); // Property.tt Line: 79
         partial void OnRelativeAppProjectPathChanged();
+        
+        [PropertyOrderAttribute(7)]
+        [DisplayName("Reference")]
+        [Description("Reference to Project")]
+        [Editor(typeof(EditorReferenceProjectSelection), typeof(ITypeEditor))]
+        public string ReferencedProjectGuid // Property.tt Line: 55
+        { 
+            get { return this._ReferencedProjectGuid; }
+            set
+            {
+                if (this._ReferencedProjectGuid != value)
+                {
+                    this.OnReferencedProjectGuidChanging(ref value);
+                    this._ReferencedProjectGuid = value;
+                    this.OnReferencedProjectGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ReferencedProjectGuid = string.Empty;
+        partial void OnReferencedProjectGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnReferencedProjectGuidChanged();
         
         [BrowsableAttribute(false)]
         public bool IsNew // Property.tt Line: 55

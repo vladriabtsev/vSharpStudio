@@ -308,12 +308,10 @@ message proto_app_solution {
     // @attr [PropertyOrderAttribute(5)]
     string description = 5;
 
-    // List NET projects
     // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Path")]
     // @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
     // @attr [Description(".NET solution file path relative to configuration file path")]
-    // App solution relative path to configuration file path
     string relative_app_solution_path = 7;
 
     // @attr [BrowsableAttribute(false)]
@@ -367,10 +365,16 @@ message proto_app_project {
     string description = 5;
 
     // @attr [PropertyOrderAttribute(6)]
+    // @attr [DisplayName("Path")]
     // @attr [Editor(typeof(EditorProjectPicker), typeof(ITypeEditor))]
     // @attr [Description(".NET project file path relative to solution file path")]
-    // App project relative path to .net solution file path
     string relative_app_project_path = 6;
+
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Reference")]
+    // @attr [Description("Reference to Project")]
+    // @attr [Editor(typeof(EditorReferenceProjectSelection), typeof(ITypeEditor))]
+    string referenced_project_guid = 7;
 
     // @attr [BrowsableAttribute(false)]
     bool is_new = 11;
