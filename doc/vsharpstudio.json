@@ -578,16 +578,6 @@
               "defaultValue": ""
             },
             {
-              "name": "referenced_project_guid",
-              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Reference\")]\n@attr [Description(\"Reference to Project\")]\n@attr [Editor(typeof(EditorReferenceProjectSelection), typeof(ITypeEditor))]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "is_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
