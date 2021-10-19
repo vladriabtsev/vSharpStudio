@@ -11,6 +11,7 @@ namespace vSharpStudio.common
         //string DefaultValue { get; }
         bool IsPKey { get; set; }
         bool IsComputed { get; set; }
+        bool IsDocShared { get; set; }
         string ComplexObjectName { get; set; }
         string PropValueValue { get; }
         IPropertyRangeValuesRequirements RangeValuesRequirementsI { get; }

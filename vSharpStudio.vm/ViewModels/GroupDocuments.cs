@@ -133,6 +133,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {
+                    t.IsDocShared = true;
                     res.Add(t);
                 }
             }

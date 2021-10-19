@@ -87,6 +87,8 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsPKey { get; set; }
         [BrowsableAttribute(false)]
         public bool IsComputed { get; set; }
+        [BrowsableAttribute(false)]
+        public bool IsDocShared { get; set; }
 
         [PropertyOrderAttribute(10)]
         public string ClrType
