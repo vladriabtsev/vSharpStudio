@@ -20,7 +20,7 @@ namespace vSharpStudio.common
         {
             return GetProtoTypeForNumeric(p.IsNullable, p.DataType.MaxNumericalValue, p.DataType.IsPositive, p.DataType.Accuracy, p.DataType.Length);
         }
-        public static string GetProtoTypeForNumeric(bool isNullable,  BigInteger? max_value, bool is_positive, uint accuracy, uint length)
+        public static string GetProtoTypeForNumeric(bool isNullable, BigInteger? max_value, bool is_positive, uint accuracy, uint length)
         {
             // https://docs.microsoft.com/en-us/dotnet/architecture/grpc-for-wcf-developers/protobuf-data-types
             if (accuracy == 0)
@@ -139,7 +139,7 @@ namespace vSharpStudio.common
             for (int i = 1; i < s.Length; i++)
             {
                 c = s[i];
-                if (c=='_')
+                if (c == '_')
                 {
                     while (s[i + 1] == '_')
                         i++;
@@ -152,6 +152,27 @@ namespace vSharpStudio.common
                     sb.Append(c);
             }
             return sb.ToString();
+        }
+        public static void WriteToFile(string code, string path, string fileRelativePath, string fileName)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(code);
+            string outFolder = Path.Combine(path, fileRelativePath);
+            string outFile;
+            if (Path.EndsInDirectorySeparator(outFolder))
+                outFile = $"{outFolder}{fileName}";
+            else
+                outFile = $"{outFolder}\\{fileName}";
+            File.WriteAllBytes(outFile, bytes);
+        }
+        public static void WriteToFile(byte[] bytes, string path, string fileRelativePath, string fileName)
+        {
+            string outFolder = Path.Combine(path, fileRelativePath);
+            string outFile;
+            if (Path.EndsInDirectorySeparator(outFolder))
+                outFile = $"{outFolder}{fileName}";
+            else
+                outFile = $"{outFolder}\\{fileName}";
+            File.WriteAllBytes(outFile, bytes);
         }
         public static string GetOuputFilePath(string currentCfgFolderPath, IAppSolution ts, IAppProject tp, IAppProjectGenerator tpg, string fileName)
         {

@@ -312,7 +312,7 @@ namespace vSharpStudio.Unit
             mvm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
 
             var cfg = mvm.Config;
-            int catPos = 8;
+            int catPos = 13;
             cfg.Model.GroupCatalogs.NodeAddNewSubNode();
             cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties[0].Position == catPos);

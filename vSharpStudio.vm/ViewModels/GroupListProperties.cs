@@ -229,24 +229,37 @@ namespace vSharpStudio.vm.ViewModels
         }
         public uint GetNextPosition()
         {
+            // Reserved positions
+            // 1  not used
+            // 2  not used
+            // 3  not used
+            // 4  __is_need_insert
+            // 5  __is_need_update
+            // 6  PropertyId
+            // 7  PropertyRefParent, PropertyDocumentDate
+            // 8  PropertyCatalogCode, PropertyCatalogCodeInt, PropertyDocumentCodeString, PropertyDocumentCodeInt
+            // 9  PropertyCatalogName
+            // 10 PropertyCatalogDescription
+            // 11 PropertyIsFolder
+            // 12 PropertyIsOpen
             if (this.LastGenPosition == 0)
             {
                 if (this.Parent is Catalog)
                 {
-                    this.LastGenPosition = 7;
+                    this.LastGenPosition = 12;
 
                 }
                 else if (this.Parent is PropertiesTab)
                 {
-                    this.LastGenPosition = 2;
+                    this.LastGenPosition = 7;
                 }
                 else if (this.Parent is CatalogFolder)
                 {
-                    this.LastGenPosition = 7;
+                    this.LastGenPosition = 12;
                 }
                 else if (this.Parent is Document)
                 {
-                    this.LastGenPosition = 4;
+                    this.LastGenPosition = 9;
                 }
                 else if (this.Parent is GroupDocuments)
                 {
