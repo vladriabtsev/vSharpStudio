@@ -1,23 +1,36 @@
-‚
-$508f4317-5373-412e-a427-f991af730589test2 ×¯Àä–¶óƒ*test2:§ÄœŒ´ğ”Šª<
-$ed99f643-1dc7-4f59-bffd-c485d90f888aBaseConfigsº¾ØÎú×œi²”
-$94b343f0-d60c-4ef9-894e-478a7f8c7ebbModel óØ“Öƒ›©Ê*Model@dHPª/
-v"Id*$12ae36c4-79e0-45d4-b8c1-b96873dd1e08ªJ
-$99b0efd6-7688-44fc-9634-6c4782f62beaSettings‘°Áª¶ñ®ûq"Settings2Cnst²M
-$2a900ca7-1c6a-494d-ac27-a60bf0219285EnumerationsİÍ¾»«Òî…"Enumerationsº{
-$d9f141d9-4ae5-4f92-8cf2-25754b9823a9Catalogs¦Ÿ¦Ûƒàâñ"Catalogs2CtlgªCodeºNameÊDescriptionÚIsFolderêIsOpenÂí
-$1a7f6b6b-a889-4af4-bcf6-e71e437a7c4f	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
-$5ef6c99c-d03b-4080-82c8-a83fd563bb92SharedÓŠ¼Î¶¨øûq"SharedBG
-$2ea822bd-e956-47fc-a756-40e5c47674e5	Documents¸ÀÖŸŒÓ¸ı€"	Documentsª	DocNumberºDocDateÊE
-$7f699f53-6d98-458d-b6da-4952ae748f56JournalsÚ½Ì—¦„ç°±"JournalsÒÆ
-$480a218b-72db-4ebe-ab9c-feaeae4ede2fCommonİ¡ÔÕ™ûô`"Common:>
-$7df1f420-3630-497e-8f78-7aa554edbb3eRoles—æÉ—¾ªŠõ"RolesBD
-$16917870-0fb7-4a58-8975-ad793433d764Settings‘°Áª¶ñ®û"SettingsÂ¡
-$61b41c8a-3509-49b4-9941-8035b70bdfe2Plugins„™„§à›®ã‘"º
+Å
+$e8d30c36-d22f-4e3f-8f45-a6d745fe02batest2 ×¯Àä–¶óƒ*test2:íÔ¯Œüºøìª<
+$e56d0006-aded-45e6-a949-43f0a8e60343BaseConfigsº¾ØÎú×œi²”
+$78f120b9-9de4-49d3-bfc2-56eed87ad7c0Model óØ“Öƒ›©Ê*Model@dHPª/
+v"Id*$614efb0c-3f53-4afa-8f4e-5f81a8e06c00ªJ
+$46d18858-e7c5-492b-9665-e070de405c6eSettings‘°Áª¶ñ®ûq"Settings2Cnst²M
+$2734963a-6549-409b-bf7f-be2bf36b5842EnumerationsİÍ¾»«Òî…"Enumerationsº{
+$c072ddda-b5a0-481f-9dbe-7949ec1b4b4cCatalogs¦Ÿ¦Ûƒàâñ"Catalogs2CtlgªCodeºNameÊDescriptionÚIsFolderêIsOpenÂí
+$a095d5e3-b645-444a-8019-a1e1209a3323	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
+$aa66200c-cc25-4177-992c-ad682907f294SharedÓŠ¼Î¶¨øûq"SharedBG
+$afc961e4-cc9f-405a-b1e6-658a393206b4	Documents¸ÀÖŸŒÓ¸ı€"	Documentsª	DocNumberºDocDateÊE
+$52ab23be-060d-4a7d-9bf5-d61b9135fb32JournalsÚ½Ì—¦„ç°±"JournalsÒÆ
+$fb55b12c-b9c6-4818-afa2-e51b0b3af178Commonİ¡ÔÕ™ûô`"Common:>
+$7963c230-0e40-4d9c-9084-99c0d3ef42c6Roles—æÉ—¾ªŠõ"RolesBD
+$f5dfd61c-a438-4120-83ff-e41d2f5f555aSettings‘°Áª¶ñ®û"SettingsÂä
+$71e4855c-9b42-421a-824f-2e489e84f943Plugins„™„§à›®ã‘"º
 $3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
 $1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generation ØŞèİ›ŸæòX"§
+RepositoryDB repository code generation ØŞèİ›ŸæòX"ã
+$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(Øç»Â±¨ë—2|
+$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions °Œ½¹¨ë—X"Õ
+$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
+$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{X"Ş
+$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
+PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
+$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{X"È
+$052C7318-3D73-4605-B1AE-749FC7E104120.1
+Repository"4vSharpStudio plugin. DB access layer repository code(ØŞèİ›Ÿæò2M
+$E59B393E-AF34-4438-977F-7BF120E28A0C
+RepositoryDb Access Layer ØŞèİ›ŸæòX"§
 $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
-$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zXÊ7
-$58d86bde-d613-41df-ad41-4eef17ff7da8AppsÈ ›½¾ä 
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zX"Ö
+$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
+$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{XÊ7
+$59b861b2-7df5-4cf2-b471-4a7e3b27c16aAppsÈ ›½¾ä 

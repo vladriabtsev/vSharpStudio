@@ -1,26 +1,39 @@
-ˆ
-$e7992200-1218-4371-87d2-f71161cd106etest1 îˆ¶óƒ*test1:§ÄœŒ¨”ä¬€ª<
-$64ac3ca6-ab1b-4f21-9f3b-771c76c62bd2BaseConfigsº¾ØÎú×œi²¡
-$cb59108e-b33e-4f15-96fa-3994e185fd1eModel óØ“Öƒ›©Ê*Model@dHPª/
-v"Id*$f4d022fa-8e49-4f8d-b54d-51b97e73853cªÖ
-$31aff49e-31a1-4454-83f9-84ec43544e91Settings‘°Áª¶ñ®ûq"Settings2CnstB‰
-$fd1e2490-bbca-443e-ba51-5846f4830375GrÕŞøÉ¢Ö—"Gr2M
-$c4a04ab1-486c-4f36-855b-f9c2d1f5d699	Constant1ØÔ’–­†üt"	Constant12
+Á
+$a61740ad-b64f-4297-980c-ebd03e6857fctest1 îˆ¶óƒ*test1:íÔ¯Œœë²¹€ª<
+$aaee08ea-44dd-4002-841e-6e326cc4fdb4BaseConfigsº¾ØÎú×œi²¡
+$43a8041e-1018-4c95-b2f7-676f04226fe9Model óØ“Öƒ›©Ê*Model@dHPª/
+v"Id*$1f494939-9cc5-4a78-bf32-ddfaf46fc89fªÖ
+$8dbab0bd-314b-4933-8064-6575e0a56523Settings‘°Áª¶ñ®ûq"Settings2CnstB‰
+$a1af158a-2a62-42ae-90b2-37ec42f48fa4GrÕŞøÉ¢Ö—"Gr2M
+$40bc2a0f-5439-4ad8-9891-2a1bba6155ec	Constant1ØÔ’–­†üt"	Constant12
 PH²M
-$3fe2abfc-11ab-4977-9b1d-2eb8848e98dfEnumerationsİÍ¾»«Òî…"Enumerationsº{
-$f536c5a0-423c-4c98-98f2-d82d793a48a5Catalogs¦Ÿ¦Ûƒàâñ"Catalogs2CtlgªCodeºNameÊDescriptionÚIsFolderêIsOpenÂí
-$d5070ded-32a6-4f39-8b3d-463b91986b69	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
-$0c9f83f5-e4dc-44a4-982f-0a4e1f208acdSharedÓŠ¼Î¶¨øûq"SharedBG
-$d150f8b9-ee9a-47b8-b641-9407ff5d4f0a	Documents¸ÀÖŸŒÓ¸ı€"	Documentsª	DocNumberºDocDateÊE
-$470b9b1b-47d9-4c49-b257-ece1c5c782b7JournalsÚ½Ì—¦„ç°±"JournalsÒÆ
-$10d3ae6d-7e93-47de-a439-99b77e334225Commonİ¡ÔÕ™ûô`"Common:>
-$f027b6d9-3115-4144-92a5-dc27dc5da289Roles—æÉ—¾ªŠõ"RolesBD
-$7744b8aa-b16a-422b-8fa3-cbf34c5d2a2aSettings‘°Áª¶ñ®û"SettingsÂ—
-$0c4e6dbd-587e-4baf-99c5-dd0cf401a7dbPlugins„™„§à›®ã‘"µ
+$bffb3fa2-6f74-4efe-bd9d-92b78aa8dab8EnumerationsİÍ¾»«Òî…"Enumerationsº{
+$21385d8d-7f1a-45d8-a880-3f4ef158a20aCatalogs¦Ÿ¦Ûƒàâñ"Catalogs2CtlgªCodeºNameÊDescriptionÚIsFolderêIsOpenÂí
+$66c12398-dc64-468d-88bc-0725b7ab3538	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
+$faf08c9f-23f6-42b1-97b5-0e22f6659d5cSharedÓŠ¼Î¶¨øûq"SharedBG
+$f2fb1018-c8ee-4167-9e73-8437489e0b80	Documents¸ÀÖŸŒÓ¸ı€"	Documentsª	DocNumberºDocDateÊE
+$06190d7a-46cb-4b1a-b298-70aaebc5087eJournalsÚ½Ì—¦„ç°±"JournalsÒÆ
+$b5f556d7-a0a5-47d9-9121-12aded028a4aCommonİ¡ÔÕ™ûô`"Common:>
+$9220b9d2-6132-44b3-87be-3249251ed773Roles—æÉ—¾ªŠõ"RolesBD
+$62e105e1-d4d5-467f-99cc-d5a988c6949fSettings‘°Áª¶ñ®û"SettingsÂĞ
+$ea28fe6b-76d9-4379-9a21-95739fbc568bPlugins„™„§à›®ã‘"µ
 $3829EEAB-71BB-4BE2-91E6-70872B6FB85CBlazor"Blazor code generation plugin(†ÛİƒéÓk2[
 $1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generation ØŞèİ›ŸæòX"¢
+RepositoryDB repository code generation ØŞèİ›ŸæòX"Ş
+$EDE860F8-2E9B-4E17-8A80-2D52879D15ABgRPC"&vSharpStudio plugin. gRPC service code(Øç»Â±¨ë—2|
+$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions °Œ½¹¨ë—X"Õ
+$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
+$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{X"Ş
+$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
+PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
+$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{X"Ã
+$052C7318-3D73-4605-B1AE-749FC7E10412
+Repository"4vSharpStudio plugin. DB access layer repository code(ØŞèİ›Ÿæò2M
+$E59B393E-AF34-4438-977F-7BF120E28A0C
+RepositoryDb Access Layer ØŞèİ›ŸæòX"¢
 $ED93228B-8D8E-456C-9688-37EEB1B2D835Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
-$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zXÊ7
-$f4123d30-27af-4daa-b878-088e566c18ebAppsÈ ›½¾ä 
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zX"Ö
+$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
+$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{XÊ7
+$768b12c2-230e-4051-8167-e7032c647ed5AppsÈ ›½¾ä 
