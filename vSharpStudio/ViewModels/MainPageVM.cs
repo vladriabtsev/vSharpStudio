@@ -49,16 +49,14 @@ namespace vSharpStudio.ViewModels
         private static ILogger _logger;
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyGrid propertyGrid;
         public ValidationListForSelectedNode validationListForSelectedNode;
-        public MainPageVM()
-            : base(MainPageVMValidator.Validator)
+        public MainPageVM() : base(MainPageVMValidator.Validator)
         {
             _logger = Logger.CreateLogger<MainPageVM>();
         }
         bool isLoadConfig;
         string configFile;
         //public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
-        public MainPageVM(bool isLoadConfig, string configFile = null)
-            : this()
+        public MainPageVM(bool isLoadConfig, string configFile = null) : this()
         {
             //this.onImportsSatisfied = onImportsSatisfied;
             this.isLoadConfig = isLoadConfig;
@@ -1216,14 +1214,13 @@ namespace vSharpStudio.ViewModels
         #region ConfigTree
         private void VisibilityAndMessageInstructions()
         {
+            this.VisibilityConfig = System.Windows.Visibility.Visible;
             if (string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath))
             {
-                this.VisibilityConfig = System.Windows.Visibility.Hidden;
                 this.MessageInstructions = "Before start editing config, empty config has to be saved";
             }
             else
             {
-                this.VisibilityConfig = System.Windows.Visibility.Visible;
                 this.MessageInstructions = null;
             }
         }

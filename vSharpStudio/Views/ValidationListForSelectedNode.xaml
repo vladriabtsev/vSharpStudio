@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="List All Validations"/>
+        <TextBlock Grid.Row="0" Text="Selected Node Validation Results"/>
         <DataGrid Grid.Row="1" x:Name="dataGrid" IsSynchronizedWithCurrentItem="True" 
                   ItemsSource="{Binding Config.SelectedNode.ValidationCollection}" AutoGenerateColumns="false" HeadersVisibility="None">
             <DataGrid.Columns d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmb:ValidationMessage}}">
