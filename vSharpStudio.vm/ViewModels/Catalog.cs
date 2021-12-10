@@ -68,6 +68,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
+            this.ViewDefaultGuid = System.Guid.NewGuid().ToString();
             this.RefillChildren();
             HideProperties();
         }

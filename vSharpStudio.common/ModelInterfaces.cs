@@ -459,7 +459,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
-    	int MaxAmountTabRecords { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Create Index for foreign key navigation property
@@ -621,6 +620,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool? UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
@@ -659,6 +659,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool UseFolderTypeExplicitly { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIsOpenGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
     	bool UseTree { get; } // ModelInterfaces.tt Line: 51
     	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 51
     	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 51

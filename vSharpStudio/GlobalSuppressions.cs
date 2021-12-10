@@ -28,3 +28,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix", Justification = "My")]
 [assembly: SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "My")]
 [assembly: SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "My")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "My")]

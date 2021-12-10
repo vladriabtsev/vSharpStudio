@@ -296,6 +296,7 @@ Application project generator
 | use_folder_type_explicitly | [bool](#bool) |  | @attr [PropertyOrderAttribute(54)] @attr [DisplayName(&#34;Use Folders&#34;)] @attr [Description(&#34;User has choose explicitly item or folder type for catalog element &#34;)] |
 | property_is_folder_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_is_open_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| view_default_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(61)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
 | group_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(62)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
 | max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(63)] @attr [DisplayName(&#34;Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
@@ -354,6 +355,7 @@ Application project generator
 | use_description_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(52)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
 | property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| view_default_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_ref_self_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -1278,7 +1280,6 @@ Configuration model
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| max_amount_tab_records | [int32](#int32) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Max records&#34;)] @attr [Description(&#34;Max amount of tab records, if zero then unlimited&#34;)] |
 | is_index_fk | [bool](#bool) |  | Create Index for foreign key navigation property @attr [PropertyOrderAttribute(5)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |

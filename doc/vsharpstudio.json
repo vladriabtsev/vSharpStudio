@@ -1302,6 +1302,16 @@
               "defaultValue": ""
             },
             {
+              "name": "view_default_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "use_tree",
               "description": "@attr [PropertyOrderAttribute(61)]\n@attr [DisplayName(\"Use Tree\")]\n@attr [Description(\"Use tree catalog structure\")]",
               "label": "",
@@ -1615,6 +1625,16 @@
             },
             {
               "name": "property_description_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "view_default_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
@@ -5283,16 +5303,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "max_amount_tab_records",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Max records\")]\n@attr [Description(\"Max amount of tab records, if zero then unlimited\")]",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
               "ismap": false,
               "defaultValue": ""
             },

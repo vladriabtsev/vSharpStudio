@@ -829,10 +829,7 @@ message proto_properties_tab {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Max records")]
-    // @attr [Description("Max amount of tab records, if zero then unlimited")]
-    int32 max_amount_tab_records = 6;
+
     // Create Index for foreign key navigation property
     // @attr [PropertyOrderAttribute(5)]
     bool is_index_fk = 8;
@@ -1153,6 +1150,8 @@ message proto_catalog_folder {
     uint32 max_description_length = 52;
     // @attr [BrowsableAttribute(false)]
     string property_description_guid = 53;
+    // @attr [BrowsableAttribute(false)]
+    string view_default_guid = 54;
 
     // @attr [BrowsableAttribute(false)]
     string property_ref_self_guid = 65;
@@ -1270,6 +1269,8 @@ message proto_catalog {
     string property_is_folder_guid = 55;
     // @attr [BrowsableAttribute(false)]
     string property_is_open_guid = 56;
+    // @attr [BrowsableAttribute(false)]
+    string view_default_guid = 57;
 
     // @attr [PropertyOrderAttribute(61)]
     // @attr [DisplayName("Use Tree")]

@@ -49,6 +49,7 @@ namespace vSharpStudio.vm.ViewModels
             this.MaxDescriptionLength = 100;
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
             this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
+            this.ViewDefaultGuid = System.Guid.NewGuid().ToString();
 
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG

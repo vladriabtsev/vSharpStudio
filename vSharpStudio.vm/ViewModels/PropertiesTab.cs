@@ -51,7 +51,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.OnAdded();
             };
-
+ 
             VmBindable.IsNotifyingStatic = false;
             this.Children.Add(this.GroupProperties, 7);
             VmBindable.IsNotifyingStatic = true;

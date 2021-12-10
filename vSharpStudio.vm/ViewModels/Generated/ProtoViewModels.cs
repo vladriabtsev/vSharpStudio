@@ -9819,7 +9819,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
-            vm.MaxAmountTabRecords = from.MaxAmountTabRecords; // Clone.tt Line: 65
             vm.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
@@ -9848,7 +9847,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
-            to.MaxAmountTabRecords = from.MaxAmountTabRecords; // Clone.tt Line: 141
             to.IsIndexFk = from.IsIndexFk; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
@@ -9928,7 +9926,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
-            vm.MaxAmountTabRecords = m.MaxAmountTabRecords; // Clone.tt Line: 221
             vm.IsIndexFk = m.IsIndexFk; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
@@ -9964,7 +9961,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
-            m.MaxAmountTabRecords = vm.MaxAmountTabRecords; // Clone.tt Line: 276
             m.IsIndexFk = vm.IsIndexFk; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
@@ -10100,29 +10096,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _Description = string.Empty;
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
-        
-        [PropertyOrderAttribute(4)]
-        [DisplayName("Max records")]
-        [Description("Max amount of tab records, if zero then unlimited")]
-        public int MaxAmountTabRecords // Property.tt Line: 55
-        { 
-            get { return this._MaxAmountTabRecords; }
-            set
-            {
-                if (this._MaxAmountTabRecords != value)
-                {
-                    this.OnMaxAmountTabRecordsChanging(ref value);
-                    this._MaxAmountTabRecords = value;
-                    this.OnMaxAmountTabRecordsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private int _MaxAmountTabRecords;
-        partial void OnMaxAmountTabRecordsChanging(ref int to); // Property.tt Line: 79
-        partial void OnMaxAmountTabRecordsChanged();
         
         
         ///////////////////////////////////////////////////
@@ -14125,6 +14098,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.UseDescriptionProperty = from.UseDescriptionProperty.HasValue ? from.UseDescriptionProperty.Value : (bool?)null; // Clone.tt Line: 58
             vm.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 65
             vm.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 65
+            vm.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 65
             vm.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -14161,6 +14135,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.UseDescriptionProperty = from.UseDescriptionProperty.HasValue ? from.UseDescriptionProperty.Value : (bool?)null; // Clone.tt Line: 136
             to.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 141
             to.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 141
+            to.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 141
             to.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -14251,6 +14226,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.UseDescriptionProperty = m.UseDescriptionProperty.HasValue ? (bool?)m.UseDescriptionProperty.Value : (bool?)null; // Clone.tt Line: 221
             vm.MaxDescriptionLength = m.MaxDescriptionLength; // Clone.tt Line: 221
             vm.PropertyDescriptionGuid = m.PropertyDescriptionGuid; // Clone.tt Line: 221
+            vm.ViewDefaultGuid = m.ViewDefaultGuid; // Clone.tt Line: 221
             vm.PropertyRefSelfGuid = m.PropertyRefSelfGuid; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -14298,6 +14274,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 m.UseDescriptionProperty.Value = vm.UseDescriptionProperty.Value;
             m.MaxDescriptionLength = vm.MaxDescriptionLength; // Clone.tt Line: 276
             m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // Clone.tt Line: 276
+            m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
             m.PropertyRefSelfGuid = vm.PropertyRefSelfGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -14748,6 +14725,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyDescriptionGuidChanged();
         
         [BrowsableAttribute(false)]
+        public string ViewDefaultGuid // Property.tt Line: 55
+        { 
+            get { return this._ViewDefaultGuid; }
+            set
+            {
+                if (this._ViewDefaultGuid != value)
+                {
+                    this.OnViewDefaultGuidChanging(ref value);
+                    this._ViewDefaultGuid = value;
+                    this.OnViewDefaultGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ViewDefaultGuid = string.Empty;
+        partial void OnViewDefaultGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnViewDefaultGuidChanged();
+        
+        [BrowsableAttribute(false)]
         public string PropertyRefSelfGuid // Property.tt Line: 55
         { 
             get { return this._PropertyRefSelfGuid; }
@@ -15078,6 +15076,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.UseFolderTypeExplicitly = from.UseFolderTypeExplicitly; // Clone.tt Line: 65
             vm.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 65
             vm.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 65
+            vm.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 65
             vm.UseTree = from.UseTree; // Clone.tt Line: 65
             vm.GroupIconType = from.GroupIconType; // Clone.tt Line: 65
             vm.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 65
@@ -15129,6 +15128,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.UseFolderTypeExplicitly = from.UseFolderTypeExplicitly; // Clone.tt Line: 141
             to.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 141
             to.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 141
+            to.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 141
             to.UseTree = from.UseTree; // Clone.tt Line: 141
             to.GroupIconType = from.GroupIconType; // Clone.tt Line: 141
             to.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 141
@@ -15237,6 +15237,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.UseFolderTypeExplicitly = m.UseFolderTypeExplicitly; // Clone.tt Line: 221
             vm.PropertyIsFolderGuid = m.PropertyIsFolderGuid; // Clone.tt Line: 221
             vm.PropertyIsOpenGuid = m.PropertyIsOpenGuid; // Clone.tt Line: 221
+            vm.ViewDefaultGuid = m.ViewDefaultGuid; // Clone.tt Line: 221
             vm.UseTree = m.UseTree; // Clone.tt Line: 221
             vm.GroupIconType = (EnumCatalogTreeIcon)m.GroupIconType; // Clone.tt Line: 221
             vm.MaxTreeLevels = m.MaxTreeLevels; // Clone.tt Line: 221
@@ -15296,6 +15297,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.UseFolderTypeExplicitly = vm.UseFolderTypeExplicitly; // Clone.tt Line: 276
             m.PropertyIsFolderGuid = vm.PropertyIsFolderGuid; // Clone.tt Line: 276
             m.PropertyIsOpenGuid = vm.PropertyIsOpenGuid; // Clone.tt Line: 276
+            m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
             m.UseTree = vm.UseTree; // Clone.tt Line: 276
             m.GroupIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.GroupIconType; // Clone.tt Line: 274
             m.MaxTreeLevels = vm.MaxTreeLevels; // Clone.tt Line: 276
@@ -15910,6 +15912,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyIsOpenGuid = string.Empty;
         partial void OnPropertyIsOpenGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIsOpenGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string ViewDefaultGuid // Property.tt Line: 55
+        { 
+            get { return this._ViewDefaultGuid; }
+            set
+            {
+                if (this._ViewDefaultGuid != value)
+                {
+                    this.OnViewDefaultGuidChanging(ref value);
+                    this._ViewDefaultGuid = value;
+                    this.OnViewDefaultGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ViewDefaultGuid = string.Empty;
+        partial void OnViewDefaultGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnViewDefaultGuidChanged();
         
         [PropertyOrderAttribute(61)]
         [DisplayName("Use Tree")]
