@@ -313,8 +313,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
             if (isFolder)
             {
-                    prp = cfg.Model.GetPropertyRefParent(this.Folder.PropertyRefSelfGuid, "RefTreeParent");
-                    (prp as Property).IsNullable = true;
+                    prp = cfg.Model.GetPropertyRefParent(this.Folder.PropertyRefSelfGuid, "RefTreeParent", true);
                     res.Add(prp);
             }
             else
@@ -328,8 +327,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     else
                     {
-                        prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent");
-                        (prp as Property).IsNullable = true;
+                        prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent", true);
                         res.Add(prp);
                         if (this.UseFolderTypeExplicitly)
                         {

@@ -614,12 +614,13 @@ namespace vSharpStudio.vm.ViewModels
             res.IsPKey = true;
             return res;
         }
-        public IProperty GetPropertyRefParent(string guid, string name)
+        public IProperty GetPropertyRefParent(string guid, string name, bool isNullable = false)
         {
             var dt = (DataType)this.GetIdDataType();
             dt.IsRefParent = true;
             var res = new Property(default(ITreeConfigNode), guid, name, dt);
             res.Position = 7;
+            res.IsNullable = isNullable;
             return res;
         }
         public IProperty GetPropertyCatalogCode(string guid, uint length)

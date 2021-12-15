@@ -428,6 +428,16 @@ namespace vSharpStudio.ViewModels
                 this.AgregateCatalogs(folder, "vPlugin*.dll", catalog);
                 CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
                 container.SatisfyImportsOnce(this);
+                foreach(var sln in this.Config.GroupAppSolutions.ListAppSolutions)
+                {
+                    foreach(var prj in sln.ListAppProjects)
+                    {
+                        foreach(var pg in prj.ListAppProjectGenerators)
+                        {
+                            var set = pg.DynamicGeneratorSettings;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

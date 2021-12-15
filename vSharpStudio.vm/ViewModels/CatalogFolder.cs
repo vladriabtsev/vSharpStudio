@@ -229,7 +229,7 @@ namespace vSharpStudio.vm.ViewModels
             var ctlg = (Catalog)this.Parent;
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
-            prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent");
+            prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent", true);
             (prp as Property).IsNullable = true;
             res.Add(prp);
             if (this.UseCodeProperty.HasValue)
