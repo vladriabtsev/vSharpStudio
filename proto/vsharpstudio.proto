@@ -615,8 +615,8 @@ enum proto_enum_data_type {
     // @attr [DisplayName("Date")]
     // @attr [Description("Date without time zone")]
     DATE = 5;
-    // @attr [DisplayName("DateTime Z")]
-    // @attr [Description("Date and time with time zone.")]
+    // @attr [DisplayName("DateTime Z, Experimental")]
+    // @attr [Description("Date and time with time zone. Not working yet with PostgreSQL")]
     DATETIMEZ = 7;
     // @attr [DisplayName("Enumeration")]
     // @attr [Description("Enumeration type")]

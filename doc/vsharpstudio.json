@@ -173,7 +173,7 @@
             {
               "name": "DATETIMEZ",
               "number": "7",
-              "description": "@attr [DisplayName(\"DateTime Z\")]\n@attr [Description(\"Date and time with time zone.\")]"
+              "description": "@attr [DisplayName(\"DateTime Z, Experimental\")]\n@attr [Description(\"Date and time with time zone. Not working yet with PostgreSQL\")]"
             },
             {
               "name": "ENUMERATION",

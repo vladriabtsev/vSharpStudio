@@ -18,7 +18,7 @@
         <Compile Remove="ViewModelValidatableWithSeverity.cs" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="FluentValidation" Version="10.3.5" />
+        <PackageReference Include="FluentValidation" Version="10.3.6" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
     </ItemGroup>

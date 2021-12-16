@@ -1518,7 +1518,7 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | BOOL | 3 | @attr [DisplayName(&#34;Boolean&#34;)] @attr [Description(&#34;Boolean type&#34;)] |
 | TIME | 4 | @attr [DisplayName(&#34;Time&#34;)] @attr [Description(&#34;Time without time zone. DB value stored with accuracy 1 second&#34;)] |
 | DATE | 5 | @attr [DisplayName(&#34;Date&#34;)] @attr [Description(&#34;Date without time zone&#34;)] |
-| DATETIMEZ | 7 | @attr [DisplayName(&#34;DateTime Z&#34;)] @attr [Description(&#34;Date and time with time zone.&#34;)] |
+| DATETIMEZ | 7 | @attr [DisplayName(&#34;DateTime Z, Experimental&#34;)] @attr [Description(&#34;Date and time with time zone. Not working yet with PostgreSQL&#34;)] |
 | ENUMERATION | 10 | @attr [DisplayName(&#34;Enumeration&#34;)] @attr [Description(&#34;Enumeration type&#34;)] |
 | CATALOG | 11 | @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog type&#34;)] |
 | CATALOGS | 12 | @attr [DisplayName(&#34;Catalogs&#34;)] @attr [Description(&#34;List of catalogs&#34;)] |
