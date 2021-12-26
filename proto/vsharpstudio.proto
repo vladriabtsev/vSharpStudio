@@ -615,9 +615,13 @@ enum proto_enum_data_type {
     // @attr [DisplayName("Date")]
     // @attr [Description("Date without time zone")]
     DATE = 5;
-    // @attr [DisplayName("DateTime Z, Experimental")]
-    // @attr [Description("Date and time with time zone. Not working yet with PostgreSQL")]
-    DATETIMEZ = 7;
+    // @attr [DisplayName("DateTime Local")]
+    // @attr [Description("Local Date and time. Kind always expected equal DateTimeKind.Local")]
+    DATETIMELOCAL = 6;
+    // @attr [DisplayName("DateTime UTC")]
+    // @attr [Description("UTC Date and time. Kind always expected equal DateTimeKind.Utc")]
+    DATETIMEUTC = 7;
+
     // @attr [DisplayName("Enumeration")]
     // @attr [Description("Enumeration type")]
     ENUMERATION = 10;
@@ -633,16 +637,13 @@ enum proto_enum_data_type {
     // @attr [DisplayName("Documents")]
     // @attr [Description("List of documents")]
     DOCUMENTS = 14;
-
     // @attr [DisplayName("Any type")]
     // @attr [Description("Any data type")]
     ANY = 15;
-    // @attr [DisplayName("DateTime Local")]
-    // @attr [Description("Local Date and time. Kind always expected equal DateTimeKind.Local")]
-    DATETIMELOCAL = 16;
-    // @attr [DisplayName("DateTime UTC")]
-    // @attr [Description("UTC Date and time. Kind always expected equal DateTimeKind.Utc")]
-    DATETIMEUTC = 17;
+
+    // @attr [DisplayName("DateTime Z, Experimental")]
+    // @attr [Description("Date and time with time zone. Not working yet with PostgreSQL")]
+    //DATETIMEZ = 7;
 }
 enum proto_enum_time_accuracy_type {
     // @attr [DisplayName("Second")]

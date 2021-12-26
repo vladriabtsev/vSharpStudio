@@ -17,7 +17,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     // [DebuggerDisplay("AppProject:{Name,nq} props:{listProperties.Count,nq}")]
-    [DebuggerDisplay("AppProject:{Name,nq}")]
+    [DebuggerDisplay("AppProject:{Name,nq} RelPath:{RelativeAppProjectPath,nq}")]
     public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Project";

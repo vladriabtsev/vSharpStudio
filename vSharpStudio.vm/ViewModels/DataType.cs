@@ -485,9 +485,9 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATE:
                     this.ClrTypeName = "DateOnly";
                     break;
-                case EnumDataType.DATETIMEZ:
-                    this.ClrTypeName = "DateTimeOffset";
-                    break;
+                //case EnumDataType.DATETIMEZ:
+                //    this.ClrTypeName = "DateTimeOffset";
+                //    break;
                 case EnumDataType.DATETIMELOCAL:
                 case EnumDataType.DATETIMEUTC:
                 //case EnumDataType.DATETIME:
@@ -691,7 +691,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDataType.DATETIMELOCAL:
                 case EnumDataType.DATETIMEUTC:
                 //case EnumDataType.DATETIME:
-                case EnumDataType.DATETIMEZ:
+                //case EnumDataType.DATETIMEZ:
                 //case EnumDataType.DATETIMEOFFSET:
                 case EnumDataType.TIME:
                 //case EnumDataType.TIMEZ:

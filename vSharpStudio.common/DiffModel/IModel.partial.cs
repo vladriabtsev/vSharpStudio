@@ -26,7 +26,8 @@ namespace vSharpStudio.common
         IDataType GetDataTypeBool();
         IDataType GetDataTypeDate();
         //IDataType GetDataTypeDateTime();
-        IDataType GetDataTypeDateTimeZ();
+        //IDataType GetDataTypeDateTimeZ();
+        IDataType GetDataTypeDateTimeUtc();
         IDataType GetDataTypeTime();
         //IDataType GetDataTypeTimeZ();
         IDataType GetIdDataType();

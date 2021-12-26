@@ -1,4 +1,5 @@
 ﻿#define Async
+#define nPARRALEL
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -428,11 +429,11 @@ namespace vSharpStudio.ViewModels
                 this.AgregateCatalogs(folder, "vPlugin*.dll", catalog);
                 CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
                 container.SatisfyImportsOnce(this);
-                foreach(var sln in this.Config.GroupAppSolutions.ListAppSolutions)
+                foreach (var sln in this.Config.GroupAppSolutions.ListAppSolutions)
                 {
-                    foreach(var prj in sln.ListAppProjects)
+                    foreach (var prj in sln.ListAppProjects)
                     {
-                        foreach(var pg in prj.ListAppProjectGenerators)
+                        foreach (var pg in prj.ListAppProjectGenerators)
                         {
                             var set = pg.DynamicGeneratorSettings;
                         }
@@ -778,7 +779,11 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand _CommandConfigCurrentUpdate;
+#if PARRALEL
+        public async Task GenerateCodeAsync(CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
+#else
         public void GenerateCode(CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
+#endif
         {
             var dicGroupGuids = new Dictionary<string, string>();
             foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
@@ -818,83 +823,95 @@ namespace vSharpStudio.ViewModels
                             {
                                 if (tg.Guid != tpg.PluginGeneratorGuid)
                                     continue;
-                                if (tg.Generator != null)
+#if PARRALEL
+                                await Task.Run(() =>
+#endif
                                 {
-                                    string code = null;
-                                    switch (tg.Generator.PluginGeneratorType)
+                                    if (tg.Generator != null)
                                     {
-                                        case vPluginLayerTypeEnum.DbDesign:
-                                            if (!(tg.Generator is IvPluginDbGenerator))
-                                                throw new Exception("Generator type vPluginLayerTypeEnum.DbDesign has to have interface: " + typeof(IvPluginDbGenerator).Name);
-                                            string outFileConn = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
-                                            bool first = false;
-                                            StringBuilder sb = null;
-                                            if (!dicAppSettings.ContainsKey(outFileConn))
-                                            {
-                                                first = true;
-                                                sb = new StringBuilder();
-                                                dicAppSettings[outFileConn] = sb;
-                                                sb.AppendLine("{");
-                                                sb.AppendLine("\t\"db_conns\": {");
-                                            }
-                                            else
-                                                sb = dicAppSettings[outFileConn];
-                                            if (!first)
-                                                sb.AppendLine(",");
-                                            sb.Append("\t\t\"");
-                                            sb.Append(tpg.Name);
-                                            sb.AppendLine("\": {");
-                                            sb.Append("\t\t\t\"provider\": \"");
-                                            sb.Append(tpg.PluginDbGenerator.ProviderName);
-                                            sb.AppendLine("\",");
-                                            sb.Append("\t\t\t\"connection_string\": \"");
-                                            var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config);
-                                            sb.Append(cnstr);
-                                            sb.AppendLine("\"");
-                                            sb.Append("\t\t}");
-                                            code = sb.ToString();
-                                            if (isDeleteDb)
-                                            {
-                                                tpg.PluginDbGenerator.EnsureDbDeleted(tpg.ConnStr);
-                                            }
-                                            tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false);
-                                            if (isCurrentUpdate)
-                                            {
-                                                if (tpg.IsGenerateSqlSqriptToUpdatePrevStable)
+                                        string code = null;
+                                        switch (tg.Generator.PluginGeneratorType)
+                                        {
+                                            case vPluginLayerTypeEnum.DbDesign:
+                                                if (!(tg.Generator is IvPluginDbGenerator))
+                                                    throw new Exception("Generator type vPluginLayerTypeEnum.DbDesign has to have interface: " + typeof(IvPluginDbGenerator).Name);
+                                                string outFileConn = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
+                                                bool first = false;
+                                                StringBuilder sb = null;
+                                                if (!dicAppSettings.ContainsKey(outFileConn))
                                                 {
-                                                    //TODO generate Stable DB update SQL script
-                                                    var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
-                                                    string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenScriptFileName);
-                                                    // tg.GetRelativeToConfigDiskPath()
-                                                    //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                                                    byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
-                                                    File.WriteAllBytes(outSqlFile, sqlBytes);
+                                                    first = true;
+                                                    sb = new StringBuilder();
+                                                    dicAppSettings[outFileConn] = sb;
+                                                    sb.AppendLine("{");
+                                                    sb.AppendLine("\t\"db_conns\": {");
                                                 }
-                                            }
-                                            else
-                                            {
-                                                //TODO create copy of DEV DB into Stable DB. Same name with version suffix
-                                                //genConn.DbGenerator
-                                            }
-                                            break;
-                                        default:
-                                            if (!isCurrentUpdate)
-                                                continue;
-                                            if (!(tg.Generator is IvPluginGenerator))
-                                                throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
-                                            code = tpg.DynamicGeneratorSettings.GenerateCode(this.Config);
-                                            //code = (tg.Generator as IvPluginGenerator) .GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
-                                            break;
-                                    }
-                                    if (!string.IsNullOrWhiteSpace(code))
-                                    {
-                                        string outFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
-                                        // tg.GetRelativeToConfigDiskPath()
-                                        //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
-                                        byte[] bytes = Encoding.UTF8.GetBytes(code);
-                                        File.WriteAllBytes(outFile, bytes);
+                                                else
+                                                    sb = dicAppSettings[outFileConn];
+                                                if (!first)
+                                                    sb.AppendLine(",");
+                                                sb.Append("\t\t\"");
+                                                sb.Append(tpg.Name);
+                                                sb.AppendLine("\": {");
+                                                sb.Append("\t\t\t\"provider\": \"");
+                                                sb.Append(tpg.PluginDbGenerator.ProviderName);
+                                                sb.AppendLine("\",");
+                                                sb.Append("\t\t\t\"connection_string\": \"");
+                                                var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config);
+                                                sb.Append(cnstr);
+                                                sb.AppendLine("\"");
+                                                sb.Append("\t\t}");
+                                                code = sb.ToString();
+                                                if (isDeleteDb)
+                                                {
+                                                    tpg.PluginDbGenerator.EnsureDbDeleted(tpg.ConnStr);
+                                                }
+                                                tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, false);
+                                                if (isCurrentUpdate)
+                                                {
+                                                    if (tpg.IsGenerateSqlSqriptToUpdatePrevStable)
+                                                    {
+                                                        //TODO generate Stable DB update SQL script
+                                                        var sql = tpg.PluginDbGenerator.UpdateToModel(tpg.ConnStr, diffConfig, tpg.Guid, EnumDbUpdateLevels.TryKeepAll, true);
+                                                        string outSqlFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenScriptFileName);
+                                                        // tg.GetRelativeToConfigDiskPath()
+                                                        //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                                                        byte[] sqlBytes = Encoding.UTF8.GetBytes(code);
+                                                        File.WriteAllBytes(outSqlFile, sqlBytes);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    //TODO create copy of DEV DB into Stable DB. Same name with version suffix
+                                                    //genConn.DbGenerator
+                                                }
+                                                break;
+                                            default:
+                                                if (!isCurrentUpdate)
+#if PARRALEL
+                                                    return;
+#else
+                                                    continue;
+#endif
+                                                if (!(tg.Generator is IvPluginGenerator))
+                                                    throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
+                                                code = tpg.DynamicGeneratorSettings.GenerateCode(this.Config);
+                                                //code = (tg.Generator as IvPluginGenerator) .GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
+                                                break;
+                                        }
+                                        if (!string.IsNullOrWhiteSpace(code))
+                                        {
+                                            string outFile = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
+                                            // tg.GetRelativeToConfigDiskPath()
+                                            //Directory.CreateDirectory(Path.GetDirectoryName(this.CurrentCfgFilePath));
+                                            byte[] bytes = Encoding.UTF8.GetBytes(code);
+                                            File.WriteAllBytes(outFile, bytes);
+                                        }
                                     }
                                 }
+#if PARRALEL
+                            );
+#endif
                             }
                         }
                         if (isCurrentUpdate)
@@ -1080,7 +1097,11 @@ namespace vSharpStudio.ViewModels
 
                     // VI. Generate code (no need for UNDO)
                     #region
+#if PARRALEL
+                    await this.GenerateCodeAsync(cancellationToken, this.Config, true);
+#else
                     this.GenerateCode(cancellationToken, this.Config, true);
+#endif
                     this.Config.SetIsNeedCurrentUpdate(false);
                     var vis = new ModelVisitorRemoveMarkedIfNewObjects();
                     vis.Run(this.Config);

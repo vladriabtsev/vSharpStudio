@@ -171,9 +171,14 @@
               "description": "@attr [DisplayName(\"Date\")]\n@attr [Description(\"Date without time zone\")]"
             },
             {
-              "name": "DATETIMEZ",
+              "name": "DATETIMELOCAL",
+              "number": "6",
+              "description": "@attr [DisplayName(\"DateTime Local\")]\n@attr [Description(\"Local Date and time. Kind always expected equal DateTimeKind.Local\")]"
+            },
+            {
+              "name": "DATETIMEUTC",
               "number": "7",
-              "description": "@attr [DisplayName(\"DateTime Z, Experimental\")]\n@attr [Description(\"Date and time with time zone. Not working yet with PostgreSQL\")]"
+              "description": "@attr [DisplayName(\"DateTime UTC\")]\n@attr [Description(\"UTC Date and time. Kind always expected equal DateTimeKind.Utc\")]"
             },
             {
               "name": "ENUMERATION",
@@ -204,16 +209,6 @@
               "name": "ANY",
               "number": "15",
               "description": "@attr [DisplayName(\"Any type\")]\n@attr [Description(\"Any data type\")]"
-            },
-            {
-              "name": "DATETIMELOCAL",
-              "number": "16",
-              "description": "@attr [DisplayName(\"DateTime Local\")]\n@attr [Description(\"Local Date and time. Kind always expected equal DateTimeKind.Local\")]"
-            },
-            {
-              "name": "DATETIMEUTC",
-              "number": "17",
-              "description": "@attr [DisplayName(\"DateTime UTC\")]\n@attr [Description(\"UTC Date and time. Kind always expected equal DateTimeKind.Utc\")]"
             }
           ]
         },

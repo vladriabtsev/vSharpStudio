@@ -339,7 +339,7 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     case EnumDataType.DATETIMELOCAL:
                     case EnumDataType.DATETIMEUTC:
-                    case EnumDataType.DATETIMEZ:
+                    //case EnumDataType.DATETIMEZ:
                         if (!DateTime.TryParse(val, out DateTime vdt))
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),

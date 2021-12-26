@@ -23,15 +23,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         BOOL = 3,
         TIME = 4,
         DATE = 5,
-        DATETIMEZ = 7,
+        DATETIMELOCAL = 6,
+        DATETIMEUTC = 7,
         ENUMERATION = 10,
         CATALOG = 11,
         CATALOGS = 12,
         DOCUMENT = 13,
         DOCUMENTS = 14,
         ANY = 15,
-        DATETIMELOCAL = 16,
-        DATETIMEUTC = 17,
     }
     public enum EnumTimeAccuracyType // ModelInterfaces.tt Line: 15
     {

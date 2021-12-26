@@ -196,15 +196,15 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyDateTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
-        {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEZ };
-            var node = new Property(this) { Name = name, DataType = dt };
-            node.IsNullable = isNullable;
-            node.AccuracyForTime = accuracy;
-            this.NodeAddNewSubNode(node);
-            return node;
-        }
+        //public Property AddPropertyDateTimeZ(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
+        //{
+        //    var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEZ };
+        //    var node = new Property(this) { Name = name, DataType = dt };
+        //    node.IsNullable = isNullable;
+        //    node.AccuracyForTime = accuracy;
+        //    this.NodeAddNewSubNode(node);
+        //    return node;
+        //}
         //public Property AddPropertyDateTimeOffset(string name, bool isNullable = false)
         //{
         //    var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEOFFSET, IsNullable = isNullable };

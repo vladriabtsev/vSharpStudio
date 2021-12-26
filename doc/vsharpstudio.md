@@ -1518,15 +1518,14 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | BOOL | 3 | @attr [DisplayName(&#34;Boolean&#34;)] @attr [Description(&#34;Boolean type&#34;)] |
 | TIME | 4 | @attr [DisplayName(&#34;Time&#34;)] @attr [Description(&#34;Time without time zone. DB value stored with accuracy 1 second&#34;)] |
 | DATE | 5 | @attr [DisplayName(&#34;Date&#34;)] @attr [Description(&#34;Date without time zone&#34;)] |
-| DATETIMEZ | 7 | @attr [DisplayName(&#34;DateTime Z, Experimental&#34;)] @attr [Description(&#34;Date and time with time zone. Not working yet with PostgreSQL&#34;)] |
+| DATETIMELOCAL | 6 | @attr [DisplayName(&#34;DateTime Local&#34;)] @attr [Description(&#34;Local Date and time. Kind always expected equal DateTimeKind.Local&#34;)] |
+| DATETIMEUTC | 7 | @attr [DisplayName(&#34;DateTime UTC&#34;)] @attr [Description(&#34;UTC Date and time. Kind always expected equal DateTimeKind.Utc&#34;)] |
 | ENUMERATION | 10 | @attr [DisplayName(&#34;Enumeration&#34;)] @attr [Description(&#34;Enumeration type&#34;)] |
 | CATALOG | 11 | @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog type&#34;)] |
 | CATALOGS | 12 | @attr [DisplayName(&#34;Catalogs&#34;)] @attr [Description(&#34;List of catalogs&#34;)] |
 | DOCUMENT | 13 | @attr [DisplayName(&#34;Document&#34;)] @attr [Description(&#34;Document type&#34;)] |
 | DOCUMENTS | 14 | @attr [DisplayName(&#34;Documents&#34;)] @attr [Description(&#34;List of documents&#34;)] |
 | ANY | 15 | @attr [DisplayName(&#34;Any type&#34;)] @attr [Description(&#34;Any data type&#34;)] |
-| DATETIMELOCAL | 16 | @attr [DisplayName(&#34;DateTime Local&#34;)] @attr [Description(&#34;Local Date and time. Kind always expected equal DateTimeKind.Local&#34;)] |
-| DATETIMEUTC | 17 | @attr [DisplayName(&#34;DateTime UTC&#34;)] @attr [Description(&#34;UTC Date and time. Kind always expected equal DateTimeKind.Utc&#34;)] |
 
 
 

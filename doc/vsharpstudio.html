@@ -5395,10 +5395,17 @@ repeated proto_document list_documents = 7;
               </tr>
             
               <tr>
-                <td>DATETIMEZ</td>
+                <td>DATETIMELOCAL</td>
+                <td>6</td>
+                <td><p>@attr [DisplayName(&#34;DateTime Local&#34;)]
+@attr [Description(&#34;Local Date and time. Kind always expected equal DateTimeKind.Local&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DATETIMEUTC</td>
                 <td>7</td>
-                <td><p>@attr [DisplayName(&#34;DateTime Z, Experimental&#34;)]
-@attr [Description(&#34;Date and time with time zone. Not working yet with PostgreSQL&#34;)]</p></td>
+                <td><p>@attr [DisplayName(&#34;DateTime UTC&#34;)]
+@attr [Description(&#34;UTC Date and time. Kind always expected equal DateTimeKind.Utc&#34;)]</p></td>
               </tr>
             
               <tr>
@@ -5441,20 +5448,6 @@ repeated proto_document list_documents = 7;
                 <td>15</td>
                 <td><p>@attr [DisplayName(&#34;Any type&#34;)]
 @attr [Description(&#34;Any data type&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DATETIMELOCAL</td>
-                <td>16</td>
-                <td><p>@attr [DisplayName(&#34;DateTime Local&#34;)]
-@attr [Description(&#34;Local Date and time. Kind always expected equal DateTimeKind.Local&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DATETIMEUTC</td>
-                <td>17</td>
-                <td><p>@attr [DisplayName(&#34;DateTime UTC&#34;)]
-@attr [Description(&#34;UTC Date and time. Kind always expected equal DateTimeKind.Utc&#34;)]</p></td>
               </tr>
             
           </tbody>
