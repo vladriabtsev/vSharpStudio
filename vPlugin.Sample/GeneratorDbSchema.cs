@@ -10,6 +10,8 @@ namespace vPlugin.Sample
 {
     public class GeneratorDbSchema : IvPluginDbGenerator
     {
+        public IvPluginGenerator CreateNew(IAppProjectGenerator appProjectGenerator) { return new GeneratorDbSchema(appProjectGenerator); }
+        public GeneratorDbSchema(ITreeConfigNode parent) { this.Parent = parent; }
         public GeneratorDbSchema()
         {
             this.DicPathTypes = new Dictionary<string, List<string>>();

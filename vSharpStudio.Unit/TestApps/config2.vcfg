@@ -1,36 +1,20 @@
-Å
-$a6bc8fdf-a3fb-466c-81fb-a3bdce060687test2 ×¯Àä–¶óƒ*test2:®¨éØ†ÒËª<
-$9841f27f-7395-4ca9-8a99-0d7c28785740BaseConfigsº¾ØÎú×œi²”
-$5de0283a-302d-4996-9a26-b167a971852dModel óØ“Öƒ›©Ê*Model@dHPª/
-v"Id*$c606d2ce-76e2-4bc3-a391-078e50e0b4ecªJ
-$0398ea17-aa53-4b34-84c4-fd6f60aaf245Settings‘°Áª¶ñ®ûq"Settings2Cnst²M
-$4c5f3cc6-3f14-4e93-bd10-b65772cc34d0EnumerationsİÍ¾»«Òî…"Enumerationsº{
-$3c006d9e-151b-4b83-97b8-d1e8655c1028Catalogs¦Ÿ¦Ûƒàâñ"Catalogs2CtlgªCodeºNameÊDescriptionÚIsFolderêIsOpenÂí
-$19bd0aef-7d84-4a97-8a95-babfa67eabfb	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
-$97a4a399-5dac-43c5-b9c9-4abcba613b5cSharedÓŠ¼Î¶¨øûq"SharedBG
-$0d0bf5f7-93b8-4aec-a771-c153cb6bd60d	Documents¸ÀÖŸŒÓ¸ı€"	Documentsª	DocNumberºDocDateÊE
-$5f6697b9-213b-4946-b579-0ba7a8be2486JournalsÚ½Ì—¦„ç°±"JournalsÒÆ
-$f315972a-52c6-4c33-980b-de83994e022dCommonİ¡ÔÕ™ûô`"Common:>
-$14b7bbab-bbea-4515-9c02-37488d255458Roles—æÉ—¾ªŠõ"RolesBD
-$0210e95c-6270-4fd7-ae32-ad19f30fdf85Settings‘°Áª¶ñ®û"SettingsÂä
-$352671d8-0b5a-4985-80f7-2f2960ee9152Plugins„™„§à›®ã‘"º
-$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
-$1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generation ØŞèİ›ŸæòX"ã
-$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(Øç»Â±¨ë—2|
-$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions °Œ½¹¨ë—X"Õ
-$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
-$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{X"Ş
-$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
-PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
-$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{X"È
-$052C7318-3D73-4605-B1AE-749FC7E104120.1
-Repository"4vSharpStudio plugin. DB access layer repository code(ØŞèİ›Ÿæò2M
-$E59B393E-AF34-4438-977F-7BF120E28A0C
-RepositoryDb Access Layer ØŞèİ›ŸæòX"§
+Å
+$aaf95288-a8b5-4d7a-9ded-54a9b3f4f888test2 ×¯Àä–¶óƒ*test2:Ø‚¢”‰Öª<
+$04dd04fa-252e-4d7d-82d4-a4fb5d0533e4BaseConfigsº¾ØÎú×œi²”
+$6dfe69df-7161-4ae0-92a4-328497c5607bModel óØ“Öƒ›©Ê*Model@dHPª/
+v"Id*$d440088d-30a7-4443-a490-66def54dd2d1ªJ
+$9be9388e-9e13-45e0-be15-7371eadac733Settings‘°Áª¶ñ®ûq"Settings2Cnst²M
+$5e66688d-846b-4546-8b50-d03f6b88b9c3EnumerationsİÍ¾»«Òî…"Enumerationsº{
+$f3a850a5-c9a9-4561-8bfb-9191ec120b19Catalogs¦Ÿ¦Ûƒàâñ"Catalogs2CtlgªCodeºNameÊDescriptionÚIsFolderêIsOpenÂí
+$186b920d-518f-4233-9428-b4514ae19aaa	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
+$1a6f6135-5822-4b9f-9c50-d31670c0cf7fSharedÓŠ¼Î¶¨øûq"SharedBG
+$136b73cf-8286-4fb7-b57c-e07443e93811	Documents¸ÀÖŸŒÓ¸ı€"	Documentsª	DocNumberºDocDateÊE
+$161e3e38-eaff-422a-821f-fb5f399e1226JournalsÚ½Ì—¦„ç°±"JournalsÒÆ
+$49f7d0bf-d953-4248-8ceb-999e9cc0638dCommonİ¡ÔÕ™ûô`"Common:>
+$82af3378-5864-456d-a2a1-3ca3f2239ce5Roles—æÉ—¾ªŠõ"RolesBD
+$9004384a-9b2d-4a10-9047-5f9d6f24d9baSettings‘°Áª¶ñ®û"SettingsÂä
+$0d8b4dc5-5d9e-4226-a108-4770fb598136Plugins„™„§à›®ã‘"§
 $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
-$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zX"Ö
-$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
-$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{XÊ7
-$66a68e5b-a4db-417c-b9d1-a1e96b588dd4AppsÈ ›½¾ä 
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zXÊ7
+$c5a6de2d-0e95-4d92-ac8e-5a63e13cc099AppsÈ ›½¾ä 

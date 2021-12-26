@@ -90,6 +90,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         [BrowsableAttribute(false)]
+        // Used only to select generator in UI
         public SortedObservableCollection<PluginGenerator> ListGenerators { get; private set; }
         [PropertyOrderAttribute(10)]
         [ExpandableObjectAttribute()]
@@ -358,7 +359,7 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             this.PluginGroupSettingsGuid = groupSettins.Guid;
                         }
-                        this.PluginGenerator = tt.Generator;
+                        this.PluginGenerator = tt.Generator.CreateNew(this);
                         cfg._DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
                         this.PluginDbGenerator = this.PluginGenerator as IvPluginDbGenerator;
                     }

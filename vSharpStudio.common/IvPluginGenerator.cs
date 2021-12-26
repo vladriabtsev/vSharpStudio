@@ -56,5 +56,6 @@ namespace vSharpStudio.common
         /// <returns></returns>
         List<ValidationPluginMessage> ValidateNode(ITreeConfigNode node, string guidAppPrjGen);
         List<ValidationPluginMessage> ValidateOnSelection(IAppProject prj);
+        IvPluginGenerator CreateNew(IAppProjectGenerator appProjectGenerator);
     }
 }
