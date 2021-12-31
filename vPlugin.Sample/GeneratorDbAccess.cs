@@ -10,7 +10,7 @@ namespace vPlugin.Sample
     public class GeneratorDbAccess : IvPluginGenerator
     {
         public IvPluginGenerator CreateNew(IAppProjectGenerator appProjectGenerator) { return new GeneratorDbAccess(appProjectGenerator); }
-        public GeneratorDbAccess(ITreeConfigNode parent) { this.Parent = parent; }
+        public GeneratorDbAccess(ITreeConfigNode parent) : this() { this.Parent = parent; }
         public GeneratorDbAccess() { }
         public string Guid => "7C2902AF-DF34-46FC-8911-A48EE7F9B2B0";
         public string GroupGuid => "EDC3953C-9771-4B2D-9E6B-AF022614470F";
