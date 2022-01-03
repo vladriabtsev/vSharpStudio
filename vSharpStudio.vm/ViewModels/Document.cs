@@ -251,6 +251,16 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        public IReadOnlyList<IProperty> GetAllProperties()
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res);
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            return res;
+        }
         public bool GetUseCodeProperty()
         {
             bool res = false;

@@ -410,12 +410,19 @@ namespace vSharpStudio.ViewModels
             var dirs = Directory.GetDirectories(dir);
             foreach (var t in dirs)
             {
-                DirectoryCatalog dirCatalog = new DirectoryCatalog(t, search);
-                if (dirCatalog.Parts.Count() > 0)
+                try
                 {
-                    catalog.Catalogs.Add(dirCatalog);
+                    DirectoryCatalog dirCatalog = new DirectoryCatalog(t, search);
+                    if (dirCatalog.Parts.Count() > 0)
+                    {
+                        catalog.Catalogs.Add(dirCatalog);
+                    }
+                    this.AgregateCatalogs(t, search, catalog);
                 }
-                this.AgregateCatalogs(t, search, catalog);
+                catch (Exception ex)
+                {
+                    throw new Exception($"Can't load plugin from folder: {t}", ex);
+                }
             }
         }
         private Action onPluginsLoaded = null;

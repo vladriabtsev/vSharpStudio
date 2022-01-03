@@ -9,6 +9,7 @@ namespace vSharpStudio.common
     public partial interface IDocument : ITreeConfigNode, IGetNodeSetting, IDbTable
     {
         IGroupListDocuments IParent { get; }
+        IReadOnlyList<IProperty> GetAllProperties();
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen);
         IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen);
         IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen);

@@ -306,6 +306,16 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        public IReadOnlyList<IProperty> GetAllProperties()
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res, false);
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            return res;
+        }
         private void GetSpecialProperties(List<IProperty> res, bool isFolder)
         {
             var cfg = this.GetConfig();
@@ -313,8 +323,8 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
             if (isFolder)
             {
-                    prp = cfg.Model.GetPropertyRefParent(this.Folder.PropertyRefSelfGuid, "RefTreeParent", true);
-                    res.Add(prp);
+                prp = cfg.Model.GetPropertyRefParent(this.Folder.PropertyRefSelfGuid, "RefTreeParent", true);
+                res.Add(prp);
             }
             else
             {
@@ -375,6 +385,16 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     res.Add(t);
                 }
+            }
+            return res;
+        }
+        public IReadOnlyList<IProperty> GetAllFolderProperties()
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res, true);
+            foreach (var t in this.Folder.GroupProperties.ListProperties)
+            {
+                res.Add(t);
             }
             return res;
         }
