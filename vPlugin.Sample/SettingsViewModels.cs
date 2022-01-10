@@ -263,7 +263,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsSchemaParam1 = from.IsSchemaParam1; // Clone.tt Line: 65
-            vm.IsSchemaParam2 = from.IsSchemaParam2.HasValue ? from.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 58
+            vm.IsSchemaParam2 = from.IsSchemaParam2; // Clone.tt Line: 65
             vm.SchemaParam3 = from.SchemaParam3; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
@@ -274,7 +274,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Contract.Requires(to != null);
             Contract.Requires(from != null);
             to.IsSchemaParam1 = from.IsSchemaParam1; // Clone.tt Line: 141
-            to.IsSchemaParam2 = from.IsSchemaParam2.HasValue ? from.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 136
+            to.IsSchemaParam2 = from.IsSchemaParam2; // Clone.tt Line: 141
             to.SchemaParam3 = from.SchemaParam3; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
@@ -305,7 +305,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsSchemaParam1 = m.IsSchemaParam1; // Clone.tt Line: 221
-            vm.IsSchemaParam2 = m.IsSchemaParam2.HasValue ? (bool?)m.IsSchemaParam2.Value : (bool?)null; // Clone.tt Line: 221
+            vm.IsSchemaParam2 = m.IsSchemaParam2; // Clone.tt Line: 221
             vm.SchemaParam3 = m.SchemaParam3; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
@@ -317,10 +317,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Contract.Requires(vm != null);
             Proto.Plugin.proto_generator_db_schema_settings m = new Proto.Plugin.proto_generator_db_schema_settings(); // Clone.tt Line: 239
             m.IsSchemaParam1 = vm.IsSchemaParam1; // Clone.tt Line: 276
-            m.IsSchemaParam2 = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 253
-            m.IsSchemaParam2.HasValue = vm.IsSchemaParam2.HasValue;
-            if (vm.IsSchemaParam2.HasValue)
-                m.IsSchemaParam2.Value = vm.IsSchemaParam2.Value;
+            m.IsSchemaParam2 = vm.IsSchemaParam2; // Clone.tt Line: 276
             m.SchemaParam3 = vm.SchemaParam3; // Clone.tt Line: 276
             return m;
         }
@@ -377,7 +374,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private bool? _IsSchemaParam2;
         partial void OnIsSchemaParam2Changing(ref bool? to); // Property.tt Line: 79
         partial void OnIsSchemaParam2Changed();
-        //Ibool? IGeneratorDbSchemaSettings.IsSchemaParam2 { get { return this._IsSchemaParam2; } }
         
         public string SchemaParam3 // Property.tt Line: 55
         { 
@@ -423,7 +419,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsParam1 = from.IsParam1; // Clone.tt Line: 65
-            vm.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 58
+            vm.IsIncluded = from.IsIncluded; // Clone.tt Line: 65
             vm.IsConstantParam1 = from.IsConstantParam1; // Clone.tt Line: 65
             vm.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 65
             vm.IsNotifying = true;
@@ -435,7 +431,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Contract.Requires(to != null);
             Contract.Requires(from != null);
             to.IsParam1 = from.IsParam1; // Clone.tt Line: 141
-            to.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 136
+            to.IsIncluded = from.IsIncluded; // Clone.tt Line: 141
             to.IsConstantParam1 = from.IsConstantParam1; // Clone.tt Line: 141
             to.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 141
         }
@@ -467,7 +463,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsParam1 = m.IsParam1; // Clone.tt Line: 221
-            vm.IsIncluded = m.IsIncluded.HasValue ? (bool?)m.IsIncluded.Value : (bool?)null; // Clone.tt Line: 221
+            vm.IsIncluded = m.IsIncluded; // Clone.tt Line: 221
             vm.IsConstantParam1 = m.IsConstantParam1; // Clone.tt Line: 221
             vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 221
             vm.IsNotifying = true;
@@ -480,10 +476,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Contract.Requires(vm != null);
             Proto.Plugin.proto_generator_db_schema_node_settings m = new Proto.Plugin.proto_generator_db_schema_node_settings(); // Clone.tt Line: 239
             m.IsParam1 = vm.IsParam1; // Clone.tt Line: 276
-            m.IsIncluded = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 253
-            m.IsIncluded.HasValue = vm.IsIncluded.HasValue;
-            if (vm.IsIncluded.HasValue)
-                m.IsIncluded.Value = vm.IsIncluded.Value;
+            m.IsIncluded = vm.IsIncluded; // Clone.tt Line: 276
             m.IsConstantParam1 = vm.IsConstantParam1; // Clone.tt Line: 276
             m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 276
             return m;
@@ -541,7 +534,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private bool? _IsIncluded;
         partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 79
         partial void OnIsIncludedChanged();
-        //Ibool? IGeneratorDbSchemaNodeSettings.IsIncluded { get { return this._IsIncluded; } }
         
         public bool IsConstantParam1 // Property.tt Line: 55
         { 
@@ -607,9 +599,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsAccessParam1 = from.IsAccessParam1; // Clone.tt Line: 65
-            vm.IsAccessParam2 = from.IsAccessParam2.HasValue ? from.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 58
+            vm.IsAccessParam2 = from.IsAccessParam2; // Clone.tt Line: 65
             vm.AccessParam3 = from.AccessParam3; // Clone.tt Line: 65
-            vm.AccessParam4 = from.AccessParam4; // Clone.tt Line: 56
+            vm.AccessParam4 = from.AccessParam4; // Clone.tt Line: 65
             vm.IsGenerateNotValidCode = from.IsGenerateNotValidCode; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
@@ -620,9 +612,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Contract.Requires(to != null);
             Contract.Requires(from != null);
             to.IsAccessParam1 = from.IsAccessParam1; // Clone.tt Line: 141
-            to.IsAccessParam2 = from.IsAccessParam2.HasValue ? from.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 136
+            to.IsAccessParam2 = from.IsAccessParam2; // Clone.tt Line: 141
             to.AccessParam3 = from.AccessParam3; // Clone.tt Line: 141
-            to.AccessParam4 = from.AccessParam4; // Clone.tt Line: 134
+            to.AccessParam4 = from.AccessParam4; // Clone.tt Line: 141
             to.IsGenerateNotValidCode = from.IsGenerateNotValidCode; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
@@ -653,9 +645,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsAccessParam1 = m.IsAccessParam1; // Clone.tt Line: 221
-            vm.IsAccessParam2 = m.IsAccessParam2.HasValue ? (bool?)m.IsAccessParam2.Value : (bool?)null; // Clone.tt Line: 221
+            vm.IsAccessParam2 = m.IsAccessParam2; // Clone.tt Line: 221
             vm.AccessParam3 = m.AccessParam3; // Clone.tt Line: 221
-            vm.AccessParam4 = m.AccessParam4.HasValue ? (string)m.AccessParam4.Value : (string)null; // Clone.tt Line: 221
+            vm.AccessParam4 = m.AccessParam4; // Clone.tt Line: 221
             vm.IsGenerateNotValidCode = m.IsGenerateNotValidCode; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
@@ -667,14 +659,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Contract.Requires(vm != null);
             Proto.Plugin.proto_generator_db_access_settings m = new Proto.Plugin.proto_generator_db_access_settings(); // Clone.tt Line: 239
             m.IsAccessParam1 = vm.IsAccessParam1; // Clone.tt Line: 276
-            m.IsAccessParam2 = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 253
-            m.IsAccessParam2.HasValue = vm.IsAccessParam2.HasValue;
-            if (vm.IsAccessParam2.HasValue)
-                m.IsAccessParam2.Value = vm.IsAccessParam2.Value;
+            m.IsAccessParam2 = vm.IsAccessParam2; // Clone.tt Line: 276
             m.AccessParam3 = vm.AccessParam3; // Clone.tt Line: 276
-            m.AccessParam4 = new Proto.Plugin.string_nullable(); // Clone.tt Line: 249
-            m.AccessParam4.Value = string.IsNullOrEmpty(vm.AccessParam4) ? "" : vm.AccessParam4;
-            m.AccessParam4.HasValue = !string.IsNullOrEmpty(vm.AccessParam4);
+            m.AccessParam4 = vm.AccessParam4; // Clone.tt Line: 276
             m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // Clone.tt Line: 276
             return m;
         }
@@ -731,7 +718,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private bool? _IsAccessParam2;
         partial void OnIsAccessParam2Changing(ref bool? to); // Property.tt Line: 79
         partial void OnIsAccessParam2Changed();
-        //Ibool? IGeneratorDbAccessSettings.IsAccessParam2 { get { return this._IsAccessParam2; } }
         
         public string AccessParam3 // Property.tt Line: 55
         { 
@@ -772,7 +758,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private string _AccessParam4;
         partial void OnAccessParam4Changing(ref string to); // Property.tt Line: 79
         partial void OnAccessParam4Changed();
-        //Istring IGeneratorDbAccessSettings.AccessParam4 { get { return this._AccessParam4; } }
         
         public bool IsGenerateNotValidCode // Property.tt Line: 55
         { 
@@ -818,7 +803,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsParam1 = from.IsParam1; // Clone.tt Line: 65
-            vm.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 58
+            vm.IsIncluded = from.IsIncluded; // Clone.tt Line: 65
             vm.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 65
             vm.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 65
             vm.IsNotifying = true;
@@ -830,7 +815,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Contract.Requires(to != null);
             Contract.Requires(from != null);
             to.IsParam1 = from.IsParam1; // Clone.tt Line: 141
-            to.IsIncluded = from.IsIncluded.HasValue ? from.IsIncluded.Value : (bool?)null; // Clone.tt Line: 136
+            to.IsIncluded = from.IsIncluded; // Clone.tt Line: 141
             to.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 141
             to.IsCatalogFormParam1 = from.IsCatalogFormParam1; // Clone.tt Line: 141
         }
@@ -862,7 +847,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsParam1 = m.IsParam1; // Clone.tt Line: 221
-            vm.IsIncluded = m.IsIncluded.HasValue ? (bool?)m.IsIncluded.Value : (bool?)null; // Clone.tt Line: 221
+            vm.IsIncluded = m.IsIncluded; // Clone.tt Line: 221
             vm.IsPropertyParam1 = m.IsPropertyParam1; // Clone.tt Line: 221
             vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 221
             vm.IsNotifying = true;
@@ -875,10 +860,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Contract.Requires(vm != null);
             Proto.Plugin.proto_generator_db_access_node_settings m = new Proto.Plugin.proto_generator_db_access_node_settings(); // Clone.tt Line: 239
             m.IsParam1 = vm.IsParam1; // Clone.tt Line: 276
-            m.IsIncluded = new Proto.Plugin.bool_nullable(); // Clone.tt Line: 253
-            m.IsIncluded.HasValue = vm.IsIncluded.HasValue;
-            if (vm.IsIncluded.HasValue)
-                m.IsIncluded.Value = vm.IsIncluded.Value;
+            m.IsIncluded = vm.IsIncluded; // Clone.tt Line: 276
             m.IsPropertyParam1 = vm.IsPropertyParam1; // Clone.tt Line: 276
             m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 276
             return m;
@@ -936,7 +918,6 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private bool? _IsIncluded;
         partial void OnIsIncludedChanging(ref bool? to); // Property.tt Line: 79
         partial void OnIsIncludedChanged();
-        //Ibool? IGeneratorDbAccessNodeSettings.IsIncluded { get { return this._IsIncluded; } }
         
         public bool IsPropertyParam1 // Property.tt Line: 55
         { 

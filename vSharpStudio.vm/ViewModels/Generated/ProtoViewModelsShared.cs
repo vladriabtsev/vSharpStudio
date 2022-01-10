@@ -46,8 +46,8 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
             TestSharedMesssage vm = new TestSharedMesssage();
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.BoolValue = from.BoolValue.HasValue ? from.BoolValue.Value : (bool?)null; // Clone.tt Line: 58
-            vm.StringValue = from.StringValue; // Clone.tt Line: 56
+            vm.BoolValue = from.BoolValue; // Clone.tt Line: 65
+            vm.StringValue = from.StringValue; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -56,8 +56,8 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
-            to.BoolValue = from.BoolValue.HasValue ? from.BoolValue.Value : (bool?)null; // Clone.tt Line: 136
-            to.StringValue = from.StringValue; // Clone.tt Line: 134
+            to.BoolValue = from.BoolValue; // Clone.tt Line: 141
+            to.StringValue = from.StringValue; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -86,8 +86,8 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.BoolValue = m.BoolValue.HasValue ? (bool?)m.BoolValue.Value : (bool?)null; // Clone.tt Line: 221
-            vm.StringValue = m.StringValue.HasValue ? (string)m.StringValue.Value : (string)null; // Clone.tt Line: 221
+            vm.BoolValue = m.BoolValue; // Clone.tt Line: 221
+            vm.StringValue = m.StringValue; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -97,13 +97,8 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         {
             Contract.Requires(vm != null);
             Proto.Config2.test_shared_messsage m = new Proto.Config2.test_shared_messsage(); // Clone.tt Line: 239
-            m.BoolValue = new Proto.Config2.bool_nullable(); // Clone.tt Line: 253
-            m.BoolValue.HasValue = vm.BoolValue.HasValue;
-            if (vm.BoolValue.HasValue)
-                m.BoolValue.Value = vm.BoolValue.Value;
-            m.StringValue = new Proto.Config2.string_nullable(); // Clone.tt Line: 249
-            m.StringValue.Value = string.IsNullOrEmpty(vm.StringValue) ? "" : vm.StringValue;
-            m.StringValue.HasValue = !string.IsNullOrEmpty(vm.StringValue);
+            m.BoolValue = vm.BoolValue; // Clone.tt Line: 276
+            m.StringValue = vm.StringValue; // Clone.tt Line: 276
             return m;
         }
         
@@ -120,7 +115,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         #endregion Procedures
         #region Properties
         
-        public bool? BoolValue // Property.tt Line: 55
+        public bool BoolValue // Property.tt Line: 55
         { 
             get { return this._BoolValue; }
             set
@@ -136,10 +131,9 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool? _BoolValue;
-        partial void OnBoolValueChanging(ref bool? to); // Property.tt Line: 79
+        private bool _BoolValue;
+        partial void OnBoolValueChanging(ref bool to); // Property.tt Line: 79
         partial void OnBoolValueChanged();
-        //Ibool? ITestSharedMesssage.BoolValue { get { return this._BoolValue; } }
         
         public string StringValue // Property.tt Line: 55
         { 
@@ -157,10 +151,9 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
                 }
             }
         }
-        private string _StringValue;
+        private string _StringValue = string.Empty;
         partial void OnStringValueChanging(ref string to); // Property.tt Line: 79
         partial void OnStringValueChanged();
-        //Istring ITestSharedMesssage.StringValue { get { return this._StringValue; } }
         #endregion Properties
     }
     

@@ -192,6 +192,18 @@ namespace GenFromProto
             switch (from.FieldType)
             {
                 case Google.Protobuf.Reflection.FieldType.Message:
+                    switch (from.MessageType.Name)
+                    {
+                        case "BoolValue":
+                        case "DoubleValue":
+                        case "UInt32Value":
+                        case "UInt64Value":
+                        case "FloatValue":
+                        case "Int32Value":
+                        case "Int64Value":
+                        case "StringValue":
+                            return false;
+                    }
                     return true;
                 default:
                     return false;
@@ -245,14 +257,14 @@ namespace GenFromProto
                 case Google.Protobuf.Reflection.FieldType.Message:
                     switch (from.MessageType.Name)
                     {
-                        case "bool_nullable":
-                        case "double_nullable":
-                        case "uint_nullable":
-                        case "ulong_nullable":
-                        case "float_nullable":
-                        case "int_nullable":
-                        case "long_nullable":
-                        case "string_nullable":
+                        case "BoolValue":
+                        case "DoubleValue":
+                        case "UInt32Value":
+                        case "UInt64Value":
+                        case "FloatValue":
+                        case "Int32Value":
+                        case "Int64Value":
+                        case "StringValue":
                         case "Timestamp":
                         case "Duration":
                             return true;
@@ -272,21 +284,21 @@ namespace GenFromProto
             {
                 switch (from.MessageType.Name)
                 {
-                    case "bool_nullable":
+                    case "BoolValue":
                         return "bool?";
-                    case "double_nullable":
+                    case "DoubleValue":
                         return "double?";
-                    case "uint_nullable":
+                    case "UInt32Value":
                         return "uint?";
-                    case "ulong_nullable":
+                    case "UInt64Value":
                         return "ulong?";
-                    case "float_nullable":
+                    case "FloatValue":
                         return "float?";
-                    case "int_nullable":
+                    case "Int32Value":
                         return "int?";
-                    case "long_nullable":
+                    case "Int64Value":
                         return "long?";
-                    case "string_nullable":
+                    case "StringValue":
                         return "string";
                     case "Any":
                         return "Google.Protobuf.WellKnownTypes.Any";

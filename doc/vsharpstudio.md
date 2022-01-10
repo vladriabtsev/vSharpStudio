@@ -4,7 +4,6 @@
 ## Table of Contents
 
 - [vsharpstudio.proto](#vsharpstudio.proto)
-    - [bool_nullable](#proto_config.bool_nullable)
     - [db_settings](#proto_config.db_settings)
     - [proto_app_db_settings](#proto_config.proto_app_db_settings)
     - [proto_app_project](#proto_config.proto_app_project)
@@ -88,31 +87,6 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## vsharpstudio.proto
-
-
-
-<a name="proto_config.bool_nullable"></a>
-
-### bool_nullable
-need extend code generator
-import &#34;vsharpstudioshared.proto&#34;;
-// @base VmValidatableWithSeverity
-message proto_test {
-proto_shared.bool_nullable test1 = 11;
-}
-// @base VmValidatableWithSeverity
-message proto_test2 {
-proto_shared.test_shared_messsage test1 = 11;
-}
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| has_value | [bool](#bool) |  |  |
-| value | [bool](#bool) |  |  |
-
-
-
 
 
 
@@ -284,13 +258,13 @@ Application project generator
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
 | item_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
 | property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_code_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
+| use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
 | property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_name_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
+| use_name_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | property_name_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_description_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
+| use_description_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(52)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
 | property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | use_folder_type_explicitly | [bool](#bool) |  | @attr [PropertyOrderAttribute(54)] @attr [DisplayName(&#34;Use Folders&#34;)] @attr [Description(&#34;User has choose explicitly item or folder type for catalog element &#34;)] |
@@ -346,13 +320,13 @@ Application project generator
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_code_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
+| use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
 | property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_name_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
+| use_name_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | property_name_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_description_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
+| use_description_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(52)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
 | property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | view_default_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
@@ -473,10 +447,10 @@ Constant application wise value
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
 | property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_code_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document&#34;)] |
+| use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document&#34;)] |
 | code_property_settings | [proto_document_code_property_settings](#proto_config.proto_document_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for Document&#34;)] |
 | property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_date_property | [bool_nullable](#proto_config.bool_nullable) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document&#34;)] |
+| use_date_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document&#34;)] |
 | property_date_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -1423,7 +1397,10 @@ User&#39;s role
 <a name="proto_config.timestamp_nullable"></a>
 
 ### timestamp_nullable
-
+message bool_nullable {
+bool has_value = 1;
+bool value = 2;
+}
 
 
 | Field | Type | Label | Description |

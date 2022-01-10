@@ -12,68 +12,6 @@
       "extensions": [],
       "messages": [
         {
-          "name": "bool_nullable",
-          "longName": "bool_nullable",
-          "fullName": "proto_shared.bool_nullable",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "has_value",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "value",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "string_nullable",
-          "longName": "string_nullable",
-          "fullName": "proto_shared.string_nullable",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "has_value",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "value",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "test_shared_messsage",
           "longName": "test_shared_messsage",
           "fullName": "proto_shared.test_shared_messsage",
@@ -86,9 +24,9 @@
               "name": "bool_value",
               "description": "",
               "label": "",
-              "type": "bool_nullable",
-              "longType": "bool_nullable",
-              "fullType": "proto_shared.bool_nullable",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
@@ -96,9 +34,9 @@
               "name": "string_value",
               "description": "",
               "label": "",
-              "type": "string_nullable",
-              "longType": "string_nullable",
-              "fullType": "proto_shared.string_nullable",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }

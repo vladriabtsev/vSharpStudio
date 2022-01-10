@@ -12,37 +12,6 @@
       "extensions": [],
       "messages": [
         {
-          "name": "bool_nullable",
-          "longName": "bool_nullable",
-          "fullName": "proto_plugin_sample.bool_nullable",
-          "description": "all simple nullable (generator check suffics '_nullable')",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "has_value",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "value",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "proto_db_connection_string_settings",
           "longName": "proto_db_connection_string_settings",
           "fullName": "proto_plugin_sample.proto_db_connection_string_settings",
@@ -86,9 +55,9 @@
               "name": "is_included",
               "description": "",
               "label": "",
-              "type": "bool_nullable",
-              "longType": "bool_nullable",
-              "fullType": "proto_plugin_sample.bool_nullable",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "defaultValue": ""
             },
@@ -137,9 +106,9 @@
               "name": "is_access_param2",
               "description": "",
               "label": "",
-              "type": "bool_nullable",
-              "longType": "bool_nullable",
-              "fullType": "proto_plugin_sample.bool_nullable",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "defaultValue": ""
             },
@@ -157,9 +126,9 @@
               "name": "access_param4",
               "description": "",
               "label": "",
-              "type": "string_nullable",
-              "longType": "string_nullable",
-              "fullType": "proto_plugin_sample.string_nullable",
+              "type": "StringValue",
+              "longType": "google.protobuf.StringValue",
+              "fullType": "google.protobuf.StringValue",
               "ismap": false,
               "defaultValue": ""
             },
@@ -198,9 +167,9 @@
               "name": "is_included",
               "description": "",
               "label": "",
-              "type": "bool_nullable",
-              "longType": "bool_nullable",
-              "fullType": "proto_plugin_sample.bool_nullable",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "defaultValue": ""
             },
@@ -249,9 +218,9 @@
               "name": "is_schema_param2",
               "description": "",
               "label": "",
-              "type": "bool_nullable",
-              "longType": "bool_nullable",
-              "fullType": "proto_plugin_sample.bool_nullable",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "defaultValue": ""
             },
@@ -283,37 +252,6 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "string_nullable",
-          "longName": "string_nullable",
-          "fullName": "proto_plugin_sample.string_nullable",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "has_value",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "value",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             }

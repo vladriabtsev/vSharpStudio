@@ -20,10 +20,12 @@ message proto_test2 {
     proto_shared.test_shared_messsage test1 = 11;
 }
 */
+/*
 message bool_nullable {
     bool has_value = 1;
     bool value = 2;
 }
+*/
 message timestamp_nullable {
     bool has_value = 1;
     google.protobuf.Timestamp value = 2;
@@ -1123,7 +1125,7 @@ message proto_catalog_folder {
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item")]
-    bool_nullable use_code_property = 21;
+    google.protobuf.BoolValue use_code_property = 21;
     // @attr [PropertyOrderAttribute(22)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Code")]
@@ -1134,7 +1136,7 @@ message proto_catalog_folder {
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item")]
-    bool_nullable use_name_property = 41;
+    google.protobuf.BoolValue use_name_property = 41;
     // @attr [PropertyOrderAttribute(42)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
@@ -1144,7 +1146,7 @@ message proto_catalog_folder {
     // @attr [PropertyOrderAttribute(51)]
     // @attr [DisplayName("Use Description")]
     // @attr [Description("Use Description property for catalog item")]
-    bool_nullable use_description_property = 51;
+    google.protobuf.BoolValue use_description_property = 51;
     // @attr [PropertyOrderAttribute(52)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
@@ -1234,7 +1236,7 @@ message proto_catalog {
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item")]
-    bool_nullable use_code_property = 21;
+    google.protobuf.BoolValue use_code_property = 21;
     // @attr [PropertyOrderAttribute(22)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Code")]
@@ -1245,7 +1247,7 @@ message proto_catalog {
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item")]
-    bool_nullable use_name_property = 41;
+    google.protobuf.BoolValue use_name_property = 41;
     // @attr [PropertyOrderAttribute(42)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
@@ -1255,7 +1257,7 @@ message proto_catalog {
     // @attr [PropertyOrderAttribute(51)]
     // @attr [DisplayName("Use Description")]
     // @attr [Description("Use Description property for catalog item")]
-    bool_nullable use_description_property = 51;
+    google.protobuf.BoolValue use_description_property = 51;
     // @attr [PropertyOrderAttribute(52)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
@@ -1456,7 +1458,7 @@ message proto_document {
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for document")]
-    bool_nullable use_code_property = 21;
+    google.protobuf.BoolValue use_code_property = 21;
     // @attr [PropertyOrderAttribute(22)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Code")]
@@ -1467,7 +1469,7 @@ message proto_document {
     // @attr [PropertyOrderAttribute(24)]
     // @attr [DisplayName("Use Date")]
     // @attr [Description("Use Date property for document")]
-    bool_nullable use_date_property = 24;
+    google.protobuf.BoolValue use_date_property = 24;
     // @attr [BrowsableAttribute(false)]
     string property_date_guid = 25;
 

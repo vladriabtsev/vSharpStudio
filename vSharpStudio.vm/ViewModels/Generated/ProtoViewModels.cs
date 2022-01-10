@@ -14088,14 +14088,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
-            vm.UseCodeProperty = from.UseCodeProperty.HasValue ? from.UseCodeProperty.Value : (bool?)null; // Clone.tt Line: 58
+            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Clone(from.CodePropertySettings, isDeep);
             vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 65
-            vm.UseNameProperty = from.UseNameProperty.HasValue ? from.UseNameProperty.Value : (bool?)null; // Clone.tt Line: 58
+            vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
             vm.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 65
             vm.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 65
-            vm.UseDescriptionProperty = from.UseDescriptionProperty.HasValue ? from.UseDescriptionProperty.Value : (bool?)null; // Clone.tt Line: 58
+            vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 65
             vm.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 65
             vm.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 65
             vm.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 65
@@ -14125,14 +14125,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Update((GroupListPropertiesTabs)to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
-            to.UseCodeProperty = from.UseCodeProperty.HasValue ? from.UseCodeProperty.Value : (bool?)null; // Clone.tt Line: 136
+            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Update((CatalogCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
             to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 141
-            to.UseNameProperty = from.UseNameProperty.HasValue ? from.UseNameProperty.Value : (bool?)null; // Clone.tt Line: 136
+            to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
             to.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 141
             to.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 141
-            to.UseDescriptionProperty = from.UseDescriptionProperty.HasValue ? from.UseDescriptionProperty.Value : (bool?)null; // Clone.tt Line: 136
+            to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 141
             to.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 141
             to.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 141
             to.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 141
@@ -14215,15 +14215,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, (GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 219
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
-            vm.UseCodeProperty = m.UseCodeProperty.HasValue ? (bool?)m.UseCodeProperty.Value : (bool?)null; // Clone.tt Line: 221
+            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
             if (vm.CodePropertySettings == null) // Clone.tt Line: 213
                 vm.CodePropertySettings = new CatalogCodePropertySettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToVM(m.CodePropertySettings, (CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
             vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
-            vm.UseNameProperty = m.UseNameProperty.HasValue ? (bool?)m.UseNameProperty.Value : (bool?)null; // Clone.tt Line: 221
+            vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
             vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
             vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
-            vm.UseDescriptionProperty = m.UseDescriptionProperty.HasValue ? (bool?)m.UseDescriptionProperty.Value : (bool?)null; // Clone.tt Line: 221
+            vm.UseDescriptionProperty = m.UseDescriptionProperty; // Clone.tt Line: 221
             vm.MaxDescriptionLength = m.MaxDescriptionLength; // Clone.tt Line: 221
             vm.PropertyDescriptionGuid = m.PropertyDescriptionGuid; // Clone.tt Line: 221
             vm.ViewDefaultGuid = m.ViewDefaultGuid; // Clone.tt Line: 221
@@ -14256,22 +14256,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
             m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
-            m.UseCodeProperty = new Proto.Config.bool_nullable(); // Clone.tt Line: 253
-            m.UseCodeProperty.HasValue = vm.UseCodeProperty.HasValue;
-            if (vm.UseCodeProperty.HasValue)
-                m.UseCodeProperty.Value = vm.UseCodeProperty.Value;
+            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
             m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
-            m.UseNameProperty = new Proto.Config.bool_nullable(); // Clone.tt Line: 253
-            m.UseNameProperty.HasValue = vm.UseNameProperty.HasValue;
-            if (vm.UseNameProperty.HasValue)
-                m.UseNameProperty.Value = vm.UseNameProperty.Value;
+            m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
             m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
             m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
-            m.UseDescriptionProperty = new Proto.Config.bool_nullable(); // Clone.tt Line: 253
-            m.UseDescriptionProperty.HasValue = vm.UseDescriptionProperty.HasValue;
-            if (vm.UseDescriptionProperty.HasValue)
-                m.UseDescriptionProperty.Value = vm.UseDescriptionProperty.Value;
+            m.UseDescriptionProperty = vm.UseDescriptionProperty; // Clone.tt Line: 276
             m.MaxDescriptionLength = vm.MaxDescriptionLength; // Clone.tt Line: 276
             m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // Clone.tt Line: 276
             m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
@@ -14539,7 +14530,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool? _UseCodeProperty;
         partial void OnUseCodePropertyChanging(ref bool? to); // Property.tt Line: 79
         partial void OnUseCodePropertyChanged();
-        //Ibool? ICatalogFolder.UseCodeProperty { get { return this._UseCodeProperty; } }
         
         [PropertyOrderAttribute(22)]
         [ExpandableObjectAttribute()]
@@ -14610,7 +14600,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool? _UseNameProperty;
         partial void OnUseNamePropertyChanging(ref bool? to); // Property.tt Line: 79
         partial void OnUseNamePropertyChanged();
-        //Ibool? ICatalogFolder.UseNameProperty { get { return this._UseNameProperty; } }
         
         [PropertyOrderAttribute(42)]
         [DisplayName("Max Length")]
@@ -14678,7 +14667,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool? _UseDescriptionProperty;
         partial void OnUseDescriptionPropertyChanging(ref bool? to); // Property.tt Line: 79
         partial void OnUseDescriptionPropertyChanged();
-        //Ibool? ICatalogFolder.UseDescriptionProperty { get { return this._UseDescriptionProperty; } }
         
         [PropertyOrderAttribute(52)]
         [DisplayName("Max Length")]
@@ -15063,14 +15051,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
             vm.ItemIconType = from.ItemIconType; // Clone.tt Line: 65
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
-            vm.UseCodeProperty = from.UseCodeProperty.HasValue ? from.UseCodeProperty.Value : (bool?)null; // Clone.tt Line: 58
+            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Clone(from.CodePropertySettings, isDeep);
             vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 65
-            vm.UseNameProperty = from.UseNameProperty.HasValue ? from.UseNameProperty.Value : (bool?)null; // Clone.tt Line: 58
+            vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
             vm.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 65
             vm.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 65
-            vm.UseDescriptionProperty = from.UseDescriptionProperty.HasValue ? from.UseDescriptionProperty.Value : (bool?)null; // Clone.tt Line: 58
+            vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 65
             vm.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 65
             vm.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 65
             vm.UseFolderTypeExplicitly = from.UseFolderTypeExplicitly; // Clone.tt Line: 65
@@ -15115,14 +15103,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
             to.ItemIconType = from.ItemIconType; // Clone.tt Line: 141
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
-            to.UseCodeProperty = from.UseCodeProperty.HasValue ? from.UseCodeProperty.Value : (bool?)null; // Clone.tt Line: 136
+            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Update((CatalogCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
             to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 141
-            to.UseNameProperty = from.UseNameProperty.HasValue ? from.UseNameProperty.Value : (bool?)null; // Clone.tt Line: 136
+            to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
             to.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 141
             to.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 141
-            to.UseDescriptionProperty = from.UseDescriptionProperty.HasValue ? from.UseDescriptionProperty.Value : (bool?)null; // Clone.tt Line: 136
+            to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 141
             to.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 141
             to.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 141
             to.UseFolderTypeExplicitly = from.UseFolderTypeExplicitly; // Clone.tt Line: 141
@@ -15223,15 +15211,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
             vm.ItemIconType = (EnumCatalogTreeIcon)m.ItemIconType; // Clone.tt Line: 221
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
-            vm.UseCodeProperty = m.UseCodeProperty.HasValue ? (bool?)m.UseCodeProperty.Value : (bool?)null; // Clone.tt Line: 221
+            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
             if (vm.CodePropertySettings == null) // Clone.tt Line: 213
                 vm.CodePropertySettings = new CatalogCodePropertySettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToVM(m.CodePropertySettings, (CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
             vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
-            vm.UseNameProperty = m.UseNameProperty.HasValue ? (bool?)m.UseNameProperty.Value : (bool?)null; // Clone.tt Line: 221
+            vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
             vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
             vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
-            vm.UseDescriptionProperty = m.UseDescriptionProperty.HasValue ? (bool?)m.UseDescriptionProperty.Value : (bool?)null; // Clone.tt Line: 221
+            vm.UseDescriptionProperty = m.UseDescriptionProperty; // Clone.tt Line: 221
             vm.MaxDescriptionLength = m.MaxDescriptionLength; // Clone.tt Line: 221
             vm.PropertyDescriptionGuid = m.PropertyDescriptionGuid; // Clone.tt Line: 221
             vm.UseFolderTypeExplicitly = m.UseFolderTypeExplicitly; // Clone.tt Line: 221
@@ -15276,22 +15264,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
             m.ItemIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.ItemIconType; // Clone.tt Line: 274
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
-            m.UseCodeProperty = new Proto.Config.bool_nullable(); // Clone.tt Line: 253
-            m.UseCodeProperty.HasValue = vm.UseCodeProperty.HasValue;
-            if (vm.UseCodeProperty.HasValue)
-                m.UseCodeProperty.Value = vm.UseCodeProperty.Value;
+            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
             m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
-            m.UseNameProperty = new Proto.Config.bool_nullable(); // Clone.tt Line: 253
-            m.UseNameProperty.HasValue = vm.UseNameProperty.HasValue;
-            if (vm.UseNameProperty.HasValue)
-                m.UseNameProperty.Value = vm.UseNameProperty.Value;
+            m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
             m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
             m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
-            m.UseDescriptionProperty = new Proto.Config.bool_nullable(); // Clone.tt Line: 253
-            m.UseDescriptionProperty.HasValue = vm.UseDescriptionProperty.HasValue;
-            if (vm.UseDescriptionProperty.HasValue)
-                m.UseDescriptionProperty.Value = vm.UseDescriptionProperty.Value;
+            m.UseDescriptionProperty = vm.UseDescriptionProperty; // Clone.tt Line: 276
             m.MaxDescriptionLength = vm.MaxDescriptionLength; // Clone.tt Line: 276
             m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // Clone.tt Line: 276
             m.UseFolderTypeExplicitly = vm.UseFolderTypeExplicitly; // Clone.tt Line: 276
@@ -15663,7 +15642,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool? _UseCodeProperty;
         partial void OnUseCodePropertyChanging(ref bool? to); // Property.tt Line: 79
         partial void OnUseCodePropertyChanged();
-        //Ibool? ICatalog.UseCodeProperty { get { return this._UseCodeProperty; } }
         
         [PropertyOrderAttribute(22)]
         [ExpandableObjectAttribute()]
@@ -15734,7 +15712,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool? _UseNameProperty;
         partial void OnUseNamePropertyChanging(ref bool? to); // Property.tt Line: 79
         partial void OnUseNamePropertyChanged();
-        //Ibool? ICatalog.UseNameProperty { get { return this._UseNameProperty; } }
         
         [PropertyOrderAttribute(42)]
         [DisplayName("Max Length")]
@@ -15802,7 +15779,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool? _UseDescriptionProperty;
         partial void OnUseDescriptionPropertyChanging(ref bool? to); // Property.tt Line: 79
         partial void OnUseDescriptionPropertyChanged();
-        //Ibool? ICatalog.UseDescriptionProperty { get { return this._UseDescriptionProperty; } }
         
         [PropertyOrderAttribute(52)]
         [DisplayName("Max Length")]
@@ -17569,11 +17545,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
-            vm.UseCodeProperty = from.UseCodeProperty.HasValue ? from.UseCodeProperty.Value : (bool?)null; // Clone.tt Line: 58
+            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.CodePropertySettings = vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.Clone(from.CodePropertySettings, isDeep);
             vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 65
-            vm.UseDateProperty = from.UseDateProperty.HasValue ? from.UseDateProperty.Value : (bool?)null; // Clone.tt Line: 58
+            vm.UseDateProperty = from.UseDateProperty; // Clone.tt Line: 65
             vm.PropertyDateGuid = from.PropertyDateGuid; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -17604,11 +17580,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
-            to.UseCodeProperty = from.UseCodeProperty.HasValue ? from.UseCodeProperty.Value : (bool?)null; // Clone.tt Line: 136
+            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.Update((DocumentCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
             to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 141
-            to.UseDateProperty = from.UseDateProperty.HasValue ? from.UseDateProperty.Value : (bool?)null; // Clone.tt Line: 136
+            to.UseDateProperty = from.UseDateProperty; // Clone.tt Line: 141
             to.PropertyDateGuid = from.PropertyDateGuid; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -17694,12 +17670,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
-            vm.UseCodeProperty = m.UseCodeProperty.HasValue ? (bool?)m.UseCodeProperty.Value : (bool?)null; // Clone.tt Line: 221
+            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
             if (vm.CodePropertySettings == null) // Clone.tt Line: 213
                 vm.CodePropertySettings = new DocumentCodePropertySettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.ConvertToVM(m.CodePropertySettings, (DocumentCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
             vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
-            vm.UseDateProperty = m.UseDateProperty.HasValue ? (bool?)m.UseDateProperty.Value : (bool?)null; // Clone.tt Line: 221
+            vm.UseDateProperty = m.UseDateProperty; // Clone.tt Line: 221
             vm.PropertyDateGuid = m.PropertyDateGuid; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -17731,16 +17707,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
-            m.UseCodeProperty = new Proto.Config.bool_nullable(); // Clone.tt Line: 253
-            m.UseCodeProperty.HasValue = vm.UseCodeProperty.HasValue;
-            if (vm.UseCodeProperty.HasValue)
-                m.UseCodeProperty.Value = vm.UseCodeProperty.Value;
+            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.ConvertToProto((DocumentCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
             m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
-            m.UseDateProperty = new Proto.Config.bool_nullable(); // Clone.tt Line: 253
-            m.UseDateProperty.HasValue = vm.UseDateProperty.HasValue;
-            if (vm.UseDateProperty.HasValue)
-                m.UseDateProperty.Value = vm.UseDateProperty.Value;
+            m.UseDateProperty = vm.UseDateProperty; // Clone.tt Line: 276
             m.PropertyDateGuid = vm.PropertyDateGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -18053,7 +18023,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool? _UseCodeProperty;
         partial void OnUseCodePropertyChanging(ref bool? to); // Property.tt Line: 79
         partial void OnUseCodePropertyChanged();
-        //Ibool? IDocument.UseCodeProperty { get { return this._UseCodeProperty; } }
         
         [PropertyOrderAttribute(22)]
         [ExpandableObjectAttribute()]
@@ -18124,7 +18093,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool? _UseDateProperty;
         partial void OnUseDatePropertyChanging(ref bool? to); // Property.tt Line: 79
         partial void OnUseDatePropertyChanged();
-        //Ibool? IDocument.UseDateProperty { get { return this._UseDateProperty; } }
         
         [BrowsableAttribute(false)]
         public string PropertyDateGuid // Property.tt Line: 55

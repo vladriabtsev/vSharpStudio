@@ -4,14 +4,12 @@
 ## Table of Contents
 
 - [plugin_sample.proto](#plugin_sample.proto)
-    - [bool_nullable](#proto_plugin_sample.bool_nullable)
     - [proto_db_connection_string_settings](#proto_plugin_sample.proto_db_connection_string_settings)
     - [proto_generator_db_access_node_settings](#proto_plugin_sample.proto_generator_db_access_node_settings)
     - [proto_generator_db_access_settings](#proto_plugin_sample.proto_generator_db_access_settings)
     - [proto_generator_db_schema_node_settings](#proto_plugin_sample.proto_generator_db_schema_node_settings)
     - [proto_generator_db_schema_settings](#proto_plugin_sample.proto_generator_db_schema_settings)
     - [proto_plugins_group_settings](#proto_plugin_sample.proto_plugins_group_settings)
-    - [string_nullable](#proto_plugin_sample.string_nullable)
   
   
   
@@ -25,22 +23,6 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## plugin_sample.proto
-
-
-
-<a name="proto_plugin_sample.bool_nullable"></a>
-
-### bool_nullable
-all simple nullable (generator check suffics &#39;_nullable&#39;)
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| has_value | [bool](#bool) |  |  |
-| value | [bool](#bool) |  |  |
-
-
-
 
 
 
@@ -68,7 +50,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | is_param1 | [bool](#bool) |  |  |
-| is_included | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
+| is_included | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  |  |
 | is_property_param1 | [bool](#bool) |  |  |
 | is_catalog_form_param1 | [bool](#bool) |  |  |
 
@@ -86,9 +68,9 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | is_access_param1 | [bool](#bool) |  |  |
-| is_access_param2 | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
+| is_access_param2 | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  |  |
 | access_param3 | [string](#string) |  |  |
-| access_param4 | [string_nullable](#proto_plugin_sample.string_nullable) |  |  |
+| access_param4 | [google.protobuf.StringValue](#google.protobuf.StringValue) |  |  |
 | is_generate_not_valid_code | [bool](#bool) |  |  |
 
 
@@ -105,7 +87,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | is_param1 | [bool](#bool) |  |  |
-| is_included | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
+| is_included | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  |  |
 | is_constant_param1 | [bool](#bool) |  |  |
 | is_catalog_form_param1 | [bool](#bool) |  |  |
 
@@ -123,7 +105,7 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | is_schema_param1 | [bool](#bool) |  |  |
-| is_schema_param2 | [bool_nullable](#proto_plugin_sample.bool_nullable) |  |  |
+| is_schema_param2 | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  |  |
 | schema_param3 | [string](#string) |  |  |
 
 
@@ -140,22 +122,6 @@ all simple nullable (generator check suffics &#39;_nullable&#39;)
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | is_group_param1 | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="proto_plugin_sample.string_nullable"></a>
-
-### string_nullable
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| has_value | [bool](#bool) |  |  |
-| value | [string](#string) |  |  |
 
 
 

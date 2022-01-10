@@ -19,6 +19,7 @@ option csharp_namespace = "Proto.Config2";
  */
 // all simple nullable (generator check suffics '_nullable')
 
+/*
 message bool_nullable {
     bool has_value = 1;
     bool value = 2;
@@ -27,10 +28,11 @@ message string_nullable {
     bool has_value = 1;
     string value = 2;
 }
+*/
 
 // @base VmValidatableWithSeverity
 message test_shared_messsage {
-    bool_nullable bool_value = 1;
-    string_nullable string_value = 2;
+    bool bool_value = 1;
+    string string_value = 2;
 }
 

@@ -4,8 +4,6 @@
 ## Table of Contents
 
 - [vsharpstudioshared.proto](#vsharpstudioshared.proto)
-    - [bool_nullable](#proto_shared.bool_nullable)
-    - [string_nullable](#proto_shared.string_nullable)
     - [test_shared_messsage](#proto_shared.test_shared_messsage)
   
   
@@ -23,38 +21,6 @@
 
 
 
-<a name="proto_shared.bool_nullable"></a>
-
-### bool_nullable
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| has_value | [bool](#bool) |  |  |
-| value | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="proto_shared.string_nullable"></a>
-
-### string_nullable
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| has_value | [bool](#bool) |  |  |
-| value | [string](#string) |  |  |
-
-
-
-
-
-
 <a name="proto_shared.test_shared_messsage"></a>
 
 ### test_shared_messsage
@@ -63,8 +29,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| bool_value | [bool_nullable](#proto_shared.bool_nullable) |  |  |
-| string_value | [string_nullable](#proto_shared.string_nullable) |  |  |
+| bool_value | [bool](#bool) |  |  |
+| string_value | [string](#string) |  |  |
 
 
 
