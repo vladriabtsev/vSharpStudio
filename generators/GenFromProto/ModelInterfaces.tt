@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
 
-namespace vSharpStudio.common // <#=Helper.FilePos() #>
+namespace <#= nameSpace #> // <#=Helper.FilePos() #>
 {
 <# foreach (var t in root.EnumTypes) { 
      this.PushIndent("    "); #>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
 
-namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
+namespace vPlugin.Sample // ModelInterfaces.tt Line: 11
 {
     
     public partial interface IDbConnectionStringSettings // ModelInterfaces.tt Line: 29
