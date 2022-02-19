@@ -251,6 +251,14 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_form_catalog_edit_settings"><span class="badge">M</span>proto_form_catalog_edit_settings</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_catalog_list_settings"><span class="badge">M</span>proto_form_catalog_list_settings</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_form_datagrid"><span class="badge">M</span>proto_form_datagrid</a>
                 </li>
               
@@ -452,11 +460,15 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_form_orientation"><span class="badge">E</span>proto_form_orientation</a>
+                  <a href="#proto_config.proto_form_catalog_view_type"><span class="badge">E</span>proto_form_catalog_view_type</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_form_view"><span class="badge">E</span>proto_form_view</a>
+                  <a href="#proto_config.proto_form_document_view_type"><span class="badge">E</span>proto_form_document_view_type</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_orientation"><span class="badge">E</span>proto_form_orientation</a>
                 </li>
               
               
@@ -2357,17 +2369,45 @@ Generator output file name </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)]
-
-repeated proto_group_properties list_properties = 6;
-repeated proto_document list_forms = 7; </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>enum_form_type</td>
-                  <td><a href="#proto_config.proto_form_view">proto_form_view</a></td>
+                  <td>catalog_list_settings</td>
+                  <td><a href="#proto_config.proto_form_catalog_list_settings">proto_form_catalog_list_settings</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+@attr [DisplayName(&#34;List Form&#34;)]
+@attr [Description(&#34;Catalog list view settings&#34;)]
+@attr [ExpandableObjectAttribute()] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>catalog_edit_settings</td>
+                  <td><a href="#proto_config.proto_form_catalog_edit_settings">proto_form_catalog_edit_settings</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(8)]
+@attr [DisplayName(&#34;Edit Form&#34;)]
+@attr [Description(&#34;Catalog edit form settings&#34;)]
+@attr [ExpandableObjectAttribute()] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>enum_catalog_form_type</td>
+                  <td><a href="#proto_config.proto_form_catalog_view_type">proto_form_catalog_view_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Form type&#34;)]
+@attr [Description(&#34;Catalog form type&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>enum_document_form_type</td>
+                  <td><a href="#proto_config.proto_form_document_view_type">proto_form_document_view_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Form type&#34;)]
+@attr [Description(&#34;Document form type&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2389,6 +2429,103 @@ repeated proto_document list_forms = 7; </p></td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_form_catalog_edit_settings">proto_form_catalog_edit_settings</h3>
+        <p>@base VmValidatableWithSeverityAndAttributes</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>is_dummy</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;???&#34;)]
+@attr [Description(&#34;Not implemented&#34;)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_form_catalog_list_settings">proto_form_catalog_list_settings</h3>
+        <p>@base VmValidatableWithSeverityAndAttributes</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>is_use_code</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Code&#34;)]
+@attr [Description(&#34;Use catalog item code for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_name</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Name&#34;)]
+@attr [Description(&#34;Use catalog item name for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_desc</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Description&#34;)]
+@attr [Description(&#34;Use catalog item description for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_folder_code</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(11)]
+@attr [DisplayName(&#34;Folder Code&#34;)]
+@attr [Description(&#34;Use catalog folder code for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_folder_name</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;Folder Name&#34;)]
+@attr [Description(&#34;Use catalog folder name for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_folder_desc</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(13)]
+@attr [DisplayName(&#34;Folder Desc&#34;)]
+@attr [Description(&#34;Use catalog folder description for list view&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -5522,6 +5659,58 @@ repeated proto_document list_documents = 7;
           </tbody>
         </table>
       
+        <h3 id="proto_config.proto_form_catalog_view_type">proto_form_catalog_view_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CatListForm</td>
+                <td>0</td>
+                <td><p>@attr [DisplayName(&#34;List form&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>CatItemForm</td>
+                <td>1</td>
+                <td><p>@attr [DisplayName(&#34;Item form&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>CatFolderForm</td>
+                <td>2</td>
+                <td><p>@attr [DisplayName(&#34;Folder form&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_form_document_view_type">proto_form_document_view_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DocListForm</td>
+                <td>0</td>
+                <td><p>@attr [DisplayName(&#34;List form&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DocEditForm</td>
+                <td>1</td>
+                <td><p>@attr [DisplayName(&#34;Edit form&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="proto_config.proto_form_orientation">proto_form_orientation</h3>
         <p></p>
         <table class="enum-table">
@@ -5538,29 +5727,6 @@ repeated proto_document list_documents = 7;
             
               <tr>
                 <td>Horizontal</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="proto_config.proto_form_view">proto_form_view</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>Selection</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>Editing</td>
                 <td>1</td>
                 <td><p></p></td>
               </tr>

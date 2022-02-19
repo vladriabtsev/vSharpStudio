@@ -22,6 +22,8 @@
     - [proto_enumeration](#proto_config.proto_enumeration)
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_form](#proto_config.proto_form)
+    - [proto_form_catalog_edit_settings](#proto_config.proto_form_catalog_edit_settings)
+    - [proto_form_catalog_list_settings](#proto_config.proto_form_catalog_list_settings)
     - [proto_form_datagrid](#proto_config.proto_form_datagrid)
     - [proto_form_grid](#proto_config.proto_form_grid)
     - [proto_form_marging](#proto_config.proto_form_marging)
@@ -73,8 +75,9 @@
     - [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
+    - [proto_form_catalog_view_type](#proto_config.proto_form_catalog_view_type)
+    - [proto_form_document_view_type](#proto_config.proto_form_document_view_type)
     - [proto_form_orientation](#proto_config.proto_form_orientation)
-    - [proto_form_view](#proto_config.proto_form_view)
   
   
   
@@ -542,13 +545,49 @@ Constant application wise value
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)]
-
-repeated proto_group_properties list_properties = 6; repeated proto_document list_forms = 7; |
-| enum_form_type | [proto_form_view](#proto_config.proto_form_view) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| catalog_list_settings | [proto_form_catalog_list_settings](#proto_config.proto_form_catalog_list_settings) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;List Form&#34;)] @attr [Description(&#34;Catalog list view settings&#34;)] @attr [ExpandableObjectAttribute()] |
+| catalog_edit_settings | [proto_form_catalog_edit_settings](#proto_config.proto_form_catalog_edit_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Edit Form&#34;)] @attr [Description(&#34;Catalog edit form settings&#34;)] @attr [ExpandableObjectAttribute()] |
+| enum_catalog_form_type | [proto_form_catalog_view_type](#proto_config.proto_form_catalog_view_type) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Catalog form type&#34;)] |
+| enum_document_form_type | [proto_form_document_view_type](#proto_config.proto_form_document_view_type) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Document form type&#34;)] |
 | list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_guid_tree_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_catalog_edit_settings"></a>
+
+### proto_form_catalog_edit_settings
+@base VmValidatableWithSeverityAndAttributes
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| is_dummy | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;???&#34;)] @attr [Description(&#34;Not implemented&#34;)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_catalog_list_settings"></a>
+
+### proto_form_catalog_list_settings
+@base VmValidatableWithSeverityAndAttributes
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| is_use_code | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Use catalog item code for list view&#34;)] |
+| is_use_name | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Use catalog item name for list view&#34;)] |
+| is_use_desc | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Use catalog item description for list view&#34;)] |
+| is_use_folder_code | [bool](#bool) |  | @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Folder Code&#34;)] @attr [Description(&#34;Use catalog folder code for list view&#34;)] |
+| is_use_folder_name | [bool](#bool) |  | @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Folder Name&#34;)] @attr [Description(&#34;Use catalog folder name for list view&#34;)] |
+| is_use_folder_desc | [bool](#bool) |  | @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Folder Desc&#34;)] @attr [Description(&#34;Use catalog folder description for list view&#34;)] |
 
 
 
@@ -1547,6 +1586,31 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 
 
+<a name="proto_config.proto_form_catalog_view_type"></a>
+
+### proto_form_catalog_view_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CatListForm | 0 | @attr [DisplayName(&#34;List form&#34;)] |
+| CatItemForm | 1 | @attr [DisplayName(&#34;Item form&#34;)] |
+| CatFolderForm | 2 | @attr [DisplayName(&#34;Folder form&#34;)] |
+
+
+
+<a name="proto_config.proto_form_document_view_type"></a>
+
+### proto_form_document_view_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DocListForm | 0 | @attr [DisplayName(&#34;List form&#34;)] |
+| DocEditForm | 1 | @attr [DisplayName(&#34;Edit form&#34;)] |
+
+
+
 <a name="proto_config.proto_form_orientation"></a>
 
 ### proto_form_orientation
@@ -1556,18 +1620,6 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | ---- | ------ | ----------- |
 | Vertical | 0 |  |
 | Horizontal | 1 |  |
-
-
-
-<a name="proto_config.proto_form_view"></a>
-
-### proto_form_view
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| Selection | 0 |  |
-| Editing | 1 |  |
 
 
  

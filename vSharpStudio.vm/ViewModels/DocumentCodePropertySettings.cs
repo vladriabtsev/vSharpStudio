@@ -6,11 +6,11 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class CatalogCodePropertySettings : IParent
+    public partial class DocumentCodePropertySettings : IParent
     {
         partial void OnInit()
         {
-            this.UniqueScope = common.EnumCatalogCodeUniqueScope.Catalog;
+            this.UniqueScope = common.EnumDocumentCodeUniqueScope.Year;
             this.Type = common.EnumCodeType.Number;
             this.Length = 5;
         }

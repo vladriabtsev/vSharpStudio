@@ -43,7 +43,15 @@ namespace vSharpStudio.vm.ViewModels
             this.ListGuidTreeProperties = new ObservableCollection<string>();
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.IsIncludableInModels = true;
+            this.CatalogListSettings.Parent = this;
+            this.CatalogEditSettings.Parent = this;
+            HideUnusedProperties();
         }
+        protected override void OnInitFromDto()
+        {
+            HideUnusedProperties();
+        }
+
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
@@ -160,5 +168,63 @@ namespace vSharpStudio.vm.ViewModels
             p.ListForms.Remove(this);
         }
         #endregion Tree operations
+
+        #region Visibility
+        private void HideUnusedProperties()
+        {
+            var lst = new List<string>();
+            var lst2 = new List<string>();
+            if (this.Parent.Parent is ICatalog)
+            {
+                lst.Add(this.GetPropertyName(() => this.EnumDocumentFormType));
+                switch (this.EnumCatalogFormType)
+                {
+                    case FormCatalogViewType.CatListForm:
+                        var c = (ICatalog)this.Parent.Parent;
+                        if (!(c.UseTree && c.UseSeparatePropertiesForGroups))
+                        {
+                            lst.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderCode));
+                            lst.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderName));
+                            lst.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderDesc));
+                            this.CatalogListSettings.HidePropertiesForXceedPropertyGrid(lst2.ToArray());
+                        }
+                        lst.Add(this.GetPropertyName(() => this.CatalogEditSettings));
+                        break;
+                    case FormCatalogViewType.CatItemForm:
+                    case FormCatalogViewType.CatFolderForm:
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogCode));
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogName));
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogDesc));
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogFolderCode));
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogFolderName));
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogFolderDesc));
+                        //this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
+                        lst.Add(this.GetPropertyName(() => this.CatalogListSettings));
+                        break;
+                    default:
+                        Debug.Assert(false);
+                        lst.Add(this.GetPropertyName(() => this.CatalogListSettings));
+                        lst.Add(this.GetPropertyName(() => this.CatalogEditSettings));
+                        break;
+                }
+
+            }
+            else if (this.Parent.Parent is IDocument)
+            {
+                lst.Add(this.GetPropertyName(() => this.EnumCatalogFormType));
+                lst.Add(this.GetPropertyName(() => this.CatalogListSettings));
+                lst.Add(this.GetPropertyName(() => this.CatalogEditSettings));
+            }
+            this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
+        }
+        partial void OnEnumCatalogFormTypeChanged()
+        {
+            HideUnusedProperties();
+        }
+        partial void OnEnumDocumentFormTypeChanged()
+        {
+            HideUnusedProperties();
+        }
+        #endregion Visibility
     }
 }

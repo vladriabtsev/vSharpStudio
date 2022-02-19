@@ -292,6 +292,47 @@
           ]
         },
         {
+          "name": "proto_form_catalog_view_type",
+          "longName": "proto_form_catalog_view_type",
+          "fullName": "proto_config.proto_form_catalog_view_type",
+          "description": "",
+          "values": [
+            {
+              "name": "CatListForm",
+              "number": "0",
+              "description": "@attr [DisplayName(\"List form\")]"
+            },
+            {
+              "name": "CatItemForm",
+              "number": "1",
+              "description": "@attr [DisplayName(\"Item form\")]"
+            },
+            {
+              "name": "CatFolderForm",
+              "number": "2",
+              "description": "@attr [DisplayName(\"Folder form\")]"
+            }
+          ]
+        },
+        {
+          "name": "proto_form_document_view_type",
+          "longName": "proto_form_document_view_type",
+          "fullName": "proto_config.proto_form_document_view_type",
+          "description": "",
+          "values": [
+            {
+              "name": "DocListForm",
+              "number": "0",
+              "description": "@attr [DisplayName(\"List form\")]"
+            },
+            {
+              "name": "DocEditForm",
+              "number": "1",
+              "description": "@attr [DisplayName(\"Edit form\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_form_orientation",
           "longName": "proto_form_orientation",
           "fullName": "proto_config.proto_form_orientation",
@@ -304,24 +345,6 @@
             },
             {
               "name": "Horizontal",
-              "number": "1",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_form_view",
-          "longName": "proto_form_view",
-          "fullName": "proto_config.proto_form_view",
-          "description": "",
-          "values": [
-            {
-              "name": "Selection",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "Editing",
               "number": "1",
               "description": ""
             }
@@ -2568,7 +2591,7 @@
             },
             {
               "name": "is_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]\n\nrepeated proto_group_properties list_properties = 6;\nrepeated proto_document list_forms = 7;",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -2577,12 +2600,42 @@
               "defaultValue": ""
             },
             {
-              "name": "enum_form_type",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "name": "catalog_list_settings",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"List Form\")]\n@attr [Description(\"Catalog list view settings\")]\n@attr [ExpandableObjectAttribute()]",
               "label": "",
-              "type": "proto_form_view",
-              "longType": "proto_form_view",
-              "fullType": "proto_config.proto_form_view",
+              "type": "proto_form_catalog_list_settings",
+              "longType": "proto_form_catalog_list_settings",
+              "fullType": "proto_config.proto_form_catalog_list_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "catalog_edit_settings",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Edit Form\")]\n@attr [Description(\"Catalog edit form settings\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_form_catalog_edit_settings",
+              "longType": "proto_form_catalog_edit_settings",
+              "fullType": "proto_config.proto_form_catalog_edit_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "enum_catalog_form_type",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Form type\")]\n@attr [Description(\"Catalog form type\")]",
+              "label": "",
+              "type": "proto_form_catalog_view_type",
+              "longType": "proto_form_catalog_view_type",
+              "fullType": "proto_config.proto_form_catalog_view_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "enum_document_form_type",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Form type\")]\n@attr [Description(\"Document form type\")]",
+              "label": "",
+              "type": "proto_form_document_view_type",
+              "longType": "proto_form_document_view_type",
+              "fullType": "proto_config.proto_form_document_view_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2613,6 +2666,98 @@
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",
               "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_catalog_edit_settings",
+          "longName": "proto_form_catalog_edit_settings",
+          "fullName": "proto_config.proto_form_catalog_edit_settings",
+          "description": "@base VmValidatableWithSeverityAndAttributes",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "is_dummy",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"???\")]\n@attr [Description(\"Not implemented\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_catalog_list_settings",
+          "longName": "proto_form_catalog_list_settings",
+          "fullName": "proto_config.proto_form_catalog_list_settings",
+          "description": "@base VmValidatableWithSeverityAndAttributes",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "is_use_code",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Use catalog item code for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_name",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Use catalog item name for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_desc",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Description\")]\n@attr [Description(\"Use catalog item description for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_folder_code",
+              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Folder Code\")]\n@attr [Description(\"Use catalog folder code for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_folder_name",
+              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Folder Name\")]\n@attr [Description(\"Use catalog folder name for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_folder_desc",
+              "description": "@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Folder Desc\")]\n@attr [Description(\"Use catalog folder description for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }

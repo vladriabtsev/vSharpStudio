@@ -59,6 +59,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._RelativePathToGenFolder = @"Generated\";
             this.ListGenerators = new SortedObservableCollection<PluginGenerator>();
+            this.GeneratorSettingsVm.Parent = this;
             cfg = (Config)this.GetConfig();
             HideProperties();
         }

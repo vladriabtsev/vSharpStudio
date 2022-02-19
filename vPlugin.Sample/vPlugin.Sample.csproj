@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0-windows</TargetFramework>
+    </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugType>full</DebugType>
     </PropertyGroup>
@@ -10,44 +10,45 @@
         <DebugType>pdbonly</DebugType>
     </PropertyGroup>
     <ItemGroup>
-    <ResultFiles Include="$(TargetDir)*.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\vSharpStudio.proto\obj\Debug\net6.0\PluginSample.cs" Link="PluginSample.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\proto\plugin_sample.proto" Link="plugin_sample.proto" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.123" />
-    <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="RuntimeTextTemplate1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RuntimeTextTemplate1.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="RuntimeTextTemplate1.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>RuntimeTextTemplate1.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <Target Name="CopyPlugin" AfterTargets="PostBuildEvent">
-    <!--<Message Text="**********" Importance="high" />
+        <ResultFiles Include="$(TargetDir)*.*" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\vSharpStudio.proto\obj\Debug\net6.0\PluginSample.cs" Link="PluginSample.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="..\proto\plugin_sample.proto" Link="plugin_sample.proto" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.0.123" />
+        <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="RuntimeTextTemplate1.tt">
+            <Generator>TextTemplatingFileGenerator</Generator>
+            <LastGenOutput>RuntimeTextTemplate1.cs</LastGenOutput>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="RuntimeTextTemplate1.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>RuntimeTextTemplate1.tt</DependentUpon>
+        </Compile>
+    </ItemGroup>
+    <Target Name="CopyPlugin" AfterTargets="PostBuildEvent">
+        <Message Text="***** Copy Sample Plugin" Importance="high" />
+        <!--<Message Text="**********" Importance="high" />
     <Message Text="@(ResultFiles)" Importance="high" />
     <Message Text="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" Importance="high" />
     <Message Text="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" Importance="high" />
     <Message Text="**********" Importance="high" />-->
-    <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" />
-    <!--<Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />-->
-  </Target>
+        <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" />
+        <!--<Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />-->
+    </Target>
 </Project>

@@ -20636,6 +20636,363 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         //IFormPadding IFormDatagrid.Padding { get { return this._Padding; } }
         #endregion Properties
     }
+    public partial class FormCatalogListSettingsValidator : ValidatorBase<FormCatalogListSettings, FormCatalogListSettingsValidator> { } // Class.tt Line: 6
+    public partial class FormCatalogListSettings : VmValidatableWithSeverityAndAttributes<FormCatalogListSettings, FormCatalogListSettingsValidator>, IFormCatalogListSettings // Class.tt Line: 7
+    {
+        #region CTOR
+        public FormCatalogListSettings() 
+            : base(FormCatalogListSettingsValidator.Validator) // Class.tt Line: 45
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static FormCatalogListSettings Clone(IFormCatalogListSettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            FormCatalogListSettings vm = new FormCatalogListSettings();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.IsUseCode = from.IsUseCode; // Clone.tt Line: 65
+            vm.IsUseName = from.IsUseName; // Clone.tt Line: 65
+            vm.IsUseDesc = from.IsUseDesc; // Clone.tt Line: 65
+            vm.IsUseFolderCode = from.IsUseFolderCode; // Clone.tt Line: 65
+            vm.IsUseFolderName = from.IsUseFolderName; // Clone.tt Line: 65
+            vm.IsUseFolderDesc = from.IsUseFolderDesc; // Clone.tt Line: 65
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(FormCatalogListSettings to, IFormCatalogListSettings from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.IsUseCode = from.IsUseCode; // Clone.tt Line: 141
+            to.IsUseName = from.IsUseName; // Clone.tt Line: 141
+            to.IsUseDesc = from.IsUseDesc; // Clone.tt Line: 141
+            to.IsUseFolderCode = from.IsUseFolderCode; // Clone.tt Line: 141
+            to.IsUseFolderName = from.IsUseFolderName; // Clone.tt Line: 141
+            to.IsUseFolderDesc = from.IsUseFolderDesc; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override FormCatalogListSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return FormCatalogListSettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(FormCatalogListSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            FormCatalogListSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_form_catalog_list_settings' to 'FormCatalogListSettings'
+        public static FormCatalogListSettings ConvertToVM(Proto.Config.proto_form_catalog_list_settings m, FormCatalogListSettings vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.IsUseCode = m.IsUseCode; // Clone.tt Line: 221
+            vm.IsUseName = m.IsUseName; // Clone.tt Line: 221
+            vm.IsUseDesc = m.IsUseDesc; // Clone.tt Line: 221
+            vm.IsUseFolderCode = m.IsUseFolderCode; // Clone.tt Line: 221
+            vm.IsUseFolderName = m.IsUseFolderName; // Clone.tt Line: 221
+            vm.IsUseFolderDesc = m.IsUseFolderDesc; // Clone.tt Line: 221
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'FormCatalogListSettings' to 'proto_form_catalog_list_settings'
+        public static Proto.Config.proto_form_catalog_list_settings ConvertToProto(FormCatalogListSettings vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_form_catalog_list_settings m = new Proto.Config.proto_form_catalog_list_settings(); // Clone.tt Line: 239
+            m.IsUseCode = vm.IsUseCode; // Clone.tt Line: 276
+            m.IsUseName = vm.IsUseName; // Clone.tt Line: 276
+            m.IsUseDesc = vm.IsUseDesc; // Clone.tt Line: 276
+            m.IsUseFolderCode = vm.IsUseFolderCode; // Clone.tt Line: 276
+            m.IsUseFolderName = vm.IsUseFolderName; // Clone.tt Line: 276
+            m.IsUseFolderDesc = vm.IsUseFolderDesc; // Clone.tt Line: 276
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [PropertyOrderAttribute(1)]
+        [DisplayName("Code")]
+        [Description("Use catalog item code for list view")]
+        public bool IsUseCode // Property.tt Line: 55
+        { 
+            get { return this._IsUseCode; }
+            set
+            {
+                if (this._IsUseCode != value)
+                {
+                    this.OnIsUseCodeChanging(ref value);
+                    this._IsUseCode = value;
+                    this.OnIsUseCodeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsUseCode;
+        partial void OnIsUseCodeChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsUseCodeChanged();
+        
+        [PropertyOrderAttribute(2)]
+        [DisplayName("Name")]
+        [Description("Use catalog item name for list view")]
+        public bool IsUseName // Property.tt Line: 55
+        { 
+            get { return this._IsUseName; }
+            set
+            {
+                if (this._IsUseName != value)
+                {
+                    this.OnIsUseNameChanging(ref value);
+                    this._IsUseName = value;
+                    this.OnIsUseNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsUseName;
+        partial void OnIsUseNameChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsUseNameChanged();
+        
+        [PropertyOrderAttribute(3)]
+        [DisplayName("Description")]
+        [Description("Use catalog item description for list view")]
+        public bool IsUseDesc // Property.tt Line: 55
+        { 
+            get { return this._IsUseDesc; }
+            set
+            {
+                if (this._IsUseDesc != value)
+                {
+                    this.OnIsUseDescChanging(ref value);
+                    this._IsUseDesc = value;
+                    this.OnIsUseDescChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsUseDesc;
+        partial void OnIsUseDescChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsUseDescChanged();
+        
+        [PropertyOrderAttribute(11)]
+        [DisplayName("Folder Code")]
+        [Description("Use catalog folder code for list view")]
+        public bool IsUseFolderCode // Property.tt Line: 55
+        { 
+            get { return this._IsUseFolderCode; }
+            set
+            {
+                if (this._IsUseFolderCode != value)
+                {
+                    this.OnIsUseFolderCodeChanging(ref value);
+                    this._IsUseFolderCode = value;
+                    this.OnIsUseFolderCodeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsUseFolderCode;
+        partial void OnIsUseFolderCodeChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsUseFolderCodeChanged();
+        
+        [PropertyOrderAttribute(12)]
+        [DisplayName("Folder Name")]
+        [Description("Use catalog folder name for list view")]
+        public bool IsUseFolderName // Property.tt Line: 55
+        { 
+            get { return this._IsUseFolderName; }
+            set
+            {
+                if (this._IsUseFolderName != value)
+                {
+                    this.OnIsUseFolderNameChanging(ref value);
+                    this._IsUseFolderName = value;
+                    this.OnIsUseFolderNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsUseFolderName;
+        partial void OnIsUseFolderNameChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsUseFolderNameChanged();
+        
+        [PropertyOrderAttribute(13)]
+        [DisplayName("Folder Desc")]
+        [Description("Use catalog folder description for list view")]
+        public bool IsUseFolderDesc // Property.tt Line: 55
+        { 
+            get { return this._IsUseFolderDesc; }
+            set
+            {
+                if (this._IsUseFolderDesc != value)
+                {
+                    this.OnIsUseFolderDescChanging(ref value);
+                    this._IsUseFolderDesc = value;
+                    this.OnIsUseFolderDescChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsUseFolderDesc;
+        partial void OnIsUseFolderDescChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsUseFolderDescChanged();
+        #endregion Properties
+    }
+    public partial class FormCatalogEditSettingsValidator : ValidatorBase<FormCatalogEditSettings, FormCatalogEditSettingsValidator> { } // Class.tt Line: 6
+    public partial class FormCatalogEditSettings : VmValidatableWithSeverityAndAttributes<FormCatalogEditSettings, FormCatalogEditSettingsValidator>, IFormCatalogEditSettings // Class.tt Line: 7
+    {
+        #region CTOR
+        public FormCatalogEditSettings() 
+            : base(FormCatalogEditSettingsValidator.Validator) // Class.tt Line: 45
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static FormCatalogEditSettings Clone(IFormCatalogEditSettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            FormCatalogEditSettings vm = new FormCatalogEditSettings();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.IsDummy = from.IsDummy; // Clone.tt Line: 65
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(FormCatalogEditSettings to, IFormCatalogEditSettings from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.IsDummy = from.IsDummy; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override FormCatalogEditSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return FormCatalogEditSettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(FormCatalogEditSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            FormCatalogEditSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_form_catalog_edit_settings' to 'FormCatalogEditSettings'
+        public static FormCatalogEditSettings ConvertToVM(Proto.Config.proto_form_catalog_edit_settings m, FormCatalogEditSettings vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.IsDummy = m.IsDummy; // Clone.tt Line: 221
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'FormCatalogEditSettings' to 'proto_form_catalog_edit_settings'
+        public static Proto.Config.proto_form_catalog_edit_settings ConvertToProto(FormCatalogEditSettings vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_form_catalog_edit_settings m = new Proto.Config.proto_form_catalog_edit_settings(); // Clone.tt Line: 239
+            m.IsDummy = vm.IsDummy; // Clone.tt Line: 276
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [PropertyOrderAttribute(1)]
+        [DisplayName("???")]
+        [Description("Not implemented")]
+        public bool IsDummy // Property.tt Line: 55
+        { 
+            get { return this._IsDummy; }
+            set
+            {
+                if (this._IsDummy != value)
+                {
+                    this.OnIsDummyChanging(ref value);
+                    this._IsDummy = value;
+                    this.OnIsDummyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsDummy;
+        partial void OnIsDummyChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsDummyChanged();
+        #endregion Properties
+    }
     public partial class FormValidator : ValidatorBase<Form, FormValidator> { } // Class.tt Line: 6
     public partial class Form : ConfigObjectVmGenSettings<Form, FormValidator>, IComparable<Form>, IConfigAcceptVisitor, IForm // Class.tt Line: 7
     {
@@ -20649,6 +21006,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
+            this.CatalogListSettings = new FormCatalogListSettings(); // Class.tt Line: 31
+            this.CatalogEditSettings = new FormCatalogEditSettings(); // Class.tt Line: 31
             this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
@@ -20679,7 +21038,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
-            vm.EnumFormType = from.EnumFormType; // Clone.tt Line: 65
+            if (isDeep) // Clone.tt Line: 62
+                vm.CatalogListSettings = vSharpStudio.vm.ViewModels.FormCatalogListSettings.Clone(from.CatalogListSettings, isDeep);
+            if (isDeep) // Clone.tt Line: 62
+                vm.CatalogEditSettings = vSharpStudio.vm.ViewModels.FormCatalogEditSettings.Clone(from.CatalogEditSettings, isDeep);
+            vm.EnumCatalogFormType = from.EnumCatalogFormType; // Clone.tt Line: 65
+            vm.EnumDocumentFormType = from.EnumDocumentFormType; // Clone.tt Line: 65
             foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
                 vm.ListGuidProperties.Add(t);
             foreach (var t in from.ListGuidTreeProperties) // Clone.tt Line: 44
@@ -20704,7 +21068,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Description = from.Description; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
-            to.EnumFormType = from.EnumFormType; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 138
+                vSharpStudio.vm.ViewModels.FormCatalogListSettings.Update((FormCatalogListSettings)to.CatalogListSettings, from.CatalogListSettings, isDeep);
+            if (isDeep) // Clone.tt Line: 138
+                vSharpStudio.vm.ViewModels.FormCatalogEditSettings.Update((FormCatalogEditSettings)to.CatalogEditSettings, from.CatalogEditSettings, isDeep);
+            to.EnumCatalogFormType = from.EnumCatalogFormType; // Clone.tt Line: 141
+            to.EnumDocumentFormType = from.EnumDocumentFormType; // Clone.tt Line: 141
                 to.ListGuidProperties.Clear(); // Clone.tt Line: 127
                 foreach (var tt in from.ListGuidProperties)
                 {
@@ -20786,7 +21155,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.EnumFormType = (FormView)m.EnumFormType; // Clone.tt Line: 221
+            if (vm.CatalogListSettings == null) // Clone.tt Line: 213
+                vm.CatalogListSettings = new FormCatalogListSettings(); // Clone.tt Line: 217
+            vSharpStudio.vm.ViewModels.FormCatalogListSettings.ConvertToVM(m.CatalogListSettings, (FormCatalogListSettings)vm.CatalogListSettings); // Clone.tt Line: 219
+            if (vm.CatalogEditSettings == null) // Clone.tt Line: 213
+                vm.CatalogEditSettings = new FormCatalogEditSettings(); // Clone.tt Line: 217
+            vSharpStudio.vm.ViewModels.FormCatalogEditSettings.ConvertToVM(m.CatalogEditSettings, (FormCatalogEditSettings)vm.CatalogEditSettings); // Clone.tt Line: 219
+            vm.EnumCatalogFormType = (FormCatalogViewType)m.EnumCatalogFormType; // Clone.tt Line: 221
+            vm.EnumDocumentFormType = (FormDocumentViewType)m.EnumDocumentFormType; // Clone.tt Line: 221
             vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
             foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
             {
@@ -20822,7 +21198,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.EnumFormType = (Proto.Config.proto_form_view)vm.EnumFormType; // Clone.tt Line: 274
+            m.CatalogListSettings = vSharpStudio.vm.ViewModels.FormCatalogListSettings.ConvertToProto((FormCatalogListSettings)vm.CatalogListSettings); // Clone.tt Line: 270
+            m.CatalogEditSettings = vSharpStudio.vm.ViewModels.FormCatalogEditSettings.ConvertToProto((FormCatalogEditSettings)vm.CatalogEditSettings); // Clone.tt Line: 270
+            m.EnumCatalogFormType = (Proto.Config.proto_form_catalog_view_type)vm.EnumCatalogFormType; // Clone.tt Line: 274
+            m.EnumDocumentFormType = (Proto.Config.proto_form_document_view_type)vm.EnumDocumentFormType; // Clone.tt Line: 274
             foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
                 m.ListGuidProperties.Add(t); // Clone.tt Line: 244
             foreach (var t in vm.ListGuidTreeProperties) // Clone.tt Line: 242
@@ -20840,6 +21219,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
+            this.CatalogListSettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.CatalogEditSettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -20972,12 +21355,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// 
-        /// repeated proto_group_properties list_properties = 6;
-        /// repeated proto_document list_forms = 7;
-        ///////////////////////////////////////////////////
         [BrowsableAttribute(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
@@ -20999,26 +21376,103 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
-        public FormView EnumFormType // Property.tt Line: 55
+        [PropertyOrderAttribute(7)]
+        [DisplayName("List Form")]
+        [Description("Catalog list view settings")]
+        [ExpandableObjectAttribute()]
+        public FormCatalogListSettings CatalogListSettings // Property.tt Line: 55
         { 
-            get { return this._EnumFormType; }
+            get { return this._CatalogListSettings; }
             set
             {
-                if (this._EnumFormType != value)
+                if (this._CatalogListSettings != value)
                 {
-                    this.OnEnumFormTypeChanging(ref value);
-                    this._EnumFormType = value;
-                    this.OnEnumFormTypeChanged();
+                    this.OnCatalogListSettingsChanging(ref value);
+                    this._CatalogListSettings = value;
+                    this.OnCatalogListSettingsChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormView _EnumFormType;
-        partial void OnEnumFormTypeChanging(ref FormView to); // Property.tt Line: 79
-        partial void OnEnumFormTypeChanged();
+        private FormCatalogListSettings _CatalogListSettings;
+        IFormCatalogListSettings IForm.CatalogListSettings { get { return (this as Form).CatalogListSettings; } } // Property.tt Line: 77
+        partial void OnCatalogListSettingsChanging(ref FormCatalogListSettings to); // Property.tt Line: 79
+        partial void OnCatalogListSettingsChanged();
+        //IFormCatalogListSettings IForm.CatalogListSettings { get { return this._CatalogListSettings; } }
+        
+        [PropertyOrderAttribute(8)]
+        [DisplayName("Edit Form")]
+        [Description("Catalog edit form settings")]
+        [ExpandableObjectAttribute()]
+        public FormCatalogEditSettings CatalogEditSettings // Property.tt Line: 55
+        { 
+            get { return this._CatalogEditSettings; }
+            set
+            {
+                if (this._CatalogEditSettings != value)
+                {
+                    this.OnCatalogEditSettingsChanging(ref value);
+                    this._CatalogEditSettings = value;
+                    this.OnCatalogEditSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private FormCatalogEditSettings _CatalogEditSettings;
+        IFormCatalogEditSettings IForm.CatalogEditSettings { get { return (this as Form).CatalogEditSettings; } } // Property.tt Line: 77
+        partial void OnCatalogEditSettingsChanging(ref FormCatalogEditSettings to); // Property.tt Line: 79
+        partial void OnCatalogEditSettingsChanged();
+        //IFormCatalogEditSettings IForm.CatalogEditSettings { get { return this._CatalogEditSettings; } }
+        
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Form type")]
+        [Description("Catalog form type")]
+        public FormCatalogViewType EnumCatalogFormType // Property.tt Line: 55
+        { 
+            get { return this._EnumCatalogFormType; }
+            set
+            {
+                if (this._EnumCatalogFormType != value)
+                {
+                    this.OnEnumCatalogFormTypeChanging(ref value);
+                    this._EnumCatalogFormType = value;
+                    this.OnEnumCatalogFormTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private FormCatalogViewType _EnumCatalogFormType;
+        partial void OnEnumCatalogFormTypeChanging(ref FormCatalogViewType to); // Property.tt Line: 79
+        partial void OnEnumCatalogFormTypeChanged();
+        
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Form type")]
+        [Description("Document form type")]
+        public FormDocumentViewType EnumDocumentFormType // Property.tt Line: 55
+        { 
+            get { return this._EnumDocumentFormType; }
+            set
+            {
+                if (this._EnumDocumentFormType != value)
+                {
+                    this.OnEnumDocumentFormTypeChanging(ref value);
+                    this._EnumDocumentFormType = value;
+                    this.OnEnumDocumentFormTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private FormDocumentViewType _EnumDocumentFormType;
+        partial void OnEnumDocumentFormTypeChanging(ref FormDocumentViewType to); // Property.tt Line: 79
+        partial void OnEnumDocumentFormTypeChanged();
         
         [BrowsableAttribute(false)]
         public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
@@ -22101,6 +22555,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_form_stackpanel p);
         void Visit(Proto.Config.proto_form_grid p);
         void Visit(Proto.Config.proto_form_datagrid p);
+        void Visit(Proto.Config.proto_form_catalog_list_settings p);
+        void Visit(Proto.Config.proto_form_catalog_edit_settings p);
         void Visit(Proto.Config.proto_form p);
         void Visit(Proto.Config.proto_group_list_reports p);
         void Visit(Proto.Config.proto_report p);
@@ -22666,10 +23122,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
+        protected override void OnVisit(FormCatalogListSettings p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(FormCatalogListSettings p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(FormCatalogEditSettings p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(FormCatalogEditSettings p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
         protected override void OnVisit(Form p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
+            ValidateSubAndCollectErrors(p, p.CatalogListSettings); // ValidationVisitor.tt Line: 31
+            ValidateSubAndCollectErrors(p, p.CatalogEditSettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Form p) // ValidationVisitor.tt Line: 48
         {
@@ -23253,6 +23731,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(FormDatagrid p) { }
         protected virtual void OnVisitEnd(FormDatagrid p) { }
+        public void Visit(FormCatalogListSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(FormCatalogListSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(FormCatalogListSettings p) { }
+        protected virtual void OnVisitEnd(FormCatalogListSettings p) { }
+        public void Visit(FormCatalogEditSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(FormCatalogEditSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(FormCatalogEditSettings p) { }
+        protected virtual void OnVisitEnd(FormCatalogEditSettings p) { }
         public void Visit(Form p)
         {
             this.OnVisit(p);

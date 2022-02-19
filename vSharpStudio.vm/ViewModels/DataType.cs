@@ -934,5 +934,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        protected override void OnIsChangedChanged()
+        {
+            if (this.Parent != null && this.IsChanged)
+                this.Parent.IsChanged = true;
+        }
     }
 }

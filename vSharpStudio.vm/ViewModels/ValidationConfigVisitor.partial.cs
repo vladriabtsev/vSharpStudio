@@ -110,7 +110,8 @@ namespace vSharpStudio.vm.ViewModels
             var pp = p as ITreeConfigNode;
             if (pp == null)
             {
-                pp = (ITreeConfigNode)this.parent;
+                //pp = (ITreeConfigNode)this.parent;
+                pp = (p as IParent).Parent;
             }
             else
             {
@@ -119,7 +120,7 @@ namespace vSharpStudio.vm.ViewModels
             this.parent = p;
             if (this._logger != null)
             {
-                this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);
+                this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
             }
             p.ValidationCollection.Clear();
             p.CountErrors = 0;

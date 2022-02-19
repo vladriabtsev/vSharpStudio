@@ -13,7 +13,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
     [DebuggerDisplay("DbSettings: Schema={DbSchema,nq}, {IdGenerator,nq}, PkType={KeyType,nq}, PkName={KeyName, nq}, Conn={ConnectionStringName, nq}")]
-    public partial class DbSettings
+    public partial class DbSettings : IParent
     {
         partial void OnInit()
         {

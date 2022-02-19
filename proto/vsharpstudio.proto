@@ -1592,9 +1592,53 @@ message proto_form_datagrid {
     proto_form_marging marging = 1;
     proto_form_padding padding = 2;
 }
-enum proto_form_view {
-    Selection = 0;
-    Editing = 1;
+enum proto_form_catalog_view_type {
+    // @attr [DisplayName("List form")]
+    CatListForm = 0;
+    // @attr [DisplayName("Item form")]
+    CatItemForm = 1;
+    // @attr [DisplayName("Folder form")]
+    CatFolderForm = 2;
+}
+enum proto_form_document_view_type {
+    // @attr [DisplayName("List form")]
+    DocListForm = 0;
+    // @attr [DisplayName("Edit form")]
+    DocEditForm = 1;
+}
+// @base VmValidatableWithSeverityAndAttributes
+message proto_form_catalog_list_settings {
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [DisplayName("Code")]
+    // @attr [Description("Use catalog item code for list view")]
+    bool is_use_code = 1;
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("Name")]
+    // @attr [Description("Use catalog item name for list view")]
+    bool is_use_name = 2;
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Description")]
+    // @attr [Description("Use catalog item description for list view")]
+    bool is_use_desc = 3;
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [DisplayName("Folder Code")]
+    // @attr [Description("Use catalog folder code for list view")]
+    bool is_use_folder_code = 11;
+    // @attr [PropertyOrderAttribute(12)]
+    // @attr [DisplayName("Folder Name")]
+    // @attr [Description("Use catalog folder name for list view")]
+    bool is_use_folder_name = 12;
+    // @attr [PropertyOrderAttribute(13)]
+    // @attr [DisplayName("Folder Desc")]
+    // @attr [Description("Use catalog folder description for list view")]
+    bool is_use_folder_desc = 13;
+}
+// @base VmValidatableWithSeverityAndAttributes
+message proto_form_catalog_edit_settings {
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [DisplayName("???")]
+    // @attr [Description("Not implemented")]
+    bool is_dummy = 1;
 }
 message proto_form {
     // @attr [ReadOnly(true)]
@@ -1612,11 +1656,26 @@ message proto_form {
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
-    //repeated proto_group_properties list_properties = 6;
-    //repeated proto_document list_forms = 7;
 
-    // @attr [BrowsableAttribute(false)]
-    proto_form_view enum_form_type = 90;
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("List Form")]
+    // @attr [Description("Catalog list view settings")]
+    // @attr [ExpandableObjectAttribute()]
+    proto_form_catalog_list_settings catalog_list_settings = 21;
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("Edit Form")]
+    // @attr [Description("Catalog edit form settings")]
+    // @attr [ExpandableObjectAttribute()]
+    proto_form_catalog_edit_settings catalog_edit_settings = 22;
+
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Form type")]
+    // @attr [Description("Catalog form type")]
+    proto_form_catalog_view_type enum_catalog_form_type = 75;
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Form type")]
+    // @attr [Description("Document form type")]
+    proto_form_document_view_type enum_document_form_type = 76;
     // @attr [BrowsableAttribute(false)]
     repeated string list_guid_properties = 91;
     // @attr [BrowsableAttribute(false)]

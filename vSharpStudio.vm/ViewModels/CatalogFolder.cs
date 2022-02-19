@@ -57,6 +57,7 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             this.GroupProperties.Parent = this;
             this.GroupPropertiesTabs.Parent = this;
+            this.CodePropertySettings.Parent = this;
             this.RefillChildren();
         }
         protected override void OnInitFromDto()

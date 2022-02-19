@@ -308,7 +308,7 @@ namespace ViewModelBase
         /// <typeparam name="T">Type of the property in the expression.</typeparam>
         /// <param name="property">Expression to retrieve the property. Example: () => this.FirstName</param>
         /// <returns>String value representing the property name.</returns>
-        protected string GetPropertyName<T>(Expression<Func<T>> property)
+        public string GetPropertyName<T>(Expression<Func<T>> property)
         {
             MemberExpression memberExpression = GetMememberExpression<T>(property);
             return memberExpression.Member.Name;

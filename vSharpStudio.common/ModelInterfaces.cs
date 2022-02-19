@@ -79,10 +79,16 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         Vertical = 0,
         Horizontal = 1,
     }
-    public enum FormView // ModelInterfaces.tt Line: 15
+    public enum FormCatalogViewType // ModelInterfaces.tt Line: 15
     {
-        Selection = 0,
-        Editing = 1,
+        CatListForm = 0,
+        CatItemForm = 1,
+        CatFolderForm = 2,
+    }
+    public enum FormDocumentViewType // ModelInterfaces.tt Line: 15
+    {
+        DocListForm = 0,
+        DocEditForm = 1,
     }
     
     public partial interface IUserSettings // ModelInterfaces.tt Line: 29
@@ -821,20 +827,32 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IFormPadding Padding { get; } // ModelInterfaces.tt Line: 55
     }
     
+    public partial interface IFormCatalogListSettings // ModelInterfaces.tt Line: 29
+    {
+    	bool IsUseCode { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseName { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseDesc { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseFolderCode { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseFolderName { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseFolderDesc { get; } // ModelInterfaces.tt Line: 51
+    }
+    
+    public partial interface IFormCatalogEditSettings // ModelInterfaces.tt Line: 29
+    {
+    	bool IsDummy { get; } // ModelInterfaces.tt Line: 51
+    }
+    
     public partial interface IForm : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	
-    	///////////////////////////////////////////////////
-    	/// 
-    	/// repeated proto_group_properties list_properties = 6;
-    	/// repeated proto_document list_forms = 7;
-    	///////////////////////////////////////////////////
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	FormView EnumFormType { get; } // ModelInterfaces.tt Line: 51
+    	IFormCatalogListSettings CatalogListSettings { get; } // ModelInterfaces.tt Line: 55
+    	IFormCatalogEditSettings CatalogEditSettings { get; } // ModelInterfaces.tt Line: 55
+    	FormCatalogViewType EnumCatalogFormType { get; } // ModelInterfaces.tt Line: 51
+    	FormDocumentViewType EnumDocumentFormType { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<string> ListGuidTreeProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
