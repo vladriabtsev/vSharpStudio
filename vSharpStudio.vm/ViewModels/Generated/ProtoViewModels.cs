@@ -15071,6 +15071,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.UseSeparatePropertiesForGroups = from.UseSeparatePropertiesForGroups; // Clone.tt Line: 65
             vm.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 65
             vm.PropertyRefFolderGuid = from.PropertyRefFolderGuid; // Clone.tt Line: 65
+            foreach (var t in from.ListGuidViewProperties) // Clone.tt Line: 44
+                vm.ListGuidViewProperties.Add(t);
+            foreach (var t in from.ListGuidViewFolderProperties) // Clone.tt Line: 44
+                vm.ListGuidViewFolderProperties.Add(t);
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -15123,6 +15127,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.UseSeparatePropertiesForGroups = from.UseSeparatePropertiesForGroups; // Clone.tt Line: 141
             to.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 141
             to.PropertyRefFolderGuid = from.PropertyRefFolderGuid; // Clone.tt Line: 141
+                to.ListGuidViewProperties.Clear(); // Clone.tt Line: 127
+                foreach (var tt in from.ListGuidViewProperties)
+                {
+                    to.ListGuidViewProperties.Add(tt);
+                }
+                to.ListGuidViewFolderProperties.Clear(); // Clone.tt Line: 127
+                foreach (var tt in from.ListGuidViewFolderProperties)
+                {
+                    to.ListGuidViewFolderProperties.Add(tt);
+                }
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -15232,6 +15246,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.UseSeparatePropertiesForGroups = m.UseSeparatePropertiesForGroups; // Clone.tt Line: 221
             vm.PropertyRefSelfGuid = m.PropertyRefSelfGuid; // Clone.tt Line: 221
             vm.PropertyRefFolderGuid = m.PropertyRefFolderGuid; // Clone.tt Line: 221
+            vm.ListGuidViewProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
+            foreach (var t in m.ListGuidViewProperties) // Clone.tt Line: 185
+            {
+                vm.ListGuidViewProperties.Add(t);
+            }
+            vm.ListGuidViewFolderProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
+            foreach (var t in m.ListGuidViewFolderProperties) // Clone.tt Line: 185
+            {
+                vm.ListGuidViewFolderProperties.Add(t);
+            }
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -15283,6 +15307,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.UseSeparatePropertiesForGroups = vm.UseSeparatePropertiesForGroups; // Clone.tt Line: 276
             m.PropertyRefSelfGuid = vm.PropertyRefSelfGuid; // Clone.tt Line: 276
             m.PropertyRefFolderGuid = vm.PropertyRefFolderGuid; // Clone.tt Line: 276
+            foreach (var t in vm.ListGuidViewProperties) // Clone.tt Line: 242
+                m.ListGuidViewProperties.Add(t); // Clone.tt Line: 244
+            foreach (var t in vm.ListGuidViewFolderProperties) // Clone.tt Line: 242
+                m.ListGuidViewFolderProperties.Add(t); // Clone.tt Line: 244
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -16043,6 +16071,48 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyRefFolderGuid = string.Empty;
         partial void OnPropertyRefFolderGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyRefFolderGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<string> ListGuidViewProperties // Property.tt Line: 8
+        { 
+            get { return this._ListGuidViewProperties; }
+            set
+            {
+                if (this._ListGuidViewProperties != value)
+                {
+                    this.OnListGuidViewPropertiesChanging(value);
+                    _ListGuidViewProperties = value;
+                    this.OnListGuidViewPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<string> _ListGuidViewProperties;
+        IReadOnlyList<string> ICatalog.ListGuidViewProperties { get { return (this as Catalog).ListGuidViewProperties; } } // Property.tt Line: 26
+        partial void OnListGuidViewPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
+        partial void OnListGuidViewPropertiesChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<string> ListGuidViewFolderProperties // Property.tt Line: 8
+        { 
+            get { return this._ListGuidViewFolderProperties; }
+            set
+            {
+                if (this._ListGuidViewFolderProperties != value)
+                {
+                    this.OnListGuidViewFolderPropertiesChanging(value);
+                    _ListGuidViewFolderProperties = value;
+                    this.OnListGuidViewFolderPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<string> _ListGuidViewFolderProperties;
+        IReadOnlyList<string> ICatalog.ListGuidViewFolderProperties { get { return (this as Catalog).ListGuidViewFolderProperties; } } // Property.tt Line: 26
+        partial void OnListGuidViewFolderPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
+        partial void OnListGuidViewFolderPropertiesChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -21044,10 +21114,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.CatalogEditSettings = vSharpStudio.vm.ViewModels.FormCatalogEditSettings.Clone(from.CatalogEditSettings, isDeep);
             vm.EnumCatalogFormType = from.EnumCatalogFormType; // Clone.tt Line: 65
             vm.EnumDocumentFormType = from.EnumDocumentFormType; // Clone.tt Line: 65
-            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
-                vm.ListGuidProperties.Add(t);
-            foreach (var t in from.ListGuidTreeProperties) // Clone.tt Line: 44
-                vm.ListGuidTreeProperties.Add(t);
+            foreach (var t in from.ListGuidViewProperties) // Clone.tt Line: 44
+                vm.ListGuidViewProperties.Add(t);
+            foreach (var t in from.ListGuidViewFolderProperties) // Clone.tt Line: 44
+                vm.ListGuidViewFolderProperties.Add(t);
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -21074,15 +21144,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.FormCatalogEditSettings.Update((FormCatalogEditSettings)to.CatalogEditSettings, from.CatalogEditSettings, isDeep);
             to.EnumCatalogFormType = from.EnumCatalogFormType; // Clone.tt Line: 141
             to.EnumDocumentFormType = from.EnumDocumentFormType; // Clone.tt Line: 141
-                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
-                foreach (var tt in from.ListGuidProperties)
+                to.ListGuidViewProperties.Clear(); // Clone.tt Line: 127
+                foreach (var tt in from.ListGuidViewProperties)
                 {
-                    to.ListGuidProperties.Add(tt);
+                    to.ListGuidViewProperties.Add(tt);
                 }
-                to.ListGuidTreeProperties.Clear(); // Clone.tt Line: 127
-                foreach (var tt in from.ListGuidTreeProperties)
+                to.ListGuidViewFolderProperties.Clear(); // Clone.tt Line: 127
+                foreach (var tt in from.ListGuidViewFolderProperties)
                 {
-                    to.ListGuidTreeProperties.Add(tt);
+                    to.ListGuidViewFolderProperties.Add(tt);
                 }
             if (isDeep) // Clone.tt Line: 86
             {
@@ -21163,15 +21233,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vSharpStudio.vm.ViewModels.FormCatalogEditSettings.ConvertToVM(m.CatalogEditSettings, (FormCatalogEditSettings)vm.CatalogEditSettings); // Clone.tt Line: 219
             vm.EnumCatalogFormType = (FormCatalogViewType)m.EnumCatalogFormType; // Clone.tt Line: 221
             vm.EnumDocumentFormType = (FormDocumentViewType)m.EnumDocumentFormType; // Clone.tt Line: 221
-            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
-            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
+            vm.ListGuidViewProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
+            foreach (var t in m.ListGuidViewProperties) // Clone.tt Line: 185
             {
-                vm.ListGuidProperties.Add(t);
+                vm.ListGuidViewProperties.Add(t);
             }
-            vm.ListGuidTreeProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
-            foreach (var t in m.ListGuidTreeProperties) // Clone.tt Line: 185
+            vm.ListGuidViewFolderProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
+            foreach (var t in m.ListGuidViewFolderProperties) // Clone.tt Line: 185
             {
-                vm.ListGuidTreeProperties.Add(t);
+                vm.ListGuidViewFolderProperties.Add(t);
             }
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -21202,10 +21272,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.CatalogEditSettings = vSharpStudio.vm.ViewModels.FormCatalogEditSettings.ConvertToProto((FormCatalogEditSettings)vm.CatalogEditSettings); // Clone.tt Line: 270
             m.EnumCatalogFormType = (Proto.Config.proto_form_catalog_view_type)vm.EnumCatalogFormType; // Clone.tt Line: 274
             m.EnumDocumentFormType = (Proto.Config.proto_form_document_view_type)vm.EnumDocumentFormType; // Clone.tt Line: 274
-            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
-                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
-            foreach (var t in vm.ListGuidTreeProperties) // Clone.tt Line: 242
-                m.ListGuidTreeProperties.Add(t); // Clone.tt Line: 244
+            foreach (var t in vm.ListGuidViewProperties) // Clone.tt Line: 242
+                m.ListGuidViewProperties.Add(t); // Clone.tt Line: 244
+            foreach (var t in vm.ListGuidViewFolderProperties) // Clone.tt Line: 242
+                m.ListGuidViewFolderProperties.Add(t); // Clone.tt Line: 244
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -21475,46 +21545,46 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnEnumDocumentFormTypeChanged();
         
         [BrowsableAttribute(false)]
-        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
+        public ObservableCollection<string> ListGuidViewProperties // Property.tt Line: 8
         { 
-            get { return this._ListGuidProperties; }
+            get { return this._ListGuidViewProperties; }
             set
             {
-                if (this._ListGuidProperties != value)
+                if (this._ListGuidViewProperties != value)
                 {
-                    this.OnListGuidPropertiesChanging(value);
-                    _ListGuidProperties = value;
-                    this.OnListGuidPropertiesChanged();
+                    this.OnListGuidViewPropertiesChanging(value);
+                    _ListGuidViewProperties = value;
+                    this.OnListGuidViewPropertiesChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                 }
             }
         }
-        private ObservableCollection<string> _ListGuidProperties;
-        IReadOnlyList<string> IForm.ListGuidProperties { get { return (this as Form).ListGuidProperties; } } // Property.tt Line: 26
-        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
-        partial void OnListGuidPropertiesChanged();
+        private ObservableCollection<string> _ListGuidViewProperties;
+        IReadOnlyList<string> IForm.ListGuidViewProperties { get { return (this as Form).ListGuidViewProperties; } } // Property.tt Line: 26
+        partial void OnListGuidViewPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
+        partial void OnListGuidViewPropertiesChanged();
         
         [BrowsableAttribute(false)]
-        public ObservableCollection<string> ListGuidTreeProperties // Property.tt Line: 8
+        public ObservableCollection<string> ListGuidViewFolderProperties // Property.tt Line: 8
         { 
-            get { return this._ListGuidTreeProperties; }
+            get { return this._ListGuidViewFolderProperties; }
             set
             {
-                if (this._ListGuidTreeProperties != value)
+                if (this._ListGuidViewFolderProperties != value)
                 {
-                    this.OnListGuidTreePropertiesChanging(value);
-                    _ListGuidTreeProperties = value;
-                    this.OnListGuidTreePropertiesChanged();
+                    this.OnListGuidViewFolderPropertiesChanging(value);
+                    _ListGuidViewFolderProperties = value;
+                    this.OnListGuidViewFolderPropertiesChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                 }
             }
         }
-        private ObservableCollection<string> _ListGuidTreeProperties;
-        IReadOnlyList<string> IForm.ListGuidTreeProperties { get { return (this as Form).ListGuidTreeProperties; } } // Property.tt Line: 26
-        partial void OnListGuidTreePropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
-        partial void OnListGuidTreePropertiesChanged();
+        private ObservableCollection<string> _ListGuidViewFolderProperties;
+        IReadOnlyList<string> IForm.ListGuidViewFolderProperties { get { return (this as Form).ListGuidViewFolderProperties; } } // Property.tt Line: 26
+        partial void OnListGuidViewFolderPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
+        partial void OnListGuidViewFolderPropertiesChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8

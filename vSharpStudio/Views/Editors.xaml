@@ -23,30 +23,34 @@
         </DataTemplate>
     </UserControl.Resources>-->
     <Grid>
-        <StackPanel>
-            <TextBlock Text="Editors" />
-            <!--https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.contentcontrol.contenttemplateselector?view=netframework-4.8-->
-            <ContentControl Name="cc" Content="{Binding Config.SelectedNode}">
-                <!--<ContentControl Name="cc" DataContext="{Binding Config.SelectedNode}" DataContextChanged="ContentControl_DataContextChanged">-->
-                <ContentControl.Resources>
-                    <DataTemplate DataType="{x:Type bvm:GroupListPlugins}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="GroupListPlugins" />
-                        </StackPanel>
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type bvm:AppProject}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="App Project" />
-                            <DataGrid Grid.Row="1">
-                                <DataGrid.Columns>
-                                    <DataGridComboBoxColumn Header="Plugin group" />
-                                    <DataGridComboBoxColumn Header="Generator" />
-                                    <DataGridTextColumn Header="Name" />
-                                    <!--<DataGridTemplateColumn>
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock Text="Editors" />
+                <!--https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.contentcontrol.contenttemplateselector?view=netframework-4.8-->
+                <ContentControl Name="cc" Content="{Binding Config.SelectedNode}">
+                    <!--<ContentControl Name="cc" DataContext="{Binding Config.SelectedNode}" DataContextChanged="ContentControl_DataContextChanged">-->
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type bvm:Catalog}">
+                            <local:EditorCatalog DataContext="{Binding Config.SelectedNode}" />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type bvm:GroupListPlugins}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="GroupListPlugins" />
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type bvm:AppProject}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="App Project" />
+                                <DataGrid Grid.Row="1">
+                                    <DataGrid.Columns>
+                                        <DataGridComboBoxColumn Header="Plugin group" />
+                                        <DataGridComboBoxColumn Header="Generator" />
+                                        <DataGridTextColumn Header="Name" />
+                                        <!--<DataGridTemplateColumn>
                                         <DataGridTemplateColumn.Header>
                                             <TextBlock Text="Type" />
                                         </DataGridTemplateColumn.Header>
@@ -54,15 +58,16 @@
                                             <
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>-->
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-                    </DataTemplate>
-                </ContentControl.Resources>
-                <!--<ContentControl.ContentTemplateSelector>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                    <!--<ContentControl.ContentTemplateSelector>
                     <Binding Mode="OneWay" Source="{StaticResource editorTemplateSelector}"/>
                 </ContentControl.ContentTemplateSelector>-->
-            </ContentControl>
-        </StackPanel>
+                </ContentControl>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

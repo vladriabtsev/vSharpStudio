@@ -87,6 +87,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>vApp.tt</DependentUpon>
     </Compile>
+    <Compile Update="Controls\CollectionFromCollection.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
@@ -188,5 +191,11 @@
     <None Update="vSharpStudio Debug.licence.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Controls\CollectionFromCollection.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

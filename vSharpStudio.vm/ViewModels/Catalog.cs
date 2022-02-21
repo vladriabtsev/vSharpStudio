@@ -40,6 +40,8 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnInit()
         {
+            this.ListGuidViewProperties = new ObservableCollection<string>();
+            this.ListGuidViewFolderProperties = new ObservableCollection<string>();
             this.IsIncludableInModels = true;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG

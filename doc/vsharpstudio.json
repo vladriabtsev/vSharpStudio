@@ -1359,6 +1359,26 @@
               "defaultValue": ""
             },
             {
+              "name": "list_guid_view_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_guid_view_folder_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -2640,7 +2660,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_guid_properties",
+              "name": "list_guid_view_properties",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "string",
@@ -2650,7 +2670,7 @@
               "defaultValue": ""
             },
             {
-              "name": "list_guid_tree_properties",
+              "name": "list_guid_view_folder_properties",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
               "type": "string",

@@ -39,8 +39,8 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconWindowsForm"; }
         partial void OnInit()
         {
-            this.ListGuidProperties = new ObservableCollection<string>();
-            this.ListGuidTreeProperties = new ObservableCollection<string>();
+            this.ListGuidViewProperties = new ObservableCollection<string>();
+            this.ListGuidViewFolderProperties = new ObservableCollection<string>();
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.IsIncludableInModels = true;
             this.CatalogListSettings.Parent = this;
@@ -181,11 +181,11 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     case FormCatalogViewType.CatListForm:
                         var c = (ICatalog)this.Parent.Parent;
-                        if (!(c.UseTree && c.UseSeparatePropertiesForGroups))
+                        if (!c.UseTree || !(c.UseTree && c.UseSeparatePropertiesForGroups))
                         {
-                            lst.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderCode));
-                            lst.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderName));
-                            lst.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderDesc));
+                            lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderCode));
+                            lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderName));
+                            lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderDesc));
                             this.CatalogListSettings.HidePropertiesForXceedPropertyGrid(lst2.ToArray());
                         }
                         lst.Add(this.GetPropertyName(() => this.CatalogEditSettings));

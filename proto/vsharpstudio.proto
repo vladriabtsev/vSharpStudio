@@ -1297,6 +1297,10 @@ message proto_catalog {
     string property_ref_folder_guid = 66;
 
     // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_view_properties = 91;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_view_folder_properties = 92;
+    // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_catalogs {
@@ -1676,11 +1680,11 @@ message proto_form {
     // @attr [DisplayName("Form type")]
     // @attr [Description("Document form type")]
     proto_form_document_view_type enum_document_form_type = 76;
-    // @attr [BrowsableAttribute(false)]
-    repeated string list_guid_properties = 91;
-    // @attr [BrowsableAttribute(false)]
-    repeated string list_guid_tree_properties = 92;
 
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_view_properties = 91;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_view_folder_properties = 92;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

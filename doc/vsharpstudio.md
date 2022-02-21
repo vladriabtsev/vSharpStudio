@@ -280,6 +280,8 @@ Application project generator
 | use_separate_properties_for_groups | [bool](#bool) |  | @attr [PropertyOrderAttribute(64)] @attr [DisplayName(&#34;Group properties&#34;)] @attr [Description(&#34;Separate set of properties for groups&#34;)] |
 | property_ref_self_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_ref_folder_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| list_guid_view_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_guid_view_folder_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -550,8 +552,8 @@ Constant application wise value
 | catalog_edit_settings | [proto_form_catalog_edit_settings](#proto_config.proto_form_catalog_edit_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Edit Form&#34;)] @attr [Description(&#34;Catalog edit form settings&#34;)] @attr [ExpandableObjectAttribute()] |
 | enum_catalog_form_type | [proto_form_catalog_view_type](#proto_config.proto_form_catalog_view_type) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Catalog form type&#34;)] |
 | enum_document_form_type | [proto_form_document_view_type](#proto_config.proto_form_document_view_type) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Document form type&#34;)] |
-| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
-| list_guid_tree_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_guid_view_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_guid_view_folder_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 

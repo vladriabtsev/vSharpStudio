@@ -61,10 +61,12 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.OnAdded();
             };
-            this.ListForms.OnRemovedAction = (t) => {
+            this.ListForms.OnRemovedAction = (t) =>
+            {
                 this.OnRemoveChild();
             };
-            this.ListForms.OnClearedAction = () => {
+            this.ListForms.OnClearedAction = () =>
+            {
                 this.OnRemoveChild();
             };
         }
@@ -98,5 +100,13 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+
+        public Form AddCatalogForm(string name, FormCatalogViewType type)
+        {
+            Debug.Assert(this.Parent is Catalog);
+            var form = new Form(this) { Name = name, EnumCatalogFormType = type };
+            this.ListForms.Add(form);
+            return form;
+        }
     }
 }

@@ -671,6 +671,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool UseSeparatePropertiesForGroups { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefFolderGuid { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
+    	IReadOnlyList<string> ListGuidViewFolderProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -853,8 +855,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IFormCatalogEditSettings CatalogEditSettings { get; } // ModelInterfaces.tt Line: 55
     	FormCatalogViewType EnumCatalogFormType { get; } // ModelInterfaces.tt Line: 51
     	FormDocumentViewType EnumDocumentFormType { get; } // ModelInterfaces.tt Line: 51
-    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 42
-    	IReadOnlyList<string> ListGuidTreeProperties { get; } // ModelInterfaces.tt Line: 42
+    	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
+    	IReadOnlyList<string> ListGuidViewFolderProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
