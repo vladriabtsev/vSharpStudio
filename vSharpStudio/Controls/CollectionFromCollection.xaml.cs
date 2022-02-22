@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModelBase;
+using vSharpStudio.common;
 
 namespace vSharpStudio.Views.Controls
 {
@@ -29,9 +31,26 @@ namespace vSharpStudio.Views.Controls
             get { return (object)GetValue(UpperRightContentProperty); }
             set { SetValue(UpperRightContentProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for UpperRightContent.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty UpperRightContentProperty =
             DependencyProperty.Register("UpperRightContent", typeof(object), typeof(CollectionFromCollection), new PropertyMetadata(null));
+
+
+        public List<IProperty> ListAll
+        {
+            get { return (List<IProperty>)GetValue(ListAllProperty); }
+            set { SetValue(ListAllProperty, value); }
+        }
+        public static readonly DependencyProperty ListAllProperty =
+            DependencyProperty.Register("ListAll", typeof(List<IProperty>), typeof(CollectionFromCollection), new PropertyMetadata(null));
+
+        public SortedObservableCollection<IProperty> ListSelected
+        {
+            get { return (SortedObservableCollection<IProperty>)GetValue(ListSelectedProperty); }
+            set { SetValue(ListSelectedProperty, value); }
+        }
+        public static readonly DependencyProperty ListSelectedProperty =
+            DependencyProperty.Register("ListSelected", typeof(SortedObservableCollection<IProperty>), typeof(CollectionFromCollection), new PropertyMetadata(null));
+
+
     }
 }

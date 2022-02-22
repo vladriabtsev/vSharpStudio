@@ -1,10 +1,11 @@
-﻿<UserControl x:Class="vSharpStudio.Views.Controls.CollectionFromCollection"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:vSharpStudio.Views.Controls" x:Class="vSharpStudio.Views.Controls.CollectionFromCollection" 
              mc:Ignorable="d"
-             Name="collectionFromCollection"
+             x:Name="collectionFromCollection"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,8 +19,9 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                    <TextBlock Text="Not Selected" FontWeight="Bold" />
-                    <ListBox Grid.Row="1" />
+                <TextBlock Text="For Selection" FontWeight="Bold" />
+                <ListBox Grid.Row="1" ItemsSource="{Binding ListAll, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                         DisplayMemberPath="Name" />
             </Grid>
         </Grid>
         <Grid Grid.Column="1">
@@ -41,17 +43,30 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ContentPresenter Grid.Row="1" Content="{Binding UpperRightContent, ElementName=collectionFromCollection}" />
-                <Grid Grid.Row="2">
+                <ContentPresenter Grid.Row="0" Content="{Binding UpperRightContent, ElementName=collectionFromCollection}" />
+                <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Selected" FontWeight="Bold" />
-                    <ListBox Grid.Row="1" />
+                    <TextBlock Text="Selected" FontWeight="Bold" HorizontalAlignment="Right" />
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,3" HorizontalAlignment="Right">
+                        <Button Margin="0,0,3,0" Width="40" Height="18">
+                            <Button.Content>
+                                <TextBlock Text="Up" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Width="40" Height="18">
+                            <Button.Content>
+                                <TextBlock Text="Down" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                    <ListBox Grid.Row="2" ItemsSource="{Binding ListSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                             DisplayMemberPath="Name" />
                 </Grid>
             </Grid>
         </Grid>

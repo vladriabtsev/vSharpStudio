@@ -27,7 +27,8 @@ namespace vSharpStudio.Views
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-
+            this.colFolder.DataContext = this.DataContext;
+            this.colItem.DataContext = this.DataContext;
         }
     }
 }

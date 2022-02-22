@@ -318,6 +318,82 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        public List<IProperty> ListAllProperties
+        {
+            get
+            {
+                var res = new List<IProperty>();
+                foreach(var t in this.GetAllProperties())
+                {
+                    res.Add(t);
+                }
+                return res;
+            }
+        }
+        public SortedObservableCollection<IProperty> ListViewProperties
+        {
+            get
+            {
+                var res = new SortedObservableCollection<IProperty>();
+                if (this.UseTree && this.UseSeparatePropertiesForGroups)
+                {
+                    foreach (var t in this.GetAllProperties())
+                    {
+                        foreach (var tt in this.ListGuidViewProperties)
+                        {
+                            if (tt == t.Guid)
+                            {
+                                res.Add(t);
+                                break;
+                            }
+                        }
+                    }
+                }
+                return res;
+            }
+        }
+        public IReadOnlyList<IProperty> GetAllFolderProperties()
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res, true);
+            foreach (var t in this.Folder.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            return res;
+        }
+        public List<IProperty> ListAllFolderProperties
+        {
+            get
+            {
+                var res = new List<IProperty>();
+                foreach (var t in this.GetAllFolderProperties())
+                {
+                    res.Add(t);
+                }
+                return res;
+            }
+        }
+        public SortedObservableCollection<IProperty> ListViewFolderProperties
+        {
+            get
+            {
+                var res = new SortedObservableCollection<IProperty>();
+                foreach (var t in this.GetAllFolderProperties())
+                {
+                    foreach (var tt in this.ListGuidViewFolderProperties)
+                    {
+                        if (tt == t.Guid)
+                        {
+                            res.Add(t);
+                            break;
+                        }
+                    }
+                }
+                return res;
+            }
+        }
+
         private void GetSpecialProperties(List<IProperty> res, bool isFolder)
         {
             var cfg = this.GetConfig();
@@ -387,16 +463,6 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     res.Add(t);
                 }
-            }
-            return res;
-        }
-        public IReadOnlyList<IProperty> GetAllFolderProperties()
-        {
-            var res = new List<IProperty>();
-            GetSpecialProperties(res, true);
-            foreach (var t in this.Folder.GroupProperties.ListProperties)
-            {
-                res.Add(t);
             }
             return res;
         }
