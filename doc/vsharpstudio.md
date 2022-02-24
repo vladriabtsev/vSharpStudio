@@ -254,32 +254,32 @@ Application project generator
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
+| use_separate_tree_for_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Separate Tree&#34;)] @attr [Description(&#34;Separate tree object for folders&#34;)] |
+| max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Max Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
+| use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
+| code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(26)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
+| use_name_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
+| max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(28)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
+| use_description_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
+| max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
+| use_folder_type_explicitly | [bool](#bool) |  | @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Explicit Folders&#34;)] @attr [Description(&#34;User has choose explicitly item or folder type for catalog element&#34;)] |
+| item_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
+| group_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
+| property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_name_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_is_folder_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_is_open_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_ref_self_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_ref_folder_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| view_default_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | folder | [proto_catalog_folder](#proto_config.proto_catalog_folder) |  | @attr [BrowsableAttribute(false)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_properties_tabs | [proto_group_list_properties_tabs](#proto_config.proto_group_list_properties_tabs) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
-| item_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
-| property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
-| code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
-| property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_name_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
-| max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
-| property_name_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_description_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
-| max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(52)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
-| property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_folder_type_explicitly | [bool](#bool) |  | @attr [PropertyOrderAttribute(54)] @attr [DisplayName(&#34;Use Folders&#34;)] @attr [Description(&#34;User has choose explicitly item or folder type for catalog element &#34;)] |
-| property_is_folder_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| property_is_open_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| view_default_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(61)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
-| group_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(62)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
-| max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(63)] @attr [DisplayName(&#34;Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
-| use_separate_properties_for_groups | [bool](#bool) |  | @attr [PropertyOrderAttribute(64)] @attr [DisplayName(&#34;Group properties&#34;)] @attr [Description(&#34;Separate set of properties for groups&#34;)] |
-| property_ref_self_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| property_ref_folder_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | list_guid_view_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_guid_view_folder_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |

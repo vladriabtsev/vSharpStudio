@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (pg.Parent is Catalog)
                 {
                     var c = (Catalog)pg.Parent;
-                    if (c.UseTree && c.UseSeparatePropertiesForGroups)
+                    if (c.UseTree && c.UseSeparateTreeForFolders)
                     {
                         if (name == c.Folder.Name)
                         {

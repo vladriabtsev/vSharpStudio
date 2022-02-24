@@ -42,51 +42,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Update="Templates\Catalog.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Catalog.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\DAL\Dal.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Dal.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\Document.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Document.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\Enum.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Enum.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\vApp.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>vApp.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\Wpf\Catalog.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Catalog.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\Wpf\CatalogList.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CatalogList.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\Wpf\CatalogView.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CatalogView.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Templates\Wpf\vApp.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>vApp.tt</DependentUpon>
-    </Compile>
     <Compile Update="Controls\CollectionFromCollection.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -98,44 +53,6 @@
     <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
     <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
     <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Templates\Catalog.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Catalog.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\DAL\Dal.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Dal.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Document.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Document.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Enum.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Enum.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\vApp.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>vApp.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Wpf\Catalog.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>Catalog.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Wpf\CatalogList.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>CatalogList.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Wpf\CatalogView.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>CatalogView.cs</LastGenOutput>
-    </Content>
-    <Content Include="Templates\Wpf\vApp.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>vApp.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="start\" />

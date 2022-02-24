@@ -1125,6 +1125,178 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>use_tree</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Use Tree&#34;)]
+@attr [Description(&#34;Use tree catalog structure&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_separate_tree_for_folders</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [DisplayName(&#34;Separate Tree&#34;)]
+@attr [Description(&#34;Separate tree object for folders&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_tree_levels</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(23)]
+@attr [DisplayName(&#34;Max Levels&#34;)]
+@attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_code_property</td>
+                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(25)]
+@attr [DisplayName(&#34;Use Code&#34;)]
+@attr [Description(&#34;Use Code property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>code_property_settings</td>
+                  <td><a href="#proto_config.proto_catalog_code_property_settings">proto_catalog_code_property_settings</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(26)]
+@attr [ExpandableObjectAttribute()]
+@attr [DisplayName(&#34;Code&#34;)]
+@attr [Description(&#34;Code property settings for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_name_property</td>
+                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(27)]
+@attr [DisplayName(&#34;Use Name&#34;)]
+@attr [Description(&#34;Use Name property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_name_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(28)]
+@attr [DisplayName(&#34;Max Length&#34;)]
+@attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_description_property</td>
+                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(29)]
+@attr [DisplayName(&#34;Use Description&#34;)]
+@attr [Description(&#34;Use Description property for catalog item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_description_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(30)]
+@attr [DisplayName(&#34;Max Length&#34;)]
+@attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_folder_type_explicitly</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(31)]
+@attr [DisplayName(&#34;Explicit Folders&#34;)]
+@attr [Description(&#34;User has choose explicitly item or folder type for catalog element&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>item_icon_type</td>
+                  <td><a href="#proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(41)]
+@attr [DisplayName(&#34;Item Icon&#34;)]
+@attr [Description(&#34;Catalog item icon type&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_icon_type</td>
+                  <td><a href="#proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(42)]
+@attr [DisplayName(&#34;Group Icon&#34;)]
+@attr [Description(&#34;Catalog group icon type&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_name_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_description_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_is_folder_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_is_open_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_ref_self_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_ref_folder_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>view_default_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>folder</td>
                   <td><a href="#proto_config.proto_catalog_folder">proto_catalog_folder</a></td>
                   <td></td>
@@ -1155,178 +1327,6 @@ Generator output file name </p></td>
                 <tr>
                   <td>group_reports</td>
                   <td><a href="#proto_config.proto_group_list_reports">proto_group_list_reports</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>item_icon_type</td>
-                  <td><a href="#proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(19)]
-@attr [DisplayName(&#34;Item Icon&#34;)]
-@attr [Description(&#34;Catalog item icon type&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_id_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_code_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(21)]
-@attr [DisplayName(&#34;Use Code&#34;)]
-@attr [Description(&#34;Use Code property for catalog item&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>code_property_settings</td>
-                  <td><a href="#proto_config.proto_catalog_code_property_settings">proto_catalog_code_property_settings</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(22)]
-@attr [ExpandableObjectAttribute()]
-@attr [DisplayName(&#34;Code&#34;)]
-@attr [Description(&#34;Code property settings for catalog item&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_code_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_name_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(41)]
-@attr [DisplayName(&#34;Use Name&#34;)]
-@attr [Description(&#34;Use Name property for catalog item&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>max_name_length</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(42)]
-@attr [DisplayName(&#34;Max Length&#34;)]
-@attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_name_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_description_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(51)]
-@attr [DisplayName(&#34;Use Description&#34;)]
-@attr [Description(&#34;Use Description property for catalog item&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>max_description_length</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(52)]
-@attr [DisplayName(&#34;Max Length&#34;)]
-@attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_description_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_folder_type_explicitly</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(54)]
-@attr [DisplayName(&#34;Use Folders&#34;)]
-@attr [Description(&#34;User has choose explicitly item or folder type for catalog element &#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_is_folder_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_is_open_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>view_default_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_tree</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(61)]
-@attr [DisplayName(&#34;Use Tree&#34;)]
-@attr [Description(&#34;Use tree catalog structure&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_icon_type</td>
-                  <td><a href="#proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(62)]
-@attr [DisplayName(&#34;Group Icon&#34;)]
-@attr [Description(&#34;Catalog group icon type&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>max_tree_levels</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(63)]
-@attr [DisplayName(&#34;Levels&#34;)]
-@attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_separate_properties_for_groups</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(64)]
-@attr [DisplayName(&#34;Group properties&#34;)]
-@attr [Description(&#34;Separate set of properties for groups&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_ref_self_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_ref_folder_guid</td>
-                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>

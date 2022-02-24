@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -54,7 +55,7 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupReports.Parent = this;
             this.ItemIconType = EnumCatalogTreeIcon.None;
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this.UseCodeProperty = true;
+            this.UseCodeProperty = false;
             this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
             this.UseNameProperty = true;
             this.MaxNameLength = 20;
@@ -64,7 +65,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
             this.UseTree = false;
             this.MaxTreeLevels = 2;
-            this.UseSeparatePropertiesForGroups = false;
+            this.UseSeparateTreeForFolders = false;
             this.GroupIconType = EnumCatalogTreeIcon.Folder;
             this.PropertyRefFolderGuid = System.Guid.NewGuid().ToString();
             this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
@@ -84,7 +85,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
-            if (this.UseTree && this.UseSeparatePropertiesForGroups)
+            if (this.UseTree && this.UseSeparateTreeForFolders)
             {
                 this.Children.Add(this.Folder, 2);
             }
@@ -298,7 +299,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, false);
+            GetSpecialProperties(res, false, true);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -311,116 +312,206 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetAllProperties()
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, false);
+            GetSpecialProperties(res, false, true);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 res.Add(t);
             }
             return res;
         }
-        public List<IProperty> ListAllProperties
+        [BrowsableAttribute(false)]
+        public ObservableCollection<IProperty> ListAllNotSpecialProperties
         {
             get
             {
+                var listAllNotSpecialProperties = new ObservableCollection<IProperty>();
                 var res = new List<IProperty>();
-                foreach(var t in this.GetAllProperties())
+                GetSpecialProperties(res, true, false);
+                foreach (var t in this.GroupProperties.ListProperties)
                 {
                     res.Add(t);
                 }
-                return res;
+                foreach (var t in res)
+                {
+                    bool notFound = true;
+                    foreach (var tt in this.ListGuidViewProperties)
+                    {
+                        if (tt == t.Guid)
+                        {
+                            notFound = false;
+                            break;
+                        }
+                    }
+                    if (notFound)
+                        listAllNotSpecialProperties.Add(t);
+                }
+                return listAllNotSpecialProperties;
             }
         }
-        public SortedObservableCollection<IProperty> ListViewProperties
+        private ObservableCollection<IProperty> listAllNotSpecialProperties;
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<IProperty> ListViewNotSpecialProperties
         {
             get
             {
-                var res = new SortedObservableCollection<IProperty>();
-                if (this.UseTree && this.UseSeparatePropertiesForGroups)
+                var lst = new List<IProperty>();
+                foreach (var t in this.GroupProperties.ListProperties)
                 {
-                    foreach (var t in this.GetAllProperties())
+                    foreach (var tt in this.ListGuidViewProperties)
                     {
-                        foreach (var tt in this.ListGuidViewProperties)
+                        if (tt == t.Guid)
                         {
-                            if (tt == t.Guid)
-                            {
-                                res.Add(t);
-                                break;
-                            }
+                            lst.Add(t);
+                            break;
                         }
                     }
                 }
-                return res;
+                listViewNotSpecialProperties = new SortedObservableCollection<IProperty>(lst);
+                listViewNotSpecialProperties.CollectionChanged += Res_CollectionChanged;
+                return listViewNotSpecialProperties;
+            }
+        }
+        private SortedObservableCollection<IProperty> listViewNotSpecialProperties;
+        private void Res_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.ListGuidViewProperties.Clear();
+            foreach (var t in this.listViewNotSpecialProperties)
+            {
+                this.ListGuidViewProperties.Add(t.Guid);
             }
         }
         public IReadOnlyList<IProperty> GetAllFolderProperties()
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, true);
+            GetSpecialProperties(res, true, true);
             foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 res.Add(t);
             }
             return res;
         }
-        public List<IProperty> ListAllFolderProperties
+        [BrowsableAttribute(false)]
+        public ObservableCollection<IProperty> ListAllFolderNotSpecialProperties
         {
             get
             {
-                var res = new List<IProperty>();
-                foreach (var t in this.GetAllFolderProperties())
+                var lst = new List<IProperty>();
+                if (this.UseTree && this.UseSeparateTreeForFolders)
                 {
-                    res.Add(t);
+                    var res = new List<IProperty>();
+                    GetSpecialProperties(res, true, false);
+                    foreach (var t in this.Folder.GroupProperties.ListProperties)
+                    {
+                        res.Add(t);
+                    }
+                    foreach (var t in res)
+                    {
+                        bool notFound = true;
+                        foreach (var tt in this.ListGuidViewFolderProperties)
+                        {
+                            if (tt == t.Guid)
+                            {
+                                notFound = false;
+                                break;
+                            }
+                        }
+                        if (notFound)
+                            lst.Add(t);
+                    }
                 }
-                return res;
+                listAllFolderNotSpecialProperties = new ObservableCollection<IProperty>(lst);
+                listAllFolderNotSpecialProperties.CollectionChanged += ResFolder_CollectionChanged;
+                return listAllFolderNotSpecialProperties;
             }
         }
-        public SortedObservableCollection<IProperty> ListViewFolderProperties
+        private ObservableCollection<IProperty> listAllFolderNotSpecialProperties = null;
+        private void ResFolder_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.ListGuidViewFolderProperties.Clear();
+            foreach (var t in this.listViewFolderNotSpecialProperties)
+            {
+                this.ListGuidViewFolderProperties.Add(t.Guid);
+            }
+        }
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<IProperty> ListViewFolderNotSpecialProperties
         {
             get
             {
-                var res = new SortedObservableCollection<IProperty>();
-                foreach (var t in this.GetAllFolderProperties())
+                listViewFolderNotSpecialProperties = new SortedObservableCollection<IProperty>();
+                if (this.UseTree && this.UseSeparateTreeForFolders)
                 {
-                    foreach (var tt in this.ListGuidViewFolderProperties)
+                    foreach (var t in this.Folder.GroupProperties.ListProperties)
                     {
-                        if (tt == t.Guid)
+                        foreach (var tt in this.ListGuidViewProperties)
                         {
-                            res.Add(t);
-                            break;
+                            if (tt == t.Guid)
+                            {
+                                listViewFolderNotSpecialProperties.Add(t);
+                                break;
+                            }
                         }
                     }
                 }
-                return res;
+                return listViewFolderNotSpecialProperties;
             }
         }
+        private SortedObservableCollection<IProperty> listViewFolderNotSpecialProperties;
 
-        private void GetSpecialProperties(List<IProperty> res, bool isFolder)
+        private void GetSpecialProperties(List<IProperty> res, bool isFolder, bool isAll)
         {
             var cfg = this.GetConfig();
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
-            res.Add(prp);
+            if (isAll)
+            {
+                res.Add(prp);
+            }
             if (isFolder)
             {
-                prp = cfg.Model.GetPropertyRefParent(this.Folder.PropertyRefSelfGuid, "RefTreeParent", true);
-                res.Add(prp);
+                if (isAll)
+                {
+                    prp = cfg.Model.GetPropertyRefParent(this.Folder.PropertyRefSelfGuid, "RefTreeParent", true);
+                    res.Add(prp);
+                    prp = cfg.Model.GetPropertyIsOpen(this.PropertyIsOpenGuid);
+                    res.Add(prp);
+                }
+                if (this.UseFolderTypeExplicitly)
+                {
+                    if (isAll)
+                    {
+                        prp = cfg.Model.GetPropertyIsFolder(this.PropertyIsFolderGuid);
+                        res.Add(prp);
+                    }
+                }
             }
             else
             {
                 if (this.UseTree)
                 {
-                    if (this.UseSeparatePropertiesForGroups)
+                    if (this.UseSeparateTreeForFolders)
                     {
-                        prp = cfg.Model.GetPropertyRefParent(this.PropertyRefFolderGuid, "Ref" + this.Folder.CompositeName);
-                        res.Add(prp);
+                        if (isAll)
+                        {
+                            prp = cfg.Model.GetPropertyRefParent(this.PropertyRefFolderGuid, "Ref" + this.Folder.CompositeName);
+                            res.Add(prp);
+                        }
                     }
                     else
                     {
-                        prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent", true);
-                        res.Add(prp);
+                        if (isAll)
+                        {
+                            prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent", true);
+                            res.Add(prp);
+                            prp = cfg.Model.GetPropertyIsOpen(this.PropertyIsOpenGuid);
+                            res.Add(prp);
+                        }
                         if (this.UseFolderTypeExplicitly)
                         {
-                            prp = cfg.Model.GetPropertyIsFolder(this.PropertyIsFolderGuid);
-                            res.Add(prp);
+                            if (isAll)
+                            {
+                                prp = cfg.Model.GetPropertyIsFolder(this.PropertyIsFolderGuid);
+                                res.Add(prp);
+                            }
                         }
                     }
                 }
@@ -456,7 +547,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, true);
+            GetSpecialProperties(res, true, true);
             foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -502,15 +593,30 @@ namespace vSharpStudio.vm.ViewModels
         {
             HideProperties();
         }
-        partial void OnUseSeparatePropertiesForGroupsChanged()
+        partial void OnUseFolderTypeExplicitlyChanged()
+        {
+            this.NotifyPropertyChanged(() => this.IsShowIsFolder);
+        }
+        partial void OnUseSeparateTreeForFoldersChanged()
         {
             this.RefillChildren();
+            this.NotifyPropertyChanged(() => this.IsShowRefSelfTree);
+            this.NotifyPropertyChanged(() => this.IsShowIsFolder);
         }
         partial void OnUseTreeChanged()
         {
             this.RefillChildren();
+            if (!this.UseTree)
+            {
+                this.UseSeparateTreeForFolders = false;
+                this.UseFolderTypeExplicitly = false;
+            }
             HideProperties();
+            this.NotifyPropertyChanged(() => this.IsShowRefSelfTree);
+            this.NotifyPropertyChanged(() => this.IsShowIsFolder);
         }
+        public bool IsShowRefSelfTree { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
+        public bool IsShowIsFolder { get { if (this.UseTree && !this.UseSeparateTreeForFolders && this.UseFolderTypeExplicitly) return true; return false; } }
         private void HideProperties()
         {
             var lst = new List<string>();
@@ -518,12 +624,12 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(this.GetPropertyName(() => this.GroupIconType));
                 lst.Add(this.GetPropertyName(() => this.MaxTreeLevels));
-                lst.Add(this.GetPropertyName(() => this.UseSeparatePropertiesForGroups));
+                lst.Add(this.GetPropertyName(() => this.UseSeparateTreeForFolders));
                 lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
             }
             else
             {
-                if (this.UseSeparatePropertiesForGroups)
+                if (this.UseSeparateTreeForFolders)
                 {
                     lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
                 }

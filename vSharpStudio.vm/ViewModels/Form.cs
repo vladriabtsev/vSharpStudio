@@ -181,7 +181,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     case FormCatalogViewType.CatListForm:
                         var c = (ICatalog)this.Parent.Parent;
-                        if (!c.UseTree || !(c.UseTree && c.UseSeparatePropertiesForGroups))
+                        if (!c.UseTree || !(c.UseTree && c.UseSeparateTreeForFolders))
                         {
                             lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderCode));
                             lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderName));

@@ -54,21 +54,44 @@ namespace vSharpStudio.vm.ViewModels
                         cntx.AddFailure(vf);
                     }
                     ValidateSpecialProperties(name, cntx, p, c, gc);
-                    if (c.UseTree && !c.UseSeparatePropertiesForGroups && c.UseFolderTypeExplicitly)
+                    if (c.UseTree)
                     {
-                        if (gc.PropertyIsFolderName == name)
+                        if (c.UseSeparateTreeForFolders)
                         {
-                            var vf = new ValidationFailure(nameof(p.Name),
-                                $"Catalog parameter 'UseFolderTypeExplicitly' is set to 'true'. Property name '{gc.PropertyIsFolderName}' is reserved for auto generated property");
-                            vf.Severity = Severity.Error;
-                            cntx.AddFailure(vf);
+                            if (name == "RefParent")
+                            {
+                                var vf = new ValidationFailure(nameof(p.Name),
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name 'RefParent' is reserved for auto generated property");
+                                vf.Severity = Severity.Error;
+                                cntx.AddFailure(vf);
+                            }
                         }
-                        if (gc.PropertyIsOpenName == name)
+                        else
                         {
-                            var vf = new ValidationFailure(nameof(p.Name),
-                                $"Catalog parameter 'UseFolderTypeExplicitly' is set to 'true'. Property name '{gc.PropertyIsOpenName}' is reserved for auto generated property");
-                            vf.Severity = Severity.Error;
-                            cntx.AddFailure(vf);
+                            if (name == "RefTreeParent")
+                            {
+                                var vf = new ValidationFailure(nameof(p.Name),
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'false'. Property name 'RefTreeParent' is reserved for auto generated property");
+                                vf.Severity = Severity.Error;
+                                cntx.AddFailure(vf);
+                            }
+                            if (gc.PropertyIsOpenName == name)
+                            {
+                                var vf = new ValidationFailure(nameof(p.Name),
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'false'. Property name '{gc.PropertyIsOpenName}' is reserved for auto generated property");
+                                vf.Severity = Severity.Error;
+                                cntx.AddFailure(vf);
+                            }
+                            if (c.UseFolderTypeExplicitly)
+                            {
+                                if (gc.PropertyIsFolderName == name)
+                                {
+                                    var vf = new ValidationFailure(nameof(p.Name),
+                                        $"Catalog parameter 'Explicit Folders' is set to 'true'. Property name '{gc.PropertyIsFolderName}' is reserved for auto generated property");
+                                    vf.Severity = Severity.Error;
+                                    cntx.AddFailure(vf);
+                                }
+                            }
                         }
                     }
                 }
@@ -85,14 +108,27 @@ namespace vSharpStudio.vm.ViewModels
                         cntx.AddFailure(vf);
                     }
                     ValidateSpecialProperties(name, cntx, p, c, gc);
-                    if (c.UseTree && !c.UseSeparatePropertiesForGroups && c.UseFolderTypeExplicitly)
+                    if (c.UseTree)
                     {
-                        if (gc.PropertyIsOpenName == name)
+                        if (c.UseSeparateTreeForFolders)
                         {
-                            var vf = new ValidationFailure(nameof(p.Name),
-                                $"Catalog parameter 'UseFolderTypeExplicitly' is set to 'true'. Property name '{gc.PropertyIsOpenName}' is reserved for auto generated property");
-                            vf.Severity = Severity.Error;
-                            cntx.AddFailure(vf);
+                            if (name == "RefTreeParent")
+                            {
+                                var vf = new ValidationFailure(nameof(p.Name),
+                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name 'RefTreeParent' is reserved for auto generated property");
+                                vf.Severity = Severity.Error;
+                                cntx.AddFailure(vf);
+                            }
+                            if (c.UseFolderTypeExplicitly)
+                            {
+                                if (gc.PropertyIsOpenName == name)
+                                {
+                                    var vf = new ValidationFailure(nameof(p.Name),
+                                        $"Catalog parameter 'Explicit Folders' is set to 'true'. Property name '{gc.PropertyIsOpenName}' is reserved for auto generated property");
+                                    vf.Severity = Severity.Error;
+                                    cntx.AddFailure(vf);
+                                }
+                            }
                         }
                     }
                 }
@@ -339,7 +375,7 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     case EnumDataType.DATETIMELOCAL:
                     case EnumDataType.DATETIMEUTC:
-                    //case EnumDataType.DATETIMEZ:
+                        //case EnumDataType.DATETIMEZ:
                         if (!DateTime.TryParse(val, out DateTime vdt))
                         {
                             var vf = new ValidationFailure(nameof(p.DefaultValue),

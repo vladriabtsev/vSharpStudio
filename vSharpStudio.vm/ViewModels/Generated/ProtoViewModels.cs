@@ -15003,12 +15003,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
+            this.CodePropertySettings = new CatalogCodePropertySettings(); // Class.tt Line: 31
             this.Folder = new CatalogFolder(this); // Class.tt Line: 33
             this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
             this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
             this.GroupForms = new GroupListForms(this); // Class.tt Line: 33
             this.GroupReports = new GroupListReports(this); // Class.tt Line: 33
-            this.CodePropertySettings = new CatalogCodePropertySettings(); // Class.tt Line: 31
             this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
@@ -15039,6 +15039,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
+            vm.UseTree = from.UseTree; // Clone.tt Line: 65
+            vm.UseSeparateTreeForFolders = from.UseSeparateTreeForFolders; // Clone.tt Line: 65
+            vm.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 65
+            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
+            if (isDeep) // Clone.tt Line: 62
+                vm.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Clone(from.CodePropertySettings, isDeep);
+            vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
+            vm.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 65
+            vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 65
+            vm.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 65
+            vm.UseFolderTypeExplicitly = from.UseFolderTypeExplicitly; // Clone.tt Line: 65
+            vm.ItemIconType = from.ItemIconType; // Clone.tt Line: 65
+            vm.GroupIconType = from.GroupIconType; // Clone.tt Line: 65
+            vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
+            vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 65
+            vm.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 65
+            vm.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 65
+            vm.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 65
+            vm.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 65
+            vm.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 65
+            vm.PropertyRefFolderGuid = from.PropertyRefFolderGuid; // Clone.tt Line: 65
+            vm.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.Folder = vSharpStudio.vm.ViewModels.CatalogFolder.Clone(vm, from.Folder, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -15049,28 +15071,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
-            vm.ItemIconType = from.ItemIconType; // Clone.tt Line: 65
-            vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
-            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
-            if (isDeep) // Clone.tt Line: 62
-                vm.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Clone(from.CodePropertySettings, isDeep);
-            vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 65
-            vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
-            vm.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 65
-            vm.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 65
-            vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 65
-            vm.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 65
-            vm.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 65
-            vm.UseFolderTypeExplicitly = from.UseFolderTypeExplicitly; // Clone.tt Line: 65
-            vm.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 65
-            vm.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 65
-            vm.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 65
-            vm.UseTree = from.UseTree; // Clone.tt Line: 65
-            vm.GroupIconType = from.GroupIconType; // Clone.tt Line: 65
-            vm.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 65
-            vm.UseSeparatePropertiesForGroups = from.UseSeparatePropertiesForGroups; // Clone.tt Line: 65
-            vm.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 65
-            vm.PropertyRefFolderGuid = from.PropertyRefFolderGuid; // Clone.tt Line: 65
             foreach (var t in from.ListGuidViewProperties) // Clone.tt Line: 44
                 vm.ListGuidViewProperties.Add(t);
             foreach (var t in from.ListGuidViewFolderProperties) // Clone.tt Line: 44
@@ -15095,6 +15095,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Description = from.Description; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
+            to.UseTree = from.UseTree; // Clone.tt Line: 141
+            to.UseSeparateTreeForFolders = from.UseSeparateTreeForFolders; // Clone.tt Line: 141
+            to.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 141
+            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 138
+                vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Update((CatalogCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
+            to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
+            to.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 141
+            to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 141
+            to.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 141
+            to.UseFolderTypeExplicitly = from.UseFolderTypeExplicitly; // Clone.tt Line: 141
+            to.ItemIconType = from.ItemIconType; // Clone.tt Line: 141
+            to.GroupIconType = from.GroupIconType; // Clone.tt Line: 141
+            to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
+            to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 141
+            to.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 141
+            to.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 141
+            to.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 141
+            to.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 141
+            to.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 141
+            to.PropertyRefFolderGuid = from.PropertyRefFolderGuid; // Clone.tt Line: 141
+            to.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.CatalogFolder.Update((CatalogFolder)to.Folder, from.Folder, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -15105,28 +15127,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
-            to.ItemIconType = from.ItemIconType; // Clone.tt Line: 141
-            to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
-            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
-            if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Update((CatalogCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
-            to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 141
-            to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
-            to.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 141
-            to.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 141
-            to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 141
-            to.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 141
-            to.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 141
-            to.UseFolderTypeExplicitly = from.UseFolderTypeExplicitly; // Clone.tt Line: 141
-            to.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 141
-            to.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 141
-            to.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 141
-            to.UseTree = from.UseTree; // Clone.tt Line: 141
-            to.GroupIconType = from.GroupIconType; // Clone.tt Line: 141
-            to.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 141
-            to.UseSeparatePropertiesForGroups = from.UseSeparatePropertiesForGroups; // Clone.tt Line: 141
-            to.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 141
-            to.PropertyRefFolderGuid = from.PropertyRefFolderGuid; // Clone.tt Line: 141
                 to.ListGuidViewProperties.Clear(); // Clone.tt Line: 127
                 foreach (var tt in from.ListGuidViewProperties)
                 {
@@ -15208,6 +15208,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.UseTree = m.UseTree; // Clone.tt Line: 221
+            vm.UseSeparateTreeForFolders = m.UseSeparateTreeForFolders; // Clone.tt Line: 221
+            vm.MaxTreeLevels = m.MaxTreeLevels; // Clone.tt Line: 221
+            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
+            if (vm.CodePropertySettings == null) // Clone.tt Line: 213
+                vm.CodePropertySettings = new CatalogCodePropertySettings(); // Clone.tt Line: 217
+            vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToVM(m.CodePropertySettings, (CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
+            vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
+            vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
+            vm.UseDescriptionProperty = m.UseDescriptionProperty; // Clone.tt Line: 221
+            vm.MaxDescriptionLength = m.MaxDescriptionLength; // Clone.tt Line: 221
+            vm.UseFolderTypeExplicitly = m.UseFolderTypeExplicitly; // Clone.tt Line: 221
+            vm.ItemIconType = (EnumCatalogTreeIcon)m.ItemIconType; // Clone.tt Line: 221
+            vm.GroupIconType = (EnumCatalogTreeIcon)m.GroupIconType; // Clone.tt Line: 221
+            vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
+            vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
+            vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
+            vm.PropertyDescriptionGuid = m.PropertyDescriptionGuid; // Clone.tt Line: 221
+            vm.PropertyIsFolderGuid = m.PropertyIsFolderGuid; // Clone.tt Line: 221
+            vm.PropertyIsOpenGuid = m.PropertyIsOpenGuid; // Clone.tt Line: 221
+            vm.PropertyRefSelfGuid = m.PropertyRefSelfGuid; // Clone.tt Line: 221
+            vm.PropertyRefFolderGuid = m.PropertyRefFolderGuid; // Clone.tt Line: 221
+            vm.ViewDefaultGuid = m.ViewDefaultGuid; // Clone.tt Line: 221
             if (vm.Folder == null) // Clone.tt Line: 213
                 vm.Folder = new CatalogFolder(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.CatalogFolder.ConvertToVM(m.Folder, (CatalogFolder)vm.Folder); // Clone.tt Line: 219
@@ -15223,29 +15246,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupReports == null) // Clone.tt Line: 213
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
-            vm.ItemIconType = (EnumCatalogTreeIcon)m.ItemIconType; // Clone.tt Line: 221
-            vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
-            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
-            if (vm.CodePropertySettings == null) // Clone.tt Line: 213
-                vm.CodePropertySettings = new CatalogCodePropertySettings(); // Clone.tt Line: 217
-            vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToVM(m.CodePropertySettings, (CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
-            vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
-            vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
-            vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
-            vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
-            vm.UseDescriptionProperty = m.UseDescriptionProperty; // Clone.tt Line: 221
-            vm.MaxDescriptionLength = m.MaxDescriptionLength; // Clone.tt Line: 221
-            vm.PropertyDescriptionGuid = m.PropertyDescriptionGuid; // Clone.tt Line: 221
-            vm.UseFolderTypeExplicitly = m.UseFolderTypeExplicitly; // Clone.tt Line: 221
-            vm.PropertyIsFolderGuid = m.PropertyIsFolderGuid; // Clone.tt Line: 221
-            vm.PropertyIsOpenGuid = m.PropertyIsOpenGuid; // Clone.tt Line: 221
-            vm.ViewDefaultGuid = m.ViewDefaultGuid; // Clone.tt Line: 221
-            vm.UseTree = m.UseTree; // Clone.tt Line: 221
-            vm.GroupIconType = (EnumCatalogTreeIcon)m.GroupIconType; // Clone.tt Line: 221
-            vm.MaxTreeLevels = m.MaxTreeLevels; // Clone.tt Line: 221
-            vm.UseSeparatePropertiesForGroups = m.UseSeparatePropertiesForGroups; // Clone.tt Line: 221
-            vm.PropertyRefSelfGuid = m.PropertyRefSelfGuid; // Clone.tt Line: 221
-            vm.PropertyRefFolderGuid = m.PropertyRefFolderGuid; // Clone.tt Line: 221
             vm.ListGuidViewProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
             foreach (var t in m.ListGuidViewProperties) // Clone.tt Line: 185
             {
@@ -15281,32 +15281,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            m.UseTree = vm.UseTree; // Clone.tt Line: 276
+            m.UseSeparateTreeForFolders = vm.UseSeparateTreeForFolders; // Clone.tt Line: 276
+            m.MaxTreeLevels = vm.MaxTreeLevels; // Clone.tt Line: 276
+            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
+            m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
+            m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
+            m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
+            m.UseDescriptionProperty = vm.UseDescriptionProperty; // Clone.tt Line: 276
+            m.MaxDescriptionLength = vm.MaxDescriptionLength; // Clone.tt Line: 276
+            m.UseFolderTypeExplicitly = vm.UseFolderTypeExplicitly; // Clone.tt Line: 276
+            m.ItemIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.ItemIconType; // Clone.tt Line: 274
+            m.GroupIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.GroupIconType; // Clone.tt Line: 274
+            m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
+            m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
+            m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
+            m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // Clone.tt Line: 276
+            m.PropertyIsFolderGuid = vm.PropertyIsFolderGuid; // Clone.tt Line: 276
+            m.PropertyIsOpenGuid = vm.PropertyIsOpenGuid; // Clone.tt Line: 276
+            m.PropertyRefSelfGuid = vm.PropertyRefSelfGuid; // Clone.tt Line: 276
+            m.PropertyRefFolderGuid = vm.PropertyRefFolderGuid; // Clone.tt Line: 276
+            m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
             m.Folder = vSharpStudio.vm.ViewModels.CatalogFolder.ConvertToProto((CatalogFolder)vm.Folder); // Clone.tt Line: 270
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
             m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
-            m.ItemIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.ItemIconType; // Clone.tt Line: 274
-            m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
-            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
-            m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
-            m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
-            m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
-            m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
-            m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
-            m.UseDescriptionProperty = vm.UseDescriptionProperty; // Clone.tt Line: 276
-            m.MaxDescriptionLength = vm.MaxDescriptionLength; // Clone.tt Line: 276
-            m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // Clone.tt Line: 276
-            m.UseFolderTypeExplicitly = vm.UseFolderTypeExplicitly; // Clone.tt Line: 276
-            m.PropertyIsFolderGuid = vm.PropertyIsFolderGuid; // Clone.tt Line: 276
-            m.PropertyIsOpenGuid = vm.PropertyIsOpenGuid; // Clone.tt Line: 276
-            m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
-            m.UseTree = vm.UseTree; // Clone.tt Line: 276
-            m.GroupIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.GroupIconType; // Clone.tt Line: 274
-            m.MaxTreeLevels = vm.MaxTreeLevels; // Clone.tt Line: 276
-            m.UseSeparatePropertiesForGroups = vm.UseSeparatePropertiesForGroups; // Clone.tt Line: 276
-            m.PropertyRefSelfGuid = vm.PropertyRefSelfGuid; // Clone.tt Line: 276
-            m.PropertyRefFolderGuid = vm.PropertyRefFolderGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListGuidViewProperties) // Clone.tt Line: 242
                 m.ListGuidViewProperties.Add(t); // Clone.tt Line: 244
             foreach (var t in vm.ListGuidViewFolderProperties) // Clone.tt Line: 242
@@ -15324,6 +15324,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
+            this.CodePropertySettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
             this.Folder.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
@@ -15333,8 +15335,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.GroupForms.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupReports.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
-            this.CodePropertySettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
@@ -15489,6 +15489,474 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
+        [PropertyOrderAttribute(21)]
+        [DisplayName("Use Tree")]
+        [Description("Use tree catalog structure")]
+        public bool UseTree // Property.tt Line: 55
+        { 
+            get { return this._UseTree; }
+            set
+            {
+                if (this._UseTree != value)
+                {
+                    this.OnUseTreeChanging(ref value);
+                    this._UseTree = value;
+                    this.OnUseTreeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseTree;
+        partial void OnUseTreeChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseTreeChanged();
+        
+        [PropertyOrderAttribute(22)]
+        [DisplayName("Separate Tree")]
+        [Description("Separate tree object for folders")]
+        public bool UseSeparateTreeForFolders // Property.tt Line: 55
+        { 
+            get { return this._UseSeparateTreeForFolders; }
+            set
+            {
+                if (this._UseSeparateTreeForFolders != value)
+                {
+                    this.OnUseSeparateTreeForFoldersChanging(ref value);
+                    this._UseSeparateTreeForFolders = value;
+                    this.OnUseSeparateTreeForFoldersChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseSeparateTreeForFolders;
+        partial void OnUseSeparateTreeForFoldersChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseSeparateTreeForFoldersChanged();
+        
+        [PropertyOrderAttribute(23)]
+        [DisplayName("Max Levels")]
+        [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
+        public uint MaxTreeLevels // Property.tt Line: 55
+        { 
+            get { return this._MaxTreeLevels; }
+            set
+            {
+                if (this._MaxTreeLevels != value)
+                {
+                    this.OnMaxTreeLevelsChanging(ref value);
+                    this._MaxTreeLevels = value;
+                    this.OnMaxTreeLevelsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _MaxTreeLevels;
+        partial void OnMaxTreeLevelsChanging(ref uint to); // Property.tt Line: 79
+        partial void OnMaxTreeLevelsChanged();
+        
+        [PropertyOrderAttribute(25)]
+        [DisplayName("Use Code")]
+        [Description("Use Code property for catalog item")]
+        public bool? UseCodeProperty // Property.tt Line: 55
+        { 
+            get { return this._UseCodeProperty; }
+            set
+            {
+                if (this._UseCodeProperty != value)
+                {
+                    this.OnUseCodePropertyChanging(ref value);
+                    this._UseCodeProperty = value;
+                    this.OnUseCodePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool? _UseCodeProperty;
+        partial void OnUseCodePropertyChanging(ref bool? to); // Property.tt Line: 79
+        partial void OnUseCodePropertyChanged();
+        
+        [PropertyOrderAttribute(26)]
+        [ExpandableObjectAttribute()]
+        [DisplayName("Code")]
+        [Description("Code property settings for catalog item")]
+        public CatalogCodePropertySettings CodePropertySettings // Property.tt Line: 55
+        { 
+            get { return this._CodePropertySettings; }
+            set
+            {
+                if (this._CodePropertySettings != value)
+                {
+                    this.OnCodePropertySettingsChanging(ref value);
+                    this._CodePropertySettings = value;
+                    this.OnCodePropertySettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private CatalogCodePropertySettings _CodePropertySettings;
+        ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return (this as Catalog).CodePropertySettings; } } // Property.tt Line: 77
+        partial void OnCodePropertySettingsChanging(ref CatalogCodePropertySettings to); // Property.tt Line: 79
+        partial void OnCodePropertySettingsChanged();
+        //ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return this._CodePropertySettings; } }
+        
+        [PropertyOrderAttribute(27)]
+        [DisplayName("Use Name")]
+        [Description("Use Name property for catalog item")]
+        public bool? UseNameProperty // Property.tt Line: 55
+        { 
+            get { return this._UseNameProperty; }
+            set
+            {
+                if (this._UseNameProperty != value)
+                {
+                    this.OnUseNamePropertyChanging(ref value);
+                    this._UseNameProperty = value;
+                    this.OnUseNamePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool? _UseNameProperty;
+        partial void OnUseNamePropertyChanging(ref bool? to); // Property.tt Line: 79
+        partial void OnUseNamePropertyChanged();
+        
+        [PropertyOrderAttribute(28)]
+        [DisplayName("Max Length")]
+        [Description("Maximum catalog item name length. If zero, than unlimited length")]
+        public uint MaxNameLength // Property.tt Line: 55
+        { 
+            get { return this._MaxNameLength; }
+            set
+            {
+                if (this._MaxNameLength != value)
+                {
+                    this.OnMaxNameLengthChanging(ref value);
+                    this._MaxNameLength = value;
+                    this.OnMaxNameLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _MaxNameLength;
+        partial void OnMaxNameLengthChanging(ref uint to); // Property.tt Line: 79
+        partial void OnMaxNameLengthChanged();
+        
+        [PropertyOrderAttribute(29)]
+        [DisplayName("Use Description")]
+        [Description("Use Description property for catalog item")]
+        public bool? UseDescriptionProperty // Property.tt Line: 55
+        { 
+            get { return this._UseDescriptionProperty; }
+            set
+            {
+                if (this._UseDescriptionProperty != value)
+                {
+                    this.OnUseDescriptionPropertyChanging(ref value);
+                    this._UseDescriptionProperty = value;
+                    this.OnUseDescriptionPropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool? _UseDescriptionProperty;
+        partial void OnUseDescriptionPropertyChanging(ref bool? to); // Property.tt Line: 79
+        partial void OnUseDescriptionPropertyChanged();
+        
+        [PropertyOrderAttribute(30)]
+        [DisplayName("Max Length")]
+        [Description("Maximum catalog item description length. If zero, than unlimited length")]
+        public uint MaxDescriptionLength // Property.tt Line: 55
+        { 
+            get { return this._MaxDescriptionLength; }
+            set
+            {
+                if (this._MaxDescriptionLength != value)
+                {
+                    this.OnMaxDescriptionLengthChanging(ref value);
+                    this._MaxDescriptionLength = value;
+                    this.OnMaxDescriptionLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _MaxDescriptionLength;
+        partial void OnMaxDescriptionLengthChanging(ref uint to); // Property.tt Line: 79
+        partial void OnMaxDescriptionLengthChanged();
+        
+        [PropertyOrderAttribute(31)]
+        [DisplayName("Explicit Folders")]
+        [Description("User has choose explicitly item or folder type for catalog element")]
+        public bool UseFolderTypeExplicitly // Property.tt Line: 55
+        { 
+            get { return this._UseFolderTypeExplicitly; }
+            set
+            {
+                if (this._UseFolderTypeExplicitly != value)
+                {
+                    this.OnUseFolderTypeExplicitlyChanging(ref value);
+                    this._UseFolderTypeExplicitly = value;
+                    this.OnUseFolderTypeExplicitlyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseFolderTypeExplicitly;
+        partial void OnUseFolderTypeExplicitlyChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseFolderTypeExplicitlyChanged();
+        
+        [PropertyOrderAttribute(41)]
+        [DisplayName("Item Icon")]
+        [Description("Catalog item icon type")]
+        public EnumCatalogTreeIcon ItemIconType // Property.tt Line: 55
+        { 
+            get { return this._ItemIconType; }
+            set
+            {
+                if (this._ItemIconType != value)
+                {
+                    this.OnItemIconTypeChanging(ref value);
+                    this._ItemIconType = value;
+                    this.OnItemIconTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumCatalogTreeIcon _ItemIconType;
+        partial void OnItemIconTypeChanging(ref EnumCatalogTreeIcon to); // Property.tt Line: 79
+        partial void OnItemIconTypeChanged();
+        
+        [PropertyOrderAttribute(42)]
+        [DisplayName("Group Icon")]
+        [Description("Catalog group icon type")]
+        public EnumCatalogTreeIcon GroupIconType // Property.tt Line: 55
+        { 
+            get { return this._GroupIconType; }
+            set
+            {
+                if (this._GroupIconType != value)
+                {
+                    this.OnGroupIconTypeChanging(ref value);
+                    this._GroupIconType = value;
+                    this.OnGroupIconTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumCatalogTreeIcon _GroupIconType;
+        partial void OnGroupIconTypeChanging(ref EnumCatalogTreeIcon to); // Property.tt Line: 79
+        partial void OnGroupIconTypeChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyIdGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyIdGuid; }
+            set
+            {
+                if (this._PropertyIdGuid != value)
+                {
+                    this.OnPropertyIdGuidChanging(ref value);
+                    this._PropertyIdGuid = value;
+                    this.OnPropertyIdGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyIdGuid = string.Empty;
+        partial void OnPropertyIdGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyIdGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyCodeGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyCodeGuid; }
+            set
+            {
+                if (this._PropertyCodeGuid != value)
+                {
+                    this.OnPropertyCodeGuidChanging(ref value);
+                    this._PropertyCodeGuid = value;
+                    this.OnPropertyCodeGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyCodeGuid = string.Empty;
+        partial void OnPropertyCodeGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyCodeGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyNameGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyNameGuid; }
+            set
+            {
+                if (this._PropertyNameGuid != value)
+                {
+                    this.OnPropertyNameGuidChanging(ref value);
+                    this._PropertyNameGuid = value;
+                    this.OnPropertyNameGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyNameGuid = string.Empty;
+        partial void OnPropertyNameGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyNameGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyDescriptionGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyDescriptionGuid; }
+            set
+            {
+                if (this._PropertyDescriptionGuid != value)
+                {
+                    this.OnPropertyDescriptionGuidChanging(ref value);
+                    this._PropertyDescriptionGuid = value;
+                    this.OnPropertyDescriptionGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDescriptionGuid = string.Empty;
+        partial void OnPropertyDescriptionGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyDescriptionGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyIsFolderGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyIsFolderGuid; }
+            set
+            {
+                if (this._PropertyIsFolderGuid != value)
+                {
+                    this.OnPropertyIsFolderGuidChanging(ref value);
+                    this._PropertyIsFolderGuid = value;
+                    this.OnPropertyIsFolderGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyIsFolderGuid = string.Empty;
+        partial void OnPropertyIsFolderGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyIsFolderGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyIsOpenGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyIsOpenGuid; }
+            set
+            {
+                if (this._PropertyIsOpenGuid != value)
+                {
+                    this.OnPropertyIsOpenGuidChanging(ref value);
+                    this._PropertyIsOpenGuid = value;
+                    this.OnPropertyIsOpenGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyIsOpenGuid = string.Empty;
+        partial void OnPropertyIsOpenGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyIsOpenGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyRefSelfGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyRefSelfGuid; }
+            set
+            {
+                if (this._PropertyRefSelfGuid != value)
+                {
+                    this.OnPropertyRefSelfGuidChanging(ref value);
+                    this._PropertyRefSelfGuid = value;
+                    this.OnPropertyRefSelfGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyRefSelfGuid = string.Empty;
+        partial void OnPropertyRefSelfGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyRefSelfGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyRefFolderGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyRefFolderGuid; }
+            set
+            {
+                if (this._PropertyRefFolderGuid != value)
+                {
+                    this.OnPropertyRefFolderGuidChanging(ref value);
+                    this._PropertyRefFolderGuid = value;
+                    this.OnPropertyRefFolderGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyRefFolderGuid = string.Empty;
+        partial void OnPropertyRefFolderGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyRefFolderGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string ViewDefaultGuid // Property.tt Line: 55
+        { 
+            get { return this._ViewDefaultGuid; }
+            set
+            {
+                if (this._ViewDefaultGuid != value)
+                {
+                    this.OnViewDefaultGuidChanging(ref value);
+                    this._ViewDefaultGuid = value;
+                    this.OnViewDefaultGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ViewDefaultGuid = string.Empty;
+        partial void OnViewDefaultGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnViewDefaultGuidChanged();
+        
         [BrowsableAttribute(false)]
         public CatalogFolder Folder // Property.tt Line: 55
         { 
@@ -15603,474 +16071,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupReportsChanging(ref GroupListReports to); // Property.tt Line: 79
         partial void OnGroupReportsChanged();
         //IGroupListReports ICatalog.GroupReports { get { return this._GroupReports; } }
-        
-        [PropertyOrderAttribute(19)]
-        [DisplayName("Item Icon")]
-        [Description("Catalog item icon type")]
-        public EnumCatalogTreeIcon ItemIconType // Property.tt Line: 55
-        { 
-            get { return this._ItemIconType; }
-            set
-            {
-                if (this._ItemIconType != value)
-                {
-                    this.OnItemIconTypeChanging(ref value);
-                    this._ItemIconType = value;
-                    this.OnItemIconTypeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumCatalogTreeIcon _ItemIconType;
-        partial void OnItemIconTypeChanging(ref EnumCatalogTreeIcon to); // Property.tt Line: 79
-        partial void OnItemIconTypeChanged();
-        
-        [BrowsableAttribute(false)]
-        public string PropertyIdGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyIdGuid; }
-            set
-            {
-                if (this._PropertyIdGuid != value)
-                {
-                    this.OnPropertyIdGuidChanging(ref value);
-                    this._PropertyIdGuid = value;
-                    this.OnPropertyIdGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyIdGuid = string.Empty;
-        partial void OnPropertyIdGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyIdGuidChanged();
-        
-        [PropertyOrderAttribute(21)]
-        [DisplayName("Use Code")]
-        [Description("Use Code property for catalog item")]
-        public bool? UseCodeProperty // Property.tt Line: 55
-        { 
-            get { return this._UseCodeProperty; }
-            set
-            {
-                if (this._UseCodeProperty != value)
-                {
-                    this.OnUseCodePropertyChanging(ref value);
-                    this._UseCodeProperty = value;
-                    this.OnUseCodePropertyChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool? _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref bool? to); // Property.tt Line: 79
-        partial void OnUseCodePropertyChanged();
-        
-        [PropertyOrderAttribute(22)]
-        [ExpandableObjectAttribute()]
-        [DisplayName("Code")]
-        [Description("Code property settings for catalog item")]
-        public CatalogCodePropertySettings CodePropertySettings // Property.tt Line: 55
-        { 
-            get { return this._CodePropertySettings; }
-            set
-            {
-                if (this._CodePropertySettings != value)
-                {
-                    this.OnCodePropertySettingsChanging(ref value);
-                    this._CodePropertySettings = value;
-                    this.OnCodePropertySettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private CatalogCodePropertySettings _CodePropertySettings;
-        ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return (this as Catalog).CodePropertySettings; } } // Property.tt Line: 77
-        partial void OnCodePropertySettingsChanging(ref CatalogCodePropertySettings to); // Property.tt Line: 79
-        partial void OnCodePropertySettingsChanged();
-        //ICatalogCodePropertySettings ICatalog.CodePropertySettings { get { return this._CodePropertySettings; } }
-        
-        [BrowsableAttribute(false)]
-        public string PropertyCodeGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyCodeGuid; }
-            set
-            {
-                if (this._PropertyCodeGuid != value)
-                {
-                    this.OnPropertyCodeGuidChanging(ref value);
-                    this._PropertyCodeGuid = value;
-                    this.OnPropertyCodeGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyCodeGuid = string.Empty;
-        partial void OnPropertyCodeGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyCodeGuidChanged();
-        
-        [PropertyOrderAttribute(41)]
-        [DisplayName("Use Name")]
-        [Description("Use Name property for catalog item")]
-        public bool? UseNameProperty // Property.tt Line: 55
-        { 
-            get { return this._UseNameProperty; }
-            set
-            {
-                if (this._UseNameProperty != value)
-                {
-                    this.OnUseNamePropertyChanging(ref value);
-                    this._UseNameProperty = value;
-                    this.OnUseNamePropertyChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool? _UseNameProperty;
-        partial void OnUseNamePropertyChanging(ref bool? to); // Property.tt Line: 79
-        partial void OnUseNamePropertyChanged();
-        
-        [PropertyOrderAttribute(42)]
-        [DisplayName("Max Length")]
-        [Description("Maximum catalog item name length. If zero, than unlimited length")]
-        public uint MaxNameLength // Property.tt Line: 55
-        { 
-            get { return this._MaxNameLength; }
-            set
-            {
-                if (this._MaxNameLength != value)
-                {
-                    this.OnMaxNameLengthChanging(ref value);
-                    this._MaxNameLength = value;
-                    this.OnMaxNameLengthChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint _MaxNameLength;
-        partial void OnMaxNameLengthChanging(ref uint to); // Property.tt Line: 79
-        partial void OnMaxNameLengthChanged();
-        
-        [BrowsableAttribute(false)]
-        public string PropertyNameGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyNameGuid; }
-            set
-            {
-                if (this._PropertyNameGuid != value)
-                {
-                    this.OnPropertyNameGuidChanging(ref value);
-                    this._PropertyNameGuid = value;
-                    this.OnPropertyNameGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyNameGuid = string.Empty;
-        partial void OnPropertyNameGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyNameGuidChanged();
-        
-        [PropertyOrderAttribute(51)]
-        [DisplayName("Use Description")]
-        [Description("Use Description property for catalog item")]
-        public bool? UseDescriptionProperty // Property.tt Line: 55
-        { 
-            get { return this._UseDescriptionProperty; }
-            set
-            {
-                if (this._UseDescriptionProperty != value)
-                {
-                    this.OnUseDescriptionPropertyChanging(ref value);
-                    this._UseDescriptionProperty = value;
-                    this.OnUseDescriptionPropertyChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool? _UseDescriptionProperty;
-        partial void OnUseDescriptionPropertyChanging(ref bool? to); // Property.tt Line: 79
-        partial void OnUseDescriptionPropertyChanged();
-        
-        [PropertyOrderAttribute(52)]
-        [DisplayName("Max Length")]
-        [Description("Maximum catalog item description length. If zero, than unlimited length")]
-        public uint MaxDescriptionLength // Property.tt Line: 55
-        { 
-            get { return this._MaxDescriptionLength; }
-            set
-            {
-                if (this._MaxDescriptionLength != value)
-                {
-                    this.OnMaxDescriptionLengthChanging(ref value);
-                    this._MaxDescriptionLength = value;
-                    this.OnMaxDescriptionLengthChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint _MaxDescriptionLength;
-        partial void OnMaxDescriptionLengthChanging(ref uint to); // Property.tt Line: 79
-        partial void OnMaxDescriptionLengthChanged();
-        
-        [BrowsableAttribute(false)]
-        public string PropertyDescriptionGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyDescriptionGuid; }
-            set
-            {
-                if (this._PropertyDescriptionGuid != value)
-                {
-                    this.OnPropertyDescriptionGuidChanging(ref value);
-                    this._PropertyDescriptionGuid = value;
-                    this.OnPropertyDescriptionGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyDescriptionGuid = string.Empty;
-        partial void OnPropertyDescriptionGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyDescriptionGuidChanged();
-        
-        [PropertyOrderAttribute(54)]
-        [DisplayName("Use Folders")]
-        [Description("User has choose explicitly item or folder type for catalog element ")]
-        public bool UseFolderTypeExplicitly // Property.tt Line: 55
-        { 
-            get { return this._UseFolderTypeExplicitly; }
-            set
-            {
-                if (this._UseFolderTypeExplicitly != value)
-                {
-                    this.OnUseFolderTypeExplicitlyChanging(ref value);
-                    this._UseFolderTypeExplicitly = value;
-                    this.OnUseFolderTypeExplicitlyChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _UseFolderTypeExplicitly;
-        partial void OnUseFolderTypeExplicitlyChanging(ref bool to); // Property.tt Line: 79
-        partial void OnUseFolderTypeExplicitlyChanged();
-        
-        [BrowsableAttribute(false)]
-        public string PropertyIsFolderGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyIsFolderGuid; }
-            set
-            {
-                if (this._PropertyIsFolderGuid != value)
-                {
-                    this.OnPropertyIsFolderGuidChanging(ref value);
-                    this._PropertyIsFolderGuid = value;
-                    this.OnPropertyIsFolderGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyIsFolderGuid = string.Empty;
-        partial void OnPropertyIsFolderGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyIsFolderGuidChanged();
-        
-        [BrowsableAttribute(false)]
-        public string PropertyIsOpenGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyIsOpenGuid; }
-            set
-            {
-                if (this._PropertyIsOpenGuid != value)
-                {
-                    this.OnPropertyIsOpenGuidChanging(ref value);
-                    this._PropertyIsOpenGuid = value;
-                    this.OnPropertyIsOpenGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyIsOpenGuid = string.Empty;
-        partial void OnPropertyIsOpenGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyIsOpenGuidChanged();
-        
-        [BrowsableAttribute(false)]
-        public string ViewDefaultGuid // Property.tt Line: 55
-        { 
-            get { return this._ViewDefaultGuid; }
-            set
-            {
-                if (this._ViewDefaultGuid != value)
-                {
-                    this.OnViewDefaultGuidChanging(ref value);
-                    this._ViewDefaultGuid = value;
-                    this.OnViewDefaultGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _ViewDefaultGuid = string.Empty;
-        partial void OnViewDefaultGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnViewDefaultGuidChanged();
-        
-        [PropertyOrderAttribute(61)]
-        [DisplayName("Use Tree")]
-        [Description("Use tree catalog structure")]
-        public bool UseTree // Property.tt Line: 55
-        { 
-            get { return this._UseTree; }
-            set
-            {
-                if (this._UseTree != value)
-                {
-                    this.OnUseTreeChanging(ref value);
-                    this._UseTree = value;
-                    this.OnUseTreeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _UseTree;
-        partial void OnUseTreeChanging(ref bool to); // Property.tt Line: 79
-        partial void OnUseTreeChanged();
-        
-        [PropertyOrderAttribute(62)]
-        [DisplayName("Group Icon")]
-        [Description("Catalog group icon type")]
-        public EnumCatalogTreeIcon GroupIconType // Property.tt Line: 55
-        { 
-            get { return this._GroupIconType; }
-            set
-            {
-                if (this._GroupIconType != value)
-                {
-                    this.OnGroupIconTypeChanging(ref value);
-                    this._GroupIconType = value;
-                    this.OnGroupIconTypeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumCatalogTreeIcon _GroupIconType;
-        partial void OnGroupIconTypeChanging(ref EnumCatalogTreeIcon to); // Property.tt Line: 79
-        partial void OnGroupIconTypeChanged();
-        
-        [PropertyOrderAttribute(63)]
-        [DisplayName("Levels")]
-        [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
-        public uint MaxTreeLevels // Property.tt Line: 55
-        { 
-            get { return this._MaxTreeLevels; }
-            set
-            {
-                if (this._MaxTreeLevels != value)
-                {
-                    this.OnMaxTreeLevelsChanging(ref value);
-                    this._MaxTreeLevels = value;
-                    this.OnMaxTreeLevelsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint _MaxTreeLevels;
-        partial void OnMaxTreeLevelsChanging(ref uint to); // Property.tt Line: 79
-        partial void OnMaxTreeLevelsChanged();
-        
-        [PropertyOrderAttribute(64)]
-        [DisplayName("Group properties")]
-        [Description("Separate set of properties for groups")]
-        public bool UseSeparatePropertiesForGroups // Property.tt Line: 55
-        { 
-            get { return this._UseSeparatePropertiesForGroups; }
-            set
-            {
-                if (this._UseSeparatePropertiesForGroups != value)
-                {
-                    this.OnUseSeparatePropertiesForGroupsChanging(ref value);
-                    this._UseSeparatePropertiesForGroups = value;
-                    this.OnUseSeparatePropertiesForGroupsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _UseSeparatePropertiesForGroups;
-        partial void OnUseSeparatePropertiesForGroupsChanging(ref bool to); // Property.tt Line: 79
-        partial void OnUseSeparatePropertiesForGroupsChanged();
-        
-        [BrowsableAttribute(false)]
-        public string PropertyRefSelfGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyRefSelfGuid; }
-            set
-            {
-                if (this._PropertyRefSelfGuid != value)
-                {
-                    this.OnPropertyRefSelfGuidChanging(ref value);
-                    this._PropertyRefSelfGuid = value;
-                    this.OnPropertyRefSelfGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyRefSelfGuid = string.Empty;
-        partial void OnPropertyRefSelfGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyRefSelfGuidChanged();
-        
-        [BrowsableAttribute(false)]
-        public string PropertyRefFolderGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyRefFolderGuid; }
-            set
-            {
-                if (this._PropertyRefFolderGuid != value)
-                {
-                    this.OnPropertyRefFolderGuidChanging(ref value);
-                    this._PropertyRefFolderGuid = value;
-                    this.OnPropertyRefFolderGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyRefFolderGuid = string.Empty;
-        partial void OnPropertyRefFolderGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyRefFolderGuidChanged();
         
         [BrowsableAttribute(false)]
         public ObservableCollection<string> ListGuidViewProperties // Property.tt Line: 8

@@ -1215,86 +1215,87 @@ message proto_catalog {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
 
-    // @attr [BrowsableAttribute(false)]
-    proto_catalog_folder folder = 14;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_properties group_properties = 15;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_properties_tabs group_properties_tabs = 16;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_forms group_forms = 17;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_reports group_reports = 18;
-
-    // @attr [PropertyOrderAttribute(19)]
-    // @attr [DisplayName("Item Icon")]
-    // @attr [Description("Catalog item icon type")]
-    proto_enum_catalog_tree_icon item_icon_type = 19;
-
-    // @attr [BrowsableAttribute(false)]
-    string property_id_guid = 20;
     // @attr [PropertyOrderAttribute(21)]
+    // @attr [DisplayName("Use Tree")]
+    // @attr [Description("Use tree catalog structure")]
+    bool use_tree = 21;
+    // @attr [PropertyOrderAttribute(22)]
+    // @attr [DisplayName("Separate Tree")]
+    // @attr [Description("Separate tree object for folders")]
+    bool use_separate_tree_for_folders = 22;
+    // @attr [PropertyOrderAttribute(23)]
+    // @attr [DisplayName("Max Levels")]
+    // @attr [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
+    uint32 max_tree_levels = 23;
+
+    // @attr [PropertyOrderAttribute(25)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item")]
-    google.protobuf.BoolValue use_code_property = 21;
-    // @attr [PropertyOrderAttribute(22)]
+    google.protobuf.BoolValue use_code_property = 25;
+    // @attr [PropertyOrderAttribute(26)]
     // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Code")]
     // @attr [Description("Code property settings for catalog item")]
-    proto_catalog_code_property_settings code_property_settings = 22;
-    // @attr [BrowsableAttribute(false)]
-    string property_code_guid = 23;
-    // @attr [PropertyOrderAttribute(41)]
+    proto_catalog_code_property_settings code_property_settings = 26;
+    // @attr [PropertyOrderAttribute(27)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item")]
-    google.protobuf.BoolValue use_name_property = 41;
-    // @attr [PropertyOrderAttribute(42)]
+    google.protobuf.BoolValue use_name_property = 27;
+    // @attr [PropertyOrderAttribute(28)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
-    uint32 max_name_length = 42;
-    // @attr [BrowsableAttribute(false)]
-    string property_name_guid = 43;
-    // @attr [PropertyOrderAttribute(51)]
+    uint32 max_name_length = 28;
+    // @attr [PropertyOrderAttribute(29)]
     // @attr [DisplayName("Use Description")]
     // @attr [Description("Use Description property for catalog item")]
-    google.protobuf.BoolValue use_description_property = 51;
-    // @attr [PropertyOrderAttribute(52)]
+    google.protobuf.BoolValue use_description_property = 29;
+    // @attr [PropertyOrderAttribute(30)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
-    uint32 max_description_length = 52;
-    // @attr [BrowsableAttribute(false)]
-    string property_description_guid = 53;
-    // @attr [PropertyOrderAttribute(54)]
-    // @attr [DisplayName("Use Folders")]
-    // @attr [Description("User has choose explicitly item or folder type for catalog element ")]
-    bool use_folder_type_explicitly = 54;
-    // @attr [BrowsableAttribute(false)]
-    string property_is_folder_guid = 55;
-    // @attr [BrowsableAttribute(false)]
-    string property_is_open_guid = 56;
-    // @attr [BrowsableAttribute(false)]
-    string view_default_guid = 57;
+    uint32 max_description_length = 30;
+    // @attr [PropertyOrderAttribute(31)]
+    // @attr [DisplayName("Explicit Folders")]
+    // @attr [Description("User has choose explicitly item or folder type for catalog element")]
+    bool use_folder_type_explicitly = 31;
 
-    // @attr [PropertyOrderAttribute(61)]
-    // @attr [DisplayName("Use Tree")]
-    // @attr [Description("Use tree catalog structure")]
-    bool use_tree = 61;
-    // @attr [PropertyOrderAttribute(62)]
+    // @attr [PropertyOrderAttribute(41)]
+    // @attr [DisplayName("Item Icon")]
+    // @attr [Description("Catalog item icon type")]
+    proto_enum_catalog_tree_icon item_icon_type = 41;
+    // @attr [PropertyOrderAttribute(42)]
     // @attr [DisplayName("Group Icon")]
     // @attr [Description("Catalog group icon type")]
-    proto_enum_catalog_tree_icon group_icon_type = 62;
-    // @attr [PropertyOrderAttribute(63)]
-    // @attr [DisplayName("Levels")]
-    // @attr [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
-    uint32 max_tree_levels = 63;
-    // @attr [PropertyOrderAttribute(64)]
-    // @attr [DisplayName("Group properties")]
-    // @attr [Description("Separate set of properties for groups")]
-    bool use_separate_properties_for_groups = 64;
+    proto_enum_catalog_tree_icon group_icon_type = 42;
+
     // @attr [BrowsableAttribute(false)]
-    string property_ref_self_guid = 65;
+    string property_id_guid = 61;
     // @attr [BrowsableAttribute(false)]
-    string property_ref_folder_guid = 66;
+    string property_code_guid = 62;
+    // @attr [BrowsableAttribute(false)]
+    string property_name_guid = 63;
+    // @attr [BrowsableAttribute(false)]
+    string property_description_guid = 64;
+    // @attr [BrowsableAttribute(false)]
+    string property_is_folder_guid = 65;
+    // @attr [BrowsableAttribute(false)]
+    string property_is_open_guid = 66;
+    // @attr [BrowsableAttribute(false)]
+    string property_ref_self_guid = 67;
+    // @attr [BrowsableAttribute(false)]
+    string property_ref_folder_guid = 68;
+    // @attr [BrowsableAttribute(false)]
+    string view_default_guid = 69;
+
+    // @attr [BrowsableAttribute(false)]
+    proto_catalog_folder folder = 81;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_properties group_properties = 82;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_properties_tabs group_properties_tabs = 83;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_forms group_forms = 84;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_reports group_reports = 85;
 
     // @attr [BrowsableAttribute(false)]
     repeated string list_guid_view_properties = 91;

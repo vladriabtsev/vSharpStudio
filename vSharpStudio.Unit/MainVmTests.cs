@@ -239,6 +239,59 @@ namespace vSharpStudio.Unit
             //TODO add test propogation of IsChanged for different setting
         }
         [TestMethod]
+        public void Main006CatalogSpecialFields()
+        {
+            var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.Config.Name = "test1";
+            var gr = vm.Config.Model.GroupCatalogs;
+
+            // Simple catalog
+            var c = gr.AddCatalog("test");
+            var lst = c.GetAllProperties();
+            Assert.AreEqual(2, lst.Count);
+            Assert.AreEqual(vm.Config.Model.DbSettings.PKeyName, lst[0].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[1].Name);
+
+            // Tree catalog
+            c.UseTree = true;
+            lst = c.GetAllProperties();
+            Assert.AreEqual(4, lst.Count);
+            Assert.AreEqual(vm.Config.Model.DbSettings.PKeyName, lst[0].Name);
+            Assert.AreEqual("RefTreeParent", lst[1].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsOpenName, lst[2].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[3].Name);
+
+            // Tree catalog
+            c.UseTree = true;
+            c.UseFolderTypeExplicitly = true;
+            lst = c.GetAllProperties();
+            Assert.AreEqual(5, lst.Count);
+            Assert.AreEqual(vm.Config.Model.DbSettings.PKeyName, lst[0].Name);
+            Assert.AreEqual("RefTreeParent", lst[1].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsOpenName, lst[2].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsFolderName, lst[3].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[4].Name);
+
+            // Tree catalog with separate properties for tree
+            c.UseTree = true;
+            c.UseFolderTypeExplicitly = true;
+            c.UseSeparateTreeForFolders = true;
+            lst = c.GetAllProperties();
+            Assert.AreEqual(3, lst.Count);
+            Assert.AreEqual(vm.Config.Model.DbSettings.PKeyName, lst[0].Name);
+            Assert.AreEqual("RefCtlgtestFolder", lst[1].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[2].Name);
+            lst = c.GetAllFolderProperties();
+            Assert.AreEqual(5, lst.Count);
+            Assert.AreEqual(vm.Config.Model.DbSettings.PKeyName, lst[0].Name);
+            Assert.AreEqual("RefTreeParent", lst[1].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsOpenName, lst[2].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsFolderName, lst[3].Name);
+            Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[4].Name);
+        }
+        [TestMethod]
         public void Main009_Diff()
         {
             // new config, not saved yet

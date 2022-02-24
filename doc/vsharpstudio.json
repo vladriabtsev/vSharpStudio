@@ -1099,6 +1099,216 @@
               "defaultValue": ""
             },
             {
+              "name": "use_tree",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Tree\")]\n@attr [Description(\"Use tree catalog structure\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_separate_tree_for_folders",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Separate Tree\")]\n@attr [Description(\"Separate tree object for folders\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_tree_levels",
+              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Max Levels\")]\n@attr [Description(\"Maximum amount levels in catalog item groups. If zero, than unlimited\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_code_property",
+              "description": "@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "code_property_settings",
+              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for catalog item\")]",
+              "label": "",
+              "type": "proto_catalog_code_property_settings",
+              "longType": "proto_catalog_code_property_settings",
+              "fullType": "proto_config.proto_catalog_code_property_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_name_property",
+              "description": "@attr [PropertyOrderAttribute(27)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_name_length",
+              "description": "@attr [PropertyOrderAttribute(28)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item name length. If zero, than unlimited length\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_description_property",
+              "description": "@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_description_length",
+              "description": "@attr [PropertyOrderAttribute(30)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item description length. If zero, than unlimited length\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_folder_type_explicitly",
+              "description": "@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Explicit Folders\")]\n@attr [Description(\"User has choose explicitly item or folder type for catalog element\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "item_icon_type",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Item Icon\")]\n@attr [Description(\"Catalog item icon type\")]",
+              "label": "",
+              "type": "proto_enum_catalog_tree_icon",
+              "longType": "proto_enum_catalog_tree_icon",
+              "fullType": "proto_config.proto_enum_catalog_tree_icon",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_icon_type",
+              "description": "@attr [PropertyOrderAttribute(42)]\n@attr [DisplayName(\"Group Icon\")]\n@attr [Description(\"Catalog group icon type\")]",
+              "label": "",
+              "type": "proto_enum_catalog_tree_icon",
+              "longType": "proto_enum_catalog_tree_icon",
+              "fullType": "proto_config.proto_enum_catalog_tree_icon",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_id_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_code_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_name_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_description_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_is_folder_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_is_open_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_ref_self_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_ref_folder_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "view_default_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "folder",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -1145,216 +1355,6 @@
               "type": "proto_group_list_reports",
               "longType": "proto_group_list_reports",
               "fullType": "proto_config.proto_group_list_reports",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "item_icon_type",
-              "description": "@attr [PropertyOrderAttribute(19)]\n@attr [DisplayName(\"Item Icon\")]\n@attr [Description(\"Catalog item icon type\")]",
-              "label": "",
-              "type": "proto_enum_catalog_tree_icon",
-              "longType": "proto_enum_catalog_tree_icon",
-              "fullType": "proto_config.proto_enum_catalog_tree_icon",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_id_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_code_property",
-              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item\")]",
-              "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "code_property_settings",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for catalog item\")]",
-              "label": "",
-              "type": "proto_catalog_code_property_settings",
-              "longType": "proto_catalog_code_property_settings",
-              "fullType": "proto_config.proto_catalog_code_property_settings",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_code_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_name_property",
-              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
-              "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "max_name_length",
-              "description": "@attr [PropertyOrderAttribute(42)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item name length. If zero, than unlimited length\")]",
-              "label": "",
-              "type": "uint32",
-              "longType": "uint32",
-              "fullType": "uint32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_name_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_description_property",
-              "description": "@attr [PropertyOrderAttribute(51)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
-              "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "max_description_length",
-              "description": "@attr [PropertyOrderAttribute(52)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item description length. If zero, than unlimited length\")]",
-              "label": "",
-              "type": "uint32",
-              "longType": "uint32",
-              "fullType": "uint32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_description_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_folder_type_explicitly",
-              "description": "@attr [PropertyOrderAttribute(54)]\n@attr [DisplayName(\"Use Folders\")]\n@attr [Description(\"User has choose explicitly item or folder type for catalog element \")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_is_folder_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_is_open_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "view_default_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_tree",
-              "description": "@attr [PropertyOrderAttribute(61)]\n@attr [DisplayName(\"Use Tree\")]\n@attr [Description(\"Use tree catalog structure\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_icon_type",
-              "description": "@attr [PropertyOrderAttribute(62)]\n@attr [DisplayName(\"Group Icon\")]\n@attr [Description(\"Catalog group icon type\")]",
-              "label": "",
-              "type": "proto_enum_catalog_tree_icon",
-              "longType": "proto_enum_catalog_tree_icon",
-              "fullType": "proto_config.proto_enum_catalog_tree_icon",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "max_tree_levels",
-              "description": "@attr [PropertyOrderAttribute(63)]\n@attr [DisplayName(\"Levels\")]\n@attr [Description(\"Maximum amount levels in catalog item groups. If zero, than unlimited\")]",
-              "label": "",
-              "type": "uint32",
-              "longType": "uint32",
-              "fullType": "uint32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_separate_properties_for_groups",
-              "description": "@attr [PropertyOrderAttribute(64)]\n@attr [DisplayName(\"Group properties\")]\n@attr [Description(\"Separate set of properties for groups\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_ref_self_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_ref_folder_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },

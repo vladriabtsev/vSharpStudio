@@ -645,32 +645,32 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	bool UseTree { get; } // ModelInterfaces.tt Line: 51
+    	bool UseSeparateTreeForFolders { get; } // ModelInterfaces.tt Line: 51
+    	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 51
+    	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
+    	bool? UseNameProperty { get; } // ModelInterfaces.tt Line: 51
+    	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 51
+    	bool? UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
+    	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
+    	bool UseFolderTypeExplicitly { get; } // ModelInterfaces.tt Line: 51
+    	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 51
+    	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIsOpenGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyRefFolderGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
     	ICatalogFolder Folder { get; } // ModelInterfaces.tt Line: 55
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
-    	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool? UseNameProperty { get; } // ModelInterfaces.tt Line: 51
-    	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool? UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
-    	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool UseFolderTypeExplicitly { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyIsOpenGuid { get; } // ModelInterfaces.tt Line: 51
-    	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool UseTree { get; } // ModelInterfaces.tt Line: 51
-    	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 51
-    	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 51
-    	bool UseSeparatePropertiesForGroups { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyRefFolderGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<string> ListGuidViewFolderProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
