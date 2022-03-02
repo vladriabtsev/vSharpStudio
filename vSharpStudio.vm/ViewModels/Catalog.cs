@@ -296,19 +296,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
-        {
-            var res = new List<IProperty>();
-            GetSpecialProperties(res, false, true);
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                if (t.IsIncluded(guidAppPrjGen))
-                {
-                    res.Add(t);
-                }
-            }
-            return res;
-        }
         public IReadOnlyList<IProperty> GetAllProperties()
         {
             var res = new List<IProperty>();
@@ -544,43 +531,6 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(prp);
             }
         }
-        public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjGen)
-        {
-            var res = new List<IProperty>();
-            GetSpecialProperties(res, true, true);
-            foreach (var t in this.Folder.GroupProperties.ListProperties)
-            {
-                if (t.IsIncluded(guidAppPrjGen))
-                {
-                    res.Add(t);
-                }
-            }
-            return res;
-        }
-        public IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen)
-        {
-            var res = new List<IPropertiesTab>();
-            foreach (var t in this.GroupPropertiesTabs.ListPropertiesTabs)
-            {
-                if (t.IsIncluded(guidAppPrjGen))
-                {
-                    res.Add(t);
-                }
-            }
-            return res;
-        }
-        public IReadOnlyList<IPropertiesTab> GetIncludedFolderPropertiesTabs(string guidAppPrjGen)
-        {
-            var res = new List<IPropertiesTab>();
-            foreach (var t in this.Folder.GroupPropertiesTabs.ListPropertiesTabs)
-            {
-                if (t.IsIncluded(guidAppPrjGen))
-                {
-                    res.Add(t);
-                }
-            }
-            return res;
-        }
         partial void OnUseCodePropertyChanged()
         {
             HideProperties();
@@ -654,6 +604,97 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
             }
+        }
+
+        public IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen)
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res, false, true);
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjDbGen))
+                {
+                    foreach (var tt in this.ListGuidViewProperties)
+                    {
+                        if (tt == t.Guid)
+                        {
+                            res.Add(t);
+                            break;
+                        }
+                    }
+                }
+            }
+            return res;
+        }
+        public IReadOnlyList<IProperty> GetIncludedFolderViewProperties(string guidAppPrjDbGen)
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res, true, true);
+            foreach (var t in this.Folder.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjDbGen))
+                {
+                    foreach (var tt in this.ListGuidViewFolderProperties)
+                    {
+                        if (tt == t.Guid)
+                        {
+                            res.Add(t);
+                            break;
+                        }
+                    }
+                }
+            }
+            return res;
+        }
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen)
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res, false, true);
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjDbGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+        public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen)
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res, true, true);
+            foreach (var t in this.Folder.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjDbGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+        public IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjDbGen)
+        {
+            var res = new List<IPropertiesTab>();
+            foreach (var t in this.GroupPropertiesTabs.ListPropertiesTabs)
+            {
+                if (t.IsIncluded(guidAppPrjDbGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+        public IReadOnlyList<IPropertiesTab> GetIncludedFolderPropertiesTabs(string guidAppPrjDbGen)
+        {
+            var res = new List<IPropertiesTab>();
+            foreach (var t in this.Folder.GroupPropertiesTabs.ListPropertiesTabs)
+            {
+                if (t.IsIncluded(guidAppPrjDbGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
         }
     }
 }

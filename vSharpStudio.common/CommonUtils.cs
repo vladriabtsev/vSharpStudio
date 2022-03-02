@@ -210,209 +210,265 @@ namespace vSharpStudio.common
         public static string Comment(IGroupListConstants t, string indent = "")
         {
             var sb = new StringBuilder();
-            sb.Append(indent);
-            sb.Append(commentBegSummary);
-            sb.AppendLine();
-
-            sb.Append(indent);
-            sb.Append(comment);
-            sb.Append("UI name: ");
-            sb.Append(t.NameUi);
-            sb.AppendLine();
-
-            if (!string.IsNullOrWhiteSpace(t.Description))
+            if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
             {
                 sb.Append(indent);
-                sb.Append(comment);
-                //sb.Append("Description: ");
-                sb.Append(t.Description);
+                sb.Append(commentBegSummary);
+                sb.AppendLine();
+
+                if (t.NameUi != t.Name)
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    sb.Append("UI name: ");
+                    sb.Append(t.NameUi);
+                    sb.AppendLine();
+                }
+
+                if (!string.IsNullOrWhiteSpace(t.Description))
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    //sb.Append("Description: ");
+                    sb.Append(t.Description);
+                    sb.AppendLine();
+                }
+
+                sb.Append(indent);
+                sb.Append(commentEndSummary);
                 sb.AppendLine();
             }
-
-            sb.Append(indent);
-            sb.Append(commentEndSummary);
             return sb.ToString();
         }
         public static string Comment(IEnumeration t, string indent = "")
         {
             var sb = new StringBuilder();
-            sb.Append(indent);
-            sb.Append(commentBegSummary);
-            sb.AppendLine();
-
-            sb.Append(indent);
-            sb.Append(comment);
-            sb.Append("UI name: ");
-            sb.Append(t.NameUi);
-            sb.AppendLine();
-
-            if (!string.IsNullOrWhiteSpace(t.Description))
+            if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
             {
                 sb.Append(indent);
-                sb.Append(comment);
-                //sb.Append("Description: ");
-                sb.Append(t.Description);
+                sb.Append(commentBegSummary);
+                sb.AppendLine();
+
+                if (t.NameUi != t.Name)
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    sb.Append("UI name: ");
+                    sb.Append(t.NameUi);
+                    sb.AppendLine();
+                }
+
+                if (!string.IsNullOrWhiteSpace(t.Description))
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    //sb.Append("Description: ");
+                    sb.Append(t.Description);
+                    sb.AppendLine();
+                }
+
+                sb.Append(indent);
+                sb.Append(commentEndSummary);
                 sb.AppendLine();
             }
-
-            sb.Append(indent);
-            sb.Append(commentEndSummary);
             return sb.ToString();
         }
         public static string Comment(IEnumerationPair t, string indent = "")
         {
             var sb = new StringBuilder();
-            sb.Append(indent);
-            sb.Append(commentBegSummary);
-            sb.AppendLine();
-
-            sb.Append(indent);
-            sb.Append(comment);
-            sb.Append("UI name: ");
-            sb.Append(t.NameUi);
-            sb.AppendLine();
-
-            if (!string.IsNullOrWhiteSpace(t.Description))
+            if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
             {
                 sb.Append(indent);
-                sb.Append(comment);
-                //sb.Append("Description: ");
-                sb.Append(t.Description);
+                sb.Append(commentBegSummary);
+                sb.AppendLine();
+
+                if (t.NameUi != t.Name)
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    sb.Append("UI name: ");
+                    sb.Append(t.NameUi);
+                    sb.AppendLine();
+                }
+
+                if (!string.IsNullOrWhiteSpace(t.Description))
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    //sb.Append("Description: ");
+                    sb.Append(t.Description);
+                    sb.AppendLine();
+                }
+
+                sb.Append(indent);
+                sb.Append(commentEndSummary);
                 sb.AppendLine();
             }
-
-            sb.Append(indent);
-            sb.Append(commentEndSummary);
             return sb.ToString();
         }
         public static string Comment(IConstant t, string indent = "")
         {
             var sb = new StringBuilder();
-            sb.Append(indent);
-            sb.Append(commentBegSummary);
-            sb.AppendLine();
-
-            sb.Append(indent);
-            sb.Append(comment);
-            sb.Append("UI name: ");
-            sb.Append(t.NameUi);
-            sb.AppendLine();
-
-            if (!string.IsNullOrWhiteSpace(t.Description))
+            if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
             {
                 sb.Append(indent);
-                sb.Append(comment);
-                //sb.Append("Description: ");
-                sb.Append(t.Description);
+                sb.Append(commentBegSummary);
+                sb.AppendLine();
+
+                if (t.NameUi != t.Name)
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    sb.Append("UI name: ");
+                    sb.Append(t.NameUi);
+                    sb.AppendLine();
+                }
+
+                if (!string.IsNullOrWhiteSpace(t.Description))
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    //sb.Append("Description: ");
+                    sb.Append(t.Description);
+                    sb.AppendLine();
+                }
+
+                sb.Append(indent);
+                sb.Append(commentEndSummary);
                 sb.AppendLine();
             }
-
-            sb.Append(indent);
-            sb.Append(commentEndSummary);
             return sb.ToString();
         }
         public static string Comment(ICatalog t, string indent = "")
         {
             var sb = new StringBuilder();
-            sb.Append(indent);
-            sb.Append(commentBegSummary);
-            sb.AppendLine();
-
-            sb.Append(indent);
-            sb.Append(comment);
-            sb.Append("UI name: ");
-            sb.Append(t.NameUi);
-            sb.AppendLine();
-
-            if (!string.IsNullOrWhiteSpace(t.Description))
+            if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
             {
                 sb.Append(indent);
-                sb.Append(comment);
-                //sb.Append("Description: ");
-                sb.Append(t.Description);
+                sb.Append(commentBegSummary);
+                sb.AppendLine();
+
+                if (t.NameUi != t.Name)
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    sb.Append("UI name: ");
+                    sb.Append(t.NameUi);
+                    sb.AppendLine();
+                }
+
+                if (!string.IsNullOrWhiteSpace(t.Description))
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    //sb.Append("Description: ");
+                    sb.Append(t.Description);
+                    sb.AppendLine();
+                }
+
+                sb.Append(indent);
+                sb.Append(commentEndSummary);
                 sb.AppendLine();
             }
-
-            sb.Append(indent);
-            sb.Append(commentEndSummary);
             return sb.ToString();
         }
         public static string Comment(IDocument t, string indent = "")
         {
             var sb = new StringBuilder();
-            sb.Append(indent);
-            sb.Append(commentBegSummary);
-            sb.AppendLine();
-
-            sb.Append(indent);
-            sb.Append(comment);
-            sb.Append("UI name: ");
-            sb.Append(t.NameUi);
-            sb.AppendLine();
-
-            if (!string.IsNullOrWhiteSpace(t.Description))
+            if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
             {
                 sb.Append(indent);
-                sb.Append(comment);
-                //sb.Append("Description: ");
-                sb.Append(t.Description);
+                sb.Append(commentBegSummary);
+                sb.AppendLine();
+
+                if (t.NameUi != t.Name)
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    sb.Append("UI name: ");
+                    sb.Append(t.NameUi);
+                    sb.AppendLine();
+                }
+
+                if (!string.IsNullOrWhiteSpace(t.Description))
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    //sb.Append("Description: ");
+                    sb.Append(t.Description);
+                    sb.AppendLine();
+                }
+
+                sb.Append(indent);
+                sb.Append(commentEndSummary);
                 sb.AppendLine();
             }
-
-            sb.Append(indent);
-            sb.Append(commentEndSummary);
             return sb.ToString();
         }
         public static string Comment(IPropertiesTab t, string indent = "")
         {
             var sb = new StringBuilder();
-            sb.Append(indent);
-            sb.Append(commentBegSummary);
-            sb.AppendLine();
-
-            sb.Append(indent);
-            sb.Append(comment);
-            sb.Append("UI name: ");
-            sb.Append(t.NameUi);
-            sb.AppendLine();
-
-            if (!string.IsNullOrWhiteSpace(t.Description))
+            if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
             {
                 sb.Append(indent);
-                sb.Append(comment);
-                //sb.Append("Description: ");
-                sb.Append(t.Description);
+                sb.Append(commentBegSummary);
+                sb.AppendLine();
+
+                if (t.NameUi != t.Name)
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    sb.Append("UI name: ");
+                    sb.Append(t.NameUi);
+                    sb.AppendLine();
+                }
+
+                if (!string.IsNullOrWhiteSpace(t.Description))
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    //sb.Append("Description: ");
+                    sb.Append(t.Description);
+                    sb.AppendLine();
+                }
+
+                sb.Append(indent);
+                sb.Append(commentEndSummary);
                 sb.AppendLine();
             }
-
-            sb.Append(indent);
-            sb.Append(commentEndSummary);
             return sb.ToString();
         }
         public static string Comment(IProperty t, string indent = "")
         {
             var sb = new StringBuilder();
-            sb.Append(indent);
-            sb.Append(commentBegSummary);
-            sb.AppendLine();
-
-            sb.Append(indent);
-            sb.Append(comment);
-            sb.Append("UI name: ");
-            sb.Append(t.NameUi);
-            sb.AppendLine();
-
-            if (!string.IsNullOrWhiteSpace(t.Description))
+            if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))
             {
                 sb.Append(indent);
-                sb.Append(comment);
-                //sb.Append("Description: ");
-                sb.Append(t.Description);
+                sb.Append(commentBegSummary);
+                sb.AppendLine();
+
+                if (t.NameUi != t.Name)
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    sb.Append("UI name: ");
+                    sb.Append(t.NameUi);
+                    sb.AppendLine();
+                }
+
+                if (!string.IsNullOrWhiteSpace(t.Description))
+                {
+                    sb.Append(indent);
+                    sb.Append(comment);
+                    //sb.Append("Description: ");
+                    sb.Append(t.Description);
+                    sb.AppendLine();
+                }
+
+                sb.Append(indent);
+                sb.Append(commentEndSummary);
                 sb.AppendLine();
             }
-
-            sb.Append(indent);
-            sb.Append(commentEndSummary);
             return sb.ToString();
         }
     }

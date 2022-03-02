@@ -8,11 +8,11 @@ namespace vSharpStudio.common
 {
     public partial interface ICatalog : ITreeConfigNode, IGetNodeSetting, IDbTable
     {
-        IReadOnlyList<IProperty> GetAllProperties();
-        IReadOnlyList<IProperty> GetAllFolderProperties();
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen);
-        IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjGen);
-        IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen);
-        IReadOnlyList<IPropertiesTab> GetIncludedFolderPropertiesTabs(string guidAppPrjGen);
+        IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
+        IReadOnlyList<IProperty> GetIncludedFolderViewProperties(string guidAppPrjDbGen);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen);
+        IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen);
+        IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjDbGen);
+        IReadOnlyList<IPropertiesTab> GetIncludedFolderPropertiesTabs(string guidAppPrjDbGen);
     }
 }

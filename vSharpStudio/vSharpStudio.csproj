@@ -65,7 +65,7 @@
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CompareNETObjects" Version="4.75.0" />
+    <PackageReference Include="CompareNETObjects" Version="4.76.0" />
     <PackageReference Include="GitVersion.MsBuild" Version="5.8.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
