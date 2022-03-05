@@ -262,20 +262,38 @@
             {
                 if (this is IEditableNode)
                 {
-                    var p = this as IEditableNode;
-                    if (p.IsNew || p.IsMarkedForDeletion)
+                    var myCollection = new System.Windows.TextDecorationCollection();
+                    if (this is IProperty pp)
                     {
-                        var myCollection = new System.Windows.TextDecorationCollection();
-                        if (p.IsMarkedForDeletion)
+                        if (pp.IsStartNewColumn)
                         {
-                            myCollection.Add(System.Windows.TextDecorations.Strikethrough);
+                            myCollection.Add(System.Windows.TextDecorations.OverLine);
                         }
-                        if (p.IsNew)
-                        {
-                            myCollection.Add(System.Windows.TextDecorations.Underline);
-                        }
-                        return myCollection;
                     }
+                    var p = this as IEditableNode;
+                    if (p.IsMarkedForDeletion)
+                    {
+                        myCollection.Add(System.Windows.TextDecorations.Strikethrough);
+                    }
+                    if (p.IsNew)
+                    {
+                        //myCollection.Add(System.Windows.TextDecorations.Underline);
+                    }
+                    if (myCollection.Count > 0)
+                        return myCollection;
+                    //if (p.IsNew || p.IsMarkedForDeletion)
+                    //{
+                    //    var myCollection = new System.Windows.TextDecorationCollection();
+                    //    if (p.IsMarkedForDeletion)
+                    //    {
+                    //        myCollection.Add(System.Windows.TextDecorations.Strikethrough);
+                    //    }
+                    //    if (p.IsNew)
+                    //    {
+                    //        myCollection.Add(System.Windows.TextDecorations.Underline);
+                    //    }
+                    //    return myCollection;
+                    //}
                 }
                 return null;
             }

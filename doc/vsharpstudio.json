@@ -5677,6 +5677,16 @@
               "defaultValue": ""
             },
             {
+              "name": "is_start_new_column",
+              "description": "@attr [PropertyOrderAttribute(37)]\n@attr [DisplayName(\"New column\")]\n@attr [Description(\"If checked than new UI column is starting from this property\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "position",
               "description": "Protobuf field position\nReserved positions: 1 - primary key\n@attr [ReadOnly(true)]",
               "label": "",

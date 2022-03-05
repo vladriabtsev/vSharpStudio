@@ -921,6 +921,10 @@ message proto_property {
     // @attr [DisplayName("Time accuracy")]
     // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
     proto_enum_time_accuracy_type accuracy_for_time = 20;
+    // @attr [PropertyOrderAttribute(37)]
+    // @attr [DisplayName("New column")]
+    // @attr [Description("If checked than new UI column is starting from this property")]
+    bool is_start_new_column = 21;
     // Protobuf field position
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]

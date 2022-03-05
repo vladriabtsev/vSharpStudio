@@ -10820,6 +10820,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 65
             vm.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 65
             vm.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 65
+            vm.IsStartNewColumn = from.IsStartNewColumn; // Clone.tt Line: 65
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -10849,6 +10850,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 141
             to.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 141
             to.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 141
+            to.IsStartNewColumn = from.IsStartNewColumn; // Clone.tt Line: 141
             to.Position = from.Position; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -10930,6 +10932,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MinLengthRequirement = m.MinLengthRequirement; // Clone.tt Line: 221
             vm.MaxLengthRequirement = m.MaxLengthRequirement; // Clone.tt Line: 221
             vm.AccuracyForTime = (EnumTimeAccuracyType)m.AccuracyForTime; // Clone.tt Line: 221
+            vm.IsStartNewColumn = m.IsStartNewColumn; // Clone.tt Line: 221
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -10963,6 +10966,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.MinLengthRequirement = vm.MinLengthRequirement; // Clone.tt Line: 276
             m.MaxLengthRequirement = vm.MaxLengthRequirement; // Clone.tt Line: 276
             m.AccuracyForTime = (Proto.Config.proto_enum_time_accuracy_type)vm.AccuracyForTime; // Clone.tt Line: 274
+            m.IsStartNewColumn = vm.IsStartNewColumn; // Clone.tt Line: 276
             m.Position = vm.Position; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -11292,6 +11296,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumTimeAccuracyType _AccuracyForTime;
         partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // Property.tt Line: 79
         partial void OnAccuracyForTimeChanged();
+        
+        [PropertyOrderAttribute(37)]
+        [DisplayName("New column")]
+        [Description("If checked than new UI column is starting from this property")]
+        public bool IsStartNewColumn // Property.tt Line: 55
+        { 
+            get { return this._IsStartNewColumn; }
+            set
+            {
+                if (this._IsStartNewColumn != value)
+                {
+                    this.OnIsStartNewColumnChanging(ref value);
+                    this._IsStartNewColumn = value;
+                    this.OnIsStartNewColumnChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsStartNewColumn;
+        partial void OnIsStartNewColumnChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsStartNewColumnChanged();
         
         
         ///////////////////////////////////////////////////

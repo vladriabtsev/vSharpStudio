@@ -514,6 +514,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string MinLengthRequirement { get; } // ModelInterfaces.tt Line: 51
     	string MaxLengthRequirement { get; } // ModelInterfaces.tt Line: 51
     	EnumTimeAccuracyType AccuracyForTime { get; } // ModelInterfaces.tt Line: 51
+    	bool IsStartNewColumn { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position

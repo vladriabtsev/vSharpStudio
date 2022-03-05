@@ -297,8 +297,8 @@ namespace vSharpStudio.vm.ViewModels
             if (this.DataType.DataTypeEnum != EnumDataType.TIME &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMELOCAL &&
                 this.DataType.DataTypeEnum != EnumDataType.DATETIMEUTC) // &&
-                //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
-                //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
+                                                                        //this.DataType.DataTypeEnum != EnumDataType.DATETIME &&
+                                                                        //this.DataType.DataTypeEnum != EnumDataType.DATETIMEZ)
             {
                 lst.Add(this.GetPropertyName(() => this.AccuracyForTime));
             }
@@ -475,5 +475,11 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
+        partial void OnIsStartNewColumnChanged()
+        {
+            this.NotifyPropertyChanged(() => this.NodeNameDecorations);
+        }
+        [BrowsableAttribute(false)]
+        public new bool IsHasNew { get { return this.IsNew; } }
     }
 }
