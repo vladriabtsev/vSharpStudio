@@ -645,6 +645,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             });
             #endregion Loose data
+
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Catalog c, IGroupListCatalogs gc)
         {

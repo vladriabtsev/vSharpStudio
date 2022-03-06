@@ -5678,7 +5678,17 @@
             },
             {
               "name": "is_start_new_column",
-              "description": "@attr [PropertyOrderAttribute(37)]\n@attr [DisplayName(\"New column\")]\n@attr [Description(\"If checked than new UI column is starting from this property\")]",
+              "description": "@attr [PropertyOrderAttribute(37)]\n@attr [DisplayName(\"New UI column\")]\n@attr [Description(\"New UI column will start from this property\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_try_attach",
+              "description": "@attr [PropertyOrderAttribute(38)]\n@attr [DisplayName(\"UI attach\")]\n@attr [Description(\"UI engine will try put this field on same line as previous field\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

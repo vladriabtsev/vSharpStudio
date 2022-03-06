@@ -479,7 +479,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.NotifyPropertyChanged(() => this.NodeNameDecorations);
         }
-        [BrowsableAttribute(false)]
-        public new bool IsHasNew { get { return this.IsNew; } }
+        //[BrowsableAttribute(false)]
+        //public new bool IsHasNew { get { return this.IsNew; } }
     }
 }

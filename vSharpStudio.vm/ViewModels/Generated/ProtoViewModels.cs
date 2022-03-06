@@ -10821,6 +10821,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 65
             vm.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 65
             vm.IsStartNewColumn = from.IsStartNewColumn; // Clone.tt Line: 65
+            vm.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 65
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -10851,6 +10852,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 141
             to.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 141
             to.IsStartNewColumn = from.IsStartNewColumn; // Clone.tt Line: 141
+            to.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 141
             to.Position = from.Position; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -10933,6 +10935,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MaxLengthRequirement = m.MaxLengthRequirement; // Clone.tt Line: 221
             vm.AccuracyForTime = (EnumTimeAccuracyType)m.AccuracyForTime; // Clone.tt Line: 221
             vm.IsStartNewColumn = m.IsStartNewColumn; // Clone.tt Line: 221
+            vm.IsTryAttach = m.IsTryAttach; // Clone.tt Line: 221
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -10967,6 +10970,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.MaxLengthRequirement = vm.MaxLengthRequirement; // Clone.tt Line: 276
             m.AccuracyForTime = (Proto.Config.proto_enum_time_accuracy_type)vm.AccuracyForTime; // Clone.tt Line: 274
             m.IsStartNewColumn = vm.IsStartNewColumn; // Clone.tt Line: 276
+            m.IsTryAttach = vm.IsTryAttach; // Clone.tt Line: 276
             m.Position = vm.Position; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -11298,8 +11302,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnAccuracyForTimeChanged();
         
         [PropertyOrderAttribute(37)]
-        [DisplayName("New column")]
-        [Description("If checked than new UI column is starting from this property")]
+        [DisplayName("New UI column")]
+        [Description("New UI column will start from this property")]
         public bool IsStartNewColumn // Property.tt Line: 55
         { 
             get { return this._IsStartNewColumn; }
@@ -11319,6 +11323,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsStartNewColumn;
         partial void OnIsStartNewColumnChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsStartNewColumnChanged();
+        
+        [PropertyOrderAttribute(38)]
+        [DisplayName("UI attach")]
+        [Description("UI engine will try put this field on same line as previous field")]
+        public bool IsTryAttach // Property.tt Line: 55
+        { 
+            get { return this._IsTryAttach; }
+            set
+            {
+                if (this._IsTryAttach != value)
+                {
+                    this.OnIsTryAttachChanging(ref value);
+                    this._IsTryAttach = value;
+                    this.OnIsTryAttachChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsTryAttach;
+        partial void OnIsTryAttachChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsTryAttachChanged();
         
         
         ///////////////////////////////////////////////////

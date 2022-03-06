@@ -922,9 +922,13 @@ message proto_property {
     // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
     proto_enum_time_accuracy_type accuracy_for_time = 20;
     // @attr [PropertyOrderAttribute(37)]
-    // @attr [DisplayName("New column")]
-    // @attr [Description("If checked than new UI column is starting from this property")]
+    // @attr [DisplayName("New UI column")]
+    // @attr [Description("New UI column will start from this property")]
     bool is_start_new_column = 21;
+    // @attr [PropertyOrderAttribute(38)]
+    // @attr [DisplayName("UI attach")]
+    // @attr [Description("UI engine will try put this field on same line as previous field")]
+    bool is_try_attach = 22;
     // Protobuf field position
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]

@@ -1332,7 +1332,8 @@ Configuration model
 | min_length_requirement | [string](#string) |  | @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Min Length&#34;)] @attr [Description(&#34;Minimum length of string&#34;)] |
 | max_length_requirement | [string](#string) |  | @attr [PropertyOrderAttribute(35)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum length of string&#34;)] |
 | accuracy_for_time | [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type) |  | @attr [PropertyOrderAttribute(36)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] |
-| is_start_new_column | [bool](#bool) |  | @attr [PropertyOrderAttribute(37)] @attr [DisplayName(&#34;New column&#34;)] @attr [Description(&#34;If checked than new UI column is starting from this property&#34;)] |
+| is_start_new_column | [bool](#bool) |  | @attr [PropertyOrderAttribute(37)] @attr [DisplayName(&#34;New UI column&#34;)] @attr [Description(&#34;New UI column will start from this property&#34;)] |
+| is_try_attach | [bool](#bool) |  | @attr [PropertyOrderAttribute(38)] @attr [DisplayName(&#34;UI attach&#34;)] @attr [Description(&#34;UI engine will try put this field on same line as previous field&#34;)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 

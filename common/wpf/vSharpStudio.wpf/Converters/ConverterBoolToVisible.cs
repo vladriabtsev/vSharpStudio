@@ -16,7 +16,7 @@ namespace vSharpStudio.wpf.Converters
                 return Visibility.Collapsed;
             if (value is bool && (bool)value)
                 return Visibility.Visible;
-            if (value is bool? && (bool)value)
+            if (value is bool? && ((bool?)value ?? false))
                 return Visibility.Visible;
             return Visibility.Collapsed;
         }
