@@ -20,6 +20,7 @@ namespace vSharpStudio.common
         string MinValue { get; }
         string MaxValue { get; }
         string ClrLiteralSuf { get; }
+        string EnumerationName { get; }
         BigInteger? MaxNumericalValue { get; }
         EnumEnumerationType EnumerationType { get; }
         int EnumerationStrFieldLength { get; }
