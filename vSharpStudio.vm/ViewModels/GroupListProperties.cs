@@ -126,6 +126,14 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        public Property AddPropertyBool(string name, bool isNullable = false)
+        {
+            var dt = new DataType() { DataTypeEnum = EnumDataType.BOOL };
+            var node = new Property(this) { Name = name, DataType = dt };
+            node.IsNullable = isNullable;
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
         public Property AddPropertyChar(string name, bool isNullable = false)
         {
             var dt = new DataType() { DataTypeEnum = EnumDataType.CHAR };
