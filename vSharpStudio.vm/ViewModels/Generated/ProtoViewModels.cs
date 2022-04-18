@@ -9359,20 +9359,20 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
-    public partial class GroupListPropertiesTabsValidator : ValidatorBase<GroupListPropertiesTabs, GroupListPropertiesTabsValidator> { } // Class.tt Line: 6
-    public partial class GroupListPropertiesTabs : ConfigObjectVmGenSettings<GroupListPropertiesTabs, GroupListPropertiesTabsValidator>, IComparable<GroupListPropertiesTabs>, IConfigAcceptVisitor, IGroupListPropertiesTabs // Class.tt Line: 7
+    public partial class GroupListDetailsValidator : ValidatorBase<GroupListDetails, GroupListDetailsValidator> { } // Class.tt Line: 6
+    public partial class GroupListDetails : ConfigObjectVmGenSettings<GroupListDetails, GroupListDetailsValidator>, IComparable<GroupListDetails>, IConfigAcceptVisitor, IGroupListDetails // Class.tt Line: 7
     {
         #region CTOR
-        public GroupListPropertiesTabs() : this(default(ITreeConfigNode))
+        public GroupListDetails() : this(default(ITreeConfigNode))
         {
         }
-        public GroupListPropertiesTabs(ITreeConfigNode parent) 
-            : base(parent, GroupListPropertiesTabsValidator.Validator) // Class.tt Line: 15
+        public GroupListDetails(ITreeConfigNode parent) 
+            : base(parent, GroupListDetailsValidator.Validator) // Class.tt Line: 15
         {
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(this); // Class.tt Line: 27
+            this.ListDetails = new ConfigNodesCollection<Detail>(this); // Class.tt Line: 27
             this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
@@ -9385,19 +9385,19 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public override void Sort(Type type) // Clone.tt Line: 8
         {
-            if (type == typeof(PropertiesTab)) // Clone.tt Line: 15
+            if (type == typeof(Detail)) // Clone.tt Line: 15
             {
-                this.ListPropertiesTabs.Sort();
+                this.ListDetails.Sort();
             }
             if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
             {
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListPropertiesTabs Clone(ITreeConfigNode parent, IGroupListPropertiesTabs from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+        public static GroupListDetails Clone(ITreeConfigNode parent, IGroupListDetails from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Contract.Requires(from != null);
-            GroupListPropertiesTabs vm = new GroupListPropertiesTabs(parent);
+            GroupListDetails vm = new GroupListDetails(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
@@ -9405,9 +9405,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
-            vm.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(vm); // Clone.tt Line: 51
-            foreach (var t in from.ListPropertiesTabs) // Clone.tt Line: 52
-                vm.ListPropertiesTabs.Add(PropertiesTab.Clone(vm, (PropertiesTab)t, isDeep));
+            vm.ListDetails = new ConfigNodesCollection<Detail>(vm); // Clone.tt Line: 51
+            foreach (var t in from.ListDetails) // Clone.tt Line: 52
+                vm.ListDetails.Add(Detail.Clone(vm, (Detail)t, isDeep));
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -9417,7 +9417,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(GroupListPropertiesTabs to, IGroupListPropertiesTabs from, bool isDeep = true) // Clone.tt Line: 77
+        public static void Update(GroupListDetails to, IGroupListDetails from, bool isDeep = true) // Clone.tt Line: 77
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
@@ -9428,25 +9428,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Description = from.Description; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
-                foreach (var t in to.ListPropertiesTabs.ToList())
+                foreach (var t in to.ListDetails.ToList())
                 {
                     bool isfound = false;
-                    foreach (var tt in from.ListPropertiesTabs)
+                    foreach (var tt in from.ListDetails)
                     {
                         if (t.Guid == tt.Guid)
                         {
                             isfound = true;
-                            PropertiesTab.Update((PropertiesTab)t, (PropertiesTab)tt, isDeep);
+                            Detail.Update((Detail)t, (Detail)tt, isDeep);
                             break;
                         }
                     }
                     if (!isfound)
-                        to.ListPropertiesTabs.Remove(t);
+                        to.ListDetails.Remove(t);
                 }
-                foreach (var tt in from.ListPropertiesTabs)
+                foreach (var tt in from.ListDetails)
                 {
                     bool isfound = false;
-                    foreach (var t in to.ListPropertiesTabs.ToList())
+                    foreach (var t in to.ListDetails.ToList())
                     {
                         if (t.Guid == tt.Guid)
                         {
@@ -9456,9 +9456,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                     }
                     if (!isfound)
                     {
-                        var p = new PropertiesTab(to); // Clone.tt Line: 117
-                        PropertiesTab.Update(p, (PropertiesTab)tt, isDeep);
-                        to.ListPropertiesTabs.Add(p);
+                        var p = new Detail(to); // Clone.tt Line: 117
+                        Detail.Update(p, (Detail)tt, isDeep);
+                        to.ListDetails.Add(p);
                     }
                 }
             }
@@ -9501,23 +9501,23 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         // Clone.tt Line: 147
         #region IEditable
-        public override GroupListPropertiesTabs Backup()
+        public override GroupListDetails Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return GroupListPropertiesTabs.Clone(this.Parent, this);
+            return GroupListDetails.Clone(this.Parent, this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(GroupListPropertiesTabs from)
+        public override void Restore(GroupListDetails from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            GroupListPropertiesTabs.Update(this, from, isDeep);
+            GroupListDetails.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_group_list_properties_tabs' to 'GroupListPropertiesTabs'
-        public static GroupListPropertiesTabs ConvertToVM(Proto.Config.proto_group_list_properties_tabs m, GroupListPropertiesTabs vm) // Clone.tt Line: 170
+        // Conversion from 'proto_group_list_details' to 'GroupListDetails'
+        public static GroupListDetails ConvertToVM(Proto.Config.proto_group_list_details m, GroupListDetails vm) // Clone.tt Line: 170
         {
             Contract.Requires(vm != null);
             if (m == null)
@@ -9531,11 +9531,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
-            vm.ListPropertiesTabs = new ConfigNodesCollection<PropertiesTab>(vm); // Clone.tt Line: 200
-            foreach (var t in m.ListPropertiesTabs) // Clone.tt Line: 201
+            vm.ListDetails = new ConfigNodesCollection<Detail>(vm); // Clone.tt Line: 200
+            foreach (var t in m.ListDetails) // Clone.tt Line: 201
             {
-                var tvm = PropertiesTab.ConvertToVM(t, new PropertiesTab(vm)); // Clone.tt Line: 204
-                vm.ListPropertiesTabs.Add(tvm);
+                var tvm = Detail.ConvertToVM(t, new Detail(vm)); // Clone.tt Line: 204
+                vm.ListDetails.Add(tvm);
             }
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -9550,18 +9550,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'GroupListPropertiesTabs' to 'proto_group_list_properties_tabs'
-        public static Proto.Config.proto_group_list_properties_tabs ConvertToProto(GroupListPropertiesTabs vm) // Clone.tt Line: 236
+        // Conversion from 'GroupListDetails' to 'proto_group_list_details'
+        public static Proto.Config.proto_group_list_details ConvertToProto(GroupListDetails vm) // Clone.tt Line: 236
         {
             Contract.Requires(vm != null);
-            Proto.Config.proto_group_list_properties_tabs m = new Proto.Config.proto_group_list_properties_tabs(); // Clone.tt Line: 239
+            Proto.Config.proto_group_list_details m = new Proto.Config.proto_group_list_details(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
-            foreach (var t in vm.ListPropertiesTabs) // Clone.tt Line: 242
-                m.ListPropertiesTabs.Add(PropertiesTab.ConvertToProto((PropertiesTab)t)); // Clone.tt Line: 246
+            foreach (var t in vm.ListDetails) // Clone.tt Line: 242
+                m.ListDetails.Add(Detail.ConvertToProto((Detail)t)); // Clone.tt Line: 246
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -9575,7 +9575,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
-            foreach (var t in this.ListPropertiesTabs)
+            foreach (var t in this.ListDetails)
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
@@ -9691,46 +9691,46 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanged();
         
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<PropertiesTab> ListPropertiesTabs // Property.tt Line: 8
+        public ConfigNodesCollection<Detail> ListDetails // Property.tt Line: 8
         { 
-            get { return this._ListPropertiesTabs; }
+            get { return this._ListDetails; }
             set
             {
-                if (this._ListPropertiesTabs != value)
+                if (this._ListDetails != value)
                 {
-                    this.OnListPropertiesTabsChanging(value);
-                    _ListPropertiesTabs = value;
-                    this.OnListPropertiesTabsChanged();
+                    this.OnListDetailsChanging(value);
+                    _ListDetails = value;
+                    this.OnListDetailsChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                 }
             }
         }
-        private ConfigNodesCollection<PropertiesTab> _ListPropertiesTabs;
-        IReadOnlyList<IPropertiesTab> IGroupListPropertiesTabs.ListPropertiesTabs { get { return (this as GroupListPropertiesTabs).ListPropertiesTabs; } } // Property.tt Line: 26
-        partial void OnListPropertiesTabsChanging(ObservableCollection<PropertiesTab> to); // Property.tt Line: 27
-        partial void OnListPropertiesTabsChanged();
-        public PropertiesTab this[int index] { get { return (PropertiesTab)this.ListPropertiesTabs[index]; } }
-        IPropertiesTab IGroupListPropertiesTabs.this[int index] { get { return (PropertiesTab)this.ListPropertiesTabs[index]; } }
-        public void Add(PropertiesTab item) // Property.tt Line: 32
+        private ConfigNodesCollection<Detail> _ListDetails;
+        IReadOnlyList<IDetail> IGroupListDetails.ListDetails { get { return (this as GroupListDetails).ListDetails; } } // Property.tt Line: 26
+        partial void OnListDetailsChanging(ObservableCollection<Detail> to); // Property.tt Line: 27
+        partial void OnListDetailsChanged();
+        public Detail this[int index] { get { return (Detail)this.ListDetails[index]; } }
+        IDetail IGroupListDetails.this[int index] { get { return (Detail)this.ListDetails[index]; } }
+        public void Add(Detail item) // Property.tt Line: 32
         { 
             Contract.Requires(item != null);
-            this.ListPropertiesTabs.Add(item); 
+            this.ListDetails.Add(item); 
             item.Parent = this;
         }
-        public void AddRange(IEnumerable<PropertiesTab> items) 
+        public void AddRange(IEnumerable<Detail> items) 
         { 
             Contract.Requires(items != null);
-            this.ListPropertiesTabs.AddRange(items); 
+            this.ListDetails.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
         }
-        public int Count() { return this.ListPropertiesTabs.Count; }
-        int IGroupListPropertiesTabs.Count() { return this.Count(); }
-        public void Remove(PropertiesTab item) 
+        public int Count() { return this.ListDetails.Count; }
+        int IGroupListDetails.Count() { return this.Count(); }
+        public void Remove(Detail item) 
         {
             Contract.Requires(item != null);
-            this.ListPropertiesTabs.Remove(item); 
+            this.ListDetails.Remove(item); 
             item.Parent = null;
         }
         
@@ -9751,7 +9751,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
         }
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListPropertiesTabs.ListNodeGeneratorsSettings { get { return (this as GroupListPropertiesTabs).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
+        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListDetails.ListNodeGeneratorsSettings { get { return (this as GroupListDetails).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
@@ -9776,21 +9776,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
-    public partial class PropertiesTabValidator : ValidatorBase<PropertiesTab, PropertiesTabValidator> { } // Class.tt Line: 6
-    public partial class PropertiesTab : ConfigObjectVmGenSettings<PropertiesTab, PropertiesTabValidator>, IComparable<PropertiesTab>, IConfigAcceptVisitor, IPropertiesTab // Class.tt Line: 7
+    public partial class DetailValidator : ValidatorBase<Detail, DetailValidator> { } // Class.tt Line: 6
+    public partial class Detail : ConfigObjectVmGenSettings<Detail, DetailValidator>, IComparable<Detail>, IConfigAcceptVisitor, IDetail // Class.tt Line: 7
     {
         #region CTOR
-        public PropertiesTab() : this(default(ITreeConfigNode))
+        public Detail() : this(default(ITreeConfigNode))
         {
         }
-        public PropertiesTab(ITreeConfigNode parent) 
-            : base(parent, PropertiesTabValidator.Validator) // Class.tt Line: 15
+        public Detail(ITreeConfigNode parent) 
+            : base(parent, DetailValidator.Validator) // Class.tt Line: 15
         {
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
             this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
+            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 33
             this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
@@ -9808,10 +9808,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static PropertiesTab Clone(ITreeConfigNode parent, IPropertiesTab from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+        public static Detail Clone(ITreeConfigNode parent, IDetail from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
             Contract.Requires(from != null);
-            PropertiesTab vm = new PropertiesTab(parent);
+            Detail vm = new Detail(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 65
@@ -9825,7 +9825,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 62
-                vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
+                vm.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.Clone(vm, from.GroupDetails, isDeep);
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
             vm.PropertyRefParentGuid = from.PropertyRefParentGuid; // Clone.tt Line: 65
@@ -9838,7 +9838,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(PropertiesTab to, IPropertiesTab from, bool isDeep = true) // Clone.tt Line: 77
+        public static void Update(Detail to, IDetail from, bool isDeep = true) // Clone.tt Line: 77
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
@@ -9853,7 +9853,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Update((GroupListPropertiesTabs)to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
+                vSharpStudio.vm.ViewModels.GroupListDetails.Update((GroupListDetails)to.GroupDetails, from.GroupDetails, isDeep);
             to.Position = from.Position; // Clone.tt Line: 141
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
             to.PropertyRefParentGuid = from.PropertyRefParentGuid; // Clone.tt Line: 141
@@ -9896,23 +9896,23 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         // Clone.tt Line: 147
         #region IEditable
-        public override PropertiesTab Backup()
+        public override Detail Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return PropertiesTab.Clone(this.Parent, this);
+            return Detail.Clone(this.Parent, this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(PropertiesTab from)
+        public override void Restore(Detail from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            PropertiesTab.Update(this, from, isDeep);
+            Detail.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_properties_tab' to 'PropertiesTab'
-        public static PropertiesTab ConvertToVM(Proto.Config.proto_properties_tab m, PropertiesTab vm) // Clone.tt Line: 170
+        // Conversion from 'proto_detail' to 'Detail'
+        public static Detail ConvertToVM(Proto.Config.proto_detail m, Detail vm) // Clone.tt Line: 170
         {
             Contract.Requires(vm != null);
             if (m == null)
@@ -9932,9 +9932,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupProperties == null) // Clone.tt Line: 213
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // Clone.tt Line: 219
-            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 213
-                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, (GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 219
+            if (vm.GroupDetails == null) // Clone.tt Line: 213
+                vm.GroupDetails = new GroupListDetails(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToVM(m.GroupDetails, (GroupListDetails)vm.GroupDetails); // Clone.tt Line: 219
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
             vm.PropertyRefParentGuid = m.PropertyRefParentGuid; // Clone.tt Line: 221
@@ -9951,11 +9951,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'PropertiesTab' to 'proto_properties_tab'
-        public static Proto.Config.proto_properties_tab ConvertToProto(PropertiesTab vm) // Clone.tt Line: 236
+        // Conversion from 'Detail' to 'proto_detail'
+        public static Proto.Config.proto_detail ConvertToProto(Detail vm) // Clone.tt Line: 236
         {
             Contract.Requires(vm != null);
-            Proto.Config.proto_properties_tab m = new Proto.Config.proto_properties_tab(); // Clone.tt Line: 239
+            Proto.Config.proto_detail m = new Proto.Config.proto_detail(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
@@ -9965,7 +9965,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
-            m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
+            m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.Position = vm.Position; // Clone.tt Line: 276
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
             m.PropertyRefParentGuid = vm.PropertyRefParentGuid; // Clone.tt Line: 276
@@ -9984,7 +9984,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             visitor.Visit(this);
             this.GroupProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.GroupPropertiesTabs.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.GroupDetails.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
@@ -10182,33 +10182,33 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
         }
         private GroupListProperties _GroupProperties;
-        IGroupListProperties IPropertiesTab.GroupProperties { get { return (this as PropertiesTab).GroupProperties; } } // Property.tt Line: 77
+        IGroupListProperties IDetail.GroupProperties { get { return (this as Detail).GroupProperties; } } // Property.tt Line: 77
         partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 79
         partial void OnGroupPropertiesChanged();
-        //IGroupListProperties IPropertiesTab.GroupProperties { get { return this._GroupProperties; } }
+        //IGroupListProperties IDetail.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 55
+        public GroupListDetails GroupDetails // Property.tt Line: 55
         { 
-            get { return this._GroupPropertiesTabs; }
+            get { return this._GroupDetails; }
             set
             {
-                if (this._GroupPropertiesTabs != value)
+                if (this._GroupDetails != value)
                 {
-                    this.OnGroupPropertiesTabsChanging(ref value);
-                    this._GroupPropertiesTabs = value;
-                    this.OnGroupPropertiesTabsChanged();
+                    this.OnGroupDetailsChanging(ref value);
+                    this._GroupDetails = value;
+                    this.OnGroupDetailsChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private GroupListPropertiesTabs _GroupPropertiesTabs;
-        IGroupListPropertiesTabs IPropertiesTab.GroupPropertiesTabs { get { return (this as PropertiesTab).GroupPropertiesTabs; } } // Property.tt Line: 77
-        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 79
-        partial void OnGroupPropertiesTabsChanged();
-        //IGroupListPropertiesTabs IPropertiesTab.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
+        private GroupListDetails _GroupDetails;
+        IGroupListDetails IDetail.GroupDetails { get { return (this as Detail).GroupDetails; } } // Property.tt Line: 77
+        partial void OnGroupDetailsChanging(ref GroupListDetails to); // Property.tt Line: 79
+        partial void OnGroupDetailsChanged();
+        //IGroupListDetails IDetail.GroupDetails { get { return this._GroupDetails; } }
         
         
         ///////////////////////////////////////////////////
@@ -10295,7 +10295,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
         }
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        IReadOnlyList<IPluginGeneratorNodeSettings> IPropertiesTab.ListNodeGeneratorsSettings { get { return (this as PropertiesTab).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
+        IReadOnlyList<IPluginGeneratorNodeSettings> IDetail.ListNodeGeneratorsSettings { get { return (this as Detail).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
@@ -14105,7 +14105,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsValidate = false;
             this.OnInitBegin();
             this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
+            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 33
             this.CodePropertySettings = new CatalogCodePropertySettings(); // Class.tt Line: 31
             this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
             this.OnInit();
@@ -14140,7 +14140,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 62
-                vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
+                vm.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.Clone(vm, from.GroupDetails, isDeep);
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
             vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
@@ -14177,7 +14177,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Update((GroupListPropertiesTabs)to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
+                vSharpStudio.vm.ViewModels.GroupListDetails.Update((GroupListDetails)to.GroupDetails, from.GroupDetails, isDeep);
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
             to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
@@ -14265,9 +14265,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupProperties == null) // Clone.tt Line: 213
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // Clone.tt Line: 219
-            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 213
-                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, (GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 219
+            if (vm.GroupDetails == null) // Clone.tt Line: 213
+                vm.GroupDetails = new GroupListDetails(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToVM(m.GroupDetails, (GroupListDetails)vm.GroupDetails); // Clone.tt Line: 219
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
             vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
             if (vm.CodePropertySettings == null) // Clone.tt Line: 213
@@ -14308,7 +14308,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
-            m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
+            m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
             m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
@@ -14336,7 +14336,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             visitor.Visit(this);
             this.GroupProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.GroupPropertiesTabs.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.GroupDetails.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.CodePropertySettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
@@ -14519,27 +14519,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         //IGroupListProperties ICatalogFolder.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 55
+        public GroupListDetails GroupDetails // Property.tt Line: 55
         { 
-            get { return this._GroupPropertiesTabs; }
+            get { return this._GroupDetails; }
             set
             {
-                if (this._GroupPropertiesTabs != value)
+                if (this._GroupDetails != value)
                 {
-                    this.OnGroupPropertiesTabsChanging(ref value);
-                    this._GroupPropertiesTabs = value;
-                    this.OnGroupPropertiesTabsChanged();
+                    this.OnGroupDetailsChanging(ref value);
+                    this._GroupDetails = value;
+                    this.OnGroupDetailsChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private GroupListPropertiesTabs _GroupPropertiesTabs;
-        IGroupListPropertiesTabs ICatalogFolder.GroupPropertiesTabs { get { return (this as CatalogFolder).GroupPropertiesTabs; } } // Property.tt Line: 77
-        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 79
-        partial void OnGroupPropertiesTabsChanged();
-        //IGroupListPropertiesTabs ICatalogFolder.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
+        private GroupListDetails _GroupDetails;
+        IGroupListDetails ICatalogFolder.GroupDetails { get { return (this as CatalogFolder).GroupDetails; } } // Property.tt Line: 77
+        partial void OnGroupDetailsChanging(ref GroupListDetails to); // Property.tt Line: 79
+        partial void OnGroupDetailsChanged();
+        //IGroupListDetails ICatalogFolder.GroupDetails { get { return this._GroupDetails; } }
         
         [BrowsableAttribute(false)]
         public string PropertyIdGuid // Property.tt Line: 55
@@ -15060,7 +15060,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.CodePropertySettings = new CatalogCodePropertySettings(); // Class.tt Line: 31
             this.Folder = new CatalogFolder(this); // Class.tt Line: 33
             this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
+            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 33
             this.GroupForms = new GroupListForms(this); // Class.tt Line: 33
             this.GroupReports = new GroupListReports(this); // Class.tt Line: 33
             this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
@@ -15120,7 +15120,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 62
-                vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
+                vm.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.Clone(vm, from.GroupDetails, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -15176,7 +15176,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Update((GroupListPropertiesTabs)to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
+                vSharpStudio.vm.ViewModels.GroupListDetails.Update((GroupListDetails)to.GroupDetails, from.GroupDetails, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -15291,9 +15291,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupProperties == null) // Clone.tt Line: 213
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // Clone.tt Line: 219
-            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 213
-                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, (GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 219
+            if (vm.GroupDetails == null) // Clone.tt Line: 213
+                vm.GroupDetails = new GroupListDetails(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToVM(m.GroupDetails, (GroupListDetails)vm.GroupDetails); // Clone.tt Line: 219
             if (vm.GroupForms == null) // Clone.tt Line: 213
                 vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, (GroupListForms)vm.GroupForms); // Clone.tt Line: 219
@@ -15358,7 +15358,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
             m.Folder = vSharpStudio.vm.ViewModels.CatalogFolder.ConvertToProto((CatalogFolder)vm.Folder); // Clone.tt Line: 270
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
-            m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
+            m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
             foreach (var t in vm.ListGuidViewProperties) // Clone.tt Line: 242
@@ -15384,7 +15384,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
             this.GroupProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.GroupPropertiesTabs.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.GroupDetails.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupForms.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
@@ -16058,27 +16058,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         //IGroupListProperties ICatalog.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 55
+        public GroupListDetails GroupDetails // Property.tt Line: 55
         { 
-            get { return this._GroupPropertiesTabs; }
+            get { return this._GroupDetails; }
             set
             {
-                if (this._GroupPropertiesTabs != value)
+                if (this._GroupDetails != value)
                 {
-                    this.OnGroupPropertiesTabsChanging(ref value);
-                    this._GroupPropertiesTabs = value;
-                    this.OnGroupPropertiesTabsChanged();
+                    this.OnGroupDetailsChanging(ref value);
+                    this._GroupDetails = value;
+                    this.OnGroupDetailsChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private GroupListPropertiesTabs _GroupPropertiesTabs;
-        IGroupListPropertiesTabs ICatalog.GroupPropertiesTabs { get { return (this as Catalog).GroupPropertiesTabs; } } // Property.tt Line: 77
-        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 79
-        partial void OnGroupPropertiesTabsChanged();
-        //IGroupListPropertiesTabs ICatalog.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
+        private GroupListDetails _GroupDetails;
+        IGroupListDetails ICatalog.GroupDetails { get { return (this as Catalog).GroupDetails; } } // Property.tt Line: 77
+        partial void OnGroupDetailsChanging(ref GroupListDetails to); // Property.tt Line: 79
+        partial void OnGroupDetailsChanged();
+        //IGroupListDetails ICatalog.GroupDetails { get { return this._GroupDetails; } }
         
         [BrowsableAttribute(false)]
         public GroupListForms GroupForms // Property.tt Line: 55
@@ -17626,7 +17626,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsValidate = false;
             this.OnInitBegin();
             this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
-            this.GroupPropertiesTabs = new GroupListPropertiesTabs(this); // Class.tt Line: 33
+            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 33
             this.GroupForms = new GroupListForms(this); // Class.tt Line: 33
             this.GroupReports = new GroupListReports(this); // Class.tt Line: 33
             this.CodePropertySettings = new DocumentCodePropertySettings(); // Class.tt Line: 31
@@ -17663,7 +17663,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 62
-                vm.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Clone(vm, from.GroupPropertiesTabs, isDeep);
+                vm.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.Clone(vm, from.GroupDetails, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -17698,7 +17698,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.Update((GroupListPropertiesTabs)to.GroupPropertiesTabs, from.GroupPropertiesTabs, isDeep);
+                vSharpStudio.vm.ViewModels.GroupListDetails.Update((GroupListDetails)to.GroupDetails, from.GroupDetails, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -17784,9 +17784,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupProperties == null) // Clone.tt Line: 213
                 vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // Clone.tt Line: 219
-            if (vm.GroupPropertiesTabs == null) // Clone.tt Line: 213
-                vm.GroupPropertiesTabs = new GroupListPropertiesTabs(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToVM(m.GroupPropertiesTabs, (GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 219
+            if (vm.GroupDetails == null) // Clone.tt Line: 213
+                vm.GroupDetails = new GroupListDetails(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToVM(m.GroupDetails, (GroupListDetails)vm.GroupDetails); // Clone.tt Line: 219
             if (vm.GroupForms == null) // Clone.tt Line: 213
                 vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, (GroupListForms)vm.GroupForms); // Clone.tt Line: 219
@@ -17827,7 +17827,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
-            m.GroupPropertiesTabs = vSharpStudio.vm.ViewModels.GroupListPropertiesTabs.ConvertToProto((GroupListPropertiesTabs)vm.GroupPropertiesTabs); // Clone.tt Line: 270
+            m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
@@ -17851,7 +17851,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             visitor.Visit(this);
             this.GroupProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.GroupPropertiesTabs.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.GroupDetails.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupForms.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
@@ -18036,27 +18036,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         //IGroupListProperties IDocument.GroupProperties { get { return this._GroupProperties; } }
         
         [BrowsableAttribute(false)]
-        public GroupListPropertiesTabs GroupPropertiesTabs // Property.tt Line: 55
+        public GroupListDetails GroupDetails // Property.tt Line: 55
         { 
-            get { return this._GroupPropertiesTabs; }
+            get { return this._GroupDetails; }
             set
             {
-                if (this._GroupPropertiesTabs != value)
+                if (this._GroupDetails != value)
                 {
-                    this.OnGroupPropertiesTabsChanging(ref value);
-                    this._GroupPropertiesTabs = value;
-                    this.OnGroupPropertiesTabsChanged();
+                    this.OnGroupDetailsChanging(ref value);
+                    this._GroupDetails = value;
+                    this.OnGroupDetailsChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private GroupListPropertiesTabs _GroupPropertiesTabs;
-        IGroupListPropertiesTabs IDocument.GroupPropertiesTabs { get { return (this as Document).GroupPropertiesTabs; } } // Property.tt Line: 77
-        partial void OnGroupPropertiesTabsChanging(ref GroupListPropertiesTabs to); // Property.tt Line: 79
-        partial void OnGroupPropertiesTabsChanged();
-        //IGroupListPropertiesTabs IDocument.GroupPropertiesTabs { get { return this._GroupPropertiesTabs; } }
+        private GroupListDetails _GroupDetails;
+        IGroupListDetails IDocument.GroupDetails { get { return (this as Document).GroupDetails; } } // Property.tt Line: 77
+        partial void OnGroupDetailsChanging(ref GroupListDetails to); // Property.tt Line: 79
+        partial void OnGroupDetailsChanged();
+        //IGroupListDetails IDocument.GroupDetails { get { return this._GroupDetails; } }
         
         [BrowsableAttribute(false)]
         public GroupListForms GroupForms // Property.tt Line: 55
@@ -22653,8 +22653,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_group_list_roles p);
         void Visit(Proto.Config.proto_main_view_form p);
         void Visit(Proto.Config.proto_group_list_main_view_forms p);
-        void Visit(Proto.Config.proto_group_list_properties_tabs p);
-        void Visit(Proto.Config.proto_properties_tab p);
+        void Visit(Proto.Config.proto_group_list_details p);
+        void Visit(Proto.Config.proto_detail p);
         void Visit(Proto.Config.proto_group_list_properties p);
         void Visit(Proto.Config.proto_property p);
         void Visit(Proto.Config.proto_group_constant_groups p);
@@ -22977,22 +22977,22 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(GroupListPropertiesTabs p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(GroupListDetails p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(GroupListPropertiesTabs p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(GroupListDetails p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(PropertiesTab p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(Detail p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
-        protected override void OnVisitEnd(PropertiesTab p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(Detail p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
@@ -23595,26 +23595,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(GroupListMainViewForms p) { }
         protected virtual void OnVisitEnd(GroupListMainViewForms p) { }
-        public void Visit(GroupListPropertiesTabs p)
+        public void Visit(GroupListDetails p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(GroupListPropertiesTabs p)
+        public void VisitEnd(GroupListDetails p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(GroupListPropertiesTabs p) { }
-        protected virtual void OnVisitEnd(GroupListPropertiesTabs p) { }
-        public void Visit(PropertiesTab p)
+        protected virtual void OnVisit(GroupListDetails p) { }
+        protected virtual void OnVisitEnd(GroupListDetails p) { }
+        public void Visit(Detail p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(PropertiesTab p)
+        public void VisitEnd(Detail p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(PropertiesTab p) { }
-        protected virtual void OnVisitEnd(PropertiesTab p) { }
+        protected virtual void OnVisit(Detail p) { }
+        protected virtual void OnVisitEnd(Detail p) { }
         public void Visit(GroupListProperties p)
         {
             this.OnVisit(p);
@@ -23934,10 +23934,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void VisitEnd(MainViewForm p);
         void Visit(GroupListMainViewForms p);
         void VisitEnd(GroupListMainViewForms p);
-        void Visit(GroupListPropertiesTabs p);
-        void VisitEnd(GroupListPropertiesTabs p);
-        void Visit(PropertiesTab p);
-        void VisitEnd(PropertiesTab p);
+        void Visit(GroupListDetails p);
+        void VisitEnd(GroupListDetails p);
+        void Visit(Detail p);
+        void VisitEnd(Detail p);
         void Visit(GroupListProperties p);
         void VisitEnd(GroupListProperties p);
         void Visit(Property p);

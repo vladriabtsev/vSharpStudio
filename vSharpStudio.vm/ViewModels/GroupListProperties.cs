@@ -38,9 +38,9 @@ namespace vSharpStudio.vm.ViewModels
                 var p = this.Parent as Document;
                 return p.Children;
             }
-            else if (this.Parent is PropertiesTab)
+            else if (this.Parent is Detail)
             {
-                var p = this.Parent as PropertiesTab;
+                var p = this.Parent as Detail;
                 return p.Children;
             }
             else if (this.Parent is GroupDocuments)
@@ -257,7 +257,7 @@ namespace vSharpStudio.vm.ViewModels
                     this.LastGenPosition = 12;
 
                 }
-                else if (this.Parent is PropertiesTab)
+                else if (this.Parent is Detail)
                 {
                     this.LastGenPosition = 7;
                 }

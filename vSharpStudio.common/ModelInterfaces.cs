@@ -448,18 +448,18 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface IGroupListPropertiesTabs : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IGroupListDetails : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
-    	IReadOnlyList<IPropertiesTab> ListPropertiesTabs { get; } // ModelInterfaces.tt Line: 44
-    	IPropertiesTab this[int index] { get; }
+    	IReadOnlyList<IDetail> ListDetails { get; } // ModelInterfaces.tt Line: 44
+    	IDetail this[int index] { get; }
     	int Count();
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface IPropertiesTab : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IDetail : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
@@ -472,7 +472,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position
@@ -616,7 +616,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
@@ -670,7 +670,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
     	ICatalogFolder Folder { get; } // ModelInterfaces.tt Line: 55
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
@@ -730,7 +730,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListPropertiesTabs GroupPropertiesTabs { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51

@@ -64,10 +64,10 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IGroupListProperties cn) { }
         protected virtual void BeginVisit(IProperty p) { }
         protected virtual void EndVisit(IProperty p) { }
-        protected virtual void BeginVisit(IGroupListPropertiesTabs cn) { }
-        protected virtual void EndVisit(IGroupListPropertiesTabs cn) { }
-        protected virtual void BeginVisit(IPropertiesTab t) { }
-        protected virtual void EndVisit(IPropertiesTab t) { }
+        protected virtual void BeginVisit(IGroupListDetails cn) { }
+        protected virtual void EndVisit(IGroupListDetails cn) { }
+        protected virtual void BeginVisit(IDetail t) { }
+        protected virtual void EndVisit(IDetail t) { }
         protected virtual void BeginVisit(IGroupListForms cn) { }
         protected virtual void EndVisit(IGroupListForms cn) { }
         protected virtual void BeginVisit(IForm p) { }
@@ -113,7 +113,7 @@ namespace vSharpStudio.common
             }
             this.EndVisit(parent);
         }
-        private void VisitPropertiesTabs(IGroupListPropertiesTabs parent, IEnumerable<IPropertiesTab> lst)
+        private void VisitDetails(IGroupListDetails parent, IEnumerable<IDetail> lst)
         {
             this.BeginVisit(parent);
             if (_act != null)
@@ -127,7 +127,7 @@ namespace vSharpStudio.common
                 if (_act != null)
                     _act(this, t);
                 this.VisitProperties(t.GroupProperties, t.GroupProperties.ListProperties);
-                this.VisitPropertiesTabs(t.GroupPropertiesTabs, t.GroupPropertiesTabs.ListPropertiesTabs);
+                this.VisitDetails(t.GroupDetails, t.GroupDetails.ListDetails);
                 this.currPropTabStack.Pop();
                 this.EndVisit(t);
             }
@@ -174,10 +174,10 @@ namespace vSharpStudio.common
         protected ICatalog currCat = null;
         protected IDocument currDoc = null;
         protected vSharpStudio.common.IProperty currProp = null;
-        protected Stack<IPropertiesTab> currPropTabStack = new Stack<IPropertiesTab>();
+        protected Stack<IDetail> currPropTabStack = new Stack<IDetail>();
         protected Action<ModelVisitorBase, ITreeConfigNode> _act = null;
         // 0 - previous, 1 - previous of previous
-        protected IPropertiesTab GetPropertiesTabFromStack(int level)
+        protected IDetail GetPropertiesTabFromStack(int level)
         {
             if (this.currPropTabStack.Count < level)
                 throw new Exception();
@@ -185,7 +185,7 @@ namespace vSharpStudio.common
             return this.currPropTabStack.ToArray()[this.currPropTabStack.Count - level - 1];
         }
 
-        protected IPropertiesTab currPropTab => this.currPropTabStack.Peek();
+        protected IDetail currPropTab => this.currPropTabStack.Peek();
 
         public void Run(IModel model, Action<ModelVisitorBase, ITreeConfigNode> act = null)
         {
@@ -289,10 +289,10 @@ namespace vSharpStudio.common
                 if (_act != null)
                     _act(this, tt.Folder);
                 this.VisitProperties(tt.Folder.GroupProperties, tt.Folder.GroupProperties.ListProperties);
-                this.VisitPropertiesTabs(tt.Folder.GroupPropertiesTabs, tt.Folder.GroupPropertiesTabs.ListPropertiesTabs);
+                this.VisitDetails(tt.Folder.GroupDetails, tt.Folder.GroupDetails.ListDetails);
                 this.EndVisit(tt.Folder);
                 this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties);
-                this.VisitPropertiesTabs(tt.GroupPropertiesTabs, tt.GroupPropertiesTabs.ListPropertiesTabs);
+                this.VisitDetails(tt.GroupDetails, tt.GroupDetails.ListDetails);
                 this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms);
                 this.VisitReports(tt.GroupReports, tt.GroupReports.ListReports);
                 this.EndVisit(tt);
@@ -320,7 +320,7 @@ namespace vSharpStudio.common
                 //if (tt.IsDeleted())
                 //    continue;
                 this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties);
-                this.VisitPropertiesTabs(tt.GroupPropertiesTabs, tt.GroupPropertiesTabs.ListPropertiesTabs);
+                this.VisitDetails(tt.GroupDetails, tt.GroupDetails.ListDetails);
                 this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms);
                 this.VisitReports(tt.GroupReports, tt.GroupReports.ListReports);
                 this.EndVisit(tt);
@@ -345,7 +345,7 @@ namespace vSharpStudio.common
                 //    continue;
                 //this.VisitProperties(currModel.GroupDocuments.GroupSharedProperties, sharedProps);
                 //this.VisitProperties(tt.GroupProperties, tt.GroupProperties.ListProperties);
-                //this.VisitPropertiesTabs(tt.GroupPropertiesTabs, tt.GroupPropertiesTabs.ListPropertiesTabs);
+                //this.VisitDetails(tt.GroupDetails, tt.GroupDetails.ListDetails);
                 //this.VisitForms(tt.GroupForms, tt.GroupForms.ListForms);
                 //this.VisitReports(tt.GroupReports, tt.GroupReports.ListReports);
                 //this.currDoc = null;

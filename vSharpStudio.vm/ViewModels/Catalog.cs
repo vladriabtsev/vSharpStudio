@@ -50,7 +50,7 @@ namespace vSharpStudio.vm.ViewModels
 #endif
             this.Folder.Parent = this;
             this.GroupProperties.Parent = this;
-            this.GroupPropertiesTabs.Parent = this;
+            this.GroupDetails.Parent = this;
             this.GroupForms.Parent = this;
             this.GroupReports.Parent = this;
             this.ItemIconType = EnumCatalogTreeIcon.None;
@@ -90,7 +90,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.Children.Add(this.Folder, 2);
             }
             this.Children.Add(this.GroupProperties, 3);
-            this.Children.Add(this.GroupPropertiesTabs, 4);
+            this.Children.Add(this.GroupDetails, 4);
             this.Children.Add(this.GroupForms, 5);
             this.Children.Add(this.GroupReports, 6);
             this.CodePropertySettings.Parent = this;
@@ -100,7 +100,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
             this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
+            this.GroupDetails.AddAllAppGenSettingsVmsToNode();
             this.GroupForms.AddAllAppGenSettingsVmsToNode();
             this.GroupReports.AddAllAppGenSettingsVmsToNode();
         }
@@ -121,10 +121,10 @@ namespace vSharpStudio.vm.ViewModels
                 this.GroupProperties.ListProperties.Add(t);
             }
         }
-        public PropertiesTab AddPropertiesTab(string name)
+        public Detail AddPropertiesTab(string name)
         {
-            var node = new PropertiesTab(this.GroupPropertiesTabs) { Name = name };
-            this.GroupPropertiesTabs.NodeAddNewSubNode(node);
+            var node = new Detail(this.GroupDetails) { Name = name };
+            this.GroupDetails.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddProperty(string name)
@@ -672,10 +672,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjDbGen)
+        public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen)
         {
-            var res = new List<IPropertiesTab>();
-            foreach (var t in this.GroupPropertiesTabs.ListPropertiesTabs)
+            var res = new List<IDetail>();
+            foreach (var t in this.GroupDetails.ListDetails)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
                 {
@@ -684,10 +684,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IPropertiesTab> GetIncludedFolderPropertiesTabs(string guidAppPrjDbGen)
+        public IReadOnlyList<IDetail> GetIncludedFolderDetails(string guidAppPrjDbGen)
         {
-            var res = new List<IPropertiesTab>();
-            foreach (var t in this.Folder.GroupPropertiesTabs.ListPropertiesTabs)
+            var res = new List<IDetail>();
+            foreach (var t in this.Folder.GroupDetails.ListDetails)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
                 {

@@ -21,7 +21,7 @@ namespace vSharpStudio.vm.ViewModels
                 var c = (Catalog)p.Parent;
                 if (c.UseTree && c.UseSeparateTreeForFolders)
                 {
-                    foreach (var t in c.GroupPropertiesTabs.ListPropertiesTabs)
+                    foreach (var t in c.GroupDetails.ListDetails)
                     {
                         if (name == t.Name)
                         {

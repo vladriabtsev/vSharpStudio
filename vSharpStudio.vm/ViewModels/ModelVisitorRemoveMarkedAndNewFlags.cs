@@ -103,10 +103,10 @@ namespace vSharpStudio.vm.ViewModels
                 t.IsNew = false;
             }
         }
-        protected override void EndVisit(IGroupListPropertiesTabs cn)
+        protected override void EndVisit(IGroupListDetails cn)
         {
-            var p = (GroupListPropertiesTabs)cn;
-            foreach (var t in p.ListPropertiesTabs)
+            var p = (GroupListDetails)cn;
+            foreach (var t in p.ListDetails)
             {
                 t.IsMarkedForDeletion = false;
                 t.IsNew = false;

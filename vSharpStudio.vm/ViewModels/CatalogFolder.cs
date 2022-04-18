@@ -56,7 +56,7 @@ namespace vSharpStudio.vm.ViewModels
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
             this.GroupProperties.Parent = this;
-            this.GroupPropertiesTabs.Parent = this;
+            this.GroupDetails.Parent = this;
             this.CodePropertySettings.Parent = this;
             this.RefillChildren();
         }
@@ -70,14 +70,14 @@ namespace vSharpStudio.vm.ViewModels
             VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
             this.Children.Add(this.GroupProperties, 3);
-            this.Children.Add(this.GroupPropertiesTabs, 4);
+            this.Children.Add(this.GroupDetails, 4);
             VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
             this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
+            this.GroupDetails.AddAllAppGenSettingsVmsToNode();
         }
 
         public CatalogFolder(ITreeConfigNode parent, string name)
@@ -96,10 +96,10 @@ namespace vSharpStudio.vm.ViewModels
                 this.GroupProperties.ListProperties.Add(t);
             }
         }
-        public PropertiesTab AddPropertiesTab(string name)
+        public Detail AddPropertiesTab(string name)
         {
-            var node = new PropertiesTab(this.GroupPropertiesTabs) { Name = name };
-            this.GroupPropertiesTabs.NodeAddNewSubNode(node);
+            var node = new Detail(this.GroupDetails) { Name = name };
+            this.GroupDetails.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddProperty(string name)
@@ -173,10 +173,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen)
+        public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
         {
-            var res = new List<IPropertiesTab>();
-            foreach (var t in this.GroupPropertiesTabs.ListPropertiesTabs)
+            var res = new List<IDetail>();
+            foreach (var t in this.GroupDetails.ListDetails)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {

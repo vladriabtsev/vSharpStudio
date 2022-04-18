@@ -6,19 +6,19 @@ using FluentValidation.Results;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class PropertiesTabValidator
+    public partial class DetailValidator
     {
-        public PropertiesTabValidator()
+        public DetailValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Custom((name, cntx) =>
             {
-                var p = (PropertiesTab)cntx.InstanceToValidate;
+                var p = (Detail)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
-                var pg = (GroupListPropertiesTabs)p.Parent;
+                var pg = (GroupListDetails)p.Parent;
                 //if (pg.Parent == null)
                 //    return;
                 if (pg.Parent is Catalog)
@@ -35,7 +35,7 @@ namespace vSharpStudio.vm.ViewModels
                         }
                     }
                 }
-                foreach (var t in pg.ListPropertiesTabs)
+                foreach (var t in pg.ListDetails)
                 {
                     if ((p.Guid != t.Guid) && (name == t.Name))
                     {

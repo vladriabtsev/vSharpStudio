@@ -91,12 +91,12 @@ namespace vSharpStudio.vm.ViewModels
             if (d is INodeGenSettings)
                 _act(d as INodeGenSettings);
         }
-        protected override void BeginVisit(IGroupListPropertiesTabs t)
+        protected override void BeginVisit(IGroupListDetails t)
         {
             if (t is INodeGenSettings)
                 _act(t as INodeGenSettings);
         }
-        protected override void BeginVisit(IPropertiesTab t)
+        protected override void BeginVisit(IDetail t)
         {
             if (t is INodeGenSettings)
                 _act(t as INodeGenSettings);

@@ -49,7 +49,7 @@ namespace vSharpStudio.vm.ViewModels
                     dic[t.CompositeName] = t;
                 }
                 if (isCheckTabs)
-                    CheckTabs(cntx, dic, t.GroupPropertiesTabs, recom);
+                    CheckTabs(cntx, dic, t.GroupDetails, recom);
             }
             foreach (var t in m.GroupDocuments.GroupListDocuments.ListDocuments)
             {
@@ -67,13 +67,13 @@ namespace vSharpStudio.vm.ViewModels
                     dic[t.CompositeName] = t;
                 }
                 if (isCheckTabs)
-                    CheckTabs(cntx, dic, t.GroupPropertiesTabs, recom);
+                    CheckTabs(cntx, dic, t.GroupDetails, recom);
             }
         }
 
-        private static void CheckTabs(ValidationContext<Model> cntx, Dictionary<string, ITreeConfigNode> dic, IGroupListPropertiesTabs tabs, string recom)
+        private static void CheckTabs(ValidationContext<Model> cntx, Dictionary<string, ITreeConfigNode> dic, IGroupListDetails tabs, string recom)
         {
-            foreach (var t in tabs.ListPropertiesTabs)
+            foreach (var t in tabs.ListDetails)
             {
                 if (string.IsNullOrWhiteSpace(t.CompositeName))
                     continue;
@@ -88,7 +88,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     dic[t.CompositeName] = t;
                 }
-                CheckTabs(cntx, dic, t.GroupPropertiesTabs, recom);
+                CheckTabs(cntx, dic, t.GroupDetails, recom);
             }
         }
         private static StringBuilder GenMessage(Dictionary<string, ITreeConfigNode> dic, ITreeConfigNode t, string tablename)
@@ -118,7 +118,7 @@ namespace vSharpStudio.vm.ViewModels
                 sb.Append("document '");
 
             }
-            else if (prev is PropertiesTab)
+            else if (prev is Detail)
             {
                 sb.Append("properties tab '");
 

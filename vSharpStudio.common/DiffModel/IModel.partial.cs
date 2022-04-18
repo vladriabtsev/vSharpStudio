@@ -55,7 +55,7 @@ namespace vSharpStudio.common
         //string GetIdFieldName(IvPluginDbGenerator dbGen);
         //string GetIdFieldGuid();
 
-        //IReadOnlyList<IPropertiesTab> GetListPropertiesTabs(ITreeConfigNode node, string guidAppPrjGen);
+        //IReadOnlyList<IDetail> GetListDetails(ITreeConfigNode node, string guidAppPrjGen);
         //IReadOnlyList<IProperty> GetGroupProperties(IGroupListProperties g, string guidAppPrjGen);
         //IReadOnlyList<IProperty> GetListDocSharedProperties(string guidAppPrjGen);
         //IReadOnlyList<IProperty> GetListProperties(ITreeConfigNode node, string guidAppPrjGen);
@@ -64,7 +64,7 @@ namespace vSharpStudio.common
         IReadOnlyList<IGroupListConstants> GetListConstantGroups(string guidAppPrjGen);
         IReadOnlyList<IConstant> GetListConstants(IGroupListConstants group, string guidAppPrjGen);
         IReadOnlyList<ICatalog> GetListCatalogs(string guidAppPrjGen);
-        //IReadOnlyList<IPropertiesTab> GetListTabs(ITreeConfigNode node, string guidAppPrjGen);
+        //IReadOnlyList<IDetail> GetListTabs(ITreeConfigNode node, string guidAppPrjGen);
         IReadOnlyList<IDocument> GetListDocuments(string guidAppPrjGen);
         void VisitTabs(string appGenGuig, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action);
     }

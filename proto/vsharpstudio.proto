@@ -803,7 +803,7 @@ message proto_group_list_main_view_forms {
  * @exclude
  * ####################################### P R O P E R T Y ##########################################
  */
-message proto_group_list_properties_tabs {
+message proto_group_list_details {
     // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
@@ -816,11 +816,11 @@ message proto_group_list_properties_tabs {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
-    repeated proto_properties_tab list_properties_tabs = 6;
+    repeated proto_detail list_details = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-message proto_properties_tab {
+message proto_detail {
     // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
@@ -843,7 +843,7 @@ message proto_properties_tab {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties group_properties = 13;
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_properties_tabs group_properties_tabs = 14;
+    proto_group_list_details group_details = 14;
 
     // Protobuf field position
     // Reserved positions: 1 - primary key
@@ -1126,7 +1126,7 @@ message proto_catalog_folder {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties group_properties = 15;
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_properties_tabs group_properties_tabs = 16;
+    proto_group_list_details group_details = 16;
 
     // @attr [BrowsableAttribute(false)]
     string property_id_guid = 20;
@@ -1299,7 +1299,7 @@ message proto_catalog {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties group_properties = 82;
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_properties_tabs group_properties_tabs = 83;
+    proto_group_list_details group_details = 83;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_forms group_forms = 84;
     // @attr [BrowsableAttribute(false)]
@@ -1460,7 +1460,7 @@ message proto_document {
     // @attr [BrowsableAttribute(false)]
     proto_group_list_properties group_properties = 14;
     // @attr [BrowsableAttribute(false)]
-    proto_group_list_properties_tabs group_properties_tabs = 15;
+    proto_group_list_details group_details = 15;
     // @attr [BrowsableAttribute(false)]
     proto_group_list_forms group_forms = 17;
     // @attr [BrowsableAttribute(false)]

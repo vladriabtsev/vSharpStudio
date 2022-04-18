@@ -389,7 +389,7 @@
             string prefix = "";
             foreach (var t in lst)
             {
-                if (t is IPropertiesTab)
+                if (t is IDetail)
                 {
                     sb.Append(t.Name);
                 }

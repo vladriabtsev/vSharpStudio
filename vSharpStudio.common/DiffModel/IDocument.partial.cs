@@ -12,7 +12,7 @@ namespace vSharpStudio.common
         IReadOnlyList<IProperty> GetAllProperties();
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen);
         IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen);
-        IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen);
+        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
         IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
     }
 }

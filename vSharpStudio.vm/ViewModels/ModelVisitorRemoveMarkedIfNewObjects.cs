@@ -146,17 +146,17 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        protected override void EndVisit(IGroupListPropertiesTabs cn)
+        protected override void EndVisit(IGroupListDetails cn)
         {
-            var p = (GroupListPropertiesTabs)cn;
+            var p = (GroupListDetails)cn;
             if (p.IsHasMarkedForDeletion && p.IsHasNew)
             {
-                var lst = p.ListPropertiesTabs.ToList();
+                var lst = p.ListDetails.ToList();
                 foreach (var t in lst)
                 {
                     if (t.IsMarkedForDeletion && t.IsNew)
                     {
-                        p.ListPropertiesTabs.Remove(t);
+                        p.ListDetails.Remove(t);
                     }
                 }
             }

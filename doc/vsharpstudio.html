@@ -231,6 +231,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_detail"><span class="badge">M</span>proto_detail</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_document"><span class="badge">M</span>proto_document</a>
                 </li>
               
@@ -307,6 +311,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_group_list_details"><span class="badge">M</span>proto_group_list_details</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_group_list_documents"><span class="badge">M</span>proto_group_list_documents</a>
                 </li>
               
@@ -332,10 +340,6 @@
               
                 <li>
                   <a href="#proto_config.proto_group_list_properties"><span class="badge">M</span>proto_group_list_properties</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_group_list_properties_tabs"><span class="badge">M</span>proto_group_list_properties_tabs</a>
                 </li>
               
                 <li>
@@ -388,10 +392,6 @@
               
                 <li>
                   <a href="#proto_config.proto_plugin_group_generators_settings"><span class="badge">M</span>proto_plugin_group_generators_settings</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_properties_tab"><span class="badge">M</span>proto_properties_tab</a>
                 </li>
               
                 <li>
@@ -1311,8 +1311,8 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>group_properties_tabs</td>
-                  <td><a href="#proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</a></td>
+                  <td>group_details</td>
+                  <td><a href="#proto_config.proto_group_list_details">proto_group_list_details</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -1482,8 +1482,8 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>group_properties_tabs</td>
-                  <td><a href="#proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</a></td>
+                  <td>group_details</td>
+                  <td><a href="#proto_config.proto_group_list_details">proto_group_list_details</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -1909,6 +1909,125 @@ Generator output file name </p></td>
 
         
       
+        <h3 id="proto_config.proto_detail">proto_detail</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_index_fk</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Create Index for foreign key navigation property
+@attr [PropertyOrderAttribute(5)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_properties</td>
+                  <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_details</td>
+                  <td><a href="#proto_config.proto_group_list_details">proto_group_list_details</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>position</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Protobuf field position
+Reserved positions: 1 - primary key
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_ref_parent_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_document">proto_document</h3>
         <p></p>
 
@@ -1977,8 +2096,8 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>group_properties_tabs</td>
-                  <td><a href="#proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</a></td>
+                  <td>group_details</td>
+                  <td><a href="#proto_config.proto_group_list_details">proto_group_list_details</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -3344,6 +3463,73 @@ Generator output file name </p></td>
 
         
       
+        <h3 id="proto_config.proto_group_list_details">proto_group_list_details</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_details</td>
+                  <td><a href="#proto_config.proto_detail">proto_detail</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_group_list_documents">proto_group_list_documents</h3>
         <p></p>
 
@@ -3786,73 +3972,6 @@ Generator output file name </p></td>
                   <td></td>
                   <td><p>Last generated Protobuf field position
 @attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_node_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name_ui</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_properties_tabs</td>
-                  <td><a href="#proto_config.proto_properties_tab">proto_properties_tab</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -4731,125 +4850,6 @@ Generator output file name </p></td>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_properties_tab">proto_properties_tab</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name_ui</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_index_fk</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>Create Index for foreign key navigation property
-@attr [PropertyOrderAttribute(5)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_new</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_marked_for_deletion</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_properties</td>
-                  <td><a href="#proto_config.proto_group_list_properties">proto_group_list_properties</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>group_properties_tabs</td>
-                  <td><a href="#proto_config.proto_group_list_properties_tabs">proto_group_list_properties_tabs</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>position</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>Protobuf field position
-Reserved positions: 1 - primary key
-@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_id_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_ref_parent_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_node_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
-                  <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               

@@ -241,8 +241,8 @@ namespace vSharpStudio.vm.ViewModels
                     yield return tt;
                 }
 
-                yield return t.GroupPropertiesTabs;
-                foreach (var tt in t.GroupPropertiesTabs.ListPropertiesTabs)
+                yield return t.GroupDetails;
+                foreach (var tt in t.GroupDetails.ListDetails)
                 {
                     yield return tt;
                     yield return tt.GroupProperties;
@@ -280,8 +280,8 @@ namespace vSharpStudio.vm.ViewModels
                     yield return tt;
                 }
 
-                yield return t.GroupPropertiesTabs;
-                foreach (var tt in this.GetTabNodes(t.GroupPropertiesTabs as GroupListPropertiesTabs))
+                yield return t.GroupDetails;
+                foreach (var tt in this.GetTabNodes(t.GroupDetails as GroupListDetails))
                 {
                     yield return tt;
                 }
@@ -305,9 +305,9 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
 
-        private IEnumerable<ITreeConfigNode> GetTabNodes(GroupListPropertiesTabs tab)
+        private IEnumerable<ITreeConfigNode> GetTabNodes(GroupListDetails tab)
         {
-            foreach (var tt in tab.ListPropertiesTabs)
+            foreach (var tt in tab.ListDetails)
             {
                 yield return tt;
                 yield return tt.GroupProperties;
@@ -316,8 +316,8 @@ namespace vSharpStudio.vm.ViewModels
                     yield return ttt;
                 }
 
-                yield return tt.GroupPropertiesTabs;
-                foreach (var ttt in this.GetTabNodes(tt.GroupPropertiesTabs as GroupListPropertiesTabs))
+                yield return tt.GroupDetails;
+                foreach (var ttt in this.GetTabNodes(tt.GroupDetails as GroupListDetails))
                 {
                     yield return tt;
                 }
@@ -798,9 +798,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void VisitTabs(string appGenGuig, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action)
         {
-            if (p is IPropertiesTab)
+            if (p is IDetail)
             {
-                this.VisitTabs(appGenGuig, p as IPropertiesTab, action, typeOp);
+                this.VisitTabs(appGenGuig, p as IDetail, action, typeOp);
             }
             else if (p is ICatalog)
             {
@@ -822,7 +822,7 @@ namespace vSharpStudio.vm.ViewModels
                 throw new ArgumentException();
             }
         }
-        private void TabsRecursive(string appGenGuig, IReadOnlyList<IPropertiesTab> lstt, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst)
+        private void TabsRecursive(string appGenGuig, IReadOnlyList<IDetail> lstt, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst)
         {
             foreach (var t in lstt)
             {
@@ -844,7 +844,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     if (lstReverse.Count > 0)
                         action(lstReverse);
-                    var lstt2 = t.GetIncludedPropertiesTabs(appGenGuig);
+                    var lstt2 = t.GetIncludedDetails(appGenGuig);
                     TabsRecursive(appGenGuig, lstt2, action, typeOp, lst);
                     lst.Remove(ti);
                 }
@@ -856,7 +856,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         lstReverse.Add(lst[i]);
                     }
-                    var lstt2 = t.GetIncludedPropertiesTabs(appGenGuig);
+                    var lstt2 = t.GetIncludedDetails(appGenGuig);
                     TabsRecursive(appGenGuig, lstt2, action, typeOp, lst);
                     if (lstReverse.Count > 0)
                         action(lstReverse);
@@ -872,7 +872,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (lst == null)
                 lst = new List<TableInfo>();
-            var lstt = p.GetIncludedPropertiesTabs(appGenGuig);
+            var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
             TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
@@ -881,7 +881,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (lst == null)
                 lst = new List<TableInfo>();
-            var lstt = p.GetIncludedPropertiesTabs(appGenGuig);
+            var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
             TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
@@ -890,16 +890,16 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (lst == null)
                 lst = new List<TableInfo>();
-            var lstt = p.GetIncludedPropertiesTabs(appGenGuig);
+            var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
             TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
         }
-        private void VisitTabs(string appGenGuig, IPropertiesTab p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
+        private void VisitTabs(string appGenGuig, IDetail p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
         {
             if (lst == null)
                 lst = new List<TableInfo>();
-            var lstt = p.GetIncludedPropertiesTabs(appGenGuig);
+            var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
             TabsRecursive(appGenGuig, lstt, action, typeOp, lst);

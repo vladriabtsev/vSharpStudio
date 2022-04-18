@@ -9,8 +9,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} tabs:{GroupPropertiesTabs.ListPropertiesTabs.Count,nq}")]
-    public partial class PropertiesTab : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
+    [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} tabs:{GroupDetails.ListDetails.Count,nq}")]
+    public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
         public static readonly string DefaultName = "Tab";
 
@@ -21,7 +21,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListPropertiesTabs;
+            var p = this.Parent as GroupListDetails;
             return p.Children;
         }
         public override bool HasChildren()
@@ -56,16 +56,16 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupProperties, 7);
             VmBindable.IsNotifyingStatic = true;
 
-            this.GroupPropertiesTabs.Parent = this;
+            this.GroupDetails.Parent = this;
             this.GroupProperties.ListProperties.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
-            this.GroupPropertiesTabs.ListPropertiesTabs.OnAddedAction = (t) =>
+            this.GroupDetails.ListDetails.OnAddedAction = (t) =>
             {
                 t.OnAdded();
             };
-            this.Children.Add(this.GroupPropertiesTabs, 9);
+            this.Children.Add(this.GroupDetails, 9);
             var glp = (this.Parent.Parent as INodeWithProperties);
             this.Position = glp.GroupProperties.GetNextPosition();
         }
@@ -73,7 +73,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
             this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            this.GroupPropertiesTabs.AddAllAppGenSettingsVmsToNode();
+            this.GroupDetails.AddAllAppGenSettingsVmsToNode();
         }
 
         #region Tree operations
@@ -82,7 +82,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.CanUp(this))
+                if ((this.Parent as GroupListDetails).ListDetails.CanUp(this))
                 {
                     return true;
                 }
@@ -91,7 +91,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeUp()
         {
-            var prev = (PropertiesTab)(this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.GetPrev(this);
+            var prev = (Detail)(this.Parent as GroupListDetails).ListDetails.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -101,14 +101,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.MoveUp(this);
+            (this.Parent as GroupListDetails).ListDetails.MoveUp(this);
             this.SetSelected(this);
         }
         public override bool NodeCanDown()
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.CanDown(this))
+                if ((this.Parent as GroupListDetails).ListDetails.CanDown(this))
                 {
                     return true;
                 }
@@ -117,7 +117,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeDown()
         {
-            var next = (PropertiesTab)(this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.GetNext(this);
+            var next = (Detail)(this.Parent as GroupListDetails).ListDetails.GetNext(this);
             if (next == null)
             {
                 return;
@@ -127,13 +127,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs.MoveDown(this);
+            (this.Parent as GroupListDetails).ListDetails.MoveDown(this);
             this.SetSelected(this);
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = PropertiesTab.Clone(this.Parent, this, true, true);
-            (this.Parent as GroupListPropertiesTabs).Add(node);
+            var node = Detail.Clone(this.Parent, this, true, true);
+            (this.Parent as GroupListDetails).Add(node);
             var glp = (this.Parent.Parent as INodeWithProperties);
             node.Position = glp.GroupProperties.GetNextPosition();
             this.Name = this.Name + "2";
@@ -142,18 +142,18 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new PropertiesTab(this.Parent);
-            (this.Parent as GroupListPropertiesTabs).Add(node);
+            var node = new Detail(this.Parent);
+            (this.Parent as GroupListDetails).Add(node);
             var glp = (this.Parent.Parent as INodeWithProperties);
             node.Position = glp.GroupProperties.GetNextPosition();
-            this.GetUniqueName(PropertiesTab.DefaultName, node, (this.Parent as GroupListPropertiesTabs).ListPropertiesTabs);
+            this.GetUniqueName(Detail.DefaultName, node, (this.Parent as GroupListDetails).ListDetails);
             this.SetSelected(node);
             return node;
         }
-        public PropertiesTab AddPropertiesTab(string name)
+        public Detail AddPropertiesTab(string name)
         {
-            var node = new PropertiesTab(this.GroupPropertiesTabs) { Name = name };
-            this.GroupPropertiesTabs.NodeAddNewSubNode(node);
+            var node = new Detail(this.GroupDetails) { Name = name };
+            this.GroupDetails.NodeAddNewSubNode(node);
             var glp = (this.Parent.Parent as INodeWithProperties);
             node.Position = glp.GroupProperties.GetNextPosition();
             return node;
@@ -192,13 +192,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IEnumerable<ITreeConfigNode> GetParentList()
         {
-            var p = this.Parent as GroupListPropertiesTabs;
-            return p.ListPropertiesTabs;
+            var p = this.Parent as GroupListDetails;
+            return p.ListDetails;
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListPropertiesTabs;
-            p.ListPropertiesTabs.Remove(this);
+            var p = this.Parent as GroupListDetails;
+            p.ListDetails.Remove(this);
         }
         #endregion Tree operations
 
@@ -231,10 +231,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen)
+        public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
         {
-            var res = new List<IPropertiesTab>();
-            foreach (var t in this.GroupPropertiesTabs.ListPropertiesTabs)
+            var res = new List<IDetail>();
+            foreach (var t in this.GroupDetails.ListDetails)
             {
                 if (t.IsIncluded(guidAppPrjGen))
                 {

@@ -405,7 +405,7 @@ namespace vSharpStudio.common
             }
             return sb.ToString();
         }
-        public static string Comment(IPropertiesTab t, string indent = "")
+        public static string Comment(IDetail t, string indent = "")
         {
             var sb = new StringBuilder();
             if (t.NameUi != t.Name || !string.IsNullOrWhiteSpace(t.Description))

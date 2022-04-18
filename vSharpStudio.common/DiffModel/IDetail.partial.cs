@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IPropertiesTab : ITreeConfigNode, IGetNodeSetting, IDbTable
+    public partial interface IDetail : ITreeConfigNode, IGetNodeSetting, IDbTable
     {
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen);
-        IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjGen);
+        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
     }
 }

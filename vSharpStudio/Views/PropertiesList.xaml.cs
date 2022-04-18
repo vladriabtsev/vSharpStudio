@@ -50,7 +50,7 @@ namespace vSharpStudio.Views
                         grd.SelectedObject is GroupListJournals ||
                         grd.SelectedObject is GroupListPlugins ||
                         grd.SelectedObject is GroupListProperties ||
-                        grd.SelectedObject is GroupListPropertiesTabs ||
+                        grd.SelectedObject is GroupListDetails ||
                         grd.SelectedObject is GroupListReports)
                     {
                         e.IsBrowsable = false;

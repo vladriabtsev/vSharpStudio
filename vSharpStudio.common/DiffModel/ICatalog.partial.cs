@@ -12,7 +12,7 @@ namespace vSharpStudio.common
         IReadOnlyList<IProperty> GetIncludedFolderViewProperties(string guidAppPrjDbGen);
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen);
         IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen);
-        IReadOnlyList<IPropertiesTab> GetIncludedPropertiesTabs(string guidAppPrjDbGen);
-        IReadOnlyList<IPropertiesTab> GetIncludedFolderPropertiesTabs(string guidAppPrjDbGen);
+        IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen);
+        IReadOnlyList<IDetail> GetIncludedFolderDetails(string guidAppPrjDbGen);
     }
 }

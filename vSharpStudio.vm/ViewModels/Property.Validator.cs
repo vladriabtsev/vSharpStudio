@@ -132,7 +132,7 @@ namespace vSharpStudio.vm.ViewModels
                         }
                     }
                 }
-                else if (pg.Parent is PropertiesTab)
+                else if (pg.Parent is Detail)
                 {
                     var cfg = pg.GetConfig();
                     if (cfg.Model.DbSettings.PKeyName == name)

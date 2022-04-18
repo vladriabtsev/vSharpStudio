@@ -5,9 +5,9 @@ using FluentValidation;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class GroupListPropertiesTabsValidator
+    public partial class GroupListDetailsValidator
     {
-        public GroupListPropertiesTabsValidator()
+        public GroupListDetailsValidator()
         {
             //this.RuleFor(x => x.PrefixForDbTables).Must((o, prefix) =>
             //{

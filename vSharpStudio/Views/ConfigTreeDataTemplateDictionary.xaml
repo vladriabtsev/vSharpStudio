@@ -206,7 +206,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>-->
-    <!--<HierarchicalDataTemplate DataType="{x:Type dat:GroupListPropertiesTabs}" ItemsSource="{Binding ListPropertiesTabs}">
+    <!--<HierarchicalDataTemplate DataType="{x:Type dat:GroupListDetails}" ItemsSource="{Binding ListDetails}">
         <StackPanel Orientation="Horizontal">
             <Grid>
                 <ContentControl Template="{Binding IconFolder, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />

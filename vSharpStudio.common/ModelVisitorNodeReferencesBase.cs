@@ -89,14 +89,14 @@ namespace vSharpStudio.common
                 var md = new ModelNode() { NodeObject = t };
                 this.DicNodesWithReferences[t.Guid] = md;
                 ScanProperties(md, t.GroupProperties.ListProperties);
-                ScanPropertiesTabs(md, t.GroupPropertiesTabs);
+                ScanDetails(md, t.GroupDetails);
             }
             foreach (var t in currModel.GroupDocuments.GroupListDocuments.ListDocuments)
             {
                 var md = new ModelNode() { NodeObject = t };
                 this.DicNodesWithReferences[t.Guid] = md;
                 ScanProperties(md, currModel.GroupDocuments.GroupSharedProperties.ListProperties);
-                ScanPropertiesTabs(md, t.GroupPropertiesTabs);
+                ScanDetails(md, t.GroupDetails);
             }
 
             foreach (var t in this.DicNodesWithReferences)
@@ -112,12 +112,12 @@ namespace vSharpStudio.common
                 }
             }
         }
-        private void ScanPropertiesTabs(ModelNode md, IGroupListPropertiesTabs t)
+        private void ScanDetails(ModelNode md, IGroupListDetails t)
         {
-            foreach (var tt in t.ListPropertiesTabs)
+            foreach (var tt in t.ListDetails)
             {
                 ScanProperties(md, tt.GroupProperties.ListProperties);
-                ScanPropertiesTabs(md, tt.GroupPropertiesTabs);
+                ScanDetails(md, tt.GroupDetails);
             }
         }
         private void ScanProperties(ModelNode md, IEnumerable<IProperty> lst)

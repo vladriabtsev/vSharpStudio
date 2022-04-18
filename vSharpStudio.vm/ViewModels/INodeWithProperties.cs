@@ -9,6 +9,6 @@ namespace vSharpStudio.vm.ViewModels
     public partial interface INodeWithProperties
     {
         GroupListProperties GroupProperties { get; }
-        GroupListPropertiesTabs GroupPropertiesTabs { get; }
+        GroupListDetails GroupDetails { get; }
     }
 }
