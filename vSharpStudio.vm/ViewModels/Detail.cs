@@ -51,7 +51,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.OnAdded();
             };
- 
+
             VmBindable.IsNotifyingStatic = false;
             this.Children.Add(this.GroupProperties, 7);
             VmBindable.IsNotifyingStatic = true;
@@ -220,7 +220,7 @@ namespace vSharpStudio.vm.ViewModels
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
             var parent = this.Parent.Parent as ICompositeName;
-            prp = cfg.Model.GetPropertyRefParent(this.PropertyRefParentGuid, "Ref"+ parent.CompositeName);
+            prp = cfg.Model.GetPropertyRefParent(this.PropertyRefParentGuid, "Ref" + parent.CompositeName);
             res.Add(prp);
             foreach (var t in this.GroupProperties.ListProperties)
             {
@@ -230,6 +230,62 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             return res;
+        }
+        public IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen)
+        {
+            var res = new List<IProperty>();
+            GetSpecialProperties(res, true);
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjDbGen))
+                {
+                    foreach (var tt in this.ListGuidViewProperties)
+                    {
+                        if (tt == t.Guid)
+                        {
+                            res.Add(t);
+                            break;
+                        }
+                    }
+                }
+            }
+            return res;
+        }
+        private void GetSpecialProperties(List<IProperty> res, bool isAll)
+        {
+            var cfg = this.GetConfig();
+            var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            if (isAll)
+            {
+                res.Add(prp);
+            }
+            //if (this.GetUseCodeProperty())
+            //{
+            //    switch (this.CodePropertySettings.Type)
+            //    {
+            //        case EnumCodeType.AutoNumber:
+            //            throw new NotImplementedException();
+            //        case EnumCodeType.AutoText:
+            //            throw new NotImplementedException();
+            //        case EnumCodeType.Number:
+            //            prp = cfg.Model.GetPropertyCatalogCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+            //            break;
+            //        case EnumCodeType.Text:
+            //            prp = cfg.Model.GetPropertyCatalogCode(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+            //            break;
+            //    }
+            //    res.Add(prp);
+            //}
+            //if (this.GetUseNameProperty())
+            //{
+            //    prp = cfg.Model.GetPropertyCatalogName(this.PropertyNameGuid, this.MaxNameLength);
+            //    res.Add(prp);
+            //}
+            //if (this.GetUseDescriptionProperty())
+            //{
+            //    prp = cfg.Model.GetPropertyCatalogDescription(this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+            //    res.Add(prp);
+            //}
         }
         public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
         {

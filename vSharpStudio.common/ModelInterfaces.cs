@@ -481,6 +481,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	uint Position { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 51
+    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

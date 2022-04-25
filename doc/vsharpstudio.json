@@ -2186,6 +2186,26 @@
               "defaultValue": ""
             },
             {
+              "name": "group_forms",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_forms",
+              "longType": "proto_group_list_forms",
+              "fullType": "proto_config.proto_group_list_forms",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_guid_view_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",

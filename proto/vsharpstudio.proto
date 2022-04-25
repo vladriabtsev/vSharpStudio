@@ -856,6 +856,10 @@ message proto_detail {
     string property_ref_parent_guid = 65;
 
     // @attr [BrowsableAttribute(false)]
+    proto_group_list_forms group_forms = 84;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_view_properties = 91;
+    // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_properties {
