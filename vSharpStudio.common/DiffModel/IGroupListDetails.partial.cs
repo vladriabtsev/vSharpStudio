@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListDetails : ITreeConfigNode
     {
+        int IndexOf(IDetail det);
     }
 }

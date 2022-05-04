@@ -4066,6 +4066,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
+            vm.ShortIdForCacheKey = from.ShortIdForCacheKey; // Clone.tt Line: 65
             vm.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
@@ -4088,6 +4089,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
+            to.ShortIdForCacheKey = from.ShortIdForCacheKey; // Clone.tt Line: 141
             to.RelativeAppSolutionPath = from.RelativeAppSolutionPath; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
@@ -4196,6 +4198,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
+            vm.ShortIdForCacheKey = m.ShortIdForCacheKey; // Clone.tt Line: 221
             vm.RelativeAppSolutionPath = m.RelativeAppSolutionPath; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
@@ -4225,6 +4228,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
+            m.ShortIdForCacheKey = vm.ShortIdForCacheKey; // Clone.tt Line: 276
             m.RelativeAppSolutionPath = vm.RelativeAppSolutionPath; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
@@ -4357,6 +4361,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(6)]
+        [DisplayName("Short ID")]
+        [Description("Short solution ID for cache key generator. Need if projects from different solutions will same cache storage instance in deployment")]
+        public string ShortIdForCacheKey // Property.tt Line: 55
+        { 
+            get { return this._ShortIdForCacheKey; }
+            set
+            {
+                if (this._ShortIdForCacheKey != value)
+                {
+                    this.OnShortIdForCacheKeyChanging(ref value);
+                    this._ShortIdForCacheKey = value;
+                    this.OnShortIdForCacheKeyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ShortIdForCacheKey = string.Empty;
+        partial void OnShortIdForCacheKeyChanging(ref string to); // Property.tt Line: 79
+        partial void OnShortIdForCacheKeyChanged();
+        
+        [PropertyOrderAttribute(7)]
         [DisplayName("Path")]
         [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
         [Description(".NET solution file path relative to configuration file path")]
@@ -6433,6 +6460,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.Clone(from.DbSettings, isDeep);
+            vm.LastConstantShortId = from.LastConstantShortId; // Clone.tt Line: 65
+            vm.LastCatalogShortId = from.LastCatalogShortId; // Clone.tt Line: 65
+            vm.LastDocumentShortId = from.LastDocumentShortId; // Clone.tt Line: 65
+            vm.LastDetailShortId = from.LastDetailShortId; // Clone.tt Line: 65
+            vm.LastViewShortId = from.LastViewShortId; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.Clone(vm, from.GroupCommon, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -6469,6 +6501,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.DbSettings.Update((DbSettings)to.DbSettings, from.DbSettings, isDeep);
+            to.LastConstantShortId = from.LastConstantShortId; // Clone.tt Line: 141
+            to.LastCatalogShortId = from.LastCatalogShortId; // Clone.tt Line: 141
+            to.LastDocumentShortId = from.LastDocumentShortId; // Clone.tt Line: 141
+            to.LastDetailShortId = from.LastDetailShortId; // Clone.tt Line: 141
+            to.LastViewShortId = from.LastViewShortId; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListCommon.Update((GroupListCommon)to.GroupCommon, from.GroupCommon, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -6557,6 +6594,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.DbSettings == null) // Clone.tt Line: 213
                 vm.DbSettings = new DbSettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.DbSettings.ConvertToVM(m.DbSettings, (DbSettings)vm.DbSettings); // Clone.tt Line: 219
+            vm.LastConstantShortId = m.LastConstantShortId; // Clone.tt Line: 221
+            vm.LastCatalogShortId = m.LastCatalogShortId; // Clone.tt Line: 221
+            vm.LastDocumentShortId = m.LastDocumentShortId; // Clone.tt Line: 221
+            vm.LastDetailShortId = m.LastDetailShortId; // Clone.tt Line: 221
+            vm.LastViewShortId = m.LastViewShortId; // Clone.tt Line: 221
             if (vm.GroupCommon == null) // Clone.tt Line: 213
                 vm.GroupCommon = new GroupListCommon(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToVM(m.GroupCommon, (GroupListCommon)vm.GroupCommon); // Clone.tt Line: 219
@@ -6603,6 +6645,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsUseCompositeNames = vm.IsUseCompositeNames; // Clone.tt Line: 276
             m.IsUseGroupPrefix = vm.IsUseGroupPrefix; // Clone.tt Line: 276
             m.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.ConvertToProto((DbSettings)vm.DbSettings); // Clone.tt Line: 270
+            m.LastConstantShortId = vm.LastConstantShortId; // Clone.tt Line: 276
+            m.LastCatalogShortId = vm.LastCatalogShortId; // Clone.tt Line: 276
+            m.LastDocumentShortId = vm.LastDocumentShortId; // Clone.tt Line: 276
+            m.LastDetailShortId = vm.LastDetailShortId; // Clone.tt Line: 276
+            m.LastViewShortId = vm.LastViewShortId; // Clone.tt Line: 276
             m.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToProto((GroupListCommon)vm.GroupCommon); // Clone.tt Line: 270
             m.GroupConstantGroups = vSharpStudio.vm.ViewModels.GroupConstantGroups.ConvertToProto((GroupConstantGroups)vm.GroupConstantGroups); // Clone.tt Line: 270
             m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto((GroupListEnumerations)vm.GroupEnumerations); // Clone.tt Line: 270
@@ -6868,6 +6915,111 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDbSettingsChanging(ref DbSettings to); // Property.tt Line: 79
         partial void OnDbSettingsChanged();
         //IDbSettings IModel.DbSettings { get { return this._DbSettings; } }
+        
+        [BrowsableAttribute(false)]
+        public int LastConstantShortId // Property.tt Line: 55
+        { 
+            get { return this._LastConstantShortId; }
+            set
+            {
+                if (this._LastConstantShortId != value)
+                {
+                    this.OnLastConstantShortIdChanging(ref value);
+                    this._LastConstantShortId = value;
+                    this.OnLastConstantShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _LastConstantShortId;
+        partial void OnLastConstantShortIdChanging(ref int to); // Property.tt Line: 79
+        partial void OnLastConstantShortIdChanged();
+        
+        [BrowsableAttribute(false)]
+        public int LastCatalogShortId // Property.tt Line: 55
+        { 
+            get { return this._LastCatalogShortId; }
+            set
+            {
+                if (this._LastCatalogShortId != value)
+                {
+                    this.OnLastCatalogShortIdChanging(ref value);
+                    this._LastCatalogShortId = value;
+                    this.OnLastCatalogShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _LastCatalogShortId;
+        partial void OnLastCatalogShortIdChanging(ref int to); // Property.tt Line: 79
+        partial void OnLastCatalogShortIdChanged();
+        
+        [BrowsableAttribute(false)]
+        public int LastDocumentShortId // Property.tt Line: 55
+        { 
+            get { return this._LastDocumentShortId; }
+            set
+            {
+                if (this._LastDocumentShortId != value)
+                {
+                    this.OnLastDocumentShortIdChanging(ref value);
+                    this._LastDocumentShortId = value;
+                    this.OnLastDocumentShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _LastDocumentShortId;
+        partial void OnLastDocumentShortIdChanging(ref int to); // Property.tt Line: 79
+        partial void OnLastDocumentShortIdChanged();
+        
+        [BrowsableAttribute(false)]
+        public int LastDetailShortId // Property.tt Line: 55
+        { 
+            get { return this._LastDetailShortId; }
+            set
+            {
+                if (this._LastDetailShortId != value)
+                {
+                    this.OnLastDetailShortIdChanging(ref value);
+                    this._LastDetailShortId = value;
+                    this.OnLastDetailShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _LastDetailShortId;
+        partial void OnLastDetailShortIdChanging(ref int to); // Property.tt Line: 79
+        partial void OnLastDetailShortIdChanged();
+        
+        [BrowsableAttribute(false)]
+        public int LastViewShortId // Property.tt Line: 55
+        { 
+            get { return this._LastViewShortId; }
+            set
+            {
+                if (this._LastViewShortId != value)
+                {
+                    this.OnLastViewShortIdChanging(ref value);
+                    this._LastViewShortId = value;
+                    this.OnLastViewShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _LastViewShortId;
+        partial void OnLastViewShortIdChanging(ref int to); // Property.tt Line: 79
+        partial void OnLastViewShortIdChanged();
         
         [BrowsableAttribute(false)]
         public GroupListCommon GroupCommon // Property.tt Line: 55
@@ -9828,8 +9980,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.Clone(vm, from.GroupDetails, isDeep);
             vm.Position = from.Position; // Clone.tt Line: 65
+            vm.ShortId = from.ShortId; // Clone.tt Line: 65
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
             vm.PropertyRefParentGuid = from.PropertyRefParentGuid; // Clone.tt Line: 65
+            vm.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
             foreach (var t in from.ListGuidViewProperties) // Clone.tt Line: 44
@@ -9860,8 +10014,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListDetails.Update((GroupListDetails)to.GroupDetails, from.GroupDetails, isDeep);
             to.Position = from.Position; // Clone.tt Line: 141
+            to.ShortId = from.ShortId; // Clone.tt Line: 141
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
             to.PropertyRefParentGuid = from.PropertyRefParentGuid; // Clone.tt Line: 141
+            to.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
                 to.ListGuidViewProperties.Clear(); // Clone.tt Line: 127
@@ -9948,8 +10104,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupDetails = new GroupListDetails(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToVM(m.GroupDetails, (GroupListDetails)vm.GroupDetails); // Clone.tt Line: 219
             vm.Position = m.Position; // Clone.tt Line: 221
+            vm.ShortId = m.ShortId; // Clone.tt Line: 221
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
             vm.PropertyRefParentGuid = m.PropertyRefParentGuid; // Clone.tt Line: 221
+            vm.ViewDefaultGuid = m.ViewDefaultGuid; // Clone.tt Line: 221
             if (vm.GroupForms == null) // Clone.tt Line: 213
                 vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, (GroupListForms)vm.GroupForms); // Clone.tt Line: 219
@@ -9987,8 +10145,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
             m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.Position = vm.Position; // Clone.tt Line: 276
+            m.ShortId = vm.ShortId; // Clone.tt Line: 276
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
             m.PropertyRefParentGuid = vm.PropertyRefParentGuid; // Clone.tt Line: 276
+            m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             foreach (var t in vm.ListGuidViewProperties) // Clone.tt Line: 242
                 m.ListGuidViewProperties.Add(t); // Clone.tt Line: 244
@@ -10262,6 +10422,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPositionChanged();
         
         [BrowsableAttribute(false)]
+        public int ShortId // Property.tt Line: 55
+        { 
+            get { return this._ShortId; }
+            set
+            {
+                if (this._ShortId != value)
+                {
+                    this.OnShortIdChanging(ref value);
+                    this._ShortId = value;
+                    this.OnShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _ShortId;
+        partial void OnShortIdChanging(ref int to); // Property.tt Line: 79
+        partial void OnShortIdChanged();
+        
+        [BrowsableAttribute(false)]
         public string PropertyIdGuid // Property.tt Line: 55
         { 
             get { return this._PropertyIdGuid; }
@@ -10302,6 +10483,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyRefParentGuid = string.Empty;
         partial void OnPropertyRefParentGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyRefParentGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string ViewDefaultGuid // Property.tt Line: 55
+        { 
+            get { return this._ViewDefaultGuid; }
+            set
+            {
+                if (this._ViewDefaultGuid != value)
+                {
+                    this.OnViewDefaultGuidChanging(ref value);
+                    this._ViewDefaultGuid = value;
+                    this.OnViewDefaultGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ViewDefaultGuid = string.Empty;
+        partial void OnViewDefaultGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnViewDefaultGuidChanged();
         
         [BrowsableAttribute(false)]
         public GroupListForms GroupForms // Property.tt Line: 55
@@ -11956,6 +12158,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListConstants = new ConfigNodesCollection<Constant>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListConstants) // Clone.tt Line: 52
                 vm.ListConstants.Add(Constant.Clone(vm, (Constant)t, isDeep));
+            vm.ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
@@ -12012,6 +12215,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                     }
                 }
             }
+            to.ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
@@ -12089,6 +12293,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = Constant.ConvertToVM(t, new Constant(vm)); // Clone.tt Line: 204
                 vm.ListConstants.Add(tvm);
             }
+            vm.ShortIdTypeForCacheKey = m.ShortIdTypeForCacheKey; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
@@ -12116,6 +12321,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             foreach (var t in vm.ListConstants) // Clone.tt Line: 242
                 m.ListConstants.Add(Constant.ConvertToProto((Constant)t)); // Clone.tt Line: 246
+            m.ShortIdTypeForCacheKey = vm.ShortIdTypeForCacheKey; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
@@ -12290,6 +12496,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
+        [PropertyOrderAttribute(7)]
+        [DisplayName("Short ID")]
+        [Description("Short constant type ID for cache key generator")]
+        public string ShortIdTypeForCacheKey // Property.tt Line: 55
+        { 
+            get { return this._ShortIdTypeForCacheKey; }
+            set
+            {
+                if (this._ShortIdTypeForCacheKey != value)
+                {
+                    this.OnShortIdTypeForCacheKeyChanging(ref value);
+                    this._ShortIdTypeForCacheKey = value;
+                    this.OnShortIdTypeForCacheKeyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ShortIdTypeForCacheKey = string.Empty;
+        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // Property.tt Line: 79
+        partial void OnShortIdTypeForCacheKeyChanged();
+        
         [BrowsableAttribute(false)]
         public bool IsNew // Property.tt Line: 55
         { 
@@ -12424,6 +12653,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
+            vm.ShortId = from.ShortId; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -12446,6 +12676,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
+            to.ShortId = from.ShortId; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -12520,6 +12751,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.ShortId = m.ShortId; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -12546,6 +12778,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            m.ShortId = vm.ShortId; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -12738,6 +12971,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
+        
+        [BrowsableAttribute(false)]
+        public int ShortId // Property.tt Line: 55
+        { 
+            get { return this._ShortId; }
+            set
+            {
+                if (this._ShortId != value)
+                {
+                    this.OnShortIdChanging(ref value);
+                    this._ShortId = value;
+                    this.OnShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _ShortId;
+        partial void OnShortIdChanging(ref int to); // Property.tt Line: 79
+        partial void OnShortIdChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -15162,6 +15416,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
+            vm.ShortId = from.ShortId; // Clone.tt Line: 65
             vm.UseTree = from.UseTree; // Clone.tt Line: 65
             vm.UseSeparateTreeForFolders = from.UseSeparateTreeForFolders; // Clone.tt Line: 65
             vm.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 65
@@ -15218,6 +15473,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Description = from.Description; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
+            to.ShortId = from.ShortId; // Clone.tt Line: 141
             to.UseTree = from.UseTree; // Clone.tt Line: 141
             to.UseSeparateTreeForFolders = from.UseSeparateTreeForFolders; // Clone.tt Line: 141
             to.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 141
@@ -15331,6 +15587,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.ShortId = m.ShortId; // Clone.tt Line: 221
             vm.UseTree = m.UseTree; // Clone.tt Line: 221
             vm.UseSeparateTreeForFolders = m.UseSeparateTreeForFolders; // Clone.tt Line: 221
             vm.MaxTreeLevels = m.MaxTreeLevels; // Clone.tt Line: 221
@@ -15404,6 +15661,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            m.ShortId = vm.ShortId; // Clone.tt Line: 276
             m.UseTree = vm.UseTree; // Clone.tt Line: 276
             m.UseSeparateTreeForFolders = vm.UseSeparateTreeForFolders; // Clone.tt Line: 276
             m.MaxTreeLevels = vm.MaxTreeLevels; // Clone.tt Line: 276
@@ -15611,6 +15869,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
+        
+        [BrowsableAttribute(false)]
+        public int ShortId // Property.tt Line: 55
+        { 
+            get { return this._ShortId; }
+            set
+            {
+                if (this._ShortId != value)
+                {
+                    this.OnShortIdChanging(ref value);
+                    this._ShortId = value;
+                    this.OnShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _ShortId;
+        partial void OnShortIdChanging(ref int to); // Property.tt Line: 79
+        partial void OnShortIdChanged();
         
         [PropertyOrderAttribute(21)]
         [DisplayName("Use Tree")]
@@ -16328,6 +16607,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.PrefixForDbTables = from.PrefixForDbTables; // Clone.tt Line: 65
+            vm.ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // Clone.tt Line: 65
             vm.ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListCatalogs) // Clone.tt Line: 52
                 vm.ListCatalogs.Add(Catalog.Clone(vm, (Catalog)t, isDeep));
@@ -16358,6 +16638,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
             to.PrefixForDbTables = from.PrefixForDbTables; // Clone.tt Line: 141
+            to.ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListCatalogs.ToList())
@@ -16472,6 +16753,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.PrefixForDbTables = m.PrefixForDbTables; // Clone.tt Line: 221
+            vm.ShortIdTypeForCacheKey = m.ShortIdTypeForCacheKey; // Clone.tt Line: 221
             vm.ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListCatalogs) // Clone.tt Line: 201
             {
@@ -16510,6 +16792,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
             m.PrefixForDbTables = vm.PrefixForDbTables; // Clone.tt Line: 276
+            m.ShortIdTypeForCacheKey = vm.ShortIdTypeForCacheKey; // Clone.tt Line: 276
             foreach (var t in vm.ListCatalogs) // Clone.tt Line: 242
                 m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); // Clone.tt Line: 246
             m.PropertyCodeName = vm.PropertyCodeName; // Clone.tt Line: 276
@@ -16670,6 +16953,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PrefixForDbTables = string.Empty;
         partial void OnPrefixForDbTablesChanging(ref string to); // Property.tt Line: 79
         partial void OnPrefixForDbTablesChanged();
+        
+        [PropertyOrderAttribute(7)]
+        [DisplayName("Short ID")]
+        [Description("Short catalog type ID for cache key generator")]
+        public string ShortIdTypeForCacheKey // Property.tt Line: 55
+        { 
+            get { return this._ShortIdTypeForCacheKey; }
+            set
+            {
+                if (this._ShortIdTypeForCacheKey != value)
+                {
+                    this.OnShortIdTypeForCacheKeyChanging(ref value);
+                    this._ShortIdTypeForCacheKey = value;
+                    this.OnShortIdTypeForCacheKeyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ShortIdTypeForCacheKey = string.Empty;
+        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // Property.tt Line: 79
+        partial void OnShortIdTypeForCacheKeyChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<Catalog> ListCatalogs // Property.tt Line: 8
@@ -17737,6 +18043,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
+            vm.ShortId = from.ShortId; // Clone.tt Line: 65
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
             vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
@@ -17772,6 +18079,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
+            to.ShortId = from.ShortId; // Clone.tt Line: 141
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
             to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
@@ -17862,6 +18170,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupReports == null) // Clone.tt Line: 213
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
+            vm.ShortId = m.ShortId; // Clone.tt Line: 221
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
             vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
             if (vm.CodePropertySettings == null) // Clone.tt Line: 213
@@ -17899,6 +18208,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
+            m.ShortId = vm.ShortId; // Clone.tt Line: 276
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
             m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.ConvertToProto((DocumentCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
@@ -18174,6 +18484,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         //IGroupListReports IDocument.GroupReports { get { return this._GroupReports; } }
         
         [BrowsableAttribute(false)]
+        public int ShortId // Property.tt Line: 55
+        { 
+            get { return this._ShortId; }
+            set
+            {
+                if (this._ShortId != value)
+                {
+                    this.OnShortIdChanging(ref value);
+                    this._ShortId = value;
+                    this.OnShortIdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _ShortId;
+        partial void OnShortIdChanging(ref int to); // Property.tt Line: 79
+        partial void OnShortIdChanged();
+        
+        [BrowsableAttribute(false)]
         public string PropertyIdGuid // Property.tt Line: 55
         { 
             get { return this._PropertyIdGuid; }
@@ -18398,6 +18729,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
+            vm.ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // Clone.tt Line: 65
             vm.ListDocuments = new ConfigNodesCollection<Document>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListDocuments) // Clone.tt Line: 52
                 vm.ListDocuments.Add(Document.Clone(vm, (Document)t, isDeep));
@@ -18419,6 +18751,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
+            to.ShortIdTypeForCacheKey = from.ShortIdTypeForCacheKey; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListDocuments.ToList())
@@ -18524,6 +18857,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
+            vm.ShortIdTypeForCacheKey = m.ShortIdTypeForCacheKey; // Clone.tt Line: 221
             vm.ListDocuments = new ConfigNodesCollection<Document>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListDocuments) // Clone.tt Line: 201
             {
@@ -18553,6 +18887,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
+            m.ShortIdTypeForCacheKey = vm.ShortIdTypeForCacheKey; // Clone.tt Line: 276
             foreach (var t in vm.ListDocuments) // Clone.tt Line: 242
                 m.ListDocuments.Add(Document.ConvertToProto((Document)t)); // Clone.tt Line: 246
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
@@ -18682,6 +19017,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _Description = string.Empty;
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
+        
+        [PropertyOrderAttribute(6)]
+        [DisplayName("Short ID")]
+        [Description("Short document type ID for cache key generator")]
+        public string ShortIdTypeForCacheKey // Property.tt Line: 55
+        { 
+            get { return this._ShortIdTypeForCacheKey; }
+            set
+            {
+                if (this._ShortIdTypeForCacheKey != value)
+                {
+                    this.OnShortIdTypeForCacheKeyChanging(ref value);
+                    this._ShortIdTypeForCacheKey = value;
+                    this.OnShortIdTypeForCacheKeyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ShortIdTypeForCacheKey = string.Empty;
+        partial void OnShortIdTypeForCacheKeyChanging(ref string to); // Property.tt Line: 79
+        partial void OnShortIdTypeForCacheKeyChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<Document> ListDocuments // Property.tt Line: 8

@@ -79,7 +79,10 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
-
+        public int IndexOf(IDetail det)
+        {
+            return this.ListDetails.IndexOf(det as Detail);
+        }
         #region Tree operations
         public bool CanAddSubNode() { return true; }
         public Detail AddPropertiesTab(string name)

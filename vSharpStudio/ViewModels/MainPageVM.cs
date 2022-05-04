@@ -800,6 +800,13 @@ namespace vSharpStudio.ViewModels
                     foreach (var tpg in tp.ListAppProjectGenerators)
                     {
                         dicGroupGuids[tpg.PluginGenerator.GroupGuid] = null;
+                        foreach (var tg in tpg.ListGenerators)
+                        {
+                            if (tg.Generator != null)
+                            {
+                                tg.Generator.Init();
+                            }
+                        }
                     }
                 }
             }

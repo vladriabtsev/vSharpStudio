@@ -30,6 +30,7 @@ namespace vPlugin.Sample
         public string VersionFieldName => "";
         public ITreeConfigNode Parent { get; set; }
         public vPluginLayerTypeEnum PluginGeneratorType => vPluginLayerTypeEnum.DbDesign;
+        public void Init() { }
         public void EnsureDbDeletedAndCreated(string connectionString)
         {
             throw new NotImplementedException();

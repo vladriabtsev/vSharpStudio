@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListCatalogs : ITreeConfigNode, IGetNodeSetting
     {
+        int IndexOf(ICatalog cat);
     }
 }

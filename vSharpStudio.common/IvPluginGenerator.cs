@@ -10,6 +10,11 @@ namespace vSharpStudio.common
     public interface IvPluginGenerator
     {
         /// <summary>
+        /// Called for each generator before starting loop of real code generation
+        /// Usefull if generator need special initialization when generator can be used more than once in the loop of code generation
+        /// </summary>
+        void Init();
+        /// <summary>
         /// Unique identifier of generator
         /// </summary>
         string Guid { get; }

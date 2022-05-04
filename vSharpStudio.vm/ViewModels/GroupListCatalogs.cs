@@ -43,6 +43,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDescriptionName = "Description";
             this.PropertyIsFolderName = "IsFolder";
             this.PropertyIsOpenName = "IsOpen";
+            this.ShortIdTypeForCacheKey = "c";
             Init();
         }
         protected override void OnInitFromDto()
@@ -73,7 +74,10 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
-
+        public int IndexOf(ICatalog cat)
+        {
+            return this.ListCatalogs.IndexOf(cat as Catalog);
+        }
         #region Tree operations
         public bool CanAddSubNode() { return true; }
         public Catalog AddCatalog()

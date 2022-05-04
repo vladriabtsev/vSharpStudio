@@ -38,6 +38,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Documents";
             this.IsEditable = false;
+            this.ShortIdTypeForCacheKey = "d";
             Init();
         }
         protected override void OnInitFromDto()
@@ -66,6 +67,10 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Document(this) { Name = name };
             this.NodeAddNewSubNode(node);
             return node;
+        }
+        public int IndexOf(IDocument doc)
+        {
+            return this.ListDocuments.IndexOf(doc as Document);
         }
         #region Tree operations
         public bool CanAddSubNode() { return true; }

@@ -37,6 +37,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;
+            this.ShortIdTypeForCacheKey = "t";
             Init();
         }
         protected override void OnInitFromDto()

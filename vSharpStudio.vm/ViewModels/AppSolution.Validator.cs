@@ -23,6 +23,14 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name)
                 .Must((o, name) => { return this.IsUnique(o); })
                 .WithMessage(Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
+            this.RuleFor(x => x.ShortIdForCacheKey)
+                .Must((o, id) =>
+                {
+                    if (string.IsNullOrEmpty(id))
+                        return true;
+                    return !char.IsDigit(id[id.Length-1]);
+                })
+                .WithMessage("Solution short ID can't contain digit as a last symbol");
             this.RuleFor(x => x.RelativeAppSolutionPath)
                 .NotEmpty()
                 .WithMessage("Solution is not selected");

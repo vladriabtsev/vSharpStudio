@@ -235,6 +235,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     {
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
+    	string ShortIdForCacheKey { get; } // ModelInterfaces.tt Line: 51
     	string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
@@ -358,6 +359,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	/// GENERAL DB SETTINGS
     	///////////////////////////////////////////////////
     	IDbSettings DbSettings { get; } // ModelInterfaces.tt Line: 55
+    	int LastConstantShortId { get; } // ModelInterfaces.tt Line: 51
+    	int LastCatalogShortId { get; } // ModelInterfaces.tt Line: 51
+    	int LastDocumentShortId { get; } // ModelInterfaces.tt Line: 51
+    	int LastDetailShortId { get; } // ModelInterfaces.tt Line: 51
+    	int LastViewShortId { get; } // ModelInterfaces.tt Line: 51
     	IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 55
     	IGroupConstantGroups GroupConstantGroups { get; } // ModelInterfaces.tt Line: 55
     	IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 55
@@ -479,8 +485,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	/// Reserved positions: 1 - primary key
     	///////////////////////////////////////////////////
     	uint Position { get; } // ModelInterfaces.tt Line: 51
+    	int ShortId { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
@@ -545,6 +553,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IConstant> ListConstants { get; } // ModelInterfaces.tt Line: 44
     	IConstant this[int index] { get; }
     	int Count();
+    	string ShortIdTypeForCacheKey { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
@@ -562,6 +571,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IDataType DataType { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	int ShortId { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -649,6 +659,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	int ShortId { get; } // ModelInterfaces.tt Line: 51
     	bool UseTree { get; } // ModelInterfaces.tt Line: 51
     	bool UseSeparateTreeForFolders { get; } // ModelInterfaces.tt Line: 51
     	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 51
@@ -686,6 +697,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 51
+    	string ShortIdTypeForCacheKey { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 44
     	ICatalog this[int index] { get; }
     	int Count();
@@ -735,6 +747,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
+    	int ShortId { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	IDocumentCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
@@ -749,6 +762,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
+    	string ShortIdTypeForCacheKey { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 44
     	IDocument this[int index] { get; }
     	int Count();

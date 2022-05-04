@@ -45,6 +45,9 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;
             this.DataType.PropertyChanged += DataType_PropertyChanged;
+            var cfg = (Config)this.GetConfig();
+            this.ShortId = cfg.Model.LastConstantShortId + 1;
+            cfg.Model.LastConstantShortId = this.ShortId;
         }
 
         private void DataType_PropertyChanged(object sender, PropertyChangedEventArgs e)

@@ -33,6 +33,15 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.PropertyIsOpenName).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.PropertyIsOpenName).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.PropertyIsOpenName).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
+            this.RuleFor(x => x.ShortIdTypeForCacheKey).NotEmpty().WithMessage("Can't be empty");
+            this.RuleFor(x => x.ShortIdTypeForCacheKey)
+                .Must((o, id) =>
+                {
+                    if (string.IsNullOrEmpty(id))
+                        return true;
+                    return !char.IsDigit(id[id.Length - 1]);
+                })
+                .WithMessage("Short type ID can't contain digit as a last symbol");
         }
     }
 }

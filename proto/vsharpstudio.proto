@@ -311,6 +311,11 @@ message proto_app_solution {
     string description = 5;
 
     // @attr [PropertyOrderAttribute(6)]
+    // @attr [DisplayName("Short ID")]
+    // @attr [Description("Short solution ID for cache key generator. Need if projects from different solutions will same cache storage instance in deployment")]
+    string short_id_for_cache_key = 6;
+
+    // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Path")]
     // @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
     // @attr [Description(".NET solution file path relative to configuration file path")]
@@ -577,6 +582,17 @@ message proto_model {
     // @attr [Description("General DB generator settings")]
     // @attr [DisplayName("DB settings")]
     db_settings db_settings = 21;
+
+    // @attr [BrowsableAttribute(false)]
+    int32 last_constant_short_id = 31;
+    // @attr [BrowsableAttribute(false)]
+    int32 last_catalog_short_id = 32;
+    // @attr [BrowsableAttribute(false)]
+    int32 last_document_short_id = 33;
+    // @attr [BrowsableAttribute(false)]
+    int32 last_detail_short_id = 34;
+    // @attr [BrowsableAttribute(false)]
+    int32 last_view_short_id = 35;
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_common group_common = 106;
@@ -850,10 +866,14 @@ message proto_detail {
     // @attr [ReadOnly(true)]
     uint32 position = 15;
     // @attr [BrowsableAttribute(false)]
+    int32 short_id = 19;
+    // @attr [BrowsableAttribute(false)]
     string property_id_guid = 20;
 
     // @attr [BrowsableAttribute(false)]
     string property_ref_parent_guid = 65;
+    // @attr [BrowsableAttribute(false)]
+    string view_default_guid = 69;
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_forms group_forms = 84;
@@ -979,6 +999,10 @@ message proto_group_list_constants {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_constant list_constants = 6;
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Short ID")]
+    // @attr [Description("Short constant type ID for cache key generator")]
+    string short_id_type_for_cache_key = 7;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]
@@ -1008,6 +1032,8 @@ message proto_constant {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 12;
 
+    // @attr [BrowsableAttribute(false)]
+    int32 short_id = 19;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1227,6 +1253,8 @@ message proto_catalog {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 10;
 
+    // @attr [BrowsableAttribute(false)]
+    int32 short_id = 19;
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Tree")]
     // @attr [Description("Use tree catalog structure")]
@@ -1332,6 +1360,10 @@ message proto_group_list_catalogs {
     // @attr [DisplayName("Db prefix")]
     // @attr [Description("Prefix for catalog db table names. Used if set to use in config model")]
     string prefix_for_db_tables = 6;
+    // @attr [PropertyOrderAttribute(7)]
+    // @attr [DisplayName("Short ID")]
+    // @attr [Description("Short catalog type ID for cache key generator")]
+    string short_id_type_for_cache_key = 7;
     // @attr [BrowsableAttribute(false)]
     repeated proto_catalog list_catalogs = 8;
 
@@ -1471,6 +1503,8 @@ message proto_document {
     proto_group_list_reports group_reports = 18;
 
     // @attr [BrowsableAttribute(false)]
+    int32 short_id = 19;
+    // @attr [BrowsableAttribute(false)]
     string property_id_guid = 20;
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Code")]
@@ -1505,6 +1539,10 @@ message proto_group_list_documents {
     string name_ui = 4;
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
+    // @attr [PropertyOrderAttribute(6)]
+    // @attr [DisplayName("Short ID")]
+    // @attr [Description("Short document type ID for cache key generator")]
+    string short_id_type_for_cache_key = 6;
     // @attr [BrowsableAttribute(false)]
     repeated proto_document list_documents = 7;
     // @attr [BrowsableAttribute(false)]

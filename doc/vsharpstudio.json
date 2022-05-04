@@ -867,8 +867,18 @@
               "defaultValue": ""
             },
             {
+              "name": "short_id_for_cache_key",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Short ID\")]\n@attr [Description(\"Short solution ID for cache key generator. Need if projects from different solutions will same cache storage instance in deployment\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "relative_app_solution_path",
-              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Path\")]\n@attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]\n@attr [Description(\".NET solution file path relative to configuration file path\")]",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Path\")]\n@attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]\n@attr [Description(\".NET solution file path relative to configuration file path\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1095,6 +1105,16 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "short_id",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1944,6 +1964,16 @@
               "defaultValue": ""
             },
             {
+              "name": "short_id",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -2166,6 +2196,16 @@
               "defaultValue": ""
             },
             {
+              "name": "short_id",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "property_id_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -2177,6 +2217,16 @@
             },
             {
               "name": "property_ref_parent_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "view_default_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
@@ -2333,6 +2383,16 @@
               "type": "proto_group_list_reports",
               "longType": "proto_group_list_reports",
               "fullType": "proto_config.proto_group_list_reports",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "short_id",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3583,6 +3643,16 @@
               "defaultValue": ""
             },
             {
+              "name": "short_id_type_for_cache_key",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Short ID\")]\n@attr [Description(\"Short catalog type ID for cache key generator\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_catalogs",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -3845,6 +3915,16 @@
               "defaultValue": ""
             },
             {
+              "name": "short_id_type_for_cache_key",
+              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Short ID\")]\n@attr [Description(\"Short constant type ID for cache key generator\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_new",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -4009,6 +4089,16 @@
             {
               "name": "description",
               "description": "@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "short_id_type_for_cache_key",
+              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [DisplayName(\"Short ID\")]\n@attr [Description(\"Short document type ID for cache key generator\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4974,6 +5064,56 @@
               "type": "db_settings",
               "longType": "db_settings",
               "fullType": "proto_config.db_settings",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "last_constant_short_id",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "last_catalog_short_id",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "last_document_short_id",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "last_detail_short_id",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "last_view_short_id",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "defaultValue": ""
             },

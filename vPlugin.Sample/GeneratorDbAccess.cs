@@ -20,6 +20,7 @@ namespace vPlugin.Sample
         public string Description => "Description Db Access Layer";
         public ITreeConfigNode Parent { get; set; }
         public vPluginLayerTypeEnum PluginGeneratorType => vPluginLayerTypeEnum.DbAccess;
+        public void Init() { }
         public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(string settings)
         {
             var vm = new GeneratorDbAccessSettings();

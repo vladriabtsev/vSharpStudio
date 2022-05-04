@@ -936,10 +936,19 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>relative_app_solution_path</td>
+                  <td>short_id_for_cache_key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(6)]
+@attr [DisplayName(&#34;Short ID&#34;)]
+@attr [Description(&#34;Short solution ID for cache key generator. Need if projects from different solutions will same cache storage instance in deployment&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>relative_app_solution_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
 @attr [DisplayName(&#34;Path&#34;)]
 @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))]
 @attr [Description(&#34;.NET solution file path relative to configuration file path&#34;)] </p></td>
@@ -1120,6 +1129,13 @@ Generator output file name </p></td>
                 <tr>
                   <td>is_marked_for_deletion</td>
                   <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id</td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -1815,6 +1831,13 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -2001,6 +2024,13 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>property_id_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -2009,6 +2039,13 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>property_ref_parent_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>view_default_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2126,6 +2163,13 @@ Reserved positions: 1 - primary key
                 <tr>
                   <td>group_reports</td>
                   <td><a href="#proto_config.proto_group_list_reports">proto_group_list_reports</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id</td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -3230,6 +3274,15 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>short_id_type_for_cache_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+@attr [DisplayName(&#34;Short ID&#34;)]
+@attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_catalogs</td>
                   <td><a href="#proto_config.proto_catalog">proto_catalog</a></td>
                   <td>repeated</td>
@@ -3450,6 +3503,15 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>short_id_type_for_cache_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(7)]
+@attr [DisplayName(&#34;Short ID&#34;)]
+@attr [Description(&#34;Short constant type ID for cache key generator&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -3588,6 +3650,15 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>short_id_type_for_cache_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(6)]
+@attr [DisplayName(&#34;Short ID&#34;)]
+@attr [Description(&#34;Short document type ID for cache key generator&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4391,6 +4462,41 @@ Reserved positions: 1 - primary key
 @attr [ExpandableObjectAttribute()]
 @attr [Description(&#34;General DB generator settings&#34;)]
 @attr [DisplayName(&#34;DB settings&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_constant_short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_catalog_short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_document_short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_detail_short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>last_view_short_id</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
@@ -9,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} tabs:{GroupDetails.ListDetails.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} details:{GroupDetails.ListDetails.Count,nq}")]
     public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
         public static readonly string DefaultName = "Tab";
@@ -37,10 +38,12 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnInit()
         {
+            this.ListGuidViewProperties = new ObservableCollection<string>();
             this.IsIncludableInModels = true;
             this.IsIndexFk = true;
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
             this.PropertyRefParentGuid = System.Guid.NewGuid().ToString();
+            this.ViewDefaultGuid = System.Guid.NewGuid().ToString();
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
             this.GroupProperties.ListProperties.OnAddingAction = (t) =>
@@ -68,6 +71,9 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupDetails, 9);
             var glp = (this.Parent.Parent as INodeWithProperties);
             this.Position = glp.GroupProperties.GetNextPosition();
+            var cfg = (Config)this.GetConfig();
+            this.ShortId = cfg.Model.LastDetailShortId + 1;
+            cfg.Model.LastDetailShortId = this.ShortId;
         }
         public void OnAdded()
         {

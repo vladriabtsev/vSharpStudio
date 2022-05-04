@@ -50,6 +50,9 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupReports.Parent = this;
             this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
             this.PropertyDateGuid = System.Guid.NewGuid().ToString();
+            var cfg = (Config)this.GetConfig();
+            this.ShortId = cfg.Model.LastDocumentShortId + 1;
+            cfg.Model.LastDocumentShortId = this.ShortId;
             this.RefillChildren();
         }
         protected override void OnInitFromDto()
