@@ -874,6 +874,7 @@ Common parameters section
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short constant type ID for cache key generator&#34;)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -1155,7 +1156,7 @@ Configuration model
 | is_use_composite_names | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Use parent-child composite names.&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] @attr [DisplayName(&#34;Use Composite&#34;)] |
 | is_use_group_prefix | [bool](#bool) |  | @attr [PropertyOrderAttribute(10)] @attr [Description(&#34;Composite names use their parent name as prefix. In a case of simple names all object&#39;s name will have only group name as a prefix.&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] @attr [DisplayName(&#34;Use Prefix&#34;)] |
 | db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] @attr [Description(&#34;General DB generator settings&#34;)] @attr [DisplayName(&#34;DB settings&#34;)] |
-| last_constant_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
+| last_constant_group_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_catalog_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_document_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_detail_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |

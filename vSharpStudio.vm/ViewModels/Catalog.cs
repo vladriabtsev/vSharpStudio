@@ -72,9 +72,6 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
             this.ViewDefaultGuid = System.Guid.NewGuid().ToString();
-            var cfg = (Config)this.GetConfig();
-            this.ShortId = cfg.Model.LastCatalogShortId + 1;
-            cfg.Model.LastCatalogShortId = this.ShortId;
             this.RefillChildren();
             HideProperties();
         }

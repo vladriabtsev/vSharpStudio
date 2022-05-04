@@ -938,5 +938,51 @@ namespace vSharpStudio.Unit
         }
 
         #endregion Db table names
+        [TestMethod]
+        public void ShortId()
+        {
+            var cfg = new Config();
+            Assert.AreEqual(0, cfg.Model.LastConstantGroupShortId);
+            Assert.AreEqual(0, cfg.Model.LastCatalogShortId);
+            Assert.AreEqual(0, cfg.Model.LastDetailShortId);
+            Assert.AreEqual(0, cfg.Model.LastDocumentShortId);
+            Assert.AreEqual(0, cfg.Model.LastViewShortId);
+
+            cfg.Model.GroupConstantGroups.AddGroupConstants("CnstGroup1");
+            Assert.AreEqual(1, cfg.Model.LastConstantGroupShortId);
+            Assert.AreEqual(1, cfg.Model.GroupConstantGroups.ListConstantGroups[0].ShortId);
+
+            cfg.Model.GroupCatalogs.AddCatalog("Cat1");
+            Assert.AreEqual(1, cfg.Model.LastCatalogShortId);
+            Assert.AreEqual(1, cfg.Model.GroupCatalogs.ListCatalogs[0].ShortId);
+
+            Assert.AreEqual(0, cfg.Model.LastDetailShortId);
+            cfg.Model.GroupCatalogs[0].GroupDetails.AddPropertiesTab("CatTab1");
+            Assert.AreEqual(1, cfg.Model.LastDetailShortId);
+            Assert.AreEqual(1, cfg.Model.GroupCatalogs.ListCatalogs[0].GroupDetails.ListDetails[0].ShortId);
+
+            cfg.Model.GroupDocuments.AddDocument("Doc1");
+            Assert.AreEqual(1, cfg.Model.LastDocumentShortId);
+            Assert.AreEqual(1, cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].ShortId);
+
+            Assert.AreEqual(1, cfg.Model.LastDetailShortId);
+            cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GroupDetails.AddPropertiesTab("DocTab1");
+            Assert.AreEqual(2, cfg.Model.LastDetailShortId);
+            Assert.AreEqual(2, cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GroupDetails.ListDetails[0].ShortId);
+
+
+            string json = cfg.ExportToJson();
+            var cfg2 = new Config(json);
+            Assert.AreEqual(1, cfg2.Model.GroupCatalogs.ListCatalogs[0].ShortId);
+            Assert.AreEqual(1, cfg2.Model.GroupCatalogs.ListCatalogs[0].GroupDetails.ListDetails[0].ShortId);
+            Assert.AreEqual(1, cfg2.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].ShortId);
+            Assert.AreEqual(2, cfg2.Model.GroupDocuments.GroupListDocuments.ListDocuments[0].GroupDetails.ListDetails[0].ShortId);
+
+            Assert.AreEqual(1, cfg2.Model.LastConstantGroupShortId);
+            Assert.AreEqual(1, cfg2.Model.LastCatalogShortId);
+            Assert.AreEqual(2, cfg2.Model.LastDetailShortId);
+            Assert.AreEqual(1, cfg2.Model.LastDocumentShortId);
+            Assert.AreEqual(0, cfg2.Model.LastViewShortId);
+        }
     }
 }

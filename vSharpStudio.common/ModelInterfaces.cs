@@ -359,7 +359,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	/// GENERAL DB SETTINGS
     	///////////////////////////////////////////////////
     	IDbSettings DbSettings { get; } // ModelInterfaces.tt Line: 55
-    	int LastConstantShortId { get; } // ModelInterfaces.tt Line: 51
+    	int LastConstantGroupShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastCatalogShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastDocumentShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastDetailShortId { get; } // ModelInterfaces.tt Line: 51
@@ -556,6 +556,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string ShortIdTypeForCacheKey { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	int ShortId { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

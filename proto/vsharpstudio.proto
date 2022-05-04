@@ -584,7 +584,7 @@ message proto_model {
     db_settings db_settings = 21;
 
     // @attr [BrowsableAttribute(false)]
-    int32 last_constant_short_id = 31;
+    int32 last_constant_group_short_id = 31;
     // @attr [BrowsableAttribute(false)]
     int32 last_catalog_short_id = 32;
     // @attr [BrowsableAttribute(false)]
@@ -1007,6 +1007,8 @@ message proto_group_list_constants {
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
+    // @attr [BrowsableAttribute(false)]
+    int32 short_id = 19;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

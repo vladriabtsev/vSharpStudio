@@ -46,7 +46,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ListConstantGroups);
             }
-
+            var cfg = (Config)this.GetConfig();
+            node.ShortId = cfg.Model.LastConstantGroupShortId + 1;
+            cfg.Model.LastConstantGroupShortId = node.ShortId;
             this.SetSelected(node);
             return node;
         }

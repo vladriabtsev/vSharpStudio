@@ -71,9 +71,6 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupDetails, 9);
             var glp = (this.Parent.Parent as INodeWithProperties);
             this.Position = glp.GroupProperties.GetNextPosition();
-            var cfg = (Config)this.GetConfig();
-            this.ShortId = cfg.Model.LastDetailShortId + 1;
-            cfg.Model.LastDetailShortId = this.ShortId;
         }
         public void OnAdded()
         {

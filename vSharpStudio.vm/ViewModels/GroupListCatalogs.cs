@@ -111,7 +111,9 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GetUniqueName(Catalog.DefaultName, node, this.ListCatalogs);
             }
-
+            var cfg = (Config)this.GetConfig();
+            node.ShortId = cfg.Model.LastCatalogShortId + 1;
+            cfg.Model.LastCatalogShortId = node.ShortId;
             this.SetSelected(node);
             return node;
         }
