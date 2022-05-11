@@ -504,47 +504,11 @@ message proto_plugin_generator_node_default_settings {
  * @exclude
  * ####################################### M O D E L ##########################################
  */
+ 
 enum proto_enum_primary_key_type {
     INT = 0;
     LONG = 1;
 }
-enum db_id_generator_method
-{
-    Identity = 0;
-    HiLo = 1;
-}
-// General DB settings
-// @base VmValidatableWithSeverity
-message db_settings {
-    // @attr [PropertyOrderAttribute(1)]
-    // @attr [DisplayName("Schema")]
-    // @attr [Description("DB schema name for all object in this configuration")]
-    string db_schema = 1;
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Id method")]
-    // @attr [Description("Primary key generation method")]
-    db_id_generator_method id_generator = 2;
-    // @attr [PropertyOrderAttribute(3)]
-    // @attr [DisplayName("Id type")]
-    // @attr [Description("Primary key field type")]
-    proto_enum_primary_key_type p_key_type = 3;
-
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Id name")]
-    // @attr [Description("Primary key field name")]
-    string p_key_name = 4;
-    // @attr [BrowsableAttribute(false)]
-    string p_key_guid = 5;
-
-    // @attr [PropertyOrderAttribute(5)]
-    // @attr [DisplayName("Version field")]
-    // @attr [Description("Version/timestamp field name")]
-    //string version_field_name = 5;
-
-    // @attr [BrowsableAttribute(false)]
-    //string version_field_guid = 7;
-}
-
 // Configuration model
 // @attr [CategoryOrder("Db Names Generation", 5)]
 message proto_model {
@@ -562,26 +526,48 @@ message proto_model {
     // @attr [PropertyOrderAttribute(3)]
     string description = 6;
     // @attr [PropertyOrderAttribute(8)]
-    // @attr [Category("Composite Names Generation")]
     // @attr [DisplayName("Max length")]
+    // @attr [Category("Composite Names Generation")]
     uint32 composite_name_max_length = 8;
     // @attr [PropertyOrderAttribute(9)]
+    // @attr [DisplayName("Use Composite")]
     // @attr [Description("Use parent-child composite names.")]
     // @attr [Category("Composite Names Generation")]
-    // @attr [DisplayName("Use Composite")]
     bool is_use_composite_names = 9;
     // @attr [PropertyOrderAttribute(10)]
+    // @attr [DisplayName("Use Prefix")]
     // @attr [Description("Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.")]
     // @attr [Category("Composite Names Generation")]
-    // @attr [DisplayName("Use Prefix")]
     bool is_use_group_prefix = 10;
 
-    // GENERAL DB SETTINGS
-    // @attr [PropertyOrderAttribute(11)]
-    // @attr [ExpandableObjectAttribute()]
-    // @attr [Description("General DB generator settings")]
-    // @attr [DisplayName("DB settings")]
-    db_settings db_settings = 21;
+    // @attr [BrowsableAttribute(false)]
+    string p_key_guid = 13;
+    // @attr [PropertyOrderAttribute(14)]
+    // @attr [DisplayName("Id name")]
+    // @attr [Description("Primary key field name")]
+    // @attr [Category("Props settings")]
+    string p_key_name = 14;
+    // @attr [PropertyOrderAttribute(15)]
+    // @attr [DisplayName("Id type")]
+    // @attr [Description("Primary key field type")]
+    // @attr [Category("Props settings")]
+    proto_enum_primary_key_type p_key_type = 15;
+
+    // @attr [BrowsableAttribute(false)]
+    string object_version_field_guid = 17;
+    // @attr [PropertyOrderAttribute(18)]
+    // @attr [DisplayName("Version field")]
+    // @attr [Description("Object version field name")]
+    string object_version_field_name = 18;
+
+
+    // @attr [PropertyOrderAttribute(5)]
+    // @attr [DisplayName("Version field")]
+    // @attr [Description("Version/timestamp field name")]
+    //string version_field_name = 5;
+    // @attr [BrowsableAttribute(false)]
+    //string version_field_guid = 7;
+
 
     // @attr [BrowsableAttribute(false)]
     int32 last_constant_group_short_id = 31;
@@ -591,8 +577,6 @@ message proto_model {
     int32 last_document_short_id = 33;
     // @attr [BrowsableAttribute(false)]
     int32 last_detail_short_id = 34;
-    // @attr [BrowsableAttribute(false)]
-    int32 last_view_short_id = 35;
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_common group_common = 106;
@@ -869,6 +853,8 @@ message proto_detail {
     int32 short_id = 19;
     // @attr [BrowsableAttribute(false)]
     string property_id_guid = 20;
+    // @attr [BrowsableAttribute(false)]
+    string property_version_guid = 21;
 
     // @attr [BrowsableAttribute(false)]
     string property_ref_parent_guid = 65;
@@ -1173,6 +1159,8 @@ message proto_catalog_folder {
     proto_catalog_code_property_settings code_property_settings = 22;
     // @attr [BrowsableAttribute(false)]
     string property_code_guid = 23;
+    // @attr [BrowsableAttribute(false)]
+    string property_version_guid = 24;
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item")]
@@ -1269,6 +1257,8 @@ message proto_catalog {
     // @attr [DisplayName("Max Levels")]
     // @attr [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
     uint32 max_tree_levels = 23;
+    // @attr [BrowsableAttribute(false)]
+    string property_version_guid = 24;
 
     // @attr [PropertyOrderAttribute(25)]
     // @attr [DisplayName("Use Code")]
@@ -1525,6 +1515,8 @@ message proto_document {
     google.protobuf.BoolValue use_date_property = 24;
     // @attr [BrowsableAttribute(false)]
     string property_date_guid = 25;
+    // @attr [BrowsableAttribute(false)]
+    string property_version_guid = 26;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;

@@ -4,6 +4,7 @@ using System.Drawing.Text;
 using System.IO;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
@@ -28,8 +29,10 @@ namespace vSharpStudio.vm.ViewModels
                 var m = (Model)cntx.InstanceToValidate;
                 CheckObjectsWithDbTables(cntx, recom, m, true);
             });
+            this.RuleFor(x => x.ObjectVersionFieldName).NotEmpty();
+            this.RuleFor(x => x.ObjectVersionFieldName).Custom((name, cntx) => { CheckName(name, cntx); });
+            this.RuleFor(x => x.PKeyName).Custom((name, cntx) => { CheckName(name, cntx); });
         }
-
         private static void CheckObjectsWithDbTables(ValidationContext<Model> cntx, string recom, Model m, bool isCheckTabs)
         {
             var dic = new Dictionary<string, ITreeConfigNode>();
@@ -70,7 +73,6 @@ namespace vSharpStudio.vm.ViewModels
                     CheckTabs(cntx, dic, t.GroupDetails, recom);
             }
         }
-
         private static void CheckTabs(ValidationContext<Model> cntx, Dictionary<string, ITreeConfigNode> dic, IGroupListDetails tabs, string recom)
         {
             foreach (var t in tabs.ListDetails)
@@ -105,7 +107,6 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append(t.Name);
             return sb;
         }
-
         private static void GetObjectTypeDesc(StringBuilder sb, ITreeConfigNode prev)
         {
             if (prev is Catalog)
@@ -125,6 +126,107 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
                 throw new Exception();
+        }
+        private void CheckName(string name, ValidationContext<Model> cntx)
+        {
+            var set = (Model)cntx.InstanceToValidate;
+            var cfg = set.GetConfig();
+            int nerr = 0;
+            int nerrMax = 10;
+
+            foreach (var t in cfg.Model.GroupConstantGroups.ListConstantGroups)
+            {
+                if (nerr >= nerrMax) return;
+                foreach (var tt in t.ListConstants)
+                {
+                    if (nerr >= nerrMax) return;
+                    if (set.ObjectVersionFieldName == tt.Name)
+                    {
+                        nerr++;
+                        cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for constant field in constant group '{t.Name}'"));
+                    }
+                }
+            }
+            if (nerr >= nerrMax) return;
+            foreach (var t in cfg.Model.GroupCatalogs.ListCatalogs)
+            {
+                foreach (var tt in t.GroupProperties.ListProperties)
+                {
+                    if (nerr >= nerrMax) return;
+                    if (set.ObjectVersionFieldName == tt.Name)
+                    {
+                        nerr++;
+                        cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog '{t.Name}'"));
+                    }
+                }
+                foreach (var tt in t.GroupDetails.ListDetails)
+                {
+                    if (nerr >= nerrMax) return;
+                    this.ValidateDetail(cntx, set, "catalog detail " + t.Name, tt, nerrMax, ref nerr);
+                }
+                if (t.UseTree && t.UseSeparateTreeForFolders)
+                {
+                    foreach (var tt in t.Folder.GroupProperties.ListProperties)
+                    {
+                        if (nerr >= nerrMax) return;
+                        if (set.ObjectVersionFieldName == tt.Name)
+                        {
+                            nerr++;
+                            cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog folder '{t.Name}'"));
+                        }
+                    }
+                    foreach (var tt in t.Folder.GroupDetails.ListDetails)
+                    {
+                        if (nerr >= nerrMax) return;
+                        this.ValidateDetail(cntx, set, "catalog folder detail " + t.Name, tt, nerrMax, ref nerr);
+                    }
+                }
+            }
+            if (nerr >= nerrMax) return;
+            foreach (var t in cfg.Model.GroupDocuments.GroupSharedProperties.ListProperties)
+            {
+                if (nerr >= nerrMax) return;
+                if (set.ObjectVersionFieldName == t.Name)
+                {
+                    nerr++;
+                    cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for shared field for documents"));
+                }
+            }
+            if (nerr >= nerrMax) return;
+            foreach (var t in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            {
+                foreach (var tt in t.GroupProperties.ListProperties)
+                {
+                    if (nerr >= nerrMax) return;
+                    if (set.ObjectVersionFieldName == tt.Name)
+                    {
+                        nerr++;
+                        cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for field in document '{t.Name}'"));
+                    }
+                }
+                foreach (var tt in t.GroupDetails.ListDetails)
+                {
+                    if (nerr >= nerrMax) return;
+                    this.ValidateDetail(cntx, set, "document detail " + t.Name, tt, nerrMax, ref nerr);
+                }
+            }
+        }
+        private void ValidateDetail(ValidationContext<Model> cntx, Model set, string path, IDetail t, int nerrMax, ref int nerr)
+        {
+            foreach (var tt in t.GroupProperties.ListProperties)
+            {
+                if (nerr >= nerrMax) return;
+                if (set.ObjectVersionFieldName == tt.Name)
+                {
+                    nerr++;
+                    cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for field in '{path}.{t.Name}'"));
+                }
+            }
+            foreach (var tt in t.GroupDetails.ListDetails)
+            {
+                if (nerr >= nerrMax) return;
+                this.ValidateDetail(cntx, set, path + "." + t.Name, tt, nerrMax, ref nerr);
+            }
         }
     }
 }

@@ -65,8 +65,6 @@ namespace vSharpStudio.vm.ViewModels
             // TODO validate
             this.IsUseGroupPrefix = true;
 
-            this.DbSettings.Parent = this;
-
             //this.DbSettings.DbSchema = "dbo";
             //this.DbSettings.IdGenerator = DbIdGeneratorMethod.HiLo;
             //this.DbSettings.PKeyFieldGuid= System.Guid.NewGuid().ToString();
@@ -74,6 +72,10 @@ namespace vSharpStudio.vm.ViewModels
             //this.DbSettings.PKeyType = EnumPrimaryKeyType.INT;
             //this.DbSettings.VersionFieldGuid = System.Guid.NewGuid().ToString();
             //this.DbSettings.VersionFieldName = "Version";
+            this.PKeyName = "Id";
+            this.PKeyGuid = System.Guid.NewGuid().ToString();
+            this.PKeyType = EnumPrimaryKeyType.INT;
+            this.ObjectVersionFieldName = "ObjectVersion";
         }
 
         protected override void OnInitFromDto()
@@ -91,7 +93,6 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupCatalogs, 9);
             this.Children.Add(this.GroupDocuments, 10);
             this.Children.Add(this.GroupJournals, 11);
-            this.DbSettings.Parent = this;
             VmBindable.IsNotifyingStatic = true;
         }
 
@@ -423,13 +424,14 @@ namespace vSharpStudio.vm.ViewModels
             return length;
         }
         // numerical
-        public IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive)
+        public IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive, bool isPKey = false)
         {
             uint length = this.GetLengthFromMaxValue(maxValue);
             DataType dt = new DataType();
             dt.DataTypeEnum = EnumDataType.NUMERICAL;
             dt.Length = length;
             dt.IsPositive = isPositive;
+            dt.IsPKey= isPKey;
             return dt;
         }
         // numerical
@@ -524,28 +526,6 @@ namespace vSharpStudio.vm.ViewModels
         //    dt.IsNullable = isNullable;
         //    return dt;
         //}
-        public IDataType GetIdRefDataType()
-        {
-            var dt = (DataType)GetIdDataType();
-            return dt;
-        }
-        public IDataType GetIdDataType()
-        {
-            DataType dt = default(DataType);
-            switch (this.DbSettings.PKeyType)
-            {
-                case EnumPrimaryKeyType.INT:
-                    dt = new DataType(int.MaxValue);
-                    break;
-                case EnumPrimaryKeyType.LONG:
-                    dt = new DataType(long.MaxValue);
-                    break;
-                default:
-                    throw new ArgumentException();
-            }
-            dt.IsPKey = true;
-            return dt;
-        }
         //public string GetIdFieldName(IvPluginDbGenerator dbGen)
         //{
         //    string fieldName = null;
@@ -585,33 +565,88 @@ namespace vSharpStudio.vm.ViewModels
         //    return this.DbSettings.VersionFieldGuid;
         //}
 
-        //private IProperty GetPropertyId(IvPluginDbGenerator dbGen)
-        //{
-        //    string fieldName = null;
-        //    if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
-        //    {
-        //        if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyName))
-        //            return null;
-        //        fieldName = this.DbSettings.PKeyName;
-        //    }
-        //    else
-        //    {
-        //        fieldName = dbGen.PKeyName;
-        //    }
-        //    var dt = (DataType)this.GetIdDataType();
-        //    dt.IsPKey = true;
-        //    if (string.IsNullOrWhiteSpace(this.DbSettings.PKeyFieldGuid))
-        //        this.DbSettings.PKeyFieldGuid = System.Guid.NewGuid().ToString();
-        //    var res = new Property(default(ITreeConfigNode), this.DbSettings.PKeyFieldGuid, fieldName, dt);
-        //    res.IsPKey = true;
-        //    return res;
-        //}
+        [BrowsableAttribute(false)]
+        public string PKeyTypeStr
+        {
+            get
+            {
+                switch (this.PKeyType)
+                {
+                    case EnumPrimaryKeyType.INT:
+                        return "int";
+                    case EnumPrimaryKeyType.LONG:
+                        return "long";
+                }
+                throw new NotImplementedException();
+            }
+        }
+        private IProperty GetPropertyId(IvPluginDbGenerator dbGen)
+        {
+            string fieldName = null;
+            if (string.IsNullOrWhiteSpace(dbGen.PKeyName))
+            {
+                if (string.IsNullOrWhiteSpace(this.PKeyName))
+                    return null;
+                fieldName = this.PKeyName;
+            }
+            else
+            {
+                fieldName = dbGen.PKeyName;
+            }
+            var dt = (DataType)this.GetIdDataType();
+            dt.IsPKey = true;
+            if (string.IsNullOrWhiteSpace(this.PKeyGuid))
+                this.PKeyGuid = System.Guid.NewGuid().ToString();
+            var res = new Property(default(ITreeConfigNode), this.PKeyGuid, fieldName, dt);
+            res.IsPKey = true;
+            return res;
+        }
+        public IDataType GetIdDataType()
+        {
+            IDataType dt = default(IDataType);
+            switch (this.PKeyType)
+            {
+                case EnumPrimaryKeyType.INT:
+                    dt = this.GetDataTypeFromMaxValue(int.MaxValue, false, true);
+                    break;
+                case EnumPrimaryKeyType.LONG:
+                    dt = this.GetDataTypeFromMaxValue(long.MaxValue, false, true);
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
+            return dt;
+        }
+        public IDataType GetIdRefDataType()
+        {
+            IDataType dt = default(IDataType);
+            switch (this.PKeyType)
+            {
+                case EnumPrimaryKeyType.INT:
+                    dt = this.GetDataTypeFromMaxValue(int.MaxValue, false);
+                    break;
+                case EnumPrimaryKeyType.LONG:
+                    dt = this.GetDataTypeFromMaxValue(long.MaxValue, false);
+                    break;
+                default:
+                    throw new ArgumentException();
+            }
+            return dt;
+        }
         public IProperty GetPropertyId(string idGuid)
         {
             var dt = (DataType)this.GetIdDataType();
-            var res = new Property(default(ITreeConfigNode), idGuid, this.DbSettings.PKeyName, dt);
+            var res = new Property(default(ITreeConfigNode), idGuid, this.PKeyName, dt);
             res.Position = 6;
             res.IsPKey = true;
+            return res;
+        }
+        public IProperty GetPropertyVersion(string guid)
+        {
+            var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
+            var res = new Property(default(ITreeConfigNode), guid, this.ObjectVersionFieldName, dt);
+            res.IsNullable = false;
+            res.Position = 7;
             return res;
         }
         public IProperty GetPropertyRefParent(string guid, string name, bool isNullable = false)
@@ -619,7 +654,7 @@ namespace vSharpStudio.vm.ViewModels
             var dt = (DataType)this.GetIdDataType();
             dt.IsRefParent = true;
             var res = new Property(default(ITreeConfigNode), guid, name, dt);
-            res.Position = 7;
+            res.Position = 8;
             res.IsNullable = isNullable;
             return res;
         }
@@ -627,28 +662,28 @@ namespace vSharpStudio.vm.ViewModels
         {
             var dt = (DataType)this.GetDataTypeString(length);
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyCodeName, dt);
-            res.Position = 8;
+            res.Position = 9;
             return res;
         }
         public IProperty GetPropertyCatalogCodeInt(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyCodeName, dt);
-            res.Position = 8;
+            res.Position = 9;
             return res;
         }
         public IProperty GetPropertyCatalogName(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeString(length);
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyNameName, dt);
-            res.Position = 9;
+            res.Position = 10;
             return res;
         }
         public IProperty GetPropertyCatalogDescription(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeString(length);
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyDescriptionName, dt);
-            res.Position = 10;
+            res.Position = 11;
             return res;
         }
         public IProperty GetPropertyIsFolder(string guid)
@@ -657,7 +692,7 @@ namespace vSharpStudio.vm.ViewModels
             dt.DataTypeEnum = EnumDataType.BOOL;
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyIsFolderName, dt);
             res.IsNullable = false;
-            res.Position = 11;
+            res.Position = 12;
             return res;
         }
         public IProperty GetPropertyIsOpen(string guid)
@@ -666,7 +701,7 @@ namespace vSharpStudio.vm.ViewModels
             dt.DataTypeEnum = EnumDataType.BOOL;
             var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyIsOpenName, dt);
             res.IsNullable = false;
-            res.Position = 12;
+            res.Position = 13;
             return res;
         }
         public IProperty GetPropertyDocumentDate(string guid)
@@ -674,21 +709,21 @@ namespace vSharpStudio.vm.ViewModels
             var dt = (DataType)this.GetDataTypeDateTimeUtc();
             var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyDateName, dt);
             res.AccuracyForTime = EnumTimeAccuracyType.MAX;
-            res.Position = 7;
+            res.Position = 8;
             return res;
         }
         public IProperty GetPropertyDocumentCodeString(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeString(length);
             var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyCodeName, dt);
-            res.Position = 8;
+            res.Position = 9;
             return res;
         }
         public IProperty GetPropertyDocumentCodeInt(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
             var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyCodeName, dt);
-            res.Position = 8;
+            res.Position = 9;
             return res;
         }
         //public IProperty GetPropertyString(string guid, uint length, string name)

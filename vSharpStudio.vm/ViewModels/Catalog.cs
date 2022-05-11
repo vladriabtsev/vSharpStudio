@@ -72,6 +72,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
             this.ViewDefaultGuid = System.Guid.NewGuid().ToString();
+            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this.RefillChildren();
             HideProperties();
         }
@@ -470,6 +471,8 @@ namespace vSharpStudio.vm.ViewModels
                         res.Add(prp);
                     }
                 }
+                prp = cfg.Model.GetPropertyVersion(this.Folder.PropertyVersionGuid);
+                res.Add(prp);
             }
             else
             {
@@ -502,6 +505,8 @@ namespace vSharpStudio.vm.ViewModels
                         }
                     }
                 }
+                prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
+                res.Add(prp);
             }
             if (this.GetUseCodeProperty())
             {

@@ -10,24 +10,6 @@
       "hasServices": false,
       "enums": [
         {
-          "name": "db_id_generator_method",
-          "longName": "db_id_generator_method",
-          "fullName": "proto_config.db_id_generator_method",
-          "description": "",
-          "values": [
-            {
-              "name": "Identity",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "HiLo",
-              "number": "1",
-              "description": ""
-            }
-          ]
-        },
-        {
           "name": "enum_enumeration_type",
           "longName": "enum_enumeration_type",
           "fullName": "proto_config.enum_enumeration_type",
@@ -353,67 +335,6 @@
       ],
       "extensions": [],
       "messages": [
-        {
-          "name": "db_settings",
-          "longName": "db_settings",
-          "fullName": "proto_config.db_settings",
-          "description": "General DB settings\n@base VmValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "db_schema",
-              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Schema\")]\n@attr [Description(\"DB schema name for all object in this configuration\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "id_generator",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Id method\")]\n@attr [Description(\"Primary key generation method\")]",
-              "label": "",
-              "type": "db_id_generator_method",
-              "longType": "db_id_generator_method",
-              "fullType": "proto_config.db_id_generator_method",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "p_key_type",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Id type\")]\n@attr [Description(\"Primary key field type\")]",
-              "label": "",
-              "type": "proto_enum_primary_key_type",
-              "longType": "proto_enum_primary_key_type",
-              "fullType": "proto_config.proto_enum_primary_key_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "p_key_name",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Id name\")]\n@attr [Description(\"Primary key field name\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "p_key_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
         {
           "name": "proto_app_db_settings",
           "longName": "proto_app_db_settings",
@@ -1149,6 +1070,16 @@
               "defaultValue": ""
             },
             {
+              "name": "property_version_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "use_code_property",
               "description": "@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item\")]",
               "label": "",
@@ -1592,6 +1523,16 @@
             },
             {
               "name": "property_code_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_version_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
@@ -2216,6 +2157,16 @@
               "defaultValue": ""
             },
             {
+              "name": "property_version_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "property_ref_parent_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -2448,6 +2399,16 @@
             },
             {
               "name": "property_date_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_version_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
@@ -5039,7 +5000,7 @@
             },
             {
               "name": "composite_name_max_length",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Max length\")]",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Max length\")]\n@attr [Category(\"Composite Names Generation\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -5049,7 +5010,7 @@
             },
             {
               "name": "is_use_composite_names",
-              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [Description(\"Use parent-child composite names.\")]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Use Composite\")]",
+              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [DisplayName(\"Use Composite\")]\n@attr [Description(\"Use parent-child composite names.\")]\n@attr [Category(\"Composite Names Generation\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5059,7 +5020,7 @@
             },
             {
               "name": "is_use_group_prefix",
-              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [Description(\"Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.\")]\n@attr [Category(\"Composite Names Generation\")]\n@attr [DisplayName(\"Use Prefix\")]",
+              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [DisplayName(\"Use Prefix\")]\n@attr [Description(\"Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.\")]\n@attr [Category(\"Composite Names Generation\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5068,12 +5029,52 @@
               "defaultValue": ""
             },
             {
-              "name": "db_settings",
-              "description": "GENERAL DB SETTINGS\n@attr [PropertyOrderAttribute(11)]\n@attr [ExpandableObjectAttribute()]\n@attr [Description(\"General DB generator settings\")]\n@attr [DisplayName(\"DB settings\")]",
+              "name": "p_key_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
-              "type": "db_settings",
-              "longType": "db_settings",
-              "fullType": "proto_config.db_settings",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "p_key_name",
+              "description": "@attr [PropertyOrderAttribute(14)]\n@attr [DisplayName(\"Id name\")]\n@attr [Description(\"Primary key field name\")]\n@attr [Category(\"Props settings\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "p_key_type",
+              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Id type\")]\n@attr [Description(\"Primary key field type\")]\n@attr [Category(\"Props settings\")]",
+              "label": "",
+              "type": "proto_enum_primary_key_type",
+              "longType": "proto_enum_primary_key_type",
+              "fullType": "proto_config.proto_enum_primary_key_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "object_version_field_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "object_version_field_name",
+              "description": "@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Version field\")]\n@attr [Description(\"Object version field name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5109,16 +5110,6 @@
             },
             {
               "name": "last_detail_short_id",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "last_view_short_id",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "int32",

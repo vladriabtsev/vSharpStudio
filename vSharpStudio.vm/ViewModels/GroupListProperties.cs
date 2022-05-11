@@ -244,30 +244,31 @@ namespace vSharpStudio.vm.ViewModels
             // 4  __is_need_insert
             // 5  __is_need_update
             // 6  PropertyId
-            // 7  PropertyRefParent, PropertyDocumentDate
-            // 8  PropertyCatalogCode, PropertyCatalogCodeInt, PropertyDocumentCodeString, PropertyDocumentCodeInt
-            // 9  PropertyCatalogName
-            // 10 PropertyCatalogDescription
-            // 11 PropertyIsFolder
-            // 12 PropertyIsOpen
+            // 7  PropertyObjectVersion
+            // 8  PropertyRefParent, PropertyDocumentDate
+            // 9  PropertyCatalogCode, PropertyCatalogCodeInt, PropertyDocumentCodeString, PropertyDocumentCodeInt
+            // 10 PropertyCatalogName
+            // 11 PropertyCatalogDescription
+            // 12 PropertyIsFolder
+            // 13 PropertyIsOpen
             if (this.LastGenPosition == 0)
             {
                 if (this.Parent is Catalog)
                 {
-                    this.LastGenPosition = 12;
+                    this.LastGenPosition = 13;
 
                 }
                 else if (this.Parent is Detail)
                 {
-                    this.LastGenPosition = 7;
+                    this.LastGenPosition = 8;
                 }
                 else if (this.Parent is CatalogFolder)
                 {
-                    this.LastGenPosition = 12;
+                    this.LastGenPosition = 13;
                 }
                 else if (this.Parent is Document)
                 {
-                    this.LastGenPosition = 9;
+                    this.LastGenPosition = 10;
                 }
                 else if (this.Parent is GroupDocuments)
                 {

@@ -46,13 +46,6 @@ namespace vSharpStudio.vm.ViewModels
                     var c = (Catalog)pg.Parent;
                     var gc = (IGroupListCatalogs)c.Parent;
                     var model = (IModel)gc.Parent;
-                    if (model.DbSettings.PKeyName == name)
-                    {
-                        var vf = new ValidationFailure(nameof(p.Name),
-                            $"Model DbSettings parameter 'PKeyName' is set to '{name}'. This Property name is reserved for auto generated ID property");
-                        vf.Severity = Severity.Error;
-                        cntx.AddFailure(vf);
-                    }
                     ValidateSpecialProperties(name, cntx, p, c, gc);
                     if (c.UseTree)
                     {
@@ -100,13 +93,6 @@ namespace vSharpStudio.vm.ViewModels
                     var c = (Catalog)pg.Parent.Parent;
                     var gc = (IGroupListCatalogs)c.Parent;
                     var cfg = pg.GetConfig();
-                    if (cfg.Model.DbSettings.PKeyName == name)
-                    {
-                        var vf = new ValidationFailure(nameof(p.Name),
-                            $"Model DbSettings parameter 'PKeyName' is set to '{name}'. This Property name is reserved for auto generated ID property");
-                        vf.Severity = Severity.Error;
-                        cntx.AddFailure(vf);
-                    }
                     ValidateSpecialProperties(name, cntx, p, c, gc);
                     if (c.UseTree)
                     {
@@ -134,14 +120,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else if (pg.Parent is Detail)
                 {
-                    var cfg = pg.GetConfig();
-                    if (cfg.Model.DbSettings.PKeyName == name)
-                    {
-                        var vf = new ValidationFailure(nameof(p.Name),
-                            $"Model DbSettings parameter 'PKeyName' is set to '{name}'. This Property name is reserved for auto generated ID property");
-                        vf.Severity = Severity.Error;
-                        cntx.AddFailure(vf);
-                    }
                 }
                 else if (pg.Parent is Document)
                 {

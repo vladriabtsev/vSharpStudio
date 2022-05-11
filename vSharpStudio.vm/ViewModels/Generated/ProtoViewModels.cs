@@ -6180,227 +6180,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanged();
         #endregion Properties
     }
-    public partial class DbSettingsValidator : ValidatorBase<DbSettings, DbSettingsValidator> { } // Class.tt Line: 6
-    
-    ///////////////////////////////////////////////////
-    /// General DB settings
-    ///////////////////////////////////////////////////
-    public partial class DbSettings : VmValidatableWithSeverity<DbSettings, DbSettingsValidator>, IDbSettings // Class.tt Line: 7
-    {
-        #region CTOR
-        public DbSettings() 
-            : base(DbSettingsValidator.Validator) // Class.tt Line: 45
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static DbSettings Clone(IDbSettings from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            DbSettings vm = new DbSettings();
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.DbSchema = from.DbSchema; // Clone.tt Line: 65
-            vm.IdGenerator = from.IdGenerator; // Clone.tt Line: 65
-            vm.PKeyType = from.PKeyType; // Clone.tt Line: 65
-            vm.PKeyName = from.PKeyName; // Clone.tt Line: 65
-            vm.PKeyGuid = from.PKeyGuid; // Clone.tt Line: 65
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(DbSettings to, IDbSettings from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.DbSchema = from.DbSchema; // Clone.tt Line: 141
-            to.IdGenerator = from.IdGenerator; // Clone.tt Line: 141
-            to.PKeyType = from.PKeyType; // Clone.tt Line: 141
-            to.PKeyName = from.PKeyName; // Clone.tt Line: 141
-            to.PKeyGuid = from.PKeyGuid; // Clone.tt Line: 141
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override DbSettings Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return DbSettings.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(DbSettings from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            DbSettings.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'db_settings' to 'DbSettings'
-        public static DbSettings ConvertToVM(Proto.Config.db_settings m, DbSettings vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.DbSchema = m.DbSchema; // Clone.tt Line: 221
-            vm.IdGenerator = (DbIdGeneratorMethod)m.IdGenerator; // Clone.tt Line: 221
-            vm.PKeyType = (EnumPrimaryKeyType)m.PKeyType; // Clone.tt Line: 221
-            vm.PKeyName = m.PKeyName; // Clone.tt Line: 221
-            vm.PKeyGuid = m.PKeyGuid; // Clone.tt Line: 221
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'DbSettings' to 'db_settings'
-        public static Proto.Config.db_settings ConvertToProto(DbSettings vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Config.db_settings m = new Proto.Config.db_settings(); // Clone.tt Line: 239
-            m.DbSchema = vm.DbSchema; // Clone.tt Line: 276
-            m.IdGenerator = (Proto.Config.db_id_generator_method)vm.IdGenerator; // Clone.tt Line: 274
-            m.PKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PKeyType; // Clone.tt Line: 274
-            m.PKeyName = vm.PKeyName; // Clone.tt Line: 276
-            m.PKeyGuid = vm.PKeyGuid; // Clone.tt Line: 276
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [PropertyOrderAttribute(1)]
-        [DisplayName("Schema")]
-        [Description("DB schema name for all object in this configuration")]
-        public string DbSchema // Property.tt Line: 55
-        { 
-            get { return this._DbSchema; }
-            set
-            {
-                if (this._DbSchema != value)
-                {
-                    this.OnDbSchemaChanging(ref value);
-                    this._DbSchema = value;
-                    this.OnDbSchemaChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _DbSchema = string.Empty;
-        partial void OnDbSchemaChanging(ref string to); // Property.tt Line: 79
-        partial void OnDbSchemaChanged();
-        
-        [PropertyOrderAttribute(2)]
-        [DisplayName("Id method")]
-        [Description("Primary key generation method")]
-        public DbIdGeneratorMethod IdGenerator // Property.tt Line: 55
-        { 
-            get { return this._IdGenerator; }
-            set
-            {
-                if (this._IdGenerator != value)
-                {
-                    this.OnIdGeneratorChanging(ref value);
-                    this._IdGenerator = value;
-                    this.OnIdGeneratorChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private DbIdGeneratorMethod _IdGenerator;
-        partial void OnIdGeneratorChanging(ref DbIdGeneratorMethod to); // Property.tt Line: 79
-        partial void OnIdGeneratorChanged();
-        
-        [PropertyOrderAttribute(3)]
-        [DisplayName("Id type")]
-        [Description("Primary key field type")]
-        public EnumPrimaryKeyType PKeyType // Property.tt Line: 55
-        { 
-            get { return this._PKeyType; }
-            set
-            {
-                if (this._PKeyType != value)
-                {
-                    this.OnPKeyTypeChanging(ref value);
-                    this._PKeyType = value;
-                    this.OnPKeyTypeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumPrimaryKeyType _PKeyType;
-        partial void OnPKeyTypeChanging(ref EnumPrimaryKeyType to); // Property.tt Line: 79
-        partial void OnPKeyTypeChanged();
-        
-        [PropertyOrderAttribute(4)]
-        [DisplayName("Id name")]
-        [Description("Primary key field name")]
-        public string PKeyName // Property.tt Line: 55
-        { 
-            get { return this._PKeyName; }
-            set
-            {
-                if (this._PKeyName != value)
-                {
-                    this.OnPKeyNameChanging(ref value);
-                    this._PKeyName = value;
-                    this.OnPKeyNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PKeyName = string.Empty;
-        partial void OnPKeyNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnPKeyNameChanged();
-        
-        [BrowsableAttribute(false)]
-        public string PKeyGuid // Property.tt Line: 55
-        { 
-            get { return this._PKeyGuid; }
-            set
-            {
-                if (this._PKeyGuid != value)
-                {
-                    this.OnPKeyGuidChanging(ref value);
-                    this._PKeyGuid = value;
-                    this.OnPKeyGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PKeyGuid = string.Empty;
-        partial void OnPKeyGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPKeyGuidChanged();
-        #endregion Properties
-    }
     public partial class ModelValidator : ValidatorBase<Model, ModelValidator> { } // Class.tt Line: 6
     
     ///////////////////////////////////////////////////
@@ -6419,7 +6198,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.DbSettings = new DbSettings(); // Class.tt Line: 31
             this.GroupCommon = new GroupListCommon(this); // Class.tt Line: 33
             this.GroupConstantGroups = new GroupConstantGroups(this); // Class.tt Line: 33
             this.GroupEnumerations = new GroupListEnumerations(this); // Class.tt Line: 33
@@ -6458,13 +6236,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.CompositeNameMaxLength = from.CompositeNameMaxLength; // Clone.tt Line: 65
             vm.IsUseCompositeNames = from.IsUseCompositeNames; // Clone.tt Line: 65
             vm.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 65
-            if (isDeep) // Clone.tt Line: 62
-                vm.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.Clone(from.DbSettings, isDeep);
+            vm.PKeyGuid = from.PKeyGuid; // Clone.tt Line: 65
+            vm.PKeyName = from.PKeyName; // Clone.tt Line: 65
+            vm.PKeyType = from.PKeyType; // Clone.tt Line: 65
+            vm.ObjectVersionFieldGuid = from.ObjectVersionFieldGuid; // Clone.tt Line: 65
+            vm.ObjectVersionFieldName = from.ObjectVersionFieldName; // Clone.tt Line: 65
             vm.LastConstantGroupShortId = from.LastConstantGroupShortId; // Clone.tt Line: 65
             vm.LastCatalogShortId = from.LastCatalogShortId; // Clone.tt Line: 65
             vm.LastDocumentShortId = from.LastDocumentShortId; // Clone.tt Line: 65
             vm.LastDetailShortId = from.LastDetailShortId; // Clone.tt Line: 65
-            vm.LastViewShortId = from.LastViewShortId; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.Clone(vm, from.GroupCommon, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -6499,13 +6279,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.CompositeNameMaxLength = from.CompositeNameMaxLength; // Clone.tt Line: 141
             to.IsUseCompositeNames = from.IsUseCompositeNames; // Clone.tt Line: 141
             to.IsUseGroupPrefix = from.IsUseGroupPrefix; // Clone.tt Line: 141
-            if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.DbSettings.Update((DbSettings)to.DbSettings, from.DbSettings, isDeep);
+            to.PKeyGuid = from.PKeyGuid; // Clone.tt Line: 141
+            to.PKeyName = from.PKeyName; // Clone.tt Line: 141
+            to.PKeyType = from.PKeyType; // Clone.tt Line: 141
+            to.ObjectVersionFieldGuid = from.ObjectVersionFieldGuid; // Clone.tt Line: 141
+            to.ObjectVersionFieldName = from.ObjectVersionFieldName; // Clone.tt Line: 141
             to.LastConstantGroupShortId = from.LastConstantGroupShortId; // Clone.tt Line: 141
             to.LastCatalogShortId = from.LastCatalogShortId; // Clone.tt Line: 141
             to.LastDocumentShortId = from.LastDocumentShortId; // Clone.tt Line: 141
             to.LastDetailShortId = from.LastDetailShortId; // Clone.tt Line: 141
-            to.LastViewShortId = from.LastViewShortId; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListCommon.Update((GroupListCommon)to.GroupCommon, from.GroupCommon, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -6591,14 +6373,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.CompositeNameMaxLength = m.CompositeNameMaxLength; // Clone.tt Line: 221
             vm.IsUseCompositeNames = m.IsUseCompositeNames; // Clone.tt Line: 221
             vm.IsUseGroupPrefix = m.IsUseGroupPrefix; // Clone.tt Line: 221
-            if (vm.DbSettings == null) // Clone.tt Line: 213
-                vm.DbSettings = new DbSettings(); // Clone.tt Line: 217
-            vSharpStudio.vm.ViewModels.DbSettings.ConvertToVM(m.DbSettings, (DbSettings)vm.DbSettings); // Clone.tt Line: 219
+            vm.PKeyGuid = m.PKeyGuid; // Clone.tt Line: 221
+            vm.PKeyName = m.PKeyName; // Clone.tt Line: 221
+            vm.PKeyType = (EnumPrimaryKeyType)m.PKeyType; // Clone.tt Line: 221
+            vm.ObjectVersionFieldGuid = m.ObjectVersionFieldGuid; // Clone.tt Line: 221
+            vm.ObjectVersionFieldName = m.ObjectVersionFieldName; // Clone.tt Line: 221
             vm.LastConstantGroupShortId = m.LastConstantGroupShortId; // Clone.tt Line: 221
             vm.LastCatalogShortId = m.LastCatalogShortId; // Clone.tt Line: 221
             vm.LastDocumentShortId = m.LastDocumentShortId; // Clone.tt Line: 221
             vm.LastDetailShortId = m.LastDetailShortId; // Clone.tt Line: 221
-            vm.LastViewShortId = m.LastViewShortId; // Clone.tt Line: 221
             if (vm.GroupCommon == null) // Clone.tt Line: 213
                 vm.GroupCommon = new GroupListCommon(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToVM(m.GroupCommon, (GroupListCommon)vm.GroupCommon); // Clone.tt Line: 219
@@ -6644,12 +6427,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.CompositeNameMaxLength = vm.CompositeNameMaxLength; // Clone.tt Line: 276
             m.IsUseCompositeNames = vm.IsUseCompositeNames; // Clone.tt Line: 276
             m.IsUseGroupPrefix = vm.IsUseGroupPrefix; // Clone.tt Line: 276
-            m.DbSettings = vSharpStudio.vm.ViewModels.DbSettings.ConvertToProto((DbSettings)vm.DbSettings); // Clone.tt Line: 270
+            m.PKeyGuid = vm.PKeyGuid; // Clone.tt Line: 276
+            m.PKeyName = vm.PKeyName; // Clone.tt Line: 276
+            m.PKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PKeyType; // Clone.tt Line: 274
+            m.ObjectVersionFieldGuid = vm.ObjectVersionFieldGuid; // Clone.tt Line: 276
+            m.ObjectVersionFieldName = vm.ObjectVersionFieldName; // Clone.tt Line: 276
             m.LastConstantGroupShortId = vm.LastConstantGroupShortId; // Clone.tt Line: 276
             m.LastCatalogShortId = vm.LastCatalogShortId; // Clone.tt Line: 276
             m.LastDocumentShortId = vm.LastDocumentShortId; // Clone.tt Line: 276
             m.LastDetailShortId = vm.LastDetailShortId; // Clone.tt Line: 276
-            m.LastViewShortId = vm.LastViewShortId; // Clone.tt Line: 276
             m.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToProto((GroupListCommon)vm.GroupCommon); // Clone.tt Line: 270
             m.GroupConstantGroups = vSharpStudio.vm.ViewModels.GroupConstantGroups.ConvertToProto((GroupConstantGroups)vm.GroupConstantGroups); // Clone.tt Line: 270
             m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto((GroupListEnumerations)vm.GroupEnumerations); // Clone.tt Line: 270
@@ -6669,8 +6455,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
-            this.DbSettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
             this.GroupCommon.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupConstantGroups.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
@@ -6816,8 +6600,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanged();
         
         [PropertyOrderAttribute(8)]
-        [Category("Composite Names Generation")]
         [DisplayName("Max length")]
+        [Category("Composite Names Generation")]
         public uint CompositeNameMaxLength // Property.tt Line: 55
         { 
             get { return this._CompositeNameMaxLength; }
@@ -6839,9 +6623,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnCompositeNameMaxLengthChanged();
         
         [PropertyOrderAttribute(9)]
+        [DisplayName("Use Composite")]
         [Description("Use parent-child composite names.")]
         [Category("Composite Names Generation")]
-        [DisplayName("Use Composite")]
         public bool IsUseCompositeNames // Property.tt Line: 55
         { 
             get { return this._IsUseCompositeNames; }
@@ -6863,9 +6647,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsUseCompositeNamesChanged();
         
         [PropertyOrderAttribute(10)]
+        [DisplayName("Use Prefix")]
         [Description("Composite names use their parent name as prefix. In a case of simple names all object's name will have only group name as a prefix.")]
         [Category("Composite Names Generation")]
-        [DisplayName("Use Prefix")]
         public bool IsUseGroupPrefix // Property.tt Line: 55
         { 
             get { return this._IsUseGroupPrefix; }
@@ -6886,35 +6670,118 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsUseGroupPrefixChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsUseGroupPrefixChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// GENERAL DB SETTINGS
-        ///////////////////////////////////////////////////
-        [PropertyOrderAttribute(11)]
-        [ExpandableObjectAttribute()]
-        [Description("General DB generator settings")]
-        [DisplayName("DB settings")]
-        public DbSettings DbSettings // Property.tt Line: 55
+        [BrowsableAttribute(false)]
+        public string PKeyGuid // Property.tt Line: 55
         { 
-            get { return this._DbSettings; }
+            get { return this._PKeyGuid; }
             set
             {
-                if (this._DbSettings != value)
+                if (this._PKeyGuid != value)
                 {
-                    this.OnDbSettingsChanging(ref value);
-                    this._DbSettings = value;
-                    this.OnDbSettingsChanged();
+                    this.OnPKeyGuidChanging(ref value);
+                    this._PKeyGuid = value;
+                    this.OnPKeyGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private DbSettings _DbSettings;
-        IDbSettings IModel.DbSettings { get { return (this as Model).DbSettings; } } // Property.tt Line: 77
-        partial void OnDbSettingsChanging(ref DbSettings to); // Property.tt Line: 79
-        partial void OnDbSettingsChanged();
-        //IDbSettings IModel.DbSettings { get { return this._DbSettings; } }
+        private string _PKeyGuid = string.Empty;
+        partial void OnPKeyGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPKeyGuidChanged();
+        
+        [PropertyOrderAttribute(14)]
+        [DisplayName("Id name")]
+        [Description("Primary key field name")]
+        [Category("Props settings")]
+        public string PKeyName // Property.tt Line: 55
+        { 
+            get { return this._PKeyName; }
+            set
+            {
+                if (this._PKeyName != value)
+                {
+                    this.OnPKeyNameChanging(ref value);
+                    this._PKeyName = value;
+                    this.OnPKeyNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PKeyName = string.Empty;
+        partial void OnPKeyNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnPKeyNameChanged();
+        
+        [PropertyOrderAttribute(15)]
+        [DisplayName("Id type")]
+        [Description("Primary key field type")]
+        [Category("Props settings")]
+        public EnumPrimaryKeyType PKeyType // Property.tt Line: 55
+        { 
+            get { return this._PKeyType; }
+            set
+            {
+                if (this._PKeyType != value)
+                {
+                    this.OnPKeyTypeChanging(ref value);
+                    this._PKeyType = value;
+                    this.OnPKeyTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumPrimaryKeyType _PKeyType;
+        partial void OnPKeyTypeChanging(ref EnumPrimaryKeyType to); // Property.tt Line: 79
+        partial void OnPKeyTypeChanged();
+        
+        [BrowsableAttribute(false)]
+        public string ObjectVersionFieldGuid // Property.tt Line: 55
+        { 
+            get { return this._ObjectVersionFieldGuid; }
+            set
+            {
+                if (this._ObjectVersionFieldGuid != value)
+                {
+                    this.OnObjectVersionFieldGuidChanging(ref value);
+                    this._ObjectVersionFieldGuid = value;
+                    this.OnObjectVersionFieldGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ObjectVersionFieldGuid = string.Empty;
+        partial void OnObjectVersionFieldGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnObjectVersionFieldGuidChanged();
+        
+        [PropertyOrderAttribute(18)]
+        [DisplayName("Version field")]
+        [Description("Object version field name")]
+        public string ObjectVersionFieldName // Property.tt Line: 55
+        { 
+            get { return this._ObjectVersionFieldName; }
+            set
+            {
+                if (this._ObjectVersionFieldName != value)
+                {
+                    this.OnObjectVersionFieldNameChanging(ref value);
+                    this._ObjectVersionFieldName = value;
+                    this.OnObjectVersionFieldNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ObjectVersionFieldName = string.Empty;
+        partial void OnObjectVersionFieldNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnObjectVersionFieldNameChanged();
         
         [BrowsableAttribute(false)]
         public int LastConstantGroupShortId // Property.tt Line: 55
@@ -6999,27 +6866,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private int _LastDetailShortId;
         partial void OnLastDetailShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnLastDetailShortIdChanged();
-        
-        [BrowsableAttribute(false)]
-        public int LastViewShortId // Property.tt Line: 55
-        { 
-            get { return this._LastViewShortId; }
-            set
-            {
-                if (this._LastViewShortId != value)
-                {
-                    this.OnLastViewShortIdChanging(ref value);
-                    this._LastViewShortId = value;
-                    this.OnLastViewShortIdChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private int _LastViewShortId;
-        partial void OnLastViewShortIdChanging(ref int to); // Property.tt Line: 79
-        partial void OnLastViewShortIdChanged();
         
         [BrowsableAttribute(false)]
         public GroupListCommon GroupCommon // Property.tt Line: 55
@@ -9982,6 +9828,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ShortId = from.ShortId; // Clone.tt Line: 65
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
+            vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 65
             vm.PropertyRefParentGuid = from.PropertyRefParentGuid; // Clone.tt Line: 65
             vm.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
@@ -10016,6 +9863,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Position = from.Position; // Clone.tt Line: 141
             to.ShortId = from.ShortId; // Clone.tt Line: 141
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
+            to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 141
             to.PropertyRefParentGuid = from.PropertyRefParentGuid; // Clone.tt Line: 141
             to.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
@@ -10106,6 +9954,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ShortId = m.ShortId; // Clone.tt Line: 221
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
+            vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
             vm.PropertyRefParentGuid = m.PropertyRefParentGuid; // Clone.tt Line: 221
             vm.ViewDefaultGuid = m.ViewDefaultGuid; // Clone.tt Line: 221
             if (vm.GroupForms == null) // Clone.tt Line: 213
@@ -10147,6 +9996,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Position = vm.Position; // Clone.tt Line: 276
             m.ShortId = vm.ShortId; // Clone.tt Line: 276
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
+            m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
             m.PropertyRefParentGuid = vm.PropertyRefParentGuid; // Clone.tt Line: 276
             m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
@@ -10462,6 +10312,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyIdGuid = string.Empty;
         partial void OnPropertyIdGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIdGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyVersionGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyVersionGuid; }
+            set
+            {
+                if (this._PropertyVersionGuid != value)
+                {
+                    this.OnPropertyVersionGuidChanging(ref value);
+                    this._PropertyVersionGuid = value;
+                    this.OnPropertyVersionGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyVersionGuid = string.Empty;
+        partial void OnPropertyVersionGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyVersionGuidChanged();
         
         [BrowsableAttribute(false)]
         public string PropertyRefParentGuid // Property.tt Line: 55
@@ -14494,6 +14365,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Clone(from.CodePropertySettings, isDeep);
             vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 65
+            vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 65
             vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
             vm.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 65
             vm.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 65
@@ -14531,6 +14403,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Update((CatalogCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
             to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 141
+            to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 141
             to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
             to.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 141
             to.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 141
@@ -14622,6 +14495,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.CodePropertySettings = new CatalogCodePropertySettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToVM(m.CodePropertySettings, (CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
             vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
+            vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
             vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
             vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
             vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
@@ -14661,6 +14535,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
             m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
+            m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
             m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
             m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
             m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
@@ -14979,6 +14854,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyCodeGuid = string.Empty;
         partial void OnPropertyCodeGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyCodeGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyVersionGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyVersionGuid; }
+            set
+            {
+                if (this._PropertyVersionGuid != value)
+                {
+                    this.OnPropertyVersionGuidChanging(ref value);
+                    this._PropertyVersionGuid = value;
+                    this.OnPropertyVersionGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyVersionGuid = string.Empty;
+        partial void OnPropertyVersionGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyVersionGuidChanged();
         
         [PropertyOrderAttribute(41)]
         [DisplayName("Use Name")]
@@ -15445,6 +15341,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.UseTree = from.UseTree; // Clone.tt Line: 65
             vm.UseSeparateTreeForFolders = from.UseSeparateTreeForFolders; // Clone.tt Line: 65
             vm.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 65
+            vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 65
             vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Clone(from.CodePropertySettings, isDeep);
@@ -15502,6 +15399,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.UseTree = from.UseTree; // Clone.tt Line: 141
             to.UseSeparateTreeForFolders = from.UseSeparateTreeForFolders; // Clone.tt Line: 141
             to.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 141
+            to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 141
             to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Update((CatalogCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
@@ -15616,6 +15514,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.UseTree = m.UseTree; // Clone.tt Line: 221
             vm.UseSeparateTreeForFolders = m.UseSeparateTreeForFolders; // Clone.tt Line: 221
             vm.MaxTreeLevels = m.MaxTreeLevels; // Clone.tt Line: 221
+            vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
             vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
             if (vm.CodePropertySettings == null) // Clone.tt Line: 213
                 vm.CodePropertySettings = new CatalogCodePropertySettings(); // Clone.tt Line: 217
@@ -15690,6 +15589,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.UseTree = vm.UseTree; // Clone.tt Line: 276
             m.UseSeparateTreeForFolders = vm.UseSeparateTreeForFolders; // Clone.tt Line: 276
             m.MaxTreeLevels = vm.MaxTreeLevels; // Clone.tt Line: 276
+            m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
             m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
             m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
@@ -15984,6 +15884,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private uint _MaxTreeLevels;
         partial void OnMaxTreeLevelsChanging(ref uint to); // Property.tt Line: 79
         partial void OnMaxTreeLevelsChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyVersionGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyVersionGuid; }
+            set
+            {
+                if (this._PropertyVersionGuid != value)
+                {
+                    this.OnPropertyVersionGuidChanging(ref value);
+                    this._PropertyVersionGuid = value;
+                    this.OnPropertyVersionGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyVersionGuid = string.Empty;
+        partial void OnPropertyVersionGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyVersionGuidChanged();
         
         [PropertyOrderAttribute(25)]
         [DisplayName("Use Code")]
@@ -18076,6 +17997,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 65
             vm.UseDateProperty = from.UseDateProperty; // Clone.tt Line: 65
             vm.PropertyDateGuid = from.PropertyDateGuid; // Clone.tt Line: 65
+            vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -18112,6 +18034,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 141
             to.UseDateProperty = from.UseDateProperty; // Clone.tt Line: 141
             to.PropertyDateGuid = from.PropertyDateGuid; // Clone.tt Line: 141
+            to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -18204,6 +18127,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
             vm.UseDateProperty = m.UseDateProperty; // Clone.tt Line: 221
             vm.PropertyDateGuid = m.PropertyDateGuid; // Clone.tt Line: 221
+            vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -18240,6 +18164,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
             m.UseDateProperty = vm.UseDateProperty; // Clone.tt Line: 276
             m.PropertyDateGuid = vm.PropertyDateGuid; // Clone.tt Line: 276
+            m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -18663,6 +18588,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyDateGuid = string.Empty;
         partial void OnPropertyDateGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyDateGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyVersionGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyVersionGuid; }
+            set
+            {
+                if (this._PropertyVersionGuid != value)
+                {
+                    this.OnPropertyVersionGuidChanging(ref value);
+                    this._PropertyVersionGuid = value;
+                    this.OnPropertyVersionGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyVersionGuid = string.Empty;
+        partial void OnPropertyVersionGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyVersionGuidChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -23097,7 +23043,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_plugin_generator_settings p);
         void Visit(Proto.Config.proto_app_project_generator p);
         void Visit(Proto.Config.proto_plugin_generator_node_default_settings p);
-        void Visit(Proto.Config.db_settings p);
         void Visit(Proto.Config.proto_model p);
         void Visit(Proto.Config.proto_data_type p);
         void Visit(Proto.Config.proto_group_list_common p);
@@ -23348,21 +23293,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(DbSettings p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisitEnd(DbSettings p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
         protected override void OnVisit(Model p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
-            ValidateSubAndCollectErrors(p, p.DbSettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Model p) // ValidationVisitor.tt Line: 48
         {
@@ -23967,16 +23901,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(PluginGeneratorNodeDefaultSettings p) { }
         protected virtual void OnVisitEnd(PluginGeneratorNodeDefaultSettings p) { }
-        public void Visit(DbSettings p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(DbSettings p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(DbSettings p) { }
-        protected virtual void OnVisitEnd(DbSettings p) { }
         public void Visit(Model p)
         {
             this.OnVisit(p);

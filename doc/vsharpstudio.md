@@ -4,7 +4,6 @@
 ## Table of Contents
 
 - [vsharpstudio.proto](#vsharpstudio.proto)
-    - [db_settings](#proto_config.db_settings)
     - [proto_app_db_settings](#proto_config.proto_app_db_settings)
     - [proto_app_project](#proto_config.proto_app_project)
     - [proto_app_project_generator](#proto_config.proto_app_project_generator)
@@ -66,7 +65,6 @@
     - [proto_user_settings_opened_config](#proto_config.proto_user_settings_opened_config)
     - [timestamp_nullable](#proto_config.timestamp_nullable)
   
-    - [db_id_generator_method](#proto_config.db_id_generator_method)
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
     - [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope)
     - [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon)
@@ -90,26 +88,6 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## vsharpstudio.proto
-
-
-
-<a name="proto_config.db_settings"></a>
-
-### db_settings
-General DB settings
-@base VmValidatableWithSeverity
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| db_schema | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Schema&#34;)] @attr [Description(&#34;DB schema name for all object in this configuration&#34;)] |
-| id_generator | [db_id_generator_method](#proto_config.db_id_generator_method) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Id method&#34;)] @attr [Description(&#34;Primary key generation method&#34;)] |
-| p_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Id type&#34;)] @attr [Description(&#34;Primary key field type&#34;)] |
-| p_key_name | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Id name&#34;)] @attr [Description(&#34;Primary key field name&#34;)] |
-| p_key_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-
-
-
 
 
 
@@ -259,6 +237,7 @@ Application project generator
 | use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
 | use_separate_tree_for_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Separate Tree&#34;)] @attr [Description(&#34;Separate tree object for folders&#34;)] |
 | max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Max Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
+| property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(26)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
 | use_name_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
@@ -330,6 +309,7 @@ Application project generator
 | use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
 | property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | use_name_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | property_name_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
@@ -456,6 +436,7 @@ Constant application wise value
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
 | short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_ref_parent_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | view_default_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
@@ -493,6 +474,7 @@ Constant application wise value
 | property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | use_date_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document&#34;)] |
 | property_date_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -1152,15 +1134,18 @@ Configuration model
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
-| composite_name_max_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(8)] @attr [Category(&#34;Composite Names Generation&#34;)] @attr [DisplayName(&#34;Max length&#34;)] |
-| is_use_composite_names | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Use parent-child composite names.&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] @attr [DisplayName(&#34;Use Composite&#34;)] |
-| is_use_group_prefix | [bool](#bool) |  | @attr [PropertyOrderAttribute(10)] @attr [Description(&#34;Composite names use their parent name as prefix. In a case of simple names all object&#39;s name will have only group name as a prefix.&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] @attr [DisplayName(&#34;Use Prefix&#34;)] |
-| db_settings | [db_settings](#proto_config.db_settings) |  | GENERAL DB SETTINGS @attr [PropertyOrderAttribute(11)] @attr [ExpandableObjectAttribute()] @attr [Description(&#34;General DB generator settings&#34;)] @attr [DisplayName(&#34;DB settings&#34;)] |
+| composite_name_max_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Max length&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
+| is_use_composite_names | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Use Composite&#34;)] @attr [Description(&#34;Use parent-child composite names.&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
+| is_use_group_prefix | [bool](#bool) |  | @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use Prefix&#34;)] @attr [Description(&#34;Composite names use their parent name as prefix. In a case of simple names all object&#39;s name will have only group name as a prefix.&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
+| p_key_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| p_key_name | [string](#string) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Id name&#34;)] @attr [Description(&#34;Primary key field name&#34;)] @attr [Category(&#34;Props settings&#34;)] |
+| p_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Id type&#34;)] @attr [Description(&#34;Primary key field type&#34;)] @attr [Category(&#34;Props settings&#34;)] |
+| object_version_field_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| object_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Object version field name&#34;)] |
 | last_constant_group_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_catalog_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_document_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_detail_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
-| last_view_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | group_common | [proto_group_list_common](#proto_config.proto_group_list_common) |  | @attr [BrowsableAttribute(false)] |
 | group_constant_groups | [proto_group_constant_groups](#proto_config.proto_group_constant_groups) |  | @attr [BrowsableAttribute(false)] |
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  | @attr [BrowsableAttribute(false)] |
@@ -1473,18 +1458,6 @@ bool value = 2;
 
 
  
-
-
-<a name="proto_config.db_id_generator_method"></a>
-
-### db_id_generator_method
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| Identity | 0 |  |
-| HiLo | 1 |  |
-
 
 
 <a name="proto_config.enum_enumeration_type"></a>

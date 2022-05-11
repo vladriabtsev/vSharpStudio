@@ -946,7 +946,6 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, cfg.Model.LastCatalogShortId);
             Assert.AreEqual(0, cfg.Model.LastDetailShortId);
             Assert.AreEqual(0, cfg.Model.LastDocumentShortId);
-            Assert.AreEqual(0, cfg.Model.LastViewShortId);
 
             cfg.Model.GroupConstantGroups.AddGroupConstants("CnstGroup1");
             Assert.AreEqual(1, cfg.Model.LastConstantGroupShortId);
@@ -982,7 +981,6 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, cfg2.Model.LastCatalogShortId);
             Assert.AreEqual(2, cfg2.Model.LastDetailShortId);
             Assert.AreEqual(1, cfg2.Model.LastDocumentShortId);
-            Assert.AreEqual(0, cfg2.Model.LastViewShortId);
         }
     }
 }

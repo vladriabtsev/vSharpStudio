@@ -71,6 +71,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupDetails, 9);
             var glp = (this.Parent.Parent as INodeWithProperties);
             this.Position = glp.GroupProperties.GetNextPosition();
+            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
         }
         public void OnAdded()
         {

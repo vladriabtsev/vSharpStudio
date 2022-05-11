@@ -9,9 +9,10 @@ namespace vSharpStudio.common
 {
     public partial interface IModel : ITreeConfigNode, IGetNodeSetting
     {
+        string PKeyTypeStr { get; }
         IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
         // numerical
-        IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive);
+        IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive, bool isPKey = false);
         // Any
         IDataType GetDataType(int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid);
         IDataType GetDataType(EnumDataType enumDataType, uint length, bool isPositive);
@@ -42,6 +43,7 @@ namespace vSharpStudio.common
         IProperty GetPropertyCatalogDescription(string guid, uint length);
         IProperty GetPropertyIsFolder(string guid);
         IProperty GetPropertyIsOpen(string guid);
+        IProperty GetPropertyVersion(string guid);
         IProperty GetPropertyDocumentDate(string guid);
         IProperty GetPropertyDocumentCodeString(string guid, uint length);
         IProperty GetPropertyDocumentCodeInt(string guid, uint length);

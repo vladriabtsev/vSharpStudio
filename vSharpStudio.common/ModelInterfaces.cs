@@ -10,11 +10,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         INT = 0,
         LONG = 1,
     }
-    public enum DbIdGeneratorMethod // ModelInterfaces.tt Line: 15
-    {
-        Identity = 0,
-        HiLo = 1,
-    }
     public enum EnumDataType // ModelInterfaces.tt Line: 15
     {
         CHAR = 0,
@@ -329,19 +324,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     }
     
     ///////////////////////////////////////////////////
-    /// General DB settings
-    ///////////////////////////////////////////////////
-    
-    public partial interface IDbSettings // ModelInterfaces.tt Line: 29
-    {
-    	string DbSchema { get; } // ModelInterfaces.tt Line: 51
-    	DbIdGeneratorMethod IdGenerator { get; } // ModelInterfaces.tt Line: 51
-    	EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 51
-    	string PKeyName { get; } // ModelInterfaces.tt Line: 51
-    	string PKeyGuid { get; } // ModelInterfaces.tt Line: 51
-    }
-    
-    ///////////////////////////////////////////////////
     /// Configuration model
     ///////////////////////////////////////////////////
     
@@ -354,16 +336,15 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	uint CompositeNameMaxLength { get; } // ModelInterfaces.tt Line: 51
     	bool IsUseCompositeNames { get; } // ModelInterfaces.tt Line: 51
     	bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 51
-    	
-    	///////////////////////////////////////////////////
-    	/// GENERAL DB SETTINGS
-    	///////////////////////////////////////////////////
-    	IDbSettings DbSettings { get; } // ModelInterfaces.tt Line: 55
+    	string PKeyGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PKeyName { get; } // ModelInterfaces.tt Line: 51
+    	EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 51
+    	string ObjectVersionFieldGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ObjectVersionFieldName { get; } // ModelInterfaces.tt Line: 51
     	int LastConstantGroupShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastCatalogShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastDocumentShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastDetailShortId { get; } // ModelInterfaces.tt Line: 51
-    	int LastViewShortId { get; } // ModelInterfaces.tt Line: 51
     	IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 55
     	IGroupConstantGroups GroupConstantGroups { get; } // ModelInterfaces.tt Line: 55
     	IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 55
@@ -487,6 +468,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	uint Position { get; } // ModelInterfaces.tt Line: 51
     	int ShortId { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 51
     	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
@@ -634,6 +616,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
     	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
     	bool? UseNameProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 51
     	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
@@ -664,6 +647,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool UseTree { get; } // ModelInterfaces.tt Line: 51
     	bool UseSeparateTreeForFolders { get; } // ModelInterfaces.tt Line: 51
     	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
     	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
     	bool? UseNameProperty { get; } // ModelInterfaces.tt Line: 51
@@ -755,6 +739,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
     	bool? UseDateProperty { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDateGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
