@@ -10,8 +10,8 @@ namespace vSharpStudio.common
     {
         IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
         IReadOnlyList<IProperty> GetIncludedFolderViewProperties(string guidAppPrjDbGen);
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen);
-        IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion);
+        IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen);
         IReadOnlyList<IDetail> GetIncludedFolderDetails(string guidAppPrjDbGen);
     }

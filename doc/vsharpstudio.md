@@ -66,6 +66,7 @@
     - [timestamp_nullable](#proto_config.timestamp_nullable)
   
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
+    - [proto_access_control_method](#proto_config.proto_access_control_method)
     - [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope)
     - [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon)
     - [proto_enum_code_type](#proto_config.proto_enum_code_type)
@@ -73,6 +74,7 @@
     - [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
+    - [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type)
     - [proto_form_catalog_view_type](#proto_config.proto_form_catalog_view_type)
     - [proto_form_document_view_type](#proto_config.proto_form_document_view_type)
     - [proto_form_orientation](#proto_config.proto_form_orientation)
@@ -1140,8 +1142,10 @@ Configuration model
 | p_key_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | p_key_name | [string](#string) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Id name&#34;)] @attr [Description(&#34;Primary key field name&#34;)] @attr [Category(&#34;Props settings&#34;)] |
 | p_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Id type&#34;)] @attr [Description(&#34;Primary key field type&#34;)] @attr [Category(&#34;Props settings&#34;)] |
-| object_version_field_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| object_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Object version field name&#34;)] |
+| record_version_field_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| record_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Record version field name&#34;)] @attr [Category(&#34;Props settings&#34;)] |
+| record_version_field_type | [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Version type&#34;)] @attr [Description(&#34;Record version field type&#34;)] @attr [Category(&#34;Props settings&#34;)] |
+| shared_access_control_method | [proto_access_control_method](#proto_config.proto_access_control_method) |  | @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Shared Access&#34;)] @attr [Description(&#34;Entity shared access control&#34;)] @attr [Category(&#34;Props settings&#34;)] |
 | last_constant_group_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_catalog_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_document_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
@@ -1474,6 +1478,18 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 
 
+<a name="proto_config.proto_access_control_method"></a>
+
+### proto_access_control_method
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| no_access_control | 0 | @attr [DisplayName(&#34;None&#34;)] |
+| optimistic_approach | 1 | @attr [DisplayName(&#34;Optimistic&#34;)] @attr [Description(&#34;Use entity version field to check if entity was already edited and updated by somebody else&#34;)] |
+
+
+
 <a name="proto_config.proto_enum_catalog_code_unique_scope"></a>
 
 ### proto_enum_catalog_code_unique_scope
@@ -1577,6 +1593,20 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | HOUR | 2 | @attr [DisplayName(&#34;Hour&#34;)] @attr [Description(&#34;One hour accuracy&#34;)] |
 | MS | 3 | @attr [DisplayName(&#34;Millisecond&#34;)] @attr [Description(&#34;One millisecond accuracy&#34;)] |
 | MAX | 5 | @attr [DisplayName(&#34;Max&#34;)] @attr [Description(&#34;Max (100 nanoseconds) accuracy&#34;)] |
+
+
+
+<a name="proto_config.proto_enum_version_field_type"></a>
+
+### proto_enum_version_field_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| VER_BYTE | 0 |  |
+| VER_SHORT | 1 |  |
+| VER_INT | 2 |  |
+| VER_LONG | 3 |  |
 
 
 

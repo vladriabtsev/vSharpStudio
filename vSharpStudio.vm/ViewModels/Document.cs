@@ -214,14 +214,14 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         /// <param name="guidAppPrjGen"></param>
         /// <returns></returns>
-        public IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen)
+        public IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
             var grd = (GroupDocuments)this.Parent.Parent;
             //var cfg = this.GetConfig();
             //var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             //res.Add(prp);
-            GetSpecialProperties(res);
+            GetSpecialProperties(res, isSupportVersion);
             foreach (var t in grd.GroupSharedProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -239,10 +239,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res);
+            GetSpecialProperties(res, isSupportVersion);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -252,10 +252,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetAllProperties()
+        public IReadOnlyList<IProperty> GetAllProperties(bool isSupportVersion)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res);
+            GetSpecialProperties(res, isSupportVersion);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 res.Add(t);
@@ -288,13 +288,18 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        private void GetSpecialProperties(List<IProperty> res)
+        private void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
         {
 
             var grd = (GroupDocuments)this.Parent.Parent;
             var cfg = this.GetConfig();
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
+            if (isSupportVersion)
+            {
+                prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
+                res.Add(prp);
+            }
             if (this.GetUseDateProperty())
             {
                 prp = cfg.Model.GetPropertyDocumentDate(this.PropertyDateGuid);

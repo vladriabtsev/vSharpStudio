@@ -29,8 +29,8 @@ namespace vSharpStudio.vm.ViewModels
                 var m = (Model)cntx.InstanceToValidate;
                 CheckObjectsWithDbTables(cntx, recom, m, true);
             });
-            this.RuleFor(x => x.ObjectVersionFieldName).NotEmpty();
-            this.RuleFor(x => x.ObjectVersionFieldName).Custom((name, cntx) => { CheckName(name, cntx); });
+            this.RuleFor(x => x.RecordVersionFieldName).NotEmpty();
+            this.RuleFor(x => x.RecordVersionFieldName).Custom((name, cntx) => { CheckName(name, cntx); });
             this.RuleFor(x => x.PKeyName).Custom((name, cntx) => { CheckName(name, cntx); });
         }
         private static void CheckObjectsWithDbTables(ValidationContext<Model> cntx, string recom, Model m, bool isCheckTabs)
@@ -140,10 +140,10 @@ namespace vSharpStudio.vm.ViewModels
                 foreach (var tt in t.ListConstants)
                 {
                     if (nerr >= nerrMax) return;
-                    if (set.ObjectVersionFieldName == tt.Name)
+                    if (set.RecordVersionFieldName == tt.Name)
                     {
                         nerr++;
-                        cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for constant field in constant group '{t.Name}'"));
+                        cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for constant field in constant group '{t.Name}'"));
                     }
                 }
             }
@@ -153,10 +153,10 @@ namespace vSharpStudio.vm.ViewModels
                 foreach (var tt in t.GroupProperties.ListProperties)
                 {
                     if (nerr >= nerrMax) return;
-                    if (set.ObjectVersionFieldName == tt.Name)
+                    if (set.RecordVersionFieldName == tt.Name)
                     {
                         nerr++;
-                        cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog '{t.Name}'"));
+                        cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog '{t.Name}'"));
                     }
                 }
                 foreach (var tt in t.GroupDetails.ListDetails)
@@ -169,10 +169,10 @@ namespace vSharpStudio.vm.ViewModels
                     foreach (var tt in t.Folder.GroupProperties.ListProperties)
                     {
                         if (nerr >= nerrMax) return;
-                        if (set.ObjectVersionFieldName == tt.Name)
+                        if (set.RecordVersionFieldName == tt.Name)
                         {
                             nerr++;
-                            cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog folder '{t.Name}'"));
+                            cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog folder '{t.Name}'"));
                         }
                     }
                     foreach (var tt in t.Folder.GroupDetails.ListDetails)
@@ -186,10 +186,10 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in cfg.Model.GroupDocuments.GroupSharedProperties.ListProperties)
             {
                 if (nerr >= nerrMax) return;
-                if (set.ObjectVersionFieldName == t.Name)
+                if (set.RecordVersionFieldName == t.Name)
                 {
                     nerr++;
-                    cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for shared field for documents"));
+                    cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for shared field for documents"));
                 }
             }
             if (nerr >= nerrMax) return;
@@ -198,10 +198,10 @@ namespace vSharpStudio.vm.ViewModels
                 foreach (var tt in t.GroupProperties.ListProperties)
                 {
                     if (nerr >= nerrMax) return;
-                    if (set.ObjectVersionFieldName == tt.Name)
+                    if (set.RecordVersionFieldName == tt.Name)
                     {
                         nerr++;
-                        cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for field in document '{t.Name}'"));
+                        cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in document '{t.Name}'"));
                     }
                 }
                 foreach (var tt in t.GroupDetails.ListDetails)
@@ -216,10 +216,10 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var tt in t.GroupProperties.ListProperties)
             {
                 if (nerr >= nerrMax) return;
-                if (set.ObjectVersionFieldName == tt.Name)
+                if (set.RecordVersionFieldName == tt.Name)
                 {
                     nerr++;
-                    cntx.AddFailure(new ValidationFailure(nameof(set.ObjectVersionFieldName), $"Version name has to be unique. Same name is used for field in '{path}.{t.Name}'"));
+                    cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in '{path}.{t.Name}'"));
                 }
             }
             foreach (var tt in t.GroupDetails.ListDetails)

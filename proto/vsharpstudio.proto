@@ -509,6 +509,20 @@ enum proto_enum_primary_key_type {
     INT = 0;
     LONG = 1;
 }
+enum proto_enum_version_field_type {
+    VER_BYTE = 0;
+    VER_SHORT = 1;
+    VER_INT = 2;
+    VER_LONG = 3;
+}
+enum proto_access_control_method
+{
+    // @attr [DisplayName("None")]
+    no_access_control = 0;
+    // @attr [DisplayName("Optimistic")]
+    // @attr [Description("Use entity version field to check if entity was already edited and updated by somebody else")]
+    optimistic_approach = 1;
+}
 // Configuration model
 // @attr [CategoryOrder("Db Names Generation", 5)]
 message proto_model {
@@ -554,11 +568,22 @@ message proto_model {
     proto_enum_primary_key_type p_key_type = 15;
 
     // @attr [BrowsableAttribute(false)]
-    string object_version_field_guid = 17;
+    string record_version_field_guid = 17;
     // @attr [PropertyOrderAttribute(18)]
     // @attr [DisplayName("Version field")]
-    // @attr [Description("Object version field name")]
-    string object_version_field_name = 18;
+    // @attr [Description("Record version field name")]
+    // @attr [Category("Props settings")]
+    string record_version_field_name = 18;
+    // @attr [PropertyOrderAttribute(19)]
+    // @attr [DisplayName("Version type")]
+    // @attr [Description("Record version field type")]
+    // @attr [Category("Props settings")]
+    proto_enum_version_field_type record_version_field_type = 19;
+    // @attr [PropertyOrderAttribute(20)]
+    // @attr [DisplayName("Shared Access")]
+    // @attr [Description("Entity shared access control")]
+    // @attr [Category("Props settings")]
+    proto_access_control_method shared_access_control_method = 20;
 
 
     // @attr [PropertyOrderAttribute(5)]

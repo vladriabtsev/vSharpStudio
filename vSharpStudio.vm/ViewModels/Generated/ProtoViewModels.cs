@@ -6239,8 +6239,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PKeyGuid = from.PKeyGuid; // Clone.tt Line: 65
             vm.PKeyName = from.PKeyName; // Clone.tt Line: 65
             vm.PKeyType = from.PKeyType; // Clone.tt Line: 65
-            vm.ObjectVersionFieldGuid = from.ObjectVersionFieldGuid; // Clone.tt Line: 65
-            vm.ObjectVersionFieldName = from.ObjectVersionFieldName; // Clone.tt Line: 65
+            vm.RecordVersionFieldGuid = from.RecordVersionFieldGuid; // Clone.tt Line: 65
+            vm.RecordVersionFieldName = from.RecordVersionFieldName; // Clone.tt Line: 65
+            vm.RecordVersionFieldType = from.RecordVersionFieldType; // Clone.tt Line: 65
+            vm.SharedAccessControlMethod = from.SharedAccessControlMethod; // Clone.tt Line: 65
             vm.LastConstantGroupShortId = from.LastConstantGroupShortId; // Clone.tt Line: 65
             vm.LastCatalogShortId = from.LastCatalogShortId; // Clone.tt Line: 65
             vm.LastDocumentShortId = from.LastDocumentShortId; // Clone.tt Line: 65
@@ -6282,8 +6284,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.PKeyGuid = from.PKeyGuid; // Clone.tt Line: 141
             to.PKeyName = from.PKeyName; // Clone.tt Line: 141
             to.PKeyType = from.PKeyType; // Clone.tt Line: 141
-            to.ObjectVersionFieldGuid = from.ObjectVersionFieldGuid; // Clone.tt Line: 141
-            to.ObjectVersionFieldName = from.ObjectVersionFieldName; // Clone.tt Line: 141
+            to.RecordVersionFieldGuid = from.RecordVersionFieldGuid; // Clone.tt Line: 141
+            to.RecordVersionFieldName = from.RecordVersionFieldName; // Clone.tt Line: 141
+            to.RecordVersionFieldType = from.RecordVersionFieldType; // Clone.tt Line: 141
+            to.SharedAccessControlMethod = from.SharedAccessControlMethod; // Clone.tt Line: 141
             to.LastConstantGroupShortId = from.LastConstantGroupShortId; // Clone.tt Line: 141
             to.LastCatalogShortId = from.LastCatalogShortId; // Clone.tt Line: 141
             to.LastDocumentShortId = from.LastDocumentShortId; // Clone.tt Line: 141
@@ -6376,8 +6380,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PKeyGuid = m.PKeyGuid; // Clone.tt Line: 221
             vm.PKeyName = m.PKeyName; // Clone.tt Line: 221
             vm.PKeyType = (EnumPrimaryKeyType)m.PKeyType; // Clone.tt Line: 221
-            vm.ObjectVersionFieldGuid = m.ObjectVersionFieldGuid; // Clone.tt Line: 221
-            vm.ObjectVersionFieldName = m.ObjectVersionFieldName; // Clone.tt Line: 221
+            vm.RecordVersionFieldGuid = m.RecordVersionFieldGuid; // Clone.tt Line: 221
+            vm.RecordVersionFieldName = m.RecordVersionFieldName; // Clone.tt Line: 221
+            vm.RecordVersionFieldType = (EnumVersionFieldType)m.RecordVersionFieldType; // Clone.tt Line: 221
+            vm.SharedAccessControlMethod = (AccessControlMethod)m.SharedAccessControlMethod; // Clone.tt Line: 221
             vm.LastConstantGroupShortId = m.LastConstantGroupShortId; // Clone.tt Line: 221
             vm.LastCatalogShortId = m.LastCatalogShortId; // Clone.tt Line: 221
             vm.LastDocumentShortId = m.LastDocumentShortId; // Clone.tt Line: 221
@@ -6430,8 +6436,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.PKeyGuid = vm.PKeyGuid; // Clone.tt Line: 276
             m.PKeyName = vm.PKeyName; // Clone.tt Line: 276
             m.PKeyType = (Proto.Config.proto_enum_primary_key_type)vm.PKeyType; // Clone.tt Line: 274
-            m.ObjectVersionFieldGuid = vm.ObjectVersionFieldGuid; // Clone.tt Line: 276
-            m.ObjectVersionFieldName = vm.ObjectVersionFieldName; // Clone.tt Line: 276
+            m.RecordVersionFieldGuid = vm.RecordVersionFieldGuid; // Clone.tt Line: 276
+            m.RecordVersionFieldName = vm.RecordVersionFieldName; // Clone.tt Line: 276
+            m.RecordVersionFieldType = (Proto.Config.proto_enum_version_field_type)vm.RecordVersionFieldType; // Clone.tt Line: 274
+            m.SharedAccessControlMethod = (Proto.Config.proto_access_control_method)vm.SharedAccessControlMethod; // Clone.tt Line: 274
             m.LastConstantGroupShortId = vm.LastConstantGroupShortId; // Clone.tt Line: 276
             m.LastCatalogShortId = vm.LastCatalogShortId; // Clone.tt Line: 276
             m.LastDocumentShortId = vm.LastDocumentShortId; // Clone.tt Line: 276
@@ -6740,48 +6748,97 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPKeyTypeChanged();
         
         [BrowsableAttribute(false)]
-        public string ObjectVersionFieldGuid // Property.tt Line: 55
+        public string RecordVersionFieldGuid // Property.tt Line: 55
         { 
-            get { return this._ObjectVersionFieldGuid; }
+            get { return this._RecordVersionFieldGuid; }
             set
             {
-                if (this._ObjectVersionFieldGuid != value)
+                if (this._RecordVersionFieldGuid != value)
                 {
-                    this.OnObjectVersionFieldGuidChanging(ref value);
-                    this._ObjectVersionFieldGuid = value;
-                    this.OnObjectVersionFieldGuidChanged();
+                    this.OnRecordVersionFieldGuidChanging(ref value);
+                    this._RecordVersionFieldGuid = value;
+                    this.OnRecordVersionFieldGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _ObjectVersionFieldGuid = string.Empty;
-        partial void OnObjectVersionFieldGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnObjectVersionFieldGuidChanged();
+        private string _RecordVersionFieldGuid = string.Empty;
+        partial void OnRecordVersionFieldGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnRecordVersionFieldGuidChanged();
         
         [PropertyOrderAttribute(18)]
         [DisplayName("Version field")]
-        [Description("Object version field name")]
-        public string ObjectVersionFieldName // Property.tt Line: 55
+        [Description("Record version field name")]
+        [Category("Props settings")]
+        public string RecordVersionFieldName // Property.tt Line: 55
         { 
-            get { return this._ObjectVersionFieldName; }
+            get { return this._RecordVersionFieldName; }
             set
             {
-                if (this._ObjectVersionFieldName != value)
+                if (this._RecordVersionFieldName != value)
                 {
-                    this.OnObjectVersionFieldNameChanging(ref value);
-                    this._ObjectVersionFieldName = value;
-                    this.OnObjectVersionFieldNameChanged();
+                    this.OnRecordVersionFieldNameChanging(ref value);
+                    this._RecordVersionFieldName = value;
+                    this.OnRecordVersionFieldNameChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _ObjectVersionFieldName = string.Empty;
-        partial void OnObjectVersionFieldNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnObjectVersionFieldNameChanged();
+        private string _RecordVersionFieldName = string.Empty;
+        partial void OnRecordVersionFieldNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnRecordVersionFieldNameChanged();
+        
+        [PropertyOrderAttribute(19)]
+        [DisplayName("Version type")]
+        [Description("Record version field type")]
+        [Category("Props settings")]
+        public EnumVersionFieldType RecordVersionFieldType // Property.tt Line: 55
+        { 
+            get { return this._RecordVersionFieldType; }
+            set
+            {
+                if (this._RecordVersionFieldType != value)
+                {
+                    this.OnRecordVersionFieldTypeChanging(ref value);
+                    this._RecordVersionFieldType = value;
+                    this.OnRecordVersionFieldTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumVersionFieldType _RecordVersionFieldType;
+        partial void OnRecordVersionFieldTypeChanging(ref EnumVersionFieldType to); // Property.tt Line: 79
+        partial void OnRecordVersionFieldTypeChanged();
+        
+        [PropertyOrderAttribute(20)]
+        [DisplayName("Shared Access")]
+        [Description("Entity shared access control")]
+        [Category("Props settings")]
+        public AccessControlMethod SharedAccessControlMethod // Property.tt Line: 55
+        { 
+            get { return this._SharedAccessControlMethod; }
+            set
+            {
+                if (this._SharedAccessControlMethod != value)
+                {
+                    this.OnSharedAccessControlMethodChanging(ref value);
+                    this._SharedAccessControlMethod = value;
+                    this.OnSharedAccessControlMethodChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private AccessControlMethod _SharedAccessControlMethod;
+        partial void OnSharedAccessControlMethodChanging(ref AccessControlMethod to); // Property.tt Line: 79
+        partial void OnSharedAccessControlMethodChanged();
         
         [BrowsableAttribute(false)]
         public int LastConstantGroupShortId // Property.tt Line: 55

@@ -75,7 +75,10 @@ namespace vSharpStudio.vm.ViewModels
             this.PKeyName = "Id";
             this.PKeyGuid = System.Guid.NewGuid().ToString();
             this.PKeyType = EnumPrimaryKeyType.INT;
-            this.ObjectVersionFieldName = "ObjectVersion";
+            this.RecordVersionFieldName = "ReCoRdVeRsIoN";
+            this.RecordVersionFieldGuid = System.Guid.NewGuid().ToString();
+            this.RecordVersionFieldType = EnumVersionFieldType.VER_INT;
+            this.SharedAccessControlMethod = AccessControlMethod.no_access_control;
         }
 
         protected override void OnInitFromDto()
@@ -644,7 +647,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyVersion(string guid)
         {
             var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
-            var res = new Property(default(ITreeConfigNode), guid, this.ObjectVersionFieldName, dt);
+            var res = new Property(default(ITreeConfigNode), guid, this.RecordVersionFieldName, dt);
             res.IsNullable = false;
             res.Position = 7;
             return res;
@@ -831,23 +834,23 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst;
         }
-        public void VisitTabs(string appGenGuig, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action)
+        public void VisitTabs(string appGenGuig, bool isSupportVersion, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action)
         {
             if (p is IDetail)
             {
-                this.VisitTabs(appGenGuig, p as IDetail, action, typeOp);
+                this.VisitTabs(appGenGuig, isSupportVersion, p as IDetail, action, typeOp);
             }
             else if (p is ICatalog)
             {
-                this.VisitTabs(appGenGuig, p as ICatalog, action, typeOp);
+                this.VisitTabs(appGenGuig, isSupportVersion, p as ICatalog, action, typeOp);
             }
             else if (p is ICatalogFolder)
             {
-                this.VisitTabs(appGenGuig, p as ICatalogFolder, action, typeOp);
+                this.VisitTabs(appGenGuig, isSupportVersion, p as ICatalogFolder, action, typeOp);
             }
             else if (p is IDocument)
             {
-                this.VisitTabs(appGenGuig, p as IDocument, action, typeOp);
+                this.VisitTabs(appGenGuig, isSupportVersion, p as IDocument, action, typeOp);
             }
             else if (p is IGroupListConstants)
             {
@@ -857,14 +860,14 @@ namespace vSharpStudio.vm.ViewModels
                 throw new ArgumentException();
             }
         }
-        private void TabsRecursive(string appGenGuig, IReadOnlyList<IDetail> lstt, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst)
+        private void TabsRecursive(string appGenGuig, bool isSupportVersion, IReadOnlyList<IDetail> lstt, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst)
         {
             foreach (var t in lstt)
             {
                 var ti = new TableInfo()
                 {
                     Node = t,
-                    List = t.GetIncludedProperties(appGenGuig),
+                    List = t.GetIncludedProperties(appGenGuig, isSupportVersion),
                     ClassName = t.Name,
                     TableName = t.CompositeName,
                     TableParent = (t.Parent.Parent as ICompositeName).CompositeName
@@ -880,7 +883,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (lstReverse.Count > 0)
                         action(lstReverse);
                     var lstt2 = t.GetIncludedDetails(appGenGuig);
-                    TabsRecursive(appGenGuig, lstt2, action, typeOp, lst);
+                    TabsRecursive(appGenGuig, isSupportVersion, lstt2, action, typeOp, lst);
                     lst.Remove(ti);
                 }
                 else if (typeOp == EnumVisitType.Remove)
@@ -892,7 +895,7 @@ namespace vSharpStudio.vm.ViewModels
                         lstReverse.Add(lst[i]);
                     }
                     var lstt2 = t.GetIncludedDetails(appGenGuig);
-                    TabsRecursive(appGenGuig, lstt2, action, typeOp, lst);
+                    TabsRecursive(appGenGuig, isSupportVersion, lstt2, action, typeOp, lst);
                     if (lstReverse.Count > 0)
                         action(lstReverse);
                     lst.Remove(ti);
@@ -903,41 +906,41 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private void VisitTabs(string appGenGuig, ICatalog p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
+        private void VisitTabs(string appGenGuig, bool isSupportVersion, ICatalog p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
         {
             if (lst == null)
                 lst = new List<TableInfo>();
             var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
-            TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
+            TabsRecursive(appGenGuig, isSupportVersion, lstt, action, typeOp, lst);
         }
-        private void VisitTabs(string appGenGuig, ICatalogFolder p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
+        private void VisitTabs(string appGenGuig, bool isSupportVersion, ICatalogFolder p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
         {
             if (lst == null)
                 lst = new List<TableInfo>();
             var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
-            TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
+            TabsRecursive(appGenGuig, isSupportVersion, lstt, action, typeOp, lst);
         }
-        private void VisitTabs(string appGenGuig, IDocument p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
+        private void VisitTabs(string appGenGuig, bool isSupportVersion, IDocument p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
         {
             if (lst == null)
                 lst = new List<TableInfo>();
             var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
-            TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
+            TabsRecursive(appGenGuig, isSupportVersion, lstt, action, typeOp, lst);
         }
-        private void VisitTabs(string appGenGuig, IDetail p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
+        private void VisitTabs(string appGenGuig, bool isSupportVersion, IDetail p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst = null)
         {
             if (lst == null)
                 lst = new List<TableInfo>();
             var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
-            TabsRecursive(appGenGuig, lstt, action, typeOp, lst);
+            TabsRecursive(appGenGuig, isSupportVersion, lstt, action, typeOp, lst);
         }
         #endregion Utils
 

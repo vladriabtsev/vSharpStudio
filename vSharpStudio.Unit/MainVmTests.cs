@@ -252,7 +252,7 @@ namespace vSharpStudio.Unit
             var lst = c.GetAllProperties();
             Assert.AreEqual(3, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
-            Assert.AreEqual(vm.Config.Model.ObjectVersionFieldName, lst[1].Name);
+            Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[1].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[2].Name);
 
             // Tree catalog
@@ -262,7 +262,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsOpenName, lst[2].Name);
-            Assert.AreEqual(vm.Config.Model.ObjectVersionFieldName, lst[3].Name);
+            Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[3].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[4].Name);
 
             // Tree catalog
@@ -274,7 +274,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("RefTreeParent", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsOpenName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsFolderName, lst[3].Name);
-            Assert.AreEqual(vm.Config.Model.ObjectVersionFieldName, lst[4].Name);
+            Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[4].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[5].Name);
 
             // Tree catalog with separate properties for tree
@@ -285,7 +285,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(4, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefCtlgtestFolder", lst[1].Name);
-            Assert.AreEqual(vm.Config.Model.ObjectVersionFieldName, lst[2].Name);
+            Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[3].Name);
             lst = c.GetAllFolderProperties();
             Assert.AreEqual(6, lst.Count);
@@ -293,7 +293,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("RefTreeParent", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsOpenName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyIsFolderName, lst[3].Name);
-            Assert.AreEqual(vm.Config.Model.ObjectVersionFieldName, lst[4].Name);
+            Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[4].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[5].Name);
         }
         [TestMethod]

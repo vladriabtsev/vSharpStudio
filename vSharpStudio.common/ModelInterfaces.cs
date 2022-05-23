@@ -10,6 +10,18 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         INT = 0,
         LONG = 1,
     }
+    public enum EnumVersionFieldType // ModelInterfaces.tt Line: 15
+    {
+        VER_BYTE = 0,
+        VER_SHORT = 1,
+        VER_INT = 2,
+        VER_LONG = 3,
+    }
+    public enum AccessControlMethod // ModelInterfaces.tt Line: 15
+    {
+        no_access_control = 0,
+        optimistic_approach = 1,
+    }
     public enum EnumDataType // ModelInterfaces.tt Line: 15
     {
         CHAR = 0,
@@ -339,8 +351,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string PKeyGuid { get; } // ModelInterfaces.tt Line: 51
     	string PKeyName { get; } // ModelInterfaces.tt Line: 51
     	EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 51
-    	string ObjectVersionFieldGuid { get; } // ModelInterfaces.tt Line: 51
-    	string ObjectVersionFieldName { get; } // ModelInterfaces.tt Line: 51
+    	string RecordVersionFieldGuid { get; } // ModelInterfaces.tt Line: 51
+    	string RecordVersionFieldName { get; } // ModelInterfaces.tt Line: 51
+    	EnumVersionFieldType RecordVersionFieldType { get; } // ModelInterfaces.tt Line: 51
+    	AccessControlMethod SharedAccessControlMethod { get; } // ModelInterfaces.tt Line: 51
     	int LastConstantGroupShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastCatalogShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastDocumentShortId { get; } // ModelInterfaces.tt Line: 51

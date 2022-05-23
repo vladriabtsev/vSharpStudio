@@ -217,12 +217,17 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
             var cfg = this.GetConfig();
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
+            if (isSupportVersion)
+            {
+                prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
+                res.Add(prp);
+            }
             var parent = this.Parent.Parent as ICompositeName;
             prp = cfg.Model.GetPropertyRefParent(this.PropertyRefParentGuid, "Ref" + parent.CompositeName);
             res.Add(prp);
@@ -238,7 +243,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, true);
+            GetSpecialProperties(res, true, false);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
@@ -255,13 +260,18 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        private void GetSpecialProperties(List<IProperty> res, bool isAll)
+        private void GetSpecialProperties(List<IProperty> res, bool isAll, bool isSupportVersion)
         {
             var cfg = this.GetConfig();
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             if (isAll)
             {
                 res.Add(prp);
+                if (isSupportVersion)
+                {
+                    prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
+                    res.Add(prp);
+                }
             }
             //if (this.GetUseCodeProperty())
             //{

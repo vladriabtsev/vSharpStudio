@@ -424,6 +424,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_access_control_method"><span class="badge">E</span>proto_access_control_method</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_catalog_code_unique_scope"><span class="badge">E</span>proto_enum_catalog_code_unique_scope</a>
                 </li>
               
@@ -449,6 +453,10 @@
               
                 <li>
                   <a href="#proto_config.proto_enum_time_accuracy_type"><span class="badge">E</span>proto_enum_time_accuracy_type</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enum_version_field_type"><span class="badge">E</span>proto_enum_version_field_type</a>
                 </li>
               
                 <li>
@@ -4448,19 +4456,40 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>object_version_field_guid</td>
+                  <td>record_version_field_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>object_version_field_name</td>
+                  <td>record_version_field_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(18)]
 @attr [DisplayName(&#34;Version field&#34;)]
-@attr [Description(&#34;Object version field name&#34;)] </p></td>
+@attr [Description(&#34;Record version field name&#34;)]
+@attr [Category(&#34;Props settings&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>record_version_field_type</td>
+                  <td><a href="#proto_config.proto_enum_version_field_type">proto_enum_version_field_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(19)]
+@attr [DisplayName(&#34;Version type&#34;)]
+@attr [Description(&#34;Record version field type&#34;)]
+@attr [Category(&#34;Props settings&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>shared_access_control_method</td>
+                  <td><a href="#proto_config.proto_access_control_method">proto_access_control_method</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(20)]
+@attr [DisplayName(&#34;Shared Access&#34;)]
+@attr [Description(&#34;Entity shared access control&#34;)]
+@attr [Category(&#34;Props settings&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5468,6 +5497,30 @@ repeated proto_document list_documents = 7;
           </tbody>
         </table>
       
+        <h3 id="proto_config.proto_access_control_method">proto_access_control_method</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>no_access_control</td>
+                <td>0</td>
+                <td><p>@attr [DisplayName(&#34;None&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>optimistic_approach</td>
+                <td>1</td>
+                <td><p>@attr [DisplayName(&#34;Optimistic&#34;)]
+@attr [Description(&#34;Use entity version field to check if entity was already edited and updated by somebody else&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="proto_config.proto_enum_catalog_code_unique_scope">proto_enum_catalog_code_unique_scope</h3>
         <p></p>
         <table class="enum-table">
@@ -5775,6 +5828,41 @@ repeated proto_document list_documents = 7;
                 <td>5</td>
                 <td><p>@attr [DisplayName(&#34;Max&#34;)]
 @attr [Description(&#34;Max (100 nanoseconds) accuracy&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_version_field_type">proto_enum_version_field_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>VER_BYTE</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>VER_SHORT</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>VER_INT</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>VER_LONG</td>
+                <td>3</td>
+                <td><p></p></td>
               </tr>
             
           </tbody>

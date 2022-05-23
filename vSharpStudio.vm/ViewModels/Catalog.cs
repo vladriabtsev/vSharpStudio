@@ -300,7 +300,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetAllProperties()
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, false, true);
+            GetSpecialProperties(res, false, true, this.Cfg.Model.SharedAccessControlMethod == AccessControlMethod.optimistic_approach);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 res.Add(t);
@@ -314,7 +314,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var listAllNotSpecialProperties = new ObservableCollection<IProperty>();
                 var res = new List<IProperty>();
-                GetSpecialProperties(res, true, false);
+                GetSpecialProperties(res, true, false, false);
                 foreach (var t in this.GroupProperties.ListProperties)
                 {
                     res.Add(t);
@@ -371,7 +371,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetAllFolderProperties()
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, true, true);
+            GetSpecialProperties(res, true, true, this.Cfg.Model.SharedAccessControlMethod == AccessControlMethod.optimistic_approach);
             foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 res.Add(t);
@@ -387,7 +387,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (this.UseTree && this.UseSeparateTreeForFolders)
                 {
                     var res = new List<IProperty>();
-                    GetSpecialProperties(res, true, false);
+                    GetSpecialProperties(res, true, false, false);
                     foreach (var t in this.Folder.GroupProperties.ListProperties)
                     {
                         res.Add(t);
@@ -446,7 +446,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private SortedObservableCollection<IProperty> listViewFolderNotSpecialProperties;
 
-        private void GetSpecialProperties(List<IProperty> res, bool isFolder, bool isAll)
+        private void GetSpecialProperties(List<IProperty> res, bool isFolder, bool isAll, bool isSupportVersion)
         {
             var cfg = this.GetConfig();
             var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
@@ -471,8 +471,11 @@ namespace vSharpStudio.vm.ViewModels
                         res.Add(prp);
                     }
                 }
-                prp = cfg.Model.GetPropertyVersion(this.Folder.PropertyVersionGuid);
-                res.Add(prp);
+                if (isSupportVersion)
+                {
+                    prp = cfg.Model.GetPropertyVersion(this.Folder.PropertyVersionGuid);
+                    res.Add(prp);
+                }
             }
             else
             {
@@ -505,8 +508,11 @@ namespace vSharpStudio.vm.ViewModels
                         }
                     }
                 }
-                prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
-                res.Add(prp);
+                if (isSupportVersion)
+                {
+                    prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
+                    res.Add(prp);
+                }
             }
             if (this.GetUseCodeProperty())
             {
@@ -614,7 +620,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, false, true);
+            GetSpecialProperties(res, false, true, false);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
@@ -634,7 +640,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedFolderViewProperties(string guidAppPrjDbGen)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, true, true);
+            GetSpecialProperties(res, true, true, false);
             foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
@@ -651,10 +657,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, false, true);
+            GetSpecialProperties(res, false, true, isSupportVersion);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
@@ -664,10 +670,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen)
+        public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, true, true);
+            GetSpecialProperties(res, true, true, isSupportVersion);
             foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
