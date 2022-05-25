@@ -78,7 +78,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RecordVersionFieldName = "ReCoRdVeRsIoN";
             this.RecordVersionFieldGuid = System.Guid.NewGuid().ToString();
             this.RecordVersionFieldType = EnumVersionFieldType.VER_INT;
-            this.SharedAccessControlMethod = AccessControlMethod.no_access_control;
+            this.SharedAccessControlMethod = AccessControlMethod.optimistic_approach;
         }
 
         protected override void OnInitFromDto()
