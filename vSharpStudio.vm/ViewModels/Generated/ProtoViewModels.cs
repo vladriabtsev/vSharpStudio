@@ -6242,7 +6242,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.RecordVersionFieldGuid = from.RecordVersionFieldGuid; // Clone.tt Line: 65
             vm.RecordVersionFieldName = from.RecordVersionFieldName; // Clone.tt Line: 65
             vm.RecordVersionFieldType = from.RecordVersionFieldType; // Clone.tt Line: 65
-            vm.SharedAccessControlMethod = from.SharedAccessControlMethod; // Clone.tt Line: 65
             vm.LastConstantGroupShortId = from.LastConstantGroupShortId; // Clone.tt Line: 65
             vm.LastCatalogShortId = from.LastCatalogShortId; // Clone.tt Line: 65
             vm.LastDocumentShortId = from.LastDocumentShortId; // Clone.tt Line: 65
@@ -6287,7 +6286,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.RecordVersionFieldGuid = from.RecordVersionFieldGuid; // Clone.tt Line: 141
             to.RecordVersionFieldName = from.RecordVersionFieldName; // Clone.tt Line: 141
             to.RecordVersionFieldType = from.RecordVersionFieldType; // Clone.tt Line: 141
-            to.SharedAccessControlMethod = from.SharedAccessControlMethod; // Clone.tt Line: 141
             to.LastConstantGroupShortId = from.LastConstantGroupShortId; // Clone.tt Line: 141
             to.LastCatalogShortId = from.LastCatalogShortId; // Clone.tt Line: 141
             to.LastDocumentShortId = from.LastDocumentShortId; // Clone.tt Line: 141
@@ -6383,7 +6381,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.RecordVersionFieldGuid = m.RecordVersionFieldGuid; // Clone.tt Line: 221
             vm.RecordVersionFieldName = m.RecordVersionFieldName; // Clone.tt Line: 221
             vm.RecordVersionFieldType = (EnumVersionFieldType)m.RecordVersionFieldType; // Clone.tt Line: 221
-            vm.SharedAccessControlMethod = (AccessControlMethod)m.SharedAccessControlMethod; // Clone.tt Line: 221
             vm.LastConstantGroupShortId = m.LastConstantGroupShortId; // Clone.tt Line: 221
             vm.LastCatalogShortId = m.LastCatalogShortId; // Clone.tt Line: 221
             vm.LastDocumentShortId = m.LastDocumentShortId; // Clone.tt Line: 221
@@ -6439,7 +6436,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.RecordVersionFieldGuid = vm.RecordVersionFieldGuid; // Clone.tt Line: 276
             m.RecordVersionFieldName = vm.RecordVersionFieldName; // Clone.tt Line: 276
             m.RecordVersionFieldType = (Proto.Config.proto_enum_version_field_type)vm.RecordVersionFieldType; // Clone.tt Line: 274
-            m.SharedAccessControlMethod = (Proto.Config.proto_access_control_method)vm.SharedAccessControlMethod; // Clone.tt Line: 274
             m.LastConstantGroupShortId = vm.LastConstantGroupShortId; // Clone.tt Line: 276
             m.LastCatalogShortId = vm.LastCatalogShortId; // Clone.tt Line: 276
             m.LastDocumentShortId = vm.LastDocumentShortId; // Clone.tt Line: 276
@@ -6815,30 +6811,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumVersionFieldType _RecordVersionFieldType;
         partial void OnRecordVersionFieldTypeChanging(ref EnumVersionFieldType to); // Property.tt Line: 79
         partial void OnRecordVersionFieldTypeChanged();
-        
-        [PropertyOrderAttribute(20)]
-        [DisplayName("Shared Access")]
-        [Description("Entity shared access control")]
-        [Category("Props settings")]
-        public AccessControlMethod SharedAccessControlMethod // Property.tt Line: 55
-        { 
-            get { return this._SharedAccessControlMethod; }
-            set
-            {
-                if (this._SharedAccessControlMethod != value)
-                {
-                    this.OnSharedAccessControlMethodChanging(ref value);
-                    this._SharedAccessControlMethod = value;
-                    this.OnSharedAccessControlMethodChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private AccessControlMethod _SharedAccessControlMethod;
-        partial void OnSharedAccessControlMethodChanging(ref AccessControlMethod to); // Property.tt Line: 79
-        partial void OnSharedAccessControlMethodChanged();
         
         [BrowsableAttribute(false)]
         public int LastConstantGroupShortId // Property.tt Line: 55
@@ -11021,6 +10993,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 65
             vm.IsStartNewColumn = from.IsStartNewColumn; // Clone.tt Line: 65
             vm.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 65
+            vm.LinesOnScreen = from.LinesOnScreen; // Clone.tt Line: 65
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -11052,6 +11025,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 141
             to.IsStartNewColumn = from.IsStartNewColumn; // Clone.tt Line: 141
             to.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 141
+            to.LinesOnScreen = from.LinesOnScreen; // Clone.tt Line: 141
             to.Position = from.Position; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -11135,6 +11109,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.AccuracyForTime = (EnumTimeAccuracyType)m.AccuracyForTime; // Clone.tt Line: 221
             vm.IsStartNewColumn = m.IsStartNewColumn; // Clone.tt Line: 221
             vm.IsTryAttach = m.IsTryAttach; // Clone.tt Line: 221
+            vm.LinesOnScreen = m.LinesOnScreen; // Clone.tt Line: 221
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -11170,6 +11145,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.AccuracyForTime = (Proto.Config.proto_enum_time_accuracy_type)vm.AccuracyForTime; // Clone.tt Line: 274
             m.IsStartNewColumn = vm.IsStartNewColumn; // Clone.tt Line: 276
             m.IsTryAttach = vm.IsTryAttach; // Clone.tt Line: 276
+            m.LinesOnScreen = vm.LinesOnScreen; // Clone.tt Line: 276
             m.Position = vm.Position; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -11545,6 +11521,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsTryAttach;
         partial void OnIsTryAttachChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsTryAttachChanged();
+        
+        [PropertyOrderAttribute(39)]
+        [DisplayName("UI lines")]
+        [Description("Lines on screen for edit box")]
+        public int LinesOnScreen // Property.tt Line: 55
+        { 
+            get { return this._LinesOnScreen; }
+            set
+            {
+                if (this._LinesOnScreen != value)
+                {
+                    this.OnLinesOnScreenChanging(ref value);
+                    this._LinesOnScreen = value;
+                    this.OnLinesOnScreenChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _LinesOnScreen;
+        partial void OnLinesOnScreenChanging(ref int to); // Property.tt Line: 79
+        partial void OnLinesOnScreenChanged();
         
         
         ///////////////////////////////////////////////////

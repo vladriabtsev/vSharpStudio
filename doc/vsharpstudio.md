@@ -66,7 +66,6 @@
     - [timestamp_nullable](#proto_config.timestamp_nullable)
   
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
-    - [proto_access_control_method](#proto_config.proto_access_control_method)
     - [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope)
     - [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon)
     - [proto_enum_code_type](#proto_config.proto_enum_code_type)
@@ -1145,7 +1144,6 @@ Configuration model
 | record_version_field_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | record_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Record version field name&#34;)] @attr [Category(&#34;Props settings&#34;)] |
 | record_version_field_type | [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Version type&#34;)] @attr [Description(&#34;Record version field type&#34;)] @attr [Category(&#34;Props settings&#34;)] |
-| shared_access_control_method | [proto_access_control_method](#proto_config.proto_access_control_method) |  | @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Shared Access&#34;)] @attr [Description(&#34;Entity shared access control&#34;)] @attr [Category(&#34;Props settings&#34;)] |
 | last_constant_group_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_catalog_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_document_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
@@ -1340,6 +1338,7 @@ Configuration model
 | accuracy_for_time | [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type) |  | @attr [PropertyOrderAttribute(36)] @attr [DisplayName(&#34;Time accuracy&#34;)] @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] |
 | is_start_new_column | [bool](#bool) |  | @attr [PropertyOrderAttribute(37)] @attr [DisplayName(&#34;New UI column&#34;)] @attr [Description(&#34;New UI column will start from this property&#34;)] |
 | is_try_attach | [bool](#bool) |  | @attr [PropertyOrderAttribute(38)] @attr [DisplayName(&#34;UI attach&#34;)] @attr [Description(&#34;UI engine will try put this field on same line as previous field&#34;)] |
+| lines_on_screen | [int32](#int32) |  | @attr [PropertyOrderAttribute(39)] @attr [DisplayName(&#34;UI lines&#34;)] @attr [Description(&#34;Lines on screen for edit box&#34;)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -1475,18 +1474,6 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | SHORT_VALUE | 1 |  |
 | BYTE_VALUE | 2 |  |
 | STRING_VALUE | 3 |  |
-
-
-
-<a name="proto_config.proto_access_control_method"></a>
-
-### proto_access_control_method
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| no_access_control | 0 | @attr [DisplayName(&#34;None&#34;)] |
-| optimistic_approach | 1 | @attr [DisplayName(&#34;Optimistic&#34;)] @attr [Description(&#34;Use entity version field to check if entity was already edited and updated by somebody else&#34;)] |
 
 
 

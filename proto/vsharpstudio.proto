@@ -515,14 +515,6 @@ enum proto_enum_version_field_type {
     VER_INT = 2;
     VER_LONG = 3;
 }
-enum proto_access_control_method
-{
-    // @attr [DisplayName("None")]
-    no_access_control = 0;
-    // @attr [DisplayName("Optimistic")]
-    // @attr [Description("Use entity version field to check if entity was already edited and updated by somebody else")]
-    optimistic_approach = 1;
-}
 // Configuration model
 // @attr [CategoryOrder("Db Names Generation", 5)]
 message proto_model {
@@ -579,12 +571,6 @@ message proto_model {
     // @attr [Description("Record version field type")]
     // @attr [Category("Props settings")]
     proto_enum_version_field_type record_version_field_type = 19;
-    // @attr [PropertyOrderAttribute(20)]
-    // @attr [DisplayName("Shared Access")]
-    // @attr [Description("Entity shared access control")]
-    // @attr [Category("Props settings")]
-    proto_access_control_method shared_access_control_method = 20;
-
 
     // @attr [PropertyOrderAttribute(5)]
     // @attr [DisplayName("Version field")]
@@ -964,6 +950,10 @@ message proto_property {
     // @attr [DisplayName("UI attach")]
     // @attr [Description("UI engine will try put this field on same line as previous field")]
     bool is_try_attach = 22;
+    // @attr [PropertyOrderAttribute(39)]
+    // @attr [DisplayName("UI lines")]
+    // @attr [Description("Lines on screen for edit box")]
+    int32 lines_on_screen = 23;
     // Protobuf field position
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]

@@ -424,10 +424,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_access_control_method"><span class="badge">E</span>proto_access_control_method</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_enum_catalog_code_unique_scope"><span class="badge">E</span>proto_enum_catalog_code_unique_scope</a>
                 </li>
               
@@ -4483,16 +4479,6 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>shared_access_control_method</td>
-                  <td><a href="#proto_config.proto_access_control_method">proto_access_control_method</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(20)]
-@attr [DisplayName(&#34;Shared Access&#34;)]
-@attr [Description(&#34;Entity shared access control&#34;)]
-@attr [Category(&#34;Props settings&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>last_constant_group_short_id</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
@@ -5141,6 +5127,15 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>lines_on_screen</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(39)]
+@attr [DisplayName(&#34;UI lines&#34;)]
+@attr [Description(&#34;Lines on screen for edit box&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>position</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -5492,30 +5487,6 @@ repeated proto_document list_documents = 7;
                 <td>STRING_VALUE</td>
                 <td>3</td>
                 <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="proto_config.proto_access_control_method">proto_access_control_method</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>no_access_control</td>
-                <td>0</td>
-                <td><p>@attr [DisplayName(&#34;None&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>optimistic_approach</td>
-                <td>1</td>
-                <td><p>@attr [DisplayName(&#34;Optimistic&#34;)]
-@attr [Description(&#34;Use entity version field to check if entity was already edited and updated by somebody else&#34;)]</p></td>
               </tr>
             
           </tbody>

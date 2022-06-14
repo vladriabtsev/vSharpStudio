@@ -38,24 +38,6 @@
           ]
         },
         {
-          "name": "proto_access_control_method",
-          "longName": "proto_access_control_method",
-          "fullName": "proto_config.proto_access_control_method",
-          "description": "",
-          "values": [
-            {
-              "name": "no_access_control",
-              "number": "0",
-              "description": "@attr [DisplayName(\"None\")]"
-            },
-            {
-              "name": "optimistic_approach",
-              "number": "1",
-              "description": "@attr [DisplayName(\"Optimistic\")]\n@attr [Description(\"Use entity version field to check if entity was already edited and updated by somebody else\")]"
-            }
-          ]
-        },
-        {
           "name": "proto_enum_catalog_code_unique_scope",
           "longName": "proto_enum_catalog_code_unique_scope",
           "fullName": "proto_config.proto_enum_catalog_code_unique_scope",
@@ -5135,16 +5117,6 @@
               "defaultValue": ""
             },
             {
-              "name": "shared_access_control_method",
-              "description": "@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Shared Access\")]\n@attr [Description(\"Entity shared access control\")]\n@attr [Category(\"Props settings\")]",
-              "label": "",
-              "type": "proto_access_control_method",
-              "longType": "proto_access_control_method",
-              "fullType": "proto_config.proto_access_control_method",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "last_constant_group_short_id",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -5920,6 +5892,16 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "lines_on_screen",
+              "description": "@attr [PropertyOrderAttribute(39)]\n@attr [DisplayName(\"UI lines\")]\n@attr [Description(\"Lines on screen for edit box\")]",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "defaultValue": ""
             },

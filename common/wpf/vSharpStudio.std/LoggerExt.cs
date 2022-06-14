@@ -8,6 +8,12 @@ namespace Microsoft.Extensions.Logging
 {
     public static class LoggerExt
     {
+        public static string Line([CallerLineNumber] int line = 0)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(line);
+            return sb.ToString();
+        }
         public static string FilePos( [CallerFilePath] string file = "",
                                         [CallerMemberName] string member = "",
                                         [CallerLineNumber] int line = 0)

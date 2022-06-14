@@ -17,11 +17,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         VER_INT = 2,
         VER_LONG = 3,
     }
-    public enum AccessControlMethod // ModelInterfaces.tt Line: 15
-    {
-        no_access_control = 0,
-        optimistic_approach = 1,
-    }
     public enum EnumDataType // ModelInterfaces.tt Line: 15
     {
         CHAR = 0,
@@ -354,7 +349,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string RecordVersionFieldGuid { get; } // ModelInterfaces.tt Line: 51
     	string RecordVersionFieldName { get; } // ModelInterfaces.tt Line: 51
     	EnumVersionFieldType RecordVersionFieldType { get; } // ModelInterfaces.tt Line: 51
-    	AccessControlMethod SharedAccessControlMethod { get; } // ModelInterfaces.tt Line: 51
     	int LastConstantGroupShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastCatalogShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastDocumentShortId { get; } // ModelInterfaces.tt Line: 51
@@ -522,6 +516,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumTimeAccuracyType AccuracyForTime { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewColumn { get; } // ModelInterfaces.tt Line: 51
     	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 51
+    	int LinesOnScreen { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position

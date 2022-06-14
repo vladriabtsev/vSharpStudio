@@ -297,10 +297,10 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetAllProperties()
+        public IReadOnlyList<IProperty> GetAllProperties(bool isUseRecordVersionField)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, false, true, this.Cfg.Model.SharedAccessControlMethod == AccessControlMethod.optimistic_approach);
+            GetSpecialProperties(res, false, true, isUseRecordVersionField);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 res.Add(t);
@@ -368,10 +368,10 @@ namespace vSharpStudio.vm.ViewModels
                 this.ListGuidViewProperties.Add(t.Guid);
             }
         }
-        public IReadOnlyList<IProperty> GetAllFolderProperties()
+        public IReadOnlyList<IProperty> GetAllFolderProperties(bool isUseRecordVersionField)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, true, true, this.Cfg.Model.SharedAccessControlMethod == AccessControlMethod.optimistic_approach);
+            GetSpecialProperties(res, true, true, isUseRecordVersionField);
             foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 res.Add(t);

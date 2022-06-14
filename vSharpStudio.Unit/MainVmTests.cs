@@ -249,7 +249,7 @@ namespace vSharpStudio.Unit
 
             // Simple catalog
             var c = gr.AddCatalog("test");
-            var lst = c.GetAllProperties();
+            var lst = c.GetAllProperties(true);
             Assert.AreEqual(3, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[1].Name);
@@ -257,7 +257,7 @@ namespace vSharpStudio.Unit
 
             // Tree catalog
             c.UseTree = true;
-            lst = c.GetAllProperties();
+            lst = c.GetAllProperties(true);
             Assert.AreEqual(5, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
@@ -268,7 +268,7 @@ namespace vSharpStudio.Unit
             // Tree catalog
             c.UseTree = true;
             c.UseFolderTypeExplicitly = true;
-            lst = c.GetAllProperties();
+            lst = c.GetAllProperties(true);
             Assert.AreEqual(6, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
@@ -281,13 +281,13 @@ namespace vSharpStudio.Unit
             c.UseTree = true;
             c.UseFolderTypeExplicitly = true;
             c.UseSeparateTreeForFolders = true;
-            lst = c.GetAllProperties();
+            lst = c.GetAllProperties(true);
             Assert.AreEqual(4, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefCtlgtestFolder", lst[1].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.GroupCatalogs.PropertyNameName, lst[3].Name);
-            lst = c.GetAllFolderProperties();
+            lst = c.GetAllFolderProperties(true);
             Assert.AreEqual(6, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
