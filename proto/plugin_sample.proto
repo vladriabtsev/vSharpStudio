@@ -10,8 +10,12 @@ message proto_db_connection_string_settings {
     string string_settings = 1;
 }
 // @base VmValidatableWithSeverity
-message proto_plugins_group_settings {
+message proto_plugins_group_solution_settings {
     bool is_group_param1 = 1;
+}
+// @base VmValidatableWithSeverity
+message proto_plugins_group_project_settings {
+    bool is_group_project_param1 = 1;
 }
 // @base VmValidatableWithSeverity
 message proto_generator_db_schema_settings {

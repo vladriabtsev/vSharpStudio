@@ -542,6 +542,16 @@
               "fullType": "proto_config.proto_app_project_generator",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_group_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_group_generators_settings",
+              "longType": "proto_plugin_group_generators_settings",
+              "fullType": "proto_config.proto_plugin_group_generators_settings",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -715,7 +725,7 @@
               "defaultValue": ""
             },
             {
-              "name": "plugin_group_settings_guid",
+              "name": "plugin_generator_group_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",

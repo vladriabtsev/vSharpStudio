@@ -8,13 +8,13 @@ using vSharpStudio.common;
 
 namespace vPlugin.Sample
 {
-    public partial class PluginsGroupSettings : IvPluginGroupSolutionSettings
+    public partial class PluginsGroupSolutionSettings : IvPluginGroupSolutionSettings
     {
         public const string GuidStatic = "BE281D79-3CBC-4211-B9AD-E580F8CEB731";
         partial void OnInit()
         {
-            this.Name = "GrSet";
-            this.Description = "vSharpStudio plugins group settings";
+            this.Name = "SolGrSet";
+            this.Description = "vSharpStudio plugins group settings for solutions";
             this.Version = "0.1";
         }
         [BrowsableAttribute(false)]
@@ -29,7 +29,7 @@ namespace vPlugin.Sample
         {
             get
             {
-                var proto = PluginsGroupSettings.ConvertToProto(this);
+                var proto = PluginsGroupSolutionSettings.ConvertToProto(this);
                 return JsonFormatter.Default.Format(proto);
             }
         }
@@ -37,9 +37,9 @@ namespace vPlugin.Sample
         public IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVm(string settings)
         {
             if (string.IsNullOrWhiteSpace(settings))
-                return new PluginsGroupSettings();
-            var proto = proto_plugins_group_settings.Parser.ParseJson(settings);
-            return PluginsGroupSettings.ConvertToVM(proto, new PluginsGroupSettings());
+                return new PluginsGroupSolutionSettings();
+            var proto = proto_plugins_group_solution_settings.Parser.ParseJson(settings);
+            return PluginsGroupSolutionSettings.ConvertToVM(proto, new PluginsGroupSolutionSettings());
         }
     }
 }

@@ -74,8 +74,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                if (_PluginGenerator == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
-                    PluginGenerator = cfg.DicActiveAppProjectGenerators[this.Guid];
+                //if (_PluginGenerator == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
+                //    PluginGenerator = cfg.DicActiveAppProjectGenerators[this.Guid];
                 if (_PluginGenerator == null)
                 {
                     return null;
@@ -195,17 +195,17 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private object _DynamicModelNodeSettings;
-        public IvPluginGroupSolutionSettings GetPluginGroupSettings(string guidGroupSettings)
-        {
-            var sln = (AppSolution)(this.Parent.Parent);
-            var settings = sln.DicPluginsGroupSettings[guidGroupSettings];
-            return settings;
-        }
-        public IvPluginGeneratorNodeSettings GetDefaultNodeSettings()
-        {
-            var cfg = this.GetConfig();
-            return cfg.Model.GetSettings(this.Guid);
-        }
+        //public IvPluginGroupSolutionSettings GetPluginGroupSettings(string guidGroupSettings)
+        //{
+        //    var sln = (AppSolution)(this.Parent.Parent);
+        //    var settings = sln.DicPluginsGroupSettings[guidGroupSettings];
+        //    return settings;
+        //}
+        //public IvPluginGeneratorNodeSettings GetDefaultNodeSettings()
+        //{
+        //    var cfg = this.GetConfig();
+        //    return cfg.Model.GetSettings(this.Guid);
+        //}
         private string prevRelativePathToGenFolder = string.Empty;
         private string prevGenFileName = string.Empty;
         partial void OnPluginGuidChanging(ref string to)
@@ -227,12 +227,18 @@ namespace vSharpStudio.vm.ViewModels
                             {
                                 if (tt.Guid == this.Guid)
                                     continue;
-                                if (tt.PluginGroupSettingsGuid == this.PluginGroupSettingsGuid)
+                                if (tt.PluginGeneratorGroupGuid == this.PluginGeneratorGroupGuid)
                                     is_only = false;
                             }
                         }
                         if (is_only)
-                            sln.DicPluginsGroupSettings.Remove(this.PluginGroupSettingsGuid);
+                        {
+                            sln.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
+                            foreach (var t in sln.ListAppProjects)
+                            {
+                                t.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
+                            }
+                        }
                     }
                 }
             }
@@ -242,6 +248,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (!this.IsNotifying)
                 return;
+            //this.RemoveGroupSettingsIfLast();
             this.PluginGeneratorGuid = string.Empty;
             this.GenFileName = string.Empty;
             UpdateListGenerators();
@@ -261,24 +268,13 @@ namespace vSharpStudio.vm.ViewModels
                 prevRelativePathToGenFolder = this.RelativePathToGenFolder;
             this.RelativePathToGenFolder = string.Empty;
 
-            // adding new plugins group settings
-            var sln = (AppSolution)this.Parent.Parent;
-            if (!string.IsNullOrWhiteSpace(this.PluginGuid))
-            {
-                this.plugin = cfg.DicPlugins[this.PluginGuid];
-                this.Name = this.plugin.Name;
-                var groupSettings = this.plugin.GetPluginGroupSolutionSettingsVmFromJson(null);
-                if (groupSettings != null)
-                {
-                    this.PluginGroupSettingsGuid = groupSettings.Guid;
-                    if (!sln.DicPluginsGroupSettings.ContainsKey(groupSettings.Guid))
-                    {
-                        sln.DicPluginsGroupSettings[groupSettings.Guid] = groupSettings;
-                    }
-                }
-            }
             HideProperties();
+            var sln = (AppSolution)this.Parent.Parent;
             sln.DynamicPluginGroupSettings = null;
+            foreach (var t in sln.ListAppProjects)
+            {
+                t.DynamicPluginGroupSettings = null;
+            }
             this.DynamicGeneratorSettings = null;
             this.DynamicMainConnStrSettings = null;
             this.DynamicModelNodeSettings = null;
@@ -299,6 +295,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 p.RemoveNodeAppGenSettings(this.Guid);
             });
+            this.RemoveGroupSettingsIfLast();
             this.GeneratorSettings = string.Empty;
             this.DescriptionGenerator = string.Empty;
             //this.DicGenNodeSettings.TryRemove(this.Guid);
@@ -315,6 +312,9 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                 return;
             var nv = new ModelVisitorNodeGenSettings();
+            this.PluginGenerator = cfg.DicGenerators[this.PluginGeneratorGuid];
+            if (this.plugin == null)
+                this.plugin = cfg.DicPlugins[this.PluginGuid];
             this.RestoreSettings();
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {
@@ -341,8 +341,43 @@ namespace vSharpStudio.vm.ViewModels
         {
             HideProperties();
         }
+        private void RemoveGroupSettingsIfLast()
+        {
+            if (string.IsNullOrEmpty(this.PluginGeneratorGroupGuid))
+                return;
+
+            var sln = (AppSolution)this.Parent.Parent;
+            var isThisIsLastGenInGroup = true;
+            foreach (var t in sln.ListAppProjects)
+            {
+                foreach (var tt in t.ListAppProjectGenerators)
+                {
+                    if (tt.Guid == this.Guid)
+                        continue;
+                    if (tt.PluginGeneratorGroupGuid == this.PluginGeneratorGroupGuid)
+                    {
+                        isThisIsLastGenInGroup = false;
+                        break;
+                    }
+                }
+                if (!isThisIsLastGenInGroup)
+                    break;
+            }
+            if (isThisIsLastGenInGroup)
+            {
+                if (sln.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
+                    sln.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
+                foreach (var t in sln.ListAppProjects)
+                {
+                    if (t.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
+                        t.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
+                }
+            }
+            this.PluginGeneratorGroupGuid = string.Empty;
+        }
         public void RestoreSettings()
         {
+            var sln = (AppSolution)this.Parent.Parent;
             foreach (var ttt in cfg.GroupPlugins.ListPlugins)
             {
                 foreach (var tt in ttt.ListGenerators)
@@ -354,18 +389,55 @@ namespace vSharpStudio.vm.ViewModels
                         var groupSettins = ttt.VPlugin.GetPluginGroupSolutionSettingsVmFromJson(null);
                         if (groupSettins == null)
                         {
-                            this.PluginGroupSettingsGuid = string.Empty;
+                            this.PluginGeneratorGroupGuid = string.Empty;
                         }
                         else
                         {
-                            this.PluginGroupSettingsGuid = groupSettins.Guid;
+                            this.PluginGeneratorGroupGuid = tt.Generator.GroupGuid;
                         }
                         this.PluginGenerator = tt.Generator.CreateNew(this);
                         cfg._DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
                         this.PluginDbGenerator = this.PluginGenerator as IvPluginDbGenerator;
+                        if (groupSettins != null)
+                        {
+                            if (!sln.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
+                            {
+                                sln.DicPluginsGroupSettings[this.PluginGeneratorGroupGuid] = groupSettins;
+                                foreach (var t in sln.ListAppProjects)
+                                {
+                                    var groupPrjSettings = this.Plugin.GetPluginGroupProjectSettingsVmFromJson(null);
+                                    if (groupPrjSettings == null)
+                                        break;
+                                    t.DicPluginsGroupSettings[this.PluginGeneratorGroupGuid] = groupPrjSettings;
+                                }
+                            }
+                        }
                     }
                 }
             }
+            //// adding new plugins group settings
+            //var sln = (AppSolution)this.Parent.Parent;
+            //if (!string.IsNullOrWhiteSpace(this.PluginGuid))
+            //{
+            //    this.plugin = cfg.DicPlugins[this.PluginGuid];
+            //    this.Name = this.plugin.Name;
+            //    var groupSlnSettings = this.plugin.GetPluginGroupSolutionSettingsVmFromJson(null);
+            //    Debug.Assert(groupSlnSettings != null);
+            //    if (groupSlnSettings != null)
+            //    {
+            //        this.PluginGroupGuid = groupSlnSettings.Guid;
+            //        if (!sln.DicPluginsGroupSettings.ContainsKey(this.PluginGenerator.GroupGuid))
+            //        {
+            //            sln.DicPluginsGroupSettings[this.PluginGroupSettingsGuid] = groupSlnSettings;
+            //            foreach (var t in sln.ListAppProjects)
+            //            {
+            //                var groupPrjSettings = this.plugin.GetPluginGroupProjectSettingsVmFromJson(null);
+            //                Debug.Assert(groupPrjSettings != null);
+            //                t.DicPluginsGroupSettings[this.PluginGroupSettingsGuid] = groupPrjSettings;
+            //            }
+            //        }
+            //    }
+            //}
             //if (cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
             //{
             //    this.PluginGenerator = cfg.DicActiveAppProjectGenerators[this.Guid];
@@ -395,15 +467,15 @@ namespace vSharpStudio.vm.ViewModels
                 this.DescriptionPlugin = plg.Description;
             }
         }
-        public IvPluginGroupSolutionSettings GetPluginsGroupSettings()
-        {
-            if (!string.IsNullOrEmpty(this.PluginGroupSettingsGuid))
-            {
-                var sln = (AppSolution)this.Parent.Parent;
-                return sln.DicPluginsGroupSettings[this.PluginGroupSettingsGuid];
-            }
-            return null;
-        }
+        //public IvPluginGroupSolutionSettings GetPluginsGroupSettings()
+        //{
+        //    if (!string.IsNullOrEmpty(this.PluginGroupSettingsGuid))
+        //    {
+        //        var sln = (AppSolution)this.Parent.Parent;
+        //        return sln.DicPluginsGroupSettings[this.PluginGroupSettingsGuid];
+        //    }
+        //    return null;
+        //}
         private void HideProperties()
         {
             if (this.PluginGenerator == null)

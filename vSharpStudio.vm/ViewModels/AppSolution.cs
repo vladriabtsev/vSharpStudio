@@ -120,6 +120,7 @@ namespace vSharpStudio.vm.ViewModels
             AppProject node = new AppProject(this, name, projectPath);
             return node;
         }
+        #region Group Generator Solution Settings
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
@@ -144,21 +145,21 @@ namespace vSharpStudio.vm.ViewModels
         }
         private object _DynamicPluginGroupSettings;
         // GroupGeneratorsSettings guid, settings
-        private DictionaryExt<string, IvPluginGroupSolutionSettings> dicSolutionGroupGeneratorsSettings = null;
+        private DictionaryExt<string, IvPluginGroupSolutionSettings> dicPluginsGroupSettings = null;
         [BrowsableAttribute(false)]
         public DictionaryExt<string, IvPluginGroupSolutionSettings> DicPluginsGroupSettings
         {
             get
             {
-                if (dicSolutionGroupGeneratorsSettings == null)
+                if (dicPluginsGroupSettings == null)
                 {
-                    dicSolutionGroupGeneratorsSettings = new DictionaryExt<string, IvPluginGroupSolutionSettings>(5, false, true,
+                    dicPluginsGroupSettings = new DictionaryExt<string, IvPluginGroupSolutionSettings>(5, false, true,
                         (ki, v) => { }, (kr, v) => { }, () => { });
                 }
-                return dicSolutionGroupGeneratorsSettings;
+                return dicPluginsGroupSettings;
             }
         }
-        public object GetGroupSettings(string groupSettingsGuid)
+        public IvPluginGroupSolutionSettings GetGroupSettings(string groupSettingsGuid)
         {
             return this.DicPluginsGroupSettings[groupSettingsGuid];
         }
@@ -184,6 +185,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.DicPluginsGroupSettings[t.AppGroupGeneratorsGuid] = cfg.DicGroupSettings[t.AppGroupGeneratorsGuid].GetPluginGroupSolutionSettingsVmFromJson(t.Settings);
             }
         }
+        #endregion Group Generator Solution Settings
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }

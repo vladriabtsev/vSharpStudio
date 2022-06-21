@@ -16,7 +16,7 @@ namespace Microsoft.Extensions.Logging
             var methodName = memberName;
             var line = sourceLineNumber;
 
-            return $"{fileName} {line} [{methodName}] {message}";
+            return $"{fileName}.cs {line} [{methodName}] {message}";
         }
         public static string StackInfo(this string message,
             [CallerMemberName] string memberName = "",

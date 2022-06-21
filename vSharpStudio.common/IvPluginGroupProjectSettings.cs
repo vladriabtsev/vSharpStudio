@@ -12,7 +12,7 @@ using Google.Protobuf.WellKnownTypes;
 
 namespace vSharpStudio.common
 {
-    public interface IvPluginGroupSolutionSettings
+    public interface IvPluginGroupProjectSettings
     {
         string Name { get; }
         string Version { get; }
@@ -22,7 +22,7 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="settings"></param>
         /// <returns></returns>
-        IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVm(string settings);
+        IvPluginGroupProjectSettings GetPluginGroupProjectSettingsVm(string settings);
         /// <summary>
         /// Get protobuf model of settings from MVVM model (json format)
         /// </summary>

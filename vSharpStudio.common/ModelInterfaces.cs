@@ -253,6 +253,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<IPluginGroupGeneratorsSettings> ListGroupGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IPluginGeneratorNodeSettings // ModelInterfaces.tt Line: 29
@@ -310,7 +311,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string GeneratorSettings { get; } // ModelInterfaces.tt Line: 51
     	IPluginGeneratorSettings GeneratorSettingsVm { get; } // ModelInterfaces.tt Line: 55
     	string ConnStr { get; } // ModelInterfaces.tt Line: 51
-    	string PluginGroupSettingsGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PluginGeneratorGroupGuid { get; } // ModelInterfaces.tt Line: 51
     	string ConnStrToPrevStable { get; } // ModelInterfaces.tt Line: 51
     	bool IsGenerateSqlSqriptToUpdatePrevStable { get; } // ModelInterfaces.tt Line: 51
     	

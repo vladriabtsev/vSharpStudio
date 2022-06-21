@@ -4528,6 +4528,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsValidate = false;
             this.OnInitBegin();
             this.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(this); // Class.tt Line: 27
+            this.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(this); // Class.tt Line: 27
             this.OnInit();
             this.IsValidate = true;
             this.IsNotifying = true;
@@ -4542,6 +4543,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (type == typeof(AppProjectGenerator)) // Clone.tt Line: 15
             {
                 this.ListAppProjectGenerators.Sort();
+            }
+            if (type == typeof(PluginGroupGeneratorsSettings)) // Clone.tt Line: 15
+            {
+                this.ListGroupGeneratorsSettings.Sort();
             }
         }
         public static AppProject Clone(ITreeConfigNode parent, IAppProject from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
@@ -4561,6 +4566,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListAppProjectGenerators) // Clone.tt Line: 52
                 vm.ListAppProjectGenerators.Add(AppProjectGenerator.Clone(vm, (AppProjectGenerator)t, isDeep));
+            vm.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(vm); // Clone.tt Line: 51
+            foreach (var t in from.ListGroupGeneratorsSettings) // Clone.tt Line: 52
+                vm.ListGroupGeneratorsSettings.Add(PluginGroupGeneratorsSettings.Clone(vm, (PluginGroupGeneratorsSettings)t, isDeep));
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4613,6 +4621,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                     }
                 }
             }
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListGroupGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListGroupGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGroupGeneratorsSettings.Update((PluginGroupGeneratorsSettings)t, (PluginGroupGeneratorsSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListGroupGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListGroupGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListGroupGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGroupGeneratorsSettings(to); // Clone.tt Line: 117
+                        PluginGroupGeneratorsSettings.Update(p, (PluginGroupGeneratorsSettings)tt, isDeep);
+                        to.ListGroupGeneratorsSettings.Add(p);
+                    }
+                }
+            }
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -4655,6 +4699,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = AppProjectGenerator.ConvertToVM(t, new AppProjectGenerator(vm)); // Clone.tt Line: 204
                 vm.ListAppProjectGenerators.Add(tvm);
             }
+            vm.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(vm); // Clone.tt Line: 200
+            foreach (var t in m.ListGroupGeneratorsSettings) // Clone.tt Line: 201
+            {
+                var tvm = PluginGroupGeneratorsSettings.ConvertToVM(t, new PluginGroupGeneratorsSettings(vm)); // Clone.tt Line: 204
+                vm.ListGroupGeneratorsSettings.Add(tvm);
+            }
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4674,6 +4724,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             foreach (var t in vm.ListAppProjectGenerators) // Clone.tt Line: 242
                 m.ListAppProjectGenerators.Add(AppProjectGenerator.ConvertToProto((AppProjectGenerator)t)); // Clone.tt Line: 246
+            foreach (var t in vm.ListGroupGeneratorsSettings) // Clone.tt Line: 242
+                m.ListGroupGeneratorsSettings.Add(PluginGroupGeneratorsSettings.ConvertToProto((PluginGroupGeneratorsSettings)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -4686,6 +4738,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             visitor.Visit(this);
             foreach (var t in this.ListAppProjectGenerators)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            foreach (var t in this.ListGroupGeneratorsSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
@@ -4880,6 +4936,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IReadOnlyList<IAppProjectGenerator> IAppProject.ListAppProjectGenerators { get { return (this as AppProject).ListAppProjectGenerators; } } // Property.tt Line: 26
         partial void OnListAppProjectGeneratorsChanging(ObservableCollection<AppProjectGenerator> to); // Property.tt Line: 27
         partial void OnListAppProjectGeneratorsChanged();
+        
+        [BrowsableAttribute(false)]
+        public ConfigNodesCollection<PluginGroupGeneratorsSettings> ListGroupGeneratorsSettings // Property.tt Line: 8
+        { 
+            get { return this._ListGroupGeneratorsSettings; }
+            set
+            {
+                if (this._ListGroupGeneratorsSettings != value)
+                {
+                    this.OnListGroupGeneratorsSettingsChanging(value);
+                    _ListGroupGeneratorsSettings = value;
+                    this.OnListGroupGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGroupGeneratorsSettings> _ListGroupGeneratorsSettings;
+        IReadOnlyList<IPluginGroupGeneratorsSettings> IAppProject.ListGroupGeneratorsSettings { get { return (this as AppProject).ListGroupGeneratorsSettings; } } // Property.tt Line: 26
+        partial void OnListGroupGeneratorsSettingsChanging(ObservableCollection<PluginGroupGeneratorsSettings> to); // Property.tt Line: 27
+        partial void OnListGroupGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
         override public bool IsChanged // Class.tt Line: 103
         { 
@@ -5439,7 +5516,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.GeneratorSettingsVm = vSharpStudio.vm.ViewModels.PluginGeneratorSettings.Clone(from.GeneratorSettingsVm, isDeep);
             vm.ConnStr = from.ConnStr; // Clone.tt Line: 65
-            vm.PluginGroupSettingsGuid = from.PluginGroupSettingsGuid; // Clone.tt Line: 65
+            vm.PluginGeneratorGroupGuid = from.PluginGeneratorGroupGuid; // Clone.tt Line: 65
             vm.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 65
             vm.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 65
             vm.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 65
@@ -5468,7 +5545,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.PluginGeneratorSettings.Update((PluginGeneratorSettings)to.GeneratorSettingsVm, from.GeneratorSettingsVm, isDeep);
             to.ConnStr = from.ConnStr; // Clone.tt Line: 141
-            to.PluginGroupSettingsGuid = from.PluginGroupSettingsGuid; // Clone.tt Line: 141
+            to.PluginGeneratorGroupGuid = from.PluginGeneratorGroupGuid; // Clone.tt Line: 141
             to.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 141
             to.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 141
             to.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 141
@@ -5518,7 +5595,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GeneratorSettingsVm = new PluginGeneratorSettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.PluginGeneratorSettings.ConvertToVM(m.GeneratorSettingsVm, (PluginGeneratorSettings)vm.GeneratorSettingsVm); // Clone.tt Line: 219
             vm.ConnStr = m.ConnStr; // Clone.tt Line: 221
-            vm.PluginGroupSettingsGuid = m.PluginGroupSettingsGuid; // Clone.tt Line: 221
+            vm.PluginGeneratorGroupGuid = m.PluginGeneratorGroupGuid; // Clone.tt Line: 221
             vm.ConnStrToPrevStable = m.ConnStrToPrevStable; // Clone.tt Line: 221
             vm.IsGenerateSqlSqriptToUpdatePrevStable = m.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 221
             vm.GenScriptFileName = m.GenScriptFileName; // Clone.tt Line: 221
@@ -5547,7 +5624,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GeneratorSettings = vm.GeneratorSettings; // Clone.tt Line: 276
             m.GeneratorSettingsVm = vSharpStudio.vm.ViewModels.PluginGeneratorSettings.ConvertToProto((PluginGeneratorSettings)vm.GeneratorSettingsVm); // Clone.tt Line: 270
             m.ConnStr = vm.ConnStr; // Clone.tt Line: 276
-            m.PluginGroupSettingsGuid = vm.PluginGroupSettingsGuid; // Clone.tt Line: 276
+            m.PluginGeneratorGroupGuid = vm.PluginGeneratorGroupGuid; // Clone.tt Line: 276
             m.ConnStrToPrevStable = vm.ConnStrToPrevStable; // Clone.tt Line: 276
             m.IsGenerateSqlSqriptToUpdatePrevStable = vm.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 276
             m.GenScriptFileName = vm.GenScriptFileName; // Clone.tt Line: 276
@@ -5928,25 +6005,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnConnStrChanged();
         
         [BrowsableAttribute(false)]
-        public string PluginGroupSettingsGuid // Property.tt Line: 55
+        public string PluginGeneratorGroupGuid // Property.tt Line: 55
         { 
-            get { return this._PluginGroupSettingsGuid; }
+            get { return this._PluginGeneratorGroupGuid; }
             set
             {
-                if (this._PluginGroupSettingsGuid != value)
+                if (this._PluginGeneratorGroupGuid != value)
                 {
-                    this.OnPluginGroupSettingsGuidChanging(ref value);
-                    this._PluginGroupSettingsGuid = value;
-                    this.OnPluginGroupSettingsGuidChanged();
+                    this.OnPluginGeneratorGroupGuidChanging(ref value);
+                    this._PluginGeneratorGroupGuid = value;
+                    this.OnPluginGeneratorGroupGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _PluginGroupSettingsGuid = string.Empty;
-        partial void OnPluginGroupSettingsGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPluginGroupSettingsGuidChanged();
+        private string _PluginGeneratorGroupGuid = string.Empty;
+        partial void OnPluginGeneratorGroupGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPluginGeneratorGroupGuidChanged();
         
         [PropertyOrderAttribute(13)]
         [DisplayName("Stable DB")]

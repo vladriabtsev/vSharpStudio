@@ -130,6 +130,7 @@
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_app_project_generators | [proto_app_project_generator](#proto_config.proto_app_project_generator) | repeated | @attr [BrowsableAttribute(false)] |
+| list_group_generators_settings | [proto_plugin_group_generators_settings](#proto_config.proto_plugin_group_generators_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -161,7 +162,7 @@ Application project generator
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | generator_settings_vm | [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings) |  | @attr [PropertyOrderAttribute(29)] @attr [BrowsableAttribute(false)] |
 | conn_str | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)] |
-| plugin_group_settings_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| plugin_generator_group_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | conn_str_to_prev_stable | [string](#string) |  | @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Stable DB&#34;)] @attr [Description(&#34;Db connection string to previous stable version&#34;)] |
 | is_generate_sql_sqript_to_update_prev_stable | [bool](#bool) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Migrate DB&#34;)] @attr [Description(&#34;Generate Sql script to update stable DB version to current state&#34;)] |
 | gen_script_file_name | [string](#string) |  | @attr [DisplayName(&#34;SQL file&#34;)] @attr [PropertyOrderAttribute(15)] @attr [Description(&#34;SQL script output file name&#34;)] Generator output file name |

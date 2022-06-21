@@ -18,6 +18,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using Google.Protobuf;
 using GuiLabs.Undo;
+//using Microsoft.AspNetCore.Components;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,19 +47,24 @@ namespace vSharpStudio.ViewModels
             vm.Compose(pluginsFolderPath);
             return vm;
         }
-
-        private static ILogger _logger;
+        private ILogger _logger;
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyGrid propertyGrid;
         public ValidationListForSelectedNode validationListForSelectedNode;
         public MainPageVM() : base(MainPageVMValidator.Validator)
         {
             _logger = Logger.CreateLogger<MainPageVM>();
         }
+        //public MainPageVM(ILogger<MainPageVM> logger) : this()
+        //{
+        //    _logger = logger;
+        //}
         bool isLoadConfig;
         string configFile;
         //public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
         public MainPageVM(bool isLoadConfig, string configFile = null) : this()
         {
+            _logger.LogDebug("Created with isLoadConfig={isLoadConfig}, configFile='{configFile}'".CallerInfo(), 
+                isLoadConfig, configFile);
             //this.onImportsSatisfied = onImportsSatisfied;
             this.isLoadConfig = isLoadConfig;
             this.configFile = configFile;
@@ -234,9 +240,9 @@ namespace vSharpStudio.ViewModels
                 foreach (var t in this._plugins)
                 {
                     cfg.DicPlugins[t.Value.Guid] = t.Value;
-                    var groupSettings = t.Value.GetPluginGroupSolutionSettingsVmFromJson(null);
-                    if (!cfg.DicGroupSettings.ContainsKey(groupSettings.Guid))
-                        cfg.DicGroupSettings[groupSettings.Guid] = t.Value;
+                    //var groupSettings = t.Value.GetPluginGroupSolutionSettingsVmFromJson(null);
+                    //if (!cfg.DicGroupSettings.ContainsKey(groupSettings.Guid))
+                    //    cfg.DicGroupSettings[groupSettings.Guid] = t.Value;
                     Plugin p = null;
                     bool is_found = false;
                     // attaching plugin

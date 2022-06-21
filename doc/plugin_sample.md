@@ -9,7 +9,8 @@
     - [proto_generator_db_access_settings](#proto_plugin_sample.proto_generator_db_access_settings)
     - [proto_generator_db_schema_node_settings](#proto_plugin_sample.proto_generator_db_schema_node_settings)
     - [proto_generator_db_schema_settings](#proto_plugin_sample.proto_generator_db_schema_settings)
-    - [proto_plugins_group_settings](#proto_plugin_sample.proto_plugins_group_settings)
+    - [proto_plugins_group_project_settings](#proto_plugin_sample.proto_plugins_group_project_settings)
+    - [proto_plugins_group_solution_settings](#proto_plugin_sample.proto_plugins_group_solution_settings)
   
   
   
@@ -113,9 +114,24 @@
 
 
 
-<a name="proto_plugin_sample.proto_plugins_group_settings"></a>
+<a name="proto_plugin_sample.proto_plugins_group_project_settings"></a>
 
-### proto_plugins_group_settings
+### proto_plugins_group_project_settings
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| is_group_project_param1 | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="proto_plugin_sample.proto_plugins_group_solution_settings"></a>
+
+### proto_plugins_group_solution_settings
 @base VmValidatableWithSeverity
 
 

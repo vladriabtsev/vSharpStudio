@@ -237,9 +237,30 @@
           ]
         },
         {
-          "name": "proto_plugins_group_settings",
-          "longName": "proto_plugins_group_settings",
-          "fullName": "proto_plugin_sample.proto_plugins_group_settings",
+          "name": "proto_plugins_group_project_settings",
+          "longName": "proto_plugins_group_project_settings",
+          "fullName": "proto_plugin_sample.proto_plugins_group_project_settings",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "is_group_project_param1",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugins_group_solution_settings",
+          "longName": "proto_plugins_group_solution_settings",
+          "fullName": "proto_plugin_sample.proto_plugins_group_solution_settings",
           "description": "@base VmValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,

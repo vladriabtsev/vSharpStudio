@@ -2,7 +2,11 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Debug;
+//using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using vSharpStudio.common;
 using vSharpStudio.ViewModels;
@@ -13,16 +17,79 @@ namespace vSharpStudio.Unit
     [TestClass]
     public class PluginTests
     {
+        //internal static ILoggerFactory MyLoggerFactory { get; private set; }
+        //internal static IHost MyHost { get; private set; }
+        private static ILogger _logger;
+        private static TestContext testContext;
+        //public PluginTests(ILogger<PluginTests> logger)
+        //{
+        //    _logger = logger;
+        //}
+        [AssemblyInitialize]
+        public static void InitializeTests(TestContext testContext)
+        {
+            //var hostBuilder = Host.CreateDefaultBuilder()
+            //    .ConfigureLogging(builder => builder
+            //        .AddDebug()
+            //    );
+            //hostBuilder.ConfigureServices((_, services) => services
+            //    .AddTransient<MainPageVM>());
+            ////    .AddHostedService<MainPageVM>());
+            //MyHost = hostBuilder.Build();
+            //MyHost.RunAsync();
+
+            //MyLoggerFactory = LoggerFactory.Create(builder => builder
+            //    .AddDebug()
+            //.AddSimpleConsole(options =>
+            //{
+            //    options.IncludeScopes = true;
+            //    options.SingleLine = true;
+            //    options.TimestampFormat = "hh:mm:ss ";
+            //})
+            //);
+            Logger.LogerProvider = new DebugLoggerProvider();
+        }
+        [AssemblyCleanup]
+        public static void TearDownTests()
+        {
+            //MyHost?.Dispose();
+        }
+        [ClassInitialize]
+        public static void InitializeTestClass(TestContext cntx)
+        {
+            testContext = cntx;
+            //_logger = MyHost.Services.GetRequiredService<ILogger<PluginTests>>();
+            //_logger = MyLoggerFactory.CreateLogger<PluginTests>();
+            _logger = Logger.CreateLogger<PluginTests>();
+        }
+        [ClassCleanup]
+        public static void TearDownTestClass()
+        {
+        }
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            //string testName = string.Format("{0}.{1}", testContext.FullyQualifiedTestClassName, testContext.TestName);
+            //_logger.LogInformation("Started with test '{0}'", testName);
+        }
+        [TestCleanup()]
+        public void TestCleanup()
+        {
+        }
+
+
+
+
         static PluginTests()
         {
-            LoggerInit.Init();
+            //LoggerInit.Init();
         }
-        private static ILogger _logger;
+        //private static ILoggerAdapter _logger;
         public PluginTests()
         {
-            if (_logger == null)
-                //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
-                _logger = Logger.CreateLogger<PluginTests>();
+            //if (_logger == null)
+            //    //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
+            //    _logger = new LoggerAdapter(Logger.CreateLogger<PluginTests>());
         }
 
         //[TestMethod]
@@ -98,8 +165,11 @@ namespace vSharpStudio.Unit
             prms.AccessParam3 = "kuku3";
             prms.AccessParam4 = "kuku4";
 
-            var prmsGroup = (vPlugin.Sample.PluginsGroupSettings)gen.GetPluginsGroupSettings();
-            prmsGroup.IsGroupParam1 = true;
+            var prmsGroupSln = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.GetGroupSettings(gen.PluginGeneratorGroupGuid);
+            prmsGroupSln.IsGroupParam1 = true;
+
+            var prmsGroupPrj = (vPlugin.Sample.PluginsGroupProjectSettings)prj.GetGroupSettings(gen.PluginGeneratorGroupGuid);
+            prmsGroupPrj.IsGroupProjectParam1 = true;
 
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
@@ -123,7 +193,9 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(sln.RelativeAppSolutionPath, vm2.Config.GroupAppSolutions[0].RelativeAppSolutionPath);
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions[0].ListAppProjects.Count());
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators.Count());
-            var gen2 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
+            var sln2 = vm2.Config.GroupAppSolutions[0];
+            var prj2 = sln2.ListAppProjects[0];
+            var gen2 = prj2.ListAppProjectGenerators[0];
             Assert.AreEqual(gen.RelativePathToGenFolder, gen2.RelativePathToGenFolder);
             Assert.AreEqual(gen.GenFileName, gen2.GenFileName);
             Assert.AreEqual(gen.PluginGuid, gen2.PluginGuid);
@@ -139,8 +211,11 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
             Assert.AreEqual(prms.AccessParam4, prms2.AccessParam4);
-            var prmsGroup2 = (vPlugin.Sample.PluginsGroupSettings)gen2.GetPluginGroupSettings(vPlugin.Sample.PluginsGroupSettings.GuidStatic);
-            Assert.IsTrue(prmsGroup2.IsGroupParam1);
+            var prmsGroupSln2 = (vPlugin.Sample.PluginsGroupSolutionSettings)sln2.GetGroupSettings(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic);
+            Assert.IsTrue(prmsGroupSln2.IsGroupParam1);
+            var prmsGroupPrj2 = (vPlugin.Sample.PluginsGroupProjectSettings)prj2.GetGroupSettings(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic);
+            Assert.IsTrue(prmsGroupPrj2.IsGroupProjectParam1);
+
             #region DicDiffResult
             var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm.Config.DicActiveAppProjectGenerators, vm2.Config.DicActiveAppProjectGenerators);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
@@ -181,6 +256,7 @@ namespace vSharpStudio.Unit
             //Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
             #endregion DicDiffResult
+
             gen2 = (AppProjectGenerator)vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
             prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicGeneratorSettings;
             Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
@@ -383,11 +459,11 @@ namespace vSharpStudio.Unit
         public void Plugin006WorkWithPluginsGroupSettings()
         {
             // Settings workflow:
-            // 1. When Config is loaded: init group plugin settings on all solution nodes
-            // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
-            // 3. When new generator is added and it is new group plugin, than appropriate solution settings has to be added in solution
-            // 4. When saving Config: convert all solutions groups settings to string representations
-            _logger.LogTrace("Start test".CallerInfo());
+            // 1. When Config is loaded: init group plugin settings on all solution and project nodes
+            // 2. When generator is removed, appropriate solution and project settings has to be removed if it is a last plugin in group in the solution
+            // 3. When new generator is added and it is new group plugin, than appropriate solution and project settings has to be added in solution
+            // 4. When saving Config: convert all solutions and project groups settings to string representations
+            _logger.LogInformation("".CallerInfo());
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
@@ -397,6 +473,7 @@ namespace vSharpStudio.Unit
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
 
+            var cfg = vm.Config;
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
             sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
             Assert.IsNull(sln.DynamicPluginGroupSettings);
@@ -407,59 +484,115 @@ namespace vSharpStudio.Unit
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
             gen.GenFileName = "test_file.cs";
-            gen.PluginGuid = pluginNode.Guid;
-            gen.PluginGeneratorGuid = genDbAccess.Guid;
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
+            gen.PluginGuid = pluginNode.Guid;
+
+            // Empty settings without generator
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 0);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 0);
+            Assert.IsTrue(cfg.DicGroupSettings.Count == 0);
+            Assert.IsNull(sln.DynamicPluginGroupSettings);
+            Assert.IsNull(prj.DynamicPluginGroupSettings);
+
+            // first generator adding
+            gen.PluginGeneratorGuid = genDbAccess.Guid;
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
+            //Assert.IsTrue(cfg.DicGroupSettings.Count == 1);
+
+            // second generator adding
+            var gen2 = (AppProjectGenerator)prj.NodeAddNewSubNode();
+            gen2.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen2.GenFileName = "test_file2.cs";
+            gen2.Name = "AppGenName2";
+            gen2.NameUi = "App Gen Name2";
+            gen2.PluginGuid = pluginNode.Guid;
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
+            gen2.PluginGeneratorGuid = genDb.Guid;
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 2);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 2);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
+
+            // second generator removing
+            gen2.PluginGeneratorGuid = null;
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
+
+            // second generator adding
+            gen2.PluginGeneratorGuid = genDb.Guid;
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 2);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 2);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
+
+            // second generator removing
+            gen2.PluginGuid = null;
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
+
+            // second generator adding
+            gen2.PluginGuid = pluginNode.Guid;
+            gen2.PluginGeneratorGuid = genDb.Guid;
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 2);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 2);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
+
+            // second generator removing
+            prj.ListAppProjectGenerators.Remove(gen2);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
+            Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
 
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             var plgn = vm.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGroupSettingsGuid));
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGeneratorGroupGuid));
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.ContainsKey(gen.PluginGeneratorGroupGuid));
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
 
-            var set = (vPlugin.Sample.PluginsGroupSettings)sln.DicPluginsGroupSettings[gen.PluginGroupSettingsGuid];
+            // SAVE
+            var set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[gen.PluginGeneratorGroupGuid];
             set.IsGroupParam1 = true;
-
+            var setPrj = (vPlugin.Sample.PluginsGroupProjectSettings)prj.DicPluginsGroupSettings[gen.PluginGeneratorGroupGuid];
+            setPrj.IsGroupProjectParam1 = true;
             vm.CommandConfigSave.Execute(null);
-
-            // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
-            gen.PluginGuid = null;
-            Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
-            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGroupSettingsGuid));
-            Assert.IsNull(sln.DynamicPluginGroupSettings);
-
-            // 3. When new generator is added and it is new group plugin, than appropriate solution settings has to be added in solution
-            gen.PluginGuid = pluginNode.Guid;
-            Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
-            plgn = vm.Config.DicPlugins[pluginNode.Guid];
-            Assert.IsNotNull(plgn);
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGroupSettingsGuid));
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
 
-            // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
-            gen.NodeRemove(false);
-            Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
-            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGroupSettingsGuid));
-            Assert.IsNull(sln.DynamicPluginGroupSettings);
-
-
-            // 1. When Config is loaded: init group plugin settings on all solution nodes
+            // LOAD
             var vm2 = new MainPageVM(true);
             vm2.OnFormLoaded();
             vm2.Compose(MainPageVM.GetvSharpStudioPluginsPath());
-
             Assert.IsTrue(vm2.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             plgn = vm2.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
             sln = vm2.Config.GroupAppSolutions[0];
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGroupSettingsGuid));
+            prj = sln.ListAppProjects[0];
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGeneratorGroupGuid));
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
-
-            // 4. When saving Config: convert all solutions groups settings to string representations
-            set = (vPlugin.Sample.PluginsGroupSettings)sln.DicPluginsGroupSettings[gen.PluginGroupSettingsGuid];
+            Assert.IsTrue(prj.DicPluginsGroupSettings.ContainsKey(gen.PluginGeneratorGroupGuid));
+            Assert.IsNotNull(prj.DynamicPluginGroupSettings);
+            set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[gen.PluginGeneratorGroupGuid];
             Assert.IsTrue(set.IsGroupParam1);
-            _logger.LogTrace("End test".CallerInfo());
+            setPrj = (vPlugin.Sample.PluginsGroupProjectSettings)prj.DicPluginsGroupSettings[gen.PluginGeneratorGroupGuid];
+            Assert.IsTrue(setPrj.IsGroupProjectParam1);
+            _logger.LogInformation("End test".CallerInfo());
         }
         [TestMethod]
         public void Plugin007WorkWithNodeGeneratorSettingsTwoProjects()

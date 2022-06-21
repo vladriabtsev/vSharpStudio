@@ -385,6 +385,9 @@ message proto_app_project {
     // @attr [BrowsableAttribute(false)]
     repeated proto_app_project_generator list_app_project_generators = 16;
 
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
+
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Reference")]
     // @attr [Description("Reference to Project")]
@@ -479,7 +482,7 @@ message proto_app_project_generator {
     // @attr [Description("Db connection string. Directly editable or generated based on settings")]
     string conn_str = 19;
     // @attr [BrowsableAttribute(false)]
-    string plugin_group_settings_guid = 20;
+    string plugin_generator_group_guid = 20;
     // @attr [PropertyOrderAttribute(13)]
     // @attr [DisplayName("Stable DB")]
     // @attr [Description("Db connection string to previous stable version")]

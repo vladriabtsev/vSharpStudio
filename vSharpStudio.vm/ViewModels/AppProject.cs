@@ -60,6 +60,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var cfg = (Config)this.GetConfig();
                 cfg.RemoveNodeAppGenSettings(t.Guid);
+                t.PluginGuid=string.Empty;
                 if (cfg._DicActiveAppProjectGenerators.ContainsKey(t.Guid))
                     cfg._DicActiveAppProjectGenerators.Remove(t.Guid);
                 this.OnRemoveChild();
@@ -147,6 +148,36 @@ namespace vSharpStudio.vm.ViewModels
             node.Name = name;
             return node;
         }
+
+        //public object GetGroupSettings(string groupSettingsGuid)
+        //{
+        //    throw new NotImplementedException();
+        //    return this.DicPluginsGroupSettings[groupSettingsGuid];
+        //}
+        //public void SaveGroupSettings()
+        //{
+        //    throw new NotImplementedException();
+        //    this.ListGroupGeneratorsSettings.Clear();
+        //    foreach (var t in this.DicPluginsGroupSettings)
+        //    {
+        //        var set = new PluginGroupGeneratorsSettings(this);
+        //        set.AppGroupGeneratorsGuid = t.Key;
+        //        set.Settings = t.Value.SettingsAsJson;
+        //        this.ListGroupGeneratorsSettings.Add(set);
+        //    }
+        //}
+        //public void RestoreGroupSettings()
+        //{
+        //    throw new NotImplementedException();
+        //    var cfg = (Config)this.GetConfig();
+        //    this.DicPluginsGroupSettings.Clear();
+        //    foreach (var t in this.ListGroupGeneratorsSettings)
+        //    {
+        //        if (!cfg.DicGroupSettings.ContainsKey(t.AppGroupGeneratorsGuid))
+        //            throw new Exception();
+        //        this.DicPluginsGroupSettings[t.AppGroupGeneratorsGuid] = cfg.DicGroupSettings[t.AppGroupGeneratorsGuid].GetPluginGroupSolutionSettingsVmFromJson(t.Settings);
+        //    }
+        //}
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
@@ -262,5 +293,71 @@ namespace vSharpStudio.vm.ViewModels
             var p = this.Parent as AppSolution;
             p.ListAppProjects.Remove(this);
         }
+        #region Group Generator Project Settings
+        [PropertyOrderAttribute(11)]
+        [ExpandableObjectAttribute()]
+        [ReadOnly(true)]
+        [DisplayName("Groups Settings")]
+        [Description("Project groups generators settings. Group generators are working together")]
+        public object DynamicPluginGroupSettings
+        {
+            get
+            {
+                if (_DynamicPluginGroupSettings == null)
+                {
+                    var nd = new NodeSettings();
+                    _DynamicPluginGroupSettings = nd.Run(this);
+                }
+                return _DynamicPluginGroupSettings;
+            }
+            set
+            {
+                _DynamicPluginGroupSettings = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+        private object _DynamicPluginGroupSettings;
+        //// GroupGeneratorsSettings guid, settings
+        private DictionaryExt<string, IvPluginGroupProjectSettings> dicPluginsGroupSettings = null;
+        [BrowsableAttribute(false)]
+        public DictionaryExt<string, IvPluginGroupProjectSettings> DicPluginsGroupSettings
+        {
+            get
+            {
+                if (dicPluginsGroupSettings == null)
+                {
+                    dicPluginsGroupSettings = new DictionaryExt<string, IvPluginGroupProjectSettings>(5, false, true,
+                        (ki, v) => { }, (kr, v) => { }, () => { });
+                }
+                return dicPluginsGroupSettings;
+            }
+        }
+        public IvPluginGroupProjectSettings GetGroupSettings(string groupSettingsGuid)
+        {
+            return this.DicPluginsGroupSettings[groupSettingsGuid];
+        }
+        public void SaveGroupSettings()
+        {
+            this.ListGroupGeneratorsSettings.Clear();
+            foreach (var t in this.DicPluginsGroupSettings)
+            {
+                var set = new PluginGroupGeneratorsSettings(this);
+                set.AppGroupGeneratorsGuid = t.Key;
+                set.Settings = t.Value.SettingsAsJson;
+                this.ListGroupGeneratorsSettings.Add(set);
+            }
+        }
+        public void RestoreGroupSettings()
+        {
+            var cfg = (Config)this.GetConfig();
+            this.DicPluginsGroupSettings.Clear();
+            //foreach (var t in this.ListGroupGeneratorsSettings)
+            //{
+            //    if (!cfg.DicGroupSettings.ContainsKey(t.AppGroupGeneratorsGuid))
+            //        throw new Exception();
+            //    this.DicPluginsGroupSettings[t.AppGroupGeneratorsGuid] = cfg.DicGroupSettings[t.AppGroupGeneratorsGuid].GetPluginGroupSolutionSettingsVmFromJson(t.Settings);
+            //}
+        }
+        #endregion Group Generator Project Settings
     }
 }

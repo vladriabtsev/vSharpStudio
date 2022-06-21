@@ -11,5 +11,6 @@ namespace vSharpStudio.common
     {
         IAppSolution AppSolution { get; }
         string GetProjectFolderPath();
+        IvPluginGroupProjectSettings GetGroupSettings(string groupSettingsGuid);
     }
 }

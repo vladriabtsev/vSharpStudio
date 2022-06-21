@@ -166,6 +166,28 @@ namespace vSharpStudio.vm.ViewModels
             }
             return objSettings;
         }
+        public object Run(AppProject node)
+        {
+            TypeBuilder tbSettings = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
+            ConstructorBuilder constructor = tbSettings.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
+            Config cfg = (Config)node.GetConfig();
+            var dic_groups = new Dictionary<string, object>();
+            foreach (var t in node.DicPluginsGroupSettings)
+            {
+                string groupName = t.Value.Name;
+                SettingsTypeBuilder.CreateProperty(tbSettings, t.Value.Name, typeof(Object), t.Value.Name, t.Value.Description);
+                dic_groups[groupName] = t.Value;
+            }
+            if (dic_groups.Count == 0)
+                return null;
+            Type settingsType = tbSettings.CreateType();
+            object objSettings = Activator.CreateInstance(settingsType);
+            foreach (var dt in dic_groups)
+            {
+                settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objSettings, new object[] { dt.Value });
+            }
+            return objSettings;
+        }
         public object Run(AppProjectGenerator node)
         {
             if (!string.IsNullOrWhiteSpace(node.PluginGuid))

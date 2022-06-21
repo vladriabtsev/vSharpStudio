@@ -11,9 +11,14 @@ namespace vPlugin.Sample // ModelInterfaces.tt Line: 11
     	string StringSettings { get; set; } // ModelInterfaces.tt Line: 51
     }
     
-    public partial interface IPluginsGroupSettings // ModelInterfaces.tt Line: 29
+    public partial interface IPluginsGroupSolutionSettings // ModelInterfaces.tt Line: 29
     {
     	bool IsGroupParam1 { get; set; } // ModelInterfaces.tt Line: 51
+    }
+    
+    public partial interface IPluginsGroupProjectSettings // ModelInterfaces.tt Line: 29
+    {
+    	bool IsGroupProjectParam1 { get; set; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IGeneratorDbSchemaSettings // ModelInterfaces.tt Line: 29
