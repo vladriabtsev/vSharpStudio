@@ -49,6 +49,32 @@ namespace vSharpStudio.common
         /// <returns>Stored outside plugin settings will be converted to a view model.</returns>
         IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(string settings);
         /// <summary>
+        /// If several plugins generators (same plugin or different) are having same GroupGuid on solution level, there are same parameters for 
+        /// such plugins generators share create group of plugins parameters for solution.
+        /// Same parameters for several plugins are combined in class with IvPluginGroupSolutionSettings interface.
+        /// </summary>
+        /// <paramref name="settings">
+        /// Json representation of plugin group setting. If this parameter is null, default result will be returned. 
+        /// </paramref>
+        /// <returns>
+        /// Returns null if group parameters are not supported.
+        /// If supported, return class of group settings
+        /// </returns>
+        IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVmFromJson(string settings);
+        /// <summary>
+        /// If there are same parameters for several plugins on project level, 
+        /// such plugins create group of plugins parameters for project.
+        /// Same parameters for several plugins are combined in class with IvPluginGroupProjectSettings interface.
+        /// </summary>
+        /// <paramref name="settings">
+        /// Json representation of plugin group setting. If this parameter is null, default result will be returned. 
+        /// </paramref>
+        /// <returns>
+        /// Returns null if group parameters are not supported.
+        /// If supported, return class of group settings
+        /// </returns>
+        IvPluginGroupProjectSettings GetPluginGroupProjectSettingsVmFromJson(string settings);
+        /// <summary>
         /// Default setings name
         /// </summary>
         string DefaultSettingsName { get; }

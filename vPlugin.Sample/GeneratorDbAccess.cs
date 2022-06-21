@@ -84,5 +84,25 @@ namespace vPlugin.Sample
         {
             return new List<ValidationPluginMessage>();
         }
+        public IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVmFromJson(string settings)
+        {
+            var res = new PluginsGroupSolutionSettings();
+            if (!string.IsNullOrWhiteSpace(settings))
+            {
+                var proto = proto_plugins_group_solution_settings.Parser.ParseJson(settings);
+                res = PluginsGroupSolutionSettings.ConvertToVM(proto, res);
+            }
+            return res;
+        }
+        public IvPluginGroupProjectSettings GetPluginGroupProjectSettingsVmFromJson(string settings)
+        {
+            var res = new PluginsGroupProjectSettings();
+            if (!string.IsNullOrWhiteSpace(settings))
+            {
+                var proto = proto_plugins_group_project_settings.Parser.ParseJson(settings);
+                res = PluginsGroupProjectSettings.ConvertToVM(proto, res);
+            }
+            return res;
+        }
     }
 }

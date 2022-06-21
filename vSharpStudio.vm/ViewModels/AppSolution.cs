@@ -180,9 +180,9 @@ namespace vSharpStudio.vm.ViewModels
             this.DicPluginsGroupSettings.Clear();
             foreach (var t in this.ListGroupGeneratorsSettings)
             {
-                if (!cfg.DicGroupSettings.ContainsKey(t.AppGroupGeneratorsGuid))
+                if (!cfg.DicGroupSettingGenerators.ContainsKey(t.AppGroupGeneratorsGuid))
                     throw new Exception();
-                this.DicPluginsGroupSettings[t.AppGroupGeneratorsGuid] = cfg.DicGroupSettings[t.AppGroupGeneratorsGuid].GetPluginGroupSolutionSettingsVmFromJson(t.Settings);
+                this.DicPluginsGroupSettings[t.AppGroupGeneratorsGuid] = cfg.DicGroupSettingGenerators[t.AppGroupGeneratorsGuid].GetPluginGroupSolutionSettingsVmFromJson(t.Settings);
             }
         }
         #endregion Group Generator Solution Settings

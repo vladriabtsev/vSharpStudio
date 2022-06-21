@@ -351,12 +351,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             var cfg = (Config)this.GetConfig();
             this.DicPluginsGroupSettings.Clear();
-            //foreach (var t in this.ListGroupGeneratorsSettings)
-            //{
-            //    if (!cfg.DicGroupSettings.ContainsKey(t.AppGroupGeneratorsGuid))
-            //        throw new Exception();
-            //    this.DicPluginsGroupSettings[t.AppGroupGeneratorsGuid] = cfg.DicGroupSettings[t.AppGroupGeneratorsGuid].GetPluginGroupSolutionSettingsVmFromJson(t.Settings);
-            //}
+            foreach (var t in this.ListGroupGeneratorsSettings)
+            {
+                if (!cfg.DicGroupSettingGenerators.ContainsKey(t.AppGroupGeneratorsGuid))
+                    throw new Exception();
+                this.DicPluginsGroupSettings[t.AppGroupGeneratorsGuid] = cfg.DicGroupSettingGenerators[t.AppGroupGeneratorsGuid].GetPluginGroupProjectSettingsVmFromJson(t.Settings);
+            }
         }
         #endregion Group Generator Project Settings
     }

@@ -312,7 +312,9 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Connection string editor
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPluginLists { get; set; }
         public Dictionary<string, IvPlugin> DicPlugins { get; set; }
-        public Dictionary<string, IvPlugin> DicGroupSettings { get; set; }
+        // by GroupGuid of generator
+        public Dictionary<string, IvPluginGenerator> DicGroupSettingGenerators { get; set; }
+        // by Guid of generator
         public Dictionary<string, IvPluginGenerator> DicGenerators { get; set; }
 
         public IConfig PrevCurrentConfig { get; set; }
@@ -385,6 +387,7 @@ namespace vSharpStudio.vm.ViewModels
                 t.SaveGroupSettings();
                 foreach (var tt in t.ListAppProjects)
                 {
+                    tt.SaveGroupSettings();
                     foreach (var ttt in tt.ListAppProjectGenerators)
                     {
                         ttt.SaveSettings();

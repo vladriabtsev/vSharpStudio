@@ -165,12 +165,6 @@ namespace vSharpStudio.Unit
             prms.AccessParam3 = "kuku3";
             prms.AccessParam4 = "kuku4";
 
-            var prmsGroupSln = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.GetGroupSettings(gen.PluginGeneratorGroupGuid);
-            prmsGroupSln.IsGroupParam1 = true;
-
-            var prmsGroupPrj = (vPlugin.Sample.PluginsGroupProjectSettings)prj.GetGroupSettings(gen.PluginGeneratorGroupGuid);
-            prmsGroupPrj.IsGroupProjectParam1 = true;
-
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
@@ -211,10 +205,6 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
             Assert.AreEqual(prms.AccessParam4, prms2.AccessParam4);
-            var prmsGroupSln2 = (vPlugin.Sample.PluginsGroupSolutionSettings)sln2.GetGroupSettings(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic);
-            Assert.IsTrue(prmsGroupSln2.IsGroupParam1);
-            var prmsGroupPrj2 = (vPlugin.Sample.PluginsGroupProjectSettings)prj2.GetGroupSettings(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic);
-            Assert.IsTrue(prmsGroupPrj2.IsGroupProjectParam1);
 
             #region DicDiffResult
             var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm.Config.DicActiveAppProjectGenerators, vm2.Config.DicActiveAppProjectGenerators);
@@ -491,7 +481,7 @@ namespace vSharpStudio.Unit
             // Empty settings without generator
             Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 0);
             Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 0);
-            Assert.IsTrue(cfg.DicGroupSettings.Count == 0);
+            Assert.IsTrue(cfg.DicGroupSettingGenerators.Count > 0);
             Assert.IsNull(sln.DynamicPluginGroupSettings);
             Assert.IsNull(prj.DynamicPluginGroupSettings);
 

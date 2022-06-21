@@ -104,6 +104,8 @@ namespace vSharpStudio.vm.ViewModels
             var cfg = (Config)this.GetConfig();
             foreach (var tt in ngs.ListNodeGeneratorsSettings)
             {
+                if (!cfg.DicActiveAppProjectGenerators.ContainsKey(tt.AppProjectGeneratorGuid))
+                    continue;
                 var gen = cfg.DicActiveAppProjectGenerators[tt.AppProjectGeneratorGuid];
                 tt.SettingsVm = gen.GetGenerationNodeSettingsVmFromJson(tt.Settings, (ITreeConfigNode)this);
                 this.DicVmExclProps[tt.SettingsVm.GetType().Name] = tt.SettingsVm.DicNodeExcludedProperties;

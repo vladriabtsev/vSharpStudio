@@ -235,7 +235,7 @@ namespace vSharpStudio.ViewModels
                 cfg.IsInitialized = true;
                 // Restore plugins
                 List<PluginRow> lstGens = new List<PluginRow>();
-                cfg.DicGroupSettings = new Dictionary<string, IvPlugin>();
+                cfg.DicGroupSettingGenerators = new Dictionary<string, IvPluginGenerator>();
                 cfg.DicPlugins = new Dictionary<string, IvPlugin>();
                 foreach (var t in this._plugins)
                 {
@@ -268,6 +268,10 @@ namespace vSharpStudio.ViewModels
                     // attaching plugin generators
                     foreach (var tt in t.Value.ListGenerators)
                     {
+                        if (!cfg.DicGroupSettingGenerators.ContainsKey(tt.GroupGuid))
+                        {
+                            cfg.DicGroupSettingGenerators[tt.GroupGuid] = tt;
+                        }
                         PluginGenerator pg = null;
                         is_found = false;
                         foreach (var ttt in p.ListGenerators)
@@ -336,6 +340,8 @@ namespace vSharpStudio.ViewModels
                     t.RestoreGroupSettings();
                     foreach (var tt in t.ListAppProjects)
                     {
+                        // group plugins settings
+                        tt.RestoreGroupSettings();
                         foreach (var ttt in tt.ListAppProjectGenerators)
                         {
                             ttt.RestoreSettings();

@@ -201,11 +201,11 @@ namespace vSharpStudio.vm.ViewModels
         //    var settings = sln.DicPluginsGroupSettings[guidGroupSettings];
         //    return settings;
         //}
-        //public IvPluginGeneratorNodeSettings GetDefaultNodeSettings()
-        //{
-        //    var cfg = this.GetConfig();
-        //    return cfg.Model.GetSettings(this.Guid);
-        //}
+        public IvPluginGeneratorNodeSettings GetDefaultNodeSettings()
+        {
+            var cfg = this.GetConfig();
+            return cfg.Model.GetSettings(this.Guid);
+        }
         private string prevRelativePathToGenFolder = string.Empty;
         private string prevGenFileName = string.Empty;
         partial void OnPluginGuidChanging(ref string to)
@@ -217,29 +217,31 @@ namespace vSharpStudio.vm.ViewModels
                 if (!string.IsNullOrWhiteSpace(this.PluginGuid))
                 {
                     var plg = cfg.DicPlugins[this.PluginGuid];
-                    var groupSettings = plg.GetPluginGroupSolutionSettingsVmFromJson(null);
-                    if (groupSettings != null)
+                    //var groupSettings = plg.GetPluginGroupSolutionSettingsVmFromJson(null);
+                    //if (groupSettings != null)
+                    //{
+                    bool is_only = true;
+                    foreach (var t in sln.ListAppProjects)
                     {
-                        bool is_only = true;
-                        foreach (var t in sln.ListAppProjects)
+                        foreach (var tt in t.ListAppProjectGenerators)
                         {
-                            foreach (var tt in t.ListAppProjectGenerators)
-                            {
-                                if (tt.Guid == this.Guid)
-                                    continue;
-                                if (tt.PluginGeneratorGroupGuid == this.PluginGeneratorGroupGuid)
-                                    is_only = false;
-                            }
-                        }
-                        if (is_only)
-                        {
-                            sln.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
-                            foreach (var t in sln.ListAppProjects)
-                            {
-                                t.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
-                            }
+                            if (tt.Guid == this.Guid)
+                                continue;
+                            if (tt.PluginGeneratorGroupGuid == this.PluginGeneratorGroupGuid)
+                                is_only = false;
                         }
                     }
+                    if (is_only)
+                    {
+                        if (sln.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
+                            sln.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
+                        foreach (var t in sln.ListAppProjects)
+                        {
+                            if (t.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
+                                t.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
+                        }
+                    }
+                    //}
                 }
             }
             cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
@@ -386,7 +388,7 @@ namespace vSharpStudio.vm.ViewModels
                         continue;
                     if (tt.Generator.Guid == this.PluginGeneratorGuid)
                     {
-                        var groupSettins = ttt.VPlugin.GetPluginGroupSolutionSettingsVmFromJson(null);
+                        var groupSettins = tt.Generator.GetPluginGroupSolutionSettingsVmFromJson(null);
                         if (groupSettins == null)
                         {
                             this.PluginGeneratorGroupGuid = string.Empty;
@@ -405,7 +407,7 @@ namespace vSharpStudio.vm.ViewModels
                                 sln.DicPluginsGroupSettings[this.PluginGeneratorGroupGuid] = groupSettins;
                                 foreach (var t in sln.ListAppProjects)
                                 {
-                                    var groupPrjSettings = this.Plugin.GetPluginGroupProjectSettingsVmFromJson(null);
+                                    var groupPrjSettings = tt.Generator.GetPluginGroupProjectSettingsVmFromJson(null);
                                     if (groupPrjSettings == null)
                                         break;
                                     t.DicPluginsGroupSettings[this.PluginGeneratorGroupGuid] = groupPrjSettings;
