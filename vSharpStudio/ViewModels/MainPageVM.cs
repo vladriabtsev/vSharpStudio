@@ -268,9 +268,9 @@ namespace vSharpStudio.ViewModels
                     // attaching plugin generators
                     foreach (var tt in t.Value.ListGenerators)
                     {
-                        if (!cfg.DicGroupSettingGenerators.ContainsKey(tt.GroupGuid))
+                        if (!cfg.DicGroupSettingGenerators.ContainsKey(tt.GroupGeneratorsGuid))
                         {
-                            cfg.DicGroupSettingGenerators[tt.GroupGuid] = tt;
+                            cfg.DicGroupSettingGenerators[tt.GroupGeneratorsGuid] = tt;
                         }
                         PluginGenerator pg = null;
                         is_found = false;
@@ -811,7 +811,7 @@ namespace vSharpStudio.ViewModels
                 {
                     foreach (var tpg in tp.ListAppProjectGenerators)
                     {
-                        dicGroupGuids[tpg.PluginGenerator.GroupGuid] = null;
+                        dicGroupGuids[tpg.PluginGenerator.GroupGeneratorsGuid] = null;
                         foreach (var tg in tpg.ListGenerators)
                         {
                             if (tg.Generator != null)
@@ -843,7 +843,7 @@ namespace vSharpStudio.ViewModels
                         {
                             if (tpg.IsMarkedForDeletion)
                                 continue;
-                            if (tpg.PluginGenerator != null && tpg.PluginGenerator.GroupGuid != tgguid.Key)
+                            if (tpg.PluginGenerator != null && tpg.PluginGenerator.GroupGeneratorsGuid != tgguid.Key)
                                 continue;
                             foreach (var tg in tpg.ListGenerators)
                             {

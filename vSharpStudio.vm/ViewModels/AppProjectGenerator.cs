@@ -395,7 +395,7 @@ namespace vSharpStudio.vm.ViewModels
                         }
                         else
                         {
-                            this.PluginGeneratorGroupGuid = tt.Generator.GroupGuid;
+                            this.PluginGeneratorGroupGuid = tt.Generator.GroupGeneratorsGuid;
                         }
                         this.PluginGenerator = tt.Generator.CreateNew(this);
                         cfg._DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
