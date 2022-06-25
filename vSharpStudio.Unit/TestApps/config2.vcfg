@@ -1,19 +1,35 @@
-ı
-$210d1463-2e37-4180-b0d2-d7362321ad3ftest2 ×¯Àä–¶óƒ*test2:ÄíÍ•„í¨ª<
-$cbdcfac9-877e-447c-8583-e164fc260602BaseConfigsº¾ØÎú×œi²Ì
-$585b4b35-8a47-45c6-b97f-1902dc6c2219Model óØ“Öƒ›©Ê*Model@dHPj$752011f6-7692-4c71-a3f9-fa8e578eb4efrIdŠ$b55cde2e-498f-4224-bc50-61c503a60d64’ReCoRdVeRsIoN˜ªJ
-$615531c7-cad4-4161-9b04-bd8d74d2c5a3Settings‘°Áª¶ñ®ûq"Settings2Cnst²M
-$c87bbc14-5a75-45fc-8322-e6ceffd9f4cfEnumerationsİÍ¾»«Òî…"Enumerationsº~
-$3f9410bf-1074-4f01-8838-768e2116f9f2Catalogs¦Ÿ¦Ûƒàâñ"Catalogs2Ctlg:cªCodeºNameÊDescriptionÚIsFolderêIsOpenÂğ
-$08c69c4b-7617-47fe-9d35-ef39f04c1f38	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
-$4d5d35b6-6273-4196-8236-90fcafcc3eccSharedÓŠ¼Î¶¨øûq"SharedBJ
-$442a8c09-7615-4f0f-b52f-720e8327015d	Documents¸ÀÖŸŒÓ¸ı€"	Documents2dª	DocNumberºDocDateÊE
-$90404426-017a-4e4e-bd99-4e56af2f9dccJournalsÚ½Ì—¦„ç°±"JournalsÒÆ
-$90e6530f-1f26-4579-bb34-61af98f27528Commonİ¡ÔÕ™ûô`"Common:>
-$7b068e7b-df33-4249-85d6-d32e041aef8dRoles—æÉ—¾ªŠõ"RolesBD
-$7fdec60a-a085-4f5c-9732-2d1bfa1b4649Settings‘°Áª¶ñ®û"SettingsÂä
-$9efcee7c-7cb7-457c-bd20-faf97ac8c0efPlugins„™„§à›®ã‘"§
+ü
+$0a007bd8-a4ff-4023-9820-accf4baa21e6test2 ×¯Àä–¶óƒ*test2:²»Ü•ÔâÑ;ª<
+$5c44f627-de78-44fa-a335-c05b52e2b325BaseConfigsº¾ØÎú×œi²Ì
+$73543860-c2a9-4576-ad83-8d1d10d317a1Model óØ“Öƒ›©Ê*Model@dHPj$fb35f12f-3bfb-4e4a-8d8e-19c191dbdc89rIdŠ$88e921f4-df28-42de-ab47-493cc766a5f6’ReCoRdVeRsIoN˜ªJ
+$10502804-3828-4856-a04e-7e98187427ffSettings‘°Áª¶ñ®ûq"Settings2Cnst²M
+$01d49553-a86e-4f5a-8f0b-6c63b7bdd0a9EnumerationsİÍ¾»«Òî…"Enumerationsº~
+$a53b0e19-ebe7-4824-b685-2e1c3cd9c314Catalogs¦Ÿ¦Ûƒàâñ"Catalogs2Ctlg:cªCodeºNameÊDescriptionÚIsFolderêIsOpenÂğ
+$7061a848-5324-4cea-9dee-e575036424c9	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
+$a0694b11-d274-4be3-b11f-bdfcf2a8e588SharedÓŠ¼Î¶¨øûq"SharedBJ
+$4f5ef688-c8ff-465b-b371-7f509ce8267f	Documents¸ÀÖŸŒÓ¸ı€"	Documents2dª	DocNumberºDocDateÊE
+$909c2784-b6a1-48a1-a079-1f4d6a5cf02eJournalsÚ½Ì—¦„ç°±"JournalsÒÆ
+$b8ee9416-7a7b-4cce-b48c-2556ac63cb14Commonİ¡ÔÕ™ûô`"Common:>
+$f567d38a-aa33-4dd6-9066-58a39d86bb8eRoles—æÉ—¾ªŠõ"RolesBD
+$721315fe-8fe8-49cb-abca-3687ee8b006aSettings‘°Áª¶ñ®û"SettingsÂä
+$e6e87f6d-9ac1-491d-9369-416de9a4e9f3Plugins„™„§à›®ã‘"º
+$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
+$1E35FCDB-6425-4C66-B047-6882738AF552
+RepositoryDB repository code generation ØŞèİ›ŸæòX"ã
+$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(Øç»Â±¨ë—2|
+$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions °Œ½¹¨ë—X"Õ
+$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
+$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{X"Ş
+$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
+PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
+$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{X"È
+$052C7318-3D73-4605-B1AE-749FC7E104120.1
+Repository"4vSharpStudio plugin. DB access layer repository code(ØŞèİ›Ÿæò2M
+$E59B393E-AF34-4438-977F-7BF120E28A0C
+RepositoryDb Access Layer ØŞèİ›ŸæòX"§
 $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
-$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zXÊ7
-$a91db499-5140-4029-9044-60e27df07c25AppsÈ ›½¾ä 
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶zX"Ö
+$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
+$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{XÊ7
+$ed854ee9-fc07-487f-b3f5-0606dd52a375AppsÈ ›½¾ä 

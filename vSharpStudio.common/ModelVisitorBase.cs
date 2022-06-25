@@ -30,7 +30,7 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IEnumerable<IMainViewForm> lst) { }
         protected virtual void BeginVisit(IMainViewForm p) { }
         protected virtual void EndVisit(IMainViewForm p) { }
-        protected virtual void BeginVisit(IConfig c) { }
+        protected virtual void BeginVisit(IConfig c, IAppSolution sln, IAppProject prj) { }
         protected virtual void EndVisit(IConfig c) { }
         protected virtual void BeginVisit(IModel m) { }
         protected virtual void EndVisit(IModel m) { }
@@ -167,6 +167,8 @@ namespace vSharpStudio.common
         }
 
         protected IConfig currCfg = null;
+        protected IAppSolution currSln = null;
+        protected IAppProject currPrj = null;
         protected IModel currModel = null;
         protected IEnumeration currEnum = null;
         protected IForm currForm = null;
@@ -363,14 +365,14 @@ namespace vSharpStudio.common
         /// <param name="curr">Current config or clone</param>
         /// <param name="act"></param>
         /// <returns></returns>
-        public void Run(IConfig curr, Action<ModelVisitorBase, ITreeConfigNode> act = null)
+        public void Run(IConfig curr, IAppSolution sln, IAppProject prj, Action<ModelVisitorBase, ITreeConfigNode> act = null)
         {
             this._act = act;
             this.currCfg = curr;
             if (_act != null)
                 _act(this, this.currCfg);
 
-            this.BeginVisit(this.currCfg);
+            this.BeginVisit(this.currCfg, sln, prj);
 
             #region Apps
             this.BeginVisit(this.currCfg.GroupAppSolutions);

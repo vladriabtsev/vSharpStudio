@@ -22,7 +22,7 @@ namespace vPlugin.Sample
                 return JsonFormatter.Default.Format(proto);
             }
         }
-        public string GenerateCode(IConfig cfg)
+        public string GenerateCode(IConfig cfg, IAppSolution sln, IAppProject prj)
         {
             return this.StringSettings;
         }

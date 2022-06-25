@@ -798,7 +798,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.IsHasNew);
 
             var vis = new ModelVisitorBase();
-            vis.Run(vm.Config, (v, n) =>
+            vis.Run(vm.Config, null, null, (v, n) =>
             {
                 if (n is IEditableNode)
                 {

@@ -89,7 +89,7 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public string UpdateToModel(string connectionString, IConfig config, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool> onNeedDbCreate = null)
+        public string UpdateToModel(string connectionString, IConfig config, IAppSolution sln, IAppProject prj, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool> onNeedDbCreate = null)
         {
             throw new NotImplementedException();
         }
