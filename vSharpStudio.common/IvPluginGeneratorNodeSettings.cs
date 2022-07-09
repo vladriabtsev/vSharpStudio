@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 
 namespace vSharpStudio.common
 {
-    public interface IvPluginGeneratorNodeSettings : INotifyPropertyChanged
+    public interface IvPluginGeneratorNodeSettings : IvPluginGeneratorValidatableSettings, INotifyPropertyChanged
     {
         //string Name { get; }
         /// <summary>

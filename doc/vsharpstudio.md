@@ -116,7 +116,7 @@
 <a name="proto_config.proto_app_project"></a>
 
 ### proto_app_project
-@base ConfigObjectCommonBase
+@base ConfigObjectVmGenSettings
 
 
 | Field | Type | Label | Description |
@@ -175,7 +175,7 @@ Application project generator
 <a name="proto_config.proto_app_solution"></a>
 
 ### proto_app_solution
-@base ConfigObjectCommonBase
+@base ConfigObjectVmGenSettings
 
 
 | Field | Type | Label | Description |

@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -26,6 +27,14 @@ namespace ViewModelBase
         protected virtual void OnCountErrorsChanged() { }
         protected virtual void OnCountWarningsChanged() { }
         protected virtual void OnCountInfosChanged() { }
+        protected virtual ValidationResult ValidatePluginGeneratorSettings()
+        {
+            return new ValidationResult();
+        }
+        protected virtual Task<ValidationResult> ValidatePluginGeneratorSettingsAsync()
+        {
+            return Task.FromResult(new ValidationResult());
+        }
         [BrowsableAttribute(false)]
         public int CountErrors
         {
@@ -131,11 +140,15 @@ namespace ViewModelBase
         }
         protected virtual void OnValidated(ValidationResult val_res) { }
         protected virtual Task[] OnValidatedAsync(ValidationResult val_res) { var tsks = new Task[0]; return tsks; }
+        protected ValidationResult ValidationResult { get; private set; }
         public bool Validate()
         {
             if (!this.IsValidate)
                 return true;
             var res = this._validator.Validate((T)this);
+            var resPlgn = this.ValidatePluginGeneratorSettings();
+            res.Errors.AddRange(resPlgn.Errors);
+            this.ValidationResult = res;
             OnValidated(res);
             var isValid = ValidationChange(res);
             NotifyPropertyChanged(nameof(this.HasErrors));
@@ -148,6 +161,8 @@ namespace ViewModelBase
             if (!this.IsValidate)
                 return true;
             var res = await this._validator.ValidateAsync((T)this);
+            var resPlgn = await this.ValidatePluginGeneratorSettingsAsync();
+            res.Errors.AddRange(resPlgn.Errors);
             var tsks = OnValidatedAsync(res);
             await Task.WhenAll(tsks);
             var isValid = ValidationChange(res);

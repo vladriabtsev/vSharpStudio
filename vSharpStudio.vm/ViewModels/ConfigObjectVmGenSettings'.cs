@@ -7,7 +7,9 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
+using System.Threading.Tasks;
 using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -96,6 +98,38 @@ namespace vSharpStudio.vm.ViewModels
                     this._DicGenNodeSettings[appProjectGeneratorGuid] = t;
                 }
             }
+        }
+        protected override ValidationResult ValidatePluginGeneratorSettings()
+        {
+            _logger.Trace();
+            var res = new ValidationResult();
+            if (this is INodeGenSettings)
+            {
+                var ngs = (INodeGenSettings)this;
+                foreach (var t in ngs.ListNodeGeneratorsSettings)
+                {
+                    var vr = t.SettingsVm.ValidateSettings();
+                    res.Errors.AddRange(vr.Errors);
+                }
+            }
+            else if (this is INodeGenSettings)
+            {
+            }
+                return res;
+        }
+        protected override async Task<ValidationResult> ValidatePluginGeneratorSettingsAsync()
+        {
+            _logger.Trace();
+            var res = new ValidationResult();
+            if (!(this is INodeGenSettings))
+                return res;
+            var ngs = (INodeGenSettings)this;
+            foreach (var t in ngs.ListNodeGeneratorsSettings)
+            {
+                var vr = await t.SettingsVm.ValidateSettingsAsync();
+                res.Errors.AddRange(vr.Errors);
+            }
+            return res;
         }
         public void RestoreNodeAppGenSettingsVm()
         {

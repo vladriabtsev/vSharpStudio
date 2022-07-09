@@ -9,7 +9,6 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentValidation;
 using Google.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -101,7 +100,6 @@ namespace vSharpStudio.vm.ViewModels
         #region Validation
 
         private CancellationTokenSource cancellationSourceForValidatingFullConfig = null;
-
         public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
         {
             // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
@@ -114,7 +112,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.ValidateSubTreeFromNode(node);
             }).ConfigureAwait(false); // not keeping context because doing nothing after await
         }
-
         public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
         {
             if (node == null)

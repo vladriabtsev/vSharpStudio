@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
+using FluentValidation.Results;
 using Google.Protobuf;
 using Proto.Plugin;
 using vSharpStudio.common;
@@ -67,6 +69,15 @@ namespace vPlugin.Sample
         public string[] GetListPropertiesToHideOnNodeSettings(ITreeConfigNode modelNode)
         {
             throw new NotImplementedException();
+        }
+        public ValidationResult ValidateSettings()
+        {
+            this.Validate();
+            return this.ValidationResult;
+        }
+        public Task<ValidationResult> ValidateSettingsAsync()
+        {
+            return Task.FromResult(this.ValidationResult);
         }
     }
 }

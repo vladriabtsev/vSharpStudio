@@ -233,8 +233,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     }
     
-    public partial interface IAppSolution // ModelInterfaces.tt Line: 29
+    public partial interface IAppSolution : IGuid, IName // ModelInterfaces.tt Line: 29
     {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	string ShortIdForCacheKey { get; } // ModelInterfaces.tt Line: 51
@@ -245,8 +246,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGroupGeneratorsSettings> ListGroupGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface IAppProject // ModelInterfaces.tt Line: 29
+    public partial interface IAppProject : IGuid, IName // ModelInterfaces.tt Line: 29
     {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 51

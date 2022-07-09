@@ -25,11 +25,11 @@ namespace vSharpStudio.common
         /// <summary>
         /// Unique identifier solution parameters for group of generators. Generators wiil applied by groups
         /// </summary>
-        string GroupSolutionParametersGuid { get; }
+        //string GroupSolutionParametersGuid { get; }
         /// <summary>
         /// Unique identifier project parameters for group of generators. Generators wiil applied by groups
         /// </summary>
-        string GroupProjectParametersGuid { get; }
+        //string GroupProjectParametersGuid { get; }
         /// <summary>
         /// Short Plugin code generator name (without spaces)
         /// </summary>

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
+using FluentValidation.Results;
 using Google.Protobuf;
 using vSharpStudio.common;
 
@@ -28,5 +30,14 @@ namespace vPlugin.Sample
         }
         public IvPluginGenerator Generator { get; set; }
         public IAppProjectGenerator Parent { get; set; }
+        public ValidationResult ValidateSettings()
+        {
+            this.Validate();
+            return this.ValidationResult;
+        }
+        public Task<ValidationResult> ValidateSettingsAsync()
+        {
+            return Task.FromResult(this.ValidationResult);
+        }
     }
 }

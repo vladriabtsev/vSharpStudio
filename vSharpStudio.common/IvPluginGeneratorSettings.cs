@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public interface IvPluginGeneratorSettings : INotifyPropertyChanged
+    public interface IvPluginGeneratorSettings : IvPluginGeneratorValidatableSettings, INotifyPropertyChanged
     {
         [BrowsableAttribute(false)]
         IvPluginGenerator Generator { get; set; }

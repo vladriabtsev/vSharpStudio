@@ -4021,7 +4021,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // Class.tt Line: 6
-    public partial class AppSolution : ConfigObjectCommonBase<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 7
+    public partial class AppSolution : ConfigObjectVmGenSettings<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 7
     {
         #region CTOR
         public AppSolution() : this(default(ITreeConfigNode))
@@ -4076,6 +4076,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListGroupGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListGroupGeneratorsSettings.Add(PluginGroupGeneratorsSettings.Clone(vm, (PluginGroupGeneratorsSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4214,6 +4216,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGroupGeneratorsSettings.ConvertToVM(t, new PluginGroupGeneratorsSettings(vm)); // Clone.tt Line: 204
                 vm.ListGroupGeneratorsSettings.Add(tvm);
             }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4515,7 +4520,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class AppProjectValidator : ValidatorBase<AppProject, AppProjectValidator> { } // Class.tt Line: 6
-    public partial class AppProject : ConfigObjectCommonBase<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 7
+    public partial class AppProject : ConfigObjectVmGenSettings<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 7
     {
         #region CTOR
         public AppProject() : this(default(ITreeConfigNode))
@@ -4569,6 +4574,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListGroupGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListGroupGeneratorsSettings.Add(PluginGroupGeneratorsSettings.Clone(vm, (PluginGroupGeneratorsSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4705,6 +4712,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGroupGeneratorsSettings.ConvertToVM(t, new PluginGroupGeneratorsSettings(vm)); // Clone.tt Line: 204
                 vm.ListGroupGeneratorsSettings.Add(tvm);
             }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -24431,6 +24441,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         System.Threading.CancellationToken Token { get; }
         void Visit(Config p);
         void VisitEnd(Config p);
+        void Visit(AppSolution p);
+        void VisitEnd(AppSolution p);
+        void Visit(AppProject p);
+        void VisitEnd(AppProject p);
         void Visit(Model p);
         void VisitEnd(Model p);
         void Visit(GroupListCommon p);

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Debug;
 //using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using vPlugin.Sample;
 using vSharpStudio.common;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
@@ -492,6 +493,13 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             //Assert.IsTrue(cfg.DicGroupSettings.Count == 1);
+            var slnSet = sln.GetGroupSettings(SamplePlugin.GroupGuidStatic) as PluginsGroupSolutionSettings;
+            var prjSet = prj.GetGroupSettings(SamplePlugin.GroupGuidStatic) as PluginsGroupProjectSettings;
+
+            prj.Validate();
+            cfg.ValidateSubTreeFromNode(prj, _logger);
+            Assert.IsTrue(prj.ValidationCollection.Count == 0);
+            Assert.IsTrue(sln.ValidationCollection.Count == 0);
 
             // second generator adding
             var gen2 = (AppProjectGenerator)prj.NodeAddNewSubNode();
@@ -873,6 +881,45 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(false);
         }
 
+        [TestMethod]
+        public void Plugin013PluginsGroupSettingsValidation()
+        {
+            _logger.LogInformation("".CallerInfo());
+            var vm = new MainPageVM(false);
+            vm.OnFormLoaded();
+            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            vm.CommandConfigSaveAs.Execute(@".\");
+            var cfg = vm.Config;
+
+            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
+            Assert.IsTrue(cfg.CountErrors == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountInfos == 0);
+
+            var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
+            var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
+            var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
+
+            var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
+            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+            Assert.IsNull(sln.DynamicPluginGroupSettings);
+
+            var prj = (AppProject)sln.NodeAddNewSubNode();
+            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+
+            var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
+            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen.GenFileName = "test_file.cs";
+            gen.Name = "AppGenName";
+            gen.NameUi = "App Gen Name";
+            gen.PluginGuid = pluginNode.Guid;
+
+            Assert.IsTrue(cfg.ValidationCollection.Count == cfg.CountErrors + cfg.CountWarnings + cfg.CountInfos);
+            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
+            Assert.IsTrue(cfg.CountErrors == 0);
+            Assert.IsTrue(cfg.CountWarnings == 0);
+            Assert.IsTrue(cfg.CountInfos == 0);
+        }
         public void DicDiffDebug(Config cfg, Config anotherCfg)
         {
             var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(cfg.DicActiveAppProjectGenerators, anotherCfg.DicActiveAppProjectGenerators);

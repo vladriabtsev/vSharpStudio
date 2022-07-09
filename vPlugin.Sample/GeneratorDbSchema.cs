@@ -21,9 +21,7 @@ namespace vPlugin.Sample
         public bool IsStableDbConnection { get; set; }
         public string ProviderName { get; set; }
         public string Guid => "08744482-BE03-464B-81AB-DD482AB66103";
-        public string GroupGeneratorsGuid => "08744482-BE03-464B-81AB-DD482AB66103";
-        public string GroupSolutionParametersGuid => PluginsGroupSolutionSettings.GuidStatic;
-        public string GroupProjectParametersGuid => PluginsGroupProjectSettings.GuidStatic;
+        public string GroupGeneratorsGuid => SamplePlugin.GroupGuidStatic;
         public string Name => "AbstractDbSchema";
         public string NameUi => "Abstract Db Provider Name";
         public string DefaultSettingsName => throw new NotImplementedException();
@@ -125,7 +123,6 @@ namespace vPlugin.Sample
         public IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVmFromJson(string settings)
         {
             var res = new PluginsGroupSolutionSettings();
-            Debug.Assert(res.Guid == this.GroupSolutionParametersGuid);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 var proto = proto_plugins_group_solution_settings.Parser.ParseJson(settings);
@@ -136,7 +133,6 @@ namespace vPlugin.Sample
         public IvPluginGroupProjectSettings GetPluginGroupProjectSettingsVmFromJson(string settings)
         {
             var res = new PluginsGroupProjectSettings();
-            Debug.Assert(res.Guid == this.GroupProjectParametersGuid);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 var proto = proto_plugins_group_project_settings.Parser.ParseJson(settings);

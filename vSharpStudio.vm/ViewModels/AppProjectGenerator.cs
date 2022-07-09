@@ -405,13 +405,16 @@ namespace vSharpStudio.vm.ViewModels
                             if (!sln.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
                             {
                                 sln.DicPluginsGroupSettings[this.PluginGeneratorGroupGuid] = groupSettins;
-                                foreach (var t in sln.ListAppProjects)
-                                {
-                                    var groupPrjSettings = tt.Generator.GetPluginGroupProjectSettingsVmFromJson(null);
-                                    if (groupPrjSettings == null)
-                                        break;
-                                    t.DicPluginsGroupSettings[this.PluginGeneratorGroupGuid] = groupPrjSettings;
-                                }
+                            }
+                        }
+                        foreach (var t in sln.ListAppProjects)
+                        {
+                            var groupPrjSettings = tt.Generator.GetPluginGroupProjectSettingsVmFromJson(null);
+                            if (groupPrjSettings == null)
+                                break;
+                            if (!t.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
+                            {
+                                t.DicPluginsGroupSettings[this.PluginGeneratorGroupGuid] = groupPrjSettings;
                             }
                         }
                     }

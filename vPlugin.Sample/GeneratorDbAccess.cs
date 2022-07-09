@@ -14,9 +14,7 @@ namespace vPlugin.Sample
         public GeneratorDbAccess(ITreeConfigNode parent) : this() { this.Parent = parent; }
         public GeneratorDbAccess() { }
         public string Guid => "7C2902AF-DF34-46FC-8911-A48EE7F9B2B0";
-        public string GroupGeneratorsGuid => "7C2902AF-DF34-46FC-8911-A48EE7F9B2B0";
-        public string GroupSolutionParametersGuid => PluginsGroupSolutionSettings.GuidStatic;
-        public string GroupProjectParametersGuid => PluginsGroupProjectSettings.GuidStatic;
+        public string GroupGeneratorsGuid => SamplePlugin.GroupGuidStatic;
         public string Name => "DbAccess";
         public string NameUi => "Db Access Layer";
         public string DefaultSettingsName => throw new NotImplementedException();
@@ -90,7 +88,6 @@ namespace vPlugin.Sample
         public IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVmFromJson(string settings)
         {
             var res = new PluginsGroupSolutionSettings();
-            Debug.Assert(res.Guid == this.GroupSolutionParametersGuid);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 var proto = proto_plugins_group_solution_settings.Parser.ParseJson(settings);
@@ -101,7 +98,6 @@ namespace vPlugin.Sample
         public IvPluginGroupProjectSettings GetPluginGroupProjectSettingsVmFromJson(string settings)
         {
             var res = new PluginsGroupProjectSettings();
-            Debug.Assert(res.Guid == this.GroupProjectParametersGuid);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 var proto = proto_plugins_group_project_settings.Parser.ParseJson(settings);

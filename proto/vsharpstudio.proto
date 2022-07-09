@@ -297,7 +297,7 @@ message proto_plugin_group_generators_settings {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 }
-// @base ConfigObjectCommonBase
+// @base ConfigObjectVmGenSettings
 message proto_app_solution {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -358,7 +358,7 @@ message proto_app_solution {
     proto_plugins_group plugins_group3 = 13;
     */
 }
-// @base ConfigObjectCommonBase
+// @base ConfigObjectVmGenSettings
 message proto_app_project {
     // @attr [ReadOnly(true)]
     string guid = 1;

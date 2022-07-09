@@ -12,7 +12,7 @@ using Google.Protobuf.WellKnownTypes;
 
 namespace vSharpStudio.common
 {
-    public interface IvPluginGroupProjectSettings
+    public interface IvPluginGroupProjectSettings : IvPluginGeneratorValidatableSettings
     {
         string Name { get; }
         string Version { get; }

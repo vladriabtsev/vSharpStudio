@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
+using FluentValidation.Results;
 using Google.Protobuf;
 using Proto.Plugin;
 using vSharpStudio.common;
@@ -10,15 +12,12 @@ namespace vPlugin.Sample
 {
     public partial class PluginsGroupSolutionSettings : IvPluginGroupSolutionSettings
     {
-        public const string GuidStatic = "BE281D79-3CBC-4211-B9AD-E580F8CEB731";
         partial void OnInit()
         {
             this.Name = "SolGrSet";
             this.Description = "vSharpStudio plugins group settings for solutions";
             this.Version = "0.1";
         }
-        [BrowsableAttribute(false)]
-        public string Guid { get { return GuidStatic; } }
         [BrowsableAttribute(false)]
         public string Name { get; private set; }
         [BrowsableAttribute(false)]
@@ -40,6 +39,15 @@ namespace vPlugin.Sample
                 return new PluginsGroupSolutionSettings();
             var proto = proto_plugins_group_solution_settings.Parser.ParseJson(settings);
             return PluginsGroupSolutionSettings.ConvertToVM(proto, new PluginsGroupSolutionSettings());
+        }
+        public ValidationResult ValidateSettings()
+        {
+            this.Validate();
+            return this.ValidationResult;
+        }
+        public Task<ValidationResult> ValidateSettingsAsync()
+        {
+            return Task.FromResult(this.ValidationResult);
         }
     }
 }
