@@ -428,7 +428,7 @@ message proto_plugin_generator_settings {
     string settings = 5; 
 }
 // Application project generator
-// @base ConfigObjectCommonBase
+// @base ConfigObjectVmGenSettings
 message proto_app_project_generator {
     // @attr [ReadOnly(true)]
     string guid = 1;

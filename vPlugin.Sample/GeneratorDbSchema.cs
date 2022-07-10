@@ -21,7 +21,7 @@ namespace vPlugin.Sample
         public bool IsStableDbConnection { get; set; }
         public string ProviderName { get; set; }
         public string Guid => "08744482-BE03-464B-81AB-DD482AB66103";
-        public string GroupGeneratorsGuid => SamplePlugin.GroupGuidStatic;
+        public string GroupGeneratorsGuid => SamplePlugin.GroupDbGuidStatic;
         public string Name => "AbstractDbSchema";
         public string NameUi => "Abstract Db Provider Name";
         public string DefaultSettingsName => throw new NotImplementedException();
@@ -49,7 +49,7 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(string settings)
+        public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string settings)
         {
             var vm = new GeneratorDbSchemaSettings();
             if (!string.IsNullOrWhiteSpace(settings))
@@ -57,11 +57,12 @@ namespace vPlugin.Sample
                 proto_generator_db_schema_settings proto = proto_generator_db_schema_settings.Parser.ParseJson(settings);
                 vm = GeneratorDbSchemaSettings.ConvertToVM(proto, vm);
             }
+            vm.Parent = parent;
             return vm;
         }
-        public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(string settings, ITreeConfigNode node)
+        public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string settings)
         {
-            var vm = new GeneratorDbSchemaNodeSettings(node);
+            var vm = new GeneratorDbSchemaNodeSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 proto_generator_db_schema_node_settings proto = proto_generator_db_schema_node_settings.Parser.ParseJson(settings);
@@ -120,7 +121,7 @@ namespace vPlugin.Sample
         {
             return new List<ValidationPluginMessage>();
         }
-        public IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVmFromJson(string settings)
+        public IvPluginGroupSettings GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string settings)
         {
             var res = new PluginsGroupSolutionSettings();
             if (!string.IsNullOrWhiteSpace(settings))
@@ -128,9 +129,10 @@ namespace vPlugin.Sample
                 var proto = proto_plugins_group_solution_settings.Parser.ParseJson(settings);
                 res = PluginsGroupSolutionSettings.ConvertToVM(proto, res);
             }
+            res.Parent = parent;
             return res;
         }
-        public IvPluginGroupProjectSettings GetPluginGroupProjectSettingsVmFromJson(string settings)
+        public IvPluginGroupSettings GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string settings)
         {
             var res = new PluginsGroupProjectSettings();
             if (!string.IsNullOrWhiteSpace(settings))
@@ -138,6 +140,7 @@ namespace vPlugin.Sample
                 var proto = proto_plugins_group_project_settings.Parser.ParseJson(settings);
                 res = PluginsGroupProjectSettings.ConvertToVM(proto, res);
             }
+            res.Parent = parent;
             return res;
         }
     }

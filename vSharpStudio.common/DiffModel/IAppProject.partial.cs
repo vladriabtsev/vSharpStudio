@@ -7,10 +7,10 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IAppProject : ITreeConfigNode
+    public partial interface IAppProject : ITreeConfigNode, IvPluginGroupSettingsDic
     {
         IAppSolution AppSolution { get; }
         string GetProjectFolderPath();
-        IvPluginGroupProjectSettings GetGroupSettings(string groupSettingsGuid);
+        IvPluginGroupSettings GetGroupSettings(string groupSettingsGuid);
     }
 }

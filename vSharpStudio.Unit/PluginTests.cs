@@ -166,6 +166,13 @@ namespace vSharpStudio.Unit
             prms.AccessParam3 = "kuku3";
             prms.AccessParam4 = "kuku4";
 
+            //Assert.AreEqual(1, gen..DicPluginsGroupSettings.Count);
+            Assert.AreEqual(0, gen.DicGenNodeSettings.Count);
+            Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);
+            Assert.AreEqual(0, prj.DicGenNodeSettings.Count);
+            Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count);
+            Assert.AreEqual(0, sln.DicGenNodeSettings.Count);
+
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
@@ -207,7 +214,15 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
             Assert.AreEqual(prms.AccessParam4, prms2.AccessParam4);
 
+            //Assert.AreEqual(1, gen..DicPluginsGroupSettings.Count);
+            Assert.AreEqual(0, gen2.DicGenNodeSettings.Count);
+            Assert.AreEqual(1, prj2.DicPluginsGroupSettings.Count);
+            Assert.AreEqual(0, prj2.DicGenNodeSettings.Count);
+            Assert.AreEqual(1, sln2.DicPluginsGroupSettings.Count);
+            Assert.AreEqual(0, sln2.DicGenNodeSettings.Count);
+
             #region DicDiffResult
+            // Check what was not restored after loading
             var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm.Config.DicActiveAppProjectGenerators, vm2.Config.DicActiveAppProjectGenerators);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);
@@ -493,13 +508,24 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
             //Assert.IsTrue(cfg.DicGroupSettings.Count == 1);
-            var slnSet = sln.GetGroupSettings(SamplePlugin.GroupGuidStatic) as PluginsGroupSolutionSettings;
-            var prjSet = prj.GetGroupSettings(SamplePlugin.GroupGuidStatic) as PluginsGroupProjectSettings;
+            var slnSet = sln.GetGroupSettings(SamplePlugin.GroupAccessGuidStatic) as PluginsGroupSolutionSettings;
+            var prjSet = prj.GetGroupSettings(SamplePlugin.GroupAccessGuidStatic) as PluginsGroupProjectSettings;
 
             prj.Validate();
-            cfg.ValidateSubTreeFromNode(prj, _logger);
             Assert.IsTrue(prj.ValidationCollection.Count == 0);
-            Assert.IsTrue(sln.ValidationCollection.Count == 0);
+            cfg.ValidateSubTreeFromNode(prj, _logger);
+            Assert.IsTrue(prj.ValidationCollection.Count == 2);
+
+            prjSet.IsGroupProjectParam1 = true;
+            prj.Validate();
+            Assert.IsTrue(prj.ValidationCollection.Count == 1);
+
+            cfg.ValidateSubTreeFromNode(prj, _logger);
+            Assert.IsTrue(prj.ValidationCollection.Count == 3);
+
+            // made group settings valid
+            prjSet.IsGroupProjectParam1 = false;
+            slnSet.IsGroupParam1 = true;
 
             // second generator adding
             var gen2 = (AppProjectGenerator)prj.NodeAddNewSubNode();
@@ -881,45 +907,45 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(false);
         }
 
-        [TestMethod]
-        public void Plugin013PluginsGroupSettingsValidation()
-        {
-            _logger.LogInformation("".CallerInfo());
-            var vm = new MainPageVM(false);
-            vm.OnFormLoaded();
-            vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
-            vm.CommandConfigSaveAs.Execute(@".\");
-            var cfg = vm.Config;
+        //[TestMethod]
+        //public void Plugin013PluginsGroupSettingsValidation()
+        //{
+        //    _logger.LogInformation("".CallerInfo());
+        //    var vm = new MainPageVM(false);
+        //    vm.OnFormLoaded();
+        //    vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+        //    vm.CommandConfigSaveAs.Execute(@".\");
+        //    var cfg = vm.Config;
 
-            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
-            Assert.IsTrue(cfg.CountErrors == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountInfos == 0);
+        //    Assert.IsTrue(cfg.ValidationCollection.Count == 0);
+        //    Assert.IsTrue(cfg.CountErrors == 0);
+        //    Assert.IsTrue(cfg.CountWarnings == 0);
+        //    Assert.IsTrue(cfg.CountInfos == 0);
 
-            var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
-            var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
-            var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
+        //    var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
+        //    var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
+        //    var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
 
-            var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
-            Assert.IsNull(sln.DynamicPluginGroupSettings);
+        //    var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
+        //    sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+        //    Assert.IsNull(sln.DynamicPluginGroupSettings);
 
-            var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+        //    var prj = (AppProject)sln.NodeAddNewSubNode();
+        //    prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
 
-            var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
-            gen.GenFileName = "test_file.cs";
-            gen.Name = "AppGenName";
-            gen.NameUi = "App Gen Name";
-            gen.PluginGuid = pluginNode.Guid;
+        //    var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
+        //    gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+        //    gen.GenFileName = "test_file.cs";
+        //    gen.Name = "AppGenName";
+        //    gen.NameUi = "App Gen Name";
+        //    gen.PluginGuid = pluginNode.Guid;
 
-            Assert.IsTrue(cfg.ValidationCollection.Count == cfg.CountErrors + cfg.CountWarnings + cfg.CountInfos);
-            Assert.IsTrue(cfg.ValidationCollection.Count == 0);
-            Assert.IsTrue(cfg.CountErrors == 0);
-            Assert.IsTrue(cfg.CountWarnings == 0);
-            Assert.IsTrue(cfg.CountInfos == 0);
-        }
+        //    Assert.IsTrue(cfg.ValidationCollection.Count == cfg.CountErrors + cfg.CountWarnings + cfg.CountInfos);
+        //    Assert.IsTrue(cfg.ValidationCollection.Count == 0);
+        //    Assert.IsTrue(cfg.CountErrors == 0);
+        //    Assert.IsTrue(cfg.CountWarnings == 0);
+        //    Assert.IsTrue(cfg.CountInfos == 0);
+        //}
         public void DicDiffDebug(Config cfg, Config anotherCfg)
         {
             var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(cfg.DicActiveAppProjectGenerators, anotherCfg.DicActiveAppProjectGenerators);

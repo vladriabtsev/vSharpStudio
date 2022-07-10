@@ -237,6 +237,10 @@ namespace vSharpStudio.ViewModels
                 List<PluginRow> lstGens = new List<PluginRow>();
                 cfg.DicGroupSettingGenerators = new Dictionary<string, IvPluginGenerator>();
                 cfg.DicPlugins = new Dictionary<string, IvPlugin>();
+                // Generators
+                cfg.DicGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
+                        (ki, v) => { }, (kr, v) => { }, () => { }
+                );
                 foreach (var t in this._plugins)
                 {
                     cfg.DicPlugins[t.Value.Guid] = t.Value;
@@ -272,6 +276,8 @@ namespace vSharpStudio.ViewModels
                         {
                             cfg.DicGroupSettingGenerators[tt.GroupGeneratorsGuid] = tt;
                         }
+                        Debug.Assert(!cfg.DicGenerators.ContainsKey(tt.Guid));
+                        cfg.DicGenerators[tt.Guid] = tt;
                         PluginGenerator pg = null;
                         is_found = false;
                         foreach (var ttt in p.ListGenerators)
@@ -326,28 +332,11 @@ namespace vSharpStudio.ViewModels
                     cfg.DicPluginLists.Clear();
                 }
                 cfg.DicPluginLists = dic;
-                // Generators
-                cfg.DicGenerators = new Dictionary<string, IvPluginGenerator>();
-                foreach (var t in lstGens)
-                {
-                    cfg.DicGenerators[t.PluginGenerator.Guid] = t.PluginGenerator.Generator;
-                }
+                //foreach (var t in lstGens)
+                //{
+                //    cfg.DicGenerators[t.PluginGenerator.Guid] = t.PluginGenerator.Generator;
+                //}
                 cfg.RefillDicGenerators();
-                // Create Settings VM for all project generators
-                foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
-                {
-                    // group plugins settings
-                    t.RestoreGroupSettings();
-                    foreach (var tt in t.ListAppProjects)
-                    {
-                        // group plugins settings
-                        tt.RestoreGroupSettings();
-                        foreach (var ttt in tt.ListAppProjectGenerators)
-                        {
-                            ttt.RestoreSettings();
-                        }
-                    }
-                }
                 // Restore dictionary of all current nodes
                 var nvb = new ModelVisitorBase();
                 nvb.Run(cfg, null, null, (p, n) =>
@@ -360,6 +349,7 @@ namespace vSharpStudio.ViewModels
                 {
                     p.RestoreNodeAppGenSettingsVm();
                 });
+                // Create Settings VM for all project generators
                 foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
                 {
                     foreach (var tt in t.ListAppProjects)
@@ -367,8 +357,13 @@ namespace vSharpStudio.ViewModels
                         foreach (var ttt in tt.ListAppProjectGenerators)
                         {
                             ttt.UpdateListGenerators();
+                            ttt.RestoreSettings();
                         }
+                        // group plugins settings
+                        tt.RestoreGroupSettings();
                     }
+                    // group plugins settings
+                    t.RestoreGroupSettings();
                 }
                 this.VisibilityAndMessageInstructions();
             }
@@ -448,16 +443,16 @@ namespace vSharpStudio.ViewModels
                 this.AgregateCatalogs(folder, "vPlugin*.dll", catalog);
                 CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
                 container.SatisfyImportsOnce(this);
-                foreach (var sln in this.Config.GroupAppSolutions.ListAppSolutions)
-                {
-                    foreach (var prj in sln.ListAppProjects)
-                    {
-                        foreach (var pg in prj.ListAppProjectGenerators)
-                        {
-                            var set = pg.DynamicGeneratorSettings;
-                        }
-                    }
-                }
+                //foreach (var sln in this.Config.GroupAppSolutions.ListAppSolutions)
+                //{
+                //    foreach (var prj in sln.ListAppProjects)
+                //    {
+                //        foreach (var pg in prj.ListAppProjectGenerators)
+                //        {
+                //            var set = pg.DynamicGeneratorSettings;
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {

@@ -559,7 +559,7 @@
           "name": "proto_app_project_generator",
           "longName": "proto_app_project_generator",
           "fullName": "proto_config.proto_app_project_generator",
-          "description": "Application project generator\n@base ConfigObjectCommonBase",
+          "description": "Application project generator\n@base ConfigObjectVmGenSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],

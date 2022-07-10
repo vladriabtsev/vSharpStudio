@@ -6,14 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
+using ViewModelBase;
 
 // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
 // https://docs.microsoft.com/en-us/dotnet/framework/mef/
 
 namespace vSharpStudio.common
 {
-    public interface IvPluginGroupSolutionSettings : IvPluginGeneratorValidatableSettings
+    public interface IvPluginGroupSettings : IvPluginGeneratorValidatableSettings
     {
+        ITreeConfigNode Parent { get; set; }
         string Name { get; }
         string Version { get; }
         string Description { get; }
@@ -22,10 +24,14 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="settings"></param>
         /// <returns></returns>
-        IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVm(string settings);
+        IvPluginGroupSettings GetPluginGroupSettingsVm(ITreeConfigNode parent, string settings);
         /// <summary>
         /// Get protobuf model of settings from MVVM model (json format)
         /// </summary>
         string SettingsAsJson { get; }
+    }
+    public interface IvPluginGroupSettingsDic
+    {
+        DictionaryExt<string, IvPluginGroupSettings> DicPluginsGroupSettings { get; }
     }
 }

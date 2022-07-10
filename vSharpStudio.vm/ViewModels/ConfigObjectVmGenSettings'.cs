@@ -75,7 +75,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (gs == null)
             {
-                var t = gen.GetGenerationNodeSettingsVmFromJson(null, (ITreeConfigNode)this);
+                var t = gen.GetGenerationNodeSettingsVmFromJson((ITreeConfigNode)this, null);
                 if (t != null)
                 {
                     this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
@@ -90,7 +90,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                var t = gen.GetGenerationNodeSettingsVmFromJson(gs.Settings, (ITreeConfigNode)this);
+                var t = gen.GetGenerationNodeSettingsVmFromJson((ITreeConfigNode)this, gs.Settings);
                 if (t != null)
                 {
                     this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
@@ -105,29 +105,61 @@ namespace vSharpStudio.vm.ViewModels
             var res = new ValidationResult();
             if (this is INodeGenSettings)
             {
-                var ngs = (INodeGenSettings)this;
-                foreach (var t in ngs.ListNodeGeneratorsSettings)
+                foreach (var t in this.DicGenNodeSettings)
                 {
-                    var vr = t.SettingsVm.ValidateSettings();
+                    var vr = t.Value.ValidateSettings();
                     res.Errors.AddRange(vr.Errors);
                 }
             }
-            else if (this is INodeGenSettings)
+            else if (this is IvPluginGroupSettingsDic)
             {
+                var sgs = (IvPluginGroupSettingsDic)this;
+                foreach (var t in sgs.DicPluginsGroupSettings)
+                {
+                    var vr = t.Value.ValidateSettings();
+                    res.Errors.AddRange(vr.Errors);
+                }
             }
-                return res;
+            else if (this is IAppProjectGenerator)
+            {
+                var gs = (IAppProjectGenerator)this;
+                if (gs.DynamicGeneratorSettings!=null)
+                {
+                    var vr = gs.DynamicGeneratorSettings.ValidateSettings();
+                    res.Errors.AddRange(vr.Errors);
+                }
+            }
+            return res;
         }
         protected override async Task<ValidationResult> ValidatePluginGeneratorSettingsAsync()
         {
             _logger.Trace();
             var res = new ValidationResult();
-            if (!(this is INodeGenSettings))
-                return res;
-            var ngs = (INodeGenSettings)this;
-            foreach (var t in ngs.ListNodeGeneratorsSettings)
+            if (this is INodeGenSettings)
             {
-                var vr = await t.SettingsVm.ValidateSettingsAsync();
-                res.Errors.AddRange(vr.Errors);
+                foreach (var t in this.DicGenNodeSettings)
+                {
+                    var vr = await t.Value.ValidateSettingsAsync();
+                    res.Errors.AddRange(vr.Errors);
+                }
+            }
+            else if (this is IvPluginGroupSettingsDic)
+            {
+                var sgs = (IvPluginGroupSettingsDic)this;
+                foreach (var t in sgs.DicPluginsGroupSettings)
+                {
+                    var vr = await t.Value.ValidateSettingsAsync();
+                    res.Errors.AddRange(vr.Errors);
+                }
+            }
+            else if (this is IAppProjectGenerator)
+            {
+                var gs = (IAppProjectGenerator)this;
+                if (gs.DynamicGeneratorSettings != null)
+                {
+                    var vr = await gs.DynamicGeneratorSettings.ValidateSettingsAsync();
+                    res.Errors.AddRange(vr.Errors);
+                }
             }
             return res;
         }
@@ -141,7 +173,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!cfg.DicActiveAppProjectGenerators.ContainsKey(tt.AppProjectGeneratorGuid))
                     continue;
                 var gen = cfg.DicActiveAppProjectGenerators[tt.AppProjectGeneratorGuid];
-                tt.SettingsVm = gen.GetGenerationNodeSettingsVmFromJson(tt.Settings, (ITreeConfigNode)this);
+                tt.SettingsVm = gen.GetGenerationNodeSettingsVmFromJson((ITreeConfigNode)this, tt.Settings);
                 this.DicVmExclProps[tt.SettingsVm.GetType().Name] = tt.SettingsVm.DicNodeExcludedProperties;
                 this._DicGenNodeSettings[tt.AppProjectGeneratorGuid] = tt.SettingsVm;
             }

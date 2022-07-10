@@ -12,14 +12,14 @@ namespace vPlugin.Sample
     {
         public PluginsGroupProjectSettingsValidator()
         {
-            this.RuleFor(p => p.Description).Must((p, y) =>
+            this.RuleFor(p => p.IsGroupProjectParam1).Must((p, y) =>
             {
-                if (string.IsNullOrEmpty(y))
+                if (y)
                 {
                     return false;
                 }
                 return true;
-            }).WithMessage("Has to be not empty");
+            }).WithMessage("Has to be false");
         }
     }
 }

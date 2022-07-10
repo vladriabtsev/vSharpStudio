@@ -290,8 +290,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     /// Application project generator
     ///////////////////////////////////////////////////
     
-    public partial interface IAppProjectGenerator // ModelInterfaces.tt Line: 29
+    public partial interface IAppProjectGenerator : IGuid, IName // ModelInterfaces.tt Line: 29
     {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	string PluginGuid { get; } // ModelInterfaces.tt Line: 51

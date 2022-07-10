@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IAppSolution : ITreeConfigNode
+    public partial interface IAppSolution : ITreeConfigNode, IvPluginGroupSettingsDic
     {
         IConfig Config { get; }
-        IvPluginGroupSolutionSettings GetGroupSettings(string groupSettingsGuid);
+        IvPluginGroupSettings GetGroupSettings(string groupSettingsGuid);
     }
 }

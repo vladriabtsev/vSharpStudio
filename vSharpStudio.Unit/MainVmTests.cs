@@ -1343,6 +1343,7 @@ namespace vSharpStudio.Unit
             var p = c.GroupProperties.AddPropertyChar("char_notnullable");
             #region char
             p.RangeValuesRequirementStr = "'c'";
+            p.Validate();
             var v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1350,6 +1351,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("'c'", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = " 'c'";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1357,6 +1359,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("'c'", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "'c' ";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1364,6 +1367,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("'c'", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "'c';'b'";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1372,6 +1376,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("'b'", v.ListValues[1]);
 
             p.RangeValuesRequirementStr = " 'c' ; 'b' ";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1380,6 +1385,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("'b'", v.ListValues[1]);
 
             p.RangeValuesRequirementStr = "#'c'";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(1, v.ListBoundaries.Count);
@@ -1388,6 +1394,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("'c'", v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "'c'#";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(1, v.ListBoundaries.Count);
@@ -1396,6 +1403,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(null, v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "'a'#'c'";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(1, v.ListBoundaries.Count);
@@ -1404,6 +1412,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("'c'", v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "#'0';'a'#'c';'b';'d'#";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(3, v.ListBoundaries.Count);
@@ -1413,12 +1422,14 @@ namespace vSharpStudio.Unit
 
 
             p.RangeValuesRequirementStr = "''";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
             Assert.IsTrue(v.ListErrors[0].Contains("Can't"));
             Assert.IsTrue(v.ListErrors[0].Contains("''"));
 
             p.RangeValuesRequirementStr = "\"c\"";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
             Assert.AreEqual(1, v.ListErrors.Count);
@@ -1426,21 +1437,26 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(v.ListErrors[0].Contains("\"c\""));
 
             p.RangeValuesRequirementStr = "  ";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
 
             p.RangeValuesRequirementStr = "";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
 
             p.RangeValuesRequirementStr = null;
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             #endregion char
 
             p = c.GroupProperties.AddPropertyString("str_unlimited", 0);
+
             #region string requirements validation
             p.RangeValuesRequirementStr = "\"\"";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1448,6 +1464,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("\"\"", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "\"c\"";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1455,6 +1472,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("\"c\"", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = " \"c\"";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1462,6 +1480,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("\"c\"", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "\"c\" ";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1469,6 +1488,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("\"c\"", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "\"c\";\"b\"";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1477,6 +1497,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("\"b\"", v.ListValues[1]);
 
             p.RangeValuesRequirementStr = " \"c\" ; \"b\" ";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1484,9 +1505,8 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("\"c\"", v.ListValues[0]);
             Assert.AreEqual("\"b\"", v.ListValues[1]);
 
-
-
             p.RangeValuesRequirementStr = "'c'";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
             Assert.AreEqual(1, v.ListErrors.Count);
@@ -1494,6 +1514,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(v.ListErrors[0].Contains("'c'"));
 
             p.RangeValuesRequirementStr = "#\"c\"";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
             Assert.AreEqual(1, v.ListErrors.Count);
@@ -1501,6 +1522,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(v.ListErrors[0].Contains("#\"c\""));
 
             p.RangeValuesRequirementStr = "\"c\"#";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
             Assert.AreEqual(1, v.ListErrors.Count);
@@ -1508,6 +1530,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(v.ListErrors[0].Contains("\"c\"#"));
 
             p.RangeValuesRequirementStr = "\"a\"#\"c\"";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
             Assert.AreEqual(1, v.ListErrors.Count);
@@ -1515,6 +1538,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(v.ListErrors[0].Contains("\"a\"#\"c\""));
 
             p.RangeValuesRequirementStr = "";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             #endregion string requirements validation
@@ -1523,8 +1547,10 @@ namespace vSharpStudio.Unit
             #endregion date
 
             p = c.GroupProperties.AddPropertyNumerical("intmax", 9, 0);
+
             #region int requirements validation
             p.RangeValuesRequirementStr = "1";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(0, v.ListBoundaries.Count);
@@ -1532,6 +1558,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("1", v.ListValues[0]);
 
             p.RangeValuesRequirementStr = "#2";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(1, v.ListBoundaries.Count);
@@ -1540,6 +1567,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("2", v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "2#";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(1, v.ListBoundaries.Count);
@@ -1548,6 +1576,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(null, v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "3#7";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(1, v.ListBoundaries.Count);
@@ -1556,6 +1585,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("7", v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "-7#-3";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(1, v.ListBoundaries.Count);
@@ -1564,20 +1594,22 @@ namespace vSharpStudio.Unit
             Assert.AreEqual("-3", v.ListBoundaries[0].BoundaryMax);
 
             p.RangeValuesRequirementStr = "#2;5#7;9;11#";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             Assert.AreEqual(3, v.ListBoundaries.Count);
             Assert.AreEqual(1, v.ListValues.Count);
 
             p.RangeValuesRequirementStr = "5#2";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
             Assert.AreEqual(1, v.ListErrors.Count);
             Assert.IsTrue(v.ListErrors[0].Contains("greater"));
             Assert.IsTrue(v.ListErrors[0].Contains("5#2"));
 
-
             p.RangeValuesRequirementStr = "bbb";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsTrue(v.IsHasErrors);
             Assert.AreEqual(1, v.ListErrors.Count);
@@ -1585,6 +1617,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(v.ListErrors[0].Contains("bbb"));
 
             p.RangeValuesRequirementStr = "";
+            p.Validate();
             v = p.RangeValuesRequirements;
             Assert.IsFalse(v.IsHasErrors);
             #endregion int requirements validation

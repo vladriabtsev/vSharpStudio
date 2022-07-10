@@ -141,7 +141,7 @@
 
 ### proto_app_project_generator
 Application project generator
-@base ConfigObjectCommonBase
+@base ConfigObjectVmGenSettings
 
 
 | Field | Type | Label | Description |

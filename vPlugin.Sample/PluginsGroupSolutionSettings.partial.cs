@@ -10,7 +10,7 @@ using vSharpStudio.common;
 
 namespace vPlugin.Sample
 {
-    public partial class PluginsGroupSolutionSettings : IvPluginGroupSolutionSettings
+    public partial class PluginsGroupSolutionSettings : IvPluginGroupSettings
     {
         partial void OnInit()
         {
@@ -18,6 +18,8 @@ namespace vPlugin.Sample
             this.Description = "vSharpStudio plugins group settings for solutions";
             this.Version = "0.1";
         }
+        [BrowsableAttribute(false)]
+        public ITreeConfigNode Parent { get; set; }
         [BrowsableAttribute(false)]
         public string Name { get; private set; }
         [BrowsableAttribute(false)]
@@ -33,8 +35,9 @@ namespace vPlugin.Sample
             }
         }
 
-        public IvPluginGroupSolutionSettings GetPluginGroupSolutionSettingsVm(string settings)
+        public IvPluginGroupSettings GetPluginGroupSettingsVm(ITreeConfigNode parent, string settings)
         {
+            this.Parent = parent;
             if (string.IsNullOrWhiteSpace(settings))
                 return new PluginsGroupSolutionSettings();
             var proto = proto_plugins_group_solution_settings.Parser.ParseJson(settings);

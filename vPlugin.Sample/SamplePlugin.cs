@@ -11,7 +11,8 @@ namespace vPlugin.Sample
     public class SamplePlugin : IvPlugin
     {
         public const string GuidStatic = "ED93228B-8D8E-456C-9688-37EEB1B2D835";
-        public const string GroupGuidStatic = "007CFD6E-E879-42EE-8F98-8AE8F9ED65D8";
+        public const string GroupAccessGuidStatic = "007CFD6E-E879-42EE-8F98-8AE8F9ED65D8";
+        public const string GroupDbGuidStatic = "96B5B5D1-80DF-4FCE-8BFF-9D79C851CC27";
 
         public SamplePlugin()
         {
