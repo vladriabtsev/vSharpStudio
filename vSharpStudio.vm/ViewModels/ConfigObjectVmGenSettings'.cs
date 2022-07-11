@@ -99,70 +99,94 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        protected override ValidationResult ValidatePluginGeneratorSettings()
+        protected Severity? CheckMaxSeverity(ValidationResult vr, Severity? curSeverity = null)
+        {
+            if (curSeverity != Severity.Error)
+            {
+                foreach (var tt in vr.Errors)
+                {
+                    if (tt.Severity == Severity.Error)
+                    {
+                        return Severity.Error;
+                    }
+                    else if (tt.Severity == Severity.Warning)
+                    {
+                        curSeverity = Severity.Warning;
+                    }
+                    else if (tt.Severity == Severity.Info)
+                    {
+                        if (curSeverity == null)
+                            curSeverity = Severity.Info;
+                    }
+                }
+            }
+            return curSeverity;
+        }
+        protected override void OnValidated(ValidationResult res)
         {
             _logger.Trace();
-            var res = new ValidationResult();
             if (this is INodeGenSettings)
             {
                 foreach (var t in this.DicGenNodeSettings)
                 {
                     var vr = t.Value.ValidateSettings();
+                    this.CheckMaxSeverity(vr);
                     res.Errors.AddRange(vr.Errors);
                 }
             }
-            else if (this is IvPluginGroupSettingsDic)
-            {
-                var sgs = (IvPluginGroupSettingsDic)this;
-                foreach (var t in sgs.DicPluginsGroupSettings)
-                {
-                    var vr = t.Value.ValidateSettings();
-                    res.Errors.AddRange(vr.Errors);
-                }
-            }
-            else if (this is IAppProjectGenerator)
-            {
-                var gs = (IAppProjectGenerator)this;
-                if (gs.DynamicGeneratorSettings!=null)
-                {
-                    var vr = gs.DynamicGeneratorSettings.ValidateSettings();
-                    res.Errors.AddRange(vr.Errors);
-                }
-            }
-            return res;
+            //else if (this is IvPluginGroupSettingsDic)
+            //{
+            //    var sgs = (IvPluginGroupSettingsDic)this;
+            //    foreach (var t in sgs.DicPluginsGroupSettings)
+            //    {
+            //        var vr = t.Value.ValidateSettings();
+            //        this.CheckSeverity(vr, ref isError, ref isWarning, ref isInfo);
+            //        res.Errors.AddRange(vr.Errors);
+            //    }
+            //}
+            //else if (this is IAppProjectGenerator)
+            //{
+            //    var gs = (IAppProjectGenerator)this;
+            //    if (gs.DynamicGeneratorSettings != null)
+            //    {
+            //        var vr = gs.DynamicGeneratorSettings.ValidateSettings();
+            //        this.CheckSeverity(vr, ref isError, ref isWarning, ref isInfo);
+            //        res.Errors.AddRange(vr.Errors);
+            //    }
+            //}
         }
-        protected override async Task<ValidationResult> ValidatePluginGeneratorSettingsAsync()
-        {
-            _logger.Trace();
-            var res = new ValidationResult();
-            if (this is INodeGenSettings)
-            {
-                foreach (var t in this.DicGenNodeSettings)
-                {
-                    var vr = await t.Value.ValidateSettingsAsync();
-                    res.Errors.AddRange(vr.Errors);
-                }
-            }
-            else if (this is IvPluginGroupSettingsDic)
-            {
-                var sgs = (IvPluginGroupSettingsDic)this;
-                foreach (var t in sgs.DicPluginsGroupSettings)
-                {
-                    var vr = await t.Value.ValidateSettingsAsync();
-                    res.Errors.AddRange(vr.Errors);
-                }
-            }
-            else if (this is IAppProjectGenerator)
-            {
-                var gs = (IAppProjectGenerator)this;
-                if (gs.DynamicGeneratorSettings != null)
-                {
-                    var vr = await gs.DynamicGeneratorSettings.ValidateSettingsAsync();
-                    res.Errors.AddRange(vr.Errors);
-                }
-            }
-            return res;
-        }
+        //protected override async Task<ValidationResult> ValidatePluginGeneratorSettingsAsync()
+        //{
+        //    _logger.Trace();
+        //    var res = new ValidationResult();
+        //    if (this is INodeGenSettings)
+        //    {
+        //        foreach (var t in this.DicGenNodeSettings)
+        //        {
+        //            var vr = await t.Value.ValidateSettingsAsync();
+        //            res.Errors.AddRange(vr.Errors);
+        //        }
+        //    }
+        //    else if (this is IvPluginGroupSettingsDic)
+        //    {
+        //        var sgs = (IvPluginGroupSettingsDic)this;
+        //        foreach (var t in sgs.DicPluginsGroupSettings)
+        //        {
+        //            var vr = await t.Value.ValidateSettingsAsync();
+        //            res.Errors.AddRange(vr.Errors);
+        //        }
+        //    }
+        //    else if (this is IAppProjectGenerator)
+        //    {
+        //        var gs = (IAppProjectGenerator)this;
+        //        if (gs.DynamicGeneratorSettings != null)
+        //        {
+        //            var vr = await gs.DynamicGeneratorSettings.ValidateSettingsAsync();
+        //            res.Errors.AddRange(vr.Errors);
+        //        }
+        //    }
+        //    return res;
+        //}
         public void RestoreNodeAppGenSettingsVm()
         {
             _logger.Trace();

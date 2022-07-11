@@ -166,6 +166,8 @@ namespace vSharpStudio.Unit
             prms.AccessParam3 = "kuku3";
             prms.AccessParam4 = "kuku4";
 
+            gen.Validate();
+
             //Assert.AreEqual(1, gen..DicPluginsGroupSettings.Count);
             //Assert.AreEqual(0, gen.DicGenNodeSettings.Count);
             Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);

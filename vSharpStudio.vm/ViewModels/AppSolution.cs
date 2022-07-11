@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit;
@@ -196,6 +197,20 @@ namespace vSharpStudio.vm.ViewModels
                 var set = gen.GetPluginGroupSolutionSettingsVmFromJson(this, null);
                 set.Parent = this;
                 this.DicPluginsGroupSettings[gen.GroupGeneratorsGuid] = set;
+            }
+        }
+        protected override void OnValidated(ValidationResult res)
+        {
+            //Severity? curSeverity = null;
+            foreach (var t in this.DicPluginsGroupSettings)
+            {
+                var res2 = t.Value.ValidateSettings();
+                //curSeverity=CheckMaxSeverity(res2, curSeverity);
+                foreach (var tt in res2.Errors)
+                {
+                    tt.PropertyName = nameof(this.DynamicPluginGroupSettings);
+                }
+                res.Errors.AddRange(res2.Errors);
             }
         }
         #endregion Group Generator Solution Settings

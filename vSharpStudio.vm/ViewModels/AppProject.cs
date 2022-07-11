@@ -13,6 +13,7 @@ using System.IO;
 using System.Diagnostics.Contracts;
 using Xceed.Wpf.Toolkit;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using FluentValidation.Results;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -369,6 +370,20 @@ namespace vSharpStudio.vm.ViewModels
                 var set = gen.GetPluginGroupProjectSettingsVmFromJson(this, null);
                 set.Parent = this;
                 this.DicPluginsGroupSettings[gen.GroupGeneratorsGuid] = set;
+            }
+        }
+        protected override void OnValidated(ValidationResult res)
+        {
+            //Severity? curSeverity = null;
+            foreach (var t in this.DicPluginsGroupSettings)
+            {
+                var res2 = t.Value.ValidateSettings();
+                //curSeverity=CheckMaxSeverity(res2, curSeverity);
+                foreach (var tt in res2.Errors)
+                {
+                    tt.PropertyName = nameof(this.DynamicPluginGroupSettings);
+                }
+                res.Errors.AddRange(res2.Errors);
             }
         }
         #endregion Group Generator Project Settings

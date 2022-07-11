@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Packaging;
 using System.Text;
+using FluentValidation.Results;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit;
@@ -367,6 +368,18 @@ namespace vSharpStudio.vm.ViewModels
         {
             HideProperties();
         }
+        protected override void OnValidated(ValidationResult res)
+        {
+            if (this.PluginGeneratorSettings == null)
+                return;
+            var res2 = this.PluginGeneratorSettings.ValidateSettings();
+            foreach (var tt in res2.Errors)
+            {
+                tt.PropertyName = nameof(this.DynamicGeneratorSettings);
+            }
+            res.Errors.AddRange(res2.Errors);
+        }
+        IvPluginGeneratorSettings PluginGeneratorSettings { get; set; }
         public void RestoreSettings()
         {
             var cfg = (Config)this.GetConfig();
@@ -374,17 +387,16 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (!cfg.DicGroupSettingGenerators.ContainsKey(this.PluginGenerator.GroupGeneratorsGuid))
                     cfg.DicGroupSettingGenerators[this.PluginGenerator.GroupGeneratorsGuid] = this.PluginGenerator;
-                IvPluginGeneratorSettings set = null;
                 if (string.IsNullOrWhiteSpace(this.GeneratorSettings))
                 {
-                    set = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, null);
+                    this.PluginGeneratorSettings = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, null);
                 }
                 else
                 {
-                    set = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, this.GeneratorSettings);
+                    this.PluginGeneratorSettings = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, this.GeneratorSettings);
                 }
-                set.Parent = this;
-                this.DynamicGeneratorSettings = set;
+                this.PluginGeneratorSettings.Parent = this;
+                this.DynamicGeneratorSettings = this.PluginGeneratorSettings;
             }
             //else if (this.PluginDbGenerator != null)
             //{

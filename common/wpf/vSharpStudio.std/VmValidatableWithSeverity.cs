@@ -27,14 +27,14 @@ namespace ViewModelBase
         protected virtual void OnCountErrorsChanged() { }
         protected virtual void OnCountWarningsChanged() { }
         protected virtual void OnCountInfosChanged() { }
-        protected virtual ValidationResult ValidatePluginGeneratorSettings()
-        {
-            return new ValidationResult();
-        }
-        protected virtual Task<ValidationResult> ValidatePluginGeneratorSettingsAsync()
-        {
-            return Task.FromResult(new ValidationResult());
-        }
+        //protected virtual ValidationResult ValidatePluginGeneratorSettings()
+        //{
+        //    return new ValidationResult();
+        //}
+        //protected virtual Task<ValidationResult> ValidatePluginGeneratorSettingsAsync()
+        //{
+        //    return Task.FromResult(new ValidationResult());
+        //}
         [BrowsableAttribute(false)]
         public int CountErrors
         {
@@ -146,8 +146,8 @@ namespace ViewModelBase
             if (!this.IsValidate)
                 return true;
             var res = this._validator.Validate((T)this);
-            var resPlgn = this.ValidatePluginGeneratorSettings();
-            res.Errors.AddRange(resPlgn.Errors);
+            //var resPlgn = this.ValidatePluginGeneratorSettings();
+            //res.Errors.AddRange(resPlgn.Errors);
             this.ValidationResult = res;
             OnValidated(res);
             var isValid = ValidationChange(res);
@@ -161,8 +161,8 @@ namespace ViewModelBase
             if (!this.IsValidate)
                 return true;
             var res = await this._validator.ValidateAsync((T)this);
-            var resPlgn = await this.ValidatePluginGeneratorSettingsAsync();
-            res.Errors.AddRange(resPlgn.Errors);
+            //var resPlgn = await this.ValidatePluginGeneratorSettingsAsync();
+            //res.Errors.AddRange(resPlgn.Errors);
             var tsks = OnValidatedAsync(res);
             await Task.WhenAll(tsks);
             var isValid = ValidationChange(res);
