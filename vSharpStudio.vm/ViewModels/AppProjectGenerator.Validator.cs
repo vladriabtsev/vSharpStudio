@@ -101,34 +101,34 @@ namespace vSharpStudio.vm.ViewModels
                         AddValidationResults(cntx, lst);
                     }
                 });
-            this.RuleFor(x => x.DynamicGeneratorSettings)
-                .Custom((settings, cntx) =>
-                {
-                    if (settings != null && settings is IValidatableWithSeverity)
-                    {
-                        var m = (IValidatableWithSeverity)settings;
-                        m.Validate();
-                        foreach (var t in m.ValidationCollection)
-                        {
-                            var r = new ValidationFailure(cntx.PropertyName, t.Message);
-                            switch (t.Severity)
-                            {
-                                case Severity.Error:
-                                    r.Severity = Severity.Error;
-                                    break;
-                                case Severity.Warning:
-                                    r.Severity = Severity.Warning;
-                                    break;
-                                case Severity.Info:
-                                    r.Severity = Severity.Info;
-                                    break;
-                                default:
-                                    throw new Exception();
-                            }
-                            cntx.AddFailure(r);
-                        }
-                    }
-                });
+            //this.RuleFor(x => x.DynamicGeneratorSettings)
+            //    .Custom((settings, cntx) =>
+            //    {
+            //        if (settings != null && settings is IValidatableWithSeverity)
+            //        {
+            //            var m = (IValidatableWithSeverity)settings;
+            //            m.Validate();
+            //            foreach (var t in m.ValidationCollection)
+            //            {
+            //                var r = new ValidationFailure(cntx.PropertyName, t.Message);
+            //                switch (t.Severity)
+            //                {
+            //                    case Severity.Error:
+            //                        r.Severity = Severity.Error;
+            //                        break;
+            //                    case Severity.Warning:
+            //                        r.Severity = Severity.Warning;
+            //                        break;
+            //                    case Severity.Info:
+            //                        r.Severity = Severity.Info;
+            //                        break;
+            //                    default:
+            //                        throw new Exception();
+            //                }
+            //                cntx.AddFailure(r);
+            //            }
+            //        }
+            //    });
         }
         public static void AddValidationResults(ValidationContext<AppProjectGenerator> cntx, List<ValidationPluginMessage> lst)
         {

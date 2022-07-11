@@ -134,59 +134,7 @@ namespace vSharpStudio.vm.ViewModels
                     res.Errors.AddRange(vr.Errors);
                 }
             }
-            //else if (this is IvPluginGroupSettingsDic)
-            //{
-            //    var sgs = (IvPluginGroupSettingsDic)this;
-            //    foreach (var t in sgs.DicPluginsGroupSettings)
-            //    {
-            //        var vr = t.Value.ValidateSettings();
-            //        this.CheckSeverity(vr, ref isError, ref isWarning, ref isInfo);
-            //        res.Errors.AddRange(vr.Errors);
-            //    }
-            //}
-            //else if (this is IAppProjectGenerator)
-            //{
-            //    var gs = (IAppProjectGenerator)this;
-            //    if (gs.DynamicGeneratorSettings != null)
-            //    {
-            //        var vr = gs.DynamicGeneratorSettings.ValidateSettings();
-            //        this.CheckSeverity(vr, ref isError, ref isWarning, ref isInfo);
-            //        res.Errors.AddRange(vr.Errors);
-            //    }
-            //}
         }
-        //protected override async Task<ValidationResult> ValidatePluginGeneratorSettingsAsync()
-        //{
-        //    _logger.Trace();
-        //    var res = new ValidationResult();
-        //    if (this is INodeGenSettings)
-        //    {
-        //        foreach (var t in this.DicGenNodeSettings)
-        //        {
-        //            var vr = await t.Value.ValidateSettingsAsync();
-        //            res.Errors.AddRange(vr.Errors);
-        //        }
-        //    }
-        //    else if (this is IvPluginGroupSettingsDic)
-        //    {
-        //        var sgs = (IvPluginGroupSettingsDic)this;
-        //        foreach (var t in sgs.DicPluginsGroupSettings)
-        //        {
-        //            var vr = await t.Value.ValidateSettingsAsync();
-        //            res.Errors.AddRange(vr.Errors);
-        //        }
-        //    }
-        //    else if (this is IAppProjectGenerator)
-        //    {
-        //        var gs = (IAppProjectGenerator)this;
-        //        if (gs.DynamicGeneratorSettings != null)
-        //        {
-        //            var vr = await gs.DynamicGeneratorSettings.ValidateSettingsAsync();
-        //            res.Errors.AddRange(vr.Errors);
-        //        }
-        //    }
-        //    return res;
-        //}
         public void RestoreNodeAppGenSettingsVm()
         {
             _logger.Trace();

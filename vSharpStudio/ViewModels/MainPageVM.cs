@@ -243,6 +243,7 @@ namespace vSharpStudio.ViewModels
                 );
                 foreach (var t in this._plugins)
                 {
+                    Debug.Assert(!cfg.DicPlugins.ContainsKey(t.Value.Guid));
                     cfg.DicPlugins[t.Value.Guid] = t.Value;
                     //var groupSettings = t.Value.GetPluginGroupSolutionSettingsVmFromJson(null);
                     //if (!cfg.DicGroupSettings.ContainsKey(groupSettings.Guid))

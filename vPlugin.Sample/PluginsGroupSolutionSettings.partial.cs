@@ -48,9 +48,10 @@ namespace vPlugin.Sample
             this.Validate();
             return this.ValidationResult;
         }
-        public Task<ValidationResult> ValidateSettingsAsync()
+        public async Task<ValidationResult> ValidateSettingsAsync()
         {
-            return Task.FromResult(this.ValidationResult);
+            await this.ValidateAsync();
+            return this.ValidationResult;
         }
     }
 }
