@@ -55,7 +55,6 @@ message proto_user_settings_opened_config {
  * @exclude
  * ####################################### P L U G I N S ##################################
  */
-// @base ConfigObjectCommonBase
 message proto_group_list_plugins {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -67,7 +66,6 @@ message proto_group_list_plugins {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin list_plugins = 4;
 }
-// @base ConfigObjectCommonBase
 message proto_plugin {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -88,7 +86,6 @@ message proto_plugin {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 13;
 }
-// @base ConfigObjectCommonBase
 message proto_plugin_generator {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -133,7 +130,6 @@ message proto_config_short_history {
     proto_config current_config = 3;
     proto_config prev_stable_config = 4;
 }
-// @base ConfigObjectCommonBase
 message proto_group_list_base_config_links {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -148,7 +144,6 @@ message proto_group_list_base_config_links {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-// @base ConfigObjectCommonBase
 message proto_base_config_link {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -240,7 +235,6 @@ message proto_plugin_group_generators_default_settings {
     string app_group_generators_guid = 2;
     string settings = 3; 
 }
-// @base ConfigObjectCommonBase
 message proto_group_list_app_solutions {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -297,7 +291,6 @@ message proto_plugin_group_generators_settings {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 }
-// @base ConfigObjectVmGenSettings
 message proto_app_solution {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -358,7 +351,6 @@ message proto_app_solution {
     proto_plugins_group plugins_group3 = 13;
     */
 }
-// @base ConfigObjectVmGenSettings
 message proto_app_project {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -428,7 +420,6 @@ message proto_plugin_generator_settings {
     string settings = 5; 
 }
 // Application project generator
-// @base ConfigObjectVmGenSettings
 message proto_app_project_generator {
     // @attr [ReadOnly(true)]
     string guid = 1;

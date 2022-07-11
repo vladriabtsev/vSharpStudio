@@ -342,7 +342,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class GroupListPluginsValidator : ValidatorBase<GroupListPlugins, GroupListPluginsValidator> { } // Class.tt Line: 6
-    public partial class GroupListPlugins : ConfigObjectCommonBase<GroupListPlugins, GroupListPluginsValidator>, IComparable<GroupListPlugins>, IConfigAcceptVisitor, IGroupListPlugins // Class.tt Line: 7
+    public partial class GroupListPlugins : ConfigObjectVmGenSettings<GroupListPlugins, GroupListPluginsValidator>, IComparable<GroupListPlugins>, IConfigAcceptVisitor, IGroupListPlugins // Class.tt Line: 7
     {
         #region CTOR
         public GroupListPlugins() : this(default(ITreeConfigNode))
@@ -383,6 +383,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListPlugins = new ConfigNodesCollection<Plugin>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListPlugins) // Clone.tt Line: 52
                 vm.ListPlugins.Add(Plugin.Clone(vm, (Plugin)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -467,6 +469,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = Plugin.ConvertToVM(t, new Plugin(vm)); // Clone.tt Line: 204
                 vm.ListPlugins.Add(tvm);
             }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -628,7 +633,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class PluginValidator : ValidatorBase<Plugin, PluginValidator> { } // Class.tt Line: 6
-    public partial class Plugin : ConfigObjectCommonBase<Plugin, PluginValidator>, IComparable<Plugin>, IConfigAcceptVisitor, IPlugin // Class.tt Line: 7
+    public partial class Plugin : ConfigObjectVmGenSettings<Plugin, PluginValidator>, IComparable<Plugin>, IConfigAcceptVisitor, IPlugin // Class.tt Line: 7
     {
         #region CTOR
         public Plugin() : this(default(ITreeConfigNode))
@@ -673,6 +678,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.ListGenerators.Add(PluginGenerator.Clone(vm, (PluginGenerator)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -765,6 +772,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -993,7 +1003,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class PluginGeneratorValidator : ValidatorBase<PluginGenerator, PluginGeneratorValidator> { } // Class.tt Line: 6
-    public partial class PluginGenerator : ConfigObjectCommonBase<PluginGenerator, PluginGeneratorValidator>, IComparable<PluginGenerator>, IConfigAcceptVisitor, IPluginGenerator // Class.tt Line: 7
+    public partial class PluginGenerator : ConfigObjectVmGenSettings<PluginGenerator, PluginGeneratorValidator>, IComparable<PluginGenerator>, IConfigAcceptVisitor, IPluginGenerator // Class.tt Line: 7
     {
         #region CTOR
         public PluginGenerator() : this(default(ITreeConfigNode))
@@ -1030,6 +1040,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -1078,6 +1090,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -1675,7 +1690,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class GroupListBaseConfigLinksValidator : ValidatorBase<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator> { } // Class.tt Line: 6
-    public partial class GroupListBaseConfigLinks : ConfigObjectCommonBase<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator>, IComparable<GroupListBaseConfigLinks>, IConfigAcceptVisitor, IGroupListBaseConfigLinks // Class.tt Line: 7
+    public partial class GroupListBaseConfigLinks : ConfigObjectVmGenSettings<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator>, IComparable<GroupListBaseConfigLinks>, IConfigAcceptVisitor, IGroupListBaseConfigLinks // Class.tt Line: 7
     {
         #region CTOR
         public GroupListBaseConfigLinks() : this(default(ITreeConfigNode))
@@ -1725,6 +1740,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -1853,6 +1870,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -2062,7 +2082,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class BaseConfigLinkValidator : ValidatorBase<BaseConfigLink, BaseConfigLinkValidator> { } // Class.tt Line: 6
-    public partial class BaseConfigLink : ConfigObjectCommonBase<BaseConfigLink, BaseConfigLinkValidator>, IComparable<BaseConfigLink>, IConfigAcceptVisitor, IBaseConfigLink // Class.tt Line: 7
+    public partial class BaseConfigLink : ConfigObjectVmGenSettings<BaseConfigLink, BaseConfigLinkValidator>, IComparable<BaseConfigLink>, IConfigAcceptVisitor, IBaseConfigLink // Class.tt Line: 7
     {
         #region CTOR
         public BaseConfigLink() : this(default(ITreeConfigNode))
@@ -2110,6 +2130,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -2207,6 +2229,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -2480,10 +2505,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnInitBegin();
-            this.GroupConfigLinks = new GroupListBaseConfigLinks(); // Class.tt Line: 31
+            this.GroupConfigLinks = new GroupListBaseConfigLinks(this); // Class.tt Line: 33
             this.Model = new Model(this); // Class.tt Line: 33
-            this.GroupPlugins = new GroupListPlugins(); // Class.tt Line: 31
-            this.GroupAppSolutions = new GroupListAppSolutions(); // Class.tt Line: 31
+            this.GroupPlugins = new GroupListPlugins(this); // Class.tt Line: 33
+            this.GroupAppSolutions = new GroupListAppSolutions(this); // Class.tt Line: 33
             this.OnInit();
             this.IsValidate = true;
             this.IsNotifying = true;
@@ -3350,7 +3375,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class GroupListAppSolutionsValidator : ValidatorBase<GroupListAppSolutions, GroupListAppSolutionsValidator> { } // Class.tt Line: 6
-    public partial class GroupListAppSolutions : ConfigObjectCommonBase<GroupListAppSolutions, GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 7
+    public partial class GroupListAppSolutions : ConfigObjectVmGenSettings<GroupListAppSolutions, GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 7
     {
         #region CTOR
         public GroupListAppSolutions() : this(default(ITreeConfigNode))
@@ -3396,6 +3421,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGroupGeneratorsDefultSettings = new ObservableCollection<PluginGroupGeneratorsDefaultSettings>(); // Clone.tt Line: 47
             foreach (var t in from.ListGroupGeneratorsDefultSettings) // Clone.tt Line: 48
                 vm.ListGroupGeneratorsDefultSettings.Add(PluginGroupGeneratorsDefaultSettings.Clone((PluginGroupGeneratorsDefaultSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -3524,6 +3551,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGroupGeneratorsDefaultSettings.ConvertToVM(t, new PluginGroupGeneratorsDefaultSettings()); // Clone.tt Line: 196
                 vm.ListGroupGeneratorsDefultSettings.Add(tvm);
             }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -24444,8 +24474,20 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     public interface IVisitorConfigNode // IVisitorConfigNode.tt Line: 7
     {
         System.Threading.CancellationToken Token { get; }
+        void Visit(GroupListPlugins p);
+        void VisitEnd(GroupListPlugins p);
+        void Visit(Plugin p);
+        void VisitEnd(Plugin p);
+        void Visit(PluginGenerator p);
+        void VisitEnd(PluginGenerator p);
+        void Visit(GroupListBaseConfigLinks p);
+        void VisitEnd(GroupListBaseConfigLinks p);
+        void Visit(BaseConfigLink p);
+        void VisitEnd(BaseConfigLink p);
         void Visit(Config p);
         void VisitEnd(Config p);
+        void Visit(GroupListAppSolutions p);
+        void VisitEnd(GroupListAppSolutions p);
         void Visit(AppSolution p);
         void VisitEnd(AppSolution p);
         void Visit(AppProject p);

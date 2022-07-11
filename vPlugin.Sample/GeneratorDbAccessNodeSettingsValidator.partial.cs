@@ -12,14 +12,14 @@ namespace vPlugin.Sample
     {
         public GeneratorDbAccessNodeSettingsValidator()
         {
-            this.RuleFor(p => p.IsParam1).Must((p, y) =>
+            this.RuleFor(p => p.IsPropertyParam1).Must((p, y) =>
             {
-                if (!y)
+                if (y)
                 {
                     return false;
                 }
                 return true;
-            }).WithMessage("Has to be true");
+            }).WithMessage("Has to be false");
         }
     }
 }

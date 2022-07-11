@@ -10,6 +10,7 @@ namespace vPlugin.Sample
 {
     public class GeneratorDbAccess : IvPluginGenerator
     {
+        public ITreeConfigNode Parent { get; set; }
         public IvPluginGenerator CreateNew(IAppProjectGenerator appProjectGenerator) { return new GeneratorDbAccess(appProjectGenerator); }
         public GeneratorDbAccess(ITreeConfigNode parent) : this() { this.Parent = parent; }
         public GeneratorDbAccess() { }
@@ -19,7 +20,6 @@ namespace vPlugin.Sample
         public string NameUi => "Db Access Layer";
         public string DefaultSettingsName => throw new NotImplementedException();
         public string Description => "Description Db Access Layer";
-        public ITreeConfigNode Parent { get; set; }
         public vPluginLayerTypeEnum PluginGeneratorType => vPluginLayerTypeEnum.DbAccess;
         public void Init() { }
         public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string settings)

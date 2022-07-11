@@ -358,6 +358,8 @@ namespace vSharpStudio.ViewModels
                         {
                             ttt.UpdateListGenerators();
                             ttt.RestoreSettings();
+                            if (ttt.PluginGenerator != null)
+                                cfg._DicActiveAppProjectGenerators[ttt.Guid] = ttt.PluginGenerator;
                         }
                         // group plugins settings
                         tt.RestoreGroupSettings();

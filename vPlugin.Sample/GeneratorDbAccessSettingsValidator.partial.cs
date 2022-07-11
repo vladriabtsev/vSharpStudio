@@ -14,12 +14,12 @@ namespace vPlugin.Sample
         {
             this.RuleFor(p => p.AccessParam3).Must((p, y) =>
             {
-                if (string.IsNullOrEmpty(y))
+                if (y=="error")
                 {
                     return false;
                 }
                 return true;
-            }).WithMessage("Has to be not empty");
+            }).WithMessage("Has to be not equal 'error'");
         }
     }
 }

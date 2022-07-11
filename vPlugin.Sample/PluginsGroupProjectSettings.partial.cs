@@ -12,19 +12,21 @@ namespace vPlugin.Sample
 {
     public partial class PluginsGroupProjectSettings : IvPluginGroupSettings
     {
+        [BrowsableAttribute(false)]
+        public ITreeConfigNode Parent { get; set; }
         partial void OnInit()
         {
             this.Name = "PrjGrSet";
             this.Description = "vSharpStudio plugins group settings for projects";
             this.Version = "0.1";
+            this.IsGroupProjectParam1 = false;
         }
-        [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent { get; set; }
         [BrowsableAttribute(false)]
         public string Name { get; private set; }
         [BrowsableAttribute(false)]
         public string Version { get; private set; }
         public string Description { get; private set; }
+
         [BrowsableAttribute(false)]
         public string SettingsAsJson
         {

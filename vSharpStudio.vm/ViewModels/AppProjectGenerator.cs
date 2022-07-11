@@ -62,7 +62,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnConnStrChanged()
         {
-            if (this.PluginDbGenerator != null)
+            if (this.IsNotifying && this.PluginDbGenerator != null)
             {
                 this.DynamicMainConnStrSettings = this.PluginDbGenerator.GetConnectionStringMvvm(this.ConnStr);
             }
@@ -226,39 +226,41 @@ namespace vSharpStudio.vm.ViewModels
             cfg._DicActiveAppProjectGenerators.TryRemove(this.Guid);
             if (!string.IsNullOrEmpty(this.PluginGuid))
             {
-                var sln = (AppSolution)this.Parent.Parent;
-                if (!string.IsNullOrWhiteSpace(this.PluginGuid))
-                {
-                    var plg = cfg.DicPlugins[this.PluginGuid];
-                    //var groupSettings = plg.GetPluginGroupSolutionSettingsVmFromJson(null);
-                    //if (groupSettings != null)
-                    //{
-                    bool is_only = true;
-                    foreach (var t in sln.ListAppProjects)
-                    {
-                        foreach (var tt in t.ListAppProjectGenerators)
-                        {
-                            if (tt.Guid == this.Guid)
-                                continue;
-                            if (tt.PluginGeneratorGroupGuid == this.PluginGeneratorGroupGuid)
-                                is_only = false;
-                        }
-                    }
-                    if (is_only)
-                    {
-                        if (sln.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
-                            sln.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
-                        foreach (var t in sln.ListAppProjects)
-                        {
-                            if (t.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
-                                t.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
-                        }
-                    }
-                    //}
-                }
+                this.PluginGeneratorGuid = null;
             }
             cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
         }
+
+        private void RemoveGroupSettingsIfLast()
+        {
+            var sln = (AppSolution)this.Parent.Parent;
+            bool is_only_in_sln = true;
+            foreach (var t in sln.ListAppProjects)
+            {
+                bool is_only_in_prj = true;
+                foreach (var tt in t.ListAppProjectGenerators)
+                {
+                    if (tt.Guid == this.Guid)
+                        continue;
+                    if (tt.PluginGeneratorGroupGuid == this.PluginGeneratorGroupGuid)
+                    {
+                        is_only_in_prj = false;
+                        is_only_in_sln = false;
+                    }
+                }
+                if (is_only_in_prj)
+                {
+                    if (t.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
+                        t.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
+                }
+            }
+            if (is_only_in_sln)
+            {
+                if (sln.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
+                    sln.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
+            }
+        }
+
         partial void OnPluginGuidChanged()
         {
             if (!this.IsNotifying)
@@ -267,14 +269,14 @@ namespace vSharpStudio.vm.ViewModels
             this.PluginGeneratorGuid = string.Empty;
             this.GenFileName = string.Empty;
             UpdateListGenerators();
-            if (cfg.IsInitialized)
-            {
-                var nv = new ModelVisitorNodeGenSettings();
-                nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
-                {
-                    p.RemoveNodeAppGenSettings(this.Guid);
-                });
-            }
+            //if (cfg.IsInitialized)
+            //{
+            //    var nv = new ModelVisitorNodeGenSettings();
+            //    nv.NodeGenSettingsApplyAction(this.GetConfig(), (p) =>
+            //    {
+            //        p.RemoveNodeAppGenSettings(this.Guid);
+            //    });
+            //}
             //this.NotifyPropertyChanged(() => this.DynamicNodesSettings);
             if (!string.IsNullOrWhiteSpace(this.GenFileName))
                 prevGenFileName = this.GenFileName;
@@ -301,6 +303,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnPluginGeneratorGuidChanging(ref string to)
         {
+            //if (cfg.IsInitialized)
+            //{
             if (!this.IsNotifying)
                 return;
             if (cfg._DicActiveAppProjectGenerators.ContainsKey(this.Guid))
@@ -310,11 +314,14 @@ namespace vSharpStudio.vm.ViewModels
             {
                 p.RemoveNodeAppGenSettings(this.Guid);
             });
-            this.RemoveGroupSettingsIfLast();
+            if (!string.IsNullOrWhiteSpace(this.PluginGeneratorGroupGuid))
+            {
+                this.RemoveGroupSettingsIfLast();
+            }
             this.GeneratorSettings = string.Empty;
             this.DescriptionGenerator = string.Empty;
             //this.DicGenNodeSettings.TryRemove(this.Guid);
-            this.PluginGeneratorGuid = String.Empty;
+            //this.PluginGeneratorGuid = String.Empty;
             this.PluginGeneratorGroupGuid = String.Empty;
             cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
             this.DynamicGeneratorSettings = null;
@@ -332,6 +339,7 @@ namespace vSharpStudio.vm.ViewModels
             if (this.plugin == null)
                 this.plugin = cfg.DicPlugins[this.PluginGuid];
             this.RestoreSettings();
+            this.PluginGeneratorGroupGuid = this.PluginGenerator.GroupGeneratorsGuid;
             (this.AppProject as AppProject).RestoreGroupSettings(this.PluginGenerator);
             (this.AppProject.AppSolution as AppSolution).RestoreGroupSettings(this.PluginGenerator);
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
@@ -358,40 +366,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged()
         {
             HideProperties();
-        }
-        private void RemoveGroupSettingsIfLast()
-        {
-            if (string.IsNullOrEmpty(this.PluginGeneratorGroupGuid))
-                return;
-
-            var sln = (AppSolution)this.Parent.Parent;
-            var isThisIsLastGenInGroup = true;
-            foreach (var t in sln.ListAppProjects)
-            {
-                foreach (var tt in t.ListAppProjectGenerators)
-                {
-                    if (tt.Guid == this.Guid)
-                        continue;
-                    if (tt.PluginGeneratorGroupGuid == this.PluginGeneratorGroupGuid)
-                    {
-                        isThisIsLastGenInGroup = false;
-                        break;
-                    }
-                }
-                if (!isThisIsLastGenInGroup)
-                    break;
-            }
-            if (isThisIsLastGenInGroup)
-            {
-                if (sln.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
-                    sln.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
-                foreach (var t in sln.ListAppProjects)
-                {
-                    if (t.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
-                        t.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
-                }
-            }
-            this.PluginGeneratorGroupGuid = string.Empty;
         }
         public void RestoreSettings()
         {
