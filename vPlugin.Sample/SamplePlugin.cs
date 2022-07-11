@@ -36,11 +36,6 @@ namespace vPlugin.Sample
         public string Url { get; protected set; }
         public string Licence { get; protected set; }
 
-        public List<ValidationPluginMessage> ValidateOnSelection(IAppProject prj)
-        {
-            return new List<ValidationPluginMessage>();
-        }
-
         public List<IvPluginGenerator> ListGenerators { get; }
     }
 }

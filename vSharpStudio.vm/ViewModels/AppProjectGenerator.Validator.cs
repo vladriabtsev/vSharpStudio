@@ -88,15 +88,6 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.PluginGeneratorGuid)
                 .NotEmpty()
                 .WithMessage("Generator is not selected");
-            this.RuleFor(x => x.PluginGeneratorGuid)
-                .Custom((guid, cntx) =>
-                {
-                    if (string.IsNullOrWhiteSpace(guid))
-                        return;
-                    var pg = (AppProjectGenerator)cntx.InstanceToValidate;
-                    var lst = pg.PluginGenerator.ValidateOnSelection(pg.AppProject);
-                    AddValidationResults(cntx, lst);
-                });
             this.RuleFor(x => x.ConnStr)
                 .Custom((connStr, cntx) =>
                 {

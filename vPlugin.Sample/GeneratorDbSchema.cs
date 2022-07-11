@@ -112,15 +112,6 @@ namespace vPlugin.Sample
         {
             return new List<ValidationPluginMessage>();
         }
-        public List<ValidationPluginMessage> ValidateNode(ITreeConfigNode node, string guidAppPrjGen)
-        {
-            var res = new List<ValidationPluginMessage>();
-            return res;
-        }
-        public List<ValidationPluginMessage> ValidateOnSelection(IAppProject prj)
-        {
-            return new List<ValidationPluginMessage>();
-        }
         public IvPluginGroupSettings GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string settings)
         {
             var res = new PluginsGroupSolutionSettings();
