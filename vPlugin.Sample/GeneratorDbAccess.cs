@@ -27,7 +27,7 @@ namespace vPlugin.Sample
             var vm = new GeneratorDbAccessSettings();
             if (!string.IsNullOrWhiteSpace(settings))
             {
-                proto_generator_db_access_settings proto = proto_generator_db_access_settings.Parser.ParseJson(settings);
+                proto_generator_db_access_settings proto = proto_generator_db_access_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
                 vm = GeneratorDbAccessSettings.ConvertToVM(proto, vm);
             }
             vm.Parent = parent;
@@ -38,7 +38,7 @@ namespace vPlugin.Sample
             var vm = new GeneratorDbAccessNodeSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
-                proto_generator_db_access_node_settings proto = proto_generator_db_access_node_settings.Parser.ParseJson(settings);
+                proto_generator_db_access_node_settings proto = proto_generator_db_access_node_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
                 vm = GeneratorDbAccessNodeSettings.ConvertToVM(proto, vm);
             }
             return vm;
@@ -82,7 +82,7 @@ namespace vPlugin.Sample
             var res = new PluginsGroupSolutionSettings();
             if (!string.IsNullOrWhiteSpace(settings))
             {
-                var proto = proto_plugins_group_solution_settings.Parser.ParseJson(settings);
+                var proto = proto_plugins_group_solution_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
                 res = PluginsGroupSolutionSettings.ConvertToVM(proto, res);
             }
             res.Parent = parent;
@@ -93,7 +93,7 @@ namespace vPlugin.Sample
             var res = new PluginsGroupProjectSettings();
             if (!string.IsNullOrWhiteSpace(settings))
             {
-                var proto = proto_plugins_group_project_settings.Parser.ParseJson(settings);
+                var proto = proto_plugins_group_project_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
                 res = PluginsGroupProjectSettings.ConvertToVM(proto, res);
             }
             res.Parent = parent;

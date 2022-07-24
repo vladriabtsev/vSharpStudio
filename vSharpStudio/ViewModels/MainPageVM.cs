@@ -690,7 +690,7 @@ namespace vSharpStudio.ViewModels
         private void CompareSaved(string json)
         {
             var model = new Config();
-            var pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseJson(json);
+            var pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseJson(json);
             Config.ConvertToVM(pconfig_history.CurrentConfig, model);
             // https://github.com/GregFinzer/Compare-Net-Objects
             KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();

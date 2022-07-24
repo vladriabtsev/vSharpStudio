@@ -127,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
             : this((ITreeConfigNode)null)
         {
             this.OnInitBegin();
-            var pconfig = Proto.Config.proto_config.Parser.ParseJson(configJson);
+            var pconfig = Proto.Config.proto_config.Parser.WithDiscardUnknownFields(true).ParseJson(configJson);
             Config.ConvertToVM(pconfig, this);
         }
 

@@ -40,7 +40,7 @@ namespace vPlugin.Sample
             this.Parent = parent;
             if (string.IsNullOrWhiteSpace(settings))
                 return new PluginsGroupSolutionSettings();
-            var proto = proto_plugins_group_solution_settings.Parser.ParseJson(settings);
+            var proto = proto_plugins_group_solution_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
             return PluginsGroupSolutionSettings.ConvertToVM(proto, new PluginsGroupSolutionSettings());
         }
         public ValidationResult ValidateSettings()

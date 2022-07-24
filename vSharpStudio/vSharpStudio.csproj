@@ -1,118 +1,119 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net6.0-windows</TargetFrameworks>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <AssemblyTitle>vSharpStudio</AssemblyTitle>
-    <Product>vSharpStudio</Product>
-    <Copyright>Copyright ©  2019</Copyright>
-    <AssemblyTitle>vSharpStudio</AssemblyTitle>
-    <Product>vSharpStudio</Product>
-    <Copyright>Copyright ©  2019</Copyright>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <LangVersion>latest</LangVersion>
-    <DefineConstants>VSHARPSTUDIO</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Migration\ConfigToModelVisitor.cs" />
-    <Compile Remove="Migration\DbMigration.cs" />
-    <Compile Remove="start\OperationReporter.cs" />
-    <Compile Remove="start\StartServices.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="icons\SettingsFile_16x.png" />
-    <None Remove="icons\Settings_16x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\common\wpf\vSharpStudio.std\LoggerExt.cs" Link="ViewModels\LoggerExt.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Update="Controls\CollectionFromCollection.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
-    <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj" />
-    <ProjectReference Include="..\ext\UndoFramework\UndoFramework.csproj" />
-    <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
-    <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
-    <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="start\" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-    <!--<PackageReference Include="System.IO.FileSystem.Primitives" Version="4.1.0" />-->
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="CompareNETObjects" Version="4.77.0" />
-    <PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <!--<PackageReference Include="GitVersionTask" Version="5.3.7">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <!--<Nullable>enable</Nullable>-->
+        <TargetFrameworks>net6.0-windows</TargetFrameworks>
+        <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <AssemblyTitle>vSharpStudio</AssemblyTitle>
+        <Product>vSharpStudio</Product>
+        <Copyright>Copyright ©  2019</Copyright>
+        <AssemblyTitle>vSharpStudio</AssemblyTitle>
+        <Product>vSharpStudio</Product>
+        <Copyright>Copyright ©  2019</Copyright>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <OutputPath>bin\$(Configuration)\</OutputPath>
+        <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugType>full</DebugType>
+        <LangVersion>latest</LangVersion>
+        <DefineConstants>VSHARPSTUDIO</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>pdbonly</DebugType>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Remove="Migration\ConfigToModelVisitor.cs" />
+        <Compile Remove="Migration\DbMigration.cs" />
+        <Compile Remove="start\OperationReporter.cs" />
+        <Compile Remove="start\StartServices.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Remove="icons\SettingsFile_16x.png" />
+        <None Remove="icons\Settings_16x.png" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\common\wpf\vSharpStudio.std\LoggerExt.cs" Link="ViewModels\LoggerExt.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Properties\Settings.Designer.cs">
+            <DesignTimeSharedInput>True</DesignTimeSharedInput>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Settings.settings</DependentUpon>
+        </Compile>
+        <Compile Update="Controls\CollectionFromCollection.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
+        <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj" />
+        <ProjectReference Include="..\ext\UndoFramework\UndoFramework.csproj" />
+        <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
+        <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
+        <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="start\" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+        <!--<PackageReference Include="System.IO.FileSystem.Primitives" Version="4.1.0" />-->
+    </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="CompareNETObjects" Version="4.77.0" />
+        <PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <!--<PackageReference Include="GitVersionTask" Version="5.3.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>-->
-    <PackageReference Include="Microsoft.Build.Framework" Version="17.2.0" />
-    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.2.0" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.2.32">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-    <PackageReference Include="System.Runtime.Handles" Version="4.3.0" />
-    <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
-    <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.2.0" />
-    <!--<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />-->
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.2.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.2.0" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="icons\SettingsFile_16x.png" />
-    <Resource Include="icons\Settings_16x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Update="vSharpStudio Debug.licence.rtf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Controls\CollectionFromCollection.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
+        <PackageReference Include="Microsoft.Build.Framework" Version="17.2.0" />
+        <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.2.0" />
+        <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+        <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.2.32">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+        <PackageReference Include="System.Runtime.Handles" Version="4.3.0" />
+        <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
+        <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis" Version="4.2.0" />
+        <!--<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />-->
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.2.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.2.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.2.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.2.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.2.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.2.0" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Resource Include="icons\SettingsFile_16x.png" />
+        <Resource Include="icons\Settings_16x.png" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="Properties\Settings.settings">
+            <Generator>SettingsSingleFileGenerator</Generator>
+            <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+        </None>
+        <None Update="vSharpStudio Debug.licence.rtf">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <Page Update="Controls\CollectionFromCollection.xaml">
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+    </ItemGroup>
 </Project>

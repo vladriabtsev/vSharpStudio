@@ -42,7 +42,7 @@ namespace vPlugin.Sample
             this.Parent = parent;
             if (string.IsNullOrWhiteSpace(settings))
                 return new PluginsGroupProjectSettings();
-            var proto = proto_plugins_group_project_settings.Parser.ParseJson(settings);
+            var proto = proto_plugins_group_project_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
             return PluginsGroupProjectSettings.ConvertToVM(proto, new PluginsGroupProjectSettings());
         }
         public ValidationResult ValidateSettings()
