@@ -134,6 +134,7 @@ namespace vSharpStudio.vm.ViewModels
 #else
                 this._RelativeAppProjectPath = Path.GetRelativePath(path, this._RelativeAppProjectPath);
 #endif
+                this.Name = Path.GetFileName(this._RelativeAppProjectPath);
             }
         }
         public AppProjectGenerator AddGenerator(string name, string pluginGuid, string generatorGuid, string outFile, string generationPath = null)

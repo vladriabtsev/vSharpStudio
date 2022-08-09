@@ -73,8 +73,11 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var nds = (IGetNodeSetting)node;
                         var nsettings = nds.GetSettings(ttt.Guid);
-                        dic_apgs[ttt.Name] = nsettings;
-                        SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, nsettings.GetType(), ttt.NameUi, ttt.Description);
+                        if (nsettings != null)
+                        {
+                            dic_apgs[ttt.Name] = nsettings;
+                            SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, nsettings.GetType(), ttt.NameUi, ttt.Description);
+                        }
                     }
                 }
             }

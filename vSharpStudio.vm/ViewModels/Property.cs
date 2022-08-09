@@ -56,6 +56,7 @@ namespace vSharpStudio.vm.ViewModels
             this.MinLengthRequirement = "";
             this.MaxLengthRequirement = "";
             this.RangeValuesRequirementStr = "";
+            this.LinesOnScreen = 1;
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;
             this.UpdateVisibility();
@@ -475,7 +476,23 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        partial void OnIsStartNewColumnChanged()
+        partial void OnIsStopTabControlChanged()
+        {
+            this.NotifyPropertyChanged(() => this.NodeNameDecorations);
+        }
+        partial void OnIsStartNewTabControlChanged()
+        {
+            this.NotifyPropertyChanged(() => this.NodeNameDecorations);
+        }
+        partial void OnTabNameChanged()
+        {
+            this.NotifyPropertyChanged(() => this.NodeNameDecorations);
+        }
+        //partial void OnIsTryAttachChanged()
+        //{
+        //    this.NotifyPropertyChanged(() => this.NodeNameDecorations);
+        //}
+        partial void OnIsStartNewRowChanged()
         {
             this.NotifyPropertyChanged(() => this.NodeNameDecorations);
         }

@@ -54,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<Detail> Children { get { return this.ListDetails; } }
         partial void OnInit()
         {
-            this._Name = "Tabs";
+            this._Name = "Details";
             this.IsEditable = false;
             Init();
         }

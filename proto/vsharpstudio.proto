@@ -861,6 +861,15 @@ message proto_detail {
     // @attr [BrowsableAttribute(false)]
     string property_version_guid = 21;
 
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("New Tab Control")]
+    // @attr [Description("Start new tab control as current control")]
+    bool is_start_new_tab_control = 26;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Stop Tab Control")]
+    // @attr [Description("Stop using tab control for layout")]
+    bool is_stop_tab_control = 27;
+
     // @attr [BrowsableAttribute(false)]
     string property_ref_parent_guid = 65;
     // @attr [BrowsableAttribute(false)]
@@ -894,6 +903,7 @@ message proto_group_list_properties {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_property {
+    reserved 21; // bool
     // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
@@ -936,18 +946,32 @@ message proto_property {
     // @attr [DisplayName("Time accuracy")]
     // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
     proto_enum_time_accuracy_type accuracy_for_time = 20;
-    // @attr [PropertyOrderAttribute(37)]
-    // @attr [DisplayName("New UI column")]
-    // @attr [Description("New UI column will start from this property")]
-    bool is_start_new_column = 21;
-    // @attr [PropertyOrderAttribute(38)]
+
+    // @attr [Category("Auto Layout")]
     // @attr [DisplayName("UI attach")]
     // @attr [Description("UI engine will try put this field on same line as previous field")]
     bool is_try_attach = 22;
-    // @attr [PropertyOrderAttribute(39)]
+    // @attr [Category("Auto Layout")]
     // @attr [DisplayName("UI lines")]
     // @attr [Description("Lines on screen for edit box")]
     int32 lines_on_screen = 23;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("New UI row")]
+    // @attr [Description("Start new UI row for this property")]
+    bool is_start_new_row = 24;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Tab Name")]
+    // @attr [Description("If not empty, then start new tab in tab control. If empty, then continue adding fields in current control")]
+    string tab_name = 25;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("New Tab Control")]
+    // @attr [Description("Start new tab control as current control")]
+    bool is_start_new_tab_control = 26;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Stop Tab Control")]
+    // @attr [Description("Stop using tab control for layout")]
+    bool is_stop_tab_control = 27;
+
     // Protobuf field position
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]

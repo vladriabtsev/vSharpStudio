@@ -2205,6 +2205,26 @@
               "defaultValue": ""
             },
             {
+              "name": "is_start_new_tab_control",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"New Tab Control\")]\n@attr [Description(\"Start new tab control as current control\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_stop_tab_control",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Stop Tab Control\")]\n@attr [Description(\"Stop using tab control for layout\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "property_ref_parent_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -5886,18 +5906,8 @@
               "defaultValue": ""
             },
             {
-              "name": "is_start_new_column",
-              "description": "@attr [PropertyOrderAttribute(37)]\n@attr [DisplayName(\"New UI column\")]\n@attr [Description(\"New UI column will start from this property\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "is_try_attach",
-              "description": "@attr [PropertyOrderAttribute(38)]\n@attr [DisplayName(\"UI attach\")]\n@attr [Description(\"UI engine will try put this field on same line as previous field\")]",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"UI attach\")]\n@attr [Description(\"UI engine will try put this field on same line as previous field\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -5907,11 +5917,51 @@
             },
             {
               "name": "lines_on_screen",
-              "description": "@attr [PropertyOrderAttribute(39)]\n@attr [DisplayName(\"UI lines\")]\n@attr [Description(\"Lines on screen for edit box\")]",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"UI lines\")]\n@attr [Description(\"Lines on screen for edit box\")]",
               "label": "",
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_start_new_row",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"New UI row\")]\n@attr [Description(\"Start new UI row for this property\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tab_name",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Tab Name\")]\n@attr [Description(\"If not empty, then start new tab in tab control. If empty, then continue adding fields in current control\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_start_new_tab_control",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"New Tab Control\")]\n@attr [Description(\"Start new tab control as current control\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_stop_tab_control",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Stop Tab Control\")]\n@attr [Description(\"Stop using tab control for layout\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },

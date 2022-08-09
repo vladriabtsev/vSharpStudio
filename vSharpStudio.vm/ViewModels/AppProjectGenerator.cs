@@ -120,8 +120,18 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (this.PluginGenerator is IvPluginDbGenerator)
                     {
+                        //if (this.PluginGenerator.Guid ==)
                         var db_gen = this.PluginGenerator as IvPluginDbGenerator;
-                        this._DynamicMainConnStrSettings = db_gen.GetConnectionStringMvvm(this.ConnStr);
+                        try
+                        {
+                            this._DynamicMainConnStrSettings = db_gen.GetConnectionStringMvvm(this.ConnStr);
+                        }
+                        catch (Exception ex)
+                        {
+                            var res = MessageBox.Show($"Can't create connection string VM.\nError: {ex.Message}\nChoose another provider!", "Error", System.Windows.MessageBoxButton.OKCancel);
+                            this._DynamicMainConnStrSettings = null;
+                            return this._DynamicMainConnStrSettings;
+                        }
                         this._DynamicMainConnStrSettings.PropertyChanged += _DynamicMainConnStrSettings_PropertyChanged;
                     }
                     else

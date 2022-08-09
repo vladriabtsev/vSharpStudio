@@ -624,6 +624,152 @@ namespace vSharpStudio.vm.ViewModels
             });
             #endregion Loose data
 
+            #region Auto UI
+            this.RuleFor(x => x.IsStopTabControl).Custom((isStopTabControl, cntx) =>
+            {
+                if (!isStopTabControl)
+                    return;
+                var p = (Property)cntx.InstanceToValidate;
+                var grp = p.Parent as GroupListProperties;
+                var indx = grp.ListProperties.IndexOf(p);
+                if (indx == 0)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStopTabControl),
+                        $"Can't stop using tab control when it is first field");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+                var is_tab = false;
+                for (int i = indx-1; i>=0; i--)
+                {
+                    p = grp.ListProperties[i];
+                    if (p.IsStartNewTabControl || !string.IsNullOrWhiteSpace(p.TabName))
+                    {
+                        is_tab = true;
+                        break;
+                    }
+                }
+                if (!is_tab)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStopTabControl),
+                        $"Can't stop using tab control when there are no current tab control");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+            });
+            this.RuleFor(x => x.TabName).Custom((tabName, cntx) =>
+            {
+                if (string.IsNullOrWhiteSpace(tabName))
+                    return;
+                var p = (Property)cntx.InstanceToValidate;
+                if (p.IsTryAttach)
+                {
+                    var vf = new ValidationFailure(nameof(p.TabName),
+                        $"Can't start new tab when attached to previous field");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+            });
+            this.RuleFor(x => x.IsStartNewRow).Custom((isStartNewRow, cntx) =>
+            {
+                if (!isStartNewRow)
+                    return;
+                var p = (Property)cntx.InstanceToValidate;
+                var grp = p.Parent as GroupListProperties;
+                var indx = grp.ListProperties.IndexOf(p);
+                if (indx == 0)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStartNewRow),
+                        $"Can't start new row when it is first field. It is new row anyway");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+                if (p.IsTryAttach)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStartNewRow),
+                        $"Can't start new row when attached to previous field");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+            });
+            this.RuleFor(x => x.IsStartNewTabControl).Custom((isStartNewTabControl, cntx) =>
+            {
+                if (!isStartNewTabControl)
+                    return;
+                var p = (Property)cntx.InstanceToValidate;
+                if (p.IsTryAttach)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
+                        $"Can't start new tab control when property must be attached to previous field");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+                if (p.IsStopTabControl)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
+                        $"Can't start new tab control and stop at the same property");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+                if (p.IsStartNewRow)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
+                        $"Can't start new tab control and start new row the same property");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+                if (string.IsNullOrWhiteSpace(p.TabName))
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
+                        $"Can't start new tab control without tab name");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+            });
+            this.RuleFor(x => x.IsTryAttach).Custom((isTryAttach, cntx) =>
+            {
+                if (!isTryAttach)
+                    return;
+                var p = (Property)cntx.InstanceToValidate;
+                var grp = p.Parent as GroupListProperties;
+                var indx = grp.ListProperties.IndexOf(p);
+                if (indx == 0)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsTryAttach),
+                        $"Can't be attached to previous property when it is a first field");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+                if (p.IsStartNewTabControl)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsTryAttach),
+                        $"Can't be attached to previous property when must be placed on new tab control");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+                if (p.IsStopTabControl)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsTryAttach),
+                        $"Can't be attached to previous property when must be placed without tab control which was used for previous field");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+                if (p.IsStartNewRow)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsTryAttach),
+                        $"Can't be attached to previous property when must be placed on an next row");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+                if (!string.IsNullOrWhiteSpace(p.TabName))
+                {
+                    var vf = new ValidationFailure(nameof(p.IsTryAttach),
+                        $"Can't be attached to previous property when must be placed on new TAB page");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+            });
+            #endregion Auto UI
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Catalog c, IGroupListCatalogs gc)
         {

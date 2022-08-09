@@ -10,6 +10,7 @@
     <Converters:ConverterIconNameToResource x:Key="ConverterIconNameToResource"/>
     <Converters:ConverterCountToWidth x:Key="ConverterCountToWidth"/>
     <Converters:ConverterBoolToVisible x:Key="ConverterBoolToVisible"/>
+    <Converters:ConverterStringToVisible x:Key="ConverterStringToVisible"/>
     <Converters:ConverterBoolToCollapsed x:Key="ConverterBoolToCollapsed"/>
     <vm:ConverterNodeIconResource x:Key="ConverterNodeIconResource"/>
     <vm:ConverterIsDeletedToDecoration x:Key="ConverterIsDeletedToDecoration"/>
@@ -26,11 +27,22 @@
                 </Viewbox>
             </Grid>
             <TextBlock Text="{Binding Name}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" Margin="2,0,0,2" />
+            <StackPanel Orientation="Horizontal" Visibility="{Binding TabName, Converter={StaticResource ConverterStringToVisible}, Mode=OneWay}">
+                <!--PreviewTab-->
+                <ContentControl Template="{StaticResource iconTab}" />
+                <TextBlock Text="{Binding TabName}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" />
+            </StackPanel>
+            <!--AssociationLine, Export, Link-->
             <ContentControl Template="{StaticResource iconAttach}" Visibility="{Binding IsTryAttach, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}" />
-            <!--<Viewbox Height="20" Width="16" Visibility="{Binding IsTryAttach, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
-                <ContentControl Template="{StaticResource iconAttach}" />
-            </Viewbox>-->
+            <!--GoToCurrentLineLocation, GoToNextInList, Return-->
+            <ContentControl Template="{StaticResource iconReturn}"  Visibility="{Binding IsStartNewRow, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}"/>
+            <!--InsertLayer, MenuItem, NewTable, Tab-->
+            <ContentControl Template="{StaticResource iconTabPage}" Visibility="{Binding IsStartNewTabControl, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}"/>
+            <ContentControl Template="{StaticResource iconDock}" Visibility="{Binding IsStopTabControl, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}"/>
             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                <!--AddAttachment, AddControl, AddField, AddLayoutItem, AssociationLine, CollapsiblePanel, CSTablet
+                DependencyMatrix, DetailDataView, DisassemblyWindow, Dock, DockPanel, DropdownControl, Export,
+                GoToCurrentLineLocation, GoToNextInList, InsertLayer, Link, MenuItem, NewTable, PreviewTab, Tab, TabPage, Table, TreeView, WorkItemTreeView-->
                 <Viewbox Height="7" Width="7" VerticalAlignment="Top" Visibility="{Binding IsNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
                     <ContentControl Template="{StaticResource iconAdd}" />
                 </Viewbox>
@@ -69,7 +81,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>
-    
+
     <!--<HierarchicalDataTemplate DataType="{x:Type dat:GroupListBaseConfigLinks}" ItemsSource="{Binding ListBaseConfigLinks}">
         <StackPanel Orientation="Horizontal">
             <Grid>
@@ -523,7 +535,7 @@
             </StackPanel>
         </StackPanel>
     </HierarchicalDataTemplate>-->
-    
+
     <!--<HierarchicalDataTemplate DataType="{x:Type dat:GroupListAppSolutions}" ItemsSource="{Binding ListAppSolutions}">
         <StackPanel Orientation="Horizontal">
             <Grid>

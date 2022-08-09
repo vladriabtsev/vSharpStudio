@@ -13,7 +13,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} details:{GroupDetails.ListDetails.Count,nq}")]
     public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
-        public static readonly string DefaultName = "Tab";
+        public static readonly string DefaultName = "Detail";
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()

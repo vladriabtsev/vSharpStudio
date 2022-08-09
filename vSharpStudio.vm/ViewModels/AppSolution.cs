@@ -98,7 +98,10 @@ namespace vSharpStudio.vm.ViewModels
             if (this._RelativeAppSolutionPath != null &&
                 this._RelativeAppSolutionPath.Length > 1 &&
                 this._RelativeAppSolutionPath[1] == ':')
+            {
                 this._RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(this._RelativeAppSolutionPath);
+                this.Name = Path.GetFileName(this._RelativeAppSolutionPath);
+            }
         }
         public string GetSolutionPath()
         {

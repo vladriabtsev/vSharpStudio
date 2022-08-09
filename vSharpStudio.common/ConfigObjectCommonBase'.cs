@@ -213,7 +213,7 @@
                     var myCollection = new System.Windows.TextDecorationCollection();
                     if (this is IProperty pp)
                     {
-                        if (pp.IsStartNewColumn)
+                        if (pp.IsStartNewTabControl || pp.IsStopTabControl || !string.IsNullOrWhiteSpace(pp.TabName))
                         {
                             myCollection.Add(System.Windows.TextDecorations.OverLine);
                         }
@@ -223,10 +223,10 @@
                     {
                         myCollection.Add(System.Windows.TextDecorations.Strikethrough);
                     }
-                    if (p.IsNew)
-                    {
-                        //myCollection.Add(System.Windows.TextDecorations.Underline);
-                    }
+                    //if (p.IsNew)
+                    //{
+                    //    myCollection.Add(System.Windows.TextDecorations.Underline);
+                    //}
                     if (myCollection.Count > 0)
                         return myCollection;
                     //if (p.IsNew || p.IsMarkedForDeletion)

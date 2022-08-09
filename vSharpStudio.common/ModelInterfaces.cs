@@ -487,6 +487,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	int ShortId { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
+    	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
+    	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 51
     	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
@@ -524,9 +526,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string MinLengthRequirement { get; } // ModelInterfaces.tt Line: 51
     	string MaxLengthRequirement { get; } // ModelInterfaces.tt Line: 51
     	EnumTimeAccuracyType AccuracyForTime { get; } // ModelInterfaces.tt Line: 51
-    	bool IsStartNewColumn { get; } // ModelInterfaces.tt Line: 51
     	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 51
     	int LinesOnScreen { get; } // ModelInterfaces.tt Line: 51
+    	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 51
+    	string TabName { get; } // ModelInterfaces.tt Line: 51
+    	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
+    	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position
