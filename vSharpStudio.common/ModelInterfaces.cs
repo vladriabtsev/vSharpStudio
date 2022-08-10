@@ -105,17 +105,15 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string ConfigPath { get; } // ModelInterfaces.tt Line: 51
     }
     
-    public partial interface IGroupListPlugins : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IGroupListPlugins // ModelInterfaces.tt Line: 29
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	IReadOnlyList<IPlugin> ListPlugins { get; } // ModelInterfaces.tt Line: 44
     	IPlugin this[int index] { get; }
     	int Count();
     }
     
-    public partial interface IPlugin : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IPlugin // ModelInterfaces.tt Line: 29
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string Version { get; } // ModelInterfaces.tt Line: 51
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGenerator> ListGenerators { get; } // ModelInterfaces.tt Line: 44
@@ -123,9 +121,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     }
     
-    public partial interface IPluginGenerator : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IPluginGenerator // ModelInterfaces.tt Line: 29
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
@@ -156,9 +153,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IConfig PrevStableConfig { get; } // ModelInterfaces.tt Line: 55
     }
     
-    public partial interface IGroupListBaseConfigLinks : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IGroupListBaseConfigLinks // ModelInterfaces.tt Line: 29
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IBaseConfigLink> ListBaseConfigLinks { get; } // ModelInterfaces.tt Line: 44
     	IBaseConfigLink this[int index] { get; }
@@ -166,9 +162,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface IBaseConfigLink : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IBaseConfigLink // ModelInterfaces.tt Line: 29
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	IConfig ConfigBase { get; } // ModelInterfaces.tt Line: 55
     	string RelativeConfigFilePath { get; } // ModelInterfaces.tt Line: 51
@@ -217,9 +212,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Settings { get; } // ModelInterfaces.tt Line: 51
     }
     
-    public partial interface IGroupListAppSolutions : IGuid, IName // ModelInterfaces.tt Line: 29
+    public partial interface IGroupListAppSolutions // ModelInterfaces.tt Line: 29
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
