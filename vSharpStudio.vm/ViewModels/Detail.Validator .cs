@@ -46,6 +46,55 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             });
+            #region Auto UI
+            this.RuleFor(x => x.IsStopTabControl).Custom((isStopTabControl, cntx) =>
+            {
+                if (!isStopTabControl)
+                    return;
+                var p = (Detail)cntx.InstanceToValidate;
+                var grp = p.Parent as GroupListDetails;
+                var indx = grp.ListDetails.IndexOf(p);
+                if (indx == 0)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStopTabControl),
+                        $"Can't stop using tab control when it is first field");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                    return;
+                }
+                var is_tab = false;
+                for (int i = indx - 1; i >= 0; i--)
+                {
+                    p = grp.ListDetails[i];
+                    if (p.IsStartNewTabControl)
+                    {
+                        is_tab = true;
+                        break;
+                    }
+                }
+                if (!is_tab)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStopTabControl),
+                        $"Can't stop using tab control when there are no current tab control");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                    return;
+                }
+            });
+            this.RuleFor(x => x.IsStartNewTabControl).Custom((isStartNewTabControl, cntx) =>
+            {
+                if (!isStartNewTabControl)
+                    return;
+                var p = (Detail)cntx.InstanceToValidate;
+                if (p.IsStopTabControl)
+                {
+                    var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
+                        $"Can't start new tab control and stop at the same time");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
+                }
+            });
+            #endregion Auto UI
         }
     }
 }

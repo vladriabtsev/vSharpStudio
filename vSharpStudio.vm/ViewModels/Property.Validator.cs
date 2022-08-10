@@ -638,6 +638,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't stop using tab control when it is first field");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
                 var is_tab = false;
                 for (int i = indx-1; i>=0; i--)
@@ -655,6 +656,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't stop using tab control when there are no current tab control");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
             });
             this.RuleFor(x => x.TabName).Custom((tabName, cntx) =>
@@ -668,6 +670,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't start new tab when attached to previous field");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
             });
             this.RuleFor(x => x.IsStartNewRow).Custom((isStartNewRow, cntx) =>
@@ -683,6 +686,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't start new row when it is first field. It is new row anyway");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
                 if (p.IsTryAttach)
                 {
@@ -690,6 +694,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't start new row when attached to previous field");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
             });
             this.RuleFor(x => x.IsStartNewTabControl).Custom((isStartNewTabControl, cntx) =>
@@ -703,20 +708,23 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't start new tab control when property must be attached to previous field");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
                 if (p.IsStopTabControl)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
-                        $"Can't start new tab control and stop at the same property");
+                        $"Can't start new tab control and stop at the same time");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
                 if (p.IsStartNewRow)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStartNewTabControl),
-                        $"Can't start new tab control and start new row the same property");
+                        $"Can't start new tab control and start new row the same time");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
                 if (string.IsNullOrWhiteSpace(p.TabName))
                 {
@@ -724,6 +732,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't start new tab control without tab name");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
             });
             this.RuleFor(x => x.IsTryAttach).Custom((isTryAttach, cntx) =>
@@ -739,6 +748,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't be attached to previous property when it is a first field");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
                 if (p.IsStartNewTabControl)
                 {
@@ -746,6 +756,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't be attached to previous property when must be placed on new tab control");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
                 if (p.IsStopTabControl)
                 {
@@ -753,6 +764,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't be attached to previous property when must be placed without tab control which was used for previous field");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
                 if (p.IsStartNewRow)
                 {
@@ -760,6 +772,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't be attached to previous property when must be placed on an next row");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
                 if (!string.IsNullOrWhiteSpace(p.TabName))
                 {
@@ -767,6 +780,7 @@ namespace vSharpStudio.vm.ViewModels
                         $"Can't be attached to previous property when must be placed on new TAB page");
                     vf.Severity = Severity.Error;
                     cntx.AddFailure(vf);
+                    return;
                 }
             });
             #endregion Auto UI
