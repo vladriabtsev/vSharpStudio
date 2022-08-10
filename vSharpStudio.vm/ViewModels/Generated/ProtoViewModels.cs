@@ -4051,7 +4051,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // Class.tt Line: 6
-    public partial class AppSolution : ConfigObjectVmGenSettings<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 7
+    public partial class AppSolution : ConfigObjectVmBase<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 7
     {
         #region CTOR
         public AppSolution() : this(default(ITreeConfigNode))
@@ -4106,8 +4106,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListGroupGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListGroupGeneratorsSettings.Add(PluginGroupGeneratorsSettings.Clone(vm, (PluginGroupGeneratorsSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 70
-                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4246,9 +4244,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGroupGeneratorsSettings.ConvertToVM(t, new PluginGroupGeneratorsSettings(vm)); // Clone.tt Line: 204
                 vm.ListGroupGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4550,7 +4545,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Properties
     }
     public partial class AppProjectValidator : ValidatorBase<AppProject, AppProjectValidator> { } // Class.tt Line: 6
-    public partial class AppProject : ConfigObjectVmGenSettings<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 7
+    public partial class AppProject : ConfigObjectVmBase<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 7
     {
         #region CTOR
         public AppProject() : this(default(ITreeConfigNode))
@@ -4604,8 +4599,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListGroupGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListGroupGeneratorsSettings.Add(PluginGroupGeneratorsSettings.Clone(vm, (PluginGroupGeneratorsSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 70
-                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4742,9 +4735,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGroupGeneratorsSettings.ConvertToVM(t, new PluginGroupGeneratorsSettings(vm)); // Clone.tt Line: 204
                 vm.ListGroupGeneratorsSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -5507,7 +5497,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     ///////////////////////////////////////////////////
     /// Application project generator
     ///////////////////////////////////////////////////
-    public partial class AppProjectGenerator : ConfigObjectVmGenSettings<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 7
+    public partial class AppProjectGenerator : ConfigObjectVmBase<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 7
     {
         #region CTOR
         public AppProjectGenerator() : this(default(ITreeConfigNode))
@@ -5560,8 +5550,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 65
             vm.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 65
             vm.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 65
-            if (isNewGuid) // Clone.tt Line: 70
-                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -5641,9 +5629,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ConnStrToPrevStable = m.ConnStrToPrevStable; // Clone.tt Line: 221
             vm.IsGenerateSqlSqriptToUpdatePrevStable = m.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 221
             vm.GenScriptFileName = m.GenScriptFileName; // Clone.tt Line: 221
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -24623,12 +24608,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void VisitEnd(Config p);
         void Visit(GroupListAppSolutions p);
         void VisitEnd(GroupListAppSolutions p);
-        void Visit(AppSolution p);
-        void VisitEnd(AppSolution p);
-        void Visit(AppProject p);
-        void VisitEnd(AppProject p);
-        void Visit(AppProjectGenerator p);
-        void VisitEnd(AppProjectGenerator p);
         void Visit(Model p);
         void VisitEnd(Model p);
         void Visit(GroupListCommon p);

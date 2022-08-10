@@ -168,12 +168,8 @@ namespace vSharpStudio.Unit
 
             gen.Validate();
 
-            //Assert.AreEqual(1, gen..DicPluginsGroupSettings.Count);
-            //Assert.AreEqual(0, gen.DicGenNodeSettings.Count);
             Assert.AreEqual(1, prj.DicPluginsGroupSettings.Count);
-            Assert.AreEqual(0, prj.DicGenNodeSettings.Count);
             Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count);
-            Assert.AreEqual(0, sln.DicGenNodeSettings.Count);
 
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
@@ -216,12 +212,8 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
             Assert.AreEqual(prms.AccessParam4, prms2.AccessParam4);
 
-            //Assert.AreEqual(1, gen..DicPluginsGroupSettings.Count);
-            //Assert.AreEqual(0, gen2.DicGenNodeSettings.Count);
             Assert.AreEqual(1, prj2.DicPluginsGroupSettings.Count);
-            Assert.AreEqual(0, prj2.DicGenNodeSettings.Count);
             Assert.AreEqual(1, sln2.DicPluginsGroupSettings.Count);
-            Assert.AreEqual(0, sln2.DicGenNodeSettings.Count);
 
             #region DicDiffResult
             // Check what was not restored after loading

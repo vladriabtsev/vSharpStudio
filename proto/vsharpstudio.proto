@@ -291,6 +291,7 @@ message proto_plugin_group_generators_settings {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 }
+// @base ConfigObjectVmBase
 message proto_app_solution {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -351,6 +352,7 @@ message proto_app_solution {
     proto_plugins_group plugins_group3 = 13;
     */
 }
+// @base ConfigObjectVmBase
 message proto_app_project {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -420,6 +422,7 @@ message proto_plugin_generator_settings {
     string settings = 5; 
 }
 // Application project generator
+// @base ConfigObjectVmBase
 message proto_app_project_generator {
     // @attr [ReadOnly(true)]
     string guid = 1;
