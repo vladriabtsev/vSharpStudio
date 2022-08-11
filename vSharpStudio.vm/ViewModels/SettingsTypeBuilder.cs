@@ -22,44 +22,75 @@ namespace vSharpStudio.vm.ViewModels
             ConstructorBuilder constructor = tbSol.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
             Config cfg = (Config)node.GetConfig();
             var dic_sols = new Dictionary<string, object>();
+            bool is_projects = false;
+            bool is_generators = false;
+            {
+                var sln_with_gen = 0;
+                var prj_with_gen = 0;
+                var with_gen = 0;
+                foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
+                {
+                    var j = 0;
+                    foreach (var tt in t.ListAppProjects)
+                    {
+                        if (tt.ListAppProjectGenerators.Count > 0)
+                        {
+                            prj_with_gen++;
+                            with_gen++;
+                            j++;
+                        }
+                    }
+                    if (j > 0)
+                        sln_with_gen++;
+                }
+                if (sln_with_gen > 1) { }
+                else if (prj_with_gen > 1)
+                    is_projects = true;
+                else if (with_gen > 0)
+                    is_generators = true;
+                else
+                    return null;
+            }
             foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
             {
-                TypeBuilder tbPrj = SettingsTypeBuilder.GetTypeBuilder();  // type builder for projects
+                TypeBuilder tbPrjs = SettingsTypeBuilder.GetTypeBuilder();  // type builder for projects
                 var dic_prjs = new Dictionary<string, object>();
                 foreach (var tt in t.ListAppProjects)
                 {
                     Dictionary<string, object> dic_apgs = new Dictionary<string, object>();
 
-                    var objAppGen = CreateSettingsForProject(node, tt, dic_apgs, isShortVersion);
-
-                    if (dic_apgs.Count > 0)
+                    var objAppGens = CreateSettingsForProject(node, tt, dic_apgs, isShortVersion);
+                    if (is_generators) // only generators level
+                        return objAppGens;
+                    if (objAppGens != null)
                     {
-                        dic_prjs[tt.Name] = objAppGen;
-                        SettingsTypeBuilder.CreateProperty(tbPrj, tt.Name, objAppGen.GetType(), tt.NameUi, tt.Description);
+                        dic_prjs[tt.Name] = objAppGens;
+                        SettingsTypeBuilder.CreateProperty(tbPrjs, tt.Name, typeof(object), tt.NameUi, tt.Description);
                     }
                 }
-                SettingsTypeBuilder.CreateToString(tbPrj, "Solution");
-                Type prjsType = tbPrj.CreateType();
-                SettingsTypeBuilder.CreateProperty(tbSol, t.Name, prjsType, t.NameUi, t.Description);
-                object objPrj = Activator.CreateInstance(prjsType);
+                if (is_projects && dic_prjs.Count==0) // projects level
+                    return null;
+                SettingsTypeBuilder.CreateToString(tbPrjs, $"Apps->{t.Name}->");
+                Type prjsType = tbPrjs.CreateType();
+                object objPrjs = Activator.CreateInstance(prjsType);
                 foreach (var dt in dic_prjs)
                 {
-                    prjsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objPrj, new object[] { dt.Value });
+                    prjsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objPrjs, new object[] { dt.Value });
                 }
-                //if (dic_prjs.Count > 0)
-                dic_sols[t.Name] = objPrj;
+                if (is_projects) // projects level
+                    return objPrjs;
+                dic_sols[t.Name] = objPrjs;
+                SettingsTypeBuilder.CreateProperty(tbSol, t.Name, typeof(object), t.NameUi, t.Description);
             }
-            SettingsTypeBuilder.CreateToString(tbSol, "Solutions");
+            if (dic_sols.Count == 0) // solutions level
+                return null;
+            SettingsTypeBuilder.CreateToString(tbSol, "Apps->");
             Type solsType = tbSol.CreateType();
             object objSol = Activator.CreateInstance(solsType);
             foreach (var dt in dic_sols)
             {
-                if (dic_sols.Count == 1) // remove solution level node in settings
-                    return dt.Value;
                 solsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objSol, new object[] { dt.Value });
             }
-            if (dic_sols.Count == 0)
-                return null;
             return objSol;
         }
         private static object CreateSettingsForProject(ITreeConfigNode node, IAppProject tt, Dictionary<string, object> dic_apgs, bool isShortVersion)
@@ -81,7 +112,9 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             }
-            SettingsTypeBuilder.CreateToString(tbAppGen, "Project");
+            if (dic_apgs.Count == 0)
+                return null;
+            SettingsTypeBuilder.CreateToString(tbAppGen, $"Apps->{tt.AppSolution.Name}->{tt.Name}->");
             Type apgsType = tbAppGen.CreateType();
             var objAppGen = Activator.CreateInstance(apgsType);
             foreach (var dt in dic_apgs)

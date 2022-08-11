@@ -49,17 +49,6 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyDictionary<string, IvPluginGenerator> DicActiveAppProjectGenerators { get { return _DicActiveAppProjectGenerators; } }
         // public static readonly string DefaultName = "Config";
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
-        //public ConfigNodesCollection<ITreeConfigNode> Children
-        //{
-        //    get { return this._Children; }
-        //    set
-        //    {
-        //        this._Children = value;
-        //        this.NotifyPropertyChanged();
-        //    }
-        //}
-        //private ConfigNodesCollection<ITreeConfigNode> _Children;
-
         protected IMigration _migration { get; set; }
         public string ConnectionString { get; set; }
         public string DebugTag;
@@ -130,7 +119,6 @@ namespace vSharpStudio.vm.ViewModels
             var pconfig = Proto.Config.proto_config.Parser.WithDiscardUnknownFields(true).ParseJson(configJson);
             Config.ConvertToVM(pconfig, this);
         }
-
         public string ExportToJson()
         {
             _logger.Trace();
@@ -248,29 +236,10 @@ namespace vSharpStudio.vm.ViewModels
 
         [BrowsableAttribute(false)]
         public string CurrentCfgFolderPath { get; set; }
-        //[Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-        //public string SolutionPath
-        //{
-        //    get
-        //    {
-        //        return this._SolutionPath;
-        //    }
-        //    set
-        //    {
-        //        this._SolutionPath = value;
-        //        this.NotifyPropertyChanged();
-        //    }
-        //}
-        //private string _SolutionPath;
-
         [BrowsableAttribute(false)]
         public ITreeConfigNode SelectedNode
         {
-            get
-            {
-                return this._SelectedNode;
-            }
-
+            get { return this._SelectedNode; }
             set
             {
                 if (this._SelectedNode != value)
@@ -288,7 +257,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-
         private ITreeConfigNode _SelectedNode;
         public Action OnSelectedNodeChanged { get; set; }
         public Action<ITreeConfigNode, ITreeConfigNode> OnSelectedNodeChanging { get; set; }
@@ -319,16 +287,6 @@ namespace vSharpStudio.vm.ViewModels
 
         public IConfig PrevCurrentConfig { get; set; }
         public IConfig PrevStableConfig { get; set; }
-
-        //public List<IConfig> SetAnnotations(IConfig prev, IConfig old)
-        //{
-        //    var oldests = GetListConfigs(old);
-        //    var prevs = GetListConfigs(prev);
-        //    var currents = GetListConfigs(this);
-        //    var diff = new DiffLists<IConfig>(oldests, prevs, currents);
-        //    return diff.ListAll;
-        //}
-
         public IReadOnlyList<IConfig> GetListConfigs()
         {
             var lst = new List<IConfig>();
@@ -400,29 +358,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 p.SaveNodeAppGenSettings();
             });
-            //foreach (var t in this._Config.GroupPlugins.ListPlugins)
-            //{
-            //    foreach (var tt in t.ListGenerators)
-            //    {
-            //        foreach (var ttt in tt.ListSettings)
-            //        {
-            //            Utils.TryCall(
-            //                () =>
-            //            {
-            //                ttt.GeneratorSettings = ttt.VM.SettingsAsJson;
-            //            }, "Can't get PROTO settings from Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "'");
-            //            if (ttt.IsPrivate)
-            //            {
-            //                Utils.TryCall(
-            //                    () =>
-            //                {
-            //                    File.WriteAllText(ttt.FilePath, ttt.GeneratorSettings);
-            //                }, "Private connection settins was not saved. Plugin: '" + t.Name + "' Generator: '" + tt.Name + "' Settings: '" + ttt.Name + "' File path: '" + ttt.FilePath + "'");
-            //                ttt.GeneratorSettings = string.Empty;
-            //            }
-            //        }
-            //    }
-            //}
         }
         public string IsHasMarkedPath
         {

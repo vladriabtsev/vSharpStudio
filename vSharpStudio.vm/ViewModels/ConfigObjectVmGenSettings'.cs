@@ -473,8 +473,8 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
-        [DisplayName("Settings")]
-        [Description("Generators node settings")]
+        [DisplayName("Node Settings")]
+        [Description("Node settings by solutions, projects, generators")]
         // Dynamic class object of for node generators representation:
         // Expandable node generator name
         //    Expandable generator parameters object
