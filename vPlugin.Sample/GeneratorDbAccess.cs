@@ -35,7 +35,7 @@ namespace vPlugin.Sample
         }
         public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string settings)
         {
-            if (parent is IModel || parent is IConstant || parent is IForm ||
+            if (parent is IModel || parent is IConstant || parent is IGroupConstantGroups || parent is IForm ||
                 parent is IGroupListEnumerations || parent is IEnumeration ||
                 parent is IModel || parent is ICatalog || parent is IProperty ||
                 parent is IDocument)

@@ -333,8 +333,8 @@ namespace vSharpStudio.Unit
             // 3. When new generator is selected: old generator has to be removed from all model nodes, 
             //     and new generator settings has to be added for all model nodes
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings.Count);
-            Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.DicGenNodeSettings.Count);
             Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.ListNodeGeneratorsSettings.Count);
@@ -361,8 +361,8 @@ namespace vSharpStudio.Unit
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings.Count);
-            Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.DicGenNodeSettings.Count);
             Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(2, gen.ListGenerators.Count);
@@ -432,6 +432,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].DicGenNodeSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].DicGenNodeSettings.Count);
+            Assert.AreEqual(0, vm2.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
@@ -441,7 +442,7 @@ namespace vSharpStudio.Unit
             var cfgDiff = vm2.Config;
             Assert.AreEqual(1, cfgDiff.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(1, cfgDiff.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, cfgDiff.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, cfgDiff.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
 
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.AreEqual(true, main.IsAccessParam1);

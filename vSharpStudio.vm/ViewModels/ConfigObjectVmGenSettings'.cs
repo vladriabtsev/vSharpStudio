@@ -204,8 +204,8 @@ namespace vSharpStudio.vm.ViewModels
         /// <returns></returns>
         public bool IsIncluded(string guidAppPrjGen, bool isFromPrevStable = false)
         {
-            if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
-                throw new Exception();
+            //if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
+            //    throw new Exception();
 
             var p = (ITreeConfigNode)this;
             while (p != null)
@@ -246,8 +246,8 @@ namespace vSharpStudio.vm.ViewModels
                         }
                     }
                 }
-                else
-                    throw new Exception();
+                //else
+                //    throw new Exception();
                 //if (p.Parent == null)
                 //    return true;
                 p = p.Parent;
