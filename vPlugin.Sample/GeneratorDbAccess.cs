@@ -35,13 +35,28 @@ namespace vPlugin.Sample
         }
         public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string settings)
         {
-            var vm = new GeneratorDbAccessNodeSettings(parent);
-            if (!string.IsNullOrWhiteSpace(settings))
+            if (parent is IModel || parent is IConstant || parent is IForm ||
+                parent is IGroupListEnumerations || parent is IEnumeration ||
+                parent is IModel || parent is ICatalog || parent is IProperty ||
+                parent is IDocument)
             {
-                proto_generator_db_access_node_settings proto = proto_generator_db_access_node_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
-                vm = GeneratorDbAccessNodeSettings.ConvertToVM(proto, vm);
+                var vm = new GeneratorDbAccessNodeSettings(parent);
+                if (!string.IsNullOrWhiteSpace(settings))
+                {
+                    proto_generator_db_access_node_settings proto = proto_generator_db_access_node_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
+                    vm = GeneratorDbAccessNodeSettings.ConvertToVM(proto, vm);
+                }
+                else
+                {
+                    // default settings on Model level
+                    if (parent is IModel)
+                    {
+                        vm.IsCatalogFormParam1 = true; ;
+                    }
+                }
+                return vm;
             }
-            return vm;
+            return null;
         }
         public List<PreRenameData> GetListPreRename(IConfig annotatedConfig, List<string> lstGuidsRenamedNodes)
         {

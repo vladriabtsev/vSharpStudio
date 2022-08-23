@@ -62,13 +62,25 @@ namespace vPlugin.Sample
         }
         public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string settings)
         {
-            var vm = new GeneratorDbSchemaNodeSettings(parent);
-            if (!string.IsNullOrWhiteSpace(settings))
+            if (parent is IModel || parent is ICatalog)
             {
-                proto_generator_db_schema_node_settings proto = proto_generator_db_schema_node_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
-                vm = GeneratorDbSchemaNodeSettings.ConvertToVM(proto, vm);
+                var vm = new GeneratorDbSchemaNodeSettings(parent);
+                if (!string.IsNullOrWhiteSpace(settings))
+                {
+                    proto_generator_db_schema_node_settings proto = proto_generator_db_schema_node_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
+                    vm = GeneratorDbSchemaNodeSettings.ConvertToVM(proto, vm);
+                }
+                else
+                {
+                    // default settings on Model level
+                    if (parent is IModel)
+                    {
+                        vm.IsCatalogFormParam1 = true;
+                    }
+                }
+                return vm;
             }
-            return vm;
+            return null;
         }
         public Dictionary<string, List<string>> DicPathTypes { get; private set; }
 

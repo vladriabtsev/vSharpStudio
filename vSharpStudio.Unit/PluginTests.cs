@@ -172,11 +172,6 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, sln.DicPluginsGroupSettings.Count);
 
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupDocuments.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(2, gen.ListGenerators.Count);
             Assert.IsNotNull(gen.DynamicGeneratorSettings);
             Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessSettings).Name, gen.DynamicGeneratorSettings.GetType().Name);
@@ -338,16 +333,26 @@ namespace vSharpStudio.Unit
             // 3. When new generator is selected: old generator has to be removed from all model nodes, 
             //     and new generator settings has to be added for all model nodes
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.DicGenNodeSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.DicGenNodeSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.ListNodeGeneratorsSettings.Count);
+            foreach(var t in vm.Config.Model.GroupCatalogs.ListCatalogs)
+            {
+                Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
+            }
             gen.NodeRemove(false);
             Assert.AreEqual(1, vm.Config.GroupAppSolutions[0].ListAppProjects.Count);
             Assert.AreEqual(0, vm.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators.Count);
             Assert.AreEqual(0, vm.Config.DicActiveAppProjectGenerators.Count);
             Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.ListNodeGeneratorsSettings.Count);
+            foreach (var t in vm.Config.Model.GroupCatalogs.ListCatalogs)
+            {
+                Assert.AreEqual(0, t.ListNodeGeneratorsSettings.Count);
+            }
             gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
             gen.PluginGuid = pluginNode.Guid;
@@ -356,11 +361,16 @@ namespace vSharpStudio.Unit
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.DicGenNodeSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.DicGenNodeSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.DicGenNodeSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(2, gen.ListGenerators.Count);
+            Assert.AreEqual(1, vm.Config.Model.ListNodeGeneratorsSettings.Count);
+            foreach (var t in vm.Config.Model.GroupCatalogs.ListCatalogs)
+            {
+                Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
+            }
 
             // 2. When model node is added: init all generators settings VMs on this node
             Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListNodeGeneratorsSettings.Count);
