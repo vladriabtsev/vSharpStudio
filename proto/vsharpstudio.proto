@@ -980,6 +980,10 @@ message proto_property {
     // @attr [DisplayName("Stop Tab Control")]
     // @attr [Description("Stop using tab control for layout")]
     bool is_stop_tab_control = 27;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Keep position")]
+    // @attr [Description("Keep relative property position. If false then some properties can be placed on previous not finished row")]
+    bool is_keep_property_relative_position = 28;
 
     // Protobuf field position
     // Reserved positions: 1 - primary key

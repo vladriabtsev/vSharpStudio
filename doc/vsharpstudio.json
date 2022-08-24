@@ -5966,6 +5966,16 @@
               "defaultValue": ""
             },
             {
+              "name": "is_keep_property_relative_position",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Keep position\")]\n@attr [Description(\"Keep relative property position. If false then some properties can be placed on previous not finished row\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "position",
               "description": "Protobuf field position\nReserved positions: 1 - primary key\n@attr [ReadOnly(true)]",
               "label": "",

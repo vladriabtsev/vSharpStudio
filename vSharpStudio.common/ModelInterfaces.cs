@@ -523,6 +523,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string TabName { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
     	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
+    	bool IsKeepPropertyRelativePosition { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position
