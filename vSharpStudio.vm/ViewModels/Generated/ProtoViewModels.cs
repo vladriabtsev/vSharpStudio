@@ -11128,7 +11128,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.TabName = from.TabName; // Clone.tt Line: 65
             vm.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 65
             vm.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 65
-            vm.IsKeepPropertyRelativePosition = from.IsKeepPropertyRelativePosition; // Clone.tt Line: 65
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -11164,7 +11163,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.TabName = from.TabName; // Clone.tt Line: 141
             to.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 141
             to.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 141
-            to.IsKeepPropertyRelativePosition = from.IsKeepPropertyRelativePosition; // Clone.tt Line: 141
             to.Position = from.Position; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -11252,7 +11250,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.TabName = m.TabName; // Clone.tt Line: 221
             vm.IsStartNewTabControl = m.IsStartNewTabControl; // Clone.tt Line: 221
             vm.IsStopTabControl = m.IsStopTabControl; // Clone.tt Line: 221
-            vm.IsKeepPropertyRelativePosition = m.IsKeepPropertyRelativePosition; // Clone.tt Line: 221
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -11292,7 +11289,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.TabName = vm.TabName; // Clone.tt Line: 276
             m.IsStartNewTabControl = vm.IsStartNewTabControl; // Clone.tt Line: 276
             m.IsStopTabControl = vm.IsStopTabControl; // Clone.tt Line: 276
-            m.IsKeepPropertyRelativePosition = vm.IsKeepPropertyRelativePosition; // Clone.tt Line: 276
             m.Position = vm.Position; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -11760,29 +11756,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsStopTabControl;
         partial void OnIsStopTabControlChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsStopTabControlChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Keep position")]
-        [Description("Keep relative property position. If false then some properties can be placed on previous not finished row")]
-        public bool IsKeepPropertyRelativePosition // Property.tt Line: 55
-        { 
-            get { return this._IsKeepPropertyRelativePosition; }
-            set
-            {
-                if (this._IsKeepPropertyRelativePosition != value)
-                {
-                    this.OnIsKeepPropertyRelativePositionChanging(ref value);
-                    this._IsKeepPropertyRelativePosition = value;
-                    this.OnIsKeepPropertyRelativePositionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsKeepPropertyRelativePosition;
-        partial void OnIsKeepPropertyRelativePositionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsKeepPropertyRelativePositionChanged();
         
         
         ///////////////////////////////////////////////////
