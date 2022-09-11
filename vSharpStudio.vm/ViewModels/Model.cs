@@ -597,7 +597,6 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrWhiteSpace(this.PKeyGuid))
                 this.PKeyGuid = System.Guid.NewGuid().ToString();
             var res = new Property(default(ITreeConfigNode), this.PKeyGuid, fieldName, dt);
-            res.IsPKey = true;
             return res;
         }
         public IDataType GetIdDataType()
@@ -635,9 +634,9 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyId(string idGuid)
         {
             var dt = (DataType)this.GetIdDataType();
+            dt.IsPKey = true;
             var res = new Property(default(ITreeConfigNode), idGuid, this.PKeyName, dt);
             res.Position = 6;
-            res.IsPKey = true;
             return res;
         }
         public IProperty GetPropertyVersion(string guid)

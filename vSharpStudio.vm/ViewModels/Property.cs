@@ -85,7 +85,9 @@ namespace vSharpStudio.vm.ViewModels
             this._DataType = new DataType(type, length, accuracy);
         }
         [BrowsableAttribute(false)]
-        public bool IsPKey { get; set; }
+        public bool IsPKey { get { return this.DataType.IsPKey; } }
+        [BrowsableAttribute(false)]
+        public bool IsRefParent { get { return this.DataType.IsRefParent; } }
         [BrowsableAttribute(false)]
         public bool IsComputed { get; set; }
         [BrowsableAttribute(false)]

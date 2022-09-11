@@ -17,6 +17,7 @@ namespace vSharpStudio.common
         bool IsStopTabControl { get; }
 
         bool IsPKey { get; }
+        bool IsRefParent { get; }
         bool IsNullable { get; }
         //IDataType DataType { get; }
         string NameUi { get; }

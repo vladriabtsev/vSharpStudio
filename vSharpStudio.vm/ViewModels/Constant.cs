@@ -13,7 +13,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
     public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
+        [BrowsableAttribute(false)]
         public bool IsPKey => false;
+        [BrowsableAttribute(false)]
+        public bool IsRefParent => false;
 
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data

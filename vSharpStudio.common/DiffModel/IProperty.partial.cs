@@ -9,7 +9,6 @@ namespace vSharpStudio.common
     public partial interface IProperty : IParent, ITreeConfigNode, IGetNodeSetting, ILayoutFieldParameters
     {
         //string DefaultValue { get; }
-        bool IsPKey { get; set; }
         bool IsComputed { get; set; }
         bool IsDocShared { get; set; }
         string ComplexObjectName { get; set; }
