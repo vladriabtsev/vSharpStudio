@@ -340,7 +340,7 @@ namespace vSharpStudio.ViewModels
                 cfg.RefillDicGenerators();
                 // Restore dictionary of all current nodes
                 var nvb = new ModelVisitorBase();
-                nvb.Run(cfg, null, null, (p, n) =>
+                nvb.Run(cfg, null, null, null, (p, n) =>
                 {
                     cfg._DicNodes[n.Guid] = n;
                 });
@@ -642,7 +642,7 @@ namespace vSharpStudio.ViewModels
         private void ResetIsChangedBeforeSave()
         {
             var vis = new ModelVisitorBase();
-            vis.Run(this.Config, null, null, (v, n) =>
+            vis.Run(this.Config, null, null, null, (v, n) =>
             {
                 n.IsChanged = false;
             });
@@ -824,7 +824,7 @@ namespace vSharpStudio.ViewModels
             var nvb = new ModelVisitorBase();
             foreach (var tgguid in dicGroupGuids)
             {
-                nvb.Run(diffConfig, null, null, (p, n) => { if (n is Property) (n as Property).Tag = null; });
+                nvb.Run(diffConfig, null, null, null, (p, n) => { if (n is Property) (n as Property).Tag = null; });
                 foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                 {
                     if (ts.IsMarkedForDeletion)
@@ -881,7 +881,7 @@ namespace vSharpStudio.ViewModels
                                                 sb.Append(tpg.PluginDbGenerator.ProviderName);
                                                 sb.AppendLine("\",");
                                                 sb.Append("\t\t\t\"connection_string\": \"");
-                                                var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config, ts, tp);
+                                                var cnstr = tpg.DynamicMainConnStrSettings.GenerateCode(this.Config, ts, tp, tpg);
                                                 sb.Append(cnstr);
                                                 sb.AppendLine("\"");
                                                 sb.Append("\t\t}");
@@ -919,7 +919,7 @@ namespace vSharpStudio.ViewModels
 #endif
                                                 if (!(tg.Generator is IvPluginGenerator))
                                                     throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
-                                                code = tpg.DynamicGeneratorSettings.GenerateCode(this.Config, ts, tp);
+                                                code = tpg.DynamicGeneratorSettings.GenerateCode(this.Config, ts, tp, tpg);
                                                 //code = (tg.Generator as IvPluginGenerator) .GetAppGenerationSettingsVmFromJson(null).GenerateCode(this.Config);
                                                 break;
                                         }
@@ -981,7 +981,7 @@ namespace vSharpStudio.ViewModels
                 var lst = new List<string>();
                 // delete from current model
                 var vis1 = new ModelVisitorBase();
-                vis1.Run(this.Config, null, null, (v, n) =>
+                vis1.Run(this.Config, null, null, null, (v, n) =>
                 {
                     if (n is IEditableNode)
                     {
@@ -1128,7 +1128,7 @@ namespace vSharpStudio.ViewModels
 #endif
                     this.Config.SetIsNeedCurrentUpdate(false);
                     var vis = new ModelVisitorRemoveMarkedIfNewObjects();
-                    vis.Run(this.Config, null, null);
+                    vis.Run(this.Config, null, null, null);
                     this.Save();
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
@@ -1215,7 +1215,7 @@ namespace vSharpStudio.ViewModels
                 #region Remove Deleted (was Deprecated)
                 var lst = new List<string>();
                 // delete from current model
-                vis.Run(this.Config, null, null, (v, n) =>
+                vis.Run(this.Config, null, null, null, (v, n) =>
                 {
                     if (n is IEditableNode)
                     {
@@ -1247,7 +1247,7 @@ namespace vSharpStudio.ViewModels
             this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
             this.InitConfig(this.Config.PrevCurrentConfig as Config);
             this.pconfig_history.CurrentConfig.Version++;
-            vis.Run(this.Config, null, null, (v, n) =>
+            vis.Run(this.Config, null, null, null, (v, n) =>
             {
                 if (n is IEditableNode)
                 {

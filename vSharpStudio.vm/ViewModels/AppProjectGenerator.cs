@@ -155,7 +155,7 @@ namespace vSharpStudio.vm.ViewModels
 
         private void _DynamicMainConnStrSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.GetConfig(), this.AppProject.AppSolution, this.AppProject);
+            this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.GetConfig(), this.AppProject.AppSolution, this.AppProject, this);
             this.NotifyPropertyChanged(() => this.ConnStr);
         }
 

@@ -24,7 +24,7 @@ namespace vPlugin.Sample
                 return JsonFormatter.Default.Format(proto);
             }
         }
-        public string GenerateCode(IConfig cfg, IAppSolution sln, IAppProject prj)
+        public string GenerateCode(IConfig cfg, IAppSolution sln, IAppProject prj, IAppProjectGenerator prjGen)
         {
             return this.StringSettings;
         }

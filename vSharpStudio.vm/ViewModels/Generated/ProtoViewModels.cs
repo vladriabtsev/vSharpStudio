@@ -12815,9 +12815,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = from.Description; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(from.DataType, isDeep);
+            vm.IsNullable = from.IsNullable; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.ShortId = from.ShortId; // Clone.tt Line: 65
+            vm.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 65
+            vm.LinesOnScreen = from.LinesOnScreen; // Clone.tt Line: 65
+            vm.IsStartNewRow = from.IsStartNewRow; // Clone.tt Line: 65
+            vm.TabName = from.TabName; // Clone.tt Line: 65
+            vm.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 65
+            vm.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -12838,9 +12845,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Description = from.Description; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
+            to.IsNullable = from.IsNullable; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             to.ShortId = from.ShortId; // Clone.tt Line: 141
+            to.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 141
+            to.LinesOnScreen = from.LinesOnScreen; // Clone.tt Line: 141
+            to.IsStartNewRow = from.IsStartNewRow; // Clone.tt Line: 141
+            to.TabName = from.TabName; // Clone.tt Line: 141
+            to.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 141
+            to.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -12913,9 +12927,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.DataType == null) // Clone.tt Line: 213
                 vm.DataType = new DataType(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
+            vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.ShortId = m.ShortId; // Clone.tt Line: 221
+            vm.IsTryAttach = m.IsTryAttach; // Clone.tt Line: 221
+            vm.LinesOnScreen = m.LinesOnScreen; // Clone.tt Line: 221
+            vm.IsStartNewRow = m.IsStartNewRow; // Clone.tt Line: 221
+            vm.TabName = m.TabName; // Clone.tt Line: 221
+            vm.IsStartNewTabControl = m.IsStartNewTabControl; // Clone.tt Line: 221
+            vm.IsStopTabControl = m.IsStopTabControl; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -12940,9 +12961,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
+            m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.ShortId = vm.ShortId; // Clone.tt Line: 276
+            m.IsTryAttach = vm.IsTryAttach; // Clone.tt Line: 276
+            m.LinesOnScreen = vm.LinesOnScreen; // Clone.tt Line: 276
+            m.IsStartNewRow = vm.IsStartNewRow; // Clone.tt Line: 276
+            m.TabName = vm.TabName; // Clone.tt Line: 276
+            m.IsStartNewTabControl = vm.IsStartNewTabControl; // Clone.tt Line: 276
+            m.IsStopTabControl = vm.IsStopTabControl; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -13094,6 +13122,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDataTypeChanged();
         //IDataType IConstant.DataType { get { return this._DataType; } }
         
+        [PropertyOrderAttribute(20)]
+        [DisplayName("Can be NULL")]
+        [Description("If unchecked always expected data")]
+        public bool IsNullable // Property.tt Line: 55
+        { 
+            get { return this._IsNullable; }
+            set
+            {
+                if (this._IsNullable != value)
+                {
+                    this.OnIsNullableChanging(ref value);
+                    this._IsNullable = value;
+                    this.OnIsNullableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNullable;
+        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsNullableChanged();
+        
         [BrowsableAttribute(false)]
         public bool IsNew // Property.tt Line: 55
         { 
@@ -13156,6 +13207,144 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private int _ShortId;
         partial void OnShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnShortIdChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("UI attach")]
+        [Description("UI engine will try put this field on same line as previous field")]
+        public bool IsTryAttach // Property.tt Line: 55
+        { 
+            get { return this._IsTryAttach; }
+            set
+            {
+                if (this._IsTryAttach != value)
+                {
+                    this.OnIsTryAttachChanging(ref value);
+                    this._IsTryAttach = value;
+                    this.OnIsTryAttachChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsTryAttach;
+        partial void OnIsTryAttachChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsTryAttachChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("UI lines")]
+        [Description("Lines on screen for edit box")]
+        public int LinesOnScreen // Property.tt Line: 55
+        { 
+            get { return this._LinesOnScreen; }
+            set
+            {
+                if (this._LinesOnScreen != value)
+                {
+                    this.OnLinesOnScreenChanging(ref value);
+                    this._LinesOnScreen = value;
+                    this.OnLinesOnScreenChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _LinesOnScreen;
+        partial void OnLinesOnScreenChanging(ref int to); // Property.tt Line: 79
+        partial void OnLinesOnScreenChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("New UI row")]
+        [Description("Start new UI row for this property")]
+        public bool IsStartNewRow // Property.tt Line: 55
+        { 
+            get { return this._IsStartNewRow; }
+            set
+            {
+                if (this._IsStartNewRow != value)
+                {
+                    this.OnIsStartNewRowChanging(ref value);
+                    this._IsStartNewRow = value;
+                    this.OnIsStartNewRowChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsStartNewRow;
+        partial void OnIsStartNewRowChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsStartNewRowChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Tab Name")]
+        [Description("If not empty, then start new tab in tab control. If empty, then continue adding fields in current control")]
+        public string TabName // Property.tt Line: 55
+        { 
+            get { return this._TabName; }
+            set
+            {
+                if (this._TabName != value)
+                {
+                    this.OnTabNameChanging(ref value);
+                    this._TabName = value;
+                    this.OnTabNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _TabName = string.Empty;
+        partial void OnTabNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnTabNameChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("New Tab Control")]
+        [Description("Start new tab control as current control")]
+        public bool IsStartNewTabControl // Property.tt Line: 55
+        { 
+            get { return this._IsStartNewTabControl; }
+            set
+            {
+                if (this._IsStartNewTabControl != value)
+                {
+                    this.OnIsStartNewTabControlChanging(ref value);
+                    this._IsStartNewTabControl = value;
+                    this.OnIsStartNewTabControlChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsStartNewTabControl;
+        partial void OnIsStartNewTabControlChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsStartNewTabControlChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Stop Tab Control")]
+        [Description("Stop using tab control for layout")]
+        public bool IsStopTabControl // Property.tt Line: 55
+        { 
+            get { return this._IsStopTabControl; }
+            set
+            {
+                if (this._IsStopTabControl != value)
+                {
+                    this.OnIsStopTabControlChanging(ref value);
+                    this._IsStopTabControl = value;
+                    this.OnIsStopTabControlChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsStopTabControl;
+        partial void OnIsStopTabControlChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsStopTabControlChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8

@@ -1774,6 +1774,15 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
+                  <td>is_nullable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(20)]
+@attr [DisplayName(&#34;Can be NULL&#34;)]
+@attr [Description(&#34;If unchecked always expected data&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>is_new</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -1792,6 +1801,60 @@ Generator output file name </p></td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_try_attach</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;UI attach&#34;)]
+@attr [Description(&#34;UI engine will try put this field on same line as previous field&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>lines_on_screen</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;UI lines&#34;)]
+@attr [Description(&#34;Lines on screen for edit box&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_start_new_row</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;New UI row&#34;)]
+@attr [Description(&#34;Start new UI row for this property&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tab_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Tab Name&#34;)]
+@attr [Description(&#34;If not empty, then start new tab in tab control. If empty, then continue adding fields in current control&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_start_new_tab_control</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;New Tab Control&#34;)]
+@attr [Description(&#34;Start new tab control as current control&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_stop_tab_control</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Stop Tab Control&#34;)]
+@attr [Description(&#34;Stop using tab control for layout&#34;)] </p></td>
                 </tr>
               
                 <tr>

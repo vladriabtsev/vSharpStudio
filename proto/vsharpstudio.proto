@@ -1057,6 +1057,10 @@ message proto_constant {
     // @attr [PropertyOrderAttribute(4)]
     // @attr [ExpandableObjectAttribute()][DisplayName("Type")]
     proto_data_type data_type = 6;
+    // @attr [PropertyOrderAttribute(20)]
+    // @attr [DisplayName("Can be NULL")]
+    // @attr [Description("If unchecked always expected data")]
+    bool is_nullable = 7;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 10;
     // @attr [BrowsableAttribute(false)]
@@ -1064,6 +1068,32 @@ message proto_constant {
 
     // @attr [BrowsableAttribute(false)]
     int32 short_id = 19;
+
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("UI attach")]
+    // @attr [Description("UI engine will try put this field on same line as previous field")]
+    bool is_try_attach = 22;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("UI lines")]
+    // @attr [Description("Lines on screen for edit box")]
+    int32 lines_on_screen = 23;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("New UI row")]
+    // @attr [Description("Start new UI row for this property")]
+    bool is_start_new_row = 24;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Tab Name")]
+    // @attr [Description("If not empty, then start new tab in tab control. If empty, then continue adding fields in current control")]
+    string tab_name = 25;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("New Tab Control")]
+    // @attr [Description("Start new tab control as current control")]
+    bool is_start_new_tab_control = 26;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Stop Tab Control")]
+    // @attr [Description("Stop using tab control for layout")]
+    bool is_stop_tab_control = 27;
+
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

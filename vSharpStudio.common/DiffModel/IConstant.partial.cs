@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IConstant : ITreeConfigNode, IGetNodeSetting, ICompositeName
+    public partial interface IConstant : ITreeConfigNode, IGetNodeSetting, ICompositeName, ILayoutFieldParameters
     {
         //string DefaultValue { get; }
         object Tag { get; set; }

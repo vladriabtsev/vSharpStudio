@@ -21,6 +21,6 @@ namespace vSharpStudio.common
         /// Generate code for current settings (if applicable for generator)
         /// </summary>
         /// <returns>Generated code</returns>
-        string GenerateCode(IConfig cfg, IAppSolution sln, IAppProject prj);
+        string GenerateCode(IConfig cfg, IAppSolution sln, IAppProject prj, IAppProjectGenerator prjGen);
     }
 }

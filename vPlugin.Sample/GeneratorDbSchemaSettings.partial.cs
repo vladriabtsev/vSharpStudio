@@ -20,7 +20,7 @@ namespace vPlugin.Sample
                 return JsonFormatter.Default.Format(proto);
             }
         }
-        public string GenerateCode(IConfig model, IAppSolution sln, IAppProject prj)
+        public string GenerateCode(IConfig model, IAppSolution sln, IAppProject prj, IAppProjectGenerator prjGen)
         {
             string s = "";
             //if (this.IsAccessParam1)

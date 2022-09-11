@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IProperty : IParent, ITreeConfigNode, IGetNodeSetting
+    public partial interface IProperty : IParent, ITreeConfigNode, IGetNodeSetting, ILayoutFieldParameters
     {
         //string DefaultValue { get; }
         bool IsPKey { get; set; }
