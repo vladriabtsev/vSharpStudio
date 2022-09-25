@@ -11128,6 +11128,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.TabName = from.TabName; // Clone.tt Line: 65
             vm.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 65
             vm.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 65
+            vm.IsStartGridNewContainer = from.IsStartGridNewContainer; // Clone.tt Line: 65
+            vm.IsStartGridNewSubContainer = from.IsStartGridNewSubContainer; // Clone.tt Line: 65
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -11163,6 +11165,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.TabName = from.TabName; // Clone.tt Line: 141
             to.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 141
             to.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 141
+            to.IsStartGridNewContainer = from.IsStartGridNewContainer; // Clone.tt Line: 141
+            to.IsStartGridNewSubContainer = from.IsStartGridNewSubContainer; // Clone.tt Line: 141
             to.Position = from.Position; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -11250,6 +11254,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.TabName = m.TabName; // Clone.tt Line: 221
             vm.IsStartNewTabControl = m.IsStartNewTabControl; // Clone.tt Line: 221
             vm.IsStopTabControl = m.IsStopTabControl; // Clone.tt Line: 221
+            vm.IsStartGridNewContainer = m.IsStartGridNewContainer; // Clone.tt Line: 221
+            vm.IsStartGridNewSubContainer = m.IsStartGridNewSubContainer; // Clone.tt Line: 221
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -11289,6 +11295,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.TabName = vm.TabName; // Clone.tt Line: 276
             m.IsStartNewTabControl = vm.IsStartNewTabControl; // Clone.tt Line: 276
             m.IsStopTabControl = vm.IsStopTabControl; // Clone.tt Line: 276
+            m.IsStartGridNewContainer = vm.IsStartGridNewContainer; // Clone.tt Line: 276
+            m.IsStartGridNewSubContainer = vm.IsStartGridNewSubContainer; // Clone.tt Line: 276
             m.Position = vm.Position; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -11756,6 +11764,52 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsStopTabControl;
         partial void OnIsStopTabControlChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsStopTabControlChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Grid new container")]
+        [Description("Start new container (column) in grid system")]
+        public bool IsStartGridNewContainer // Property.tt Line: 55
+        { 
+            get { return this._IsStartGridNewContainer; }
+            set
+            {
+                if (this._IsStartGridNewContainer != value)
+                {
+                    this.OnIsStartGridNewContainerChanging(ref value);
+                    this._IsStartGridNewContainer = value;
+                    this.OnIsStartGridNewContainerChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsStartGridNewContainer;
+        partial void OnIsStartGridNewContainerChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsStartGridNewContainerChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Grid new sub container")]
+        [Description("Start new sub container (column) in grid system")]
+        public bool IsStartGridNewSubContainer // Property.tt Line: 55
+        { 
+            get { return this._IsStartGridNewSubContainer; }
+            set
+            {
+                if (this._IsStartGridNewSubContainer != value)
+                {
+                    this.OnIsStartGridNewSubContainerChanging(ref value);
+                    this._IsStartGridNewSubContainer = value;
+                    this.OnIsStartGridNewSubContainerChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsStartGridNewSubContainer;
+        partial void OnIsStartGridNewSubContainerChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsStartGridNewSubContainerChanged();
         
         
         ///////////////////////////////////////////////////
@@ -20847,15 +20901,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
         #endregion Properties
     }
-    public partial class FormMargingValidator : ValidatorBase<FormMarging, FormMargingValidator> { } // Class.tt Line: 6
-    public partial class FormMarging : VmValidatableWithSeverity<FormMarging, FormMargingValidator>, IFormMarging // Class.tt Line: 7
+    public partial class FormGridSystemValidator : ValidatorBase<FormGridSystem, FormGridSystemValidator> { } // Class.tt Line: 6
+    public partial class FormGridSystem : VmValidatableWithSeverity<FormGridSystem, FormGridSystemValidator>, IFormGridSystem // Class.tt Line: 7
     {
         #region CTOR
-        public FormMarging() 
-            : base(FormMargingValidator.Validator) // Class.tt Line: 45
+        public FormGridSystem() 
+            : base(FormGridSystemValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
+            this.ListRows = new ObservableCollection<FormGridSystemRow>(); // Class.tt Line: 54
+            this.ListGuidProperties = new ObservableCollection<string>(); // Class.tt Line: 54
+            this.ListFormBlocks = new ObservableCollection<FormBlock>(); // Class.tt Line: 54
             this.OnInit();
             this.IsValidate = true;
         }
@@ -20863,48 +20920,127 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnInit();
         #endregion CTOR
         #region Procedures
-        public static FormMarging Clone(IFormMarging from, bool isDeep = true) // Clone.tt Line: 27
+        public static FormGridSystem Clone(IFormGridSystem from, bool isDeep = true) // Clone.tt Line: 27
         {
             Contract.Requires(from != null);
-            FormMarging vm = new FormMarging();
+            FormGridSystem vm = new FormGridSystem();
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.Left = from.Left; // Clone.tt Line: 65
-            vm.Up = from.Up; // Clone.tt Line: 65
-            vm.Right = from.Right; // Clone.tt Line: 65
-            vm.Bottom = from.Bottom; // Clone.tt Line: 65
+            vm.Guid = from.Guid; // Clone.tt Line: 65
+            vm.ListRows = new ObservableCollection<FormGridSystemRow>(); // Clone.tt Line: 47
+            foreach (var t in from.ListRows) // Clone.tt Line: 48
+                vm.ListRows.Add(FormGridSystemRow.Clone((FormGridSystemRow)t, isDeep));
+            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
+                vm.ListGuidProperties.Add(t);
+            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 47
+            foreach (var t in from.ListFormBlocks) // Clone.tt Line: 48
+                vm.ListFormBlocks.Add(FormBlock.Clone((FormBlock)t, isDeep));
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(FormMarging to, IFormMarging from, bool isDeep = true) // Clone.tt Line: 77
+        public static void Update(FormGridSystem to, IFormGridSystem from, bool isDeep = true) // Clone.tt Line: 77
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
-            to.Left = from.Left; // Clone.tt Line: 141
-            to.Up = from.Up; // Clone.tt Line: 141
-            to.Right = from.Right; // Clone.tt Line: 141
-            to.Bottom = from.Bottom; // Clone.tt Line: 141
+            to.Guid = from.Guid; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListRows.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListRows)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            FormGridSystemRow.Update((FormGridSystemRow)t, (FormGridSystemRow)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListRows.Remove(t);
+                }
+                foreach (var tt in from.ListRows)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListRows.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new FormGridSystemRow(); // Clone.tt Line: 119
+                        FormGridSystemRow.Update(p, (FormGridSystemRow)tt, isDeep);
+                        to.ListRows.Add(p);
+                    }
+                }
+            }
+                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
+                foreach (var tt in from.ListGuidProperties)
+                {
+                    to.ListGuidProperties.Add(tt);
+                }
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListFormBlocks.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListFormBlocks)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            FormBlock.Update((FormBlock)t, (FormBlock)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListFormBlocks.Remove(t);
+                }
+                foreach (var tt in from.ListFormBlocks)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListFormBlocks.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new FormBlock(); // Clone.tt Line: 119
+                        FormBlock.Update(p, (FormBlock)tt, isDeep);
+                        to.ListFormBlocks.Add(p);
+                    }
+                }
+            }
         }
         // Clone.tt Line: 147
         #region IEditable
-        public override FormMarging Backup()
+        public override FormGridSystem Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return FormMarging.Clone(this);
+            return FormGridSystem.Clone(this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormMarging from)
+        public override void Restore(FormGridSystem from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            FormMarging.Update(this, from, isDeep);
+            FormGridSystem.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_form_marging' to 'FormMarging'
-        public static FormMarging ConvertToVM(Proto.Config.proto_form_marging m, FormMarging vm) // Clone.tt Line: 170
+        // Conversion from 'proto_form_grid_system' to 'FormGridSystem'
+        public static FormGridSystem ConvertToVM(Proto.Config.proto_form_grid_system m, FormGridSystem vm) // Clone.tt Line: 170
         {
             Contract.Requires(vm != null);
             if (m == null)
@@ -20913,23 +21049,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.Left = m.Left; // Clone.tt Line: 221
-            vm.Up = m.Up; // Clone.tt Line: 221
-            vm.Right = m.Right; // Clone.tt Line: 221
-            vm.Bottom = m.Bottom; // Clone.tt Line: 221
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.ListRows = new ObservableCollection<FormGridSystemRow>(); // Clone.tt Line: 190
+            foreach (var t in m.ListRows) // Clone.tt Line: 191
+            {
+                var tvm = FormGridSystemRow.ConvertToVM(t, new FormGridSystemRow()); // Clone.tt Line: 196
+                vm.ListRows.Add(tvm);
+            }
+            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
+            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
+            {
+                vm.ListGuidProperties.Add(t);
+            }
+            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 190
+            foreach (var t in m.ListFormBlocks) // Clone.tt Line: 191
+            {
+                var tvm = FormBlock.ConvertToVM(t, new FormBlock()); // Clone.tt Line: 196
+                vm.ListFormBlocks.Add(tvm);
+            }
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'FormMarging' to 'proto_form_marging'
-        public static Proto.Config.proto_form_marging ConvertToProto(FormMarging vm) // Clone.tt Line: 236
+        // Conversion from 'FormGridSystem' to 'proto_form_grid_system'
+        public static Proto.Config.proto_form_grid_system ConvertToProto(FormGridSystem vm) // Clone.tt Line: 236
         {
             Contract.Requires(vm != null);
-            Proto.Config.proto_form_marging m = new Proto.Config.proto_form_marging(); // Clone.tt Line: 239
-            m.Left = vm.Left; // Clone.tt Line: 276
-            m.Up = vm.Up; // Clone.tt Line: 276
-            m.Right = vm.Right; // Clone.tt Line: 276
-            m.Bottom = vm.Bottom; // Clone.tt Line: 276
+            Proto.Config.proto_form_grid_system m = new Proto.Config.proto_form_grid_system(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            foreach (var t in vm.ListRows) // Clone.tt Line: 242
+                m.ListRows.Add(FormGridSystemRow.ConvertToProto((FormGridSystemRow)t)); // Clone.tt Line: 246
+            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
+                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
+            foreach (var t in vm.ListFormBlocks) // Clone.tt Line: 242
+                m.ListFormBlocks.Add(FormBlock.ConvertToProto((FormBlock)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -20941,101 +21094,114 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
+            foreach (var t in this.ListRows)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            foreach (var t in this.ListFormBlocks)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
         
-        public int Left // Property.tt Line: 55
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
         { 
-            get { return this._Left; }
+            get { return this._Guid; }
             set
             {
-                if (this._Left != value)
+                if (this._Guid != value)
                 {
-                    this.OnLeftChanging(ref value);
-                    this._Left = value;
-                    this.OnLeftChanged();
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private int _Left;
-        partial void OnLeftChanging(ref int to); // Property.tt Line: 79
-        partial void OnLeftChanged();
+        private string _Guid = string.Empty;
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
         
-        public int Up // Property.tt Line: 55
+        [BrowsableAttribute(false)]
+        public ObservableCollection<FormGridSystemRow> ListRows // Property.tt Line: 8
         { 
-            get { return this._Up; }
+            get { return this._ListRows; }
             set
             {
-                if (this._Up != value)
+                if (this._ListRows != value)
                 {
-                    this.OnUpChanging(ref value);
-                    this._Up = value;
-                    this.OnUpChanged();
+                    this.OnListRowsChanging(value);
+                    _ListRows = value;
+                    this.OnListRowsChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
-        private int _Up;
-        partial void OnUpChanging(ref int to); // Property.tt Line: 79
-        partial void OnUpChanged();
+        private ObservableCollection<FormGridSystemRow> _ListRows;
+        IReadOnlyList<IFormGridSystemRow> IFormGridSystem.ListRows { get { return (this as FormGridSystem).ListRows; } } // Property.tt Line: 26
+        partial void OnListRowsChanging(ObservableCollection<FormGridSystemRow> to); // Property.tt Line: 27
+        partial void OnListRowsChanged();
         
-        public int Right // Property.tt Line: 55
+        [BrowsableAttribute(false)]
+        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
         { 
-            get { return this._Right; }
+            get { return this._ListGuidProperties; }
             set
             {
-                if (this._Right != value)
+                if (this._ListGuidProperties != value)
                 {
-                    this.OnRightChanging(ref value);
-                    this._Right = value;
-                    this.OnRightChanged();
+                    this.OnListGuidPropertiesChanging(value);
+                    _ListGuidProperties = value;
+                    this.OnListGuidPropertiesChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
-        private int _Right;
-        partial void OnRightChanging(ref int to); // Property.tt Line: 79
-        partial void OnRightChanged();
+        private ObservableCollection<string> _ListGuidProperties;
+        IReadOnlyList<string> IFormGridSystem.ListGuidProperties { get { return (this as FormGridSystem).ListGuidProperties; } } // Property.tt Line: 26
+        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
+        partial void OnListGuidPropertiesChanged();
         
-        public int Bottom // Property.tt Line: 55
+        [BrowsableAttribute(false)]
+        public ObservableCollection<FormBlock> ListFormBlocks // Property.tt Line: 8
         { 
-            get { return this._Bottom; }
+            get { return this._ListFormBlocks; }
             set
             {
-                if (this._Bottom != value)
+                if (this._ListFormBlocks != value)
                 {
-                    this.OnBottomChanging(ref value);
-                    this._Bottom = value;
-                    this.OnBottomChanged();
+                    this.OnListFormBlocksChanging(value);
+                    _ListFormBlocks = value;
+                    this.OnListFormBlocksChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
-        private int _Bottom;
-        partial void OnBottomChanging(ref int to); // Property.tt Line: 79
-        partial void OnBottomChanged();
+        private ObservableCollection<FormBlock> _ListFormBlocks;
+        IReadOnlyList<IFormBlock> IFormGridSystem.ListFormBlocks { get { return (this as FormGridSystem).ListFormBlocks; } } // Property.tt Line: 26
+        partial void OnListFormBlocksChanging(ObservableCollection<FormBlock> to); // Property.tt Line: 27
+        partial void OnListFormBlocksChanged();
         #endregion Properties
     }
-    public partial class FormPaddingValidator : ValidatorBase<FormPadding, FormPaddingValidator> { } // Class.tt Line: 6
-    public partial class FormPadding : VmValidatableWithSeverity<FormPadding, FormPaddingValidator>, IFormPadding // Class.tt Line: 7
+    public partial class FormGridSystemRowValidator : ValidatorBase<FormGridSystemRow, FormGridSystemRowValidator> { } // Class.tt Line: 6
+    public partial class FormGridSystemRow : VmValidatableWithSeverity<FormGridSystemRow, FormGridSystemRowValidator>, IFormGridSystemRow // Class.tt Line: 7
     {
         #region CTOR
-        public FormPadding() 
-            : base(FormPaddingValidator.Validator) // Class.tt Line: 45
+        public FormGridSystemRow() 
+            : base(FormGridSystemRowValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
+            this.ListColumns = new ObservableCollection<FormGridSystemColumn>(); // Class.tt Line: 54
             this.OnInit();
             this.IsValidate = true;
         }
@@ -21043,48 +21209,81 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnInit();
         #endregion CTOR
         #region Procedures
-        public static FormPadding Clone(IFormPadding from, bool isDeep = true) // Clone.tt Line: 27
+        public static FormGridSystemRow Clone(IFormGridSystemRow from, bool isDeep = true) // Clone.tt Line: 27
         {
             Contract.Requires(from != null);
-            FormPadding vm = new FormPadding();
+            FormGridSystemRow vm = new FormGridSystemRow();
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.Left = from.Left; // Clone.tt Line: 65
-            vm.Up = from.Up; // Clone.tt Line: 65
-            vm.Right = from.Right; // Clone.tt Line: 65
-            vm.Bottom = from.Bottom; // Clone.tt Line: 65
+            vm.Guid = from.Guid; // Clone.tt Line: 65
+            vm.ListColumns = new ObservableCollection<FormGridSystemColumn>(); // Clone.tt Line: 47
+            foreach (var t in from.ListColumns) // Clone.tt Line: 48
+                vm.ListColumns.Add(FormGridSystemColumn.Clone((FormGridSystemColumn)t, isDeep));
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(FormPadding to, IFormPadding from, bool isDeep = true) // Clone.tt Line: 77
+        public static void Update(FormGridSystemRow to, IFormGridSystemRow from, bool isDeep = true) // Clone.tt Line: 77
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
-            to.Left = from.Left; // Clone.tt Line: 141
-            to.Up = from.Up; // Clone.tt Line: 141
-            to.Right = from.Right; // Clone.tt Line: 141
-            to.Bottom = from.Bottom; // Clone.tt Line: 141
+            to.Guid = from.Guid; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListColumns.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListColumns)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            FormGridSystemColumn.Update((FormGridSystemColumn)t, (FormGridSystemColumn)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListColumns.Remove(t);
+                }
+                foreach (var tt in from.ListColumns)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListColumns.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new FormGridSystemColumn(); // Clone.tt Line: 119
+                        FormGridSystemColumn.Update(p, (FormGridSystemColumn)tt, isDeep);
+                        to.ListColumns.Add(p);
+                    }
+                }
+            }
         }
         // Clone.tt Line: 147
         #region IEditable
-        public override FormPadding Backup()
+        public override FormGridSystemRow Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return FormPadding.Clone(this);
+            return FormGridSystemRow.Clone(this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormPadding from)
+        public override void Restore(FormGridSystemRow from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            FormPadding.Update(this, from, isDeep);
+            FormGridSystemRow.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_form_padding' to 'FormPadding'
-        public static FormPadding ConvertToVM(Proto.Config.proto_form_padding m, FormPadding vm) // Clone.tt Line: 170
+        // Conversion from 'proto_form_grid_system_row' to 'FormGridSystemRow'
+        public static FormGridSystemRow ConvertToVM(Proto.Config.proto_form_grid_system_row m, FormGridSystemRow vm) // Clone.tt Line: 170
         {
             Contract.Requires(vm != null);
             if (m == null)
@@ -21093,23 +21292,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.Left = m.Left; // Clone.tt Line: 221
-            vm.Up = m.Up; // Clone.tt Line: 221
-            vm.Right = m.Right; // Clone.tt Line: 221
-            vm.Bottom = m.Bottom; // Clone.tt Line: 221
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.ListColumns = new ObservableCollection<FormGridSystemColumn>(); // Clone.tt Line: 190
+            foreach (var t in m.ListColumns) // Clone.tt Line: 191
+            {
+                var tvm = FormGridSystemColumn.ConvertToVM(t, new FormGridSystemColumn()); // Clone.tt Line: 196
+                vm.ListColumns.Add(tvm);
+            }
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'FormPadding' to 'proto_form_padding'
-        public static Proto.Config.proto_form_padding ConvertToProto(FormPadding vm) // Clone.tt Line: 236
+        // Conversion from 'FormGridSystemRow' to 'proto_form_grid_system_row'
+        public static Proto.Config.proto_form_grid_system_row ConvertToProto(FormGridSystemRow vm) // Clone.tt Line: 236
         {
             Contract.Requires(vm != null);
-            Proto.Config.proto_form_padding m = new Proto.Config.proto_form_padding(); // Clone.tt Line: 239
-            m.Left = vm.Left; // Clone.tt Line: 276
-            m.Up = vm.Up; // Clone.tt Line: 276
-            m.Right = vm.Right; // Clone.tt Line: 276
-            m.Bottom = vm.Bottom; // Clone.tt Line: 276
+            Proto.Config.proto_form_grid_system_row m = new Proto.Config.proto_form_grid_system_row(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            foreach (var t in vm.ListColumns) // Clone.tt Line: 242
+                m.ListColumns.Add(FormGridSystemColumn.ConvertToProto((FormGridSystemColumn)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -21121,101 +21322,70 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
+            foreach (var t in this.ListColumns)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
         
-        public int Left // Property.tt Line: 55
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
         { 
-            get { return this._Left; }
+            get { return this._Guid; }
             set
             {
-                if (this._Left != value)
+                if (this._Guid != value)
                 {
-                    this.OnLeftChanging(ref value);
-                    this._Left = value;
-                    this.OnLeftChanged();
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private int _Left;
-        partial void OnLeftChanging(ref int to); // Property.tt Line: 79
-        partial void OnLeftChanged();
+        private string _Guid = string.Empty;
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
         
-        public int Up // Property.tt Line: 55
+        [BrowsableAttribute(false)]
+        public ObservableCollection<FormGridSystemColumn> ListColumns // Property.tt Line: 8
         { 
-            get { return this._Up; }
+            get { return this._ListColumns; }
             set
             {
-                if (this._Up != value)
+                if (this._ListColumns != value)
                 {
-                    this.OnUpChanging(ref value);
-                    this._Up = value;
-                    this.OnUpChanged();
+                    this.OnListColumnsChanging(value);
+                    _ListColumns = value;
+                    this.OnListColumnsChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
-                    this.IsChanged = true;
                 }
             }
         }
-        private int _Up;
-        partial void OnUpChanging(ref int to); // Property.tt Line: 79
-        partial void OnUpChanged();
-        
-        public int Right // Property.tt Line: 55
-        { 
-            get { return this._Right; }
-            set
-            {
-                if (this._Right != value)
-                {
-                    this.OnRightChanging(ref value);
-                    this._Right = value;
-                    this.OnRightChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private int _Right;
-        partial void OnRightChanging(ref int to); // Property.tt Line: 79
-        partial void OnRightChanged();
-        
-        public int Bottom // Property.tt Line: 55
-        { 
-            get { return this._Bottom; }
-            set
-            {
-                if (this._Bottom != value)
-                {
-                    this.OnBottomChanging(ref value);
-                    this._Bottom = value;
-                    this.OnBottomChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private int _Bottom;
-        partial void OnBottomChanging(ref int to); // Property.tt Line: 79
-        partial void OnBottomChanged();
+        private ObservableCollection<FormGridSystemColumn> _ListColumns;
+        IReadOnlyList<IFormGridSystemColumn> IFormGridSystemRow.ListColumns { get { return (this as FormGridSystemRow).ListColumns; } } // Property.tt Line: 26
+        partial void OnListColumnsChanging(ObservableCollection<FormGridSystemColumn> to); // Property.tt Line: 27
+        partial void OnListColumnsChanged();
         #endregion Properties
     }
-    public partial class FormStackpanelValidator : ValidatorBase<FormStackpanel, FormStackpanelValidator> { } // Class.tt Line: 6
-    public partial class FormStackpanel : VmValidatableWithSeverity<FormStackpanel, FormStackpanelValidator>, IFormStackpanel // Class.tt Line: 7
+    public partial class FormGridSystemColumnValidator : ValidatorBase<FormGridSystemColumn, FormGridSystemColumnValidator> { } // Class.tt Line: 6
+    public partial class FormGridSystemColumn : VmValidatableWithSeverity<FormGridSystemColumn, FormGridSystemColumnValidator>, IFormGridSystemColumn // Class.tt Line: 7
     {
         #region CTOR
-        public FormStackpanel() 
-            : base(FormStackpanelValidator.Validator) // Class.tt Line: 45
+        public FormGridSystemColumn() 
+            : base(FormGridSystemColumnValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
+            this.ListRows = new ObservableCollection<FormGridSystemRow>(); // Class.tt Line: 54
+            this.ListGuidProperties = new ObservableCollection<string>(); // Class.tt Line: 54
+            this.ListFormBlocks = new ObservableCollection<FormBlock>(); // Class.tt Line: 54
             this.OnInit();
             this.IsValidate = true;
         }
@@ -21223,42 +21393,141 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnInit();
         #endregion CTOR
         #region Procedures
-        public static FormStackpanel Clone(IFormStackpanel from, bool isDeep = true) // Clone.tt Line: 27
+        public static FormGridSystemColumn Clone(IFormGridSystemColumn from, bool isDeep = true) // Clone.tt Line: 27
         {
             Contract.Requires(from != null);
-            FormStackpanel vm = new FormStackpanel();
+            FormGridSystemColumn vm = new FormGridSystemColumn();
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.Orientation = from.Orientation; // Clone.tt Line: 65
+            vm.Guid = from.Guid; // Clone.tt Line: 65
+            vm.HideType = from.HideType; // Clone.tt Line: 65
+            vm.WidthXs = from.WidthXs; // Clone.tt Line: 65
+            vm.WidthSm = from.WidthSm; // Clone.tt Line: 65
+            vm.WidthMd = from.WidthMd; // Clone.tt Line: 65
+            vm.WidthLg = from.WidthLg; // Clone.tt Line: 65
+            vm.WidthXl = from.WidthXl; // Clone.tt Line: 65
+            vm.WidthXx = from.WidthXx; // Clone.tt Line: 65
+            vm.ListRows = new ObservableCollection<FormGridSystemRow>(); // Clone.tt Line: 47
+            foreach (var t in from.ListRows) // Clone.tt Line: 48
+                vm.ListRows.Add(FormGridSystemRow.Clone((FormGridSystemRow)t, isDeep));
+            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
+                vm.ListGuidProperties.Add(t);
+            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 47
+            foreach (var t in from.ListFormBlocks) // Clone.tt Line: 48
+                vm.ListFormBlocks.Add(FormBlock.Clone((FormBlock)t, isDeep));
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(FormStackpanel to, IFormStackpanel from, bool isDeep = true) // Clone.tt Line: 77
+        public static void Update(FormGridSystemColumn to, IFormGridSystemColumn from, bool isDeep = true) // Clone.tt Line: 77
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
-            to.Orientation = from.Orientation; // Clone.tt Line: 141
+            to.Guid = from.Guid; // Clone.tt Line: 141
+            to.HideType = from.HideType; // Clone.tt Line: 141
+            to.WidthXs = from.WidthXs; // Clone.tt Line: 141
+            to.WidthSm = from.WidthSm; // Clone.tt Line: 141
+            to.WidthMd = from.WidthMd; // Clone.tt Line: 141
+            to.WidthLg = from.WidthLg; // Clone.tt Line: 141
+            to.WidthXl = from.WidthXl; // Clone.tt Line: 141
+            to.WidthXx = from.WidthXx; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListRows.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListRows)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            FormGridSystemRow.Update((FormGridSystemRow)t, (FormGridSystemRow)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListRows.Remove(t);
+                }
+                foreach (var tt in from.ListRows)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListRows.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new FormGridSystemRow(); // Clone.tt Line: 119
+                        FormGridSystemRow.Update(p, (FormGridSystemRow)tt, isDeep);
+                        to.ListRows.Add(p);
+                    }
+                }
+            }
+                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
+                foreach (var tt in from.ListGuidProperties)
+                {
+                    to.ListGuidProperties.Add(tt);
+                }
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListFormBlocks.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListFormBlocks)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            FormBlock.Update((FormBlock)t, (FormBlock)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListFormBlocks.Remove(t);
+                }
+                foreach (var tt in from.ListFormBlocks)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListFormBlocks.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new FormBlock(); // Clone.tt Line: 119
+                        FormBlock.Update(p, (FormBlock)tt, isDeep);
+                        to.ListFormBlocks.Add(p);
+                    }
+                }
+            }
         }
         // Clone.tt Line: 147
         #region IEditable
-        public override FormStackpanel Backup()
+        public override FormGridSystemColumn Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return FormStackpanel.Clone(this);
+            return FormGridSystemColumn.Clone(this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormStackpanel from)
+        public override void Restore(FormGridSystemColumn from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            FormStackpanel.Update(this, from, isDeep);
+            FormGridSystemColumn.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_form_stackpanel' to 'FormStackpanel'
-        public static FormStackpanel ConvertToVM(Proto.Config.proto_form_stackpanel m, FormStackpanel vm) // Clone.tt Line: 170
+        // Conversion from 'proto_form_grid_system_column' to 'FormGridSystemColumn'
+        public static FormGridSystemColumn ConvertToVM(Proto.Config.proto_form_grid_system_column m, FormGridSystemColumn vm) // Clone.tt Line: 170
         {
             Contract.Requires(vm != null);
             if (m == null)
@@ -21267,17 +21536,54 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.Orientation = (FormOrientation)m.Orientation; // Clone.tt Line: 221
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.HideType = (EnumHiddenType)m.HideType; // Clone.tt Line: 221
+            vm.WidthXs = m.WidthXs; // Clone.tt Line: 221
+            vm.WidthSm = m.WidthSm; // Clone.tt Line: 221
+            vm.WidthMd = m.WidthMd; // Clone.tt Line: 221
+            vm.WidthLg = m.WidthLg; // Clone.tt Line: 221
+            vm.WidthXl = m.WidthXl; // Clone.tt Line: 221
+            vm.WidthXx = m.WidthXx; // Clone.tt Line: 221
+            vm.ListRows = new ObservableCollection<FormGridSystemRow>(); // Clone.tt Line: 190
+            foreach (var t in m.ListRows) // Clone.tt Line: 191
+            {
+                var tvm = FormGridSystemRow.ConvertToVM(t, new FormGridSystemRow()); // Clone.tt Line: 196
+                vm.ListRows.Add(tvm);
+            }
+            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
+            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
+            {
+                vm.ListGuidProperties.Add(t);
+            }
+            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 190
+            foreach (var t in m.ListFormBlocks) // Clone.tt Line: 191
+            {
+                var tvm = FormBlock.ConvertToVM(t, new FormBlock()); // Clone.tt Line: 196
+                vm.ListFormBlocks.Add(tvm);
+            }
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'FormStackpanel' to 'proto_form_stackpanel'
-        public static Proto.Config.proto_form_stackpanel ConvertToProto(FormStackpanel vm) // Clone.tt Line: 236
+        // Conversion from 'FormGridSystemColumn' to 'proto_form_grid_system_column'
+        public static Proto.Config.proto_form_grid_system_column ConvertToProto(FormGridSystemColumn vm) // Clone.tt Line: 236
         {
             Contract.Requires(vm != null);
-            Proto.Config.proto_form_stackpanel m = new Proto.Config.proto_form_stackpanel(); // Clone.tt Line: 239
-            m.Orientation = (Proto.Config.proto_form_orientation)vm.Orientation; // Clone.tt Line: 274
+            Proto.Config.proto_form_grid_system_column m = new Proto.Config.proto_form_grid_system_column(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.HideType = (Proto.Config.proto_enum_hidden_type)vm.HideType; // Clone.tt Line: 274
+            m.WidthXs = vm.WidthXs; // Clone.tt Line: 276
+            m.WidthSm = vm.WidthSm; // Clone.tt Line: 276
+            m.WidthMd = vm.WidthMd; // Clone.tt Line: 276
+            m.WidthLg = vm.WidthLg; // Clone.tt Line: 276
+            m.WidthXl = vm.WidthXl; // Clone.tt Line: 276
+            m.WidthXx = vm.WidthXx; // Clone.tt Line: 276
+            foreach (var t in vm.ListRows) // Clone.tt Line: 242
+                m.ListRows.Add(FormGridSystemRow.ConvertToProto((FormGridSystemRow)t)); // Clone.tt Line: 246
+            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
+                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
+            foreach (var t in vm.ListFormBlocks) // Clone.tt Line: 242
+                m.ListFormBlocks.Add(FormBlock.ConvertToProto((FormBlock)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -21289,43 +21595,269 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
+            foreach (var t in this.ListRows)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            foreach (var t in this.ListFormBlocks)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
         
-        public FormOrientation Orientation // Property.tt Line: 55
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
         { 
-            get { return this._Orientation; }
+            get { return this._Guid; }
             set
             {
-                if (this._Orientation != value)
+                if (this._Guid != value)
                 {
-                    this.OnOrientationChanging(ref value);
-                    this._Orientation = value;
-                    this.OnOrientationChanged();
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormOrientation _Orientation;
-        partial void OnOrientationChanging(ref FormOrientation to); // Property.tt Line: 79
-        partial void OnOrientationChanged();
+        private string _Guid = string.Empty;
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
+        
+        [DisplayName("When Hide")]
+        [Description("Condition of hiding base on screen size")]
+        public EnumHiddenType HideType // Property.tt Line: 55
+        { 
+            get { return this._HideType; }
+            set
+            {
+                if (this._HideType != value)
+                {
+                    this.OnHideTypeChanging(ref value);
+                    this._HideType = value;
+                    this.OnHideTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumHiddenType _HideType;
+        partial void OnHideTypeChanging(ref EnumHiddenType to); // Property.tt Line: 79
+        partial void OnHideTypeChanged();
+        
+        [DisplayName("XS")]
+        [Description("Extra small. Small to large phone. Range: < 600px")]
+        public uint? WidthXs // Property.tt Line: 55
+        { 
+            get { return this._WidthXs; }
+            set
+            {
+                if (this._WidthXs != value)
+                {
+                    this.OnWidthXsChanging(ref value);
+                    this._WidthXs = value;
+                    this.OnWidthXsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint? _WidthXs;
+        partial void OnWidthXsChanging(ref uint? to); // Property.tt Line: 79
+        partial void OnWidthXsChanged();
+        
+        [DisplayName("SM")]
+        [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
+        public uint? WidthSm // Property.tt Line: 55
+        { 
+            get { return this._WidthSm; }
+            set
+            {
+                if (this._WidthSm != value)
+                {
+                    this.OnWidthSmChanging(ref value);
+                    this._WidthSm = value;
+                    this.OnWidthSmChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint? _WidthSm;
+        partial void OnWidthSmChanging(ref uint? to); // Property.tt Line: 79
+        partial void OnWidthSmChanged();
+        
+        [DisplayName("MD")]
+        [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
+        public uint? WidthMd // Property.tt Line: 55
+        { 
+            get { return this._WidthMd; }
+            set
+            {
+                if (this._WidthMd != value)
+                {
+                    this.OnWidthMdChanging(ref value);
+                    this._WidthMd = value;
+                    this.OnWidthMdChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint? _WidthMd;
+        partial void OnWidthMdChanging(ref uint? to); // Property.tt Line: 79
+        partial void OnWidthMdChanged();
+        
+        [DisplayName("LG")]
+        [Description("Large. Desktop. Range: 1280px > < 1920px")]
+        public uint? WidthLg // Property.tt Line: 55
+        { 
+            get { return this._WidthLg; }
+            set
+            {
+                if (this._WidthLg != value)
+                {
+                    this.OnWidthLgChanging(ref value);
+                    this._WidthLg = value;
+                    this.OnWidthLgChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint? _WidthLg;
+        partial void OnWidthLgChanging(ref uint? to); // Property.tt Line: 79
+        partial void OnWidthLgChanged();
+        
+        [DisplayName("XL")]
+        [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
+        public uint? WidthXl // Property.tt Line: 55
+        { 
+            get { return this._WidthXl; }
+            set
+            {
+                if (this._WidthXl != value)
+                {
+                    this.OnWidthXlChanging(ref value);
+                    this._WidthXl = value;
+                    this.OnWidthXlChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint? _WidthXl;
+        partial void OnWidthXlChanging(ref uint? to); // Property.tt Line: 79
+        partial void OnWidthXlChanged();
+        
+        [DisplayName("XX")]
+        [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
+        public uint? WidthXx // Property.tt Line: 55
+        { 
+            get { return this._WidthXx; }
+            set
+            {
+                if (this._WidthXx != value)
+                {
+                    this.OnWidthXxChanging(ref value);
+                    this._WidthXx = value;
+                    this.OnWidthXxChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint? _WidthXx;
+        partial void OnWidthXxChanging(ref uint? to); // Property.tt Line: 79
+        partial void OnWidthXxChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<FormGridSystemRow> ListRows // Property.tt Line: 8
+        { 
+            get { return this._ListRows; }
+            set
+            {
+                if (this._ListRows != value)
+                {
+                    this.OnListRowsChanging(value);
+                    _ListRows = value;
+                    this.OnListRowsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<FormGridSystemRow> _ListRows;
+        IReadOnlyList<IFormGridSystemRow> IFormGridSystemColumn.ListRows { get { return (this as FormGridSystemColumn).ListRows; } } // Property.tt Line: 26
+        partial void OnListRowsChanging(ObservableCollection<FormGridSystemRow> to); // Property.tt Line: 27
+        partial void OnListRowsChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
+        { 
+            get { return this._ListGuidProperties; }
+            set
+            {
+                if (this._ListGuidProperties != value)
+                {
+                    this.OnListGuidPropertiesChanging(value);
+                    _ListGuidProperties = value;
+                    this.OnListGuidPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<string> _ListGuidProperties;
+        IReadOnlyList<string> IFormGridSystemColumn.ListGuidProperties { get { return (this as FormGridSystemColumn).ListGuidProperties; } } // Property.tt Line: 26
+        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
+        partial void OnListGuidPropertiesChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<FormBlock> ListFormBlocks // Property.tt Line: 8
+        { 
+            get { return this._ListFormBlocks; }
+            set
+            {
+                if (this._ListFormBlocks != value)
+                {
+                    this.OnListFormBlocksChanging(value);
+                    _ListFormBlocks = value;
+                    this.OnListFormBlocksChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<FormBlock> _ListFormBlocks;
+        IReadOnlyList<IFormBlock> IFormGridSystemColumn.ListFormBlocks { get { return (this as FormGridSystemColumn).ListFormBlocks; } } // Property.tt Line: 26
+        partial void OnListFormBlocksChanging(ObservableCollection<FormBlock> to); // Property.tt Line: 27
+        partial void OnListFormBlocksChanged();
         #endregion Properties
     }
-    public partial class FormGridValidator : ValidatorBase<FormGrid, FormGridValidator> { } // Class.tt Line: 6
-    public partial class FormGrid : VmValidatableWithSeverity<FormGrid, FormGridValidator>, IFormGrid // Class.tt Line: 7
+    public partial class FormBlockValidator : ValidatorBase<FormBlock, FormBlockValidator> { } // Class.tt Line: 6
+    public partial class FormBlock : VmValidatableWithSeverity<FormBlock, FormBlockValidator>, IFormBlock // Class.tt Line: 7
     {
         #region CTOR
-        public FormGrid() 
-            : base(FormGridValidator.Validator) // Class.tt Line: 45
+        public FormBlock() 
+            : base(FormBlockValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.Marging = new FormMarging(); // Class.tt Line: 60
-            this.Padding = new FormPadding(); // Class.tt Line: 60
+            this.TabControl = new FormTabControl(); // Class.tt Line: 60
+            this.DataGrid = new FormDataGrid(); // Class.tt Line: 60
             this.OnInit();
             this.IsValidate = true;
         }
@@ -21333,48 +21865,50 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnInit();
         #endregion CTOR
         #region Procedures
-        public static FormGrid Clone(IFormGrid from, bool isDeep = true) // Clone.tt Line: 27
+        public static FormBlock Clone(IFormBlock from, bool isDeep = true) // Clone.tt Line: 27
         {
             Contract.Requires(from != null);
-            FormGrid vm = new FormGrid();
+            FormBlock vm = new FormBlock();
             vm.IsNotifying = false;
             vm.IsValidate = false;
+            vm.Guid = from.Guid; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
-                vm.Marging = vSharpStudio.vm.ViewModels.FormMarging.Clone(from.Marging, isDeep);
+                vm.TabControl = vSharpStudio.vm.ViewModels.FormTabControl.Clone(from.TabControl, isDeep);
             if (isDeep) // Clone.tt Line: 62
-                vm.Padding = vSharpStudio.vm.ViewModels.FormPadding.Clone(from.Padding, isDeep);
+                vm.DataGrid = vSharpStudio.vm.ViewModels.FormDataGrid.Clone(from.DataGrid, isDeep);
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(FormGrid to, IFormGrid from, bool isDeep = true) // Clone.tt Line: 77
+        public static void Update(FormBlock to, IFormBlock from, bool isDeep = true) // Clone.tt Line: 77
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
+            to.Guid = from.Guid; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.FormMarging.Update((FormMarging)to.Marging, from.Marging, isDeep);
+                vSharpStudio.vm.ViewModels.FormTabControl.Update((FormTabControl)to.TabControl, from.TabControl, isDeep);
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.FormPadding.Update((FormPadding)to.Padding, from.Padding, isDeep);
+                vSharpStudio.vm.ViewModels.FormDataGrid.Update((FormDataGrid)to.DataGrid, from.DataGrid, isDeep);
         }
         // Clone.tt Line: 147
         #region IEditable
-        public override FormGrid Backup()
+        public override FormBlock Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return FormGrid.Clone(this);
+            return FormBlock.Clone(this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormGrid from)
+        public override void Restore(FormBlock from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            FormGrid.Update(this, from, isDeep);
+            FormBlock.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_form_grid' to 'FormGrid'
-        public static FormGrid ConvertToVM(Proto.Config.proto_form_grid m, FormGrid vm) // Clone.tt Line: 170
+        // Conversion from 'proto_form_block' to 'FormBlock'
+        public static FormBlock ConvertToVM(Proto.Config.proto_form_block m, FormBlock vm) // Clone.tt Line: 170
         {
             Contract.Requires(vm != null);
             if (m == null)
@@ -21383,23 +21917,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            if (vm.Marging == null) // Clone.tt Line: 213
-                vm.Marging = new FormMarging(); // Clone.tt Line: 217
-            vSharpStudio.vm.ViewModels.FormMarging.ConvertToVM(m.Marging, (FormMarging)vm.Marging); // Clone.tt Line: 219
-            if (vm.Padding == null) // Clone.tt Line: 213
-                vm.Padding = new FormPadding(); // Clone.tt Line: 217
-            vSharpStudio.vm.ViewModels.FormPadding.ConvertToVM(m.Padding, (FormPadding)vm.Padding); // Clone.tt Line: 219
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            if (vm.TabControl == null) // Clone.tt Line: 213
+                vm.TabControl = new FormTabControl(); // Clone.tt Line: 217
+            vSharpStudio.vm.ViewModels.FormTabControl.ConvertToVM(m.TabControl, (FormTabControl)vm.TabControl); // Clone.tt Line: 219
+            if (vm.DataGrid == null) // Clone.tt Line: 213
+                vm.DataGrid = new FormDataGrid(); // Clone.tt Line: 217
+            vSharpStudio.vm.ViewModels.FormDataGrid.ConvertToVM(m.DataGrid, (FormDataGrid)vm.DataGrid); // Clone.tt Line: 219
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'FormGrid' to 'proto_form_grid'
-        public static Proto.Config.proto_form_grid ConvertToProto(FormGrid vm) // Clone.tt Line: 236
+        // Conversion from 'FormBlock' to 'proto_form_block'
+        public static Proto.Config.proto_form_block ConvertToProto(FormBlock vm) // Clone.tt Line: 236
         {
             Contract.Requires(vm != null);
-            Proto.Config.proto_form_grid m = new Proto.Config.proto_form_grid(); // Clone.tt Line: 239
-            m.Marging = vSharpStudio.vm.ViewModels.FormMarging.ConvertToProto((FormMarging)vm.Marging); // Clone.tt Line: 270
-            m.Padding = vSharpStudio.vm.ViewModels.FormPadding.ConvertToProto((FormPadding)vm.Padding); // Clone.tt Line: 270
+            Proto.Config.proto_form_block m = new Proto.Config.proto_form_block(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.TabControl = vSharpStudio.vm.ViewModels.FormTabControl.ConvertToProto((FormTabControl)vm.TabControl); // Clone.tt Line: 270
+            m.DataGrid = vSharpStudio.vm.ViewModels.FormDataGrid.ConvertToProto((FormDataGrid)vm.DataGrid); // Clone.tt Line: 270
             return m;
         }
         
@@ -21411,71 +21947,92 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
-            this.Marging.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.TabControl.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.Padding.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.DataGrid.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
         
-        public FormMarging Marging // Property.tt Line: 55
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
         { 
-            get { return this._Marging; }
+            get { return this._Guid; }
             set
             {
-                if (this._Marging != value)
+                if (this._Guid != value)
                 {
-                    this.OnMargingChanging(ref value);
-                    this._Marging = value;
-                    this.OnMargingChanged();
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormMarging _Marging;
-        IFormMarging IFormGrid.Marging { get { return (this as FormGrid).Marging; } } // Property.tt Line: 77
-        partial void OnMargingChanging(ref FormMarging to); // Property.tt Line: 79
-        partial void OnMargingChanged();
-        //IFormMarging IFormGrid.Marging { get { return this._Marging; } }
+        private string _Guid = string.Empty;
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
         
-        public FormPadding Padding // Property.tt Line: 55
+        public FormTabControl TabControl // Property.tt Line: 55
         { 
-            get { return this._Padding; }
+            get { return this._TabControl; }
             set
             {
-                if (this._Padding != value)
+                if (this._TabControl != value)
                 {
-                    this.OnPaddingChanging(ref value);
-                    this._Padding = value;
-                    this.OnPaddingChanged();
+                    this.OnTabControlChanging(ref value);
+                    this._TabControl = value;
+                    this.OnTabControlChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormPadding _Padding;
-        IFormPadding IFormGrid.Padding { get { return (this as FormGrid).Padding; } } // Property.tt Line: 77
-        partial void OnPaddingChanging(ref FormPadding to); // Property.tt Line: 79
-        partial void OnPaddingChanged();
-        //IFormPadding IFormGrid.Padding { get { return this._Padding; } }
+        private FormTabControl _TabControl;
+        IFormTabControl IFormBlock.TabControl { get { return (this as FormBlock).TabControl; } } // Property.tt Line: 77
+        partial void OnTabControlChanging(ref FormTabControl to); // Property.tt Line: 79
+        partial void OnTabControlChanged();
+        //IFormTabControl IFormBlock.TabControl { get { return this._TabControl; } }
+        
+        public FormDataGrid DataGrid // Property.tt Line: 55
+        { 
+            get { return this._DataGrid; }
+            set
+            {
+                if (this._DataGrid != value)
+                {
+                    this.OnDataGridChanging(ref value);
+                    this._DataGrid = value;
+                    this.OnDataGridChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private FormDataGrid _DataGrid;
+        IFormDataGrid IFormBlock.DataGrid { get { return (this as FormBlock).DataGrid; } } // Property.tt Line: 77
+        partial void OnDataGridChanging(ref FormDataGrid to); // Property.tt Line: 79
+        partial void OnDataGridChanged();
+        //IFormDataGrid IFormBlock.DataGrid { get { return this._DataGrid; } }
         #endregion Properties
     }
-    public partial class FormDatagridValidator : ValidatorBase<FormDatagrid, FormDatagridValidator> { } // Class.tt Line: 6
-    public partial class FormDatagrid : VmValidatableWithSeverity<FormDatagrid, FormDatagridValidator>, IFormDatagrid // Class.tt Line: 7
+    public partial class FormTabControlTabValidator : ValidatorBase<FormTabControlTab, FormTabControlTabValidator> { } // Class.tt Line: 6
+    public partial class FormTabControlTab : VmValidatableWithSeverity<FormTabControlTab, FormTabControlTabValidator>, IFormTabControlTab // Class.tt Line: 7
     {
         #region CTOR
-        public FormDatagrid() 
-            : base(FormDatagridValidator.Validator) // Class.tt Line: 45
+        public FormTabControlTab() 
+            : base(FormTabControlTabValidator.Validator) // Class.tt Line: 45
         {
             this.IsValidate = false;
             this.OnInitBegin();
-            this.Marging = new FormMarging(); // Class.tt Line: 60
-            this.Padding = new FormPadding(); // Class.tt Line: 60
+            this.ListGuidProperties = new ObservableCollection<string>(); // Class.tt Line: 54
+            this.ListFormBlocks = new ObservableCollection<FormBlock>(); // Class.tt Line: 54
             this.OnInit();
             this.IsValidate = true;
         }
@@ -21483,48 +22040,92 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnInit();
         #endregion CTOR
         #region Procedures
-        public static FormDatagrid Clone(IFormDatagrid from, bool isDeep = true) // Clone.tt Line: 27
+        public static FormTabControlTab Clone(IFormTabControlTab from, bool isDeep = true) // Clone.tt Line: 27
         {
             Contract.Requires(from != null);
-            FormDatagrid vm = new FormDatagrid();
+            FormTabControlTab vm = new FormTabControlTab();
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            if (isDeep) // Clone.tt Line: 62
-                vm.Marging = vSharpStudio.vm.ViewModels.FormMarging.Clone(from.Marging, isDeep);
-            if (isDeep) // Clone.tt Line: 62
-                vm.Padding = vSharpStudio.vm.ViewModels.FormPadding.Clone(from.Padding, isDeep);
+            vm.Guid = from.Guid; // Clone.tt Line: 65
+            vm.Name = from.Name; // Clone.tt Line: 65
+            vm.Description = from.Description; // Clone.tt Line: 65
+            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
+                vm.ListGuidProperties.Add(t);
+            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 47
+            foreach (var t in from.ListFormBlocks) // Clone.tt Line: 48
+                vm.ListFormBlocks.Add(FormBlock.Clone((FormBlock)t, isDeep));
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(FormDatagrid to, IFormDatagrid from, bool isDeep = true) // Clone.tt Line: 77
+        public static void Update(FormTabControlTab to, IFormTabControlTab from, bool isDeep = true) // Clone.tt Line: 77
         {
             Contract.Requires(to != null);
             Contract.Requires(from != null);
-            if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.FormMarging.Update((FormMarging)to.Marging, from.Marging, isDeep);
-            if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.FormPadding.Update((FormPadding)to.Padding, from.Padding, isDeep);
+            to.Guid = from.Guid; // Clone.tt Line: 141
+            to.Name = from.Name; // Clone.tt Line: 141
+            to.Description = from.Description; // Clone.tt Line: 141
+                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
+                foreach (var tt in from.ListGuidProperties)
+                {
+                    to.ListGuidProperties.Add(tt);
+                }
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListFormBlocks.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListFormBlocks)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            FormBlock.Update((FormBlock)t, (FormBlock)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListFormBlocks.Remove(t);
+                }
+                foreach (var tt in from.ListFormBlocks)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListFormBlocks.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new FormBlock(); // Clone.tt Line: 119
+                        FormBlock.Update(p, (FormBlock)tt, isDeep);
+                        to.ListFormBlocks.Add(p);
+                    }
+                }
+            }
         }
         // Clone.tt Line: 147
         #region IEditable
-        public override FormDatagrid Backup()
+        public override FormTabControlTab Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return FormDatagrid.Clone(this);
+            return FormTabControlTab.Clone(this);
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormDatagrid from)
+        public override void Restore(FormTabControlTab from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            FormDatagrid.Update(this, from, isDeep);
+            FormTabControlTab.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_form_datagrid' to 'FormDatagrid'
-        public static FormDatagrid ConvertToVM(Proto.Config.proto_form_datagrid m, FormDatagrid vm) // Clone.tt Line: 170
+        // Conversion from 'proto_form_tab_control_tab' to 'FormTabControlTab'
+        public static FormTabControlTab ConvertToVM(Proto.Config.proto_form_tab_control_tab m, FormTabControlTab vm) // Clone.tt Line: 170
         {
             Contract.Requires(vm != null);
             if (m == null)
@@ -21533,23 +22134,36 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            if (vm.Marging == null) // Clone.tt Line: 213
-                vm.Marging = new FormMarging(); // Clone.tt Line: 217
-            vSharpStudio.vm.ViewModels.FormMarging.ConvertToVM(m.Marging, (FormMarging)vm.Marging); // Clone.tt Line: 219
-            if (vm.Padding == null) // Clone.tt Line: 213
-                vm.Padding = new FormPadding(); // Clone.tt Line: 217
-            vSharpStudio.vm.ViewModels.FormPadding.ConvertToVM(m.Padding, (FormPadding)vm.Padding); // Clone.tt Line: 219
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.Name = m.Name; // Clone.tt Line: 221
+            vm.Description = m.Description; // Clone.tt Line: 221
+            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
+            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
+            {
+                vm.ListGuidProperties.Add(t);
+            }
+            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 190
+            foreach (var t in m.ListFormBlocks) // Clone.tt Line: 191
+            {
+                var tvm = FormBlock.ConvertToVM(t, new FormBlock()); // Clone.tt Line: 196
+                vm.ListFormBlocks.Add(tvm);
+            }
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'FormDatagrid' to 'proto_form_datagrid'
-        public static Proto.Config.proto_form_datagrid ConvertToProto(FormDatagrid vm) // Clone.tt Line: 236
+        // Conversion from 'FormTabControlTab' to 'proto_form_tab_control_tab'
+        public static Proto.Config.proto_form_tab_control_tab ConvertToProto(FormTabControlTab vm) // Clone.tt Line: 236
         {
             Contract.Requires(vm != null);
-            Proto.Config.proto_form_datagrid m = new Proto.Config.proto_form_datagrid(); // Clone.tt Line: 239
-            m.Marging = vSharpStudio.vm.ViewModels.FormMarging.ConvertToProto((FormMarging)vm.Marging); // Clone.tt Line: 270
-            m.Padding = vSharpStudio.vm.ViewModels.FormPadding.ConvertToProto((FormPadding)vm.Padding); // Clone.tt Line: 270
+            Proto.Config.proto_form_tab_control_tab m = new Proto.Config.proto_form_tab_control_tab(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.Name = vm.Name; // Clone.tt Line: 276
+            m.Description = vm.Description; // Clone.tt Line: 276
+            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
+                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
+            foreach (var t in vm.ListFormBlocks) // Clone.tt Line: 242
+                m.ListFormBlocks.Add(FormBlock.ConvertToProto((FormBlock)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -21561,58 +22175,588 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
-            this.Marging.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
-            this.Padding.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
+            foreach (var t in this.ListFormBlocks)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
             visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
         
-        public FormMarging Marging // Property.tt Line: 55
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
         { 
-            get { return this._Marging; }
+            get { return this._Guid; }
             set
             {
-                if (this._Marging != value)
+                if (this._Guid != value)
                 {
-                    this.OnMargingChanging(ref value);
-                    this._Marging = value;
-                    this.OnMargingChanged();
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormMarging _Marging;
-        IFormMarging IFormDatagrid.Marging { get { return (this as FormDatagrid).Marging; } } // Property.tt Line: 77
-        partial void OnMargingChanging(ref FormMarging to); // Property.tt Line: 79
-        partial void OnMargingChanged();
-        //IFormMarging IFormDatagrid.Marging { get { return this._Marging; } }
+        private string _Guid = string.Empty;
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
         
-        public FormPadding Padding // Property.tt Line: 55
+        [DisplayName("Name")]
+        [Description("Tab name")]
+        public string Name // Property.tt Line: 55
         { 
-            get { return this._Padding; }
+            get { return this._Name; }
             set
             {
-                if (this._Padding != value)
+                if (this._Name != value)
                 {
-                    this.OnPaddingChanging(ref value);
-                    this._Padding = value;
-                    this.OnPaddingChanged();
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormPadding _Padding;
-        IFormPadding IFormDatagrid.Padding { get { return (this as FormDatagrid).Padding; } } // Property.tt Line: 77
-        partial void OnPaddingChanging(ref FormPadding to); // Property.tt Line: 79
-        partial void OnPaddingChanged();
-        //IFormPadding IFormDatagrid.Padding { get { return this._Padding; } }
+        private string _Name = string.Empty;
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameChanged();
+        
+        [DisplayName("Desc")]
+        [Description("Tab description")]
+        public string Description // Property.tt Line: 55
+        { 
+            get { return this._Description; }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
+        partial void OnDescriptionChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
+        { 
+            get { return this._ListGuidProperties; }
+            set
+            {
+                if (this._ListGuidProperties != value)
+                {
+                    this.OnListGuidPropertiesChanging(value);
+                    _ListGuidProperties = value;
+                    this.OnListGuidPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<string> _ListGuidProperties;
+        IReadOnlyList<string> IFormTabControlTab.ListGuidProperties { get { return (this as FormTabControlTab).ListGuidProperties; } } // Property.tt Line: 26
+        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
+        partial void OnListGuidPropertiesChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<FormBlock> ListFormBlocks // Property.tt Line: 8
+        { 
+            get { return this._ListFormBlocks; }
+            set
+            {
+                if (this._ListFormBlocks != value)
+                {
+                    this.OnListFormBlocksChanging(value);
+                    _ListFormBlocks = value;
+                    this.OnListFormBlocksChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<FormBlock> _ListFormBlocks;
+        IReadOnlyList<IFormBlock> IFormTabControlTab.ListFormBlocks { get { return (this as FormTabControlTab).ListFormBlocks; } } // Property.tt Line: 26
+        partial void OnListFormBlocksChanging(ObservableCollection<FormBlock> to); // Property.tt Line: 27
+        partial void OnListFormBlocksChanged();
+        #endregion Properties
+    }
+    public partial class FormTabControlValidator : ValidatorBase<FormTabControl, FormTabControlValidator> { } // Class.tt Line: 6
+    public partial class FormTabControl : VmValidatableWithSeverity<FormTabControl, FormTabControlValidator>, IFormTabControl // Class.tt Line: 7
+    {
+        #region CTOR
+        public FormTabControl() 
+            : base(FormTabControlValidator.Validator) // Class.tt Line: 45
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.ListTabs = new ObservableCollection<FormTabControlTab>(); // Class.tt Line: 54
+            this.ListGuidProperties = new ObservableCollection<string>(); // Class.tt Line: 54
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static FormTabControl Clone(IFormTabControl from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            FormTabControl vm = new FormTabControl();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = from.Guid; // Clone.tt Line: 65
+            vm.Name = from.Name; // Clone.tt Line: 65
+            vm.Description = from.Description; // Clone.tt Line: 65
+            vm.ListTabs = new ObservableCollection<FormTabControlTab>(); // Clone.tt Line: 47
+            foreach (var t in from.ListTabs) // Clone.tt Line: 48
+                vm.ListTabs.Add(FormTabControlTab.Clone((FormTabControlTab)t, isDeep));
+            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
+                vm.ListGuidProperties.Add(t);
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(FormTabControl to, IFormTabControl from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.Guid = from.Guid; // Clone.tt Line: 141
+            to.Name = from.Name; // Clone.tt Line: 141
+            to.Description = from.Description; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListTabs.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListTabs)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            FormTabControlTab.Update((FormTabControlTab)t, (FormTabControlTab)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListTabs.Remove(t);
+                }
+                foreach (var tt in from.ListTabs)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListTabs.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new FormTabControlTab(); // Clone.tt Line: 119
+                        FormTabControlTab.Update(p, (FormTabControlTab)tt, isDeep);
+                        to.ListTabs.Add(p);
+                    }
+                }
+            }
+                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
+                foreach (var tt in from.ListGuidProperties)
+                {
+                    to.ListGuidProperties.Add(tt);
+                }
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override FormTabControl Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return FormTabControl.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(FormTabControl from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            FormTabControl.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_form_tab_control' to 'FormTabControl'
+        public static FormTabControl ConvertToVM(Proto.Config.proto_form_tab_control m, FormTabControl vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.Name = m.Name; // Clone.tt Line: 221
+            vm.Description = m.Description; // Clone.tt Line: 221
+            vm.ListTabs = new ObservableCollection<FormTabControlTab>(); // Clone.tt Line: 190
+            foreach (var t in m.ListTabs) // Clone.tt Line: 191
+            {
+                var tvm = FormTabControlTab.ConvertToVM(t, new FormTabControlTab()); // Clone.tt Line: 196
+                vm.ListTabs.Add(tvm);
+            }
+            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
+            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
+            {
+                vm.ListGuidProperties.Add(t);
+            }
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'FormTabControl' to 'proto_form_tab_control'
+        public static Proto.Config.proto_form_tab_control ConvertToProto(FormTabControl vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_form_tab_control m = new Proto.Config.proto_form_tab_control(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.Name = vm.Name; // Clone.tt Line: 276
+            m.Description = vm.Description; // Clone.tt Line: 276
+            foreach (var t in vm.ListTabs) // Clone.tt Line: 242
+                m.ListTabs.Add(FormTabControlTab.ConvertToProto((FormTabControlTab)t)); // Clone.tt Line: 246
+            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
+                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            foreach (var t in this.ListTabs)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
+        { 
+            get { return this._Guid; }
+            set
+            {
+                if (this._Guid != value)
+                {
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Guid = string.Empty;
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
+        
+        [DisplayName("Name")]
+        [Description("Tab control name")]
+        public string Name // Property.tt Line: 55
+        { 
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Name = string.Empty;
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameChanged();
+        
+        [DisplayName("Desc")]
+        [Description("Tab control description")]
+        public string Description // Property.tt Line: 55
+        { 
+            get { return this._Description; }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
+        partial void OnDescriptionChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<FormTabControlTab> ListTabs // Property.tt Line: 8
+        { 
+            get { return this._ListTabs; }
+            set
+            {
+                if (this._ListTabs != value)
+                {
+                    this.OnListTabsChanging(value);
+                    _ListTabs = value;
+                    this.OnListTabsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<FormTabControlTab> _ListTabs;
+        IReadOnlyList<IFormTabControlTab> IFormTabControl.ListTabs { get { return (this as FormTabControl).ListTabs; } } // Property.tt Line: 26
+        partial void OnListTabsChanging(ObservableCollection<FormTabControlTab> to); // Property.tt Line: 27
+        partial void OnListTabsChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
+        { 
+            get { return this._ListGuidProperties; }
+            set
+            {
+                if (this._ListGuidProperties != value)
+                {
+                    this.OnListGuidPropertiesChanging(value);
+                    _ListGuidProperties = value;
+                    this.OnListGuidPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<string> _ListGuidProperties;
+        IReadOnlyList<string> IFormTabControl.ListGuidProperties { get { return (this as FormTabControl).ListGuidProperties; } } // Property.tt Line: 26
+        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
+        partial void OnListGuidPropertiesChanged();
+        #endregion Properties
+    }
+    public partial class FormDataGridValidator : ValidatorBase<FormDataGrid, FormDataGridValidator> { } // Class.tt Line: 6
+    public partial class FormDataGrid : VmValidatableWithSeverity<FormDataGrid, FormDataGridValidator>, IFormDataGrid // Class.tt Line: 7
+    {
+        #region CTOR
+        public FormDataGrid() 
+            : base(FormDataGridValidator.Validator) // Class.tt Line: 45
+        {
+            this.IsValidate = false;
+            this.OnInitBegin();
+            this.ListGuidProperties = new ObservableCollection<string>(); // Class.tt Line: 54
+            this.OnInit();
+            this.IsValidate = true;
+        }
+        partial void OnInitBegin();
+        partial void OnInit();
+        #endregion CTOR
+        #region Procedures
+        public static FormDataGrid Clone(IFormDataGrid from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Contract.Requires(from != null);
+            FormDataGrid vm = new FormDataGrid();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = from.Guid; // Clone.tt Line: 65
+            vm.Name = from.Name; // Clone.tt Line: 65
+            vm.Description = from.Description; // Clone.tt Line: 65
+            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
+                vm.ListGuidProperties.Add(t);
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(FormDataGrid to, IFormDataGrid from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Contract.Requires(to != null);
+            Contract.Requires(from != null);
+            to.Guid = from.Guid; // Clone.tt Line: 141
+            to.Name = from.Name; // Clone.tt Line: 141
+            to.Description = from.Description; // Clone.tt Line: 141
+                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
+                foreach (var tt in from.ListGuidProperties)
+                {
+                    to.ListGuidProperties.Add(tt);
+                }
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override FormDataGrid Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return FormDataGrid.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(FormDataGrid from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            FormDataGrid.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_form_data_grid' to 'FormDataGrid'
+        public static FormDataGrid ConvertToVM(Proto.Config.proto_form_data_grid m, FormDataGrid vm) // Clone.tt Line: 170
+        {
+            Contract.Requires(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.Name = m.Name; // Clone.tt Line: 221
+            vm.Description = m.Description; // Clone.tt Line: 221
+            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
+            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
+            {
+                vm.ListGuidProperties.Add(t);
+            }
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'FormDataGrid' to 'proto_form_data_grid'
+        public static Proto.Config.proto_form_data_grid ConvertToProto(FormDataGrid vm) // Clone.tt Line: 236
+        {
+            Contract.Requires(vm != null);
+            Proto.Config.proto_form_data_grid m = new Proto.Config.proto_form_data_grid(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.Name = vm.Name; // Clone.tt Line: 276
+            m.Description = vm.Description; // Clone.tt Line: 276
+            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
+                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Contract.Requires(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
+        { 
+            get { return this._Guid; }
+            set
+            {
+                if (this._Guid != value)
+                {
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Guid = string.Empty;
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
+        
+        [DisplayName("Name")]
+        [Description("Tab control name")]
+        public string Name // Property.tt Line: 55
+        { 
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Name = string.Empty;
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameChanged();
+        
+        [DisplayName("Desc")]
+        [Description("Tab control description")]
+        public string Description // Property.tt Line: 55
+        { 
+            get { return this._Description; }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
+        partial void OnDescriptionChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
+        { 
+            get { return this._ListGuidProperties; }
+            set
+            {
+                if (this._ListGuidProperties != value)
+                {
+                    this.OnListGuidPropertiesChanging(value);
+                    _ListGuidProperties = value;
+                    this.OnListGuidPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollection<string> _ListGuidProperties;
+        IReadOnlyList<string> IFormDataGrid.ListGuidProperties { get { return (this as FormDataGrid).ListGuidProperties; } } // Property.tt Line: 26
+        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
+        partial void OnListGuidPropertiesChanged();
         #endregion Properties
     }
     public partial class FormCatalogListSettingsValidator : ValidatorBase<FormCatalogListSettings, FormCatalogListSettingsValidator> { } // Class.tt Line: 6
@@ -23528,11 +24672,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_group_list_journals p);
         void Visit(Proto.Config.proto_journal p);
         void Visit(Proto.Config.proto_group_list_forms p);
-        void Visit(Proto.Config.proto_form_marging p);
-        void Visit(Proto.Config.proto_form_padding p);
-        void Visit(Proto.Config.proto_form_stackpanel p);
-        void Visit(Proto.Config.proto_form_grid p);
-        void Visit(Proto.Config.proto_form_datagrid p);
+        void Visit(Proto.Config.proto_form_grid_system p);
+        void Visit(Proto.Config.proto_form_grid_system_row p);
+        void Visit(Proto.Config.proto_form_grid_system_column p);
+        void Visit(Proto.Config.proto_form_block p);
+        void Visit(Proto.Config.proto_form_tab_control_tab p);
+        void Visit(Proto.Config.proto_form_tab_control p);
+        void Visit(Proto.Config.proto_form_data_grid p);
         void Visit(Proto.Config.proto_form_catalog_list_settings p);
         void Visit(Proto.Config.proto_form_catalog_edit_settings p);
         void Visit(Proto.Config.proto_form p);
@@ -24035,56 +25181,88 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(FormMarging p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(FormGridSystem p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
+            foreach (var t in p.ListRows) // ValidationVisitor.tt Line: 38
+                p.ValidateSubAndCollectErrors(t);
+            foreach (var t in p.ListFormBlocks) // ValidationVisitor.tt Line: 38
+                p.ValidateSubAndCollectErrors(t);
         }
-        protected override void OnVisitEnd(FormMarging p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(FormGridSystem p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(FormPadding p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(FormGridSystemRow p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
+            foreach (var t in p.ListColumns) // ValidationVisitor.tt Line: 38
+                p.ValidateSubAndCollectErrors(t);
         }
-        protected override void OnVisitEnd(FormPadding p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(FormGridSystemRow p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(FormStackpanel p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(FormGridSystemColumn p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
+            foreach (var t in p.ListRows) // ValidationVisitor.tt Line: 38
+                p.ValidateSubAndCollectErrors(t);
+            foreach (var t in p.ListFormBlocks) // ValidationVisitor.tt Line: 38
+                p.ValidateSubAndCollectErrors(t);
         }
-        protected override void OnVisitEnd(FormStackpanel p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(FormGridSystemColumn p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(FormGrid p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(FormBlock p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
-            p.ValidateSubAndCollectErrors(p.Marging); // ValidationVisitor.tt Line: 41
-            p.ValidateSubAndCollectErrors(p.Padding); // ValidationVisitor.tt Line: 41
+            p.ValidateSubAndCollectErrors(p.TabControl); // ValidationVisitor.tt Line: 41
+            p.ValidateSubAndCollectErrors(p.DataGrid); // ValidationVisitor.tt Line: 41
         }
-        protected override void OnVisitEnd(FormGrid p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(FormBlock p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
-        protected override void OnVisit(FormDatagrid p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(FormTabControlTab p) // ValidationVisitor.tt Line: 15
         {
             Contract.Requires(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
-            p.ValidateSubAndCollectErrors(p.Marging); // ValidationVisitor.tt Line: 41
-            p.ValidateSubAndCollectErrors(p.Padding); // ValidationVisitor.tt Line: 41
+            foreach (var t in p.ListFormBlocks) // ValidationVisitor.tt Line: 38
+                p.ValidateSubAndCollectErrors(t);
         }
-        protected override void OnVisitEnd(FormDatagrid p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(FormTabControlTab p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(FormTabControl p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+            foreach (var t in p.ListTabs) // ValidationVisitor.tt Line: 38
+                p.ValidateSubAndCollectErrors(t);
+        }
+        protected override void OnVisitEnd(FormTabControl p) // ValidationVisitor.tt Line: 48
+        {
+            Contract.Requires(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(FormDataGrid p) // ValidationVisitor.tt Line: 15
+        {
+            Contract.Requires(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(FormDataGrid p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
@@ -24638,56 +25816,76 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(GroupListForms p) { }
         protected virtual void OnVisitEnd(GroupListForms p) { }
-        public void Visit(FormMarging p)
+        public void Visit(FormGridSystem p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(FormMarging p)
+        public void VisitEnd(FormGridSystem p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(FormMarging p) { }
-        protected virtual void OnVisitEnd(FormMarging p) { }
-        public void Visit(FormPadding p)
+        protected virtual void OnVisit(FormGridSystem p) { }
+        protected virtual void OnVisitEnd(FormGridSystem p) { }
+        public void Visit(FormGridSystemRow p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(FormPadding p)
+        public void VisitEnd(FormGridSystemRow p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(FormPadding p) { }
-        protected virtual void OnVisitEnd(FormPadding p) { }
-        public void Visit(FormStackpanel p)
+        protected virtual void OnVisit(FormGridSystemRow p) { }
+        protected virtual void OnVisitEnd(FormGridSystemRow p) { }
+        public void Visit(FormGridSystemColumn p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(FormStackpanel p)
+        public void VisitEnd(FormGridSystemColumn p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(FormStackpanel p) { }
-        protected virtual void OnVisitEnd(FormStackpanel p) { }
-        public void Visit(FormGrid p)
+        protected virtual void OnVisit(FormGridSystemColumn p) { }
+        protected virtual void OnVisitEnd(FormGridSystemColumn p) { }
+        public void Visit(FormBlock p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(FormGrid p)
+        public void VisitEnd(FormBlock p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(FormGrid p) { }
-        protected virtual void OnVisitEnd(FormGrid p) { }
-        public void Visit(FormDatagrid p)
+        protected virtual void OnVisit(FormBlock p) { }
+        protected virtual void OnVisitEnd(FormBlock p) { }
+        public void Visit(FormTabControlTab p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(FormDatagrid p)
+        public void VisitEnd(FormTabControlTab p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(FormDatagrid p) { }
-        protected virtual void OnVisitEnd(FormDatagrid p) { }
+        protected virtual void OnVisit(FormTabControlTab p) { }
+        protected virtual void OnVisitEnd(FormTabControlTab p) { }
+        public void Visit(FormTabControl p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(FormTabControl p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(FormTabControl p) { }
+        protected virtual void OnVisitEnd(FormTabControl p) { }
+        public void Visit(FormDataGrid p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(FormDataGrid p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(FormDataGrid p) { }
+        protected virtual void OnVisitEnd(FormDataGrid p) { }
         public void Visit(FormCatalogListSettings p)
         {
             this.OnVisit(p);

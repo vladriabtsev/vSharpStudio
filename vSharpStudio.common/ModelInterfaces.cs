@@ -81,6 +81,15 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         Vertical = 0,
         Horizontal = 1,
     }
+    public enum EnumHiddenType // ModelInterfaces.tt Line: 15
+    {
+        NeverHide = 0,
+        Xs = 1,
+        SmAndDown = 2,
+        MdAndDown = 3,
+        LgAndDown = 4,
+        XlAndDown = 5,
+    }
     public enum FormCatalogViewType // ModelInterfaces.tt Line: 15
     {
         CatListForm = 0,
@@ -523,6 +532,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string TabName { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
     	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
+    	bool IsStartGridNewContainer { get; } // ModelInterfaces.tt Line: 51
+    	bool IsStartGridNewSubContainer { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position
@@ -822,37 +833,66 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface IFormMarging // ModelInterfaces.tt Line: 29
+    public partial interface IFormGridSystem // ModelInterfaces.tt Line: 29
     {
-    	int Left { get; } // ModelInterfaces.tt Line: 51
-    	int Up { get; } // ModelInterfaces.tt Line: 51
-    	int Right { get; } // ModelInterfaces.tt Line: 51
-    	int Bottom { get; } // ModelInterfaces.tt Line: 51
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IFormGridSystemRow> ListRows { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 42
+    	IReadOnlyList<IFormBlock> ListFormBlocks { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface IFormPadding // ModelInterfaces.tt Line: 29
+    public partial interface IFormGridSystemRow // ModelInterfaces.tt Line: 29
     {
-    	int Left { get; } // ModelInterfaces.tt Line: 51
-    	int Up { get; } // ModelInterfaces.tt Line: 51
-    	int Right { get; } // ModelInterfaces.tt Line: 51
-    	int Bottom { get; } // ModelInterfaces.tt Line: 51
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IFormGridSystemColumn> ListColumns { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface IFormStackpanel // ModelInterfaces.tt Line: 29
+    public partial interface IFormGridSystemColumn // ModelInterfaces.tt Line: 29
     {
-    	FormOrientation Orientation { get; } // ModelInterfaces.tt Line: 51
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	EnumHiddenType HideType { get; } // ModelInterfaces.tt Line: 51
+    	uint? WidthXs { get; } // ModelInterfaces.tt Line: 51
+    	uint? WidthSm { get; } // ModelInterfaces.tt Line: 51
+    	uint? WidthMd { get; } // ModelInterfaces.tt Line: 51
+    	uint? WidthLg { get; } // ModelInterfaces.tt Line: 51
+    	uint? WidthXl { get; } // ModelInterfaces.tt Line: 51
+    	uint? WidthXx { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IFormGridSystemRow> ListRows { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 42
+    	IReadOnlyList<IFormBlock> ListFormBlocks { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface IFormGrid // ModelInterfaces.tt Line: 29
+    public partial interface IFormBlock // ModelInterfaces.tt Line: 29
     {
-    	IFormMarging Marging { get; } // ModelInterfaces.tt Line: 55
-    	IFormPadding Padding { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	IFormTabControl TabControl { get; } // ModelInterfaces.tt Line: 55
+    	IFormDataGrid DataGrid { get; } // ModelInterfaces.tt Line: 55
     }
     
-    public partial interface IFormDatagrid // ModelInterfaces.tt Line: 29
+    public partial interface IFormTabControlTab // ModelInterfaces.tt Line: 29
     {
-    	IFormMarging Marging { get; } // ModelInterfaces.tt Line: 55
-    	IFormPadding Padding { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	string Name { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 42
+    	IReadOnlyList<IFormBlock> ListFormBlocks { get; } // ModelInterfaces.tt Line: 44
+    }
+    
+    public partial interface IFormTabControl // ModelInterfaces.tt Line: 29
+    {
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	string Name { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IFormTabControlTab> ListTabs { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 42
+    }
+    
+    public partial interface IFormDataGrid // ModelInterfaces.tt Line: 29
+    {
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	string Name { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 42
     }
     
     public partial interface IFormCatalogListSettings // ModelInterfaces.tt Line: 29

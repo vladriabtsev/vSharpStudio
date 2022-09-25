@@ -22,13 +22,15 @@
     - [proto_enumeration](#proto_config.proto_enumeration)
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_form](#proto_config.proto_form)
+    - [proto_form_block](#proto_config.proto_form_block)
     - [proto_form_catalog_edit_settings](#proto_config.proto_form_catalog_edit_settings)
     - [proto_form_catalog_list_settings](#proto_config.proto_form_catalog_list_settings)
-    - [proto_form_datagrid](#proto_config.proto_form_datagrid)
-    - [proto_form_grid](#proto_config.proto_form_grid)
-    - [proto_form_marging](#proto_config.proto_form_marging)
-    - [proto_form_padding](#proto_config.proto_form_padding)
-    - [proto_form_stackpanel](#proto_config.proto_form_stackpanel)
+    - [proto_form_data_grid](#proto_config.proto_form_data_grid)
+    - [proto_form_grid_system](#proto_config.proto_form_grid_system)
+    - [proto_form_grid_system_column](#proto_config.proto_form_grid_system_column)
+    - [proto_form_grid_system_row](#proto_config.proto_form_grid_system_row)
+    - [proto_form_tab_control](#proto_config.proto_form_tab_control)
+    - [proto_form_tab_control_tab](#proto_config.proto_form_tab_control_tab)
     - [proto_group_constant_groups](#proto_config.proto_group_constant_groups)
     - [proto_group_documents](#proto_config.proto_group_documents)
     - [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions)
@@ -71,6 +73,7 @@
     - [proto_enum_code_type](#proto_config.proto_enum_code_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
     - [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope)
+    - [proto_enum_hidden_type](#proto_config.proto_enum_hidden_type)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
     - [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type)
@@ -590,6 +593,23 @@ Constant application wise value
 
 
 
+<a name="proto_config.proto_form_block"></a>
+
+### proto_form_block
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| tab_control | [proto_form_tab_control](#proto_config.proto_form_tab_control) |  |  |
+| data_grid | [proto_form_data_grid](#proto_config.proto_form_data_grid) |  |  |
+
+
+
+
+
+
 <a name="proto_config.proto_form_catalog_edit_settings"></a>
 
 ### proto_form_catalog_edit_settings
@@ -625,83 +645,115 @@ Constant application wise value
 
 
 
-<a name="proto_config.proto_form_datagrid"></a>
+<a name="proto_config.proto_form_data_grid"></a>
 
-### proto_form_datagrid
+### proto_form_data_grid
 @base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| marging | [proto_form_marging](#proto_config.proto_form_marging) |  |  |
-| padding | [proto_form_padding](#proto_config.proto_form_padding) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| description | [string](#string) |  | @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
 
 
 
-<a name="proto_config.proto_form_grid"></a>
+<a name="proto_config.proto_form_grid_system"></a>
 
-### proto_form_grid
+### proto_form_grid_system
 @base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| marging | [proto_form_marging](#proto_config.proto_form_marging) |  |  |
-| padding | [proto_form_padding](#proto_config.proto_form_padding) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| list_rows | [proto_form_grid_system_row](#proto_config.proto_form_grid_system_row) | repeated | @attr [BrowsableAttribute(false)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_form_blocks | [proto_form_block](#proto_config.proto_form_block) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
 
 
 
-<a name="proto_config.proto_form_marging"></a>
+<a name="proto_config.proto_form_grid_system_column"></a>
 
-### proto_form_marging
+### proto_form_grid_system_column
 @base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| left | [int32](#int32) |  |  |
-| up | [int32](#int32) |  |  |
-| right | [int32](#int32) |  |  |
-| bottom | [int32](#int32) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| hide_type | [proto_enum_hidden_type](#proto_config.proto_enum_hidden_type) |  | @attr [DisplayName(&#34;When Hide&#34;)] @attr [Description(&#34;Condition of hiding base on screen size&#34;)] |
+| width_xs | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;XS&#34;)] @attr [Description(&#34;Extra small. Small to large phone. Range: &lt; 600px&#34;)] |
+| width_sm | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;SM&#34;)] @attr [Description(&#34;Small. Small to medium tablet. Range: 600px &gt; &lt; 960px&#34;)] |
+| width_md | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;MD&#34;)] @attr [Description(&#34;Medium. Large tablet to laptop. Range: 960px &gt; &lt; 1280px&#34;)] |
+| width_lg | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;LG&#34;)] @attr [Description(&#34;Large. Desktop. Range: 1280px &gt; &lt; 1920px&#34;)] |
+| width_xl | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;XL&#34;)] @attr [Description(&#34;Extra Large. HD and 4k. Range: 1920px &gt; &lt; 2560px&#34;)] |
+| width_xx | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;XX&#34;)] @attr [Description(&#34;Extra Extra Large. 4k&#43; and ultra-wide. Range: &gt;= 2560px&#34;)] |
+| list_rows | [proto_form_grid_system_row](#proto_config.proto_form_grid_system_row) | repeated | @attr [BrowsableAttribute(false)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_form_blocks | [proto_form_block](#proto_config.proto_form_block) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
 
 
 
-<a name="proto_config.proto_form_padding"></a>
+<a name="proto_config.proto_form_grid_system_row"></a>
 
-### proto_form_padding
+### proto_form_grid_system_row
 @base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| left | [int32](#int32) |  |  |
-| up | [int32](#int32) |  |  |
-| right | [int32](#int32) |  |  |
-| bottom | [int32](#int32) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| list_columns | [proto_form_grid_system_column](#proto_config.proto_form_grid_system_column) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
 
 
 
-<a name="proto_config.proto_form_stackpanel"></a>
+<a name="proto_config.proto_form_tab_control"></a>
 
-### proto_form_stackpanel
+### proto_form_tab_control
 @base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| orientation | [proto_form_orientation](#proto_config.proto_form_orientation) |  |  |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| description | [string](#string) |  | @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| list_tabs | [proto_form_tab_control_tab](#proto_config.proto_form_tab_control_tab) | repeated | @attr [BrowsableAttribute(false)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_tab_control_tab"></a>
+
+### proto_form_tab_control_tab
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab name&#34;)] |
+| description | [string](#string) |  | @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab description&#34;)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_form_blocks | [proto_form_block](#proto_config.proto_form_block) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -1352,6 +1404,8 @@ Configuration model
 | tab_name | [string](#string) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Tab Name&#34;)] @attr [Description(&#34;If not empty, then start new tab in tab control. If empty, then continue adding fields in current control&#34;)] |
 | is_start_new_tab_control | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;New Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
+| is_start_grid_new_container | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Grid new container&#34;)] @attr [Description(&#34;Start new container (column) in grid system&#34;)] |
+| is_start_grid_new_sub_container | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Grid new sub container&#34;)] @attr [Description(&#34;Start new sub container (column) in grid system&#34;)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -1566,6 +1620,22 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | Year | 1 |  |
 | Quater | 2 |  |
 | Month | 3 |  |
+
+
+
+<a name="proto_config.proto_enum_hidden_type"></a>
+
+### proto_enum_hidden_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NeverHide | 0 | @attr [DisplayName(&#34;Never Hide&#34;)] @attr [Description(&#34;Never Hide&#34;)] |
+| Xs | 1 | @attr [DisplayName(&#34;Xs&#34;)] @attr [Description(&#34;Hide on Extra small screen&#34;)] |
+| SmAndDown | 2 | @attr [DisplayName(&#34;SmAndDown&#34;)] @attr [Description(&#34;Hide on Small screen and smaller&#34;)] |
+| MdAndDown | 3 | @attr [DisplayName(&#34;MdAndDown&#34;)] @attr [Description(&#34;Hide on Medium screen and smaller&#34;)] |
+| LgAndDown | 4 | @attr [DisplayName(&#34;LgAndDown&#34;)] @attr [Description(&#34;Hide on Large screen and smaller&#34;)] |
+| XlAndDown | 5 | @attr [DisplayName(&#34;XlAndDown&#34;)] @attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)] |
 
 
 

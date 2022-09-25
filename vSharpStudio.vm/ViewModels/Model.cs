@@ -649,7 +649,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IProperty GetPropertyRefParent(string guid, string name, bool isNullable = false)
         {
-            var dt = (DataType)this.GetIdDataType();
+            var dt = (DataType)this.GetIdRefDataType();
             dt.IsRefParent = true;
             var res = new Property(default(ITreeConfigNode), guid, name, dt);
             res.Position = 8;

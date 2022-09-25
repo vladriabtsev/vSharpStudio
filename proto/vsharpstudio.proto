@@ -981,6 +981,15 @@ message proto_property {
     // @attr [Description("Stop using tab control for layout")]
     bool is_stop_tab_control = 27;
 
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Grid new container")]
+    // @attr [Description("Start new container (column) in grid system")]
+    bool is_start_grid_new_container = 28;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Grid new sub container")]
+    // @attr [Description("Start new sub container (column) in grid system")]
+    bool is_start_grid_new_sub_container = 29;
+
     // Protobuf field position
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]
@@ -1685,34 +1694,136 @@ enum proto_form_orientation {
     Vertical = 0;
     Horizontal = 1;
 }
+
+
+
 // @base VmValidatableWithSeverity
-message proto_form_marging {
-    int32 left = 1;
-    int32 up = 2;
-    int32 right = 3;
-    int32 bottom = 4;
+message proto_form_grid_system {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_form_grid_system_row list_rows = 31;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_properties = 32;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_form_block list_form_blocks = 33;
 }
 // @base VmValidatableWithSeverity
-message proto_form_padding {
-    int32 left = 1;
-    int32 up = 2;
-    int32 right = 3;
-    int32 bottom = 4;
+message proto_form_grid_system_row {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_form_grid_system_column list_columns = 31;
+}
+enum proto_enum_hidden_type {
+    // @attr [DisplayName("Never Hide")]
+    // @attr [Description("Never Hide")]
+    NeverHide = 0;
+    // @attr [DisplayName("Xs")]
+    // @attr [Description("Hide on Extra small screen")]
+    Xs = 1;
+    // @attr [DisplayName("SmAndDown")]
+    // @attr [Description("Hide on Small screen and smaller")]
+    SmAndDown = 2;
+    // @attr [DisplayName("MdAndDown")]
+    // @attr [Description("Hide on Medium screen and smaller")]
+    MdAndDown = 3;
+    // @attr [DisplayName("LgAndDown")]
+    // @attr [Description("Hide on Large screen and smaller")]
+    LgAndDown = 4;
+    // @attr [DisplayName("XlAndDown")]
+    // @attr [Description("Hide on Extra Large screen and smaller")]
+    XlAndDown = 5;
 }
 // @base VmValidatableWithSeverity
-message proto_form_stackpanel {
-    proto_form_orientation orientation = 1;
+message proto_form_grid_system_column {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [DisplayName("When Hide")]
+    // @attr [Description("Condition of hiding base on screen size")]
+    proto_enum_hidden_type hide_type = 2;
+    // @attr [DisplayName("XS")]
+    // @attr [Description("Extra small. Small to large phone. Range: < 600px")]
+    google.protobuf.UInt32Value width_xs = 11;
+    // @attr [DisplayName("SM")]
+    // @attr [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
+    google.protobuf.UInt32Value width_sm = 12;
+    // @attr [DisplayName("MD")]
+    // @attr [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
+    google.protobuf.UInt32Value width_md = 13;
+    // @attr [DisplayName("LG")]
+    // @attr [Description("Large. Desktop. Range: 1280px > < 1920px")]
+    google.protobuf.UInt32Value width_lg = 14;
+    // @attr [DisplayName("XL")]
+    // @attr [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
+    google.protobuf.UInt32Value width_xl = 15;
+    // @attr [DisplayName("XX")]
+    // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
+    google.protobuf.UInt32Value width_xx = 16;
+
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_form_grid_system_row list_rows = 31;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_properties = 32;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_form_block list_form_blocks = 33;
 }
 // @base VmValidatableWithSeverity
-message proto_form_grid {
-    proto_form_marging marging = 1;
-    proto_form_padding padding = 2;
+message proto_form_block {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    oneof result {
+        proto_form_tab_control tab_control = 2;
+        proto_form_data_grid data_grid = 3;
+    }
 }
 // @base VmValidatableWithSeverity
-message proto_form_datagrid {
-    proto_form_marging marging = 1;
-    proto_form_padding padding = 2;
+message proto_form_tab_control_tab {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [DisplayName("Name")]
+    // @attr [Description("Tab name")]
+    string name = 2;
+    // @attr [DisplayName("Desc")]
+    // @attr [Description("Tab description")]
+    string description = 3;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_properties = 32;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_form_block list_form_blocks = 33;
 }
+// @base VmValidatableWithSeverity
+message proto_form_tab_control {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [DisplayName("Name")]
+    // @attr [Description("Tab control name")]
+    string name = 2;
+    // @attr [DisplayName("Desc")]
+    // @attr [Description("Tab control description")]
+    string description = 3;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_form_tab_control_tab list_tabs = 31;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_properties = 32;
+}
+// @base VmValidatableWithSeverity
+message proto_form_data_grid {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [DisplayName("Name")]
+    // @attr [Description("Tab control name")]
+    string name = 2;
+    // @attr [DisplayName("Desc")]
+    // @attr [Description("Tab control description")]
+    string description = 3;
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_properties = 32;
+}
+
+
+
+
 enum proto_form_catalog_view_type {
     // @attr [DisplayName("List form")]
     CatListForm = 0;

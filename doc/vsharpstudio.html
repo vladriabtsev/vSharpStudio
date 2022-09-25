@@ -251,6 +251,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_form_block"><span class="badge">M</span>proto_form_block</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_form_catalog_edit_settings"><span class="badge">M</span>proto_form_catalog_edit_settings</a>
                 </li>
               
@@ -259,23 +263,27 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_form_datagrid"><span class="badge">M</span>proto_form_datagrid</a>
+                  <a href="#proto_config.proto_form_data_grid"><span class="badge">M</span>proto_form_data_grid</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_form_grid"><span class="badge">M</span>proto_form_grid</a>
+                  <a href="#proto_config.proto_form_grid_system"><span class="badge">M</span>proto_form_grid_system</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_form_marging"><span class="badge">M</span>proto_form_marging</a>
+                  <a href="#proto_config.proto_form_grid_system_column"><span class="badge">M</span>proto_form_grid_system_column</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_form_padding"><span class="badge">M</span>proto_form_padding</a>
+                  <a href="#proto_config.proto_form_grid_system_row"><span class="badge">M</span>proto_form_grid_system_row</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_form_stackpanel"><span class="badge">M</span>proto_form_stackpanel</a>
+                  <a href="#proto_config.proto_form_tab_control"><span class="badge">M</span>proto_form_tab_control</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_tab_control_tab"><span class="badge">M</span>proto_form_tab_control_tab</a>
                 </li>
               
                 <li>
@@ -441,6 +449,10 @@
               
                 <li>
                   <a href="#proto_config.proto_enum_document_code_unique_scope"><span class="badge">E</span>proto_enum_document_code_unique_scope</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enum_hidden_type"><span class="badge">E</span>proto_enum_hidden_type</a>
                 </li>
               
                 <li>
@@ -2681,6 +2693,44 @@ Reserved positions: 1 - primary key
 
         
       
+        <h3 id="proto_config.proto_form_block">proto_form_block</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tab_control</td>
+                  <td><a href="#proto_config.proto_form_tab_control">proto_form_tab_control</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>data_grid</td>
+                  <td><a href="#proto_config.proto_form_data_grid">proto_form_data_grid</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_form_catalog_edit_settings">proto_form_catalog_edit_settings</h3>
         <p>@base VmValidatableWithSeverityAndAttributes</p>
 
@@ -2778,7 +2828,7 @@ Reserved positions: 1 - primary key
 
         
       
-        <h3 id="proto_config.proto_form_datagrid">proto_form_datagrid</h3>
+        <h3 id="proto_config.proto_form_data_grid">proto_form_data_grid</h3>
         <p>@base VmValidatableWithSeverity</p>
 
         
@@ -2789,17 +2839,33 @@ Reserved positions: 1 - primary key
             <tbody>
               
                 <tr>
-                  <td>marging</td>
-                  <td><a href="#proto_config.proto_form_marging">proto_form_marging</a></td>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>padding</td>
-                  <td><a href="#proto_config.proto_form_padding">proto_form_padding</a></td>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [DisplayName(&#34;Name&#34;)]
+@attr [Description(&#34;Tab control name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Desc&#34;)]
+@attr [Description(&#34;Tab control description&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_guid_properties</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2809,7 +2875,7 @@ Reserved positions: 1 - primary key
 
         
       
-        <h3 id="proto_config.proto_form_grid">proto_form_grid</h3>
+        <h3 id="proto_config.proto_form_grid_system">proto_form_grid_system</h3>
         <p>@base VmValidatableWithSeverity</p>
 
         
@@ -2820,17 +2886,31 @@ Reserved positions: 1 - primary key
             <tbody>
               
                 <tr>
-                  <td>marging</td>
-                  <td><a href="#proto_config.proto_form_marging">proto_form_marging</a></td>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>padding</td>
-                  <td><a href="#proto_config.proto_form_padding">proto_form_padding</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>list_rows</td>
+                  <td><a href="#proto_config.proto_form_grid_system_row">proto_form_grid_system_row</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_guid_properties</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_form_blocks</td>
+                  <td><a href="#proto_config.proto_form_block">proto_form_block</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2840,7 +2920,7 @@ Reserved positions: 1 - primary key
 
         
       
-        <h3 id="proto_config.proto_form_marging">proto_form_marging</h3>
+        <h3 id="proto_config.proto_form_grid_system_column">proto_form_grid_system_column</h3>
         <p>@base VmValidatableWithSeverity</p>
 
         
@@ -2851,31 +2931,87 @@ Reserved positions: 1 - primary key
             <tbody>
               
                 <tr>
-                  <td>left</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>up</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>hide_type</td>
+                  <td><a href="#proto_config.proto_enum_hidden_type">proto_enum_hidden_type</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [DisplayName(&#34;When Hide&#34;)]
+@attr [Description(&#34;Condition of hiding base on screen size&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>right</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>width_xs</td>
+                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [DisplayName(&#34;XS&#34;)]
+@attr [Description(&#34;Extra small. Small to large phone. Range: &lt; 600px&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>bottom</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>width_sm</td>
+                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [DisplayName(&#34;SM&#34;)]
+@attr [Description(&#34;Small. Small to medium tablet. Range: 600px &gt; &lt; 960px&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>width_md</td>
+                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;MD&#34;)]
+@attr [Description(&#34;Medium. Large tablet to laptop. Range: 960px &gt; &lt; 1280px&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>width_lg</td>
+                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;LG&#34;)]
+@attr [Description(&#34;Large. Desktop. Range: 1280px &gt; &lt; 1920px&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>width_xl</td>
+                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;XL&#34;)]
+@attr [Description(&#34;Extra Large. HD and 4k. Range: 1920px &gt; &lt; 2560px&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>width_xx</td>
+                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;XX&#34;)]
+@attr [Description(&#34;Extra Extra Large. 4k&#43; and ultra-wide. Range: &gt;= 2560px&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_rows</td>
+                  <td><a href="#proto_config.proto_form_grid_system_row">proto_form_grid_system_row</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_guid_properties</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_form_blocks</td>
+                  <td><a href="#proto_config.proto_form_block">proto_form_block</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2885,7 +3021,7 @@ Reserved positions: 1 - primary key
 
         
       
-        <h3 id="proto_config.proto_form_padding">proto_form_padding</h3>
+        <h3 id="proto_config.proto_form_grid_system_row">proto_form_grid_system_row</h3>
         <p>@base VmValidatableWithSeverity</p>
 
         
@@ -2896,31 +3032,17 @@ Reserved positions: 1 - primary key
             <tbody>
               
                 <tr>
-                  <td>left</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>up</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>right</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>bottom</td>
-                  <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td>list_columns</td>
+                  <td><a href="#proto_config.proto_form_grid_system_column">proto_form_grid_system_column</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -2930,7 +3052,7 @@ Reserved positions: 1 - primary key
 
         
       
-        <h3 id="proto_config.proto_form_stackpanel">proto_form_stackpanel</h3>
+        <h3 id="proto_config.proto_form_tab_control">proto_form_tab_control</h3>
         <p>@base VmValidatableWithSeverity</p>
 
         
@@ -2941,10 +3063,94 @@ Reserved positions: 1 - primary key
             <tbody>
               
                 <tr>
-                  <td>orientation</td>
-                  <td><a href="#proto_config.proto_form_orientation">proto_form_orientation</a></td>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Name&#34;)]
+@attr [Description(&#34;Tab control name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Desc&#34;)]
+@attr [Description(&#34;Tab control description&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_tabs</td>
+                  <td><a href="#proto_config.proto_form_tab_control_tab">proto_form_tab_control_tab</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_guid_properties</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_form_tab_control_tab">proto_form_tab_control_tab</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Name&#34;)]
+@attr [Description(&#34;Tab name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [DisplayName(&#34;Desc&#34;)]
+@attr [Description(&#34;Tab description&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_guid_properties</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_form_blocks</td>
+                  <td><a href="#proto_config.proto_form_block">proto_form_block</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -5251,6 +5457,24 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>is_start_grid_new_container</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Grid new container&#34;)]
+@attr [Description(&#34;Start new container (column) in grid system&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_start_grid_new_sub_container</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Grid new sub container&#34;)]
+@attr [Description(&#34;Start new sub container (column) in grid system&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>position</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
@@ -5845,6 +6069,59 @@ repeated proto_document list_documents = 7;
                 <td>Month</td>
                 <td>3</td>
                 <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_hidden_type">proto_enum_hidden_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>NeverHide</td>
+                <td>0</td>
+                <td><p>@attr [DisplayName(&#34;Never Hide&#34;)]
+@attr [Description(&#34;Never Hide&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>Xs</td>
+                <td>1</td>
+                <td><p>@attr [DisplayName(&#34;Xs&#34;)]
+@attr [Description(&#34;Hide on Extra small screen&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>SmAndDown</td>
+                <td>2</td>
+                <td><p>@attr [DisplayName(&#34;SmAndDown&#34;)]
+@attr [Description(&#34;Hide on Small screen and smaller&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MdAndDown</td>
+                <td>3</td>
+                <td><p>@attr [DisplayName(&#34;MdAndDown&#34;)]
+@attr [Description(&#34;Hide on Medium screen and smaller&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>LgAndDown</td>
+                <td>4</td>
+                <td><p>@attr [DisplayName(&#34;LgAndDown&#34;)]
+@attr [Description(&#34;Hide on Large screen and smaller&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>XlAndDown</td>
+                <td>5</td>
+                <td><p>@attr [DisplayName(&#34;XlAndDown&#34;)]
+@attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)]</p></td>
               </tr>
             
           </tbody>
