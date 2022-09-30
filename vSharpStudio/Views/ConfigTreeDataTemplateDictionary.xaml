@@ -27,17 +27,17 @@
                 </Viewbox>
             </Grid>
             <TextBlock Text="{Binding Name}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" Margin="2,0,0,2" />
-            <StackPanel Orientation="Horizontal" Visibility="{Binding TabName, Converter={StaticResource ConverterStringToVisible}, Mode=OneWay}">
-                <!--PreviewTab-->
-                <ContentControl Template="{StaticResource iconTab}" />
-                <TextBlock Text="{Binding TabName}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" />
-            </StackPanel>
             <!--AssociationLine, Export, Link-->
             <ContentControl Template="{StaticResource iconAttach}" Visibility="{Binding IsTryAttach, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}" />
             <!--GoToCurrentLineLocation, GoToNextInList, Return-->
             <ContentControl Template="{StaticResource iconReturn}"  Visibility="{Binding IsStartNewRow, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}"/>
             <!--InsertLayer, MenuItem, NewTable, Tab-->
             <ContentControl Template="{StaticResource iconTabPage}" Visibility="{Binding IsStartNewTabControl, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}"/>
+            <StackPanel Orientation="Horizontal" Visibility="{Binding TabName, Converter={StaticResource ConverterStringToVisible}, Mode=OneWay}">
+                <!--PreviewTab-->
+                <ContentControl Template="{StaticResource iconTab}" />
+                <TextBlock Text="{Binding TabName}" TextDecorations="{Binding NodeNameDecorations, Mode=OneWay}" />
+            </StackPanel>
             <ContentControl Template="{StaticResource iconDock}" Visibility="{Binding IsStopTabControl, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}"/>
             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
                 <!--AddAttachment, AddControl, AddField, AddLayoutItem, AssociationLine, CollapsiblePanel, CSTablet

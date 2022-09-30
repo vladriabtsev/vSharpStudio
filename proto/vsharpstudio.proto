@@ -956,39 +956,99 @@ message proto_property {
     // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
     proto_enum_time_accuracy_type accuracy_for_time = 20;
 
+    // @attr [PropertyOrderAttribute(23)]
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("UI attach")]
     // @attr [Description("UI engine will try put this field on same line as previous field")]
     bool is_try_attach = 22;
+    // @attr [PropertyOrderAttribute(22)]
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("UI lines")]
     // @attr [Description("Lines on screen for edit box")]
     int32 lines_on_screen = 23;
+    // @attr [PropertyOrderAttribute(24)]
     // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("New UI row")]
+    // @attr [DisplayName("Start UI row")]
     // @attr [Description("Start new UI row for this property")]
     bool is_start_new_row = 24;
+    // @attr [PropertyOrderAttribute(26)]
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Tab Name")]
     // @attr [Description("If not empty, then start new tab in tab control. If empty, then continue adding fields in current control")]
     string tab_name = 25;
+    // @attr [PropertyOrderAttribute(25)]
     // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("New Tab Control")]
+    // @attr [DisplayName("Start Tab Control")]
     // @attr [Description("Start new tab control as current control")]
     bool is_start_new_tab_control = 26;
+    // @attr [PropertyOrderAttribute(27)]
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Stop Tab Control")]
     // @attr [Description("Stop using tab control for layout")]
     bool is_stop_tab_control = 27;
 
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Grid new container")]
-    // @attr [Description("Start new container (column) in grid system")]
-    bool is_start_grid_new_container = 28;
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Grid new sub container")]
-    // @attr [Description("Start new sub container (column) in grid system")]
-    bool is_start_grid_new_sub_container = 29;
+/*
+    // @attr [PropertyOrderAttribute(28)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("Start Grid")]
+    // @attr [Description("Start new container of 12 columns grid system")]
+    bool is_start_12_col_grid_system = 28;
+    // @attr [PropertyOrderAttribute(29)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("Stop Grid")]
+    // @attr [Description("Stop current container of 12 columns grid system")]
+    bool is_stop_12_col_grid_system = 29;
+    // @attr [PropertyOrderAttribute(30)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("Start Column")]
+    // @attr [Description("Start new column of 12 columns grid system")]
+    bool is_start_new_column_12_col_grid_system = 30;
+    // @attr [PropertyOrderAttribute(32)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("Start Row")]
+    // @attr [Description("Start new row of 12 columns grid system")]
+    bool is_start_new_row_12_col_grid_system = 31;
+    // @attr [PropertyOrderAttribute(31)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("Column Name")]
+    // @attr [Description("Column Name of 12 columns grid system")]
+    string column_name_12_col_grid_system = 32;
+    // @attr [PropertyOrderAttribute(33)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("When Hide")]
+    // @attr [Description("Condition of hiding base on screen size")]
+    proto_enum_hidden_type hide_type = 33;
+    // @attr [PropertyOrderAttribute(34)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("XS")]
+    // @attr [Description("Extra small. Small to large phone. Range: < 600px")]
+    google.protobuf.UInt32Value width_xs = 34;
+    // @attr [PropertyOrderAttribute(35)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("SM")]
+    // @attr [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
+    google.protobuf.UInt32Value width_sm = 35;
+    // @attr [PropertyOrderAttribute(36)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("MD")]
+    // @attr [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
+    google.protobuf.UInt32Value width_md = 36;
+    // @attr [PropertyOrderAttribute(37)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("LG")]
+    // @attr [Description("Large. Desktop. Range: 1280px > < 1920px")]
+    google.protobuf.UInt32Value width_lg = 37;
+    // @attr [PropertyOrderAttribute(38)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("XL")]
+    // @attr [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
+    google.protobuf.UInt32Value width_xl = 38;
+    // @attr [PropertyOrderAttribute(39)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("XX")]
+    // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
+    google.protobuf.UInt32Value width_xx = 39;
+*/
 
     // Protobuf field position
     // Reserved positions: 1 - primary key

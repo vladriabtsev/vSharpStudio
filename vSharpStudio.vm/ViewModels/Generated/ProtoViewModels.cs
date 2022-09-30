@@ -11128,8 +11128,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.TabName = from.TabName; // Clone.tt Line: 65
             vm.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 65
             vm.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 65
-            vm.IsStartGridNewContainer = from.IsStartGridNewContainer; // Clone.tt Line: 65
-            vm.IsStartGridNewSubContainer = from.IsStartGridNewSubContainer; // Clone.tt Line: 65
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -11165,8 +11163,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.TabName = from.TabName; // Clone.tt Line: 141
             to.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 141
             to.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 141
-            to.IsStartGridNewContainer = from.IsStartGridNewContainer; // Clone.tt Line: 141
-            to.IsStartGridNewSubContainer = from.IsStartGridNewSubContainer; // Clone.tt Line: 141
             to.Position = from.Position; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -11254,8 +11250,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.TabName = m.TabName; // Clone.tt Line: 221
             vm.IsStartNewTabControl = m.IsStartNewTabControl; // Clone.tt Line: 221
             vm.IsStopTabControl = m.IsStopTabControl; // Clone.tt Line: 221
-            vm.IsStartGridNewContainer = m.IsStartGridNewContainer; // Clone.tt Line: 221
-            vm.IsStartGridNewSubContainer = m.IsStartGridNewSubContainer; // Clone.tt Line: 221
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -11295,8 +11289,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.TabName = vm.TabName; // Clone.tt Line: 276
             m.IsStartNewTabControl = vm.IsStartNewTabControl; // Clone.tt Line: 276
             m.IsStopTabControl = vm.IsStopTabControl; // Clone.tt Line: 276
-            m.IsStartGridNewContainer = vm.IsStartGridNewContainer; // Clone.tt Line: 276
-            m.IsStartGridNewSubContainer = vm.IsStartGridNewSubContainer; // Clone.tt Line: 276
             m.Position = vm.Position; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -11627,6 +11619,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // Property.tt Line: 79
         partial void OnAccuracyForTimeChanged();
         
+        [PropertyOrderAttribute(23)]
         [Category("Auto Layout")]
         [DisplayName("UI attach")]
         [Description("UI engine will try put this field on same line as previous field")]
@@ -11650,6 +11643,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsTryAttachChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsTryAttachChanged();
         
+        [PropertyOrderAttribute(22)]
         [Category("Auto Layout")]
         [DisplayName("UI lines")]
         [Description("Lines on screen for edit box")]
@@ -11673,8 +11667,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnLinesOnScreenChanging(ref int to); // Property.tt Line: 79
         partial void OnLinesOnScreenChanged();
         
+        [PropertyOrderAttribute(24)]
         [Category("Auto Layout")]
-        [DisplayName("New UI row")]
+        [DisplayName("Start UI row")]
         [Description("Start new UI row for this property")]
         public bool IsStartNewRow // Property.tt Line: 55
         { 
@@ -11696,6 +11691,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsStartNewRowChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsStartNewRowChanged();
         
+        [PropertyOrderAttribute(26)]
         [Category("Auto Layout")]
         [DisplayName("Tab Name")]
         [Description("If not empty, then start new tab in tab control. If empty, then continue adding fields in current control")]
@@ -11719,8 +11715,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnTabNameChanging(ref string to); // Property.tt Line: 79
         partial void OnTabNameChanged();
         
+        [PropertyOrderAttribute(25)]
         [Category("Auto Layout")]
-        [DisplayName("New Tab Control")]
+        [DisplayName("Start Tab Control")]
         [Description("Start new tab control as current control")]
         public bool IsStartNewTabControl // Property.tt Line: 55
         { 
@@ -11742,6 +11739,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsStartNewTabControlChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsStartNewTabControlChanged();
         
+        [PropertyOrderAttribute(27)]
         [Category("Auto Layout")]
         [DisplayName("Stop Tab Control")]
         [Description("Stop using tab control for layout")]
@@ -11764,52 +11762,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsStopTabControl;
         partial void OnIsStopTabControlChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsStopTabControlChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Grid new container")]
-        [Description("Start new container (column) in grid system")]
-        public bool IsStartGridNewContainer // Property.tt Line: 55
-        { 
-            get { return this._IsStartGridNewContainer; }
-            set
-            {
-                if (this._IsStartGridNewContainer != value)
-                {
-                    this.OnIsStartGridNewContainerChanging(ref value);
-                    this._IsStartGridNewContainer = value;
-                    this.OnIsStartGridNewContainerChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsStartGridNewContainer;
-        partial void OnIsStartGridNewContainerChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsStartGridNewContainerChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Grid new sub container")]
-        [Description("Start new sub container (column) in grid system")]
-        public bool IsStartGridNewSubContainer // Property.tt Line: 55
-        { 
-            get { return this._IsStartGridNewSubContainer; }
-            set
-            {
-                if (this._IsStartGridNewSubContainer != value)
-                {
-                    this.OnIsStartGridNewSubContainerChanging(ref value);
-                    this._IsStartGridNewSubContainer = value;
-                    this.OnIsStartGridNewSubContainerChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsStartGridNewSubContainer;
-        partial void OnIsStartGridNewSubContainerChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsStartGridNewSubContainerChanged();
         
         
         ///////////////////////////////////////////////////

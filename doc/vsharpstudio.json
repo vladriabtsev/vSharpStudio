@@ -6247,7 +6247,7 @@
             },
             {
               "name": "is_try_attach",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"UI attach\")]\n@attr [Description(\"UI engine will try put this field on same line as previous field\")]",
+              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"UI attach\")]\n@attr [Description(\"UI engine will try put this field on same line as previous field\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -6257,7 +6257,7 @@
             },
             {
               "name": "lines_on_screen",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"UI lines\")]\n@attr [Description(\"Lines on screen for edit box\")]",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"UI lines\")]\n@attr [Description(\"Lines on screen for edit box\")]",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -6267,7 +6267,7 @@
             },
             {
               "name": "is_start_new_row",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"New UI row\")]\n@attr [Description(\"Start new UI row for this property\")]",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Start UI row\")]\n@attr [Description(\"Start new UI row for this property\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -6277,7 +6277,7 @@
             },
             {
               "name": "tab_name",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Tab Name\")]\n@attr [Description(\"If not empty, then start new tab in tab control. If empty, then continue adding fields in current control\")]",
+              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Tab Name\")]\n@attr [Description(\"If not empty, then start new tab in tab control. If empty, then continue adding fields in current control\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6287,7 +6287,7 @@
             },
             {
               "name": "is_start_new_tab_control",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"New Tab Control\")]\n@attr [Description(\"Start new tab control as current control\")]",
+              "description": "@attr [PropertyOrderAttribute(25)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Start Tab Control\")]\n@attr [Description(\"Start new tab control as current control\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -6297,27 +6297,7 @@
             },
             {
               "name": "is_stop_tab_control",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Stop Tab Control\")]\n@attr [Description(\"Stop using tab control for layout\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_start_grid_new_container",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Grid new container\")]\n@attr [Description(\"Start new container (column) in grid system\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_start_grid_new_sub_container",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Grid new sub container\")]\n@attr [Description(\"Start new sub container (column) in grid system\")]",
+              "description": "@attr [PropertyOrderAttribute(27)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Stop Tab Control\")]\n@attr [Description(\"Stop using tab control for layout\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
