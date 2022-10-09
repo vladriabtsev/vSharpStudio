@@ -870,10 +870,32 @@ message proto_detail {
     // @attr [BrowsableAttribute(false)]
     string property_version_guid = 21;
 
+    // @attr [PropertyOrderAttribute(22)]
     // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("New Tab Control")]
+    // @attr [DisplayName("UI attach")]
+    // @attr [Description("UI engine will try put this detail block on same line as previous detail block or block of header fields")]
+    bool is_try_attach = 22;
+    // @attr [PropertyOrderAttribute(23)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Start UI row")]
+    // @attr [Description("Start new UI row for this detaail block")]
+    bool is_start_new_row = 23;
+    // @attr [PropertyOrderAttribute(24)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Start New Tab")]
+    // @attr [Description("Start tab in current tab control (create new tab control if current not created yet or start new tab control is specified). Tab name is taken from details name if not specified explicitly")]
+    bool is_start_new_tab = 24;
+    // @attr [PropertyOrderAttribute(25)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Tab Name")]
+    // @attr [Description("If not empty, try to find tab in previous tab controls. If not found, then start new tab in tab control. If empty, then continue adding data grids in current tab control")]
+    string tab_name = 25;
+    // @attr [PropertyOrderAttribute(26)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Start Tab Control")]
     // @attr [Description("Start new tab control as current control")]
     bool is_start_new_tab_control = 26;
+    // @attr [PropertyOrderAttribute(27)]
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Stop Tab Control")]
     // @attr [Description("Stop using tab control for layout")]
@@ -1049,6 +1071,22 @@ message proto_property {
     // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
     google.protobuf.UInt32Value width_xx = 39;
 */
+
+    // @attr [PropertyOrderAttribute(41)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Sortable")]
+    // @attr [Description("Sortable in data grid. If null, default behavior will be used")]
+    google.protobuf.BoolValue is_sortable = 41;
+    // @attr [PropertyOrderAttribute(42)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Custom Sortable")]
+    // @attr [Description("Custom sortable in data grid by using custom function")]
+    google.protobuf.BoolValue is_sortable_custom = 42;
+    // @attr [PropertyOrderAttribute(43)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Filterable")]
+    // @attr [Description("Filterable in data grid. If null, default behavior will be used")]
+    google.protobuf.BoolValue is_filterable = 43;
 
     // Protobuf field position
     // Reserved positions: 1 - primary key

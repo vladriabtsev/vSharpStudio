@@ -487,6 +487,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	int ShortId { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
+    	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 51
+    	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 51
+    	bool IsStartNewTab { get; } // ModelInterfaces.tt Line: 51
+    	string TabName { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
     	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 51
@@ -532,6 +536,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string TabName { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
     	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
+    	bool? IsSortable { get; } // ModelInterfaces.tt Line: 51
+    	bool? IsSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	bool? IsFilterable { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position

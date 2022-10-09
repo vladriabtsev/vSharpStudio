@@ -2313,8 +2313,48 @@
               "defaultValue": ""
             },
             {
+              "name": "is_try_attach",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"UI attach\")]\n@attr [Description(\"UI engine will try put this detail block on same line as previous detail block or block of header fields\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_start_new_row",
+              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Start UI row\")]\n@attr [Description(\"Start new UI row for this detaail block\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_start_new_tab",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Start New Tab\")]\n@attr [Description(\"Start tab in current tab control (create new tab control if current not created yet or start new tab control is specified). Tab name is taken from details name if not specified explicitly\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tab_name",
+              "description": "@attr [PropertyOrderAttribute(25)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Tab Name\")]\n@attr [Description(\"If not empty, try to find tab in previous tab controls. If not found, then start new tab in tab control. If empty, then continue adding data grids in current tab control\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_start_new_tab_control",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"New Tab Control\")]\n@attr [Description(\"Start new tab control as current control\")]",
+              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Start Tab Control\")]\n@attr [Description(\"Start new tab control as current control\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -2324,7 +2364,7 @@
             },
             {
               "name": "is_stop_tab_control",
-              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Stop Tab Control\")]\n@attr [Description(\"Stop using tab control for layout\")]",
+              "description": "@attr [PropertyOrderAttribute(27)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Stop Tab Control\")]\n@attr [Description(\"Stop using tab control for layout\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -6302,6 +6342,36 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_sortable",
+              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid. If null, default behavior will be used\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_sortable_custom",
+              "description": "@attr [PropertyOrderAttribute(42)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_filterable",
+              "description": "@attr [PropertyOrderAttribute(43)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid. If null, default behavior will be used\")]",
+              "label": "",
+              "type": "BoolValue",
+              "longType": "google.protobuf.BoolValue",
+              "fullType": "google.protobuf.BoolValue",
               "ismap": false,
               "defaultValue": ""
             },
