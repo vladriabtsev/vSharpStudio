@@ -468,15 +468,11 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_form_catalog_view_type"><span class="badge">E</span>proto_form_catalog_view_type</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_form_document_view_type"><span class="badge">E</span>proto_form_document_view_type</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_form_orientation"><span class="badge">E</span>proto_form_orientation</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_form_type"><span class="badge">E</span>proto_form_type</a>
                 </li>
               
               
@@ -2690,21 +2686,12 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>enum_catalog_form_type</td>
-                  <td><a href="#proto_config.proto_form_catalog_view_type">proto_form_catalog_view_type</a></td>
+                  <td>enum_form_type</td>
+                  <td><a href="#proto_config.proto_form_type">proto_form_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(4)]
 @attr [DisplayName(&#34;Form type&#34;)]
-@attr [Description(&#34;Catalog form type&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>enum_document_form_type</td>
-                  <td><a href="#proto_config.proto_form_document_view_type">proto_form_document_view_type</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;Form type&#34;)]
-@attr [Description(&#34;Document form type&#34;)] </p></td>
+@attr [Description(&#34;Form type&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6291,64 +6278,6 @@ repeated proto_document list_documents = 7;
           </tbody>
         </table>
       
-        <h3 id="proto_config.proto_form_catalog_view_type">proto_form_catalog_view_type</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>CatListForm</td>
-                <td>0</td>
-                <td><p>@attr [DisplayName(&#34;Catalog list view form&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>CatItemForm</td>
-                <td>1</td>
-                <td><p>@attr [DisplayName(&#34;Item form&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>CatFolderForm</td>
-                <td>2</td>
-                <td><p>@attr [DisplayName(&#34;Folder form&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>CatListFormNarrow</td>
-                <td>3</td>
-                <td><p>@attr [DisplayName(&#34;Catalog list narrow view form for selecting from item/document form&#34;)]</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="proto_config.proto_form_document_view_type">proto_form_document_view_type</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>DocListForm</td>
-                <td>0</td>
-                <td><p>@attr [DisplayName(&#34;List form&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DocEditForm</td>
-                <td>1</td>
-                <td><p>@attr [DisplayName(&#34;Edit form&#34;)]</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
         <h3 id="proto_config.proto_form_orientation">proto_form_orientation</h3>
         <p></p>
         <table class="enum-table">
@@ -6367,6 +6296,41 @@ repeated proto_document list_documents = 7;
                 <td>Horizontal</td>
                 <td>1</td>
                 <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_form_type">proto_form_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ViewListWide</td>
+                <td>0</td>
+                <td><p>@attr [DisplayName(&#34;Wide list view form&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>ViewListNarrow</td>
+                <td>1</td>
+                <td><p>@attr [DisplayName(&#34;Narrow list view form&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>ItemEditForm</td>
+                <td>2</td>
+                <td><p>@attr [DisplayName(&#34;Item edit form&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>FolderEditForm</td>
+                <td>3</td>
+                <td><p>@attr [DisplayName(&#34;Folder edit form&#34;)]</p></td>
               </tr>
             
           </tbody>

@@ -340,52 +340,6 @@
           ]
         },
         {
-          "name": "proto_form_catalog_view_type",
-          "longName": "proto_form_catalog_view_type",
-          "fullName": "proto_config.proto_form_catalog_view_type",
-          "description": "",
-          "values": [
-            {
-              "name": "CatListForm",
-              "number": "0",
-              "description": "@attr [DisplayName(\"Catalog list view form\")]"
-            },
-            {
-              "name": "CatItemForm",
-              "number": "1",
-              "description": "@attr [DisplayName(\"Item form\")]"
-            },
-            {
-              "name": "CatFolderForm",
-              "number": "2",
-              "description": "@attr [DisplayName(\"Folder form\")]"
-            },
-            {
-              "name": "CatListFormNarrow",
-              "number": "3",
-              "description": "@attr [DisplayName(\"Catalog list narrow view form for selecting from item/document form\")]"
-            }
-          ]
-        },
-        {
-          "name": "proto_form_document_view_type",
-          "longName": "proto_form_document_view_type",
-          "fullName": "proto_config.proto_form_document_view_type",
-          "description": "",
-          "values": [
-            {
-              "name": "DocListForm",
-              "number": "0",
-              "description": "@attr [DisplayName(\"List form\")]"
-            },
-            {
-              "name": "DocEditForm",
-              "number": "1",
-              "description": "@attr [DisplayName(\"Edit form\")]"
-            }
-          ]
-        },
-        {
           "name": "proto_form_orientation",
           "longName": "proto_form_orientation",
           "fullName": "proto_config.proto_form_orientation",
@@ -400,6 +354,34 @@
               "name": "Horizontal",
               "number": "1",
               "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_type",
+          "longName": "proto_form_type",
+          "fullName": "proto_config.proto_form_type",
+          "description": "",
+          "values": [
+            {
+              "name": "ViewListWide",
+              "number": "0",
+              "description": "@attr [DisplayName(\"Wide list view form\")]"
+            },
+            {
+              "name": "ViewListNarrow",
+              "number": "1",
+              "description": "@attr [DisplayName(\"Narrow list view form\")]"
+            },
+            {
+              "name": "ItemEditForm",
+              "number": "2",
+              "description": "@attr [DisplayName(\"Item edit form\")]"
+            },
+            {
+              "name": "FolderEditForm",
+              "number": "3",
+              "description": "@attr [DisplayName(\"Folder edit form\")]"
             }
           ]
         }
@@ -3043,22 +3025,12 @@
               "defaultValue": ""
             },
             {
-              "name": "enum_catalog_form_type",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Form type\")]\n@attr [Description(\"Catalog form type\")]",
+              "name": "enum_form_type",
+              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Form type\")]\n@attr [Description(\"Form type\")]",
               "label": "",
-              "type": "proto_form_catalog_view_type",
-              "longType": "proto_form_catalog_view_type",
-              "fullType": "proto_config.proto_form_catalog_view_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "enum_document_form_type",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Form type\")]\n@attr [Description(\"Document form type\")]",
-              "label": "",
-              "type": "proto_form_document_view_type",
-              "longType": "proto_form_document_view_type",
-              "fullType": "proto_config.proto_form_document_view_type",
+              "type": "proto_form_type",
+              "longType": "proto_form_type",
+              "fullType": "proto_config.proto_form_type",
               "ismap": false,
               "defaultValue": ""
             },

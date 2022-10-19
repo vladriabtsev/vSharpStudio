@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -309,6 +310,55 @@ namespace vSharpStudio.vm.ViewModels
                 if (t.IsIncluded(guidAppPrjGen))
                 {
                     res.Add(t);
+                }
+            }
+            return res;
+        }
+        public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)
+        {
+            ViewListData? viewListData = null;
+            var cfg = this.GetConfig();
+            Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
+            IProperty pId = null;
+            pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            List<IProperty> lst = null;
+            viewListData = new ViewListData(pId);
+            lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
+            viewListData.ListViewProperties.AddRange(lst);
+            return new ViewFormData(null, viewListData);
+        }
+        private List<IProperty> SelectViewProperties(FormType formType, ConfigNodesCollection<Property> fromPropertiesList, ObservableCollection<string> viewPropertiesGuids, string guidAppPrjGen)
+        {
+            var res = new List<IProperty>();
+            if (viewPropertiesGuids.Count > 0)
+            {
+                foreach (var t in fromPropertiesList)
+                {
+                    if (guidAppPrjGen == null || t.IsIncluded(guidAppPrjGen))
+                    {
+                        foreach (var tguid in viewPropertiesGuids)
+                        {
+                            if (t.Guid == tguid)
+                            {
+                                res.Add(t);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var len = 3;
+                foreach (var t in fromPropertiesList)
+                {
+                    if (guidAppPrjGen == null || t.IsIncluded(guidAppPrjGen))
+                    {
+                        len--;
+                        res.Add(t);
+                    }
+                    if (len == 0)
+                        break;
                 }
             }
             return res;

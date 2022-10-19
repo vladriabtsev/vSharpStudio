@@ -177,11 +177,11 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Parent.Parent is ICatalog)
             {
                 var c = (ICatalog)this.Parent.Parent;
-                lst.Add(this.GetPropertyName(() => this.EnumDocumentFormType));
-                switch (this.EnumCatalogFormType)
+                //lst.Add(this.GetPropertyName(() => this.EnumDocumentFormType));
+                switch (this.EnumFormType)
                 {
-                    case FormCatalogViewType.CatListForm:
-                    case FormCatalogViewType.CatListFormNarrow:
+                    case FormType.ViewListNarrow:
+                    case FormType.ViewListWide:
                         if (!c.UseTree || !(c.UseTree && c.UseSeparateTreeForFolders))
                         {
                             lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderCode));
@@ -191,8 +191,8 @@ namespace vSharpStudio.vm.ViewModels
                         }
                         lst.Add(this.GetPropertyName(() => this.CatalogEditSettings));
                         break;
-                    case FormCatalogViewType.CatItemForm:
-                    case FormCatalogViewType.CatFolderForm:
+                    case FormType.ItemEditForm:
+                    case FormType.FolderEditForm:
                         //lst.Add(this.GetPropertyName(() => this.IsUseCatalogCode));
                         //lst.Add(this.GetPropertyName(() => this.IsUseCatalogName));
                         //lst.Add(this.GetPropertyName(() => this.IsUseCatalogDesc));
@@ -212,11 +212,11 @@ namespace vSharpStudio.vm.ViewModels
             else if (this.Parent.Parent is IDetail)
             {
                 var c = (IDetail)this.Parent.Parent;
-                lst.Add(this.GetPropertyName(() => this.EnumDocumentFormType));
-                switch (this.EnumCatalogFormType)
+                //lst.Add(this.GetPropertyName(() => this.EnumDocumentFormType));
+                switch (this.EnumFormType)
                 {
-                    case FormCatalogViewType.CatListForm:
-                    case FormCatalogViewType.CatListFormNarrow:
+                    case FormType.ViewListNarrow:
+                    case FormType.ViewListWide:
                         lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderCode));
                         lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderName));
                         lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderDesc));
@@ -224,8 +224,7 @@ namespace vSharpStudio.vm.ViewModels
 
                         lst.Add(this.GetPropertyName(() => this.CatalogEditSettings));
                         break;
-                    case FormCatalogViewType.CatItemForm:
-                    case FormCatalogViewType.CatFolderForm:
+                    case FormType.ItemEditForm:
                         //lst.Add(this.GetPropertyName(() => this.IsUseCatalogCode));
                         //lst.Add(this.GetPropertyName(() => this.IsUseCatalogName));
                         //lst.Add(this.GetPropertyName(() => this.IsUseCatalogDesc));
@@ -245,17 +244,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             else if (this.Parent.Parent is IDocument)
             {
-                lst.Add(this.GetPropertyName(() => this.EnumCatalogFormType));
+                lst.Add(this.GetPropertyName(() => this.EnumFormType));
                 lst.Add(this.GetPropertyName(() => this.CatalogListSettings));
                 lst.Add(this.GetPropertyName(() => this.CatalogEditSettings));
             }
             this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
         }
-        partial void OnEnumCatalogFormTypeChanged()
-        {
-            HideUnusedProperties();
-        }
-        partial void OnEnumDocumentFormTypeChanged()
+        partial void OnEnumFormTypeChanged()
         {
             HideUnusedProperties();
         }

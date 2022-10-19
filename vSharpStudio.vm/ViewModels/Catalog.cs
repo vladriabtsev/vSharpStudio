@@ -715,12 +715,12 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public ViewFormData GetFormViewData(FormCatalogViewType formType, string guidAppPrjGen = null)
+        public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)
         {
             ViewTreeData? viewTreeData = null;
             ViewListData? viewListData = null;
             var cfg = this.GetConfig();
-            Form? form = (from p in this.GroupForms.ListForms where p.EnumCatalogFormType == formType select p).SingleOrDefault();
+            Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
             IProperty pId = null;
             pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             IProperty pRefTreeParent = null;
@@ -737,29 +737,29 @@ namespace vSharpStudio.vm.ViewModels
                 if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
                 {
                     viewTreeData = new ViewTreeData(pId, pRefTreeParent, pIsFolder);
-                    lst = SelectViewProperties(this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
+                    lst = SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
                     viewTreeData.ListViewProperties.AddRange(lst);
 
                     viewListData = new ViewListData(pId, pRefParent, pIsFolder);
-                    lst = SelectViewProperties(this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
+                    lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
                     viewListData.ListViewProperties.AddRange(lst);
                 }
                 else // only self tree
                 {
                     viewTreeData = new ViewTreeData(pId, pRefParent, pIsFolder);
-                    lst = SelectViewProperties(this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
+                    lst = SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
                     viewTreeData.ListViewProperties.AddRange(lst);
                 }
             }
             else // only data grid for children
             {
                 viewListData = new ViewListData(pId);
-                lst = SelectViewProperties(this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
+                lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
                 viewListData.ListViewProperties.AddRange(lst);
             }
             return new ViewFormData(viewTreeData, viewListData);
         }
-        private List<IProperty> SelectViewProperties(ConfigNodesCollection<Property> fromPropertiesList, ObservableCollection<string> viewPropertiesGuids, string guidAppPrjGen = null)
+        private List<IProperty> SelectViewProperties(FormType formType, ConfigNodesCollection<Property> fromPropertiesList, ObservableCollection<string> viewPropertiesGuids, string guidAppPrjGen)
         {
             var res = new List<IProperty>();
             if (viewPropertiesGuids.Count > 0)
@@ -791,10 +791,13 @@ namespace vSharpStudio.vm.ViewModels
                     var prp = Cfg.Model.GetPropertyCatalogName(this.PropertyNameGuid, this.MaxNameLength);
                     res.Add(prp);
                 }
-                if (!this.GetUseDescriptionProperty())
+                if (formType == FormType.ViewListWide)
                 {
-                    var prp = Cfg.Model.GetPropertyCatalogDescription(this.PropertyDescriptionGuid, this.MaxDescriptionLength);
-                    res.Add(prp);
+                    if (!this.GetUseDescriptionProperty())
+                    {
+                        var prp = Cfg.Model.GetPropertyCatalogDescription(this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+                        res.Add(prp);
+                    }
                 }
             }
             return res;

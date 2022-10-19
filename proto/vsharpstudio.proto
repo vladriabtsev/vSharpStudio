@@ -1918,21 +1918,15 @@ message proto_form_data_grid {
     // @attr [BrowsableAttribute(false)]
     repeated string list_guid_properties = 32;
 }
-enum proto_form_catalog_view_type {
-    // @attr [DisplayName("Catalog list view form")]
-    CatListForm = 0;
-    // @attr [DisplayName("Item form")]
-    CatItemForm = 1;
-    // @attr [DisplayName("Folder form")]
-    CatFolderForm = 2;
-    // @attr [DisplayName("Catalog list narrow view form for selecting from item/document form")]
-    CatListFormNarrow = 3;
-}
-enum proto_form_document_view_type {
-    // @attr [DisplayName("List form")]
-    DocListForm = 0;
-    // @attr [DisplayName("Edit form")]
-    DocEditForm = 1;
+enum proto_form_type {
+    // @attr [DisplayName("Wide list view form")]
+    ViewListWide = 0;
+    // @attr [DisplayName("Narrow list view form")]
+    ViewListNarrow = 1;
+    // @attr [DisplayName("Item edit form")]
+    ItemEditForm = 2;
+    // @attr [DisplayName("Folder edit form")]
+    FolderEditForm = 3;
 }
 // @base VmValidatableWithSeverityAndAttributes
 message proto_form_catalog_list_settings {
@@ -1998,12 +1992,8 @@ message proto_form {
 
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Form type")]
-    // @attr [Description("Catalog form type")]
-    proto_form_catalog_view_type enum_catalog_form_type = 75;
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Form type")]
-    // @attr [Description("Document form type")]
-    proto_form_document_view_type enum_document_form_type = 76;
+    // @attr [Description("Form type")]
+    proto_form_type enum_form_type = 75;
 
     // @attr [BrowsableAttribute(false)]
     repeated string list_guid_view_properties = 91;

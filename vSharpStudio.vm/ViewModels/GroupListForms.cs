@@ -101,10 +101,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        public Form AddCatalogForm(string name, FormCatalogViewType type)
+        public Form AddCatalogForm(string name, FormType type)
         {
             Debug.Assert(this.Parent is Catalog);
-            var form = new Form(this) { Name = name, EnumCatalogFormType = type };
+            var form = new Form(this) { Name = name, EnumFormType = type };
             this.ListForms.Add(form);
             return form;
         }

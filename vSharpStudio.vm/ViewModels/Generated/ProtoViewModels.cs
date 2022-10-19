@@ -23315,8 +23315,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.CatalogListSettings = vSharpStudio.vm.ViewModels.FormCatalogListSettings.Clone(from.CatalogListSettings, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.CatalogEditSettings = vSharpStudio.vm.ViewModels.FormCatalogEditSettings.Clone(from.CatalogEditSettings, isDeep);
-            vm.EnumCatalogFormType = from.EnumCatalogFormType; // Clone.tt Line: 65
-            vm.EnumDocumentFormType = from.EnumDocumentFormType; // Clone.tt Line: 65
+            vm.EnumFormType = from.EnumFormType; // Clone.tt Line: 65
             foreach (var t in from.ListGuidViewProperties) // Clone.tt Line: 44
                 vm.ListGuidViewProperties.Add(t);
             foreach (var t in from.ListGuidViewFolderProperties) // Clone.tt Line: 44
@@ -23345,8 +23344,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.FormCatalogListSettings.Update((FormCatalogListSettings)to.CatalogListSettings, from.CatalogListSettings, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.FormCatalogEditSettings.Update((FormCatalogEditSettings)to.CatalogEditSettings, from.CatalogEditSettings, isDeep);
-            to.EnumCatalogFormType = from.EnumCatalogFormType; // Clone.tt Line: 141
-            to.EnumDocumentFormType = from.EnumDocumentFormType; // Clone.tt Line: 141
+            to.EnumFormType = from.EnumFormType; // Clone.tt Line: 141
                 to.ListGuidViewProperties.Clear(); // Clone.tt Line: 127
                 foreach (var tt in from.ListGuidViewProperties)
                 {
@@ -23434,8 +23432,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.CatalogEditSettings == null) // Clone.tt Line: 213
                 vm.CatalogEditSettings = new FormCatalogEditSettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.FormCatalogEditSettings.ConvertToVM(m.CatalogEditSettings, (FormCatalogEditSettings)vm.CatalogEditSettings); // Clone.tt Line: 219
-            vm.EnumCatalogFormType = (FormCatalogViewType)m.EnumCatalogFormType; // Clone.tt Line: 221
-            vm.EnumDocumentFormType = (FormDocumentViewType)m.EnumDocumentFormType; // Clone.tt Line: 221
+            vm.EnumFormType = (FormType)m.EnumFormType; // Clone.tt Line: 221
             vm.ListGuidViewProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
             foreach (var t in m.ListGuidViewProperties) // Clone.tt Line: 185
             {
@@ -23473,8 +23470,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.CatalogListSettings = vSharpStudio.vm.ViewModels.FormCatalogListSettings.ConvertToProto((FormCatalogListSettings)vm.CatalogListSettings); // Clone.tt Line: 270
             m.CatalogEditSettings = vSharpStudio.vm.ViewModels.FormCatalogEditSettings.ConvertToProto((FormCatalogEditSettings)vm.CatalogEditSettings); // Clone.tt Line: 270
-            m.EnumCatalogFormType = (Proto.Config.proto_form_catalog_view_type)vm.EnumCatalogFormType; // Clone.tt Line: 274
-            m.EnumDocumentFormType = (Proto.Config.proto_form_document_view_type)vm.EnumDocumentFormType; // Clone.tt Line: 274
+            m.EnumFormType = (Proto.Config.proto_form_type)vm.EnumFormType; // Clone.tt Line: 274
             foreach (var t in vm.ListGuidViewProperties) // Clone.tt Line: 242
                 m.ListGuidViewProperties.Add(t); // Clone.tt Line: 244
             foreach (var t in vm.ListGuidViewFolderProperties) // Clone.tt Line: 242
@@ -23703,49 +23699,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [PropertyOrderAttribute(4)]
         [DisplayName("Form type")]
-        [Description("Catalog form type")]
-        public FormCatalogViewType EnumCatalogFormType // Property.tt Line: 55
+        [Description("Form type")]
+        public FormType EnumFormType // Property.tt Line: 55
         { 
-            get { return this._EnumCatalogFormType; }
+            get { return this._EnumFormType; }
             set
             {
-                if (this._EnumCatalogFormType != value)
+                if (this._EnumFormType != value)
                 {
-                    this.OnEnumCatalogFormTypeChanging(ref value);
-                    this._EnumCatalogFormType = value;
-                    this.OnEnumCatalogFormTypeChanged();
+                    this.OnEnumFormTypeChanging(ref value);
+                    this._EnumFormType = value;
+                    this.OnEnumFormTypeChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormCatalogViewType _EnumCatalogFormType;
-        partial void OnEnumCatalogFormTypeChanging(ref FormCatalogViewType to); // Property.tt Line: 79
-        partial void OnEnumCatalogFormTypeChanged();
-        
-        [PropertyOrderAttribute(4)]
-        [DisplayName("Form type")]
-        [Description("Document form type")]
-        public FormDocumentViewType EnumDocumentFormType // Property.tt Line: 55
-        { 
-            get { return this._EnumDocumentFormType; }
-            set
-            {
-                if (this._EnumDocumentFormType != value)
-                {
-                    this.OnEnumDocumentFormTypeChanging(ref value);
-                    this._EnumDocumentFormType = value;
-                    this.OnEnumDocumentFormTypeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private FormDocumentViewType _EnumDocumentFormType;
-        partial void OnEnumDocumentFormTypeChanging(ref FormDocumentViewType to); // Property.tt Line: 79
-        partial void OnEnumDocumentFormTypeChanged();
+        private FormType _EnumFormType;
+        partial void OnEnumFormTypeChanging(ref FormType to); // Property.tt Line: 79
+        partial void OnEnumFormTypeChanged();
         
         [BrowsableAttribute(false)]
         public ObservableCollection<string> ListGuidViewProperties // Property.tt Line: 8

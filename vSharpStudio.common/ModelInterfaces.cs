@@ -90,17 +90,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         LgAndDown = 4,
         XlAndDown = 5,
     }
-    public enum FormCatalogViewType // ModelInterfaces.tt Line: 15
+    public enum FormType // ModelInterfaces.tt Line: 15
     {
-        CatListForm = 0,
-        CatItemForm = 1,
-        CatFolderForm = 2,
-        CatListFormNarrow = 3,
-    }
-    public enum FormDocumentViewType // ModelInterfaces.tt Line: 15
-    {
-        DocListForm = 0,
-        DocEditForm = 1,
+        ViewListWide = 0,
+        ViewListNarrow = 1,
+        ItemEditForm = 2,
+        FolderEditForm = 3,
     }
     
     public partial interface IUserSettings // ModelInterfaces.tt Line: 29
@@ -925,8 +920,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IFormCatalogListSettings CatalogListSettings { get; } // ModelInterfaces.tt Line: 55
     	IFormCatalogEditSettings CatalogEditSettings { get; } // ModelInterfaces.tt Line: 55
-    	FormCatalogViewType EnumCatalogFormType { get; } // ModelInterfaces.tt Line: 51
-    	FormDocumentViewType EnumDocumentFormType { get; } // ModelInterfaces.tt Line: 51
+    	FormType EnumFormType { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<string> ListGuidViewFolderProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44

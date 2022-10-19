@@ -44,6 +44,6 @@ namespace vSharpStudio.common
     }
     public interface IViewList
     {
-        ViewFormData GetFormViewData(FormCatalogViewType formType, string guidAppPrjGen = null);
+        ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen = null);
     }
 }

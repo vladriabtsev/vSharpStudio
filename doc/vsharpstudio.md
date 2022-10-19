@@ -77,9 +77,8 @@
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
     - [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type)
-    - [proto_form_catalog_view_type](#proto_config.proto_form_catalog_view_type)
-    - [proto_form_document_view_type](#proto_config.proto_form_document_view_type)
     - [proto_form_orientation](#proto_config.proto_form_orientation)
+    - [proto_form_type](#proto_config.proto_form_type)
   
   
   
@@ -586,8 +585,7 @@ Constant application wise value
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | catalog_list_settings | [proto_form_catalog_list_settings](#proto_config.proto_form_catalog_list_settings) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;List Form&#34;)] @attr [Description(&#34;Catalog list view settings&#34;)] @attr [ExpandableObjectAttribute()] |
 | catalog_edit_settings | [proto_form_catalog_edit_settings](#proto_config.proto_form_catalog_edit_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Edit Form&#34;)] @attr [Description(&#34;Catalog edit form settings&#34;)] @attr [ExpandableObjectAttribute()] |
-| enum_catalog_form_type | [proto_form_catalog_view_type](#proto_config.proto_form_catalog_view_type) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Catalog form type&#34;)] |
-| enum_document_form_type | [proto_form_document_view_type](#proto_config.proto_form_document_view_type) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Document form type&#34;)] |
+| enum_form_type | [proto_form_type](#proto_config.proto_form_type) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Form type&#34;)] |
 | list_guid_view_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_guid_view_folder_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
@@ -1685,32 +1683,6 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 
 
-<a name="proto_config.proto_form_catalog_view_type"></a>
-
-### proto_form_catalog_view_type
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| CatListForm | 0 | @attr [DisplayName(&#34;Catalog list view form&#34;)] |
-| CatItemForm | 1 | @attr [DisplayName(&#34;Item form&#34;)] |
-| CatFolderForm | 2 | @attr [DisplayName(&#34;Folder form&#34;)] |
-| CatListFormNarrow | 3 | @attr [DisplayName(&#34;Catalog list narrow view form for selecting from item/document form&#34;)] |
-
-
-
-<a name="proto_config.proto_form_document_view_type"></a>
-
-### proto_form_document_view_type
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| DocListForm | 0 | @attr [DisplayName(&#34;List form&#34;)] |
-| DocEditForm | 1 | @attr [DisplayName(&#34;Edit form&#34;)] |
-
-
-
 <a name="proto_config.proto_form_orientation"></a>
 
 ### proto_form_orientation
@@ -1720,6 +1692,20 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | ---- | ------ | ----------- |
 | Vertical | 0 |  |
 | Horizontal | 1 |  |
+
+
+
+<a name="proto_config.proto_form_type"></a>
+
+### proto_form_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ViewListWide | 0 | @attr [DisplayName(&#34;Wide list view form&#34;)] |
+| ViewListNarrow | 1 | @attr [DisplayName(&#34;Narrow list view form&#34;)] |
+| ItemEditForm | 2 | @attr [DisplayName(&#34;Item edit form&#34;)] |
+| FolderEditForm | 3 | @attr [DisplayName(&#34;Folder edit form&#34;)] |
 
 
  
