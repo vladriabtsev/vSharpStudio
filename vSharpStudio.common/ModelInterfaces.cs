@@ -95,6 +95,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         CatListForm = 0,
         CatItemForm = 1,
         CatFolderForm = 2,
+        CatListFormNarrow = 3,
     }
     public enum FormDocumentViewType // ModelInterfaces.tt Line: 15
     {

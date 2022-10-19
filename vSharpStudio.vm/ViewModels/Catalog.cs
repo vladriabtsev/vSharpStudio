@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
+using System.Windows.Documents;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -15,7 +16,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        IDbTable, ITreeConfigNode, INodeWithProperties
+        IDbTable, ITreeConfigNode, INodeWithProperties, IViewList
     {
         public static readonly string DefaultName = "Catalog";
 
@@ -516,19 +517,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (this.GetUseCodeProperty())
             {
-                switch (this.CodePropertySettings.Type)
-                {
-                    case EnumCodeType.AutoNumber:
-                        throw new NotImplementedException();
-                    case EnumCodeType.AutoText:
-                        throw new NotImplementedException();
-                    case EnumCodeType.Number:
-                        prp = cfg.Model.GetPropertyCatalogCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
-                        break;
-                    case EnumCodeType.Text:
-                        prp = cfg.Model.GetPropertyCatalogCode(this.PropertyCodeGuid, this.CodePropertySettings.Length);
-                        break;
-                }
+                prp = this.GetCodeProperty(cfg);
                 res.Add(prp);
             }
             if (this.GetUseNameProperty())
@@ -542,6 +531,25 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(prp);
             }
         }
+        private IProperty GetCodeProperty(IConfig cfg)
+        {
+            IProperty prp = null;
+            switch (this.CodePropertySettings.Type)
+            {
+                case EnumCodeType.AutoNumber:
+                    throw new NotImplementedException();
+                case EnumCodeType.AutoText:
+                    throw new NotImplementedException();
+                case EnumCodeType.Number:
+                    prp = cfg.Model.GetPropertyCatalogCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                    break;
+                case EnumCodeType.Text:
+                    prp = cfg.Model.GetPropertyCatalogCode(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                    break;
+            }
+            return prp;
+        }
+
         partial void OnUseCodePropertyChanged()
         {
             HideProperties();
@@ -703,6 +711,90 @@ namespace vSharpStudio.vm.ViewModels
                 if (t.IsIncluded(guidAppPrjDbGen))
                 {
                     res.Add(t);
+                }
+            }
+            return res;
+        }
+        public ViewFormData GetFormViewData(FormCatalogViewType formType, string guidAppPrjGen = null)
+        {
+            ViewTreeData? viewTreeData = null;
+            ViewListData? viewListData = null;
+            var cfg = this.GetConfig();
+            Form? form = (from p in this.GroupForms.ListForms where p.EnumCatalogFormType == formType select p).SingleOrDefault();
+            IProperty pId = null;
+            pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            IProperty pRefTreeParent = null;
+            IProperty pRefParent = null;
+            IProperty pIsFolder = null;
+            List<IProperty> lst = null;
+            if (this.UseTree)
+            {
+                pRefTreeParent = cfg.Model.GetPropertyRefParent(this.Folder.PropertyRefSelfGuid, "RefTreeParent", true);
+                if (this.UseFolderTypeExplicitly)
+                {
+                    pIsFolder = cfg.Model.GetPropertyIsFolder(this.PropertyIsFolderGuid);
+                }
+                if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
+                {
+                    viewTreeData = new ViewTreeData(pId, pRefTreeParent, pIsFolder);
+                    lst = SelectViewProperties(this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
+                    viewTreeData.ListViewProperties.AddRange(lst);
+
+                    viewListData = new ViewListData(pId, pRefParent, pIsFolder);
+                    lst = SelectViewProperties(this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
+                    viewListData.ListViewProperties.AddRange(lst);
+                }
+                else // only self tree
+                {
+                    viewTreeData = new ViewTreeData(pId, pRefParent, pIsFolder);
+                    lst = SelectViewProperties(this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
+                    viewTreeData.ListViewProperties.AddRange(lst);
+                }
+            }
+            else // only data grid for children
+            {
+                viewListData = new ViewListData(pId);
+                lst = SelectViewProperties(this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
+                viewListData.ListViewProperties.AddRange(lst);
+            }
+            return new ViewFormData(viewTreeData, viewListData);
+        }
+        private List<IProperty> SelectViewProperties(ConfigNodesCollection<Property> fromPropertiesList, ObservableCollection<string> viewPropertiesGuids, string guidAppPrjGen = null)
+        {
+            var res = new List<IProperty>();
+            if (viewPropertiesGuids.Count > 0)
+            {
+                foreach (var t in fromPropertiesList)
+                {
+                    if (guidAppPrjGen == null || t.IsIncluded(guidAppPrjGen))
+                    {
+                        foreach (var tguid in viewPropertiesGuids)
+                        {
+                            if (t.Guid == tguid)
+                            {
+                                res.Add(t);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (!this.GetUseCodeProperty())
+                {
+                    var prp = this.GetCodeProperty(this.Cfg);
+                    res.Add(prp);
+                }
+                if (!this.GetUseNameProperty())
+                {
+                    var prp = Cfg.Model.GetPropertyCatalogName(this.PropertyNameGuid, this.MaxNameLength);
+                    res.Add(prp);
+                }
+                if (!this.GetUseDescriptionProperty())
+                {
+                    var prp = Cfg.Model.GetPropertyCatalogDescription(this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+                    res.Add(prp);
                 }
             }
             return res;

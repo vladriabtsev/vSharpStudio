@@ -1692,9 +1692,10 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CatListForm | 0 | @attr [DisplayName(&#34;List form&#34;)] |
+| CatListForm | 0 | @attr [DisplayName(&#34;Catalog list view form&#34;)] |
 | CatItemForm | 1 | @attr [DisplayName(&#34;Item form&#34;)] |
 | CatFolderForm | 2 | @attr [DisplayName(&#34;Folder form&#34;)] |
+| CatListFormNarrow | 3 | @attr [DisplayName(&#34;Catalog list narrow view form for selecting from item/document form&#34;)] |
 
 
 

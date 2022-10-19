@@ -176,11 +176,12 @@ namespace vSharpStudio.vm.ViewModels
             var lst2 = new List<string>();
             if (this.Parent.Parent is ICatalog)
             {
+                var c = (ICatalog)this.Parent.Parent;
                 lst.Add(this.GetPropertyName(() => this.EnumDocumentFormType));
                 switch (this.EnumCatalogFormType)
                 {
                     case FormCatalogViewType.CatListForm:
-                        var c = (ICatalog)this.Parent.Parent;
+                    case FormCatalogViewType.CatListFormNarrow:
                         if (!c.UseTree || !(c.UseTree && c.UseSeparateTreeForFolders))
                         {
                             lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderCode));
@@ -188,6 +189,39 @@ namespace vSharpStudio.vm.ViewModels
                             lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderDesc));
                             this.CatalogListSettings.HidePropertiesForXceedPropertyGrid(lst2.ToArray());
                         }
+                        lst.Add(this.GetPropertyName(() => this.CatalogEditSettings));
+                        break;
+                    case FormCatalogViewType.CatItemForm:
+                    case FormCatalogViewType.CatFolderForm:
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogCode));
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogName));
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogDesc));
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogFolderCode));
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogFolderName));
+                        //lst.Add(this.GetPropertyName(() => this.IsUseCatalogFolderDesc));
+                        //this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
+                        lst.Add(this.GetPropertyName(() => this.CatalogListSettings));
+                        break;
+                    default:
+                        Debug.Assert(false);
+                        lst.Add(this.GetPropertyName(() => this.CatalogListSettings));
+                        lst.Add(this.GetPropertyName(() => this.CatalogEditSettings));
+                        break;
+                }
+            }
+            else if (this.Parent.Parent is IDetail)
+            {
+                var c = (IDetail)this.Parent.Parent;
+                lst.Add(this.GetPropertyName(() => this.EnumDocumentFormType));
+                switch (this.EnumCatalogFormType)
+                {
+                    case FormCatalogViewType.CatListForm:
+                    case FormCatalogViewType.CatListFormNarrow:
+                        lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderCode));
+                        lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderName));
+                        lst2.Add(this.GetPropertyName(() => this.CatalogListSettings.IsUseFolderDesc));
+                        this.CatalogListSettings.HidePropertiesForXceedPropertyGrid(lst2.ToArray());
+
                         lst.Add(this.GetPropertyName(() => this.CatalogEditSettings));
                         break;
                     case FormCatalogViewType.CatItemForm:

@@ -348,7 +348,7 @@
             {
               "name": "CatListForm",
               "number": "0",
-              "description": "@attr [DisplayName(\"List form\")]"
+              "description": "@attr [DisplayName(\"Catalog list view form\")]"
             },
             {
               "name": "CatItemForm",
@@ -359,6 +359,11 @@
               "name": "CatFolderForm",
               "number": "2",
               "description": "@attr [DisplayName(\"Folder form\")]"
+            },
+            {
+              "name": "CatListFormNarrow",
+              "number": "3",
+              "description": "@attr [DisplayName(\"Catalog list narrow view form for selecting from item/document form\")]"
             }
           ]
         },
