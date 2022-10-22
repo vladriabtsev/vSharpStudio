@@ -45,7 +45,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         new public string IconName { get { return "iconConstant"; } }
         //protected override string GetNodeIconName() { return "iconConstant"; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;

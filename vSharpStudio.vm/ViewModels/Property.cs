@@ -50,7 +50,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public string ComplexObjectName { get; set; }
         public string ComplexObjectNameWithDot() { if (!string.IsNullOrEmpty(this.ComplexObjectName)) return $"{this.ComplexObjectName}."; return ""; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.IsNullable = false;
             this.MinLengthRequirement = "";

@@ -47,7 +47,7 @@ namespace vSharpStudio.vm.ViewModels
         new public string IconName { get { return "iconApplication"; } }
 
         //protected override string GetNodeIconName() { return "iconApplication"; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             //this.DefaultDb.Parent = this;
 #if DEBUG

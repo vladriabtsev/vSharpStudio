@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<Document> Children { get { return this.ListDocuments; } }
         public IGroupDocuments IParent { get { return (GroupDocuments)this.Parent; } }
 
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = "Documents";
             this.IsEditable = false;

@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         public ConfigNodesCollection<MainViewForm> Children { get { return this.ListMainViewForms; } }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;

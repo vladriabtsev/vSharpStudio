@@ -37,7 +37,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.ListGuidViewProperties = new ObservableCollection<string>();
             this.IsIncludableInModels = true;

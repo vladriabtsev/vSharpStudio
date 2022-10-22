@@ -8,7 +8,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class CatalogCodePropertySettings : IParent
     {
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.UniqueScope = common.EnumCatalogCodeUniqueScope.Catalog;
             this.Type = common.EnumCodeType.Number;

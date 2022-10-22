@@ -66,6 +66,11 @@ namespace GenFromProto
                 this.Doc.BaseClass = " : VmValidatableWithSeverityAndAttributes<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";
             }
+            else if (this.Doc.BaseClass == "BaseSettings")
+            {
+                this.Doc.BaseClass = " : BaseSettings<" + message.Name.ToNameCs() + ", " +
+                    message.Name.ToNameCs() + "Validator>";
+            }
             else if (this.Doc.BaseClass == "ConfigObjectCommonBase")
             {
                 this.Doc.BaseClass = " : ConfigObjectCommonBase<" + message.Name.ToNameCs() + ", " +
@@ -86,8 +91,6 @@ namespace GenFromProto
 
             }
         }
-        private bool IsDefaultBase { get { return this.Doc.IsDefaultBase; } }
-        private bool IsBaseWithParent { get { return this.Doc.IsConfigObjectBase; } }
         private bool IsObservable(FieldDescriptor field)
         {
             return field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase());

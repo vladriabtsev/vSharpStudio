@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         public ConfigNodesCollection<Journal> Children { get { return this.ListJournals; } }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = "Journals";
             this.IsEditable = false;

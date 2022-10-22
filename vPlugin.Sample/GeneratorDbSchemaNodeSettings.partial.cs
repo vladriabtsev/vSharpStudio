@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using FluentValidation.Results;
 using Google.Protobuf;
 using Proto.Plugin;
@@ -12,24 +13,14 @@ namespace vPlugin.Sample
 {
     public partial class GeneratorDbSchemaNodeSettings : IvPluginGeneratorNodeSettings, IvPluginGeneratorNodeIncludable
     {
-        public GeneratorDbSchemaNodeSettings(ITreeConfigNode node) : base(GeneratorDbSchemaNodeSettingsValidator.Validator)
+        partial void OnCreated()
         {
-            //var lst = new List<string>();
-            //if (!(node is IConstant))
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.IsConstantParam1));
-            //}
-            //if (!(node.Parent is ICatalog) && !(node is IForm))
-            //{
-            //    lst.Add(this.GetPropertyName(() => this.IsCatalogFormParam1));
-            //}
-            //this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
             this.DicNodeExcludedProperties = new Dictionary<string, string>();
-            if (!(node is IConstant))
+            if (!(this.Parent is IConstant))
             {
                 DicNodeExcludedProperties[this.GetPropertyName(() => this.IsConstantParam1)] = null; ;
             }
-            if (!(node.Parent is ICatalog) && !(node is IForm))
+            if (!(this.Parent?.Parent is ICatalog) && !(this.Parent is IForm))
             {
                 DicNodeExcludedProperties[this.GetPropertyName(() => this.IsCatalogFormParam1)] = null;
             }

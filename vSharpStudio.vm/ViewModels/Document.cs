@@ -38,7 +38,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         new public string IconName { get { return "iconDiagnosticesFile"; } }
         //protected override string GetNodeIconName() { return "iconDiagnosticesFile"; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.IsIncludableInModels = true;
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();

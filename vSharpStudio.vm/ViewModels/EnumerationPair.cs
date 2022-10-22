@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         new public string IconName { get { return "iconEnumItem"; } }
         //protected override string GetNodeIconName() { return "iconEnumItem"; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.IsIncludableInModels = true;
         }

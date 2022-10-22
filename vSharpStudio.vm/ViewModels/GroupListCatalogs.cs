@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public ConfigNodesCollection<Catalog> Children { get { return this.ListCatalogs; } }
 
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = Defaults.CatalogsGroupName;
             this.PrefixForDbTables = "Ctlg";

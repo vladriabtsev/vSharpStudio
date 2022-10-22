@@ -14,7 +14,7 @@ namespace vPlugin.Sample
     {
         [BrowsableAttribute(false)]
         public ITreeConfigNode Parent { get; set; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.Name = "PrjGrSet";
             this.Description = "vSharpStudio plugins group settings for projects";

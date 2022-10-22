@@ -8,7 +8,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class DocumentCodePropertySettings : IParent
     {
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.UniqueScope = common.EnumDocumentCodeUniqueScope.Year;
             this.Type = common.EnumCodeType.Number;

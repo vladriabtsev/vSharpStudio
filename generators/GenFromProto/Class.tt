@@ -3,20 +3,29 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+// <#=Helper.FilePos() #>
+//       IsWithParent: <#=this.Doc.IsWithParent#> 
+//      IsDefaultBase: <#=this.Doc.IsDefaultBase#> 
+// IsConfigObjectBase: <#=this.Doc.IsConfigObjectBase#> 
+//      IsGenSettings: <#=this.Doc.IsGenSettings#> 
+//     IsBindableBase: <#=this.Doc.IsBindableBase#> 
+//     IsEditableBase: <#=this.Doc.IsEditableBase#> 
+//  IsValidatableBase: <#=this.Doc.IsValidatableBase#> 
 public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#= message.Name.ToNameCs() #>, <#= message.Name.ToNameCs() #>Validator> { } // <#=Helper.FilePos() #>
 <#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 {
     #region CTOR
-<# if (this.IsBaseWithParent) { #>
-    public <#= message.Name.ToNameCs() #>() : this(default(ITreeConfigNode))
+<# if (this.Doc.IsWithParent) { #>
+    public <#= message.Name.ToNameCs() #>() : this(default(ITreeConfigNode)) // <#=Helper.FilePos() #>
     {
+        this.OnCreating();
     }
-    public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) 
-        : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator) // <#=Helper.FilePos() #>
+    public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) // <#=Helper.FilePos() #>
+        : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator)
     {
         this.IsNotifying = false;
         this.IsValidate = false;
-        this.OnInitBegin();
+        this.OnCreating();
 <#    foreach (var t in message.Fields.InDeclarationOrder())	{ 
          if (t.IsCsSimple())
             continue;
@@ -27,16 +36,12 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
         this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#       } else if (t.IsMessage()) { #>
-<#          if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-        this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
-<#          } else { #>
         this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
-<#          } #>
 <#		 } else if (t.IsMap) { #>
 		map??? // <#=Helper.FilePos() #>
 <#		} #>
 <# } #>
-        this.OnInit();
+        this.OnCreated();
         this.IsValidate = true;
         this.IsNotifying = true;
     }
@@ -45,7 +50,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
         : base(<#= message.Name.ToNameCs() #>Validator.Validator)<# } #> // <#=Helper.FilePos() #>
     {
         this.IsValidate = false;
-        this.OnInitBegin();
+        this.OnCreating();
 <# foreach (var t in message.Fields.InDeclarationOrder())	{ 
         if (t.IsCsSimple() && !t.IsRepeated)
            continue;
@@ -66,12 +71,12 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 		map??? // <#=Helper.FilePos() #>
 <#		} #>
 <# } #>
-        this.OnInit();
+        this.OnCreated();
         this.IsValidate = true;
     }
 <# } #>
-    partial void OnInitBegin();
-    partial void OnInit();
+    partial void OnCreating();
+    partial void OnCreated();
     #endregion CTOR
     #region Procedures
 <#	
@@ -98,9 +103,9 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 		this.Write(p.TransformText());
 	}
 	this.PopIndent(); #>
-<# if (this.IsBaseWithParent) { #>
+<# if (this.Doc.IsWithParent) { #>
     [BrowsableAttribute(false)]
-    override public bool IsChanged // <#=Helper.FilePos() #>
+    public override bool IsChanged // <#=Helper.FilePos() #>
     { 
         get { return this._IsChanged; }
         set
@@ -118,9 +123,13 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
         }
     }
     partial void OnIsChangedChanging(ref bool v); // <#=Helper.FilePos() #>
-    protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-<# if (!(message.Name.Contains("group") || message.Name.StartsWith("proto_config") || message.Name.StartsWith("proto_model"))) { #>
-    partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+<# if (this.Doc.IsConfigObjectBase) { #>
+    protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // <#=Helper.FilePos() #>
+<# } else { #>
+    //partial void OnIsChangedChanged(); // <#=Helper.FilePos() #>
+<# } #>
+<# if (this.Doc.IsConfigObjectBase && (!(message.Name.Contains("group") || message.Name.StartsWith("proto_config") || message.Name.StartsWith("proto_model")))) { #>
+    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // <#=Helper.FilePos() #> <#=message.Name#>
     partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
 <# } #>
 <# } #>

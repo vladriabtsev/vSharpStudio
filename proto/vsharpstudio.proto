@@ -11,11 +11,11 @@ option csharp_namespace = "Proto.Config";
 
 /* need extend code generator
 import "vsharpstudioshared.proto";
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_test {
     proto_shared.bool_nullable test1 = 11;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_test2 {
     proto_shared.test_shared_messsage test1 = 11;
 }
@@ -37,12 +37,12 @@ message timestamp_nullable {
  * if repeated property name is ending message name, than c# class will implement indexer to access such property elements 
  * ####################################### U S E R   S E T T I N G S ##################################
  */
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_user_settings {
     // @attr [BrowsableAttribute(false)]
     repeated proto_user_settings_opened_config list_open_config_history = 11;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_user_settings_opened_config {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -104,7 +104,7 @@ message proto_plugin_generator {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_settings_config {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
@@ -123,7 +123,7 @@ message proto_settings_config {
  * @exclude
  * ####################################### C O N F I G ##########################################
  */
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_config_short_history {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -205,7 +205,7 @@ message proto_config {
  * @exclude
  * ####################################### A P P S ##########################################
  */
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_app_db_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
@@ -232,7 +232,7 @@ message proto_app_db_settings {
     // @attr [ReadOnly(true)]
     string conn_name = 7;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_plugin_group_generators_default_settings {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -415,7 +415,7 @@ message proto_plugin_generator_node_settings {
     //string node_settings_vm_guid = 6;
     string settings = 7;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_plugin_generator_settings {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -497,7 +497,7 @@ message proto_app_project_generator {
     // Generator output file name
     string gen_script_file_name = 23;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_plugin_generator_node_default_settings {
     // Guid of solution-project-generator node
     string node_settings_vm_guid = 2;
@@ -682,7 +682,7 @@ enum proto_enum_time_accuracy_type {
     // @attr [Description("One microsecond accuracy")]
     //MKS = 4;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_data_type {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Type")]
@@ -1386,7 +1386,7 @@ enum proto_enum_code_type {
     AutoNumber = 2;
     AutoText = 3;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_catalog_code_property_settings {
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("Type")]
@@ -1453,7 +1453,7 @@ message proto_catalog {
     // @attr [Description("Use Name property for catalog item")]
     google.protobuf.BoolValue use_name_property = 27;
     // @attr [PropertyOrderAttribute(28)]
-    // @attr [DisplayName("Max Length")]
+    // @attr [DisplayName("Name Length")]
     // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
     uint32 max_name_length = 28;
     // @attr [PropertyOrderAttribute(29)]
@@ -1461,7 +1461,7 @@ message proto_catalog {
     // @attr [Description("Use Description property for catalog item")]
     google.protobuf.BoolValue use_description_property = 29;
     // @attr [PropertyOrderAttribute(30)]
-    // @attr [DisplayName("Max Length")]
+    // @attr [DisplayName("Desc Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
     uint32 max_description_length = 30;
     // @attr [PropertyOrderAttribute(31)]
@@ -1624,7 +1624,7 @@ enum proto_enum_document_code_unique_scope {
     Quater = 2;
     Month = 3;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_document_code_property_settings {
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("Type")]
@@ -1794,8 +1794,9 @@ enum proto_form_orientation {
 }
 
 
+/*
 
-// @base VmValidatableWithSeverity
+// @base ConfigObjectVmBase
 message proto_form_grid_system {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -1806,7 +1807,7 @@ message proto_form_grid_system {
     // @attr [BrowsableAttribute(false)]
     repeated proto_form_block list_form_blocks = 33;
 }
-// @base VmValidatableWithSeverity
+// @base ConfigObjectVmBase
 message proto_form_grid_system_row {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -1833,7 +1834,7 @@ enum proto_enum_hidden_type {
     // @attr [Description("Hide on Extra Large screen and smaller")]
     XlAndDown = 5;
 }
-// @base VmValidatableWithSeverity
+// @base ConfigObjectVmBase
 message proto_form_grid_system_column {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -1866,7 +1867,7 @@ message proto_form_grid_system_column {
     // @attr [BrowsableAttribute(false)]
     repeated proto_form_block list_form_blocks = 33;
 }
-// @base VmValidatableWithSeverity
+// @base ConfigObjectVmBase
 message proto_form_block {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -1875,7 +1876,7 @@ message proto_form_block {
         proto_form_data_grid data_grid = 3;
     }
 }
-// @base VmValidatableWithSeverity
+// @base ConfigObjectVmBase
 message proto_form_tab_control_tab {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -1890,7 +1891,7 @@ message proto_form_tab_control_tab {
     // @attr [BrowsableAttribute(false)]
     repeated proto_form_block list_form_blocks = 33;
 }
-// @base VmValidatableWithSeverity
+// @base ConfigObjectVmBase
 message proto_form_tab_control {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -1905,7 +1906,7 @@ message proto_form_tab_control {
     // @attr [BrowsableAttribute(false)]
     repeated string list_guid_properties = 32;
 }
-// @base VmValidatableWithSeverity
+// @base ConfigObjectVmBase
 message proto_form_data_grid {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -1918,6 +1919,10 @@ message proto_form_data_grid {
     // @attr [BrowsableAttribute(false)]
     repeated string list_guid_properties = 32;
 }
+
+*/
+
+
 enum proto_form_type {
     // @attr [DisplayName("Wide list view form")]
     ViewListWide = 0;
@@ -1928,7 +1933,7 @@ enum proto_form_type {
     // @attr [DisplayName("Folder edit form")]
     FolderEditForm = 3;
 }
-// @base VmValidatableWithSeverityAndAttributes
+// @base BaseSettings
 message proto_form_catalog_list_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Code")]
@@ -1955,7 +1960,7 @@ message proto_form_catalog_list_settings {
     // @attr [Description("Use catalog folder description for list view")]
     bool is_use_folder_desc = 13;
 }
-// @base VmValidatableWithSeverityAndAttributes
+// @base BaseSettings
 message proto_form_catalog_edit_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("???")]

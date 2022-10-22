@@ -12,7 +12,7 @@ namespace vPlugin.Sample
 {
     public partial class PluginsGroupSolutionSettings : IvPluginGroupSettings
     {
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.Name = "SolGrSet";
             this.Description = "vSharpStudio plugins group settings for solutions";

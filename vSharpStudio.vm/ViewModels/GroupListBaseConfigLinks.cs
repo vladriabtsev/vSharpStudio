@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
 
         // [BrowsableAttribute(false)]
         // public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = "BaseConfigs";
             this.IsEditable = false;

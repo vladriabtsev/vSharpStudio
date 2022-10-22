@@ -17,7 +17,7 @@ namespace vSharpStudio.vm.ViewModels
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
     public partial class FormCatalogEditSettings : IParent
     {
-        partial void OnInit()
+        partial void OnCreated()
         {
             //this.IsUseCode = true;
             //this.IsUseName = true;

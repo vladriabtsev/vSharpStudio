@@ -251,39 +251,11 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_form_block"><span class="badge">M</span>proto_form_block</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_form_catalog_edit_settings"><span class="badge">M</span>proto_form_catalog_edit_settings</a>
                 </li>
               
                 <li>
                   <a href="#proto_config.proto_form_catalog_list_settings"><span class="badge">M</span>proto_form_catalog_list_settings</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_form_data_grid"><span class="badge">M</span>proto_form_data_grid</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_form_grid_system"><span class="badge">M</span>proto_form_grid_system</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_form_grid_system_column"><span class="badge">M</span>proto_form_grid_system_column</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_form_grid_system_row"><span class="badge">M</span>proto_form_grid_system_row</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_form_tab_control"><span class="badge">M</span>proto_form_tab_control</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_form_tab_control_tab"><span class="badge">M</span>proto_form_tab_control_tab</a>
                 </li>
               
                 <li>
@@ -452,10 +424,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_enum_hidden_type"><span class="badge">E</span>proto_enum_hidden_type</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_enum_primary_key_type"><span class="badge">E</span>proto_enum_primary_key_type</a>
                 </li>
               
@@ -493,7 +461,7 @@
 
       
         <h3 id="proto_config.proto_app_db_settings">proto_app_db_settings</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -1158,7 +1126,7 @@ Generator output file name </p></td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(28)]
-@attr [DisplayName(&#34;Max Length&#34;)]
+@attr [DisplayName(&#34;Name Length&#34;)]
 @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] </p></td>
                 </tr>
               
@@ -1176,7 +1144,7 @@ Generator output file name </p></td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(30)]
-@attr [DisplayName(&#34;Max Length&#34;)]
+@attr [DisplayName(&#34;Desc Length&#34;)]
 @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] </p></td>
                 </tr>
               
@@ -1334,7 +1302,7 @@ Generator output file name </p></td>
         
       
         <h3 id="proto_config.proto_catalog_code_property_settings">proto_catalog_code_property_settings</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -1683,7 +1651,7 @@ Generator output file name </p></td>
         
       
         <h3 id="proto_config.proto_config_short_history">proto_config_short_history</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -1880,7 +1848,7 @@ Generator output file name </p></td>
         
       
         <h3 id="proto_config.proto_data_type">proto_data_type</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -2340,7 +2308,7 @@ Reserved positions: 1 - primary key
         
       
         <h3 id="proto_config.proto_document_code_property_settings">proto_document_code_property_settings</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -2722,46 +2690,8 @@ Reserved positions: 1 - primary key
 
         
       
-        <h3 id="proto_config.proto_form_block">proto_form_block</h3>
-        <p>@base VmValidatableWithSeverity</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>tab_control</td>
-                  <td><a href="#proto_config.proto_form_tab_control">proto_form_tab_control</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>data_grid</td>
-                  <td><a href="#proto_config.proto_form_data_grid">proto_form_data_grid</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
         <h3 id="proto_config.proto_form_catalog_edit_settings">proto_form_catalog_edit_settings</h3>
-        <p>@base VmValidatableWithSeverityAndAttributes</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -2787,7 +2717,7 @@ Reserved positions: 1 - primary key
         
       
         <h3 id="proto_config.proto_form_catalog_list_settings">proto_form_catalog_list_settings</h3>
-        <p>@base VmValidatableWithSeverityAndAttributes</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -2848,338 +2778,6 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [PropertyOrderAttribute(13)]
 @attr [DisplayName(&#34;Folder Desc&#34;)]
 @attr [Description(&#34;Use catalog folder description for list view&#34;)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_form_data_grid">proto_form_data_grid</h3>
-        <p>@base VmValidatableWithSeverity</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;Name&#34;)]
-@attr [Description(&#34;Tab control name&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;Desc&#34;)]
-@attr [Description(&#34;Tab control description&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_guid_properties</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_form_grid_system">proto_form_grid_system</h3>
-        <p>@base VmValidatableWithSeverity</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_rows</td>
-                  <td><a href="#proto_config.proto_form_grid_system_row">proto_form_grid_system_row</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_guid_properties</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_form_blocks</td>
-                  <td><a href="#proto_config.proto_form_block">proto_form_block</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_form_grid_system_column">proto_form_grid_system_column</h3>
-        <p>@base VmValidatableWithSeverity</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>hide_type</td>
-                  <td><a href="#proto_config.proto_enum_hidden_type">proto_enum_hidden_type</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;When Hide&#34;)]
-@attr [Description(&#34;Condition of hiding base on screen size&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>width_xs</td>
-                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;XS&#34;)]
-@attr [Description(&#34;Extra small. Small to large phone. Range: &lt; 600px&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>width_sm</td>
-                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;SM&#34;)]
-@attr [Description(&#34;Small. Small to medium tablet. Range: 600px &gt; &lt; 960px&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>width_md</td>
-                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;MD&#34;)]
-@attr [Description(&#34;Medium. Large tablet to laptop. Range: 960px &gt; &lt; 1280px&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>width_lg</td>
-                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;LG&#34;)]
-@attr [Description(&#34;Large. Desktop. Range: 1280px &gt; &lt; 1920px&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>width_xl</td>
-                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;XL&#34;)]
-@attr [Description(&#34;Extra Large. HD and 4k. Range: 1920px &gt; &lt; 2560px&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>width_xx</td>
-                  <td><a href="#google.protobuf.UInt32Value">google.protobuf.UInt32Value</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;XX&#34;)]
-@attr [Description(&#34;Extra Extra Large. 4k&#43; and ultra-wide. Range: &gt;= 2560px&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_rows</td>
-                  <td><a href="#proto_config.proto_form_grid_system_row">proto_form_grid_system_row</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_guid_properties</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_form_blocks</td>
-                  <td><a href="#proto_config.proto_form_block">proto_form_block</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_form_grid_system_row">proto_form_grid_system_row</h3>
-        <p>@base VmValidatableWithSeverity</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_columns</td>
-                  <td><a href="#proto_config.proto_form_grid_system_column">proto_form_grid_system_column</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_form_tab_control">proto_form_tab_control</h3>
-        <p>@base VmValidatableWithSeverity</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;Name&#34;)]
-@attr [Description(&#34;Tab control name&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;Desc&#34;)]
-@attr [Description(&#34;Tab control description&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_tabs</td>
-                  <td><a href="#proto_config.proto_form_tab_control_tab">proto_form_tab_control_tab</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_guid_properties</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_form_tab_control_tab">proto_form_tab_control_tab</h3>
-        <p>@base VmValidatableWithSeverity</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;Name&#34;)]
-@attr [Description(&#34;Tab name&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [DisplayName(&#34;Desc&#34;)]
-@attr [Description(&#34;Tab description&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_guid_properties</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_form_blocks</td>
-                  <td><a href="#proto_config.proto_form_block">proto_form_block</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -5065,7 +4663,7 @@ Reserved positions: 1 - primary key
         
       
         <h3 id="proto_config.proto_plugin_generator_node_default_settings">proto_plugin_generator_node_default_settings</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -5155,7 +4753,7 @@ Reserved positions: 1 - primary key
         
       
         <h3 id="proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -5207,7 +4805,7 @@ Reserved positions: 1 - primary key
         
       
         <h3 id="proto_config.proto_plugin_group_generators_default_settings">proto_plugin_group_generators_default_settings</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -5695,7 +5293,7 @@ repeated proto_document list_documents = 7;
         
       
         <h3 id="proto_config.proto_settings_config">proto_settings_config</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -5749,7 +5347,7 @@ repeated proto_document list_documents = 7;
         
       
         <h3 id="proto_config.proto_user_settings">proto_user_settings</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -5773,7 +5371,7 @@ repeated proto_document list_documents = 7;
         
       
         <h3 id="proto_config.proto_user_settings_opened_config">proto_user_settings_opened_config</h3>
-        <p>@base VmValidatableWithSeverity</p>
+        <p>@base BaseSettings</p>
 
         
           <table class="field-table">
@@ -6116,59 +5714,6 @@ repeated proto_document list_documents = 7;
                 <td>Month</td>
                 <td>3</td>
                 <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="proto_config.proto_enum_hidden_type">proto_enum_hidden_type</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>NeverHide</td>
-                <td>0</td>
-                <td><p>@attr [DisplayName(&#34;Never Hide&#34;)]
-@attr [Description(&#34;Never Hide&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>Xs</td>
-                <td>1</td>
-                <td><p>@attr [DisplayName(&#34;Xs&#34;)]
-@attr [Description(&#34;Hide on Extra small screen&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>SmAndDown</td>
-                <td>2</td>
-                <td><p>@attr [DisplayName(&#34;SmAndDown&#34;)]
-@attr [Description(&#34;Hide on Small screen and smaller&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>MdAndDown</td>
-                <td>3</td>
-                <td><p>@attr [DisplayName(&#34;MdAndDown&#34;)]
-@attr [Description(&#34;Hide on Medium screen and smaller&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>LgAndDown</td>
-                <td>4</td>
-                <td><p>@attr [DisplayName(&#34;LgAndDown&#34;)]
-@attr [Description(&#34;Hide on Large screen and smaller&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>XlAndDown</td>
-                <td>5</td>
-                <td><p>@attr [DisplayName(&#34;XlAndDown&#34;)]
-@attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)]</p></td>
               </tr>
             
           </tbody>

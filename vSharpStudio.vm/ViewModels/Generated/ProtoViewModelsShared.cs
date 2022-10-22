@@ -24,20 +24,28 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
     {
         void AcceptSharedNodeVisitor(SharedVisitor visitor);
     }
-    public partial class TestSharedMesssageValidator : ValidatorBase<TestSharedMesssage, TestSharedMesssageValidator> { } // Class.tt Line: 6
-    public partial class TestSharedMesssage : VmValidatableWithSeverity<TestSharedMesssage, TestSharedMesssageValidator>, ITestSharedMesssage // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: False 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class TestSharedMesssageValidator : ValidatorBase<TestSharedMesssage, TestSharedMesssageValidator> { } // Class.tt Line: 14
+    public partial class TestSharedMesssage : VmValidatableWithSeverity<TestSharedMesssage, TestSharedMesssageValidator>, ITestSharedMesssage // Class.tt Line: 15
     {
         #region CTOR
         public TestSharedMesssage() 
-            : base(TestSharedMesssageValidator.Validator) // Class.tt Line: 45
+            : base(TestSharedMesssageValidator.Validator) // Class.tt Line: 50
         {
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
+            this.OnCreating();
+            this.OnCreated();
             this.IsValidate = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static TestSharedMesssage Clone(ITestSharedMesssage from, bool isDeep = true) // Clone.tt Line: 27

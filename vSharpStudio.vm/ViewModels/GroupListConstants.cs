@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public ConfigNodesCollection<Constant> Children { get { return this.ListConstants; } }
 
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;

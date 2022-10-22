@@ -24,21 +24,35 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     {
         void AcceptConfigNodeVisitor(ConfigVisitor visitor);
     }
-    public partial class UserSettingsValidator : ValidatorBase<UserSettings, UserSettingsValidator> { } // Class.tt Line: 6
-    public partial class UserSettings : VmValidatableWithSeverity<UserSettings, UserSettingsValidator>, IUserSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class UserSettingsValidator : ValidatorBase<UserSettings, UserSettingsValidator> { } // Class.tt Line: 14
+    public partial class UserSettings : BaseSettings<UserSettings, UserSettingsValidator>, IUserSettings // Class.tt Line: 15
     {
         #region CTOR
-        public UserSettings() 
-            : base(UserSettingsValidator.Validator) // Class.tt Line: 45
+        public UserSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Class.tt Line: 54
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public UserSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, UserSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.ListOpenConfigHistory = new ObservableCollection<UserSettingsOpenedConfig>(); // Class.tt Line: 34
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static UserSettings Clone(IUserSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -179,22 +193,56 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IReadOnlyList<IUserSettingsOpenedConfig> IUserSettings.ListOpenConfigHistory { get { return (this as UserSettings).ListOpenConfigHistory; } } // Property.tt Line: 26
         partial void OnListOpenConfigHistoryChanging(ObservableCollection<UserSettingsOpenedConfig> to); // Property.tt Line: 27
         partial void OnListOpenConfigHistoryChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class UserSettingsOpenedConfigValidator : ValidatorBase<UserSettingsOpenedConfig, UserSettingsOpenedConfigValidator> { } // Class.tt Line: 6
-    public partial class UserSettingsOpenedConfig : VmValidatableWithSeverity<UserSettingsOpenedConfig, UserSettingsOpenedConfigValidator>, IUserSettingsOpenedConfig // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class UserSettingsOpenedConfigValidator : ValidatorBase<UserSettingsOpenedConfig, UserSettingsOpenedConfigValidator> { } // Class.tt Line: 14
+    public partial class UserSettingsOpenedConfig : BaseSettings<UserSettingsOpenedConfig, UserSettingsOpenedConfigValidator>, IUserSettingsOpenedConfig // Class.tt Line: 15
     {
         #region CTOR
-        public UserSettingsOpenedConfig() 
-            : base(UserSettingsOpenedConfigValidator.Validator) // Class.tt Line: 45
+        public UserSettingsOpenedConfig() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public UserSettingsOpenedConfig(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, UserSettingsOpenedConfigValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static UserSettingsOpenedConfig Clone(IUserSettingsOpenedConfig from, bool isDeep = true) // Clone.tt Line: 27
@@ -339,28 +387,57 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _ConfigPath = string.Empty;
         partial void OnConfigPathChanging(ref string to); // Property.tt Line: 79
         partial void OnConfigPathChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class GroupListPluginsValidator : ValidatorBase<GroupListPlugins, GroupListPluginsValidator> { } // Class.tt Line: 6
-    public partial class GroupListPlugins : ConfigObjectVmBase<GroupListPlugins, GroupListPluginsValidator>, IComparable<GroupListPlugins>, IConfigAcceptVisitor, IGroupListPlugins // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListPluginsValidator : ValidatorBase<GroupListPlugins, GroupListPluginsValidator> { } // Class.tt Line: 14
+    public partial class GroupListPlugins : ConfigObjectVmBase<GroupListPlugins, GroupListPluginsValidator>, IComparable<GroupListPlugins>, IConfigAcceptVisitor, IGroupListPlugins // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListPlugins() : this(default(ITreeConfigNode))
+        public GroupListPlugins() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListPlugins(ITreeConfigNode parent) 
-            : base(parent, GroupListPluginsValidator.Validator) // Class.tt Line: 15
+        public GroupListPlugins(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListPluginsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListPlugins = new ConfigNodesCollection<Plugin>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListPlugins = new ConfigNodesCollection<Plugin>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -606,7 +683,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -623,30 +700,39 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class PluginValidator : ValidatorBase<Plugin, PluginValidator> { } // Class.tt Line: 6
-    public partial class Plugin : ConfigObjectVmBase<Plugin, PluginValidator>, IComparable<Plugin>, IConfigAcceptVisitor, IPlugin // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class PluginValidator : ValidatorBase<Plugin, PluginValidator> { } // Class.tt Line: 14
+    public partial class Plugin : ConfigObjectVmBase<Plugin, PluginValidator>, IComparable<Plugin>, IConfigAcceptVisitor, IPlugin // Class.tt Line: 15
     {
         #region CTOR
-        public Plugin() : this(default(ITreeConfigNode))
+        public Plugin() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Plugin(ITreeConfigNode parent) 
-            : base(parent, PluginValidator.Validator) // Class.tt Line: 15
+        public Plugin(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, PluginValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListGenerators = new ConfigNodesCollection<PluginGenerator>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListGenerators = new ConfigNodesCollection<PluginGenerator>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -969,7 +1055,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -986,31 +1072,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_plugin
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class PluginGeneratorValidator : ValidatorBase<PluginGenerator, PluginGeneratorValidator> { } // Class.tt Line: 6
-    public partial class PluginGenerator : ConfigObjectVmBase<PluginGenerator, PluginGeneratorValidator>, IComparable<PluginGenerator>, IConfigAcceptVisitor, IPluginGenerator // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class PluginGeneratorValidator : ValidatorBase<PluginGenerator, PluginGeneratorValidator> { } // Class.tt Line: 14
+    public partial class PluginGenerator : ConfigObjectVmBase<PluginGenerator, PluginGeneratorValidator>, IComparable<PluginGenerator>, IConfigAcceptVisitor, IPluginGenerator // Class.tt Line: 15
     {
         #region CTOR
-        public PluginGenerator() : this(default(ITreeConfigNode))
+        public PluginGenerator() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public PluginGenerator(ITreeConfigNode parent) 
-            : base(parent, PluginGeneratorValidator.Validator) // Class.tt Line: 15
+        public PluginGenerator(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, PluginGeneratorValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
+            this.OnCreating();
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -1233,7 +1328,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -1250,26 +1345,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_plugin_generator
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class SettingsConfigValidator : ValidatorBase<SettingsConfig, SettingsConfigValidator> { } // Class.tt Line: 6
-    public partial class SettingsConfig : VmValidatableWithSeverity<SettingsConfig, SettingsConfigValidator>, ISettingsConfig // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class SettingsConfigValidator : ValidatorBase<SettingsConfig, SettingsConfigValidator> { } // Class.tt Line: 14
+    public partial class SettingsConfig : BaseSettings<SettingsConfig, SettingsConfigValidator>, ISettingsConfig // Class.tt Line: 15
     {
         #region CTOR
-        public SettingsConfig() 
-            : base(SettingsConfigValidator.Validator) // Class.tt Line: 45
+        public SettingsConfig() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public SettingsConfig(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, SettingsConfigValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static SettingsConfig Clone(ISettingsConfig from, bool isDeep = true) // Clone.tt Line: 27
@@ -1471,24 +1580,58 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private int _VersionMigrationSupportFromMin;
         partial void OnVersionMigrationSupportFromMinChanging(ref int to); // Property.tt Line: 79
         partial void OnVersionMigrationSupportFromMinChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class ConfigShortHistoryValidator : ValidatorBase<ConfigShortHistory, ConfigShortHistoryValidator> { } // Class.tt Line: 6
-    public partial class ConfigShortHistory : VmValidatableWithSeverity<ConfigShortHistory, ConfigShortHistoryValidator>, IConfigShortHistory // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class ConfigShortHistoryValidator : ValidatorBase<ConfigShortHistory, ConfigShortHistoryValidator> { } // Class.tt Line: 14
+    public partial class ConfigShortHistory : BaseSettings<ConfigShortHistory, ConfigShortHistoryValidator>, IConfigShortHistory // Class.tt Line: 15
     {
         #region CTOR
-        public ConfigShortHistory() 
-            : base(ConfigShortHistoryValidator.Validator) // Class.tt Line: 45
+        public ConfigShortHistory() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.CurrentConfig = new Config(this); // Class.tt Line: 63
-            this.PrevStableConfig = new Config(this); // Class.tt Line: 63
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public ConfigShortHistory(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, ConfigShortHistoryValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.CurrentConfig = new Config(this); // Class.tt Line: 39
+            this.PrevStableConfig = new Config(this); // Class.tt Line: 39
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static ConfigShortHistory Clone(IConfigShortHistory from, bool isDeep = true) // Clone.tt Line: 27
@@ -1672,29 +1815,58 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPrevStableConfigChanging(ref Config to); // Property.tt Line: 79
         partial void OnPrevStableConfigChanged();
         //IConfig IConfigShortHistory.PrevStableConfig { get { return this._PrevStableConfig; } }
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class GroupListBaseConfigLinksValidator : ValidatorBase<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator> { } // Class.tt Line: 6
-    public partial class GroupListBaseConfigLinks : ConfigObjectVmBase<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator>, IComparable<GroupListBaseConfigLinks>, IConfigAcceptVisitor, IGroupListBaseConfigLinks // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListBaseConfigLinksValidator : ValidatorBase<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator> { } // Class.tt Line: 14
+    public partial class GroupListBaseConfigLinks : ConfigObjectVmBase<GroupListBaseConfigLinks, GroupListBaseConfigLinksValidator>, IComparable<GroupListBaseConfigLinks>, IConfigAcceptVisitor, IGroupListBaseConfigLinks // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListBaseConfigLinks() : this(default(ITreeConfigNode))
+        public GroupListBaseConfigLinks() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListBaseConfigLinks(ITreeConfigNode parent) 
-            : base(parent, GroupListBaseConfigLinksValidator.Validator) // Class.tt Line: 15
+        public GroupListBaseConfigLinks(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListBaseConfigLinksValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListBaseConfigLinks = new ConfigNodesCollection<BaseConfigLink>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -2040,7 +2212,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -2057,31 +2229,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class BaseConfigLinkValidator : ValidatorBase<BaseConfigLink, BaseConfigLinkValidator> { } // Class.tt Line: 6
-    public partial class BaseConfigLink : ConfigObjectVmBase<BaseConfigLink, BaseConfigLinkValidator>, IComparable<BaseConfigLink>, IConfigAcceptVisitor, IBaseConfigLink // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class BaseConfigLinkValidator : ValidatorBase<BaseConfigLink, BaseConfigLinkValidator> { } // Class.tt Line: 14
+    public partial class BaseConfigLink : ConfigObjectVmBase<BaseConfigLink, BaseConfigLinkValidator>, IComparable<BaseConfigLink>, IConfigAcceptVisitor, IBaseConfigLink // Class.tt Line: 15
     {
         #region CTOR
-        public BaseConfigLink() : this(default(ITreeConfigNode))
+        public BaseConfigLink() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public BaseConfigLink(ITreeConfigNode parent) 
-            : base(parent, BaseConfigLinkValidator.Validator) // Class.tt Line: 15
+        public BaseConfigLink(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, BaseConfigLinkValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ConfigBase = new Config(this); // Class.tt Line: 33
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ConfigBase = new Config(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -2440,7 +2621,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -2457,39 +2638,48 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_base_config_link
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { } // Class.tt Line: 6
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { } // Class.tt Line: 14
     
     ///////////////////////////////////////////////////
     /// Configuration config
     ///////////////////////////////////////////////////
-    public partial class Config : ConfigObjectVmGenSettings<Config, ConfigValidator>, IComparable<Config>, IConfigAcceptVisitor, IConfig // Class.tt Line: 7
+    public partial class Config : ConfigObjectVmGenSettings<Config, ConfigValidator>, IComparable<Config>, IConfigAcceptVisitor, IConfig // Class.tt Line: 15
     {
         #region CTOR
-        public Config() : this(default(ITreeConfigNode))
+        public Config() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Config(ITreeConfigNode parent) 
-            : base(parent, ConfigValidator.Validator) // Class.tt Line: 15
+        public Config(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, ConfigValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.GroupConfigLinks = new GroupListBaseConfigLinks(); // Class.tt Line: 31
-            this.Model = new Model(this); // Class.tt Line: 33
-            this.GroupPlugins = new GroupListPlugins(); // Class.tt Line: 31
-            this.GroupAppSolutions = new GroupListAppSolutions(); // Class.tt Line: 31
-            this.OnInit();
+            this.OnCreating();
+            this.GroupConfigLinks = new GroupListBaseConfigLinks(this); // Class.tt Line: 39
+            this.Model = new Model(this); // Class.tt Line: 39
+            this.GroupPlugins = new GroupListPlugins(this); // Class.tt Line: 39
+            this.GroupAppSolutions = new GroupListAppSolutions(this); // Class.tt Line: 39
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -2898,7 +3088,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupAppSolutionsChanged();
         //IGroupListAppSolutions IConfig.GroupAppSolutions { get { return this._GroupAppSolutions; } }
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -2915,24 +3105,38 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class AppDbSettingsValidator : ValidatorBase<AppDbSettings, AppDbSettingsValidator> { } // Class.tt Line: 6
-    public partial class AppDbSettings : VmValidatableWithSeverity<AppDbSettings, AppDbSettingsValidator>, IAppDbSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class AppDbSettingsValidator : ValidatorBase<AppDbSettings, AppDbSettingsValidator> { } // Class.tt Line: 14
+    public partial class AppDbSettings : BaseSettings<AppDbSettings, AppDbSettingsValidator>, IAppDbSettings // Class.tt Line: 15
     {
         #region CTOR
-        public AppDbSettings() 
-            : base(AppDbSettingsValidator.Validator) // Class.tt Line: 45
+        public AppDbSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public AppDbSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, AppDbSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static AppDbSettings Clone(IAppDbSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -3186,22 +3390,56 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _ConnName = string.Empty;
         partial void OnConnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnConnNameChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class PluginGroupGeneratorsDefaultSettingsValidator : ValidatorBase<PluginGroupGeneratorsDefaultSettings, PluginGroupGeneratorsDefaultSettingsValidator> { } // Class.tt Line: 6
-    public partial class PluginGroupGeneratorsDefaultSettings : VmValidatableWithSeverity<PluginGroupGeneratorsDefaultSettings, PluginGroupGeneratorsDefaultSettingsValidator>, IPluginGroupGeneratorsDefaultSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class PluginGroupGeneratorsDefaultSettingsValidator : ValidatorBase<PluginGroupGeneratorsDefaultSettings, PluginGroupGeneratorsDefaultSettingsValidator> { } // Class.tt Line: 14
+    public partial class PluginGroupGeneratorsDefaultSettings : BaseSettings<PluginGroupGeneratorsDefaultSettings, PluginGroupGeneratorsDefaultSettingsValidator>, IPluginGroupGeneratorsDefaultSettings // Class.tt Line: 15
     {
         #region CTOR
-        public PluginGroupGeneratorsDefaultSettings() 
-            : base(PluginGroupGeneratorsDefaultSettingsValidator.Validator) // Class.tt Line: 45
+        public PluginGroupGeneratorsDefaultSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public PluginGroupGeneratorsDefaultSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, PluginGroupGeneratorsDefaultSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static PluginGroupGeneratorsDefaultSettings Clone(IPluginGroupGeneratorsDefaultSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -3347,29 +3585,58 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _Settings = string.Empty;
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class GroupListAppSolutionsValidator : ValidatorBase<GroupListAppSolutions, GroupListAppSolutionsValidator> { } // Class.tt Line: 6
-    public partial class GroupListAppSolutions : ConfigObjectVmBase<GroupListAppSolutions, GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListAppSolutionsValidator : ValidatorBase<GroupListAppSolutions, GroupListAppSolutionsValidator> { } // Class.tt Line: 14
+    public partial class GroupListAppSolutions : ConfigObjectVmBase<GroupListAppSolutions, GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListAppSolutions() : this(default(ITreeConfigNode))
+        public GroupListAppSolutions() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListAppSolutions(ITreeConfigNode parent) 
-            : base(parent, GroupListAppSolutionsValidator.Validator) // Class.tt Line: 15
+        public GroupListAppSolutions(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListAppSolutionsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListAppSolutions = new ConfigNodesCollection<AppSolution>(this); // Class.tt Line: 27
-            this.ListGroupGeneratorsDefultSettings = new ObservableCollection<PluginGroupGeneratorsDefaultSettings>(); // Class.tt Line: 25
-            this.OnInit();
+            this.OnCreating();
+            this.ListAppSolutions = new ConfigNodesCollection<AppSolution>(this); // Class.tt Line: 36
+            this.ListGroupGeneratorsDefultSettings = new ObservableCollection<PluginGroupGeneratorsDefaultSettings>(); // Class.tt Line: 34
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -3715,7 +3982,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGroupGeneratorsDefultSettingsChanging(ObservableCollection<PluginGroupGeneratorsDefaultSettings> to); // Property.tt Line: 27
         partial void OnListGroupGeneratorsDefultSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -3732,29 +3999,38 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class PluginGroupGeneratorsSettingsValidator : ValidatorBase<PluginGroupGeneratorsSettings, PluginGroupGeneratorsSettingsValidator> { } // Class.tt Line: 6
-    public partial class PluginGroupGeneratorsSettings : ConfigObjectCommonBase<PluginGroupGeneratorsSettings, PluginGroupGeneratorsSettingsValidator>, IComparable<PluginGroupGeneratorsSettings>, IConfigAcceptVisitor, IPluginGroupGeneratorsSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class PluginGroupGeneratorsSettingsValidator : ValidatorBase<PluginGroupGeneratorsSettings, PluginGroupGeneratorsSettingsValidator> { } // Class.tt Line: 14
+    public partial class PluginGroupGeneratorsSettings : ConfigObjectCommonBase<PluginGroupGeneratorsSettings, PluginGroupGeneratorsSettingsValidator>, IComparable<PluginGroupGeneratorsSettings>, IConfigAcceptVisitor, IPluginGroupGeneratorsSettings // Class.tt Line: 15
     {
         #region CTOR
-        public PluginGroupGeneratorsSettings() : this(default(ITreeConfigNode))
+        public PluginGroupGeneratorsSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public PluginGroupGeneratorsSettings(ITreeConfigNode parent) 
-            : base(parent, PluginGroupGeneratorsSettingsValidator.Validator) // Class.tt Line: 15
+        public PluginGroupGeneratorsSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, PluginGroupGeneratorsSettingsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
+            this.OnCreating();
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -3999,7 +4275,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -4016,31 +4292,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // Class.tt Line: 6
-    public partial class AppSolution : ConfigObjectVmBase<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // Class.tt Line: 14
+    public partial class AppSolution : ConfigObjectVmBase<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 15
     {
         #region CTOR
-        public AppSolution() : this(default(ITreeConfigNode))
+        public AppSolution() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public AppSolution(ITreeConfigNode parent) 
-            : base(parent, AppSolutionValidator.Validator) // Class.tt Line: 15
+        public AppSolution(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, AppSolutionValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListAppProjects = new ConfigNodesCollection<AppProject>(this); // Class.tt Line: 27
-            this.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListAppProjects = new ConfigNodesCollection<AppProject>(this); // Class.tt Line: 36
+            this.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -4491,7 +4776,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGroupGeneratorsSettingsChanging(ObservableCollection<PluginGroupGeneratorsSettings> to); // Property.tt Line: 27
         partial void OnListGroupGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -4508,33 +4793,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_app_solution
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class AppProjectValidator : ValidatorBase<AppProject, AppProjectValidator> { } // Class.tt Line: 6
-    public partial class AppProject : ConfigObjectVmBase<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class AppProjectValidator : ValidatorBase<AppProject, AppProjectValidator> { } // Class.tt Line: 14
+    public partial class AppProject : ConfigObjectVmBase<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 15
     {
         #region CTOR
-        public AppProject() : this(default(ITreeConfigNode))
+        public AppProject() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public AppProject(ITreeConfigNode parent) 
-            : base(parent, AppProjectValidator.Validator) // Class.tt Line: 15
+        public AppProject(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, AppProjectValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(this); // Class.tt Line: 27
-            this.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListAppProjectGenerators = new ConfigNodesCollection<AppProjectGenerator>(this); // Class.tt Line: 36
+            this.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -4958,7 +5252,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGroupGeneratorsSettingsChanging(ObservableCollection<PluginGroupGeneratorsSettings> to); // Property.tt Line: 27
         partial void OnListGroupGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -4975,31 +5269,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_app_project
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class PluginGeneratorNodeSettingsValidator : ValidatorBase<PluginGeneratorNodeSettings, PluginGeneratorNodeSettingsValidator> { } // Class.tt Line: 6
-    public partial class PluginGeneratorNodeSettings : ConfigObjectCommonBase<PluginGeneratorNodeSettings, PluginGeneratorNodeSettingsValidator>, IComparable<PluginGeneratorNodeSettings>, IConfigAcceptVisitor, IPluginGeneratorNodeSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class PluginGeneratorNodeSettingsValidator : ValidatorBase<PluginGeneratorNodeSettings, PluginGeneratorNodeSettingsValidator> { } // Class.tt Line: 14
+    public partial class PluginGeneratorNodeSettings : ConfigObjectCommonBase<PluginGeneratorNodeSettings, PluginGeneratorNodeSettingsValidator>, IComparable<PluginGeneratorNodeSettings>, IConfigAcceptVisitor, IPluginGeneratorNodeSettings // Class.tt Line: 15
     {
         #region CTOR
-        public PluginGeneratorNodeSettings() : this(default(ITreeConfigNode))
+        public PluginGeneratorNodeSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public PluginGeneratorNodeSettings(ITreeConfigNode parent) 
-            : base(parent, PluginGeneratorNodeSettingsValidator.Validator) // Class.tt Line: 15
+        public PluginGeneratorNodeSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, PluginGeneratorNodeSettingsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
+            this.OnCreating();
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -5228,7 +5531,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -5245,26 +5548,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_plugin_generator_node_settings
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class PluginGeneratorSettingsValidator : ValidatorBase<PluginGeneratorSettings, PluginGeneratorSettingsValidator> { } // Class.tt Line: 6
-    public partial class PluginGeneratorSettings : VmValidatableWithSeverity<PluginGeneratorSettings, PluginGeneratorSettingsValidator>, IPluginGeneratorSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class PluginGeneratorSettingsValidator : ValidatorBase<PluginGeneratorSettings, PluginGeneratorSettingsValidator> { } // Class.tt Line: 14
+    public partial class PluginGeneratorSettings : BaseSettings<PluginGeneratorSettings, PluginGeneratorSettingsValidator>, IPluginGeneratorSettings // Class.tt Line: 15
     {
         #region CTOR
-        public PluginGeneratorSettings() 
-            : base(PluginGeneratorSettingsValidator.Validator) // Class.tt Line: 45
+        public PluginGeneratorSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public PluginGeneratorSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, PluginGeneratorSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static PluginGeneratorSettings Clone(IPluginGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -5460,32 +5777,61 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _Settings = string.Empty;
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class AppProjectGeneratorValidator : ValidatorBase<AppProjectGenerator, AppProjectGeneratorValidator> { } // Class.tt Line: 6
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class AppProjectGeneratorValidator : ValidatorBase<AppProjectGenerator, AppProjectGeneratorValidator> { } // Class.tt Line: 14
     
     ///////////////////////////////////////////////////
     /// Application project generator
     ///////////////////////////////////////////////////
-    public partial class AppProjectGenerator : ConfigObjectVmBase<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 7
+    public partial class AppProjectGenerator : ConfigObjectVmBase<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 15
     {
         #region CTOR
-        public AppProjectGenerator() : this(default(ITreeConfigNode))
+        public AppProjectGenerator() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public AppProjectGenerator(ITreeConfigNode parent) 
-            : base(parent, AppProjectGeneratorValidator.Validator) // Class.tt Line: 15
+        public AppProjectGenerator(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, AppProjectGeneratorValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.GeneratorSettingsVm = new PluginGeneratorSettings(); // Class.tt Line: 31
-            this.OnInit();
+            this.OnCreating();
+            this.GeneratorSettingsVm = new PluginGeneratorSettings(this); // Class.tt Line: 39
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -6098,7 +6444,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGenScriptFileNameChanging(ref string to); // Property.tt Line: 79
         partial void OnGenScriptFileNameChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -6115,26 +6461,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_app_project_generator
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class PluginGeneratorNodeDefaultSettingsValidator : ValidatorBase<PluginGeneratorNodeDefaultSettings, PluginGeneratorNodeDefaultSettingsValidator> { } // Class.tt Line: 6
-    public partial class PluginGeneratorNodeDefaultSettings : VmValidatableWithSeverity<PluginGeneratorNodeDefaultSettings, PluginGeneratorNodeDefaultSettingsValidator>, IPluginGeneratorNodeDefaultSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class PluginGeneratorNodeDefaultSettingsValidator : ValidatorBase<PluginGeneratorNodeDefaultSettings, PluginGeneratorNodeDefaultSettingsValidator> { } // Class.tt Line: 14
+    public partial class PluginGeneratorNodeDefaultSettings : BaseSettings<PluginGeneratorNodeDefaultSettings, PluginGeneratorNodeDefaultSettingsValidator>, IPluginGeneratorNodeDefaultSettings // Class.tt Line: 15
     {
         #region CTOR
-        public PluginGeneratorNodeDefaultSettings() 
-            : base(PluginGeneratorNodeDefaultSettingsValidator.Validator) // Class.tt Line: 45
+        public PluginGeneratorNodeDefaultSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public PluginGeneratorNodeDefaultSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, PluginGeneratorNodeDefaultSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static PluginGeneratorNodeDefaultSettings Clone(IPluginGeneratorNodeDefaultSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -6255,39 +6615,68 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _Settings = string.Empty;
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class ModelValidator : ValidatorBase<Model, ModelValidator> { } // Class.tt Line: 6
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class ModelValidator : ValidatorBase<Model, ModelValidator> { } // Class.tt Line: 14
     
     ///////////////////////////////////////////////////
     /// Configuration model
     ///////////////////////////////////////////////////
     [CategoryOrder("Db Names Generation", 5)]
-    public partial class Model : ConfigObjectVmGenSettings<Model, ModelValidator>, IComparable<Model>, IConfigAcceptVisitor, IModel // Class.tt Line: 7
+    public partial class Model : ConfigObjectVmGenSettings<Model, ModelValidator>, IComparable<Model>, IConfigAcceptVisitor, IModel // Class.tt Line: 15
     {
         #region CTOR
-        public Model() : this(default(ITreeConfigNode))
+        public Model() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Model(ITreeConfigNode parent) 
-            : base(parent, ModelValidator.Validator) // Class.tt Line: 15
+        public Model(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, ModelValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.GroupCommon = new GroupListCommon(this); // Class.tt Line: 33
-            this.GroupConstantGroups = new GroupConstantGroups(this); // Class.tt Line: 33
-            this.GroupEnumerations = new GroupListEnumerations(this); // Class.tt Line: 33
-            this.GroupCatalogs = new GroupListCatalogs(this); // Class.tt Line: 33
-            this.GroupDocuments = new GroupDocuments(this); // Class.tt Line: 33
-            this.GroupJournals = new GroupListJournals(this); // Class.tt Line: 33
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.GroupCommon = new GroupListCommon(this); // Class.tt Line: 39
+            this.GroupConstantGroups = new GroupConstantGroups(this); // Class.tt Line: 39
+            this.GroupEnumerations = new GroupListEnumerations(this); // Class.tt Line: 39
+            this.GroupCatalogs = new GroupListCatalogs(this); // Class.tt Line: 39
+            this.GroupDocuments = new GroupDocuments(this); // Class.tt Line: 39
+            this.GroupJournals = new GroupListJournals(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -7132,7 +7521,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -7149,25 +7538,38 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { } // Class.tt Line: 6
-    public partial class DataType : VmValidatableWithSeverity<DataType, DataTypeValidator>, IDataType // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class DataTypeValidator : ValidatorBase<DataType, DataTypeValidator> { } // Class.tt Line: 14
+    public partial class DataType : BaseSettings<DataType, DataTypeValidator>, IDataType // Class.tt Line: 15
     {
         #region CTOR
-        public DataType() 
-            : base(DataTypeValidator.Validator) // Class.tt Line: 45
+        public DataType() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListObjectGuids = new ObservableCollection<string>(); // Class.tt Line: 54
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public DataType(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, DataTypeValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static DataType Clone(IDataType from, bool isDeep = true) // Clone.tt Line: 27
@@ -7454,34 +7856,63 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsRefParent;
         partial void OnIsRefParentChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsRefParentChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class GroupListCommonValidator : ValidatorBase<GroupListCommon, GroupListCommonValidator> { } // Class.tt Line: 6
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListCommonValidator : ValidatorBase<GroupListCommon, GroupListCommonValidator> { } // Class.tt Line: 14
     
     ///////////////////////////////////////////////////
     /// Common parameters section
     ///////////////////////////////////////////////////
-    public partial class GroupListCommon : ConfigObjectVmGenSettings<GroupListCommon, GroupListCommonValidator>, IComparable<GroupListCommon>, IConfigAcceptVisitor, IGroupListCommon // Class.tt Line: 7
+    public partial class GroupListCommon : ConfigObjectVmGenSettings<GroupListCommon, GroupListCommonValidator>, IComparable<GroupListCommon>, IConfigAcceptVisitor, IGroupListCommon // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListCommon() : this(default(ITreeConfigNode))
+        public GroupListCommon() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListCommon(ITreeConfigNode parent) 
-            : base(parent, GroupListCommonValidator.Validator) // Class.tt Line: 15
+        public GroupListCommon(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListCommonValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.GroupRoles = new GroupListRoles(this); // Class.tt Line: 33
-            this.GroupViewForms = new GroupListMainViewForms(this); // Class.tt Line: 33
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.GroupRoles = new GroupListRoles(this); // Class.tt Line: 39
+            this.GroupViewForms = new GroupListMainViewForms(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -7824,7 +8255,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -7841,34 +8272,43 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class RoleValidator : ValidatorBase<Role, RoleValidator> { } // Class.tt Line: 6
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class RoleValidator : ValidatorBase<Role, RoleValidator> { } // Class.tt Line: 14
     
     ///////////////////////////////////////////////////
     /// User's role
     ///////////////////////////////////////////////////
-    public partial class Role : ConfigObjectVmGenSettings<Role, RoleValidator>, IComparable<Role>, IConfigAcceptVisitor, IRole // Class.tt Line: 7
+    public partial class Role : ConfigObjectVmGenSettings<Role, RoleValidator>, IComparable<Role>, IConfigAcceptVisitor, IRole // Class.tt Line: 15
     {
         #region CTOR
-        public Role() : this(default(ITreeConfigNode))
+        public Role() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Role(ITreeConfigNode parent) 
-            : base(parent, RoleValidator.Validator) // Class.tt Line: 15
+        public Role(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, RoleValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -8195,7 +8635,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -8212,33 +8652,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_role
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class GroupListRolesValidator : ValidatorBase<GroupListRoles, GroupListRolesValidator> { } // Class.tt Line: 6
-    public partial class GroupListRoles : ConfigObjectVmGenSettings<GroupListRoles, GroupListRolesValidator>, IComparable<GroupListRoles>, IConfigAcceptVisitor, IGroupListRoles // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListRolesValidator : ValidatorBase<GroupListRoles, GroupListRolesValidator> { } // Class.tt Line: 14
+    public partial class GroupListRoles : ConfigObjectVmGenSettings<GroupListRoles, GroupListRolesValidator>, IComparable<GroupListRoles>, IConfigAcceptVisitor, IGroupListRoles // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListRoles() : this(default(ITreeConfigNode))
+        public GroupListRoles() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListRoles(ITreeConfigNode parent) 
-            : base(parent, GroupListRolesValidator.Validator) // Class.tt Line: 15
+        public GroupListRoles(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListRolesValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListRoles = new ConfigNodesCollection<Role>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListRoles = new ConfigNodesCollection<Role>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -8614,7 +9063,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -8631,35 +9080,44 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class MainViewFormValidator : ValidatorBase<MainViewForm, MainViewFormValidator> { } // Class.tt Line: 6
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class MainViewFormValidator : ValidatorBase<MainViewForm, MainViewFormValidator> { } // Class.tt Line: 14
     
     ///////////////////////////////////////////////////
     /// main view forms hierarchy parent
     ///////////////////////////////////////////////////
-    public partial class MainViewForm : ConfigObjectVmGenSettings<MainViewForm, MainViewFormValidator>, IComparable<MainViewForm>, IConfigAcceptVisitor, IMainViewForm // Class.tt Line: 7
+    public partial class MainViewForm : ConfigObjectVmGenSettings<MainViewForm, MainViewFormValidator>, IComparable<MainViewForm>, IConfigAcceptVisitor, IMainViewForm // Class.tt Line: 15
     {
         #region CTOR
-        public MainViewForm() : this(default(ITreeConfigNode))
+        public MainViewForm() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public MainViewForm(ITreeConfigNode parent) 
-            : base(parent, MainViewFormValidator.Validator) // Class.tt Line: 15
+        public MainViewForm(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, MainViewFormValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.GroupListViewForms = new GroupListMainViewForms(this); // Class.tt Line: 33
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.GroupListViewForms = new GroupListMainViewForms(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -9019,7 +9477,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -9036,37 +9494,46 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_main_view_form
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class GroupListMainViewFormsValidator : ValidatorBase<GroupListMainViewForms, GroupListMainViewFormsValidator> { } // Class.tt Line: 6
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListMainViewFormsValidator : ValidatorBase<GroupListMainViewForms, GroupListMainViewFormsValidator> { } // Class.tt Line: 14
     
     ///////////////////////////////////////////////////
     /// main view forms hierarchy node with children
     ///////////////////////////////////////////////////
-    public partial class GroupListMainViewForms : ConfigObjectVmGenSettings<GroupListMainViewForms, GroupListMainViewFormsValidator>, IComparable<GroupListMainViewForms>, IConfigAcceptVisitor, IGroupListMainViewForms // Class.tt Line: 7
+    public partial class GroupListMainViewForms : ConfigObjectVmGenSettings<GroupListMainViewForms, GroupListMainViewFormsValidator>, IComparable<GroupListMainViewForms>, IConfigAcceptVisitor, IGroupListMainViewForms // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListMainViewForms() : this(default(ITreeConfigNode))
+        public GroupListMainViewForms() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListMainViewForms(ITreeConfigNode parent) 
-            : base(parent, GroupListMainViewFormsValidator.Validator) // Class.tt Line: 15
+        public GroupListMainViewForms(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListMainViewFormsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListMainViewForms = new ConfigNodesCollection<MainViewForm>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListMainViewForms = new ConfigNodesCollection<MainViewForm>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -9442,7 +9909,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -9459,31 +9926,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class GroupListDetailsValidator : ValidatorBase<GroupListDetails, GroupListDetailsValidator> { } // Class.tt Line: 6
-    public partial class GroupListDetails : ConfigObjectVmGenSettings<GroupListDetails, GroupListDetailsValidator>, IComparable<GroupListDetails>, IConfigAcceptVisitor, IGroupListDetails // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListDetailsValidator : ValidatorBase<GroupListDetails, GroupListDetailsValidator> { } // Class.tt Line: 14
+    public partial class GroupListDetails : ConfigObjectVmGenSettings<GroupListDetails, GroupListDetailsValidator>, IComparable<GroupListDetails>, IConfigAcceptVisitor, IGroupListDetails // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListDetails() : this(default(ITreeConfigNode))
+        public GroupListDetails() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListDetails(ITreeConfigNode parent) 
-            : base(parent, GroupListDetailsValidator.Validator) // Class.tt Line: 15
+        public GroupListDetails(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListDetailsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListDetails = new ConfigNodesCollection<Detail>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListDetails = new ConfigNodesCollection<Detail>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -9859,7 +10335,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -9876,33 +10352,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class DetailValidator : ValidatorBase<Detail, DetailValidator> { } // Class.tt Line: 6
-    public partial class Detail : ConfigObjectVmGenSettings<Detail, DetailValidator>, IComparable<Detail>, IConfigAcceptVisitor, IDetail // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class DetailValidator : ValidatorBase<Detail, DetailValidator> { } // Class.tt Line: 14
+    public partial class Detail : ConfigObjectVmGenSettings<Detail, DetailValidator>, IComparable<Detail>, IConfigAcceptVisitor, IDetail // Class.tt Line: 15
     {
         #region CTOR
-        public Detail() : this(default(ITreeConfigNode))
+        public Detail() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Detail(ITreeConfigNode parent) 
-            : base(parent, DetailValidator.Validator) // Class.tt Line: 15
+        public Detail(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, DetailValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
-            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 33
-            this.GroupForms = new GroupListForms(this); // Class.tt Line: 33
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 39
+            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 39
+            this.GroupForms = new GroupListForms(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -10715,7 +11200,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -10732,33 +11217,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_detail
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class GroupListPropertiesValidator : ValidatorBase<GroupListProperties, GroupListPropertiesValidator> { } // Class.tt Line: 6
-    public partial class GroupListProperties : ConfigObjectVmGenSettings<GroupListProperties, GroupListPropertiesValidator>, IComparable<GroupListProperties>, IConfigAcceptVisitor, IGroupListProperties // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListPropertiesValidator : ValidatorBase<GroupListProperties, GroupListPropertiesValidator> { } // Class.tt Line: 14
+    public partial class GroupListProperties : ConfigObjectVmGenSettings<GroupListProperties, GroupListPropertiesValidator>, IComparable<GroupListProperties>, IConfigAcceptVisitor, IGroupListProperties // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListProperties() : this(default(ITreeConfigNode))
+        public GroupListProperties() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListProperties(ITreeConfigNode parent) 
-            : base(parent, GroupListPropertiesValidator.Validator) // Class.tt Line: 15
+        public GroupListProperties(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListPropertiesValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListProperties = new ConfigNodesCollection<Property>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListProperties = new ConfigNodesCollection<Property>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -11163,7 +11657,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -11180,31 +11674,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { } // Class.tt Line: 6
-    public partial class Property : ConfigObjectVmGenSettings<Property, PropertyValidator>, IComparable<Property>, IConfigAcceptVisitor, IProperty // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { } // Class.tt Line: 14
+    public partial class Property : ConfigObjectVmGenSettings<Property, PropertyValidator>, IComparable<Property>, IConfigAcceptVisitor, IProperty // Class.tt Line: 15
     {
         #region CTOR
-        public Property() : this(default(ITreeConfigNode))
+        public Property() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Property(ITreeConfigNode parent) 
-            : base(parent, PropertyValidator.Validator) // Class.tt Line: 15
+        public Property(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, PropertyValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.DataType = new DataType(); // Class.tt Line: 31
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.DataType = new DataType(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -12008,7 +12511,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -12025,33 +12528,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_property
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class GroupConstantGroupsValidator : ValidatorBase<GroupConstantGroups, GroupConstantGroupsValidator> { } // Class.tt Line: 6
-    public partial class GroupConstantGroups : ConfigObjectVmGenSettings<GroupConstantGroups, GroupConstantGroupsValidator>, IComparable<GroupConstantGroups>, IConfigAcceptVisitor, IGroupConstantGroups // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupConstantGroupsValidator : ValidatorBase<GroupConstantGroups, GroupConstantGroupsValidator> { } // Class.tt Line: 14
+    public partial class GroupConstantGroups : ConfigObjectVmGenSettings<GroupConstantGroups, GroupConstantGroupsValidator>, IComparable<GroupConstantGroups>, IConfigAcceptVisitor, IGroupConstantGroups // Class.tt Line: 15
     {
         #region CTOR
-        public GroupConstantGroups() : this(default(ITreeConfigNode))
+        public GroupConstantGroups() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupConstantGroups(ITreeConfigNode parent) 
-            : base(parent, GroupConstantGroupsValidator.Validator) // Class.tt Line: 15
+        public GroupConstantGroups(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupConstantGroupsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListConstantGroups = new ConfigNodesCollection<GroupListConstants>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListConstantGroups = new ConfigNodesCollection<GroupListConstants>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -12431,7 +12943,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -12448,31 +12960,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class GroupListConstantsValidator : ValidatorBase<GroupListConstants, GroupListConstantsValidator> { } // Class.tt Line: 6
-    public partial class GroupListConstants : ConfigObjectVmGenSettings<GroupListConstants, GroupListConstantsValidator>, IComparable<GroupListConstants>, IConfigAcceptVisitor, IGroupListConstants // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListConstantsValidator : ValidatorBase<GroupListConstants, GroupListConstantsValidator> { } // Class.tt Line: 14
+    public partial class GroupListConstants : ConfigObjectVmGenSettings<GroupListConstants, GroupListConstantsValidator>, IComparable<GroupListConstants>, IConfigAcceptVisitor, IGroupListConstants // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListConstants() : this(default(ITreeConfigNode))
+        public GroupListConstants() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListConstants(ITreeConfigNode parent) 
-            : base(parent, GroupListConstantsValidator.Validator) // Class.tt Line: 15
+        public GroupListConstants(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListConstantsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListConstants = new ConfigNodesCollection<Constant>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListConstants = new ConfigNodesCollection<Constant>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -12950,7 +13471,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -12967,35 +13488,44 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { } // Class.tt Line: 6
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { } // Class.tt Line: 14
     
     ///////////////////////////////////////////////////
     /// Constant application wise value
     ///////////////////////////////////////////////////
-    public partial class Constant : ConfigObjectVmGenSettings<Constant, ConstantValidator>, IComparable<Constant>, IConfigAcceptVisitor, IConstant // Class.tt Line: 7
+    public partial class Constant : ConfigObjectVmGenSettings<Constant, ConstantValidator>, IComparable<Constant>, IConfigAcceptVisitor, IConstant // Class.tt Line: 15
     {
         #region CTOR
-        public Constant() : this(default(ITreeConfigNode))
+        public Constant() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Constant(ITreeConfigNode parent) 
-            : base(parent, ConstantValidator.Validator) // Class.tt Line: 15
+        public Constant(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, ConstantValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.DataType = new DataType(); // Class.tt Line: 31
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.DataType = new DataType(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -13571,7 +14101,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -13588,33 +14118,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_constant
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class GroupListEnumerationsValidator : ValidatorBase<GroupListEnumerations, GroupListEnumerationsValidator> { } // Class.tt Line: 6
-    public partial class GroupListEnumerations : ConfigObjectVmGenSettings<GroupListEnumerations, GroupListEnumerationsValidator>, IComparable<GroupListEnumerations>, IConfigAcceptVisitor, IGroupListEnumerations // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListEnumerationsValidator : ValidatorBase<GroupListEnumerations, GroupListEnumerationsValidator> { } // Class.tt Line: 14
+    public partial class GroupListEnumerations : ConfigObjectVmGenSettings<GroupListEnumerations, GroupListEnumerationsValidator>, IComparable<GroupListEnumerations>, IConfigAcceptVisitor, IGroupListEnumerations // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListEnumerations() : this(default(ITreeConfigNode))
+        public GroupListEnumerations() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListEnumerations(ITreeConfigNode parent) 
-            : base(parent, GroupListEnumerationsValidator.Validator) // Class.tt Line: 15
+        public GroupListEnumerations(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListEnumerationsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListEnumerations = new ConfigNodesCollection<Enumeration>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListEnumerations = new ConfigNodesCollection<Enumeration>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -13990,7 +14529,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -14007,31 +14546,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { } // Class.tt Line: 6
-    public partial class Enumeration : ConfigObjectVmGenSettings<Enumeration, EnumerationValidator>, IComparable<Enumeration>, IConfigAcceptVisitor, IEnumeration // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class EnumerationValidator : ValidatorBase<Enumeration, EnumerationValidator> { } // Class.tt Line: 14
+    public partial class Enumeration : ConfigObjectVmGenSettings<Enumeration, EnumerationValidator>, IComparable<Enumeration>, IConfigAcceptVisitor, IEnumeration // Class.tt Line: 15
     {
         #region CTOR
-        public Enumeration() : this(default(ITreeConfigNode))
+        public Enumeration() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Enumeration(ITreeConfigNode parent) 
-            : base(parent, EnumerationValidator.Validator) // Class.tt Line: 15
+        public Enumeration(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, EnumerationValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListEnumerationPairs = new ConfigNodesCollection<EnumerationPair>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -14495,7 +15043,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -14512,32 +15060,41 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_enumeration
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class EnumerationPairValidator : ValidatorBase<EnumerationPair, EnumerationPairValidator> { } // Class.tt Line: 6
-    public partial class EnumerationPair : ConfigObjectVmGenSettings<EnumerationPair, EnumerationPairValidator>, IComparable<EnumerationPair>, IConfigAcceptVisitor, IEnumerationPair // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class EnumerationPairValidator : ValidatorBase<EnumerationPair, EnumerationPairValidator> { } // Class.tt Line: 14
+    public partial class EnumerationPair : ConfigObjectVmGenSettings<EnumerationPair, EnumerationPairValidator>, IComparable<EnumerationPair>, IConfigAcceptVisitor, IEnumerationPair // Class.tt Line: 15
     {
         #region CTOR
-        public EnumerationPair() : this(default(ITreeConfigNode))
+        public EnumerationPair() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public EnumerationPair(ITreeConfigNode parent) 
-            : base(parent, EnumerationPairValidator.Validator) // Class.tt Line: 15
+        public EnumerationPair(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, EnumerationPairValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -14948,7 +15505,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -14965,35 +15522,44 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_enumeration_pair
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class CatalogFolderValidator : ValidatorBase<CatalogFolder, CatalogFolderValidator> { } // Class.tt Line: 6
-    public partial class CatalogFolder : ConfigObjectVmGenSettings<CatalogFolder, CatalogFolderValidator>, IComparable<CatalogFolder>, IConfigAcceptVisitor, ICatalogFolder // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class CatalogFolderValidator : ValidatorBase<CatalogFolder, CatalogFolderValidator> { } // Class.tt Line: 14
+    public partial class CatalogFolder : ConfigObjectVmGenSettings<CatalogFolder, CatalogFolderValidator>, IComparable<CatalogFolder>, IConfigAcceptVisitor, ICatalogFolder // Class.tt Line: 15
     {
         #region CTOR
-        public CatalogFolder() : this(default(ITreeConfigNode))
+        public CatalogFolder() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public CatalogFolder(ITreeConfigNode parent) 
-            : base(parent, CatalogFolderValidator.Validator) // Class.tt Line: 15
+        public CatalogFolder(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, CatalogFolderValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
-            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 33
-            this.CodePropertySettings = new CatalogCodePropertySettings(); // Class.tt Line: 31
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 39
+            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 39
+            this.CodePropertySettings = new CatalogCodePropertySettings(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -15734,7 +16300,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -15751,26 +16317,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_catalog_folder
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class CatalogCodePropertySettingsValidator : ValidatorBase<CatalogCodePropertySettings, CatalogCodePropertySettingsValidator> { } // Class.tt Line: 6
-    public partial class CatalogCodePropertySettings : VmValidatableWithSeverity<CatalogCodePropertySettings, CatalogCodePropertySettingsValidator>, ICatalogCodePropertySettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class CatalogCodePropertySettingsValidator : ValidatorBase<CatalogCodePropertySettings, CatalogCodePropertySettingsValidator> { } // Class.tt Line: 14
+    public partial class CatalogCodePropertySettings : BaseSettings<CatalogCodePropertySettings, CatalogCodePropertySettingsValidator>, ICatalogCodePropertySettings // Class.tt Line: 15
     {
         #region CTOR
-        public CatalogCodePropertySettings() 
-            : base(CatalogCodePropertySettingsValidator.Validator) // Class.tt Line: 45
+        public CatalogCodePropertySettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public CatalogCodePropertySettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, CatalogCodePropertySettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static CatalogCodePropertySettings Clone(ICatalogCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -15947,34 +16527,63 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumCatalogCodeUniqueScope _UniqueScope;
         partial void OnUniqueScopeChanging(ref EnumCatalogCodeUniqueScope to); // Property.tt Line: 79
         partial void OnUniqueScopeChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { } // Class.tt Line: 6
-    public partial class Catalog : ConfigObjectVmGenSettings<Catalog, CatalogValidator>, IComparable<Catalog>, IConfigAcceptVisitor, ICatalog // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class CatalogValidator : ValidatorBase<Catalog, CatalogValidator> { } // Class.tt Line: 14
+    public partial class Catalog : ConfigObjectVmGenSettings<Catalog, CatalogValidator>, IComparable<Catalog>, IConfigAcceptVisitor, ICatalog // Class.tt Line: 15
     {
         #region CTOR
-        public Catalog() : this(default(ITreeConfigNode))
+        public Catalog() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Catalog(ITreeConfigNode parent) 
-            : base(parent, CatalogValidator.Validator) // Class.tt Line: 15
+        public Catalog(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, CatalogValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.CodePropertySettings = new CatalogCodePropertySettings(); // Class.tt Line: 31
-            this.Folder = new CatalogFolder(this); // Class.tt Line: 33
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
-            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 33
-            this.GroupForms = new GroupListForms(this); // Class.tt Line: 33
-            this.GroupReports = new GroupListReports(this); // Class.tt Line: 33
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.CodePropertySettings = new CatalogCodePropertySettings(this); // Class.tt Line: 39
+            this.Folder = new CatalogFolder(this); // Class.tt Line: 39
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 39
+            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 39
+            this.GroupForms = new GroupListForms(this); // Class.tt Line: 39
+            this.GroupReports = new GroupListReports(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -16640,7 +17249,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseNamePropertyChanged();
         
         [PropertyOrderAttribute(28)]
-        [DisplayName("Max Length")]
+        [DisplayName("Name Length")]
         [Description("Maximum catalog item name length. If zero, than unlimited length")]
         public uint MaxNameLength // Property.tt Line: 55
         { 
@@ -16686,7 +17295,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseDescriptionPropertyChanged();
         
         [PropertyOrderAttribute(30)]
-        [DisplayName("Max Length")]
+        [DisplayName("Desc Length")]
         [Description("Maximum catalog item description length. If zero, than unlimited length")]
         public uint MaxDescriptionLength // Property.tt Line: 55
         { 
@@ -17144,7 +17753,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -17161,33 +17770,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_catalog
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class GroupListCatalogsValidator : ValidatorBase<GroupListCatalogs, GroupListCatalogsValidator> { } // Class.tt Line: 6
-    public partial class GroupListCatalogs : ConfigObjectVmGenSettings<GroupListCatalogs, GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IConfigAcceptVisitor, IGroupListCatalogs // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListCatalogsValidator : ValidatorBase<GroupListCatalogs, GroupListCatalogsValidator> { } // Class.tt Line: 14
+    public partial class GroupListCatalogs : ConfigObjectVmGenSettings<GroupListCatalogs, GroupListCatalogsValidator>, IComparable<GroupListCatalogs>, IConfigAcceptVisitor, IGroupListCatalogs // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListCatalogs() : this(default(ITreeConfigNode))
+        public GroupListCatalogs() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListCatalogs(ITreeConfigNode parent) 
-            : base(parent, GroupListCatalogsValidator.Validator) // Class.tt Line: 15
+        public GroupListCatalogs(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListCatalogsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListCatalogs = new ConfigNodesCollection<Catalog>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListCatalogs = new ConfigNodesCollection<Catalog>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -17833,7 +18451,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -17850,32 +18468,41 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class GroupDocumentsValidator : ValidatorBase<GroupDocuments, GroupDocumentsValidator> { } // Class.tt Line: 6
-    public partial class GroupDocuments : ConfigObjectVmGenSettings<GroupDocuments, GroupDocumentsValidator>, IComparable<GroupDocuments>, IConfigAcceptVisitor, IGroupDocuments // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupDocumentsValidator : ValidatorBase<GroupDocuments, GroupDocumentsValidator> { } // Class.tt Line: 14
+    public partial class GroupDocuments : ConfigObjectVmGenSettings<GroupDocuments, GroupDocumentsValidator>, IComparable<GroupDocuments>, IConfigAcceptVisitor, IGroupDocuments // Class.tt Line: 15
     {
         #region CTOR
-        public GroupDocuments() : this(default(ITreeConfigNode))
+        public GroupDocuments() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupDocuments(ITreeConfigNode parent) 
-            : base(parent, GroupDocumentsValidator.Validator) // Class.tt Line: 15
+        public GroupDocuments(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupDocumentsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.GroupSharedProperties = new GroupListProperties(this); // Class.tt Line: 33
-            this.GroupListDocuments = new GroupListDocuments(this); // Class.tt Line: 33
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.GroupSharedProperties = new GroupListProperties(this); // Class.tt Line: 39
+            this.GroupListDocuments = new GroupListDocuments(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -18354,7 +18981,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -18371,24 +18998,38 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class DocumentCodePropertySettingsValidator : ValidatorBase<DocumentCodePropertySettings, DocumentCodePropertySettingsValidator> { } // Class.tt Line: 6
-    public partial class DocumentCodePropertySettings : VmValidatableWithSeverity<DocumentCodePropertySettings, DocumentCodePropertySettingsValidator>, IDocumentCodePropertySettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class DocumentCodePropertySettingsValidator : ValidatorBase<DocumentCodePropertySettings, DocumentCodePropertySettingsValidator> { } // Class.tt Line: 14
+    public partial class DocumentCodePropertySettings : BaseSettings<DocumentCodePropertySettings, DocumentCodePropertySettingsValidator>, IDocumentCodePropertySettings // Class.tt Line: 15
     {
         #region CTOR
-        public DocumentCodePropertySettings() 
-            : base(DocumentCodePropertySettingsValidator.Validator) // Class.tt Line: 45
+        public DocumentCodePropertySettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public DocumentCodePropertySettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, DocumentCodePropertySettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static DocumentCodePropertySettings Clone(IDocumentCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -18592,33 +19233,62 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _ScopePeriodStart = string.Empty;
         partial void OnScopePeriodStartChanging(ref string to); // Property.tt Line: 79
         partial void OnScopePeriodStartChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { } // Class.tt Line: 6
-    public partial class Document : ConfigObjectVmGenSettings<Document, DocumentValidator>, IComparable<Document>, IConfigAcceptVisitor, IDocument // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class DocumentValidator : ValidatorBase<Document, DocumentValidator> { } // Class.tt Line: 14
+    public partial class Document : ConfigObjectVmGenSettings<Document, DocumentValidator>, IComparable<Document>, IConfigAcceptVisitor, IDocument // Class.tt Line: 15
     {
         #region CTOR
-        public Document() : this(default(ITreeConfigNode))
+        public Document() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Document(ITreeConfigNode parent) 
-            : base(parent, DocumentValidator.Validator) // Class.tt Line: 15
+        public Document(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, DocumentValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 33
-            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 33
-            this.GroupForms = new GroupListForms(this); // Class.tt Line: 33
-            this.GroupReports = new GroupListReports(this); // Class.tt Line: 33
-            this.CodePropertySettings = new DocumentCodePropertySettings(); // Class.tt Line: 31
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.GroupProperties = new GroupListProperties(this); // Class.tt Line: 39
+            this.GroupDetails = new GroupListDetails(this); // Class.tt Line: 39
+            this.GroupForms = new GroupListForms(this); // Class.tt Line: 39
+            this.GroupReports = new GroupListReports(this); // Class.tt Line: 39
+            this.CodePropertySettings = new DocumentCodePropertySettings(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -19292,7 +19962,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -19309,33 +19979,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_document
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class GroupListDocumentsValidator : ValidatorBase<GroupListDocuments, GroupListDocumentsValidator> { } // Class.tt Line: 6
-    public partial class GroupListDocuments : ConfigObjectVmGenSettings<GroupListDocuments, GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IConfigAcceptVisitor, IGroupListDocuments // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListDocumentsValidator : ValidatorBase<GroupListDocuments, GroupListDocumentsValidator> { } // Class.tt Line: 14
+    public partial class GroupListDocuments : ConfigObjectVmGenSettings<GroupListDocuments, GroupListDocumentsValidator>, IComparable<GroupListDocuments>, IConfigAcceptVisitor, IGroupListDocuments // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListDocuments() : this(default(ITreeConfigNode))
+        public GroupListDocuments() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListDocuments(ITreeConfigNode parent) 
-            : base(parent, GroupListDocumentsValidator.Validator) // Class.tt Line: 15
+        public GroupListDocuments(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListDocumentsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -19738,7 +20417,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -19755,31 +20434,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class GroupListJournalsValidator : ValidatorBase<GroupListJournals, GroupListJournalsValidator> { } // Class.tt Line: 6
-    public partial class GroupListJournals : ConfigObjectVmGenSettings<GroupListJournals, GroupListJournalsValidator>, IComparable<GroupListJournals>, IConfigAcceptVisitor, IGroupListJournals // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListJournalsValidator : ValidatorBase<GroupListJournals, GroupListJournalsValidator> { } // Class.tt Line: 14
+    public partial class GroupListJournals : ConfigObjectVmGenSettings<GroupListJournals, GroupListJournalsValidator>, IComparable<GroupListJournals>, IConfigAcceptVisitor, IGroupListJournals // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListJournals() : this(default(ITreeConfigNode))
+        public GroupListJournals() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListJournals(ITreeConfigNode parent) 
-            : base(parent, GroupListJournalsValidator.Validator) // Class.tt Line: 15
+        public GroupListJournals(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListJournalsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListJournals = new ConfigNodesCollection<Journal>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListJournals = new ConfigNodesCollection<Journal>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -20159,7 +20847,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -20176,31 +20864,40 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class JournalValidator : ValidatorBase<Journal, JournalValidator> { } // Class.tt Line: 6
-    public partial class Journal : ConfigObjectVmGenSettings<Journal, JournalValidator>, IComparable<Journal>, IConfigAcceptVisitor, IJournal // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class JournalValidator : ValidatorBase<Journal, JournalValidator> { } // Class.tt Line: 14
+    public partial class Journal : ConfigObjectVmGenSettings<Journal, JournalValidator>, IComparable<Journal>, IConfigAcceptVisitor, IJournal // Class.tt Line: 15
     {
         #region CTOR
-        public Journal() : this(default(ITreeConfigNode))
+        public Journal() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Journal(ITreeConfigNode parent) 
-            : base(parent, JournalValidator.Validator) // Class.tt Line: 15
+        public Journal(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, JournalValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListDocuments = new ConfigNodesCollection<Document>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -20607,7 +21304,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -20624,33 +21321,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_journal
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class GroupListFormsValidator : ValidatorBase<GroupListForms, GroupListFormsValidator> { } // Class.tt Line: 6
-    public partial class GroupListForms : ConfigObjectVmGenSettings<GroupListForms, GroupListFormsValidator>, IComparable<GroupListForms>, IConfigAcceptVisitor, IGroupListForms // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListFormsValidator : ValidatorBase<GroupListForms, GroupListFormsValidator> { } // Class.tt Line: 14
+    public partial class GroupListForms : ConfigObjectVmGenSettings<GroupListForms, GroupListFormsValidator>, IComparable<GroupListForms>, IConfigAcceptVisitor, IGroupListForms // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListForms() : this(default(ITreeConfigNode))
+        public GroupListForms() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListForms(ITreeConfigNode parent) 
-            : base(parent, GroupListFormsValidator.Validator) // Class.tt Line: 15
+        public GroupListForms(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListFormsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListForms = new ConfigNodesCollection<Form>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListForms = new ConfigNodesCollection<Form>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -21030,7 +21736,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -21047,1882 +21753,38 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class FormGridSystemValidator : ValidatorBase<FormGridSystem, FormGridSystemValidator> { } // Class.tt Line: 6
-    public partial class FormGridSystem : VmValidatableWithSeverity<FormGridSystem, FormGridSystemValidator>, IFormGridSystem // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class FormCatalogListSettingsValidator : ValidatorBase<FormCatalogListSettings, FormCatalogListSettingsValidator> { } // Class.tt Line: 14
+    public partial class FormCatalogListSettings : BaseSettings<FormCatalogListSettings, FormCatalogListSettingsValidator>, IFormCatalogListSettings // Class.tt Line: 15
     {
         #region CTOR
-        public FormGridSystem() 
-            : base(FormGridSystemValidator.Validator) // Class.tt Line: 45
+        public FormCatalogListSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
+        }
+        public FormCatalogListSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, FormCatalogListSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListRows = new ObservableCollection<FormGridSystemRow>(); // Class.tt Line: 54
-            this.ListGuidProperties = new ObservableCollection<string>(); // Class.tt Line: 54
-            this.ListFormBlocks = new ObservableCollection<FormBlock>(); // Class.tt Line: 54
-            this.OnInit();
+            this.OnCreating();
+            this.OnCreated();
             this.IsValidate = true;
+            this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static FormGridSystem Clone(IFormGridSystem from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            FormGridSystem vm = new FormGridSystem();
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 65
-            vm.ListRows = new ObservableCollection<FormGridSystemRow>(); // Clone.tt Line: 47
-            foreach (var t in from.ListRows) // Clone.tt Line: 48
-                vm.ListRows.Add(FormGridSystemRow.Clone((FormGridSystemRow)t, isDeep));
-            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
-                vm.ListGuidProperties.Add(t);
-            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 47
-            foreach (var t in from.ListFormBlocks) // Clone.tt Line: 48
-                vm.ListFormBlocks.Add(FormBlock.Clone((FormBlock)t, isDeep));
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(FormGridSystem to, IFormGridSystem from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 141
-            if (isDeep) // Clone.tt Line: 86
-            {
-                foreach (var t in to.ListRows.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListRows)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            FormGridSystemRow.Update((FormGridSystemRow)t, (FormGridSystemRow)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListRows.Remove(t);
-                }
-                foreach (var tt in from.ListRows)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListRows.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new FormGridSystemRow(); // Clone.tt Line: 119
-                        FormGridSystemRow.Update(p, (FormGridSystemRow)tt, isDeep);
-                        to.ListRows.Add(p);
-                    }
-                }
-            }
-                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
-                foreach (var tt in from.ListGuidProperties)
-                {
-                    to.ListGuidProperties.Add(tt);
-                }
-            if (isDeep) // Clone.tt Line: 86
-            {
-                foreach (var t in to.ListFormBlocks.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListFormBlocks)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            FormBlock.Update((FormBlock)t, (FormBlock)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListFormBlocks.Remove(t);
-                }
-                foreach (var tt in from.ListFormBlocks)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListFormBlocks.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new FormBlock(); // Clone.tt Line: 119
-                        FormBlock.Update(p, (FormBlock)tt, isDeep);
-                        to.ListFormBlocks.Add(p);
-                    }
-                }
-            }
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override FormGridSystem Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return FormGridSystem.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormGridSystem from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            FormGridSystem.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_form_grid_system' to 'FormGridSystem'
-        public static FormGridSystem ConvertToVM(Proto.Config.proto_form_grid_system m, FormGridSystem vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            vm.ListRows = new ObservableCollection<FormGridSystemRow>(); // Clone.tt Line: 190
-            foreach (var t in m.ListRows) // Clone.tt Line: 191
-            {
-                var tvm = FormGridSystemRow.ConvertToVM(t, new FormGridSystemRow()); // Clone.tt Line: 196
-                vm.ListRows.Add(tvm);
-            }
-            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
-            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
-            {
-                vm.ListGuidProperties.Add(t);
-            }
-            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 190
-            foreach (var t in m.ListFormBlocks) // Clone.tt Line: 191
-            {
-                var tvm = FormBlock.ConvertToVM(t, new FormBlock()); // Clone.tt Line: 196
-                vm.ListFormBlocks.Add(tvm);
-            }
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'FormGridSystem' to 'proto_form_grid_system'
-        public static Proto.Config.proto_form_grid_system ConvertToProto(FormGridSystem vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Config.proto_form_grid_system m = new Proto.Config.proto_form_grid_system(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            foreach (var t in vm.ListRows) // Clone.tt Line: 242
-                m.ListRows.Add(FormGridSystemRow.ConvertToProto((FormGridSystemRow)t)); // Clone.tt Line: 246
-            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
-                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
-            foreach (var t in vm.ListFormBlocks) // Clone.tt Line: 242
-                m.ListFormBlocks.Add(FormBlock.ConvertToProto((FormBlock)t)); // Clone.tt Line: 246
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            foreach (var t in this.ListRows)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListFormBlocks)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<FormGridSystemRow> ListRows // Property.tt Line: 8
-        { 
-            get { return this._ListRows; }
-            set
-            {
-                if (this._ListRows != value)
-                {
-                    this.OnListRowsChanging(value);
-                    _ListRows = value;
-                    this.OnListRowsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<FormGridSystemRow> _ListRows;
-        IReadOnlyList<IFormGridSystemRow> IFormGridSystem.ListRows { get { return (this as FormGridSystem).ListRows; } } // Property.tt Line: 26
-        partial void OnListRowsChanging(ObservableCollection<FormGridSystemRow> to); // Property.tt Line: 27
-        partial void OnListRowsChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
-        { 
-            get { return this._ListGuidProperties; }
-            set
-            {
-                if (this._ListGuidProperties != value)
-                {
-                    this.OnListGuidPropertiesChanging(value);
-                    _ListGuidProperties = value;
-                    this.OnListGuidPropertiesChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<string> _ListGuidProperties;
-        IReadOnlyList<string> IFormGridSystem.ListGuidProperties { get { return (this as FormGridSystem).ListGuidProperties; } } // Property.tt Line: 26
-        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
-        partial void OnListGuidPropertiesChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<FormBlock> ListFormBlocks // Property.tt Line: 8
-        { 
-            get { return this._ListFormBlocks; }
-            set
-            {
-                if (this._ListFormBlocks != value)
-                {
-                    this.OnListFormBlocksChanging(value);
-                    _ListFormBlocks = value;
-                    this.OnListFormBlocksChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<FormBlock> _ListFormBlocks;
-        IReadOnlyList<IFormBlock> IFormGridSystem.ListFormBlocks { get { return (this as FormGridSystem).ListFormBlocks; } } // Property.tt Line: 26
-        partial void OnListFormBlocksChanging(ObservableCollection<FormBlock> to); // Property.tt Line: 27
-        partial void OnListFormBlocksChanged();
-        #endregion Properties
-    }
-    public partial class FormGridSystemRowValidator : ValidatorBase<FormGridSystemRow, FormGridSystemRowValidator> { } // Class.tt Line: 6
-    public partial class FormGridSystemRow : VmValidatableWithSeverity<FormGridSystemRow, FormGridSystemRowValidator>, IFormGridSystemRow // Class.tt Line: 7
-    {
-        #region CTOR
-        public FormGridSystemRow() 
-            : base(FormGridSystemRowValidator.Validator) // Class.tt Line: 45
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListColumns = new ObservableCollection<FormGridSystemColumn>(); // Class.tt Line: 54
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static FormGridSystemRow Clone(IFormGridSystemRow from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            FormGridSystemRow vm = new FormGridSystemRow();
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 65
-            vm.ListColumns = new ObservableCollection<FormGridSystemColumn>(); // Clone.tt Line: 47
-            foreach (var t in from.ListColumns) // Clone.tt Line: 48
-                vm.ListColumns.Add(FormGridSystemColumn.Clone((FormGridSystemColumn)t, isDeep));
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(FormGridSystemRow to, IFormGridSystemRow from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 141
-            if (isDeep) // Clone.tt Line: 86
-            {
-                foreach (var t in to.ListColumns.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListColumns)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            FormGridSystemColumn.Update((FormGridSystemColumn)t, (FormGridSystemColumn)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListColumns.Remove(t);
-                }
-                foreach (var tt in from.ListColumns)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListColumns.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new FormGridSystemColumn(); // Clone.tt Line: 119
-                        FormGridSystemColumn.Update(p, (FormGridSystemColumn)tt, isDeep);
-                        to.ListColumns.Add(p);
-                    }
-                }
-            }
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override FormGridSystemRow Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return FormGridSystemRow.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormGridSystemRow from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            FormGridSystemRow.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_form_grid_system_row' to 'FormGridSystemRow'
-        public static FormGridSystemRow ConvertToVM(Proto.Config.proto_form_grid_system_row m, FormGridSystemRow vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            vm.ListColumns = new ObservableCollection<FormGridSystemColumn>(); // Clone.tt Line: 190
-            foreach (var t in m.ListColumns) // Clone.tt Line: 191
-            {
-                var tvm = FormGridSystemColumn.ConvertToVM(t, new FormGridSystemColumn()); // Clone.tt Line: 196
-                vm.ListColumns.Add(tvm);
-            }
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'FormGridSystemRow' to 'proto_form_grid_system_row'
-        public static Proto.Config.proto_form_grid_system_row ConvertToProto(FormGridSystemRow vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Config.proto_form_grid_system_row m = new Proto.Config.proto_form_grid_system_row(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            foreach (var t in vm.ListColumns) // Clone.tt Line: 242
-                m.ListColumns.Add(FormGridSystemColumn.ConvertToProto((FormGridSystemColumn)t)); // Clone.tt Line: 246
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            foreach (var t in this.ListColumns)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<FormGridSystemColumn> ListColumns // Property.tt Line: 8
-        { 
-            get { return this._ListColumns; }
-            set
-            {
-                if (this._ListColumns != value)
-                {
-                    this.OnListColumnsChanging(value);
-                    _ListColumns = value;
-                    this.OnListColumnsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<FormGridSystemColumn> _ListColumns;
-        IReadOnlyList<IFormGridSystemColumn> IFormGridSystemRow.ListColumns { get { return (this as FormGridSystemRow).ListColumns; } } // Property.tt Line: 26
-        partial void OnListColumnsChanging(ObservableCollection<FormGridSystemColumn> to); // Property.tt Line: 27
-        partial void OnListColumnsChanged();
-        #endregion Properties
-    }
-    public partial class FormGridSystemColumnValidator : ValidatorBase<FormGridSystemColumn, FormGridSystemColumnValidator> { } // Class.tt Line: 6
-    public partial class FormGridSystemColumn : VmValidatableWithSeverity<FormGridSystemColumn, FormGridSystemColumnValidator>, IFormGridSystemColumn // Class.tt Line: 7
-    {
-        #region CTOR
-        public FormGridSystemColumn() 
-            : base(FormGridSystemColumnValidator.Validator) // Class.tt Line: 45
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListRows = new ObservableCollection<FormGridSystemRow>(); // Class.tt Line: 54
-            this.ListGuidProperties = new ObservableCollection<string>(); // Class.tt Line: 54
-            this.ListFormBlocks = new ObservableCollection<FormBlock>(); // Class.tt Line: 54
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static FormGridSystemColumn Clone(IFormGridSystemColumn from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            FormGridSystemColumn vm = new FormGridSystemColumn();
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 65
-            vm.HideType = from.HideType; // Clone.tt Line: 65
-            vm.WidthXs = from.WidthXs; // Clone.tt Line: 65
-            vm.WidthSm = from.WidthSm; // Clone.tt Line: 65
-            vm.WidthMd = from.WidthMd; // Clone.tt Line: 65
-            vm.WidthLg = from.WidthLg; // Clone.tt Line: 65
-            vm.WidthXl = from.WidthXl; // Clone.tt Line: 65
-            vm.WidthXx = from.WidthXx; // Clone.tt Line: 65
-            vm.ListRows = new ObservableCollection<FormGridSystemRow>(); // Clone.tt Line: 47
-            foreach (var t in from.ListRows) // Clone.tt Line: 48
-                vm.ListRows.Add(FormGridSystemRow.Clone((FormGridSystemRow)t, isDeep));
-            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
-                vm.ListGuidProperties.Add(t);
-            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 47
-            foreach (var t in from.ListFormBlocks) // Clone.tt Line: 48
-                vm.ListFormBlocks.Add(FormBlock.Clone((FormBlock)t, isDeep));
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(FormGridSystemColumn to, IFormGridSystemColumn from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 141
-            to.HideType = from.HideType; // Clone.tt Line: 141
-            to.WidthXs = from.WidthXs; // Clone.tt Line: 141
-            to.WidthSm = from.WidthSm; // Clone.tt Line: 141
-            to.WidthMd = from.WidthMd; // Clone.tt Line: 141
-            to.WidthLg = from.WidthLg; // Clone.tt Line: 141
-            to.WidthXl = from.WidthXl; // Clone.tt Line: 141
-            to.WidthXx = from.WidthXx; // Clone.tt Line: 141
-            if (isDeep) // Clone.tt Line: 86
-            {
-                foreach (var t in to.ListRows.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListRows)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            FormGridSystemRow.Update((FormGridSystemRow)t, (FormGridSystemRow)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListRows.Remove(t);
-                }
-                foreach (var tt in from.ListRows)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListRows.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new FormGridSystemRow(); // Clone.tt Line: 119
-                        FormGridSystemRow.Update(p, (FormGridSystemRow)tt, isDeep);
-                        to.ListRows.Add(p);
-                    }
-                }
-            }
-                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
-                foreach (var tt in from.ListGuidProperties)
-                {
-                    to.ListGuidProperties.Add(tt);
-                }
-            if (isDeep) // Clone.tt Line: 86
-            {
-                foreach (var t in to.ListFormBlocks.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListFormBlocks)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            FormBlock.Update((FormBlock)t, (FormBlock)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListFormBlocks.Remove(t);
-                }
-                foreach (var tt in from.ListFormBlocks)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListFormBlocks.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new FormBlock(); // Clone.tt Line: 119
-                        FormBlock.Update(p, (FormBlock)tt, isDeep);
-                        to.ListFormBlocks.Add(p);
-                    }
-                }
-            }
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override FormGridSystemColumn Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return FormGridSystemColumn.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormGridSystemColumn from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            FormGridSystemColumn.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_form_grid_system_column' to 'FormGridSystemColumn'
-        public static FormGridSystemColumn ConvertToVM(Proto.Config.proto_form_grid_system_column m, FormGridSystemColumn vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            vm.HideType = (EnumHiddenType)m.HideType; // Clone.tt Line: 221
-            vm.WidthXs = m.WidthXs; // Clone.tt Line: 221
-            vm.WidthSm = m.WidthSm; // Clone.tt Line: 221
-            vm.WidthMd = m.WidthMd; // Clone.tt Line: 221
-            vm.WidthLg = m.WidthLg; // Clone.tt Line: 221
-            vm.WidthXl = m.WidthXl; // Clone.tt Line: 221
-            vm.WidthXx = m.WidthXx; // Clone.tt Line: 221
-            vm.ListRows = new ObservableCollection<FormGridSystemRow>(); // Clone.tt Line: 190
-            foreach (var t in m.ListRows) // Clone.tt Line: 191
-            {
-                var tvm = FormGridSystemRow.ConvertToVM(t, new FormGridSystemRow()); // Clone.tt Line: 196
-                vm.ListRows.Add(tvm);
-            }
-            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
-            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
-            {
-                vm.ListGuidProperties.Add(t);
-            }
-            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 190
-            foreach (var t in m.ListFormBlocks) // Clone.tt Line: 191
-            {
-                var tvm = FormBlock.ConvertToVM(t, new FormBlock()); // Clone.tt Line: 196
-                vm.ListFormBlocks.Add(tvm);
-            }
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'FormGridSystemColumn' to 'proto_form_grid_system_column'
-        public static Proto.Config.proto_form_grid_system_column ConvertToProto(FormGridSystemColumn vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Config.proto_form_grid_system_column m = new Proto.Config.proto_form_grid_system_column(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            m.HideType = (Proto.Config.proto_enum_hidden_type)vm.HideType; // Clone.tt Line: 274
-            m.WidthXs = vm.WidthXs; // Clone.tt Line: 276
-            m.WidthSm = vm.WidthSm; // Clone.tt Line: 276
-            m.WidthMd = vm.WidthMd; // Clone.tt Line: 276
-            m.WidthLg = vm.WidthLg; // Clone.tt Line: 276
-            m.WidthXl = vm.WidthXl; // Clone.tt Line: 276
-            m.WidthXx = vm.WidthXx; // Clone.tt Line: 276
-            foreach (var t in vm.ListRows) // Clone.tt Line: 242
-                m.ListRows.Add(FormGridSystemRow.ConvertToProto((FormGridSystemRow)t)); // Clone.tt Line: 246
-            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
-                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
-            foreach (var t in vm.ListFormBlocks) // Clone.tt Line: 242
-                m.ListFormBlocks.Add(FormBlock.ConvertToProto((FormBlock)t)); // Clone.tt Line: 246
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            foreach (var t in this.ListRows)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListFormBlocks)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        [DisplayName("When Hide")]
-        [Description("Condition of hiding base on screen size")]
-        public EnumHiddenType HideType // Property.tt Line: 55
-        { 
-            get { return this._HideType; }
-            set
-            {
-                if (this._HideType != value)
-                {
-                    this.OnHideTypeChanging(ref value);
-                    this._HideType = value;
-                    this.OnHideTypeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumHiddenType _HideType;
-        partial void OnHideTypeChanging(ref EnumHiddenType to); // Property.tt Line: 79
-        partial void OnHideTypeChanged();
-        
-        [DisplayName("XS")]
-        [Description("Extra small. Small to large phone. Range: < 600px")]
-        public uint? WidthXs // Property.tt Line: 55
-        { 
-            get { return this._WidthXs; }
-            set
-            {
-                if (this._WidthXs != value)
-                {
-                    this.OnWidthXsChanging(ref value);
-                    this._WidthXs = value;
-                    this.OnWidthXsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint? _WidthXs;
-        partial void OnWidthXsChanging(ref uint? to); // Property.tt Line: 79
-        partial void OnWidthXsChanged();
-        
-        [DisplayName("SM")]
-        [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
-        public uint? WidthSm // Property.tt Line: 55
-        { 
-            get { return this._WidthSm; }
-            set
-            {
-                if (this._WidthSm != value)
-                {
-                    this.OnWidthSmChanging(ref value);
-                    this._WidthSm = value;
-                    this.OnWidthSmChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint? _WidthSm;
-        partial void OnWidthSmChanging(ref uint? to); // Property.tt Line: 79
-        partial void OnWidthSmChanged();
-        
-        [DisplayName("MD")]
-        [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
-        public uint? WidthMd // Property.tt Line: 55
-        { 
-            get { return this._WidthMd; }
-            set
-            {
-                if (this._WidthMd != value)
-                {
-                    this.OnWidthMdChanging(ref value);
-                    this._WidthMd = value;
-                    this.OnWidthMdChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint? _WidthMd;
-        partial void OnWidthMdChanging(ref uint? to); // Property.tt Line: 79
-        partial void OnWidthMdChanged();
-        
-        [DisplayName("LG")]
-        [Description("Large. Desktop. Range: 1280px > < 1920px")]
-        public uint? WidthLg // Property.tt Line: 55
-        { 
-            get { return this._WidthLg; }
-            set
-            {
-                if (this._WidthLg != value)
-                {
-                    this.OnWidthLgChanging(ref value);
-                    this._WidthLg = value;
-                    this.OnWidthLgChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint? _WidthLg;
-        partial void OnWidthLgChanging(ref uint? to); // Property.tt Line: 79
-        partial void OnWidthLgChanged();
-        
-        [DisplayName("XL")]
-        [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
-        public uint? WidthXl // Property.tt Line: 55
-        { 
-            get { return this._WidthXl; }
-            set
-            {
-                if (this._WidthXl != value)
-                {
-                    this.OnWidthXlChanging(ref value);
-                    this._WidthXl = value;
-                    this.OnWidthXlChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint? _WidthXl;
-        partial void OnWidthXlChanging(ref uint? to); // Property.tt Line: 79
-        partial void OnWidthXlChanged();
-        
-        [DisplayName("XX")]
-        [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
-        public uint? WidthXx // Property.tt Line: 55
-        { 
-            get { return this._WidthXx; }
-            set
-            {
-                if (this._WidthXx != value)
-                {
-                    this.OnWidthXxChanging(ref value);
-                    this._WidthXx = value;
-                    this.OnWidthXxChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint? _WidthXx;
-        partial void OnWidthXxChanging(ref uint? to); // Property.tt Line: 79
-        partial void OnWidthXxChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<FormGridSystemRow> ListRows // Property.tt Line: 8
-        { 
-            get { return this._ListRows; }
-            set
-            {
-                if (this._ListRows != value)
-                {
-                    this.OnListRowsChanging(value);
-                    _ListRows = value;
-                    this.OnListRowsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<FormGridSystemRow> _ListRows;
-        IReadOnlyList<IFormGridSystemRow> IFormGridSystemColumn.ListRows { get { return (this as FormGridSystemColumn).ListRows; } } // Property.tt Line: 26
-        partial void OnListRowsChanging(ObservableCollection<FormGridSystemRow> to); // Property.tt Line: 27
-        partial void OnListRowsChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
-        { 
-            get { return this._ListGuidProperties; }
-            set
-            {
-                if (this._ListGuidProperties != value)
-                {
-                    this.OnListGuidPropertiesChanging(value);
-                    _ListGuidProperties = value;
-                    this.OnListGuidPropertiesChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<string> _ListGuidProperties;
-        IReadOnlyList<string> IFormGridSystemColumn.ListGuidProperties { get { return (this as FormGridSystemColumn).ListGuidProperties; } } // Property.tt Line: 26
-        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
-        partial void OnListGuidPropertiesChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<FormBlock> ListFormBlocks // Property.tt Line: 8
-        { 
-            get { return this._ListFormBlocks; }
-            set
-            {
-                if (this._ListFormBlocks != value)
-                {
-                    this.OnListFormBlocksChanging(value);
-                    _ListFormBlocks = value;
-                    this.OnListFormBlocksChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<FormBlock> _ListFormBlocks;
-        IReadOnlyList<IFormBlock> IFormGridSystemColumn.ListFormBlocks { get { return (this as FormGridSystemColumn).ListFormBlocks; } } // Property.tt Line: 26
-        partial void OnListFormBlocksChanging(ObservableCollection<FormBlock> to); // Property.tt Line: 27
-        partial void OnListFormBlocksChanged();
-        #endregion Properties
-    }
-    public partial class FormBlockValidator : ValidatorBase<FormBlock, FormBlockValidator> { } // Class.tt Line: 6
-    public partial class FormBlock : VmValidatableWithSeverity<FormBlock, FormBlockValidator>, IFormBlock // Class.tt Line: 7
-    {
-        #region CTOR
-        public FormBlock() 
-            : base(FormBlockValidator.Validator) // Class.tt Line: 45
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.TabControl = new FormTabControl(); // Class.tt Line: 60
-            this.DataGrid = new FormDataGrid(); // Class.tt Line: 60
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static FormBlock Clone(IFormBlock from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            FormBlock vm = new FormBlock();
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 65
-            if (isDeep) // Clone.tt Line: 62
-                vm.TabControl = vSharpStudio.vm.ViewModels.FormTabControl.Clone(from.TabControl, isDeep);
-            if (isDeep) // Clone.tt Line: 62
-                vm.DataGrid = vSharpStudio.vm.ViewModels.FormDataGrid.Clone(from.DataGrid, isDeep);
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(FormBlock to, IFormBlock from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 141
-            if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.FormTabControl.Update((FormTabControl)to.TabControl, from.TabControl, isDeep);
-            if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.FormDataGrid.Update((FormDataGrid)to.DataGrid, from.DataGrid, isDeep);
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override FormBlock Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return FormBlock.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormBlock from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            FormBlock.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_form_block' to 'FormBlock'
-        public static FormBlock ConvertToVM(Proto.Config.proto_form_block m, FormBlock vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            if (vm.TabControl == null) // Clone.tt Line: 213
-                vm.TabControl = new FormTabControl(); // Clone.tt Line: 217
-            vSharpStudio.vm.ViewModels.FormTabControl.ConvertToVM(m.TabControl, (FormTabControl)vm.TabControl); // Clone.tt Line: 219
-            if (vm.DataGrid == null) // Clone.tt Line: 213
-                vm.DataGrid = new FormDataGrid(); // Clone.tt Line: 217
-            vSharpStudio.vm.ViewModels.FormDataGrid.ConvertToVM(m.DataGrid, (FormDataGrid)vm.DataGrid); // Clone.tt Line: 219
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'FormBlock' to 'proto_form_block'
-        public static Proto.Config.proto_form_block ConvertToProto(FormBlock vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Config.proto_form_block m = new Proto.Config.proto_form_block(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            m.TabControl = vSharpStudio.vm.ViewModels.FormTabControl.ConvertToProto((FormTabControl)vm.TabControl); // Clone.tt Line: 270
-            m.DataGrid = vSharpStudio.vm.ViewModels.FormDataGrid.ConvertToProto((FormDataGrid)vm.DataGrid); // Clone.tt Line: 270
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            this.TabControl.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
-            this.DataGrid.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        public FormTabControl TabControl // Property.tt Line: 55
-        { 
-            get { return this._TabControl; }
-            set
-            {
-                if (this._TabControl != value)
-                {
-                    this.OnTabControlChanging(ref value);
-                    this._TabControl = value;
-                    this.OnTabControlChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private FormTabControl _TabControl;
-        IFormTabControl IFormBlock.TabControl { get { return (this as FormBlock).TabControl; } } // Property.tt Line: 77
-        partial void OnTabControlChanging(ref FormTabControl to); // Property.tt Line: 79
-        partial void OnTabControlChanged();
-        //IFormTabControl IFormBlock.TabControl { get { return this._TabControl; } }
-        
-        public FormDataGrid DataGrid // Property.tt Line: 55
-        { 
-            get { return this._DataGrid; }
-            set
-            {
-                if (this._DataGrid != value)
-                {
-                    this.OnDataGridChanging(ref value);
-                    this._DataGrid = value;
-                    this.OnDataGridChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private FormDataGrid _DataGrid;
-        IFormDataGrid IFormBlock.DataGrid { get { return (this as FormBlock).DataGrid; } } // Property.tt Line: 77
-        partial void OnDataGridChanging(ref FormDataGrid to); // Property.tt Line: 79
-        partial void OnDataGridChanged();
-        //IFormDataGrid IFormBlock.DataGrid { get { return this._DataGrid; } }
-        #endregion Properties
-    }
-    public partial class FormTabControlTabValidator : ValidatorBase<FormTabControlTab, FormTabControlTabValidator> { } // Class.tt Line: 6
-    public partial class FormTabControlTab : VmValidatableWithSeverity<FormTabControlTab, FormTabControlTabValidator>, IFormTabControlTab // Class.tt Line: 7
-    {
-        #region CTOR
-        public FormTabControlTab() 
-            : base(FormTabControlTabValidator.Validator) // Class.tt Line: 45
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListGuidProperties = new ObservableCollection<string>(); // Class.tt Line: 54
-            this.ListFormBlocks = new ObservableCollection<FormBlock>(); // Class.tt Line: 54
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static FormTabControlTab Clone(IFormTabControlTab from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            FormTabControlTab vm = new FormTabControlTab();
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 65
-            vm.Name = from.Name; // Clone.tt Line: 65
-            vm.Description = from.Description; // Clone.tt Line: 65
-            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
-                vm.ListGuidProperties.Add(t);
-            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 47
-            foreach (var t in from.ListFormBlocks) // Clone.tt Line: 48
-                vm.ListFormBlocks.Add(FormBlock.Clone((FormBlock)t, isDeep));
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(FormTabControlTab to, IFormTabControlTab from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 141
-            to.Name = from.Name; // Clone.tt Line: 141
-            to.Description = from.Description; // Clone.tt Line: 141
-                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
-                foreach (var tt in from.ListGuidProperties)
-                {
-                    to.ListGuidProperties.Add(tt);
-                }
-            if (isDeep) // Clone.tt Line: 86
-            {
-                foreach (var t in to.ListFormBlocks.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListFormBlocks)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            FormBlock.Update((FormBlock)t, (FormBlock)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListFormBlocks.Remove(t);
-                }
-                foreach (var tt in from.ListFormBlocks)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListFormBlocks.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new FormBlock(); // Clone.tt Line: 119
-                        FormBlock.Update(p, (FormBlock)tt, isDeep);
-                        to.ListFormBlocks.Add(p);
-                    }
-                }
-            }
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override FormTabControlTab Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return FormTabControlTab.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormTabControlTab from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            FormTabControlTab.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_form_tab_control_tab' to 'FormTabControlTab'
-        public static FormTabControlTab ConvertToVM(Proto.Config.proto_form_tab_control_tab m, FormTabControlTab vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            vm.Name = m.Name; // Clone.tt Line: 221
-            vm.Description = m.Description; // Clone.tt Line: 221
-            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
-            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
-            {
-                vm.ListGuidProperties.Add(t);
-            }
-            vm.ListFormBlocks = new ObservableCollection<FormBlock>(); // Clone.tt Line: 190
-            foreach (var t in m.ListFormBlocks) // Clone.tt Line: 191
-            {
-                var tvm = FormBlock.ConvertToVM(t, new FormBlock()); // Clone.tt Line: 196
-                vm.ListFormBlocks.Add(tvm);
-            }
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'FormTabControlTab' to 'proto_form_tab_control_tab'
-        public static Proto.Config.proto_form_tab_control_tab ConvertToProto(FormTabControlTab vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Config.proto_form_tab_control_tab m = new Proto.Config.proto_form_tab_control_tab(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            m.Name = vm.Name; // Clone.tt Line: 276
-            m.Description = vm.Description; // Clone.tt Line: 276
-            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
-                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
-            foreach (var t in vm.ListFormBlocks) // Clone.tt Line: 242
-                m.ListFormBlocks.Add(FormBlock.ConvertToProto((FormBlock)t)); // Clone.tt Line: 246
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            foreach (var t in this.ListFormBlocks)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        [DisplayName("Name")]
-        [Description("Tab name")]
-        public string Name // Property.tt Line: 55
-        { 
-            get { return this._Name; }
-            set
-            {
-                if (this._Name != value)
-                {
-                    this.OnNameChanging(ref value);
-                    this._Name = value;
-                    this.OnNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameChanged();
-        
-        [DisplayName("Desc")]
-        [Description("Tab description")]
-        public string Description // Property.tt Line: 55
-        { 
-            get { return this._Description; }
-            set
-            {
-                if (this._Description != value)
-                {
-                    this.OnDescriptionChanging(ref value);
-                    this._Description = value;
-                    this.OnDescriptionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
-        partial void OnDescriptionChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
-        { 
-            get { return this._ListGuidProperties; }
-            set
-            {
-                if (this._ListGuidProperties != value)
-                {
-                    this.OnListGuidPropertiesChanging(value);
-                    _ListGuidProperties = value;
-                    this.OnListGuidPropertiesChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<string> _ListGuidProperties;
-        IReadOnlyList<string> IFormTabControlTab.ListGuidProperties { get { return (this as FormTabControlTab).ListGuidProperties; } } // Property.tt Line: 26
-        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
-        partial void OnListGuidPropertiesChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<FormBlock> ListFormBlocks // Property.tt Line: 8
-        { 
-            get { return this._ListFormBlocks; }
-            set
-            {
-                if (this._ListFormBlocks != value)
-                {
-                    this.OnListFormBlocksChanging(value);
-                    _ListFormBlocks = value;
-                    this.OnListFormBlocksChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<FormBlock> _ListFormBlocks;
-        IReadOnlyList<IFormBlock> IFormTabControlTab.ListFormBlocks { get { return (this as FormTabControlTab).ListFormBlocks; } } // Property.tt Line: 26
-        partial void OnListFormBlocksChanging(ObservableCollection<FormBlock> to); // Property.tt Line: 27
-        partial void OnListFormBlocksChanged();
-        #endregion Properties
-    }
-    public partial class FormTabControlValidator : ValidatorBase<FormTabControl, FormTabControlValidator> { } // Class.tt Line: 6
-    public partial class FormTabControl : VmValidatableWithSeverity<FormTabControl, FormTabControlValidator>, IFormTabControl // Class.tt Line: 7
-    {
-        #region CTOR
-        public FormTabControl() 
-            : base(FormTabControlValidator.Validator) // Class.tt Line: 45
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListTabs = new ObservableCollection<FormTabControlTab>(); // Class.tt Line: 54
-            this.ListGuidProperties = new ObservableCollection<string>(); // Class.tt Line: 54
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static FormTabControl Clone(IFormTabControl from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            FormTabControl vm = new FormTabControl();
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 65
-            vm.Name = from.Name; // Clone.tt Line: 65
-            vm.Description = from.Description; // Clone.tt Line: 65
-            vm.ListTabs = new ObservableCollection<FormTabControlTab>(); // Clone.tt Line: 47
-            foreach (var t in from.ListTabs) // Clone.tt Line: 48
-                vm.ListTabs.Add(FormTabControlTab.Clone((FormTabControlTab)t, isDeep));
-            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
-                vm.ListGuidProperties.Add(t);
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(FormTabControl to, IFormTabControl from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 141
-            to.Name = from.Name; // Clone.tt Line: 141
-            to.Description = from.Description; // Clone.tt Line: 141
-            if (isDeep) // Clone.tt Line: 86
-            {
-                foreach (var t in to.ListTabs.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListTabs)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            FormTabControlTab.Update((FormTabControlTab)t, (FormTabControlTab)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListTabs.Remove(t);
-                }
-                foreach (var tt in from.ListTabs)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListTabs.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new FormTabControlTab(); // Clone.tt Line: 119
-                        FormTabControlTab.Update(p, (FormTabControlTab)tt, isDeep);
-                        to.ListTabs.Add(p);
-                    }
-                }
-            }
-                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
-                foreach (var tt in from.ListGuidProperties)
-                {
-                    to.ListGuidProperties.Add(tt);
-                }
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override FormTabControl Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return FormTabControl.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormTabControl from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            FormTabControl.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_form_tab_control' to 'FormTabControl'
-        public static FormTabControl ConvertToVM(Proto.Config.proto_form_tab_control m, FormTabControl vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            vm.Name = m.Name; // Clone.tt Line: 221
-            vm.Description = m.Description; // Clone.tt Line: 221
-            vm.ListTabs = new ObservableCollection<FormTabControlTab>(); // Clone.tt Line: 190
-            foreach (var t in m.ListTabs) // Clone.tt Line: 191
-            {
-                var tvm = FormTabControlTab.ConvertToVM(t, new FormTabControlTab()); // Clone.tt Line: 196
-                vm.ListTabs.Add(tvm);
-            }
-            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
-            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
-            {
-                vm.ListGuidProperties.Add(t);
-            }
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'FormTabControl' to 'proto_form_tab_control'
-        public static Proto.Config.proto_form_tab_control ConvertToProto(FormTabControl vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Config.proto_form_tab_control m = new Proto.Config.proto_form_tab_control(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            m.Name = vm.Name; // Clone.tt Line: 276
-            m.Description = vm.Description; // Clone.tt Line: 276
-            foreach (var t in vm.ListTabs) // Clone.tt Line: 242
-                m.ListTabs.Add(FormTabControlTab.ConvertToProto((FormTabControlTab)t)); // Clone.tt Line: 246
-            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
-                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            foreach (var t in this.ListTabs)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        [DisplayName("Name")]
-        [Description("Tab control name")]
-        public string Name // Property.tt Line: 55
-        { 
-            get { return this._Name; }
-            set
-            {
-                if (this._Name != value)
-                {
-                    this.OnNameChanging(ref value);
-                    this._Name = value;
-                    this.OnNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameChanged();
-        
-        [DisplayName("Desc")]
-        [Description("Tab control description")]
-        public string Description // Property.tt Line: 55
-        { 
-            get { return this._Description; }
-            set
-            {
-                if (this._Description != value)
-                {
-                    this.OnDescriptionChanging(ref value);
-                    this._Description = value;
-                    this.OnDescriptionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
-        partial void OnDescriptionChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<FormTabControlTab> ListTabs // Property.tt Line: 8
-        { 
-            get { return this._ListTabs; }
-            set
-            {
-                if (this._ListTabs != value)
-                {
-                    this.OnListTabsChanging(value);
-                    _ListTabs = value;
-                    this.OnListTabsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<FormTabControlTab> _ListTabs;
-        IReadOnlyList<IFormTabControlTab> IFormTabControl.ListTabs { get { return (this as FormTabControl).ListTabs; } } // Property.tt Line: 26
-        partial void OnListTabsChanging(ObservableCollection<FormTabControlTab> to); // Property.tt Line: 27
-        partial void OnListTabsChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
-        { 
-            get { return this._ListGuidProperties; }
-            set
-            {
-                if (this._ListGuidProperties != value)
-                {
-                    this.OnListGuidPropertiesChanging(value);
-                    _ListGuidProperties = value;
-                    this.OnListGuidPropertiesChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<string> _ListGuidProperties;
-        IReadOnlyList<string> IFormTabControl.ListGuidProperties { get { return (this as FormTabControl).ListGuidProperties; } } // Property.tt Line: 26
-        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
-        partial void OnListGuidPropertiesChanged();
-        #endregion Properties
-    }
-    public partial class FormDataGridValidator : ValidatorBase<FormDataGrid, FormDataGridValidator> { } // Class.tt Line: 6
-    public partial class FormDataGrid : VmValidatableWithSeverity<FormDataGrid, FormDataGridValidator>, IFormDataGrid // Class.tt Line: 7
-    {
-        #region CTOR
-        public FormDataGrid() 
-            : base(FormDataGridValidator.Validator) // Class.tt Line: 45
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListGuidProperties = new ObservableCollection<string>(); // Class.tt Line: 54
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
-        #endregion CTOR
-        #region Procedures
-        public static FormDataGrid Clone(IFormDataGrid from, bool isDeep = true) // Clone.tt Line: 27
-        {
-            Contract.Requires(from != null);
-            FormDataGrid vm = new FormDataGrid();
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 65
-            vm.Name = from.Name; // Clone.tt Line: 65
-            vm.Description = from.Description; // Clone.tt Line: 65
-            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
-                vm.ListGuidProperties.Add(t);
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(FormDataGrid to, IFormDataGrid from, bool isDeep = true) // Clone.tt Line: 77
-        {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 141
-            to.Name = from.Name; // Clone.tt Line: 141
-            to.Description = from.Description; // Clone.tt Line: 141
-                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
-                foreach (var tt in from.ListGuidProperties)
-                {
-                    to.ListGuidProperties.Add(tt);
-                }
-        }
-        // Clone.tt Line: 147
-        #region IEditable
-        public override FormDataGrid Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            return FormDataGrid.Clone(this);
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(FormDataGrid from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            FormDataGrid.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_form_data_grid' to 'FormDataGrid'
-        public static FormDataGrid ConvertToVM(Proto.Config.proto_form_data_grid m, FormDataGrid vm) // Clone.tt Line: 170
-        {
-            Contract.Requires(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            vm.Name = m.Name; // Clone.tt Line: 221
-            vm.Description = m.Description; // Clone.tt Line: 221
-            vm.ListGuidProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
-            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
-            {
-                vm.ListGuidProperties.Add(t);
-            }
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'FormDataGrid' to 'proto_form_data_grid'
-        public static Proto.Config.proto_form_data_grid ConvertToProto(FormDataGrid vm) // Clone.tt Line: 236
-        {
-            Contract.Requires(vm != null);
-            Proto.Config.proto_form_data_grid m = new Proto.Config.proto_form_data_grid(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            m.Name = vm.Name; // Clone.tt Line: 276
-            m.Description = vm.Description; // Clone.tt Line: 276
-            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
-                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Contract.Requires(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Guid = string.Empty;
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        [DisplayName("Name")]
-        [Description("Tab control name")]
-        public string Name // Property.tt Line: 55
-        { 
-            get { return this._Name; }
-            set
-            {
-                if (this._Name != value)
-                {
-                    this.OnNameChanging(ref value);
-                    this._Name = value;
-                    this.OnNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Name = string.Empty;
-        partial void OnNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameChanged();
-        
-        [DisplayName("Desc")]
-        [Description("Tab control description")]
-        public string Description // Property.tt Line: 55
-        { 
-            get { return this._Description; }
-            set
-            {
-                if (this._Description != value)
-                {
-                    this.OnDescriptionChanging(ref value);
-                    this._Description = value;
-                    this.OnDescriptionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
-        partial void OnDescriptionChanged();
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollection<string> ListGuidProperties // Property.tt Line: 8
-        { 
-            get { return this._ListGuidProperties; }
-            set
-            {
-                if (this._ListGuidProperties != value)
-                {
-                    this.OnListGuidPropertiesChanging(value);
-                    _ListGuidProperties = value;
-                    this.OnListGuidPropertiesChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollection<string> _ListGuidProperties;
-        IReadOnlyList<string> IFormDataGrid.ListGuidProperties { get { return (this as FormDataGrid).ListGuidProperties; } } // Property.tt Line: 26
-        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
-        partial void OnListGuidPropertiesChanged();
-        #endregion Properties
-    }
-    public partial class FormCatalogListSettingsValidator : ValidatorBase<FormCatalogListSettings, FormCatalogListSettingsValidator> { } // Class.tt Line: 6
-    public partial class FormCatalogListSettings : VmValidatableWithSeverityAndAttributes<FormCatalogListSettings, FormCatalogListSettingsValidator>, IFormCatalogListSettings // Class.tt Line: 7
-    {
-        #region CTOR
-        public FormCatalogListSettings() 
-            : base(FormCatalogListSettingsValidator.Validator) // Class.tt Line: 45
-        {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
-        }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static FormCatalogListSettings Clone(IFormCatalogListSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -23153,22 +22015,56 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsUseFolderDesc;
         partial void OnIsUseFolderDescChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsUseFolderDescChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class FormCatalogEditSettingsValidator : ValidatorBase<FormCatalogEditSettings, FormCatalogEditSettingsValidator> { } // Class.tt Line: 6
-    public partial class FormCatalogEditSettings : VmValidatableWithSeverityAndAttributes<FormCatalogEditSettings, FormCatalogEditSettingsValidator>, IFormCatalogEditSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class FormCatalogEditSettingsValidator : ValidatorBase<FormCatalogEditSettings, FormCatalogEditSettingsValidator> { } // Class.tt Line: 14
+    public partial class FormCatalogEditSettings : BaseSettings<FormCatalogEditSettings, FormCatalogEditSettingsValidator>, IFormCatalogEditSettings // Class.tt Line: 15
     {
         #region CTOR
-        public FormCatalogEditSettings() 
-            : base(FormCatalogEditSettingsValidator.Validator) // Class.tt Line: 45
+        public FormCatalogEditSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public FormCatalogEditSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, FormCatalogEditSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static FormCatalogEditSettings Clone(IFormCatalogEditSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -23264,30 +22160,59 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsDummy;
         partial void OnIsDummyChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsDummyChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class FormValidator : ValidatorBase<Form, FormValidator> { } // Class.tt Line: 6
-    public partial class Form : ConfigObjectVmGenSettings<Form, FormValidator>, IComparable<Form>, IConfigAcceptVisitor, IForm // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class FormValidator : ValidatorBase<Form, FormValidator> { } // Class.tt Line: 14
+    public partial class Form : ConfigObjectVmGenSettings<Form, FormValidator>, IComparable<Form>, IConfigAcceptVisitor, IForm // Class.tt Line: 15
     {
         #region CTOR
-        public Form() : this(default(ITreeConfigNode))
+        public Form() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Form(ITreeConfigNode parent) 
-            : base(parent, FormValidator.Validator) // Class.tt Line: 15
+        public Form(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, FormValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.CatalogListSettings = new FormCatalogListSettings(); // Class.tt Line: 31
-            this.CatalogEditSettings = new FormCatalogEditSettings(); // Class.tt Line: 31
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.CatalogListSettings = new FormCatalogListSettings(this); // Class.tt Line: 39
+            this.CatalogEditSettings = new FormCatalogEditSettings(this); // Class.tt Line: 39
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -23783,7 +22708,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -23800,33 +22725,42 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_form
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class GroupListReportsValidator : ValidatorBase<GroupListReports, GroupListReportsValidator> { } // Class.tt Line: 6
-    public partial class GroupListReports : ConfigObjectVmGenSettings<GroupListReports, GroupListReportsValidator>, IComparable<GroupListReports>, IConfigAcceptVisitor, IGroupListReports // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GroupListReportsValidator : ValidatorBase<GroupListReports, GroupListReportsValidator> { } // Class.tt Line: 14
+    public partial class GroupListReports : ConfigObjectVmGenSettings<GroupListReports, GroupListReportsValidator>, IComparable<GroupListReports>, IConfigAcceptVisitor, IGroupListReports // Class.tt Line: 15
     {
         #region CTOR
-        public GroupListReports() : this(default(ITreeConfigNode))
+        public GroupListReports() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public GroupListReports(ITreeConfigNode parent) 
-            : base(parent, GroupListReportsValidator.Validator) // Class.tt Line: 15
+        public GroupListReports(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GroupListReportsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListReports = new ConfigNodesCollection<Report>(this); // Class.tt Line: 27
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListReports = new ConfigNodesCollection<Report>(this); // Class.tt Line: 36
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -24206,7 +23140,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -24223,30 +23157,39 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
         #endregion Properties
     }
-    public partial class ReportValidator : ValidatorBase<Report, ReportValidator> { } // Class.tt Line: 6
-    public partial class Report : ConfigObjectVmGenSettings<Report, ReportValidator>, IComparable<Report>, IConfigAcceptVisitor, IReport // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class ReportValidator : ValidatorBase<Report, ReportValidator> { } // Class.tt Line: 14
+    public partial class Report : ConfigObjectVmGenSettings<Report, ReportValidator>, IComparable<Report>, IConfigAcceptVisitor, IReport // Class.tt Line: 15
     {
         #region CTOR
-        public Report() : this(default(ITreeConfigNode))
+        public Report() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
+            this.OnCreating();
         }
-        public Report(ITreeConfigNode parent) 
-            : base(parent, ReportValidator.Validator) // Class.tt Line: 15
+        public Report(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, ReportValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 27
-            this.OnInit();
+            this.OnCreating();
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 36
+            this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         
@@ -24578,7 +23521,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        override public bool IsChanged // Class.tt Line: 103
+        public override bool IsChanged // Class.tt Line: 108
         { 
             get { return this._IsChanged; }
             set
@@ -24595,25 +23538,33 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 120
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); }
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 127
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 132 proto_report
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
-    public partial class ModelRowValidator : ValidatorBase<ModelRow, ModelRowValidator> { } // Class.tt Line: 6
-    public partial class ModelRow : VmBindable, IModelRow // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: False 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: False 
+    //  IsValidatableBase: False 
+    public partial class ModelRowValidator : ValidatorBase<ModelRow, ModelRowValidator> { } // Class.tt Line: 14
+    public partial class ModelRow : VmBindable, IModelRow // Class.tt Line: 15
     {
         #region CTOR
-        public ModelRow() // Class.tt Line: 45
+        public ModelRow() // Class.tt Line: 50
         {
             this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
+            this.OnCreating();
+            this.OnCreated();
             this.IsValidate = true;
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static ModelRow Clone(IModelRow from, bool isDeep = true) // Clone.tt Line: 27
@@ -24795,13 +23746,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_group_list_journals p);
         void Visit(Proto.Config.proto_journal p);
         void Visit(Proto.Config.proto_group_list_forms p);
-        void Visit(Proto.Config.proto_form_grid_system p);
-        void Visit(Proto.Config.proto_form_grid_system_row p);
-        void Visit(Proto.Config.proto_form_grid_system_column p);
-        void Visit(Proto.Config.proto_form_block p);
-        void Visit(Proto.Config.proto_form_tab_control_tab p);
-        void Visit(Proto.Config.proto_form_tab_control p);
-        void Visit(Proto.Config.proto_form_data_grid p);
         void Visit(Proto.Config.proto_form_catalog_list_settings p);
         void Visit(Proto.Config.proto_form_catalog_edit_settings p);
         void Visit(Proto.Config.proto_form p);
@@ -25300,92 +24244,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListForms p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisit(FormGridSystem p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-            foreach (var t in p.ListRows) // ValidationVisitor.tt Line: 38
-                p.ValidateSubAndCollectErrors(t);
-            foreach (var t in p.ListFormBlocks) // ValidationVisitor.tt Line: 38
-                p.ValidateSubAndCollectErrors(t);
-        }
-        protected override void OnVisitEnd(FormGridSystem p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisit(FormGridSystemRow p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-            foreach (var t in p.ListColumns) // ValidationVisitor.tt Line: 38
-                p.ValidateSubAndCollectErrors(t);
-        }
-        protected override void OnVisitEnd(FormGridSystemRow p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisit(FormGridSystemColumn p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-            foreach (var t in p.ListRows) // ValidationVisitor.tt Line: 38
-                p.ValidateSubAndCollectErrors(t);
-            foreach (var t in p.ListFormBlocks) // ValidationVisitor.tt Line: 38
-                p.ValidateSubAndCollectErrors(t);
-        }
-        protected override void OnVisitEnd(FormGridSystemColumn p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisit(FormBlock p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-            p.ValidateSubAndCollectErrors(p.TabControl); // ValidationVisitor.tt Line: 41
-            p.ValidateSubAndCollectErrors(p.DataGrid); // ValidationVisitor.tt Line: 41
-        }
-        protected override void OnVisitEnd(FormBlock p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisit(FormTabControlTab p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-            foreach (var t in p.ListFormBlocks) // ValidationVisitor.tt Line: 38
-                p.ValidateSubAndCollectErrors(t);
-        }
-        protected override void OnVisitEnd(FormTabControlTab p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisit(FormTabControl p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-            foreach (var t in p.ListTabs) // ValidationVisitor.tt Line: 38
-                p.ValidateSubAndCollectErrors(t);
-        }
-        protected override void OnVisitEnd(FormTabControl p) // ValidationVisitor.tt Line: 48
-        {
-            Contract.Requires(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisit(FormDataGrid p) // ValidationVisitor.tt Line: 15
-        {
-            Contract.Requires(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-        }
-        protected override void OnVisitEnd(FormDataGrid p) // ValidationVisitor.tt Line: 48
         {
             Contract.Requires(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
@@ -25939,76 +24797,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(GroupListForms p) { }
         protected virtual void OnVisitEnd(GroupListForms p) { }
-        public void Visit(FormGridSystem p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(FormGridSystem p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(FormGridSystem p) { }
-        protected virtual void OnVisitEnd(FormGridSystem p) { }
-        public void Visit(FormGridSystemRow p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(FormGridSystemRow p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(FormGridSystemRow p) { }
-        protected virtual void OnVisitEnd(FormGridSystemRow p) { }
-        public void Visit(FormGridSystemColumn p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(FormGridSystemColumn p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(FormGridSystemColumn p) { }
-        protected virtual void OnVisitEnd(FormGridSystemColumn p) { }
-        public void Visit(FormBlock p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(FormBlock p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(FormBlock p) { }
-        protected virtual void OnVisitEnd(FormBlock p) { }
-        public void Visit(FormTabControlTab p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(FormTabControlTab p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(FormTabControlTab p) { }
-        protected virtual void OnVisitEnd(FormTabControlTab p) { }
-        public void Visit(FormTabControl p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(FormTabControl p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(FormTabControl p) { }
-        protected virtual void OnVisitEnd(FormTabControl p) { }
-        public void Visit(FormDataGrid p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(FormDataGrid p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(FormDataGrid p) { }
-        protected virtual void OnVisitEnd(FormDataGrid p) { }
         public void Visit(FormCatalogListSettings p)
         {
             this.OnVisit(p);

@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public ConfigNodesCollection<AppSolution> Children { get { return this.ListAppSolutions; } }
 
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = "Apps";
             this.IsEditable = false;

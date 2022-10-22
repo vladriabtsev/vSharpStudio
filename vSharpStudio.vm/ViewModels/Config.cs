@@ -52,7 +52,7 @@ namespace vSharpStudio.vm.ViewModels
         protected IMigration _migration { get; set; }
         public string ConnectionString { get; set; }
         public string DebugTag;
-        partial void OnInitBegin()
+        partial void OnCreating()
         {
             _logger.Trace();
             this._DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true, true,
@@ -61,7 +61,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
         //protected override string GetNodeIconName() { return "icon3DScene"; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             _logger.Trace();
             if (string.IsNullOrWhiteSpace(this._Name))
@@ -99,7 +99,7 @@ namespace vSharpStudio.vm.ViewModels
         public Config(ConfigShortHistory history)
             : this((ITreeConfigNode)null)
         {
-            this.OnInitBegin();
+            this.OnCreating();
         }
         public static Config Clone(ConfigShortHistory parent, IConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
@@ -109,13 +109,13 @@ namespace vSharpStudio.vm.ViewModels
         public Config(Proto.Config.proto_config pconfig)
             : this((ITreeConfigNode)null)
         {
-            this.OnInitBegin();
+            this.OnCreating();
             Config.ConvertToVM(pconfig, this);
         }
         public Config(string configJson)
             : this((ITreeConfigNode)null)
         {
-            this.OnInitBegin();
+            this.OnCreating();
             var pconfig = Proto.Config.proto_config.Parser.WithDiscardUnknownFields(true).ParseJson(configJson);
             Config.ConvertToVM(pconfig, this);
         }

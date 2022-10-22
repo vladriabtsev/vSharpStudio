@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
         public ConfigNodesCollection<Role> Children { get { return this.ListRoles; } }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = "Roles";
             this.IsEditable = false;

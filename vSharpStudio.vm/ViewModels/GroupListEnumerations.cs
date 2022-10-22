@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public ConfigNodesCollection<Enumeration> Children { get { return this.ListEnumerations; } }
 
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = Defaults.EnumerationsGroupName;
             this.IsEditable = false;

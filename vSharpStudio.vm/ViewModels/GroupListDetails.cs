@@ -52,7 +52,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         public ConfigNodesCollection<Detail> Children { get { return this.ListDetails; } }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = "Details";
             this.IsEditable = false;

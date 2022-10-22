@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public ConfigNodesCollection<Plugin> Children { get { return this.ListPlugins; } }
 
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = "Plugins";
             this.IsEditable = false;

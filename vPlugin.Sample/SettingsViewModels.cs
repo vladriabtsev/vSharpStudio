@@ -24,20 +24,34 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     {
         void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor);
     }
-    public partial class DbConnectionStringSettingsValidator : ValidatorBase<DbConnectionStringSettings, DbConnectionStringSettingsValidator> { } // Class.tt Line: 6
-    public partial class DbConnectionStringSettings : VmValidatableWithSeverity<DbConnectionStringSettings, DbConnectionStringSettingsValidator>, IDbConnectionStringSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class DbConnectionStringSettingsValidator : ValidatorBase<DbConnectionStringSettings, DbConnectionStringSettingsValidator> { } // Class.tt Line: 14
+    public partial class DbConnectionStringSettings : BaseSettings<DbConnectionStringSettings, DbConnectionStringSettingsValidator>, IDbConnectionStringSettings // Class.tt Line: 15
     {
         #region CTOR
-        public DbConnectionStringSettings() 
-            : base(DbConnectionStringSettingsValidator.Validator) // Class.tt Line: 45
+        public DbConnectionStringSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public DbConnectionStringSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, DbConnectionStringSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static DbConnectionStringSettings Clone(IDbConnectionStringSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -130,22 +144,56 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private string _StringSettings = string.Empty;
         partial void OnStringSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnStringSettingsChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class PluginsGroupSolutionSettingsValidator : ValidatorBase<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator> { } // Class.tt Line: 6
-    public partial class PluginsGroupSolutionSettings : VmValidatableWithSeverity<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator>, IPluginsGroupSolutionSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class PluginsGroupSolutionSettingsValidator : ValidatorBase<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator> { } // Class.tt Line: 14
+    public partial class PluginsGroupSolutionSettings : BaseSettings<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator>, IPluginsGroupSolutionSettings // Class.tt Line: 15
     {
         #region CTOR
-        public PluginsGroupSolutionSettings() 
-            : base(PluginsGroupSolutionSettingsValidator.Validator) // Class.tt Line: 45
+        public PluginsGroupSolutionSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public PluginsGroupSolutionSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, PluginsGroupSolutionSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static PluginsGroupSolutionSettings Clone(IPluginsGroupSolutionSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -238,22 +286,56 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private bool _IsGroupParam1;
         partial void OnIsGroupParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsGroupParam1Changed();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class PluginsGroupProjectSettingsValidator : ValidatorBase<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator> { } // Class.tt Line: 6
-    public partial class PluginsGroupProjectSettings : VmValidatableWithSeverity<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator>, IPluginsGroupProjectSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class PluginsGroupProjectSettingsValidator : ValidatorBase<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator> { } // Class.tt Line: 14
+    public partial class PluginsGroupProjectSettings : BaseSettings<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator>, IPluginsGroupProjectSettings // Class.tt Line: 15
     {
         #region CTOR
-        public PluginsGroupProjectSettings() 
-            : base(PluginsGroupProjectSettingsValidator.Validator) // Class.tt Line: 45
+        public PluginsGroupProjectSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public PluginsGroupProjectSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, PluginsGroupProjectSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static PluginsGroupProjectSettings Clone(IPluginsGroupProjectSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -346,22 +428,56 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private bool _IsGroupProjectParam1;
         partial void OnIsGroupProjectParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsGroupProjectParam1Changed();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class GeneratorDbSchemaSettingsValidator : ValidatorBase<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator> { } // Class.tt Line: 6
-    public partial class GeneratorDbSchemaSettings : VmValidatableWithSeverity<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator>, IGeneratorDbSchemaSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GeneratorDbSchemaSettingsValidator : ValidatorBase<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator> { } // Class.tt Line: 14
+    public partial class GeneratorDbSchemaSettings : BaseSettings<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator>, IGeneratorDbSchemaSettings // Class.tt Line: 15
     {
         #region CTOR
-        public GeneratorDbSchemaSettings() 
-            : base(GeneratorDbSchemaSettingsValidator.Validator) // Class.tt Line: 45
+        public GeneratorDbSchemaSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public GeneratorDbSchemaSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GeneratorDbSchemaSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static GeneratorDbSchemaSettings Clone(IGeneratorDbSchemaSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -502,22 +618,56 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private string _SchemaParam3 = string.Empty;
         partial void OnSchemaParam3Changing(ref string to); // Property.tt Line: 79
         partial void OnSchemaParam3Changed();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class GeneratorDbSchemaNodeSettingsValidator : ValidatorBase<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator> { } // Class.tt Line: 6
-    public partial class GeneratorDbSchemaNodeSettings : VmValidatableWithSeverity<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator>, IGeneratorDbSchemaNodeSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GeneratorDbSchemaNodeSettingsValidator : ValidatorBase<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator> { } // Class.tt Line: 14
+    public partial class GeneratorDbSchemaNodeSettings : BaseSettings<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator>, IGeneratorDbSchemaNodeSettings // Class.tt Line: 15
     {
         #region CTOR
-        public GeneratorDbSchemaNodeSettings() 
-            : base(GeneratorDbSchemaNodeSettingsValidator.Validator) // Class.tt Line: 45
+        public GeneratorDbSchemaNodeSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public GeneratorDbSchemaNodeSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GeneratorDbSchemaNodeSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static GeneratorDbSchemaNodeSettings Clone(IGeneratorDbSchemaNodeSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -682,22 +832,56 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private bool _IsCatalogFormParam1;
         partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsCatalogFormParam1Changed();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class GeneratorDbAccessSettingsValidator : ValidatorBase<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator> { } // Class.tt Line: 6
-    public partial class GeneratorDbAccessSettings : VmValidatableWithSeverity<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator>, IGeneratorDbAccessSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GeneratorDbAccessSettingsValidator : ValidatorBase<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator> { } // Class.tt Line: 14
+    public partial class GeneratorDbAccessSettings : BaseSettings<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator>, IGeneratorDbAccessSettings // Class.tt Line: 15
     {
         #region CTOR
-        public GeneratorDbAccessSettings() 
-            : base(GeneratorDbAccessSettingsValidator.Validator) // Class.tt Line: 45
+        public GeneratorDbAccessSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public GeneratorDbAccessSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GeneratorDbAccessSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static GeneratorDbAccessSettings Clone(IGeneratorDbAccessSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -886,22 +1070,56 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private bool _IsGenerateNotValidCode;
         partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsGenerateNotValidCodeChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
-    public partial class GeneratorDbAccessNodeSettingsValidator : ValidatorBase<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator> { } // Class.tt Line: 6
-    public partial class GeneratorDbAccessNodeSettings : VmValidatableWithSeverity<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator>, IGeneratorDbAccessNodeSettings // Class.tt Line: 7
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    public partial class GeneratorDbAccessNodeSettingsValidator : ValidatorBase<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator> { } // Class.tt Line: 14
+    public partial class GeneratorDbAccessNodeSettings : BaseSettings<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator>, IGeneratorDbAccessNodeSettings // Class.tt Line: 15
     {
         #region CTOR
-        public GeneratorDbAccessNodeSettings() 
-            : base(GeneratorDbAccessNodeSettingsValidator.Validator) // Class.tt Line: 45
+        public GeneratorDbAccessNodeSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
         {
-            this.IsValidate = false;
-            this.OnInitBegin();
-            this.OnInit();
-            this.IsValidate = true;
+            this.OnCreating();
         }
-        partial void OnInitBegin();
-        partial void OnInit();
+        public GeneratorDbAccessNodeSettings(ITreeConfigNode parent) // Class.tt Line: 23
+            : base(parent, GeneratorDbAccessNodeSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
         #endregion CTOR
         #region Procedures
         public static GeneratorDbAccessNodeSettings Clone(IGeneratorDbAccessNodeSettings from, bool isDeep = true) // Clone.tt Line: 27
@@ -1066,6 +1284,26 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private bool _IsCatalogFormParam1;
         partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsCatalogFormParam1Changed();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
         #endregion Properties
     }
     

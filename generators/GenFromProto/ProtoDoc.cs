@@ -111,35 +111,43 @@ namespace GenFromProto
             {
                 this.IsDefaultBase = false;
                 string s = this.BaseClass.Substring(this.BaseClass.IndexOf(':') + 1).TrimStart();
-                if (s.Contains("VmBindable"))
-                    this.IsBindableBase = true;
-                if (s.Contains("VmEditable"))
-                {
-                    this.IsBindableBase = true;
-                    this.IsEditableBase = true;
-                }
-                if (s.Contains("VmValidatable") || s.Contains("VmValidatableWithSeverityAndAttributes")
-                    || s.Contains("VmValidatableWithSeverity"))
+                if (s == "VmValidatableWithSeverityAndAttributes")
                 {
                     this.IsBindableBase = true;
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
                 }
-                if (s.Contains("ConfigObjectCommonBase"))
+                else if (s == "VmValidatableWithSeverity")
+                {
+                    this.IsBindableBase = true;
+                    this.IsEditableBase = true;
+                    this.IsValidatableBase = true;
+                }
+                else if (s == "BaseSettings")
+                {
+                    this.IsBindableBase = true;
+                    this.IsEditableBase = true;
+                    this.IsValidatableBase = true;
+                    this.IsWithParent = true;
+                    //this.IsValidatableWithSeverity = true;
+                }
+                else if (s == "ConfigObjectCommonBase")
                 {
                     this.IsConfigObjectBase = true;
                     this.IsBindableBase = true;
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
+                    this.IsWithParent = true;
                 }
-                if (s.Contains("ConfigObjectVmBase"))
+                else if (s == "ConfigObjectVmBase")
                 {
                     this.IsConfigObjectBase = true;
                     this.IsBindableBase = true;
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
+                    this.IsWithParent = true;
                 }
-                if (s.Contains("ConfigObjectVmGenSettings"))
+                else if (s == "ConfigObjectVmGenSettings")
                 {
                     this.IsConfigObjectBase = true;
                     this.IsGenSettings = true;
@@ -147,6 +155,25 @@ namespace GenFromProto
                     this.IsBindableBase = true;
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
+                    this.IsWithParent = true;
+                }
+                else if (s == "VmBindable")
+                {
+                    this.IsBindableBase = true;
+                    this.IsWithParent = false;
+                }
+                else if (s == "VmEditable")
+                {
+                    this.IsBindableBase = true;
+                    this.IsEditableBase = true;
+                    this.IsWithParent = false;
+                }
+                else if (s == "VmValidatable")
+                {
+                    this.IsBindableBase = true;
+                    this.IsEditableBase = true;
+                    this.IsValidatableBase = true;
+                    this.IsWithParent = false;
                 }
             }
             else
@@ -157,6 +184,7 @@ namespace GenFromProto
                 this.IsBindableBase = true;
                 this.IsEditableBase = true;
                 this.IsValidatableBase = true;
+                this.IsWithParent = true;
             }
         }
 
@@ -218,6 +246,7 @@ namespace GenFromProto
         public bool IsDefaultBase = true;
         public bool IsConfigObjectBase = false;
         public bool IsGenSettings = false;
+        public bool IsWithParent = false;
         public bool IsBindableBase = false;
         public bool IsEditableBase = false;
         public bool IsValidatableBase = false;

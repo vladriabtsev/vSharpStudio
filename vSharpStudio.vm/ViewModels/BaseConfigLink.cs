@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
         //protected override string GetNodeIconName() { return "icon3DScene"; }
-        partial void OnInit()
+        partial void OnCreated()
         {
         }
         public void OnAdded()

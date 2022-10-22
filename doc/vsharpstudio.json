@@ -223,44 +223,6 @@
           ]
         },
         {
-          "name": "proto_enum_hidden_type",
-          "longName": "proto_enum_hidden_type",
-          "fullName": "proto_config.proto_enum_hidden_type",
-          "description": "",
-          "values": [
-            {
-              "name": "NeverHide",
-              "number": "0",
-              "description": "@attr [DisplayName(\"Never Hide\")]\n@attr [Description(\"Never Hide\")]"
-            },
-            {
-              "name": "Xs",
-              "number": "1",
-              "description": "@attr [DisplayName(\"Xs\")]\n@attr [Description(\"Hide on Extra small screen\")]"
-            },
-            {
-              "name": "SmAndDown",
-              "number": "2",
-              "description": "@attr [DisplayName(\"SmAndDown\")]\n@attr [Description(\"Hide on Small screen and smaller\")]"
-            },
-            {
-              "name": "MdAndDown",
-              "number": "3",
-              "description": "@attr [DisplayName(\"MdAndDown\")]\n@attr [Description(\"Hide on Medium screen and smaller\")]"
-            },
-            {
-              "name": "LgAndDown",
-              "number": "4",
-              "description": "@attr [DisplayName(\"LgAndDown\")]\n@attr [Description(\"Hide on Large screen and smaller\")]"
-            },
-            {
-              "name": "XlAndDown",
-              "number": "5",
-              "description": "@attr [DisplayName(\"XlAndDown\")]\n@attr [Description(\"Hide on Extra Large screen and smaller\")]"
-            }
-          ]
-        },
-        {
           "name": "proto_enum_primary_key_type",
           "longName": "proto_enum_primary_key_type",
           "fullName": "proto_config.proto_enum_primary_key_type",
@@ -392,7 +354,7 @@
           "name": "proto_app_db_settings",
           "longName": "proto_app_db_settings",
           "fullName": "proto_config.proto_app_db_settings",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -1174,7 +1136,7 @@
             },
             {
               "name": "max_name_length",
-              "description": "@attr [PropertyOrderAttribute(28)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item name length. If zero, than unlimited length\")]",
+              "description": "@attr [PropertyOrderAttribute(28)]\n@attr [DisplayName(\"Name Length\")]\n@attr [Description(\"Maximum catalog item name length. If zero, than unlimited length\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1194,7 +1156,7 @@
             },
             {
               "name": "max_description_length",
-              "description": "@attr [PropertyOrderAttribute(30)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum catalog item description length. If zero, than unlimited length\")]",
+              "description": "@attr [PropertyOrderAttribute(30)]\n@attr [DisplayName(\"Desc Length\")]\n@attr [Description(\"Maximum catalog item description length. If zero, than unlimited length\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1408,7 +1370,7 @@
           "name": "proto_catalog_code_property_settings",
           "longName": "proto_catalog_code_property_settings",
           "fullName": "proto_config.proto_catalog_code_property_settings",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -1831,7 +1793,7 @@
           "name": "proto_config_short_history",
           "longName": "proto_config_short_history",
           "fullName": "proto_config.proto_config_short_history",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -2063,7 +2025,7 @@
           "name": "proto_data_type",
           "longName": "proto_data_type",
           "fullName": "proto_config.proto_data_type",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -2626,7 +2588,7 @@
           "name": "proto_document_code_property_settings",
           "longName": "proto_document_code_property_settings",
           "fullName": "proto_config.proto_document_code_property_settings",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3067,51 +3029,10 @@
           ]
         },
         {
-          "name": "proto_form_block",
-          "longName": "proto_form_block",
-          "fullName": "proto_config.proto_form_block",
-          "description": "@base VmValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "tab_control",
-              "description": "",
-              "label": "",
-              "type": "proto_form_tab_control",
-              "longType": "proto_form_tab_control",
-              "fullType": "proto_config.proto_form_tab_control",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "data_grid",
-              "description": "",
-              "label": "",
-              "type": "proto_form_data_grid",
-              "longType": "proto_form_data_grid",
-              "fullType": "proto_config.proto_form_data_grid",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "proto_form_catalog_edit_settings",
           "longName": "proto_form_catalog_edit_settings",
           "fullName": "proto_config.proto_form_catalog_edit_settings",
-          "description": "@base VmValidatableWithSeverityAndAttributes",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3132,7 +3053,7 @@
           "name": "proto_form_catalog_list_settings",
           "longName": "proto_form_catalog_list_settings",
           "fullName": "proto_config.proto_form_catalog_list_settings",
-          "description": "@base VmValidatableWithSeverityAndAttributes",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3194,382 +3115,6 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_form_data_grid",
-          "longName": "proto_form_data_grid",
-          "fullName": "proto_config.proto_form_data_grid",
-          "description": "@base VmValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_guid_properties",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_form_grid_system",
-          "longName": "proto_form_grid_system",
-          "fullName": "proto_config.proto_form_grid_system",
-          "description": "@base VmValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_rows",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_form_grid_system_row",
-              "longType": "proto_form_grid_system_row",
-              "fullType": "proto_config.proto_form_grid_system_row",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_guid_properties",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_form_blocks",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_form_block",
-              "longType": "proto_form_block",
-              "fullType": "proto_config.proto_form_block",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_form_grid_system_column",
-          "longName": "proto_form_grid_system_column",
-          "fullName": "proto_config.proto_form_grid_system_column",
-          "description": "@base VmValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "hide_type",
-              "description": "@attr [DisplayName(\"When Hide\")]\n@attr [Description(\"Condition of hiding base on screen size\")]",
-              "label": "",
-              "type": "proto_enum_hidden_type",
-              "longType": "proto_enum_hidden_type",
-              "fullType": "proto_config.proto_enum_hidden_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "width_xs",
-              "description": "@attr [DisplayName(\"XS\")]\n@attr [Description(\"Extra small. Small to large phone. Range: \u003c 600px\")]",
-              "label": "",
-              "type": "UInt32Value",
-              "longType": "google.protobuf.UInt32Value",
-              "fullType": "google.protobuf.UInt32Value",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "width_sm",
-              "description": "@attr [DisplayName(\"SM\")]\n@attr [Description(\"Small. Small to medium tablet. Range: 600px \u003e \u003c 960px\")]",
-              "label": "",
-              "type": "UInt32Value",
-              "longType": "google.protobuf.UInt32Value",
-              "fullType": "google.protobuf.UInt32Value",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "width_md",
-              "description": "@attr [DisplayName(\"MD\")]\n@attr [Description(\"Medium. Large tablet to laptop. Range: 960px \u003e \u003c 1280px\")]",
-              "label": "",
-              "type": "UInt32Value",
-              "longType": "google.protobuf.UInt32Value",
-              "fullType": "google.protobuf.UInt32Value",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "width_lg",
-              "description": "@attr [DisplayName(\"LG\")]\n@attr [Description(\"Large. Desktop. Range: 1280px \u003e \u003c 1920px\")]",
-              "label": "",
-              "type": "UInt32Value",
-              "longType": "google.protobuf.UInt32Value",
-              "fullType": "google.protobuf.UInt32Value",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "width_xl",
-              "description": "@attr [DisplayName(\"XL\")]\n@attr [Description(\"Extra Large. HD and 4k. Range: 1920px \u003e \u003c 2560px\")]",
-              "label": "",
-              "type": "UInt32Value",
-              "longType": "google.protobuf.UInt32Value",
-              "fullType": "google.protobuf.UInt32Value",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "width_xx",
-              "description": "@attr [DisplayName(\"XX\")]\n@attr [Description(\"Extra Extra Large. 4k+ and ultra-wide. Range: \u003e= 2560px\")]",
-              "label": "",
-              "type": "UInt32Value",
-              "longType": "google.protobuf.UInt32Value",
-              "fullType": "google.protobuf.UInt32Value",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_rows",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_form_grid_system_row",
-              "longType": "proto_form_grid_system_row",
-              "fullType": "proto_config.proto_form_grid_system_row",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_guid_properties",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_form_blocks",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_form_block",
-              "longType": "proto_form_block",
-              "fullType": "proto_config.proto_form_block",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_form_grid_system_row",
-          "longName": "proto_form_grid_system_row",
-          "fullName": "proto_config.proto_form_grid_system_row",
-          "description": "@base VmValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_columns",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_form_grid_system_column",
-              "longType": "proto_form_grid_system_column",
-              "fullType": "proto_config.proto_form_grid_system_column",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_form_tab_control",
-          "longName": "proto_form_tab_control",
-          "fullName": "proto_config.proto_form_tab_control",
-          "description": "@base VmValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_tabs",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_form_tab_control_tab",
-              "longType": "proto_form_tab_control_tab",
-              "fullType": "proto_config.proto_form_tab_control_tab",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_guid_properties",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_form_tab_control_tab",
-          "longName": "proto_form_tab_control_tab",
-          "fullName": "proto_config.proto_form_tab_control_tab",
-          "description": "@base VmValidatableWithSeverity",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab name\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab description\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_guid_properties",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_form_blocks",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_form_block",
-              "longType": "proto_form_block",
-              "fullType": "proto_config.proto_form_block",
               "ismap": false,
               "defaultValue": ""
             }
@@ -5832,7 +5377,7 @@
           "name": "proto_plugin_generator_node_default_settings",
           "longName": "proto_plugin_generator_node_default_settings",
           "fullName": "proto_config.proto_plugin_generator_node_default_settings",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -5934,7 +5479,7 @@
           "name": "proto_plugin_generator_settings",
           "longName": "proto_plugin_generator_settings",
           "fullName": "proto_config.proto_plugin_generator_settings",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -5995,7 +5540,7 @@
           "name": "proto_plugin_group_generators_default_settings",
           "longName": "proto_plugin_group_generators_default_settings",
           "fullName": "proto_config.proto_plugin_group_generators_default_settings",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -6560,7 +6105,7 @@
           "name": "proto_settings_config",
           "longName": "proto_settings_config",
           "fullName": "proto_config.proto_settings_config",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -6621,7 +6166,7 @@
           "name": "proto_user_settings",
           "longName": "proto_user_settings",
           "fullName": "proto_config.proto_user_settings",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -6642,7 +6187,7 @@
           "name": "proto_user_settings_opened_config",
           "longName": "proto_user_settings_opened_config",
           "fullName": "proto_config.proto_user_settings_opened_config",
-          "description": "@base VmValidatableWithSeverity",
+          "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],

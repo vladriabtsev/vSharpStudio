@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         new public string IconName { get { return "iconWindowsForm"; } }
         //protected override string GetNodeIconName() { return "iconWindowsForm"; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.IsIncludableInModels = true;

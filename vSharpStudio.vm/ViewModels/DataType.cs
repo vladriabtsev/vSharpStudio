@@ -18,7 +18,11 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("DataType:{DataType.GetTypeDesc(this),nq}")]
     public partial class DataType : IParent
     {
-        partial void OnInit()
+        partial void OnCreating()
+        {
+            this.ListObjectGuids = new ObservableCollection<string>();
+        }
+        partial void OnCreated()
         {
             this.Length = 10;
             this.DataTypeEnum = EnumDataType.STRING;
@@ -38,8 +42,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Accuracy = 0;
             this.IsPositive = isPositive;
         }
-        public DataType(EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null)
-        : this()
+        public DataType(EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this()
         {
             this.DataTypeEnum = type;
             switch (this.DataTypeEnum)
@@ -67,8 +70,7 @@ namespace vSharpStudio.vm.ViewModels
                     throw new ArgumentException();
             }
         }
-        public DataType(EnumDataType type, string guidOfType)
-            : this()
+        public DataType(EnumDataType type, string guidOfType) : this()
         {
             this.DataTypeEnum = type;
             this.ObjectGuid = guidOfType;
@@ -490,7 +492,7 @@ namespace vSharpStudio.vm.ViewModels
                 //    break;
                 case EnumDataType.DATETIMELOCAL:
                 case EnumDataType.DATETIMEUTC:
-                //case EnumDataType.DATETIME:
+                    //case EnumDataType.DATETIME:
                     this.ClrTypeName = "DateTime";
                     break;
                 //case EnumDataType.DATETIMEOFFSET:

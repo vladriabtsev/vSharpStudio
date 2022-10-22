@@ -15,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
             sb.Append(this.ConfigPath);
             return sb.ToString();
         }
-        partial void OnInitBegin()
+        partial void OnCreating()
         {
             this._Guid = System.Guid.NewGuid().ToString();
         }

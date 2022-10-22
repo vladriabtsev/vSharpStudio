@@ -38,7 +38,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         new public string IconName { get { return "iconEnumerator"; } }
         //protected override string GetNodeIconName() { return "iconEnumerator"; }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this.IsIncludableInModels = true;
             this.DataTypeLength = 10;

@@ -37,14 +37,15 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         new public string IconName { get { return "iconWindowsForm"; } }
         //protected override string GetNodeIconName() { return "iconWindowsForm"; }
-        partial void OnInit()
+        //partial void OnCreate()
+        //{
+        //}
+        partial void OnCreated()
         {
             this.ListGuidViewProperties = new ObservableCollection<string>();
             this.ListGuidViewFolderProperties = new ObservableCollection<string>();
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.IsIncludableInModels = true;
-            this.CatalogListSettings.Parent = this;
-            this.CatalogEditSettings.Parent = this;
             HideUnusedProperties();
         }
         protected override void OnInitFromDto()

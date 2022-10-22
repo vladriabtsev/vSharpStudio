@@ -41,7 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         public ConfigNodesCollection<Form> Children { get { return this.ListForms; } }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = "Forms";
             this.IsEditable = false;

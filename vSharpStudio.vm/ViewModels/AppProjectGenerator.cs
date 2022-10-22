@@ -68,7 +68,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.DynamicMainConnStrSettings = this.PluginDbGenerator.GetConnectionStringMvvm(this.ConnStr);
             }
         }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._RelativePathToGenFolder = @"Generated\";
             this.ListGenerators = new SortedObservableCollection<PluginGenerator>();

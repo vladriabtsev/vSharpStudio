@@ -5,32 +5,32 @@ import "google/protobuf/wrappers.proto";
 package proto_plugin_sample;
 option csharp_namespace = "Proto.Plugin";
 
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_db_connection_string_settings {
     string string_settings = 1;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_plugins_group_solution_settings {
     bool is_group_param1 = 1;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_plugins_group_project_settings {
     bool is_group_project_param1 = 1;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_generator_db_schema_settings {
     bool is_schema_param1 = 1;
     google.protobuf.BoolValue is_schema_param2 = 2;
     string schema_param3 = 3;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_generator_db_schema_node_settings {
     bool is_param1 = 1;
     google.protobuf.BoolValue is_included = 2;
     bool is_constant_param1 = 3;
     bool is_catalog_form_param1 = 4;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_generator_db_access_settings {
     bool is_access_param1 = 1;
     google.protobuf.BoolValue is_access_param2 = 2;
@@ -38,7 +38,7 @@ message proto_generator_db_access_settings {
     google.protobuf.StringValue access_param4 = 4;
     bool is_generate_not_valid_code = 5;
 }
-// @base VmValidatableWithSeverity
+// @base BaseSettings
 message proto_generator_db_access_node_settings {
     bool is_param1 = 1;
     google.protobuf.BoolValue is_included = 2;

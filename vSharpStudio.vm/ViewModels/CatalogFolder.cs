@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
-        partial void OnInit()
+        partial void OnCreated()
         {
             this._Name = "Folder";
             this._Description = "Catalog items groups";

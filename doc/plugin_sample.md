@@ -30,7 +30,7 @@
 <a name="proto_plugin_sample.proto_db_connection_string_settings"></a>
 
 ### proto_db_connection_string_settings
-@base VmValidatableWithSeverity
+@base BaseSettings
 
 
 | Field | Type | Label | Description |
@@ -45,7 +45,7 @@
 <a name="proto_plugin_sample.proto_generator_db_access_node_settings"></a>
 
 ### proto_generator_db_access_node_settings
-@base VmValidatableWithSeverity
+@base BaseSettings
 
 
 | Field | Type | Label | Description |
@@ -63,7 +63,7 @@
 <a name="proto_plugin_sample.proto_generator_db_access_settings"></a>
 
 ### proto_generator_db_access_settings
-@base VmValidatableWithSeverity
+@base BaseSettings
 
 
 | Field | Type | Label | Description |
@@ -82,7 +82,7 @@
 <a name="proto_plugin_sample.proto_generator_db_schema_node_settings"></a>
 
 ### proto_generator_db_schema_node_settings
-@base VmValidatableWithSeverity
+@base BaseSettings
 
 
 | Field | Type | Label | Description |
@@ -100,7 +100,7 @@
 <a name="proto_plugin_sample.proto_generator_db_schema_settings"></a>
 
 ### proto_generator_db_schema_settings
-@base VmValidatableWithSeverity
+@base BaseSettings
 
 
 | Field | Type | Label | Description |
@@ -117,7 +117,7 @@
 <a name="proto_plugin_sample.proto_plugins_group_project_settings"></a>
 
 ### proto_plugins_group_project_settings
-@base VmValidatableWithSeverity
+@base BaseSettings
 
 
 | Field | Type | Label | Description |
@@ -132,7 +132,7 @@
 <a name="proto_plugin_sample.proto_plugins_group_solution_settings"></a>
 
 ### proto_plugins_group_solution_settings
-@base VmValidatableWithSeverity
+@base BaseSettings
 
 
 | Field | Type | Label | Description |
