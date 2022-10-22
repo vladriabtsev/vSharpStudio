@@ -9,6 +9,10 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class Journal : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public GroupListJournals ParentGroupListJournals { get { return (GroupListJournals)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListJournals ParentGroupListJournalsI { get { return (IGroupListJournals)this.Parent; } }
         public static readonly string DefaultName = "Journal";
 
         #region ITree

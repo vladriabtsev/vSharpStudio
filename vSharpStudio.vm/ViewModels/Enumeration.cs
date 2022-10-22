@@ -15,6 +15,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Enumeration:{Name,nq} Type:{Enumeration.GetTypeDesc(this),nq}")]
     public partial class Enumeration : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public GroupListEnumerations ParentGroupListEnumerations { get { return (GroupListEnumerations)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListEnumerations ParentGroupListEnumerationsI { get { return (IGroupListEnumerations)this.Parent; } }
         public static readonly string DefaultName = "Enumeration";
 
         #region ITree

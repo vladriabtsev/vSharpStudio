@@ -13,6 +13,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Plugin:{Name,nq} Count:{ListGenerators.Count,nq}")]
     public partial class Plugin : ICanGoLeft, ICanGoRight
     {
+        [BrowsableAttribute(false)]
+        public GroupListPlugins ParentGroupListPlugins { get { return (GroupListPlugins)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListPlugins ParentGroupListPluginsI { get { return (IGroupListPlugins)this.Parent; } }
         public ConfigNodesCollection<PluginGenerator> Children { get { return this.ListGenerators; } }
         public Plugin(ITreeConfigNode parent, IvPlugin plugin)
             : this(parent)

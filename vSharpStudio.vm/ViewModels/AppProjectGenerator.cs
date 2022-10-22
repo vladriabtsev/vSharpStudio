@@ -19,7 +19,9 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Generator";
         private Config cfg;
         [BrowsableAttribute(false)]
-        public IAppProject AppProject { get { return (IAppProject)this.Parent; } }
+        public AppProject ParentAppProject { get { return (AppProject)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IAppProject ParentAppProjectI { get { return (IAppProject)this.Parent; } }
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         //protected override string GetNodeIconName() { return "iconFolder"; }
         #region ITree
@@ -155,7 +157,7 @@ namespace vSharpStudio.vm.ViewModels
 
         private void _DynamicMainConnStrSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.GetConfig(), this.AppProject.AppSolution, this.AppProject, this);
+            this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.GetConfig(), this.ParentAppProject.ParentAppSolution, this.ParentAppProject, this);
             this.NotifyPropertyChanged(() => this.ConnStr);
         }
 
@@ -351,8 +353,8 @@ namespace vSharpStudio.vm.ViewModels
                 this.plugin = cfg.DicPlugins[this.PluginGuid];
             this.RestoreSettings();
             this.PluginGeneratorGroupGuid = this.PluginGenerator.GroupGeneratorsGuid;
-            (this.AppProject as AppProject).RestoreGroupSettings(this.PluginGenerator);
-            (this.AppProject.AppSolution as AppSolution).RestoreGroupSettings(this.PluginGenerator);
+            (this.ParentAppProject as AppProject).RestoreGroupSettings(this.PluginGenerator);
+            (this.ParentAppProject.ParentAppSolution as AppSolution).RestoreGroupSettings(this.PluginGenerator);
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
             {
                 p.AddNodeAppGenSettings(this.Guid);

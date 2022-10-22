@@ -14,6 +14,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListPlugins.Count,nq}")]
     public partial class GroupListPlugins : ITreeModel, ICanGoRight, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public Config ParentConfig { get { return (Config)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IConfig ParentConfigI { get { return (IConfig)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {

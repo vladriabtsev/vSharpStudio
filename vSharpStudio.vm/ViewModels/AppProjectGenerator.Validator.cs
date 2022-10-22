@@ -164,7 +164,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             }
 
-            var p = val.AppProject;
+            var p = val.ParentAppProject;
             foreach (var t in p.ListAppProjectGenerators)
             {
                 if ((val.Guid != t.Guid) && (val.Name == t.Name))

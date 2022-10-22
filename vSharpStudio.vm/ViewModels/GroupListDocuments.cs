@@ -15,6 +15,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListDocuments.Count,nq}")]
     public partial class GroupListDocuments : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public GroupDocuments ParentGroupDocuments { get { return (GroupDocuments)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupDocuments ParentGroupDocumentsI { get { return (IGroupDocuments)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {

@@ -13,6 +13,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("ConstantGroups:{Name,nq} Count:{ListConstantGroups.Count,nq}")]
     public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public Model ParentModel { get { return (Model)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IModel ParentModelI { get { return (IModel)this.Parent; } }
         public static readonly string DefaultName = "Settings";
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()

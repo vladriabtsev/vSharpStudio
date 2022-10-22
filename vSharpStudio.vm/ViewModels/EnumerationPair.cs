@@ -11,6 +11,10 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class EnumerationPair : IEditableNode, INodeGenSettings
     {
+        [BrowsableAttribute(false)]
+        public Enumeration ParentEnumeration { get { return (Enumeration) this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IEnumeration ParentEnumerationI { get { return (IEnumeration)this.Parent; } }
         public static readonly string DefaultName = "Element";
 
         #region ITree

@@ -15,6 +15,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("GroupConstants:{Name,nq} Count:{ListConstants.Count,nq}")]
     public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public GroupConstantGroups ParentGroupConstantGroups { get { return (GroupConstantGroups)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupConstantGroups ParentGroupConstantGroupsI { get { return (IGroupConstantGroups)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {

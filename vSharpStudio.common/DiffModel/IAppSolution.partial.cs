@@ -8,7 +8,7 @@ namespace vSharpStudio.common
 {
     public partial interface IAppSolution : ITreeConfigNode, IvPluginGroupSettingsDic
     {
-        IConfig Config { get; }
+        IGroupListAppSolutions ParentGroupListAppSolutionsI { get; }
         IvPluginGroupSettings GetGroupSettings(string groupSettingsGuid);
     }
 }

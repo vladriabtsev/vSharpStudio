@@ -114,7 +114,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (dic_apgs.Count == 0)
                 return null;
-            SettingsTypeBuilder.CreateToString(tbAppGen, $"Apps->{tt.AppSolution.Name}->{tt.Name}->");
+            SettingsTypeBuilder.CreateToString(tbAppGen, $"Apps->{tt.ParentAppSolutionI.Name}->{tt.Name}->");
             Type apgsType = tbAppGen.CreateType();
             var objAppGen = Activator.CreateInstance(apgsType);
             foreach (var dt in dic_apgs)

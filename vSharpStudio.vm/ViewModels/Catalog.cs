@@ -18,6 +18,10 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
         IDbTable, ITreeConfigNode, INodeWithProperties, IViewList
     {
+        [BrowsableAttribute(false)]
+        public GroupListCatalogs ParentGroupListCatalogs { get { return (GroupListCatalogs)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListCatalogs ParentGroupListCatalogsI { get { return (IGroupListCatalogs)this.Parent; } }
         public static readonly string DefaultName = "Catalog";
 
         #region ITree

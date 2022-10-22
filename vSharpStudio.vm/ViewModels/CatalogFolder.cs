@@ -15,6 +15,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
     public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
+        [BrowsableAttribute(false)]
+        public Catalog ParentCatalog { get { return (Catalog)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public ICatalog ParentCatalogI { get { return (ICatalog)this.Parent; } }
         public static readonly string DefaultName = "Items Group";
 
         #region ITree

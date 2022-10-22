@@ -14,6 +14,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigLinks.Count,nq}")]
     public partial class GroupListBaseConfigLinks : ITreeModel, ICanAddSubNode, ICanGoRight, IEditableNodeGroup // , INodeGenSettings
     {
+        [BrowsableAttribute(false)]
+        public Config ParentConfig { get { return (Config)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IConfig ParentConfigI { get { return (IConfig)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {

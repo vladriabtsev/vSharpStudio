@@ -15,6 +15,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListRoles.Count,nq}")]
     public partial class GroupListRoles : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public GroupListCommon ParentGroupListCommon { get { return (GroupListCommon)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListCommon ParentGroupListCommonI { get { return (IGroupListCommon)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {

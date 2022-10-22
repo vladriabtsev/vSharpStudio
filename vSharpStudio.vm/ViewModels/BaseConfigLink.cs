@@ -13,6 +13,10 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class BaseConfigLink : IEditableNode  // INodeGenSettings, 
     {
+        [BrowsableAttribute(false)]
+        public GroupListBaseConfigLinks GroupListBaseConfigLinks { get { return (GroupListBaseConfigLinks)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListBaseConfigLinks GroupListBaseConfigLinksI { get { return (IGroupListBaseConfigLinks)this.Parent; } }
         public static readonly string DefaultName = "BaseConfig";
 
         #region ITree

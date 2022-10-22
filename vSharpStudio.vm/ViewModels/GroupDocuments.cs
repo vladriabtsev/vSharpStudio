@@ -13,6 +13,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq}")]
     public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public Model ParentModel { get { return (Model)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IModel ParentModelI { get { return (IModel)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {

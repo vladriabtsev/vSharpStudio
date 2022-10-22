@@ -21,8 +21,9 @@ namespace vSharpStudio.vm.ViewModels
     {
         public static readonly string DefaultName = "Solution";
         [BrowsableAttribute(false)]
-        public IConfig Config { get { return (IConfig)this.Parent.Parent; } }
-
+        public GroupListAppSolutions ParentGroupListAppSolutions { get { return (GroupListAppSolutions)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListAppSolutions ParentGroupListAppSolutionsI { get { return (IGroupListAppSolutions)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {

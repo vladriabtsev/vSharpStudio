@@ -13,6 +13,10 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
+        [BrowsableAttribute(false)]
+        public GroupListDocuments ParentGroupListDocuments { get { return (GroupListDocuments)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListDocuments ParentGroupListDocumentsI { get { return (IGroupListDocuments)this.Parent; } }
         public static readonly string DefaultName = "Document";
 
         #region ITree
