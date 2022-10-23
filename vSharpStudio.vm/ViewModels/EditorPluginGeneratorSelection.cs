@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using System.Windows;
@@ -15,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
-            Contract.Requires(propertyItem != null);
+            Debug.Assert(propertyItem != null);
             // this.Config.GroupPlugins.ListPlugins
             AppProjectGenerator instance = (AppProjectGenerator)propertyItem.Instance;
 

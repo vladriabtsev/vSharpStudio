@@ -9,10 +9,10 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
 using vSharpStudio.common;
 using vSharpStudio.common.ViewModels;
 using Google.Protobuf;
+using System.Diagnostics;
 
 namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
 {
@@ -50,7 +50,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         #region Procedures
         public static TestSharedMesssage Clone(ITestSharedMesssage from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             TestSharedMesssage vm = new TestSharedMesssage();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -62,8 +62,8 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         }
         public static void Update(TestSharedMesssage to, ITestSharedMesssage from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.BoolValue = from.BoolValue; // Clone.tt Line: 141
             to.StringValue = from.StringValue; // Clone.tt Line: 141
         }
@@ -87,7 +87,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         // Conversion from 'test_shared_messsage' to 'TestSharedMesssage'
         public static TestSharedMesssage ConvertToVM(Proto.Config2.test_shared_messsage m, TestSharedMesssage vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -103,7 +103,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         // Conversion from 'TestSharedMesssage' to 'test_shared_messsage'
         public static Proto.Config2.test_shared_messsage ConvertToProto(TestSharedMesssage vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config2.test_shared_messsage m = new Proto.Config2.test_shared_messsage(); // Clone.tt Line: 239
             m.BoolValue = vm.BoolValue; // Clone.tt Line: 276
             m.StringValue = vm.StringValue; // Clone.tt Line: 276
@@ -112,7 +112,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         
         public void AcceptSharedNodeVisitor(SharedVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -176,12 +176,12 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         partial void OnVisitEnd(IValidatableWithSeverity p);
         protected override void OnVisit(TestSharedMesssage p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(TestSharedMesssage p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
     }

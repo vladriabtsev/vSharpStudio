@@ -20,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
         public PluginGenerator(ITreeConfigNode parent, IvPluginGenerator plugin)
             : this(parent)
         {
-            Contract.Requires(plugin != null);
+            Debug.Assert(plugin != null);
             this.Guid = plugin.Guid.ToString();
             this._Name = plugin.Name;
             this.Description = plugin.Description;
@@ -42,7 +42,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public void SetGenerator(IvPluginGenerator generator)
         {
-            Contract.Requires(generator != null);
+            Debug.Assert(generator != null);
             this.Generator = generator;
             this.Generator.Parent = this;
         }

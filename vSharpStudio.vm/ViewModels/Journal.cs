@@ -22,8 +22,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListJournals;
-            return p.Children;
+            return this.ParentGroupListJournals.Children;
         }
         public override bool HasChildren()
         {
@@ -55,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListJournals).ListJournals.CanUp(this))
+                if (this.ParentGroupListJournals.ListJournals.CanUp(this))
                 {
                     return true;
                 }
@@ -64,7 +63,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeUp()
         {
-            var prev = (Journal)(this.Parent as GroupListJournals).ListJournals.GetPrev(this);
+            var prev = (Journal)this.ParentGroupListJournals.ListJournals.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -74,14 +73,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListJournals).ListJournals.MoveUp(this);
+            this.ParentGroupListJournals.ListJournals.MoveUp(this);
             this.SetSelected(this);
         }
         public override bool NodeCanDown()
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListJournals).ListJournals.CanDown(this))
+                if (this.ParentGroupListJournals.ListJournals.CanDown(this))
                 {
                     return true;
                 }
@@ -90,7 +89,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeDown()
         {
-            var next = (Journal)(this.Parent as GroupListJournals).ListJournals.GetNext(this);
+            var next = (Journal)this.ParentGroupListJournals.ListJournals.GetNext(this);
             if (next == null)
             {
                 return;
@@ -100,13 +99,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListJournals).ListJournals.MoveDown(this);
+            this.ParentGroupListJournals.ListJournals.MoveDown(this);
             this.SetSelected(this);
         }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Journal.Clone(this.Parent, this, true, true);
-            (this.Parent as GroupListJournals).Add(node);
+            this.ParentGroupListJournals.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -114,15 +113,14 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Journal(this.Parent);
-            (this.Parent as GroupListJournals).Add(node);
-            this.GetUniqueName(Journal.DefaultName, node, (this.Parent as GroupListJournals).ListJournals);
+            this.ParentGroupListJournals.Add(node);
+            this.GetUniqueName(Journal.DefaultName, node, this.ParentGroupListJournals.ListJournals);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListJournals;
-            p.ListJournals.Remove(this);
+            this.ParentGroupListJournals.ListJournals.Remove(this);
         }
         #endregion Tree operations
     }

@@ -9,6 +9,7 @@ namespace vSharpStudio.common
 {
     public partial interface IModel : ITreeConfigNode, IGetNodeSetting
     {
+        IConfig ParentConfigI { get; }
         string PKeyTypeStr { get; }
         IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
         // numerical

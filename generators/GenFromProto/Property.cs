@@ -298,7 +298,7 @@ if (!IsSimple) {
             
             #line default
             #line hidden
-            this.Write("\r\n{ \r\n    Contract.Requires(item != null);\r\n    this.");
+            this.Write("\r\n{ \r\n    Debug.Assert(item != null);\r\n    this.");
             
             #line 35 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FieldName));
@@ -312,7 +312,7 @@ if (!IsSimple) {
             
             #line default
             #line hidden
-            this.Write("> items) \r\n{ \r\n    Contract.Requires(items != null);\r\n    this.");
+            this.Write("> items) \r\n{ \r\n    Debug.Assert(items != null);\r\n    this.");
             
             #line 41 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FieldName));
@@ -341,7 +341,7 @@ if (!IsSimple) {
             
             #line default
             #line hidden
-            this.Write(" item) \r\n{\r\n    Contract.Requires(item != null);\r\n    this.");
+            this.Write(" item) \r\n{\r\n    Debug.Assert(item != null);\r\n    this.");
             
             #line 50 "C:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(FieldName));

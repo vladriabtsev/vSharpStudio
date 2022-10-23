@@ -8,6 +8,7 @@ namespace vSharpStudio.common
 {
     public partial interface IProperty : IParent, ITreeConfigNode, IGetNodeSetting, ILayoutFieldParameters
     {
+        IGroupListProperties ParentGroupListPropertiesI { get; }
         //string DefaultValue { get; }
         bool IsComputed { get; set; }
         bool IsDocShared { get; set; }

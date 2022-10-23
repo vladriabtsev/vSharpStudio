@@ -14,6 +14,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} details:{GroupDetails.ListDetails.Count,nq}")]
     public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
+        [BrowsableAttribute(false)]
+        public GroupListDetails ParentGroupListDetails { get { return (GroupListDetails)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListDetails ParentGroupListDetailsI { get { return (IGroupListDetails)this.Parent; } }
         public static readonly string DefaultName = "Detail";
 
         #region ITree
@@ -23,8 +27,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListDetails;
-            return p.Children;
+            return this.ParentGroupListDetails.Children;
         }
         public override bool HasChildren()
         {
@@ -70,7 +73,7 @@ namespace vSharpStudio.vm.ViewModels
                 t.OnAdded();
             };
             this.Children.Add(this.GroupDetails, 9);
-            var glp = (this.Parent.Parent as INodeWithProperties);
+            var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             this.Position = glp.GroupProperties.GetNextPosition();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
         }
@@ -87,7 +90,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListDetails).ListDetails.CanUp(this))
+                if (this.ParentGroupListDetails.ListDetails.CanUp(this))
                 {
                     return true;
                 }
@@ -96,7 +99,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeUp()
         {
-            var prev = (Detail)(this.Parent as GroupListDetails).ListDetails.GetPrev(this);
+            var prev = (Detail)this.ParentGroupListDetails.ListDetails.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -106,14 +109,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListDetails).ListDetails.MoveUp(this);
+            this.ParentGroupListDetails.ListDetails.MoveUp(this);
             this.SetSelected(this);
         }
         public override bool NodeCanDown()
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListDetails).ListDetails.CanDown(this))
+                if (this.ParentGroupListDetails.ListDetails.CanDown(this))
                 {
                     return true;
                 }
@@ -122,7 +125,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeDown()
         {
-            var next = (Detail)(this.Parent as GroupListDetails).ListDetails.GetNext(this);
+            var next = (Detail)this.ParentGroupListDetails.ListDetails.GetNext(this);
             if (next == null)
             {
                 return;
@@ -132,14 +135,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListDetails).ListDetails.MoveDown(this);
+            this.ParentGroupListDetails.ListDetails.MoveDown(this);
             this.SetSelected(this);
         }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Detail.Clone(this.Parent, this, true, true);
-            (this.Parent as GroupListDetails).Add(node);
-            var glp = (this.Parent.Parent as INodeWithProperties);
+            this.ParentGroupListDetails.Add(node);
+            var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             node.Position = glp.GroupProperties.GetNextPosition();
             this.Name = this.Name + "2";
             this.SetSelected(node);
@@ -148,10 +151,10 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Detail(this.Parent);
-            (this.Parent as GroupListDetails).Add(node);
-            var glp = (this.Parent.Parent as INodeWithProperties);
+            this.ParentGroupListDetails.Add(node);
+            var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             node.Position = glp.GroupProperties.GetNextPosition();
-            this.GetUniqueName(Detail.DefaultName, node, (this.Parent as GroupListDetails).ListDetails);
+            this.GetUniqueName(Detail.DefaultName, node, this.ParentGroupListDetails.ListDetails);
             this.SetSelected(node);
             return node;
         }
@@ -159,7 +162,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Detail(this.GroupDetails) { Name = name };
             this.GroupDetails.NodeAddNewSubNode(node);
-            var glp = (this.Parent.Parent as INodeWithProperties);
+            var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             node.Position = glp.GroupProperties.GetNextPosition();
             return node;
         }
@@ -197,8 +200,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IEnumerable<ITreeConfigNode> GetParentList()
         {
-            var p = this.Parent as GroupListDetails;
-            return p.ListDetails;
+            return this.ParentGroupListDetails.ListDetails;
         }
         public void Remove()
         {

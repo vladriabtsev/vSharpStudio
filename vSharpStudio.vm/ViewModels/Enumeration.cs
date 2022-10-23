@@ -28,8 +28,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListEnumerations;
-            return p.Children;
+            return this.ParentGroupListEnumerations.Children;
         }
         public override bool HasChildren()
         {
@@ -91,7 +90,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public static string GetTypeDesc(Enumeration p)
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum);
             // switch (p.DataTypeEnum)
             // {
@@ -158,7 +157,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListEnumerations).ListEnumerations.CanUp(this))
+                if (this.ParentGroupListEnumerations.ListEnumerations.CanUp(this))
                 {
                     return true;
                 }
@@ -168,7 +167,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Enumeration)(this.Parent as GroupListEnumerations).ListEnumerations.GetPrev(this);
+            var prev = (Enumeration)this.ParentGroupListEnumerations.ListEnumerations.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -179,7 +178,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListEnumerations).ListEnumerations.MoveUp(this);
+            this.ParentGroupListEnumerations.ListEnumerations.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -187,7 +186,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListEnumerations).ListEnumerations.CanDown(this))
+                if (this.ParentGroupListEnumerations.ListEnumerations.CanDown(this))
                 {
                     return true;
                 }
@@ -197,7 +196,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Enumeration)(this.Parent as GroupListEnumerations).ListEnumerations.GetNext(this);
+            var next = (Enumeration)this.ParentGroupListEnumerations.ListEnumerations.GetNext(this);
             if (next == null)
             {
                 return;
@@ -208,7 +207,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListEnumerations).ListEnumerations.MoveDown(this);
+            this.ParentGroupListEnumerations.ListEnumerations.MoveDown(this);
             this.SetSelected(this);
         }
 
@@ -216,7 +215,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = Enumeration.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            (this.Parent as GroupListEnumerations).Add(node);
+            this.ParentGroupListEnumerations.Add(node);
             this.Name = this.Name + "2";
             this.SetSelected(node);
             return node;
@@ -225,15 +224,14 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Enumeration(this.Parent);
-            (this.Parent as GroupListEnumerations).Add(node);
-            this.GetUniqueName(Enumeration.DefaultName, node, (this.Parent as GroupListEnumerations).ListEnumerations);
+            this.ParentGroupListEnumerations.Add(node);
+            this.GetUniqueName(Enumeration.DefaultName, node, this.ParentGroupListEnumerations.ListEnumerations);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListEnumerations;
-            p.ListEnumerations.Remove(this);
+            this.ParentGroupListEnumerations.ListEnumerations.Remove(this);
         }
 
         public bool CanAddSubNode()

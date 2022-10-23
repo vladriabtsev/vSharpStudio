@@ -8,7 +8,7 @@ namespace vSharpStudio.common
 {
     public partial interface IDocument : ITreeConfigNode, IGetNodeSetting, IDbTable
     {
-        IGroupListDocuments IParent { get; }
+        IGroupListDocuments ParentGroupListDocumentsI { get; }
         IReadOnlyList<IProperty> GetAllProperties(bool isSupportVersion);
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion);
         IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isSupportVersion);

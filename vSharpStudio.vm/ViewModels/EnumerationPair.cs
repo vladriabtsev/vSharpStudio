@@ -24,8 +24,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as Enumeration;
-            return p.Children;
+            return this.ParentEnumeration.Children;
         }
         public override bool HasChildren()
         {
@@ -47,8 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void Remove()
         {
-            var p = this.Parent as Enumeration;
-            p.ListEnumerationPairs.Remove(this);
+            this.ParentEnumeration.ListEnumerationPairs.Remove(this);
         }
         partial void OnIsDefaultChanged()
         {

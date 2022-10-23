@@ -6,5 +6,6 @@ namespace vSharpStudio.common
 {
     public partial interface IMainViewForm : ITreeConfigNode
     {
+        IGroupListMainViewForms ParentGroupListMainViewFormsI { get; }
     }
 }

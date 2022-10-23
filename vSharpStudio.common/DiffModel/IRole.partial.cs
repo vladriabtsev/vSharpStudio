@@ -6,5 +6,6 @@ namespace vSharpStudio.common
 {
     public partial interface IRole : ITreeConfigNode
     {
+        IGroupListRoles ParentGroupListRolesI { get; }
     }
 }

@@ -9,10 +9,10 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
 using vSharpStudio.common;
 using vSharpStudio.common.ViewModels;
 using Google.Protobuf;
+using System.Diagnostics;
 
 namespace vPlugin.Sample // NameSpace.tt Line: 23
 {
@@ -56,7 +56,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         #region Procedures
         public static DbConnectionStringSettings Clone(IDbConnectionStringSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             DbConnectionStringSettings vm = new DbConnectionStringSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -67,8 +67,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         public static void Update(DbConnectionStringSettings to, IDbConnectionStringSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.StringSettings = from.StringSettings; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
@@ -91,7 +91,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'proto_db_connection_string_settings' to 'DbConnectionStringSettings'
         public static DbConnectionStringSettings ConvertToVM(Proto.Plugin.proto_db_connection_string_settings m, DbConnectionStringSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -106,7 +106,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'DbConnectionStringSettings' to 'proto_db_connection_string_settings'
         public static Proto.Plugin.proto_db_connection_string_settings ConvertToProto(DbConnectionStringSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Plugin.proto_db_connection_string_settings m = new Proto.Plugin.proto_db_connection_string_settings(); // Clone.tt Line: 239
             m.StringSettings = vm.StringSettings; // Clone.tt Line: 276
             return m;
@@ -114,7 +114,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         
         public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -198,7 +198,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         #region Procedures
         public static PluginsGroupSolutionSettings Clone(IPluginsGroupSolutionSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             PluginsGroupSolutionSettings vm = new PluginsGroupSolutionSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -209,8 +209,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         public static void Update(PluginsGroupSolutionSettings to, IPluginsGroupSolutionSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.IsGroupParam1 = from.IsGroupParam1; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
@@ -233,7 +233,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'proto_plugins_group_solution_settings' to 'PluginsGroupSolutionSettings'
         public static PluginsGroupSolutionSettings ConvertToVM(Proto.Plugin.proto_plugins_group_solution_settings m, PluginsGroupSolutionSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -248,7 +248,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'PluginsGroupSolutionSettings' to 'proto_plugins_group_solution_settings'
         public static Proto.Plugin.proto_plugins_group_solution_settings ConvertToProto(PluginsGroupSolutionSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Plugin.proto_plugins_group_solution_settings m = new Proto.Plugin.proto_plugins_group_solution_settings(); // Clone.tt Line: 239
             m.IsGroupParam1 = vm.IsGroupParam1; // Clone.tt Line: 276
             return m;
@@ -256,7 +256,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         
         public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -340,7 +340,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         #region Procedures
         public static PluginsGroupProjectSettings Clone(IPluginsGroupProjectSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             PluginsGroupProjectSettings vm = new PluginsGroupProjectSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -351,8 +351,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         public static void Update(PluginsGroupProjectSettings to, IPluginsGroupProjectSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.IsGroupProjectParam1 = from.IsGroupProjectParam1; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
@@ -375,7 +375,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'proto_plugins_group_project_settings' to 'PluginsGroupProjectSettings'
         public static PluginsGroupProjectSettings ConvertToVM(Proto.Plugin.proto_plugins_group_project_settings m, PluginsGroupProjectSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -390,7 +390,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'PluginsGroupProjectSettings' to 'proto_plugins_group_project_settings'
         public static Proto.Plugin.proto_plugins_group_project_settings ConvertToProto(PluginsGroupProjectSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Plugin.proto_plugins_group_project_settings m = new Proto.Plugin.proto_plugins_group_project_settings(); // Clone.tt Line: 239
             m.IsGroupProjectParam1 = vm.IsGroupProjectParam1; // Clone.tt Line: 276
             return m;
@@ -398,7 +398,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         
         public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -482,7 +482,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         #region Procedures
         public static GeneratorDbSchemaSettings Clone(IGeneratorDbSchemaSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GeneratorDbSchemaSettings vm = new GeneratorDbSchemaSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -495,8 +495,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         public static void Update(GeneratorDbSchemaSettings to, IGeneratorDbSchemaSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.IsSchemaParam1 = from.IsSchemaParam1; // Clone.tt Line: 141
             to.IsSchemaParam2 = from.IsSchemaParam2; // Clone.tt Line: 141
             to.SchemaParam3 = from.SchemaParam3; // Clone.tt Line: 141
@@ -521,7 +521,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'proto_generator_db_schema_settings' to 'GeneratorDbSchemaSettings'
         public static GeneratorDbSchemaSettings ConvertToVM(Proto.Plugin.proto_generator_db_schema_settings m, GeneratorDbSchemaSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -538,7 +538,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'GeneratorDbSchemaSettings' to 'proto_generator_db_schema_settings'
         public static Proto.Plugin.proto_generator_db_schema_settings ConvertToProto(GeneratorDbSchemaSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Plugin.proto_generator_db_schema_settings m = new Proto.Plugin.proto_generator_db_schema_settings(); // Clone.tt Line: 239
             m.IsSchemaParam1 = vm.IsSchemaParam1; // Clone.tt Line: 276
             m.IsSchemaParam2 = vm.IsSchemaParam2; // Clone.tt Line: 276
@@ -548,7 +548,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         
         public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -672,7 +672,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         #region Procedures
         public static GeneratorDbSchemaNodeSettings Clone(IGeneratorDbSchemaNodeSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GeneratorDbSchemaNodeSettings vm = new GeneratorDbSchemaNodeSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -686,8 +686,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         public static void Update(GeneratorDbSchemaNodeSettings to, IGeneratorDbSchemaNodeSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.IsParam1 = from.IsParam1; // Clone.tt Line: 141
             to.IsIncluded = from.IsIncluded; // Clone.tt Line: 141
             to.IsConstantParam1 = from.IsConstantParam1; // Clone.tt Line: 141
@@ -713,7 +713,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'proto_generator_db_schema_node_settings' to 'GeneratorDbSchemaNodeSettings'
         public static GeneratorDbSchemaNodeSettings ConvertToVM(Proto.Plugin.proto_generator_db_schema_node_settings m, GeneratorDbSchemaNodeSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -731,7 +731,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'GeneratorDbSchemaNodeSettings' to 'proto_generator_db_schema_node_settings'
         public static Proto.Plugin.proto_generator_db_schema_node_settings ConvertToProto(GeneratorDbSchemaNodeSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Plugin.proto_generator_db_schema_node_settings m = new Proto.Plugin.proto_generator_db_schema_node_settings(); // Clone.tt Line: 239
             m.IsParam1 = vm.IsParam1; // Clone.tt Line: 276
             m.IsIncluded = vm.IsIncluded; // Clone.tt Line: 276
@@ -742,7 +742,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         
         public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -886,7 +886,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         #region Procedures
         public static GeneratorDbAccessSettings Clone(IGeneratorDbAccessSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GeneratorDbAccessSettings vm = new GeneratorDbAccessSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -901,8 +901,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         public static void Update(GeneratorDbAccessSettings to, IGeneratorDbAccessSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.IsAccessParam1 = from.IsAccessParam1; // Clone.tt Line: 141
             to.IsAccessParam2 = from.IsAccessParam2; // Clone.tt Line: 141
             to.AccessParam3 = from.AccessParam3; // Clone.tt Line: 141
@@ -929,7 +929,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'proto_generator_db_access_settings' to 'GeneratorDbAccessSettings'
         public static GeneratorDbAccessSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_settings m, GeneratorDbAccessSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -948,7 +948,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'GeneratorDbAccessSettings' to 'proto_generator_db_access_settings'
         public static Proto.Plugin.proto_generator_db_access_settings ConvertToProto(GeneratorDbAccessSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Plugin.proto_generator_db_access_settings m = new Proto.Plugin.proto_generator_db_access_settings(); // Clone.tt Line: 239
             m.IsAccessParam1 = vm.IsAccessParam1; // Clone.tt Line: 276
             m.IsAccessParam2 = vm.IsAccessParam2; // Clone.tt Line: 276
@@ -960,7 +960,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         
         public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -1124,7 +1124,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         #region Procedures
         public static GeneratorDbAccessNodeSettings Clone(IGeneratorDbAccessNodeSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GeneratorDbAccessNodeSettings vm = new GeneratorDbAccessNodeSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -1138,8 +1138,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         public static void Update(GeneratorDbAccessNodeSettings to, IGeneratorDbAccessNodeSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.IsParam1 = from.IsParam1; // Clone.tt Line: 141
             to.IsIncluded = from.IsIncluded; // Clone.tt Line: 141
             to.IsPropertyParam1 = from.IsPropertyParam1; // Clone.tt Line: 141
@@ -1165,7 +1165,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'proto_generator_db_access_node_settings' to 'GeneratorDbAccessNodeSettings'
         public static GeneratorDbAccessNodeSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_node_settings m, GeneratorDbAccessNodeSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -1183,7 +1183,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         // Conversion from 'GeneratorDbAccessNodeSettings' to 'proto_generator_db_access_node_settings'
         public static Proto.Plugin.proto_generator_db_access_node_settings ConvertToProto(GeneratorDbAccessNodeSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Plugin.proto_generator_db_access_node_settings m = new Proto.Plugin.proto_generator_db_access_node_settings(); // Clone.tt Line: 239
             m.IsParam1 = vm.IsParam1; // Clone.tt Line: 276
             m.IsIncluded = vm.IsIncluded; // Clone.tt Line: 276
@@ -1194,7 +1194,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         
         public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -1324,72 +1324,72 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnVisitEnd(IValidatableWithSeverity p);
         protected override void OnVisit(DbConnectionStringSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(DbConnectionStringSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(PluginsGroupSolutionSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(PluginsGroupSolutionSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(PluginsGroupProjectSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(PluginsGroupProjectSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GeneratorDbSchemaSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GeneratorDbSchemaSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GeneratorDbSchemaNodeSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GeneratorDbSchemaNodeSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GeneratorDbAccessSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GeneratorDbAccessSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GeneratorDbAccessNodeSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GeneratorDbAccessNodeSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
     }

@@ -15,6 +15,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListMainViewForms.Count,nq}")]
     public partial class GroupListMainViewForms : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public GroupListCommon ParentGroupListCommon { get { return (GroupListCommon)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListCommon ParentGroupListCommonI { get { return (IGroupListCommon)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
@@ -22,8 +26,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-                var p = this.Parent as GroupListCommon;
-                return p.Children;
+                return this.ParentGroupListCommon.Children;
         }
         public override bool HasChildren()
         {

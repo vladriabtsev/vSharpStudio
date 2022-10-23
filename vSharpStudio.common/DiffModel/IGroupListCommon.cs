@@ -6,5 +6,6 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListCommon : ITreeConfigNode
     {
+        IModel ParentModelI { get; }
     }
 }

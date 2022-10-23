@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,7 +14,7 @@ namespace vSharpStudio.common.ViewModels
         PropertyGridEditorTextBox textBox;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
-            Contract.Requires(propertyItem != null);
+            Debug.Assert(propertyItem != null);
             Grid grd = new Grid();
             var cd1 = new ColumnDefinition();
             cd1.Width = new GridLength(1, GridUnitType.Star);

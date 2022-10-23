@@ -26,8 +26,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListRoles;
-            return p.Children;
+            return this.ParentGroupListRoles.Children;
         }
         public override bool HasChildren()
         {
@@ -58,7 +57,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListForms).ListForms.CanUp(this))
+                if (this.ParentGroupListRoles.ListRoles.CanUp(this))
                 {
                     return true;
                 }
@@ -68,7 +67,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Form)(this.Parent as GroupListForms).ListForms.GetPrev(this);
+            var prev = (Role)this.ParentGroupListRoles.ListRoles.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -79,7 +78,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListForms).ListForms.MoveUp(this);
+            this.ParentGroupListRoles.ListRoles.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -87,7 +86,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListForms).ListForms.CanDown(this))
+                if (this.ParentGroupListRoles.ListRoles.CanDown(this))
                 {
                     return true;
                 }
@@ -97,7 +96,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Form)(this.Parent as GroupListForms).ListForms.GetNext(this);
+            var next = (Role)this.ParentGroupListRoles.ListRoles.GetNext(this);
             if (next == null)
             {
                 return;
@@ -108,14 +107,14 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListForms).ListForms.MoveDown(this);
+            this.ParentGroupListRoles.ListRoles.MoveDown(this);
             this.SetSelected(this);
         }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Role.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            (this.Parent as GroupListRoles).Add(node);
+            this.ParentGroupListRoles.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -124,15 +123,14 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Role(this.Parent);
-            (this.Parent as GroupListRoles).Add(node);
-            this.GetUniqueName(Role.DefaultName, node, (this.Parent as GroupListRoles).ListRoles);
+            this.ParentGroupListRoles.Add(node);
+            this.GetUniqueName(Role.DefaultName, node, this.ParentGroupListRoles.ListRoles);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListRoles;
-            p.ListRoles.Remove(this);
+            this.ParentGroupListRoles.ListRoles.Remove(this);
         }
         #endregion Tree operations
     }

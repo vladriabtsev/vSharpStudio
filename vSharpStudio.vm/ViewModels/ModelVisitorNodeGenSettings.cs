@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using System.Diagnostics;
 using System.Text;
 using vSharpStudio.common;
 
@@ -11,7 +11,7 @@ namespace vSharpStudio.vm.ViewModels
         new Action<INodeGenSettings> _act = null;
         public void NodeGenSettingsApplyAction(IConfig curr, Action<INodeGenSettings> act)
         {
-            Contract.Requires(curr != null);
+            Debug.Assert(curr != null);
             this.currCfg = curr;
             _act = act;
             this.Run(curr, null, null, null);

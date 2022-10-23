@@ -13,6 +13,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Report:{Name,nq}")]
     public partial class Report : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public GroupListReports ParentGroupListReports { get { return (GroupListReports)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListReports ParentGroupListReportsI { get { return (IGroupListReports)this.Parent; } }
         public static readonly string DefaultName = "Report";
 
         #region ITree
@@ -22,8 +26,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListReports;
-            return p.Children;
+            return this.ParentGroupListReports.Children;
         }
         public override bool HasChildren()
         {
@@ -47,7 +50,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListReports).ListReports.CanUp(this))
+                if (this.ParentGroupListReports.ListReports.CanUp(this))
                 {
                     return true;
                 }
@@ -57,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Report)(this.Parent as GroupListReports).ListReports.GetPrev(this);
+            var prev = (Report)this.ParentGroupListReports.ListReports.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -68,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListReports).ListReports.MoveUp(this);
+            this.ParentGroupListReports.ListReports.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -76,7 +79,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListReports).ListReports.CanDown(this))
+                if (this.ParentGroupListReports.ListReports.CanDown(this))
                 {
                     return true;
                 }
@@ -86,7 +89,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Report)(this.Parent as GroupListReports).ListReports.GetNext(this);
+            var next = (Report)this.ParentGroupListReports.ListReports.GetNext(this);
             if (next == null)
             {
                 return;
@@ -97,13 +100,13 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListReports).ListReports.MoveDown(this);
+            this.ParentGroupListReports.ListReports.MoveDown(this);
             this.SetSelected(this);
         }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Report.Clone(this.Parent, this, true, true);
-            (this.Parent as GroupListReports).Add(node);
+            this.ParentGroupListReports.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -112,15 +115,14 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Report(this.Parent);
-            (this.Parent as GroupListReports).Add(node);
-            this.GetUniqueName(Report.DefaultName, node, (this.Parent as GroupListReports).ListReports);
+            this.ParentGroupListReports.Add(node);
+            this.GetUniqueName(Report.DefaultName, node, this.ParentGroupListReports.ListReports);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListReports;
-            p.ListReports.Remove(this);
+            this.ParentGroupListReports.ListReports.Remove(this);
         }
         #endregion Tree operations
     }

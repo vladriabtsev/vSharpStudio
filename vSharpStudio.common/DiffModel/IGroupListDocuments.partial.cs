@@ -8,6 +8,7 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListDocuments : ITreeConfigNode, IGetNodeSetting
     {
+        IGroupDocuments ParentGroupDocumentsI { get; }
         int IndexOf(IDocument doc);
     }
 }

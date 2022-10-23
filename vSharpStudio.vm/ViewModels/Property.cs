@@ -18,6 +18,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode
     {
+        [BrowsableAttribute(false)]
+        public GroupListProperties ParentGroupListProperties { get { return (GroupListProperties)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListProperties ParentGroupListPropertiesI { get { return (IGroupListProperties)this.Parent; } }
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data
         public object Tag { get; set; }
@@ -31,10 +35,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListProperties;
-            if (p == null)
-                return new List<ITreeConfigNode>();
-            return p.Children;
+            return this.ParentGroupListProperties.Children;
         }
         public override bool HasChildren()
         {
@@ -116,7 +117,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListProperties).ListProperties.CanUp(this))
+                if (this.ParentGroupListProperties.ListProperties.CanUp(this))
                 {
                     return true;
                 }
@@ -126,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Property)(this.Parent as GroupListProperties).ListProperties.GetPrev(this);
+            var prev = (Property)this.ParentGroupListProperties.ListProperties.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -137,7 +138,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListProperties).ListProperties.MoveUp(this);
+            this.ParentGroupListProperties.ListProperties.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -145,7 +146,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListProperties).ListProperties.CanDown(this))
+                if (this.ParentGroupListProperties.ListProperties.CanDown(this))
                 {
                     return true;
                 }
@@ -155,7 +156,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Property)(this.Parent as GroupListProperties).ListProperties.GetNext(this);
+            var next = (Property)this.ParentGroupListProperties.ListProperties.GetNext(this);
             if (next == null)
             {
                 return;
@@ -166,19 +167,19 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListProperties).ListProperties.MoveDown(this);
+            this.ParentGroupListProperties.ListProperties.MoveDown(this);
             this.SetSelected(this);
         }
 
         public void NodeRemove(bool ask = true)
         {
-            (this.Parent as GroupListProperties).Remove(this);
+            this.ParentGroupListProperties.Remove(this);
             this.Parent = null;
         }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Property.Clone(this.Parent, this, true, true);
-            (this.Parent as GroupListProperties).Add(node);
+            this.ParentGroupListProperties.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -192,17 +193,15 @@ namespace vSharpStudio.vm.ViewModels
             }
 
             var node = new Property(this.Parent);
-            var glp = (this.Parent as GroupListProperties);
-            glp.Add(node);
-            node.Position = glp.GetNextPosition();
-            this.GetUniqueName(Property.DefaultName, node, (this.Parent as GroupListProperties).ListProperties);
+            this.ParentGroupListProperties.Add(node);
+            node.Position = this.ParentGroupListProperties.GetNextPosition();
+            this.GetUniqueName(Property.DefaultName, node, this.ParentGroupListProperties.ListProperties);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListProperties;
-            p.ListProperties.Remove(this);
+            this.ParentGroupListProperties.ListProperties.Remove(this);
         }
         #endregion Tree operations
 

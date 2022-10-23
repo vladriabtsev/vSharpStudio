@@ -21,7 +21,7 @@ namespace vSharpStudio.vm.ViewModels
         public Plugin(ITreeConfigNode parent, IvPlugin plugin)
             : this(parent)
         {
-            Contract.Requires(plugin != null);
+            Debug.Assert(plugin != null);
             this.Guid = plugin.Guid.ToString();
             this._Name = plugin.Name;
             this.Description = plugin.Description;

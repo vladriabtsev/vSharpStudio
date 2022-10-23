@@ -145,7 +145,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public static string GetTypeDesc(DataType p)
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum);
             string objName = "Not found";
             ITreeConfigNode config = p.Parent;

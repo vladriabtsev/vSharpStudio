@@ -28,8 +28,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as Catalog;
-            return p.Children;
+            return this.ParentCatalog.Children;
         }
         public override bool HasChildren()
         {
@@ -94,7 +93,7 @@ namespace vSharpStudio.vm.ViewModels
         public CatalogFolder(ITreeConfigNode parent, string name, List<Property> listProperties)
             : this(parent)
         {
-            Contract.Requires(listProperties != null);
+            Debug.Assert(listProperties != null);
             this.Name = name;
             foreach (var t in listProperties)
             {
@@ -197,9 +196,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 res = this.UseCodeProperty.Value;
             }
-            else if (this.UseCodeProperty.HasValue)
+            else if (this.ParentCatalog.UseCodeProperty.HasValue)
             {
-                res = (this.Parent as GroupListCatalogs).UseCodeProperty;
+                res = this.ParentCatalog.UseCodeProperty.Value;
+            }
+            else
+            {
+                res = this.ParentCatalog.ParentGroupListCatalogs.UseCodeProperty;
             }
             return res;
         }
@@ -210,9 +213,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 res = this.UseNameProperty.Value;
             }
-            else if (this.UseNameProperty.HasValue)
+            else if (this.ParentCatalog.UseNameProperty.HasValue)
             {
-                res = (this.Parent as GroupListCatalogs).UseNameProperty;
+                res = this.ParentCatalog.UseNameProperty.Value;
+            }
+            else
+            {
+                res = this.ParentCatalog.ParentGroupListCatalogs.UseNameProperty;
             }
             return res;
         }
@@ -223,9 +230,13 @@ namespace vSharpStudio.vm.ViewModels
             {
                 res = this.UseDescriptionProperty.Value;
             }
-            else if (this.UseDescriptionProperty.HasValue)
+            else if (this.ParentCatalog.UseDescriptionProperty.HasValue)
             {
-                res = (this.Parent as GroupListCatalogs).UseDescriptionProperty;
+                res = this.ParentCatalog.UseDescriptionProperty.Value;
+            }
+            else
+            {
+                res = this.ParentCatalog.ParentGroupListCatalogs.UseDescriptionProperty;
             }
             return res;
         }

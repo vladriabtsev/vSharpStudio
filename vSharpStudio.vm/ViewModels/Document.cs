@@ -26,8 +26,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListDocuments;
-            return p.Children;
+            return this.ParentGroupListDocuments.Children;
         }
         public override bool HasChildren()
         {
@@ -35,8 +34,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        [BrowsableAttribute(false)]
-        public IGroupListDocuments IParent { get { return (IGroupListDocuments)this.Parent; } }
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
@@ -87,7 +84,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListDocuments).ListDocuments.CanUp(this))
+                if (this.ParentGroupListDocuments.ListDocuments.CanUp(this))
                 {
                     return true;
                 }
@@ -97,7 +94,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Document)(this.Parent as GroupListDocuments).ListDocuments.GetPrev(this);
+            var prev = (Document)this.ParentGroupListDocuments.ListDocuments.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -108,7 +105,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListDocuments).ListDocuments.MoveUp(this);
+            this.ParentGroupListDocuments.ListDocuments.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -116,7 +113,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListDocuments).ListDocuments.CanDown(this))
+                if (this.ParentGroupListDocuments.ListDocuments.CanDown(this))
                 {
                     return true;
                 }
@@ -126,7 +123,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Document)(this.Parent as GroupListDocuments).ListDocuments.GetNext(this);
+            var next = (Document)this.ParentGroupListDocuments.ListDocuments.GetNext(this);
             if (next == null)
             {
                 return;
@@ -137,7 +134,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListDocuments).ListDocuments.MoveDown(this);
+            this.ParentGroupListDocuments.ListDocuments.MoveDown(this);
             this.SetSelected(this);
         }
 
@@ -145,7 +142,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = Document.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            (this.Parent as GroupListDocuments).Add(node);
+            this.ParentGroupListDocuments.Add(node);
             this.Name = this.Name + "2";
             this.SetSelected(node);
             return node;
@@ -154,8 +151,8 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Document(this.Parent);
-            (this.Parent as GroupListDocuments).Add(node);
-            this.GetUniqueName(Document.DefaultName, node, (this.Parent as GroupListDocuments).ListDocuments);
+            this.ParentGroupListDocuments.Add(node);
+            this.GetUniqueName(Document.DefaultName, node, this.ParentGroupListDocuments.ListDocuments);
             this.SetSelected(node);
             return node;
         }
@@ -199,8 +196,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListDocuments;
-            p.ListDocuments.Remove(this);
+            this.ParentGroupListDocuments.ListDocuments.Remove(this);
         }
         #endregion Tree operations
         [PropertyOrder(1)]
@@ -277,7 +273,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                res = (this.Parent.Parent as GroupDocuments).UseCodeProperty;
+                res = this.ParentGroupListDocuments.ParentGroupDocuments.UseCodeProperty;
             }
             return res;
         }
@@ -290,7 +286,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                res = (this.Parent.Parent as GroupDocuments).UseDateProperty;
+                res = this.ParentGroupListDocuments.ParentGroupDocuments.UseDateProperty;
             }
             return res;
         }

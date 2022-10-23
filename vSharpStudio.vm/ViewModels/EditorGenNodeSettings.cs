@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
-            Contract.Requires(propertyItem != null);
+            Debug.Assert(propertyItem != null);
             INodeGenSettings instance = (INodeGenSettings)propertyItem.Instance;
             ComboBox cbx = new ComboBox();
             cbx.DisplayMemberPath = "GroupInfo";

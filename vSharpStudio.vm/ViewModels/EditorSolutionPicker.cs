@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
         AppSolution sln;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
-            Contract.Requires(propertyItem != null);
+            Debug.Assert(propertyItem != null);
             sln = (AppSolution)propertyItem.Instance;
             Grid grd = new Grid();
             var cd1 = new ColumnDefinition();

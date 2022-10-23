@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using Microsoft.Extensions.Logging;
@@ -26,7 +26,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public void UpdateSubstructCounts(ITreeConfigNode p)
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             var pp = p;
             while (pp.Parent != null)
             {

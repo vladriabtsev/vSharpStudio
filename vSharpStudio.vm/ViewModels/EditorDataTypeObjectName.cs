@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,7 +13,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
-            Contract.Requires(propertyItem != null);
+            Debug.Assert(propertyItem != null);
             DataType dt = null;
             if (propertyItem.Instance is DataType)
                 dt = (DataType)propertyItem.Instance;

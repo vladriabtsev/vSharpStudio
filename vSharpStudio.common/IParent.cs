@@ -6,11 +6,14 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
+    public interface IParentObject // : ITreeModel
+    {
+        IEditableObjectExt Parent { get; set; }
+    }
     public interface IParent // : ITreeModel
     {
         ITreeConfigNode Parent { get; set; }
     }
-
     public interface ITree : IParent
     {
         IEnumerable<ITreeConfigNode> GetListChildren();

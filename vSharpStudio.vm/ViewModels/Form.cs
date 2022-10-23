@@ -14,6 +14,10 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Form:{Name,nq}")]
     public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public GroupListForms ParentGroupListForms { get { return (GroupListForms)this.Parent; } }
+        [BrowsableAttribute(false)]
+        public IGroupListForms ParentGroupListFormsI { get { return (IGroupListForms)this.Parent; } }
         public static readonly string DefaultName = "Form";
 
         #region ITree
@@ -23,8 +27,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListForms;
-            return p.Children;
+            return this.ParentGroupListForms.Children;
         }
         public override bool HasChildren()
         {
@@ -66,7 +69,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListForms).ListForms.CanUp(this))
+                if (this.ParentGroupListForms.ListForms.CanUp(this))
                 {
                     return true;
                 }
@@ -76,7 +79,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Form)(this.Parent as GroupListForms).ListForms.GetPrev(this);
+            var prev = (Form)this.ParentGroupListForms.ListForms.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -87,7 +90,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListForms).ListForms.MoveUp(this);
+            this.ParentGroupListForms.ListForms.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -95,7 +98,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListForms).ListForms.CanDown(this))
+                if (this.ParentGroupListForms.ListForms.CanDown(this))
                 {
                     return true;
                 }
@@ -105,7 +108,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Form)(this.Parent as GroupListForms).ListForms.GetNext(this);
+            var next = (Form)this.ParentGroupListForms.ListForms.GetNext(this);
             if (next == null)
             {
                 return;
@@ -116,7 +119,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListForms).ListForms.MoveDown(this);
+            this.ParentGroupListForms.ListForms.MoveDown(this);
             this.SetSelected(this);
         }
 
@@ -149,7 +152,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = Form.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            (this.Parent as GroupListForms).Add(node);
+            this.ParentGroupListForms.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -158,15 +161,14 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Form(this.Parent);
-            (this.Parent as GroupListForms).Add(node);
-            this.GetUniqueName(Form.DefaultName, node, (this.Parent as GroupListForms).ListForms);
+            this.ParentGroupListForms.Add(node);
+            this.GetUniqueName(Form.DefaultName, node, this.ParentGroupListForms.ListForms);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListForms;
-            p.ListForms.Remove(this);
+            this.ParentGroupListForms.ListForms.Remove(this);
         }
         #endregion Tree operations
 

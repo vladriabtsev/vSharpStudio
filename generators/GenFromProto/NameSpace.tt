@@ -15,10 +15,10 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
 using vSharpStudio.common;
 using vSharpStudio.common.ViewModels;
 using Google.Protobuf;
+using System.Diagnostics;
 
 namespace <#= nameSpace #> // <#=Helper.FilePos() #>
 {

@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListEnumerations : ITreeConfigNode, IGetNodeSetting
     {
+        IModel ParentModelI { get; }
     }
 }

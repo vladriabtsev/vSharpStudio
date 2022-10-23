@@ -156,7 +156,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n{\r\n    Contract.Requires(from != null);\r\n");
+            this.Write("\r\n{\r\n    Debug.Assert(from != null);\r\n");
             
             #line 30 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
  if (message.IsDefaultBase()) { 
@@ -668,7 +668,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("\r\n{\r\n    Contract.Requires(to != null);\r\n    Contract.Requires(from != null);\r\n");
+            this.Write("\r\n{\r\n    Debug.Assert(to != null);\r\n    Debug.Assert(from != null);\r\n");
             
             #line 81 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
     foreach (var field in message.Fields.InDeclarationOrder()) { 
@@ -1178,7 +1178,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("\r\n{\r\n    Contract.Requires(vm != null);\r\n    if (m == null)\r\n    {\r\n        retur" +
+            this.Write("\r\n{\r\n    Debug.Assert(vm != null);\r\n    if (m == null)\r\n    {\r\n        retur" +
                     "n vm;\r\n    }\r\n    vm.IsNotifying = false;\r\n    vm.IsValidate = false;\r\n");
             
             #line 179 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
@@ -1686,7 +1686,7 @@ if (this.Doc.IsDefaultBase) {
             
             #line default
             #line hidden
-            this.Write("\r\n{\r\n    Contract.Requires(vm != null);\r\n    ");
+            this.Write("\r\n{\r\n    Debug.Assert(vm != null);\r\n    ");
             
             #line 239 "C:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.protoNameSpace));

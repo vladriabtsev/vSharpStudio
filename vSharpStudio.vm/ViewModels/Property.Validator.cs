@@ -630,8 +630,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!isStopTabControl)
                     return;
                 var p = (Property)cntx.InstanceToValidate;
-                var grp = p.Parent as GroupListProperties;
-                var indx = grp.ListProperties.IndexOf(p);
+                var indx = p.ParentGroupListProperties.ListProperties.IndexOf(p);
                 if (indx == 0)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStopTabControl),
@@ -643,7 +642,7 @@ namespace vSharpStudio.vm.ViewModels
                 var is_tab = false;
                 for (int i = indx-1; i>=0; i--)
                 {
-                    p = grp.ListProperties[i];
+                    p = p.ParentGroupListProperties.ListProperties[i];
                     if (p.IsStartNewTabControl || !string.IsNullOrWhiteSpace(p.TabName))
                     {
                         is_tab = true;
@@ -678,8 +677,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!isStartNewRow)
                     return;
                 var p = (Property)cntx.InstanceToValidate;
-                var grp = p.Parent as GroupListProperties;
-                var indx = grp.ListProperties.IndexOf(p);
+                var indx = p.ParentGroupListProperties.ListProperties.IndexOf(p);
                 if (indx == 0)
                 {
                     var vf = new ValidationFailure(nameof(p.IsStartNewRow),
@@ -740,8 +738,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!isTryAttach)
                     return;
                 var p = (Property)cntx.InstanceToValidate;
-                var grp = p.Parent as GroupListProperties;
-                var indx = grp.ListProperties.IndexOf(p);
+                var indx = p.ParentGroupListProperties.ListProperties.IndexOf(p);
                 if (indx == 0)
                 {
                     var vf = new ValidationFailure(nameof(p.IsTryAttach),

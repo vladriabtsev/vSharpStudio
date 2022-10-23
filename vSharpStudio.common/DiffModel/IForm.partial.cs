@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IForm : ITreeConfigNode
     {
+        IGroupListForms ParentGroupListFormsI { get; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +22,8 @@ namespace vSharpStudio.vm.ViewModels
         // Products are equal if their names and product numbers are equal.
         public bool Equals(PluginRow x, PluginRow y)
         {
-            Contract.Requires(x != null);
-            Contract.Requires(y != null);
+            Debug.Assert(x != null);
+            Debug.Assert(y != null);
             if (x.Plugin.Guid == y.Plugin.Guid && x.Plugin.Version == y.Plugin.Version)
             {
                 return true;
@@ -44,7 +44,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public int GetHashCode(PluginRow obj)
         {
-            Contract.Requires(obj != null);
+            Debug.Assert(obj != null);
             int c1 = obj.Plugin.Guid.GetHashCode();
             int c2 = obj.Plugin.Version.GetHashCode();
             return c1 ^ c2;

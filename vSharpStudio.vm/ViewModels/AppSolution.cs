@@ -31,8 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListAppSolutions;
-            return p.ListAppSolutions;
+            return this.ParentGroupListAppSolutions.ListAppSolutions;
         }
         public override bool HasChildren()
         {
@@ -75,7 +74,7 @@ namespace vSharpStudio.vm.ViewModels
         public AppSolution(ITreeConfigNode parent, string name, List<AppProject> listProjects)
             : this(parent)
         {
-            Contract.Requires(listProjects != null);
+            Debug.Assert(listProjects != null);
             this.Name = name;
             foreach (var t in listProjects)
             {
@@ -225,7 +224,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListAppSolutions).ListAppSolutions.CanUp(this))
+                if (this.ParentGroupListAppSolutions.ListAppSolutions.CanUp(this))
                 {
                     return true;
                 }
@@ -235,7 +234,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (AppSolution)(this.Parent as GroupListAppSolutions).ListAppSolutions.GetPrev(this);
+            var prev = (AppSolution)this.ParentGroupListAppSolutions.ListAppSolutions.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -246,7 +245,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListAppSolutions).ListAppSolutions.MoveUp(this);
+            this.ParentGroupListAppSolutions.ListAppSolutions.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -254,7 +253,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListAppSolutions).ListAppSolutions.CanDown(this))
+                if (this.ParentGroupListAppSolutions.ListAppSolutions.CanDown(this))
                 {
                     return true;
                 }
@@ -264,7 +263,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (AppSolution)(this.Parent as GroupListAppSolutions).ListAppSolutions.GetNext(this);
+            var next = (AppSolution)this.ParentGroupListAppSolutions.ListAppSolutions.GetNext(this);
             if (next == null)
             {
                 return;
@@ -275,7 +274,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListAppSolutions).ListAppSolutions.MoveDown(this);
+            this.ParentGroupListAppSolutions.ListAppSolutions.MoveDown(this);
             this.SetSelected(this);
         }
 
@@ -298,7 +297,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = AppSolution.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            (this.Parent as GroupListAppSolutions).Add(node);
+            this.ParentGroupListAppSolutions.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -307,8 +306,8 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new AppSolution(this.Parent);
-            (this.Parent as GroupListAppSolutions).Add(node);
-            this.GetUniqueName(AppSolution.DefaultName, node, (this.Parent as GroupListAppSolutions).ListAppSolutions);
+            this.ParentGroupListAppSolutions.Add(node);
+            this.GetUniqueName(AppSolution.DefaultName, node, this.ParentGroupListAppSolutions.ListAppSolutions);
             this.SetSelected(node);
             return node;
         }
@@ -338,8 +337,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
         public void Remove()
         {
-            var p = this.Parent as GroupListAppSolutions;
-            p.ListAppSolutions.Remove(this);
+            this.ParentGroupListAppSolutions.ListAppSolutions.Remove(this);
         }
     }
 }

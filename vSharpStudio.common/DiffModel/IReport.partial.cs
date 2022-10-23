@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IReport : ITreeConfigNode
     {
+        IGroupListReports ParentGroupListReportsI { get; }
     }
 }

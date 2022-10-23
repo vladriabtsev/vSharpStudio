@@ -424,7 +424,7 @@ namespace vSharpStudio.vm.ViewModels
                         if (t is IEditableNode)
                         {
                             sb.Append(" IsChanged=");
-                            sb.Append((t as IEditableNode).IsChanged);
+                            sb.Append(t.IsChanged);
                         }
                         sb.AppendLine();
                         IsHasChangedPath2(sb, t.GetListChildren());

@@ -26,8 +26,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupConstantGroups;
-            return p.Children;
+            return this.ParentGroupConstantGroups.Children;
         }
         public override bool HasChildren()
         {
@@ -89,7 +88,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupConstantGroups).ListConstantGroups.CanUp(this))
+                if (this.ParentGroupConstantGroups.ListConstantGroups.CanUp(this))
                 {
                     return true;
                 }
@@ -99,7 +98,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (GroupListConstants)(this.Parent as GroupConstantGroups).ListConstantGroups.GetPrev(this);
+            var prev = (GroupListConstants)this.ParentGroupConstantGroups.ListConstantGroups.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -110,7 +109,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupConstantGroups).ListConstantGroups.MoveUp(this);
+            this.ParentGroupConstantGroups.ListConstantGroups.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -118,7 +117,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupConstantGroups).ListConstantGroups.CanDown(this))
+                if (this.ParentGroupConstantGroups.ListConstantGroups.CanDown(this))
                 {
                     return true;
                 }
@@ -128,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (GroupListConstants)(this.Parent as GroupConstantGroups).ListConstantGroups.GetNext(this);
+            var next = (GroupListConstants)this.ParentGroupConstantGroups.ListConstantGroups.GetNext(this);
             if (next == null)
             {
                 return;
@@ -139,14 +138,14 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupConstantGroups).ListConstantGroups.MoveDown(this);
+            this.ParentGroupConstantGroups.ListConstantGroups.MoveDown(this);
             this.SetSelected(this);
         }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = GroupListConstants.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            (this.Parent as GroupConstantGroups).ListConstantGroups.Add(node);
+            this.ParentGroupConstantGroups.ListConstantGroups.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -154,8 +153,8 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new GroupListConstants(this.Parent);
-            (this.Parent as GroupConstantGroups).ListConstantGroups.Add(node);
-            this.GetUniqueName(Defaults.ConstantsGroupName, node, (this.Parent as GroupConstantGroups).ListConstantGroups);
+            this.ParentGroupConstantGroups.ListConstantGroups.Add(node);
+            this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ParentGroupConstantGroups.ListConstantGroups);
             this.SetSelected(node);
             return node;
         }

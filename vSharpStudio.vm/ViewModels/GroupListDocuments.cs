@@ -26,8 +26,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupDocuments;
-            return p.Children;
+            return this.ParentGroupDocuments.Children;
         }
         public override bool HasChildren()
         {

@@ -20,7 +20,7 @@ namespace vPlugin.Sample
             {
                 DicNodeExcludedProperties[this.GetPropertyName(() => this.IsPropertyParam1)] = null; ;
             }
-            if (!(this.Parent?.Parent is ICatalog) && !(this.Parent is IForm))
+            if (!(this.Parent != null && this.Parent.Parent is ICatalog) && !(this.Parent is IForm))
             {
                 DicNodeExcludedProperties[this.GetPropertyName(() => this.IsCatalogFormParam1)] = null;
             }

@@ -89,7 +89,7 @@ namespace vSharpStudio.vm.ViewModels
         public AppProject(ITreeConfigNode parent, string name, string projectPath)
                         : this(parent)
         {
-            Contract.Requires(parent != null);
+            Debug.Assert(parent != null);
             this.Name = name;
 #pragma warning disable CA1062 // Validate arguments of public methods
             this.ParentAppSolution.ListAppProjects.Add(this);

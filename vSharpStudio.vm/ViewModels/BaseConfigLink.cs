@@ -14,9 +14,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class BaseConfigLink : IEditableNode  // INodeGenSettings, 
     {
         [BrowsableAttribute(false)]
-        public GroupListBaseConfigLinks GroupListBaseConfigLinks { get { return (GroupListBaseConfigLinks)this.Parent; } }
+        public GroupListBaseConfigLinks ParentGroupListBaseConfigLinks { get { return (GroupListBaseConfigLinks)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListBaseConfigLinks GroupListBaseConfigLinksI { get { return (IGroupListBaseConfigLinks)this.Parent; } }
+        public IGroupListBaseConfigLinks ParentGroupListBaseConfigLinksI { get { return (IGroupListBaseConfigLinks)this.Parent; } }
         public static readonly string DefaultName = "BaseConfig";
 
         #region ITree
@@ -26,8 +26,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListBaseConfigLinks;
-            return p.Children;
+            return this.ParentGroupListBaseConfigLinks.Children;
         }
         public override bool HasChildren()
         {
@@ -47,13 +46,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IEnumerable<ITreeConfigNode> GetParentList()
         {
-            var p = this.Parent as GroupListBaseConfigLinks;
-            return p.ListBaseConfigLinks;
+            return this.ParentGroupListBaseConfigLinks.ListBaseConfigLinks;
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListBaseConfigLinks;
-            p.ListBaseConfigLinks.Remove(this);
+            this.ParentGroupListBaseConfigLinks.ListBaseConfigLinks.Remove(this);
         }
     }
 }

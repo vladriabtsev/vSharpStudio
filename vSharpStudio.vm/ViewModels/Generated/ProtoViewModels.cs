@@ -9,10 +9,10 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
 using vSharpStudio.common;
 using vSharpStudio.common.ViewModels;
 using Google.Protobuf;
+using System.Diagnostics;
 
 namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
 {
@@ -57,7 +57,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static UserSettings Clone(IUserSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             UserSettings vm = new UserSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -70,8 +70,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(UserSettings to, IUserSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListOpenConfigHistory.ToList())
@@ -129,7 +129,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_user_settings' to 'UserSettings'
         public static UserSettings ConvertToVM(Proto.Config.proto_user_settings m, UserSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -149,7 +149,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'UserSettings' to 'proto_user_settings'
         public static Proto.Config.proto_user_settings ConvertToProto(UserSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_user_settings m = new Proto.Config.proto_user_settings(); // Clone.tt Line: 239
             foreach (var t in vm.ListOpenConfigHistory) // Clone.tt Line: 242
                 m.ListOpenConfigHistory.Add(UserSettingsOpenedConfig.ConvertToProto((UserSettingsOpenedConfig)t)); // Clone.tt Line: 246
@@ -158,7 +158,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -247,7 +247,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static UserSettingsOpenedConfig Clone(IUserSettingsOpenedConfig from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             UserSettingsOpenedConfig vm = new UserSettingsOpenedConfig();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -260,8 +260,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(UserSettingsOpenedConfig to, IUserSettingsOpenedConfig from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.OpenedLastTimeOn = from.OpenedLastTimeOn; // Clone.tt Line: 141
             to.ConfigPath = from.ConfigPath; // Clone.tt Line: 141
@@ -286,7 +286,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_user_settings_opened_config' to 'UserSettingsOpenedConfig'
         public static UserSettingsOpenedConfig ConvertToVM(Proto.Config.proto_user_settings_opened_config m, UserSettingsOpenedConfig vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -303,7 +303,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'UserSettingsOpenedConfig' to 'proto_user_settings_opened_config'
         public static Proto.Config.proto_user_settings_opened_config ConvertToProto(UserSettingsOpenedConfig vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_user_settings_opened_config m = new Proto.Config.proto_user_settings_opened_config(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.OpenedLastTimeOn = vm.OpenedLastTimeOn; // Clone.tt Line: 276
@@ -313,7 +313,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -450,7 +450,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListPlugins Clone(ITreeConfigNode parent, IGroupListPlugins from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListPlugins vm = new GroupListPlugins(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -466,8 +466,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListPlugins to, IGroupListPlugins from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -528,7 +528,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_plugins' to 'GroupListPlugins'
         public static GroupListPlugins ConvertToVM(Proto.Config.proto_group_list_plugins m, GroupListPlugins vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -551,7 +551,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListPlugins' to 'proto_group_list_plugins'
         public static Proto.Config.proto_group_list_plugins ConvertToProto(GroupListPlugins vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_plugins m = new Proto.Config.proto_group_list_plugins(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -563,7 +563,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -663,13 +663,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IPlugin IGroupListPlugins.this[int index] { get { return (Plugin)this.ListPlugins[index]; } }
         public void Add(Plugin item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListPlugins.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Plugin> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListPlugins.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -678,7 +678,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListPlugins.Count() { return this.Count(); }
         public void Remove(Plugin item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListPlugins.Remove(item); 
             item.Parent = null;
         }
@@ -745,7 +745,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Plugin Clone(ITreeConfigNode parent, IPlugin from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Plugin vm = new Plugin(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -765,8 +765,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Plugin to, IPlugin from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Version = from.Version; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
@@ -831,7 +831,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_plugin' to 'Plugin'
         public static Plugin ConvertToVM(Proto.Config.proto_plugin m, Plugin vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -858,7 +858,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Plugin' to 'proto_plugin'
         public static Proto.Config.proto_plugin ConvertToProto(Plugin vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_plugin m = new Proto.Config.proto_plugin(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Version = vm.Version; // Clone.tt Line: 276
@@ -874,7 +874,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -1115,7 +1115,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static PluginGenerator Clone(ITreeConfigNode parent, IPluginGenerator from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             PluginGenerator vm = new PluginGenerator(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -1131,8 +1131,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(PluginGenerator to, IPluginGenerator from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
@@ -1160,7 +1160,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_plugin_generator' to 'PluginGenerator'
         public static PluginGenerator ConvertToVM(Proto.Config.proto_plugin_generator m, PluginGenerator vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -1180,7 +1180,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'PluginGenerator' to 'proto_plugin_generator'
         public static Proto.Config.proto_plugin_generator ConvertToProto(PluginGenerator vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_plugin_generator m = new Proto.Config.proto_plugin_generator(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -1193,7 +1193,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -1383,7 +1383,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static SettingsConfig Clone(ISettingsConfig from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             SettingsConfig vm = new SettingsConfig();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -1398,8 +1398,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(SettingsConfig to, ISettingsConfig from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Name = from.Name; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
@@ -1426,7 +1426,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_settings_config' to 'SettingsConfig'
         public static SettingsConfig ConvertToVM(Proto.Config.proto_settings_config m, SettingsConfig vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -1445,7 +1445,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'SettingsConfig' to 'proto_settings_config'
         public static Proto.Config.proto_settings_config ConvertToProto(SettingsConfig vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_settings_config m = new Proto.Config.proto_settings_config(); // Clone.tt Line: 239
             m.Name = vm.Name; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
@@ -1457,7 +1457,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -1636,7 +1636,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static ConfigShortHistory Clone(IConfigShortHistory from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             ConfigShortHistory vm = new ConfigShortHistory();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -1652,8 +1652,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(ConfigShortHistory to, IConfigShortHistory from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
@@ -1681,7 +1681,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_config_short_history' to 'ConfigShortHistory'
         public static ConfigShortHistory ConvertToVM(Proto.Config.proto_config_short_history m, ConfigShortHistory vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -1703,7 +1703,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'ConfigShortHistory' to 'proto_config_short_history'
         public static Proto.Config.proto_config_short_history ConvertToProto(ConfigShortHistory vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_config_short_history m = new Proto.Config.proto_config_short_history(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -1714,7 +1714,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -1883,7 +1883,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListBaseConfigLinks Clone(ITreeConfigNode parent, IGroupListBaseConfigLinks from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListBaseConfigLinks vm = new GroupListBaseConfigLinks(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -1903,8 +1903,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListBaseConfigLinks to, IGroupListBaseConfigLinks from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -2002,7 +2002,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_base_config_links' to 'GroupListBaseConfigLinks'
         public static GroupListBaseConfigLinks ConvertToVM(Proto.Config.proto_group_list_base_config_links m, GroupListBaseConfigLinks vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -2032,7 +2032,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListBaseConfigLinks' to 'proto_group_list_base_config_links'
         public static Proto.Config.proto_group_list_base_config_links ConvertToProto(GroupListBaseConfigLinks vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_base_config_links m = new Proto.Config.proto_group_list_base_config_links(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -2047,7 +2047,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -2171,13 +2171,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IBaseConfigLink IGroupListBaseConfigLinks.this[int index] { get { return (BaseConfigLink)this.ListBaseConfigLinks[index]; } }
         public void Add(BaseConfigLink item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListBaseConfigLinks.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<BaseConfigLink> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListBaseConfigLinks.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -2186,7 +2186,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListBaseConfigLinks.Count() { return this.Count(); }
         public void Remove(BaseConfigLink item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListBaseConfigLinks.Remove(item); 
             item.Parent = null;
         }
@@ -2275,7 +2275,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static BaseConfigLink Clone(ITreeConfigNode parent, IBaseConfigLink from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             BaseConfigLink vm = new BaseConfigLink(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -2297,8 +2297,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(BaseConfigLink to, IBaseConfigLink from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -2365,7 +2365,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_base_config_link' to 'BaseConfigLink'
         public static BaseConfigLink ConvertToVM(Proto.Config.proto_base_config_link m, BaseConfigLink vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -2395,7 +2395,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'BaseConfigLink' to 'proto_base_config_link'
         public static Proto.Config.proto_base_config_link ConvertToProto(BaseConfigLink vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_base_config_link m = new Proto.Config.proto_base_config_link(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -2412,7 +2412,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -2689,7 +2689,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Config Clone(ITreeConfigNode parent, IConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Config vm = new Config(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -2717,8 +2717,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Config to, IConfig from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.Version = from.Version; // Clone.tt Line: 141
@@ -2756,7 +2756,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_config' to 'Config'
         public static Config ConvertToVM(Proto.Config.proto_config m, Config vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -2793,7 +2793,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Config' to 'proto_config'
         public static Proto.Config.proto_config ConvertToProto(Config vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_config m = new Proto.Config.proto_config(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -2812,7 +2812,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -3141,7 +3141,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static AppDbSettings Clone(IAppDbSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             AppDbSettings vm = new AppDbSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -3158,8 +3158,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(AppDbSettings to, IAppDbSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.PluginGuid = from.PluginGuid; // Clone.tt Line: 141
             to.PluginName = from.PluginName; // Clone.tt Line: 141
             to.Version = from.Version; // Clone.tt Line: 141
@@ -3188,7 +3188,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_app_db_settings' to 'AppDbSettings'
         public static AppDbSettings ConvertToVM(Proto.Config.proto_app_db_settings m, AppDbSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -3209,7 +3209,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'AppDbSettings' to 'proto_app_db_settings'
         public static Proto.Config.proto_app_db_settings ConvertToProto(AppDbSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_app_db_settings m = new Proto.Config.proto_app_db_settings(); // Clone.tt Line: 239
             m.PluginGuid = vm.PluginGuid; // Clone.tt Line: 276
             m.PluginName = vm.PluginName; // Clone.tt Line: 276
@@ -3223,7 +3223,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -3444,7 +3444,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static PluginGroupGeneratorsDefaultSettings Clone(IPluginGroupGeneratorsDefaultSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             PluginGroupGeneratorsDefaultSettings vm = new PluginGroupGeneratorsDefaultSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -3457,8 +3457,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(PluginGroupGeneratorsDefaultSettings to, IPluginGroupGeneratorsDefaultSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.AppGroupGeneratorsGuid = from.AppGroupGeneratorsGuid; // Clone.tt Line: 141
             to.Settings = from.Settings; // Clone.tt Line: 141
@@ -3483,7 +3483,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_plugin_group_generators_default_settings' to 'PluginGroupGeneratorsDefaultSettings'
         public static PluginGroupGeneratorsDefaultSettings ConvertToVM(Proto.Config.proto_plugin_group_generators_default_settings m, PluginGroupGeneratorsDefaultSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -3500,7 +3500,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'PluginGroupGeneratorsDefaultSettings' to 'proto_plugin_group_generators_default_settings'
         public static Proto.Config.proto_plugin_group_generators_default_settings ConvertToProto(PluginGroupGeneratorsDefaultSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_plugin_group_generators_default_settings m = new Proto.Config.proto_plugin_group_generators_default_settings(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.AppGroupGeneratorsGuid = vm.AppGroupGeneratorsGuid; // Clone.tt Line: 276
@@ -3510,7 +3510,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -3649,7 +3649,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListAppSolutions Clone(ITreeConfigNode parent, IGroupListAppSolutions from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListAppSolutions vm = new GroupListAppSolutions(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -3669,8 +3669,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListAppSolutions to, IGroupListAppSolutions from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -3768,7 +3768,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_app_solutions' to 'GroupListAppSolutions'
         public static GroupListAppSolutions ConvertToVM(Proto.Config.proto_group_list_app_solutions m, GroupListAppSolutions vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -3798,7 +3798,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListAppSolutions' to 'proto_group_list_app_solutions'
         public static Proto.Config.proto_group_list_app_solutions ConvertToProto(GroupListAppSolutions vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_app_solutions m = new Proto.Config.proto_group_list_app_solutions(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -3813,7 +3813,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -3941,13 +3941,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IAppSolution IGroupListAppSolutions.this[int index] { get { return (AppSolution)this.ListAppSolutions[index]; } }
         public void Add(AppSolution item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListAppSolutions.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<AppSolution> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListAppSolutions.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -3956,7 +3956,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListAppSolutions.Count() { return this.Count(); }
         public void Remove(AppSolution item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListAppSolutions.Remove(item); 
             item.Parent = null;
         }
@@ -4040,7 +4040,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static PluginGroupGeneratorsSettings Clone(ITreeConfigNode parent, IPluginGroupGeneratorsSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             PluginGroupGeneratorsSettings vm = new PluginGroupGeneratorsSettings(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -4057,8 +4057,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(PluginGroupGeneratorsSettings to, IPluginGroupGeneratorsSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.AppGroupGeneratorsGuid = from.AppGroupGeneratorsGuid; // Clone.tt Line: 141
@@ -4087,7 +4087,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_plugin_group_generators_settings' to 'PluginGroupGeneratorsSettings'
         public static PluginGroupGeneratorsSettings ConvertToVM(Proto.Config.proto_plugin_group_generators_settings m, PluginGroupGeneratorsSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -4108,7 +4108,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'PluginGroupGeneratorsSettings' to 'proto_plugin_group_generators_settings'
         public static Proto.Config.proto_plugin_group_generators_settings ConvertToProto(PluginGroupGeneratorsSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_plugin_group_generators_settings m = new Proto.Config.proto_plugin_group_generators_settings(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -4122,7 +4122,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -4342,7 +4342,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static AppSolution Clone(ITreeConfigNode parent, IAppSolution from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             AppSolution vm = new AppSolution(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -4367,8 +4367,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(AppSolution to, IAppSolution from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
@@ -4471,7 +4471,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_app_solution' to 'AppSolution'
         public static AppSolution ConvertToVM(Proto.Config.proto_app_solution m, AppSolution vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -4506,7 +4506,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'AppSolution' to 'proto_app_solution'
         public static Proto.Config.proto_app_solution ConvertToProto(AppSolution vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_app_solution m = new Proto.Config.proto_app_solution(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -4526,7 +4526,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -4845,7 +4845,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static AppProject Clone(ITreeConfigNode parent, IAppProject from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             AppProject vm = new AppProject(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -4869,8 +4869,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(AppProject to, IAppProject from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
@@ -4972,7 +4972,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_app_project' to 'AppProject'
         public static AppProject ConvertToVM(Proto.Config.proto_app_project m, AppProject vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -5006,7 +5006,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'AppProject' to 'proto_app_project'
         public static Proto.Config.proto_app_project ConvertToProto(AppProject vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_app_project m = new Proto.Config.proto_app_project(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -5025,7 +5025,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -5312,7 +5312,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static PluginGeneratorNodeSettings Clone(ITreeConfigNode parent, IPluginGeneratorNodeSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             PluginGeneratorNodeSettings vm = new PluginGeneratorNodeSettings(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -5328,8 +5328,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(PluginGeneratorNodeSettings to, IPluginGeneratorNodeSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.AppProjectGeneratorGuid = from.AppProjectGeneratorGuid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
@@ -5357,7 +5357,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_plugin_generator_node_settings' to 'PluginGeneratorNodeSettings'
         public static PluginGeneratorNodeSettings ConvertToVM(Proto.Config.proto_plugin_generator_node_settings m, PluginGeneratorNodeSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -5377,7 +5377,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'PluginGeneratorNodeSettings' to 'proto_plugin_generator_node_settings'
         public static Proto.Config.proto_plugin_generator_node_settings ConvertToProto(PluginGeneratorNodeSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_plugin_generator_node_settings m = new Proto.Config.proto_plugin_generator_node_settings(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.AppProjectGeneratorGuid = vm.AppProjectGeneratorGuid; // Clone.tt Line: 276
@@ -5390,7 +5390,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -5586,7 +5586,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static PluginGeneratorSettings Clone(IPluginGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             PluginGeneratorSettings vm = new PluginGeneratorSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -5601,8 +5601,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(PluginGeneratorSettings to, IPluginGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
@@ -5629,7 +5629,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_plugin_generator_settings' to 'PluginGeneratorSettings'
         public static PluginGeneratorSettings ConvertToVM(Proto.Config.proto_plugin_generator_settings m, PluginGeneratorSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -5648,7 +5648,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'PluginGeneratorSettings' to 'proto_plugin_generator_settings'
         public static Proto.Config.proto_plugin_generator_settings ConvertToProto(PluginGeneratorSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_plugin_generator_settings m = new Proto.Config.proto_plugin_generator_settings(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -5660,7 +5660,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -5841,7 +5841,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static AppProjectGenerator Clone(ITreeConfigNode parent, IAppProjectGenerator from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             AppProjectGenerator vm = new AppProjectGenerator(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -5872,8 +5872,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(AppProjectGenerator to, IAppProjectGenerator from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
@@ -5916,7 +5916,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_app_project_generator' to 'AppProjectGenerator'
         public static AppProjectGenerator ConvertToVM(Proto.Config.proto_app_project_generator m, AppProjectGenerator vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -5952,7 +5952,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'AppProjectGenerator' to 'proto_app_project_generator'
         public static Proto.Config.proto_app_project_generator ConvertToProto(AppProjectGenerator vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_app_project_generator m = new Proto.Config.proto_app_project_generator(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -5979,7 +5979,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -6499,7 +6499,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static PluginGeneratorNodeDefaultSettings Clone(IPluginGeneratorNodeDefaultSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             PluginGeneratorNodeDefaultSettings vm = new PluginGeneratorNodeDefaultSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -6511,8 +6511,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(PluginGeneratorNodeDefaultSettings to, IPluginGeneratorNodeDefaultSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.NodeSettingsVmGuid = from.NodeSettingsVmGuid; // Clone.tt Line: 141
             to.Settings = from.Settings; // Clone.tt Line: 141
         }
@@ -6536,7 +6536,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_plugin_generator_node_default_settings' to 'PluginGeneratorNodeDefaultSettings'
         public static PluginGeneratorNodeDefaultSettings ConvertToVM(Proto.Config.proto_plugin_generator_node_default_settings m, PluginGeneratorNodeDefaultSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -6552,7 +6552,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'PluginGeneratorNodeDefaultSettings' to 'proto_plugin_generator_node_default_settings'
         public static Proto.Config.proto_plugin_generator_node_default_settings ConvertToProto(PluginGeneratorNodeDefaultSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_plugin_generator_node_default_settings m = new Proto.Config.proto_plugin_generator_node_default_settings(); // Clone.tt Line: 239
             m.NodeSettingsVmGuid = vm.NodeSettingsVmGuid; // Clone.tt Line: 276
             m.Settings = vm.Settings; // Clone.tt Line: 276
@@ -6561,7 +6561,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -6689,7 +6689,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Model Clone(ITreeConfigNode parent, IModel from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Model vm = new Model(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -6735,8 +6735,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Model to, IModel from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Version = from.Version; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
@@ -6825,7 +6825,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_model' to 'Model'
         public static Model ConvertToVM(Proto.Config.proto_model m, Model vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -6885,7 +6885,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Model' to 'proto_model'
         public static Proto.Config.proto_model ConvertToProto(Model vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_model m = new Proto.Config.proto_model(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Version = vm.Version; // Clone.tt Line: 276
@@ -6919,7 +6919,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -7574,7 +7574,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static DataType Clone(IDataType from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             DataType vm = new DataType();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -7593,8 +7593,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(DataType to, IDataType from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.DataTypeEnum = from.DataTypeEnum; // Clone.tt Line: 141
             to.Length = from.Length; // Clone.tt Line: 141
             to.IsPositive = from.IsPositive; // Clone.tt Line: 141
@@ -7628,7 +7628,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_data_type' to 'DataType'
         public static DataType ConvertToVM(Proto.Config.proto_data_type m, DataType vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -7654,7 +7654,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'DataType' to 'proto_data_type'
         public static Proto.Config.proto_data_type ConvertToProto(DataType vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_data_type m = new Proto.Config.proto_data_type(); // Clone.tt Line: 239
             m.DataTypeEnum = (Proto.Config.proto_enum_data_type)vm.DataTypeEnum; // Clone.tt Line: 274
             m.Length = vm.Length; // Clone.tt Line: 276
@@ -7670,7 +7670,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -7925,7 +7925,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListCommon Clone(ITreeConfigNode parent, IGroupListCommon from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListCommon vm = new GroupListCommon(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -7949,8 +7949,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListCommon to, IGroupListCommon from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -8017,7 +8017,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_common' to 'GroupListCommon'
         public static GroupListCommon ConvertToVM(Proto.Config.proto_group_list_common m, GroupListCommon vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -8051,7 +8051,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListCommon' to 'proto_group_list_common'
         public static Proto.Config.proto_group_list_common ConvertToProto(GroupListCommon vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_common m = new Proto.Config.proto_group_list_common(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -8067,7 +8067,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -8321,7 +8321,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Role Clone(ITreeConfigNode parent, IRole from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Role vm = new Role(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -8343,8 +8343,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Role to, IRole from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -8409,7 +8409,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_role' to 'Role'
         public static Role ConvertToVM(Proto.Config.proto_role m, Role vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -8439,7 +8439,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Role' to 'proto_role'
         public static Proto.Config.proto_role ConvertToProto(Role vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_role m = new Proto.Config.proto_role(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -8455,7 +8455,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -8704,7 +8704,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListRoles Clone(ITreeConfigNode parent, IGroupListRoles from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListRoles vm = new GroupListRoles(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -8727,8 +8727,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListRoles to, IGroupListRoles from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -8827,7 +8827,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_roles' to 'GroupListRoles'
         public static GroupListRoles ConvertToVM(Proto.Config.proto_group_list_roles m, GroupListRoles vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -8861,7 +8861,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListRoles' to 'proto_group_list_roles'
         public static Proto.Config.proto_group_list_roles ConvertToProto(GroupListRoles vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_roles m = new Proto.Config.proto_group_list_roles(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -8877,7 +8877,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -9022,13 +9022,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IRole IGroupListRoles.this[int index] { get { return (Role)this.ListRoles[index]; } }
         public void Add(Role item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListRoles.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Role> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListRoles.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -9037,7 +9037,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListRoles.Count() { return this.Count(); }
         public void Remove(Role item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListRoles.Remove(item); 
             item.Parent = null;
         }
@@ -9130,7 +9130,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static MainViewForm Clone(ITreeConfigNode parent, IMainViewForm from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             MainViewForm vm = new MainViewForm(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -9154,8 +9154,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(MainViewForm to, IMainViewForm from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -9222,7 +9222,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_main_view_form' to 'MainViewForm'
         public static MainViewForm ConvertToVM(Proto.Config.proto_main_view_form m, MainViewForm vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -9255,7 +9255,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'MainViewForm' to 'proto_main_view_form'
         public static Proto.Config.proto_main_view_form ConvertToProto(MainViewForm vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_main_view_form m = new Proto.Config.proto_main_view_form(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -9272,7 +9272,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -9550,7 +9550,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListMainViewForms Clone(ITreeConfigNode parent, IGroupListMainViewForms from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListMainViewForms vm = new GroupListMainViewForms(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -9573,8 +9573,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListMainViewForms to, IGroupListMainViewForms from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -9673,7 +9673,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_main_view_forms' to 'GroupListMainViewForms'
         public static GroupListMainViewForms ConvertToVM(Proto.Config.proto_group_list_main_view_forms m, GroupListMainViewForms vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -9707,7 +9707,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListMainViewForms' to 'proto_group_list_main_view_forms'
         public static Proto.Config.proto_group_list_main_view_forms ConvertToProto(GroupListMainViewForms vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_main_view_forms m = new Proto.Config.proto_group_list_main_view_forms(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -9723,7 +9723,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -9868,13 +9868,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IMainViewForm IGroupListMainViewForms.this[int index] { get { return (MainViewForm)this.ListMainViewForms[index]; } }
         public void Add(MainViewForm item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListMainViewForms.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<MainViewForm> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListMainViewForms.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -9883,7 +9883,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListMainViewForms.Count() { return this.Count(); }
         public void Remove(MainViewForm item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListMainViewForms.Remove(item); 
             item.Parent = null;
         }
@@ -9976,7 +9976,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListDetails Clone(ITreeConfigNode parent, IGroupListDetails from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListDetails vm = new GroupListDetails(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -9999,8 +9999,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListDetails to, IGroupListDetails from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -10099,7 +10099,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_details' to 'GroupListDetails'
         public static GroupListDetails ConvertToVM(Proto.Config.proto_group_list_details m, GroupListDetails vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -10133,7 +10133,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListDetails' to 'proto_group_list_details'
         public static Proto.Config.proto_group_list_details ConvertToProto(GroupListDetails vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_details m = new Proto.Config.proto_group_list_details(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -10149,7 +10149,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -10294,13 +10294,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IDetail IGroupListDetails.this[int index] { get { return (Detail)this.ListDetails[index]; } }
         public void Add(Detail item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListDetails.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Detail> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListDetails.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -10309,7 +10309,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListDetails.Count() { return this.Count(); }
         public void Remove(Detail item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListDetails.Remove(item); 
             item.Parent = null;
         }
@@ -10400,7 +10400,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Detail Clone(ITreeConfigNode parent, IDetail from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Detail vm = new Detail(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -10443,8 +10443,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Detail to, IDetail from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -10533,7 +10533,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_detail' to 'Detail'
         public static Detail ConvertToVM(Proto.Config.proto_detail m, Detail vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -10590,7 +10590,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Detail' to 'proto_detail'
         public static Proto.Config.proto_detail ConvertToProto(Detail vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_detail m = new Proto.Config.proto_detail(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -10624,7 +10624,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -11269,7 +11269,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListProperties Clone(ITreeConfigNode parent, IGroupListProperties from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListProperties vm = new GroupListProperties(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -11293,8 +11293,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListProperties to, IGroupListProperties from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -11394,7 +11394,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_properties' to 'GroupListProperties'
         public static GroupListProperties ConvertToVM(Proto.Config.proto_group_list_properties m, GroupListProperties vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -11429,7 +11429,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListProperties' to 'proto_group_list_properties'
         public static Proto.Config.proto_group_list_properties ConvertToProto(GroupListProperties vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_properties m = new Proto.Config.proto_group_list_properties(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -11446,7 +11446,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -11591,13 +11591,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IProperty IGroupListProperties.this[int index] { get { return (Property)this.ListProperties[index]; } }
         public void Add(Property item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListProperties.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Property> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListProperties.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -11606,7 +11606,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListProperties.Count() { return this.Count(); }
         public void Remove(Property item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListProperties.Remove(item); 
             item.Parent = null;
         }
@@ -11720,7 +11720,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Property Clone(ITreeConfigNode parent, IProperty from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Property vm = new Property(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -11760,8 +11760,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Property to, IProperty from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -11844,7 +11844,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_property' to 'Property'
         public static Property ConvertToVM(Proto.Config.proto_property m, Property vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -11893,7 +11893,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Property' to 'proto_property'
         public static Proto.Config.proto_property ConvertToProto(Property vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_property m = new Proto.Config.proto_property(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -11926,7 +11926,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -12580,7 +12580,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupConstantGroups Clone(ITreeConfigNode parent, IGroupConstantGroups from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupConstantGroups vm = new GroupConstantGroups(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -12604,8 +12604,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupConstantGroups to, IGroupConstantGroups from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -12705,7 +12705,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_constant_groups' to 'GroupConstantGroups'
         public static GroupConstantGroups ConvertToVM(Proto.Config.proto_group_constant_groups m, GroupConstantGroups vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -12740,7 +12740,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupConstantGroups' to 'proto_group_constant_groups'
         public static Proto.Config.proto_group_constant_groups ConvertToProto(GroupConstantGroups vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_constant_groups m = new Proto.Config.proto_group_constant_groups(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -12757,7 +12757,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -13010,7 +13010,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListConstants Clone(ITreeConfigNode parent, IGroupListConstants from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListConstants vm = new GroupListConstants(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -13037,8 +13037,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListConstants to, IGroupListConstants from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -13141,7 +13141,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_constants' to 'GroupListConstants'
         public static GroupListConstants ConvertToVM(Proto.Config.proto_group_list_constants m, GroupListConstants vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -13179,7 +13179,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListConstants' to 'proto_group_list_constants'
         public static Proto.Config.proto_group_list_constants ConvertToProto(GroupListConstants vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_constants m = new Proto.Config.proto_group_list_constants(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -13199,7 +13199,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -13344,13 +13344,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IConstant IGroupListConstants.this[int index] { get { return (Constant)this.ListConstants[index]; } }
         public void Add(Constant item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListConstants.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Constant> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListConstants.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -13359,7 +13359,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListConstants.Count() { return this.Count(); }
         public void Remove(Constant item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListConstants.Remove(item); 
             item.Parent = null;
         }
@@ -13538,7 +13538,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Constant Clone(ITreeConfigNode parent, IConstant from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Constant vm = new Constant(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -13570,8 +13570,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Constant to, IConstant from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -13646,7 +13646,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_constant' to 'Constant'
         public static Constant ConvertToVM(Proto.Config.proto_constant m, Constant vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -13687,7 +13687,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Constant' to 'proto_constant'
         public static Proto.Config.proto_constant ConvertToProto(Constant vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_constant m = new Proto.Config.proto_constant(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -13712,7 +13712,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -14170,7 +14170,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListEnumerations Clone(ITreeConfigNode parent, IGroupListEnumerations from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListEnumerations vm = new GroupListEnumerations(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -14193,8 +14193,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListEnumerations to, IGroupListEnumerations from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -14293,7 +14293,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_enumerations' to 'GroupListEnumerations'
         public static GroupListEnumerations ConvertToVM(Proto.Config.proto_group_list_enumerations m, GroupListEnumerations vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -14327,7 +14327,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListEnumerations' to 'proto_group_list_enumerations'
         public static Proto.Config.proto_group_list_enumerations ConvertToProto(GroupListEnumerations vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_enumerations m = new Proto.Config.proto_group_list_enumerations(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -14343,7 +14343,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -14488,13 +14488,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IEnumeration IGroupListEnumerations.this[int index] { get { return (Enumeration)this.ListEnumerations[index]; } }
         public void Add(Enumeration item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListEnumerations.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Enumeration> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListEnumerations.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -14503,7 +14503,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListEnumerations.Count() { return this.Count(); }
         public void Remove(Enumeration item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListEnumerations.Remove(item); 
             item.Parent = null;
         }
@@ -14596,7 +14596,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Enumeration Clone(ITreeConfigNode parent, IEnumeration from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Enumeration vm = new Enumeration(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -14623,8 +14623,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Enumeration to, IEnumeration from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -14727,7 +14727,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_enumeration' to 'Enumeration'
         public static Enumeration ConvertToVM(Proto.Config.proto_enumeration m, Enumeration vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -14765,7 +14765,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Enumeration' to 'proto_enumeration'
         public static Proto.Config.proto_enumeration ConvertToProto(Enumeration vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_enumeration m = new Proto.Config.proto_enumeration(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -14785,7 +14785,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -15107,7 +15107,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static EnumerationPair Clone(ITreeConfigNode parent, IEnumerationPair from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             EnumerationPair vm = new EnumerationPair(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -15132,8 +15132,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(EnumerationPair to, IEnumerationPair from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -15201,7 +15201,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_enumeration_pair' to 'EnumerationPair'
         public static EnumerationPair ConvertToVM(Proto.Config.proto_enumeration_pair m, EnumerationPair vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -15234,7 +15234,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'EnumerationPair' to 'proto_enumeration_pair'
         public static Proto.Config.proto_enumeration_pair ConvertToProto(EnumerationPair vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_enumeration_pair m = new Proto.Config.proto_enumeration_pair(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -15253,7 +15253,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -15572,7 +15572,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static CatalogFolder Clone(ITreeConfigNode parent, ICatalogFolder from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             CatalogFolder vm = new CatalogFolder(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -15612,8 +15612,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(CatalogFolder to, ICatalogFolder from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -15696,7 +15696,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_catalog_folder' to 'CatalogFolder'
         public static CatalogFolder ConvertToVM(Proto.Config.proto_catalog_folder m, CatalogFolder vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -15747,7 +15747,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'CatalogFolder' to 'proto_catalog_folder'
         public static Proto.Config.proto_catalog_folder ConvertToProto(CatalogFolder vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_catalog_folder m = new Proto.Config.proto_catalog_folder(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -15778,7 +15778,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -16355,7 +16355,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static CatalogCodePropertySettings Clone(ICatalogCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             CatalogCodePropertySettings vm = new CatalogCodePropertySettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -16369,8 +16369,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(CatalogCodePropertySettings to, ICatalogCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Type = from.Type; // Clone.tt Line: 141
             to.Length = from.Length; // Clone.tt Line: 141
             to.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 141
@@ -16396,7 +16396,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_catalog_code_property_settings' to 'CatalogCodePropertySettings'
         public static CatalogCodePropertySettings ConvertToVM(Proto.Config.proto_catalog_code_property_settings m, CatalogCodePropertySettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -16414,7 +16414,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'CatalogCodePropertySettings' to 'proto_catalog_code_property_settings'
         public static Proto.Config.proto_catalog_code_property_settings ConvertToProto(CatalogCodePropertySettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_catalog_code_property_settings m = new Proto.Config.proto_catalog_code_property_settings(); // Clone.tt Line: 239
             m.Type = (Proto.Config.proto_enum_code_type)vm.Type; // Clone.tt Line: 274
             m.Length = vm.Length; // Clone.tt Line: 276
@@ -16425,7 +16425,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -16596,7 +16596,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Catalog Clone(ITreeConfigNode parent, ICatalog from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Catalog vm = new Catalog(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -16656,8 +16656,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Catalog to, ICatalog from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -16766,7 +16766,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_catalog' to 'Catalog'
         public static Catalog ConvertToVM(Proto.Config.proto_catalog m, Catalog vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -16846,7 +16846,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Catalog' to 'proto_catalog'
         public static Proto.Config.proto_catalog ConvertToProto(Catalog vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_catalog m = new Proto.Config.proto_catalog(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -16894,7 +16894,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -17822,7 +17822,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListCatalogs Clone(ITreeConfigNode parent, IGroupListCatalogs from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListCatalogs vm = new GroupListCatalogs(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -17855,8 +17855,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListCatalogs to, IGroupListCatalogs from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -17965,7 +17965,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_catalogs' to 'GroupListCatalogs'
         public static GroupListCatalogs ConvertToVM(Proto.Config.proto_group_list_catalogs m, GroupListCatalogs vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -18009,7 +18009,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListCatalogs' to 'proto_group_list_catalogs'
         public static Proto.Config.proto_group_list_catalogs ConvertToProto(GroupListCatalogs vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_catalogs m = new Proto.Config.proto_group_list_catalogs(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -18035,7 +18035,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -18226,13 +18226,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         ICatalog IGroupListCatalogs.this[int index] { get { return (Catalog)this.ListCatalogs[index]; } }
         public void Add(Catalog item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListCatalogs.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Catalog> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListCatalogs.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -18241,7 +18241,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListCatalogs.Count() { return this.Count(); }
         public void Remove(Catalog item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListCatalogs.Remove(item); 
             item.Parent = null;
         }
@@ -18515,7 +18515,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupDocuments Clone(ITreeConfigNode parent, IGroupDocuments from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupDocuments vm = new GroupDocuments(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -18544,8 +18544,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupDocuments to, IGroupDocuments from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -18617,7 +18617,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_documents' to 'GroupDocuments'
         public static GroupDocuments ConvertToVM(Proto.Config.proto_group_documents m, GroupDocuments vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -18656,7 +18656,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupDocuments' to 'proto_group_documents'
         public static Proto.Config.proto_group_documents ConvertToProto(GroupDocuments vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_documents m = new Proto.Config.proto_group_documents(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -18677,7 +18677,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -19034,7 +19034,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static DocumentCodePropertySettings Clone(IDocumentCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             DocumentCodePropertySettings vm = new DocumentCodePropertySettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -19049,8 +19049,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(DocumentCodePropertySettings to, IDocumentCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Type = from.Type; // Clone.tt Line: 141
             to.Length = from.Length; // Clone.tt Line: 141
             to.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 141
@@ -19077,7 +19077,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_document_code_property_settings' to 'DocumentCodePropertySettings'
         public static DocumentCodePropertySettings ConvertToVM(Proto.Config.proto_document_code_property_settings m, DocumentCodePropertySettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -19096,7 +19096,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'DocumentCodePropertySettings' to 'proto_document_code_property_settings'
         public static Proto.Config.proto_document_code_property_settings ConvertToProto(DocumentCodePropertySettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_document_code_property_settings m = new Proto.Config.proto_document_code_property_settings(); // Clone.tt Line: 239
             m.Type = (Proto.Config.proto_enum_code_type)vm.Type; // Clone.tt Line: 274
             m.Length = vm.Length; // Clone.tt Line: 276
@@ -19108,7 +19108,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -19301,7 +19301,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Document Clone(ITreeConfigNode parent, IDocument from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Document vm = new Document(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -19340,8 +19340,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Document to, IDocument from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -19423,7 +19423,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_document' to 'Document'
         public static Document ConvertToVM(Proto.Config.proto_document m, Document vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -19475,7 +19475,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Document' to 'proto_document'
         public static Proto.Config.proto_document ConvertToProto(Document vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_document m = new Proto.Config.proto_document(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -19503,7 +19503,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -20031,7 +20031,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListDocuments Clone(ITreeConfigNode parent, IGroupListDocuments from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListDocuments vm = new GroupListDocuments(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -20055,8 +20055,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListDocuments to, IGroupListDocuments from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -20156,7 +20156,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_documents' to 'GroupListDocuments'
         public static GroupListDocuments ConvertToVM(Proto.Config.proto_group_list_documents m, GroupListDocuments vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -20191,7 +20191,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListDocuments' to 'proto_group_list_documents'
         public static Proto.Config.proto_group_list_documents ConvertToProto(GroupListDocuments vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_documents m = new Proto.Config.proto_group_list_documents(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -20208,7 +20208,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -20376,13 +20376,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IDocument IGroupListDocuments.this[int index] { get { return (Document)this.ListDocuments[index]; } }
         public void Add(Document item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListDocuments.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Document> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListDocuments.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -20391,7 +20391,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListDocuments.Count() { return this.Count(); }
         public void Remove(Document item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListDocuments.Remove(item); 
             item.Parent = null;
         }
@@ -20484,7 +20484,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListJournals Clone(ITreeConfigNode parent, IGroupListJournals from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListJournals vm = new GroupListJournals(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -20507,8 +20507,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListJournals to, IGroupListJournals from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -20607,7 +20607,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_journals' to 'GroupListJournals'
         public static GroupListJournals ConvertToVM(Proto.Config.proto_group_list_journals m, GroupListJournals vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -20641,7 +20641,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListJournals' to 'proto_group_list_journals'
         public static Proto.Config.proto_group_list_journals ConvertToProto(GroupListJournals vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_journals m = new Proto.Config.proto_group_list_journals(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -20657,7 +20657,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -20806,13 +20806,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IJournal IGroupListJournals.this[int index] { get { return (Journal)this.ListJournals[index]; } }
         public void Add(Journal item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListJournals.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Journal> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListJournals.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -20821,7 +20821,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListJournals.Count() { return this.Count(); }
         public void Remove(Journal item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListJournals.Remove(item); 
             item.Parent = null;
         }
@@ -20914,7 +20914,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Journal Clone(ITreeConfigNode parent, IJournal from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Journal vm = new Journal(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -20939,8 +20939,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Journal to, IJournal from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -21041,7 +21041,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_journal' to 'Journal'
         public static Journal ConvertToVM(Proto.Config.proto_journal m, Journal vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -21077,7 +21077,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Journal' to 'proto_journal'
         public static Proto.Config.proto_journal ConvertToProto(Journal vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_journal m = new Proto.Config.proto_journal(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -21095,7 +21095,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -21373,7 +21373,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListForms Clone(ITreeConfigNode parent, IGroupListForms from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListForms vm = new GroupListForms(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -21396,8 +21396,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListForms to, IGroupListForms from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -21496,7 +21496,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_forms' to 'GroupListForms'
         public static GroupListForms ConvertToVM(Proto.Config.proto_group_list_forms m, GroupListForms vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -21530,7 +21530,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListForms' to 'proto_group_list_forms'
         public static Proto.Config.proto_group_list_forms ConvertToProto(GroupListForms vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_forms m = new Proto.Config.proto_group_list_forms(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -21546,7 +21546,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -21695,13 +21695,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IForm IGroupListForms.this[int index] { get { return (Form)this.ListForms[index]; } }
         public void Add(Form item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListForms.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Form> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListForms.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -21710,7 +21710,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListForms.Count() { return this.Count(); }
         public void Remove(Form item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListForms.Remove(item); 
             item.Parent = null;
         }
@@ -21789,7 +21789,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static FormCatalogListSettings Clone(IFormCatalogListSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             FormCatalogListSettings vm = new FormCatalogListSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -21805,8 +21805,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(FormCatalogListSettings to, IFormCatalogListSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.IsUseCode = from.IsUseCode; // Clone.tt Line: 141
             to.IsUseName = from.IsUseName; // Clone.tt Line: 141
             to.IsUseDesc = from.IsUseDesc; // Clone.tt Line: 141
@@ -21834,7 +21834,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_form_catalog_list_settings' to 'FormCatalogListSettings'
         public static FormCatalogListSettings ConvertToVM(Proto.Config.proto_form_catalog_list_settings m, FormCatalogListSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -21854,7 +21854,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'FormCatalogListSettings' to 'proto_form_catalog_list_settings'
         public static Proto.Config.proto_form_catalog_list_settings ConvertToProto(FormCatalogListSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_form_catalog_list_settings m = new Proto.Config.proto_form_catalog_list_settings(); // Clone.tt Line: 239
             m.IsUseCode = vm.IsUseCode; // Clone.tt Line: 276
             m.IsUseName = vm.IsUseName; // Clone.tt Line: 276
@@ -21867,7 +21867,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -22069,7 +22069,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static FormCatalogEditSettings Clone(IFormCatalogEditSettings from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             FormCatalogEditSettings vm = new FormCatalogEditSettings();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -22080,8 +22080,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(FormCatalogEditSettings to, IFormCatalogEditSettings from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.IsDummy = from.IsDummy; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
@@ -22104,7 +22104,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_form_catalog_edit_settings' to 'FormCatalogEditSettings'
         public static FormCatalogEditSettings ConvertToVM(Proto.Config.proto_form_catalog_edit_settings m, FormCatalogEditSettings vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -22119,7 +22119,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'FormCatalogEditSettings' to 'proto_form_catalog_edit_settings'
         public static Proto.Config.proto_form_catalog_edit_settings ConvertToProto(FormCatalogEditSettings vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_form_catalog_edit_settings m = new Proto.Config.proto_form_catalog_edit_settings(); // Clone.tt Line: 239
             m.IsDummy = vm.IsDummy; // Clone.tt Line: 276
             return m;
@@ -22127,7 +22127,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -22225,7 +22225,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Form Clone(ITreeConfigNode parent, IForm from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Form vm = new Form(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -22256,8 +22256,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Form to, IForm from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -22337,7 +22337,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_form' to 'Form'
         public static Form ConvertToVM(Proto.Config.proto_form m, Form vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -22384,7 +22384,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Form' to 'proto_form'
         public static Proto.Config.proto_form ConvertToProto(Form vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_form m = new Proto.Config.proto_form(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -22407,7 +22407,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -22777,7 +22777,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static GroupListReports Clone(ITreeConfigNode parent, IGroupListReports from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             GroupListReports vm = new GroupListReports(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -22800,8 +22800,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(GroupListReports to, IGroupListReports from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -22900,7 +22900,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_group_list_reports' to 'GroupListReports'
         public static GroupListReports ConvertToVM(Proto.Config.proto_group_list_reports m, GroupListReports vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -22934,7 +22934,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'GroupListReports' to 'proto_group_list_reports'
         public static Proto.Config.proto_group_list_reports ConvertToProto(GroupListReports vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_group_list_reports m = new Proto.Config.proto_group_list_reports(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -22950,7 +22950,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -23099,13 +23099,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IReport IGroupListReports.this[int index] { get { return (Report)this.ListReports[index]; } }
         public void Add(Report item) // Property.tt Line: 32
         { 
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListReports.Add(item); 
             item.Parent = this;
         }
         public void AddRange(IEnumerable<Report> items) 
         { 
-            Contract.Requires(items != null);
+            Debug.Assert(items != null);
             this.ListReports.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
@@ -23114,7 +23114,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         int IGroupListReports.Count() { return this.Count(); }
         public void Remove(Report item) 
         {
-            Contract.Requires(item != null);
+            Debug.Assert(item != null);
             this.ListReports.Remove(item); 
             item.Parent = null;
         }
@@ -23202,7 +23202,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static Report Clone(ITreeConfigNode parent, IReport from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             Report vm = new Report(parent);
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -23224,8 +23224,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(Report to, IReport from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.Guid = from.Guid; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
@@ -23290,7 +23290,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_report' to 'Report'
         public static Report ConvertToVM(Proto.Config.proto_report m, Report vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -23320,7 +23320,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'Report' to 'proto_report'
         public static Proto.Config.proto_report ConvertToProto(Report vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_report m = new Proto.Config.proto_report(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -23336,7 +23336,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
         {
-            Contract.Requires(visitor != null);
+            Debug.Assert(visitor != null);
             if (visitor.Token.IsCancellationRequested)
             {
                 return;
@@ -23569,7 +23569,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #region Procedures
         public static ModelRow Clone(IModelRow from, bool isDeep = true) // Clone.tt Line: 27
         {
-            Contract.Requires(from != null);
+            Debug.Assert(from != null);
             ModelRow vm = new ModelRow();
             vm.IsNotifying = false;
             vm.IsValidate = false;
@@ -23583,8 +23583,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         public static void Update(ModelRow to, IModelRow from, bool isDeep = true) // Clone.tt Line: 77
         {
-            Contract.Requires(to != null);
-            Contract.Requires(from != null);
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
             to.GroupName = from.GroupName; // Clone.tt Line: 141
             to.Name = from.Name; // Clone.tt Line: 141
             to.Guid = from.Guid; // Clone.tt Line: 141
@@ -23593,7 +23593,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'proto_model_row' to 'ModelRow'
         public static ModelRow ConvertToVM(Proto.Config.proto_model_row m, ModelRow vm) // Clone.tt Line: 170
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             if (m == null)
             {
                 return vm;
@@ -23611,7 +23611,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         // Conversion from 'ModelRow' to 'proto_model_row'
         public static Proto.Config.proto_model_row ConvertToProto(ModelRow vm) // Clone.tt Line: 236
         {
-            Contract.Requires(vm != null);
+            Debug.Assert(vm != null);
             Proto.Config.proto_model_row m = new Proto.Config.proto_model_row(); // Clone.tt Line: 239
             m.GroupName = vm.GroupName; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
@@ -23760,554 +23760,554 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnVisitEnd(IValidatableWithSeverity p);
         protected override void OnVisit(UserSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
             foreach (var t in p.ListOpenConfigHistory) // ValidationVisitor.tt Line: 38
                 p.ValidateSubAndCollectErrors(t);
         }
         protected override void OnVisitEnd(UserSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(UserSettingsOpenedConfig p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(UserSettingsOpenedConfig p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListPlugins p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListPlugins p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Plugin p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(Plugin p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(PluginGenerator p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(PluginGenerator p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(SettingsConfig p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(SettingsConfig p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(ConfigShortHistory p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(ConfigShortHistory p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListBaseConfigLinks p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListBaseConfigLinks p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(BaseConfigLink p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(BaseConfigLink p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Config p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(Config p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(AppDbSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(AppDbSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(PluginGroupGeneratorsDefaultSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(PluginGroupGeneratorsDefaultSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListAppSolutions p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
             foreach (var t in p.ListGroupGeneratorsDefultSettings) // ValidationVisitor.tt Line: 28
                 ValidateSubAndCollectErrors(p, t);
         }
         protected override void OnVisitEnd(GroupListAppSolutions p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(PluginGroupGeneratorsSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(PluginGroupGeneratorsSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(AppSolution p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(AppSolution p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(AppProject p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(AppProject p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(PluginGeneratorNodeSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(PluginGeneratorNodeSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(PluginGeneratorSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(PluginGeneratorSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(AppProjectGenerator p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
             ValidateSubAndCollectErrors(p, p.GeneratorSettingsVm); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(AppProjectGenerator p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(PluginGeneratorNodeDefaultSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(PluginGeneratorNodeDefaultSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Model p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(Model p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(DataType p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(DataType p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListCommon p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListCommon p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Role p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(Role p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListRoles p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListRoles p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(MainViewForm p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(MainViewForm p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListMainViewForms p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListMainViewForms p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListDetails p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListDetails p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Detail p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(Detail p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListProperties p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListProperties p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Property p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
             ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Property p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupConstantGroups p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupConstantGroups p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListConstants p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListConstants p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Constant p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
             ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Constant p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListEnumerations p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListEnumerations p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Enumeration p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(Enumeration p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(EnumerationPair p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(EnumerationPair p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(CatalogFolder p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
             ValidateSubAndCollectErrors(p, p.CodePropertySettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(CatalogFolder p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(CatalogCodePropertySettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(CatalogCodePropertySettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Catalog p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
             ValidateSubAndCollectErrors(p, p.CodePropertySettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Catalog p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListCatalogs p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListCatalogs p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupDocuments p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupDocuments p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(DocumentCodePropertySettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(DocumentCodePropertySettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Document p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
             ValidateSubAndCollectErrors(p, p.CodePropertySettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Document p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListDocuments p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListDocuments p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListJournals p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListJournals p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Journal p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(Journal p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListForms p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListForms p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(FormCatalogListSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(FormCatalogListSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(FormCatalogEditSettings p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(FormCatalogEditSettings p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Form p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
             ValidateSubAndCollectErrors(p, p.CatalogListSettings); // ValidationVisitor.tt Line: 31
             ValidateSubAndCollectErrors(p, p.CatalogEditSettings); // ValidationVisitor.tt Line: 31
         }
         protected override void OnVisitEnd(Form p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(GroupListReports p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(GroupListReports p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(Report p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(Report p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
         protected override void OnVisit(ModelRow p) // ValidationVisitor.tt Line: 15
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(ModelRow p) // ValidationVisitor.tt Line: 48
         {
-            Contract.Requires(p != null);
+            Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
     }

@@ -7,7 +7,11 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public interface ITreeConfigNode : ITree, IValidatableWithSeverity, ISortingValue, IGuid, IName
+    public interface ISettings
+    {
+        bool IsChanged { get; set; }
+    }
+    public interface ITreeConfigNode : ITree, IValidatableWithSeverity, ISortingValue, IGuid, IName, ISettings
     {
         bool AutoGenerateProperties { get; }
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions { get; }
@@ -16,7 +20,6 @@ namespace vSharpStudio.common
         bool IsExpanded { get; set; }
         // ITreeConfigNode Parent { get; set; }
         //bool IsHasChanged { get; set; }
-        bool IsChanged { get; set; }
         //bool IsNotNotifying { get; set; }
         //bool IsValidate { get; set; }
         bool IsNewNode();

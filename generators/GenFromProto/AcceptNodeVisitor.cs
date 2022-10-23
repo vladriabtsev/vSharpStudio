@@ -55,7 +55,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n{\r\n    Contract.Requires(visitor != null);\r\n    if (visitor.Token.IsCancellatio" +
+            this.Write("\r\n{\r\n    Debug.Assert(visitor != null);\r\n    if (visitor.Token.IsCancellatio" +
                     "nRequested)\r\n    {\r\n        return;\r\n    }\r\n    visitor.Visit(this);\r\n");
             
             #line 16 "C:\dev\vSharpStudio\generators\GenFromProto\AcceptNodeVisitor.tt"

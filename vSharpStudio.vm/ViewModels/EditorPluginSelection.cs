@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,7 +15,7 @@ namespace vSharpStudio.vm.ViewModels
         public static ObservableCollectionExt<PluginGenerator> ListGenerators = new ObservableCollectionExt<PluginGenerator>();
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
-            Contract.Requires(propertyItem != null);
+            Debug.Assert(propertyItem != null);
             // this.Config.GroupPlugins.ListPlugins
             ITreeConfigNode instance = (ITreeConfigNode)propertyItem.Instance;
             IConfig cnfg = instance.GetConfig();

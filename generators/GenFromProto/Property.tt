@@ -31,13 +31,13 @@ public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (
 I<#= field.MessageType.Name.ToNameCs() #> I<#= message.Name.ToNameCs() #>.this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#=FieldName#>[index]; } }
 public void Add(<#= field.MessageType.Name.ToNameCs() #> item) // <#=Helper.FilePos() #>
 { 
-    Contract.Requires(item != null);
+    Debug.Assert(item != null);
     this.<#=FieldName#>.Add(item); 
     item.Parent = this;
 }
 public void AddRange(IEnumerable<<#= field.MessageType.Name.ToNameCs() #>> items) 
 { 
-    Contract.Requires(items != null);
+    Debug.Assert(items != null);
     this.<#=FieldName#>.AddRange(items); 
     foreach (var t in items)
         t.Parent = this;
@@ -46,7 +46,7 @@ public int Count() { return this.<#=FieldName#>.Count; }
 int I<#= message.Name.ToNameCs() #>.Count() { return this.Count(); }
 public void Remove(<#= field.MessageType.Name.ToNameCs() #> item) 
 {
-    Contract.Requires(item != null);
+    Debug.Assert(item != null);
     this.<#=FieldName#>.Remove(item); 
     item.Parent = null;
 }

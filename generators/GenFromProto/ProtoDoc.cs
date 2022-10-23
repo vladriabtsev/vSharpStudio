@@ -131,6 +131,14 @@ namespace GenFromProto
                     this.IsWithParent = true;
                     //this.IsValidatableWithSeverity = true;
                 }
+                else if (s == "BaseSubSettings")
+                {
+                    this.IsBindableBase = true;
+                    this.IsEditableBase = true;
+                    this.IsValidatableBase = true;
+                    this.IsWithParent = true;
+                    //this.IsValidatableWithSeverity = true;
+                }
                 else if (s == "ConfigObjectCommonBase")
                 {
                     this.IsConfigObjectBase = true;

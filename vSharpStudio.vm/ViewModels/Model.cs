@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as Config;
+            var p = this.ParentConfig;
             return p.Children;
         }
         public override bool HasChildren()
@@ -752,7 +752,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IEnumeration> GetListEnumerations(string guidAppPrjGen)
         {
             var lst = new List<IEnumeration>();
-            var cfg = this.Parent as Config;
+            var cfg = this.ParentConfig;
             //var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
             foreach (var tt in cfg.Model.GroupEnumerations.ListEnumerations)
             {
@@ -766,7 +766,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IEnumerationPair> GetListEnumerationPairs(IEnumeration node, string guidAppPrjGen)
         {
             var lst = new List<IEnumerationPair>();
-            var cfg = this.Parent as Config;
+            var cfg = this.ParentConfig;
             var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
             foreach (var tt in node.ListEnumerationPairs)
             {
@@ -780,7 +780,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IGroupListConstants> GetListConstantGroups(string guidAppPrjGen)
         {
             var lst = new List<IGroupListConstants>();
-            var cfg = this.Parent as Config;
+            var cfg = this.ParentConfig;
             var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
             foreach (var tt in cfg.Model.GroupConstantGroups.ListConstantGroups)
             {
@@ -794,7 +794,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IConstant> GetListConstants(IGroupListConstants group, string guidAppPrjGen)
         {
             var lst = new List<IConstant>();
-            var cfg = this.Parent as Config;
+            var cfg = this.ParentConfig;
             var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
             foreach (var tt in group.ListConstants)
             {
@@ -808,7 +808,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<ICatalog> GetListCatalogs(string guidAppPrjGen)
         {
             var lst = new List<ICatalog>();
-            var cfg = this.Parent as Config;
+            var cfg = this.ParentConfig;
             var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
             foreach (var tt in cfg.Model.GroupCatalogs.ListCatalogs)
             {
@@ -822,7 +822,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IDocument> GetListDocuments(string guidAppPrjGen)
         {
             var lst = new List<IDocument>();
-            var cfg = this.Parent as Config;
+            var cfg = this.ParentConfig;
             var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
             foreach (var tt in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
             {
@@ -955,14 +955,14 @@ namespace vSharpStudio.vm.ViewModels
 
     //    //public DynamicClass(List<Test1> fields)
     //    //{
-    //    //    Contract.Requires(fields != null);
+    //    //    Debug.Assert(fields != null);
     //    //    _fields = new Dictionary<string, KeyValuePair<Type, object>>();
     //    //    fields.ForEach(x => _fields.Add(x.GetType().Name,
     //    //        new KeyValuePair<Type, object>(typeof(object), x)));
     //    //}
     //    public DynamicClass(List<PluginGeneratorMainSettings> fields)
     //    {
-    //        Contract.Requires(fields != null);
+    //        Debug.Assert(fields != null);
     //        _fields = new Dictionary<string, KeyValuePair<Type, object>>();
     //        fields.ForEach(x => _fields.Add(x.Name,
     //            new KeyValuePair<Type, object>(typeof(object), x.SettingsVm)));
@@ -970,8 +970,8 @@ namespace vSharpStudio.vm.ViewModels
 
     //    public override bool TrySetMember(System.Dynamic.SetMemberBinder binder, object value)
     //    {
-    //        Contract.Requires(binder != null);
-    //        Contract.Requires(value != null);
+    //        Debug.Assert(binder != null);
+    //        Debug.Assert(value != null);
     //        if (_fields.ContainsKey(binder.Name))
     //        {
     //            var type = _fields[binder.Name].Key;
@@ -987,7 +987,7 @@ namespace vSharpStudio.vm.ViewModels
 
     //    public override bool TryGetMember(System.Dynamic.GetMemberBinder binder, out object result)
     //    {
-    //        Contract.Requires(binder != null);
+    //        Debug.Assert(binder != null);
     //        result = _fields[binder.Name].Value;
     //        return true;
     //    }

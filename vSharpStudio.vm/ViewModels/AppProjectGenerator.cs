@@ -31,8 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as AppProject;
-            return p.ListAppProjectGenerators;
+            return this.ParentAppProject.ListAppProjectGenerators;
         }
         public override bool HasChildren()
         {
@@ -580,8 +579,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 return "";
-            AppProject prj = this.Parent as AppProject;
-            var path = prj.GetProjectFolderPath();
+            var path = this.ParentAppProject.GetProjectFolderPath();
             if (string.IsNullOrWhiteSpace(this.RelativePathToGenFolder))
                 path = Path.Combine(path, this.RelativePathToGenFolder);
             return path;
@@ -598,12 +596,12 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 throw new Exception("Config is not saved yet");
-            var sln = this.Parent.Parent as AppSolution;
-            if (sln.RelativeAppSolutionPath == null)
-                throw new Exception("Solution path is not selected yet");
-            var prj = this.Parent as AppProject;
+            var prj = this.ParentAppProject;
             if (prj.RelativeAppProjectPath == null)
                 throw new Exception("Project path is not selected yet");
+            var sln = prj.ParentAppSolution;
+            if (sln.RelativeAppSolutionPath == null)
+                throw new Exception("Solution path is not selected yet");
             if (!string.IsNullOrWhiteSpace(this._RelativePathToGenFolder))
             {
                 var path = prj.GetProjectFolderPath();
@@ -644,7 +642,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as AppProject).ListAppProjectGenerators.CanUp(this))
+                if (this.ParentAppProject.ListAppProjectGenerators.CanUp(this))
                 {
                     return true;
                 }
@@ -654,7 +652,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (AppProject)(this.Parent as AppProject).ListAppProjectGenerators.GetPrev(this);
+            var prev = (AppProject)this.ParentAppProject.ListAppProjectGenerators.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -665,7 +663,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as AppProject).ListAppProjectGenerators.MoveUp(this);
+            this.ParentAppProject.ListAppProjectGenerators.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -673,7 +671,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as AppProject).ListAppProjectGenerators.CanDown(this))
+                if (this.ParentAppProject.ListAppProjectGenerators.CanDown(this))
                 {
                     return true;
                 }
@@ -683,7 +681,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (AppProject)(this.Parent as AppProject).ListAppProjectGenerators.GetNext(this);
+            var next = (AppProject)this.ParentAppProject.ListAppProjectGenerators.GetNext(this);
             if (next == null)
             {
                 return;
@@ -694,7 +692,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as AppProject).ListAppProjectGenerators.MoveDown(this);
+            this.ParentAppProject.ListAppProjectGenerators.MoveDown(this);
             this.SetSelected(this);
         }
 
@@ -708,7 +706,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.PluginGeneratorGuid = string.Empty;
             this.PluginGuid = string.Empty;
-            (this.Parent as AppProject).ListAppProjectGenerators.Remove(this);
+            this.ParentAppProject.ListAppProjectGenerators.Remove(this);
             this.Parent = null;
         }
 
@@ -716,7 +714,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = AppProjectGenerator.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            (this.Parent as AppProject).ListAppProjectGenerators.Add(node);
+            this.ParentAppProject.ListAppProjectGenerators.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -725,8 +723,8 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new AppProjectGenerator(this.Parent);
-            (this.Parent as AppProject).ListAppProjectGenerators.Add(node);
-            this.GetUniqueName(AppProjectGenerator.DefaultName, node, (this.Parent as AppProject).ListAppProjectGenerators);
+            this.ParentAppProject.ListAppProjectGenerators.Add(node);
+            this.GetUniqueName(AppProjectGenerator.DefaultName, node, this.ParentAppProject.ListAppProjectGenerators);
             this.SetSelected(node);
             return node;
         }
@@ -734,8 +732,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
         public void Remove()
         {
-            var p = this.Parent as AppProject;
-            p.ListAppProjectGenerators.Remove(this);
+            this.ParentAppProject.ListAppProjectGenerators.Remove(this);
         }
     }
 }

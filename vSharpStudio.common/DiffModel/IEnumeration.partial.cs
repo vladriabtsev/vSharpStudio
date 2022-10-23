@@ -8,6 +8,7 @@ namespace vSharpStudio.common
 {
     public partial interface IEnumeration : ITreeConfigNode, IGetNodeSetting
     {
+        IGroupListEnumerations ParentGroupListEnumerationsI { get; }
         string GetClrBase();
         string DefaultValue { get; }
     }

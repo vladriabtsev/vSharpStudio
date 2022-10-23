@@ -74,7 +74,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n    {\r\n        Contract.Requires(p != null);\r\n        this.OnVisit(p as IValida" +
+            this.Write("\r\n    {\r\n        Debug.Assert(p != null);\r\n        this.OnVisit(p as IValida" +
                     "tableWithSeverity);\r\n");
             
             #line 19 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"
@@ -257,7 +257,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("\r\n    {\r\n        Contract.Requires(p != null);\r\n        this.OnVisitEnd(p as IVal" +
+            this.Write("\r\n    {\r\n        Debug.Assert(p != null);\r\n        this.OnVisitEnd(p as IVal" +
                     "idatableWithSeverity);\r\n    }\r\n");
             
             #line 53 "C:\dev\vSharpStudio\generators\GenFromProto\ValidationVisitor.tt"

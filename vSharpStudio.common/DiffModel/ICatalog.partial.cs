@@ -8,6 +8,7 @@ namespace vSharpStudio.common
 {
     public partial interface ICatalog : ITreeConfigNode, IGetNodeSetting, IDbTable
     {
+        IGroupListCatalogs ParentGroupListCatalogsI { get; }
         IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
         IReadOnlyList<IProperty> GetIncludedFolderViewProperties(string guidAppPrjDbGen);
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion);

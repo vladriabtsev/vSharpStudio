@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IEnumerationPair : ITreeConfigNode, IGetNodeSetting
+    public partial interface IFormCatalogListSettings // : ITreeConfigNode
     {
-        IEnumeration ParentEnumerationI { get; }
+        IForm ParentFormI { get; }
     }
 }

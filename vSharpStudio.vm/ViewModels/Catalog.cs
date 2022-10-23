@@ -31,8 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListCatalogs;
-            return p.Children;
+            return this.ParentGroupListCatalogs.Children;
         }
         public override bool HasChildren()
         {
@@ -120,7 +119,7 @@ namespace vSharpStudio.vm.ViewModels
         public Catalog(ITreeConfigNode parent, string name, List<Property> listProperties)
             : this(parent)
         {
-            Contract.Requires(listProperties != null);
+            Debug.Assert(listProperties != null);
             this.Name = name;
             foreach (var t in listProperties)
             {
@@ -171,7 +170,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListCatalogs).ListCatalogs.CanUp(this))
+                if (this.ParentGroupListCatalogs.ListCatalogs.CanUp(this))
                 {
                     return true;
                 }
@@ -181,7 +180,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Catalog)(this.Parent as GroupListCatalogs).ListCatalogs.GetPrev(this);
+            var prev = (Catalog)this.ParentGroupListCatalogs.ListCatalogs.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -192,7 +191,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListCatalogs).ListCatalogs.MoveUp(this);
+            this.ParentGroupListCatalogs.ListCatalogs.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -200,7 +199,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListCatalogs).ListCatalogs.CanDown(this))
+                if (this.ParentGroupListCatalogs.ListCatalogs.CanDown(this))
                 {
                     return true;
                 }
@@ -210,7 +209,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Catalog)(this.Parent as GroupListCatalogs).ListCatalogs.GetNext(this);
+            var next = (Catalog)this.ParentGroupListCatalogs.ListCatalogs.GetNext(this);
             if (next == null)
             {
                 return;
@@ -221,14 +220,14 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListCatalogs).ListCatalogs.MoveDown(this);
+            this.ParentGroupListCatalogs.ListCatalogs.MoveDown(this);
             this.SetSelected(this);
         }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Catalog.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            (this.Parent as GroupListCatalogs).Add(node);
+            this.ParentGroupListCatalogs.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -237,15 +236,14 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Catalog(this.Parent);
-            (this.Parent as GroupListCatalogs).Add(node);
-            this.GetUniqueName(Catalog.DefaultName, node, (this.Parent as GroupListCatalogs).ListCatalogs);
+            this.ParentGroupListCatalogs.Add(node);
+            this.GetUniqueName(Catalog.DefaultName, node, this.ParentGroupListCatalogs.ListCatalogs);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListCatalogs;
-            p.ListCatalogs.Remove(this);
+            this.ParentGroupListCatalogs.ListCatalogs.Remove(this);
         }
         #endregion Tree operations
 
@@ -272,7 +270,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                res = (this.Parent as GroupListCatalogs).UseCodeProperty;
+                res = this.ParentGroupListCatalogs.UseCodeProperty;
             }
             return res;
         }
@@ -285,7 +283,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                res = (this.Parent as GroupListCatalogs).UseNameProperty;
+                res = this.ParentGroupListCatalogs.UseNameProperty;
             }
             return res;
         }
@@ -298,7 +296,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                res = (this.Parent as GroupListCatalogs).UseDescriptionProperty;
+                res = this.ParentGroupListCatalogs.UseDescriptionProperty;
             }
             return res;
         }

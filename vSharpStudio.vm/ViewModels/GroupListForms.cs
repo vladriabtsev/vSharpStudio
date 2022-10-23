@@ -22,15 +22,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            if (this.Parent is Catalog)
+            if (this.Parent is Catalog c)
             {
-                var p = this.Parent as Catalog;
-                return p.Children;
+                return c.Children;
             }
-            else if (this.Parent is Document)
+            else if (this.Parent is Document d)
             {
-                var p = this.Parent as Document;
-                return p.Children;
+                return d.Children;
             }
             throw new NotImplementedException();
         }

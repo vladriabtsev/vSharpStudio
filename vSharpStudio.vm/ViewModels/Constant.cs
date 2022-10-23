@@ -14,9 +14,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
         [BrowsableAttribute(false)]
-        public GroupConstantGroups ParentGroupConstantGroups { get { return (GroupConstantGroups)this.Parent; } }
+        public GroupListConstants ParentGroupListConstants { get { return (GroupListConstants)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupConstantGroups ParentGroupConstantGroupsI { get { return (IGroupConstantGroups)this.Parent; } }
+        public IGroupListConstants ParentGroupListConstantsI { get { return (IGroupListConstants)this.Parent; } }
         [BrowsableAttribute(false)]
         public bool IsPKey => false;
         [BrowsableAttribute(false)]
@@ -36,8 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
-            var p = this.Parent as GroupListConstants;
-            return p.Children;
+            return this.ParentGroupListConstants.Children;
         }
         public override bool HasChildren()
         {
@@ -117,7 +116,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListConstants).ListConstants.CanUp(this))
+                if (this.ParentGroupListConstants.ListConstants.CanUp(this))
                 {
                     return true;
                 }
@@ -127,7 +126,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Constant)(this.Parent as GroupListConstants).ListConstants.GetPrev(this);
+            var prev = (Constant)this.ParentGroupListConstants.ListConstants.GetPrev(this);
             if (prev == null)
             {
                 return;
@@ -138,7 +137,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            (this.Parent as GroupListConstants).ListConstants.MoveUp(this);
+            this.ParentGroupListConstants.ListConstants.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -146,7 +145,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if ((this.Parent as GroupListConstants).ListConstants.CanDown(this))
+                if (this.ParentGroupListConstants.ListConstants.CanDown(this))
                 {
                     return true;
                 }
@@ -156,7 +155,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Constant)(this.Parent as GroupListConstants).ListConstants.GetNext(this);
+            var next = (Constant)this.ParentGroupListConstants.ListConstants.GetNext(this);
             if (next == null)
             {
                 return;
@@ -167,14 +166,14 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            (this.Parent as GroupListConstants).ListConstants.MoveDown(this);
+            this.ParentGroupListConstants.ListConstants.MoveDown(this);
             this.SetSelected(this);
         }
         public override ITreeConfigNode NodeAddClone()
         {
             var node = Constant.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
-            (this.Parent as GroupListConstants).Add(node);
+            this.ParentGroupListConstants.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
             return node;
@@ -183,15 +182,14 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddNew()
         {
             var node = new Constant(this.Parent);
-            (this.Parent as GroupListConstants).Add(node);
-            this.GetUniqueName(Constant.DefaultName, node, (this.Parent as GroupListConstants).ListConstants);
+            this.ParentGroupListConstants.Add(node);
+            this.GetUniqueName(Constant.DefaultName, node, this.ParentGroupListConstants.ListConstants);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListConstants;
-            p.ListConstants.Remove(this);
+            this.ParentGroupListConstants.ListConstants.Remove(this);
         }
         #endregion Tree operations
     }
