@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq}")]
-    public partial class AppProjectGenerator : ICanRemoveNode, IEditableNode, IEditableNodeGroup
+    public partial class AppProjectGenerator : ICanRemoveNode, IEditableNode, IEditableNodeGroup, IHidePropertiesOnPropertGrid
     {
         public static readonly string DefaultName = "Generator";
         private Config cfg;
@@ -486,7 +486,7 @@ namespace vSharpStudio.vm.ViewModels
         //    }
         //    return null;
         //}
-        private void HideProperties()
+        public void HideProperties()
         {
             if (this.PluginGenerator == null)
             {

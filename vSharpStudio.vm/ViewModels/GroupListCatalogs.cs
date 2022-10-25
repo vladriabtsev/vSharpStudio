@@ -42,8 +42,16 @@ namespace vSharpStudio.vm.ViewModels
             this.PrefixForDbTables = "Ctlg";
             this.IsEditable = false;
             this.PropertyCodeName = "Code";
+            this.UseCodeProperty = true;
             this.PropertyNameName = "Name";
+            this.UseNameProperty = true;
             this.PropertyDescriptionName = "Description";
+            this.PropertyCodeNameInSeparateTree = "Code";
+            this.UseCodePropertyInSeparateTree = true;
+            this.PropertyNameNameInSeparateTree = "Name";
+            this.UseNamePropertyInSeparateTree = true;
+            this.PropertyDescriptionNameInSeparateTree = "Description";
+
             this.PropertyIsFolderName = "IsFolder";
             this.PropertyIsOpenName = "IsOpen";
             this.ShortIdTypeForCacheKey = "c";

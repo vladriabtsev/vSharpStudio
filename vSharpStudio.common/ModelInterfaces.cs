@@ -719,6 +719,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIsFolderName { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIsOpenName { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyCodeNameInSeparateTree { get; } // ModelInterfaces.tt Line: 51
+    	bool UseCodePropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyNameNameInSeparateTree { get; } // ModelInterfaces.tt Line: 51
+    	bool UseNamePropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDescriptionNameInSeparateTree { get; } // ModelInterfaces.tt Line: 51
+    	bool UseDescriptionPropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -825,21 +831,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
-    public partial interface IFormCatalogListSettings // ModelInterfaces.tt Line: 29
-    {
-    	bool IsUseCode { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseName { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseDesc { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseFolderCode { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseFolderName { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseFolderDesc { get; } // ModelInterfaces.tt Line: 51
-    }
-    
-    public partial interface IFormCatalogEditSettings // ModelInterfaces.tt Line: 29
-    {
-    	bool IsDummy { get; } // ModelInterfaces.tt Line: 51
-    }
-    
     public partial interface IForm : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
@@ -847,8 +838,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	IFormCatalogListSettings CatalogListSettings { get; } // ModelInterfaces.tt Line: 55
-    	IFormCatalogEditSettings CatalogEditSettings { get; } // ModelInterfaces.tt Line: 55
+    	bool IsUseCode { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseName { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseDesc { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseFolderCode { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseFolderName { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseFolderDesc { get; } // ModelInterfaces.tt Line: 51
+    	bool IsUseDocDate { get; } // ModelInterfaces.tt Line: 51
+    	bool IsDummy { get; } // ModelInterfaces.tt Line: 51
     	FormType EnumFormType { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<string> ListGuidViewFolderProperties { get; } // ModelInterfaces.tt Line: 42

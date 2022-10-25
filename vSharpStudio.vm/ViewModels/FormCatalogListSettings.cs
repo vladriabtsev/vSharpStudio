@@ -41,6 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         private void HideProperties()
         {
             var lst = new List<string>();
+            string cmplx = ""; //"CatalogListSettings.";
             if (this.ParentForm.ParentGroupListForms.Parent is Catalog c)
             {
                 //if (!c.UseTree)
@@ -57,19 +58,22 @@ namespace vSharpStudio.vm.ViewModels
                 //    }
                 //}
                 if (!c.GetUseCodeProperty())
-                    lst.Add(this.GetPropertyName(() => this.IsUseCode));
+                    lst.Add(cmplx + this.GetPropertyName(() => this.IsUseCode));
                 if (!c.GetUseNameProperty())
-                    lst.Add(this.GetPropertyName(() => this.IsUseName));
+                    lst.Add(cmplx + this.GetPropertyName(() => this.IsUseName));
                 if (!c.GetUseDescriptionProperty())
-                    lst.Add(this.GetPropertyName(() => this.IsUseDesc));
-                lst.Add(this.GetPropertyName(() => this.IsUseFolderCode));
-                lst.Add(this.GetPropertyName(() => this.IsUseFolderDesc));
-                lst.Add(this.GetPropertyName(() => this.IsUseFolderName));
+                    lst.Add(cmplx + this.GetPropertyName(() => this.IsUseDesc));
+                lst.Add(cmplx + this.GetPropertyName(() => this.IsUseFolderCode));
+                lst.Add(cmplx + this.GetPropertyName(() => this.IsUseFolderDesc));
+                lst.Add(cmplx + this.GetPropertyName(() => this.IsUseFolderName));
+                lst.Add(cmplx + this.GetPropertyName(() => this.IsUseDocDate));
             }
             else if (this.ParentForm.ParentGroupListForms.Parent is Document d)
             {
                 if (!d.GetUseCodeProperty())
                     lst.Add(this.GetPropertyName(() => this.IsUseCode));
+                if (!d.GetUseDateProperty())
+                    lst.Add(this.GetPropertyName(() => this.IsUseDocDate));
                 //if (!d.GetUseNameProperty())
                 lst.Add(this.GetPropertyName(() => this.IsUseName));
                 //if (!d.GetUseDescriptionProperty())
@@ -86,6 +90,7 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(this.GetPropertyName(() => this.IsUseFolderCode));
                 lst.Add(this.GetPropertyName(() => this.IsUseFolderName));
                 lst.Add(this.GetPropertyName(() => this.IsUseFolderDesc));
+                lst.Add(this.GetPropertyName(() => this.IsUseDocDate));
             }
             else if (this.ParentForm.ParentGroupListForms.Parent is CatalogFolder cf)
             {
@@ -98,6 +103,7 @@ namespace vSharpStudio.vm.ViewModels
                     lst.Add(this.GetPropertyName(() => this.IsUseFolderName));
                 if (!cf.GetUseDescriptionProperty())
                     lst.Add(this.GetPropertyName(() => this.IsUseFolderDesc));
+                lst.Add(this.GetPropertyName(() => this.IsUseDocDate));
             }
             if (lst.Count == 0)
                 this.AutoGenerateProperties = true;

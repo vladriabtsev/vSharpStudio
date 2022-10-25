@@ -1,9 +1,13 @@
-﻿using FluentValidation;
+﻿#if DEBUG
+#define _TRACE_n
+#endif
+using FluentValidation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -51,8 +55,25 @@ namespace ViewModelBase
             var descriptors = TypeDescriptor.GetProperties(this.GetType());
             foreach (PropertyDescriptor t in descriptors)
             {
+#if _TRACE_
+                Trace.Write("   ***>");
+                Trace.Write(t.PropertyType.Name);
+                Trace.Write("   ");
+                Trace.Write(t.DisplayName);
+                Trace.Write(": ");
+                //Trace.Write(t..DisplayName);
+                //Trace.Write(".");
+                Trace.Write(t.Name);
+                if (dic.ContainsKey(t.Name))
+                {
+                    Trace.WriteLine("  --- skip ---");
+                    continue;
+                }
+                Trace.WriteLine("");
+#else
                 if (dic.ContainsKey(t.Name))
                     continue;
+#endif
                 var pd = new Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinition();
                 pd.TargetProperties.Add(t.Name);
 

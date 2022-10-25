@@ -251,14 +251,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_form_catalog_edit_settings"><span class="badge">M</span>proto_form_catalog_edit_settings</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_form_catalog_list_settings"><span class="badge">M</span>proto_form_catalog_list_settings</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_group_constant_groups"><span class="badge">M</span>proto_group_constant_groups</a>
                 </li>
               
@@ -1073,7 +1065,7 @@ Generator output file name </p></td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(22)]
-@attr [DisplayName(&#34;Separate Tree&#34;)]
+@attr [DisplayName(&#34;Separate Folders Tree&#34;)]
 @attr [Description(&#34;Separate tree object for folders&#34;)] </p></td>
                 </tr>
               
@@ -2594,7 +2586,8 @@ Reserved positions: 1 - primary key
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -2608,7 +2601,8 @@ Reserved positions: 1 - primary key
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
 @attr [DisplayName(&#34;UI name&#34;)] </p></td>
                 </tr>
               
@@ -2616,7 +2610,8 @@ Reserved positions: 1 - primary key
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
                 </tr>
               
                 <tr>
@@ -2634,30 +2629,91 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>catalog_list_settings</td>
-                  <td><a href="#proto_config.proto_form_catalog_list_settings">proto_form_catalog_list_settings</a></td>
+                  <td>is_use_code</td>
+                  <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(7)]
-@attr [DisplayName(&#34;List Form&#34;)]
-@attr [Description(&#34;Catalog list view settings&#34;)]
-@attr [ExpandableObjectAttribute()] </p></td>
+                  <td><p>@attr [Category(&#34;List form&#34;)]
+@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Code&#34;)]
+@attr [Description(&#34;Use catalog item code for list view&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>catalog_edit_settings</td>
-                  <td><a href="#proto_config.proto_form_catalog_edit_settings">proto_form_catalog_edit_settings</a></td>
+                  <td>is_use_name</td>
+                  <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(8)]
-@attr [DisplayName(&#34;Edit Form&#34;)]
-@attr [Description(&#34;Catalog edit form settings&#34;)]
-@attr [ExpandableObjectAttribute()] </p></td>
+                  <td><p>@attr [Category(&#34;List form&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Name&#34;)]
+@attr [Description(&#34;Use catalog item name for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_desc</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;List form&#34;)]
+@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Description&#34;)]
+@attr [Description(&#34;Use catalog item description for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_folder_code</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;List form&#34;)]
+@attr [PropertyOrderAttribute(11)]
+@attr [DisplayName(&#34;Folder Code&#34;)]
+@attr [Description(&#34;Use catalog folder code for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_folder_name</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;List form&#34;)]
+@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;Folder Name&#34;)]
+@attr [Description(&#34;Use catalog folder name for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_folder_desc</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;List form&#34;)]
+@attr [PropertyOrderAttribute(13)]
+@attr [DisplayName(&#34;Folder Desc&#34;)]
+@attr [Description(&#34;Use catalog folder description for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_use_doc_date</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;List form&#34;)]
+@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Doc Date&#34;)]
+@attr [Description(&#34;Use document date for list view&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_dummy</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Edit form&#34;)]
+@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;???&#34;)]
+@attr [Description(&#34;Not implemented&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>enum_form_type</td>
                   <td><a href="#proto_config.proto_form_type">proto_form_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(4)]
 @attr [DisplayName(&#34;Form type&#34;)]
 @attr [Description(&#34;Form type&#34;)] </p></td>
                 </tr>
@@ -2681,103 +2737,6 @@ Reserved positions: 1 - primary key
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_form_catalog_edit_settings">proto_form_catalog_edit_settings</h3>
-        <p>@base BaseSettings</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>is_dummy</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)]
-@attr [DisplayName(&#34;???&#34;)]
-@attr [Description(&#34;Not implemented&#34;)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_form_catalog_list_settings">proto_form_catalog_list_settings</h3>
-        <p>@base BaseSettings</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>is_use_code</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)]
-@attr [DisplayName(&#34;Code&#34;)]
-@attr [Description(&#34;Use catalog item code for list view&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_use_name</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
-@attr [Description(&#34;Use catalog item name for list view&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_use_desc</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;Description&#34;)]
-@attr [Description(&#34;Use catalog item description for list view&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_use_folder_code</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(11)]
-@attr [DisplayName(&#34;Folder Code&#34;)]
-@attr [Description(&#34;Use catalog folder code for list view&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_use_folder_name</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(12)]
-@attr [DisplayName(&#34;Folder Name&#34;)]
-@attr [Description(&#34;Use catalog folder name for list view&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_use_folder_desc</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(13)]
-@attr [DisplayName(&#34;Folder Desc&#34;)]
-@attr [Description(&#34;Use catalog folder description for list view&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -3224,7 +3183,7 @@ Reserved positions: 1 - primary key
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(26)]
-@attr [DisplayName(&#34;Description&#34;)]
+@attr [DisplayName(&#34;Use Description&#34;)]
 @attr [Description(&#34;Use Description property for catalog item by default&#34;)] </p></td>
                 </tr>
               
@@ -3244,6 +3203,60 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [PropertyOrderAttribute(29)]
 @attr [DisplayName(&#34;IsOpen property&#34;)]
 @attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_code_name_in_separate_tree</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(31)]
+@attr [DisplayName(&#34;Sep Tree Code&#34;)]
+@attr [Description(&#34;Name of code auto generated property in separate tree if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_code_property_in_separate_tree</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(32)]
+@attr [DisplayName(&#34;Sep Use Code&#34;)]
+@attr [Description(&#34;Use Code property in separate tree for catalog folder by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_name_name_in_separate_tree</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(33)]
+@attr [DisplayName(&#34;Sep Name&#34;)]
+@attr [Description(&#34;Name of name auto generated property in separate tree if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_name_property_in_separate_tree</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(34)]
+@attr [DisplayName(&#34;Sep Use Name&#34;)]
+@attr [Description(&#34;Use Name property in separate tree for catalog item by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_description_name_in_separate_tree</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(35)]
+@attr [DisplayName(&#34;Sep Description&#34;)]
+@attr [Description(&#34;Name of description auto generated property in separate tree if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_description_property_in_separate_tree</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(36)]
+@attr [DisplayName(&#34;Sep Use Description&#34;)]
+@attr [Description(&#34;Use Description property in separate tree for catalog item by default&#34;)] </p></td>
                 </tr>
               
                 <tr>

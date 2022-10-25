@@ -78,6 +78,10 @@ namespace vSharpStudio.Views
                     }
                 }
             }
+            if (grd.SelectedObject is IHidePropertiesOnPropertGrid pp)
+            {
+                //pp.HideProperties();
+            }
         }
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

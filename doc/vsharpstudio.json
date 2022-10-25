@@ -1076,7 +1076,7 @@
             },
             {
               "name": "use_separate_tree_for_folders",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Separate Tree\")]\n@attr [Description(\"Separate tree object for folders\")]",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Separate Folders Tree\")]\n@attr [Description(\"Separate tree object for folders\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -2908,7 +2908,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2928,7 +2928,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2938,7 +2938,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [PropertyOrderAttribute(3)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2967,28 +2967,88 @@
               "defaultValue": ""
             },
             {
-              "name": "catalog_list_settings",
-              "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"List Form\")]\n@attr [Description(\"Catalog list view settings\")]\n@attr [ExpandableObjectAttribute()]",
+              "name": "is_use_code",
+              "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Use catalog item code for list view\")]",
               "label": "",
-              "type": "proto_form_catalog_list_settings",
-              "longType": "proto_form_catalog_list_settings",
-              "fullType": "proto_config.proto_form_catalog_list_settings",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
             {
-              "name": "catalog_edit_settings",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Edit Form\")]\n@attr [Description(\"Catalog edit form settings\")]\n@attr [ExpandableObjectAttribute()]",
+              "name": "is_use_name",
+              "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Use catalog item name for list view\")]",
               "label": "",
-              "type": "proto_form_catalog_edit_settings",
-              "longType": "proto_form_catalog_edit_settings",
-              "fullType": "proto_config.proto_form_catalog_edit_settings",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_desc",
+              "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Description\")]\n@attr [Description(\"Use catalog item description for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_folder_code",
+              "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Folder Code\")]\n@attr [Description(\"Use catalog folder code for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_folder_name",
+              "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Folder Name\")]\n@attr [Description(\"Use catalog folder name for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_folder_desc",
+              "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Folder Desc\")]\n@attr [Description(\"Use catalog folder description for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_doc_date",
+              "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Doc Date\")]\n@attr [Description(\"Use document date for list view\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_dummy",
+              "description": "@attr [Category(\"Edit form\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"???\")]\n@attr [Description(\"Not implemented\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
             {
               "name": "enum_form_type",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Form type\")]\n@attr [Description(\"Form type\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Form type\")]\n@attr [Description(\"Form type\")]",
               "label": "",
               "type": "proto_form_type",
               "longType": "proto_form_type",
@@ -3023,98 +3083,6 @@
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",
               "fullType": "proto_config.proto_plugin_generator_node_settings",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_form_catalog_edit_settings",
-          "longName": "proto_form_catalog_edit_settings",
-          "fullName": "proto_config.proto_form_catalog_edit_settings",
-          "description": "@base BaseSettings",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "is_dummy",
-              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"???\")]\n@attr [Description(\"Not implemented\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_form_catalog_list_settings",
-          "longName": "proto_form_catalog_list_settings",
-          "fullName": "proto_config.proto_form_catalog_list_settings",
-          "description": "@base BaseSettings",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "is_use_code",
-              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Use catalog item code for list view\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_use_name",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Use catalog item name for list view\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_use_desc",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Description\")]\n@attr [Description(\"Use catalog item description for list view\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_use_folder_code",
-              "description": "@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Folder Code\")]\n@attr [Description(\"Use catalog folder code for list view\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_use_folder_name",
-              "description": "@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Folder Name\")]\n@attr [Description(\"Use catalog folder name for list view\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_use_folder_desc",
-              "description": "@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Folder Desc\")]\n@attr [Description(\"Use catalog folder description for list view\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }
@@ -3635,7 +3603,7 @@
             },
             {
               "name": "use_description_property",
-              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Description\")]\n@attr [Description(\"Use Description property for catalog item by default\")]",
+              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item by default\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -3660,6 +3628,66 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_code_name_in_separate_tree",
+              "description": "@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Sep Tree Code\")]\n@attr [Description(\"Name of code auto generated property in separate tree if it is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_code_property_in_separate_tree",
+              "description": "@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Sep Use Code\")]\n@attr [Description(\"Use Code property in separate tree for catalog folder by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_name_name_in_separate_tree",
+              "description": "@attr [PropertyOrderAttribute(33)]\n@attr [DisplayName(\"Sep Name\")]\n@attr [Description(\"Name of name auto generated property in separate tree if it is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_name_property_in_separate_tree",
+              "description": "@attr [PropertyOrderAttribute(34)]\n@attr [DisplayName(\"Sep Use Name\")]\n@attr [Description(\"Use Name property in separate tree for catalog item by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_description_name_in_separate_tree",
+              "description": "@attr [PropertyOrderAttribute(35)]\n@attr [DisplayName(\"Sep Description\")]\n@attr [Description(\"Name of description auto generated property in separate tree if it is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_description_property_in_separate_tree",
+              "description": "@attr [PropertyOrderAttribute(36)]\n@attr [DisplayName(\"Sep Use Description\")]\n@attr [Description(\"Use Description property in separate tree for catalog item by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },

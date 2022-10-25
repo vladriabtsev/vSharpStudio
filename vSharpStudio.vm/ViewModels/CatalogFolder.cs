@@ -192,52 +192,34 @@ namespace vSharpStudio.vm.ViewModels
         public bool GetUseCodeProperty()
         {
             bool res = false;
-            if (this.UseCodeProperty.HasValue)
-            {
-                res = this.UseCodeProperty.Value;
-            }
-            else if (this.ParentCatalog.UseCodeProperty.HasValue)
-            {
-                res = this.ParentCatalog.UseCodeProperty.Value;
-            }
+            if (this.UseCodeProperty.HasValue && this.UseCodeProperty.Value)
+                res = true;
+            else if (this.ParentCatalog.UseCodeProperty.HasValue && this.ParentCatalog.UseCodeProperty.Value)
+                res = true;
             else
-            {
                 res = this.ParentCatalog.ParentGroupListCatalogs.UseCodeProperty;
-            }
             return res;
         }
         public bool GetUseNameProperty()
         {
             bool res = false;
-            if (this.UseNameProperty.HasValue)
-            {
-                res = this.UseNameProperty.Value;
-            }
-            else if (this.ParentCatalog.UseNameProperty.HasValue)
-            {
-                res = this.ParentCatalog.UseNameProperty.Value;
-            }
+            if (this.UseNameProperty.HasValue && this.UseNameProperty.Value)
+                res = true;
+            else if (this.ParentCatalog.UseNameProperty.HasValue && this.ParentCatalog.UseNameProperty.Value)
+                res = true;
             else
-            {
                 res = this.ParentCatalog.ParentGroupListCatalogs.UseNameProperty;
-            }
             return res;
         }
         public bool GetUseDescriptionProperty()
         {
             bool res = false;
-            if (this.UseDescriptionProperty.HasValue)
-            {
-                res = this.UseDescriptionProperty.Value;
-            }
-            else if (this.ParentCatalog.UseDescriptionProperty.HasValue)
-            {
-                res = this.ParentCatalog.UseDescriptionProperty.Value;
-            }
+            if (this.UseDescriptionProperty.HasValue && this.UseDescriptionProperty.Value)
+                res = true;
+            else if (this.ParentCatalog.UseDescriptionProperty.HasValue && this.ParentCatalog.UseDescriptionProperty.Value)
+                res = true;
             else
-            {
                 res = this.ParentCatalog.ParentGroupListCatalogs.UseDescriptionProperty;
-            }
             return res;
         }
         private void GetSpecialProperties(List<IProperty> res)

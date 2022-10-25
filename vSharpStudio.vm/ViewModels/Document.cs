@@ -267,27 +267,19 @@ namespace vSharpStudio.vm.ViewModels
         public bool GetUseCodeProperty()
         {
             bool res = false;
-            if (this.UseCodeProperty.HasValue)
-            {
-                res = this.UseCodeProperty.Value;
-            }
+            if (this.UseCodeProperty.HasValue && this.UseCodeProperty.Value)
+                res = true;
             else
-            {
                 res = this.ParentGroupListDocuments.ParentGroupDocuments.UseCodeProperty;
-            }
             return res;
         }
         public bool GetUseDateProperty()
         {
             bool res = false;
-            if (this.UseDateProperty.HasValue)
-            {
-                res = this.UseDateProperty.Value;
-            }
+            if (this.UseDateProperty.HasValue && this.UseDateProperty.Value)
+                res = true;
             else
-            {
                 res = this.ParentGroupListDocuments.ParentGroupDocuments.UseDateProperty;
-            }
             return res;
         }
         private void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)

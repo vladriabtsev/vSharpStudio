@@ -16,7 +16,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode
+    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IHidePropertiesOnPropertGrid
     {
         [BrowsableAttribute(false)]
         public GroupListProperties ParentGroupListProperties { get { return (GroupListProperties)this.Parent; } }
@@ -60,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
             this.LinesOnScreen = 1;
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;
-            this.UpdateVisibility();
+            this.HideProperties();
         }
         public void OnAdded()
         {
@@ -279,7 +279,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(() => this.ClrType);
             this.Tag = null;
         }
-        private void UpdateVisibility()
+        public void HideProperties()
         {
             var lst = new List<string>();
             if (this.DataType.DataTypeEnum != EnumDataType.STRING)
@@ -345,7 +345,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
                 this.ValidateProperty();
                 this.OnDataTypeEnumChanged();
-                this.UpdateVisibility();
+                this.HideProperties();
                 this.Tag = null;
             }
         }
@@ -376,7 +376,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
                 this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
-                this.UpdateVisibility();
+                this.HideProperties();
                 this.Tag = null;
             }
         }

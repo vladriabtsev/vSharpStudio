@@ -22,8 +22,6 @@
     - [proto_enumeration](#proto_config.proto_enumeration)
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_form](#proto_config.proto_form)
-    - [proto_form_catalog_edit_settings](#proto_config.proto_form_catalog_edit_settings)
-    - [proto_form_catalog_list_settings](#proto_config.proto_form_catalog_list_settings)
     - [proto_group_constant_groups](#proto_config.proto_group_constant_groups)
     - [proto_group_documents](#proto_config.proto_group_documents)
     - [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions)
@@ -231,7 +229,7 @@ Application project generator
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
-| use_separate_tree_for_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Separate Tree&#34;)] @attr [Description(&#34;Separate tree object for folders&#34;)] |
+| use_separate_tree_for_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Separate Folders Tree&#34;)] @attr [Description(&#34;Separate tree object for folders&#34;)] |
 | max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Max Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
 | property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
@@ -569,53 +567,24 @@ Constant application wise value
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
-| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| catalog_list_settings | [proto_form_catalog_list_settings](#proto_config.proto_form_catalog_list_settings) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;List Form&#34;)] @attr [Description(&#34;Catalog list view settings&#34;)] @attr [ExpandableObjectAttribute()] |
-| catalog_edit_settings | [proto_form_catalog_edit_settings](#proto_config.proto_form_catalog_edit_settings) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Edit Form&#34;)] @attr [Description(&#34;Catalog edit form settings&#34;)] @attr [ExpandableObjectAttribute()] |
-| enum_form_type | [proto_form_type](#proto_config.proto_form_type) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Form type&#34;)] |
+| is_use_code | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Use catalog item code for list view&#34;)] |
+| is_use_name | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Use catalog item name for list view&#34;)] |
+| is_use_desc | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Use catalog item description for list view&#34;)] |
+| is_use_folder_code | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Folder Code&#34;)] @attr [Description(&#34;Use catalog folder code for list view&#34;)] |
+| is_use_folder_name | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Folder Name&#34;)] @attr [Description(&#34;Use catalog folder name for list view&#34;)] |
+| is_use_folder_desc | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Folder Desc&#34;)] @attr [Description(&#34;Use catalog folder description for list view&#34;)] |
+| is_use_doc_date | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Doc Date&#34;)] @attr [Description(&#34;Use document date for list view&#34;)] |
+| is_dummy | [bool](#bool) |  | @attr [Category(&#34;Edit form&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;???&#34;)] @attr [Description(&#34;Not implemented&#34;)] |
+| enum_form_type | [proto_form_type](#proto_config.proto_form_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Form type&#34;)] |
 | list_guid_view_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_guid_view_folder_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
-
-
-
-
-
-
-<a name="proto_config.proto_form_catalog_edit_settings"></a>
-
-### proto_form_catalog_edit_settings
-@base BaseSettings
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| is_dummy | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;???&#34;)] @attr [Description(&#34;Not implemented&#34;)] |
-
-
-
-
-
-
-<a name="proto_config.proto_form_catalog_list_settings"></a>
-
-### proto_form_catalog_list_settings
-@base BaseSettings
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| is_use_code | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Use catalog item code for list view&#34;)] |
-| is_use_name | [bool](#bool) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Use catalog item name for list view&#34;)] |
-| is_use_desc | [bool](#bool) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Use catalog item description for list view&#34;)] |
-| is_use_folder_code | [bool](#bool) |  | @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Folder Code&#34;)] @attr [Description(&#34;Use catalog folder code for list view&#34;)] |
-| is_use_folder_name | [bool](#bool) |  | @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Folder Name&#34;)] @attr [Description(&#34;Use catalog folder name for list view&#34;)] |
-| is_use_folder_desc | [bool](#bool) |  | @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Folder Desc&#34;)] @attr [Description(&#34;Use catalog folder description for list view&#34;)] |
 
 
 
@@ -732,9 +701,15 @@ Constant application wise value
 | property_name_name | [string](#string) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
 | use_name_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item by default&#34;)] |
 | property_description_name | [string](#string) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
-| use_description_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
+| use_description_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
 | property_is_folder_name | [string](#string) |  | @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
 | property_is_open_name | [string](#string) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;IsOpen property&#34;)] @attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] |
+| property_code_name_in_separate_tree | [string](#string) |  | @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Sep Tree Code&#34;)] @attr [Description(&#34;Name of code auto generated property in separate tree if it is used in catalog&#34;)] |
+| use_code_property_in_separate_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Sep Use Code&#34;)] @attr [Description(&#34;Use Code property in separate tree for catalog folder by default&#34;)] |
+| property_name_name_in_separate_tree | [string](#string) |  | @attr [PropertyOrderAttribute(33)] @attr [DisplayName(&#34;Sep Name&#34;)] @attr [Description(&#34;Name of name auto generated property in separate tree if it is used in catalog&#34;)] |
+| use_name_property_in_separate_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Sep Use Name&#34;)] @attr [Description(&#34;Use Name property in separate tree for catalog item by default&#34;)] |
+| property_description_name_in_separate_tree | [string](#string) |  | @attr [PropertyOrderAttribute(35)] @attr [DisplayName(&#34;Sep Description&#34;)] @attr [Description(&#34;Name of description auto generated property in separate tree if it is used in catalog&#34;)] |
+| use_description_property_in_separate_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(36)] @attr [DisplayName(&#34;Sep Use Description&#34;)] @attr [Description(&#34;Use Description property in separate tree for catalog item by default&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 

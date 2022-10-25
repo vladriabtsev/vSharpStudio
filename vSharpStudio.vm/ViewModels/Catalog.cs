@@ -16,7 +16,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        IDbTable, ITreeConfigNode, INodeWithProperties, IViewList
+        IDbTable, ITreeConfigNode, INodeWithProperties, IViewList, IHidePropertiesOnPropertGrid
     {
         [BrowsableAttribute(false)]
         public GroupListCatalogs ParentGroupListCatalogs { get { return (GroupListCatalogs)this.Parent; } }
@@ -264,39 +264,66 @@ namespace vSharpStudio.vm.ViewModels
         public bool GetUseCodeProperty()
         {
             bool res = false;
-            if (this.UseCodeProperty.HasValue)
-            {
-                res = this.UseCodeProperty.Value;
-            }
+            if (this.UseCodeProperty.HasValue && this.UseCodeProperty.Value)
+                res = true;
             else
-            {
                 res = this.ParentGroupListCatalogs.UseCodeProperty;
+            return res;
+        }
+        public bool GetUseSeparateFolderCodeProperty()
+        {
+            bool res = false;
+            if (this.UseTree && this.UseSeparateTreeForFolders)
+            {
+                if (this.Folder.UseCodeProperty.HasValue && this.Folder.UseCodeProperty.Value)
+                    res = true;
+                else
+                    res = this.ParentGroupListCatalogs.UseCodePropertyInSeparateTree;
             }
             return res;
         }
         public bool GetUseNameProperty()
         {
             bool res = false;
-            if (this.UseNameProperty.HasValue)
-            {
-                res = this.UseNameProperty.Value;
-            }
+            if (this.UseNameProperty.HasValue && this.UseNameProperty.Value)
+                res = true;
             else
-            {
                 res = this.ParentGroupListCatalogs.UseNameProperty;
+            return res;
+        }
+        public bool GetUseSeparateFolderNameProperty()
+        {
+            bool res = false;
+            if (this.UseTree && this.UseSeparateTreeForFolders)
+            {
+                if (this.Folder.UseNameProperty.HasValue && this.Folder.UseNameProperty.Value)
+                    res = true;
+                else
+                    res = this.ParentGroupListCatalogs.UseNamePropertyInSeparateTree;
             }
             return res;
         }
         public bool GetUseDescriptionProperty()
         {
             bool res = false;
-            if (this.UseDescriptionProperty.HasValue)
+            if (this.UseTree && this.UseSeparateTreeForFolders)
             {
-                res = this.UseDescriptionProperty.Value;
+                if (this.Folder.UseDescriptionProperty.HasValue && this.Folder.UseDescriptionProperty.Value)
+                    res = true;
+                else
+                    res = this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
             }
-            else
+            return res;
+        }
+        public bool GetUseSeparateFolderDescriptionProperty()
+        {
+            bool res = false;
+            if (this.UseTree && this.UseSeparateTreeForFolders)
             {
-                res = this.ParentGroupListCatalogs.UseDescriptionProperty;
+                if (this.Folder.UseDescriptionProperty.HasValue && this.Folder.UseDescriptionProperty.Value)
+                    res = true;
+                else
+                    res = this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
             }
             return res;
         }
@@ -588,7 +615,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool IsShowRefSelfTree { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
         public bool IsShowIsFolder { get { if (this.UseTree && !this.UseSeparateTreeForFolders && this.UseFolderTypeExplicitly) return true; return false; } }
-        private void HideProperties()
+        public void HideProperties()
         {
             var lst = new List<string>();
             if (!this.UseTree)
