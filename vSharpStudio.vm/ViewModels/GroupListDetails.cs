@@ -118,5 +118,15 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>();
+            lst.Add(this.GetPropertyName(() => this.Description));
+            lst.Add(this.GetPropertyName(() => this.Guid));
+            lst.Add(this.GetPropertyName(() => this.NameUi));
+            lst.Add(this.GetPropertyName(() => this.Parent));
+            lst.Add(this.GetPropertyName(() => this.Children));
+            return lst.ToArray();
+        }
     }
 }

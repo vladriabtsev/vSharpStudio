@@ -947,6 +947,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             throw new NotImplementedException();
         }
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>();
+            lst.Add(this.GetPropertyName(() => this.Parent));
+            lst.Add(this.GetPropertyName(() => this.Children));
+            return lst.ToArray();
+        }
     }
     // https://stackoverflow.com/questions/3862226/how-to-dynamically-create-a-class
     //public class DynamicClass : System.Dynamic.DynamicObject

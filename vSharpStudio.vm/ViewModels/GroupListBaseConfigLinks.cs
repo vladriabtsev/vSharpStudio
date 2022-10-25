@@ -54,17 +54,20 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this.ListBaseConfigLinks.OnAddingAction = (t) => {
+            this.ListBaseConfigLinks.OnAddingAction = (t) =>
+            {
                 t.IsNew = true;
             };
             this.ListBaseConfigLinks.OnAddedAction = (t) =>
             {
                 t.OnAdded();
             };
-            this.ListBaseConfigLinks.OnRemovedAction = (t) => {
+            this.ListBaseConfigLinks.OnRemovedAction = (t) =>
+            {
                 this.OnRemoveChild();
             };
-            this.ListBaseConfigLinks.OnClearedAction = () => {
+            this.ListBaseConfigLinks.OnClearedAction = () =>
+            {
                 this.OnRemoveChild();
             };
         }
@@ -107,5 +110,15 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>();
+            lst.Add(this.GetPropertyName(() => this.Description));
+            lst.Add(this.GetPropertyName(() => this.Guid));
+            //lst.Add(this.GetPropertyName(() => this.NameUi));
+            lst.Add(this.GetPropertyName(() => this.Parent));
+            lst.Add(this.GetPropertyName(() => this.Children));
+            return lst.ToArray();
+        }
     }
 }

@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq}")]
-    public partial class AppProjectGenerator : ICanRemoveNode, IEditableNode, IEditableNodeGroup, IHidePropertiesOnPropertGrid
+    public partial class AppProjectGenerator : ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
         public static readonly string DefaultName = "Generator";
         private Config cfg;
@@ -75,14 +75,11 @@ namespace vSharpStudio.vm.ViewModels
             this.ListGenerators = new SortedObservableCollection<PluginGenerator>();
             this.GeneratorSettingsVm.Parent = this;
             cfg = (Config)this.GetConfig();
-            HideProperties();
         }
         protected override void OnInitFromDto()
         {
             //base.OnInitFromDto();
             cfg = (Config)this.GetConfig();
-            if (this.IsNotifying)
-                HideProperties();
         }
         [Browsable(false)]
         new public string IconName
@@ -297,7 +294,8 @@ namespace vSharpStudio.vm.ViewModels
                 prevRelativePathToGenFolder = this.RelativePathToGenFolder;
             this.RelativePathToGenFolder = string.Empty;
 
-            HideProperties();
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+
             var sln = (AppSolution)this.Parent.Parent;
             sln.DynamicPluginGroupSettings = null;
             foreach (var t in sln.ListAppProjects)
@@ -369,7 +367,7 @@ namespace vSharpStudio.vm.ViewModels
                 this._GenFileName = prevGenFileName;
                 this._RelativePathToGenFolder = prevRelativePathToGenFolder;
             }
-            HideProperties();
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
             this.NotifyPropertyChanged(() => this.IconName);
             this.NotifyPropertyChanged(() => this.DynamicModelNodeSettings);
             this.NotifyPropertyChanged(() => this.DynamicGeneratorSettings);
@@ -377,7 +375,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged()
         {
-            HideProperties();
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
         }
         protected override void OnValidated(ValidationResult res)
         {
@@ -458,7 +456,7 @@ namespace vSharpStudio.vm.ViewModels
             //    this.PluginGenerator = null;
             //    this.PluginDbGenerator = null;
             //}
-            HideProperties();
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
         }
         public void SaveSettings()
         {
@@ -486,24 +484,23 @@ namespace vSharpStudio.vm.ViewModels
         //    }
         //    return null;
         //}
-        public void HideProperties()
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
+            var lst = new List<string>();
             if (this.PluginGenerator == null)
             {
-                this.HidePropertiesForXceedPropertyGrid(new string[] {
-                        this.GetPropertyName(() => this.GenScriptFileName),
-                        this.GetPropertyName(() => this.ConnStrToPrevStable),
-                        this.GetPropertyName(() => this.ConnStr),
-                        this.GetPropertyName(() => this.RelativePathToGenFolder),
-                        this.GetPropertyName(() => this.GenFileName),
-                        this.GetPropertyName(() => this.ListGenerators),
-                        this.GetPropertyName(() => this.ListInModels),
-                        this.GetPropertyName(() => this.DynamicGeneratorSettings),
-                        this.GetPropertyName(() => this.DynamicMainConnStrSettings),
-                        this.GetPropertyName(() => this.DynamicModelNodeSettings),
-                        this.GetPropertyName(() => this.NameUi),
-                        this.GetPropertyName(() => this.IsGenerateSqlSqriptToUpdatePrevStable),
-                    });
+                lst.Add(this.GetPropertyName(() => this.GenScriptFileName));
+                lst.Add(this.GetPropertyName(() => this.ConnStrToPrevStable));
+                lst.Add(this.GetPropertyName(() => this.ConnStr));
+                lst.Add(this.GetPropertyName(() => this.RelativePathToGenFolder));
+                lst.Add(this.GetPropertyName(() => this.GenFileName));
+                lst.Add(this.GetPropertyName(() => this.ListGenerators));
+                lst.Add(this.GetPropertyName(() => this.ListInModels));
+                lst.Add(this.GetPropertyName(() => this.DynamicGeneratorSettings));
+                lst.Add(this.GetPropertyName(() => this.DynamicMainConnStrSettings));
+                lst.Add(this.GetPropertyName(() => this.DynamicModelNodeSettings));
+                lst.Add(this.GetPropertyName(() => this.NameUi));
+                lst.Add(this.GetPropertyName(() => this.IsGenerateSqlSqriptToUpdatePrevStable));
             }
             //else if (gen is IvPluginDbConnStringGenerator)
             //{
@@ -536,38 +533,33 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.IsGenerateSqlSqriptToUpdatePrevStable)
                 {
-                    this.HidePropertiesForXceedPropertyGrid(new string[] {
-                        this.GetPropertyName(() => this.GenFileName),
-                        this.GetPropertyName(() => this.ListGenerators),
-                        this.GetPropertyName(() => this.ListInModels),
-                        this.GetPropertyName(() => this.RelativePathToGenFolder),
-                        this.GetPropertyName(() => this.NameUi),
-                    });
+                    lst.Add(this.GetPropertyName(() => this.GenFileName));
+                    lst.Add(this.GetPropertyName(() => this.ListGenerators));
+                    lst.Add(this.GetPropertyName(() => this.ListInModels));
+                    lst.Add(this.GetPropertyName(() => this.RelativePathToGenFolder));
+                    lst.Add(this.GetPropertyName(() => this.NameUi));
                 }
                 else
                 {
-                    this.HidePropertiesForXceedPropertyGrid(new string[] {
-                        this.GetPropertyName(() => this.GenScriptFileName),
-                        this.GetPropertyName(() => this.GenFileName),
-                        this.GetPropertyName(() => this.ListGenerators),
-                        this.GetPropertyName(() => this.ListInModels),
-                        this.GetPropertyName(() => this.RelativePathToGenFolder),
-                        this.GetPropertyName(() => this.NameUi),
-                    });
+                    lst.Add(this.GetPropertyName(() => this.GenScriptFileName));
+                    lst.Add(this.GetPropertyName(() => this.GenFileName));
+                    lst.Add(this.GetPropertyName(() => this.ListGenerators));
+                    lst.Add(this.GetPropertyName(() => this.ListInModels));
+                    lst.Add(this.GetPropertyName(() => this.RelativePathToGenFolder));
+                    lst.Add(this.GetPropertyName(() => this.NameUi));
                 }
             }
             else
             {
-                this.HidePropertiesForXceedPropertyGrid(new string[] {
-                    this.GetPropertyName(() => this.DynamicMainConnStrSettings),
-                    this.GetPropertyName(() => this.ConnStr),
-                    this.GetPropertyName(() => this.NameUi),
-                    this.GetPropertyName(() => this.ListInModels),
-                    this.GetPropertyName(() => this.IsGenerateSqlSqriptToUpdatePrevStable),
-                    this.GetPropertyName(() => this.GenScriptFileName),
-                    this.GetPropertyName(() => this.ConnStrToPrevStable),
-                });
+                lst.Add(this.GetPropertyName(() => this.DynamicMainConnStrSettings));
+                lst.Add(this.GetPropertyName(() => this.ConnStr));
+                lst.Add(this.GetPropertyName(() => this.NameUi));
+                lst.Add(this.GetPropertyName(() => this.ListInModels));
+                lst.Add(this.GetPropertyName(() => this.IsGenerateSqlSqriptToUpdatePrevStable));
+                lst.Add(this.GetPropertyName(() => this.GenScriptFileName));
+                lst.Add(this.GetPropertyName(() => this.ConnStrToPrevStable));
             }
+            return lst.ToArray();
         }
         public string GetGenerationFilePath()
         {

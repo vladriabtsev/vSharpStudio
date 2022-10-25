@@ -45,5 +45,12 @@ namespace vSharpStudio.vm.ViewModels
             // this.GroupPlugins.Parent = this;
             // this.Children.Add(this.GroupPlugins, 0);
         }
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>();
+            lst.Add(this.GetPropertyName(() => this.Parent));
+            lst.Add(this.GetPropertyName(() => this.Children));
+            return lst.ToArray();
+        }
     }
 }

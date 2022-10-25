@@ -374,5 +374,12 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         #endregion Group Generator Project Settings
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>();
+            lst.Add(this.GetPropertyName(() => this.Parent));
+            lst.Add(this.GetPropertyName(() => this.Children));
+            return lst.ToArray();
+        }
     }
 }

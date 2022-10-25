@@ -16,7 +16,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
-    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IHidePropertiesOnPropertGrid
+    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode
     {
         [BrowsableAttribute(false)]
         public GroupListProperties ParentGroupListProperties { get { return (GroupListProperties)this.Parent; } }
@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
         public IGroupListProperties ParentGroupListPropertiesI { get { return (IGroupListProperties)this.Parent; } }
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data
-        public object Tag { get; set; }
+        public object? Tag { get; set; }
         [Browsable(false)]
         public static IConfig Config { get; set; }
 
@@ -60,7 +60,6 @@ namespace vSharpStudio.vm.ViewModels
             this.LinesOnScreen = 1;
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;
-            this.HideProperties();
         }
         public void OnAdded()
         {
@@ -279,7 +278,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(() => this.ClrType);
             this.Tag = null;
         }
-        public void HideProperties()
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
             if (this.DataType.DataTypeEnum != EnumDataType.STRING)
@@ -332,7 +331,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 lst.Add(this.GetPropertyName(() => this.RangeValuesRequirements));
             }
-            this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
+            return lst.ToArray();
         }
         [DisplayName("Type")]
         [PropertyOrderAttribute(11)]
@@ -345,7 +344,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
                 this.ValidateProperty();
                 this.OnDataTypeEnumChanged();
-                this.HideProperties();
+                this.NotifyPropertyChanged(() => this.PropertyDefinitions);
                 this.Tag = null;
             }
         }
@@ -376,7 +375,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
                 this.NotifyPropertyChanged(() => this.ClrType);
                 this.ValidateProperty();
-                this.HideProperties();
+                this.NotifyPropertyChanged(() => this.PropertyDefinitions);
                 this.Tag = null;
             }
         }

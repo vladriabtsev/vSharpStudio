@@ -31,58 +31,54 @@ namespace vSharpStudio.Views
             this.dic["DynamicNodesSettings"] = null;
         }
 
-        private void PropertyGrid_IsPropertyBrowsable(object sender, Xceed.Wpf.Toolkit.PropertyGrid.IsPropertyBrowsableArgs e)
-        {
-            var grd = (PropertyGrid)sender;
-            switch (e.PropertyDescriptor.Name)
-            {
-                case "Description":
-                case "Guid":
-                case "NameUi":
-                    if (
-                        grd.SelectedObject is GroupListBaseConfigLinks ||
-                        grd.SelectedObject is GroupDocuments ||
-                        grd.SelectedObject is GroupListCatalogs ||
-                        grd.SelectedObject is GroupListConstants ||
-                        grd.SelectedObject is GroupListDocuments ||
-                        grd.SelectedObject is GroupListEnumerations ||
-                        grd.SelectedObject is GroupListForms ||
-                        grd.SelectedObject is GroupListJournals ||
-                        grd.SelectedObject is GroupListPlugins ||
-                        grd.SelectedObject is GroupListProperties ||
-                        grd.SelectedObject is GroupListDetails ||
-                        grd.SelectedObject is GroupListReports)
-                    {
-                        e.IsBrowsable = false;
-                    }
-                    break;
-                case "Parent":
-                case "Children":
-                    e.IsBrowsable = false;
-                    break;
-                default:
-                    break;
-            }
-            if (!(grd.SelectedObject is Model))
-            {
-                if (!(e.IsBrowsable ?? false) && grd.SelectedObject is IGetNodeSetting && grd.SelectedPropertyItem != null && grd.SelectedPropertyItem != null)
-                {
-                    var ptype = ((Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)grd.SelectedPropertyItem).PropertyType;
-                    var ns = grd.SelectedObject as IGetNodeSetting;
-                    if (ns.DicVmExclProps.ContainsKey(ptype.Name))
-                    {
-                        if (ns.DicVmExclProps[ptype.Name].ContainsKey(e.PropertyDescriptor.Name))
-                        {
-                            e.IsBrowsable = false;
-                        }
-                    }
-                }
-            }
-            if (grd.SelectedObject is IHidePropertiesOnPropertGrid pp)
-            {
-                //pp.HideProperties();
-            }
-        }
+        //private void PropertyGrid_IsPropertyBrowsable(object sender, Xceed.Wpf.Toolkit.PropertyGrid.IsPropertyBrowsableArgs e)
+        //{
+        //    var grd = (PropertyGrid)sender;
+        //    switch (e.PropertyDescriptor.Name)
+        //    {
+        //        case "Description":
+        //        case "Guid":
+        //        case "NameUi":
+        //            if (
+        //                grd.SelectedObject is GroupListBaseConfigLinks ||
+        //                grd.SelectedObject is GroupDocuments ||
+        //                grd.SelectedObject is GroupListCatalogs ||
+        //                grd.SelectedObject is GroupListConstants ||
+        //                grd.SelectedObject is GroupListDocuments ||
+        //                grd.SelectedObject is GroupListEnumerations ||
+        //                grd.SelectedObject is GroupListForms ||
+        //                grd.SelectedObject is GroupListJournals ||
+        //                grd.SelectedObject is GroupListPlugins ||
+        //                grd.SelectedObject is GroupListProperties ||
+        //                grd.SelectedObject is GroupListDetails ||
+        //                grd.SelectedObject is GroupListReports)
+        //            {
+        //                e.IsBrowsable = false;
+        //            }
+        //            break;
+        //        case "Parent":
+        //        case "Children":
+        //            e.IsBrowsable = false;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    if (!(grd.SelectedObject is Model))
+        //    {
+        //        if (!(e.IsBrowsable ?? false) && grd.SelectedObject is IGetNodeSetting && grd.SelectedPropertyItem != null && grd.SelectedPropertyItem != null)
+        //        {
+        //            var ptype = ((Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem)grd.SelectedPropertyItem).PropertyType;
+        //            var ns = grd.SelectedObject as IGetNodeSetting;
+        //            if (ns.DicVmExclProps.ContainsKey(ptype.Name))
+        //            {
+        //                if (ns.DicVmExclProps[ptype.Name].ContainsKey(e.PropertyDescriptor.Name))
+        //                {
+        //                    e.IsBrowsable = false;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {

@@ -123,5 +123,12 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>();
+            lst.Add(this.GetPropertyName(() => this.Parent));
+            lst.Add(this.GetPropertyName(() => this.Children));
+            return lst.ToArray();
+        }
     }
 }

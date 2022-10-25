@@ -7,12 +7,13 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Form:{Name,nq}")]
-    public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IHidePropertiesOnPropertGrid
+    public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
         public GroupListForms ParentGroupListForms { get { return (GroupListForms)this.Parent; } }
@@ -49,11 +50,9 @@ namespace vSharpStudio.vm.ViewModels
             this.ListGuidViewFolderProperties = new ObservableCollection<string>();
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.IsIncludableInModels = true;
-            HideProperties();
         }
         protected override void OnInitFromDto()
         {
-            HideProperties();
         }
 
         public void OnAdded()
@@ -201,7 +200,7 @@ namespace vSharpStudio.vm.ViewModels
         //        res = this.ParentGroupListCatalogs.UseDescriptionProperty;
         //    return res;
         //}
-        public void HideProperties()
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
             if (this.Parent.Parent is ICatalog)
@@ -273,11 +272,11 @@ namespace vSharpStudio.vm.ViewModels
                     lst.Add(this.GetPropertyName(() => this.IsUseFolderDesc));
                     break;
             }
-            this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
+            return lst.ToArray();
         }
         partial void OnEnumFormTypeChanged()
         {
-            HideProperties();
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
         }
         #endregion Visibility
     }

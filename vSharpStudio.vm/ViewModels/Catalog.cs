@@ -16,7 +16,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        IDbTable, ITreeConfigNode, INodeWithProperties, IViewList, IHidePropertiesOnPropertGrid
+        IDbTable, ITreeConfigNode, INodeWithProperties, IViewList
     {
         [BrowsableAttribute(false)]
         public GroupListCatalogs ParentGroupListCatalogs { get { return (GroupListCatalogs)this.Parent; } }
@@ -59,12 +59,9 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupReports.Parent = this;
             this.ItemIconType = EnumCatalogTreeIcon.None;
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this.UseCodeProperty = false;
             this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
-            this.UseNameProperty = true;
             this.MaxNameLength = 20;
             this.PropertyNameGuid = System.Guid.NewGuid().ToString();
-            this.UseDescriptionProperty = false;
             this.MaxDescriptionLength = 100;
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
             this.UseTree = false;
@@ -77,14 +74,15 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
             this.ViewDefaultGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this.UseCodeProperty = this.ParentGroupListCatalogs.UseCodeProperty;
+            this.UseNameProperty = this.ParentGroupListCatalogs.UseNameProperty;
+            this.UseDescriptionProperty = this.ParentGroupListCatalogs.UseDescriptionProperty;
             this.RefillChildren();
-            HideProperties();
         }
         protected override void OnInitFromDto()
         {
             base.OnInitFromDto();
             this.RefillChildren();
-            HideProperties();
         }
         public void RefillChildren()
         {
@@ -581,15 +579,15 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnUseCodePropertyChanged()
         {
-            HideProperties();
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
         }
         partial void OnUseNamePropertyChanged()
         {
-            HideProperties();
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
         }
         partial void OnUseDescriptionPropertyChanged()
         {
-            HideProperties();
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
         }
         partial void OnUseFolderTypeExplicitlyChanged()
         {
@@ -609,13 +607,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.UseSeparateTreeForFolders = false;
                 this.UseFolderTypeExplicitly = false;
             }
-            HideProperties();
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
             this.NotifyPropertyChanged(() => this.IsShowRefSelfTree);
             this.NotifyPropertyChanged(() => this.IsShowIsFolder);
         }
         public bool IsShowRefSelfTree { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
         public bool IsShowIsFolder { get { if (this.UseTree && !this.UseSeparateTreeForFolders && this.UseFolderTypeExplicitly) return true; return false; } }
-        public void HideProperties()
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
             if (!this.UseTree)
@@ -648,10 +646,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.AutoGenerateProperties = true;
             }
-            else
-            {
-                this.HidePropertiesForXceedPropertyGrid(lst.ToArray());
-            }
+            return lst.ToArray();
         }
 
         public IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen)
