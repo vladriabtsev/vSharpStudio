@@ -57,8 +57,11 @@ message proto_user_settings_opened_config {
  */
 // @base ConfigObjectVmBase
 message proto_group_list_plugins {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
     string name = 2;
@@ -69,10 +72,14 @@ message proto_group_list_plugins {
 }
 // @base ConfigObjectVmBase
 message proto_plugin {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [ReadOnly(true)]
     string version = 2;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
     string name = 3;
@@ -135,13 +142,19 @@ message proto_config_short_history {
 }
 // @base ConfigObjectVmBase
 message proto_group_list_base_config_links {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [ReadOnly(true)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_base_config_link list_base_config_links = 9;
@@ -150,14 +163,19 @@ message proto_group_list_base_config_links {
 }
 // @base ConfigObjectVmBase
 message proto_base_config_link {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(5)]
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [ReadOnly(true)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     proto_config config_base = 6;
@@ -175,17 +193,25 @@ message proto_base_config_link {
 }
 // Configuration config
 message proto_config {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
     // @attr [ReadOnly(true)]
     int32 version = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 5;
-    // @attr [PropertyOrderAttribute(5)]
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [ReadOnly(true)]
     string description = 6;
     // @attr [PropertyOrderAttribute(6)]
     google.protobuf.Timestamp last_updated = 7;
@@ -242,13 +268,17 @@ message proto_plugin_group_generators_default_settings {
 }
 // @base ConfigObjectVmBase
 message proto_group_list_app_solutions {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
-    // @attr [PropertyOrderAttribute(2)]
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
 
     // List NET solutions
@@ -299,15 +329,21 @@ message proto_plugin_group_generators_settings {
 }
 // @base ConfigObjectVmBase
 message proto_app_solution {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
 
-    // @attr [PropertyOrderAttribute(5)]
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
 
     // @attr [PropertyOrderAttribute(6)]
@@ -360,15 +396,21 @@ message proto_app_solution {
 }
 // @base ConfigObjectVmBase
 message proto_app_project {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
 
-    // @attr [PropertyOrderAttribute(5)]
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
     string description = 5;
 
     // @attr [PropertyOrderAttribute(6)]
@@ -430,13 +472,19 @@ message proto_plugin_generator_settings {
 // Application project generator
 // @base ConfigObjectVmBase
 message proto_app_project_generator {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
     string name_ui = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
@@ -521,10 +569,12 @@ enum proto_enum_version_field_type {
 // Configuration model
 // @attr [CategoryOrder("Db Names Generation", 5)]
 message proto_model {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(2)]
+    // @attr [PropertyOrderAttribute(4)]
     // @attr [ReadOnly(true)]
     int32 version = 2;
     // @attr [Category("")]
@@ -793,15 +843,20 @@ message proto_data_type {
  */
 // Common parameters section
 message proto_group_list_common {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
 
@@ -814,15 +869,20 @@ message proto_group_list_common {
 }
 // User's role
 message proto_role {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -834,15 +894,20 @@ message proto_role {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_roles {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -852,15 +917,20 @@ message proto_group_list_roles {
 }
 // main view forms hierarchy parent
 message proto_main_view_form {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -875,15 +945,20 @@ message proto_main_view_form {
 }
 // main view forms hierarchy node with children
 message proto_group_list_main_view_forms {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -896,15 +971,20 @@ message proto_group_list_main_view_forms {
  * ####################################### P R O P E R T Y ##########################################
  */
 message proto_group_list_details {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -940,15 +1020,20 @@ message proto_group_list_details {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_detail {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
 
@@ -1017,6 +1102,11 @@ message proto_detail {
     bool is_stop_tab_control = 27;
 
     // @attr [BrowsableAttribute(false)]
+    string view_list_wide_guid = 54;
+    // @attr [BrowsableAttribute(false)]
+    string view_list_narrow_guid = 55;
+
+    // @attr [BrowsableAttribute(false)]
     string property_id_guid = 61;
     // @attr [BrowsableAttribute(false)]
     string property_code_guid = 62;
@@ -1050,15 +1140,20 @@ message proto_detail {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_properties {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -1085,15 +1180,20 @@ message proto_group_list_properties {
 }
 message proto_property {
     reserved 21; // bool
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -1247,15 +1347,20 @@ message proto_property {
  * ####################################### C O N S T A N T ##########################################
  */
 message proto_group_constant_groups {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
@@ -1268,15 +1373,20 @@ message proto_group_constant_groups {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_constants {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -1298,14 +1408,19 @@ message proto_group_list_constants {
 // Constant application wise value
 //
 message proto_constant {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
@@ -1356,15 +1471,20 @@ message proto_constant {
  * ####################################### E N U M E R A T I O N ##########################################
  */
 message proto_group_list_enumerations {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -1380,15 +1500,20 @@ enum enum_enumeration_type {
     STRING_VALUE = 3;
 }
 message proto_enumeration {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // Enumeration element type
@@ -1411,17 +1536,22 @@ message proto_enumeration {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_enumeration_pair {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Name")]
     // @attr [Description("Enumeration element name")]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(5)]
     // @attr [Description("Description of enumeration element")]
     string description = 5;
@@ -1450,15 +1580,20 @@ message proto_enumeration_pair {
  * ####################################### C A T A L O G ##########################################
  */
 message proto_catalog_folder {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -1508,7 +1643,9 @@ message proto_catalog_folder {
     // @attr [BrowsableAttribute(false)]
     string property_description_guid = 53;
     // @attr [BrowsableAttribute(false)]
-    string view_default_guid = 54;
+    string view_list_wide_guid = 54;
+    // @attr [BrowsableAttribute(false)]
+    string view_list_narrow_guid = 55;
 
     // @attr [BrowsableAttribute(false)]
     string property_ref_self_guid = 65;
@@ -1571,15 +1708,20 @@ enum proto_enum_use_type {
     No = 2;
 }
 message proto_catalog {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -1642,6 +1784,11 @@ message proto_catalog {
     proto_enum_catalog_tree_icon group_icon_type = 42;
 
     // @attr [BrowsableAttribute(false)]
+    string view_list_wide_guid = 54;
+    // @attr [BrowsableAttribute(false)]
+    string view_list_narrow_guid = 55;
+
+    // @attr [BrowsableAttribute(false)]
     string property_id_guid = 61;
     // @attr [BrowsableAttribute(false)]
     string property_code_guid = 62;
@@ -1692,15 +1839,20 @@ message proto_catalog {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_catalogs {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
@@ -1761,15 +1913,20 @@ message proto_group_list_catalogs {
  * ####################################### D O C U M E N T ##########################################
  */
 message proto_group_documents {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(4)]
@@ -1838,15 +1995,20 @@ message proto_document_code_property_settings {
     string scope_period_start = 8;
 }
 message proto_document {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
@@ -1905,15 +2067,20 @@ message proto_document {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_documents {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [PropertyOrderAttribute(6)]
@@ -1930,15 +2097,20 @@ message proto_group_list_documents {
  * ####################################### J O U R N A L ##########################################
  */
 message proto_group_list_journals {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
@@ -1962,15 +2134,20 @@ message proto_group_list_journals {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_journal {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
@@ -2003,15 +2180,20 @@ message proto_journal {
  * ####################################### F O R M S ##########################################
  */
 message proto_group_list_forms {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
@@ -2166,6 +2348,8 @@ enum proto_form_type {
     FolderEditForm = 3;
 }
 message proto_form {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
     // @attr [Category("")]
@@ -2246,15 +2430,20 @@ message proto_form {
  * ####################################### R E P O R T S ##########################################
  */
 message proto_group_list_reports {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
@@ -2264,15 +2453,20 @@ message proto_group_list_reports {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_report {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
     string guid = 1;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     string name_ui = 4;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     // @attr [BrowsableAttribute(false)]

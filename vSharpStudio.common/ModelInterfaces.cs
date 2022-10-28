@@ -508,6 +508,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string TabName { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
     	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
+    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
@@ -686,7 +688,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
-    	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
@@ -722,6 +725,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool UseFolderTypeExplicitly { get; } // ModelInterfaces.tt Line: 51
     	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 51
     	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 51
+    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 51
+    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51

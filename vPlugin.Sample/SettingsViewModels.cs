@@ -124,6 +124,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
+    #if !DEBUG
+        [Browsable(false)]
+    #endif
         
         public string StringSettings // Property.tt Line: 55
         { 
@@ -145,7 +148,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnStringSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnStringSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 108
+        public override bool IsChanged // Class.tt Line: 111
         { 
             get { return this._IsChanged; }
             set
@@ -162,8 +165,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
-        //partial void OnIsChangedChanged(); // Class.tt Line: 129
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -270,6 +273,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
+    #if !DEBUG
+        [Browsable(false)]
+    #endif
         
         public bool IsSubParam1 // Property.tt Line: 55
         { 
@@ -311,7 +317,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsSubParam2Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsSubParam2Changed();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 108
+        public override bool IsChanged // Class.tt Line: 111
         { 
             get { return this._IsChanged; }
             set
@@ -328,8 +334,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
-        //partial void OnIsChangedChanged(); // Class.tt Line: 129
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -443,6 +449,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
+    #if !DEBUG
+        [Browsable(false)]
+    #endif
         
         [PropertyOrderAttribute(1)]
         [DisplayName("Param1")]
@@ -493,7 +502,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnSubSettingsChanged();
         //IPluginsGroupSolutionSubSettings IPluginsGroupSolutionSettings.SubSettings { get { return this._SubSettings; } }
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 108
+        public override bool IsChanged // Class.tt Line: 111
         { 
             get { return this._IsChanged; }
             set
@@ -510,8 +519,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
-        //partial void OnIsChangedChanged(); // Class.tt Line: 129
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -614,6 +623,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
+    #if !DEBUG
+        [Browsable(false)]
+    #endif
         
         public bool IsGroupProjectParam1 // Property.tt Line: 55
         { 
@@ -635,7 +647,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsGroupProjectParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsGroupProjectParam1Changed();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 108
+        public override bool IsChanged // Class.tt Line: 111
         { 
             get { return this._IsChanged; }
             set
@@ -652,8 +664,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
-        //partial void OnIsChangedChanged(); // Class.tt Line: 129
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -764,6 +776,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
+    #if !DEBUG
+        [Browsable(false)]
+    #endif
         
         public bool IsSchemaParam1 // Property.tt Line: 55
         { 
@@ -825,7 +840,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnSchemaParam3Changing(ref string to); // Property.tt Line: 79
         partial void OnSchemaParam3Changed();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 108
+        public override bool IsChanged // Class.tt Line: 111
         { 
             get { return this._IsChanged; }
             set
@@ -842,8 +857,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
-        //partial void OnIsChangedChanged(); // Class.tt Line: 129
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -958,6 +973,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
+    #if !DEBUG
+        [Browsable(false)]
+    #endif
         
         public bool IsParam1 // Property.tt Line: 55
         { 
@@ -1039,7 +1057,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsCatalogFormParam1Changed();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 108
+        public override bool IsChanged // Class.tt Line: 111
         { 
             get { return this._IsChanged; }
             set
@@ -1056,8 +1074,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
-        //partial void OnIsChangedChanged(); // Class.tt Line: 129
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -1176,6 +1194,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
+    #if !DEBUG
+        [Browsable(false)]
+    #endif
         
         public bool IsAccessParam1 // Property.tt Line: 55
         { 
@@ -1277,7 +1298,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsGenerateNotValidCodeChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 108
+        public override bool IsChanged // Class.tt Line: 111
         { 
             get { return this._IsChanged; }
             set
@@ -1294,8 +1315,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
-        //partial void OnIsChangedChanged(); // Class.tt Line: 129
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -1410,6 +1431,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
+    #if !DEBUG
+        [Browsable(false)]
+    #endif
         
         public bool IsParam1 // Property.tt Line: 55
         { 
@@ -1491,7 +1515,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsCatalogFormParam1Changed();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 108
+        public override bool IsChanged // Class.tt Line: 111
         { 
             get { return this._IsChanged; }
             set
@@ -1508,8 +1532,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
-        //partial void OnIsChangedChanged(); // Class.tt Line: 129
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
         #endregion Properties
     }
     

@@ -51,10 +51,11 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
             this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this.ViewListWideGuid = System.Guid.NewGuid().ToString();
+            this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
 
             this.MaxNameLength = 20;
             this.MaxDescriptionLength = 100;
-            this.ViewDefaultGuid = System.Guid.NewGuid().ToString();
 
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
 #if DEBUG

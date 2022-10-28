@@ -173,6 +173,9 @@
         }
 #if DEBUG
         [ReadOnly(true)]
+        [Category("")]
+        [PropertyOrderAttribute(-1)]
+        [DisplayName("Model Type")]
 #else
         [Browsable(false)]
 #endif
@@ -188,21 +191,25 @@
             }
         }
         private string _ModelPath = null;
-#if DEBUG
-#else
-        [Browsable(false)]
-#endif
-        public string FullName
-        {
-            get
-            {
-                if (this.Parent == null)
-                {
-                    return "MainConfig." + this._Name;
-                }
-                return this.GetConfig().Name + "." + this._Name;
-            }
-        }
+//#if DEBUG
+//        [ReadOnly(true)]
+//        [Category("")]
+//        [PropertyOrderAttribute(0)]
+//        [DisplayName("Full Name ???")]
+//#else
+//        [Browsable(false)]
+//#endif
+//        public string FullName
+//        {
+//            get
+//            {
+//                if (this.Parent == null)
+//                {
+//                    return "MainConfig." + this._Name;
+//                }
+//                return this.GetConfig().Name + "." + this._Name;
+//            }
+//        }
         [BrowsableAttribute(false)]
         public System.Windows.TextDecorationCollection NodeNameDecorations
         {
@@ -679,6 +686,8 @@
 
         [BrowsableAttribute(false)]
         public bool IsIncludableInModels { get; protected set; }
+        [BrowsableAttribute(false)]
+        // support submodules (wip)
         public List<IModelRow> ListInModels { get; protected set; }
         public ITreeConfigNode PrevCurrentVersion()
         {

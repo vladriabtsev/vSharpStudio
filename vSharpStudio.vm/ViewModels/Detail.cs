@@ -45,12 +45,16 @@ namespace vSharpStudio.vm.ViewModels
             this.ListGuidViewProperties = new ObservableCollection<string>();
             this.IsIncludableInModels = true;
             this.IsIndexFk = true;
+
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
             this.PropertyRefParentGuid = System.Guid.NewGuid().ToString();
             this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
             this.PropertyNameGuid = System.Guid.NewGuid().ToString();
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this.ViewListWideGuid = System.Guid.NewGuid().ToString();
+            this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
+
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
             this.GroupProperties.ListProperties.OnAddingAction = (t) =>

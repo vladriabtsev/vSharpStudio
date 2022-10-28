@@ -68,6 +68,8 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this.ViewListWideGuid = System.Guid.NewGuid().ToString();
+            this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
 
             this.MaxNameLength = 20;
             this.MaxDescriptionLength = 100;

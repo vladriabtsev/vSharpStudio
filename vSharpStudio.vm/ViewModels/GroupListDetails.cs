@@ -141,6 +141,8 @@ namespace vSharpStudio.vm.ViewModels
                 return d.IsGridSortableGet();
             if (this.Parent is Detail dd)
                 return dd.IsGridSortableGet();
+            if (this.Parent is CatalogFolder cf)
+                return cf.IsGridSortableGet();
             throw new NotImplementedException();
         }
         public bool GetIsGridFilterable()
@@ -155,6 +157,8 @@ namespace vSharpStudio.vm.ViewModels
                 return d.IsGridFilterableGet();
             if (this.Parent is Detail dd)
                 return dd.IsGridFilterableGet();
+            if (this.Parent is CatalogFolder cf)
+                return cf.IsGridFilterableGet();
             throw new NotImplementedException();
         }
         public bool GetIsGridSortableCustom()
@@ -169,6 +173,8 @@ namespace vSharpStudio.vm.ViewModels
                 return d.IsGridSortableCustomGet();
             if (this.Parent is Detail dd)
                 return dd.IsGridSortableCustomGet();
+            if (this.Parent is CatalogFolder cf)
+                return cf.IsGridSortableCustomGet();
             throw new NotImplementedException();
         }
         public bool GetUseCodeProperty()
@@ -183,6 +189,8 @@ namespace vSharpStudio.vm.ViewModels
                 return d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.UseCodeProperty;
             if (this.Parent is Detail dd)
                 return dd.GetUseCodeProperty();
+            if (this.Parent is CatalogFolder cf)
+                return cf.GetUseCodeProperty();
             throw new NotImplementedException();
         }
         public bool GetUseNameProperty()
@@ -197,6 +205,8 @@ namespace vSharpStudio.vm.ViewModels
                 return d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.UseNameProperty;
             if (this.Parent is Detail dd)
                 return dd.GetUseNameProperty();
+            if (this.Parent is CatalogFolder cf)
+                return cf.GetUseNameProperty();
             throw new NotImplementedException();
         }
         public bool GetUseDescriptionProperty()
@@ -211,6 +221,8 @@ namespace vSharpStudio.vm.ViewModels
                 return d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.UseDescriptionProperty;
             if (this.Parent is Detail dd)
                 return dd.GetUseDescriptionProperty();
+            if (this.Parent is CatalogFolder cf)
+                return cf.GetUseDescriptionProperty();
             throw new NotImplementedException();
         }
     }
