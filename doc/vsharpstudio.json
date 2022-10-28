@@ -4775,6 +4775,36 @@
               "defaultValue": ""
             },
             {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",

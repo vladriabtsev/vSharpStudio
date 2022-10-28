@@ -267,5 +267,29 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }
+        public bool GetIsGridSortable()
+        {
+            if (this.IsGridSortable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortable == EnumUseType.No)
+                return false;
+            return this.ParentCatalog.GetIsGridSortable();
+        }
+        public bool GetIsGridFilterable()
+        {
+            if (this.IsGridFilterable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridFilterable == EnumUseType.No)
+                return false;
+            return this.ParentCatalog.GetIsGridFilterable();
+        }
+        public bool GetIsGridSortableCustom()
+        {
+            if (this.IsGridSortableCustom == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortableCustom == EnumUseType.No)
+                return false;
+                return this.ParentCatalog.GetIsGridSortableCustom();
+        }
     }
 }

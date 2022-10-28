@@ -535,6 +535,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	/// Last generated Protobuf field position
     	///////////////////////////////////////////////////
     	uint LastGenPosition { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

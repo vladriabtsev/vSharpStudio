@@ -309,5 +309,62 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }
+        public bool GetIsGridSortable()
+        {
+            if (this.IsGridSortable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortable == EnumUseType.No)
+                return false;
+            if (this.Parent is Detail dd)
+                return dd.ParentGroupListDetails.GetIsGridSortable();
+            else if (this.Parent is Catalog c)
+                return c.ParentGroupListCatalogs.GetIsGridSortable();
+            else if (this.Parent is Document d)
+                return d.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridSortable();
+            else if (this.Parent is CatalogFolder cf)
+                return cf.ParentCatalog.GetIsGridSortable();
+            else if (this.Parent is GroupDocuments gd)
+                return gd.GetIsGridSortable();
+            else
+                throw new NotImplementedException();
+        }
+        public bool GetIsGridFilterable()
+        {
+            if (this.IsGridFilterable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridFilterable == EnumUseType.No)
+                return false;
+            if (this.Parent is Detail dd)
+                return dd.ParentGroupListDetails.GetIsGridFilterable();
+            else if (this.Parent is Catalog c)
+                return c.ParentGroupListCatalogs.GetIsGridFilterable();
+            else if (this.Parent is Document d)
+                return d.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridFilterable();
+            else if (this.Parent is CatalogFolder cf)
+                return cf.ParentCatalog.GetIsGridFilterable();
+            else if (this.Parent is GroupDocuments gd)
+                return gd.GetIsGridFilterable();
+            else
+                throw new NotImplementedException();
+        }
+        public bool GetIsGridSortableCustom()
+        {
+            if (this.IsGridSortableCustom == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortableCustom == EnumUseType.No)
+                return false;
+            if (this.Parent is Detail dd)
+                return dd.ParentGroupListDetails.GetIsGridSortableCustom();
+            else if (this.Parent is Catalog c)
+                return c.ParentGroupListCatalogs.GetIsGridSortableCustom();
+            else if (this.Parent is Document d)
+                return d.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridSortableCustom();
+            else if (this.Parent is CatalogFolder cf)
+                return cf.ParentCatalog.GetIsGridSortableCustom();
+            else if (this.Parent is GroupDocuments gd)
+                return gd.GetIsGridSortableCustom();
+            else
+                throw new NotImplementedException();
+        }
     }
 }

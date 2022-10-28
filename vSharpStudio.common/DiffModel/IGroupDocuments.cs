@@ -8,5 +8,8 @@ namespace vSharpStudio.common
     {
         IModel ParentModelI { get; }
         IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
+        bool GetIsGridSortable();
+        bool GetIsGridFilterable();
+        bool GetIsGridSortableCustom();
     }
 }

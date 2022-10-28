@@ -12077,6 +12077,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             foreach (var t in from.ListProperties) // Clone.tt Line: 52
                 vm.ListProperties.Add(Property.Clone(vm, (Property)t, isDeep));
             vm.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -12132,6 +12135,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
             to.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -12208,6 +12214,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.ListProperties.Add(tvm);
             }
             vm.LastGenPosition = m.LastGenPosition; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -12234,6 +12243,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             foreach (var t in vm.ListProperties) // Clone.tt Line: 242
                 m.ListProperties.Add(Property.ConvertToProto((Property)t)); // Clone.tt Line: 246
             m.LastGenPosition = vm.LastGenPosition; // Clone.tt Line: 276
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -12430,6 +12442,75 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private uint _LastGenPosition;
         partial void OnLastGenPositionChanging(ref uint to); // Property.tt Line: 79
         partial void OnLastGenPositionChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
