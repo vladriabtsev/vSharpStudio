@@ -624,8 +624,6 @@ namespace vSharpStudio.vm.ViewModels
                     throw new Exception("Not supported operation");
             }
         }
-        [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent { get; set; }
         /// <summary>
         /// Potential data lost analysis
         /// </summary>

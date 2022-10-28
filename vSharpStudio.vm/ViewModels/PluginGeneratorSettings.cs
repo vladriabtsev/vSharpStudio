@@ -15,7 +15,6 @@ namespace vSharpStudio.vm.ViewModels
     {
         public IvPluginGeneratorSettings SettingsVm { get; set; }
         [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent { get; set; }
         protected override void OnIsChangedChanged()
         {
             if (this.Parent != null && this.IsChanged)

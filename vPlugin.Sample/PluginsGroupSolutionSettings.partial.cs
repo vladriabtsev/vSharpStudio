@@ -19,8 +19,6 @@ namespace vPlugin.Sample
             this.Version = "0.1";
         }
         [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent { get; set; }
-        [BrowsableAttribute(false)]
         public string Name { get; private set; }
         [BrowsableAttribute(false)]
         public string Version { get; private set; }

@@ -11,6 +11,7 @@
     - [proto_generator_db_schema_settings](#proto_plugin_sample.proto_generator_db_schema_settings)
     - [proto_plugins_group_project_settings](#proto_plugin_sample.proto_plugins_group_project_settings)
     - [proto_plugins_group_solution_settings](#proto_plugin_sample.proto_plugins_group_solution_settings)
+    - [proto_plugins_group_solution_sub_settings](#proto_plugin_sample.proto_plugins_group_solution_sub_settings)
   
   
   
@@ -137,7 +138,24 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_group_param1 | [bool](#bool) |  |  |
+| is_group_param1 | [bool](#bool) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Param1&#34;)] @attr [Description(&#34;Sample of Param1&#34;)] |
+| sub_settings | [proto_plugins_group_solution_sub_settings](#proto_plugin_sample.proto_plugins_group_solution_sub_settings) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Sub Settings&#34;)] @attr [Description(&#34;Sample of Sub Settings&#34;)] @attr [ExpandableObjectAttribute()] |
+
+
+
+
+
+
+<a name="proto_plugin_sample.proto_plugins_group_solution_sub_settings"></a>
+
+### proto_plugins_group_solution_sub_settings
+@base BaseSubSettings
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| is_sub_param1 | [bool](#bool) |  |  |
+| is_sub_param2 | [bool](#bool) |  |  |
 
 
 

@@ -274,6 +274,29 @@
           ]
         },
         {
+          "name": "proto_enum_use_type",
+          "longName": "proto_enum_use_type",
+          "fullName": "proto_config.proto_enum_use_type",
+          "description": "",
+          "values": [
+            {
+              "name": "Default",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "Yes",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "No",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "proto_enum_version_field_type",
           "longName": "proto_enum_version_field_type",
           "fullName": "proto_config.proto_enum_version_field_type",
@@ -1095,22 +1118,12 @@
               "defaultValue": ""
             },
             {
-              "name": "property_version_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "use_code_property",
               "description": "@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item\")]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1128,9 +1141,9 @@
               "name": "use_name_property",
               "description": "@attr [PropertyOrderAttribute(27)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1148,9 +1161,9 @@
               "name": "use_description_property",
               "description": "@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1275,12 +1288,42 @@
               "defaultValue": ""
             },
             {
-              "name": "view_default_guid",
+              "name": "property_version_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1530,9 +1573,9 @@
               "name": "use_code_property",
               "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item\")]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1570,9 +1613,9 @@
               "name": "use_name_property",
               "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item\")]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1600,9 +1643,9 @@
               "name": "use_description_property",
               "description": "@attr [PropertyOrderAttribute(51)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item\")]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -1643,6 +1686,36 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2232,32 +2305,42 @@
               "defaultValue": ""
             },
             {
+              "name": "use_code_property",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for detail item\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_name_property",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for detail item\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_description_property",
+              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for detail item\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "short_id",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_id_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_version_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2322,6 +2405,46 @@
               "defaultValue": ""
             },
             {
+              "name": "property_id_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_code_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_name_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_description_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "property_ref_parent_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -2332,12 +2455,42 @@
               "defaultValue": ""
             },
             {
-              "name": "view_default_guid",
+              "name": "property_version_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2503,22 +2656,12 @@
               "defaultValue": ""
             },
             {
-              "name": "property_id_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_code_property",
+              "name": "use_doc_code_property",
               "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for document\")]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2533,7 +2676,17 @@
               "defaultValue": ""
             },
             {
-              "name": "property_code_guid",
+              "name": "use_doc_date_property",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Date\")]\n@attr [Description(\"Use Date property for document\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_id_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
@@ -2543,17 +2696,17 @@
               "defaultValue": ""
             },
             {
-              "name": "use_date_property",
-              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Date\")]\n@attr [Description(\"Use Date property for document\")]",
+              "name": "property_doc_code_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
             {
-              "name": "property_date_guid",
+              "name": "property_doc_date_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",
@@ -2569,6 +2722,36 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2970,9 +3153,9 @@
               "name": "is_use_code",
               "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Use catalog item code for list view\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2980,9 +3163,9 @@
               "name": "is_use_name",
               "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Use catalog item name for list view\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2990,9 +3173,9 @@
               "name": "is_use_desc",
               "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Description\")]\n@attr [Description(\"Use catalog item description for list view\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3000,9 +3183,9 @@
               "name": "is_use_folder_code",
               "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Folder Code\")]\n@attr [Description(\"Use catalog folder code for list view\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3010,9 +3193,9 @@
               "name": "is_use_folder_name",
               "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Folder Name\")]\n@attr [Description(\"Use catalog folder name for list view\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3020,9 +3203,9 @@
               "name": "is_use_folder_desc",
               "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Folder Desc\")]\n@attr [Description(\"Use catalog folder description for list view\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3030,9 +3213,9 @@
               "name": "is_use_doc_date",
               "description": "@attr [Category(\"List form\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Doc Date\")]\n@attr [Description(\"Use document date for list view\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3269,42 +3452,52 @@
               "defaultValue": ""
             },
             {
-              "name": "property_code_name",
-              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Code property\")]\n@attr [Description(\"Name of document code auto generated property if it is used in documents\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_code_property",
+              "name": "use_doc_code_property",
               "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for document by default\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
             {
-              "name": "property_date_name",
-              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Date property\")]\n@attr [Description(\"Name of document date auto generated property if it is used in documents\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "use_date_property",
+              "name": "use_doc_date_property",
               "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Date\")]\n@attr [Description(\"Use Date property for document by default\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3552,32 +3745,12 @@
               "defaultValue": ""
             },
             {
-              "name": "property_code_name",
-              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Code property\")]\n@attr [Description(\"Name of code auto generated property if it is used in catalog\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "use_code_property",
               "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item by default\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_name_name",
-              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Name property\")]\n@attr [Description(\"Name of name auto generated property if it is used in catalog\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3585,19 +3758,9 @@
               "name": "use_name_property",
               "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item by default\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_description_name",
-              "description": "@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Description property\")]\n@attr [Description(\"Name of description auto generated property if it is used in catalog\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3605,39 +3768,9 @@
               "name": "use_description_property",
               "description": "@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item by default\")]",
               "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_is_folder_name",
-              "description": "@attr [PropertyOrderAttribute(27)]\n@attr [DisplayName(\"IsFolder property\")]\n@attr [Description(\"Name of is folder auto generated property if it is used in catalog\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_is_open_name",
-              "description": "@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"IsOpen property\")]\n@attr [Description(\"Name of is open auto generated property if folder is used in catalog\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_code_name_in_separate_tree",
-              "description": "@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Sep Tree Code\")]\n@attr [Description(\"Name of code auto generated property in separate tree if it is used in catalog\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3652,16 +3785,6 @@
               "defaultValue": ""
             },
             {
-              "name": "property_name_name_in_separate_tree",
-              "description": "@attr [PropertyOrderAttribute(33)]\n@attr [DisplayName(\"Sep Name\")]\n@attr [Description(\"Name of name auto generated property in separate tree if it is used in catalog\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "use_name_property_in_separate_tree",
               "description": "@attr [PropertyOrderAttribute(34)]\n@attr [DisplayName(\"Sep Use Name\")]\n@attr [Description(\"Use Name property in separate tree for catalog item by default\")]",
               "label": "",
@@ -3672,22 +3795,42 @@
               "defaultValue": ""
             },
             {
-              "name": "property_description_name_in_separate_tree",
-              "description": "@attr [PropertyOrderAttribute(35)]\n@attr [DisplayName(\"Sep Description\")]\n@attr [Description(\"Name of description auto generated property in separate tree if it is used in catalog\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "use_description_property_in_separate_tree",
               "description": "@attr [PropertyOrderAttribute(36)]\n@attr [DisplayName(\"Sep Use Description\")]\n@attr [Description(\"Use Description property in separate tree for catalog item by default\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3981,6 +4124,66 @@
               "type": "proto_detail",
               "longType": "proto_detail",
               "fullType": "proto_config.proto_detail",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_code_property",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for detail item\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_name_property",
+              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for detail item\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_description_property",
+              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for detail item\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4315,6 +4518,36 @@
               "type": "proto_journal",
               "longType": "proto_journal",
               "fullType": "proto_config.proto_journal",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4805,6 +5038,36 @@
               "defaultValue": ""
             },
             {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -4938,7 +5201,7 @@
             },
             {
               "name": "version",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [ReadOnly(true)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -4948,7 +5211,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4968,7 +5231,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [PropertyOrderAttribute(2)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4978,7 +5241,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [PropertyOrderAttribute(3)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5028,7 +5291,7 @@
             },
             {
               "name": "p_key_name",
-              "description": "@attr [PropertyOrderAttribute(14)]\n@attr [DisplayName(\"Id name\")]\n@attr [Description(\"Primary key field name\")]\n@attr [Category(\"Props settings\")]",
+              "description": "@attr [PropertyOrderAttribute(14)]\n@attr [DisplayName(\"Id name\")]\n@attr [Description(\"Primary key field name\")]\n@attr [Category(\"Property settings\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5038,7 +5301,7 @@
             },
             {
               "name": "p_key_type",
-              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Id type\")]\n@attr [Description(\"Primary key field type\")]\n@attr [Category(\"Props settings\")]",
+              "description": "@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Id type\")]\n@attr [Description(\"Primary key field type\")]\n@attr [Category(\"Property settings\")]",
               "label": "",
               "type": "proto_enum_primary_key_type",
               "longType": "proto_enum_primary_key_type",
@@ -5058,7 +5321,7 @@
             },
             {
               "name": "record_version_field_name",
-              "description": "@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Version field\")]\n@attr [Description(\"Record version field name\")]\n@attr [Category(\"Props settings\")]",
+              "description": "@attr [PropertyOrderAttribute(18)]\n@attr [DisplayName(\"Version field\")]\n@attr [Description(\"Record version field name\")]\n@attr [Category(\"Property settings\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5068,11 +5331,131 @@
             },
             {
               "name": "record_version_field_type",
-              "description": "@attr [PropertyOrderAttribute(19)]\n@attr [DisplayName(\"Version type\")]\n@attr [Description(\"Record version field type\")]\n@attr [Category(\"Props settings\")]",
+              "description": "@attr [PropertyOrderAttribute(19)]\n@attr [DisplayName(\"Version type\")]\n@attr [Description(\"Record version field type\")]\n@attr [Category(\"Property settings\")]",
               "label": "",
               "type": "proto_enum_version_field_type",
               "longType": "proto_enum_version_field_type",
               "fullType": "proto_config.proto_enum_version_field_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_code_name",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Code property\")]\n@attr [Description(\"Name of code auto generated property if it is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_code_property",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for catalog item by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_name_name",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Name property\")]\n@attr [Description(\"Name of name auto generated property if it is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_name_property",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Name\")]\n@attr [Description(\"Use Name property for catalog item by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_description_name",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"Description property\")]\n@attr [Description(\"Name of description auto generated property if it is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_description_property",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Use Description\")]\n@attr [Description(\"Use Description property for catalog item by default\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_is_folder_name",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(27)]\n@attr [DisplayName(\"IsFolder property\")]\n@attr [Description(\"Name of is folder auto generated property if it is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_is_open_name",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(28)]\n@attr [DisplayName(\"IsOpen property\")]\n@attr [Description(\"Name of is open auto generated property if folder is used in catalog\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_doc_date_name",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Date property\")]\n@attr [Description(\"Name of date auto generated property if it is used in documents\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_doc_date_property",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Use Doc Date\")]\n@attr [Description(\"Use Date property for documents\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_doc_code_name",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(29)]\n@attr [DisplayName(\"Doc Code property\")]\n@attr [Description(\"Name of document code auto generated property\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "use_doc_code_property",
+              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(30)]\n@attr [DisplayName(\"Use Doc Code\")]\n@attr [Description(\"Use Code property for documents\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5113,6 +5496,36 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"DataGrid settings\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"DataGrid settings\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"DataGrid settings\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5896,32 +6309,32 @@
               "defaultValue": ""
             },
             {
-              "name": "is_sortable",
-              "description": "@attr [PropertyOrderAttribute(41)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid. If null, default behavior will be used\")]",
+              "name": "is_grid_sortable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
             {
-              "name": "is_sortable_custom",
-              "description": "@attr [PropertyOrderAttribute(42)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
+              "name": "is_grid_sortable_custom",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Custom Sortable\")]\n@attr [Description(\"Custom sortable in data grid by using custom function\")]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },
             {
-              "name": "is_filterable",
-              "description": "@attr [PropertyOrderAttribute(43)]\n@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid. If null, default behavior will be used\")]",
+              "name": "is_grid_filterable",
+              "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Filterable\")]\n@attr [Description(\"Filterable in data grid\")]",
               "label": "",
-              "type": "BoolValue",
-              "longType": "google.protobuf.BoolValue",
-              "fullType": "google.protobuf.BoolValue",
+              "type": "proto_enum_use_type",
+              "longType": "proto_enum_use_type",
+              "fullType": "proto_config.proto_enum_use_type",
               "ismap": false,
               "defaultValue": ""
             },

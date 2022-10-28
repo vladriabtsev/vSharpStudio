@@ -56,7 +56,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Node App Generator Settings
 
-
         public void AddNodeAppGenSettings(string appProjectGeneratorGuid)
         {
             _logger.Trace();
@@ -470,6 +469,7 @@ namespace vSharpStudio.vm.ViewModels
             return res;
         }
 
+        [Category("")]
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]

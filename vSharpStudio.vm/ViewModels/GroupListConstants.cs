@@ -67,7 +67,7 @@ namespace vSharpStudio.vm.ViewModels
             };
         }
 
-        [PropertyOrder(1)]
+        [PropertyOrder(100)]
         [ReadOnly(true)]
         [DisplayName("Composite")]
         [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]

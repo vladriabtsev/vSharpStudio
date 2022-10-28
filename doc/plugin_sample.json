@@ -268,6 +268,47 @@
           "fields": [
             {
               "name": "is_group_param1",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Param1\")]\n@attr [Description(\"Sample of Param1\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sub_settings",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Sub Settings\")]\n@attr [Description(\"Sample of Sub Settings\")]\n@attr [ExpandableObjectAttribute()]",
+              "label": "",
+              "type": "proto_plugins_group_solution_sub_settings",
+              "longType": "proto_plugins_group_solution_sub_settings",
+              "fullType": "proto_plugin_sample.proto_plugins_group_solution_sub_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_plugins_group_solution_sub_settings",
+          "longName": "proto_plugins_group_solution_sub_settings",
+          "fullName": "proto_plugin_sample.proto_plugins_group_solution_sub_settings",
+          "description": "@base BaseSubSettings",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "is_sub_param1",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_sub_param2",
               "description": "",
               "label": "",
               "type": "bool",

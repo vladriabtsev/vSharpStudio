@@ -170,14 +170,11 @@ namespace vSharpStudio.vm.ViewModels
                 if (_DynamicGeneratorSettings == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 {
                     this._DynamicGeneratorSettings = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, this.GeneratorSettings);
-                    if (this._DynamicGeneratorSettings != null)
-                    {
-                        this._DynamicGeneratorSettings.Parent = this;
-                        this.NotifyPropertyChanged();
-                        this.ValidateProperty();
-                    }
+                    Debug.Assert(this._DynamicGeneratorSettings.ParentAppProjectGenerator != null);
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
                 }
-                return this._DynamicGeneratorSettings;
+                return this._DynamicGeneratorSettings!;
             }
             set
             {
@@ -404,7 +401,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     this.PluginGeneratorSettings = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, this.GeneratorSettings);
                 }
-                this.PluginGeneratorSettings.Parent = this;
+                Debug.Assert(this.PluginGeneratorSettings.ParentAppProjectGenerator != null);
                 this.DynamicGeneratorSettings = this.PluginGeneratorSettings;
             }
             //else if (this.PluginDbGenerator != null)

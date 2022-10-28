@@ -11,6 +11,8 @@ namespace vPlugin.Sample
 {
     public partial class DbConnectionStringSettings : IvPluginGeneratorSettings
     {
+        [BrowsableAttribute(false)]
+        public IAppProjectGenerator ParentAppProjectGenerator { get { return (IAppProjectGenerator)this.Parent; } }
         public DbConnectionStringSettings(string connectionString) : this()
         {
             this.StringSettings = connectionString;
@@ -29,7 +31,6 @@ namespace vPlugin.Sample
             return this.StringSettings;
         }
         public IvPluginGenerator Generator { get; set; }
-        public IAppProjectGenerator Parent { get; set; }
         public ValidationResult ValidateSettings()
         {
             this.Validate();

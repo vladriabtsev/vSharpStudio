@@ -166,7 +166,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("() : this(default(ITreeConfigNode)) // ");
+            this.Write("() : this(default(");
+            
+            #line 19 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Doc.ParentTypeName));
+            
+            #line default
+            #line hidden
+            this.Write(")) // ");
             
             #line 19 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
@@ -180,7 +187,14 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("(ITreeConfigNode parent) // ");
+            this.Write("(");
+            
+            #line 23 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.Doc.ParentTypeName));
+            
+            #line default
+            #line hidden
+            this.Write(" parent) // ");
             
             #line 23 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));

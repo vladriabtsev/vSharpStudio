@@ -11,9 +11,16 @@ namespace vPlugin.Sample // ModelInterfaces.tt Line: 11
     	string StringSettings { get; set; } // ModelInterfaces.tt Line: 51
     }
     
+    public partial interface IPluginsGroupSolutionSubSettings // ModelInterfaces.tt Line: 29
+    {
+    	bool IsSubParam1 { get; set; } // ModelInterfaces.tt Line: 51
+    	bool IsSubParam2 { get; set; } // ModelInterfaces.tt Line: 51
+    }
+    
     public partial interface IPluginsGroupSolutionSettings // ModelInterfaces.tt Line: 29
     {
     	bool IsGroupParam1 { get; set; } // ModelInterfaces.tt Line: 51
+    	IPluginsGroupSolutionSubSettings SubSettings { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IPluginsGroupProjectSettings // ModelInterfaces.tt Line: 29

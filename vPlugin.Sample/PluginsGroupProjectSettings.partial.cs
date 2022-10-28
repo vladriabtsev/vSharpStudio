@@ -12,8 +12,6 @@ namespace vPlugin.Sample
 {
     public partial class PluginsGroupProjectSettings : IvPluginGroupSettings
     {
-        [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent { get; set; }
         partial void OnCreated()
         {
             this.Name = "PrjGrSet";

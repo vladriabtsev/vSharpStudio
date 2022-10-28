@@ -174,6 +174,172 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
+    public partial class PluginsGroupSolutionSubSettingsValidator : ValidatorBase<PluginsGroupSolutionSubSettings, PluginsGroupSolutionSubSettingsValidator> { } // Class.tt Line: 14
+    public partial class PluginsGroupSolutionSubSettings : BaseSubSettings<PluginsGroupSolutionSubSettings, PluginsGroupSolutionSubSettingsValidator>, IPluginsGroupSolutionSubSettings // Class.tt Line: 15
+    {
+        #region CTOR
+        public PluginsGroupSolutionSubSettings() : this(default(IEditableObjectExt)) // Class.tt Line: 19
+        {
+            this.OnCreating();
+        }
+        public PluginsGroupSolutionSubSettings(IEditableObjectExt parent) // Class.tt Line: 23
+            : base(parent, PluginsGroupSolutionSubSettingsValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        public static PluginsGroupSolutionSubSettings Clone(IPluginsGroupSolutionSubSettings from, bool isDeep = true) // Clone.tt Line: 27
+        {
+            Debug.Assert(from != null);
+            PluginsGroupSolutionSubSettings vm = new PluginsGroupSolutionSubSettings();
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.IsSubParam1 = from.IsSubParam1; // Clone.tt Line: 65
+            vm.IsSubParam2 = from.IsSubParam2; // Clone.tt Line: 65
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(PluginsGroupSolutionSubSettings to, IPluginsGroupSolutionSubSettings from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to.IsSubParam1 = from.IsSubParam1; // Clone.tt Line: 141
+            to.IsSubParam2 = from.IsSubParam2; // Clone.tt Line: 141
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override PluginsGroupSolutionSubSettings Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return PluginsGroupSolutionSubSettings.Clone(this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(PluginsGroupSolutionSubSettings from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            PluginsGroupSolutionSubSettings.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_plugins_group_solution_sub_settings' to 'PluginsGroupSolutionSubSettings'
+        public static PluginsGroupSolutionSubSettings ConvertToVM(Proto.Plugin.proto_plugins_group_solution_sub_settings m, PluginsGroupSolutionSubSettings vm) // Clone.tt Line: 170
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.IsSubParam1 = m.IsSubParam1; // Clone.tt Line: 221
+            vm.IsSubParam2 = m.IsSubParam2; // Clone.tt Line: 221
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'PluginsGroupSolutionSubSettings' to 'proto_plugins_group_solution_sub_settings'
+        public static Proto.Plugin.proto_plugins_group_solution_sub_settings ConvertToProto(PluginsGroupSolutionSubSettings vm) // Clone.tt Line: 236
+        {
+            Debug.Assert(vm != null);
+            Proto.Plugin.proto_plugins_group_solution_sub_settings m = new Proto.Plugin.proto_plugins_group_solution_sub_settings(); // Clone.tt Line: 239
+            m.IsSubParam1 = vm.IsSubParam1; // Clone.tt Line: 276
+            m.IsSubParam2 = vm.IsSubParam2; // Clone.tt Line: 276
+            return m;
+        }
+        
+        public void AcceptPluginSampleNodeVisitor(PluginSampleVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        public bool IsSubParam1 // Property.tt Line: 55
+        { 
+            get { return this._IsSubParam1; }
+            set
+            {
+                if (this._IsSubParam1 != value)
+                {
+                    this.OnIsSubParam1Changing(ref value);
+                    this._IsSubParam1 = value;
+                    this.OnIsSubParam1Changed();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsSubParam1;
+        partial void OnIsSubParam1Changing(ref bool to); // Property.tt Line: 79
+        partial void OnIsSubParam1Changed();
+        
+        public bool IsSubParam2 // Property.tt Line: 55
+        { 
+            get { return this._IsSubParam2; }
+            set
+            {
+                if (this._IsSubParam2 != value)
+                {
+                    this.OnIsSubParam2Changing(ref value);
+                    this._IsSubParam2 = value;
+                    this.OnIsSubParam2Changed();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsSubParam2;
+        partial void OnIsSubParam2Changing(ref bool to); // Property.tt Line: 79
+        partial void OnIsSubParam2Changed();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 108
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 125
+        //partial void OnIsChangedChanged(); // Class.tt Line: 129
+        #endregion Properties
+    }
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
     public partial class PluginsGroupSolutionSettingsValidator : ValidatorBase<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator> { } // Class.tt Line: 14
     public partial class PluginsGroupSolutionSettings : BaseSettings<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator>, IPluginsGroupSolutionSettings // Class.tt Line: 15
     {
@@ -188,6 +354,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnCreating();
+            this.SubSettings = new PluginsGroupSolutionSubSettings(this); // Class.tt Line: 39
             this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
@@ -203,6 +370,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsGroupParam1 = from.IsGroupParam1; // Clone.tt Line: 65
+            if (isDeep) // Clone.tt Line: 62
+                vm.SubSettings = vPlugin.Sample.PluginsGroupSolutionSubSettings.Clone(from.SubSettings, isDeep);
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -212,6 +381,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Debug.Assert(to != null);
             Debug.Assert(from != null);
             to.IsGroupParam1 = from.IsGroupParam1; // Clone.tt Line: 141
+            if (isDeep) // Clone.tt Line: 138
+                vPlugin.Sample.PluginsGroupSolutionSubSettings.Update((PluginsGroupSolutionSubSettings)to.SubSettings, from.SubSettings, isDeep);
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -241,6 +412,9 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             vm.IsNotifying = false;
             vm.IsValidate = false;
             vm.IsGroupParam1 = m.IsGroupParam1; // Clone.tt Line: 221
+            if (vm.SubSettings == null) // Clone.tt Line: 213
+                vm.SubSettings = new PluginsGroupSolutionSubSettings(); // Clone.tt Line: 217
+            vPlugin.Sample.PluginsGroupSolutionSubSettings.ConvertToVM(m.SubSettings, (PluginsGroupSolutionSubSettings)vm.SubSettings); // Clone.tt Line: 219
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -251,6 +425,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Debug.Assert(vm != null);
             Proto.Plugin.proto_plugins_group_solution_settings m = new Proto.Plugin.proto_plugins_group_solution_settings(); // Clone.tt Line: 239
             m.IsGroupParam1 = vm.IsGroupParam1; // Clone.tt Line: 276
+            m.SubSettings = vPlugin.Sample.PluginsGroupSolutionSubSettings.ConvertToProto((PluginsGroupSolutionSubSettings)vm.SubSettings); // Clone.tt Line: 270
             return m;
         }
         
@@ -262,11 +437,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
+            this.SubSettings.AcceptPluginSampleNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
             visitor.VisitEnd(this);
         }
         #endregion Procedures
         #region Properties
         
+        [PropertyOrderAttribute(1)]
+        [DisplayName("Param1")]
+        [Description("Sample of Param1")]
         public bool IsGroupParam1 // Property.tt Line: 55
         { 
             get { return this._IsGroupParam1; }
@@ -286,6 +466,32 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         private bool _IsGroupParam1;
         partial void OnIsGroupParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsGroupParam1Changed();
+        
+        [PropertyOrderAttribute(2)]
+        [DisplayName("Sub Settings")]
+        [Description("Sample of Sub Settings")]
+        [ExpandableObjectAttribute()]
+        public PluginsGroupSolutionSubSettings SubSettings // Property.tt Line: 55
+        { 
+            get { return this._SubSettings; }
+            set
+            {
+                if (this._SubSettings != value)
+                {
+                    this.OnSubSettingsChanging(ref value);
+                    this._SubSettings = value;
+                    this.OnSubSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private PluginsGroupSolutionSubSettings _SubSettings;
+        IPluginsGroupSolutionSubSettings IPluginsGroupSolutionSettings.SubSettings { get { return (this as PluginsGroupSolutionSettings).SubSettings; } } // Property.tt Line: 77
+        partial void OnSubSettingsChanging(ref PluginsGroupSolutionSubSettings to); // Property.tt Line: 79
+        partial void OnSubSettingsChanged();
+        //IPluginsGroupSolutionSubSettings IPluginsGroupSolutionSettings.SubSettings { get { return this._SubSettings; } }
         [BrowsableAttribute(false)]
         public override bool IsChanged // Class.tt Line: 108
         { 
@@ -1310,6 +1516,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     public interface IVisitorProto // IVisitorProto.tt Line: 7
     {
         void Visit(Proto.Plugin.proto_db_connection_string_settings p);
+        void Visit(Proto.Plugin.proto_plugins_group_solution_sub_settings p);
         void Visit(Proto.Plugin.proto_plugins_group_solution_settings p);
         void Visit(Proto.Plugin.proto_plugins_group_project_settings p);
         void Visit(Proto.Plugin.proto_generator_db_schema_settings p);
@@ -1332,10 +1539,21 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
         }
+        protected override void OnVisit(PluginsGroupSolutionSubSettings p) // ValidationVisitor.tt Line: 15
+        {
+            Debug.Assert(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(PluginsGroupSolutionSubSettings p) // ValidationVisitor.tt Line: 48
+        {
+            Debug.Assert(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
         protected override void OnVisit(PluginsGroupSolutionSettings p) // ValidationVisitor.tt Line: 15
         {
             Debug.Assert(p != null);
             this.OnVisit(p as IValidatableWithSeverity);
+            p.ValidateSubAndCollectErrors(p.SubSettings); // ValidationVisitor.tt Line: 41
         }
         protected override void OnVisitEnd(PluginsGroupSolutionSettings p) // ValidationVisitor.tt Line: 48
         {
@@ -1409,6 +1627,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(DbConnectionStringSettings p) { }
         protected virtual void OnVisitEnd(DbConnectionStringSettings p) { }
+        public void Visit(PluginsGroupSolutionSubSettings p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(PluginsGroupSolutionSubSettings p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(PluginsGroupSolutionSubSettings p) { }
+        protected virtual void OnVisitEnd(PluginsGroupSolutionSubSettings p) { }
         public void Visit(PluginsGroupSolutionSettings p)
         {
             this.OnVisit(p);

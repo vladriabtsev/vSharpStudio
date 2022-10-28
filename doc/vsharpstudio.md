@@ -66,6 +66,7 @@
     - [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
+    - [proto_enum_use_type](#proto_config.proto_enum_use_type)
     - [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type)
     - [proto_form_orientation](#proto_config.proto_form_orientation)
     - [proto_form_type](#proto_config.proto_form_type)
@@ -231,12 +232,11 @@ Application project generator
 | use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
 | use_separate_tree_for_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Separate Folders Tree&#34;)] @attr [Description(&#34;Separate tree object for folders&#34;)] |
 | max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Max Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
-| property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
+| use_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(26)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
-| use_name_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
+| use_name_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(28)] @attr [DisplayName(&#34;Name Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
-| use_description_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
+| use_description_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Desc Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
 | use_folder_type_explicitly | [bool](#bool) |  | @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Explicit Folders&#34;)] @attr [Description(&#34;User has choose explicitly item or folder type for catalog element&#34;)] |
 | item_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
@@ -249,7 +249,10 @@ Application project generator
 | property_is_open_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_ref_self_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_ref_folder_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| view_default_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | folder | [proto_catalog_folder](#proto_config.proto_catalog_folder) |  | @attr [BrowsableAttribute(false)] |
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_details | [proto_group_list_details](#proto_config.proto_group_list_details) |  | @attr [BrowsableAttribute(false)] |
@@ -300,18 +303,21 @@ Application project generator
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_details | [proto_group_list_details](#proto_config.proto_group_list_details) |  | @attr [BrowsableAttribute(false)] |
 | property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
+| use_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
 | property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_name_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
+| use_name_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | property_name_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_description_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
+| use_description_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(51)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(52)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
 | property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | view_default_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_ref_self_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -435,17 +441,25 @@ Constant application wise value
 | group_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] |
 | group_details | [proto_group_list_details](#proto_config.proto_group_list_details) |  | @attr [BrowsableAttribute(false)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
+| use_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for detail item&#34;)] |
+| use_name_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for detail item&#34;)] |
+| use_description_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for detail item&#34;)] |
 | short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
-| property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | is_try_attach | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;UI attach&#34;)] @attr [Description(&#34;UI engine will try put this detail block on same line as previous detail block or block of header fields&#34;)] |
 | is_start_new_row | [bool](#bool) |  | @attr [PropertyOrderAttribute(23)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start UI row&#34;)] @attr [Description(&#34;Start new UI row for this detaail block&#34;)] |
 | is_start_new_tab | [bool](#bool) |  | @attr [PropertyOrderAttribute(24)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start New Tab&#34;)] @attr [Description(&#34;Start tab in current tab control (create new tab control if current not created yet or start new tab control is specified). Tab name is taken from details name if not specified explicitly&#34;)] |
 | tab_name | [string](#string) |  | @attr [PropertyOrderAttribute(25)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Tab Name&#34;)] @attr [Description(&#34;If not empty, try to find tab in previous tab controls. If not found, then start new tab in tab control. If empty, then continue adding data grids in current tab control&#34;)] |
 | is_start_new_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(26)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(27)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
+| property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_name_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_ref_parent_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| view_default_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | list_guid_view_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
@@ -475,13 +489,16 @@ Constant application wise value
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
 | short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
-| property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_code_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document&#34;)] |
+| use_doc_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document&#34;)] |
 | code_property_settings | [proto_document_code_property_settings](#proto_config.proto_document_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for Document&#34;)] |
-| property_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| use_date_property | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document&#34;)] |
-| property_date_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document&#34;)] |
+| property_id_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_doc_code_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_doc_date_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_version_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -573,13 +590,13 @@ Constant application wise value
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_use_code | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Use catalog item code for list view&#34;)] |
-| is_use_name | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Use catalog item name for list view&#34;)] |
-| is_use_desc | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Use catalog item description for list view&#34;)] |
-| is_use_folder_code | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Folder Code&#34;)] @attr [Description(&#34;Use catalog folder code for list view&#34;)] |
-| is_use_folder_name | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Folder Name&#34;)] @attr [Description(&#34;Use catalog folder name for list view&#34;)] |
-| is_use_folder_desc | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Folder Desc&#34;)] @attr [Description(&#34;Use catalog folder description for list view&#34;)] |
-| is_use_doc_date | [bool](#bool) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Doc Date&#34;)] @attr [Description(&#34;Use document date for list view&#34;)] |
+| is_use_code | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Use catalog item code for list view&#34;)] |
+| is_use_name | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Use catalog item name for list view&#34;)] |
+| is_use_desc | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Use catalog item description for list view&#34;)] |
+| is_use_folder_code | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Folder Code&#34;)] @attr [Description(&#34;Use catalog folder code for list view&#34;)] |
+| is_use_folder_name | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Folder Name&#34;)] @attr [Description(&#34;Use catalog folder name for list view&#34;)] |
+| is_use_folder_desc | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Folder Desc&#34;)] @attr [Description(&#34;Use catalog folder description for list view&#34;)] |
+| is_use_doc_date | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Doc Date&#34;)] @attr [Description(&#34;Use document date for list view&#34;)] |
 | is_dummy | [bool](#bool) |  | @attr [Category(&#34;Edit form&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;???&#34;)] @attr [Description(&#34;Not implemented&#34;)] |
 | enum_form_type | [proto_form_type](#proto_config.proto_form_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Form type&#34;)] |
 | list_guid_view_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
@@ -629,10 +646,11 @@ Constant application wise value
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for document db table names. Used if set to use in config model&#34;)] |
 | group_shared_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [BrowsableAttribute(false)] @attr [Description(&#34;Properties for all documents&#34;)] |
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [BrowsableAttribute(false)] |
-| property_code_name | [string](#string) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of document code auto generated property if it is used in documents&#34;)] |
-| use_code_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document by default&#34;)] |
-| property_date_name | [string](#string) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Date property&#34;)] @attr [Description(&#34;Name of document date auto generated property if it is used in documents&#34;)] |
-| use_date_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document by default&#34;)] |
+| use_doc_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document by default&#34;)] |
+| use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document by default&#34;)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -696,20 +714,15 @@ Constant application wise value
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short catalog type ID for cache key generator&#34;)] |
 | list_catalogs | [proto_catalog](#proto_config.proto_catalog) | repeated | @attr [BrowsableAttribute(false)] |
-| property_code_name | [string](#string) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
-| use_code_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item by default&#34;)] |
-| property_name_name | [string](#string) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
-| use_name_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item by default&#34;)] |
-| property_description_name | [string](#string) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
-| use_description_property | [bool](#bool) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
-| property_is_folder_name | [string](#string) |  | @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
-| property_is_open_name | [string](#string) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;IsOpen property&#34;)] @attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] |
-| property_code_name_in_separate_tree | [string](#string) |  | @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Sep Tree Code&#34;)] @attr [Description(&#34;Name of code auto generated property in separate tree if it is used in catalog&#34;)] |
+| use_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item by default&#34;)] |
+| use_name_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item by default&#34;)] |
+| use_description_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
 | use_code_property_in_separate_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Sep Use Code&#34;)] @attr [Description(&#34;Use Code property in separate tree for catalog folder by default&#34;)] |
-| property_name_name_in_separate_tree | [string](#string) |  | @attr [PropertyOrderAttribute(33)] @attr [DisplayName(&#34;Sep Name&#34;)] @attr [Description(&#34;Name of name auto generated property in separate tree if it is used in catalog&#34;)] |
 | use_name_property_in_separate_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(34)] @attr [DisplayName(&#34;Sep Use Name&#34;)] @attr [Description(&#34;Use Name property in separate tree for catalog item by default&#34;)] |
-| property_description_name_in_separate_tree | [string](#string) |  | @attr [PropertyOrderAttribute(35)] @attr [DisplayName(&#34;Sep Description&#34;)] @attr [Description(&#34;Name of description auto generated property in separate tree if it is used in catalog&#34;)] |
 | use_description_property_in_separate_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(36)] @attr [DisplayName(&#34;Sep Use Description&#34;)] @attr [Description(&#34;Use Description property in separate tree for catalog item by default&#34;)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -778,6 +791,12 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_details | [proto_detail](#proto_config.proto_detail) | repeated | @attr [BrowsableAttribute(false)] |
+| use_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for detail item&#34;)] |
+| use_name_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for detail item&#34;)] |
+| use_description_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for detail item&#34;)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -863,6 +882,9 @@ Common parameters section
 | name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
 | list_journals | [proto_journal](#proto_config.proto_journal) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -989,6 +1011,9 @@ main view forms hierarchy node with children
 | list_documents | [proto_document](#proto_config.proto_document) | repeated | repeated proto_group_properties list_properties = 6; @attr [BrowsableAttribute(false)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -1029,24 +1054,39 @@ Configuration model
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
-| version | [int32](#int32) |  | @attr [PropertyOrderAttribute(2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] |
+| version | [int32](#int32) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| name_ui | [string](#string) |  | @attr [PropertyOrderAttribute(2)] |
-| description | [string](#string) |  | @attr [PropertyOrderAttribute(3)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | composite_name_max_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Max length&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
 | is_use_composite_names | [bool](#bool) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Use Composite&#34;)] @attr [Description(&#34;Use parent-child composite names.&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
 | is_use_group_prefix | [bool](#bool) |  | @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Use Prefix&#34;)] @attr [Description(&#34;Composite names use their parent name as prefix. In a case of simple names all object&#39;s name will have only group name as a prefix.&#34;)] @attr [Category(&#34;Composite Names Generation&#34;)] |
 | p_key_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| p_key_name | [string](#string) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Id name&#34;)] @attr [Description(&#34;Primary key field name&#34;)] @attr [Category(&#34;Props settings&#34;)] |
-| p_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Id type&#34;)] @attr [Description(&#34;Primary key field type&#34;)] @attr [Category(&#34;Props settings&#34;)] |
+| p_key_name | [string](#string) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Id name&#34;)] @attr [Description(&#34;Primary key field name&#34;)] @attr [Category(&#34;Property settings&#34;)] |
+| p_key_type | [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type) |  | @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Id type&#34;)] @attr [Description(&#34;Primary key field type&#34;)] @attr [Category(&#34;Property settings&#34;)] |
 | record_version_field_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| record_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Record version field name&#34;)] @attr [Category(&#34;Props settings&#34;)] |
-| record_version_field_type | [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Version type&#34;)] @attr [Description(&#34;Record version field type&#34;)] @attr [Category(&#34;Props settings&#34;)] |
+| record_version_field_name | [string](#string) |  | @attr [PropertyOrderAttribute(18)] @attr [DisplayName(&#34;Version field&#34;)] @attr [Description(&#34;Record version field name&#34;)] @attr [Category(&#34;Property settings&#34;)] |
+| record_version_field_type | [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type) |  | @attr [PropertyOrderAttribute(19)] @attr [DisplayName(&#34;Version type&#34;)] @attr [Description(&#34;Record version field type&#34;)] @attr [Category(&#34;Property settings&#34;)] |
+| property_code_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Code property&#34;)] @attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] |
+| use_code_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item by default&#34;)] |
+| property_name_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Name property&#34;)] @attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] |
+| use_name_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item by default&#34;)] |
+| property_description_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
+| use_description_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
+| property_is_folder_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
+| property_is_open_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(28)] @attr [DisplayName(&#34;IsOpen property&#34;)] @attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] |
+| property_doc_date_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Date property&#34;)] @attr [Description(&#34;Name of date auto generated property if it is used in documents&#34;)] |
+| use_doc_date_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Use Doc Date&#34;)] @attr [Description(&#34;Use Date property for documents&#34;)] |
+| property_doc_code_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Doc Code property&#34;)] @attr [Description(&#34;Name of document code auto generated property&#34;)] |
+| use_doc_code_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Use Doc Code&#34;)] @attr [Description(&#34;Use Code property for documents&#34;)] |
 | last_constant_group_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_catalog_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_document_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
 | last_detail_short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
+| is_grid_sortable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [bool](#bool) |  | @attr [Category(&#34;DataGrid settings&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | group_common | [proto_group_list_common](#proto_config.proto_group_list_common) |  | @attr [BrowsableAttribute(false)] |
 | group_constant_groups | [proto_group_constant_groups](#proto_config.proto_group_constant_groups) |  | @attr [BrowsableAttribute(false)] |
 | group_enumerations | [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations) |  | @attr [BrowsableAttribute(false)] |
@@ -1241,9 +1281,9 @@ Configuration model
 | tab_name | [string](#string) |  | @attr [PropertyOrderAttribute(26)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Tab Name&#34;)] @attr [Description(&#34;If not empty, then start new tab in tab control. If empty, then continue adding fields in current control&#34;)] |
 | is_start_new_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(25)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(27)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
-| is_sortable | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(41)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid. If null, default behavior will be used&#34;)] |
-| is_sortable_custom | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(42)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
-| is_filterable | [google.protobuf.BoolValue](#google.protobuf.BoolValue) |  | @attr [PropertyOrderAttribute(43)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid. If null, default behavior will be used&#34;)] |
+| is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
+| is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
+| is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
@@ -1485,6 +1525,19 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | HOUR | 2 | @attr [DisplayName(&#34;Hour&#34;)] @attr [Description(&#34;One hour accuracy&#34;)] |
 | MS | 3 | @attr [DisplayName(&#34;Millisecond&#34;)] @attr [Description(&#34;One millisecond accuracy&#34;)] |
 | MAX | 5 | @attr [DisplayName(&#34;Max&#34;)] @attr [Description(&#34;Max (100 nanoseconds) accuracy&#34;)] |
+
+
+
+<a name="proto_config.proto_enum_use_type"></a>
+
+### proto_enum_use_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| Default | 0 |  |
+| Yes | 1 |  |
+| No | 2 |  |
 
 
 

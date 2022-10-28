@@ -47,11 +47,13 @@ namespace vSharpStudio.vm.ViewModels
 
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
             this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
-            this.MaxNameLength = 20;
             this.PropertyNameGuid = System.Guid.NewGuid().ToString();
-            this.MaxDescriptionLength = 100;
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
             this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
+            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+
+            this.MaxNameLength = 20;
+            this.MaxDescriptionLength = 100;
             this.ViewDefaultGuid = System.Guid.NewGuid().ToString();
 
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
@@ -61,7 +63,6 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.Parent = this;
             this.GroupDetails.Parent = this;
             this.CodePropertySettings.Parent = this;
-            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this.RefillChildren();
         }
         protected override void OnInitFromDto()
@@ -153,7 +154,7 @@ namespace vSharpStudio.vm.ViewModels
         [ExpandableObjectAttribute()]
         public dynamic Setting { get; set; }
 
-        [PropertyOrder(1)]
+        [PropertyOrder(100)]
         [ReadOnly(true)]
         [DisplayName("Composite")]
         [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
@@ -192,34 +193,34 @@ namespace vSharpStudio.vm.ViewModels
         public bool GetUseCodeProperty()
         {
             bool res = false;
-            if (this.UseCodeProperty.HasValue && this.UseCodeProperty.Value)
-                res = true;
-            else if (this.ParentCatalog.UseCodeProperty.HasValue && this.ParentCatalog.UseCodeProperty.Value)
+            if (this.UseCodeProperty == EnumUseType.Default)
+                res = this.ParentCatalog.GetUseCodeProperty();
+            else if (this.UseCodeProperty == EnumUseType.Yes)
                 res = true;
             else
-                res = this.ParentCatalog.ParentGroupListCatalogs.UseCodeProperty;
+                res = false;
             return res;
         }
         public bool GetUseNameProperty()
         {
             bool res = false;
-            if (this.UseNameProperty.HasValue && this.UseNameProperty.Value)
-                res = true;
-            else if (this.ParentCatalog.UseNameProperty.HasValue && this.ParentCatalog.UseNameProperty.Value)
+            if (this.UseNameProperty == EnumUseType.Default)
+                res = this.ParentCatalog.GetUseNameProperty();
+            else if (this.UseNameProperty == EnumUseType.Yes)
                 res = true;
             else
-                res = this.ParentCatalog.ParentGroupListCatalogs.UseNameProperty;
+                res = false;
             return res;
         }
         public bool GetUseDescriptionProperty()
         {
             bool res = false;
-            if (this.UseDescriptionProperty.HasValue && this.UseDescriptionProperty.Value)
-                res = true;
-            else if (this.ParentCatalog.UseDescriptionProperty.HasValue && this.ParentCatalog.UseDescriptionProperty.Value)
+            if (this.UseDescriptionProperty == EnumUseType.Default)
+                res = this.ParentCatalog.GetUseDescriptionProperty();
+            else if (this.UseDescriptionProperty == EnumUseType.Yes)
                 res = true;
             else
-                res = this.ParentCatalog.ParentGroupListCatalogs.UseDescriptionProperty;
+                res = false;
             return res;
         }
         private void GetSpecialProperties(List<IProperty> res)
@@ -231,10 +232,8 @@ namespace vSharpStudio.vm.ViewModels
             prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent", true);
             (prp as Property).IsNullable = true;
             res.Add(prp);
-            if (this.UseCodeProperty.HasValue)
+            if (this.GetUseCodeProperty())
             {
-                if (this.UseCodeProperty.Value)
-                {
                     switch (this.CodePropertySettings.Type)
                     {
                         case EnumCodeType.AutoNumber:
@@ -249,47 +248,13 @@ namespace vSharpStudio.vm.ViewModels
                             break;
                     }
                     res.Add(prp);
-                }
             }
-            else if (ctlg.GetUseCodeProperty())
-            {
-                switch (ctlg.CodePropertySettings.Type)
-                {
-                    case EnumCodeType.AutoNumber:
-                        throw new NotImplementedException();
-                    case EnumCodeType.AutoText:
-                        throw new NotImplementedException();
-                    case EnumCodeType.Number:
-                        prp = cfg.Model.GetPropertyCatalogCodeInt(ctlg.PropertyCodeGuid, ctlg.CodePropertySettings.Length);
-                        break;
-                    case EnumCodeType.Text:
-                        prp = cfg.Model.GetPropertyCatalogCode(ctlg.PropertyCodeGuid, ctlg.CodePropertySettings.Length);
-                        break;
-                }
-                res.Add(prp);
-            }
-            if (this.UseNameProperty.HasValue)
-            {
-                if (this.UseCodeProperty.Value)
-                {
-                    prp = cfg.Model.GetPropertyCatalogName(this.PropertyNameGuid, this.MaxNameLength);
-                    res.Add(prp);
-                }
-            }
-            else if (ctlg.GetUseNameProperty())
+            if (this.GetUseNameProperty())
             {
                 prp = cfg.Model.GetPropertyCatalogName(ctlg.PropertyNameGuid, ctlg.MaxNameLength);
                 res.Add(prp);
             }
-            if (this.UseDescriptionProperty.HasValue)
-            {
-                if (this.UseDescriptionProperty.Value)
-                {
-                    prp = cfg.Model.GetPropertyCatalogDescription(this.PropertyDescriptionGuid, this.MaxDescriptionLength);
-                    res.Add(prp);
-                }
-            }
-            else if (ctlg.GetUseDescriptionProperty())
+            if (this.GetUseDescriptionProperty())
             {
                 prp = cfg.Model.GetPropertyCatalogDescription(ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength);
                 res.Add(prp);

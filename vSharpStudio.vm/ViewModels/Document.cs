@@ -51,8 +51,9 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupDetails.Parent = this;
             this.GroupForms.Parent = this;
             this.GroupReports.Parent = this;
-            this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDateGuid = System.Guid.NewGuid().ToString();
+            this.PropertyIdGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDocCodeGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this.RefillChildren();
         }
@@ -199,7 +200,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupListDocuments.ListDocuments.Remove(this);
         }
         #endregion Tree operations
-        [PropertyOrder(1)]
+        [PropertyOrder(100)]
         [ReadOnly(true)]
         [DisplayName("Composite")]
         [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
@@ -264,24 +265,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public bool GetUseCodeProperty()
-        {
-            bool res = false;
-            if (this.UseCodeProperty.HasValue && this.UseCodeProperty.Value)
-                res = true;
-            else
-                res = this.ParentGroupListDocuments.ParentGroupDocuments.UseCodeProperty;
-            return res;
-        }
-        public bool GetUseDateProperty()
-        {
-            bool res = false;
-            if (this.UseDateProperty.HasValue && this.UseDateProperty.Value)
-                res = true;
-            else
-                res = this.ParentGroupListDocuments.ParentGroupDocuments.UseDateProperty;
-            return res;
-        }
         private void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
         {
 
@@ -294,12 +277,12 @@ namespace vSharpStudio.vm.ViewModels
                 prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
                 res.Add(prp);
             }
-            if (this.GetUseDateProperty())
+            if (this.GetUseDocDateProperty())
             {
-                prp = cfg.Model.GetPropertyDocumentDate(this.PropertyDateGuid);
+                prp = cfg.Model.GetPropertyDocumentDate(this.PropertyDocDateGuid);
                 res.Add(prp);
             }
-            if (this.GetUseCodeProperty())
+            if (this.GetUseDocCodeProperty())
             {
                 switch (this.CodePropertySettings.Type)
                 {
@@ -308,10 +291,10 @@ namespace vSharpStudio.vm.ViewModels
                     case EnumCodeType.AutoText:
                         throw new NotImplementedException();
                     case EnumCodeType.Number:
-                        prp = cfg.Model.GetPropertyDocumentCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                        prp = cfg.Model.GetPropertyDocumentCodeInt(this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
                         break;
                     case EnumCodeType.Text:
-                        prp = cfg.Model.GetPropertyDocumentCodeString(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                        prp = cfg.Model.GetPropertyDocumentCodeString(this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
                         break;
                 }
                 res.Add(prp);
@@ -403,6 +386,46 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Parent));
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
+        }
+        public bool GetIsGridSortable()
+        {
+            if (this.IsGridSortable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortable == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridSortable();
+        }
+        public bool GetIsGridFilterable()
+        {
+            if (this.IsGridFilterable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridFilterable == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridFilterable();
+        }
+        public bool GetIsGridSortableCustom()
+        {
+            if (this.IsGridSortableCustom == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortableCustom == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridSortableCustom();
+        }
+        public bool GetUseDocCodeProperty()
+        {
+            if (this.UseDocCodeProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseDocCodeProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDocuments.ParentGroupDocuments.GetUseDocCodeProperty();
+        }
+        public bool GetUseDocDateProperty()
+        {
+            if (this.UseDocDateProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseDocDateProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDocuments.ParentGroupDocuments.GetUseDocDateProperty();
         }
     }
 }

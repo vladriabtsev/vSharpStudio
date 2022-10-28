@@ -10,6 +10,7 @@ using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -127,6 +128,90 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Parent));
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
+        }
+        public bool GetIsGridSortable()
+        {
+            if (this.IsGridSortable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortable == EnumUseType.No)
+                return false;
+            if (this.Parent is Catalog c)
+                return c.GetIsGridSortable();
+            if (this.Parent is Document d)
+                return d.GetIsGridSortable();
+            if (this.Parent is Detail dd)
+                return dd.GetIsGridSortable();
+            throw new NotImplementedException();
+        }
+        public bool GetIsGridFilterable()
+        {
+            if (this.IsGridFilterable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridFilterable == EnumUseType.No)
+                return false;
+            if (this.Parent is Catalog c)
+                return c.GetIsGridFilterable();
+            if (this.Parent is Document d)
+                return d.GetIsGridFilterable();
+            if (this.Parent is Detail dd)
+                return dd.GetIsGridFilterable();
+            throw new NotImplementedException();
+        }
+        public bool GetIsGridSortableCustom()
+        {
+            if (this.IsGridSortableCustom == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortableCustom == EnumUseType.No)
+                return false;
+            if (this.Parent is Catalog c)
+                return c.GetIsGridSortableCustom();
+            if (this.Parent is Document d)
+                return d.GetIsGridSortableCustom();
+            if (this.Parent is Detail dd)
+                return dd.GetIsGridSortableCustom();
+            throw new NotImplementedException();
+        }
+        public bool GetUseCodeProperty()
+        {
+            if (this.UseCodeProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseCodeProperty == EnumUseType.No)
+                return false;
+            if (this.Parent is Catalog c)
+                return c.GetUseCodeProperty();
+            if (this.Parent is Document d)
+                return d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.UseCodeProperty;
+            if (this.Parent is Detail dd)
+                return dd.GetUseCodeProperty();
+            throw new NotImplementedException();
+        }
+        public bool GetUseNameProperty()
+        {
+            if (this.UseNameProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseNameProperty == EnumUseType.No)
+                return false;
+            if (this.Parent is Catalog c)
+                return c.GetUseNameProperty();
+            if (this.Parent is Document d)
+                return d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.UseNameProperty;
+            if (this.Parent is Detail dd)
+                return dd.GetUseNameProperty();
+            throw new NotImplementedException();
+        }
+        public bool GetUseDescriptionProperty()
+        {
+            if (this.UseDescriptionProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseDescriptionProperty == EnumUseType.No)
+                return false;
+            if (this.Parent is Catalog c)
+                return c.GetUseDescriptionProperty();
+            if (this.Parent is Document d)
+                return d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.UseDescriptionProperty;
+            if (this.Parent is Detail dd)
+                return dd.GetUseDescriptionProperty();
+            throw new NotImplementedException();
         }
     }
 }

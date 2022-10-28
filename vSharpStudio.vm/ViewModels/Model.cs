@@ -81,6 +81,19 @@ namespace vSharpStudio.vm.ViewModels
             this.RecordVersionFieldName = "ReCoRdVeRsIoN";
             this.RecordVersionFieldGuid = System.Guid.NewGuid().ToString();
             this.RecordVersionFieldType = EnumVersionFieldType.VER_INT;
+
+            this.PropertyCodeName = "Code";
+            this.PropertyNameName = "Name";
+            this.PropertyDescriptionName = "Description";
+            this.PropertyIsFolderName = "IsFolder";
+            this.PropertyIsOpenName = "IsOpen";
+            this.PropertyDocCodeName = "DocNumber";
+            this.PropertyDocDateName = "DocDate";
+
+            this.UseCodeProperty = true;
+            this.UseNameProperty = true;
+            this.UseDocCodeProperty = true;
+            this.UseDocDateProperty = true;
         }
 
         protected override void OnInitFromDto()
@@ -621,7 +634,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IDataType GetIdRefDataType()
         {
-            IDataType dt = default(IDataType);
+            IDataType dt = default(IDataType)!;
             switch (this.PKeyType)
             {
                 case EnumPrimaryKeyType.INT:
@@ -639,14 +652,14 @@ namespace vSharpStudio.vm.ViewModels
         {
             var dt = (DataType)this.GetIdDataType();
             dt.IsPKey = true;
-            var res = new Property(default(ITreeConfigNode), idGuid, this.PKeyName, dt);
+            var res = new Property(default(ITreeConfigNode)!, idGuid, this.PKeyName, dt);
             res.Position = 6;
             return res;
         }
         public IProperty GetPropertyVersion(string guid)
         {
             var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
-            var res = new Property(default(ITreeConfigNode), guid, this.RecordVersionFieldName, dt);
+            var res = new Property(default(ITreeConfigNode)!, guid, this.RecordVersionFieldName, dt);
             res.IsNullable = false;
             res.Position = 7;
             return res;
@@ -655,7 +668,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var dt = (DataType)this.GetIdRefDataType();
             dt.IsRefParent = true;
-            var res = new Property(default(ITreeConfigNode), guid, name, dt);
+            var res = new Property(default(ITreeConfigNode)!, guid, name, dt);
             res.Position = 8;
             res.IsNullable = isNullable;
             return res;
@@ -663,28 +676,28 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyCatalogCode(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeString(length);
-            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyCodeName, dt);
+            var res = new Property(default(ITreeConfigNode)!, guid, this.PropertyCodeName, dt);
             res.Position = 9;
             return res;
         }
         public IProperty GetPropertyCatalogCodeInt(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
-            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyCodeName, dt);
+            var res = new Property(default(ITreeConfigNode)!, guid, this.PropertyCodeName, dt);
             res.Position = 9;
             return res;
         }
         public IProperty GetPropertyCatalogName(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeString(length);
-            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyNameName, dt);
+            var res = new Property(default(ITreeConfigNode)!, guid, this.PropertyNameName, dt);
             res.Position = 10;
             return res;
         }
         public IProperty GetPropertyCatalogDescription(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeString(length);
-            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyDescriptionName, dt);
+            var res = new Property(default(ITreeConfigNode)!, guid, this.PropertyDescriptionName, dt);
             res.Position = 11;
             return res;
         }
@@ -692,7 +705,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var dt = new DataType();
             dt.DataTypeEnum = EnumDataType.BOOL;
-            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyIsFolderName, dt);
+            var res = new Property(default(ITreeConfigNode)!, guid, this.PropertyIsFolderName, dt);
             res.IsNullable = false;
             res.Position = 12;
             return res;
@@ -701,7 +714,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var dt = new DataType();
             dt.DataTypeEnum = EnumDataType.BOOL;
-            var res = new Property(default(ITreeConfigNode), guid, this.GroupCatalogs.PropertyIsOpenName, dt);
+            var res = new Property(default(ITreeConfigNode)!, guid, this.PropertyIsOpenName, dt);
             res.IsNullable = false;
             res.Position = 13;
             return res;
@@ -709,7 +722,7 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyDocumentDate(string guid)
         {
             var dt = (DataType)this.GetDataTypeDateTimeUtc();
-            var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyDateName, dt);
+            var res = new Property(default(ITreeConfigNode)!, guid, this.PropertyDocDateName, dt);
             res.AccuracyForTime = EnumTimeAccuracyType.MAX;
             res.Position = 8;
             return res;
@@ -717,14 +730,14 @@ namespace vSharpStudio.vm.ViewModels
         public IProperty GetPropertyDocumentCodeString(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeString(length);
-            var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyCodeName, dt);
+            var res = new Property(default(ITreeConfigNode)!, guid, this.PropertyDocCodeName, dt);
             res.Position = 9;
             return res;
         }
         public IProperty GetPropertyDocumentCodeInt(string guid, uint length)
         {
             var dt = (DataType)this.GetDataTypeFromMaxValue(int.MaxValue, false);
-            var res = new Property(default(ITreeConfigNode), guid, this.GroupDocuments.PropertyCodeName, dt);
+            var res = new Property(default(ITreeConfigNode), guid, this.PropertyDocCodeName, dt);
             res.Position = 9;
             return res;
         }

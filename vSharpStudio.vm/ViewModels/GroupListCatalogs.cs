@@ -41,19 +41,12 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = Defaults.CatalogsGroupName;
             this.PrefixForDbTables = "Ctlg";
             this.IsEditable = false;
-            this.PropertyCodeName = "Code";
-            this.UseCodeProperty = true;
-            this.PropertyNameName = "Name";
-            this.UseNameProperty = true;
-            this.PropertyDescriptionName = "Description";
-            this.PropertyCodeNameInSeparateTree = "Code";
+            this.UseCodeProperty = EnumUseType.Default;
+            this.UseNameProperty = EnumUseType.Default;
+            this.UseDescriptionProperty = EnumUseType.Default;
             this.UseCodePropertyInSeparateTree = true;
-            this.PropertyNameNameInSeparateTree = "Name";
             this.UseNamePropertyInSeparateTree = true;
-            this.PropertyDescriptionNameInSeparateTree = "Description";
 
-            this.PropertyIsFolderName = "IsFolder";
-            this.PropertyIsOpenName = "IsOpen";
             this.ShortIdTypeForCacheKey = "c";
             Init();
         }
@@ -137,7 +130,67 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.NameUi));
             lst.Add(this.GetPropertyName(() => this.Parent));
             lst.Add(this.GetPropertyName(() => this.Children));
+            //if (!this.UseCodeProperty)
+            //    lst.Add(this.GetPropertyName(() => this.PropertyCodeName));
+            //if (!this.UseNameProperty)
+            //    lst.Add(this.GetPropertyName(() => this.PropertyNameName));
             return lst.ToArray();
         }
+        public bool GetIsGridSortable()
+        {
+            if (this.IsGridSortable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortable == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridSortable;
+        }
+        public bool GetIsGridFilterable()
+        {
+            if (this.IsGridFilterable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridFilterable == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridFilterable;
+        }
+        public bool GetIsGridSortableCustom()
+        {
+            if (this.IsGridSortableCustom == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortableCustom == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridSortableCustom;
+        }
+        public bool GetUseCodeProperty()
+        {
+            if (this.UseCodeProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseCodeProperty == EnumUseType.No)
+                return false;
+            return this.ParentModel.UseCodeProperty;
+        }
+        public bool GetUseNameProperty()
+        {
+            if (this.UseNameProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseNameProperty == EnumUseType.No)
+                return false;
+            return this.ParentModel.UseNameProperty;
+        }
+        public bool GetUseDescriptionProperty()
+        {
+            if (this.UseDescriptionProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseDescriptionProperty == EnumUseType.No)
+                return false;
+            return this.ParentModel.UseDescriptionProperty;
+        }
+        //partial void OnUseCodePropertyChanged()
+        //{
+        //    this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+        //}
+        //partial void OnUseNamePropertyChanged()
+        //{
+        //    this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+        //}
     }
 }

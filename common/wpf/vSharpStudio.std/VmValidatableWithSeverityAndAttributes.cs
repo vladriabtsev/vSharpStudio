@@ -16,10 +16,10 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace ViewModelBase
 {
-    public interface IHidePropertiesForXceedPropertyGrid
-    {
-        void HidePropertiesForXceedPropertyGrid(string[] lstExclude = null);
-    }
+    //public interface IHidePropertiesForXceedPropertyGrid
+    //{
+    //    void HidePropertiesForXceedPropertyGrid(string[] lstExclude = null);
+    //}
     public class VmValidatableWithSeverityAndAttributes<T, TValidator> : VmValidatableWithSeverity<T, TValidator>
         where TValidator : AbstractValidator<T>
         where T : VmValidatableWithSeverityAndAttributes<T, TValidator>

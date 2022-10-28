@@ -424,6 +424,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_use_type"><span class="badge">E</span>proto_enum_use_type</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_version_field_type"><span class="badge">E</span>proto_enum_version_field_type</a>
                 </li>
               
@@ -1079,15 +1083,8 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>property_version_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>use_code_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(25)]
 @attr [DisplayName(&#34;Use Code&#34;)]
@@ -1106,7 +1103,7 @@ Generator output file name </p></td>
               
                 <tr>
                   <td>use_name_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(27)]
 @attr [DisplayName(&#34;Use Name&#34;)]
@@ -1124,7 +1121,7 @@ Generator output file name </p></td>
               
                 <tr>
                   <td>use_description_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(29)]
 @attr [DisplayName(&#34;Use Description&#34;)]
@@ -1224,10 +1221,37 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>view_default_guid</td>
+                  <td>property_version_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1431,7 +1455,7 @@ Generator output file name </p></td>
               
                 <tr>
                   <td>use_code_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(21)]
 @attr [DisplayName(&#34;Use Code&#34;)]
@@ -1464,7 +1488,7 @@ Generator output file name </p></td>
               
                 <tr>
                   <td>use_name_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(41)]
 @attr [DisplayName(&#34;Use Name&#34;)]
@@ -1489,7 +1513,7 @@ Generator output file name </p></td>
               
                 <tr>
                   <td>use_description_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(51)]
 @attr [DisplayName(&#34;Use Description&#34;)]
@@ -1524,6 +1548,33 @@ Generator output file name </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2012,22 +2063,35 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>use_code_property</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [DisplayName(&#34;Use Code&#34;)]
+@attr [Description(&#34;Use Code property for detail item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_name_property</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(24)]
+@attr [DisplayName(&#34;Use Name&#34;)]
+@attr [Description(&#34;Use Name property for detail item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_description_property</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(26)]
+@attr [DisplayName(&#34;Use Description&#34;)]
+@attr [Description(&#34;Use Description property for detail item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>short_id</td>
                   <td><a href="#int32">int32</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_id_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_version_guid</td>
-                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -2093,6 +2157,34 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_name_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_description_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>property_ref_parent_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -2100,10 +2192,37 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>view_default_guid</td>
+                  <td>property_version_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2230,15 +2349,8 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_id_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_code_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td>use_doc_code_property</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(21)]
 @attr [DisplayName(&#34;Use Code&#34;)]
@@ -2256,15 +2368,8 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_code_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_date_property</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td>use_doc_date_property</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(24)]
 @attr [DisplayName(&#34;Use Date&#34;)]
@@ -2272,7 +2377,21 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_date_guid</td>
+                  <td>property_id_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_doc_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_doc_date_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
@@ -2283,6 +2402,33 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2630,7 +2776,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>is_use_code</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;List form&#34;)]
 @attr [PropertyOrderAttribute(1)]
@@ -2640,7 +2786,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>is_use_name</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;List form&#34;)]
 @attr [PropertyOrderAttribute(2)]
@@ -2650,7 +2796,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>is_use_desc</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;List form&#34;)]
 @attr [PropertyOrderAttribute(3)]
@@ -2660,7 +2806,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>is_use_folder_code</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;List form&#34;)]
 @attr [PropertyOrderAttribute(11)]
@@ -2670,7 +2816,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>is_use_folder_name</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;List form&#34;)]
 @attr [PropertyOrderAttribute(12)]
@@ -2680,7 +2826,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>is_use_folder_desc</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;List form&#34;)]
 @attr [PropertyOrderAttribute(13)]
@@ -2690,7 +2836,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>is_use_doc_date</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;List form&#34;)]
 @attr [PropertyOrderAttribute(15)]
@@ -2893,17 +3039,8 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_code_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(21)]
-@attr [DisplayName(&#34;Code property&#34;)]
-@attr [Description(&#34;Name of document code auto generated property if it is used in documents&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_code_property</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>use_doc_code_property</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(22)]
 @attr [DisplayName(&#34;Use Code&#34;)]
@@ -2911,21 +3048,39 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_date_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(23)]
-@attr [DisplayName(&#34;Date property&#34;)]
-@attr [Description(&#34;Name of document date auto generated property if it is used in documents&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>use_date_property</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>use_doc_date_property</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(24)]
 @attr [DisplayName(&#34;Use Date&#34;)]
 @attr [Description(&#34;Use Date property for document by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3134,17 +3289,8 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_code_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(21)]
-@attr [DisplayName(&#34;Code property&#34;)]
-@attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>use_code_property</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(22)]
 @attr [DisplayName(&#34;Use Code&#34;)]
@@ -3152,17 +3298,8 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_name_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(23)]
-@attr [DisplayName(&#34;Name property&#34;)]
-@attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>use_name_property</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(24)]
 @attr [DisplayName(&#34;Use Name&#34;)]
@@ -3170,48 +3307,12 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_description_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(25)]
-@attr [DisplayName(&#34;Description property&#34;)]
-@attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>use_description_property</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(26)]
 @attr [DisplayName(&#34;Use Description&#34;)]
 @attr [Description(&#34;Use Description property for catalog item by default&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_is_folder_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(27)]
-@attr [DisplayName(&#34;IsFolder property&#34;)]
-@attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_is_open_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(29)]
-@attr [DisplayName(&#34;IsOpen property&#34;)]
-@attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>property_code_name_in_separate_tree</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(31)]
-@attr [DisplayName(&#34;Sep Tree Code&#34;)]
-@attr [Description(&#34;Name of code auto generated property in separate tree if it is used in catalog&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3224,15 +3325,6 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_name_name_in_separate_tree</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(33)]
-@attr [DisplayName(&#34;Sep Name&#34;)]
-@attr [Description(&#34;Name of name auto generated property in separate tree if it is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>use_name_property_in_separate_tree</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -3242,21 +3334,39 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>property_description_name_in_separate_tree</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(35)]
-@attr [DisplayName(&#34;Sep Description&#34;)]
-@attr [Description(&#34;Name of description auto generated property in separate tree if it is used in catalog&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>use_description_property_in_separate_tree</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(36)]
 @attr [DisplayName(&#34;Sep Use Description&#34;)]
 @attr [Description(&#34;Use Description property in separate tree for catalog item by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3495,6 +3605,60 @@ Reserved positions: 1 - primary key
                   <td><a href="#proto_config.proto_detail">proto_detail</a></td>
                   <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_code_property</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(22)]
+@attr [DisplayName(&#34;Use Code&#34;)]
+@attr [Description(&#34;Use Code property for detail item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_name_property</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(24)]
+@attr [DisplayName(&#34;Use Name&#34;)]
+@attr [Description(&#34;Use Name property for detail item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_description_property</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(26)]
+@attr [DisplayName(&#34;Use Description&#34;)]
+@attr [Description(&#34;Use Description property for detail item&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3774,6 +3938,33 @@ Reserved positions: 1 - primary key
                   <td>repeated</td>
                   <td><p>repeated proto_property list_shared_properties = 6;
 @attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4182,6 +4373,33 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -4297,7 +4515,8 @@ Reserved positions: 1 - primary key
                   <td>version</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
 @attr [ReadOnly(true)] </p></td>
                 </tr>
               
@@ -4305,7 +4524,8 @@ Reserved positions: 1 - primary key
                   <td>name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(1)] </p></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
                 </tr>
               
                 <tr>
@@ -4319,14 +4539,16 @@ Reserved positions: 1 - primary key
                   <td>name_ui</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(2)] </p></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)] </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)] </p></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
                 </tr>
               
                 <tr>
@@ -4372,7 +4594,7 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [PropertyOrderAttribute(14)]
 @attr [DisplayName(&#34;Id name&#34;)]
 @attr [Description(&#34;Primary key field name&#34;)]
-@attr [Category(&#34;Props settings&#34;)] </p></td>
+@attr [Category(&#34;Property settings&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4382,7 +4604,7 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [PropertyOrderAttribute(15)]
 @attr [DisplayName(&#34;Id type&#34;)]
 @attr [Description(&#34;Primary key field type&#34;)]
-@attr [Category(&#34;Props settings&#34;)] </p></td>
+@attr [Category(&#34;Property settings&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4399,7 +4621,7 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [PropertyOrderAttribute(18)]
 @attr [DisplayName(&#34;Version field&#34;)]
 @attr [Description(&#34;Record version field name&#34;)]
-@attr [Category(&#34;Props settings&#34;)] </p></td>
+@attr [Category(&#34;Property settings&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4409,7 +4631,127 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [PropertyOrderAttribute(19)]
 @attr [DisplayName(&#34;Version type&#34;)]
 @attr [Description(&#34;Record version field type&#34;)]
-@attr [Category(&#34;Props settings&#34;)] </p></td>
+@attr [Category(&#34;Property settings&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_code_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Code property&#34;)]
+@attr [Description(&#34;Name of code auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_code_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(22)]
+@attr [DisplayName(&#34;Use Code&#34;)]
+@attr [Description(&#34;Use Code property for catalog item by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_name_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(23)]
+@attr [DisplayName(&#34;Name property&#34;)]
+@attr [Description(&#34;Name of name auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_name_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(24)]
+@attr [DisplayName(&#34;Use Name&#34;)]
+@attr [Description(&#34;Use Name property for catalog item by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_description_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(25)]
+@attr [DisplayName(&#34;Description property&#34;)]
+@attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_description_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(26)]
+@attr [DisplayName(&#34;Use Description&#34;)]
+@attr [Description(&#34;Use Description property for catalog item by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_is_folder_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(27)]
+@attr [DisplayName(&#34;IsFolder property&#34;)]
+@attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_is_open_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(28)]
+@attr [DisplayName(&#34;IsOpen property&#34;)]
+@attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_doc_date_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(31)]
+@attr [DisplayName(&#34;Date property&#34;)]
+@attr [Description(&#34;Name of date auto generated property if it is used in documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_doc_date_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(32)]
+@attr [DisplayName(&#34;Use Doc Date&#34;)]
+@attr [Description(&#34;Use Date property for documents&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>property_doc_code_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(29)]
+@attr [DisplayName(&#34;Doc Code property&#34;)]
+@attr [Description(&#34;Name of document code auto generated property&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_doc_code_property</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;Property settings&#34;)]
+@attr [PropertyOrderAttribute(30)]
+@attr [DisplayName(&#34;Use Doc Code&#34;)]
+@attr [Description(&#34;Use Code property for documents&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4438,6 +4780,33 @@ Reserved positions: 1 - primary key
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;DataGrid settings&#34;)]
+@attr [DisplayName(&#34;Sortable&#34;)]
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;DataGrid settings&#34;)]
+@attr [DisplayName(&#34;Custom Sortable&#34;)]
+@attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;DataGrid settings&#34;)]
+@attr [DisplayName(&#34;Filterable&#34;)]
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5103,33 +5472,30 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>is_sortable</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td>is_grid_sortable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(41)]
-@attr [Category(&#34;Auto Layout&#34;)]
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
 @attr [DisplayName(&#34;Sortable&#34;)]
-@attr [Description(&#34;Sortable in data grid. If null, default behavior will be used&#34;)] </p></td>
+@attr [Description(&#34;Sortable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>is_sortable_custom</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td>is_grid_sortable_custom</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(42)]
-@attr [Category(&#34;Auto Layout&#34;)]
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
 @attr [DisplayName(&#34;Custom Sortable&#34;)]
 @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>is_filterable</td>
-                  <td><a href="#google.protobuf.BoolValue">google.protobuf.BoolValue</a></td>
+                  <td>is_grid_filterable</td>
+                  <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(43)]
-@attr [Category(&#34;Auto Layout&#34;)]
+                  <td><p>@attr [Category(&#34;Auto Layout&#34;)]
 @attr [DisplayName(&#34;Filterable&#34;)]
-@attr [Description(&#34;Filterable in data grid. If null, default behavior will be used&#34;)] </p></td>
+@attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5796,6 +6162,35 @@ repeated proto_document list_documents = 7;
                 <td>5</td>
                 <td><p>@attr [DisplayName(&#34;Max&#34;)]
 @attr [Description(&#34;Max (100 nanoseconds) accuracy&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_use_type">proto_enum_use_type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Default</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>Yes</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>No</td>
+                <td>2</td>
+                <td><p></p></td>
               </tr>
             
           </tbody>

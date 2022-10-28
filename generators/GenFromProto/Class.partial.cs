@@ -71,6 +71,11 @@ namespace GenFromProto
                 this.Doc.BaseClass = " : BaseSettings<" + message.Name.ToNameCs() + ", " +
                     message.Name.ToNameCs() + "Validator>";
             }
+            else if (this.Doc.BaseClass == "BaseSubSettings")
+            {
+                this.Doc.BaseClass = " : BaseSubSettings<" + message.Name.ToNameCs() + ", " +
+                    message.Name.ToNameCs() + "Validator>";
+            }
             else if (this.Doc.BaseClass == "ConfigObjectCommonBase")
             {
                 this.Doc.BaseClass = " : ConfigObjectCommonBase<" + message.Name.ToNameCs() + ", " +

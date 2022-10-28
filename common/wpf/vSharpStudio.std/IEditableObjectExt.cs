@@ -9,7 +9,7 @@ namespace ViewModelBase
 {
 	public interface IEditableObjectExt : IEditableObject
 	{
-		bool IsChanged { get; }
+		bool IsChanged { get; set; }
 		bool IsInEdit { get; }
 	}
 }

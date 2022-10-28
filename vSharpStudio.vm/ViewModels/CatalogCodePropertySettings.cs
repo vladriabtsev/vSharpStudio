@@ -14,8 +14,6 @@ namespace vSharpStudio.vm.ViewModels
             this.Type = common.EnumCodeType.Number;
             this.Length = 5;
         }
-        [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent { get; set; }
         protected override void OnIsChangedChanged()
         {
             if (this.Parent != null && this.IsChanged)

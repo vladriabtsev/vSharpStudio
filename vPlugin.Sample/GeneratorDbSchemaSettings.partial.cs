@@ -12,6 +12,8 @@ namespace vPlugin.Sample
     public partial class GeneratorDbSchemaSettings : IvPluginGeneratorSettings
     {
         [BrowsableAttribute(false)]
+        public IAppProjectGenerator ParentAppProjectGenerator { get { return (IAppProjectGenerator)this.Parent; } }
+        [BrowsableAttribute(false)]
         public string SettingsAsJson
         {
             get
@@ -33,7 +35,6 @@ namespace vPlugin.Sample
             return s;
         }
         public IvPluginGenerator Generator { get; set; }
-        public IAppProjectGenerator Parent { get; set; }
         public ValidationResult ValidateSettings()
         {
             this.Validate();

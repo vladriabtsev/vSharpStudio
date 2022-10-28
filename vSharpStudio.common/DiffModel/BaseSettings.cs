@@ -32,8 +32,8 @@ namespace vSharpStudio.common
         {
         }
         [BrowsableAttribute(false)]
-        public BaseSettings<T, TValidator> Parent { get; set; }
-        public BaseSubSettings(BaseSettings<T, TValidator> parent, TValidator validator) : base(validator)
+        public IEditableObjectExt Parent { get; set; }
+        public BaseSubSettings(IEditableObjectExt parent, TValidator validator) : base(validator)
         {
             this.Parent = parent;
         }

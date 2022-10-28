@@ -58,25 +58,26 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupForms.Parent = this;
             this.GroupReports.Parent = this;
             this.ItemIconType = EnumCatalogTreeIcon.None;
+
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
             this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
-            this.MaxNameLength = 20;
             this.PropertyNameGuid = System.Guid.NewGuid().ToString();
-            this.MaxDescriptionLength = 100;
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
-            this.UseTree = false;
-            this.MaxTreeLevels = 2;
-            this.UseSeparateTreeForFolders = false;
-            this.GroupIconType = EnumCatalogTreeIcon.Folder;
             this.PropertyRefFolderGuid = System.Guid.NewGuid().ToString();
             this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
-            this.ViewDefaultGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this.UseCodeProperty = this.ParentGroupListCatalogs.UseCodeProperty;
-            this.UseNameProperty = this.ParentGroupListCatalogs.UseNameProperty;
-            this.UseDescriptionProperty = this.ParentGroupListCatalogs.UseDescriptionProperty;
+
+            this.MaxNameLength = 20;
+            this.MaxDescriptionLength = 100;
+            this.UseTree = false;
+            this.MaxTreeLevels = 2;
+            this.UseSeparateTreeForFolders = false;
+            this.GroupIconType = EnumCatalogTreeIcon.Folder;
+            this.UseCodeProperty = EnumUseType.Default;
+            this.UseNameProperty = EnumUseType.Default;
+            this.UseDescriptionProperty = EnumUseType.Default;
             this.RefillChildren();
         }
         protected override void OnInitFromDto()
@@ -248,7 +249,7 @@ namespace vSharpStudio.vm.ViewModels
         [ExpandableObjectAttribute()]
         public dynamic Setting { get; set; }
 
-        [PropertyOrder(1)]
+        [PropertyOrder(100)]
         [ReadOnly(true)]
         [DisplayName("Composite")]
         [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
@@ -258,72 +259,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return GetCompositeName();
             }
-        }
-        public bool GetUseCodeProperty()
-        {
-            bool res = false;
-            if (this.UseCodeProperty.HasValue && this.UseCodeProperty.Value)
-                res = true;
-            else
-                res = this.ParentGroupListCatalogs.UseCodeProperty;
-            return res;
-        }
-        public bool GetUseSeparateFolderCodeProperty()
-        {
-            bool res = false;
-            if (this.UseTree && this.UseSeparateTreeForFolders)
-            {
-                if (this.Folder.UseCodeProperty.HasValue && this.Folder.UseCodeProperty.Value)
-                    res = true;
-                else
-                    res = this.ParentGroupListCatalogs.UseCodePropertyInSeparateTree;
-            }
-            return res;
-        }
-        public bool GetUseNameProperty()
-        {
-            bool res = false;
-            if (this.UseNameProperty.HasValue && this.UseNameProperty.Value)
-                res = true;
-            else
-                res = this.ParentGroupListCatalogs.UseNameProperty;
-            return res;
-        }
-        public bool GetUseSeparateFolderNameProperty()
-        {
-            bool res = false;
-            if (this.UseTree && this.UseSeparateTreeForFolders)
-            {
-                if (this.Folder.UseNameProperty.HasValue && this.Folder.UseNameProperty.Value)
-                    res = true;
-                else
-                    res = this.ParentGroupListCatalogs.UseNamePropertyInSeparateTree;
-            }
-            return res;
-        }
-        public bool GetUseDescriptionProperty()
-        {
-            bool res = false;
-            if (this.UseTree && this.UseSeparateTreeForFolders)
-            {
-                if (this.Folder.UseDescriptionProperty.HasValue && this.Folder.UseDescriptionProperty.Value)
-                    res = true;
-                else
-                    res = this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
-            }
-            return res;
-        }
-        public bool GetUseSeparateFolderDescriptionProperty()
-        {
-            bool res = false;
-            if (this.UseTree && this.UseSeparateTreeForFolders)
-            {
-                if (this.Folder.UseDescriptionProperty.HasValue && this.Folder.UseDescriptionProperty.Value)
-                    res = true;
-                else
-                    res = this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
-            }
-            return res;
         }
         public IReadOnlyList<IProperty> GetAllProperties(bool isUseRecordVersionField)
         {
@@ -825,6 +760,78 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             return res;
+        }
+        public bool GetIsGridSortable()
+        {
+            if (this.IsGridSortable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortable == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.GetIsGridSortable();
+        }
+        public bool GetIsGridFilterable()
+        {
+            if (this.IsGridFilterable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridFilterable == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.GetIsGridFilterable();
+        }
+        public bool GetIsGridSortableCustom()
+        {
+            if (this.IsGridSortableCustom == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortableCustom == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.GetIsGridSortableCustom();
+        }
+        public bool GetUseCodeProperty()
+        {
+            if (this.UseCodeProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseCodeProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.GetUseCodeProperty();
+        }
+        public bool GetUseCodePropertySeparateFolder()
+        {
+            if (this.Folder.UseCodeProperty == EnumUseType.Yes)
+                return true;
+            if (this.Folder.UseCodeProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.UseCodePropertyInSeparateTree;
+        }
+        public bool GetUseNameProperty()
+        {
+            if (this.UseNameProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseNameProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.GetUseNameProperty();
+        }
+        public bool GetUseNamePropertySeparateFolder()
+        {
+            if (this.Folder.UseNameProperty == EnumUseType.Yes)
+                return true;
+            if (this.Folder.UseNameProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.UseNamePropertyInSeparateTree;
+        }
+        public bool GetUseDescriptionProperty()
+        {
+            if (this.UseDescriptionProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseDescriptionProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.GetUseDescriptionProperty();
+        }
+        public bool GetUseDescriptionPropertSeparateFoldery()
+        {
+            if (this.Folder.UseDescriptionProperty == EnumUseType.Yes)
+                return true;
+            if (this.Folder.UseDescriptionProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
         }
     }
 }

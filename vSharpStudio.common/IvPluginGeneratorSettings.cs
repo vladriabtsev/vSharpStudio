@@ -12,7 +12,7 @@ namespace vSharpStudio.common
         [BrowsableAttribute(false)]
         IvPluginGenerator Generator { get; set; }
         [BrowsableAttribute(false)]
-        IAppProjectGenerator Parent { get; set; }
+        IAppProjectGenerator ParentAppProjectGenerator { get; } // set; }
         /// <summary>
         /// Get protobuf model of settings from MVVM model (json format)
         /// </summary>

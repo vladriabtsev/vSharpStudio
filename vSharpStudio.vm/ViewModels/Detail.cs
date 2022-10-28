@@ -47,7 +47,10 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIndexFk = true;
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
             this.PropertyRefParentGuid = System.Guid.NewGuid().ToString();
-            this.ViewDefaultGuid = System.Guid.NewGuid().ToString();
+            this.PropertyCodeGuid = System.Guid.NewGuid().ToString();
+            this.PropertyNameGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
+            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
             this.GroupProperties.Parent = this;
             this.GroupProperties.ListProperties.OnAddingAction = (t) =>
@@ -209,7 +212,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        [PropertyOrder(1)]
+        [PropertyOrder(100)]
         [ReadOnly(true)]
         [DisplayName("Composite")]
         [Description("Composite name based on IsCompositeNames and IsUseGroupPrefix model parameters")]
@@ -371,6 +374,54 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Parent));
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
+        }
+        public bool GetIsGridSortable()
+        {
+            if (this.IsGridSortable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortable == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDetails.GetIsGridSortable();
+        }
+        public bool GetIsGridFilterable()
+        {
+            if (this.IsGridFilterable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridFilterable == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDetails.GetIsGridFilterable();
+        }
+        public bool GetIsGridSortableCustom()
+        {
+            if (this.IsGridSortableCustom == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortableCustom == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDetails.GetIsGridSortableCustom();
+        }
+        public bool GetUseCodeProperty()
+        {
+            if (this.UseCodeProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseCodeProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDetails.GetUseCodeProperty();
+        }
+        public bool GetUseNameProperty()
+        {
+            if (this.UseNameProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseNameProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDetails.GetUseNameProperty();
+        }
+        public bool GetUseDescriptionProperty()
+        {
+            if (this.UseDescriptionProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseDescriptionProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListDetails.GetUseDescriptionProperty();
         }
     }
 }

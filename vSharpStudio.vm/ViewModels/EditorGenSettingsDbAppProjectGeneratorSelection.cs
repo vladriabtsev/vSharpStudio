@@ -17,8 +17,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(propertyItem != null);
             var instance = (IvPluginGeneratorSettings)propertyItem.Instance;
-            var gr = (GroupListAppSolutions)instance.Parent.Parent.Parent.Parent;
-            var lst = new List<AppProjectGenerator>();
+            var gr = instance.ParentAppProjectGenerator.ParentAppProjectI.ParentAppSolutionI.ParentGroupListAppSolutionsI;
+            var lst = new List<IAppProjectGenerator>();
             foreach (var t in gr.ListAppSolutions)
             {
                 foreach (var tt in t.ListAppProjects)

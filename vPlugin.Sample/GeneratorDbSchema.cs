@@ -69,6 +69,7 @@ namespace vPlugin.Sample
                 {
                     proto_generator_db_schema_node_settings proto = proto_generator_db_schema_node_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
                     vm = GeneratorDbSchemaNodeSettings.ConvertToVM(proto, vm);
+                    vm.Parent = parent;
                 }
                 else
                 {

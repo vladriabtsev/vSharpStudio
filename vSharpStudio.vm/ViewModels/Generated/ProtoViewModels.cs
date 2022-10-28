@@ -6708,10 +6708,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.RecordVersionFieldGuid = from.RecordVersionFieldGuid; // Clone.tt Line: 65
             vm.RecordVersionFieldName = from.RecordVersionFieldName; // Clone.tt Line: 65
             vm.RecordVersionFieldType = from.RecordVersionFieldType; // Clone.tt Line: 65
+            vm.PropertyCodeName = from.PropertyCodeName; // Clone.tt Line: 65
+            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
+            vm.PropertyNameName = from.PropertyNameName; // Clone.tt Line: 65
+            vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
+            vm.PropertyDescriptionName = from.PropertyDescriptionName; // Clone.tt Line: 65
+            vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 65
+            vm.PropertyIsFolderName = from.PropertyIsFolderName; // Clone.tt Line: 65
+            vm.PropertyIsOpenName = from.PropertyIsOpenName; // Clone.tt Line: 65
+            vm.PropertyDocDateName = from.PropertyDocDateName; // Clone.tt Line: 65
+            vm.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 65
+            vm.PropertyDocCodeName = from.PropertyDocCodeName; // Clone.tt Line: 65
+            vm.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 65
             vm.LastConstantGroupShortId = from.LastConstantGroupShortId; // Clone.tt Line: 65
             vm.LastCatalogShortId = from.LastCatalogShortId; // Clone.tt Line: 65
             vm.LastDocumentShortId = from.LastDocumentShortId; // Clone.tt Line: 65
             vm.LastDetailShortId = from.LastDetailShortId; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.Clone(vm, from.GroupCommon, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -6752,10 +6767,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.RecordVersionFieldGuid = from.RecordVersionFieldGuid; // Clone.tt Line: 141
             to.RecordVersionFieldName = from.RecordVersionFieldName; // Clone.tt Line: 141
             to.RecordVersionFieldType = from.RecordVersionFieldType; // Clone.tt Line: 141
+            to.PropertyCodeName = from.PropertyCodeName; // Clone.tt Line: 141
+            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
+            to.PropertyNameName = from.PropertyNameName; // Clone.tt Line: 141
+            to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
+            to.PropertyDescriptionName = from.PropertyDescriptionName; // Clone.tt Line: 141
+            to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 141
+            to.PropertyIsFolderName = from.PropertyIsFolderName; // Clone.tt Line: 141
+            to.PropertyIsOpenName = from.PropertyIsOpenName; // Clone.tt Line: 141
+            to.PropertyDocDateName = from.PropertyDocDateName; // Clone.tt Line: 141
+            to.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 141
+            to.PropertyDocCodeName = from.PropertyDocCodeName; // Clone.tt Line: 141
+            to.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 141
             to.LastConstantGroupShortId = from.LastConstantGroupShortId; // Clone.tt Line: 141
             to.LastCatalogShortId = from.LastCatalogShortId; // Clone.tt Line: 141
             to.LastDocumentShortId = from.LastDocumentShortId; // Clone.tt Line: 141
             to.LastDetailShortId = from.LastDetailShortId; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListCommon.Update((GroupListCommon)to.GroupCommon, from.GroupCommon, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -6847,10 +6877,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.RecordVersionFieldGuid = m.RecordVersionFieldGuid; // Clone.tt Line: 221
             vm.RecordVersionFieldName = m.RecordVersionFieldName; // Clone.tt Line: 221
             vm.RecordVersionFieldType = (EnumVersionFieldType)m.RecordVersionFieldType; // Clone.tt Line: 221
+            vm.PropertyCodeName = m.PropertyCodeName; // Clone.tt Line: 221
+            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
+            vm.PropertyNameName = m.PropertyNameName; // Clone.tt Line: 221
+            vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
+            vm.PropertyDescriptionName = m.PropertyDescriptionName; // Clone.tt Line: 221
+            vm.UseDescriptionProperty = m.UseDescriptionProperty; // Clone.tt Line: 221
+            vm.PropertyIsFolderName = m.PropertyIsFolderName; // Clone.tt Line: 221
+            vm.PropertyIsOpenName = m.PropertyIsOpenName; // Clone.tt Line: 221
+            vm.PropertyDocDateName = m.PropertyDocDateName; // Clone.tt Line: 221
+            vm.UseDocDateProperty = m.UseDocDateProperty; // Clone.tt Line: 221
+            vm.PropertyDocCodeName = m.PropertyDocCodeName; // Clone.tt Line: 221
+            vm.UseDocCodeProperty = m.UseDocCodeProperty; // Clone.tt Line: 221
             vm.LastConstantGroupShortId = m.LastConstantGroupShortId; // Clone.tt Line: 221
             vm.LastCatalogShortId = m.LastCatalogShortId; // Clone.tt Line: 221
             vm.LastDocumentShortId = m.LastDocumentShortId; // Clone.tt Line: 221
             vm.LastDetailShortId = m.LastDetailShortId; // Clone.tt Line: 221
+            vm.IsGridSortable = m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = m.IsGridFilterable; // Clone.tt Line: 221
             if (vm.GroupCommon == null) // Clone.tt Line: 213
                 vm.GroupCommon = new GroupListCommon(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToVM(m.GroupCommon, (GroupListCommon)vm.GroupCommon); // Clone.tt Line: 219
@@ -6902,10 +6947,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.RecordVersionFieldGuid = vm.RecordVersionFieldGuid; // Clone.tt Line: 276
             m.RecordVersionFieldName = vm.RecordVersionFieldName; // Clone.tt Line: 276
             m.RecordVersionFieldType = (Proto.Config.proto_enum_version_field_type)vm.RecordVersionFieldType; // Clone.tt Line: 274
+            m.PropertyCodeName = vm.PropertyCodeName; // Clone.tt Line: 276
+            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
+            m.PropertyNameName = vm.PropertyNameName; // Clone.tt Line: 276
+            m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
+            m.PropertyDescriptionName = vm.PropertyDescriptionName; // Clone.tt Line: 276
+            m.UseDescriptionProperty = vm.UseDescriptionProperty; // Clone.tt Line: 276
+            m.PropertyIsFolderName = vm.PropertyIsFolderName; // Clone.tt Line: 276
+            m.PropertyIsOpenName = vm.PropertyIsOpenName; // Clone.tt Line: 276
+            m.PropertyDocDateName = vm.PropertyDocDateName; // Clone.tt Line: 276
+            m.UseDocDateProperty = vm.UseDocDateProperty; // Clone.tt Line: 276
+            m.PropertyDocCodeName = vm.PropertyDocCodeName; // Clone.tt Line: 276
+            m.UseDocCodeProperty = vm.UseDocCodeProperty; // Clone.tt Line: 276
             m.LastConstantGroupShortId = vm.LastConstantGroupShortId; // Clone.tt Line: 276
             m.LastCatalogShortId = vm.LastCatalogShortId; // Clone.tt Line: 276
             m.LastDocumentShortId = vm.LastDocumentShortId; // Clone.tt Line: 276
             m.LastDetailShortId = vm.LastDetailShortId; // Clone.tt Line: 276
+            m.IsGridSortable = vm.IsGridSortable; // Clone.tt Line: 276
+            m.IsGridSortableCustom = vm.IsGridSortableCustom; // Clone.tt Line: 276
+            m.IsGridFilterable = vm.IsGridFilterable; // Clone.tt Line: 276
             m.GroupCommon = vSharpStudio.vm.ViewModels.GroupListCommon.ConvertToProto((GroupListCommon)vm.GroupCommon); // Clone.tt Line: 270
             m.GroupConstantGroups = vSharpStudio.vm.ViewModels.GroupConstantGroups.ConvertToProto((GroupConstantGroups)vm.GroupConstantGroups); // Clone.tt Line: 270
             m.GroupEnumerations = vSharpStudio.vm.ViewModels.GroupListEnumerations.ConvertToProto((GroupListEnumerations)vm.GroupEnumerations); // Clone.tt Line: 270
@@ -6966,6 +7026,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(2)]
         [ReadOnly(true)]
         public int Version // Property.tt Line: 55
@@ -6988,6 +7049,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnVersionChanging(ref int to); // Property.tt Line: 79
         partial void OnVersionChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(1)]
         public string Name // Property.tt Line: 55
         { 
@@ -7028,6 +7090,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(2)]
         public string NameUi // Property.tt Line: 55
         { 
@@ -7048,6 +7111,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(3)]
         public string Description // Property.tt Line: 55
         { 
@@ -7164,7 +7228,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(14)]
         [DisplayName("Id name")]
         [Description("Primary key field name")]
-        [Category("Props settings")]
+        [Category("Property settings")]
         public string PKeyName // Property.tt Line: 55
         { 
             get { return this._PKeyName; }
@@ -7188,7 +7252,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(15)]
         [DisplayName("Id type")]
         [Description("Primary key field type")]
-        [Category("Props settings")]
+        [Category("Property settings")]
         public EnumPrimaryKeyType PKeyType // Property.tt Line: 55
         { 
             get { return this._PKeyType; }
@@ -7233,7 +7297,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(18)]
         [DisplayName("Version field")]
         [Description("Record version field name")]
-        [Category("Props settings")]
+        [Category("Property settings")]
         public string RecordVersionFieldName // Property.tt Line: 55
         { 
             get { return this._RecordVersionFieldName; }
@@ -7257,7 +7321,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(19)]
         [DisplayName("Version type")]
         [Description("Record version field type")]
-        [Category("Props settings")]
+        [Category("Property settings")]
         public EnumVersionFieldType RecordVersionFieldType // Property.tt Line: 55
         { 
             get { return this._RecordVersionFieldType; }
@@ -7277,6 +7341,294 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumVersionFieldType _RecordVersionFieldType;
         partial void OnRecordVersionFieldTypeChanging(ref EnumVersionFieldType to); // Property.tt Line: 79
         partial void OnRecordVersionFieldTypeChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(21)]
+        [DisplayName("Code property")]
+        [Description("Name of code auto generated property if it is used in catalog")]
+        public string PropertyCodeName // Property.tt Line: 55
+        { 
+            get { return this._PropertyCodeName; }
+            set
+            {
+                if (this._PropertyCodeName != value)
+                {
+                    this.OnPropertyCodeNameChanging(ref value);
+                    this._PropertyCodeName = value;
+                    this.OnPropertyCodeNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyCodeName = string.Empty;
+        partial void OnPropertyCodeNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyCodeNameChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(22)]
+        [DisplayName("Use Code")]
+        [Description("Use Code property for catalog item by default")]
+        public bool UseCodeProperty // Property.tt Line: 55
+        { 
+            get { return this._UseCodeProperty; }
+            set
+            {
+                if (this._UseCodeProperty != value)
+                {
+                    this.OnUseCodePropertyChanging(ref value);
+                    this._UseCodeProperty = value;
+                    this.OnUseCodePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseCodeProperty;
+        partial void OnUseCodePropertyChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseCodePropertyChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(23)]
+        [DisplayName("Name property")]
+        [Description("Name of name auto generated property if it is used in catalog")]
+        public string PropertyNameName // Property.tt Line: 55
+        { 
+            get { return this._PropertyNameName; }
+            set
+            {
+                if (this._PropertyNameName != value)
+                {
+                    this.OnPropertyNameNameChanging(ref value);
+                    this._PropertyNameName = value;
+                    this.OnPropertyNameNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyNameName = string.Empty;
+        partial void OnPropertyNameNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyNameNameChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(24)]
+        [DisplayName("Use Name")]
+        [Description("Use Name property for catalog item by default")]
+        public bool UseNameProperty // Property.tt Line: 55
+        { 
+            get { return this._UseNameProperty; }
+            set
+            {
+                if (this._UseNameProperty != value)
+                {
+                    this.OnUseNamePropertyChanging(ref value);
+                    this._UseNameProperty = value;
+                    this.OnUseNamePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseNameProperty;
+        partial void OnUseNamePropertyChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseNamePropertyChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(25)]
+        [DisplayName("Description property")]
+        [Description("Name of description auto generated property if it is used in catalog")]
+        public string PropertyDescriptionName // Property.tt Line: 55
+        { 
+            get { return this._PropertyDescriptionName; }
+            set
+            {
+                if (this._PropertyDescriptionName != value)
+                {
+                    this.OnPropertyDescriptionNameChanging(ref value);
+                    this._PropertyDescriptionName = value;
+                    this.OnPropertyDescriptionNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDescriptionName = string.Empty;
+        partial void OnPropertyDescriptionNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyDescriptionNameChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(26)]
+        [DisplayName("Use Description")]
+        [Description("Use Description property for catalog item by default")]
+        public bool UseDescriptionProperty // Property.tt Line: 55
+        { 
+            get { return this._UseDescriptionProperty; }
+            set
+            {
+                if (this._UseDescriptionProperty != value)
+                {
+                    this.OnUseDescriptionPropertyChanging(ref value);
+                    this._UseDescriptionProperty = value;
+                    this.OnUseDescriptionPropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseDescriptionProperty;
+        partial void OnUseDescriptionPropertyChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseDescriptionPropertyChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(27)]
+        [DisplayName("IsFolder property")]
+        [Description("Name of is folder auto generated property if it is used in catalog")]
+        public string PropertyIsFolderName // Property.tt Line: 55
+        { 
+            get { return this._PropertyIsFolderName; }
+            set
+            {
+                if (this._PropertyIsFolderName != value)
+                {
+                    this.OnPropertyIsFolderNameChanging(ref value);
+                    this._PropertyIsFolderName = value;
+                    this.OnPropertyIsFolderNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyIsFolderName = string.Empty;
+        partial void OnPropertyIsFolderNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyIsFolderNameChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(28)]
+        [DisplayName("IsOpen property")]
+        [Description("Name of is open auto generated property if folder is used in catalog")]
+        public string PropertyIsOpenName // Property.tt Line: 55
+        { 
+            get { return this._PropertyIsOpenName; }
+            set
+            {
+                if (this._PropertyIsOpenName != value)
+                {
+                    this.OnPropertyIsOpenNameChanging(ref value);
+                    this._PropertyIsOpenName = value;
+                    this.OnPropertyIsOpenNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyIsOpenName = string.Empty;
+        partial void OnPropertyIsOpenNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyIsOpenNameChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(31)]
+        [DisplayName("Date property")]
+        [Description("Name of date auto generated property if it is used in documents")]
+        public string PropertyDocDateName // Property.tt Line: 55
+        { 
+            get { return this._PropertyDocDateName; }
+            set
+            {
+                if (this._PropertyDocDateName != value)
+                {
+                    this.OnPropertyDocDateNameChanging(ref value);
+                    this._PropertyDocDateName = value;
+                    this.OnPropertyDocDateNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDocDateName = string.Empty;
+        partial void OnPropertyDocDateNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyDocDateNameChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(32)]
+        [DisplayName("Use Doc Date")]
+        [Description("Use Date property for documents")]
+        public bool UseDocDateProperty // Property.tt Line: 55
+        { 
+            get { return this._UseDocDateProperty; }
+            set
+            {
+                if (this._UseDocDateProperty != value)
+                {
+                    this.OnUseDocDatePropertyChanging(ref value);
+                    this._UseDocDateProperty = value;
+                    this.OnUseDocDatePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseDocDateProperty;
+        partial void OnUseDocDatePropertyChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseDocDatePropertyChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(29)]
+        [DisplayName("Doc Code property")]
+        [Description("Name of document code auto generated property")]
+        public string PropertyDocCodeName // Property.tt Line: 55
+        { 
+            get { return this._PropertyDocCodeName; }
+            set
+            {
+                if (this._PropertyDocCodeName != value)
+                {
+                    this.OnPropertyDocCodeNameChanging(ref value);
+                    this._PropertyDocCodeName = value;
+                    this.OnPropertyDocCodeNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDocCodeName = string.Empty;
+        partial void OnPropertyDocCodeNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyDocCodeNameChanged();
+        
+        [Category("Property settings")]
+        [PropertyOrderAttribute(30)]
+        [DisplayName("Use Doc Code")]
+        [Description("Use Code property for documents")]
+        public bool UseDocCodeProperty // Property.tt Line: 55
+        { 
+            get { return this._UseDocCodeProperty; }
+            set
+            {
+                if (this._UseDocCodeProperty != value)
+                {
+                    this.OnUseDocCodePropertyChanging(ref value);
+                    this._UseDocCodeProperty = value;
+                    this.OnUseDocCodePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _UseDocCodeProperty;
+        partial void OnUseDocCodePropertyChanging(ref bool to); // Property.tt Line: 79
+        partial void OnUseDocCodePropertyChanged();
         
         [BrowsableAttribute(false)]
         public int LastConstantGroupShortId // Property.tt Line: 55
@@ -7361,6 +7713,75 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private int _LastDetailShortId;
         partial void OnLastDetailShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnLastDetailShortIdChanged();
+        
+        [Category("DataGrid settings")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public bool IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("DataGrid settings")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public bool IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("DataGrid settings")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public bool IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
         
         [BrowsableAttribute(false)]
         public GroupListCommon GroupCommon // Property.tt Line: 55
@@ -9988,6 +10409,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListDetails = new ConfigNodesCollection<Detail>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListDetails) // Clone.tt Line: 52
                 vm.ListDetails.Add(Detail.Clone(vm, (Detail)t, isDeep));
+            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
+            vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
+            vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -10042,6 +10469,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                     }
                 }
             }
+            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
+            to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
+            to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -10117,6 +10550,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = Detail.ConvertToVM(t, new Detail(vm)); // Clone.tt Line: 204
                 vm.ListDetails.Add(tvm);
             }
+            vm.UseCodeProperty = (EnumUseType)m.UseCodeProperty; // Clone.tt Line: 221
+            vm.UseNameProperty = (EnumUseType)m.UseNameProperty; // Clone.tt Line: 221
+            vm.UseDescriptionProperty = (EnumUseType)m.UseDescriptionProperty; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -10142,6 +10581,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             foreach (var t in vm.ListDetails) // Clone.tt Line: 242
                 m.ListDetails.Add(Detail.ConvertToProto((Detail)t)); // Clone.tt Line: 246
+            m.UseCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseCodeProperty; // Clone.tt Line: 274
+            m.UseNameProperty = (Proto.Config.proto_enum_use_type)vm.UseNameProperty; // Clone.tt Line: 274
+            m.UseDescriptionProperty = (Proto.Config.proto_enum_use_type)vm.UseDescriptionProperty; // Clone.tt Line: 274
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -10314,6 +10759,144 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
+        [PropertyOrderAttribute(22)]
+        [DisplayName("Use Code")]
+        [Description("Use Code property for detail item")]
+        public EnumUseType UseCodeProperty // Property.tt Line: 55
+        { 
+            get { return this._UseCodeProperty; }
+            set
+            {
+                if (this._UseCodeProperty != value)
+                {
+                    this.OnUseCodePropertyChanging(ref value);
+                    this._UseCodeProperty = value;
+                    this.OnUseCodePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _UseCodeProperty;
+        partial void OnUseCodePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseCodePropertyChanged();
+        
+        [PropertyOrderAttribute(24)]
+        [DisplayName("Use Name")]
+        [Description("Use Name property for detail item")]
+        public EnumUseType UseNameProperty // Property.tt Line: 55
+        { 
+            get { return this._UseNameProperty; }
+            set
+            {
+                if (this._UseNameProperty != value)
+                {
+                    this.OnUseNamePropertyChanging(ref value);
+                    this._UseNameProperty = value;
+                    this.OnUseNamePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _UseNameProperty;
+        partial void OnUseNamePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseNamePropertyChanged();
+        
+        [PropertyOrderAttribute(26)]
+        [DisplayName("Use Description")]
+        [Description("Use Description property for detail item")]
+        public EnumUseType UseDescriptionProperty // Property.tt Line: 55
+        { 
+            get { return this._UseDescriptionProperty; }
+            set
+            {
+                if (this._UseDescriptionProperty != value)
+                {
+                    this.OnUseDescriptionPropertyChanging(ref value);
+                    this._UseDescriptionProperty = value;
+                    this.OnUseDescriptionPropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _UseDescriptionProperty;
+        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseDescriptionPropertyChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
+        
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
@@ -10417,17 +11000,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.Clone(vm, from.GroupDetails, isDeep);
             vm.Position = from.Position; // Clone.tt Line: 65
+            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
+            vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
+            vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 65
             vm.ShortId = from.ShortId; // Clone.tt Line: 65
-            vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
-            vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 65
             vm.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 65
             vm.IsStartNewRow = from.IsStartNewRow; // Clone.tt Line: 65
             vm.IsStartNewTab = from.IsStartNewTab; // Clone.tt Line: 65
             vm.TabName = from.TabName; // Clone.tt Line: 65
             vm.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 65
             vm.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 65
+            vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
+            vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 65
+            vm.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 65
+            vm.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 65
             vm.PropertyRefParentGuid = from.PropertyRefParentGuid; // Clone.tt Line: 65
-            vm.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 65
+            vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
             foreach (var t in from.ListGuidViewProperties) // Clone.tt Line: 44
@@ -10458,17 +11049,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListDetails.Update((GroupListDetails)to.GroupDetails, from.GroupDetails, isDeep);
             to.Position = from.Position; // Clone.tt Line: 141
+            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
+            to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
+            to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 141
             to.ShortId = from.ShortId; // Clone.tt Line: 141
-            to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
-            to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 141
             to.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 141
             to.IsStartNewRow = from.IsStartNewRow; // Clone.tt Line: 141
             to.IsStartNewTab = from.IsStartNewTab; // Clone.tt Line: 141
             to.TabName = from.TabName; // Clone.tt Line: 141
             to.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 141
             to.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 141
+            to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
+            to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 141
+            to.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 141
+            to.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 141
             to.PropertyRefParentGuid = from.PropertyRefParentGuid; // Clone.tt Line: 141
-            to.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 141
+            to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
                 to.ListGuidViewProperties.Clear(); // Clone.tt Line: 127
@@ -10555,17 +11154,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupDetails = new GroupListDetails(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToVM(m.GroupDetails, (GroupListDetails)vm.GroupDetails); // Clone.tt Line: 219
             vm.Position = m.Position; // Clone.tt Line: 221
+            vm.UseCodeProperty = (EnumUseType)m.UseCodeProperty; // Clone.tt Line: 221
+            vm.UseNameProperty = (EnumUseType)m.UseNameProperty; // Clone.tt Line: 221
+            vm.UseDescriptionProperty = (EnumUseType)m.UseDescriptionProperty; // Clone.tt Line: 221
             vm.ShortId = m.ShortId; // Clone.tt Line: 221
-            vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
-            vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
             vm.IsTryAttach = m.IsTryAttach; // Clone.tt Line: 221
             vm.IsStartNewRow = m.IsStartNewRow; // Clone.tt Line: 221
             vm.IsStartNewTab = m.IsStartNewTab; // Clone.tt Line: 221
             vm.TabName = m.TabName; // Clone.tt Line: 221
             vm.IsStartNewTabControl = m.IsStartNewTabControl; // Clone.tt Line: 221
             vm.IsStopTabControl = m.IsStopTabControl; // Clone.tt Line: 221
+            vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
+            vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
+            vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
+            vm.PropertyDescriptionGuid = m.PropertyDescriptionGuid; // Clone.tt Line: 221
             vm.PropertyRefParentGuid = m.PropertyRefParentGuid; // Clone.tt Line: 221
-            vm.ViewDefaultGuid = m.ViewDefaultGuid; // Clone.tt Line: 221
+            vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             if (vm.GroupForms == null) // Clone.tt Line: 213
                 vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, (GroupListForms)vm.GroupForms); // Clone.tt Line: 219
@@ -10603,17 +11210,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
             m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.Position = vm.Position; // Clone.tt Line: 276
+            m.UseCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseCodeProperty; // Clone.tt Line: 274
+            m.UseNameProperty = (Proto.Config.proto_enum_use_type)vm.UseNameProperty; // Clone.tt Line: 274
+            m.UseDescriptionProperty = (Proto.Config.proto_enum_use_type)vm.UseDescriptionProperty; // Clone.tt Line: 274
             m.ShortId = vm.ShortId; // Clone.tt Line: 276
-            m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
-            m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
             m.IsTryAttach = vm.IsTryAttach; // Clone.tt Line: 276
             m.IsStartNewRow = vm.IsStartNewRow; // Clone.tt Line: 276
             m.IsStartNewTab = vm.IsStartNewTab; // Clone.tt Line: 276
             m.TabName = vm.TabName; // Clone.tt Line: 276
             m.IsStartNewTabControl = vm.IsStartNewTabControl; // Clone.tt Line: 276
             m.IsStopTabControl = vm.IsStopTabControl; // Clone.tt Line: 276
+            m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
+            m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
+            m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
+            m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // Clone.tt Line: 276
             m.PropertyRefParentGuid = vm.PropertyRefParentGuid; // Clone.tt Line: 276
-            m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
+            m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             foreach (var t in vm.ListGuidViewProperties) // Clone.tt Line: 242
                 m.ListGuidViewProperties.Add(t); // Clone.tt Line: 244
@@ -10886,6 +11501,75 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPositionChanging(ref uint to); // Property.tt Line: 79
         partial void OnPositionChanged();
         
+        [PropertyOrderAttribute(22)]
+        [DisplayName("Use Code")]
+        [Description("Use Code property for detail item")]
+        public EnumUseType UseCodeProperty // Property.tt Line: 55
+        { 
+            get { return this._UseCodeProperty; }
+            set
+            {
+                if (this._UseCodeProperty != value)
+                {
+                    this.OnUseCodePropertyChanging(ref value);
+                    this._UseCodeProperty = value;
+                    this.OnUseCodePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _UseCodeProperty;
+        partial void OnUseCodePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseCodePropertyChanged();
+        
+        [PropertyOrderAttribute(24)]
+        [DisplayName("Use Name")]
+        [Description("Use Name property for detail item")]
+        public EnumUseType UseNameProperty // Property.tt Line: 55
+        { 
+            get { return this._UseNameProperty; }
+            set
+            {
+                if (this._UseNameProperty != value)
+                {
+                    this.OnUseNamePropertyChanging(ref value);
+                    this._UseNameProperty = value;
+                    this.OnUseNamePropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _UseNameProperty;
+        partial void OnUseNamePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseNamePropertyChanged();
+        
+        [PropertyOrderAttribute(26)]
+        [DisplayName("Use Description")]
+        [Description("Use Description property for detail item")]
+        public EnumUseType UseDescriptionProperty // Property.tt Line: 55
+        { 
+            get { return this._UseDescriptionProperty; }
+            set
+            {
+                if (this._UseDescriptionProperty != value)
+                {
+                    this.OnUseDescriptionPropertyChanging(ref value);
+                    this._UseDescriptionProperty = value;
+                    this.OnUseDescriptionPropertyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _UseDescriptionProperty;
+        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseDescriptionPropertyChanged();
+        
         [BrowsableAttribute(false)]
         public int ShortId // Property.tt Line: 55
         { 
@@ -10906,48 +11590,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private int _ShortId;
         partial void OnShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnShortIdChanged();
-        
-        [BrowsableAttribute(false)]
-        public string PropertyIdGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyIdGuid; }
-            set
-            {
-                if (this._PropertyIdGuid != value)
-                {
-                    this.OnPropertyIdGuidChanging(ref value);
-                    this._PropertyIdGuid = value;
-                    this.OnPropertyIdGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyIdGuid = string.Empty;
-        partial void OnPropertyIdGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyIdGuidChanged();
-        
-        [BrowsableAttribute(false)]
-        public string PropertyVersionGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyVersionGuid; }
-            set
-            {
-                if (this._PropertyVersionGuid != value)
-                {
-                    this.OnPropertyVersionGuidChanging(ref value);
-                    this._PropertyVersionGuid = value;
-                    this.OnPropertyVersionGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyVersionGuid = string.Empty;
-        partial void OnPropertyVersionGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyVersionGuidChanged();
         
         [PropertyOrderAttribute(22)]
         [Category("Auto Layout")]
@@ -11094,6 +11736,90 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsStopTabControlChanged();
         
         [BrowsableAttribute(false)]
+        public string PropertyIdGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyIdGuid; }
+            set
+            {
+                if (this._PropertyIdGuid != value)
+                {
+                    this.OnPropertyIdGuidChanging(ref value);
+                    this._PropertyIdGuid = value;
+                    this.OnPropertyIdGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyIdGuid = string.Empty;
+        partial void OnPropertyIdGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyIdGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyCodeGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyCodeGuid; }
+            set
+            {
+                if (this._PropertyCodeGuid != value)
+                {
+                    this.OnPropertyCodeGuidChanging(ref value);
+                    this._PropertyCodeGuid = value;
+                    this.OnPropertyCodeGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyCodeGuid = string.Empty;
+        partial void OnPropertyCodeGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyCodeGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyNameGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyNameGuid; }
+            set
+            {
+                if (this._PropertyNameGuid != value)
+                {
+                    this.OnPropertyNameGuidChanging(ref value);
+                    this._PropertyNameGuid = value;
+                    this.OnPropertyNameGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyNameGuid = string.Empty;
+        partial void OnPropertyNameGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyNameGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyDescriptionGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyDescriptionGuid; }
+            set
+            {
+                if (this._PropertyDescriptionGuid != value)
+                {
+                    this.OnPropertyDescriptionGuidChanging(ref value);
+                    this._PropertyDescriptionGuid = value;
+                    this.OnPropertyDescriptionGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDescriptionGuid = string.Empty;
+        partial void OnPropertyDescriptionGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyDescriptionGuidChanged();
+        
+        [BrowsableAttribute(false)]
         public string PropertyRefParentGuid // Property.tt Line: 55
         { 
             get { return this._PropertyRefParentGuid; }
@@ -11115,25 +11841,94 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyRefParentGuidChanged();
         
         [BrowsableAttribute(false)]
-        public string ViewDefaultGuid // Property.tt Line: 55
+        public string PropertyVersionGuid // Property.tt Line: 55
         { 
-            get { return this._ViewDefaultGuid; }
+            get { return this._PropertyVersionGuid; }
             set
             {
-                if (this._ViewDefaultGuid != value)
+                if (this._PropertyVersionGuid != value)
                 {
-                    this.OnViewDefaultGuidChanging(ref value);
-                    this._ViewDefaultGuid = value;
-                    this.OnViewDefaultGuidChanged();
+                    this.OnPropertyVersionGuidChanging(ref value);
+                    this._PropertyVersionGuid = value;
+                    this.OnPropertyVersionGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _ViewDefaultGuid = string.Empty;
-        partial void OnViewDefaultGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnViewDefaultGuidChanged();
+        private string _PropertyVersionGuid = string.Empty;
+        partial void OnPropertyVersionGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyVersionGuidChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
         
         [BrowsableAttribute(false)]
         public GroupListForms GroupForms // Property.tt Line: 55
@@ -11745,9 +12540,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.TabName = from.TabName; // Clone.tt Line: 65
             vm.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 65
             vm.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 65
-            vm.IsSortable = from.IsSortable; // Clone.tt Line: 65
-            vm.IsSortableCustom = from.IsSortableCustom; // Clone.tt Line: 65
-            vm.IsFilterable = from.IsFilterable; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             vm.Position = from.Position; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
@@ -11783,9 +12578,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.TabName = from.TabName; // Clone.tt Line: 141
             to.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 141
             to.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 141
-            to.IsSortable = from.IsSortable; // Clone.tt Line: 141
-            to.IsSortableCustom = from.IsSortableCustom; // Clone.tt Line: 141
-            to.IsFilterable = from.IsFilterable; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             to.Position = from.Position; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
@@ -11873,9 +12668,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.TabName = m.TabName; // Clone.tt Line: 221
             vm.IsStartNewTabControl = m.IsStartNewTabControl; // Clone.tt Line: 221
             vm.IsStopTabControl = m.IsStopTabControl; // Clone.tt Line: 221
-            vm.IsSortable = m.IsSortable; // Clone.tt Line: 221
-            vm.IsSortableCustom = m.IsSortableCustom; // Clone.tt Line: 221
-            vm.IsFilterable = m.IsFilterable; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             vm.Position = m.Position; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
@@ -11915,9 +12710,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.TabName = vm.TabName; // Clone.tt Line: 276
             m.IsStartNewTabControl = vm.IsStartNewTabControl; // Clone.tt Line: 276
             m.IsStopTabControl = vm.IsStopTabControl; // Clone.tt Line: 276
-            m.IsSortable = vm.IsSortable; // Clone.tt Line: 276
-            m.IsSortableCustom = vm.IsSortableCustom; // Clone.tt Line: 276
-            m.IsFilterable = vm.IsFilterable; // Clone.tt Line: 276
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             m.Position = vm.Position; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
@@ -12392,77 +13187,74 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsStopTabControlChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsStopTabControlChanged();
         
-        [PropertyOrderAttribute(41)]
         [Category("Auto Layout")]
         [DisplayName("Sortable")]
-        [Description("Sortable in data grid. If null, default behavior will be used")]
-        public bool? IsSortable // Property.tt Line: 55
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
         { 
-            get { return this._IsSortable; }
+            get { return this._IsGridSortable; }
             set
             {
-                if (this._IsSortable != value)
+                if (this._IsGridSortable != value)
                 {
-                    this.OnIsSortableChanging(ref value);
-                    this._IsSortable = value;
-                    this.OnIsSortableChanged();
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private bool? _IsSortable;
-        partial void OnIsSortableChanging(ref bool? to); // Property.tt Line: 79
-        partial void OnIsSortableChanged();
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
         
-        [PropertyOrderAttribute(42)]
         [Category("Auto Layout")]
         [DisplayName("Custom Sortable")]
         [Description("Custom sortable in data grid by using custom function")]
-        public bool? IsSortableCustom // Property.tt Line: 55
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
         { 
-            get { return this._IsSortableCustom; }
+            get { return this._IsGridSortableCustom; }
             set
             {
-                if (this._IsSortableCustom != value)
+                if (this._IsGridSortableCustom != value)
                 {
-                    this.OnIsSortableCustomChanging(ref value);
-                    this._IsSortableCustom = value;
-                    this.OnIsSortableCustomChanged();
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private bool? _IsSortableCustom;
-        partial void OnIsSortableCustomChanging(ref bool? to); // Property.tt Line: 79
-        partial void OnIsSortableCustomChanged();
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
         
-        [PropertyOrderAttribute(43)]
         [Category("Auto Layout")]
         [DisplayName("Filterable")]
-        [Description("Filterable in data grid. If null, default behavior will be used")]
-        public bool? IsFilterable // Property.tt Line: 55
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
         { 
-            get { return this._IsFilterable; }
+            get { return this._IsGridFilterable; }
             set
             {
-                if (this._IsFilterable != value)
+                if (this._IsGridFilterable != value)
                 {
-                    this.OnIsFilterableChanging(ref value);
-                    this._IsFilterable = value;
-                    this.OnIsFilterableChanged();
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private bool? _IsFilterable;
-        partial void OnIsFilterableChanging(ref bool? to); // Property.tt Line: 79
-        partial void OnIsFilterableChanged();
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
         
         
         ///////////////////////////////////////////////////
@@ -15601,6 +16393,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 65
             vm.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 65
             vm.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -15639,6 +16434,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 141
             to.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 141
             to.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -15717,20 +16515,23 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupDetails = new GroupListDetails(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToVM(m.GroupDetails, (GroupListDetails)vm.GroupDetails); // Clone.tt Line: 219
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
-            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
+            vm.UseCodeProperty = (EnumUseType)m.UseCodeProperty; // Clone.tt Line: 221
             if (vm.CodePropertySettings == null) // Clone.tt Line: 213
                 vm.CodePropertySettings = new CatalogCodePropertySettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToVM(m.CodePropertySettings, (CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
             vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
             vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
-            vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
+            vm.UseNameProperty = (EnumUseType)m.UseNameProperty; // Clone.tt Line: 221
             vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
             vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
-            vm.UseDescriptionProperty = m.UseDescriptionProperty; // Clone.tt Line: 221
+            vm.UseDescriptionProperty = (EnumUseType)m.UseDescriptionProperty; // Clone.tt Line: 221
             vm.MaxDescriptionLength = m.MaxDescriptionLength; // Clone.tt Line: 221
             vm.PropertyDescriptionGuid = m.PropertyDescriptionGuid; // Clone.tt Line: 221
             vm.ViewDefaultGuid = m.ViewDefaultGuid; // Clone.tt Line: 221
             vm.PropertyRefSelfGuid = m.PropertyRefSelfGuid; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -15759,18 +16560,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
             m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
-            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
+            m.UseCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseCodeProperty; // Clone.tt Line: 274
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
             m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
             m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
-            m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
+            m.UseNameProperty = (Proto.Config.proto_enum_use_type)vm.UseNameProperty; // Clone.tt Line: 274
             m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
             m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
-            m.UseDescriptionProperty = vm.UseDescriptionProperty; // Clone.tt Line: 276
+            m.UseDescriptionProperty = (Proto.Config.proto_enum_use_type)vm.UseDescriptionProperty; // Clone.tt Line: 274
             m.MaxDescriptionLength = vm.MaxDescriptionLength; // Clone.tt Line: 276
             m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // Clone.tt Line: 276
             m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
             m.PropertyRefSelfGuid = vm.PropertyRefSelfGuid; // Clone.tt Line: 276
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -16015,7 +16819,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(21)]
         [DisplayName("Use Code")]
         [Description("Use Code property for catalog item")]
-        public bool? UseCodeProperty // Property.tt Line: 55
+        public EnumUseType UseCodeProperty // Property.tt Line: 55
         { 
             get { return this._UseCodeProperty; }
             set
@@ -16031,8 +16835,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool? _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref bool? to); // Property.tt Line: 79
+        private EnumUseType _UseCodeProperty;
+        partial void OnUseCodePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseCodePropertyChanged();
         
         [PropertyOrderAttribute(22)]
@@ -16106,7 +16910,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(41)]
         [DisplayName("Use Name")]
         [Description("Use Name property for catalog item")]
-        public bool? UseNameProperty // Property.tt Line: 55
+        public EnumUseType UseNameProperty // Property.tt Line: 55
         { 
             get { return this._UseNameProperty; }
             set
@@ -16122,8 +16926,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool? _UseNameProperty;
-        partial void OnUseNamePropertyChanging(ref bool? to); // Property.tt Line: 79
+        private EnumUseType _UseNameProperty;
+        partial void OnUseNamePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseNamePropertyChanged();
         
         [PropertyOrderAttribute(42)]
@@ -16173,7 +16977,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(51)]
         [DisplayName("Use Description")]
         [Description("Use Description property for catalog item")]
-        public bool? UseDescriptionProperty // Property.tt Line: 55
+        public EnumUseType UseDescriptionProperty // Property.tt Line: 55
         { 
             get { return this._UseDescriptionProperty; }
             set
@@ -16189,8 +16993,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool? _UseDescriptionProperty;
-        partial void OnUseDescriptionPropertyChanging(ref bool? to); // Property.tt Line: 79
+        private EnumUseType _UseDescriptionProperty;
+        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseDescriptionPropertyChanged();
         
         [PropertyOrderAttribute(52)]
@@ -16278,6 +17082,75 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyRefSelfGuid = string.Empty;
         partial void OnPropertyRefSelfGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyRefSelfGuidChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -16611,7 +17484,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.UseTree = from.UseTree; // Clone.tt Line: 65
             vm.UseSeparateTreeForFolders = from.UseSeparateTreeForFolders; // Clone.tt Line: 65
             vm.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 65
-            vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 65
             vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Clone(from.CodePropertySettings, isDeep);
@@ -16630,7 +17502,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 65
             vm.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 65
             vm.PropertyRefFolderGuid = from.PropertyRefFolderGuid; // Clone.tt Line: 65
-            vm.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 65
+            vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.Folder = vSharpStudio.vm.ViewModels.CatalogFolder.Clone(vm, from.Folder, isDeep);
             if (isDeep) // Clone.tt Line: 62
@@ -16669,7 +17544,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.UseTree = from.UseTree; // Clone.tt Line: 141
             to.UseSeparateTreeForFolders = from.UseSeparateTreeForFolders; // Clone.tt Line: 141
             to.MaxTreeLevels = from.MaxTreeLevels; // Clone.tt Line: 141
-            to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 141
             to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Update((CatalogCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
@@ -16688,7 +17562,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 141
             to.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 141
             to.PropertyRefFolderGuid = from.PropertyRefFolderGuid; // Clone.tt Line: 141
-            to.ViewDefaultGuid = from.ViewDefaultGuid; // Clone.tt Line: 141
+            to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.CatalogFolder.Update((CatalogFolder)to.Folder, from.Folder, isDeep);
             if (isDeep) // Clone.tt Line: 138
@@ -16784,14 +17661,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.UseTree = m.UseTree; // Clone.tt Line: 221
             vm.UseSeparateTreeForFolders = m.UseSeparateTreeForFolders; // Clone.tt Line: 221
             vm.MaxTreeLevels = m.MaxTreeLevels; // Clone.tt Line: 221
-            vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
-            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
+            vm.UseCodeProperty = (EnumUseType)m.UseCodeProperty; // Clone.tt Line: 221
             if (vm.CodePropertySettings == null) // Clone.tt Line: 213
                 vm.CodePropertySettings = new CatalogCodePropertySettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToVM(m.CodePropertySettings, (CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
-            vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
+            vm.UseNameProperty = (EnumUseType)m.UseNameProperty; // Clone.tt Line: 221
             vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
-            vm.UseDescriptionProperty = m.UseDescriptionProperty; // Clone.tt Line: 221
+            vm.UseDescriptionProperty = (EnumUseType)m.UseDescriptionProperty; // Clone.tt Line: 221
             vm.MaxDescriptionLength = m.MaxDescriptionLength; // Clone.tt Line: 221
             vm.UseFolderTypeExplicitly = m.UseFolderTypeExplicitly; // Clone.tt Line: 221
             vm.ItemIconType = (EnumCatalogTreeIcon)m.ItemIconType; // Clone.tt Line: 221
@@ -16804,7 +17680,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyIsOpenGuid = m.PropertyIsOpenGuid; // Clone.tt Line: 221
             vm.PropertyRefSelfGuid = m.PropertyRefSelfGuid; // Clone.tt Line: 221
             vm.PropertyRefFolderGuid = m.PropertyRefFolderGuid; // Clone.tt Line: 221
-            vm.ViewDefaultGuid = m.ViewDefaultGuid; // Clone.tt Line: 221
+            vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             if (vm.Folder == null) // Clone.tt Line: 213
                 vm.Folder = new CatalogFolder(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.CatalogFolder.ConvertToVM(m.Folder, (CatalogFolder)vm.Folder); // Clone.tt Line: 219
@@ -16859,12 +17738,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.UseTree = vm.UseTree; // Clone.tt Line: 276
             m.UseSeparateTreeForFolders = vm.UseSeparateTreeForFolders; // Clone.tt Line: 276
             m.MaxTreeLevels = vm.MaxTreeLevels; // Clone.tt Line: 276
-            m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
-            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
+            m.UseCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseCodeProperty; // Clone.tt Line: 274
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
-            m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
+            m.UseNameProperty = (Proto.Config.proto_enum_use_type)vm.UseNameProperty; // Clone.tt Line: 274
             m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
-            m.UseDescriptionProperty = vm.UseDescriptionProperty; // Clone.tt Line: 276
+            m.UseDescriptionProperty = (Proto.Config.proto_enum_use_type)vm.UseDescriptionProperty; // Clone.tt Line: 274
             m.MaxDescriptionLength = vm.MaxDescriptionLength; // Clone.tt Line: 276
             m.UseFolderTypeExplicitly = vm.UseFolderTypeExplicitly; // Clone.tt Line: 276
             m.ItemIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.ItemIconType; // Clone.tt Line: 274
@@ -16877,7 +17755,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.PropertyIsOpenGuid = vm.PropertyIsOpenGuid; // Clone.tt Line: 276
             m.PropertyRefSelfGuid = vm.PropertyRefSelfGuid; // Clone.tt Line: 276
             m.PropertyRefFolderGuid = vm.PropertyRefFolderGuid; // Clone.tt Line: 276
-            m.ViewDefaultGuid = vm.ViewDefaultGuid; // Clone.tt Line: 276
+            m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             m.Folder = vSharpStudio.vm.ViewModels.CatalogFolder.ConvertToProto((CatalogFolder)vm.Folder); // Clone.tt Line: 270
             m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
             m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
@@ -17155,31 +18036,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnMaxTreeLevelsChanging(ref uint to); // Property.tt Line: 79
         partial void OnMaxTreeLevelsChanged();
         
-        [BrowsableAttribute(false)]
-        public string PropertyVersionGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyVersionGuid; }
-            set
-            {
-                if (this._PropertyVersionGuid != value)
-                {
-                    this.OnPropertyVersionGuidChanging(ref value);
-                    this._PropertyVersionGuid = value;
-                    this.OnPropertyVersionGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyVersionGuid = string.Empty;
-        partial void OnPropertyVersionGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyVersionGuidChanged();
-        
         [PropertyOrderAttribute(25)]
         [DisplayName("Use Code")]
         [Description("Use Code property for catalog item")]
-        public bool? UseCodeProperty // Property.tt Line: 55
+        public EnumUseType UseCodeProperty // Property.tt Line: 55
         { 
             get { return this._UseCodeProperty; }
             set
@@ -17195,8 +18055,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool? _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref bool? to); // Property.tt Line: 79
+        private EnumUseType _UseCodeProperty;
+        partial void OnUseCodePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseCodePropertyChanged();
         
         [PropertyOrderAttribute(26)]
@@ -17228,7 +18088,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(27)]
         [DisplayName("Use Name")]
         [Description("Use Name property for catalog item")]
-        public bool? UseNameProperty // Property.tt Line: 55
+        public EnumUseType UseNameProperty // Property.tt Line: 55
         { 
             get { return this._UseNameProperty; }
             set
@@ -17244,8 +18104,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool? _UseNameProperty;
-        partial void OnUseNamePropertyChanging(ref bool? to); // Property.tt Line: 79
+        private EnumUseType _UseNameProperty;
+        partial void OnUseNamePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseNamePropertyChanged();
         
         [PropertyOrderAttribute(28)]
@@ -17274,7 +18134,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(29)]
         [DisplayName("Use Description")]
         [Description("Use Description property for catalog item")]
-        public bool? UseDescriptionProperty // Property.tt Line: 55
+        public EnumUseType UseDescriptionProperty // Property.tt Line: 55
         { 
             get { return this._UseDescriptionProperty; }
             set
@@ -17290,8 +18150,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool? _UseDescriptionProperty;
-        partial void OnUseDescriptionPropertyChanging(ref bool? to); // Property.tt Line: 79
+        private EnumUseType _UseDescriptionProperty;
+        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseDescriptionPropertyChanged();
         
         [PropertyOrderAttribute(30)]
@@ -17555,25 +18415,94 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyRefFolderGuidChanged();
         
         [BrowsableAttribute(false)]
-        public string ViewDefaultGuid // Property.tt Line: 55
+        public string PropertyVersionGuid // Property.tt Line: 55
         { 
-            get { return this._ViewDefaultGuid; }
+            get { return this._PropertyVersionGuid; }
             set
             {
-                if (this._ViewDefaultGuid != value)
+                if (this._PropertyVersionGuid != value)
                 {
-                    this.OnViewDefaultGuidChanging(ref value);
-                    this._ViewDefaultGuid = value;
-                    this.OnViewDefaultGuidChanged();
+                    this.OnPropertyVersionGuidChanging(ref value);
+                    this._PropertyVersionGuid = value;
+                    this.OnPropertyVersionGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _ViewDefaultGuid = string.Empty;
-        partial void OnViewDefaultGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnViewDefaultGuidChanged();
+        private string _PropertyVersionGuid = string.Empty;
+        partial void OnPropertyVersionGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyVersionGuidChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
         
         [BrowsableAttribute(false)]
         public CatalogFolder Folder // Property.tt Line: 55
@@ -17836,20 +18765,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListCatalogs = new ConfigNodesCollection<Catalog>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListCatalogs) // Clone.tt Line: 52
                 vm.ListCatalogs.Add(Catalog.Clone(vm, (Catalog)t, isDeep));
-            vm.PropertyCodeName = from.PropertyCodeName; // Clone.tt Line: 65
             vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
-            vm.PropertyNameName = from.PropertyNameName; // Clone.tt Line: 65
             vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 65
-            vm.PropertyDescriptionName = from.PropertyDescriptionName; // Clone.tt Line: 65
             vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 65
-            vm.PropertyIsFolderName = from.PropertyIsFolderName; // Clone.tt Line: 65
-            vm.PropertyIsOpenName = from.PropertyIsOpenName; // Clone.tt Line: 65
-            vm.PropertyCodeNameInSeparateTree = from.PropertyCodeNameInSeparateTree; // Clone.tt Line: 65
             vm.UseCodePropertyInSeparateTree = from.UseCodePropertyInSeparateTree; // Clone.tt Line: 65
-            vm.PropertyNameNameInSeparateTree = from.PropertyNameNameInSeparateTree; // Clone.tt Line: 65
             vm.UseNamePropertyInSeparateTree = from.UseNamePropertyInSeparateTree; // Clone.tt Line: 65
-            vm.PropertyDescriptionNameInSeparateTree = from.PropertyDescriptionNameInSeparateTree; // Clone.tt Line: 65
             vm.UseDescriptionPropertyInSeparateTree = from.UseDescriptionPropertyInSeparateTree; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -17906,20 +18830,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                     }
                 }
             }
-            to.PropertyCodeName = from.PropertyCodeName; // Clone.tt Line: 141
             to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
-            to.PropertyNameName = from.PropertyNameName; // Clone.tt Line: 141
             to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 141
-            to.PropertyDescriptionName = from.PropertyDescriptionName; // Clone.tt Line: 141
             to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 141
-            to.PropertyIsFolderName = from.PropertyIsFolderName; // Clone.tt Line: 141
-            to.PropertyIsOpenName = from.PropertyIsOpenName; // Clone.tt Line: 141
-            to.PropertyCodeNameInSeparateTree = from.PropertyCodeNameInSeparateTree; // Clone.tt Line: 141
             to.UseCodePropertyInSeparateTree = from.UseCodePropertyInSeparateTree; // Clone.tt Line: 141
-            to.PropertyNameNameInSeparateTree = from.PropertyNameNameInSeparateTree; // Clone.tt Line: 141
             to.UseNamePropertyInSeparateTree = from.UseNamePropertyInSeparateTree; // Clone.tt Line: 141
-            to.PropertyDescriptionNameInSeparateTree = from.PropertyDescriptionNameInSeparateTree; // Clone.tt Line: 141
             to.UseDescriptionPropertyInSeparateTree = from.UseDescriptionPropertyInSeparateTree; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -17997,20 +18916,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = Catalog.ConvertToVM(t, new Catalog(vm)); // Clone.tt Line: 204
                 vm.ListCatalogs.Add(tvm);
             }
-            vm.PropertyCodeName = m.PropertyCodeName; // Clone.tt Line: 221
-            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
-            vm.PropertyNameName = m.PropertyNameName; // Clone.tt Line: 221
-            vm.UseNameProperty = m.UseNameProperty; // Clone.tt Line: 221
-            vm.PropertyDescriptionName = m.PropertyDescriptionName; // Clone.tt Line: 221
-            vm.UseDescriptionProperty = m.UseDescriptionProperty; // Clone.tt Line: 221
-            vm.PropertyIsFolderName = m.PropertyIsFolderName; // Clone.tt Line: 221
-            vm.PropertyIsOpenName = m.PropertyIsOpenName; // Clone.tt Line: 221
-            vm.PropertyCodeNameInSeparateTree = m.PropertyCodeNameInSeparateTree; // Clone.tt Line: 221
+            vm.UseCodeProperty = (EnumUseType)m.UseCodeProperty; // Clone.tt Line: 221
+            vm.UseNameProperty = (EnumUseType)m.UseNameProperty; // Clone.tt Line: 221
+            vm.UseDescriptionProperty = (EnumUseType)m.UseDescriptionProperty; // Clone.tt Line: 221
             vm.UseCodePropertyInSeparateTree = m.UseCodePropertyInSeparateTree; // Clone.tt Line: 221
-            vm.PropertyNameNameInSeparateTree = m.PropertyNameNameInSeparateTree; // Clone.tt Line: 221
             vm.UseNamePropertyInSeparateTree = m.UseNamePropertyInSeparateTree; // Clone.tt Line: 221
-            vm.PropertyDescriptionNameInSeparateTree = m.PropertyDescriptionNameInSeparateTree; // Clone.tt Line: 221
             vm.UseDescriptionPropertyInSeparateTree = m.UseDescriptionPropertyInSeparateTree; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -18038,20 +18952,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.ShortIdTypeForCacheKey = vm.ShortIdTypeForCacheKey; // Clone.tt Line: 276
             foreach (var t in vm.ListCatalogs) // Clone.tt Line: 242
                 m.ListCatalogs.Add(Catalog.ConvertToProto((Catalog)t)); // Clone.tt Line: 246
-            m.PropertyCodeName = vm.PropertyCodeName; // Clone.tt Line: 276
-            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
-            m.PropertyNameName = vm.PropertyNameName; // Clone.tt Line: 276
-            m.UseNameProperty = vm.UseNameProperty; // Clone.tt Line: 276
-            m.PropertyDescriptionName = vm.PropertyDescriptionName; // Clone.tt Line: 276
-            m.UseDescriptionProperty = vm.UseDescriptionProperty; // Clone.tt Line: 276
-            m.PropertyIsFolderName = vm.PropertyIsFolderName; // Clone.tt Line: 276
-            m.PropertyIsOpenName = vm.PropertyIsOpenName; // Clone.tt Line: 276
-            m.PropertyCodeNameInSeparateTree = vm.PropertyCodeNameInSeparateTree; // Clone.tt Line: 276
+            m.UseCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseCodeProperty; // Clone.tt Line: 274
+            m.UseNameProperty = (Proto.Config.proto_enum_use_type)vm.UseNameProperty; // Clone.tt Line: 274
+            m.UseDescriptionProperty = (Proto.Config.proto_enum_use_type)vm.UseDescriptionProperty; // Clone.tt Line: 274
             m.UseCodePropertyInSeparateTree = vm.UseCodePropertyInSeparateTree; // Clone.tt Line: 276
-            m.PropertyNameNameInSeparateTree = vm.PropertyNameNameInSeparateTree; // Clone.tt Line: 276
             m.UseNamePropertyInSeparateTree = vm.UseNamePropertyInSeparateTree; // Clone.tt Line: 276
-            m.PropertyDescriptionNameInSeparateTree = vm.PropertyDescriptionNameInSeparateTree; // Clone.tt Line: 276
             m.UseDescriptionPropertyInSeparateTree = vm.UseDescriptionPropertyInSeparateTree; // Clone.tt Line: 276
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -18270,33 +19179,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [PropertyOrderAttribute(21)]
-        [DisplayName("Code property")]
-        [Description("Name of code auto generated property if it is used in catalog")]
-        public string PropertyCodeName // Property.tt Line: 55
-        { 
-            get { return this._PropertyCodeName; }
-            set
-            {
-                if (this._PropertyCodeName != value)
-                {
-                    this.OnPropertyCodeNameChanging(ref value);
-                    this._PropertyCodeName = value;
-                    this.OnPropertyCodeNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyCodeName = string.Empty;
-        partial void OnPropertyCodeNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyCodeNameChanged();
-        
         [PropertyOrderAttribute(22)]
         [DisplayName("Use Code")]
         [Description("Use Code property for catalog item by default")]
-        public bool UseCodeProperty // Property.tt Line: 55
+        public EnumUseType UseCodeProperty // Property.tt Line: 55
         { 
             get { return this._UseCodeProperty; }
             set
@@ -18312,37 +19198,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref bool to); // Property.tt Line: 79
+        private EnumUseType _UseCodeProperty;
+        partial void OnUseCodePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseCodePropertyChanged();
-        
-        [PropertyOrderAttribute(23)]
-        [DisplayName("Name property")]
-        [Description("Name of name auto generated property if it is used in catalog")]
-        public string PropertyNameName // Property.tt Line: 55
-        { 
-            get { return this._PropertyNameName; }
-            set
-            {
-                if (this._PropertyNameName != value)
-                {
-                    this.OnPropertyNameNameChanging(ref value);
-                    this._PropertyNameName = value;
-                    this.OnPropertyNameNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyNameName = string.Empty;
-        partial void OnPropertyNameNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyNameNameChanged();
         
         [PropertyOrderAttribute(24)]
         [DisplayName("Use Name")]
         [Description("Use Name property for catalog item by default")]
-        public bool UseNameProperty // Property.tt Line: 55
+        public EnumUseType UseNameProperty // Property.tt Line: 55
         { 
             get { return this._UseNameProperty; }
             set
@@ -18358,37 +19221,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool _UseNameProperty;
-        partial void OnUseNamePropertyChanging(ref bool to); // Property.tt Line: 79
+        private EnumUseType _UseNameProperty;
+        partial void OnUseNamePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseNamePropertyChanged();
-        
-        [PropertyOrderAttribute(25)]
-        [DisplayName("Description property")]
-        [Description("Name of description auto generated property if it is used in catalog")]
-        public string PropertyDescriptionName // Property.tt Line: 55
-        { 
-            get { return this._PropertyDescriptionName; }
-            set
-            {
-                if (this._PropertyDescriptionName != value)
-                {
-                    this.OnPropertyDescriptionNameChanging(ref value);
-                    this._PropertyDescriptionName = value;
-                    this.OnPropertyDescriptionNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyDescriptionName = string.Empty;
-        partial void OnPropertyDescriptionNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyDescriptionNameChanged();
         
         [PropertyOrderAttribute(26)]
         [DisplayName("Use Description")]
         [Description("Use Description property for catalog item by default")]
-        public bool UseDescriptionProperty // Property.tt Line: 55
+        public EnumUseType UseDescriptionProperty // Property.tt Line: 55
         { 
             get { return this._UseDescriptionProperty; }
             set
@@ -18404,78 +19244,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool _UseDescriptionProperty;
-        partial void OnUseDescriptionPropertyChanging(ref bool to); // Property.tt Line: 79
+        private EnumUseType _UseDescriptionProperty;
+        partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseDescriptionPropertyChanged();
-        
-        [PropertyOrderAttribute(27)]
-        [DisplayName("IsFolder property")]
-        [Description("Name of is folder auto generated property if it is used in catalog")]
-        public string PropertyIsFolderName // Property.tt Line: 55
-        { 
-            get { return this._PropertyIsFolderName; }
-            set
-            {
-                if (this._PropertyIsFolderName != value)
-                {
-                    this.OnPropertyIsFolderNameChanging(ref value);
-                    this._PropertyIsFolderName = value;
-                    this.OnPropertyIsFolderNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyIsFolderName = string.Empty;
-        partial void OnPropertyIsFolderNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyIsFolderNameChanged();
-        
-        [PropertyOrderAttribute(29)]
-        [DisplayName("IsOpen property")]
-        [Description("Name of is open auto generated property if folder is used in catalog")]
-        public string PropertyIsOpenName // Property.tt Line: 55
-        { 
-            get { return this._PropertyIsOpenName; }
-            set
-            {
-                if (this._PropertyIsOpenName != value)
-                {
-                    this.OnPropertyIsOpenNameChanging(ref value);
-                    this._PropertyIsOpenName = value;
-                    this.OnPropertyIsOpenNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyIsOpenName = string.Empty;
-        partial void OnPropertyIsOpenNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyIsOpenNameChanged();
-        
-        [PropertyOrderAttribute(31)]
-        [DisplayName("Sep Tree Code")]
-        [Description("Name of code auto generated property in separate tree if it is used in catalog")]
-        public string PropertyCodeNameInSeparateTree // Property.tt Line: 55
-        { 
-            get { return this._PropertyCodeNameInSeparateTree; }
-            set
-            {
-                if (this._PropertyCodeNameInSeparateTree != value)
-                {
-                    this.OnPropertyCodeNameInSeparateTreeChanging(ref value);
-                    this._PropertyCodeNameInSeparateTree = value;
-                    this.OnPropertyCodeNameInSeparateTreeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyCodeNameInSeparateTree = string.Empty;
-        partial void OnPropertyCodeNameInSeparateTreeChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyCodeNameInSeparateTreeChanged();
         
         [PropertyOrderAttribute(32)]
         [DisplayName("Sep Use Code")]
@@ -18500,29 +19271,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseCodePropertyInSeparateTreeChanging(ref bool to); // Property.tt Line: 79
         partial void OnUseCodePropertyInSeparateTreeChanged();
         
-        [PropertyOrderAttribute(33)]
-        [DisplayName("Sep Name")]
-        [Description("Name of name auto generated property in separate tree if it is used in catalog")]
-        public string PropertyNameNameInSeparateTree // Property.tt Line: 55
-        { 
-            get { return this._PropertyNameNameInSeparateTree; }
-            set
-            {
-                if (this._PropertyNameNameInSeparateTree != value)
-                {
-                    this.OnPropertyNameNameInSeparateTreeChanging(ref value);
-                    this._PropertyNameNameInSeparateTree = value;
-                    this.OnPropertyNameNameInSeparateTreeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyNameNameInSeparateTree = string.Empty;
-        partial void OnPropertyNameNameInSeparateTreeChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyNameNameInSeparateTreeChanged();
-        
         [PropertyOrderAttribute(34)]
         [DisplayName("Sep Use Name")]
         [Description("Use Name property in separate tree for catalog item by default")]
@@ -18546,29 +19294,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseNamePropertyInSeparateTreeChanging(ref bool to); // Property.tt Line: 79
         partial void OnUseNamePropertyInSeparateTreeChanged();
         
-        [PropertyOrderAttribute(35)]
-        [DisplayName("Sep Description")]
-        [Description("Name of description auto generated property in separate tree if it is used in catalog")]
-        public string PropertyDescriptionNameInSeparateTree // Property.tt Line: 55
-        { 
-            get { return this._PropertyDescriptionNameInSeparateTree; }
-            set
-            {
-                if (this._PropertyDescriptionNameInSeparateTree != value)
-                {
-                    this.OnPropertyDescriptionNameInSeparateTreeChanging(ref value);
-                    this._PropertyDescriptionNameInSeparateTree = value;
-                    this.OnPropertyDescriptionNameInSeparateTreeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyDescriptionNameInSeparateTree = string.Empty;
-        partial void OnPropertyDescriptionNameInSeparateTreeChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyDescriptionNameInSeparateTreeChanged();
-        
         [PropertyOrderAttribute(36)]
         [DisplayName("Sep Use Description")]
         [Description("Use Description property in separate tree for catalog item by default")]
@@ -18591,6 +19316,75 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _UseDescriptionPropertyInSeparateTree;
         partial void OnUseDescriptionPropertyInSeparateTreeChanging(ref bool to); // Property.tt Line: 79
         partial void OnUseDescriptionPropertyInSeparateTreeChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -18691,10 +19485,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupSharedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupSharedProperties, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.Clone(vm, from.GroupListDocuments, isDeep);
-            vm.PropertyCodeName = from.PropertyCodeName; // Clone.tt Line: 65
-            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
-            vm.PropertyDateName = from.PropertyDateName; // Clone.tt Line: 65
-            vm.UseDateProperty = from.UseDateProperty; // Clone.tt Line: 65
+            vm.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 65
+            vm.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -18718,10 +19513,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupSharedProperties, from.GroupSharedProperties, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListDocuments.Update((GroupListDocuments)to.GroupListDocuments, from.GroupListDocuments, isDeep);
-            to.PropertyCodeName = from.PropertyCodeName; // Clone.tt Line: 141
-            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
-            to.PropertyDateName = from.PropertyDateName; // Clone.tt Line: 141
-            to.UseDateProperty = from.UseDateProperty; // Clone.tt Line: 141
+            to.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 141
+            to.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -18798,10 +19594,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupListDocuments == null) // Clone.tt Line: 213
                 vm.GroupListDocuments = new GroupListDocuments(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToVM(m.GroupListDocuments, (GroupListDocuments)vm.GroupListDocuments); // Clone.tt Line: 219
-            vm.PropertyCodeName = m.PropertyCodeName; // Clone.tt Line: 221
-            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
-            vm.PropertyDateName = m.PropertyDateName; // Clone.tt Line: 221
-            vm.UseDateProperty = m.UseDateProperty; // Clone.tt Line: 221
+            vm.UseDocCodeProperty = (EnumUseType)m.UseDocCodeProperty; // Clone.tt Line: 221
+            vm.UseDocDateProperty = (EnumUseType)m.UseDocDateProperty; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -18828,10 +19625,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.PrefixForDbTables = vm.PrefixForDbTables; // Clone.tt Line: 276
             m.GroupSharedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupSharedProperties); // Clone.tt Line: 270
             m.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToProto((GroupListDocuments)vm.GroupListDocuments); // Clone.tt Line: 270
-            m.PropertyCodeName = vm.PropertyCodeName; // Clone.tt Line: 276
-            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
-            m.PropertyDateName = vm.PropertyDateName; // Clone.tt Line: 276
-            m.UseDateProperty = vm.UseDateProperty; // Clone.tt Line: 276
+            m.UseDocCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseDocCodeProperty; // Clone.tt Line: 274
+            m.UseDocDateProperty = (Proto.Config.proto_enum_use_type)vm.UseDocDateProperty; // Clone.tt Line: 274
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -19030,97 +19828,120 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupListDocumentsChanged();
         //IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return this._GroupListDocuments; } }
         
-        [PropertyOrderAttribute(21)]
-        [DisplayName("Code property")]
-        [Description("Name of document code auto generated property if it is used in documents")]
-        public string PropertyCodeName // Property.tt Line: 55
-        { 
-            get { return this._PropertyCodeName; }
-            set
-            {
-                if (this._PropertyCodeName != value)
-                {
-                    this.OnPropertyCodeNameChanging(ref value);
-                    this._PropertyCodeName = value;
-                    this.OnPropertyCodeNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyCodeName = string.Empty;
-        partial void OnPropertyCodeNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyCodeNameChanged();
-        
         [PropertyOrderAttribute(22)]
         [DisplayName("Use Code")]
         [Description("Use Code property for document by default")]
-        public bool UseCodeProperty // Property.tt Line: 55
+        public EnumUseType UseDocCodeProperty // Property.tt Line: 55
         { 
-            get { return this._UseCodeProperty; }
+            get { return this._UseDocCodeProperty; }
             set
             {
-                if (this._UseCodeProperty != value)
+                if (this._UseDocCodeProperty != value)
                 {
-                    this.OnUseCodePropertyChanging(ref value);
-                    this._UseCodeProperty = value;
-                    this.OnUseCodePropertyChanged();
+                    this.OnUseDocCodePropertyChanging(ref value);
+                    this._UseDocCodeProperty = value;
+                    this.OnUseDocCodePropertyChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private bool _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref bool to); // Property.tt Line: 79
-        partial void OnUseCodePropertyChanged();
-        
-        [PropertyOrderAttribute(23)]
-        [DisplayName("Date property")]
-        [Description("Name of document date auto generated property if it is used in documents")]
-        public string PropertyDateName // Property.tt Line: 55
-        { 
-            get { return this._PropertyDateName; }
-            set
-            {
-                if (this._PropertyDateName != value)
-                {
-                    this.OnPropertyDateNameChanging(ref value);
-                    this._PropertyDateName = value;
-                    this.OnPropertyDateNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyDateName = string.Empty;
-        partial void OnPropertyDateNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyDateNameChanged();
+        private EnumUseType _UseDocCodeProperty;
+        partial void OnUseDocCodePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseDocCodePropertyChanged();
         
         [PropertyOrderAttribute(24)]
         [DisplayName("Use Date")]
         [Description("Use Date property for document by default")]
-        public bool UseDateProperty // Property.tt Line: 55
+        public EnumUseType UseDocDateProperty // Property.tt Line: 55
         { 
-            get { return this._UseDateProperty; }
+            get { return this._UseDocDateProperty; }
             set
             {
-                if (this._UseDateProperty != value)
+                if (this._UseDocDateProperty != value)
                 {
-                    this.OnUseDatePropertyChanging(ref value);
-                    this._UseDateProperty = value;
-                    this.OnUseDatePropertyChanged();
+                    this.OnUseDocDatePropertyChanging(ref value);
+                    this._UseDocDateProperty = value;
+                    this.OnUseDocDatePropertyChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private bool _UseDateProperty;
-        partial void OnUseDatePropertyChanging(ref bool to); // Property.tt Line: 79
-        partial void OnUseDatePropertyChanged();
+        private EnumUseType _UseDocDateProperty;
+        partial void OnUseDocDatePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseDocDatePropertyChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -19483,14 +20304,17 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
             vm.ShortId = from.ShortId; // Clone.tt Line: 65
-            vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
-            vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 65
+            vm.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 65
             if (isDeep) // Clone.tt Line: 62
                 vm.CodePropertySettings = vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.Clone(from.CodePropertySettings, isDeep);
-            vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 65
-            vm.UseDateProperty = from.UseDateProperty; // Clone.tt Line: 65
-            vm.PropertyDateGuid = from.PropertyDateGuid; // Clone.tt Line: 65
+            vm.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 65
+            vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 65
+            vm.PropertyDocCodeGuid = from.PropertyDocCodeGuid; // Clone.tt Line: 65
+            vm.PropertyDocDateGuid = from.PropertyDocDateGuid; // Clone.tt Line: 65
             vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -19520,14 +20344,17 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
             to.ShortId = from.ShortId; // Clone.tt Line: 141
-            to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
-            to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 141
+            to.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.Update((DocumentCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
-            to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 141
-            to.UseDateProperty = from.UseDateProperty; // Clone.tt Line: 141
-            to.PropertyDateGuid = from.PropertyDateGuid; // Clone.tt Line: 141
+            to.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 141
+            to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 141
+            to.PropertyDocCodeGuid = from.PropertyDocCodeGuid; // Clone.tt Line: 141
+            to.PropertyDocDateGuid = from.PropertyDocDateGuid; // Clone.tt Line: 141
             to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -19612,15 +20439,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
             vm.ShortId = m.ShortId; // Clone.tt Line: 221
-            vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
-            vm.UseCodeProperty = m.UseCodeProperty; // Clone.tt Line: 221
+            vm.UseDocCodeProperty = (EnumUseType)m.UseDocCodeProperty; // Clone.tt Line: 221
             if (vm.CodePropertySettings == null) // Clone.tt Line: 213
                 vm.CodePropertySettings = new DocumentCodePropertySettings(); // Clone.tt Line: 217
             vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.ConvertToVM(m.CodePropertySettings, (DocumentCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
-            vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
-            vm.UseDateProperty = m.UseDateProperty; // Clone.tt Line: 221
-            vm.PropertyDateGuid = m.PropertyDateGuid; // Clone.tt Line: 221
+            vm.UseDocDateProperty = (EnumUseType)m.UseDocDateProperty; // Clone.tt Line: 221
+            vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
+            vm.PropertyDocCodeGuid = m.PropertyDocCodeGuid; // Clone.tt Line: 221
+            vm.PropertyDocDateGuid = m.PropertyDocDateGuid; // Clone.tt Line: 221
             vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -19651,13 +20481,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
             m.ShortId = vm.ShortId; // Clone.tt Line: 276
-            m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
-            m.UseCodeProperty = vm.UseCodeProperty; // Clone.tt Line: 276
+            m.UseDocCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseDocCodeProperty; // Clone.tt Line: 274
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.ConvertToProto((DocumentCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
-            m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
-            m.UseDateProperty = vm.UseDateProperty; // Clone.tt Line: 276
-            m.PropertyDateGuid = vm.PropertyDateGuid; // Clone.tt Line: 276
+            m.UseDocDateProperty = (Proto.Config.proto_enum_use_type)vm.UseDocDateProperty; // Clone.tt Line: 274
+            m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
+            m.PropertyDocCodeGuid = vm.PropertyDocCodeGuid; // Clone.tt Line: 276
+            m.PropertyDocDateGuid = vm.PropertyDocDateGuid; // Clone.tt Line: 276
             m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -19947,49 +20780,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnShortIdChanged();
         
-        [BrowsableAttribute(false)]
-        public string PropertyIdGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyIdGuid; }
-            set
-            {
-                if (this._PropertyIdGuid != value)
-                {
-                    this.OnPropertyIdGuidChanging(ref value);
-                    this._PropertyIdGuid = value;
-                    this.OnPropertyIdGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyIdGuid = string.Empty;
-        partial void OnPropertyIdGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyIdGuidChanged();
-        
         [PropertyOrderAttribute(21)]
         [DisplayName("Use Code")]
         [Description("Use Code property for document")]
-        public bool? UseCodeProperty // Property.tt Line: 55
+        public EnumUseType UseDocCodeProperty // Property.tt Line: 55
         { 
-            get { return this._UseCodeProperty; }
+            get { return this._UseDocCodeProperty; }
             set
             {
-                if (this._UseCodeProperty != value)
+                if (this._UseDocCodeProperty != value)
                 {
-                    this.OnUseCodePropertyChanging(ref value);
-                    this._UseCodeProperty = value;
-                    this.OnUseCodePropertyChanged();
+                    this.OnUseDocCodePropertyChanging(ref value);
+                    this._UseDocCodeProperty = value;
+                    this.OnUseDocCodePropertyChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private bool? _UseCodeProperty;
-        partial void OnUseCodePropertyChanging(ref bool? to); // Property.tt Line: 79
-        partial void OnUseCodePropertyChanged();
+        private EnumUseType _UseDocCodeProperty;
+        partial void OnUseDocCodePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseDocCodePropertyChanged();
         
         [PropertyOrderAttribute(22)]
         [ExpandableObjectAttribute()]
@@ -20017,70 +20829,91 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnCodePropertySettingsChanged();
         //IDocumentCodePropertySettings IDocument.CodePropertySettings { get { return this._CodePropertySettings; } }
         
-        [BrowsableAttribute(false)]
-        public string PropertyCodeGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyCodeGuid; }
-            set
-            {
-                if (this._PropertyCodeGuid != value)
-                {
-                    this.OnPropertyCodeGuidChanging(ref value);
-                    this._PropertyCodeGuid = value;
-                    this.OnPropertyCodeGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyCodeGuid = string.Empty;
-        partial void OnPropertyCodeGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyCodeGuidChanged();
-        
         [PropertyOrderAttribute(24)]
         [DisplayName("Use Date")]
         [Description("Use Date property for document")]
-        public bool? UseDateProperty // Property.tt Line: 55
+        public EnumUseType UseDocDateProperty // Property.tt Line: 55
         { 
-            get { return this._UseDateProperty; }
+            get { return this._UseDocDateProperty; }
             set
             {
-                if (this._UseDateProperty != value)
+                if (this._UseDocDateProperty != value)
                 {
-                    this.OnUseDatePropertyChanging(ref value);
-                    this._UseDateProperty = value;
-                    this.OnUseDatePropertyChanged();
+                    this.OnUseDocDatePropertyChanging(ref value);
+                    this._UseDocDateProperty = value;
+                    this.OnUseDocDatePropertyChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private bool? _UseDateProperty;
-        partial void OnUseDatePropertyChanging(ref bool? to); // Property.tt Line: 79
-        partial void OnUseDatePropertyChanged();
+        private EnumUseType _UseDocDateProperty;
+        partial void OnUseDocDatePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseDocDatePropertyChanged();
         
         [BrowsableAttribute(false)]
-        public string PropertyDateGuid // Property.tt Line: 55
+        public string PropertyIdGuid // Property.tt Line: 55
         { 
-            get { return this._PropertyDateGuid; }
+            get { return this._PropertyIdGuid; }
             set
             {
-                if (this._PropertyDateGuid != value)
+                if (this._PropertyIdGuid != value)
                 {
-                    this.OnPropertyDateGuidChanging(ref value);
-                    this._PropertyDateGuid = value;
-                    this.OnPropertyDateGuidChanged();
+                    this.OnPropertyIdGuidChanging(ref value);
+                    this._PropertyIdGuid = value;
+                    this.OnPropertyIdGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _PropertyDateGuid = string.Empty;
-        partial void OnPropertyDateGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyDateGuidChanged();
+        private string _PropertyIdGuid = string.Empty;
+        partial void OnPropertyIdGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyIdGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyDocCodeGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyDocCodeGuid; }
+            set
+            {
+                if (this._PropertyDocCodeGuid != value)
+                {
+                    this.OnPropertyDocCodeGuidChanging(ref value);
+                    this._PropertyDocCodeGuid = value;
+                    this.OnPropertyDocCodeGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDocCodeGuid = string.Empty;
+        partial void OnPropertyDocCodeGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyDocCodeGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyDocDateGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyDocDateGuid; }
+            set
+            {
+                if (this._PropertyDocDateGuid != value)
+                {
+                    this.OnPropertyDocDateGuidChanging(ref value);
+                    this._PropertyDocDateGuid = value;
+                    this.OnPropertyDocDateGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyDocDateGuid = string.Empty;
+        partial void OnPropertyDocDateGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyDocDateGuidChanged();
         
         [BrowsableAttribute(false)]
         public string PropertyVersionGuid // Property.tt Line: 55
@@ -20102,6 +20935,75 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyVersionGuid = string.Empty;
         partial void OnPropertyVersionGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyVersionGuidChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -20658,6 +21560,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListJournals = new ConfigNodesCollection<Journal>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListJournals) // Clone.tt Line: 52
                 vm.ListJournals.Add(Journal.Clone(vm, (Journal)t, isDeep));
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -20712,6 +21617,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                     }
                 }
             }
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -20787,6 +21695,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = Journal.ConvertToVM(t, new Journal(vm)); // Clone.tt Line: 204
                 vm.ListJournals.Add(tvm);
             }
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -20812,6 +21723,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             foreach (var t in vm.ListJournals) // Clone.tt Line: 242
                 m.ListJournals.Add(Journal.ConvertToProto((Journal)t)); // Clone.tt Line: 246
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -20988,6 +21902,75 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
+        
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
@@ -21090,6 +22073,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.ListDocuments.Add(Document.Clone(vm, (Document)t, isDeep));
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 65
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 65
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -21146,6 +22132,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 141
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 141
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -21223,6 +22212,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -21250,6 +22242,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 m.ListDocuments.Add(Document.ConvertToProto((Document)t)); // Clone.tt Line: 246
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -21444,6 +22439,75 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -22094,13 +23158,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.IsUseCode = m.IsUseCode; // Clone.tt Line: 221
-            vm.IsUseName = m.IsUseName; // Clone.tt Line: 221
-            vm.IsUseDesc = m.IsUseDesc; // Clone.tt Line: 221
-            vm.IsUseFolderCode = m.IsUseFolderCode; // Clone.tt Line: 221
-            vm.IsUseFolderName = m.IsUseFolderName; // Clone.tt Line: 221
-            vm.IsUseFolderDesc = m.IsUseFolderDesc; // Clone.tt Line: 221
-            vm.IsUseDocDate = m.IsUseDocDate; // Clone.tt Line: 221
+            vm.IsUseCode = (EnumUseType)m.IsUseCode; // Clone.tt Line: 221
+            vm.IsUseName = (EnumUseType)m.IsUseName; // Clone.tt Line: 221
+            vm.IsUseDesc = (EnumUseType)m.IsUseDesc; // Clone.tt Line: 221
+            vm.IsUseFolderCode = (EnumUseType)m.IsUseFolderCode; // Clone.tt Line: 221
+            vm.IsUseFolderName = (EnumUseType)m.IsUseFolderName; // Clone.tt Line: 221
+            vm.IsUseFolderDesc = (EnumUseType)m.IsUseFolderDesc; // Clone.tt Line: 221
+            vm.IsUseDocDate = (EnumUseType)m.IsUseDocDate; // Clone.tt Line: 221
             vm.IsDummy = m.IsDummy; // Clone.tt Line: 221
             vm.EnumFormType = (FormType)m.EnumFormType; // Clone.tt Line: 221
             vm.ListGuidViewProperties = new ObservableCollection<string>(); // Clone.tt Line: 184
@@ -22138,13 +23202,13 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.IsUseCode = vm.IsUseCode; // Clone.tt Line: 276
-            m.IsUseName = vm.IsUseName; // Clone.tt Line: 276
-            m.IsUseDesc = vm.IsUseDesc; // Clone.tt Line: 276
-            m.IsUseFolderCode = vm.IsUseFolderCode; // Clone.tt Line: 276
-            m.IsUseFolderName = vm.IsUseFolderName; // Clone.tt Line: 276
-            m.IsUseFolderDesc = vm.IsUseFolderDesc; // Clone.tt Line: 276
-            m.IsUseDocDate = vm.IsUseDocDate; // Clone.tt Line: 276
+            m.IsUseCode = (Proto.Config.proto_enum_use_type)vm.IsUseCode; // Clone.tt Line: 274
+            m.IsUseName = (Proto.Config.proto_enum_use_type)vm.IsUseName; // Clone.tt Line: 274
+            m.IsUseDesc = (Proto.Config.proto_enum_use_type)vm.IsUseDesc; // Clone.tt Line: 274
+            m.IsUseFolderCode = (Proto.Config.proto_enum_use_type)vm.IsUseFolderCode; // Clone.tt Line: 274
+            m.IsUseFolderName = (Proto.Config.proto_enum_use_type)vm.IsUseFolderName; // Clone.tt Line: 274
+            m.IsUseFolderDesc = (Proto.Config.proto_enum_use_type)vm.IsUseFolderDesc; // Clone.tt Line: 274
+            m.IsUseDocDate = (Proto.Config.proto_enum_use_type)vm.IsUseDocDate; // Clone.tt Line: 274
             m.IsDummy = vm.IsDummy; // Clone.tt Line: 276
             m.EnumFormType = (Proto.Config.proto_form_type)vm.EnumFormType; // Clone.tt Line: 274
             foreach (var t in vm.ListGuidViewProperties) // Clone.tt Line: 242
@@ -22324,7 +23388,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(1)]
         [DisplayName("Code")]
         [Description("Use catalog item code for list view")]
-        public bool IsUseCode // Property.tt Line: 55
+        public EnumUseType IsUseCode // Property.tt Line: 55
         { 
             get { return this._IsUseCode; }
             set
@@ -22340,15 +23404,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool _IsUseCode;
-        partial void OnIsUseCodeChanging(ref bool to); // Property.tt Line: 79
+        private EnumUseType _IsUseCode;
+        partial void OnIsUseCodeChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsUseCodeChanged();
         
         [Category("List form")]
         [PropertyOrderAttribute(2)]
         [DisplayName("Name")]
         [Description("Use catalog item name for list view")]
-        public bool IsUseName // Property.tt Line: 55
+        public EnumUseType IsUseName // Property.tt Line: 55
         { 
             get { return this._IsUseName; }
             set
@@ -22364,15 +23428,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool _IsUseName;
-        partial void OnIsUseNameChanging(ref bool to); // Property.tt Line: 79
+        private EnumUseType _IsUseName;
+        partial void OnIsUseNameChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsUseNameChanged();
         
         [Category("List form")]
         [PropertyOrderAttribute(3)]
         [DisplayName("Description")]
         [Description("Use catalog item description for list view")]
-        public bool IsUseDesc // Property.tt Line: 55
+        public EnumUseType IsUseDesc // Property.tt Line: 55
         { 
             get { return this._IsUseDesc; }
             set
@@ -22388,15 +23452,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool _IsUseDesc;
-        partial void OnIsUseDescChanging(ref bool to); // Property.tt Line: 79
+        private EnumUseType _IsUseDesc;
+        partial void OnIsUseDescChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsUseDescChanged();
         
         [Category("List form")]
         [PropertyOrderAttribute(11)]
         [DisplayName("Folder Code")]
         [Description("Use catalog folder code for list view")]
-        public bool IsUseFolderCode // Property.tt Line: 55
+        public EnumUseType IsUseFolderCode // Property.tt Line: 55
         { 
             get { return this._IsUseFolderCode; }
             set
@@ -22412,15 +23476,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool _IsUseFolderCode;
-        partial void OnIsUseFolderCodeChanging(ref bool to); // Property.tt Line: 79
+        private EnumUseType _IsUseFolderCode;
+        partial void OnIsUseFolderCodeChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsUseFolderCodeChanged();
         
         [Category("List form")]
         [PropertyOrderAttribute(12)]
         [DisplayName("Folder Name")]
         [Description("Use catalog folder name for list view")]
-        public bool IsUseFolderName // Property.tt Line: 55
+        public EnumUseType IsUseFolderName // Property.tt Line: 55
         { 
             get { return this._IsUseFolderName; }
             set
@@ -22436,15 +23500,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool _IsUseFolderName;
-        partial void OnIsUseFolderNameChanging(ref bool to); // Property.tt Line: 79
+        private EnumUseType _IsUseFolderName;
+        partial void OnIsUseFolderNameChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsUseFolderNameChanged();
         
         [Category("List form")]
         [PropertyOrderAttribute(13)]
         [DisplayName("Folder Desc")]
         [Description("Use catalog folder description for list view")]
-        public bool IsUseFolderDesc // Property.tt Line: 55
+        public EnumUseType IsUseFolderDesc // Property.tt Line: 55
         { 
             get { return this._IsUseFolderDesc; }
             set
@@ -22460,15 +23524,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool _IsUseFolderDesc;
-        partial void OnIsUseFolderDescChanging(ref bool to); // Property.tt Line: 79
+        private EnumUseType _IsUseFolderDesc;
+        partial void OnIsUseFolderDescChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsUseFolderDescChanged();
         
         [Category("List form")]
         [PropertyOrderAttribute(15)]
         [DisplayName("Doc Date")]
         [Description("Use document date for list view")]
-        public bool IsUseDocDate // Property.tt Line: 55
+        public EnumUseType IsUseDocDate // Property.tt Line: 55
         { 
             get { return this._IsUseDocDate; }
             set
@@ -22484,8 +23548,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private bool _IsUseDocDate;
-        partial void OnIsUseDocDateChanging(ref bool to); // Property.tt Line: 79
+        private EnumUseType _IsUseDocDate;
+        partial void OnIsUseDocDateChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsUseDocDateChanged();
         
         [Category("Edit form")]

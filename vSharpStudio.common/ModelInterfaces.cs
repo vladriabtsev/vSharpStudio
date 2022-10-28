@@ -69,6 +69,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         AutoNumber = 2,
         AutoText = 3,
     }
+    public enum EnumUseType // ModelInterfaces.tt Line: 15
+    {
+        Default = 0,
+        Yes = 1,
+        No = 2,
+    }
     public enum EnumDocumentCodeUniqueScope // ModelInterfaces.tt Line: 15
     {
         Forever = 0,
@@ -346,10 +352,25 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string RecordVersionFieldGuid { get; } // ModelInterfaces.tt Line: 51
     	string RecordVersionFieldName { get; } // ModelInterfaces.tt Line: 51
     	EnumVersionFieldType RecordVersionFieldType { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyCodeName { get; } // ModelInterfaces.tt Line: 51
+    	bool UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyNameName { get; } // ModelInterfaces.tt Line: 51
+    	bool UseNameProperty { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDescriptionName { get; } // ModelInterfaces.tt Line: 51
+    	bool UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIsFolderName { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIsOpenName { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDocDateName { get; } // ModelInterfaces.tt Line: 51
+    	bool UseDocDateProperty { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDocCodeName { get; } // ModelInterfaces.tt Line: 51
+    	bool UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	int LastConstantGroupShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastCatalogShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastDocumentShortId { get; } // ModelInterfaces.tt Line: 51
     	int LastDetailShortId { get; } // ModelInterfaces.tt Line: 51
+    	bool IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	bool IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	bool IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 55
     	IGroupConstantGroups GroupConstantGroups { get; } // ModelInterfaces.tt Line: 55
     	IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 55
@@ -448,6 +469,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IDetail> ListDetails { get; } // ModelInterfaces.tt Line: 44
     	IDetail this[int index] { get; }
     	int Count();
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -471,17 +498,25 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	/// Reserved positions: 1 - primary key
     	///////////////////////////////////////////////////
     	uint Position { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	int ShortId { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
     	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewTab { get; } // ModelInterfaces.tt Line: 51
     	string TabName { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
     	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 51
-    	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
@@ -523,9 +558,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string TabName { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
     	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
-    	bool? IsSortable { get; } // ModelInterfaces.tt Line: 51
-    	bool? IsSortableCustom { get; } // ModelInterfaces.tt Line: 51
-    	bool? IsFilterable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
     	/// Protobuf field position
@@ -638,18 +673,21 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
     	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool? UseNameProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 51
     	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool? UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
     	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -672,12 +710,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool UseTree { get; } // ModelInterfaces.tt Line: 51
     	bool UseSeparateTreeForFolders { get; } // ModelInterfaces.tt Line: 51
     	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
-    	bool? UseNameProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 51
-    	bool? UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
     	bool UseFolderTypeExplicitly { get; } // ModelInterfaces.tt Line: 51
     	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 51
@@ -690,7 +727,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string PropertyIsOpenGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefFolderGuid { get; } // ModelInterfaces.tt Line: 51
-    	string ViewDefaultGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	ICatalogFolder Folder { get; } // ModelInterfaces.tt Line: 55
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
@@ -711,20 +751,15 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 44
     	ICatalog this[int index] { get; }
     	int Count();
-    	string PropertyCodeName { get; } // ModelInterfaces.tt Line: 51
-    	bool UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyNameName { get; } // ModelInterfaces.tt Line: 51
-    	bool UseNameProperty { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyDescriptionName { get; } // ModelInterfaces.tt Line: 51
-    	bool UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyIsFolderName { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyIsOpenName { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyCodeNameInSeparateTree { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	bool UseCodePropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyNameNameInSeparateTree { get; } // ModelInterfaces.tt Line: 51
     	bool UseNamePropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyDescriptionNameInSeparateTree { get; } // ModelInterfaces.tt Line: 51
     	bool UseDescriptionPropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -736,10 +771,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 51
     	IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 55
     	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyCodeName { get; } // ModelInterfaces.tt Line: 51
-    	bool UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyDateName { get; } // ModelInterfaces.tt Line: 51
-    	bool UseDateProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -764,13 +800,16 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
     	int ShortId { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool? UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	IDocumentCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 51
-    	bool? UseDateProperty { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyDateGuid { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDocCodeGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyDocDateGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -798,6 +837,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IJournal> ListJournals { get; } // ModelInterfaces.tt Line: 44
     	IJournal this[int index] { get; }
     	int Count();
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -813,6 +855,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 44
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -838,13 +883,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseCode { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseName { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseDesc { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseFolderCode { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseFolderName { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseFolderDesc { get; } // ModelInterfaces.tt Line: 51
-    	bool IsUseDocDate { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsUseCode { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsUseName { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsUseDesc { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsUseFolderCode { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsUseFolderName { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsUseFolderDesc { get; } // ModelInterfaces.tt Line: 51
+    	EnumUseType IsUseDocDate { get; } // ModelInterfaces.tt Line: 51
     	bool IsDummy { get; } // ModelInterfaces.tt Line: 51
     	FormType EnumFormType { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42

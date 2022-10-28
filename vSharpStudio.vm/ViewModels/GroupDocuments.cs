@@ -43,8 +43,6 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = Defaults.DocumentsGroupName;
             this.PrefixForDbTables = "Doc";
             this.IsEditable = false;
-            this.PropertyCodeName = "DocNumber";
-            this.PropertyDateName = "DocDate";
 
             VmBindable.IsNotifyingStatic = false;
             this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
@@ -151,6 +149,46 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Parent));
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
+        }
+        public bool GetIsGridSortable()
+        {
+            if (this.IsGridSortable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortable == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridSortable;
+        }
+        public bool GetIsGridFilterable()
+        {
+            if (this.IsGridFilterable == EnumUseType.Yes)
+                return true;
+            if (this.IsGridFilterable == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridFilterable;
+        }
+        public bool GetIsGridSortableCustom()
+        {
+            if (this.IsGridSortableCustom == EnumUseType.Yes)
+                return true;
+            if (this.IsGridSortableCustom == EnumUseType.No)
+                return false;
+            return this.ParentModel.IsGridSortableCustom;
+        }
+        public bool GetUseDocCodeProperty()
+        {
+            if (this.UseDocCodeProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseDocCodeProperty == EnumUseType.No)
+                return false;
+            return this.ParentModel.UseDocCodeProperty;
+        }
+        public bool GetUseDocDateProperty()
+        {
+            if (this.UseDocDateProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseDocDateProperty == EnumUseType.No)
+                return false;
+            return this.ParentModel.UseDocDateProperty;
         }
     }
 }

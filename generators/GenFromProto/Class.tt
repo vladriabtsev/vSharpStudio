@@ -16,11 +16,11 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 {
     #region CTOR
 <# if (this.Doc.IsWithParent) { #>
-    public <#= message.Name.ToNameCs() #>() : this(default(ITreeConfigNode)) // <#=Helper.FilePos() #>
+    public <#= message.Name.ToNameCs() #>() : this(default(<#=this.Doc.ParentTypeName#>)) // <#=Helper.FilePos() #>
     {
         this.OnCreating();
     }
-    public <#= message.Name.ToNameCs() #>(ITreeConfigNode parent) // <#=Helper.FilePos() #>
+    public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#> parent) // <#=Helper.FilePos() #>
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator)
     {
         this.IsNotifying = false;

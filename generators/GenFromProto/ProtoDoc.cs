@@ -129,6 +129,7 @@ namespace GenFromProto
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
                     this.IsWithParent = true;
+                    this.ParentTypeName = "ITreeConfigNode";
                     //this.IsValidatableWithSeverity = true;
                 }
                 else if (s == "BaseSubSettings")
@@ -137,6 +138,7 @@ namespace GenFromProto
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
                     this.IsWithParent = true;
+                    this.ParentTypeName = "IEditableObjectExt";
                     //this.IsValidatableWithSeverity = true;
                 }
                 else if (s == "ConfigObjectCommonBase")
@@ -146,6 +148,7 @@ namespace GenFromProto
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
                     this.IsWithParent = true;
+                    this.ParentTypeName = "ITreeConfigNode";
                 }
                 else if (s == "ConfigObjectVmBase")
                 {
@@ -154,6 +157,7 @@ namespace GenFromProto
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
                     this.IsWithParent = true;
+                    this.ParentTypeName = "ITreeConfigNode";
                 }
                 else if (s == "ConfigObjectVmGenSettings")
                 {
@@ -164,6 +168,7 @@ namespace GenFromProto
                     this.IsEditableBase = true;
                     this.IsValidatableBase = true;
                     this.IsWithParent = true;
+                    this.ParentTypeName = "ITreeConfigNode";
                 }
                 else if (s == "VmBindable")
                 {
@@ -193,6 +198,7 @@ namespace GenFromProto
                 this.IsEditableBase = true;
                 this.IsValidatableBase = true;
                 this.IsWithParent = true;
+                this.ParentTypeName = "ITreeConfigNode";
             }
         }
 
@@ -255,6 +261,7 @@ namespace GenFromProto
         public bool IsConfigObjectBase = false;
         public bool IsGenSettings = false;
         public bool IsWithParent = false;
+        public string ParentTypeName = "";
         public bool IsBindableBase = false;
         public bool IsEditableBase = false;
         public bool IsValidatableBase = false;
