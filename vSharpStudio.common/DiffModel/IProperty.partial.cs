@@ -18,9 +18,9 @@ namespace vSharpStudio.common
         string ComplexObjectNameWithDot();
         object Tag { get; set; }
         static IConfig Config { get; set; }
-        bool GetIsGridSortable();
-        bool GetIsGridFilterable();
-        bool GetIsGridSortableCustom();
+        bool IsGridSortableGet();
+        bool IsGridFilterableGet();
+        bool IsGridSortableCustomGet();
     }
     public interface IPropertyRangeValuesRequirements
     {

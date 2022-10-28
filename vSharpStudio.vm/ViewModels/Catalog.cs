@@ -761,7 +761,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public bool GetIsGridSortable()
+        public bool IsGridSortableGet()
         {
             if (this.IsGridSortable == EnumUseType.Yes)
                 return true;
@@ -769,7 +769,7 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListCatalogs.GetIsGridSortable();
         }
-        public bool GetIsGridFilterable()
+        public bool IsGridFilterableGet()
         {
             if (this.IsGridFilterable == EnumUseType.Yes)
                 return true;
@@ -777,7 +777,7 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListCatalogs.GetIsGridFilterable();
         }
-        public bool GetIsGridSortableCustom()
+        public bool IsGridSortableCustomGet()
         {
             if (this.IsGridSortableCustom == EnumUseType.Yes)
                 return true;

@@ -320,11 +320,11 @@ namespace vSharpStudio.vm.ViewModels
             else if (this.Parent is Catalog c)
                 return c.ParentGroupListCatalogs.GetIsGridSortable();
             else if (this.Parent is Document d)
-                return d.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridSortable();
+                return d.ParentGroupListDocuments.ParentGroupDocuments.IsGridSortableGet();
             else if (this.Parent is CatalogFolder cf)
-                return cf.ParentCatalog.GetIsGridSortable();
+                return cf.ParentCatalog.IsGridSortableGet();
             else if (this.Parent is GroupDocuments gd)
-                return gd.GetIsGridSortable();
+                return gd.IsGridSortableGet();
             else
                 throw new NotImplementedException();
         }
@@ -339,11 +339,11 @@ namespace vSharpStudio.vm.ViewModels
             else if (this.Parent is Catalog c)
                 return c.ParentGroupListCatalogs.GetIsGridFilterable();
             else if (this.Parent is Document d)
-                return d.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridFilterable();
+                return d.ParentGroupListDocuments.ParentGroupDocuments.IsGridFilterableGet();
             else if (this.Parent is CatalogFolder cf)
-                return cf.ParentCatalog.GetIsGridFilterable();
+                return cf.ParentCatalog.IsGridFilterableGet();
             else if (this.Parent is GroupDocuments gd)
-                return gd.GetIsGridFilterable();
+                return gd.IsGridFilterableGet();
             else
                 throw new NotImplementedException();
         }
@@ -358,11 +358,11 @@ namespace vSharpStudio.vm.ViewModels
             else if (this.Parent is Catalog c)
                 return c.ParentGroupListCatalogs.GetIsGridSortableCustom();
             else if (this.Parent is Document d)
-                return d.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridSortableCustom();
+                return d.ParentGroupListDocuments.ParentGroupDocuments.IsGridSortableCustomGet();
             else if (this.Parent is CatalogFolder cf)
-                return cf.ParentCatalog.GetIsGridSortableCustom();
+                return cf.ParentCatalog.IsGridSortableCustomGet();
             else if (this.Parent is GroupDocuments gd)
-                return gd.GetIsGridSortableCustom();
+                return gd.IsGridSortableCustomGet();
             else
                 throw new NotImplementedException();
         }

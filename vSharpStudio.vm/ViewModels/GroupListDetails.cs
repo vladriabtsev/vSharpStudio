@@ -136,11 +136,11 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsGridSortable == EnumUseType.No)
                 return false;
             if (this.Parent is Catalog c)
-                return c.GetIsGridSortable();
+                return c.IsGridSortableGet();
             if (this.Parent is Document d)
-                return d.GetIsGridSortable();
+                return d.IsGridSortableGet();
             if (this.Parent is Detail dd)
-                return dd.GetIsGridSortable();
+                return dd.IsGridSortableGet();
             throw new NotImplementedException();
         }
         public bool GetIsGridFilterable()
@@ -150,11 +150,11 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsGridFilterable == EnumUseType.No)
                 return false;
             if (this.Parent is Catalog c)
-                return c.GetIsGridFilterable();
+                return c.IsGridFilterableGet();
             if (this.Parent is Document d)
-                return d.GetIsGridFilterable();
+                return d.IsGridFilterableGet();
             if (this.Parent is Detail dd)
-                return dd.GetIsGridFilterable();
+                return dd.IsGridFilterableGet();
             throw new NotImplementedException();
         }
         public bool GetIsGridSortableCustom()
@@ -164,11 +164,11 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsGridSortableCustom == EnumUseType.No)
                 return false;
             if (this.Parent is Catalog c)
-                return c.GetIsGridSortableCustom();
+                return c.IsGridSortableCustomGet();
             if (this.Parent is Document d)
-                return d.GetIsGridSortableCustom();
+                return d.IsGridSortableCustomGet();
             if (this.Parent is Detail dd)
-                return dd.GetIsGridSortableCustom();
+                return dd.IsGridSortableCustomGet();
             throw new NotImplementedException();
         }
         public bool GetUseCodeProperty()

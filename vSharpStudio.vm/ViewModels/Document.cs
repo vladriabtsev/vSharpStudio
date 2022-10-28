@@ -387,29 +387,29 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }
-        public bool GetIsGridSortable()
+        public bool IsGridSortableGet()
         {
             if (this.IsGridSortable == EnumUseType.Yes)
                 return true;
             if (this.IsGridSortable == EnumUseType.No)
                 return false;
-            return this.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridSortable();
+            return this.ParentGroupListDocuments.ParentGroupDocuments.IsGridSortableGet();
         }
-        public bool GetIsGridFilterable()
+        public bool IsGridFilterableGet()
         {
             if (this.IsGridFilterable == EnumUseType.Yes)
                 return true;
             if (this.IsGridFilterable == EnumUseType.No)
                 return false;
-            return this.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridFilterable();
+            return this.ParentGroupListDocuments.ParentGroupDocuments.IsGridFilterableGet();
         }
-        public bool GetIsGridSortableCustom()
+        public bool IsGridSortableCustomGet()
         {
             if (this.IsGridSortableCustom == EnumUseType.Yes)
                 return true;
             if (this.IsGridSortableCustom == EnumUseType.No)
                 return false;
-            return this.ParentGroupListDocuments.ParentGroupDocuments.GetIsGridSortableCustom();
+            return this.ParentGroupListDocuments.ParentGroupDocuments.IsGridSortableCustomGet();
         }
         public bool GetUseDocCodeProperty()
         {
