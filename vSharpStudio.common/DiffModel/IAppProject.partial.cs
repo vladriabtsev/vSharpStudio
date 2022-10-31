@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IAppProject : ITreeConfigNode, IvPluginGroupSettingsDic
+    public partial interface IAppProject : ITreeConfigNodeSortable, IvPluginGroupSettingsDic
     {
         IAppSolution ParentAppSolutionI { get; }
         string GetProjectFolderPath();

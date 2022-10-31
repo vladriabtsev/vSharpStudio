@@ -22,12 +22,11 @@ namespace vSharpStudio.vm.ViewModels
         public AppProject ParentAppProject { get { return (AppProject)this.Parent; } }
         [BrowsableAttribute(false)]
         public IAppProject ParentAppProjectI { get { return (IAppProject)this.Parent; } }
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
         //protected override string GetNodeIconName() { return "iconFolder"; }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
-            return this.Children;
+            return new List<ITreeConfigNode>();
         }
         public override IEnumerable<ITreeConfigNode> GetListSiblings()
         {
@@ -42,7 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         public IvPlugin Plugin { get { return this.plugin; } }
         private IvPlugin plugin;
         [BrowsableAttribute(false)]
-        public IvPluginGenerator PluginGenerator
+        public IvPluginGenerator? PluginGenerator
         {
             get
             {
@@ -55,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         [BrowsableAttribute(false)]
-        public IvPluginDbGenerator PluginDbGenerator
+        public IvPluginDbGenerator? PluginDbGenerator
         {
             get
             {
@@ -82,7 +81,7 @@ namespace vSharpStudio.vm.ViewModels
             cfg = (Config)this.GetConfig();
         }
         [Browsable(false)]
-        new public string IconName
+        new public string? IconName
         {
             get
             {
@@ -110,7 +109,7 @@ namespace vSharpStudio.vm.ViewModels
         [ReadOnly(true)]
         [DisplayName("Settings ConnStr")]
         [Description("DB connection string generator settings")]
-        public IvPluginGeneratorSettings DynamicMainConnStrSettings
+        public IvPluginGeneratorSettings? DynamicMainConnStrSettings
         {
             get
             {
@@ -122,7 +121,7 @@ namespace vSharpStudio.vm.ViewModels
                         var db_gen = this.PluginGenerator as IvPluginDbGenerator;
                         try
                         {
-                            this._DynamicMainConnStrSettings = db_gen.GetConnectionStringMvvm(this.ConnStr);
+                            this._DynamicMainConnStrSettings = db_gen?.GetConnectionStringMvvm(this.ConnStr);
                         }
                         catch (Exception ex)
                         {
@@ -130,6 +129,7 @@ namespace vSharpStudio.vm.ViewModels
                             this._DynamicMainConnStrSettings = null;
                             return this._DynamicMainConnStrSettings;
                         }
+                        Debug.Assert(this._DynamicMainConnStrSettings != null);
                         this._DynamicMainConnStrSettings.PropertyChanged += _DynamicMainConnStrSettings_PropertyChanged;
                     }
                     else
@@ -151,24 +151,26 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
 
-        private void _DynamicMainConnStrSettings_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void _DynamicMainConnStrSettings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
+            Debug.Assert(this._DynamicMainConnStrSettings != null);
             this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.GetConfig(), this.ParentAppProject.ParentAppSolution, this.ParentAppProject, this);
             this.NotifyPropertyChanged(() => this.ConnStr);
         }
 
-        private IvPluginGeneratorSettings _DynamicMainConnStrSettings;
+        private IvPluginGeneratorSettings? _DynamicMainConnStrSettings;
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
         [DisplayName("Generator")]
         [Description("General generator settings. Config model nodes can contain additional settings if generator supports node settings")]
-        public IvPluginGeneratorSettings DynamicGeneratorSettings
+        public IvPluginGeneratorSettings? DynamicGeneratorSettings
         {
             get
             {
                 if (_DynamicGeneratorSettings == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 {
+                    Debug.Assert(this.PluginGenerator != null);
                     this._DynamicGeneratorSettings = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, this.GeneratorSettings);
                     Debug.Assert(this._DynamicGeneratorSettings.ParentAppProjectGenerator != null);
                     this.NotifyPropertyChanged();
@@ -182,14 +184,14 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
-        private IvPluginGeneratorSettings _DynamicGeneratorSettings;
+        private IvPluginGeneratorSettings? _DynamicGeneratorSettings;
 
         [PropertyOrderAttribute(12)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
         [DisplayName("Model")]
         [Description("Model node settings for generator")]
-        public object DynamicModelNodeSettings
+        public object? DynamicModelNodeSettings
         {
             get
             {
@@ -213,7 +215,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
-        private object _DynamicModelNodeSettings;
+        private object? _DynamicModelNodeSettings;
         //public IvPluginGroupSolutionSettings GetPluginGroupSettings(string guidGroupSettings)
         //{
         //    var sln = (AppSolution)(this.Parent.Parent);
@@ -232,7 +234,7 @@ namespace vSharpStudio.vm.ViewModels
             cfg._DicActiveAppProjectGenerators.TryRemove(this.Guid);
             if (!string.IsNullOrEmpty(this.PluginGuid))
             {
-                this.PluginGeneratorGuid = null;
+                this.PluginGeneratorGuid = String.Empty;
             }
             cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
         }
@@ -294,10 +296,10 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(() => this.PropertyDefinitions);
 
             var sln = (AppSolution)this.Parent.Parent;
-            sln.DynamicPluginGroupSettings = null;
+            sln.DynamicPluginGroupSettings = String.Empty;
             foreach (var t in sln.ListAppProjects)
             {
-                t.DynamicPluginGroupSettings = null;
+                t.DynamicPluginGroupSettings = String.Empty;
             }
             this.DynamicGeneratorSettings = null;
             this.DynamicMainConnStrSettings = null;
@@ -342,6 +344,7 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                 return;
             var nv = new ModelVisitorNodeGenSettings();
+            Debug.Assert(this.PluginGenerator != null);
             cfg._DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
             if (this.plugin == null)
                 this.plugin = cfg.DicPlugins[this.PluginGuid];

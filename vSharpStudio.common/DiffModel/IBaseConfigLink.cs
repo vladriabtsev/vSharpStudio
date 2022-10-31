@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IBaseConfigLink : ITreeConfigNode
+    public partial interface IBaseConfigLink : ITreeConfigNodeSortable
     {
         IGroupListBaseConfigLinks ParentGroupListBaseConfigLinksI { get; }
     }

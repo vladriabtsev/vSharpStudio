@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IDocument : ITreeConfigNode, IGetNodeSetting, IDbTable
+    public partial interface IDocument : ITreeConfigNodeSortable, IGetNodeSetting, IDbTable
     {
         IGroupListDocuments ParentGroupListDocumentsI { get; }
         IReadOnlyList<IProperty> GetAllProperties(bool isSupportVersion);

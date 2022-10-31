@@ -233,6 +233,16 @@ namespace GenFromProto
                     return false;
             }
         }
+        public static bool IsChildrenObservable(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            if (IsCsSimple(from))
+                return true;
+            if (IsAny(from))
+                return true;
+            if (IsMessage(from) && !IsDefaultBase(from))
+                return true;
+            return false;
+        }
         public static bool IsCsSimple(this Google.Protobuf.Reflection.FieldDescriptor from)
         {
             switch (from.FieldType)

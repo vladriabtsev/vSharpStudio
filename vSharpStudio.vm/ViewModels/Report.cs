@@ -34,14 +34,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconReport"; } }
         //protected override string GetNodeIconName() { return "iconReport"; }
         partial void OnCreated()
         {
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
+            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
             this.IsIncludableInModels = true;
         }
 

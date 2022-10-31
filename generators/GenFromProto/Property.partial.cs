@@ -49,9 +49,26 @@ namespace GenFromProto
         private bool IsDictionary { get { return field.IsRepeated && field.IsMap; } }
         private string CollectionName()
         {
-            if (field.IsRepeated && (field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase())))
-                return "ObservableCollection";
+            if (field.IsRepeated && field.IsChildrenObservable())
+                return "ObservableCollectionWithActions";
             return "ConfigNodesCollection";
+        }
+        private string CollectionName(string typeName)
+        {
+            if (field.IsRepeated && field.IsChildrenObservable())
+                return "ObservableCollectionWithActions";
+            if (typeName.Contains("Group") && typeName != "GroupListConstants")
+                return "ObservableCollectionWithActions";
+            return "ConfigNodesCollection";
+        }
+        private string CollectionName(FieldDescriptor field)
+        {
+            if (field.IsCsSimple() || field.IsAny())
+                return "ObservableCollectionWithActions";
+            var doc = JsonDoc.Files[root.Name].Messages[field.MessageType.Name];
+            if (doc.IsISortingValue)
+                return "ConfigNodesCollection";
+            return "ObservableCollectionWithActions";
         }
         private bool IsSelfCollection { get { return message.Name.EndsWith(field.Name); } }
         private bool IsNullable { get { return !field.IsCsSimple() && field.IsMessage() && field.IsNullable(); } }

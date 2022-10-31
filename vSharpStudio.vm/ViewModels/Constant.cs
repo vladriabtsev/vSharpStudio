@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
@@ -29,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
         public static IConfig Config { get; set; }
 
         #region ITree
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
             return new List<ITreeConfigNode>();

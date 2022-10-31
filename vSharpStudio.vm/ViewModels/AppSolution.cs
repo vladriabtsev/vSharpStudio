@@ -178,7 +178,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.ListGroupGeneratorsSettings.Add(set);
             }
         }
-        public void RestoreGroupSettings(IvPluginGenerator gen = null)
+        public void RestoreGroupSettings(IvPluginGenerator? gen = null)
         {
             var cfg = (Config)this.GetConfig();
             if (gen == null)
@@ -312,9 +312,9 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
 
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            AppProject node = null;
+            AppProject node = null!;
             if (node_impl == null)
             {
                 node = new AppProject(this);

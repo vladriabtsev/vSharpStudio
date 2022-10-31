@@ -13,7 +13,7 @@ namespace vSharpStudio.ViewModels
 {
     public class CompileUtils
     {
-        public static void Compile(ILogger _logger, string solutionPath, CancellationToken cancellationToken)
+        public async static Task Compile(ILogger _logger, string solutionPath, CancellationToken cancellationToken)
         {
             //var lstBuilds = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances().ToList();
             //var build = lstBuilds[0];
@@ -31,7 +31,7 @@ namespace vSharpStudio.ViewModels
             //using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {
                 _logger.LogInformation("Compiling solution {0}".FilePos(), solutionPath);
-                Microsoft.CodeAnalysis.Solution solution = workspace.OpenSolutionAsync(solutionPath).Result;
+                Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(solutionPath);
                 if (workspace.Diagnostics.Count > 0)
                 {
                     var en = workspace.Diagnostics.GetEnumerator();
@@ -49,12 +49,12 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        public static void Rename(ILogger _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public async static Task Rename(ILogger _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
             using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {
                 // Open the solution within the workspace.
-                Microsoft.CodeAnalysis.Solution solution = workspace.OpenSolutionAsync(solutionPath).Result;
+                Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(solutionPath);
                 bool isProjectFound = false;
                 foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
                 {

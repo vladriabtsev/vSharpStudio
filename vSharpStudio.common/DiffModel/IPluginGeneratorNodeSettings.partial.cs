@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.common
 {
-    public partial interface IPluginGeneratorNodeSettings : ITreeConfigNode
+    public partial interface IPluginGeneratorNodeSettings : ITreeConfigNodeSortable
     {
     }
 }

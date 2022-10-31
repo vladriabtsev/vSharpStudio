@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IAppProjectGenerator : ITreeConfigNode
+    public partial interface IAppProjectGenerator : ITreeConfigNodeSortable
     {
         IAppProject ParentAppProjectI { get; }
         IvPluginGenerator PluginGenerator { get; }

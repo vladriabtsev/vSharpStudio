@@ -32,15 +32,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    public partial class DbConnectionStringSettingsValidator : ValidatorBase<DbConnectionStringSettings, DbConnectionStringSettingsValidator> { } // Class.tt Line: 14
-    public partial class DbConnectionStringSettings : BaseSettings<DbConnectionStringSettings, DbConnectionStringSettingsValidator>, IDbConnectionStringSettings // Class.tt Line: 15
+    //    IsISortingValue: False 
+    public partial class DbConnectionStringSettingsValidator : ValidatorBase<DbConnectionStringSettings, DbConnectionStringSettingsValidator> { } // Class.tt Line: 15
+    public partial class DbConnectionStringSettings : BaseSettings<DbConnectionStringSettings, DbConnectionStringSettingsValidator>, IDbConnectionStringSettings // Class.tt Line: 16
     {
         #region CTOR
-        public DbConnectionStringSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
+        public DbConnectionStringSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 20
         {
             this.OnCreating();
         }
-        public DbConnectionStringSettings(ITreeConfigNode parent) // Class.tt Line: 23
+        public DbConnectionStringSettings(ITreeConfigNode parent) // Class.tt Line: 24
             : base(parent, DbConnectionStringSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -148,7 +149,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnStringSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnStringSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 111
+        public override bool IsChanged // Class.tt Line: 112
         { 
             get { return this._IsChanged; }
             set
@@ -165,8 +166,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
-        //partial void OnIsChangedChanged(); // Class.tt Line: 132
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
+        //partial void OnIsChangedChanged(); // Class.tt Line: 133
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -177,15 +178,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    public partial class PluginsGroupSolutionSubSettingsValidator : ValidatorBase<PluginsGroupSolutionSubSettings, PluginsGroupSolutionSubSettingsValidator> { } // Class.tt Line: 14
-    public partial class PluginsGroupSolutionSubSettings : BaseSubSettings<PluginsGroupSolutionSubSettings, PluginsGroupSolutionSubSettingsValidator>, IPluginsGroupSolutionSubSettings // Class.tt Line: 15
+    //    IsISortingValue: False 
+    public partial class PluginsGroupSolutionSubSettingsValidator : ValidatorBase<PluginsGroupSolutionSubSettings, PluginsGroupSolutionSubSettingsValidator> { } // Class.tt Line: 15
+    public partial class PluginsGroupSolutionSubSettings : BaseSubSettings<PluginsGroupSolutionSubSettings, PluginsGroupSolutionSubSettingsValidator>, IPluginsGroupSolutionSubSettings // Class.tt Line: 16
     {
         #region CTOR
-        public PluginsGroupSolutionSubSettings() : this(default(IEditableObjectExt)) // Class.tt Line: 19
+        public PluginsGroupSolutionSubSettings() : this(default(IEditableObjectExt)) // Class.tt Line: 20
         {
             this.OnCreating();
         }
-        public PluginsGroupSolutionSubSettings(IEditableObjectExt parent) // Class.tt Line: 23
+        public PluginsGroupSolutionSubSettings(IEditableObjectExt parent) // Class.tt Line: 24
             : base(parent, PluginsGroupSolutionSubSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -317,7 +319,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsSubParam2Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsSubParam2Changed();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 111
+        public override bool IsChanged // Class.tt Line: 112
         { 
             get { return this._IsChanged; }
             set
@@ -334,8 +336,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
-        //partial void OnIsChangedChanged(); // Class.tt Line: 132
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
+        //partial void OnIsChangedChanged(); // Class.tt Line: 133
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -346,21 +348,22 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    public partial class PluginsGroupSolutionSettingsValidator : ValidatorBase<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator> { } // Class.tt Line: 14
-    public partial class PluginsGroupSolutionSettings : BaseSettings<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator>, IPluginsGroupSolutionSettings // Class.tt Line: 15
+    //    IsISortingValue: False 
+    public partial class PluginsGroupSolutionSettingsValidator : ValidatorBase<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator> { } // Class.tt Line: 15
+    public partial class PluginsGroupSolutionSettings : BaseSettings<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator>, IPluginsGroupSolutionSettings // Class.tt Line: 16
     {
         #region CTOR
-        public PluginsGroupSolutionSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
+        public PluginsGroupSolutionSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 20
         {
             this.OnCreating();
         }
-        public PluginsGroupSolutionSettings(ITreeConfigNode parent) // Class.tt Line: 23
+        public PluginsGroupSolutionSettings(ITreeConfigNode parent) // Class.tt Line: 24
             : base(parent, PluginsGroupSolutionSettingsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnCreating();
-            this.SubSettings = new PluginsGroupSolutionSubSettings(this); // Class.tt Line: 39
+            this.SubSettings = new PluginsGroupSolutionSubSettings(this); // Class.tt Line: 40
             this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
@@ -502,7 +505,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnSubSettingsChanged();
         //IPluginsGroupSolutionSubSettings IPluginsGroupSolutionSettings.SubSettings { get { return this._SubSettings; } }
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 111
+        public override bool IsChanged // Class.tt Line: 112
         { 
             get { return this._IsChanged; }
             set
@@ -519,8 +522,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
-        //partial void OnIsChangedChanged(); // Class.tt Line: 132
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
+        //partial void OnIsChangedChanged(); // Class.tt Line: 133
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -531,15 +534,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    public partial class PluginsGroupProjectSettingsValidator : ValidatorBase<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator> { } // Class.tt Line: 14
-    public partial class PluginsGroupProjectSettings : BaseSettings<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator>, IPluginsGroupProjectSettings // Class.tt Line: 15
+    //    IsISortingValue: False 
+    public partial class PluginsGroupProjectSettingsValidator : ValidatorBase<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator> { } // Class.tt Line: 15
+    public partial class PluginsGroupProjectSettings : BaseSettings<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator>, IPluginsGroupProjectSettings // Class.tt Line: 16
     {
         #region CTOR
-        public PluginsGroupProjectSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
+        public PluginsGroupProjectSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 20
         {
             this.OnCreating();
         }
-        public PluginsGroupProjectSettings(ITreeConfigNode parent) // Class.tt Line: 23
+        public PluginsGroupProjectSettings(ITreeConfigNode parent) // Class.tt Line: 24
             : base(parent, PluginsGroupProjectSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -647,7 +651,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsGroupProjectParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsGroupProjectParam1Changed();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 111
+        public override bool IsChanged // Class.tt Line: 112
         { 
             get { return this._IsChanged; }
             set
@@ -664,8 +668,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
-        //partial void OnIsChangedChanged(); // Class.tt Line: 132
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
+        //partial void OnIsChangedChanged(); // Class.tt Line: 133
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -676,15 +680,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    public partial class GeneratorDbSchemaSettingsValidator : ValidatorBase<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator> { } // Class.tt Line: 14
-    public partial class GeneratorDbSchemaSettings : BaseSettings<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator>, IGeneratorDbSchemaSettings // Class.tt Line: 15
+    //    IsISortingValue: False 
+    public partial class GeneratorDbSchemaSettingsValidator : ValidatorBase<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator> { } // Class.tt Line: 15
+    public partial class GeneratorDbSchemaSettings : BaseSettings<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator>, IGeneratorDbSchemaSettings // Class.tt Line: 16
     {
         #region CTOR
-        public GeneratorDbSchemaSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
+        public GeneratorDbSchemaSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 20
         {
             this.OnCreating();
         }
-        public GeneratorDbSchemaSettings(ITreeConfigNode parent) // Class.tt Line: 23
+        public GeneratorDbSchemaSettings(ITreeConfigNode parent) // Class.tt Line: 24
             : base(parent, GeneratorDbSchemaSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -840,7 +845,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnSchemaParam3Changing(ref string to); // Property.tt Line: 79
         partial void OnSchemaParam3Changed();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 111
+        public override bool IsChanged // Class.tt Line: 112
         { 
             get { return this._IsChanged; }
             set
@@ -857,8 +862,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
-        //partial void OnIsChangedChanged(); // Class.tt Line: 132
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
+        //partial void OnIsChangedChanged(); // Class.tt Line: 133
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -869,15 +874,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    public partial class GeneratorDbSchemaNodeSettingsValidator : ValidatorBase<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator> { } // Class.tt Line: 14
-    public partial class GeneratorDbSchemaNodeSettings : BaseSettings<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator>, IGeneratorDbSchemaNodeSettings // Class.tt Line: 15
+    //    IsISortingValue: False 
+    public partial class GeneratorDbSchemaNodeSettingsValidator : ValidatorBase<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator> { } // Class.tt Line: 15
+    public partial class GeneratorDbSchemaNodeSettings : BaseSettings<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator>, IGeneratorDbSchemaNodeSettings // Class.tt Line: 16
     {
         #region CTOR
-        public GeneratorDbSchemaNodeSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
+        public GeneratorDbSchemaNodeSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 20
         {
             this.OnCreating();
         }
-        public GeneratorDbSchemaNodeSettings(ITreeConfigNode parent) // Class.tt Line: 23
+        public GeneratorDbSchemaNodeSettings(ITreeConfigNode parent) // Class.tt Line: 24
             : base(parent, GeneratorDbSchemaNodeSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -1057,7 +1063,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsCatalogFormParam1Changed();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 111
+        public override bool IsChanged // Class.tt Line: 112
         { 
             get { return this._IsChanged; }
             set
@@ -1074,8 +1080,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
-        //partial void OnIsChangedChanged(); // Class.tt Line: 132
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
+        //partial void OnIsChangedChanged(); // Class.tt Line: 133
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -1086,15 +1092,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    public partial class GeneratorDbAccessSettingsValidator : ValidatorBase<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator> { } // Class.tt Line: 14
-    public partial class GeneratorDbAccessSettings : BaseSettings<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator>, IGeneratorDbAccessSettings // Class.tt Line: 15
+    //    IsISortingValue: False 
+    public partial class GeneratorDbAccessSettingsValidator : ValidatorBase<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator> { } // Class.tt Line: 15
+    public partial class GeneratorDbAccessSettings : BaseSettings<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator>, IGeneratorDbAccessSettings // Class.tt Line: 16
     {
         #region CTOR
-        public GeneratorDbAccessSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
+        public GeneratorDbAccessSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 20
         {
             this.OnCreating();
         }
-        public GeneratorDbAccessSettings(ITreeConfigNode parent) // Class.tt Line: 23
+        public GeneratorDbAccessSettings(ITreeConfigNode parent) // Class.tt Line: 24
             : base(parent, GeneratorDbAccessSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -1298,7 +1305,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsGenerateNotValidCodeChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 111
+        public override bool IsChanged // Class.tt Line: 112
         { 
             get { return this._IsChanged; }
             set
@@ -1315,8 +1322,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
-        //partial void OnIsChangedChanged(); // Class.tt Line: 132
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
+        //partial void OnIsChangedChanged(); // Class.tt Line: 133
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -1327,15 +1334,16 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    public partial class GeneratorDbAccessNodeSettingsValidator : ValidatorBase<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator> { } // Class.tt Line: 14
-    public partial class GeneratorDbAccessNodeSettings : BaseSettings<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator>, IGeneratorDbAccessNodeSettings // Class.tt Line: 15
+    //    IsISortingValue: False 
+    public partial class GeneratorDbAccessNodeSettingsValidator : ValidatorBase<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator> { } // Class.tt Line: 15
+    public partial class GeneratorDbAccessNodeSettings : BaseSettings<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator>, IGeneratorDbAccessNodeSettings // Class.tt Line: 16
     {
         #region CTOR
-        public GeneratorDbAccessNodeSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 19
+        public GeneratorDbAccessNodeSettings() : this(default(ITreeConfigNode)) // Class.tt Line: 20
         {
             this.OnCreating();
         }
-        public GeneratorDbAccessNodeSettings(ITreeConfigNode parent) // Class.tt Line: 23
+        public GeneratorDbAccessNodeSettings(ITreeConfigNode parent) // Class.tt Line: 24
             : base(parent, GeneratorDbAccessNodeSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -1515,7 +1523,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsCatalogFormParam1Changed();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 111
+        public override bool IsChanged // Class.tt Line: 112
         { 
             get { return this._IsChanged; }
             set
@@ -1532,8 +1540,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 128
-        //partial void OnIsChangedChanged(); // Class.tt Line: 132
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
+        //partial void OnIsChangedChanged(); // Class.tt Line: 133
         #endregion Properties
     }
     

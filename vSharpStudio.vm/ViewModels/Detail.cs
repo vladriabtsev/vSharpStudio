@@ -36,13 +36,13 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
-            this.ListGuidViewProperties = new ObservableCollection<string>();
+            this.ListGuidViewProperties = new ObservableCollectionWithActions<string>();
             this.IsIncludableInModels = true;
             this.IsIndexFk = true;
 
@@ -55,7 +55,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ViewListWideGuid = System.Guid.NewGuid().ToString();
             this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
 
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
+            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.GroupProperties.Parent = this;
             this.GroupProperties.ListProperties.OnAddingAction = (t) =>
             {
@@ -67,7 +67,7 @@ namespace vSharpStudio.vm.ViewModels
             };
 
             VmBindable.IsNotifyingStatic = false;
-            this.Children.Add(this.GroupProperties, 7);
+            this.Children.Add(this.GroupProperties);
             VmBindable.IsNotifyingStatic = true;
 
             this.GroupDetails.Parent = this;
@@ -79,7 +79,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 t.OnAdded();
             };
-            this.Children.Add(this.GroupDetails, 9);
+            this.Children.Add(this.GroupDetails);
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             this.Position = glp.GroupProperties.GetNextPosition();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();

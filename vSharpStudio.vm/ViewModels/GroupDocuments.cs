@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
@@ -33,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
@@ -45,11 +46,11 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
 
             VmBindable.IsNotifyingStatic = false;
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
+            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.GroupSharedProperties.Parent = this;
-            this.Children.Add(this.GroupSharedProperties, 7);
+            this.Children.Add(this.GroupSharedProperties);
             this.GroupListDocuments.Parent = this;
-            this.Children.Add(this.GroupListDocuments, 8);
+            this.Children.Add(this.GroupListDocuments);
             VmBindable.IsNotifyingStatic = true;
             //this.GroupSharedProperties.ListProperties.OnAddingAction = (t) =>
             //{

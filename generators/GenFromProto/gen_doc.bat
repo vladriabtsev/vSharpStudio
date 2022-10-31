@@ -3,6 +3,7 @@ SET solpath=%1
 echo **** solution directory %solpath%
 rem %1 - solution directory
 rem https://www.tutorialspoint.com/batch_script/batch_script_variables.htm
+rem https://github.com/pseudomuto/protoc-gen-doc
 
 SET protoc=%1protoc\bin\protoc.exe
 SET protdoc=%1protoc\bin\protoc-gen-doc.exe

@@ -786,7 +786,7 @@ namespace vSharpStudio.ViewModels
                             }
                             if (!isException)
                             {
-                                this.CommandConfigSave.Execute(null);
+                                await this.CommandConfigSave.ExecuteAsync(null);
                             }
                             this.ProgressVM.End();
                         }, (o) => { return this.cancellationTokenSource == null && this.Config != null && this.CurrentCfgFilePath != null; }
@@ -1004,7 +1004,11 @@ namespace vSharpStudio.ViewModels
                     // I. Model validation (no need for UNDO)
                     #region
                     progress.SubName = "Model validation";
+#if Async
+                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config);
+#else
                     this._Config.ValidateSubTreeFromNode(this._Config);
+#endif
                     if (this._Config.CountErrors > 0)
                         throw new Exception($"There are {this._Config.CountErrors} errors in configuration. Fix errors and try again.");
                     if (tst == null && this._Config.CountWarnings > 0)
@@ -1065,7 +1069,11 @@ namespace vSharpStudio.ViewModels
                                 throw new CancellationException();
                             i++;
 
+#if Async
+                            await CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
+#else
                             CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
+#endif
 
                             progress.SubProgress = 100 * i / this.Config.GroupAppSolutions.ListAppSolutions.Count;
                             onProgress(progress);

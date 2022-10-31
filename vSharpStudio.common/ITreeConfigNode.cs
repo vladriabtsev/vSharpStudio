@@ -11,7 +11,10 @@ namespace vSharpStudio.common
     {
         bool IsChanged { get; set; }
     }
-    public interface ITreeConfigNode : ITree, IValidatableWithSeverity, ISortingValue, IGuid, IName, ISettings
+    public interface ITreeConfigNodeSortable : ITreeConfigNode, ISortingValue
+    {
+    }
+    public interface ITreeConfigNode : ITree, IValidatableWithSeverity, IGuid, IName, ISettings
     {
         bool AutoGenerateProperties { get; }
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions { get; }

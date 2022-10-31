@@ -34,13 +34,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
 
         partial void OnCreated()
         {
             this._Name = "Common";
             this.IsEditable = false;
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
+            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
 
             // this.GroupPlugins.Parent = this;
             // this.Children.Add(this.GroupPlugins, 0);

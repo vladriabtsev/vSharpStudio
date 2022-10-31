@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
@@ -58,7 +59,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<GroupListConstants> Children { get { return this.ListConstantGroups; } }
+        public ObservableCollectionWithActions<GroupListConstants> Children { get { return this.ListConstantGroups; } }
 
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }

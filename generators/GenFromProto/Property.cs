@@ -43,14 +43,14 @@ namespace GenFromProto
             #line hidden
             
             #line 7 "D:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- if (this.IsCollection) { 
+ if (this.IsCollection) { var collType = CollectionName(field); 
             
             #line default
             #line hidden
             this.Write("public ");
             
             #line 8 "D:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(CollectionName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(collType));
             
             #line default
             #line hidden
@@ -127,7 +127,7 @@ namespace GenFromProto
             this.Write("        }\r\n    }\r\n}\r\nprivate ");
             
             #line 25 "D:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(CollectionName()));
+            this.Write(this.ToStringHelper.ToStringWithCulture(collType));
             
             #line default
             #line hidden

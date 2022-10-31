@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IEnumerationPair : ITreeConfigNode, IGetNodeSetting
+    public partial interface IEnumerationPair : ITreeConfigNodeSortable, IGetNodeSetting
     {
         IEnumeration ParentEnumerationI { get; }
     }

@@ -64,7 +64,7 @@ namespace vSharpStudio.Unit
         public partial class TestValidator : ValidatorBase<TestSortable, TestValidator> { }
 
         [DebuggerDisplay("{Name} {SortingValue} Guid:{Guid,nq}")]
-        public class TestSortable : ConfigObjectVmBase<TestSortable, TestValidator>, ITreeConfigNode
+        public class TestSortable : ConfigObjectVmBase<TestSortable, TestValidator>, ITreeConfigNodeSortable
         {
             public TestSortable() : base(null, TestValidator.Validator) { }
             public string Guid // Property.tt Line: 58

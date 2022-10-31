@@ -22,6 +22,15 @@
     - [proto_enumeration](#proto_config.proto_enumeration)
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_form](#proto_config.proto_form)
+    - [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block)
+    - [proto_form_auto_layout_sub_block](#proto_config.proto_form_auto_layout_sub_block)
+    - [proto_form_data_grid](#proto_config.proto_form_data_grid)
+    - [proto_form_field](#proto_config.proto_form_field)
+    - [proto_form_grid_system](#proto_config.proto_form_grid_system)
+    - [proto_form_grid_system_column](#proto_config.proto_form_grid_system_column)
+    - [proto_form_grid_system_row](#proto_config.proto_form_grid_system_row)
+    - [proto_form_tab_control](#proto_config.proto_form_tab_control)
+    - [proto_form_tab_control_tab](#proto_config.proto_form_tab_control_tab)
     - [proto_group_constant_groups](#proto_config.proto_group_constant_groups)
     - [proto_group_documents](#proto_config.proto_group_documents)
     - [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions)
@@ -64,6 +73,7 @@
     - [proto_enum_code_type](#proto_config.proto_enum_code_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
     - [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope)
+    - [proto_enum_hidden_type](#proto_config.proto_enum_hidden_type)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
     - [proto_enum_use_type](#proto_config.proto_enum_use_type)
@@ -109,6 +119,7 @@
 <a name="proto_config.proto_app_project"></a>
 
 ### proto_app_project
+@interface ISortingValue
 @base ConfigObjectVmBase
 
 
@@ -134,6 +145,7 @@
 
 ### proto_app_project_generator
 Application project generator
+@interface ISortingValue
 @base ConfigObjectVmBase
 
 
@@ -168,6 +180,7 @@ Application project generator
 <a name="proto_config.proto_app_solution"></a>
 
 ### proto_app_solution
+@interface ISortingValue
 @base ConfigObjectVmBase
 
 
@@ -193,6 +206,7 @@ Application project generator
 <a name="proto_config.proto_base_config_link"></a>
 
 ### proto_base_config_link
+@interface ISortingValue
 @base ConfigObjectVmBase
 
 
@@ -216,7 +230,7 @@ Application project generator
 <a name="proto_config.proto_catalog"></a>
 
 ### proto_catalog
-
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -339,7 +353,6 @@ Configuration config
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
 | version | [int32](#int32) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [ReadOnly(true)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [ReadOnly(true)] |
 | last_updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [PropertyOrderAttribute(6)] |
@@ -376,6 +389,8 @@ Configuration config
 
 ### proto_constant
 Constant application wise value
+
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -428,7 +443,7 @@ Constant application wise value
 <a name="proto_config.proto_detail"></a>
 
 ### proto_detail
-
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -477,7 +492,7 @@ Constant application wise value
 <a name="proto_config.proto_document"></a>
 
 ### proto_document
-
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -533,7 +548,7 @@ Constant application wise value
 <a name="proto_config.proto_enumeration"></a>
 
 ### proto_enumeration
-
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -558,7 +573,7 @@ Constant application wise value
 <a name="proto_config.proto_enumeration_pair"></a>
 
 ### proto_enumeration_pair
-
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -583,7 +598,9 @@ Constant application wise value
 <a name="proto_config.proto_form"></a>
 
 ### proto_form
-
+Children collection can contain:
+  - Children of Grid System
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -604,8 +621,237 @@ Constant application wise value
 | is_use_doc_date | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;List form&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Doc Date&#34;)] @attr [Description(&#34;Use document date for list view&#34;)] |
 | is_dummy | [bool](#bool) |  | @attr [Category(&#34;Edit form&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;???&#34;)] @attr [Description(&#34;Not implemented&#34;)] |
 | enum_form_type | [proto_form_type](#proto_config.proto_form_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Form type&#34;)] @attr [Description(&#34;Form type&#34;)] |
+| grid_system | [proto_form_grid_system](#proto_config.proto_form_grid_system) |  | @attr [BrowsableAttribute(false)] |
 | list_guid_view_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_guid_view_folder_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_auto_layout_block"></a>
+
+### proto_form_auto_layout_block
+Children collection can contain:
+  - Fields
+  - Data grids
+  - Grid Systems
+  - Tab Controls
+  - Auto Layout Blocks
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| list_form_auto_layout_sub_block | [proto_form_auto_layout_sub_block](#proto_config.proto_form_auto_layout_sub_block) | repeated | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_auto_layout_sub_block"></a>
+
+### proto_form_auto_layout_sub_block
+https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| tab_control | [proto_form_tab_control](#proto_config.proto_form_tab_control) |  |  |
+| data_grid | [proto_form_data_grid](#proto_config.proto_form_data_grid) |  |  |
+| auto_layout_block | [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block) |  |  |
+| field | [proto_form_field](#proto_config.proto_form_field) |  |  |
+| grid_system | [proto_form_grid_system](#proto_config.proto_form_grid_system) |  |  |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_data_grid"></a>
+
+### proto_form_data_grid
+No Children
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_field"></a>
+
+### proto_form_field
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_grid_system"></a>
+
+### proto_form_grid_system
+Children are collection of Grid System Rows
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| list_rows | [proto_form_grid_system_row](#proto_config.proto_form_grid_system_row) | repeated | @attr [BrowsableAttribute(false)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_grid_system_column"></a>
+
+### proto_form_grid_system_column
+Children are collection of Auto Layout Block children
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| hide_type | [proto_enum_hidden_type](#proto_config.proto_enum_hidden_type) |  | @attr [DisplayName(&#34;When Hide&#34;)] @attr [Description(&#34;Condition of hiding base on screen size&#34;)] |
+| width_xs | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;XS&#34;)] @attr [Description(&#34;Extra small. Small to large phone. Range: &lt; 600px&#34;)] |
+| width_sm | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;SM&#34;)] @attr [Description(&#34;Small. Small to medium tablet. Range: 600px &gt; &lt; 960px&#34;)] |
+| width_md | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;MD&#34;)] @attr [Description(&#34;Medium. Large tablet to laptop. Range: 960px &gt; &lt; 1280px&#34;)] |
+| width_lg | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;LG&#34;)] @attr [Description(&#34;Large. Desktop. Range: 1280px &gt; &lt; 1920px&#34;)] |
+| width_xl | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;XL&#34;)] @attr [Description(&#34;Extra Large. HD and 4k. Range: 1920px &gt; &lt; 2560px&#34;)] |
+| width_xx | [google.protobuf.UInt32Value](#google.protobuf.UInt32Value) |  | @attr [DisplayName(&#34;XX&#34;)] @attr [Description(&#34;Extra Extra Large. 4k&#43; and ultra-wide. Range: &gt;= 2560px&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| form_block | [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block) |  | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_grid_system_row"></a>
+
+### proto_form_grid_system_row
+Children are collection of Grid System Columns 
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| list_columns | [proto_form_grid_system_column](#proto_config.proto_form_grid_system_column) | repeated | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_tab_control"></a>
+
+### proto_form_tab_control
+Children are collection of Tab Control Tabs
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| list_tabs | [proto_form_tab_control_tab](#proto_config.proto_form_tab_control_tab) | repeated | @attr [BrowsableAttribute(false)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_tab_control_tab"></a>
+
+### proto_form_tab_control_tab
+Children are collection of Auto Layout Block children
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| form_block | [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -644,8 +890,9 @@ Constant application wise value
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)]
+
+@attr [BrowsableAttribute(false)] uint64 sorting_value = 3; |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for document db table names. Used if set to use in config model&#34;)] |
@@ -673,7 +920,6 @@ Constant application wise value
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_app_solutions | [proto_app_solution](#proto_config.proto_app_solution) | repeated | List NET solutions @attr [BrowsableAttribute(false)] |
 | list_group_generators_defult_settings | [proto_plugin_group_generators_default_settings](#proto_config.proto_plugin_group_generators_default_settings) | repeated | @attr [BrowsableAttribute(false)] |
@@ -693,7 +939,6 @@ Constant application wise value
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [ReadOnly(true)] |
 | list_base_config_links | [proto_base_config_link](#proto_config.proto_base_config_link) | repeated | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
@@ -713,7 +958,6 @@ Constant application wise value
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for catalog db table names. Used if set to use in config model&#34;)] |
@@ -745,7 +989,6 @@ Common parameters section
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | group_roles | [proto_group_list_roles](#proto_config.proto_group_list_roles) |  | @attr [BrowsableAttribute(false)] |
@@ -760,7 +1003,7 @@ Common parameters section
 <a name="proto_config.proto_group_list_constants"></a>
 
 ### proto_group_list_constants
-
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -792,7 +1035,6 @@ Common parameters section
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_details | [proto_detail](#proto_config.proto_detail) | repeated | @attr [BrowsableAttribute(false)] |
@@ -819,7 +1061,6 @@ Common parameters section
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short document type ID for cache key generator&#34;)] |
@@ -841,7 +1082,6 @@ Common parameters section
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_enumerations | [proto_enumeration](#proto_config.proto_enumeration) | repeated | @attr [BrowsableAttribute(false)] |
@@ -862,7 +1102,6 @@ Common parameters section
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_forms | [proto_form](#proto_config.proto_form) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
@@ -883,7 +1122,6 @@ Common parameters section
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_journals | [proto_journal](#proto_config.proto_journal) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
@@ -907,7 +1145,6 @@ main view forms hierarchy node with children
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_main_view_forms | [proto_main_view_form](#proto_config.proto_main_view_form) | repeated | @attr [BrowsableAttribute(false)] |
@@ -928,7 +1165,6 @@ main view forms hierarchy node with children
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | list_plugins | [proto_plugin](#proto_config.proto_plugin) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -946,7 +1182,6 @@ main view forms hierarchy node with children
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_properties | [proto_property](#proto_config.proto_property) | repeated | @attr [BrowsableAttribute(false)] |
@@ -971,7 +1206,6 @@ main view forms hierarchy node with children
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_reports | [proto_report](#proto_config.proto_report) | repeated | repeated proto_property list_shared_properties = 6; @attr [BrowsableAttribute(false)] |
@@ -992,7 +1226,6 @@ main view forms hierarchy node with children
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_roles | [proto_role](#proto_config.proto_role) | repeated | @attr [BrowsableAttribute(false)] |
@@ -1006,7 +1239,7 @@ main view forms hierarchy node with children
 <a name="proto_config.proto_journal"></a>
 
 ### proto_journal
-
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -1033,6 +1266,7 @@ main view forms hierarchy node with children
 
 ### proto_main_view_form
 main view forms hierarchy parent
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -1129,6 +1363,7 @@ Configuration model
 <a name="proto_config.proto_plugin"></a>
 
 ### proto_plugin
+@interface ISortingValue
 @base ConfigObjectVmBase
 
 
@@ -1151,6 +1386,7 @@ Configuration model
 <a name="proto_config.proto_plugin_generator"></a>
 
 ### proto_plugin_generator
+@interface ISortingValue
 @base ConfigObjectVmBase
 
 
@@ -1187,6 +1423,7 @@ Configuration model
 <a name="proto_config.proto_plugin_generator_node_settings"></a>
 
 ### proto_plugin_generator_node_settings
+@interface ISortingValue
 @base ConfigObjectCommonBase
 
 
@@ -1243,6 +1480,7 @@ Configuration model
 <a name="proto_config.proto_plugin_group_generators_settings"></a>
 
 ### proto_plugin_group_generators_settings
+@interface ISortingValue
 @base ConfigObjectCommonBase
 
 
@@ -1264,7 +1502,7 @@ Configuration model
 <a name="proto_config.proto_property"></a>
 
 ### proto_property
-
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -1303,7 +1541,7 @@ Configuration model
 <a name="proto_config.proto_report"></a>
 
 ### proto_report
-
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -1326,6 +1564,7 @@ Configuration model
 
 ### proto_role
 User&#39;s role
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -1506,6 +1745,22 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | Year | 1 |  |
 | Quater | 2 |  |
 | Month | 3 |  |
+
+
+
+<a name="proto_config.proto_enum_hidden_type"></a>
+
+### proto_enum_hidden_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NeverHide | 0 | @attr [DisplayName(&#34;Never Hide&#34;)] @attr [Description(&#34;Never Hide&#34;)] |
+| Xs | 1 | @attr [DisplayName(&#34;Xs&#34;)] @attr [Description(&#34;Hide on Extra small screen&#34;)] |
+| SmAndDown | 2 | @attr [DisplayName(&#34;SmAndDown&#34;)] @attr [Description(&#34;Hide on Small screen and smaller&#34;)] |
+| MdAndDown | 3 | @attr [DisplayName(&#34;MdAndDown&#34;)] @attr [Description(&#34;Hide on Medium screen and smaller&#34;)] |
+| LgAndDown | 4 | @attr [DisplayName(&#34;LgAndDown&#34;)] @attr [Description(&#34;Hide on Large screen and smaller&#34;)] |
+| XlAndDown | 5 | @attr [DisplayName(&#34;XlAndDown&#34;)] @attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)] |
 
 
 

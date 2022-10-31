@@ -48,7 +48,7 @@ namespace vSharpStudio.vm.ViewModels
                         (ki, v) => { }, (kr, v) => { }, () => { });
         public IReadOnlyDictionary<string, IvPluginGenerator> DicActiveAppProjectGenerators { get { return _DicActiveAppProjectGenerators; } }
         // public static readonly string DefaultName = "Config";
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         protected IMigration _migration { get; set; }
         public string ConnectionString { get; set; }
         public string DebugTag;
@@ -69,7 +69,7 @@ namespace vSharpStudio.vm.ViewModels
                 this._Name = "Config";
             }
 
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
+            this.Children = new ObservableCollection<ITreeConfigNode>();
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -90,10 +90,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
-            this.Children.Add(this.GroupConfigLinks, 0);
-            this.Children.Add(this.Model, 1);
-            this.Children.Add(this.GroupPlugins, 9);
-            this.Children.Add(this.GroupAppSolutions, 10);
+            this.Children.Add(this.GroupConfigLinks);
+            this.Children.Add(this.Model);
+            this.Children.Add(this.GroupPlugins);
+            this.Children.Add(this.GroupAppSolutions);
             VmBindable.IsNotifyingStatic = true;
         }
         public Config(ConfigShortHistory history)

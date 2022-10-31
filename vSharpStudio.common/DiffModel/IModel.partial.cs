@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IModel : ITreeConfigNode, IGetNodeSetting
+    public partial interface IModel : ITreeConfigNodeSortable, IGetNodeSetting
     {
         IConfig ParentConfigI { get; }
         string PKeyTypeStr { get; }

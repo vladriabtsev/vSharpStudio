@@ -9,8 +9,6 @@
         Icon="icons\SettingsFile_16x.png"
         Title="{Binding CurrentCfgFilePath}" Height="700" Width="1000" >
     <Grid>
-
         <Views:MainPage />
-
     </Grid>
 </Window>

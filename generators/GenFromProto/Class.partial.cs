@@ -98,7 +98,10 @@ namespace GenFromProto
         }
         private bool IsObservable(FieldDescriptor field)
         {
-            return field.IsCsSimple() || field.IsAny() || (field.IsMessage() && !field.IsDefaultBase());
+            if (field.IsCsSimple() || field.IsAny())
+                return true;
+            var doc = JsonDoc.Files[root.Name].Messages[field.MessageType.Name];
+            return !doc.IsISortingValue;
         }
         private IReadOnlyList<FieldDescriptor> GetFields()
         {

@@ -43,7 +43,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         public static readonly string DefaultName = "Property";
         [Browsable(false)]
         new public string IconName { get { return "iconProperty"; } }

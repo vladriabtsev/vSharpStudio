@@ -136,7 +136,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.Name = Path.GetFileName(this._RelativeAppProjectPath);
             }
         }
-        public AppProjectGenerator AddGenerator(string name, string pluginGuid, string generatorGuid, string outFile, string generationPath = null)
+        public AppProjectGenerator AddGenerator(string name, string pluginGuid, string generatorGuid, string outFile, string? generationPath = null)
         {
             AppProjectGenerator node = new AppProjectGenerator(this);
             this.ListAppProjectGenerators.Add(node);
@@ -256,7 +256,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            AppProjectGenerator node = null;
+            AppProjectGenerator node = null!;
             if (node_impl == null)
             {
                 node = new AppProjectGenerator(this);
@@ -335,7 +335,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.ListGroupGeneratorsSettings.Add(set);
             }
         }
-        public void RestoreGroupSettings(IvPluginGenerator gen = null)
+        public void RestoreGroupSettings(IvPluginGenerator? gen = null)
         {
             var cfg = (Config)this.GetConfig();
             if (gen == null)

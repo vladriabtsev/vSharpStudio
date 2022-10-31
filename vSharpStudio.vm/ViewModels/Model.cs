@@ -46,7 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         // public static readonly string DefaultName = "Config";
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         protected IMigration _migration { get; set; }
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
@@ -54,7 +54,7 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._Name = "Model";
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
+            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.GroupConstantGroups.Parent = this;
             this.GroupEnumerations.Parent = this;
             this.GroupCatalogs.Parent = this;
@@ -105,12 +105,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
-            this.Children.Add(this.GroupCommon, 6);
-            this.Children.Add(this.GroupConstantGroups, 7);
-            this.Children.Add(this.GroupEnumerations, 8);
-            this.Children.Add(this.GroupCatalogs, 9);
-            this.Children.Add(this.GroupDocuments, 10);
-            this.Children.Add(this.GroupJournals, 11);
+            this.Children.Add(this.GroupCommon);
+            this.Children.Add(this.GroupConstantGroups);
+            this.Children.Add(this.GroupEnumerations);
+            this.Children.Add(this.GroupCatalogs);
+            this.Children.Add(this.GroupDocuments);
+            this.Children.Add(this.GroupJournals);
             VmBindable.IsNotifyingStatic = true;
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -78,8 +79,8 @@ namespace GenFromProto
             {
                 Values[t.Name] = new ValueDoc(t);
             }
-            string base0;
-            this.Comments = MessageDoc.GetComments(enums.Name, enums.Description, out this.Attributes, out base0);
+            string base0, interfaces;
+            this.Comments = MessageDoc.GetComments(enums.Name, enums.Description, out this.Attributes, out base0, out interfaces);
             if (!string.IsNullOrEmpty(base0))
                 throw new Exception("Base class name is unexpected for enum value:" + enums.Name);
 
@@ -106,7 +107,9 @@ namespace GenFromProto
             {
                 Fields[t.Name] = new FieldDoc(t);
             }
-            this.Comments = MessageDoc.GetComments(message.Name, message.Description, out this.Attributes, out this.BaseClass);
+            this.Comments = MessageDoc.GetComments(message.Name, message.Description, out this.Attributes, out this.BaseClass, out this.Interfaces);
+            if (this.Interfaces.Contains("ISortingValue"))
+                this.IsISortingValue = true;
             if (!string.IsNullOrEmpty(this.BaseClass))
             {
                 this.IsDefaultBase = false;
@@ -202,15 +205,17 @@ namespace GenFromProto
             }
         }
 
-        public static string GetComments(string name, string description, out string attributes, out string baseClass)
+        public static string GetComments(string name, string description, out string attributes, out string baseClass, out string interfaces)
         {
             StringBuilder comments = new StringBuilder();
             StringBuilder attrs = new StringBuilder();
+            StringBuilder inter = new StringBuilder();
             string base0 = "";
             if (!string.IsNullOrWhiteSpace(description))
             {
                 string s = description;
                 var lines = s.Split('\n');
+                string sep = "";
                 foreach (var t in lines)
                 {
                     if (t.StartsWith("@attr"))
@@ -224,7 +229,6 @@ namespace GenFromProto
                             attrs.Append(tt.Trim());
                             attrs.AppendLine("]");
                         }
-
                     }
                     else if (t.StartsWith("@base"))
                     {
@@ -234,6 +238,21 @@ namespace GenFromProto
                             base0 = t.Substring(5);
                         else
                             base0 = t.Substring(6);
+                    }
+                    else if (t.StartsWith("@interface"))
+                    {
+                        string ss = t.Substring(10).Trim();
+                        ss = ss.Replace(',', ' ');
+                        var atrar = ss.Split(' ');
+                        foreach (var tt in atrar)
+                        {
+                            if (tt == "")
+                                continue;
+                            inter.Append(sep);
+                            var iName = tt.Trim();
+                            inter.Append(iName);
+                            sep = ", ";
+                        }
                     }
                     else
                     {
@@ -253,6 +272,7 @@ namespace GenFromProto
             }
             baseClass = base0;
             attributes = attrs.ToString();
+            interfaces = inter.ToString();
             return comments.ToString();
         }
 
@@ -264,8 +284,10 @@ namespace GenFromProto
         public string ParentTypeName = "";
         public bool IsBindableBase = false;
         public bool IsEditableBase = false;
+        public bool IsISortingValue = false;
         public bool IsValidatableBase = false;
         public string BaseClass = null;
+        public string Interfaces = null;
         public string Attributes = null;
         public string Comments = null;
         public MyDictionary<string, FieldDoc> Fields = new MyDictionary<string, FieldDoc>();
@@ -275,8 +297,8 @@ namespace GenFromProto
         public FieldDoc(Proto.Doc.field field)
         {
             this.field = field;
-            string base0;
-            this.Comments = MessageDoc.GetComments(field.Name, field.Description, out this.Attributes, out base0);
+            string base0, interfaces;
+            this.Comments = MessageDoc.GetComments(field.Name, field.Description, out this.Attributes, out base0, out interfaces);
             if (!string.IsNullOrEmpty(base0))
                 throw new Exception("Base class name is unexpected for field:" + field.Name);
         }

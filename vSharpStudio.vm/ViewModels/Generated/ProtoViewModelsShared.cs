@@ -32,12 +32,13 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    public partial class TestSharedMesssageValidator : ValidatorBase<TestSharedMesssage, TestSharedMesssageValidator> { } // Class.tt Line: 14
-    public partial class TestSharedMesssage : VmValidatableWithSeverity<TestSharedMesssage, TestSharedMesssageValidator>, ITestSharedMesssage // Class.tt Line: 15
+    //    IsISortingValue: False 
+    public partial class TestSharedMesssageValidator : ValidatorBase<TestSharedMesssage, TestSharedMesssageValidator> { } // Class.tt Line: 15
+    public partial class TestSharedMesssage : VmValidatableWithSeverity<TestSharedMesssage, TestSharedMesssageValidator>, ITestSharedMesssage // Class.tt Line: 16
     {
         #region CTOR
         public TestSharedMesssage() 
-            : base(TestSharedMesssageValidator.Validator) // Class.tt Line: 50
+            : base(TestSharedMesssageValidator.Validator) // Class.tt Line: 51
         {
             this.IsValidate = false;
             this.OnCreating();

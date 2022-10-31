@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalog : ITreeConfigNode, IGetNodeSetting, IDbTable
+    public partial interface ICatalog : ITreeConfigNodeSortable, ISortingValue, IDbTable
     {
         IGroupListCatalogs ParentGroupListCatalogsI { get; }
         IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
@@ -19,5 +20,6 @@ namespace vSharpStudio.common
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
+        IForm GetForm(FormType formType);
     }
 }

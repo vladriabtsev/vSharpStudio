@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
         partial void OnCreated()
@@ -57,7 +57,7 @@ namespace vSharpStudio.vm.ViewModels
             this.MaxNameLength = 20;
             this.MaxDescriptionLength = 100;
 
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
+            this.Children = new ObservableCollection<ITreeConfigNode>();
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -75,8 +75,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
-            this.Children.Add(this.GroupProperties, 3);
-            this.Children.Add(this.GroupDetails, 4);
+            this.Children.Add(this.GroupProperties);
+            this.Children.Add(this.GroupDetails);
             VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()

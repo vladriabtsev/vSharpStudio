@@ -20,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnCreating()
         {
-            this.ListObjectGuids = new ObservableCollection<string>();
+            this.ListObjectGuids = new ObservableCollectionWithActions<string>();
         }
         partial void OnCreated()
         {
@@ -74,7 +74,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.DataTypeEnum = type;
             this.ObjectGuid = guidOfType;
-            this.ListObjectGuids = new ObservableCollection<string>();
+            this.ListObjectGuids = new ObservableCollectionWithActions<string>();
         }
         public override string ToString()
         {
@@ -638,18 +638,18 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Visibility
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNode> ListObjects
+        public SortedObservableCollection<ITreeConfigNodeSortable> ListObjects
         {
             get
             {
                 switch (this.DataTypeEnum)
                 {
                     case EnumDataType.ENUMERATION:
-                        return new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupEnumerations.ListEnumerations);
+                        return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupEnumerations.ListEnumerations);
                     case EnumDataType.CATALOG:
-                        return new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupCatalogs.ListCatalogs);
+                        return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupCatalogs.ListCatalogs);
                     case EnumDataType.DOCUMENT:
-                        return new SortedObservableCollection<ITreeConfigNode>(this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
+                        return new SortedObservableCollection<ITreeConfigNodeSortable>(this.Cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments);
                     default:
                         break;
                 }

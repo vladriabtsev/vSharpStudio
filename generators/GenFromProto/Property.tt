@@ -4,8 +4,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 
-<#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (this.IsCollection) { #>
-public <#=CollectionName()#><<#= field.ToTypeCs() #>> <#=FieldName#> // <#=Helper.FilePos() #>
+<#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (this.IsCollection) { var collType = CollectionName(field); #>
+public <#=collType#><<#= field.ToTypeCs() #>> <#=FieldName#> // <#=Helper.FilePos() #>
 { 
     get { return this._<#=FieldName#>; }
     set
@@ -22,7 +22,7 @@ public <#=CollectionName()#><<#= field.ToTypeCs() #>> <#=FieldName#> // <#=Helpe
         }
     }
 }
-private <#=CollectionName()#><<#= field.ToTypeCs() #>> _<#=FieldName#>;
+private <#=collType#><<#= field.ToTypeCs() #>> _<#=FieldName#>;
 IReadOnlyList<<#if (!IsSimple) {#>I<#}#><#=FieldType#>> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=Helper.FilePos() #>
 partial void On<#=FieldName#>Changing(ObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
 partial void On<#=FieldName#>Changed();

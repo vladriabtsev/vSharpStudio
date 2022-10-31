@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconWindowsForm"; } }
@@ -46,9 +46,9 @@ namespace vSharpStudio.vm.ViewModels
         //}
         partial void OnCreated()
         {
-            this.ListGuidViewProperties = new ObservableCollection<string>();
-            this.ListGuidViewFolderProperties = new ObservableCollection<string>();
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
+            this.ListGuidViewProperties = new ObservableCollectionWithActions<string>();
+            this.ListGuidViewFolderProperties = new ObservableCollectionWithActions<string>();
+            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.IsIncludableInModels = true;
         }
         protected override void OnInitFromDto()

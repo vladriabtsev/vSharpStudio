@@ -15,7 +15,8 @@ namespace Renamer
     {
         public async static Task Rename(Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
-            var root = (CompilationUnitSyntax)document.GetSyntaxRootAsync().Result;
+            var root0 = await document.GetSyntaxRootAsync();
+            var root = (CompilationUnitSyntax)root0;
             var diag = root.GetDiagnostics().ToList();
             if (diag.Count > 0)
             {

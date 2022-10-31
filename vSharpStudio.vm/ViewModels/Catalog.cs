@@ -39,16 +39,16 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconCatalogProperty"; } }
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnCreated()
         {
-            this.ListGuidViewProperties = new ObservableCollection<string>();
-            this.ListGuidViewFolderProperties = new ObservableCollection<string>();
+            this.ListGuidViewProperties = new ObservableCollectionWithActions<string>();
+            this.ListGuidViewFolderProperties = new ObservableCollectionWithActions<string>();
             this.IsIncludableInModels = true;
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
+            this.Children = new ObservableCollection<ITreeConfigNode>();
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -93,12 +93,12 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Clear();
             if (this.UseTree && this.UseSeparateTreeForFolders)
             {
-                this.Children.Add(this.Folder, 2);
+                this.Children.Add(this.Folder);
             }
-            this.Children.Add(this.GroupProperties, 3);
-            this.Children.Add(this.GroupDetails, 4);
-            this.Children.Add(this.GroupForms, 5);
-            this.Children.Add(this.GroupReports, 6);
+            this.Children.Add(this.GroupProperties);
+            this.Children.Add(this.GroupDetails);
+            this.Children.Add(this.GroupForms);
+            this.Children.Add(this.GroupReports);
             this.CodePropertySettings.Parent = this;
             VmBindable.IsNotifyingStatic = true;
         }
@@ -325,7 +325,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private SortedObservableCollection<IProperty> listViewNotSpecialProperties;
-        private void Res_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void Res_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             this.ListGuidViewProperties.Clear();
             foreach (var t in this.listViewNotSpecialProperties)
@@ -378,7 +378,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private ObservableCollection<IProperty> listAllFolderNotSpecialProperties = null;
-        private void ResFolder_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void ResFolder_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             this.ListGuidViewFolderProperties.Clear();
             foreach (var t in this.listViewFolderNotSpecialProperties)
@@ -497,7 +497,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private IProperty GetCodeProperty(IConfig cfg)
         {
-            IProperty prp = null;
+            IProperty prp = null!;
             switch (this.CodePropertySettings.Type)
             {
                 case EnumCodeType.AutoNumber:
@@ -682,12 +682,10 @@ namespace vSharpStudio.vm.ViewModels
             ViewListData? viewListData = null;
             var cfg = this.GetConfig();
             Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
-            IProperty pId = null;
-            pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
-            IProperty pRefTreeParent = null;
-            IProperty pRefParent = null;
-            IProperty pIsFolder = null;
-            List<IProperty> lst = null;
+            IProperty pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            IProperty? pRefTreeParent = null;
+            IProperty? pRefParent = null;
+            IProperty? pIsFolder = null;
             if (this.UseTree)
             {
                 pRefTreeParent = cfg.Model.GetPropertyRefParent(this.Folder.PropertyRefSelfGuid, "RefTreeParent", true);
@@ -698,7 +696,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
                 {
                     viewTreeData = new ViewTreeData(pId, pRefTreeParent, pIsFolder);
-                    lst = SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
+                    var lst = SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
                     viewTreeData.ListViewProperties.AddRange(lst);
 
                     viewListData = new ViewListData(pId, pRefParent, pIsFolder);
@@ -708,14 +706,14 @@ namespace vSharpStudio.vm.ViewModels
                 else // only self tree
                 {
                     viewTreeData = new ViewTreeData(pId, pRefParent, pIsFolder);
-                    lst = SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
+                    var lst = SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
                     viewTreeData.ListViewProperties.AddRange(lst);
                 }
             }
             else // only data grid for children
             {
                 viewListData = new ViewListData(pId);
-                lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
+                var lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
                 viewListData.ListViewProperties.AddRange(lst);
             }
             return new ViewFormData(viewTreeData, viewListData);
@@ -834,6 +832,64 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Folder.UseDescriptionProperty == EnumUseType.No)
                 return false;
             return this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
+        }
+        public IForm GetForm(FormType formType)
+        {
+            var res = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
+            if (res == null)
+            {
+                res = new Form(this.GroupForms);
+                switch (formType)
+                {
+                    case FormType.ViewListWide:
+                    case FormType.ViewListNarrow:
+                        if (this.GetUseCodeProperty())
+                            res.ListGuidViewProperties.Add(this.PropertyCodeGuid);
+                        if (this.GetUseNameProperty())
+                            res.ListGuidViewProperties.Add(this.PropertyNameGuid);
+                        if (formType == FormType.ViewListWide)
+                        {
+                            if (this.GetUseDescriptionProperty())
+                                res.ListGuidViewProperties.Add(this.PropertyDescriptionGuid);
+                        }
+                        res.ListGuidViewProperties.Add(this.PropertyIdGuid);
+                        res.ListGuidViewProperties.Add(this.PropertyVersionGuid);
+                        if (this.UseTree && !this.UseSeparateTreeForFolders)
+                        {
+                            res.ListGuidViewProperties.Add(this.PropertyRefSelfGuid);
+                            res.ListGuidViewProperties.Add(this.PropertyIsOpenGuid);
+                            if (this.UseFolderTypeExplicitly)
+                            {
+                                res.ListGuidViewProperties.Add(this.PropertyIsFolderGuid);
+                            }
+                        }
+                        if (this.UseTree && this.UseSeparateTreeForFolders)
+                        {
+                            res.ListGuidViewProperties.Add(this.PropertyRefFolderGuid);
+                            if (this.GetUseCodeProperty())
+                                res.ListGuidViewFolderProperties.Add(this.PropertyCodeGuid);
+                            if (this.GetUseNameProperty())
+                                res.ListGuidViewFolderProperties.Add(this.PropertyNameGuid);
+                            if (formType == FormType.ViewListWide)
+                            {
+                                if (this.GetUseDescriptionProperty())
+                                    res.ListGuidViewFolderProperties.Add(this.PropertyDescriptionGuid);
+                            }
+                            res.ListGuidViewFolderProperties.Add(this.PropertyIdGuid);
+                            res.ListGuidViewFolderProperties.Add(this.PropertyRefSelfGuid);
+                            res.ListGuidViewFolderProperties.Add(this.PropertyIsOpenGuid);
+                            res.ListGuidViewFolderProperties.Add(this.PropertyVersionGuid);
+                        }
+                        break;
+                    //case FormType.FolderEditForm:
+                    //    break;
+                    //case FormType.ItemEditForm:
+                    //    break;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+            return res;
         }
     }
 }

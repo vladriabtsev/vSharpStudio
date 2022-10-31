@@ -223,6 +223,44 @@
           ]
         },
         {
+          "name": "proto_enum_hidden_type",
+          "longName": "proto_enum_hidden_type",
+          "fullName": "proto_config.proto_enum_hidden_type",
+          "description": "",
+          "values": [
+            {
+              "name": "NeverHide",
+              "number": "0",
+              "description": "@attr [DisplayName(\"Never Hide\")]\n@attr [Description(\"Never Hide\")]"
+            },
+            {
+              "name": "Xs",
+              "number": "1",
+              "description": "@attr [DisplayName(\"Xs\")]\n@attr [Description(\"Hide on Extra small screen\")]"
+            },
+            {
+              "name": "SmAndDown",
+              "number": "2",
+              "description": "@attr [DisplayName(\"SmAndDown\")]\n@attr [Description(\"Hide on Small screen and smaller\")]"
+            },
+            {
+              "name": "MdAndDown",
+              "number": "3",
+              "description": "@attr [DisplayName(\"MdAndDown\")]\n@attr [Description(\"Hide on Medium screen and smaller\")]"
+            },
+            {
+              "name": "LgAndDown",
+              "number": "4",
+              "description": "@attr [DisplayName(\"LgAndDown\")]\n@attr [Description(\"Hide on Large screen and smaller\")]"
+            },
+            {
+              "name": "XlAndDown",
+              "number": "5",
+              "description": "@attr [DisplayName(\"XlAndDown\")]\n@attr [Description(\"Hide on Extra Large screen and smaller\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_primary_key_type",
           "longName": "proto_enum_primary_key_type",
           "fullName": "proto_config.proto_enum_primary_key_type",
@@ -458,7 +496,7 @@
           "name": "proto_app_project",
           "longName": "proto_app_project",
           "fullName": "proto_config.proto_app_project",
-          "description": "@base ConfigObjectVmBase",
+          "description": "@interface ISortingValue\n@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -569,7 +607,7 @@
           "name": "proto_app_project_generator",
           "longName": "proto_app_project_generator",
           "fullName": "proto_config.proto_app_project_generator",
-          "description": "Application project generator\n@base ConfigObjectVmBase",
+          "description": "Application project generator\n@interface ISortingValue\n@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -780,7 +818,7 @@
           "name": "proto_app_solution",
           "longName": "proto_app_solution",
           "fullName": "proto_config.proto_app_solution",
-          "description": "@base ConfigObjectVmBase",
+          "description": "@interface ISortingValue\n@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -901,7 +939,7 @@
           "name": "proto_base_config_link",
           "longName": "proto_base_config_link",
           "fullName": "proto_config.proto_base_config_link",
-          "description": "@base ConfigObjectVmBase",
+          "description": "@interface ISortingValue\n@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -1002,7 +1040,7 @@
           "name": "proto_catalog",
           "longName": "proto_catalog",
           "fullName": "proto_config.proto_catalog",
-          "description": "",
+          "description": "@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -1801,16 +1839,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name_ui",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]",
               "label": "",
@@ -1947,7 +1975,7 @@
           "name": "proto_constant",
           "longName": "proto_constant",
           "fullName": "proto_config.proto_constant",
-          "description": "Constant application wise value",
+          "description": "Constant application wise value\n\n@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -2219,7 +2247,7 @@
           "name": "proto_detail",
           "longName": "proto_detail",
           "fullName": "proto_config.proto_detail",
-          "description": "",
+          "description": "@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -2580,7 +2608,7 @@
           "name": "proto_document",
           "longName": "proto_document",
           "fullName": "proto_config.proto_document",
-          "description": "",
+          "description": "@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -2882,7 +2910,7 @@
           "name": "proto_enumeration",
           "longName": "proto_enumeration",
           "fullName": "proto_config.proto_enumeration",
-          "description": "",
+          "description": "@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3003,7 +3031,7 @@
           "name": "proto_enumeration_pair",
           "longName": "proto_enumeration_pair",
           "fullName": "proto_config.proto_enumeration_pair",
-          "description": "",
+          "description": "@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3124,7 +3152,7 @@
           "name": "proto_form",
           "longName": "proto_form",
           "fullName": "proto_config.proto_form",
-          "description": "",
+          "description": "Children collection can contain:\n  - Children of Grid System\n@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3290,6 +3318,16 @@
               "defaultValue": ""
             },
             {
+              "name": "grid_system",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_form_grid_system",
+              "longType": "proto_form_grid_system",
+              "fullType": "proto_config.proto_form_grid_system",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_guid_view_properties",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -3306,6 +3344,1035 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_auto_layout_block",
+          "longName": "proto_form_auto_layout_block",
+          "fullName": "proto_config.proto_form_auto_layout_block",
+          "description": "Children collection can contain:\n  - Fields\n  - Data grids\n  - Grid Systems\n  - Tab Controls\n  - Auto Layout Blocks",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_form_auto_layout_sub_block",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_form_auto_layout_sub_block",
+              "longType": "proto_form_auto_layout_sub_block",
+              "fullType": "proto_config.proto_form_auto_layout_sub_block",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_auto_layout_sub_block",
+          "longName": "proto_form_auto_layout_sub_block",
+          "fullName": "proto_config.proto_form_auto_layout_sub_block",
+          "description": "https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0\n@interface ISortingValue",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tab_control",
+              "description": "",
+              "label": "",
+              "type": "proto_form_tab_control",
+              "longType": "proto_form_tab_control",
+              "fullType": "proto_config.proto_form_tab_control",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "data_grid",
+              "description": "",
+              "label": "",
+              "type": "proto_form_data_grid",
+              "longType": "proto_form_data_grid",
+              "fullType": "proto_config.proto_form_data_grid",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "auto_layout_block",
+              "description": "",
+              "label": "",
+              "type": "proto_form_auto_layout_block",
+              "longType": "proto_form_auto_layout_block",
+              "fullType": "proto_config.proto_form_auto_layout_block",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "field",
+              "description": "",
+              "label": "",
+              "type": "proto_form_field",
+              "longType": "proto_form_field",
+              "fullType": "proto_config.proto_form_field",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "grid_system",
+              "description": "",
+              "label": "",
+              "type": "proto_form_grid_system",
+              "longType": "proto_form_grid_system",
+              "fullType": "proto_config.proto_form_grid_system",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_data_grid",
+          "longName": "proto_form_data_grid",
+          "fullName": "proto_config.proto_form_data_grid",
+          "description": "No Children",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_guid_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_field",
+          "longName": "proto_form_field",
+          "fullName": "proto_config.proto_form_field",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_grid_system",
+          "longName": "proto_form_grid_system",
+          "fullName": "proto_config.proto_form_grid_system",
+          "description": "Children are collection of Grid System Rows",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_rows",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_form_grid_system_row",
+              "longType": "proto_form_grid_system_row",
+              "fullType": "proto_config.proto_form_grid_system_row",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_guid_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_grid_system_column",
+          "longName": "proto_form_grid_system_column",
+          "fullName": "proto_config.proto_form_grid_system_column",
+          "description": "Children are collection of Auto Layout Block children\n@interface ISortingValue",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "hide_type",
+              "description": "@attr [DisplayName(\"When Hide\")]\n@attr [Description(\"Condition of hiding base on screen size\")]",
+              "label": "",
+              "type": "proto_enum_hidden_type",
+              "longType": "proto_enum_hidden_type",
+              "fullType": "proto_config.proto_enum_hidden_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "width_xs",
+              "description": "@attr [DisplayName(\"XS\")]\n@attr [Description(\"Extra small. Small to large phone. Range: \u003c 600px\")]",
+              "label": "",
+              "type": "UInt32Value",
+              "longType": "google.protobuf.UInt32Value",
+              "fullType": "google.protobuf.UInt32Value",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "width_sm",
+              "description": "@attr [DisplayName(\"SM\")]\n@attr [Description(\"Small. Small to medium tablet. Range: 600px \u003e \u003c 960px\")]",
+              "label": "",
+              "type": "UInt32Value",
+              "longType": "google.protobuf.UInt32Value",
+              "fullType": "google.protobuf.UInt32Value",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "width_md",
+              "description": "@attr [DisplayName(\"MD\")]\n@attr [Description(\"Medium. Large tablet to laptop. Range: 960px \u003e \u003c 1280px\")]",
+              "label": "",
+              "type": "UInt32Value",
+              "longType": "google.protobuf.UInt32Value",
+              "fullType": "google.protobuf.UInt32Value",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "width_lg",
+              "description": "@attr [DisplayName(\"LG\")]\n@attr [Description(\"Large. Desktop. Range: 1280px \u003e \u003c 1920px\")]",
+              "label": "",
+              "type": "UInt32Value",
+              "longType": "google.protobuf.UInt32Value",
+              "fullType": "google.protobuf.UInt32Value",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "width_xl",
+              "description": "@attr [DisplayName(\"XL\")]\n@attr [Description(\"Extra Large. HD and 4k. Range: 1920px \u003e \u003c 2560px\")]",
+              "label": "",
+              "type": "UInt32Value",
+              "longType": "google.protobuf.UInt32Value",
+              "fullType": "google.protobuf.UInt32Value",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "width_xx",
+              "description": "@attr [DisplayName(\"XX\")]\n@attr [Description(\"Extra Extra Large. 4k+ and ultra-wide. Range: \u003e= 2560px\")]",
+              "label": "",
+              "type": "UInt32Value",
+              "longType": "google.protobuf.UInt32Value",
+              "fullType": "google.protobuf.UInt32Value",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "form_block",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_form_auto_layout_block",
+              "longType": "proto_form_auto_layout_block",
+              "fullType": "proto_config.proto_form_auto_layout_block",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_grid_system_row",
+          "longName": "proto_form_grid_system_row",
+          "fullName": "proto_config.proto_form_grid_system_row",
+          "description": "Children are collection of Grid System Columns \n@interface ISortingValue",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_columns",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_form_grid_system_column",
+              "longType": "proto_form_grid_system_column",
+              "fullType": "proto_config.proto_form_grid_system_column",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_tab_control",
+          "longName": "proto_form_tab_control",
+          "fullName": "proto_config.proto_form_tab_control",
+          "description": "Children are collection of Tab Control Tabs",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_tabs",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_form_tab_control_tab",
+              "longType": "proto_form_tab_control_tab",
+              "fullType": "proto_config.proto_form_tab_control_tab",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_guid_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_tab_control_tab",
+          "longName": "proto_form_tab_control_tab",
+          "fullName": "proto_config.proto_form_tab_control_tab",
+          "description": "Children are collection of Auto Layout Block children\n@interface ISortingValue",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_guid_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "form_block",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_form_auto_layout_block",
+              "longType": "proto_form_auto_layout_block",
+              "fullType": "proto_config.proto_form_auto_layout_block",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3433,21 +4500,11 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n\n@attr [BrowsableAttribute(false)]\nuint64 sorting_value = 3;",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3593,16 +4650,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "description",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
               "label": "",
@@ -3664,16 +4711,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "description",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [ReadOnly(true)]",
               "label": "",
@@ -3731,16 +4768,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3926,16 +4953,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name_ui",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
@@ -3991,7 +5008,7 @@
           "name": "proto_group_list_constants",
           "longName": "proto_group_list_constants",
           "fullName": "proto_config.proto_group_list_constants",
-          "description": "",
+          "description": "@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -4138,16 +5155,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name_ui",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
@@ -4279,16 +5286,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name_ui",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
@@ -4370,16 +5367,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name_ui",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
@@ -4451,16 +5438,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name_ui",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
@@ -4528,16 +5505,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4643,16 +5610,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name_ui",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
@@ -4724,16 +5681,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "list_plugins",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -4771,16 +5718,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4896,16 +5833,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name_ui",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
@@ -4977,16 +5904,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "name_ui",
               "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
               "label": "",
@@ -5032,7 +5949,7 @@
           "name": "proto_journal",
           "longName": "proto_journal",
           "fullName": "proto_config.proto_journal",
-          "description": "",
+          "description": "@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -5163,7 +6080,7 @@
           "name": "proto_main_view_form",
           "longName": "proto_main_view_form",
           "fullName": "proto_config.proto_main_view_form",
-          "description": "main view forms hierarchy parent",
+          "description": "main view forms hierarchy parent\n@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -5736,7 +6653,7 @@
           "name": "proto_plugin",
           "longName": "proto_plugin",
           "fullName": "proto_config.proto_plugin",
-          "description": "@base ConfigObjectVmBase",
+          "description": "@interface ISortingValue\n@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -5827,7 +6744,7 @@
           "name": "proto_plugin_generator",
           "longName": "proto_plugin_generator",
           "fullName": "proto_config.proto_plugin_generator",
-          "description": "@base ConfigObjectVmBase",
+          "description": "@interface ISortingValue\n@base ConfigObjectVmBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -5929,7 +6846,7 @@
           "name": "proto_plugin_generator_node_settings",
           "longName": "proto_plugin_generator_node_settings",
           "fullName": "proto_config.proto_plugin_generator_node_settings",
-          "description": "@base ConfigObjectCommonBase",
+          "description": "@interface ISortingValue\n@base ConfigObjectCommonBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -6102,7 +7019,7 @@
           "name": "proto_plugin_group_generators_settings",
           "longName": "proto_plugin_group_generators_settings",
           "fullName": "proto_config.proto_plugin_group_generators_settings",
-          "description": "@base ConfigObjectCommonBase",
+          "description": "@interface ISortingValue\n@base ConfigObjectCommonBase",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -6183,7 +7100,7 @@
           "name": "proto_property",
           "longName": "proto_property",
           "fullName": "proto_config.proto_property",
-          "description": "",
+          "description": "@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -6444,7 +7361,7 @@
           "name": "proto_report",
           "longName": "proto_report",
           "fullName": "proto_config.proto_report",
-          "description": "",
+          "description": "@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -6535,7 +7452,7 @@
           "name": "proto_role",
           "longName": "proto_role",
           "fullName": "proto_config.proto_role",
-          "description": "User's role",
+          "description": "User's role\n@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],

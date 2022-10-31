@@ -35,7 +35,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [BrowsableAttribute(false)]
-        public ConfigNodesCollection<ITreeConfigNode> Children { get; private set; }
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconDiagnosticesFile"; } }
         //protected override string GetNodeIconName() { return "iconDiagnosticesFile"; }
@@ -43,7 +43,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this.Children = new ConfigNodesCollection<ITreeConfigNode>(this);
+            this.Children = new ObservableCollection<ITreeConfigNode>();
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -66,10 +66,10 @@ namespace vSharpStudio.vm.ViewModels
         {
             VmBindable.IsNotifyingStatic = false;
             this.Children.Clear();
-            this.Children.Add(this.GroupProperties, 6);
-            this.Children.Add(this.GroupDetails, 7);
-            this.Children.Add(this.GroupForms, 8);
-            this.Children.Add(this.GroupReports, 9);
+            this.Children.Add(this.GroupProperties);
+            this.Children.Add(this.GroupDetails);
+            this.Children.Add(this.GroupForms);
+            this.Children.Add(this.GroupReports);
             VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()

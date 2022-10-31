@@ -10,7 +10,7 @@ using vSharpStudio.common;
 namespace vSharpStudio.vm.ViewModels
 {
     public class ConfigNodesCollection<T> : SortedObservableCollection<T>, System.Collections.IList
-      where T : ITreeConfigNode
+      where T : ITreeConfigNode, ISortingValue
     {
         private Config cfg = null;
         private ITreeConfigNode parent = null;

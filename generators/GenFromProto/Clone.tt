@@ -37,14 +37,14 @@ public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase(
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
 <# if (field.IsAny()) { #>
-    vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<Google.Protobuf.WellKnownTypes.Any>(); // <#=Helper.FilePos() #>
+    vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<Google.Protobuf.WellKnownTypes.Any>(); // <#=Helper.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) 
         vm.<#= field.Name.ToNameCs() #>.Add(t.Clone());
 <# } else if (!field.IsMessage()) { #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(t);
 <# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
-    vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
+    vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
 <# } else { #>
@@ -181,13 +181,13 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
             continue;
         if (field.IsRepeated) { #>
 <#        if (field.IsCsSimple()) { #>
-    vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
+    vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
         vm.<#= field.Name.ToNameCs() #>.Add(t);
     }
 <#        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
-    vm.<#= field.Name.ToNameCs() #> = new ObservableCollection<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
+    vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
 <#          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>

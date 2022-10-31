@@ -29,7 +29,81 @@ namespace ViewModelBase
         object GetPrev(object current);
         object GetNext(object current);
     }
-    public class SortedObservableCollection<T> : ObservableCollection<T>, IMoveUpDown
+    public class ObservableCollectionWithActions<T> : ObservableCollection<T>
+    {
+        private object _lock = new object();
+        public ObservableCollectionWithActions()
+        {
+        }
+        public ObservableCollectionWithActions(IEnumerable<T> lst)
+        {
+            this.AddRange(lst);
+        }
+        public new void Clear()
+        {
+            if (OnClearingAction != null)
+                OnClearingAction();
+            base.Clear();
+            if (OnClearedAction != null)
+                OnClearedAction();
+        }
+        public new void Add(T item)
+        {
+            lock (_lock)
+            {
+                if (OnAddingAction != null)
+                    OnAddingAction(item);
+                base.Add(item);
+                if (OnAddedAction != null)
+                    OnAddedAction(item);
+            }
+        }
+        public new bool Remove(T item)
+        {
+            lock (_lock)
+            {
+                if (OnRemovingAction != null)
+                    OnRemovingAction(item);
+                var res = base.Remove(item);
+                if (OnRemovedAction != null)
+                    OnRemovedAction(item);
+                return res;
+            }
+        }
+        public new void RemoveAt(int indx)
+        {
+            lock (_lock)
+            {
+                var item = this[indx];
+                if (OnRemovingAction != null)
+                    OnRemovingAction(item);
+                base.RemoveAt(indx);
+                if (OnRemovedAction != null)
+                    OnRemovedAction(item);
+            }
+        }
+        public void AddRange(IEnumerable<T> collection)
+        {
+            lock (_lock)
+            {
+                foreach (T itm in collection)
+                {
+                    if (OnAddingAction != null)
+                        OnAddingAction(itm);
+                    this.Add(itm);
+                    if (OnAddedAction != null)
+                        OnAddedAction(itm);
+                }
+            }
+        }
+        public Action OnClearingAction { get; set; }
+        public Action OnClearedAction { get; set; }
+        public Action<T> OnRemovedAction { get; set; }
+        public Action<T> OnAddedAction { get; set; }
+        public Action<T> OnRemovingAction { get; set; }
+        public Action<T> OnAddingAction { get; set; }
+    }
+    public class SortedObservableCollection<T> : ObservableCollectionWithActions<T>, IMoveUpDown
       where T : ISortingValue //, IComparable<T> //IEquatable<T>
     {
         private object _lock = new object();
@@ -145,64 +219,29 @@ namespace ViewModelBase
                 item.SortingWeight = sortingWeight << (64 - VmBindable.MaxSortingWeightShift);
                 item.SortingValue = item._SortingNameValue + item.SortingWeight;
             }
-            lock (_lock)
-            {
-                if (OnAddingAction != null)
-                    OnAddingAction(item);
-                base.Add(item);
-                if (OnAddedAction != null)
-                    OnAddedAction(item);
-                InternalSort();
-            }
+            base.Add(item);
+            InternalSort();
         }
         public new bool Remove(T item)
         {
-            lock (_lock)
-            {
-                if (OnRemovingAction != null)
-                    OnRemovingAction(item);
-                var res = base.Remove(item);
-                if (OnRemovedAction != null)
-                    OnRemovedAction(item);
-                InternalSort();
-                return res;
-            }
+            var res = base.Remove(item);
+            InternalSort();
+            return res;
         }
         public new void RemoveAt(int indx)
         {
-            lock (_lock)
-            {
-                var item = this[indx];
-                if (OnRemovingAction != null)
-                    OnRemovingAction(item);
-                base.RemoveAt(indx);
-                if (OnRemovedAction != null)
-                    OnRemovedAction(item);
-                InternalSort();
-            }
+            base.RemoveAt(indx);
+            InternalSort();
         }
         public void AddRange(IEnumerable<T> collection, ulong sortingWeight = 0)
         {
-            lock (_lock)
+            foreach (T itm in collection)
             {
-                foreach (T itm in collection)
-                {
-                    if (OnAddingAction != null)
-                        OnAddingAction(itm);
-                    this.Add(itm, sortingWeight);
-                    if (OnAddedAction != null)
-                        OnAddedAction(itm);
-                }
-                InternalSort();
+                this.Add(itm, sortingWeight);
             }
+            InternalSort();
         }
-        public Action OnClearingAction;
-        public Action OnClearedAction;
-        public Action<T> OnRemovedAction { get; set; }
-        public Action<T> OnAddedAction;
-        public Action<T> OnRemovingAction { get; set; }
-        public Action<T> OnAddingAction;
-        public Action<int, int> OnSortMovedAction;
+        public Action<int, int> OnSortMovedAction { get; set; }
         #region Sort
         /// <summary>
         /// Sorts the items of the collection in descending order according to a key.
