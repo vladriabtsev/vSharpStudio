@@ -274,8 +274,9 @@ Application project generator
 | group_details | [proto_group_list_details](#proto_config.proto_group_list_details) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
-| list_guid_view_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
-| list_guid_view_folder_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
+| guid_narrow_list_form | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| guid_wide_list_form | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| guid_edit_form | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 

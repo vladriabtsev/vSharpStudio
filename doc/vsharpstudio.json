@@ -1436,9 +1436,9 @@
               "defaultValue": ""
             },
             {
-              "name": "list_guid_view_properties",
+              "name": "guid_narrow_list_form",
               "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
+              "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
@@ -1446,9 +1446,19 @@
               "defaultValue": ""
             },
             {
-              "name": "list_guid_view_folder_properties",
+              "name": "guid_wide_list_form",
               "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "guid_edit_form",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",

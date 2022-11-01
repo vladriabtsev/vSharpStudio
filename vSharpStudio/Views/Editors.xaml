@@ -31,6 +31,10 @@
                     <local:EditorCatalog />
                     <!--DataContext="{Binding Config.SelectedNode}"-->
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type bvm:Form}">
+                    <local:EditorForm />
+                    <!--DataContext="{Binding Config.SelectedNode}"-->
+                </DataTemplate>
                 <DataTemplate DataType="{x:Type bvm:GroupListPlugins}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="GroupListPlugins" />

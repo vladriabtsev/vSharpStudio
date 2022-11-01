@@ -25,10 +25,10 @@ namespace vSharpStudio.Views
             InitializeComponent();
         }
 
-        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            this.colFolder.DataContext = this.DataContext;
-            this.colItem.DataContext = this.DataContext;
-        }
+        //private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    this.colFolder.DataContext = this.DataContext;
+        //    this.colItem.DataContext = this.DataContext;
+        //}
     }
 }

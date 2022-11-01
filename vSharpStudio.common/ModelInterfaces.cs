@@ -754,8 +754,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
-    	IReadOnlyList<string> ListGuidViewFolderProperties { get; } // ModelInterfaces.tt Line: 42
+    	string GuidNarrowListForm { get; } // ModelInterfaces.tt Line: 51
+    	string GuidWideListForm { get; } // ModelInterfaces.tt Line: 51
+    	string GuidEditForm { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

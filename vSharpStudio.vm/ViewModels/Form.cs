@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using System.Windows.Documents;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -279,5 +280,150 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(() => this.PropertyDefinitions);
         }
         #endregion Visibility
+
+        #region Editor
+
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<IProperty> ListViewFolderNotSpecialProperties
+        {
+            get
+            {
+                listViewFolderNotSpecialProperties = new SortedObservableCollection<IProperty>();
+                if (this.ParentGroupListForms.Parent is Catalog c)
+                {
+                    if (c.UseTree && c.UseSeparateTreeForFolders)
+                    {
+                        foreach (var t in c.Folder.GroupProperties.ListProperties)
+                        {
+                            foreach (var tt in this.ListGuidViewProperties)
+                            {
+                                if (tt == t.Guid)
+                                {
+                                    listViewFolderNotSpecialProperties.Add(t);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                return listViewFolderNotSpecialProperties;
+            }
+        }
+        private SortedObservableCollection<IProperty> listViewFolderNotSpecialProperties;
+        [BrowsableAttribute(false)]
+        public ObservableCollection<IProperty> ListAllFolderNotSpecialProperties
+        {
+            get
+            {
+                listAllFolderNotSpecialProperties = new ObservableCollection<IProperty>();
+                if (this.ParentGroupListForms.Parent is Catalog c)
+                {
+                    if (c.UseTree && c.UseSeparateTreeForFolders)
+                    {
+                        var res = new List<IProperty>();
+                        c.GetSpecialProperties(res, true, false, false);
+                        foreach (var t in c.Folder.GroupProperties.ListProperties)
+                        {
+                            res.Add(t);
+                        }
+                        foreach (var t in res)
+                        {
+                            bool notFound = true;
+                            foreach (var tt in this.ListGuidViewFolderProperties)
+                            {
+                                if (tt == t.Guid)
+                                {
+                                    notFound = false;
+                                    break;
+                                }
+                            }
+                            if (notFound)
+                                listAllFolderNotSpecialProperties.Add(t);
+                        }
+                        listAllFolderNotSpecialProperties.CollectionChanged += ResFolder_CollectionChanged;
+                    }
+                }
+                return listAllFolderNotSpecialProperties;
+            }
+        }
+        private ObservableCollection<IProperty> listAllFolderNotSpecialProperties = null;
+        private void ResFolder_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.ListGuidViewFolderProperties.Clear();
+            foreach (var t in this.listViewFolderNotSpecialProperties)
+            {
+                this.ListGuidViewFolderProperties.Add(t.Guid);
+            }
+        }
+        [BrowsableAttribute(false)]
+        public ObservableCollection<IProperty> ListAllNotSpecialProperties
+        {
+            get
+            {
+                var listAllNotSpecialProperties = new ObservableCollection<IProperty>();
+                if (this.ParentGroupListForms.Parent is Catalog c)
+                {
+                    var res = new List<IProperty>();
+                    c.GetSpecialProperties(res, true, false, false);
+                    foreach (var t in c.GroupProperties.ListProperties)
+                    {
+                        res.Add(t);
+                    }
+                    foreach (var t in res)
+                    {
+                        bool notFound = true;
+                        foreach (var tt in this.ListGuidViewProperties)
+                        {
+                            if (tt == t.Guid)
+                            {
+                                notFound = false;
+                                break;
+                            }
+                        }
+                        if (notFound)
+                            listAllNotSpecialProperties.Add(t);
+                    }
+                }
+                return listAllNotSpecialProperties;
+            }
+        }
+        private ObservableCollection<IProperty> listAllNotSpecialProperties;
+        [BrowsableAttribute(false)]
+        public SortedObservableCollection<IProperty> ListViewNotSpecialProperties
+        {
+            get
+            {
+                listViewNotSpecialProperties = new SortedObservableCollection<IProperty>();
+                if (this.ParentGroupListForms.Parent is Catalog c)
+                {
+                    var lst = new List<IProperty>();
+                    foreach (var t in c.GroupProperties.ListProperties)
+                    {
+                        foreach (var tt in this.ListGuidViewProperties)
+                        {
+                            if (tt == t.Guid)
+                            {
+                                lst.Add(t);
+                                break;
+                            }
+                        }
+                    }
+                    listViewNotSpecialProperties.AddRange(lst);
+                    listViewNotSpecialProperties.CollectionChanged += Res_CollectionChanged;
+                }
+                return listViewNotSpecialProperties;
+            }
+        }
+        private SortedObservableCollection<IProperty> listViewNotSpecialProperties;
+        private void Res_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.ListGuidViewProperties.Clear();
+            foreach (var t in this.listViewNotSpecialProperties)
+            {
+                this.ListGuidViewProperties.Add(t.Guid);
+            }
+        }
+
+        #endregion Editor
     }
 }

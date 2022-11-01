@@ -17722,10 +17722,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
-            foreach (var t in from.ListGuidViewProperties) // Clone.tt Line: 44
-                vm.ListGuidViewProperties.Add(t);
-            foreach (var t in from.ListGuidViewFolderProperties) // Clone.tt Line: 44
-                vm.ListGuidViewFolderProperties.Add(t);
+            vm.GuidNarrowListForm = from.GuidNarrowListForm; // Clone.tt Line: 65
+            vm.GuidWideListForm = from.GuidWideListForm; // Clone.tt Line: 65
+            vm.GuidEditForm = from.GuidEditForm; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -17784,16 +17783,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
-                to.ListGuidViewProperties.Clear(); // Clone.tt Line: 127
-                foreach (var tt in from.ListGuidViewProperties)
-                {
-                    to.ListGuidViewProperties.Add(tt);
-                }
-                to.ListGuidViewFolderProperties.Clear(); // Clone.tt Line: 127
-                foreach (var tt in from.ListGuidViewFolderProperties)
-                {
-                    to.ListGuidViewFolderProperties.Add(tt);
-                }
+            to.GuidNarrowListForm = from.GuidNarrowListForm; // Clone.tt Line: 141
+            to.GuidWideListForm = from.GuidWideListForm; // Clone.tt Line: 141
+            to.GuidEditForm = from.GuidEditForm; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -17909,16 +17901,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupReports == null) // Clone.tt Line: 213
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
-            vm.ListGuidViewProperties = new ObservableCollectionWithActions<string>(); // Clone.tt Line: 184
-            foreach (var t in m.ListGuidViewProperties) // Clone.tt Line: 185
-            {
-                vm.ListGuidViewProperties.Add(t);
-            }
-            vm.ListGuidViewFolderProperties = new ObservableCollectionWithActions<string>(); // Clone.tt Line: 184
-            foreach (var t in m.ListGuidViewFolderProperties) // Clone.tt Line: 185
-            {
-                vm.ListGuidViewFolderProperties.Add(t);
-            }
+            vm.GuidNarrowListForm = m.GuidNarrowListForm; // Clone.tt Line: 221
+            vm.GuidWideListForm = m.GuidWideListForm; // Clone.tt Line: 221
+            vm.GuidEditForm = m.GuidEditForm; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -17976,10 +17961,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
-            foreach (var t in vm.ListGuidViewProperties) // Clone.tt Line: 242
-                m.ListGuidViewProperties.Add(t); // Clone.tt Line: 244
-            foreach (var t in vm.ListGuidViewFolderProperties) // Clone.tt Line: 242
-                m.ListGuidViewFolderProperties.Add(t); // Clone.tt Line: 244
+            m.GuidNarrowListForm = vm.GuidNarrowListForm; // Clone.tt Line: 276
+            m.GuidWideListForm = vm.GuidWideListForm; // Clone.tt Line: 276
+            m.GuidEditForm = vm.GuidEditForm; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -18882,46 +18866,67 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         //IGroupListReports ICatalog.GroupReports { get { return this._GroupReports; } }
         
         [BrowsableAttribute(false)]
-        public ObservableCollectionWithActions<string> ListGuidViewProperties // Property.tt Line: 8
+        public string GuidNarrowListForm // Property.tt Line: 55
         { 
-            get { return this._ListGuidViewProperties; }
+            get { return this._GuidNarrowListForm; }
             set
             {
-                if (this._ListGuidViewProperties != value)
+                if (this._GuidNarrowListForm != value)
                 {
-                    this.OnListGuidViewPropertiesChanging(value);
-                    _ListGuidViewProperties = value;
-                    this.OnListGuidViewPropertiesChanged();
+                    this.OnGuidNarrowListFormChanging(ref value);
+                    this._GuidNarrowListForm = value;
+                    this.OnGuidNarrowListFormChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
-        private ObservableCollectionWithActions<string> _ListGuidViewProperties;
-        IReadOnlyList<string> ICatalog.ListGuidViewProperties { get { return (this as Catalog).ListGuidViewProperties; } } // Property.tt Line: 26
-        partial void OnListGuidViewPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
-        partial void OnListGuidViewPropertiesChanged();
+        private string _GuidNarrowListForm = string.Empty;
+        partial void OnGuidNarrowListFormChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidNarrowListFormChanged();
         
         [BrowsableAttribute(false)]
-        public ObservableCollectionWithActions<string> ListGuidViewFolderProperties // Property.tt Line: 8
+        public string GuidWideListForm // Property.tt Line: 55
         { 
-            get { return this._ListGuidViewFolderProperties; }
+            get { return this._GuidWideListForm; }
             set
             {
-                if (this._ListGuidViewFolderProperties != value)
+                if (this._GuidWideListForm != value)
                 {
-                    this.OnListGuidViewFolderPropertiesChanging(value);
-                    _ListGuidViewFolderProperties = value;
-                    this.OnListGuidViewFolderPropertiesChanged();
+                    this.OnGuidWideListFormChanging(ref value);
+                    this._GuidWideListForm = value;
+                    this.OnGuidWideListFormChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
+                    this.IsChanged = true;
                 }
             }
         }
-        private ObservableCollectionWithActions<string> _ListGuidViewFolderProperties;
-        IReadOnlyList<string> ICatalog.ListGuidViewFolderProperties { get { return (this as Catalog).ListGuidViewFolderProperties; } } // Property.tt Line: 26
-        partial void OnListGuidViewFolderPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
-        partial void OnListGuidViewFolderPropertiesChanged();
+        private string _GuidWideListForm = string.Empty;
+        partial void OnGuidWideListFormChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidWideListFormChanged();
+        
+        [BrowsableAttribute(false)]
+        public string GuidEditForm // Property.tt Line: 55
+        { 
+            get { return this._GuidEditForm; }
+            set
+            {
+                if (this._GuidEditForm != value)
+                {
+                    this.OnGuidEditFormChanging(ref value);
+                    this._GuidEditForm = value;
+                    this.OnGuidEditFormChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _GuidEditForm = string.Empty;
+        partial void OnGuidEditFormChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidEditFormChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
