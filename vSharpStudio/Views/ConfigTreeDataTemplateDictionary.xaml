@@ -43,8 +43,11 @@
                 <!--AddAttachment, AddControl, AddField, AddLayoutItem, AssociationLine, CollapsiblePanel, CSTablet
                 DependencyMatrix, DetailDataView, DisassemblyWindow, Dock, DockPanel, DropdownControl, Export,
                 GoToCurrentLineLocation, GoToNextInList, InsertLayer, Link, MenuItem, NewTable, PreviewTab, Tab, TabPage, Table, TreeView, WorkItemTreeView-->
-                <Viewbox Height="7" Width="7" VerticalAlignment="Top" Visibility="{Binding IsNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
+                <Viewbox Height="7" Width="7" VerticalAlignment="Top" Visibility="{Binding IsHasNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
                     <ContentControl Template="{StaticResource iconAdd}" />
+                </Viewbox>
+                <Viewbox Height="8" Width="8" VerticalAlignment="Top" Visibility="{Binding IsNew, Converter={StaticResource ConverterBoolToVisible}, Mode=OneWay}">
+                    <ContentControl Template="{StaticResource iconStatusNew}" />
                 </Viewbox>
             </StackPanel>
             <StackPanel VerticalAlignment="Center">
