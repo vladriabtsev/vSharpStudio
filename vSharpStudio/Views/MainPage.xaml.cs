@@ -36,11 +36,7 @@ namespace vSharpStudio.Views
             {
                 return;
             }
-#if DEBUG
             this._model = new MainPageVM(true);
-#else
-            this._model = new MainPageVM();
-#endif
             MainPage.MainPageVM = this._model;
         }
 

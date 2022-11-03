@@ -42,6 +42,9 @@
             switch (e.PropertyName)
             {
                 case "IsNew":
+                    this.NotifyPropertyChanged(() => this.NodeNameDecorations);
+                    this.NotifyPropertyChanged(() => this.IsNewOrHasNew);
+                    break;
                 case "IsMarkedForDeletion":
                     this.NotifyPropertyChanged(() => this.NodeNameDecorations);
                     break;
@@ -907,6 +910,11 @@
         }
 
         [BrowsableAttribute(false)]
+        public bool IsNewOrHasNew
+        {
+            get { return this._IsHasNew || (this is IEditableNode d && d.IsNew); }
+        }
+        [BrowsableAttribute(false)]
         public bool IsHasNew
         {
             get { return this._IsHasNew; }
@@ -918,6 +926,7 @@
                     this._IsHasNew = value;
                     this.OnIsHasNewChanged();
                     this.NotifyPropertyChanged();
+                    this.NotifyPropertyChanged(() => this.IsNewOrHasNew);
                     this.ValidateProperty();
                 }
             }

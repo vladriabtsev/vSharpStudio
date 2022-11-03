@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("GroupConstants:{Name,nq} Count:{ListConstants.Count,nq}")]
-    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
+    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IEditableNode
     {
         [BrowsableAttribute(false)]
         public GroupConstantGroups ParentGroupConstantGroups { get { return (GroupConstantGroups)this.Parent; } }
@@ -84,6 +84,10 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         #region Tree operations
+        public void Remove()
+        {
+            this.ParentGroupConstantGroups.ListConstantGroups.Remove(this);
+        }
         public override bool NodeCanUp()
         {
             if (this.NodeCanAddClone())

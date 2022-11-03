@@ -32,6 +32,8 @@ namespace vSharpStudio.common
     public interface IEditableNodeGroup
     {
         bool IsHasChanged { get; set; }
+        //bool IsNew { get; set; }
+        bool IsNewOrHasNew { get; }
         bool IsHasNew { get; set; }
         bool IsHasMarkedForDeletion { get; set; }
     }
