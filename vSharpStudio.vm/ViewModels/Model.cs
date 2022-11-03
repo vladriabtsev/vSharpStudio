@@ -43,17 +43,17 @@ namespace vSharpStudio.vm.ViewModels
         {
             return this.Children.Count > 0;
         }
+        [Browsable(false)]
+        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         #endregion ITree
 
-        // public static readonly string DefaultName = "Config";
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         protected IMigration _migration { get; set; }
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
         //protected override string GetNodeIconName() { return "icon3DScene"; }
         partial void OnCreated()
         {
-            this._Name = "Model";
+            this._Name = Defaults.ModelName;
             this.Children = new ObservableCollection<ITreeConfigNode>();
             this.GroupConstantGroups.Parent = this;
             this.GroupEnumerations.Parent = this;

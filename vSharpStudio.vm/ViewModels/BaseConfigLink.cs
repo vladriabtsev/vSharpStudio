@@ -17,7 +17,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListBaseConfigLinks ParentGroupListBaseConfigLinks { get { return (GroupListBaseConfigLinks)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupListBaseConfigLinks ParentGroupListBaseConfigLinksI { get { return (IGroupListBaseConfigLinks)this.Parent; } }
-        public static readonly string DefaultName = "BaseConfig";
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()

@@ -17,7 +17,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListDocuments ParentGroupListDocuments { get { return (GroupListDocuments)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupListDocuments ParentGroupListDocumentsI { get { return (IGroupListDocuments)this.Parent; } }
-        public static readonly string DefaultName = "Document";
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -153,7 +152,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Document(this.Parent);
             this.ParentGroupListDocuments.Add(node);
-            this.GetUniqueName(Document.DefaultName, node, this.ParentGroupListDocuments.ListDocuments);
+            this.GetUniqueName(Defaults.DocumentName, node, this.ParentGroupListDocuments.ListDocuments);
             this.SetSelected(node);
             return node;
         }

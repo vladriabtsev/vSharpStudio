@@ -14,11 +14,11 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("ConstantGroups:{Name,nq} Count:{ListConstantGroups.Count,nq}")]
     public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Model ParentModel { get { return (Model)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IModel ParentModelI { get { return (IModel)this.Parent; } }
-        public static readonly string DefaultName = "Settings";
+
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
@@ -32,6 +32,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             return this.Children.Count > 0;
         }
+        [Browsable(false)]
+        public ObservableCollectionWithActions<GroupListConstants> Children { get { return this.ListConstantGroups; } }
+        #endregion ITree
+
+        #region Tree operations
         public bool CanAddSubNode() { return true; }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
         {
@@ -39,34 +44,27 @@ namespace vSharpStudio.vm.ViewModels
             if (node_impl == null)
             {
                 node = new GroupListConstants(this);
+                this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ListConstantGroups);
             }
             else
             {
                 node = (GroupListConstants)node_impl;
             }
-
             this.ListConstantGroups.Add(node);
-            if (node_impl == null)
-            {
-                this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ListConstantGroups);
-            }
             var cfg = (Config)this.GetConfig();
             node.ShortId = cfg.Model.LastConstantGroupShortId + 1;
             cfg.Model.LastConstantGroupShortId = node.ShortId;
             this.SetSelected(node);
             return node;
         }
-        #endregion ITree
+        #endregion Tree operations
 
-        [BrowsableAttribute(false)]
-        public ObservableCollectionWithActions<GroupListConstants> Children { get { return this.ListConstantGroups; } }
-
-        [Browsable(false)]
-        new public string IconName { get { return "iconFolder"; } }
+        //[Browsable(false)]
+        //new public string IconName { get { return "iconFolder"; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
-            this._Name = GroupConstantGroups.DefaultName;
+            this._Name = Defaults.GroupConstantGroupsName;
             this.PrefixForDbTables = "Cnst";
             this.IsEditable = true;
 
@@ -125,6 +123,7 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListConstants AddGroupConstants(string name)
         {
             var node = new GroupListConstants(this) { Name = name };
+            this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ListConstantGroups);
             this.NodeAddNewSubNode(node);
             return node;
         }

@@ -18,7 +18,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListDetails ParentGroupListDetails { get { return (GroupListDetails)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupListDetails ParentGroupListDetailsI { get { return (IGroupListDetails)this.Parent; } }
-        public static readonly string DefaultName = "Detail";
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -161,7 +160,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentGroupListDetails.Add(node);
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             node.Position = glp.GroupProperties.GetNextPosition();
-            this.GetUniqueName(Detail.DefaultName, node, this.ParentGroupListDetails.ListDetails);
+            this.GetUniqueName(Defaults.DetailName, node, this.ParentGroupListDetails.ListDetails);
             this.SetSelected(node);
             return node;
         }

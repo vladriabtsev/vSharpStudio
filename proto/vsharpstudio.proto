@@ -1838,11 +1838,11 @@ message proto_catalog {
     //repeated string list_guid_view_folder_properties = 92;
 
     // @attr [BrowsableAttribute(false)]
-    string guid_narrow_list_form = 91;
+    //string guid_narrow_list_form = 91;
     // @attr [BrowsableAttribute(false)]
-    string guid_wide_list_form = 92;
+    //string guid_wide_list_form = 92;
     // @attr [BrowsableAttribute(false)]
-    string guid_edit_form = 93;
+    //string guid_edit_form = 93;
 
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2331,6 +2331,9 @@ message proto_form_grid_system {
     string description = 4;
 
     // @attr [BrowsableAttribute(false)]
+    uint64 sorting_value = 6;
+
+    // @attr [BrowsableAttribute(false)]
     bool is_new = 11;
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 12;
@@ -2533,10 +2536,11 @@ message proto_form_auto_layout_sub_block {
 
     oneof result {
         proto_form_tab_control tab_control = 21;
-        proto_form_data_grid data_grid = 22;
-        proto_form_auto_layout_block auto_layout_block = 23;
-        proto_form_field field = 24;
-        proto_form_grid_system grid_system = 25;
+        proto_form_data_grid data_grid_control = 22;
+        proto_form_auto_layout_block auto_layout_block_control = 23;
+        proto_form_field field_control = 24;
+        proto_form_grid_system grid_system_control = 25;
+        proto_form_tree tree_control = 26;
     }
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2612,6 +2616,7 @@ message proto_form_tab_control_tab {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // Children are collection of Tab Control Tabs
+// @interface ISortingValue
 message proto_form_tab_control {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2647,7 +2652,42 @@ message proto_form_tab_control {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // No Children
+// @interface ISortingValue
 message proto_form_data_grid {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("Name")]
+    // @attr [Description("Tab control name")]
+    string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("UI name")]
+    string name_ui = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Desc")]
+    // @attr [Description("Tab control description")]
+    string description = 4;
+
+    // @attr [BrowsableAttribute(false)]
+    uint64 sorting_value = 10;
+    // @attr [BrowsableAttribute(false)]
+    bool is_new = 11;
+    // @attr [BrowsableAttribute(false)]
+    bool is_marked_for_deletion = 12;
+
+    // @attr [BrowsableAttribute(false)]
+    repeated string list_guid_properties = 32;
+    // @attr [BrowsableAttribute(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+// No Children
+// @interface ISortingValue
+message proto_form_tree {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]

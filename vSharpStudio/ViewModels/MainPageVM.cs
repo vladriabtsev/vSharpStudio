@@ -505,7 +505,7 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._CommandNewConfig ?? (this._CommandNewConfig = vCommand.Create(
-                    (o) => { this.NewConfig(); },
+                    (o) => { this.NewConfig(); this.SaveAs((string)o); },
                     (o) => { return !string.IsNullOrEmpty(Config.CurrentCfgFolderPath); }));
             }
         }

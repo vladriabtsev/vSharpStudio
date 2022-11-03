@@ -31,6 +31,7 @@
     - [proto_form_grid_system_row](#proto_config.proto_form_grid_system_row)
     - [proto_form_tab_control](#proto_config.proto_form_tab_control)
     - [proto_form_tab_control_tab](#proto_config.proto_form_tab_control_tab)
+    - [proto_form_tree](#proto_config.proto_form_tree)
     - [proto_group_constant_groups](#proto_config.proto_group_constant_groups)
     - [proto_group_documents](#proto_config.proto_group_documents)
     - [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions)
@@ -274,9 +275,6 @@ Application project generator
 | group_details | [proto_group_list_details](#proto_config.proto_group_list_details) |  | @attr [BrowsableAttribute(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [BrowsableAttribute(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [BrowsableAttribute(false)] |
-| guid_narrow_list_form | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| guid_wide_list_form | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-| guid_edit_form | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -677,10 +675,11 @@ https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | tab_control | [proto_form_tab_control](#proto_config.proto_form_tab_control) |  |  |
-| data_grid | [proto_form_data_grid](#proto_config.proto_form_data_grid) |  |  |
-| auto_layout_block | [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block) |  |  |
-| field | [proto_form_field](#proto_config.proto_form_field) |  |  |
-| grid_system | [proto_form_grid_system](#proto_config.proto_form_grid_system) |  |  |
+| data_grid_control | [proto_form_data_grid](#proto_config.proto_form_data_grid) |  |  |
+| auto_layout_block_control | [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block) |  |  |
+| field_control | [proto_form_field](#proto_config.proto_form_field) |  |  |
+| grid_system_control | [proto_form_grid_system](#proto_config.proto_form_grid_system) |  |  |
+| tree_control | [proto_form_tree](#proto_config.proto_form_tree) |  |  |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
@@ -692,6 +691,7 @@ https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
 
 ### proto_form_data_grid
 No Children
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -745,6 +745,7 @@ Children are collection of Grid System Rows
 | name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_rows | [proto_form_grid_system_row](#proto_config.proto_form_grid_system_row) | repeated | @attr [BrowsableAttribute(false)] |
@@ -815,6 +816,7 @@ Children are collection of Grid System Columns
 
 ### proto_form_tab_control
 Children are collection of Tab Control Tabs
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -853,6 +855,30 @@ Children are collection of Auto Layout Block children
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | form_block | [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block) |  | @attr [BrowsableAttribute(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_form_tree"></a>
+
+### proto_form_tree
+No Children
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Name&#34;)] @attr [Description(&#34;Tab control name&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;UI name&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Desc&#34;)] @attr [Description(&#34;Tab control description&#34;)] |
+| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
+| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| list_guid_properties | [string](#string) | repeated | @attr [BrowsableAttribute(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 

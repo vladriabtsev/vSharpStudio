@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace vSharpStudio.Views
 {
     /// <summary>
-    /// Interaction logic for EditorForm.xaml
+    /// Interaction logic for PropertiesViewSelection.xaml
     /// </summary>
-    public partial class EditorForm : UserControl
+    public partial class PropertiesViewSelection : UserControl
     {
-        public EditorForm()
+        public PropertiesViewSelection()
         {
             InitializeComponent();
-        }
-        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            //this.colFolder.DataContext = this.DataContext;
-            //this.colItem.DataContext = this.DataContext;
         }
     }
 }

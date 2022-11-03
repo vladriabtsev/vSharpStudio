@@ -47,7 +47,6 @@ namespace vSharpStudio.vm.ViewModels
         public DictionaryExt<string, IvPluginGenerator> _DicActiveAppProjectGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
                         (ki, v) => { }, (kr, v) => { }, () => { });
         public IReadOnlyDictionary<string, IvPluginGenerator> DicActiveAppProjectGenerators { get { return _DicActiveAppProjectGenerators; } }
-        // public static readonly string DefaultName = "Config";
         public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         protected IMigration _migration { get; set; }
         public string ConnectionString { get; set; }

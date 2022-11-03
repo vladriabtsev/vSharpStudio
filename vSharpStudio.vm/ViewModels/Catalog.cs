@@ -22,7 +22,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListCatalogs ParentGroupListCatalogs { get { return (GroupListCatalogs)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupListCatalogs ParentGroupListCatalogsI { get { return (IGroupListCatalogs)this.Parent; } }
-        public static readonly string DefaultName = "Catalog";
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -238,7 +237,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Catalog(this.Parent);
             this.ParentGroupListCatalogs.Add(node);
-            this.GetUniqueName(Catalog.DefaultName, node, this.ParentGroupListCatalogs.ListCatalogs);
+            this.GetUniqueName(Defaults.CatalogName, node, this.ParentGroupListCatalogs.ListCatalogs);
             this.SetSelected(node);
             return node;
         }

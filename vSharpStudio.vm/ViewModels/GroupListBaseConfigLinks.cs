@@ -103,7 +103,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(BaseConfigLink.DefaultName, node, this.ListBaseConfigLinks);
+                this.GetUniqueName(Defaults.BaseConfigName, node, this.ListBaseConfigLinks);
             }
 
             this.SetSelected(node);

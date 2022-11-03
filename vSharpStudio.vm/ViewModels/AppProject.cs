@@ -21,7 +21,6 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("AppProject:{Name,nq} RelPath:{RelativeAppProjectPath,nq}")]
     public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
-        public static readonly string DefaultName = "Project";
         [BrowsableAttribute(false)]
         public AppSolution ParentAppSolution { get { return (AppSolution)this.Parent; } }
         [BrowsableAttribute(false)]
@@ -250,7 +249,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new AppProject(this.Parent);
             this.ParentAppSolution.ListAppProjects.Add(node);
-            this.GetUniqueName(AppProject.DefaultName, node, this.ParentAppSolution.ListAppProjects);
+            this.GetUniqueName(Defaults.AppProjectName, node, this.ParentAppSolution.ListAppProjects);
             this.SetSelected(node);
             return node;
         }
@@ -270,7 +269,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListAppProjectGenerators.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(AppProjectGenerator.DefaultName, node, this.ListAppProjectGenerators);
+                this.GetUniqueName(Defaults.AppPrjGeneratorName, node, this.ListAppProjectGenerators);
             }
 
             this.SetSelected(node);

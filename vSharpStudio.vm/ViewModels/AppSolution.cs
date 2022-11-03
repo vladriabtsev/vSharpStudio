@@ -19,7 +19,6 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("AppSolution:{Name,nq} prj:{ListAppProjects.Count,nq}")]
     public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
-        public static readonly string DefaultName = "Solution";
         [BrowsableAttribute(false)]
         public GroupListAppSolutions ParentGroupListAppSolutions { get { return (GroupListAppSolutions)this.Parent; } }
         [BrowsableAttribute(false)]
@@ -307,7 +306,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new AppSolution(this.Parent);
             this.ParentGroupListAppSolutions.Add(node);
-            this.GetUniqueName(AppSolution.DefaultName, node, this.ParentGroupListAppSolutions.ListAppSolutions);
+            this.GetUniqueName(Defaults.AppSolutionName, node, this.ParentGroupListAppSolutions.ListAppSolutions);
             this.SetSelected(node);
             return node;
         }
@@ -328,7 +327,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListAppProjects.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(AppProject.DefaultName, node, this.ListAppProjects);
+                this.GetUniqueName(Defaults.AppProjectName, node, this.ListAppProjects);
             }
 
             this.SetSelected(node);

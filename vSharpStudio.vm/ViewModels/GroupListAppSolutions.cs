@@ -116,7 +116,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(AppSolution.DefaultName, node, this.ListAppSolutions);
+                this.GetUniqueName(Defaults.AppSolutionName, node, this.ListAppSolutions);
             }
 
             this.SetSelected(node);

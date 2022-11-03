@@ -13,12 +13,12 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class FormGridSystemColumn : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
+    public partial class FormTree : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public FormGridSystemRow ParentFormGridSystemRow { get { return (FormGridSystemRow)this.Parent; } }
+        public FormAutoLayoutBlock ParentFormAutoLayoutBlock { get { return (FormAutoLayoutBlock)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IFormGridSystemRow ParentFormGridSystemRowI { get { return (IFormGridSystemRow)this.Parent; } }
+        public IFormAutoLayoutBlock ParentFormAutoLayoutBlockI { get { return (IFormAutoLayoutBlock)this.Parent; } }
 
         #region ITree
 
@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNodeSortable> GetListSiblings()
         {
-            return this.ParentFormGridSystemRow.Children;
+            return this.ParentFormAutoLayoutBlock.Children;
         }
         public override bool HasChildren()
         {
@@ -44,8 +44,8 @@ namespace vSharpStudio.vm.ViewModels
         new public string IconName { get { return "iconFolder"; } }
         partial void OnCreated()
         {
-            this._Name = "Column";
-            this._Description = "Grid System Column";
+            this._Name = "TreeView";
+            this._Description = "Tree View";
             this.IsIncludableInModels = true;
 
             this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
@@ -70,11 +70,27 @@ namespace vSharpStudio.vm.ViewModels
             this.AddAllAppGenSettingsVmsToNode();
         }
 
-        public FormGridSystemColumn(ITreeConfigNode parent, string name)
-            : this(parent)
-        {
-            this.Name = name;
-        }
+        //public FormGridSystemColumn(ITreeConfigNode parent, string name)
+        //    : this(parent)
+        //{
+        //    this.Name = name;
+        //}
+
+        //public FormGridSystemColumn(ITreeConfigNode parent, string name, List<FormGridSystemColumn> listColumns)
+        //    : this(parent)
+        //{
+        //    Debug.Assert(listColumns != null);
+        //    this.Name = name;
+        //    this.lis.ListColumns.AddRange(listColumns);
+        //}
+        //public FormGridSystemColumn AddGridColumn(string name)
+        //{
+        //    var node = new FormGridSystemColumn(this) { Name = name };
+        //    this.ListColumns.Add(node);
+        //    return node;
+        //}
+
+
         [ExpandableObjectAttribute()]
         public dynamic Setting { get; set; }
 
@@ -84,12 +100,6 @@ namespace vSharpStudio.vm.ViewModels
             //lst.Add(this.GetPropertyName(() => this.Parent));
             //lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
-        }
-        public IFormAutoLayoutBlock AddAutoLayoutBlock(string name = "")
-        {
-            var node = new FormAutoLayoutBlock(this) { Name = name };
-            this.FormBlock = node;
-            return node;
         }
     }
 }

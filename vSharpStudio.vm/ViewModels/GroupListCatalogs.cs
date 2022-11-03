@@ -19,6 +19,7 @@ namespace vSharpStudio.vm.ViewModels
         public Model ParentModel { get { return (Model)this.Parent; } }
         [BrowsableAttribute(false)]
         public IModel ParentModelI { get { return (IModel)this.Parent; } }
+
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
@@ -33,6 +34,33 @@ namespace vSharpStudio.vm.ViewModels
             return this.Children.Count > 0;
         }
         #endregion ITree
+
+        #region Tree operations
+        public bool CanAddSubNode() { return true; }
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        {
+            Catalog node = null;
+            if (node_impl == null)
+            {
+                node = new Catalog(this);
+            }
+            else
+            {
+                node = (Catalog)node_impl;
+            }
+
+            this.Add(node);
+            if (node_impl == null)
+            {
+                this.GetUniqueName(Defaults.CatalogName, node, this.ListCatalogs);
+            }
+            var cfg = (Config)this.GetConfig();
+            node.ShortId = cfg.Model.LastCatalogShortId + 1;
+            cfg.Model.LastCatalogShortId = node.ShortId;
+            this.SetSelected(node);
+            return node;
+        }
+        #endregion Tree operations
 
         public ConfigNodesCollection<Catalog> Children { get { return this.ListCatalogs; } }
 
@@ -82,46 +110,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             return this.ListCatalogs.IndexOf(cat as Catalog);
         }
-        #region Tree operations
-        public bool CanAddSubNode() { return true; }
-        public Catalog AddCatalog()
-        {
-            var node = new Catalog(this);
-            this.NodeAddNewSubNode(node);
-            return node;
-        }
-
-        public Catalog AddCatalog(string name)
-        {
-            var node = new Catalog(this) { Name = name };
-            this.NodeAddNewSubNode(node);
-            return node;
-        }
-
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
-        {
-            Catalog node = null;
-            if (node_impl == null)
-            {
-                node = new Catalog(this);
-            }
-            else
-            {
-                node = (Catalog)node_impl;
-            }
-
-            this.Add(node);
-            if (node_impl == null)
-            {
-                this.GetUniqueName(Catalog.DefaultName, node, this.ListCatalogs);
-            }
-            var cfg = (Config)this.GetConfig();
-            node.ShortId = cfg.Model.LastCatalogShortId + 1;
-            cfg.Model.LastCatalogShortId = node.ShortId;
-            this.SetSelected(node);
-            return node;
-        }
-        #endregion Tree operations
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
@@ -192,5 +180,18 @@ namespace vSharpStudio.vm.ViewModels
         //{
         //    this.NotifyPropertyChanged(() => this.PropertyDefinitions);
         //}
+        public Catalog AddCatalog()
+        {
+            var node = new Catalog(this);
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Catalog AddCatalog(string name)
+        {
+            var node = new Catalog(this) { Name = name };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+
     }
 }

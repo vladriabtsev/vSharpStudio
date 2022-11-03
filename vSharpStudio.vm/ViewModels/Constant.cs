@@ -14,13 +14,13 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq}")]
     public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListConstants ParentGroupListConstants { get { return (GroupListConstants)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IGroupListConstants ParentGroupListConstantsI { get { return (IGroupListConstants)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsPKey => false;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsRefParent => false;
 
         [Browsable(false)]
@@ -45,7 +45,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public static readonly string DefaultName = "Constant";
         [Browsable(false)]
         new public string IconName { get { return "iconConstant"; } }
         //protected override string GetNodeIconName() { return "iconConstant"; }
@@ -184,7 +183,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Constant(this.Parent);
             this.ParentGroupListConstants.Add(node);
-            this.GetUniqueName(Constant.DefaultName, node, this.ParentGroupListConstants.ListConstants);
+            this.GetUniqueName(Defaults.ConstantName, node, this.ParentGroupListConstants.ListConstants);
             this.SetSelected(node);
             return node;
         }

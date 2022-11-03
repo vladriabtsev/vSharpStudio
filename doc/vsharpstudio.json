@@ -1436,36 +1436,6 @@
               "defaultValue": ""
             },
             {
-              "name": "guid_narrow_list_form",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "guid_wide_list_form",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "guid_edit_form",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -3560,7 +3530,7 @@
               "defaultValue": ""
             },
             {
-              "name": "data_grid",
+              "name": "data_grid_control",
               "description": "",
               "label": "",
               "type": "proto_form_data_grid",
@@ -3570,7 +3540,7 @@
               "defaultValue": ""
             },
             {
-              "name": "auto_layout_block",
+              "name": "auto_layout_block_control",
               "description": "",
               "label": "",
               "type": "proto_form_auto_layout_block",
@@ -3580,7 +3550,7 @@
               "defaultValue": ""
             },
             {
-              "name": "field",
+              "name": "field_control",
               "description": "",
               "label": "",
               "type": "proto_form_field",
@@ -3590,12 +3560,22 @@
               "defaultValue": ""
             },
             {
-              "name": "grid_system",
+              "name": "grid_system_control",
               "description": "",
               "label": "",
               "type": "proto_form_grid_system",
               "longType": "proto_form_grid_system",
               "fullType": "proto_config.proto_form_grid_system",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "tree_control",
+              "description": "",
+              "label": "",
+              "type": "proto_form_tree",
+              "longType": "proto_form_tree",
+              "fullType": "proto_config.proto_form_tree",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3615,7 +3595,7 @@
           "name": "proto_form_data_grid",
           "longName": "proto_form_data_grid",
           "fullName": "proto_config.proto_form_data_grid",
-          "description": "No Children",
+          "description": "No Children\n@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -3849,6 +3829,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4180,7 +4170,7 @@
           "name": "proto_form_tab_control",
           "longName": "proto_form_tab_control",
           "fullName": "proto_config.proto_form_tab_control",
-          "description": "Children are collection of Tab Control Tabs",
+          "description": "Children are collection of Tab Control Tabs\n@interface ISortingValue",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -4383,6 +4373,107 @@
               "type": "proto_form_auto_layout_block",
               "longType": "proto_form_auto_layout_block",
               "fullType": "proto_config.proto_form_auto_layout_block",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_form_tree",
+          "longName": "proto_form_tree",
+          "fullName": "proto_config.proto_form_tree",
+          "description": "No Children\n@interface ISortingValue",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Desc\")]\n@attr [Description(\"Tab control description\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_guid_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },

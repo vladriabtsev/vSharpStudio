@@ -19,7 +19,6 @@ namespace vSharpStudio.vm.ViewModels
         public FormTabControl? ParentFormTabControl { get { return this.Parent as FormTabControl; } }
         [BrowsableAttribute(false)]
         public IFormTabControl? ParentFormTabControlI { get { return this.Parent as IFormTabControl; } }
-        public static readonly string DefaultName = "Tab Control Tab";
 
         #region ITree
 

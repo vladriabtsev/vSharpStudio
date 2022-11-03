@@ -95,7 +95,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Enumeration.DefaultName, node, this.ListEnumerations);
+                this.GetUniqueName(Defaults.EnumerationName, node, this.ListEnumerations);
             }
 
             this.SetSelected(node);

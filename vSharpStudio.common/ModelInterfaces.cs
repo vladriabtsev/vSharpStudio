@@ -754,9 +754,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
-    	string GuidNarrowListForm { get; } // ModelInterfaces.tt Line: 51
-    	string GuidWideListForm { get; } // ModelInterfaces.tt Line: 51
-    	string GuidEditForm { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -1007,10 +1004,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IFormTabControl TabControl { get; } // ModelInterfaces.tt Line: 55
-    	IFormDataGrid DataGrid { get; } // ModelInterfaces.tt Line: 55
-    	IFormAutoLayoutBlock AutoLayoutBlock { get; } // ModelInterfaces.tt Line: 55
-    	IFormField Field { get; } // ModelInterfaces.tt Line: 55
-    	IFormGridSystem GridSystem { get; } // ModelInterfaces.tt Line: 55
+    	IFormDataGrid DataGridControl { get; } // ModelInterfaces.tt Line: 55
+    	IFormAutoLayoutBlock AutoLayoutBlockControl { get; } // ModelInterfaces.tt Line: 55
+    	IFormField FieldControl { get; } // ModelInterfaces.tt Line: 55
+    	IFormGridSystem GridSystemControl { get; } // ModelInterfaces.tt Line: 55
+    	IFormTree TreeControl { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -1061,6 +1059,21 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     ///////////////////////////////////////////////////
     
     public partial interface IFormDataGrid : IGuid, IName // ModelInterfaces.tt Line: 29
+    {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
+    	string NameUi { get; } // ModelInterfaces.tt Line: 51
+    	string Description { get; } // ModelInterfaces.tt Line: 51
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 42
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+    }
+    
+    ///////////////////////////////////////////////////
+    /// No Children
+    ///////////////////////////////////////////////////
+    
+    public partial interface IFormTree : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
     	string NameUi { get; } // ModelInterfaces.tt Line: 51

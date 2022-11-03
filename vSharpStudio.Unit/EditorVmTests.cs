@@ -221,9 +221,9 @@ namespace vSharpStudio.Unit
             var cfg = new Config();
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
-            Assert.AreEqual(Constant.DefaultName + "1", cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
+            Assert.AreEqual(Defaults.ConstantName + "1", cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name);
             cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].NodeAddNew();
-            Assert.AreEqual(Constant.DefaultName + "2", cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].Name);
+            Assert.AreEqual(Defaults.ConstantName + "2", cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[1].Name);
         }
         #endregion Constant
 

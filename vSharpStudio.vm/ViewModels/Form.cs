@@ -20,7 +20,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListForms ParentGroupListForms { get { return (GroupListForms)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupListForms ParentGroupListFormsI { get { return (IGroupListForms)this.Parent; } }
-        public static readonly string DefaultName = "Form";
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -162,7 +161,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Form(this.Parent);
             this.ParentGroupListForms.Add(node);
-            this.GetUniqueName(Form.DefaultName, node, this.ParentGroupListForms.ListForms);
+            this.GetUniqueName(Defaults.FormName, node, this.ParentGroupListForms.ListForms);
             this.SetSelected(node);
             return node;
         }

@@ -19,26 +19,9 @@ namespace vSharpStudio.vm.ViewModels
         public GroupConstantGroups ParentGroupConstantGroups { get { return (GroupConstantGroups)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupConstantGroups ParentGroupConstantGroupsI { get { return (IGroupConstantGroups)this.Parent; } }
-        #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
-        {
-            return this.Children;
-        }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
-        {
-            return this.ParentGroupConstantGroups.Children;
-        }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
-        #endregion ITree
-
-        public ConfigNodesCollection<Constant> Children { get { return this.ListConstants; } }
 
         partial void OnCreated()
         {
-            this._Name = Defaults.ConstantsGroupName;
             this.IsEditable = false;
             this.ShortIdTypeForCacheKey = "t";
             Init();
@@ -82,6 +65,23 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
+
+        #region ITree
+        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        {
+            return this.Children;
+        }
+        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        {
+            return this.ParentGroupConstantGroups.Children;
+        }
+        public override bool HasChildren()
+        {
+            return this.Children.Count > 0;
+        }
+        [Browsable(false)]
+        public ConfigNodesCollection<Constant> Children { get { return this.ListConstants; } }
+        #endregion ITree
 
         #region Tree operations
         public override bool NodeCanUp()
@@ -201,13 +201,14 @@ namespace vSharpStudio.vm.ViewModels
             node.DataType.Parent = node;
             if (node_impl == null)
             {
-                this.GetUniqueName(Constant.DefaultName, node, this.ListConstants);
+                this.GetUniqueName(Defaults.ConstantName, node, this.ListConstants);
             }
 
             this.SetSelected(node);
             return node;
         }
         #endregion Tree operations
+
         public IReadOnlyList<IConstant> GetIncludedConstants(string guidAppPrjGen)
         {
             var res = new List<IConstant>();

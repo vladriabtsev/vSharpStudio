@@ -19,7 +19,6 @@ namespace vSharpStudio.vm.ViewModels
         public FormAutoLayoutBlock ParentFormAutoLayoutBlock { get { return (FormAutoLayoutBlock)this.Parent; } }
         [BrowsableAttribute(false)]
         public IFormAutoLayoutBlock ParentFormAutoLayoutBlockI { get { return (IFormAutoLayoutBlock)this.Parent; } }
-        public static readonly string DefaultName = "Data Grid";
 
         #region ITree
 

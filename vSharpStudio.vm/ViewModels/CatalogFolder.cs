@@ -19,7 +19,6 @@ namespace vSharpStudio.vm.ViewModels
         public Catalog ParentCatalog { get { return (Catalog)this.Parent; } }
         [BrowsableAttribute(false)]
         public ICatalog ParentCatalogI { get { return (ICatalog)this.Parent; } }
-        public static readonly string DefaultName = "Items Group";
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()

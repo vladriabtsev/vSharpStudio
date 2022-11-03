@@ -31,7 +31,6 @@ namespace vSharpStudio.vm.ViewModels
         public FormGridSystemColumn? ParentFormGridSystemColumn { get { return this.Parent as FormGridSystemColumn; } }
         [BrowsableAttribute(false)]
         public IFormGridSystemColumn? ParentFormGridSystemColumnI { get { return this.Parent as IFormGridSystemColumn; } }
-        public static readonly string DefaultName = "Auto Layout Block";
 
         #region ITree
 
@@ -102,12 +101,6 @@ namespace vSharpStudio.vm.ViewModels
         //    this.Name = name;
         //    this.lis.ListColumns.AddRange(listColumns);
         //}
-        //public FormGridSystemColumn AddGridColumn(string name)
-        //{
-        //    var node = new FormGridSystemColumn(this) { Name = name };
-        //    this.ListColumns.Add(node);
-        //    return node;
-        //}
 
 
         [ExpandableObjectAttribute()]
@@ -119,6 +112,42 @@ namespace vSharpStudio.vm.ViewModels
             //lst.Add(this.GetPropertyName(() => this.Parent));
             //lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
+        }
+        public IFormAutoLayoutBlock AddAutoLayoutBlock(string name = "")
+        {
+            var node = new FormAutoLayoutBlock(this) { Name = name };
+            this.Children.Add(node);
+            return node;
+        }
+        public IFormDataGrid AddDataGrid(string name = "")
+        {
+            var node = new FormDataGrid(this) { Name = name };
+            this.Children.Add(node);
+            return node;
+        }
+        public IFormField AddField(string name = "")
+        {
+            var node = new FormField(this) { Name = name };
+            this.Children.Add(node);
+            return node;
+        }
+        public IFormGridSystem AddGridSystem(string name = "")
+        {
+            var node = new FormGridSystem(this) { Name = name };
+            this.Children.Add(node);
+            return node;
+        }
+        public IFormTabControl AddTabControl(string name = "")
+        {
+            var node = new FormTabControl(this) { Name = name };
+            this.Children.Add(node);
+            return node;
+        }
+        public IFormTree AddTree(string name = "")
+        {
+            var node = new FormTree(this) { Name = name };
+            this.Children.Add(node);
+            return node;
         }
     }
 }

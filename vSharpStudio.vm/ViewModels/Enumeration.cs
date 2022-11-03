@@ -19,7 +19,6 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListEnumerations ParentGroupListEnumerations { get { return (GroupListEnumerations)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupListEnumerations ParentGroupListEnumerationsI { get { return (IGroupListEnumerations)this.Parent; } }
-        public static readonly string DefaultName = "Enumeration";
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -146,7 +145,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListEnumerationPairs.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(EnumerationPair.DefaultName, node, this.ListEnumerationPairs);
+                this.GetUniqueName(Defaults.EnumerationPairName, node, this.ListEnumerationPairs);
             }
 
             this.SetSelected(node);
@@ -225,7 +224,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new Enumeration(this.Parent);
             this.ParentGroupListEnumerations.Add(node);
-            this.GetUniqueName(Enumeration.DefaultName, node, this.ParentGroupListEnumerations.ListEnumerations);
+            this.GetUniqueName(Defaults.EnumerationName, node, this.ParentGroupListEnumerations.ListEnumerations);
             this.SetSelected(node);
             return node;
         }

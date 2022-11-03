@@ -103,7 +103,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Detail.DefaultName, node, this.ListDetails);
+                this.GetUniqueName(Defaults.DetailName, node, this.ListDetails);
             }
             var cfg = (Config)this.GetConfig();
             node.ShortId = cfg.Model.LastDetailShortId + 1;

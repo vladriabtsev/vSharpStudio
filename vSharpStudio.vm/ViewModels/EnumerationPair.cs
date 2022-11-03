@@ -15,7 +15,6 @@ namespace vSharpStudio.vm.ViewModels
         public Enumeration ParentEnumeration { get { return (Enumeration) this.Parent; } }
         [BrowsableAttribute(false)]
         public IEnumeration ParentEnumerationI { get { return (IEnumeration)this.Parent; } }
-        public static readonly string DefaultName = "Element";
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()

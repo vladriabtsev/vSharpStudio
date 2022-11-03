@@ -17722,9 +17722,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 62
                 vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
-            vm.GuidNarrowListForm = from.GuidNarrowListForm; // Clone.tt Line: 65
-            vm.GuidWideListForm = from.GuidWideListForm; // Clone.tt Line: 65
-            vm.GuidEditForm = from.GuidEditForm; // Clone.tt Line: 65
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -17783,9 +17780,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
-            to.GuidNarrowListForm = from.GuidNarrowListForm; // Clone.tt Line: 141
-            to.GuidWideListForm = from.GuidWideListForm; // Clone.tt Line: 141
-            to.GuidEditForm = from.GuidEditForm; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -17901,9 +17895,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupReports == null) // Clone.tt Line: 213
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
-            vm.GuidNarrowListForm = m.GuidNarrowListForm; // Clone.tt Line: 221
-            vm.GuidWideListForm = m.GuidWideListForm; // Clone.tt Line: 221
-            vm.GuidEditForm = m.GuidEditForm; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -17961,9 +17952,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
-            m.GuidNarrowListForm = vm.GuidNarrowListForm; // Clone.tt Line: 276
-            m.GuidWideListForm = vm.GuidWideListForm; // Clone.tt Line: 276
-            m.GuidEditForm = vm.GuidEditForm; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -18864,69 +18852,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupReportsChanging(ref GroupListReports to); // Property.tt Line: 79
         partial void OnGroupReportsChanged();
         //IGroupListReports ICatalog.GroupReports { get { return this._GroupReports; } }
-        
-        [BrowsableAttribute(false)]
-        public string GuidNarrowListForm // Property.tt Line: 55
-        { 
-            get { return this._GuidNarrowListForm; }
-            set
-            {
-                if (this._GuidNarrowListForm != value)
-                {
-                    this.OnGuidNarrowListFormChanging(ref value);
-                    this._GuidNarrowListForm = value;
-                    this.OnGuidNarrowListFormChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _GuidNarrowListForm = string.Empty;
-        partial void OnGuidNarrowListFormChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidNarrowListFormChanged();
-        
-        [BrowsableAttribute(false)]
-        public string GuidWideListForm // Property.tt Line: 55
-        { 
-            get { return this._GuidWideListForm; }
-            set
-            {
-                if (this._GuidWideListForm != value)
-                {
-                    this.OnGuidWideListFormChanging(ref value);
-                    this._GuidWideListForm = value;
-                    this.OnGuidWideListFormChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _GuidWideListForm = string.Empty;
-        partial void OnGuidWideListFormChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidWideListFormChanged();
-        
-        [BrowsableAttribute(false)]
-        public string GuidEditForm // Property.tt Line: 55
-        { 
-            get { return this._GuidEditForm; }
-            set
-            {
-                if (this._GuidEditForm != value)
-                {
-                    this.OnGuidEditFormChanging(ref value);
-                    this._GuidEditForm = value;
-                    this.OnGuidEditFormChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _GuidEditForm = string.Empty;
-        partial void OnGuidEditFormChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidEditFormChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -24010,6 +23935,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Name = from.Name; // Clone.tt Line: 65
             vm.NameUi = from.NameUi; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
             vm.IsNew = from.IsNew; // Clone.tt Line: 65
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.ListRows = new ConfigNodesCollection<FormGridSystemRow>(vm); // Clone.tt Line: 51
@@ -24034,6 +23960,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Name = from.Name; // Clone.tt Line: 141
             to.NameUi = from.NameUi; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 141
             to.IsNew = from.IsNew; // Clone.tt Line: 141
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
             if (isDeep) // Clone.tt Line: 86
@@ -24145,6 +24072,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Name = m.Name; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.ListRows = new ConfigNodesCollection<FormGridSystemRow>(vm); // Clone.tt Line: 200
@@ -24180,6 +24108,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Name = vm.Name; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             foreach (var t in vm.ListRows) // Clone.tt Line: 242
@@ -24305,6 +24234,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _Description = string.Empty;
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
+        
+        [BrowsableAttribute(false)]
+        public ulong SortingValue // Property.tt Line: 55
+        { 
+            get { return this._SortingValue; }
+            set
+            {
+                if (this._SortingValue != value)
+                {
+                    this.OnSortingValueChanging(ref value);
+                    this._SortingValue = value;
+                    this.OnSortingValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
+        partial void OnSortingValueChanged();
         
         [BrowsableAttribute(false)]
         public bool IsNew // Property.tt Line: 55
@@ -26022,10 +25971,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsValidate = false;
             this.OnCreating();
             this.TabControl = new FormTabControl(this); // Class.tt Line: 40
-            this.DataGrid = new FormDataGrid(this); // Class.tt Line: 40
-            this.AutoLayoutBlock = new FormAutoLayoutBlock(this); // Class.tt Line: 40
-            this.Field = new FormField(this); // Class.tt Line: 40
-            this.GridSystem = new FormGridSystem(this); // Class.tt Line: 40
+            this.DataGridControl = new FormDataGrid(this); // Class.tt Line: 40
+            this.AutoLayoutBlockControl = new FormAutoLayoutBlock(this); // Class.tt Line: 40
+            this.FieldControl = new FormField(this); // Class.tt Line: 40
+            this.GridSystemControl = new FormGridSystem(this); // Class.tt Line: 40
+            this.TreeControl = new FormTree(this); // Class.tt Line: 40
             this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -26059,13 +26009,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 62
                 vm.TabControl = vSharpStudio.vm.ViewModels.FormTabControl.Clone(vm, from.TabControl, isDeep);
             if (isDeep) // Clone.tt Line: 62
-                vm.DataGrid = vSharpStudio.vm.ViewModels.FormDataGrid.Clone(vm, from.DataGrid, isDeep);
+                vm.DataGridControl = vSharpStudio.vm.ViewModels.FormDataGrid.Clone(vm, from.DataGridControl, isDeep);
             if (isDeep) // Clone.tt Line: 62
-                vm.AutoLayoutBlock = vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.Clone(vm, from.AutoLayoutBlock, isDeep);
+                vm.AutoLayoutBlockControl = vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.Clone(vm, from.AutoLayoutBlockControl, isDeep);
             if (isDeep) // Clone.tt Line: 62
-                vm.Field = vSharpStudio.vm.ViewModels.FormField.Clone(vm, from.Field, isDeep);
+                vm.FieldControl = vSharpStudio.vm.ViewModels.FormField.Clone(vm, from.FieldControl, isDeep);
             if (isDeep) // Clone.tt Line: 62
-                vm.GridSystem = vSharpStudio.vm.ViewModels.FormGridSystem.Clone(vm, from.GridSystem, isDeep);
+                vm.GridSystemControl = vSharpStudio.vm.ViewModels.FormGridSystem.Clone(vm, from.GridSystemControl, isDeep);
+            if (isDeep) // Clone.tt Line: 62
+                vm.TreeControl = vSharpStudio.vm.ViewModels.FormTree.Clone(vm, from.TreeControl, isDeep);
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -26089,13 +26041,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 138
                 vSharpStudio.vm.ViewModels.FormTabControl.Update((FormTabControl)to.TabControl, from.TabControl, isDeep);
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.FormDataGrid.Update((FormDataGrid)to.DataGrid, from.DataGrid, isDeep);
+                vSharpStudio.vm.ViewModels.FormDataGrid.Update((FormDataGrid)to.DataGridControl, from.DataGridControl, isDeep);
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.Update((FormAutoLayoutBlock)to.AutoLayoutBlock, from.AutoLayoutBlock, isDeep);
+                vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.Update((FormAutoLayoutBlock)to.AutoLayoutBlockControl, from.AutoLayoutBlockControl, isDeep);
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.FormField.Update((FormField)to.Field, from.Field, isDeep);
+                vSharpStudio.vm.ViewModels.FormField.Update((FormField)to.FieldControl, from.FieldControl, isDeep);
             if (isDeep) // Clone.tt Line: 138
-                vSharpStudio.vm.ViewModels.FormGridSystem.Update((FormGridSystem)to.GridSystem, from.GridSystem, isDeep);
+                vSharpStudio.vm.ViewModels.FormGridSystem.Update((FormGridSystem)to.GridSystemControl, from.GridSystemControl, isDeep);
+            if (isDeep) // Clone.tt Line: 138
+                vSharpStudio.vm.ViewModels.FormTree.Update((FormTree)to.TreeControl, from.TreeControl, isDeep);
             if (isDeep) // Clone.tt Line: 86
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -26170,18 +26124,21 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.TabControl == null) // Clone.tt Line: 213
                 vm.TabControl = new FormTabControl(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.FormTabControl.ConvertToVM(m.TabControl, (FormTabControl)vm.TabControl); // Clone.tt Line: 219
-            if (vm.DataGrid == null) // Clone.tt Line: 213
-                vm.DataGrid = new FormDataGrid(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.FormDataGrid.ConvertToVM(m.DataGrid, (FormDataGrid)vm.DataGrid); // Clone.tt Line: 219
-            if (vm.AutoLayoutBlock == null) // Clone.tt Line: 213
-                vm.AutoLayoutBlock = new FormAutoLayoutBlock(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.ConvertToVM(m.AutoLayoutBlock, (FormAutoLayoutBlock)vm.AutoLayoutBlock); // Clone.tt Line: 219
-            if (vm.Field == null) // Clone.tt Line: 213
-                vm.Field = new FormField(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.FormField.ConvertToVM(m.Field, (FormField)vm.Field); // Clone.tt Line: 219
-            if (vm.GridSystem == null) // Clone.tt Line: 213
-                vm.GridSystem = new FormGridSystem(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.FormGridSystem.ConvertToVM(m.GridSystem, (FormGridSystem)vm.GridSystem); // Clone.tt Line: 219
+            if (vm.DataGridControl == null) // Clone.tt Line: 213
+                vm.DataGridControl = new FormDataGrid(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.FormDataGrid.ConvertToVM(m.DataGridControl, (FormDataGrid)vm.DataGridControl); // Clone.tt Line: 219
+            if (vm.AutoLayoutBlockControl == null) // Clone.tt Line: 213
+                vm.AutoLayoutBlockControl = new FormAutoLayoutBlock(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.ConvertToVM(m.AutoLayoutBlockControl, (FormAutoLayoutBlock)vm.AutoLayoutBlockControl); // Clone.tt Line: 219
+            if (vm.FieldControl == null) // Clone.tt Line: 213
+                vm.FieldControl = new FormField(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.FormField.ConvertToVM(m.FieldControl, (FormField)vm.FieldControl); // Clone.tt Line: 219
+            if (vm.GridSystemControl == null) // Clone.tt Line: 213
+                vm.GridSystemControl = new FormGridSystem(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.FormGridSystem.ConvertToVM(m.GridSystemControl, (FormGridSystem)vm.GridSystemControl); // Clone.tt Line: 219
+            if (vm.TreeControl == null) // Clone.tt Line: 213
+                vm.TreeControl = new FormTree(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.FormTree.ConvertToVM(m.TreeControl, (FormTree)vm.TreeControl); // Clone.tt Line: 219
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
             {
@@ -26208,10 +26165,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.TabControl = vSharpStudio.vm.ViewModels.FormTabControl.ConvertToProto((FormTabControl)vm.TabControl); // Clone.tt Line: 270
-            m.DataGrid = vSharpStudio.vm.ViewModels.FormDataGrid.ConvertToProto((FormDataGrid)vm.DataGrid); // Clone.tt Line: 270
-            m.AutoLayoutBlock = vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.ConvertToProto((FormAutoLayoutBlock)vm.AutoLayoutBlock); // Clone.tt Line: 270
-            m.Field = vSharpStudio.vm.ViewModels.FormField.ConvertToProto((FormField)vm.Field); // Clone.tt Line: 270
-            m.GridSystem = vSharpStudio.vm.ViewModels.FormGridSystem.ConvertToProto((FormGridSystem)vm.GridSystem); // Clone.tt Line: 270
+            m.DataGridControl = vSharpStudio.vm.ViewModels.FormDataGrid.ConvertToProto((FormDataGrid)vm.DataGridControl); // Clone.tt Line: 270
+            m.AutoLayoutBlockControl = vSharpStudio.vm.ViewModels.FormAutoLayoutBlock.ConvertToProto((FormAutoLayoutBlock)vm.AutoLayoutBlockControl); // Clone.tt Line: 270
+            m.FieldControl = vSharpStudio.vm.ViewModels.FormField.ConvertToProto((FormField)vm.FieldControl); // Clone.tt Line: 270
+            m.GridSystemControl = vSharpStudio.vm.ViewModels.FormGridSystem.ConvertToProto((FormGridSystem)vm.GridSystemControl); // Clone.tt Line: 270
+            m.TreeControl = vSharpStudio.vm.ViewModels.FormTree.ConvertToProto((FormTree)vm.TreeControl); // Clone.tt Line: 270
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -26227,13 +26185,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             visitor.Visit(this);
             this.TabControl.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.DataGrid.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.DataGridControl.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.AutoLayoutBlock.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.AutoLayoutBlockControl.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.Field.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.FieldControl.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.GridSystem.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.GridSystemControl.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.TreeControl.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
@@ -26422,93 +26382,115 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnTabControlChanged();
         //IFormTabControl IFormAutoLayoutSubBlock.TabControl { get { return this._TabControl; } }
         
-        public FormDataGrid DataGrid // Property.tt Line: 55
+        public FormDataGrid DataGridControl // Property.tt Line: 55
         { 
-            get { return this._DataGrid; }
+            get { return this._DataGridControl; }
             set
             {
-                if (this._DataGrid != value)
+                if (this._DataGridControl != value)
                 {
-                    this.OnDataGridChanging(ref value);
-                    this._DataGrid = value;
-                    this.OnDataGridChanged();
+                    this.OnDataGridControlChanging(ref value);
+                    this._DataGridControl = value;
+                    this.OnDataGridControlChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormDataGrid _DataGrid;
-        IFormDataGrid IFormAutoLayoutSubBlock.DataGrid { get { return (this as FormAutoLayoutSubBlock).DataGrid; } } // Property.tt Line: 77
-        partial void OnDataGridChanging(ref FormDataGrid to); // Property.tt Line: 79
-        partial void OnDataGridChanged();
-        //IFormDataGrid IFormAutoLayoutSubBlock.DataGrid { get { return this._DataGrid; } }
+        private FormDataGrid _DataGridControl;
+        IFormDataGrid IFormAutoLayoutSubBlock.DataGridControl { get { return (this as FormAutoLayoutSubBlock).DataGridControl; } } // Property.tt Line: 77
+        partial void OnDataGridControlChanging(ref FormDataGrid to); // Property.tt Line: 79
+        partial void OnDataGridControlChanged();
+        //IFormDataGrid IFormAutoLayoutSubBlock.DataGridControl { get { return this._DataGridControl; } }
         
-        public FormAutoLayoutBlock AutoLayoutBlock // Property.tt Line: 55
+        public FormAutoLayoutBlock AutoLayoutBlockControl // Property.tt Line: 55
         { 
-            get { return this._AutoLayoutBlock; }
+            get { return this._AutoLayoutBlockControl; }
             set
             {
-                if (this._AutoLayoutBlock != value)
+                if (this._AutoLayoutBlockControl != value)
                 {
-                    this.OnAutoLayoutBlockChanging(ref value);
-                    this._AutoLayoutBlock = value;
-                    this.OnAutoLayoutBlockChanged();
+                    this.OnAutoLayoutBlockControlChanging(ref value);
+                    this._AutoLayoutBlockControl = value;
+                    this.OnAutoLayoutBlockControlChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormAutoLayoutBlock _AutoLayoutBlock;
-        IFormAutoLayoutBlock IFormAutoLayoutSubBlock.AutoLayoutBlock { get { return (this as FormAutoLayoutSubBlock).AutoLayoutBlock; } } // Property.tt Line: 77
-        partial void OnAutoLayoutBlockChanging(ref FormAutoLayoutBlock to); // Property.tt Line: 79
-        partial void OnAutoLayoutBlockChanged();
-        //IFormAutoLayoutBlock IFormAutoLayoutSubBlock.AutoLayoutBlock { get { return this._AutoLayoutBlock; } }
+        private FormAutoLayoutBlock _AutoLayoutBlockControl;
+        IFormAutoLayoutBlock IFormAutoLayoutSubBlock.AutoLayoutBlockControl { get { return (this as FormAutoLayoutSubBlock).AutoLayoutBlockControl; } } // Property.tt Line: 77
+        partial void OnAutoLayoutBlockControlChanging(ref FormAutoLayoutBlock to); // Property.tt Line: 79
+        partial void OnAutoLayoutBlockControlChanged();
+        //IFormAutoLayoutBlock IFormAutoLayoutSubBlock.AutoLayoutBlockControl { get { return this._AutoLayoutBlockControl; } }
         
-        public FormField Field // Property.tt Line: 55
+        public FormField FieldControl // Property.tt Line: 55
         { 
-            get { return this._Field; }
+            get { return this._FieldControl; }
             set
             {
-                if (this._Field != value)
+                if (this._FieldControl != value)
                 {
-                    this.OnFieldChanging(ref value);
-                    this._Field = value;
-                    this.OnFieldChanged();
+                    this.OnFieldControlChanging(ref value);
+                    this._FieldControl = value;
+                    this.OnFieldControlChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormField _Field;
-        IFormField IFormAutoLayoutSubBlock.Field { get { return (this as FormAutoLayoutSubBlock).Field; } } // Property.tt Line: 77
-        partial void OnFieldChanging(ref FormField to); // Property.tt Line: 79
-        partial void OnFieldChanged();
-        //IFormField IFormAutoLayoutSubBlock.Field { get { return this._Field; } }
+        private FormField _FieldControl;
+        IFormField IFormAutoLayoutSubBlock.FieldControl { get { return (this as FormAutoLayoutSubBlock).FieldControl; } } // Property.tt Line: 77
+        partial void OnFieldControlChanging(ref FormField to); // Property.tt Line: 79
+        partial void OnFieldControlChanged();
+        //IFormField IFormAutoLayoutSubBlock.FieldControl { get { return this._FieldControl; } }
         
-        public FormGridSystem GridSystem // Property.tt Line: 55
+        public FormGridSystem GridSystemControl // Property.tt Line: 55
         { 
-            get { return this._GridSystem; }
+            get { return this._GridSystemControl; }
             set
             {
-                if (this._GridSystem != value)
+                if (this._GridSystemControl != value)
                 {
-                    this.OnGridSystemChanging(ref value);
-                    this._GridSystem = value;
-                    this.OnGridSystemChanged();
+                    this.OnGridSystemControlChanging(ref value);
+                    this._GridSystemControl = value;
+                    this.OnGridSystemControlChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private FormGridSystem _GridSystem;
-        IFormGridSystem IFormAutoLayoutSubBlock.GridSystem { get { return (this as FormAutoLayoutSubBlock).GridSystem; } } // Property.tt Line: 77
-        partial void OnGridSystemChanging(ref FormGridSystem to); // Property.tt Line: 79
-        partial void OnGridSystemChanged();
-        //IFormGridSystem IFormAutoLayoutSubBlock.GridSystem { get { return this._GridSystem; } }
+        private FormGridSystem _GridSystemControl;
+        IFormGridSystem IFormAutoLayoutSubBlock.GridSystemControl { get { return (this as FormAutoLayoutSubBlock).GridSystemControl; } } // Property.tt Line: 77
+        partial void OnGridSystemControlChanging(ref FormGridSystem to); // Property.tt Line: 79
+        partial void OnGridSystemControlChanged();
+        //IFormGridSystem IFormAutoLayoutSubBlock.GridSystemControl { get { return this._GridSystemControl; } }
+        
+        public FormTree TreeControl // Property.tt Line: 55
+        { 
+            get { return this._TreeControl; }
+            set
+            {
+                if (this._TreeControl != value)
+                {
+                    this.OnTreeControlChanging(ref value);
+                    this._TreeControl = value;
+                    this.OnTreeControlChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private FormTree _TreeControl;
+        IFormTree IFormAutoLayoutSubBlock.TreeControl { get { return (this as FormAutoLayoutSubBlock).TreeControl; } } // Property.tt Line: 77
+        partial void OnTreeControlChanging(ref FormTree to); // Property.tt Line: 79
+        partial void OnTreeControlChanged();
+        //IFormTree IFormAutoLayoutSubBlock.TreeControl { get { return this._TreeControl; } }
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -27417,7 +27399,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    //    IsISortingValue: False 
+    //    IsISortingValue: True 
     public partial class FormTabControlValidator : ValidatorBase<FormTabControl, FormTabControlValidator> { } // Class.tt Line: 15
     
     ///////////////////////////////////////////////////
@@ -27924,7 +27906,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    //    IsISortingValue: False 
+    //    IsISortingValue: True 
     public partial class FormDataGridValidator : ValidatorBase<FormDataGrid, FormDataGridValidator> { } // Class.tt Line: 15
     
     ///////////////////////////////////////////////////
@@ -28343,6 +28325,436 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
         partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_data_grid
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        #endregion Properties
+    }
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: True 
+    public partial class FormTreeValidator : ValidatorBase<FormTree, FormTreeValidator> { } // Class.tt Line: 15
+    
+    ///////////////////////////////////////////////////
+    /// No Children
+    ///////////////////////////////////////////////////
+    public partial class FormTree : ConfigObjectVmGenSettings<FormTree, FormTreeValidator>, IComparable<FormTree>, IConfigAcceptVisitor, IFormTree // Class.tt Line: 16
+    {
+        #region CTOR
+        public FormTree() : this(default(ITreeConfigNode)) // Class.tt Line: 20
+        {
+            this.OnCreating();
+        }
+        public FormTree(ITreeConfigNode parent) // Class.tt Line: 24
+            : base(parent, FormTreeValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // Clone.tt Line: 8
+        {
+            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static FormTree Clone(ITreeConfigNode parent, IFormTree from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+        {
+            Debug.Assert(from != null);
+            FormTree vm = new FormTree(parent);
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = from.Guid; // Clone.tt Line: 65
+            vm.Name = from.Name; // Clone.tt Line: 65
+            vm.NameUi = from.NameUi; // Clone.tt Line: 65
+            vm.Description = from.Description; // Clone.tt Line: 65
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
+            vm.IsNew = from.IsNew; // Clone.tt Line: 65
+            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
+            foreach (var t in from.ListGuidProperties) // Clone.tt Line: 44
+                vm.ListGuidProperties.Add(t);
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 51
+            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 52
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(FormTree to, IFormTree from, bool isDeep = true) // Clone.tt Line: 77
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to.Guid = from.Guid; // Clone.tt Line: 141
+            to.Name = from.Name; // Clone.tt Line: 141
+            to.NameUi = from.NameUi; // Clone.tt Line: 141
+            to.Description = from.Description; // Clone.tt Line: 141
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 141
+            to.IsNew = from.IsNew; // Clone.tt Line: 141
+            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
+                to.ListGuidProperties.Clear(); // Clone.tt Line: 127
+                foreach (var tt in from.ListGuidProperties)
+                {
+                    to.ListGuidProperties.Add(tt);
+                }
+            if (isDeep) // Clone.tt Line: 86
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 117
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
+        }
+        // Clone.tt Line: 147
+        #region IEditable
+        public override FormTree Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            return FormTree.Clone(this.Parent, this);
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(FormTree from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            FormTree.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_form_tree' to 'FormTree'
+        public static FormTree ConvertToVM(Proto.Config.proto_form_tree m, FormTree vm) // Clone.tt Line: 170
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.Name = m.Name; // Clone.tt Line: 221
+            vm.NameUi = m.NameUi; // Clone.tt Line: 221
+            vm.Description = m.Description; // Clone.tt Line: 221
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
+            vm.IsNew = m.IsNew; // Clone.tt Line: 221
+            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.ListGuidProperties = new ObservableCollectionWithActions<string>(); // Clone.tt Line: 184
+            foreach (var t in m.ListGuidProperties) // Clone.tt Line: 185
+            {
+                vm.ListGuidProperties.Add(t);
+            }
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 200
+            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 201
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 204
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'FormTree' to 'proto_form_tree'
+        public static Proto.Config.proto_form_tree ConvertToProto(FormTree vm) // Clone.tt Line: 236
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_form_tree m = new Proto.Config.proto_form_tree(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.Name = vm.Name; // Clone.tt Line: 276
+            m.NameUi = vm.NameUi; // Clone.tt Line: 276
+            m.Description = vm.Description; // Clone.tt Line: 276
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
+            m.IsNew = vm.IsNew; // Clone.tt Line: 276
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            foreach (var t in vm.ListGuidProperties) // Clone.tt Line: 242
+                m.ListGuidProperties.Add(t); // Clone.tt Line: 244
+            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+    #if !DEBUG
+        [Browsable(false)]
+    #endif
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
+        { 
+            get { return this._Guid; }
+            set
+            {
+                if (this._Guid != value)
+                {
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("Name")]
+        [Description("Tab control name")]
+        public string Name // Property.tt Line: 55
+        { 
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        [DisplayName("UI name")]
+        public string NameUi // Property.tt Line: 55
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                if (this._NameUi != value)
+                {
+                    this.OnNameUiChanging(ref value);
+                    this._NameUi = value;
+                    this.OnNameUiChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(4)]
+        [DisplayName("Desc")]
+        [Description("Tab control description")]
+        public string Description // Property.tt Line: 55
+        { 
+            get { return this._Description; }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
+        partial void OnDescriptionChanged();
+        
+        [BrowsableAttribute(false)]
+        public ulong SortingValue // Property.tt Line: 55
+        { 
+            get { return this._SortingValue; }
+            set
+            {
+                if (this._SortingValue != value)
+                {
+                    this.OnSortingValueChanging(ref value);
+                    this._SortingValue = value;
+                    this.OnSortingValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
+        partial void OnSortingValueChanged();
+        
+        [BrowsableAttribute(false)]
+        public bool IsNew // Property.tt Line: 55
+        { 
+            get { return this._IsNew; }
+            set
+            {
+                if (this._IsNew != value)
+                {
+                    this.OnIsNewChanging(ref value);
+                    this._IsNew = value;
+                    this.OnIsNewChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNew;
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsNewChanged();
+        
+        [BrowsableAttribute(false)]
+        public bool IsMarkedForDeletion // Property.tt Line: 55
+        { 
+            get { return this._IsMarkedForDeletion; }
+            set
+            {
+                if (this._IsMarkedForDeletion != value)
+                {
+                    this.OnIsMarkedForDeletionChanging(ref value);
+                    this._IsMarkedForDeletion = value;
+                    this.OnIsMarkedForDeletionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsMarkedForDeletion;
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsMarkedForDeletionChanged();
+        
+        [BrowsableAttribute(false)]
+        public ObservableCollectionWithActions<string> ListGuidProperties // Property.tt Line: 8
+        { 
+            get { return this._ListGuidProperties; }
+            set
+            {
+                if (this._ListGuidProperties != value)
+                {
+                    this.OnListGuidPropertiesChanging(value);
+                    _ListGuidProperties = value;
+                    this.OnListGuidPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollectionWithActions<string> _ListGuidProperties;
+        IReadOnlyList<string> IFormTree.ListGuidProperties { get { return (this as FormTree).ListGuidProperties; } } // Property.tt Line: 26
+        partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
+        partial void OnListGuidPropertiesChanged();
+        
+        [BrowsableAttribute(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    _ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        IReadOnlyList<IPluginGeneratorNodeSettings> IFormTree.ListNodeGeneratorsSettings { get { return (this as FormTree).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
+        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
+        partial void OnListNodeGeneratorsSettingsChanged();
+        [BrowsableAttribute(false)]
+        public override bool IsChanged // Class.tt Line: 112
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_tree
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -29369,6 +29781,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_form_tab_control_tab p);
         void Visit(Proto.Config.proto_form_tab_control p);
         void Visit(Proto.Config.proto_form_data_grid p);
+        void Visit(Proto.Config.proto_form_tree p);
         void Visit(Proto.Config.proto_group_list_reports p);
         void Visit(Proto.Config.proto_report p);
         void Visit(Proto.Config.proto_model_row p);
@@ -29964,6 +30377,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.OnVisit(p as IValidatableWithSeverity);
         }
         protected override void OnVisitEnd(FormDataGrid p) // ValidationVisitor.tt Line: 48
+        {
+            Debug.Assert(p != null);
+            this.OnVisitEnd(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisit(FormTree p) // ValidationVisitor.tt Line: 15
+        {
+            Debug.Assert(p != null);
+            this.OnVisit(p as IValidatableWithSeverity);
+        }
+        protected override void OnVisitEnd(FormTree p) // ValidationVisitor.tt Line: 48
         {
             Debug.Assert(p != null);
             this.OnVisitEnd(p as IValidatableWithSeverity);
@@ -30585,6 +31008,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(FormDataGrid p) { }
         protected virtual void OnVisitEnd(FormDataGrid p) { }
+        public void Visit(FormTree p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(FormTree p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(FormTree p) { }
+        protected virtual void OnVisitEnd(FormTree p) { }
         public void Visit(GroupListReports p)
         {
             this.OnVisit(p);
@@ -30692,6 +31125,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void VisitEnd(FormTabControl p);
         void Visit(FormDataGrid p);
         void VisitEnd(FormDataGrid p);
+        void Visit(FormTree p);
+        void VisitEnd(FormTree p);
         void Visit(GroupListReports p);
         void VisitEnd(GroupListReports p);
         void Visit(Report p);

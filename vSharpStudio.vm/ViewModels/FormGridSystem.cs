@@ -23,7 +23,6 @@ namespace vSharpStudio.vm.ViewModels
         public FormAutoLayoutBlock ParentFormAutoLayoutBlock { get { return (FormAutoLayoutBlock)this.Parent; } }
         [BrowsableAttribute(false)]
         public IFormAutoLayoutBlock ParentFormAutoLayoutBlockI { get { return (IFormAutoLayoutBlock)this.Parent; } }
-        public static readonly string DefaultName = "Grid System Row";
 
         #region ITree
 
@@ -88,14 +87,6 @@ namespace vSharpStudio.vm.ViewModels
             this.Name = name;
             this.ListRows.AddRange(listRows);
         }
-        public FormGridSystemRow AddGridColumn(string name)
-        {
-            var node = new FormGridSystemRow(this) { Name = name };
-            this.ListRows.Add(node);
-            return node;
-        }
-
-
         [ExpandableObjectAttribute()]
         public dynamic Setting { get; set; }
 
@@ -105,6 +96,12 @@ namespace vSharpStudio.vm.ViewModels
             //lst.Add(this.GetPropertyName(() => this.Parent));
             //lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
+        }
+        public IFormGridSystemRow AddGridRow(string name = "")
+        {
+            var node = new FormGridSystemRow(this) { Name = name };
+            this.ListRows.Add(node);
+            return node;
         }
     }
 }

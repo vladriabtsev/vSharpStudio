@@ -287,6 +287,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_form_tree"><span class="badge">M</span>proto_form_tree</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_group_constant_groups"><span class="badge">M</span>proto_group_constant_groups</a>
                 </li>
               
@@ -1364,27 +1368,6 @@ Generator output file name </p></td>
                 <tr>
                   <td>group_reports</td>
                   <td><a href="#proto_config.proto_group_list_reports">proto_group_list_reports</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>guid_narrow_list_form</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>guid_wide_list_form</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>guid_edit_form</td>
-                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
@@ -3205,29 +3188,36 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>data_grid</td>
+                  <td>data_grid_control</td>
                   <td><a href="#proto_config.proto_form_data_grid">proto_form_data_grid</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>auto_layout_block</td>
+                  <td>auto_layout_block_control</td>
                   <td><a href="#proto_config.proto_form_auto_layout_block">proto_form_auto_layout_block</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>field</td>
+                  <td>field_control</td>
                   <td><a href="#proto_config.proto_form_field">proto_form_field</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>grid_system</td>
+                  <td>grid_system_control</td>
                   <td><a href="#proto_config.proto_form_grid_system">proto_form_grid_system</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tree_control</td>
+                  <td><a href="#proto_config.proto_form_tree">proto_form_tree</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -3247,7 +3237,7 @@ Reserved positions: 1 - primary key
         
       
         <h3 id="proto_config.proto_form_data_grid">proto_form_data_grid</h3>
-        <p>No Children</p>
+        <p>No Children</p><p>@interface ISortingValue</p>
 
         
           <table class="field-table">
@@ -3465,6 +3455,13 @@ Reserved positions: 1 - primary key
 @attr [PropertyOrderAttribute(4)]
 @attr [DisplayName(&#34;Desc&#34;)]
 @attr [Description(&#34;Tab control description&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -3746,7 +3743,7 @@ Reserved positions: 1 - primary key
         
       
         <h3 id="proto_config.proto_form_tab_control">proto_form_tab_control</h3>
-        <p>Children are collection of Tab Control Tabs</p>
+        <p>Children are collection of Tab Control Tabs</p><p>@interface ISortingValue</p>
 
         
           <table class="field-table">
@@ -3922,6 +3919,96 @@ Reserved positions: 1 - primary key
                   <td>form_block</td>
                   <td><a href="#proto_config.proto_form_auto_layout_block">proto_form_auto_layout_block</a></td>
                   <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_form_tree">proto_form_tree</h3>
+        <p>No Children</p><p>@interface ISortingValue</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Name&#34;)]
+@attr [Description(&#34;Tab control name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(4)]
+@attr [DisplayName(&#34;Desc&#34;)]
+@attr [Description(&#34;Tab control description&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_guid_properties</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               

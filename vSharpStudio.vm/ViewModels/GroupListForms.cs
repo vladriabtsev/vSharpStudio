@@ -91,7 +91,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Form.DefaultName, node, this.ListForms);
+                this.GetUniqueName(Defaults.FormName, node, this.ListForms);
             }
 
             this.SetSelected(node);
@@ -99,10 +99,63 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        public Form AddCatalogForm(string name, FormType type)
+        public IForm AddCatalogForm(FormType formType)
         {
             Debug.Assert(this.Parent is Catalog);
-            var form = new Form(this) { Name = name, EnumFormType = type };
+            var form = new Form(this) { EnumFormType = formType };
+            var row = (FormGridSystemRow)form.GridSystem.AddGridRow();
+            var c = this.Parent as Catalog;
+            FormGridSystemColumn? col = null;
+            FormAutoLayoutBlock? ablock = null;
+            switch (formType)
+            {
+                case FormType.ViewListNarrow:
+                    form.Name = "ListViewNarrow";
+                    if (c.UseTree && c.UseSeparateTreeForFolders)
+                    {
+                        col = (FormGridSystemColumn)row.AddGridSystemColumn();
+                        ablock = (FormAutoLayoutBlock)col.AddAutoLayoutBlock();
+                        var tree = (FormTree)ablock.AddTree();
+                        if (c.Folder.GetUseCodeProperty())
+                            tree.ListGuidProperties.Add(c.PropertyCodeGuid);
+                        if (c.Folder.GetUseNameProperty())
+                            tree.ListGuidProperties.Add(c.PropertyNameGuid);
+                    }
+                    col = (FormGridSystemColumn)row.AddGridSystemColumn();
+                    ablock = (FormAutoLayoutBlock)col.AddAutoLayoutBlock();
+                    var dg = (FormDataGrid)ablock.AddDataGrid();
+                    if (c.GetUseCodeProperty())
+                        dg.ListGuidProperties.Add(c.PropertyCodeGuid);
+                    if (c.GetUseNameProperty())
+                        dg.ListGuidProperties.Add(c.PropertyNameGuid);
+                    break;
+                case FormType.ViewListWide:
+                    form.Name = "ListViewWide";
+                    if (c.UseTree && c.UseSeparateTreeForFolders)
+                    {
+                        col = (FormGridSystemColumn)row.AddGridSystemColumn();
+                        ablock = (FormAutoLayoutBlock)col.AddAutoLayoutBlock();
+                        var tree = (FormTree)ablock.AddTree();
+                        if (c.Folder.GetUseCodeProperty())
+                            tree.ListGuidProperties.Add(c.PropertyCodeGuid);
+                        if (c.Folder.GetUseNameProperty())
+                            tree.ListGuidProperties.Add(c.PropertyNameGuid);
+                        if (c.Folder.GetUseDescriptionProperty())
+                            tree.ListGuidProperties.Add(c.PropertyDescriptionGuid);
+                    }
+                    col = (FormGridSystemColumn)row.AddGridSystemColumn();
+                    ablock = (FormAutoLayoutBlock)col.AddAutoLayoutBlock();
+                    dg = (FormDataGrid)ablock.AddDataGrid();
+                    if (c.GetUseCodeProperty())
+                        dg.ListGuidProperties.Add(c.PropertyCodeGuid);
+                    if (c.GetUseNameProperty())
+                        dg.ListGuidProperties.Add(c.PropertyNameGuid);
+                    if (c.GetUseDescriptionProperty())
+                        dg.ListGuidProperties.Add(c.PropertyDescriptionGuid);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
             this.ListForms.Add(form);
             return form;
         }

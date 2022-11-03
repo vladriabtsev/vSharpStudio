@@ -8,5 +8,6 @@ namespace vSharpStudio.common
 {
     public partial interface IGroupListForms : ITreeConfigNode, IGetNodeSetting
     {
+        IForm AddCatalogForm(FormType formType);
     }
 }

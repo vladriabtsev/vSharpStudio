@@ -16,7 +16,6 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq}")]
     public partial class AppProjectGenerator : ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
-        public static readonly string DefaultName = "Generator";
         private Config cfg;
         [BrowsableAttribute(false)]
         public AppProject ParentAppProject { get { return (AppProject)this.Parent; } }
@@ -716,7 +715,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var node = new AppProjectGenerator(this.Parent);
             this.ParentAppProject.ListAppProjectGenerators.Add(node);
-            this.GetUniqueName(AppProjectGenerator.DefaultName, node, this.ParentAppProject.ListAppProjectGenerators);
+            this.GetUniqueName(Defaults.AppPrjGeneratorName, node, this.ParentAppProject.ListAppProjectGenerators);
             this.SetSelected(node);
             return node;
         }
