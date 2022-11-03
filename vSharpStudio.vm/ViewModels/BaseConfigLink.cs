@@ -38,11 +38,35 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "icon3DScene"; }
         partial void OnCreated()
         {
+            Init();
         }
-        public void OnAdded()
+        protected override void OnInitFromDto()
         {
-         //   this.AddAllAppGenSettingsVmsToNode();
+            Init();
         }
+        private void Init()
+        {
+            //this.ListRoles.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListRoles.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListRoles.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListRoles.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+        }
+        //public void OnAdded()
+        //{
+        //    this.AddAllAppGenSettingsVmsToNode();
+        //}
         public IEnumerable<ITreeConfigNode> GetParentList()
         {
             return this.ParentGroupListBaseConfigLinks.ListBaseConfigLinks;

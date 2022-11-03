@@ -60,6 +60,30 @@ namespace vSharpStudio.vm.ViewModels
             this.LinesOnScreen = 1;
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
+            //this.ListMainViewForms.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListMainViewForms.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListMainViewForms.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListMainViewForms.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
         public void OnAdded()
         {

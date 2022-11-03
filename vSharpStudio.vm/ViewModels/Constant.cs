@@ -51,8 +51,31 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this.DataType.Parent = this;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.DataType.PropertyChanged += DataType_PropertyChanged;
+            //this.ListRoles.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListRoles.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListRoles.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListRoles.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
 
         private void DataType_PropertyChanged(object sender, PropertyChangedEventArgs e)

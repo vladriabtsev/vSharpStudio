@@ -110,6 +110,8 @@ namespace GenFromProto
             this.Comments = MessageDoc.GetComments(message.Name, message.Description, out this.Attributes, out this.BaseClass, out this.Interfaces);
             if (this.Interfaces.Contains("ISortingValue"))
                 this.IsISortingValue = true;
+            if (this.Interfaces.Contains("ICanAddNode"))
+                this.IsICanAddNode = true;
             if (!string.IsNullOrEmpty(this.BaseClass))
             {
                 this.IsDefaultBase = false;
@@ -215,7 +217,7 @@ namespace GenFromProto
             {
                 string s = description;
                 var lines = s.Split('\n');
-                string sep = "";
+                string sepAttr = "";
                 foreach (var t in lines)
                 {
                     if (t.StartsWith("@attr"))
@@ -248,10 +250,10 @@ namespace GenFromProto
                         {
                             if (tt == "")
                                 continue;
-                            inter.Append(sep);
+                            inter.Append(sepAttr);
                             var iName = tt.Trim();
                             inter.Append(iName);
-                            sep = ", ";
+                            sepAttr = ", ";
                         }
                     }
                     else
@@ -285,6 +287,7 @@ namespace GenFromProto
         public bool IsBindableBase = false;
         public bool IsEditableBase = false;
         public bool IsISortingValue = false;
+        public bool IsICanAddNode = false;
         public bool IsValidatableBase = false;
         public string BaseClass = null;
         public string Interfaces = null;

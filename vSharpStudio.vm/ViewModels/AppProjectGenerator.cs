@@ -70,14 +70,31 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._RelativePathToGenFolder = @"Generated\";
-            this.ListGenerators = new SortedObservableCollection<PluginGenerator>();
-            this.GeneratorSettingsVm.Parent = this;
-            cfg = (Config)this.GetConfig();
+            Init();
         }
         protected override void OnInitFromDto()
         {
-            //base.OnInitFromDto();
-            cfg = (Config)this.GetConfig();
+            Init();
+        }
+        private void Init()
+        {
+            this.cfg = (Config)this.GetConfig();
+            //this.ListGenerators.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListGenerators.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListGenerators.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListGenerators.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
         [Browsable(false)]
         new public string? IconName

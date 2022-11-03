@@ -28,7 +28,29 @@ namespace vSharpStudio.vm.ViewModels
             this.IsUseFolderCode = true;
             this.IsUseFolderName = true;
             HideProperties();
+            //Init();
         }
+        //protected override void OnInitFromDto()
+        //{
+        //    Init();
+        //}
+        //private void Init()
+        //{
+        //    this.ListRoles.OnAddingAction = (t) =>
+        //    {
+        //        t.IsNew = true;
+        //    };
+        //    this.ListRoles.OnAddedAction = (t) =>
+        //    {
+        //        t.OnAdded();
+        //    };
+        //    this.ListRoles.OnRemovedAction = (t) => {
+        //        this.OnRemoveChild();
+        //    };
+        //    this.ListRoles.OnClearedAction = () => {
+        //        this.OnRemoveChild();
+        //    };
+        //}
         //protected override void OnInitFromDto()
         //{
         //    HideProperties();

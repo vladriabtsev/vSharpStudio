@@ -51,11 +51,11 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
-            this.Folder.Parent = this;
-            this.GroupProperties.Parent = this;
-            this.GroupDetails.Parent = this;
-            this.GroupForms.Parent = this;
-            this.GroupReports.Parent = this;
+            //this.Folder.Parent = this;
+            //this.GroupProperties.Parent = this;
+            //this.GroupDetails.Parent = this;
+            //this.GroupForms.Parent = this;
+            //this.GroupReports.Parent = this;
             this.ItemIconType = EnumCatalogTreeIcon.None;
 
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
@@ -79,12 +79,32 @@ namespace vSharpStudio.vm.ViewModels
             this.UseCodeProperty = EnumUseType.Default;
             this.UseNameProperty = EnumUseType.Default;
             this.UseDescriptionProperty = EnumUseType.Default;
-            this.RefillChildren();
+            Init();
         }
         protected override void OnInitFromDto()
         {
-            base.OnInitFromDto();
+            //base.OnInitFromDto();
+            Init();
+        }
+        private void Init()
+        {
             this.RefillChildren();
+            //this.ListRoles.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListRoles.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListRoles.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListRoles.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
         public void RefillChildren()
         {

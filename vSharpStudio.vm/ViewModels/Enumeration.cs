@@ -45,6 +45,14 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this.DataTypeLength = 10;
             this.DataTypeEnum = EnumEnumerationType.INTEGER_VALUE;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.ListEnumerationPairs.OnAddingAction = (t) =>
             {
                 t.IsNew = true;

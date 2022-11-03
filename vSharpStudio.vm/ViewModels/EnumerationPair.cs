@@ -38,6 +38,30 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
+            //this.ListRoles.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListRoles.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListRoles.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListRoles.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
         public void OnAdded()
         {

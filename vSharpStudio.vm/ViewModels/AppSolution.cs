@@ -45,15 +45,34 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            //this.DefaultDb.Parent = this;
-#if DEBUG
-            // SubNodes.Add(this.GroupConstants, 1);
-#endif
-            //    this.RefillChildren();
             this.ListAppProjects.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
+            this.ListAppProjects.OnRemovedAction = (t) =>
+            {
+                this.OnRemoveChild();
+            };
+            this.ListAppProjects.OnClearedAction = () =>
+            {
+                this.OnRemoveChild();
+            };
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
+            this.ListAppProjects.OnAddingAction = (t) =>
+            {
+                t.IsNew = true;
+            };
+            //this.ListAppProjects.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
             this.ListAppProjects.OnRemovedAction = (t) =>
             {
                 this.OnRemoveChild();

@@ -42,34 +42,41 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this.Children = new ObservableCollection<ITreeConfigNode>();
-#if DEBUG
-            // SubNodes.Add(this.GroupConstants, 1);
-#endif
-            this.GroupProperties.Parent = this;
-            this.GroupDetails.Parent = this;
-            this.GroupForms.Parent = this;
-            this.GroupReports.Parent = this;
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocCodeGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
-            this.RefillChildren();
+            Init();
         }
         protected override void OnInitFromDto()
         {
-            base.OnInitFromDto();
-            this.RefillChildren();
+            Init();
         }
-        void RefillChildren()
+        private void Init()
         {
             VmBindable.IsNotifyingStatic = false;
-            this.Children.Clear();
+            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.Children.Add(this.GroupProperties);
             this.Children.Add(this.GroupDetails);
             this.Children.Add(this.GroupForms);
             this.Children.Add(this.GroupReports);
             VmBindable.IsNotifyingStatic = true;
+            //this.ListRoles.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListRoles.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListRoles.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListRoles.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
         public void OnAdded()
         {

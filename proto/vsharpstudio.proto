@@ -88,11 +88,6 @@ message proto_plugin {
     uint64 sorting_value = 5;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator list_generators = 6;
-
-    // @attr [BrowsableAttribute(false)]
-    bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
-    bool is_marked_for_deletion = 13;
 }
 // @interface ISortingValue
 // @base ConfigObjectVmBase
@@ -106,10 +101,6 @@ message proto_plugin_generator {
     string description = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
-    // @attr [BrowsableAttribute(false)]
-    bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
-    bool is_marked_for_deletion = 11;
 }
 // @base BaseSettings
 message proto_settings_config {
@@ -267,7 +258,6 @@ message proto_plugin_group_generators_default_settings {
     string app_group_generators_guid = 2;
     string settings = 3; 
 }
-// @base ConfigObjectVmBase
 message proto_group_list_app_solutions {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -327,8 +317,8 @@ message proto_plugin_group_generators_settings {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 }
+// @interface ICanAddNode
 // @interface ISortingValue
-// @base ConfigObjectVmBase
 message proto_app_solution {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -395,8 +385,8 @@ message proto_app_solution {
     proto_plugins_group plugins_group3 = 13;
     */
 }
+// @interface ICanAddNode
 // @interface ISortingValue
-// @base ConfigObjectVmBase
 message proto_app_project {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -473,8 +463,8 @@ message proto_plugin_generator_settings {
     string settings = 5; 
 }
 // Application project generator
+// @interface ICanAddNode
 // @interface ISortingValue
-// @base ConfigObjectVmBase
 message proto_app_project_generator {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -870,6 +860,7 @@ message proto_group_list_common {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // User's role
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_role {
     // @attr [Category("")]
@@ -1017,6 +1008,7 @@ message proto_group_list_details {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_detail {
     // @attr [Category("")]
@@ -1175,6 +1167,7 @@ message proto_group_list_properties {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_property {
     reserved 21; // bool
@@ -1370,6 +1363,7 @@ message proto_group_constant_groups {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_group_list_constants {
     // @attr [Category("")]
@@ -1406,6 +1400,7 @@ message proto_group_list_constants {
 //
 // Constant application wise value
 //
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_constant {
     // @attr [Category("")]
@@ -1497,6 +1492,7 @@ enum enum_enumeration_type {
     BYTE_VALUE = 2;
     STRING_VALUE = 3;
 }
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_enumeration {
     // @attr [Category("")]
@@ -1534,6 +1530,7 @@ message proto_enumeration {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_enumeration_pair {
     // @attr [Category("")]
@@ -1707,6 +1704,7 @@ enum proto_enum_use_type {
     Yes = 1;
     No = 2;
 }
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_catalog {
     // @attr [Category("")]
@@ -2002,6 +2000,7 @@ message proto_document_code_property_settings {
     // @attr [Description("Start date of scope period")]
     string scope_period_start = 8;
 }
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_document {
     // @attr [Category("")]
@@ -2138,6 +2137,7 @@ message proto_group_list_journals {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_journal {
     // @attr [Category("")]
@@ -2222,6 +2222,7 @@ enum proto_form_type {
 }
 // Children collection can contain:
 //   - Children of Grid System
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_form {
     // @attr [Category("")]
@@ -2310,6 +2311,8 @@ message proto_form {
 
 
 // Children are collection of Grid System Rows 
+// @interface ICanAddNode
+// @interface ISortingValue
 message proto_form_grid_system {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2350,6 +2353,7 @@ message proto_form_grid_system {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // Children are collection of Grid System Columns 
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_form_grid_system_row {
     // @attr [Category("")]
@@ -2404,6 +2408,7 @@ enum proto_enum_hidden_type {
     XlAndDown = 5;
 }
 // Children are collection of Auto Layout Block children
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_form_grid_system_column {
     // @attr [Category("")]
@@ -2472,6 +2477,8 @@ message proto_form_grid_system_column {
 //   - Grid Systems
 //   - Tab Controls
 //   - Auto Layout Blocks
+// @interface ICanAddNode
+// @interface ISortingValue
 message proto_form_auto_layout_block {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2506,6 +2513,7 @@ message proto_form_auto_layout_block {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_form_auto_layout_sub_block {
     // @attr [Category("")]
@@ -2545,6 +2553,8 @@ message proto_form_auto_layout_sub_block {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @interface ICanAddNode
+// @interface ISortingValue
 message proto_form_field {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2576,6 +2586,7 @@ message proto_form_field {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // Children are collection of Auto Layout Block children
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_form_tab_control_tab {
     // @attr [Category("")]
@@ -2616,6 +2627,7 @@ message proto_form_tab_control_tab {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // Children are collection of Tab Control Tabs
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_form_tab_control {
     // @attr [Category("")]
@@ -2652,6 +2664,7 @@ message proto_form_tab_control {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // No Children
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_form_data_grid {
     // @attr [Category("")]
@@ -2686,6 +2699,7 @@ message proto_form_data_grid {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // No Children
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_form_tree {
     // @attr [Category("")]
@@ -2749,6 +2763,7 @@ message proto_group_list_reports {
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @interface ICanAddNode
 // @interface ISortingValue
 message proto_report {
     // @attr [Category("")]

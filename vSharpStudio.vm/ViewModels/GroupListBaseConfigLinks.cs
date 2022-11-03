@@ -15,6 +15,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class GroupListBaseConfigLinks : ITreeModel, ICanAddSubNode, ICanGoRight, IEditableNodeGroup // , INodeGenSettings
     {
         [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
+        [BrowsableAttribute(false)]
         public Config ParentConfig { get { return (Config)this.Parent; } }
         [BrowsableAttribute(false)]
         public IConfig ParentConfigI { get { return (IConfig)this.Parent; } }
@@ -39,7 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         // public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
         partial void OnCreated()
         {
-            this._Name = "BaseConfigs";
+            this._Name = Defaults.BaseConfigLinksName;
             this.IsEditable = false;
             // this.Children = new SortedObservableCollection<ITreeConfigNode>();
             // this.GroupSharedProperties.Parent = this;
@@ -54,14 +56,15 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            //this.AddAllAppGenSettingsVmsToNode();
             this.ListBaseConfigLinks.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
-            this.ListBaseConfigLinks.OnAddedAction = (t) =>
-            {
-                t.OnAdded();
-            };
+            //this.ListBaseConfigLinks.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
             this.ListBaseConfigLinks.OnRemovedAction = (t) =>
             {
                 this.OnRemoveChild();

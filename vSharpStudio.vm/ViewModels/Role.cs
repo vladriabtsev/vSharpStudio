@@ -41,8 +41,32 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconWindowsForm"; }
         partial void OnCreated()
         {
-            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
             this.IsIncludableInModels = true;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
+            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
+            //this.ListMainViewForms.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListMainViewForms.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListMainViewForms.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListMainViewForms.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
         public void OnAdded()
         {

@@ -16,6 +16,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class GroupListEnumerations : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
+        [BrowsableAttribute(false)]
         public Model ParentModel { get { return (Model)this.Parent; } }
         [BrowsableAttribute(false)]
         public IModel ParentModelI { get { return (IModel)this.Parent; } }

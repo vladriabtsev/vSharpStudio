@@ -16,6 +16,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class GroupListDocuments : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
+        [BrowsableAttribute(false)]
         public GroupDocuments ParentGroupDocuments { get { return (GroupDocuments)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupDocuments ParentGroupDocumentsI { get { return (IGroupDocuments)this.Parent; } }

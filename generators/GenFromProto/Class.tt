@@ -132,7 +132,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <# } else { #>
     //partial void OnIsChangedChanged(); // <#=Helper.FilePos() #>
 <# } #>
-<# if (this.Doc.IsConfigObjectBase && (!(message.Name.Contains("group") || message.Name.StartsWith("proto_config") || message.Name.StartsWith("proto_model")))) { #>
+<# if (this.Doc.IsICanAddNode) { #>
     partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // <#=Helper.FilePos() #> <#=message.Name#>
     partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
 <# } #>

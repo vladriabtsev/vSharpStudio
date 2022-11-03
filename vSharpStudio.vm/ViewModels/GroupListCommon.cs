@@ -16,6 +16,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class GroupListCommon : ITreeModel, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
+        [BrowsableAttribute(false)]
         public Model ParentModel { get { return (Model)this.Parent; } }
         [BrowsableAttribute(false)]
         public IModel ParentModelI { get { return (IModel)this.Parent; } }
@@ -40,10 +42,31 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Common";
             this.IsEditable = false;
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
-
-            // this.GroupPlugins.Parent = this;
-            // this.Children.Add(this.GroupPlugins, 0);
+            //this.ListRoles.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListRoles.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListRoles.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListRoles.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

@@ -41,7 +41,6 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
-            this.ListGuidViewProperties = new ObservableCollectionWithActions<string>();
             this.IsIncludableInModels = true;
             this.IsIndexFk = true;
 
@@ -53,35 +52,38 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this.ViewListWideGuid = System.Guid.NewGuid().ToString();
             this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
-
-            this.Children = new ObservableCollection<ITreeConfigNode>();
-            this.GroupProperties.Parent = this;
-            this.GroupProperties.ListProperties.OnAddingAction = (t) =>
-            {
-                t.IsNew = true;
-            };
-            this.GroupProperties.ListProperties.OnAddedAction = (t) =>
-            {
-                t.OnAdded();
-            };
-
-            VmBindable.IsNotifyingStatic = false;
-            this.Children.Add(this.GroupProperties);
-            VmBindable.IsNotifyingStatic = true;
-
-            this.GroupDetails.Parent = this;
-            this.GroupProperties.ListProperties.OnAddingAction = (t) =>
-            {
-                t.IsNew = true;
-            };
-            this.GroupDetails.ListDetails.OnAddedAction = (t) =>
-            {
-                t.OnAdded();
-            };
-            this.Children.Add(this.GroupDetails);
+            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             this.Position = glp.GroupProperties.GetNextPosition();
-            this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
+            VmBindable.IsNotifyingStatic = false;
+            this.Children = new ObservableCollection<ITreeConfigNode>();
+            this.Children.Add(this.GroupProperties);
+            this.Children.Add(this.GroupDetails);
+            VmBindable.IsNotifyingStatic = true;
+            //this.ListRoles.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListRoles.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListRoles.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListRoles.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
         public void OnAdded()
         {

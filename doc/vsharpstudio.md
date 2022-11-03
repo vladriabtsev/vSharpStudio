@@ -120,8 +120,8 @@
 <a name="proto_config.proto_app_project"></a>
 
 ### proto_app_project
+@interface ICanAddNode
 @interface ISortingValue
-@base ConfigObjectVmBase
 
 
 | Field | Type | Label | Description |
@@ -146,8 +146,8 @@
 
 ### proto_app_project_generator
 Application project generator
+@interface ICanAddNode
 @interface ISortingValue
-@base ConfigObjectVmBase
 
 
 | Field | Type | Label | Description |
@@ -181,8 +181,8 @@ Application project generator
 <a name="proto_config.proto_app_solution"></a>
 
 ### proto_app_solution
+@interface ICanAddNode
 @interface ISortingValue
-@base ConfigObjectVmBase
 
 
 | Field | Type | Label | Description |
@@ -231,6 +231,7 @@ Application project generator
 <a name="proto_config.proto_catalog"></a>
 
 ### proto_catalog
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -389,6 +390,7 @@ Configuration config
 ### proto_constant
 Constant application wise value
 
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -442,6 +444,7 @@ Constant application wise value
 <a name="proto_config.proto_detail"></a>
 
 ### proto_detail
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -491,6 +494,7 @@ Constant application wise value
 <a name="proto_config.proto_document"></a>
 
 ### proto_document
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -547,6 +551,7 @@ Constant application wise value
 <a name="proto_config.proto_enumeration"></a>
 
 ### proto_enumeration
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -572,6 +577,7 @@ Constant application wise value
 <a name="proto_config.proto_enumeration_pair"></a>
 
 ### proto_enumeration_pair
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -599,6 +605,7 @@ Constant application wise value
 ### proto_form
 Children collection can contain:
   - Children of Grid System
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -639,6 +646,8 @@ Children collection can contain:
   - Grid Systems
   - Tab Controls
   - Auto Layout Blocks
+@interface ICanAddNode
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -662,6 +671,7 @@ Children collection can contain:
 
 ### proto_form_auto_layout_sub_block
 https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -691,6 +701,7 @@ https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
 
 ### proto_form_data_grid
 No Children
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -714,7 +725,8 @@ No Children
 <a name="proto_config.proto_form_field"></a>
 
 ### proto_form_field
-
+@interface ICanAddNode
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -736,7 +748,9 @@ No Children
 <a name="proto_config.proto_form_grid_system"></a>
 
 ### proto_form_grid_system
-Children are collection of Grid System Rows
+Children are collection of Grid System Rows 
+@interface ICanAddNode
+@interface ISortingValue
 
 
 | Field | Type | Label | Description |
@@ -761,6 +775,7 @@ Children are collection of Grid System Rows
 
 ### proto_form_grid_system_column
 Children are collection of Auto Layout Block children
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -792,6 +807,7 @@ Children are collection of Auto Layout Block children
 
 ### proto_form_grid_system_row
 Children are collection of Grid System Columns 
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -816,6 +832,7 @@ Children are collection of Grid System Columns
 
 ### proto_form_tab_control
 Children are collection of Tab Control Tabs
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -841,6 +858,7 @@ Children are collection of Tab Control Tabs
 
 ### proto_form_tab_control_tab
 Children are collection of Auto Layout Block children
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -866,6 +884,7 @@ Children are collection of Auto Layout Block children
 
 ### proto_form_tree
 No Children
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -940,7 +959,7 @@ No Children
 <a name="proto_config.proto_group_list_app_solutions"></a>
 
 ### proto_group_list_app_solutions
-@base ConfigObjectVmBase
+
 
 
 | Field | Type | Label | Description |
@@ -1030,6 +1049,7 @@ Common parameters section
 <a name="proto_config.proto_group_list_constants"></a>
 
 ### proto_group_list_constants
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -1266,6 +1286,7 @@ main view forms hierarchy node with children
 <a name="proto_config.proto_journal"></a>
 
 ### proto_journal
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -1402,8 +1423,6 @@ Configuration model
 | description | [string](#string) |  | @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | list_generators | [proto_plugin_generator](#proto_config.proto_plugin_generator) | repeated | @attr [BrowsableAttribute(false)] |
-| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -1423,8 +1442,6 @@ Configuration model
 | name | [string](#string) |  | @attr [PropertyOrderAttribute(1)] @attr [ReadOnly(true)] |
 | description | [string](#string) |  | @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -1529,6 +1546,7 @@ Configuration model
 <a name="proto_config.proto_property"></a>
 
 ### proto_property
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -1568,6 +1586,7 @@ Configuration model
 <a name="proto_config.proto_report"></a>
 
 ### proto_report
+@interface ICanAddNode
 @interface ISortingValue
 
 
@@ -1591,6 +1610,7 @@ Configuration model
 
 ### proto_role
 User&#39;s role
+@interface ICanAddNode
 @interface ISortingValue
 
 

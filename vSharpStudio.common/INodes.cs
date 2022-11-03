@@ -21,18 +21,17 @@ namespace vSharpStudio.common
     }
     public interface ICanAddNode //: IOnAdded, IOnRemoved
     {
+        bool IsNew { get; set; }
     }
-    public interface IEditableNode
+    public interface IEditableNode : ICanAddNode
     {
         bool IsChanged { get; set; }
-        bool IsNew { get; set; }
         bool IsMarkedForDeletion { get; set; }
         void Remove();
     }
     public interface IEditableNodeGroup
     {
         bool IsHasChanged { get; set; }
-        //bool IsNew { get; set; }
         bool IsNewOrHasNew { get; }
         bool IsHasNew { get; set; }
         bool IsHasMarkedForDeletion { get; set; }

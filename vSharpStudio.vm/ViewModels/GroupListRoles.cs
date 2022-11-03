@@ -16,6 +16,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class GroupListRoles : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
+        [BrowsableAttribute(false)]
         public GroupListCommon ParentGroupListCommon { get { return (GroupListCommon)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupListCommon ParentGroupListCommonI { get { return (IGroupListCommon)this.Parent; } }

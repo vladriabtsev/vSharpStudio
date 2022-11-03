@@ -49,14 +49,22 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconApplication"; }
         partial void OnCreated()
         {
-            //this.DefaultDb.Parent = this;
-#if DEBUG
-            // SubNodes.Add(this.GroupConstants, 1);
-#endif
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.ListAppProjectGenerators.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
+            //this.ListAppProjectGenerators.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
             this.ListAppProjectGenerators.OnRemovedAction = (t) =>
             {
                 var cfg = (Config)this.GetConfig();
@@ -70,20 +78,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-        }
-        protected override void OnInitFromDto()
-        {
-            //_logger.Trace();
-            //base.OnInitFromDto();
-            //this.RefillChildren();
-        }
-        void RefillChildren()
-        {
-            //this.Children.Clear();
-            //this.Children.Add(this.GroupConfigLinks, 0);
-            //this.Children.Add(this.Model, 1);
-            //this.Children.Add(this.GroupPlugins, 9);
-            //this.Children.Add(this.GroupAppSolutions, 10);
         }
         public AppProject(ITreeConfigNode parent, string name, string projectPath)
                         : this(parent)

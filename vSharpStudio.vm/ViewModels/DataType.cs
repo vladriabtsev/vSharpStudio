@@ -26,7 +26,29 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Length = 10;
             this.DataTypeEnum = EnumDataType.STRING;
+            //Init();
         }
+        //protected override void OnInitFromDto()
+        //{
+        //    Init();
+        //}
+        //private void Init()
+        //{
+        //    this.ListRoles.OnAddingAction = (t) =>
+        //    {
+        //        t.IsNew = true;
+        //    };
+        //    this.ListRoles.OnAddedAction = (t) =>
+        //    {
+        //        t.OnAdded();
+        //    };
+        //    this.ListRoles.OnRemovedAction = (t) => {
+        //        this.OnRemoveChild();
+        //    };
+        //    this.ListRoles.OnClearedAction = () => {
+        //        this.OnRemoveChild();
+        //    };
+        //}
         public DataType(BigInteger maxNumericalValue, bool isPositive = false) : this()
         {
             BigInteger maxValue = maxNumericalValue;

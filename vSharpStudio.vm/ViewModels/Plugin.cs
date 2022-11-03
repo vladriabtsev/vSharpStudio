@@ -14,6 +14,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Plugin : ICanGoLeft, ICanGoRight
     {
         [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
+        [BrowsableAttribute(false)]
         public GroupListPlugins ParentGroupListPlugins { get { return (GroupListPlugins)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupListPlugins ParentGroupListPluginsI { get { return (IGroupListPlugins)this.Parent; } }
@@ -34,7 +36,29 @@ namespace vSharpStudio.vm.ViewModels
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
+            //    Init();
         }
+        //protected override void OnInitFromDto()
+        //{
+        //    Init();
+        //}
+        //private void Init()
+        //{
+        //    this.ListMainViewForms.OnAddingAction = (t) =>
+        //    {
+        //        t.IsNew = true;
+        //    };
+        //    this.ListMainViewForms.OnAddedAction = (t) =>
+        //    {
+        //        t.OnAdded();
+        //    };
+        //    this.ListMainViewForms.OnRemovedAction = (t) => {
+        //        this.OnRemoveChild();
+        //    };
+        //    this.ListMainViewForms.OnClearedAction = () => {
+        //        this.OnRemoveChild();
+        //    };
+        //}
 
         [BrowsableAttribute(false)]
         public IvPlugin VPlugin { get; private set; }

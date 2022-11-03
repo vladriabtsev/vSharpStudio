@@ -46,21 +46,37 @@ namespace vSharpStudio.vm.ViewModels
         //}
         partial void OnCreated()
         {
-            this.ListGuidViewProperties = new ObservableCollectionWithActions<string>();
-            this.ListGuidViewFolderProperties = new ObservableCollectionWithActions<string>();
-            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.IsIncludableInModels = true;
+            Init();
         }
         protected override void OnInitFromDto()
         {
+            Init();
         }
-
+        private void Init()
+        {
+            this.Children = new ObservableCollection<ITreeConfigNode>();
+            //this.ListRoles.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListRoles.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListRoles.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListRoles.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+        }
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();
-            //this.GroupProperties.AddAllAppGenSettingsVmsToNode();
-            //this.GroupForms.AddAllAppGenSettingsVmsToNode();
-            //this.GroupReports.AddAllAppGenSettingsVmsToNode();
+            this.GridSystem.AddAllAppGenSettingsVmsToNode();
         }
 
         #region Tree operations

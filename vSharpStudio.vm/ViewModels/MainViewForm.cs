@@ -43,7 +43,29 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
             this.IsIncludableInModels = true;
+            //    Init();
         }
+        //protected override void OnInitFromDto()
+        //{
+        //    Init();
+        //}
+        //private void Init()
+        //{
+        //    this.ListMainViewForms.OnAddingAction = (t) =>
+        //    {
+        //        t.IsNew = true;
+        //    };
+        //    this.ListMainViewForms.OnAddedAction = (t) =>
+        //    {
+        //        t.OnAdded();
+        //    };
+        //    this.ListMainViewForms.OnRemovedAction = (t) => {
+        //        this.OnRemoveChild();
+        //    };
+        //    this.ListMainViewForms.OnClearedAction = () => {
+        //        this.OnRemoveChild();
+        //    };
+        //}
         public void OnAdded()
         {
             this.AddAllAppGenSettingsVmsToNode();

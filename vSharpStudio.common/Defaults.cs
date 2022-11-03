@@ -8,6 +8,7 @@
 
     public class Defaults
     {
+        public const string ConfigName = "Config";
         public const string ModelName = "Model";
         public const string GroupConstantGroupsName = "Constants";
         public const string ConstantsGroupName = "Group";
@@ -20,6 +21,9 @@
         //public const string Folder = "Folder";
         public const string DocumentName = "Document";
         public const string DetailName = "Detail";
+
+        public const string PropertiesGroupName = "Properties";
+        public const string PropertiesSharedGroupName = "Shared";
 
         public const string FormName = "Form";
         //public const string FormAutoLayoutBlockName = "Auto Layout Block";
@@ -41,5 +45,6 @@
         public const string AppPrjGeneratorName = "Generator";
 
         public const string BaseConfigName = "BaseConfig";
+        public const string BaseConfigLinksName = "BaseConfigs";
     }
 }

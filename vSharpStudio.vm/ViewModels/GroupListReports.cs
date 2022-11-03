@@ -16,6 +16,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListReports.Count,nq}")]
     public partial class GroupListReports : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {

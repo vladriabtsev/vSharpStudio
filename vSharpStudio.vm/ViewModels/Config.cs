@@ -65,35 +65,41 @@ namespace vSharpStudio.vm.ViewModels
             _logger.Trace();
             if (string.IsNullOrWhiteSpace(this._Name))
             {
-                this._Name = "Config";
+                this._Name = Defaults.ConfigName;
             }
-
-            this.Children = new ObservableCollection<ITreeConfigNode>();
-#if DEBUG
-            // SubNodes.Add(this.GroupConstants, 1);
-#endif
-            this.GroupConfigLinks.Parent = this;
-            this.Model.Parent = this;
-            this.GroupPlugins.Parent = this;
-            this.GroupAppSolutions.Parent = this;
-            this.RefillChildren();
+            _logger.Trace();
+            Init();
         }
-
         protected override void OnInitFromDto()
         {
             _logger.Trace();
-            base.OnInitFromDto();
-            this.RefillChildren();
+            Init();
         }
-        void RefillChildren()
+        private void Init()
         {
             VmBindable.IsNotifyingStatic = false;
-            this.Children.Clear();
+            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.Children.Add(this.GroupConfigLinks);
             this.Children.Add(this.Model);
             this.Children.Add(this.GroupPlugins);
             this.Children.Add(this.GroupAppSolutions);
             VmBindable.IsNotifyingStatic = true;
+            //this.ListRoles.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListRoles.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListRoles.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListRoles.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
         public Config(ConfigShortHistory history)
             : this((ITreeConfigNode)null)

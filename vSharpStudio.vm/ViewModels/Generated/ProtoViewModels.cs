@@ -749,8 +749,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGenerators = new ConfigNodesCollection<PluginGenerator>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListGenerators) // Clone.tt Line: 52
                 vm.ListGenerators.Add(PluginGenerator.Clone(vm, (PluginGenerator)t, isDeep));
-            vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -800,8 +798,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                     }
                 }
             }
-            to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -841,8 +837,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGenerator.ConvertToVM(t, new PluginGenerator(vm)); // Clone.tt Line: 204
                 vm.ListGenerators.Add(tvm);
             }
-            vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -859,8 +853,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             foreach (var t in vm.ListGenerators) // Clone.tt Line: 242
                 m.ListGenerators.Add(PluginGenerator.ConvertToProto((PluginGenerator)t)); // Clone.tt Line: 246
-            m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             return m;
         }
         
@@ -1011,48 +1003,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IReadOnlyList<IPluginGenerator> IPlugin.ListGenerators { get { return (this as Plugin).ListGenerators; } } // Property.tt Line: 26
         partial void OnListGeneratorsChanging(ObservableCollection<PluginGenerator> to); // Property.tt Line: 27
         partial void OnListGeneratorsChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 55
-        { 
-            get { return this._IsNew; }
-            set
-            {
-                if (this._IsNew != value)
-                {
-                    this.OnIsNewChanging(ref value);
-                    this._IsNew = value;
-                    this.OnIsNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsMarkedForDeletion; }
-            set
-            {
-                if (this._IsMarkedForDeletion != value)
-                {
-                    this.OnIsMarkedForDeletionChanging(ref value);
-                    this._IsMarkedForDeletion = value;
-                    this.OnIsMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsMarkedForDeletionChanged();
         [BrowsableAttribute(false)]
         public override bool IsChanged // Class.tt Line: 112
         { 
@@ -1073,8 +1023,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_plugin
-        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -1123,8 +1071,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Name = from.Name; // Clone.tt Line: 65
             vm.Description = from.Description; // Clone.tt Line: 65
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 65
-            vm.IsNew = from.IsNew; // Clone.tt Line: 65
-            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 65
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -1137,8 +1083,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Name = from.Name; // Clone.tt Line: 141
             to.Description = from.Description; // Clone.tt Line: 141
             to.SortingValue = from.SortingValue; // Clone.tt Line: 141
-            to.IsNew = from.IsNew; // Clone.tt Line: 141
-            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 141
         }
         // Clone.tt Line: 147
         #region IEditable
@@ -1171,8 +1115,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Name = m.Name; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
-            vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -1186,8 +1128,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Name = vm.Name; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
-            m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             return m;
         }
         
@@ -1288,48 +1228,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsNew // Property.tt Line: 55
-        { 
-            get { return this._IsNew; }
-            set
-            {
-                if (this._IsNew != value)
-                {
-                    this.OnIsNewChanging(ref value);
-                    this._IsNew = value;
-                    this.OnIsNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsNewChanged();
-        
-        [BrowsableAttribute(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsMarkedForDeletion; }
-            set
-            {
-                if (this._IsMarkedForDeletion != value)
-                {
-                    this.OnIsMarkedForDeletionChanging(ref value);
-                    this._IsMarkedForDeletion = value;
-                    this.OnIsMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsMarkedForDeletionChanged();
         [BrowsableAttribute(false)]
         public override bool IsChanged // Class.tt Line: 112
         { 
@@ -1350,8 +1248,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_plugin_generator
-        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -2646,8 +2542,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_base_config_link
-        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -3611,15 +3505,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     }
     // Class.tt Line: 6
     //       IsWithParent: True 
-    //      IsDefaultBase: False 
+    //      IsDefaultBase: True 
     // IsConfigObjectBase: True 
-    //      IsGenSettings: False 
+    //      IsGenSettings: True 
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupListAppSolutionsValidator : ValidatorBase<GroupListAppSolutions, GroupListAppSolutionsValidator> { } // Class.tt Line: 15
-    public partial class GroupListAppSolutions : ConfigObjectVmBase<GroupListAppSolutions, GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 16
+    public partial class GroupListAppSolutions : ConfigObjectVmGenSettings<GroupListAppSolutions, GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 16
     {
         #region CTOR
         public GroupListAppSolutions() : this(default(ITreeConfigNode)) // Class.tt Line: 20
@@ -3665,6 +3559,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGroupGeneratorsDefultSettings = new ObservableCollectionWithActions<PluginGroupGeneratorsDefaultSettings>(); // Clone.tt Line: 47
             foreach (var t in from.ListGroupGeneratorsDefultSettings) // Clone.tt Line: 48
                 vm.ListGroupGeneratorsDefultSettings.Add(PluginGroupGeneratorsDefaultSettings.Clone((PluginGroupGeneratorsDefaultSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -3791,6 +3687,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGroupGeneratorsDefaultSettings.ConvertToVM(t, new PluginGroupGeneratorsDefaultSettings()); // Clone.tt Line: 196
                 vm.ListGroupGeneratorsDefultSettings.Add(tvm);
             }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4288,15 +4187,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     }
     // Class.tt Line: 6
     //       IsWithParent: True 
-    //      IsDefaultBase: False 
+    //      IsDefaultBase: True 
     // IsConfigObjectBase: True 
-    //      IsGenSettings: False 
+    //      IsGenSettings: True 
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // Class.tt Line: 15
-    public partial class AppSolution : ConfigObjectVmBase<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 16
+    public partial class AppSolution : ConfigObjectVmGenSettings<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 16
     {
         #region CTOR
         public AppSolution() : this(default(ITreeConfigNode)) // Class.tt Line: 20
@@ -4352,6 +4251,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListGroupGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListGroupGeneratorsSettings.Add(PluginGroupGeneratorsSettings.Clone(vm, (PluginGroupGeneratorsSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4490,6 +4391,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGroupGeneratorsSettings.ConvertToVM(t, new PluginGroupGeneratorsSettings(vm)); // Clone.tt Line: 204
                 vm.ListGroupGeneratorsSettings.Add(tvm);
             }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4801,15 +4705,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     }
     // Class.tt Line: 6
     //       IsWithParent: True 
-    //      IsDefaultBase: False 
+    //      IsDefaultBase: True 
     // IsConfigObjectBase: True 
-    //      IsGenSettings: False 
+    //      IsGenSettings: True 
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class AppProjectValidator : ValidatorBase<AppProject, AppProjectValidator> { } // Class.tt Line: 15
-    public partial class AppProject : ConfigObjectVmBase<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 16
+    public partial class AppProject : ConfigObjectVmGenSettings<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 16
     {
         #region CTOR
         public AppProject() : this(default(ITreeConfigNode)) // Class.tt Line: 20
@@ -4864,6 +4768,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGroupGeneratorsSettings = new ConfigNodesCollection<PluginGroupGeneratorsSettings>(vm); // Clone.tt Line: 51
             foreach (var t in from.ListGroupGeneratorsSettings) // Clone.tt Line: 52
                 vm.ListGroupGeneratorsSettings.Add(PluginGroupGeneratorsSettings.Clone(vm, (PluginGroupGeneratorsSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -5000,6 +4906,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGroupGeneratorsSettings.ConvertToVM(t, new PluginGroupGeneratorsSettings(vm)); // Clone.tt Line: 204
                 vm.ListGroupGeneratorsSettings.Add(tvm);
             }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -5564,8 +5473,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_plugin_generator_node_settings
-        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -5819,9 +5726,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     }
     // Class.tt Line: 6
     //       IsWithParent: True 
-    //      IsDefaultBase: False 
+    //      IsDefaultBase: True 
     // IsConfigObjectBase: True 
-    //      IsGenSettings: False 
+    //      IsGenSettings: True 
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
@@ -5831,7 +5738,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     ///////////////////////////////////////////////////
     /// Application project generator
     ///////////////////////////////////////////////////
-    public partial class AppProjectGenerator : ConfigObjectVmBase<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 16
+    public partial class AppProjectGenerator : ConfigObjectVmGenSettings<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 16
     {
         #region CTOR
         public AppProjectGenerator() : this(default(ITreeConfigNode)) // Class.tt Line: 20
@@ -5885,6 +5792,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 65
             vm.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 65
             vm.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 65
+            if (isNewGuid) // Clone.tt Line: 70
+                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -5964,6 +5873,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ConnStrToPrevStable = m.ConnStrToPrevStable; // Clone.tt Line: 221
             vm.IsGenerateSqlSqriptToUpdatePrevStable = m.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 221
             vm.GenScriptFileName = m.GenScriptFileName; // Clone.tt Line: 221
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -9947,8 +9859,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_main_view_form
-        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -14434,6 +14344,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_group_list_constants
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -17391,8 +17303,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_catalog_folder
-        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -23884,11 +23794,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    //    IsISortingValue: False 
+    //    IsISortingValue: True 
     public partial class FormGridSystemValidator : ValidatorBase<FormGridSystem, FormGridSystemValidator> { } // Class.tt Line: 15
     
     ///////////////////////////////////////////////////
-    /// Children are collection of Grid System Rows
+    /// Children are collection of Grid System Rows 
     ///////////////////////////////////////////////////
     public partial class FormGridSystem : ConfigObjectVmGenSettings<FormGridSystem, FormGridSystemValidator>, IComparable<FormGridSystem>, IConfigAcceptVisitor, IFormGridSystem // Class.tt Line: 16
     {
@@ -25474,7 +25384,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    //    IsISortingValue: False 
+    //    IsISortingValue: True 
     public partial class FormAutoLayoutBlockValidator : ValidatorBase<FormAutoLayoutBlock, FormAutoLayoutBlockValidator> { } // Class.tt Line: 15
     
     ///////////////////////////////////////////////////
@@ -26544,7 +26454,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    //    IsISortingValue: False 
+    //    IsISortingValue: True 
     public partial class FormFieldValidator : ValidatorBase<FormField, FormFieldValidator> { } // Class.tt Line: 15
     public partial class FormField : ConfigObjectVmGenSettings<FormField, FormFieldValidator>, IComparable<FormField>, IConfigAcceptVisitor, IFormField // Class.tt Line: 16
     {
@@ -31055,6 +30965,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         System.Threading.CancellationToken Token { get; }
         void Visit(Config p);
         void VisitEnd(Config p);
+        void Visit(GroupListAppSolutions p);
+        void VisitEnd(GroupListAppSolutions p);
+        void Visit(AppSolution p);
+        void VisitEnd(AppSolution p);
+        void Visit(AppProject p);
+        void VisitEnd(AppProject p);
+        void Visit(AppProjectGenerator p);
+        void VisitEnd(AppProjectGenerator p);
         void Visit(Model p);
         void VisitEnd(Model p);
         void Visit(GroupListCommon p);

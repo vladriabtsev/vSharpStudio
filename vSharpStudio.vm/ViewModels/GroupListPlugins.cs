@@ -15,6 +15,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class GroupListPlugins : ITreeModel, ICanGoRight, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
+        [BrowsableAttribute(false)]
         public Config ParentConfig { get { return (Config)this.Parent; } }
         [BrowsableAttribute(false)]
         public IConfig ParentConfigI { get { return (IConfig)this.Parent; } }
@@ -39,14 +41,36 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Plugins";
             this.IsEditable = false;
-            this.ListPlugins.OnAddingAction = (t) =>
-            {
-                t.IsNew = true;
-            };
+            //this.ListPlugins.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
             //this.ListPlugins.OnAddedAction = (t) =>
             //{
             //};
+            //Init();
         }
+        //protected override void OnInitFromDto()
+        //{
+        //    Init();
+        //}
+        //private void Init()
+        //{
+        //    this.ListRoles.OnAddingAction = (t) =>
+        //    {
+        //        t.IsNew = true;
+        //    };
+        //    this.ListRoles.OnAddedAction = (t) =>
+        //    {
+        //        t.OnAdded();
+        //    };
+        //    this.ListRoles.OnRemovedAction = (t) => {
+        //        this.OnRemoveChild();
+        //    };
+        //    this.ListRoles.OnClearedAction = () => {
+        //        this.OnRemoveChild();
+        //    };
+        //}
         public bool GetIsHasMarkedForDeletion()
         {
             return false;

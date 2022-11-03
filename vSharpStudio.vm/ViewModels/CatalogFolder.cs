@@ -56,24 +56,17 @@ namespace vSharpStudio.vm.ViewModels
             this.MaxNameLength = 20;
             this.MaxDescriptionLength = 100;
 
-            this.Children = new ObservableCollection<ITreeConfigNode>();
-#if DEBUG
-            // SubNodes.Add(this.GroupConstants, 1);
-#endif
-            this.GroupProperties.Parent = this;
-            this.GroupDetails.Parent = this;
-            this.CodePropertySettings.Parent = this;
-            this.RefillChildren();
+            //this.CodePropertySettings.Parent = this;
+            Init();
         }
         protected override void OnInitFromDto()
         {
-            base.OnInitFromDto();
-            this.RefillChildren();
+            Init();
         }
-        void RefillChildren()
+        private void Init()
         {
             VmBindable.IsNotifyingStatic = false;
-            this.Children.Clear();
+            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.Children.Add(this.GroupProperties);
             this.Children.Add(this.GroupDetails);
             VmBindable.IsNotifyingStatic = true;

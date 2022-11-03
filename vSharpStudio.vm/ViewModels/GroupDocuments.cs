@@ -15,6 +15,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
+        [BrowsableAttribute(false)]
         public Model ParentModel { get { return (Model)this.Parent; } }
         [BrowsableAttribute(false)]
         public IModel ParentModelI { get { return (IModel)this.Parent; } }
@@ -45,44 +47,35 @@ namespace vSharpStudio.vm.ViewModels
             this.PrefixForDbTables = "Doc";
             this.IsEditable = false;
 
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             VmBindable.IsNotifyingStatic = false;
             this.Children = new ObservableCollection<ITreeConfigNode>();
-            this.GroupSharedProperties.Parent = this;
             this.Children.Add(this.GroupSharedProperties);
-            this.GroupListDocuments.Parent = this;
             this.Children.Add(this.GroupListDocuments);
             VmBindable.IsNotifyingStatic = true;
-            //this.GroupSharedProperties.ListProperties.OnAddingAction = (t) =>
+
+            //this.ListRoles.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
             //};
-            //this.GroupSharedProperties.ListProperties.OnAddedAction = (t) =>
+            //this.ListRoles.OnAddedAction = (t) =>
             //{
             //    t.OnAdded();
             //};
-            //this.GroupListDocuments.ListDocuments.OnAddingAction = (t) =>
+            //this.ListRoles.OnRemovedAction = (t) =>
             //{
-            //    t.IsNew = true;
+            //    this.OnRemoveChild();
             //};
-            //this.GroupListDocuments.ListDocuments.OnAddedAction = (t) =>
+            //this.ListRoles.OnClearedAction = () =>
             //{
-            //    t.OnAdded();
-            //};
-            //this.GroupListDocuments.ListDocuments.OnRemovedAction = (t) => {
-            //    this.GetIsHasMarkedForDeletion();
-            //    this.GetIsHasNew();
-            //};
-            //this.GroupSharedProperties.ListProperties.OnRemovedAction = (t) => {
-            //    this.GetIsHasMarkedForDeletion();
-            //    this.GetIsHasNew();
-            //};
-            //this.GroupListDocuments.ListDocuments.OnClearedAction = () => {
-            //    this.GetIsHasMarkedForDeletion();
-            //    this.GetIsHasNew();
-            //};
-            //this.GroupSharedProperties.ListProperties.OnClearedAction = () => {
-            //    this.GetIsHasMarkedForDeletion();
-            //    this.GetIsHasNew();
+            //    this.OnRemoveChild();
             //};
         }
         public Document AddDocument(string name)

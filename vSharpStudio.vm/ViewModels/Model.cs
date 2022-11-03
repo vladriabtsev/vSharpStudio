@@ -26,6 +26,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Model : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup, INodeGenSettings
     {
         [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
+        [BrowsableAttribute(false)]
         public Config ParentConfig { get { return (Config)this.Parent; } }
         [BrowsableAttribute(false)]
         public IConfig ParentConfigI { get { return (IConfig)this.Parent; } }
@@ -54,13 +56,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this._Name = Defaults.ModelName;
-            this.Children = new ObservableCollection<ITreeConfigNode>();
-            this.GroupConstantGroups.Parent = this;
-            this.GroupEnumerations.Parent = this;
-            this.GroupCatalogs.Parent = this;
-            this.GroupDocuments.Parent = this;
-            this.GroupJournals.Parent = this;
-            this.RefillChildren();
             // TODO validate, Id generator table, use in db names
             this.CompositeNameMaxLength = 100;
             // TODO validate
@@ -94,17 +89,18 @@ namespace vSharpStudio.vm.ViewModels
             this.UseNameProperty = true;
             this.UseDocCodeProperty = true;
             this.UseDocDateProperty = true;
-        }
 
+            Init();
+        }
         protected override void OnInitFromDto()
         {
-            this._Name = "Model";
-            //this.RefillChildren();
+            Init();
         }
-        void RefillChildren()
+        private void Init()
         {
+            this._Name = "Model";
             VmBindable.IsNotifyingStatic = false;
-            this.Children.Clear();
+            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.Children.Add(this.GroupCommon);
             this.Children.Add(this.GroupConstantGroups);
             this.Children.Add(this.GroupEnumerations);
@@ -112,6 +108,22 @@ namespace vSharpStudio.vm.ViewModels
             this.Children.Add(this.GroupDocuments);
             this.Children.Add(this.GroupJournals);
             VmBindable.IsNotifyingStatic = true;
+            //this.ListMainViewForms.OnAddingAction = (t) =>
+            //{
+            //    t.IsNew = true;
+            //};
+            //this.ListMainViewForms.OnAddedAction = (t) =>
+            //{
+            //    t.OnAdded();
+            //};
+            //this.ListMainViewForms.OnRemovedAction = (t) =>
+            //{
+            //    this.OnRemoveChild();
+            //};
+            //this.ListMainViewForms.OnClearedAction = () =>
+            //{
+            //    this.OnRemoveChild();
+            //};
         }
 
         #region Validation

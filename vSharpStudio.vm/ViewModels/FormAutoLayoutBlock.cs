@@ -71,7 +71,29 @@ namespace vSharpStudio.vm.ViewModels
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
             this.RefillChildren();
+            //Init();
         }
+        //protected override void OnInitFromDto()
+        //{
+        //    Init();
+        //}
+        //private void Init()
+        //{
+        //    this.ListRoles.OnAddingAction = (t) =>
+        //    {
+        //        t.IsNew = true;
+        //    };
+        //    this.ListRoles.OnAddedAction = (t) =>
+        //    {
+        //        t.OnAdded();
+        //    };
+        //    this.ListRoles.OnRemovedAction = (t) => {
+        //        this.OnRemoveChild();
+        //    };
+        //    this.ListRoles.OnClearedAction = () => {
+        //        this.OnRemoveChild();
+        //    };
+        //}
         protected override void OnInitFromDto()
         {
             base.OnInitFromDto();

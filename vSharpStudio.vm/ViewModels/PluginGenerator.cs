@@ -14,6 +14,8 @@ namespace vSharpStudio.vm.ViewModels
     public partial class PluginGenerator : ICanGoLeft, ICanGoRight
     {
         [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
+        [BrowsableAttribute(false)]
         public Plugin ParentPlugin { get { return (Plugin)this.Parent; } }
         [BrowsableAttribute(false)]
         public IPlugin ParentPluginI { get { return (IPlugin)this.Parent; } }
@@ -35,7 +37,29 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsEditable = false;
+            //    Init();
         }
+        //protected override void OnInitFromDto()
+        //{
+        //    Init();
+        //}
+        //private void Init()
+        //{
+        //    this.ListMainViewForms.OnAddingAction = (t) =>
+        //    {
+        //        t.IsNew = true;
+        //    };
+        //    this.ListMainViewForms.OnAddedAction = (t) =>
+        //    {
+        //        t.OnAdded();
+        //    };
+        //    this.ListMainViewForms.OnRemovedAction = (t) => {
+        //        this.OnRemoveChild();
+        //    };
+        //    this.ListMainViewForms.OnClearedAction = () => {
+        //        this.OnRemoveChild();
+        //    };
+        //}
 
         [BrowsableAttribute(false)]
         public IvPluginGenerator Generator { get; private set; }

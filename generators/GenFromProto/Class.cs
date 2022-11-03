@@ -675,7 +675,7 @@ namespace GenFromProto
             #line hidden
             
             #line 135 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
- if (this.Doc.IsConfigObjectBase && (!(message.Name.Contains("group") || message.Name.StartsWith("proto_config") || message.Name.StartsWith("proto_model")))) { 
+ if (this.Doc.IsICanAddNode) { 
             
             #line default
             #line hidden

@@ -14,6 +14,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("ConstantGroups:{Name,nq} Count:{ListConstantGroups.Count,nq}")]
     public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
         [Browsable(false)]
         public Model ParentModel { get { return (Model)this.Parent; } }
         [Browsable(false)]
@@ -67,7 +69,14 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = Defaults.GroupConstantGroupsName;
             this.PrefixForDbTables = "Cnst";
             this.IsEditable = true;
-
+            Init();
+        }
+        protected override void OnInitFromDto()
+        {
+            Init();
+        }
+        private void Init()
+        {
             this.ListConstantGroups.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
@@ -84,41 +93,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.OnRemoveChild();
             };
-
-            //VmBindable.IsNotifyingStatic = false;
-            // VmBindable.IsNotifyingStatic = true;
-            //this.GroupSharedProperties.ListProperties.OnAddingAction = (t) =>
-            //{
-            //    t.IsNew = true;
-            //};
-            //this.GroupSharedProperties.ListProperties.OnAddedAction = (t) =>
-            //{
-            //    t.OnAdded();
-            //};
-            //this.GroupListDocuments.ListDocuments.OnAddingAction = (t) =>
-            //{
-            //    t.IsNew = true;
-            //};
-            //this.GroupListDocuments.ListDocuments.OnAddedAction = (t) =>
-            //{
-            //    t.OnAdded();
-            //};
-            //this.GroupListDocuments.ListDocuments.OnRemovedAction = (t) => {
-            //    this.GetIsHasMarkedForDeletion();
-            //    this.GetIsHasNew();
-            //};
-            //this.GroupSharedProperties.ListProperties.OnRemovedAction = (t) => {
-            //    this.GetIsHasMarkedForDeletion();
-            //    this.GetIsHasNew();
-            //};
-            //this.GroupListDocuments.ListDocuments.OnClearedAction = () => {
-            //    this.GetIsHasMarkedForDeletion();
-            //    this.GetIsHasNew();
-            //};
-            //this.GroupSharedProperties.ListProperties.OnClearedAction = () => {
-            //    this.GetIsHasMarkedForDeletion();
-            //    this.GetIsHasNew();
-            //};
         }
         public GroupListConstants AddGroupConstants(string name)
         {

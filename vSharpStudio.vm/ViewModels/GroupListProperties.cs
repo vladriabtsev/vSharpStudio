@@ -16,6 +16,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListProperties.Count,nq}")]
     public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
+        [BrowsableAttribute(false)]
+        public bool IsNew { get { return false; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
@@ -65,11 +67,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Parent is GroupDocuments)
             {
-                this._Name = "Shared";
+                this._Name = Defaults.PropertiesSharedGroupName;
             }
             else
             {
-                this._Name = "Properties";
+                this._Name = Defaults.PropertiesGroupName;
             }
             this.ListProperties.OnAddingAction = (t) =>
             {
@@ -93,11 +95,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.Parent is GroupDocuments)
             {
-                this._Name = "Shared";
+                this._Name = Defaults.PropertiesSharedGroupName;
             }
             else
             {
-                this._Name = "Properties";
+                this._Name = Defaults.PropertiesGroupName;
             }
         }
 
