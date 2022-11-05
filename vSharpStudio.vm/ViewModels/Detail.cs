@@ -15,9 +15,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
         [BrowsableAttribute(false)]
-        public GroupListDetails ParentGroupListDetails { get { return (GroupListDetails)this.Parent; } }
+        public GroupListDetails ParentGroupListDetails { get { Debug.Assert(this.Parent != null); return (GroupListDetails)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListDetails ParentGroupListDetailsI { get { return (IGroupListDetails)this.Parent; } }
+        public IGroupListDetails ParentGroupListDetailsI { get { Debug.Assert(this.Parent != null); return (IGroupListDetails)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -54,6 +54,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
+            Debug.Assert(glp != null);
             this.Position = glp.GroupProperties.GetNextPosition();
             Init();
         }
@@ -151,6 +152,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = Detail.Clone(this.Parent, this, true, true);
             this.ParentGroupListDetails.Add(node);
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
+            Debug.Assert(glp != null);
             node.Position = glp.GroupProperties.GetNextPosition();
             this.Name = this.Name + "2";
             this.SetSelected(node);
@@ -161,6 +163,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Detail(this.Parent);
             this.ParentGroupListDetails.Add(node);
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
+            Debug.Assert(glp != null);
             node.Position = glp.GroupProperties.GetNextPosition();
             this.GetUniqueName(Defaults.DetailName, node, this.ParentGroupListDetails.ListDetails);
             this.SetSelected(node);
@@ -171,6 +174,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Detail(this.GroupDetails) { Name = name };
             this.GroupDetails.NodeAddNewSubNode(node);
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
+            Debug.Assert(glp != null);
             node.Position = glp.GroupProperties.GetNextPosition();
             return node;
         }
@@ -212,8 +216,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void Remove()
         {
-            var p = this.Parent as GroupListDetails;
-            p.ListDetails.Remove(this);
+            this.ParentGroupListDetails.ListDetails.Remove(this);
         }
         #endregion Tree operations
 
@@ -240,6 +243,7 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(prp);
             }
             var parent = this.Parent.Parent as ICompositeName;
+            Debug.Assert(parent != null);
             prp = cfg.Model.GetPropertyRefParent(this.PropertyRefParentGuid, "Ref" + parent.CompositeName);
             res.Add(prp);
             foreach (var t in this.GroupProperties.ListProperties)
@@ -329,11 +333,9 @@ namespace vSharpStudio.vm.ViewModels
             ViewListData? viewListData = null;
             var cfg = this.GetConfig();
             Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
-            IProperty pId = null;
-            pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
-            List<IProperty> lst = null;
+            var pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             viewListData = new ViewListData(pId);
-            lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
+            var lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);
             return new ViewFormData(null, viewListData);
         }

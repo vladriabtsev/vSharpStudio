@@ -22,9 +22,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public AppSolution ParentAppSolution { get { return (AppSolution)this.Parent; } }
+        public AppSolution ParentAppSolution { get { Debug.Assert(this.Parent != null); return (AppSolution)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IAppSolution ParentAppSolutionI { get { return (IAppSolution)this.Parent; } }
+        public IAppSolution ParentAppSolutionI { get { Debug.Assert(this.Parent != null); return (IAppSolution)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -258,7 +258,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (AppProjectGenerator)node_impl;
             }
-
             node.Parent = this;
             this.ListAppProjectGenerators.Add(node);
             if (node_impl == null)
@@ -280,7 +279,7 @@ namespace vSharpStudio.vm.ViewModels
         [ReadOnly(true)]
         [DisplayName("Groups Settings")]
         [Description("Project groups generators settings. Group generators are working together")]
-        public object DynamicPluginGroupSettings
+        public object? DynamicPluginGroupSettings
         {
             get
             {
@@ -297,7 +296,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
-        private object _DynamicPluginGroupSettings;
+        private object? _DynamicPluginGroupSettings;
         //// GroupGeneratorsSettings guid, settings
         private DictionaryExt<string, IvPluginGroupSettings> dicPluginsGroupSettings = null;
         [BrowsableAttribute(false)]

@@ -145,9 +145,9 @@ namespace vSharpStudio.vm.ViewModels
             var node = new Property(this) { Name = name, DataType = dt };
             node.IsNullable = isNullable;
             if (min_length != null)
-                node.MinLengthRequirement = min_length.ToString();
+                node.MinLengthRequirement = min_length.ToString()!;
             if (max_length != null)
-                node.MaxLengthRequirement = max_length.ToString();
+                node.MaxLengthRequirement = max_length.ToString()!;
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -277,7 +277,7 @@ namespace vSharpStudio.vm.ViewModels
             this.LastGenPosition++;
             return this.LastGenPosition;
         }
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
             Property node = null;
             if (node_impl == null)

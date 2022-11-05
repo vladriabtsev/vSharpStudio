@@ -21,26 +21,24 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     {
         this.OnCreating();
     }
-    public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#> parent) // <#=Helper.FilePos() #>
+    public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#>? parent) // <#=Helper.FilePos() #>
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator)
     {
         this.IsNotifying = false;
         this.IsValidate = false;
         this.OnCreating();
-<#    foreach (var t in message.Fields.InDeclarationOrder())	{ 
-         if (t.IsCsSimple())
-            continue;
+<#    foreach (var t in message.Fields.InDeclarationOrder()) { 
          if (t.IsRepeated) {#>
 <# if (this.IsObservable(t)) { #>
         this.<#= t.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } else { #>
         this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
 <# } #>
-<#       } else if (t.IsMessage()) { #>
+<#       } else if (t.IsMessage()) { if (t.IsCsSimple()) continue; #>
         this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
 <#		 } else if (t.IsMap) { #>
 		map??? // <#=Helper.FilePos() #>
-<#		} #>
+<#		 } #>
 <# } #>
         this.OnCreated();
         this.IsValidate = true;

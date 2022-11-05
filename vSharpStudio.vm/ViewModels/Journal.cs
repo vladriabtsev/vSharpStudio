@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -11,9 +12,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Journal : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public GroupListJournals ParentGroupListJournals { get { return (GroupListJournals)this.Parent; } }
+        public GroupListJournals ParentGroupListJournals { get { Debug.Assert(this.Parent != null); return (GroupListJournals)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListJournals ParentGroupListJournalsI { get { return (IGroupListJournals)this.Parent; } }
+        public IGroupListJournals ParentGroupListJournalsI { get { Debug.Assert(this.Parent != null); return (IGroupListJournals)this.Parent; } }
         public static readonly string DefaultName = "Journal";
 
         #region ITree

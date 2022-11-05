@@ -11,8 +11,8 @@ namespace vSharpStudio.vm.ViewModels
     // https://docs.microsoft.com/en-us/windows/uwp/files/quickstart-using-file-and-folder-pickers
     public class EditorProjectPicker : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
-        PropertyGridEditorTextBox textBox;
-        AppProject prj;
+        PropertyGridEditorTextBox? textBox;
+        AppProject? prj;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);
@@ -55,9 +55,9 @@ namespace vSharpStudio.vm.ViewModels
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
-                textBox.Text = dlg.FileName;
+                textBox!.Text = dlg.FileName;
                 //TODO remove explicit assignment (binding stopped working)
-                prj.RelativeAppProjectPath = dlg.FileName;
+                prj!.RelativeAppProjectPath = dlg.FileName;
             }
         }
     }

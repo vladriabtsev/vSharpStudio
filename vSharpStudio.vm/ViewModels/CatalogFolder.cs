@@ -16,9 +16,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
         [BrowsableAttribute(false)]
-        public Catalog ParentCatalog { get { return (Catalog)this.Parent; } }
+        public Catalog ParentCatalog { get { Debug.Assert(this.Parent != null); return (Catalog)this.Parent; } }
         [BrowsableAttribute(false)]
-        public ICatalog ParentCatalogI { get { return (ICatalog)this.Parent; } }
+        public ICatalog ParentCatalogI { get { Debug.Assert(this.Parent != null); return (ICatalog)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()

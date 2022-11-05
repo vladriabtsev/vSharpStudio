@@ -18,9 +18,9 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsNew { get { return false; } }
         [BrowsableAttribute(false)]
-        public GroupDocuments ParentGroupDocuments { get { return (GroupDocuments)this.Parent; } }
+        public GroupDocuments ParentGroupDocuments { get { Debug.Assert(this.Parent != null); return (GroupDocuments)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupDocuments ParentGroupDocumentsI { get { return (IGroupDocuments)this.Parent; } }
+        public IGroupDocuments ParentGroupDocumentsI { get { Debug.Assert(this.Parent != null); return (IGroupDocuments)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
@@ -75,13 +75,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         public int IndexOf(IDocument doc)
         {
-            return this.ListDocuments.IndexOf(doc as Document);
+            return this.ListDocuments.IndexOf((doc as Document)!);
         }
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            Document node = null;
+            Document node = null!;
             if (node_impl == null)
             {
                 node = new Document(this);
@@ -90,7 +90,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Document)node_impl;
             }
-
             this.Add(node);
             if (node_impl == null)
             {

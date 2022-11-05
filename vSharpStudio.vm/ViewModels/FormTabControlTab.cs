@@ -16,9 +16,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class FormTabControlTab : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public FormTabControl? ParentFormTabControl { get { return this.Parent as FormTabControl; } }
+        public FormTabControl? ParentFormTabControl { get { Debug.Assert(this.Parent != null); return this.Parent as FormTabControl; } }
         [BrowsableAttribute(false)]
-        public IFormTabControl? ParentFormTabControlI { get { return this.Parent as IFormTabControl; } }
+        public IFormTabControl? ParentFormTabControlI { get { Debug.Assert(this.Parent != null); return this.Parent as IFormTabControl; } }
 
         #region ITree
 
@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IEnumerable<ITreeConfigNodeSortable> GetListSiblings()
         {
-            return ParentFormTabControl.Children;
+            return ParentFormTabControl?.Children;
         }
         public override bool HasChildren()
         {

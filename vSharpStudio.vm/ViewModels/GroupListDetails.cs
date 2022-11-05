@@ -80,7 +80,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public int IndexOf(IDetail det)
         {
-            return this.ListDetails.IndexOf(det as Detail);
+            return this.ListDetails.IndexOf((det as Detail)!);
         }
         #region Tree operations
         public bool CanAddSubNode() { return true; }
@@ -90,9 +90,9 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            Detail node = null;
+            Detail node = null!;
             if (node_impl == null)
             {
                 node = new Detail(this);
@@ -101,7 +101,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Detail)node_impl;
             }
-
             this.Add(node);
             if (node_impl == null)
             {

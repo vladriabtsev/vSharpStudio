@@ -12,9 +12,9 @@ namespace vSharpStudio.vm.ViewModels
     {
         public vPluginLayerTypeEnum GeneratorType { get; set; }
 
-        public Plugin Plugin { get; set; }
+        public Plugin? Plugin { get; set; }
 
-        public PluginGenerator PluginGenerator { get; set; }
+        public PluginGenerator? PluginGenerator { get; set; }
     }
 
     public class PluginComparer : IEqualityComparer<PluginRow>
@@ -24,6 +24,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(x != null);
             Debug.Assert(y != null);
+            Debug.Assert(x.Plugin != null);
+            Debug.Assert(y.Plugin != null);
             if (x.Plugin.Guid == y.Plugin.Guid && x.Plugin.Version == y.Plugin.Version)
             {
                 return true;
@@ -45,6 +47,7 @@ namespace vSharpStudio.vm.ViewModels
         public int GetHashCode(PluginRow obj)
         {
             Debug.Assert(obj != null);
+            Debug.Assert(obj.Plugin != null);
             int c1 = obj.Plugin.Guid.GetHashCode();
             int c2 = obj.Plugin.Version.GetHashCode();
             return c1 ^ c2;

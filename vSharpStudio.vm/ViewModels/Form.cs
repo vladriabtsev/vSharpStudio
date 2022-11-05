@@ -17,9 +17,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public GroupListForms ParentGroupListForms { get { return (GroupListForms)this.Parent; } }
+        public GroupListForms ParentGroupListForms { get { Debug.Assert(this.Parent != null); return (GroupListForms)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListForms ParentGroupListFormsI { get { return (IGroupListForms)this.Parent; } }
+        public IGroupListForms ParentGroupListFormsI { get { Debug.Assert(this.Parent != null); return (IGroupListForms)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -402,7 +402,6 @@ namespace vSharpStudio.vm.ViewModels
                 return listAllNotSpecialProperties;
             }
         }
-        private ObservableCollection<IProperty> listAllNotSpecialProperties;
         [BrowsableAttribute(false)]
         public SortedObservableCollection<IProperty> ListViewNotSpecialProperties
         {

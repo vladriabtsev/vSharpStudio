@@ -9,6 +9,7 @@ using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -16,9 +17,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Enumeration : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public GroupListEnumerations ParentGroupListEnumerations { get { return (GroupListEnumerations)this.Parent; } }
+        public GroupListEnumerations ParentGroupListEnumerations { get { Debug.Assert(this.Parent != null); return (GroupListEnumerations)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListEnumerations ParentGroupListEnumerationsI { get { return (IGroupListEnumerations)this.Parent; } }
+        public IGroupListEnumerations ParentGroupListEnumerationsI { get { Debug.Assert(this.Parent != null); return (IGroupListEnumerations)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -81,7 +82,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this.ListEnumerationPairs.Count == 0)
                     return "Enum" + this.Name + ".";
-                EnumerationPair tt = null;
+                EnumerationPair? tt = null;
                 foreach (var t in this.ListEnumerationPairs)
                 {
                     if (t.IsDefault)
@@ -98,7 +99,8 @@ namespace vSharpStudio.vm.ViewModels
         public static string GetTypeDesc(Enumeration p)
         {
             Debug.Assert(p != null);
-            string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum);
+            string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum)!;
+            Debug.Assert(res != null);
             // switch (p.DataTypeEnum)
             // {
             //    case Proto.Config.proto_enumeration.Types.EnumEnumerationType.Integer:
@@ -138,9 +140,9 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
 
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            EnumerationPair node = null;
+            EnumerationPair node = null!;
             if (node_impl == null)
             {
                 node = new EnumerationPair(this);
@@ -149,7 +151,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (EnumerationPair)node_impl;
             }
-
             this.ListEnumerationPairs.Add(node);
             if (node_impl == null)
             {

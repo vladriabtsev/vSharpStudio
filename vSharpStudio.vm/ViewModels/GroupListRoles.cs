@@ -18,9 +18,9 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsNew { get { return false; } }
         [BrowsableAttribute(false)]
-        public GroupListCommon ParentGroupListCommon { get { return (GroupListCommon)this.Parent; } }
+        public GroupListCommon ParentGroupListCommon { get { Debug.Assert(this.Parent != null); return (GroupListCommon)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListCommon ParentGroupListCommonI { get { return (IGroupListCommon)this.Parent; } }
+        public IGroupListCommon ParentGroupListCommonI { get { Debug.Assert(this.Parent != null); return (IGroupListCommon)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
@@ -71,9 +71,9 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
         }
 
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            Role node = null;
+            Role node = null!;
             if (node_impl == null)
             {
                 node = new Role(this);

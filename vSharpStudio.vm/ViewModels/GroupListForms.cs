@@ -78,9 +78,9 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
         }
 
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            Form node = null;
+            Form node = null!;
             if (node_impl == null)
             {
                 node = new Form(this);
@@ -89,7 +89,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Form)node_impl;
             }
-
             this.Add(node);
             if (node_impl == null)
             {
@@ -107,6 +106,7 @@ namespace vSharpStudio.vm.ViewModels
             var form = new Form(this) { EnumFormType = formType };
             var row = (FormGridSystemRow)form.GridSystem.AddGridRow();
             var c = this.Parent as Catalog;
+            Debug.Assert(c != null);
             FormGridSystemColumn? col = null;
             FormAutoLayoutBlock? ablock = null;
             switch (formType)

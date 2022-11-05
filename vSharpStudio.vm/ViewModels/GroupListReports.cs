@@ -76,9 +76,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.NodeAddNewSubNode(node);
         }
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            Report node = null;
+            Report node = null!;
             if (node_impl == null)
             {
                 node = new Report(this);
@@ -87,7 +87,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Report)node_impl;
             }
-
             this.Add(node);
             if (node_impl == null)
             {

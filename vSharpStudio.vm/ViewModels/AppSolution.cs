@@ -20,9 +20,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public GroupListAppSolutions ParentGroupListAppSolutions { get { return (GroupListAppSolutions)this.Parent; } }
+        public GroupListAppSolutions ParentGroupListAppSolutions { get { Debug.Assert(this.Parent != null); return (GroupListAppSolutions)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListAppSolutions ParentGroupListAppSolutionsI { get { return (IGroupListAppSolutions)this.Parent; } }
+        public IGroupListAppSolutions ParentGroupListAppSolutionsI { get { Debug.Assert(this.Parent != null); return (IGroupListAppSolutions)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
@@ -148,7 +148,7 @@ namespace vSharpStudio.vm.ViewModels
         [ReadOnly(true)]
         [DisplayName("Groups Settings")]
         [Description("Solution groups generators settings. Group generators are working together")]
-        public object DynamicPluginGroupSettings
+        public object? DynamicPluginGroupSettings
         {
             get
             {
@@ -165,7 +165,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
-        private object _DynamicPluginGroupSettings;
+        private object? _DynamicPluginGroupSettings;
         // GroupGeneratorsSettings guid, settings
         private DictionaryExt<string, IvPluginGroupSettings> dicPluginsGroupSettings = null;
         [BrowsableAttribute(false)]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using ViewModelBase;
@@ -12,9 +13,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class EnumerationPair : IEditableNode, INodeGenSettings
     {
         [BrowsableAttribute(false)]
-        public Enumeration ParentEnumeration { get { return (Enumeration) this.Parent; } }
+        public Enumeration ParentEnumeration { get { Debug.Assert(this.Parent != null); return (Enumeration) this.Parent; } }
         [BrowsableAttribute(false)]
-        public IEnumeration ParentEnumerationI { get { return (IEnumeration)this.Parent; } }
+        public IEnumeration ParentEnumerationI { get { Debug.Assert(this.Parent != null); return (IEnumeration)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()

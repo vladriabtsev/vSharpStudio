@@ -16,9 +16,9 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsNew { get { return false; } }
         [BrowsableAttribute(false)]
-        public GroupListPlugins ParentGroupListPlugins { get { return (GroupListPlugins)this.Parent; } }
+        public GroupListPlugins ParentGroupListPlugins { get { Debug.Assert(this.Parent != null); return (GroupListPlugins)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListPlugins ParentGroupListPluginsI { get { return (IGroupListPlugins)this.Parent; } }
+        public IGroupListPlugins ParentGroupListPluginsI { get { Debug.Assert(this.Parent != null); return (IGroupListPlugins)this.Parent; } }
         public ConfigNodesCollection<PluginGenerator> Children { get { return this.ListGenerators; } }
         public Plugin(ITreeConfigNode parent, IvPlugin plugin)
             : this(parent)

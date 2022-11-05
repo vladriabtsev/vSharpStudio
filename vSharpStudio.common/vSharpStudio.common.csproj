@@ -9,6 +9,7 @@
         <Copyright>Copyright ©  2019</Copyright>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <OutputPath>bin\$(Configuration)\</OutputPath>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugType>full</DebugType>

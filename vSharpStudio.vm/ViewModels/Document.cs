@@ -14,9 +14,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
         [BrowsableAttribute(false)]
-        public GroupListDocuments ParentGroupListDocuments { get { return (GroupListDocuments)this.Parent; } }
+        public GroupListDocuments ParentGroupListDocuments { get { Debug.Assert(this.Parent != null); return (GroupListDocuments)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListDocuments ParentGroupListDocumentsI { get { return (IGroupListDocuments)this.Parent; } }
+        public IGroupListDocuments ParentGroupListDocumentsI { get { Debug.Assert(this.Parent != null); return (IGroupListDocuments)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -342,11 +342,9 @@ namespace vSharpStudio.vm.ViewModels
             ViewListData? viewListData = null;
             var cfg = this.GetConfig();
             Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
-            IProperty pId = null;
-            pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
-            List<IProperty> lst = null;
+            var pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             viewListData = new ViewListData(pId);
-            lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
+            var lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);
             return new ViewFormData(null, viewListData);
         }

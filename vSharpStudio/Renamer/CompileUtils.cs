@@ -13,7 +13,7 @@ namespace vSharpStudio.ViewModels
 {
     public class CompileUtils
     {
-        public async static Task Compile(ILogger _logger, string solutionPath, CancellationToken cancellationToken)
+        public async static Task CompileAsync(ILogger _logger, string solutionPath, CancellationToken cancellationToken)
         {
             //var lstBuilds = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances().ToList();
             //var build = lstBuilds[0];
@@ -41,7 +41,7 @@ namespace vSharpStudio.ViewModels
                 }
                 foreach (var project in solution.Projects)
                 {
-                    var compilation = project.GetCompilationAsync().Result;
+                    var compilation = await project.GetCompilationAsync();
                     var diag = compilation.GetDiagnostics();
                     var lst = from p in diag where p.Severity == Microsoft.CodeAnalysis.DiagnosticSeverity.Error select p;
                     if (lst.Count() > 0)
@@ -49,7 +49,7 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        public async static Task Rename(ILogger _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public async static Task RenameAsync(ILogger _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
             using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {
@@ -75,11 +75,11 @@ namespace vSharpStudio.ViewModels
                             {
                                 if (Path.GetExtension(document.FilePath) == "cs")
                                 {
-                                    CodeAnalysisCSharp.Rename(_logger, solution, document, lstRenames, cancellationToken).Wait();
+                                    await CodeAnalysisCSharp.Rename(_logger, solution, document, lstRenames, cancellationToken);
                                 }
                                 else if (Path.GetExtension(document.FilePath) == "vb")
                                 {
-                                    CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken).Wait();
+                                    await CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken);
                                 }
                                 else
                                     throw new NotSupportedException();

@@ -18,9 +18,9 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsNew { get { return false; } }
         [BrowsableAttribute(false)]
-        public Model ParentModel { get { return (Model)this.Parent; } }
+        public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IModel ParentModelI { get { return (IModel)this.Parent; } }
+        public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {

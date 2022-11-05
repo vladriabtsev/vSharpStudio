@@ -18,9 +18,9 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsNew { get { return false; } }
         [BrowsableAttribute(false)]
-        public Model ParentModel { get { return (Model)this.Parent; } }
+        public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IModel ParentModelI { get { return (IModel)this.Parent; } }
+        public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
         {
@@ -82,9 +82,9 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
 
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            Enumeration node = null;
+            Enumeration node = null!;
             if (node_impl == null)
             {
                 node = new Enumeration(this);
@@ -93,7 +93,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Enumeration)node_impl;
             }
-
             this.Add(node);
             if (node_impl == null)
             {

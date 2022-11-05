@@ -15,9 +15,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
         [Browsable(false)]
-        public GroupListConstants ParentGroupListConstants { get { return (GroupListConstants)this.Parent; } }
+        public GroupListConstants ParentGroupListConstants { get { Debug.Assert(this.Parent != null); return (GroupListConstants)this.Parent; } }
         [Browsable(false)]
-        public IGroupListConstants ParentGroupListConstantsI { get { return (IGroupListConstants)this.Parent; } }
+        public IGroupListConstants ParentGroupListConstantsI { get { Debug.Assert(this.Parent != null); return (IGroupListConstants)this.Parent; } }
         [Browsable(false)]
         public bool IsPKey => false;
         [Browsable(false)]

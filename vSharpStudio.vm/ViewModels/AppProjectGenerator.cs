@@ -18,9 +18,9 @@ namespace vSharpStudio.vm.ViewModels
     {
         private Config cfg;
         [BrowsableAttribute(false)]
-        public AppProject ParentAppProject { get { return (AppProject)this.Parent; } }
+        public AppProject ParentAppProject { get { Debug.Assert(this.Parent != null); return (AppProject)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IAppProject ParentAppProjectI { get { return (IAppProject)this.Parent; } }
+        public IAppProject ParentAppProjectI { get { Debug.Assert(this.Parent != null); return (IAppProject)this.Parent; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -79,6 +79,7 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             this.cfg = (Config)this.GetConfig();
+            this.ListGenerators = new SortedObservableCollection<PluginGenerator>();
             //this.ListGenerators.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -311,11 +312,11 @@ namespace vSharpStudio.vm.ViewModels
 
             this.NotifyPropertyChanged(() => this.PropertyDefinitions);
 
-            var sln = (AppSolution)this.Parent.Parent;
-            sln.DynamicPluginGroupSettings = String.Empty;
+            var sln = this.ParentAppProject.ParentAppSolution;
+            sln.DynamicPluginGroupSettings = null;
             foreach (var t in sln.ListAppProjects)
             {
-                t.DynamicPluginGroupSettings = String.Empty;
+                t.DynamicPluginGroupSettings = null;
             }
             this.DynamicGeneratorSettings = null;
             this.DynamicMainConnStrSettings = null;

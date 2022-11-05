@@ -14,9 +14,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Report : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public GroupListReports ParentGroupListReports { get { return (GroupListReports)this.Parent; } }
+        public GroupListReports ParentGroupListReports { get { Debug.Assert(this.Parent != null); return (GroupListReports)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListReports ParentGroupListReportsI { get { return (IGroupListReports)this.Parent; } }
+        public IGroupListReports ParentGroupListReportsI { get { Debug.Assert(this.Parent != null); return (IGroupListReports)this.Parent; } }
         public static readonly string DefaultName = "Report";
 
         #region ITree

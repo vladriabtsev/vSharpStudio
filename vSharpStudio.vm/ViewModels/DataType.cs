@@ -100,7 +100,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override string ToString()
         {
-            return DataType.GetTypeDesc(this);
+            return DataType.GetTypeDesc(this)!;
         }
 
         #region Enumeration
@@ -165,63 +165,54 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Enumeration
 
-        public static string GetTypeDesc(DataType p)
+        public static string? GetTypeDesc(DataType p)
         {
             Debug.Assert(p != null);
-            string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum);
+            string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum)!;
             string objName = "Not found";
-            ITreeConfigNode config = p.Parent;
-            while (config != null && config.Parent != null)
+            ITreeConfigNode par = p.Parent;
+            while (par != null && par.Parent != null)
             {
-                config = config.Parent;
+                par = par.Parent;
             }
-
+            var config = (Config)par!;
             switch (p.DataTypeEnum)
             {
                 case EnumDataType.ANY:
                     throw new NotImplementedException();
                 case EnumDataType.CATALOG:
-                    if (config is Config)
+                    foreach (var t in config.Model.GroupCatalogs.ListCatalogs)
                     {
-                        foreach (var t in (config as Config).Model.GroupCatalogs.ListCatalogs)
+                        if (p.ObjectGuid == t.Guid)
                         {
-                            if (p.ObjectGuid == t.Guid)
-                            {
-                                objName = t.Name;
-                            }
+                            objName = t.Name;
                         }
-                        res += ": " + objName;
                     }
+                    res += ": " + objName;
                     break;
                 case EnumDataType.CATALOGS:
                     throw new NotImplementedException();
                 case EnumDataType.DOCUMENT:
-                    if (config is Config)
+                    foreach (var t in config.Model.GroupDocuments.GroupListDocuments.ListDocuments)
                     {
-                        foreach (var t in (config as Config).Model.GroupDocuments.GroupListDocuments.ListDocuments)
+                        if (p.ObjectGuid == t.Guid)
                         {
-                            if (p.ObjectGuid == t.Guid)
-                            {
-                                objName = t.Name;
-                            }
+                            objName = t.Name;
                         }
-                        res += ": " + objName;
                     }
+                    res += ": " + objName;
                     break;
                 case EnumDataType.DOCUMENTS:
                     break;
                 case EnumDataType.ENUMERATION:
-                    if (config is Config)
+                    foreach (var t in config.Model.GroupEnumerations.ListEnumerations)
                     {
-                        foreach (var t in (config as Config).Model.GroupEnumerations.ListEnumerations)
+                        if (p.ObjectGuid == t.Guid)
                         {
-                            if (p.ObjectGuid == t.Guid)
-                            {
-                                objName = t.Name;
-                            }
+                            objName = t.Name;
                         }
-                        res += ": " + objName;
                     }
+                    res += ": " + objName;
                     break;
                 case EnumDataType.NUMERICAL:
                     res += ", " + (p.IsPositive ? "+" : string.Empty) + " " + p.Length + (p.Accuracy > 0 ? "." + p.Accuracy : string.Empty) + " clr:" + p.ClrTypeName; // + " proto:" + p.ProtoType;
@@ -242,7 +233,7 @@ namespace vSharpStudio.vm.ViewModels
         [Description("Min value based on Length")]
         public string MinValue
         {
-            get { if (_MinValue == null) MinValueCalc(); return _MinValue; }
+            get { if (_MinValue == null) MinValueCalc(); Debug.Assert(_MinValue != null); return _MinValue; }
             set
             {
                 if (this._MinValue != value)
@@ -253,7 +244,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private string _MinValue = null;
+        private string? _MinValue = null;
         private void MinValueCalc()
         {
             switch (this.DataTypeEnum)
@@ -280,7 +271,7 @@ namespace vSharpStudio.vm.ViewModels
         [Description("Max value based on Length")]
         public string MaxValue
         {
-            get { if (_MaxValue == null) MaxValueCalc(); return _MaxValue; }
+            get { if (_MaxValue == null) MaxValueCalc(); Debug.Assert(_MaxValue != null); return _MaxValue; }
             set
             {
                 if (this._MaxValue != value)
@@ -291,7 +282,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private string _MaxValue = null;
+        private string? _MaxValue = null;
         private void MaxValueCalc()
         {
             switch (this.DataTypeEnum)
@@ -438,7 +429,7 @@ namespace vSharpStudio.vm.ViewModels
         [PropertyOrderAttribute(11)]
         public string ClrTypeName
         {
-            get { if (_ClrTypeName == null) ClrTypeNameCalc(); return _ClrTypeName; }
+            get { if (_ClrTypeName == null) ClrTypeNameCalc(); return _ClrTypeName!; }
             set
             {
                 if (this._ClrTypeName != value)
@@ -449,11 +440,11 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private string _ClrTypeName = null;
+        private string? _ClrTypeName = null;
         [BrowsableAttribute(false)]
         public string ClrLiteralSuf
         {
-            get { if (_ClrLiteralSuf == null) ClrTypeNameCalc(); return _ClrLiteralSuf; }
+            get { if (_ClrLiteralSuf == null) ClrTypeNameCalc(); Debug.Assert(_ClrLiteralSuf != null); return _ClrLiteralSuf!; }
             set
             {
                 if (this._ClrLiteralSuf != value)
@@ -464,7 +455,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private string _ClrLiteralSuf = null;
+        private string? _ClrLiteralSuf = null;
         //[BrowsableAttribute(false)]
         //public string ClrTypeNameNotNull
         //{
@@ -479,7 +470,7 @@ namespace vSharpStudio.vm.ViewModels
         //        }
         //    }
         //}
-        private string _ClrTypeNameNotNull = null;
+        //private string _ClrTypeNameNotNull = null;
         private void ClrTypeNameCalc()
         {
             this.ClrLiteralSuf = "";
@@ -641,7 +632,6 @@ namespace vSharpStudio.vm.ViewModels
                         throw new Exception("Not supported operation");
                         // return "BigDecimal";
                     }
-                    break;
                 default:
                     throw new Exception("Not supported operation");
             }
@@ -660,7 +650,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Visibility
         [BrowsableAttribute(false)]
-        public SortedObservableCollection<ITreeConfigNodeSortable> ListObjects
+        public SortedObservableCollection<ITreeConfigNodeSortable>? ListObjects
         {
             get
             {
@@ -915,44 +905,38 @@ namespace vSharpStudio.vm.ViewModels
         private Visibility _VisibilityObjectName = Visibility.Collapsed;
         #endregion Visibility
 
-        public Config Cfg
+        public Config? Cfg
         {
             get
             {
                 if (this.cfg == null)
                 {
                     var p = this.Parent;
-                    if (p == null)
-                    {
-                        return null;
-                    }
-
-                    while (p.Parent != null)
-                    {
+                    //Debug.Assert(p != null);
+                    while (p != null && p.Parent != null)
                         p = p.Parent;
-                    }
-
-                    this.cfg = p as Config;
+                    if (p is Config c)
+                    this.cfg = c;
                 }
                 return this.cfg;
             }
         }
-        private Config cfg = null;
-        public IDataType PrevStableVersion()
+        private Config? cfg = null;
+        public IDataType? PrevStableVersion()
         {
             IDataType res = null;
             if (this.Cfg != null && this.Cfg.PrevStableConfig != null && this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
-                res = (this.Cfg.PrevStableConfig.DicNodes[this.Parent.Guid] as IDataTypeObject).IDataType;
+                res = (this.Cfg.PrevStableConfig.DicNodes[this.Parent.Guid] as IDataTypeObject)!.IDataType;
             }
             return res;
         }
-        public IDataType PrevCurrentVersion()
+        public IDataType? PrevCurrentVersion()
         {
-            IDataType res = null;
+            IDataType? res = null;
             if (this.Cfg != null && this.Cfg.PrevCurrentConfig != null && this.Cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
-                res = (this.Cfg.PrevCurrentConfig.DicNodes[this.Parent.Guid] as IDataTypeObject).IDataType;
+                res = (this.Cfg.PrevCurrentConfig.DicNodes[this.Parent.Guid] as IDataTypeObject)!.IDataType;
             }
             return res;
         }

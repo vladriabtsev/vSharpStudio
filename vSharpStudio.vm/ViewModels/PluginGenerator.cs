@@ -16,9 +16,9 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsNew { get { return false; } }
         [BrowsableAttribute(false)]
-        public Plugin ParentPlugin { get { return (Plugin)this.Parent; } }
+        public Plugin ParentPlugin { get { Debug.Assert(this.Parent != null); return (Plugin)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IPlugin ParentPluginI { get { return (IPlugin)this.Parent; } }
+        public IPlugin ParentPluginI { get { Debug.Assert(this.Parent != null); return (IPlugin)this.Parent; } }
         public PluginGenerator(ITreeConfigNode parent, IvPluginGenerator plugin)
             : this(parent)
         {
@@ -73,7 +73,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         //public bool CanAddSubNode() { return false; }
-        //public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        //public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         //{
         //    PluginGeneratorSettings pgs = null;
         //    // switch (this.Generator.PluginGeneratorType)

@@ -40,7 +40,7 @@ namespace vSharpStudio.common
         bool NodeCanAddNew();
         ITreeConfigNode NodeAddNew();
         bool NodeCanAddNewSubNode();
-        ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node = null);
+        ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node = null);
         // Clone selected. Name is same + suffix 'New'
         bool NodeCanAddClone();
         ITreeConfigNode NodeAddClone();

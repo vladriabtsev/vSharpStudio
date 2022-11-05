@@ -18,9 +18,9 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsNew { get { return false; } }
         [BrowsableAttribute(false)]
-        public Model ParentModel { get { return (Model)this.Parent; } }
+        public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IModel ParentModelI { get { return (IModel)this.Parent; } }
+        public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -39,9 +39,9 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            Catalog node = null;
+            Catalog node = null!;
             if (node_impl == null)
             {
                 node = new Catalog(this);
@@ -50,7 +50,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Catalog)node_impl;
             }
-
             this.Add(node);
             if (node_impl == null)
             {
@@ -110,7 +109,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public int IndexOf(ICatalog cat)
         {
-            return this.ListCatalogs.IndexOf(cat as Catalog);
+            return this.ListCatalogs.IndexOf((cat as Catalog)!);
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

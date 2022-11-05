@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);
-            DataType dt = null;
+            DataType dt = null!;
             if (propertyItem.Instance is DataType)
                 dt = (DataType)propertyItem.Instance;
             else if (propertyItem.Instance is Property)

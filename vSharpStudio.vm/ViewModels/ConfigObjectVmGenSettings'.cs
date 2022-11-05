@@ -21,7 +21,7 @@ namespace vSharpStudio.vm.ViewModels
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectVmGenSettings<T, TValidator>//, IComparable<T>, ISortingValue 
     {
-        public ConfigObjectVmGenSettings(ITreeConfigNode parent, TValidator validator)
+        public ConfigObjectVmGenSettings(ITreeConfigNode? parent, TValidator validator)
             : base(parent, validator)
         {
             //this.HidePropertiesForXceedPropertyGrid();
@@ -161,7 +161,7 @@ namespace vSharpStudio.vm.ViewModels
             var ngs = (INodeGenSettings)this;
             foreach (var t in ngs.ListNodeGeneratorsSettings.ToList())
             {
-                if ((t.SettingsVm as IEditableObjectExt).IsChanged)
+                if (t.SettingsVm is IEditableObjectExt tt && tt.IsChanged)
                 {
                     t.Settings = t.SettingsVm.SettingsAsJson;
                     if (t.Settings == t.SettingsVm.SettingsAsJsonDefault)
@@ -210,9 +210,8 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
-                if (p is Model)
+                if (p is Model m)
                 {
-                    var m = p as Model;
                     if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                     {
                         var settings = (IvPluginGeneratorNodeIncludable)(m.DicGenNodeSettings[guidAppPrjGen]);
@@ -257,9 +256,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             var cfg = (Config)this.GetConfig();
             var prev = cfg.PrevStableConfig;
-            if (prev != null && prev.DicNodes.ContainsKey((this as IGuid).Guid))
+            if (prev != null && prev.DicNodes.ContainsKey(this._Guid))
             {
-                var prevNode = (IGetNodeSetting)prev.DicNodes[(this as IGuid).Guid];
+                var prevNode = (IGetNodeSetting)prev.DicNodes[this._Guid];
                 return prevNode.IsIncluded(guidAppPrjGen, true);
             }
             return false;
@@ -273,9 +272,8 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
-                if (p is Model)
+                if (p is Model m)
                 {
-                    var m = p as Model;
                     if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                     {
                         var setting = func(m.DicGenNodeSettings[guidAppPrjGen]);
@@ -316,9 +314,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             var cfg = (Config)this.GetConfig();
             var prev = cfg.PrevStableConfig;
-            if (prev != null && prev.DicNodes.ContainsKey((this as IGuid).Guid))
+            if (prev != null && prev.DicNodes.ContainsKey(this._Guid))
             {
-                var prevNode = (IGetNodeSetting)prev.DicNodes[(this as IGuid).Guid];
+                var prevNode = (IGetNodeSetting)prev.DicNodes[this._Guid];
                 return prevNode.GetBoolSetting(guidAppPrjGen, func, true);
             }
             return false;
@@ -332,9 +330,8 @@ namespace vSharpStudio.vm.ViewModels
             while (p != null)
             {
                 var ngs = p as INodeGenSettings;
-                if (p is Model)
+                if (p is Model m)
                 {
-                    var m = p as Model;
                     if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                     {
                         var setting = func(m.DicGenNodeSettings[guidAppPrjGen]);
@@ -370,9 +367,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             var cfg = (Config)this.GetConfig();
             var prev = cfg.PrevStableConfig;
-            if (prev != null && prev.DicNodes.ContainsKey((this as IGuid).Guid))
+            if (prev != null && prev.DicNodes.ContainsKey(this._Guid))
             {
-                var prevNode = (IGetNodeSetting)prev.DicNodes[(this as IGuid).Guid];
+                var prevNode = (IGetNodeSetting)prev.DicNodes[this._Guid];
                 return prevNode.GetStringSetting(guidAppPrjGen, func, true);
             }
             return "";

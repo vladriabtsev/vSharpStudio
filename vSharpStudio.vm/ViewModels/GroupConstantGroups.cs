@@ -17,9 +17,9 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public Model ParentModel { get { return (Model)this.Parent; } }
+        public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
         [Browsable(false)]
-        public IModel ParentModelI { get { return (IModel)this.Parent; } }
+        public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()
@@ -40,19 +40,22 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            GroupListConstants node = null;
+            GroupListConstants node = null!;
             if (node_impl == null)
             {
                 node = new GroupListConstants(this);
-                this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ListConstantGroups);
             }
             else
             {
                 node = (GroupListConstants)node_impl;
             }
             this.ListConstantGroups.Add(node);
+            if (node_impl == null)
+            {
+                this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ListConstantGroups);
+            }
             var cfg = (Config)this.GetConfig();
             node.ShortId = cfg.Model.LastConstantGroupShortId + 1;
             cfg.Model.LastConstantGroupShortId = node.ShortId;

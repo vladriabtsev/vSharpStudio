@@ -63,7 +63,7 @@ namespace vSharpStudio.ViewModels
         //public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
         public MainPageVM(bool isLoadConfig, string configFile = null) : this()
         {
-            _logger.LogDebug("Created with isLoadConfig={isLoadConfig}, configFile='{configFile}'".CallerInfo(), 
+            _logger.LogDebug("Created with isLoadConfig={isLoadConfig}, configFile='{configFile}'".CallerInfo(),
                 isLoadConfig, configFile);
             //this.onImportsSatisfied = onImportsSatisfied;
             this.isLoadConfig = isLoadConfig;
@@ -786,7 +786,8 @@ namespace vSharpStudio.ViewModels
                             }
                             if (!isException)
                             {
-                                await this.CommandConfigSave.ExecuteAsync(null);
+                                //await this.CommandConfigSave.ExecuteAsync(null);
+                                this.CommandConfigSave.Execute(null);
                             }
                             this.ProgressVM.End();
                         }, (o) => { return this.cancellationTokenSource == null && this.Config != null && this.CurrentCfgFilePath != null; }
@@ -962,21 +963,21 @@ namespace vSharpStudio.ViewModels
 #endif
         {
             Exception resEx = null;
-            TestTransformation tst = parm as TestTransformation;
             ProgressVM progress = new ProgressVM();
             progress.Progress = 0;
-            GuiLabs.Undo.ActionManager am = new GuiLabs.Undo.ActionManager();
-            var dicRenamed = new Dictionary<string, string>();
-            var mvr = new ModelVisitorNodeReferencesBase();
-            mvr.Run(this.Config, null, null, (m, n) =>
-            {
-                if (!dicRenamed.ContainsKey(n.Guid) && n.IsRenamed(false))
-                {
-                    dicRenamed[n.Guid] = null;
-                }
-            });
+            TestTransformation tst = parm as TestTransformation;
             try
             {
+                GuiLabs.Undo.ActionManager am = new GuiLabs.Undo.ActionManager();
+                var dicRenamed = new Dictionary<string, string>();
+                var mvr = new ModelVisitorNodeReferencesBase();
+                mvr.Run(this.Config, null, null, (m, n) =>
+                {
+                    if (!dicRenamed.ContainsKey(n.Guid) && n.IsRenamed(false))
+                    {
+                        dicRenamed[n.Guid] = null;
+                    }
+                });
                 #region Remove New which are Marked for Deletion
                 var lst = new List<string>();
                 // delete from current model
@@ -1004,11 +1005,11 @@ namespace vSharpStudio.ViewModels
                     // I. Model validation (no need for UNDO)
                     #region
                     progress.SubName = "Model validation";
-#if Async
-                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config);
-#else
+//#if Async
+//                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config);
+//#else
                     this._Config.ValidateSubTreeFromNode(this._Config);
-#endif
+//#endif
                     if (this._Config.CountErrors > 0)
                         throw new Exception($"There are {this._Config.CountErrors} errors in configuration. Fix errors and try again.");
                     if (tst == null && this._Config.CountWarnings > 0)
@@ -1070,7 +1071,7 @@ namespace vSharpStudio.ViewModels
                             i++;
 
 #if Async
-                            await CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
+                            await CompileUtils.CompileAsync(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
 #else
                             CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
 #endif
@@ -1101,7 +1102,7 @@ namespace vSharpStudio.ViewModels
                                 List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
                                 if (lstRenames.Count == 0)
                                     continue;
-                                CompileUtils.Rename(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath),
+                                await CompileUtils.RenameAsync(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath),
                                     ts.GetCombinedPath(tp.RelativeAppProjectPath), lstRenames, cancellationToken);
                             }
                         }

@@ -102,23 +102,23 @@ namespace vSharpStudio.vm.ViewModels
             //};
         }
         public Config(ConfigShortHistory history)
-            : this((ITreeConfigNode)null)
+            : this(default(ITreeConfigNode))
         {
             this.OnCreating();
         }
         public static Config Clone(ConfigShortHistory parent, IConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
         {
-            var vm = Config.Clone((ITreeConfigNode)null, from, isDeep, isNewGuid);
+            var vm = Config.Clone(default(ITreeConfigNode)!, from, isDeep, isNewGuid);
             return vm;
         }
         public Config(Proto.Config.proto_config pconfig)
-            : this((ITreeConfigNode)null)
+            : this(default(ITreeConfigNode)!)
         {
             this.OnCreating();
             Config.ConvertToVM(pconfig, this);
         }
         public Config(string configJson)
-            : this((ITreeConfigNode)null)
+            : this(default(ITreeConfigNode)!)
         {
             this.OnCreating();
             var pconfig = Proto.Config.proto_config.Parser.WithDiscardUnknownFields(true).ParseJson(configJson);
@@ -148,11 +148,11 @@ namespace vSharpStudio.vm.ViewModels
                 this.ValidateSubTreeFromNode(node);
             }).ConfigureAwait(false); // not keeping context because doing nothing after await
         }
-        public void ValidateSubTreeFromNode(ILogger logger = null)
+        public void ValidateSubTreeFromNode(ILogger? logger = null)
         {
             this.ValidateSubTreeFromNode(this, logger);
         }
-        public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger logger = null)
+        public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger? logger = null)
         {
             _logger.Trace();
             if (node == null)
@@ -174,7 +174,7 @@ namespace vSharpStudio.vm.ViewModels
 
             var visitor = new ValidationConfigVisitor(token, logger);
             visitor.UpdateSubstructCounts(node);
-            (node as IConfigAcceptVisitor).AcceptConfigNodeVisitor(visitor);
+            (node as IConfigAcceptVisitor)!.AcceptConfigNodeVisitor(visitor);
             if (!token.IsCancellationRequested)
             {
                 // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...
@@ -183,7 +183,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                logger.LogInformation("=== Cancelled ===");
+                logger?.LogInformation("=== Cancelled ===");
             }
             Debug.Assert(node.ValidationCollection.Count == node.CountErrors + node.CountInfos + node.CountWarnings);
         }
@@ -389,10 +389,10 @@ namespace vSharpStudio.vm.ViewModels
                         sb.Append(t.GetType().Name);
                         sb.Append(" IsHasChanged=");
                         sb.Append(p.IsHasChanged);
-                        if (t is IEditableNode)
+                        if (t is IEditableNode tt)
                         {
                             sb.Append(" IsChanged=");
-                            sb.Append((t as IEditableNode).IsChanged);
+                            sb.Append(tt.IsChanged);
                         }
                         sb.AppendLine();
                         IsHasMarkedPath2(sb, t.GetListChildren());
@@ -465,7 +465,7 @@ namespace vSharpStudio.vm.ViewModels
 #endif
     }
 #if DEBUG
-    public class DicDiffResult<TKey, TValue>
+    public class DicDiffResult<TKey, TValue> where TKey : notnull
     {
         public DicDiffResult()
         {
@@ -474,7 +474,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Dictionary<TKey, TValue> Dic1ButNotInDic2 { get; private set; }
         public Dictionary<TKey, TValue> Dic2ButNotInDic1 { get; private set; }
-        static public DicDiffResult<TK, TV> DicDiff<TK, TV>(IReadOnlyDictionary<TK, TV> dic1, IReadOnlyDictionary<TK, TV> dic2)
+        static public DicDiffResult<TK, TV> DicDiff<TK, TV>(IReadOnlyDictionary<TK, TV> dic1, IReadOnlyDictionary<TK, TV> dic2) where TK : notnull
         {
             var res = new DicDiffResult<TK, TV>();
             foreach (var t in dic1)

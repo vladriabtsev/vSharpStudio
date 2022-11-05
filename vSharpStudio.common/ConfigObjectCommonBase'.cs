@@ -41,6 +41,10 @@
         {
             switch (e.PropertyName)
             {
+                case "IsChanged":
+                case "IsHasChanged":
+                    this.NotifyPropertyChanged(() => this.IsChangedOrHasChanged);
+                    break;
                 case "IsNew":
                     this.NotifyPropertyChanged(() => this.NodeNameDecorations);
                     this.NotifyPropertyChanged(() => this.IsNewOrHasNew);
@@ -275,7 +279,7 @@
             return Path.Combine(cfg.CurrentCfgFolderPath, relative_path);
         }
         private IConfig _cfg = null;
-        protected IConfig Cfg
+        public IConfig Cfg
         {
             get
             {
@@ -579,7 +583,7 @@
             }
             return false;
         }
-        public virtual ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node = null)
+        public virtual ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node = null)
         {
             throw new NotImplementedException();
         }
@@ -815,12 +819,12 @@
                 return;
             if (this is IConfig)
                 return;
-            if (this is IEditableNode)
+            if (this is IEditableNode p)
             {
-                if (this.Parent is IEditableNodeGroup)
+                if (p.IsChanged && p.IsNew)
+                    return;
+                if (this.Parent is IEditableNodeGroup pp)
                 {
-                    var pp = (IEditableNodeGroup)this.Parent;
-                    var p = (IEditableNode)this;
                     if (p.IsChanged)
                     {
                         pp.IsHasChanged = true;
@@ -909,6 +913,11 @@
             }
         }
 
+        [BrowsableAttribute(false)]
+        public bool IsChangedOrHasChanged
+        {
+            get { return this.IsChanged || this.IsHasChanged; }
+        }
         [BrowsableAttribute(false)]
         public bool IsNewOrHasNew
         {

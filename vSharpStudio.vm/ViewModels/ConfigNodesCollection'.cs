@@ -41,7 +41,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GetConfig(this.parent);
             }
-
+            Debug.Assert(this.cfg != null);
             foreach (T item in collection)
             {
                 item.Parent = this.parent;
@@ -57,11 +57,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GetConfig(this.parent);
             }
-
-            item.Parent = this.parent;
+            Debug.Assert(this.cfg != null);
             if (isUseDicNodes && this.cfg.IsInitialized)
                 this.cfg._DicNodes[item.Guid] = item;
             base.Add(item, 0);
+            item.Parent = this.parent;
         }
 
         public new void Add(T item, ulong sortingWeight)
@@ -70,8 +70,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.GetConfig(this.parent);
             }
-
             item.Parent = this.parent;
+            Debug.Assert(this.cfg != null);
             if (isUseDicNodes && this.cfg.IsInitialized)
                 this.cfg._DicNodes[item.Guid] = item;
             base.Add(item, sortingWeight);

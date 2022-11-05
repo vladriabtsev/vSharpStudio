@@ -475,6 +475,14 @@ namespace vSharpStudio.common
     public enum EnumVisitType { Load, Remove }
     public class TableInfo
     {
+        public TableInfo(string className, string tableName, string tableParent, ITreeConfigNode node, IReadOnlyList<IProperty> lst)
+        {
+            this.ClassName = className;
+            this.TableName = tableName;
+            this.TableParent = tableParent;
+            this.Node = node;
+            this.List = lst;
+        }
         public string ClassName { get; set; }
         public string TableName { get; set; }
         public string TableParent { get; set; }

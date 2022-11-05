@@ -19,9 +19,9 @@ namespace vSharpStudio.vm.ViewModels
         IDbTable, ITreeConfigNode, INodeWithProperties, IViewList
     {
         [BrowsableAttribute(false)]
-        public GroupListCatalogs ParentGroupListCatalogs { get { return (GroupListCatalogs)this.Parent; } }
+        public GroupListCatalogs ParentGroupListCatalogs { get { Debug.Assert(this.Parent != null); return (GroupListCatalogs)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListCatalogs ParentGroupListCatalogsI { get { return (IGroupListCatalogs)this.Parent; } }
+        public IGroupListCatalogs ParentGroupListCatalogsI { get { Debug.Assert(this.Parent != null); return (IGroupListCatalogs)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()

@@ -16,9 +16,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IEditableNode
     {
         [BrowsableAttribute(false)]
-        public GroupConstantGroups ParentGroupConstantGroups { get { return (GroupConstantGroups)this.Parent; } }
+        public GroupConstantGroups ParentGroupConstantGroups { get { Debug.Assert(this.Parent != null); return (GroupConstantGroups)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupConstantGroups ParentGroupConstantGroupsI { get { return (IGroupConstantGroups)this.Parent; } }
+        public IGroupConstantGroups ParentGroupConstantGroupsI { get { Debug.Assert(this.Parent != null); return (IGroupConstantGroups)this.Parent; } }
 
         partial void OnCreated()
         {
@@ -163,9 +163,15 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         public bool CanAddSubNode() { return true; }
-        public Constant AddConstant(string name, DataType type = null)
+        public Constant AddConstant(string name)
         {
             Constant node = new Constant(this) { Name = name, DataType = new DataType() };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
+        public Constant AddConstant(string name, DataType type)
+        {
+            Constant node = new Constant(this) { Name = name, DataType = type };
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -189,9 +195,9 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode node_impl = null)
+        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            Constant node = null;
+            Constant node = null!;
             if (node_impl == null)
             {
                 node = new Constant(this);
@@ -200,7 +206,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 node = (Constant)node_impl;
             }
-
             this.Add(node);
             node.DataType.Parent = node;
             if (node_impl == null)

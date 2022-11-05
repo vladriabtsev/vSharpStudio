@@ -62,6 +62,7 @@ namespace vSharpStudio.Unit
             this.remove_config();
             var vm = new MainPageVM(true);
             vm.OnFormLoaded();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.pconfig_history == null);
 
@@ -70,11 +71,13 @@ namespace vSharpStudio.Unit
             gr.NodeAddNewSubNode();
             var cnst = (Constant)vm.Config.SelectedNode;
             var ct = DateTime.UtcNow;
+            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
             vm.CommandConfigSaveAs.Execute(@".\kuku.vcfg");
             Assert.IsTrue(vm.Config.LastUpdated != null);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
             Assert.IsTrue(vm.Config.LastUpdated.ToDateTime() <= DateTime.UtcNow);
             Assert.IsTrue(vm.Config.Version == 0);
+            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
 
             // reload
             vm = new MainPageVM(true);
@@ -88,13 +91,17 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.pconfig_history != null);
             Assert.IsTrue(vm.pconfig_history.CurrentConfig != null);
             Assert.IsTrue(vm.pconfig_history.PrevStableConfig == null);
+            Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
 
-            vm.CommandConfigCurrentUpdate.Execute(null);
+            vm.CommandConfigCurrentUpdate.Execute(new object());
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             // create stable version
-            vm.CommandConfigCreateStableVersion.Execute(null);
+            vm.CommandConfigCreateStableVersion.Execute(new object());
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
             Assert.IsTrue(ct <= vm.Config.LastUpdated.ToDateTime());
@@ -108,7 +115,7 @@ namespace vSharpStudio.Unit
             // Assert.IsTrue(false);
 
             // create next stable version
-            vm.CommandConfigCreateStableVersion.Execute(null);
+            vm.CommandConfigCreateStableVersion.Execute(new object());
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
             vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
@@ -200,7 +207,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(gr.ListConstants[0].IsChanged);
             Assert.IsFalse(gr.ListConstants[0].IsHasChanged);
             Assert.IsTrue(gr.IsChanged);
-            Assert.IsTrue(gr.IsHasChanged);
+            Assert.IsFalse(gr.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.IsHasChanged);
             Assert.IsTrue(vm.Config.Model.IsHasChanged);
@@ -208,7 +215,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.Config.IsChanged);
 
-            vm.CommandConfigSave.Execute(null);
+            vm.CommandConfigSave.Execute(new object());
             Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
@@ -420,14 +427,14 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
 
             // c1-new -> new
-            vm.CommandConfigCurrentUpdate.Execute(null);
+            vm.CommandConfigCurrentUpdate.Execute(new object());
             Assert.AreEqual(1, gr.ListConstants.Count());
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(gr.IsHasNew);
             Assert.IsFalse(gr.IsHasMarkedForDeletion);
 
             // c1-new -> not new, not del  
-            vm.CommandConfigCreateStableVersion.Execute(null);
+            vm.CommandConfigCreateStableVersion.Execute(new object());
             // prev c1 not new, not del
             Assert.AreEqual(1, gr.ListConstants.Count());
             Assert.IsFalse(c1.IsNew);
@@ -450,7 +457,7 @@ namespace vSharpStudio.Unit
             // c1- not new, del -> not new, del 
             // c2- new, del -> removed
             // c3- new -> new
-            vm.CommandConfigCurrentUpdate.Execute(null);
+            vm.CommandConfigCurrentUpdate.Execute(new object());
             // prev c1 not new, not del
             Assert.AreEqual(2, gr.ListConstants.Count());
             Assert.IsTrue(c1.IsMarkedForDeletion);
@@ -463,7 +470,7 @@ namespace vSharpStudio.Unit
 
             // c1- not new, del -> not new, del => previous not new, del
             // c3- new -> not new
-            vm.CommandConfigCreateStableVersion.Execute(null);
+            vm.CommandConfigCreateStableVersion.Execute(new object());
             // prev c1 not new, del
             Assert.AreEqual(2, gr.ListConstants.Count());
             Assert.IsFalse(c1.IsNew);
@@ -477,7 +484,7 @@ namespace vSharpStudio.Unit
 
             // c1- not new, del -> removed
             // c3- new -> new
-            vm.CommandConfigCreateStableVersion.Execute(null);
+            vm.CommandConfigCreateStableVersion.Execute(new object());
             Assert.AreEqual(1, gr.ListConstants.Count());
             Assert.AreEqual(c3, gr.ListConstants[0]);
             Assert.IsFalse(c3.IsMarkedForDeletion);
@@ -511,14 +518,14 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
             // c1-new -> new
-            vm.CommandConfigCurrentUpdate.Execute(null);
+            vm.CommandConfigCurrentUpdate.Execute(new object());
             Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.IsTrue(c1.IsNew);
             Assert.IsTrue(cfg.Model.GroupEnumerations.IsHasNew);
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
             // c1-new -> not new, not del  
-            vm.CommandConfigCreateStableVersion.Execute(null);
+            vm.CommandConfigCreateStableVersion.Execute(new object());
             // prev c1 not new, not del
             Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.IsFalse(c1.IsNew);
@@ -540,7 +547,7 @@ namespace vSharpStudio.Unit
             // c1- not new, del -> not new, del 
             // c2- new, del -> removed
             // c3- new -> new
-            vm.CommandConfigCurrentUpdate.Execute(null);
+            vm.CommandConfigCurrentUpdate.Execute(new object());
             // prev c1 not new, not del
             Assert.AreEqual(2, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.IsTrue(c1.IsMarkedForDeletion);
@@ -553,7 +560,7 @@ namespace vSharpStudio.Unit
 
             // c1- not new, del -> not new, del => previous not new, del
             // c3- new -> not new
-            vm.CommandConfigCreateStableVersion.Execute(null);
+            vm.CommandConfigCreateStableVersion.Execute(new object());
             // prev c1 not new, del
             Assert.AreEqual(2, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.IsFalse(c1.IsNew);
@@ -567,7 +574,7 @@ namespace vSharpStudio.Unit
 
             // c1- not new, del -> removed
             // c3- new -> new
-            vm.CommandConfigCreateStableVersion.Execute(null);
+            vm.CommandConfigCreateStableVersion.Execute(new object());
             Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.AreEqual(c3, cfg.Model.GroupEnumerations.ListEnumerations[0]);
             Assert.IsFalse(c3.IsMarkedForDeletion);
@@ -883,7 +890,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.Model.IsHasNew);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasNew);
 
-            vm.CommandConfigSave.Execute(null);
+            vm.CommandConfigSave.Execute(new object());
             // expect IsHasMarkedForDeletion and IsHasNew will not changed
             Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasMarkedForDeletion);
             Assert.IsFalse(vm.Config.GroupConfigLinks.IsHasMarkedForDeletion);
@@ -898,7 +905,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.Model.IsHasNew);
             Assert.AreEqual(3, vm.Config.Model.GroupEnumerations.ListEnumerations.Count);
 
-            vm.CommandConfigSave.Execute(null);
+            vm.CommandConfigSave.Execute(new object());
             // expect IsHasMarkedForDeletion and IsHasNew will not changed
             Assert.IsTrue(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
@@ -906,7 +913,7 @@ namespace vSharpStudio.Unit
 
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
-            vm.CommandConfigCurrentUpdate.Execute(null);
+            vm.CommandConfigCurrentUpdate.Execute(new object());
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             // expect new objects (IsNew) with IsMarkedForDeletion will be deleted in DB and model
@@ -924,10 +931,10 @@ namespace vSharpStudio.Unit
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
 
-            vm.CommandConfigSave.Execute(null);
-            vm.CommandConfigCurrentUpdate.Execute(null);
+            vm.CommandConfigSave.Execute(new object());
+            vm.CommandConfigCurrentUpdate.Execute(new object());
 
-            vm.CommandConfigCreateStableVersion.Execute(null);
+            vm.CommandConfigCreateStableVersion.Execute(new object());
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             // expect IsHasMarkedForDeletion and IsHasNew will be false
@@ -937,7 +944,7 @@ namespace vSharpStudio.Unit
             c3 = vm.Config.Model.GroupEnumerations.AddEnumeration("c3", EnumEnumerationType.INTEGER_VALUE);
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
-            vm.CommandConfigCurrentUpdate.Execute(null);
+            vm.CommandConfigCurrentUpdate.Execute(new object());
             Assert.IsFalse(vm.Config.Model.IsHasMarkedForDeletion);
             Assert.IsTrue(vm.Config.Model.IsHasNew);
         }
@@ -1272,7 +1279,7 @@ namespace vSharpStudio.Unit
             // create object and save
             var bcfg = vm.Config.GroupConfigLinks.AddBaseConfig("base", pathExt + "kuku.vcfg");
             var c1 = gr.AddConstant("c1");
-            vm.CommandConfigSave.Execute(null);
+            vm.CommandConfigSave.Execute(new object());
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();
@@ -1321,7 +1328,7 @@ namespace vSharpStudio.Unit
             var bcfg = vm.Config.GroupConfigLinks.AddBaseConfig("base", pathExt + "kuku.vcfg");
             vm.Config.GroupConfigLinks.AddBaseConfig(bcfg);
             var c1 = vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].AddConstant("c1");
-            vm.CommandConfigSave.Execute(null);
+            vm.CommandConfigSave.Execute(new object());
 
             vm = new MainPageVM(true);
             vm.OnFormLoaded();

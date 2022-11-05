@@ -14,9 +14,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class MainViewForm : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public GroupListMainViewForms ParentGroupListMainViewForms { get { return (GroupListMainViewForms) this.Parent; } }
+        public GroupListMainViewForms ParentGroupListMainViewForms { get { Debug.Assert(this.Parent != null); return (GroupListMainViewForms) this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListMainViewForms ParentGroupListMainViewFormsI { get { return (IGroupListMainViewForms)this.Parent; } }
+        public IGroupListMainViewForms ParentGroupListMainViewFormsI { get { Debug.Assert(this.Parent != null); return (IGroupListMainViewForms)this.Parent; } }
         public static readonly string DefaultName = "MainViewForm";
 
         #region ITree

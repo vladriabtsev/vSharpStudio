@@ -347,7 +347,7 @@ namespace vSharpStudio.vm.ViewModels
             getIl.Emit(OpCodes.Ret);
             tb.DefineMethodOverride(mthdBldr, typeof(object).GetMethod("ToString"));
         }
-        internal static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType, string propertyNameUI = null, string propertyDescription = null)
+        internal static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType, string? propertyNameUI = null, string? propertyDescription = null)
         {
             FieldBuilder fieldBuilder = tb.DefineField("_" + propertyName, propertyType, FieldAttributes.Private);
 

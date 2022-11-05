@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class BaseConfigLink : IEditableNode  // INodeGenSettings, 
     {
         [BrowsableAttribute(false)]
-        public GroupListBaseConfigLinks ParentGroupListBaseConfigLinks { get { return (GroupListBaseConfigLinks)this.Parent; } }
+        public GroupListBaseConfigLinks ParentGroupListBaseConfigLinks { get { Debug.Assert(this.Parent != null); return (GroupListBaseConfigLinks)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListBaseConfigLinks ParentGroupListBaseConfigLinksI { get { return (IGroupListBaseConfigLinks)this.Parent; } }
+        public IGroupListBaseConfigLinks ParentGroupListBaseConfigLinksI { get { Debug.Assert(this.Parent != null); return (IGroupListBaseConfigLinks)this.Parent; } }
 
         #region ITree
         public override IEnumerable<ITreeConfigNode> GetListChildren()

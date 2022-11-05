@@ -19,9 +19,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode
     {
         [BrowsableAttribute(false)]
-        public GroupListProperties ParentGroupListProperties { get { return (GroupListProperties)this.Parent; } }
+        public GroupListProperties ParentGroupListProperties { get { Debug.Assert(this.Parent != null); return (GroupListProperties)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IGroupListProperties ParentGroupListPropertiesI { get { return (IGroupListProperties)this.Parent; } }
+        public IGroupListProperties ParentGroupListPropertiesI { get { Debug.Assert(this.Parent != null); return (IGroupListProperties)this.Parent; } }
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data
         public object? Tag { get; set; }

@@ -239,7 +239,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return new Tuple<bool, IComparable?>(true, null);
         }
-        private Tuple<string, IComparable> CanParse(string x, Property p)
+        private Tuple<string?, IComparable> CanParse(string x, Property p)
         {
             var dt = p.DataType;
             if (p.Accuracy == 0)
@@ -250,36 +250,36 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         byte res;
                         if (!byte.TryParse(x, out res))
-                            return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by byte.TryParse()", res);
-                        return new Tuple<string, IComparable>(null, res);
+                            return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by byte.TryParse()", res);
+                        return new Tuple<string?, IComparable>(null, res);
                     }
                     else if (dt.MaxNumericalValue <= ushort.MaxValue)
                     {
                         ushort res;
                         if (!ushort.TryParse(x, out res))
-                            return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by ushort.TryParse()", res);
-                        return new Tuple<string, IComparable>(null, res);
+                            return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by ushort.TryParse()", res);
+                        return new Tuple<string?, IComparable>(null, res);
                     }
                     else if (dt.MaxNumericalValue <= uint.MaxValue)
                     {
                         uint res;
                         if (!uint.TryParse(x, out res))
-                            return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by uint.TryParse()", res);
-                        return new Tuple<string, IComparable>(null, res);
+                            return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by uint.TryParse()", res);
+                        return new Tuple<string?, IComparable>(null, res);
                     }
                     else if (dt.MaxNumericalValue <= ulong.MaxValue) // long, not ulong
                     {
                         ulong res;
                         if (!ulong.TryParse(x, out res))
-                            return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by ulong.TryParse()", res);
-                        return new Tuple<string, IComparable>(null, res);
+                            return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by ulong.TryParse()", res);
+                        return new Tuple<string?, IComparable>(null, res);
                     }
                     else if (dt.Length <= 28)
                     {
                         decimal res;
                         if (!decimal.TryParse(x, out res))
-                            return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by decimal.TryParse()", res);
-                        return new Tuple<string, IComparable>(null, res);
+                            return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by decimal.TryParse()", res);
+                        return new Tuple<string?, IComparable>(null, res);
                     }
                     throw new Exception("Not supported operation");
                     // return "BigInteger" + sn;
@@ -290,36 +290,36 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         sbyte res;
                         if (!sbyte.TryParse(x, out res))
-                            return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by sbyte.TryParse()", res);
-                        return new Tuple<string, IComparable>(null, res);
+                            return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by sbyte.TryParse()", res);
+                        return new Tuple<string?, IComparable>(null, res);
                     }
                     else if (dt.MaxNumericalValue <= short.MaxValue)
                     {
                         short res;
                         if (!short.TryParse(x, out res))
-                            return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by short.TryParse()", res);
-                        return new Tuple<string, IComparable>(null, res);
+                            return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by short.TryParse()", res);
+                        return new Tuple<string?, IComparable>(null, res);
                     }
                     else if (dt.MaxNumericalValue <= int.MaxValue)
                     {
                         int res;
                         if (!int.TryParse(x, out res))
-                            return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by int.TryParse()", res);
-                        return new Tuple<string, IComparable>(null, res);
+                            return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by int.TryParse()", res);
+                        return new Tuple<string?, IComparable>(null, res);
                     }
                     else if (dt.MaxNumericalValue <= long.MaxValue)
                     {
                         long res;
                         if (!long.TryParse(x, out res))
-                            return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by long.TryParse()", res);
-                        return new Tuple<string, IComparable>(null, res);
+                            return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by long.TryParse()", res);
+                        return new Tuple<string?, IComparable>(null, res);
                     }
                     else if (dt.Length <= 28)
                     {
                         decimal res;
                         if (!decimal.TryParse(x, out res))
-                            return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by decimal.TryParse()", res);
-                        return new Tuple<string, IComparable>(null, res);
+                            return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by decimal.TryParse()", res);
+                        return new Tuple<string?, IComparable>(null, res);
                     }
                     throw new Exception("Not supported operation");
                     // return "BigInteger" + sn;
@@ -340,22 +340,22 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     float res;
                     if (!float.TryParse(x, out res))
-                        return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by float.TryParse()", res);
-                    return new Tuple<string, IComparable>(null, res);
+                        return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by float.TryParse()", res);
+                    return new Tuple<string?, IComparable>(null, res);
                 }
                 else if (dt.Length <= 15)
                 {
                     double res;
                     if (!double.TryParse(x, out res))
-                        return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by double.TryParse()", res);
-                    return new Tuple<string, IComparable>(null, res);
+                        return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by double.TryParse()", res);
+                    return new Tuple<string?, IComparable>(null, res);
                 }
                 else if (dt.Length < 29)
                 {
                     decimal res;
                     if (!decimal.TryParse(x, out res))
-                        return new Tuple<string, IComparable>($"Can't parse value \"{x}\" by decimal.TryParse()", res);
-                    return new Tuple<string, IComparable>(null, res);
+                        return new Tuple<string?, IComparable>($"Can't parse value \"{x}\" by decimal.TryParse()", res);
+                    return new Tuple<string?, IComparable>(null, res);
                 }
                 throw new Exception("Not supported operation");
                 // return "BigDecimal";
@@ -390,7 +390,7 @@ namespace vSharpStudio.vm.ViewModels
     }
     public class ValidationBoundary : IValidationBoundary
     {
-        public string BoundaryMin { get; set; }
-        public string BoundaryMax { get; set; }
+        public string? BoundaryMin { get; set; }
+        public string? BoundaryMax { get; set; }
     }
 }
