@@ -48,7 +48,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         var pg = (AppProjectGenerator)cntx.InstanceToValidate;
                         var path = pg.GetGenerationFilePath();
-                        var gs = (GroupListAppSolutions)pg.Parent.Parent.Parent;
+                        var gs = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions;
                         StringBuilder sb = new StringBuilder();
                         sb.Append("Files override each other . Generators: ");
                         int count = 0;
@@ -96,7 +96,7 @@ namespace vSharpStudio.vm.ViewModels
                         var pg = (AppProjectGenerator)cntx.InstanceToValidate;
                         if (pg.PluginDbGenerator == null)
                             return;
-                        var cfg = (Config)pg.GetConfig();
+                        var cfg = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
                         var lst = pg.PluginDbGenerator.ValidateDbModel(connStr, cfg, pg.Guid);
                         AddValidationResults(cntx, lst);
                     }

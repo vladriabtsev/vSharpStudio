@@ -144,85 +144,84 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void CheckName(string name, ValidationContext<Model> cntx)
         {
-            var set = (Model)cntx.InstanceToValidate;
-            var cfg = set.GetConfig();
+            var model = (Model)cntx.InstanceToValidate;
             int nerr = 0;
             int nerrMax = 10;
 
-            foreach (var t in cfg.Model.GroupConstantGroups.ListConstantGroups)
+            foreach (var t in model.GroupConstantGroups.ListConstantGroups)
             {
                 if (nerr >= nerrMax) return;
                 foreach (var tt in t.ListConstants)
                 {
                     if (nerr >= nerrMax) return;
-                    if (set.RecordVersionFieldName == tt.Name)
+                    if (model.RecordVersionFieldName == tt.Name)
                     {
                         nerr++;
-                        cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for constant field in constant group '{t.Name}'"));
+                        cntx.AddFailure(new ValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for constant field in constant group '{t.Name}'"));
                     }
                 }
             }
             if (nerr >= nerrMax) return;
-            foreach (var t in cfg.Model.GroupCatalogs.ListCatalogs)
+            foreach (var t in model.GroupCatalogs.ListCatalogs)
             {
                 foreach (var tt in t.GroupProperties.ListProperties)
                 {
                     if (nerr >= nerrMax) return;
-                    if (set.RecordVersionFieldName == tt.Name)
+                    if (model.RecordVersionFieldName == tt.Name)
                     {
                         nerr++;
-                        cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog '{t.Name}'"));
+                        cntx.AddFailure(new ValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog '{t.Name}'"));
                     }
                 }
                 foreach (var tt in t.GroupDetails.ListDetails)
                 {
                     if (nerr >= nerrMax) return;
-                    this.ValidateDetail(cntx, set, "catalog detail " + t.Name, tt, nerrMax, ref nerr);
+                    this.ValidateDetail(cntx, model, "catalog detail " + t.Name, tt, nerrMax, ref nerr);
                 }
                 if (t.UseTree && t.UseSeparateTreeForFolders)
                 {
                     foreach (var tt in t.Folder.GroupProperties.ListProperties)
                     {
                         if (nerr >= nerrMax) return;
-                        if (set.RecordVersionFieldName == tt.Name)
+                        if (model.RecordVersionFieldName == tt.Name)
                         {
                             nerr++;
-                            cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog folder '{t.Name}'"));
+                            cntx.AddFailure(new ValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in catalog folder '{t.Name}'"));
                         }
                     }
                     foreach (var tt in t.Folder.GroupDetails.ListDetails)
                     {
                         if (nerr >= nerrMax) return;
-                        this.ValidateDetail(cntx, set, "catalog folder detail " + t.Name, tt, nerrMax, ref nerr);
+                        this.ValidateDetail(cntx, model, "catalog folder detail " + t.Name, tt, nerrMax, ref nerr);
                     }
                 }
             }
             if (nerr >= nerrMax) return;
-            foreach (var t in cfg.Model.GroupDocuments.GroupSharedProperties.ListProperties)
+            foreach (var t in model.GroupDocuments.GroupSharedProperties.ListProperties)
             {
                 if (nerr >= nerrMax) return;
-                if (set.RecordVersionFieldName == t.Name)
+                if (model.RecordVersionFieldName == t.Name)
                 {
                     nerr++;
-                    cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for shared field for documents"));
+                    cntx.AddFailure(new ValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for shared field for documents"));
                 }
             }
             if (nerr >= nerrMax) return;
-            foreach (var t in cfg.Model.GroupDocuments.GroupListDocuments.ListDocuments)
+            foreach (var t in model.GroupDocuments.GroupListDocuments.ListDocuments)
             {
                 foreach (var tt in t.GroupProperties.ListProperties)
                 {
                     if (nerr >= nerrMax) return;
-                    if (set.RecordVersionFieldName == tt.Name)
+                    if (model.RecordVersionFieldName == tt.Name)
                     {
                         nerr++;
-                        cntx.AddFailure(new ValidationFailure(nameof(set.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in document '{t.Name}'"));
+                        cntx.AddFailure(new ValidationFailure(nameof(model.RecordVersionFieldName), $"Version name has to be unique. Same name is used for field in document '{t.Name}'"));
                     }
                 }
                 foreach (var tt in t.GroupDetails.ListDetails)
                 {
                     if (nerr >= nerrMax) return;
-                    this.ValidateDetail(cntx, set, "document detail " + t.Name, tt, nerrMax, ref nerr);
+                    this.ValidateDetail(cntx, model, "document detail " + t.Name, tt, nerrMax, ref nerr);
                 }
             }
         }

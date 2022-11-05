@@ -18,9 +18,9 @@ namespace vSharpStudio.common
 
         bool IsPKey { get; }
         bool IsRefParent { get; }
-        bool IsNullable { get; }
+        //bool IsNullable { get; }
         //IDataType DataType { get; }
-        string NameUi { get; }
-        string Description { get; }
+        //string NameUi { get; }
+        //string Description { get; }
     }
 }

@@ -242,7 +242,7 @@ namespace vSharpStudio.vm.ViewModels
                 prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
                 res.Add(prp);
             }
-            var parent = this.Parent.Parent as ICompositeName;
+            var parent = this.ParentGroupListDetails.Parent as ICompositeName;
             Debug.Assert(parent != null);
             prp = cfg.Model.GetPropertyRefParent(this.PropertyRefParentGuid, "Ref" + parent.CompositeName);
             res.Add(prp);

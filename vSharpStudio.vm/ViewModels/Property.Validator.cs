@@ -38,9 +38,8 @@ namespace vSharpStudio.vm.ViewModels
                 var p = (Property)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
-                var pg = (GroupListProperties)p.Parent;
-                var cfg = pg.GetConfig();
-                var model = cfg.Model;
+                var pg = p.ParentGroupListProperties;
+                var model = pg.GetConfig().Model;
                 if (pg.Parent is Catalog c)
                 {
                     var gc = (IGroupListCatalogs)c.Parent;

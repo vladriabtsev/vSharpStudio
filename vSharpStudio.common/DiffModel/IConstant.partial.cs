@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IConstant : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName, ILayoutFieldParameters
+    public partial interface IConstant : ITreeConfigNodeSortable, IGetNodeSetting, ICompositeName //, ILayoutFieldParameters
     {
         IGroupListConstants ParentGroupListConstantsI { get; }
         //string DefaultValue { get; }

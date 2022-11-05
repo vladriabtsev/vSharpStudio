@@ -37,7 +37,7 @@
             this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
             this.IsNotifying = true;
         }
-        private void ConfigObjectCommonBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void ConfigObjectCommonBase_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
@@ -75,7 +75,7 @@
         {
             get
             {
-                string iconName = null;
+                string iconName = String.Empty;
                 if (this.CountErrors > 0)
                 {
                     iconName = "iconStatusCriticalError";
@@ -94,7 +94,7 @@
                         }
                         else
                         {
-                            iconName = null;
+                            //iconName = null;
                         }
                     }
                 }
@@ -106,7 +106,7 @@
         {
             get
             {
-                string iconName = null;
+                string iconName = String.Empty;
                 if (this.IsExpanded)
                 {
                     iconName = "iconFolderOpen";
@@ -118,13 +118,15 @@
                 return iconName;
             }
         }
-        public int CompareTo(T other)
+        public int CompareTo(T? other)
         {
+            Debug.Assert(other != null);
             return this._SortingValue.CompareTo(other._SortingValue);
         }
-        public bool Equals(T other)
+        public bool Equals(T? other)
         {
-            return this.__Guid == (other as IGuid).Guid;
+            Debug.Assert(other != null && other is IGuid);
+            return this.__Guid == (other as IGuid)!.Guid;
         }
 
         #region Sort
@@ -162,7 +164,7 @@
         {
             get
             {
-                if (this.__Guid == null)
+                if (this.__Guid == String.Empty)
                 {
                     this.SetNewGuid();
                 }
@@ -173,7 +175,7 @@
                 this.__Guid = value;
             }
         }
-        private string __Guid = null;
+        private string __Guid = String.Empty;
         protected void SetNewGuid()
         {
             this.__Guid = System.Guid.NewGuid().ToString();
@@ -190,14 +192,14 @@
         {
             get
             {
-                if (_ModelPath == null)
+                if (_ModelPath == String.Empty)
                 {
                     _ModelPath = (this.Parent != null ? this.Parent.ModelPath + "." : "") + this.GetType().Name;
                 }
                 return _ModelPath;
             }
         }
-        private string _ModelPath = null;
+        private string _ModelPath = String.Empty;
 #if DEBUG
         [ReadOnly(true)]
         [Category("")]
@@ -218,7 +220,7 @@
             }
         }
         [BrowsableAttribute(false)]
-        public System.Windows.TextDecorationCollection NodeNameDecorations
+        public System.Windows.TextDecorationCollection? NodeNameDecorations
         {
             get
             {
@@ -232,8 +234,7 @@
                             myCollection.Add(System.Windows.TextDecorations.OverLine);
                         }
                     }
-                    var p = this as IEditableNode;
-                    if (p.IsMarkedForDeletion)
+                    if (this is IEditableNode p && p.IsMarkedForDeletion)
                     {
                         myCollection.Add(System.Windows.TextDecorations.Strikethrough);
                     }
@@ -278,7 +279,7 @@
                 return relative_path;
             return Path.Combine(cfg.CurrentCfgFolderPath, relative_path);
         }
-        private IConfig _cfg = null;
+        private IConfig _cfg;
         public IConfig Cfg
         {
             get
@@ -290,22 +291,18 @@
         }
         public IConfig GetConfig()
         {
+            Debug.Assert(this.Parent != null);
             ITreeConfigNode p = this.Parent;
-            if (p == null)
-            {
-                return null;
-            }
             while (p.Parent != null)
             {
                 p = p.Parent;
             }
-            if (p is IConfig)
-                return p as IConfig;
-            return null;
+            Debug.Assert(p is IConfig);
+            return (IConfig)p;
         }
-        public T GetPrevious()
+        public T? GetPrevious()
         {
-            T res = null;
+            T? res = null;
             if (this.GetConfig()?.PrevStableConfig != null && this.GetConfig().PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
                 res = (T)this.GetConfig().PrevStableConfig.DicNodes[this.__Guid];
@@ -359,25 +356,25 @@
                 {
                     sb.Append(t.Name);
                 }
-                else if (t is IGroupConstantGroups)
+                else if (t is IGroupConstantGroups gcg)
                 {
-                    prefix = (t as IGroupConstantGroups).PrefixForDbTables;
+                    prefix = gcg.PrefixForDbTables;
                 }
                 else if (t is ICatalog)
                 {
                     sb.Append(t.Name);
                 }
-                else if (t is IGroupListCatalogs)
+                else if (t is IGroupListCatalogs glc)
                 {
-                    prefix = (t as IGroupListCatalogs).PrefixForDbTables;
+                    prefix = glc.PrefixForDbTables;
                 }
                 else if (t is IDocument)
                 {
                     sb.Append(t.Name);
                 }
-                else if (t is IGroupDocuments)
+                else if (t is IGroupDocuments gd)
                 {
-                    prefix = (t as IGroupDocuments).PrefixForDbTables;
+                    prefix = gd.PrefixForDbTables;
                 }
             }
             string composit = sb.ToString();
@@ -577,9 +574,9 @@
         }
         public bool NodeCanAddNewSubNode()
         {
-            if (this is ICanAddSubNode)
+            if (this is ICanAddSubNode tt)
             {
-                return (this as ICanAddSubNode).CanAddSubNode();
+                return tt.CanAddSubNode();
             }
             return false;
         }
@@ -696,14 +693,14 @@
         [BrowsableAttribute(false)]
         // support submodules (wip)
         public List<IModelRow> ListInModels { get; protected set; }
-        public ITreeConfigNode PrevCurrentVersion()
+        public ITreeConfigNode? PrevCurrentVersion()
         {
             var cfg = this.GetConfig();
             if (cfg.PrevCurrentConfig == null || !cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.__Guid))
                 return null;
             return cfg.PrevCurrentConfig.DicNodes[this.__Guid];
         }
-        public ITreeConfigNode PrevStableVersion()
+        public ITreeConfigNode? PrevStableVersion()
         {
             var cfg = this.GetConfig();
             if (cfg.PrevStableConfig == null || !cfg.PrevStableConfig.DicNodes.ContainsKey(this.__Guid))
@@ -731,29 +728,29 @@
         }
         virtual public bool IsNewNode()
         {
-            if (this is IEditableNode)
+            if (this is IEditableNode tt)
             {
-                if ((this as IEditableNode).IsNew)
+                if (tt.IsNew)
                     return true;
             }
             return false;
         }
         public bool IsDeleted()
         {
-            if (this is IEditableNode)
+            if (this is IEditableNode tt)
             {
-                var p = (IEditableNode)this.PrevStableVersion();
-                if (p != null && p.IsMarkedForDeletion && (this as IEditableNode).IsMarkedForDeletion)
+                var p = (IEditableNode?)this.PrevStableVersion();
+                if (p != null && p.IsMarkedForDeletion && tt.IsMarkedForDeletion)
                     return true;
             }
             return false;
         }
         public bool IsDeprecated()
         {
-            if (this is IEditableNode)
+            if (this is IEditableNode tt)
             {
-                var p = (IEditableNode)this.PrevStableVersion();
-                if (p != null && !p.IsMarkedForDeletion && (this as IEditableNode).IsMarkedForDeletion)
+                var p = (IEditableNode?)this.PrevStableVersion();
+                if (p != null && !p.IsMarkedForDeletion && tt.IsMarkedForDeletion)
                     return true;
             }
             return false;
@@ -996,11 +993,13 @@
                 return;
             if (!this.IsNotifying)
                 return;
-            if (this is IConfig)
+            if (this is IConfig cfg)
             {
-                var cfgn = this as IConfig;
-                if ((cfgn as IEditableNodeGroup).IsHasChanged && !cfgn.IsNeedCurrentUpdate)
-                    cfgn.SetIsNeedCurrentUpdate(true);
+                if (cfg is IEditableNodeGroup eng)
+                {
+                    if (eng.IsHasChanged && !cfg.IsNeedCurrentUpdate)
+                        cfg.SetIsNeedCurrentUpdate(true);
+                }
                 return;
             }
             if (this is IEditableNodeGroup)

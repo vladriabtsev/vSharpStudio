@@ -13,8 +13,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (!string.IsNullOrWhiteSpace(prefix))
                     return true;
-                var cfg = o.GetConfig();
-                if (cfg.Model.IsUseGroupPrefix)
+                if (o.ParentModel.IsUseGroupPrefix)
                     return false;
                 return true;
             }).WithMessage("Prefix can't be empty if prefix usage is chosen for DB table names in the model");

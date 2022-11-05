@@ -123,7 +123,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetSolutionPath()
         {
-            var cfg = this.GetConfig();
+            var cfg = this.ParentGroupListAppSolutions.ParentConfig;
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 return "";
             if (string.IsNullOrEmpty(this.RelativeAppSolutionPath))
@@ -198,7 +198,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RestoreGroupSettings(IvPluginGenerator? gen = null)
         {
-            var cfg = (Config)this.GetConfig();
+            var cfg = this.ParentGroupListAppSolutions.ParentConfig;
             if (gen == null)
             {
                 this.DicPluginsGroupSettings.Clear();
@@ -313,7 +313,7 @@ namespace vSharpStudio.vm.ViewModels
         //}
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = AppSolution.Clone(this.Parent, this, true, true);
+            var node = AppSolution.Clone(this.ParentGroupListAppSolutions, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListAppSolutions.Add(node);
             this._Name = this._Name + "2";

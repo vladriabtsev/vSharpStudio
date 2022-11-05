@@ -33,9 +33,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (!(this is INodeGenSettings))
                 return;
-            var cfg = (Config)this.GetConfig();
-            if (cfg == null || cfg.GroupAppSolutions == null)
+            if (this.Parent==null)
                 return;
+            var cfg = (Config)this.GetConfig();
+            //if (cfg == null || cfg.GroupAppSolutions == null)
+            //    return;
             _logger.LogTrace("Try Add Node Settings. {Count}".CallerInfo(), cfg.DicActiveAppProjectGenerators.Count);
             foreach (var t in cfg.GroupAppSolutions.ListAppSolutions)
             {
@@ -61,10 +63,10 @@ namespace vSharpStudio.vm.ViewModels
             _logger.Trace();
             Debug.Assert(!this._DicGenNodeSettings.ContainsKey(appProjectGeneratorGuid));
             var ngs = (INodeGenSettings)this;
-            var cfg = (Config)this.GetConfig();
+            var cfg = this.GetConfig();
             var appgen = (AppProjectGenerator)cfg.DicNodes[appProjectGeneratorGuid];
             var gen = cfg.DicActiveAppProjectGenerators[appProjectGeneratorGuid];
-            PluginGeneratorNodeSettings gs = null;
+            PluginGeneratorNodeSettings? gs = null;
             foreach (var ts in ngs.ListNodeGeneratorsSettings)
             {
                 if (ts.Guid == appProjectGeneratorGuid)
@@ -138,7 +140,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             _logger.Trace();
             var ngs = (INodeGenSettings)this;
-            var cfg = (Config)this.GetConfig();
+            var cfg = this.GetConfig();
             foreach (var tt in ngs.ListNodeGeneratorsSettings)
             {
                 if (!cfg.DicActiveAppProjectGenerators.ContainsKey(tt.AppProjectGeneratorGuid))
@@ -254,7 +256,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private bool IsIncludedInStable(string guidAppPrjGen)
         {
-            var cfg = (Config)this.GetConfig();
+            var cfg = this.GetConfig();
             var prev = cfg.PrevStableConfig;
             if (prev != null && prev.DicNodes.ContainsKey(this._Guid))
             {
@@ -312,7 +314,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private bool GetBoolSettingInStable(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, bool?> func)
         {
-            var cfg = (Config)this.GetConfig();
+            var cfg = this.GetConfig();
             var prev = cfg.PrevStableConfig;
             if (prev != null && prev.DicNodes.ContainsKey(this._Guid))
             {
@@ -365,7 +367,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private string GetStringSettingInStable(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, string> func)
         {
-            var cfg = (Config)this.GetConfig();
+            var cfg = this.GetConfig();
             var prev = cfg.PrevStableConfig;
             if (prev != null && prev.DicNodes.ContainsKey(this._Guid))
             {
@@ -379,14 +381,14 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         /// <param name="guidAppPrjGen">Guid of VM of generator node settings</param>
         /// <returns></returns>
-        public IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen)
+        public IvPluginGeneratorNodeSettings? GetSettings(string guidAppPrjGen)
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 return null;
             var res = DicGenNodeSettings[guidAppPrjGen];
             return res;
         }
-        public T GetSettings<T>(string guidAppPrjGen, Func<ITreeConfigNode, T, bool> found)
+        public T? GetSettings<T>(string guidAppPrjGen, Func<ITreeConfigNode, T, bool> found)
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();
@@ -404,7 +406,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return default(T);
         }
-        public TValue GetSettingsValue<T, TValue>(string guidAppPrjGen, Action<ITreeConfigNode, T, Result<TValue>> found)
+        public TValue? GetSettingsValue<T, TValue>(string guidAppPrjGen, Action<ITreeConfigNode, T, Result<TValue>> found)
         {
             if (!DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                 throw new Exception();

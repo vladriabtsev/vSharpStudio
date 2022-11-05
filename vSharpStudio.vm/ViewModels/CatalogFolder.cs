@@ -218,12 +218,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void GetSpecialProperties(List<IProperty> res)
         {
-            var cfg = this.GetConfig();
-            var ctlg = (Catalog)this.Parent;
-            var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            var ctlg = this.ParentCatalog;
+            var model = ctlg.ParentGroupListCatalogs.ParentModel;
+            var prp = model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
-            prp = cfg.Model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent", true);
-            (prp as Property).IsNullable = true;
+            prp = model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent", true);
+            (prp as Property)!.IsNullable = true;
             res.Add(prp);
             if (this.GetUseCodeProperty())
             {
@@ -234,22 +234,22 @@ namespace vSharpStudio.vm.ViewModels
                         case EnumCodeType.AutoText:
                             throw new NotImplementedException();
                         case EnumCodeType.Number:
-                            prp = cfg.Model.GetPropertyCatalogCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                            prp = model.GetPropertyCatalogCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
                             break;
                         case EnumCodeType.Text:
-                            prp = cfg.Model.GetPropertyCatalogCode(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                            prp = model.GetPropertyCatalogCode(this.PropertyCodeGuid, this.CodePropertySettings.Length);
                             break;
                     }
                     res.Add(prp);
             }
             if (this.GetUseNameProperty())
             {
-                prp = cfg.Model.GetPropertyCatalogName(ctlg.PropertyNameGuid, ctlg.MaxNameLength);
+                prp = model.GetPropertyCatalogName(ctlg.PropertyNameGuid, ctlg.MaxNameLength);
                 res.Add(prp);
             }
             if (this.GetUseDescriptionProperty())
             {
-                prp = cfg.Model.GetPropertyCatalogDescription(ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength);
+                prp = model.GetPropertyCatalogDescription(ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength);
                 res.Add(prp);
             }
         }

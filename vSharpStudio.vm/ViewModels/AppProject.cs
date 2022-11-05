@@ -67,7 +67,7 @@ namespace vSharpStudio.vm.ViewModels
             //};
             this.ListAppProjectGenerators.OnRemovedAction = (t) =>
             {
-                var cfg = (Config)this.GetConfig();
+                var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
                 cfg.RemoveNodeAppGenSettings(t.Guid);
                 t.PluginGuid = string.Empty;
                 if (cfg._DicActiveAppProjectGenerators.ContainsKey(t.Guid))
@@ -91,7 +91,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetProjectPath()
         {
-            var cfg = this.GetConfig();
+            var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 return "";
             var path = Path.Combine(this.ParentAppSolution.GetSolutionFolderPath(), this.RelativeAppProjectPath);
@@ -113,7 +113,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (!this.IsNotifying)
                 return;
-            var cfg = this.GetConfig();
+            var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 throw new Exception("Config is not saved yet");
             if (this.ParentAppSolution.RelativeAppSolutionPath == null)
@@ -232,7 +232,7 @@ namespace vSharpStudio.vm.ViewModels
         //}
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = AppProject.Clone(this.Parent, this, true, true);
+            var node = AppProject.Clone(this.ParentAppSolution, this, true, true);
             node.Parent = this.Parent;
             this.ParentAppSolution.ListAppProjects.Add(node);
             this._Name = this._Name + "2";
@@ -329,7 +329,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RestoreGroupSettings(IvPluginGenerator? gen = null)
         {
-            var cfg = (Config)this.GetConfig();
+            var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
             if (gen == null)
             {
                 this.DicPluginsGroupSettings.Clear();

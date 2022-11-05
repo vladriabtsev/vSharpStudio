@@ -78,7 +78,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this.cfg = (Config)this.GetConfig();
+            this.cfg = this.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
             this.ListGenerators = new SortedObservableCollection<PluginGenerator>();
             //this.ListGenerators.OnAddingAction = (t) =>
             //{
@@ -171,7 +171,7 @@ namespace vSharpStudio.vm.ViewModels
         private void _DynamicMainConnStrSettings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             Debug.Assert(this._DynamicMainConnStrSettings != null);
-            this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.GetConfig(), this.ParentAppProject.ParentAppSolution, this.ParentAppProject, this);
+            this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.cfg, this.ParentAppProject.ParentAppSolution, this.ParentAppProject, this);
             this.NotifyPropertyChanged(() => this.ConnStr);
         }
 
@@ -214,8 +214,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (_DynamicModelNodeSettings == null)
                 {
-                    var cfg = (Config)this.GetConfig();
-                    this._DynamicModelNodeSettings = cfg.Model.GetSettings(this.Guid);
+                    this._DynamicModelNodeSettings = this.cfg.Model.GetSettings(this.Guid);
                     //var nd = new NodeSettings();
                     //this._DynamicModelNodeSettings = nd.Run(this);
                     if (this._DynamicModelNodeSettings != null)
@@ -239,10 +238,9 @@ namespace vSharpStudio.vm.ViewModels
         //    var settings = sln.DicPluginsGroupSettings[guidGroupSettings];
         //    return settings;
         //}
-        public IvPluginGeneratorNodeSettings GetDefaultNodeSettings()
+        public IvPluginGeneratorNodeSettings? GetDefaultNodeSettings()
         {
-            var cfg = this.GetConfig();
-            return cfg.Model.GetSettings(this.Guid);
+            return this.cfg.Model.GetSettings(this.Guid);
         }
         private string prevRelativePathToGenFolder = string.Empty;
         private string prevGenFileName = string.Empty;
@@ -258,7 +256,7 @@ namespace vSharpStudio.vm.ViewModels
 
         private void RemoveGroupSettingsIfLast()
         {
-            var sln = (AppSolution)this.Parent.Parent;
+            var sln = this.ParentAppProject.ParentAppSolution;
             bool is_only_in_sln = true;
             foreach (var t in sln.ListAppProjects)
             {
@@ -408,7 +406,6 @@ namespace vSharpStudio.vm.ViewModels
         IvPluginGeneratorSettings PluginGeneratorSettings { get; set; }
         public void RestoreSettings()
         {
-            var cfg = (Config)this.GetConfig();
             if (this.PluginGenerator != null)
             {
                 if (!cfg.DicGroupSettingGenerators.ContainsKey(this.PluginGenerator.GroupGeneratorsGuid))
@@ -721,7 +718,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = AppProjectGenerator.Clone(this.Parent, this, true, true);
+            var node = AppProjectGenerator.Clone(this.ParentAppProject, this, true, true);
             node.Parent = this.Parent;
             this.ParentAppProject.ListAppProjectGenerators.Add(node);
             this._Name = this._Name + "2";

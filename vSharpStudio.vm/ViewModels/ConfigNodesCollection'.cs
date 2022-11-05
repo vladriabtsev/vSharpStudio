@@ -12,8 +12,8 @@ namespace vSharpStudio.vm.ViewModels
     public class ConfigNodesCollection<T> : SortedObservableCollection<T>, System.Collections.IList
       where T : ITreeConfigNode, ISortingValue
     {
-        private Config cfg = null;
-        private ITreeConfigNode parent = null;
+        private Config cfg;
+        private ITreeConfigNode parent;
         private bool isUseDicNodes = false;
 
         public ConfigNodesCollection(ITreeConfigNode parent)

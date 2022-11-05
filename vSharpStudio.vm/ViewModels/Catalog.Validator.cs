@@ -24,7 +24,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return true;
             }
-            var cfg = val.GetConfig();
             GroupListCatalogs p = (GroupListCatalogs)val.Parent;
             foreach (var t in p.ListCatalogs)
             {

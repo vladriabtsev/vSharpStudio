@@ -274,18 +274,17 @@ namespace vSharpStudio.vm.ViewModels
         private void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
         {
 
-            var grd = (GroupDocuments)this.Parent.Parent;
-            var cfg = this.GetConfig();
-            var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
+            var prp = model.GetPropertyId(this.PropertyIdGuid);
             res.Add(prp);
             if (isSupportVersion)
             {
-                prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
+                prp = model.GetPropertyVersion(this.PropertyVersionGuid);
                 res.Add(prp);
             }
             if (this.GetUseDocDateProperty())
             {
-                prp = cfg.Model.GetPropertyDocumentDate(this.PropertyDocDateGuid);
+                prp = model.GetPropertyDocumentDate(this.PropertyDocDateGuid);
                 res.Add(prp);
             }
             if (this.GetUseDocCodeProperty())
@@ -297,10 +296,10 @@ namespace vSharpStudio.vm.ViewModels
                     case EnumCodeType.AutoText:
                         throw new NotImplementedException();
                     case EnumCodeType.Number:
-                        prp = cfg.Model.GetPropertyDocumentCodeInt(this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
+                        prp = model.GetPropertyDocumentCodeInt(this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
                         break;
                     case EnumCodeType.Text:
-                        prp = cfg.Model.GetPropertyDocumentCodeString(this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
+                        prp = model.GetPropertyDocumentCodeString(this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
                         break;
                 }
                 res.Add(prp);
@@ -340,9 +339,9 @@ namespace vSharpStudio.vm.ViewModels
         public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)
         {
             ViewListData? viewListData = null;
-            var cfg = this.GetConfig();
+            var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
             Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
-            var pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            var pId = model.GetPropertyId(this.PropertyIdGuid);
             viewListData = new ViewListData(pId);
             var lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);

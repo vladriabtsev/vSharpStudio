@@ -184,7 +184,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             TypeBuilder tbSettings = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
             ConstructorBuilder constructor = tbSettings.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
-            Config cfg = (Config)node.GetConfig();
             var dic_groups = new Dictionary<string, object>();
             foreach (var t in node.DicPluginsGroupSettings)
             {
@@ -206,7 +205,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             TypeBuilder tbSettings = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
             ConstructorBuilder constructor = tbSettings.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
-            Config cfg = (Config)node.GetConfig();
             var dic_groups = new Dictionary<string, object>();
             foreach (var t in node.DicPluginsGroupSettings)
             {
@@ -231,8 +229,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!string.IsNullOrWhiteSpace(node.PluginGeneratorGuid))
                 {
                     Dictionary<string, object> dic_gs = new Dictionary<string, object>();
-                    var cfg = (Config)node.GetConfig();
-                    object objGen = CreateSettingsForAppProjectGenerator(cfg.Model, node, dic_gs, true);
+                    object objGen = CreateSettingsForAppProjectGenerator(node.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig.Model, node, dic_gs, true);
                     return objGen;
                 }
             }
