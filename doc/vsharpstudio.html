@@ -426,10 +426,6 @@
                   <a href="#proto_config.proto_user_settings_opened_config"><span class="badge">M</span>proto_user_settings_opened_config</a>
                 </li>
               
-                <li>
-                  <a href="#proto_config.timestamp_nullable"><span class="badge">M</span>timestamp_nullable</a>
-                </li>
-              
               
                 <li>
                   <a href="#proto_config.enum_enumeration_type"><span class="badge">E</span>enum_enumeration_type</a>
@@ -501,7 +497,7 @@
 
       
         <h3 id="proto_config.proto_app_db_settings">proto_app_db_settings</h3>
-        <p>@base BaseSettings</p>
+        <p>@base VmValidatable</p>
 
         
           <table class="field-table">
@@ -1775,7 +1771,7 @@ Generator output file name </p></td>
         
       
         <h3 id="proto_config.proto_config_short_history">proto_config_short_history</h3>
-        <p>@base BaseSettings</p>
+        <p>@base VmEditable</p>
 
         
           <table class="field-table">
@@ -2025,7 +2021,13 @@ Generator output file name </p></td>
                   <td>object_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(6)]
+                  <td><p>&lt;summary&gt;
+/ Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
+/ Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
+/ If Guid of group types is assigned, then any type of such group of types is acceptable as type
+/ If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
+/ &lt;/summary&gt;
+@attr [PropertyOrderAttribute(6)]
 @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] </p></td>
                 </tr>
               
@@ -2033,7 +2035,10 @@ Generator output file name </p></td>
                   <td>list_object_guids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [PropertyOrderAttribute(8)] </p></td>
+                  <td><p>&lt;summary&gt;
+/ Guids of selected complex types, that are acceptable as types
+/ &lt;/summary&gt;
+@attr [PropertyOrderAttribute(8)] </p></td>
                 </tr>
               
                 <tr>
@@ -6816,7 +6821,7 @@ repeated proto_document list_documents = 7;
         
       
         <h3 id="proto_config.proto_settings_config">proto_settings_config</h3>
-        <p>@base BaseSettings</p>
+        <p>@base VmEditable</p>
 
         
           <table class="field-table">
@@ -6870,7 +6875,7 @@ repeated proto_document list_documents = 7;
         
       
         <h3 id="proto_config.proto_user_settings">proto_user_settings</h3>
-        <p>@base BaseSettings</p>
+        <p>@base VmValidatableWithSeverity</p>
 
         
           <table class="field-table">
@@ -6894,7 +6899,7 @@ repeated proto_document list_documents = 7;
         
       
         <h3 id="proto_config.proto_user_settings_opened_config">proto_user_settings_opened_config</h3>
-        <p>@base BaseSettings</p>
+        <p>@base VmValidatableWithSeverity</p>
 
         
           <table class="field-table">
@@ -6922,37 +6927,6 @@ repeated proto_document list_documents = 7;
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.timestamp_nullable">timestamp_nullable</h3>
-        <p>message bool_nullable {</p><p>bool has_value = 1;</p><p>bool value = 2;</p><p>}</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>has_value</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>value</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
               
             </tbody>

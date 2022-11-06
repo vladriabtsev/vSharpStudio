@@ -177,21 +177,22 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy)
         {
-            var node = new Property(this.GroupProperties) { Name = name, DataType = new DataType() { DataTypeEnum = type, Length = length, Accuracy = accuracy } };
+            var node = new Property(this.GroupProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyString(string name, uint length)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length };
-            var node = new Property(this.GroupProperties) { Name = name, DataType = dt };
+            var node = new Property(this.GroupProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyNumerical(string name, uint length, uint accuracy)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
-            var node = new Property(this.GroupProperties) { Name = name, DataType = dt };
+            var node = new Property(this.GroupProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
@@ -275,16 +276,16 @@ namespace vSharpStudio.vm.ViewModels
         {
 
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-            var prp = model.GetPropertyId(this.PropertyIdGuid);
+            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             res.Add(prp);
             if (isSupportVersion)
             {
-                prp = model.GetPropertyVersion(this.PropertyVersionGuid);
+                prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
                 res.Add(prp);
             }
             if (this.GetUseDocDateProperty())
             {
-                prp = model.GetPropertyDocumentDate(this.PropertyDocDateGuid);
+                prp = model.GetPropertyDocumentDate(this.GroupProperties, this.PropertyDocDateGuid);
                 res.Add(prp);
             }
             if (this.GetUseDocCodeProperty())
@@ -296,10 +297,10 @@ namespace vSharpStudio.vm.ViewModels
                     case EnumCodeType.AutoText:
                         throw new NotImplementedException();
                     case EnumCodeType.Number:
-                        prp = model.GetPropertyDocumentCodeInt(this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
+                        prp = model.GetPropertyDocumentCodeInt(this.GroupProperties, this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
                         break;
                     case EnumCodeType.Text:
-                        prp = model.GetPropertyDocumentCodeString(this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
+                        prp = model.GetPropertyDocumentCodeString(this.GroupProperties, this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
                         break;
                 }
                 res.Add(prp);
@@ -341,7 +342,7 @@ namespace vSharpStudio.vm.ViewModels
             ViewListData? viewListData = null;
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
             Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
-            var pId = model.GetPropertyId(this.PropertyIdGuid);
+            var pId = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             viewListData = new ViewListData(pId);
             var lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);

@@ -12,6 +12,7 @@ namespace vPlugin.Sample
 {
     public partial class PluginsGroupProjectSettings : IvPluginGroupSettings
     {
+        //private PluginsGroupProjectSettings() : base(null, PluginsGroupProjectSettingsValidator.Validator) { }
         partial void OnCreated()
         {
             this.Name = "PrjGrSet";
@@ -35,13 +36,13 @@ namespace vPlugin.Sample
             }
         }
 
-        public IvPluginGroupSettings GetPluginGroupSettingsVm(ITreeConfigNode parent, string settings)
+        public IvPluginGroupSettings GetPluginGroupSettingsVm(IAppSolution parent, string settings)
         {
             this.Parent = parent;
             if (string.IsNullOrWhiteSpace(settings))
-                return new PluginsGroupProjectSettings();
+                return new PluginsGroupProjectSettings(parent);
             var proto = proto_plugins_group_project_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
-            return PluginsGroupProjectSettings.ConvertToVM(proto, new PluginsGroupProjectSettings());
+            return PluginsGroupProjectSettings.ConvertToVM(proto, new PluginsGroupProjectSettings(parent));
         }
         public ValidationResult ValidateSettings()
         {

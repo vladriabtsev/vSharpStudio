@@ -66,7 +66,6 @@
     - [proto_settings_config](#proto_config.proto_settings_config)
     - [proto_user_settings](#proto_config.proto_user_settings)
     - [proto_user_settings_opened_config](#proto_config.proto_user_settings_opened_config)
-    - [timestamp_nullable](#proto_config.timestamp_nullable)
   
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
     - [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope)
@@ -99,7 +98,7 @@
 <a name="proto_config.proto_app_db_settings"></a>
 
 ### proto_app_db_settings
-@base BaseSettings
+@base VmValidatable
 
 
 | Field | Type | Label | Description |
@@ -370,7 +369,7 @@ Configuration config
 <a name="proto_config.proto_config_short_history"></a>
 
 ### proto_config_short_history
-@base BaseSettings
+@base VmEditable
 
 
 | Field | Type | Label | Description |
@@ -431,8 +430,8 @@ Constant application wise value
 | length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Maximum length of data (characters in string, or decimal digits for numeric data)&#34;)] |
 | is_positive | [bool](#bool) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Positive&#34;)] @attr [Description(&#34;Expected numerical value always &gt;= 0&#34;)] |
 | accuracy | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Accuracy&#34;)] @attr [Description(&#34;Number of decimal places in fractional part for numeric data)&#34;)] |
-| object_guid | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
-| list_object_guids | [string](#string) | repeated | @attr [PropertyOrderAttribute(8)] |
+| object_guid | [string](#string) |  | &lt;summary&gt; / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. / Numerical, string, bool, date and similar are simple types. For simple types this property is empty. / If Guid of group types is assigned, then any type of such group of types is acceptable as type / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type / &lt;/summary&gt; @attr [PropertyOrderAttribute(6)] @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))] |
+| list_object_guids | [string](#string) | repeated | &lt;summary&gt; / Guids of selected complex types, that are acceptable as types / &lt;/summary&gt; @attr [PropertyOrderAttribute(8)] |
 | is_p_key | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_ref_parent | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 
@@ -1633,7 +1632,7 @@ User&#39;s role
 <a name="proto_config.proto_settings_config"></a>
 
 ### proto_settings_config
-@base BaseSettings
+@base VmEditable
 
 
 | Field | Type | Label | Description |
@@ -1652,7 +1651,7 @@ User&#39;s role
 <a name="proto_config.proto_user_settings"></a>
 
 ### proto_user_settings
-@base BaseSettings
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -1667,7 +1666,7 @@ User&#39;s role
 <a name="proto_config.proto_user_settings_opened_config"></a>
 
 ### proto_user_settings_opened_config
-@base BaseSettings
+@base VmValidatableWithSeverity
 
 
 | Field | Type | Label | Description |
@@ -1675,25 +1674,6 @@ User&#39;s role
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
 | opened_last_time_on | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [BrowsableAttribute(false)] |
 | config_path | [string](#string) |  | @attr [BrowsableAttribute(false)] |
-
-
-
-
-
-
-<a name="proto_config.timestamp_nullable"></a>
-
-### timestamp_nullable
-message bool_nullable {
-bool has_value = 1;
-bool value = 2;
-}
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| has_value | [bool](#bool) |  |  |
-| value | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
 
 

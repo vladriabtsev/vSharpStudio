@@ -67,18 +67,6 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public Constant AddConstant(string name)
-        {
-            Constant node = new Constant(this) { Name = name, DataType = new DataType() };
-            this.NodeAddNewSubNode(node);
-            return node;
-        }
-        public Constant AddConstant(string name, DataType type)
-        {
-            Constant node = new Constant(this) { Name = name, DataType = type };
-            this.NodeAddNewSubNode(node);
-            return node;
-        }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
             Constant node = null;

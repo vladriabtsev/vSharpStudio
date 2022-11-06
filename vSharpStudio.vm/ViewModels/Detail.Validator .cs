@@ -52,7 +52,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (!isStopTabControl)
                     return;
                 var p = (Detail)cntx.InstanceToValidate;
-                var grp = p.Parent as GroupListDetails;
+                var grp = p.ParentGroupListDetails;
                 var indx = grp.ListDetails.IndexOf(p);
                 if (indx == 0)
                 {

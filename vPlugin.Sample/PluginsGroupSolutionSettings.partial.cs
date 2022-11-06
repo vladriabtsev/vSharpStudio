@@ -33,13 +33,13 @@ namespace vPlugin.Sample
             }
         }
 
-        public IvPluginGroupSettings GetPluginGroupSettingsVm(ITreeConfigNode parent, string settings)
+        public IvPluginGroupSettings GetPluginGroupSettingsVm(IAppSolution parent, string settings)
         {
             this.Parent = parent;
             if (string.IsNullOrWhiteSpace(settings))
-                return new PluginsGroupSolutionSettings();
+                return new PluginsGroupSolutionSettings(parent);
             var proto = proto_plugins_group_solution_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
-            return PluginsGroupSolutionSettings.ConvertToVM(proto, new PluginsGroupSolutionSettings());
+            return PluginsGroupSolutionSettings.ConvertToVM(proto, new PluginsGroupSolutionSettings(parent));
         }
         public ValidationResult ValidateSettings()
         {

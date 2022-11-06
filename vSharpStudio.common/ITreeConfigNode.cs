@@ -30,8 +30,8 @@ namespace vSharpStudio.common
         bool IsDeprecated();
         bool IsRenamed(bool isStable);
         //bool IsCanLooseData(bool isStable);
-        ITreeConfigNode PrevStableVersion();
-        ITreeConfigNode PrevCurrentVersion();
+        ITreeConfigNode? PrevStableVersion();
+        ITreeConfigNode? PrevCurrentVersion();
         void Sort(Type type);
         bool NodeCanMoveUp();
         void NodeMoveUp();

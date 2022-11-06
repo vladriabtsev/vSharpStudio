@@ -89,24 +89,23 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
-        internal Property(ITreeConfigNode parent, string guid, string name, DataType dataType)
+        internal Property(ITreeConfigNode parent, string guid, string name)
             : this(parent)
         {
             this.Guid = guid;
             this._Name = name;
-            this._DataType = dataType;
         }
         internal Property(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)
             : this(parent)
         {
             this._Name = name;
-            this._DataType = new DataType(type, guidOfType);
+            this._DataType = new DataType(this, type, guidOfType);
         }
         internal Property(ITreeConfigNode parent, string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null)
             : this(parent)
         {
             this._Name = name;
-            this._DataType = new DataType(type, length, accuracy);
+            this._DataType = new DataType(this, type, length, accuracy);
         }
         [BrowsableAttribute(false)]
         public bool IsPKey { get { return this.DataType.IsPKey; } }

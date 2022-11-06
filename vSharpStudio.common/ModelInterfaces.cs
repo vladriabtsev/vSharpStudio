@@ -395,7 +395,22 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	uint Length { get; } // ModelInterfaces.tt Line: 51
     	bool IsPositive { get; } // ModelInterfaces.tt Line: 51
     	uint Accuracy { get; } // ModelInterfaces.tt Line: 51
+    	
+    	///////////////////////////////////////////////////
+    	/// <summary>
+    	/// / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
+    	/// / Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
+    	/// / If Guid of group types is assigned, then any type of such group of types is acceptable as type
+    	/// / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
+    	/// / </summary>
+    	///////////////////////////////////////////////////
     	string ObjectGuid { get; } // ModelInterfaces.tt Line: 51
+    	
+    	///////////////////////////////////////////////////
+    	/// <summary>
+    	/// / Guids of selected complex types, that are acceptable as types
+    	/// / </summary>
+    	///////////////////////////////////////////////////
     	IReadOnlyList<string> ListObjectGuids { get; } // ModelInterfaces.tt Line: 42
     	bool IsPKey { get; } // ModelInterfaces.tt Line: 51
     	bool IsRefParent { get; } // ModelInterfaces.tt Line: 51

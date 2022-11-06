@@ -111,38 +111,33 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddProperty(string name, DataType type)
-        {
-            var node = new Property(this) { Name = name, DataType = type };
-            this.NodeAddNewSubNode(node);
-            return node;
-        }
         public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy)
         {
-            var node = new Property(this) { Name = name, DataType = new DataType() { DataTypeEnum = type, Length = length, Accuracy = accuracy } };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyBool(string name, bool isNullable = false)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.BOOL };
-            var node = new Property(this) { Name = name, DataType = dt };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.BOOL };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyChar(string name, bool isNullable = false)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.CHAR };
-            var node = new Property(this) { Name = name, DataType = dt };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CHAR };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyString(string name, uint length, bool isNullable = false, uint? min_length = null, uint? max_length = null)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length};
-            var node = new Property(this) { Name = name, DataType = dt };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             node.IsNullable = isNullable;
             if (min_length != null)
                 node.MinLengthRequirement = min_length.ToString()!;
@@ -153,16 +148,16 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Property AddPropertyNumerical(string name, uint length, uint accuracy, bool isNullable = false, bool isPositive = false)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy, IsPositive = isPositive };
-            var node = new Property(this) { Name = name, DataType = dt };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy, IsPositive = isPositive };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyTime(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.TIME };
-            var node = new Property(this) { Name = name, DataType = dt };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIME };
             node.IsNullable = isNullable;
             node.AccuracyForTime = accuracy;
             this.NodeAddNewSubNode(node);
@@ -177,16 +172,16 @@ namespace vSharpStudio.vm.ViewModels
         //}
         public Property AddPropertyDate(string name, bool isNullable = false)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.DATE };
-            var node = new Property(this) { Name = name, DataType = dt };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATE };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyDateTimeUtc(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMEUTC };
-            var node = new Property(this) { Name = name, DataType = dt };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMEUTC };
             node.IsNullable = isNullable;
             node.AccuracyForTime = accuracy;
             this.NodeAddNewSubNode(node);
@@ -194,8 +189,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Property AddPropertyDateTimeLocal(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.DATETIMELOCAL };
-            var node = new Property(this) { Name = name, DataType = dt };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMELOCAL };
             node.IsNullable = isNullable;
             node.AccuracyForTime = accuracy;
             this.NodeAddNewSubNode(node);
@@ -226,8 +221,8 @@ namespace vSharpStudio.vm.ViewModels
         //}
         public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
-            var node = new Property(this) { Name = name, DataType = dt };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;

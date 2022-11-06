@@ -36,9 +36,9 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public IvPluginGeneratorSettings GetConnectionStringMvvm(string connectionString)
+        public IvPluginGeneratorSettings GetConnectionStringMvvm(IAppProjectGenerator parent, string connectionString)
         {
-            var res = new DbConnectionStringSettings(connectionString);
+            var res = new DbConnectionStringSettings(parent, connectionString);
             return res;
         }
         public object GetDbModel(string connectionString)
@@ -51,7 +51,7 @@ namespace vPlugin.Sample
         }
         public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string settings)
         {
-            var vm = new GeneratorDbSchemaSettings();
+            var vm = new GeneratorDbSchemaSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 proto_generator_db_schema_settings proto = proto_generator_db_schema_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
@@ -127,7 +127,7 @@ namespace vPlugin.Sample
         }
         public IvPluginGroupSettings GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string settings)
         {
-            var res = new PluginsGroupSolutionSettings();
+            var res = new PluginsGroupSolutionSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 var proto = proto_plugins_group_solution_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
@@ -138,7 +138,7 @@ namespace vPlugin.Sample
         }
         public IvPluginGroupSettings GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string settings)
         {
-            var res = new PluginsGroupProjectSettings();
+            var res = new PluginsGroupProjectSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 var proto = proto_plugins_group_project_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);

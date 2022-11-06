@@ -101,6 +101,11 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
+        public Config()
+            : this(default(ITreeConfigNode))
+        {
+            this.OnCreating();
+        }
         public Config(ConfigShortHistory history)
             : this(default(ITreeConfigNode))
         {

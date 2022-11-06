@@ -5,6 +5,7 @@ using System.Text;
 using Serilog.Events;
 using System.Net.WebSockets;
 using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
 namespace vSharpStudio.common
 {
@@ -15,8 +16,9 @@ namespace vSharpStudio.common
         /// </summary>
         public class ModelNode
         {
-            public ModelNode()
+            public ModelNode(IGuid nodeObject)
             {
+                this.NodeObject = nodeObject;
                 this.DicReferenceToNodes = new Dictionary<string, ReferenceTo>();
                 this.DicReferecedFromNodes = new Dictionary<string, ReferenceFrom>();
             }
@@ -38,7 +40,11 @@ namespace vSharpStudio.common
         /// </summary>
         public class ReferenceTo
         {
-            public ReferenceTo() { this.DicByFields = new Dictionary<string, IGuid>(); }
+            public ReferenceTo(IGuid toObject)
+            {
+                this.DicByFields = new Dictionary<string, IGuid>();
+                this.ToObject = toObject;
+            }
             /// <summary>
             /// Model object
             /// </summary>
@@ -53,7 +59,11 @@ namespace vSharpStudio.common
         /// </summary>
         public class ReferenceFrom
         {
-            public ReferenceFrom() { this.DicFromFields = new Dictionary<string, IGuid>(); }
+            public ReferenceFrom(IGuid fromObject)
+            {
+                this.DicFromFields = new Dictionary<string, IGuid>();
+                this.FromObject = fromObject;
+            }
             /// <summary>
             /// Model object
             /// </summary>
@@ -69,14 +79,14 @@ namespace vSharpStudio.common
         {
             foreach (var t in currModel.GroupEnumerations.ListEnumerations)
             {
-                var md = new ModelNode() { NodeObject = t };
+                var md = new ModelNode(t);
                 this.DicNodesWithReferences[t.Guid] = md;
             }
             foreach (var t in currModel.GroupConstantGroups.ListConstantGroups)
             {
                 foreach (var tt in t.ListConstants)
                 {
-                    var md = new ModelNode() { NodeObject = tt };
+                    var md = new ModelNode(tt);
                     this.DicNodesWithReferences[tt.Guid] = md;
                     if (!string.IsNullOrWhiteSpace(tt.DataType.ObjectGuid))
                     {
@@ -86,14 +96,14 @@ namespace vSharpStudio.common
             }
             foreach (var t in currModel.GroupCatalogs.ListCatalogs)
             {
-                var md = new ModelNode() { NodeObject = t };
+                var md = new ModelNode(t);
                 this.DicNodesWithReferences[t.Guid] = md;
                 ScanProperties(md, t.GroupProperties.ListProperties);
                 ScanDetails(md, t.GroupDetails);
             }
             foreach (var t in currModel.GroupDocuments.GroupListDocuments.ListDocuments)
             {
-                var md = new ModelNode() { NodeObject = t };
+                var md = new ModelNode(t);
                 this.DicNodesWithReferences[t.Guid] = md;
                 ScanProperties(md, currModel.GroupDocuments.GroupSharedProperties.ListProperties);
                 ScanDetails(md, t.GroupDetails);
@@ -134,33 +144,30 @@ namespace vSharpStudio.common
         {
             if (!md.DicReferenceToNodes.ContainsKey(d.ObjectGuid))
             {
-                md.DicReferenceToNodes[d.ObjectGuid] = new ReferenceTo();
+                md.DicReferenceToNodes[d.ObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[d.ObjectGuid]);
             }
             var tn = md.DicReferenceToNodes[d.ObjectGuid];
             tn.DicByFields[constant.Guid] = constant;
-            tn.ToObject = this.currCfg.DicNodes[d.ObjectGuid];
         }
         private void AddReferenceToNode(ModelNode md, IProperty property, IDataType d)
         {
             if (!md.DicReferenceToNodes.ContainsKey(d.ObjectGuid))
             {
-                md.DicReferenceToNodes[d.ObjectGuid] = new ReferenceTo();
+                md.DicReferenceToNodes[d.ObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[d.ObjectGuid]);
             }
             var tn = md.DicReferenceToNodes[d.ObjectGuid];
             tn.DicByFields[property.Guid] = property;
-            tn.ToObject = this.currCfg.DicNodes[d.ObjectGuid];
         }
         private static void AddReferenceFromNode(ModelNode md, IGuid property, IGuid from)
         {
             if (!md.DicReferecedFromNodes.ContainsKey(from.Guid))
             {
-                md.DicReferecedFromNodes[from.Guid] = new ReferenceFrom();
+                md.DicReferecedFromNodes[from.Guid] = new ReferenceFrom(from);
             }
             var tn = md.DicReferecedFromNodes[from.Guid];
             tn.DicFromFields[property.Guid] = property;
-            tn.FromObject = from;
         }
-        public new void Run(IModel model, Action<ModelVisitorBase, ITreeConfigNode> act = null)
+        public new void Run(IModel model, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currModel = model;
@@ -175,7 +182,7 @@ namespace vSharpStudio.common
         /// <param name="curr">Current config or clone</param>
         /// <param name="act"></param>
         /// <returns></returns>
-        public new void Run(IConfig curr, IAppSolution sln, IAppProject prj, Action<ModelVisitorBase, ITreeConfigNode> act = null)
+        public new void Run(IConfig curr, IAppSolution sln, IAppProject prj, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currCfg = curr;

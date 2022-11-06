@@ -1,35 +1,20 @@
-ô
-$02b1090f-960e-4076-909a-ca937cee5c1atest2*test2:’ç™›œÆ‰¬ª3
-$702f50ed-dfa3-4f68-a811-0dcce0be9724BaseConfigs²ú
-$3d765a95-275a-4224-a04e-2136f6592001Model óØ“Öƒ›©Ê*Model@dHPj$4aff975b-770a-4073-bef0-ac409d20de60rIdŠ$5dcd4833-180c-472b-88b8-a00061493354’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderâIsOpenêDocDateğÊ	DocNumberĞªK
-$3eca99d6-ec37-431a-9556-91158c381543	Constants»õ”–­†üt"	Constants2Cnst²B
-$6552aefc-368a-4053-b1ae-9f1bf5146a96Enumerations"EnumerationsºI
-$903be661-71b8-40a2-ae03-668ab7dc2271Catalogs"Catalogs2Ctlg:c€Âº
-$79496b74-60e9-4469-b251-e6378b474b48	Documents"	Documents2Doc:6
-$918f5197-52ce-4615-ad1f-f88df5456bdfShared"SharedB?
-$e94f4e7f-5756-4ea0-b76d-ea0d69ca090a	Documents"	Documents2dÊ:
-$073b9a76-ad35-48d7-a370-45513f0d9778Journals"JournalsÒ¢
-$439e6dc8-ea37-4ef3-9891-1aa9cd008462Common"Common:4
-$a051b60e-415e-438a-b807-17695491b76fRoles"RolesB4
-$f3bee693-65c8-4a3b-9f5c-c85fab1a56edGroup"GroupÂË
-$6ac613b4-dc51-4f16-a4ac-99c654a13164Plugins"¸
-$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
-$1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generation ØŞèİ›Ÿæò"á
-$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(Øç»Â±¨ë—2|
-$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions °Œ½¹¨ë—"Ó
-$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
-$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{"Ü
-$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
-PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
-$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{"Æ
-$052C7318-3D73-4605-B1AE-749FC7E104120.1
-Repository"4vSharpStudio plugin. DB access layer repository code(ØŞèİ›Ÿæò2M
-$E59B393E-AF34-4438-977F-7BF120E28A0C
-RepositoryDb Access Layer ØŞèİ›Ÿæò"¥
-$ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
-$08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
-$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶z"Ô
-$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
-$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{Ê,
-$55c8b270-7180-4af4-aef5-eed7ebece590Apps
+ã
+
+$e285af31-3209-45f5-99ba-8f766e34b50ftest2*test2:†® ›°Å¡cª3
+$9a35d9f2-18d0-4b29-bef5-3c086e6e3ac1BaseConfigs²ú
+$f4236148-1049-466b-acec-701f11668c86Model óØ“Öƒ›©Ê*Model@dHPj$be247c02-5865-4fb9-992f-539ec29f49b3rIdŠ$c9332e76-809c-44f7-803d-7282215add73’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderâIsOpenêDocDateğÊ	DocNumberĞªK
+$687b0045-43f7-4074-b69a-1e845da43eaa	Constants»õ”–­†üt"	Constants2Cnst²B
+$7fd053cb-77cd-4645-8407-053866fb6911Enumerations"EnumerationsºI
+$9912731d-623b-4755-88a1-e005e474f10dCatalogs"Catalogs2Ctlg:c€Âº
+$cbcf7a78-ba04-442e-bda5-7b362e6a712f	Documents"	Documents2Doc:6
+$1c834bde-7614-4466-bf9f-639fedb211d3Shared"SharedB?
+$1db875d7-baee-4064-ab2a-c7215e9da683	Documents"	Documents2dÊ:
+$1a18fa4d-e4d2-45d6-ad8c-39e8b3bf6049Journals"JournalsÒ¢
+$c6c06c78-6bd1-4eb5-aa15-c9a474c9b506Common"Common:4
+$26074131-3784-4005-bd32-296e5621cf0fRoles"RolesB4
+$7a31dc8d-070c-4771-96ba-a8b1618b949fGroup"GroupÂ»
+$2e2d71bc-c0aa-4c63-8b75-a110c3c5e905Plugins"‰
+$ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators2X
+$08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema2M
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access LayerÊ,
+$4289c593-4022-4138-8a2e-6afdfeb64550Apps

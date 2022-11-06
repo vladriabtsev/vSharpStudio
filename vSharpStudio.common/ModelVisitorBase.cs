@@ -166,10 +166,10 @@ namespace vSharpStudio.common
             this.EndVisit(parent);
         }
 
-        protected IConfig? currCfg = null;
+        protected IConfig currCfg;
         protected IAppSolution? currSln = null;
         protected IAppProject? currPrj = null;
-        protected IModel? currModel = null;
+        protected IModel currModel;
         protected IEnumeration? currEnum = null;
         protected IForm? currForm = null;
         protected IReport? currRep = null;
@@ -193,7 +193,7 @@ namespace vSharpStudio.common
         {
             this._act = act;
             this.currModel = model;
-
+            this.currCfg = model.ParentConfigI;
             this.BeginVisit(this.currModel);
 
             //TODO change visiting to visit object with references to other objects after visiting referenced objects
@@ -369,6 +369,7 @@ namespace vSharpStudio.common
         {
             this._act = act;
             this.currCfg = curr;
+            this.currModel = curr.Model;
             if (_act != null)
                 _act(this, this.currCfg);
 

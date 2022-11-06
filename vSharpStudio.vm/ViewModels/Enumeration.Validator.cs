@@ -60,7 +60,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.DataTypeLength).Custom((path, cntx) =>
             {
                 var pg = (Enumeration)cntx.InstanceToValidate;
-                var prev = (Enumeration)pg.PrevCurrentVersion();
+                var prev = (Enumeration?)pg.PrevCurrentVersion();
                 var ver = "CURRENT";
                 if (prev != null && pg.DataTypeEnum == prev.DataTypeEnum)
                 {
@@ -71,7 +71,7 @@ namespace vSharpStudio.vm.ViewModels
                         cntx.AddFailure(vf);
                     }
                 }
-                prev = (Enumeration)pg.PrevStableVersion();
+                prev = (Enumeration?)pg.PrevStableVersion();
                 ver = "STABLE";
                 if (prev != null && pg.DataTypeEnum == prev.DataTypeEnum)
                 {
@@ -87,7 +87,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.DataTypeEnum).Custom((path, cntx) =>
             {
                 var pg = (Enumeration)cntx.InstanceToValidate;
-                var prev = (Enumeration)pg.PrevCurrentVersion();
+                var prev = (Enumeration?)pg.PrevCurrentVersion();
                 var ver = "CURRENT";
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {
@@ -96,7 +96,7 @@ namespace vSharpStudio.vm.ViewModels
                     vf.Severity = Severity.Warning;
                     cntx.AddFailure(vf);
                 }
-                prev = (Enumeration)pg.PrevStableVersion();
+                prev = (Enumeration?)pg.PrevStableVersion();
                 ver = "STABLE";
                 if (prev != null && pg.DataTypeEnum != prev.DataTypeEnum)
                 {

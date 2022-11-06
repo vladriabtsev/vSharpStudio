@@ -98,21 +98,22 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Property AddSharedProperty(string name, EnumDataType type, uint length, uint accuracy)
         {
-            var node = new Property(this.GroupSharedProperties) { Name = name, DataType = new DataType() { DataTypeEnum = type, Length = length, Accuracy = accuracy } };
+            var node = new Property(this.GroupSharedProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddSharedPropertyString(string name, uint length)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length };
-            var node = new Property(this.GroupSharedProperties) { Name = name, DataType = dt };
+            var node = new Property(this.GroupSharedProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddSharedPropertyNumerical(string name, uint length, uint accuracy)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
-            var node = new Property(this.GroupSharedProperties) { Name = name, DataType = dt };
+            var node = new Property(this.GroupSharedProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;
         }

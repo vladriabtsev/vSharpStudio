@@ -153,6 +153,18 @@ namespace GenFromProto
                 return true;
             return false;
         }
+        public static MessageDoc GetMessageDoc(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            if (!from.IsMessage())
+            {
+                throw new ArgumentException("Expected message field",nameof(from));
+            }
+            return JsonDoc.Files[from.File.Name].Messages[from.MessageType.Name];
+        }
+        public static MessageDoc GetMessageDoc(this Google.Protobuf.Reflection.MessageDescriptor from)
+        {
+            return JsonDoc.Files[from.File.Name].Messages[from.Name];
+        }
         public static bool IsDefaultBase(this Google.Protobuf.Reflection.FieldDescriptor from)
         {
             if (from.IsMessage())

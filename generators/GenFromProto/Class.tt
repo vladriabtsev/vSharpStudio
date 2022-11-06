@@ -16,12 +16,14 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <#= this.Doc.Comments #><#= this.Doc.Attributes #>public partial class <#= message.Name.ToNameCs() #><#= this.Doc.BaseClass #>, I<#= message.Name.ToNameCs() #> // <#=Helper.FilePos() #>
 {
     #region CTOR
-<# if (this.Doc.IsWithParent) { #>
-    public <#= message.Name.ToNameCs() #>() : this(default(<#=this.Doc.ParentTypeName#>)) // <#=Helper.FilePos() #>
+<# if (!this.Doc.IsWithParent) { #>
+    /*public <#= message.Name.ToNameCs() #>() // <#=Helper.FilePos() #>
     {
         this.OnCreating();
-    }
-    public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#>? parent) // <#=Helper.FilePos() #>
+    }*/
+<# } #>
+<# if (this.Doc.IsWithParent) { #>
+    public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#> parent) // <#=Helper.FilePos() #>
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator)
     {
         this.IsNotifying = false;

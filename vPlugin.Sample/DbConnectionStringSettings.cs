@@ -13,7 +13,7 @@ namespace vPlugin.Sample
     {
         [BrowsableAttribute(false)]
         public IAppProjectGenerator ParentAppProjectGenerator { get { return (IAppProjectGenerator)this.Parent; } }
-        public DbConnectionStringSettings(string connectionString) : this()
+        public DbConnectionStringSettings(ITreeConfigNode parent, string connectionString) : this(parent)
         {
             this.StringSettings = connectionString;
         }

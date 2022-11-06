@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
 
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data
-        public object Tag { get; set; }
+        public object? Tag { get; set; }
         [Browsable(false)]
         public static IConfig Config { get; set; }
 
@@ -78,7 +78,7 @@ namespace vSharpStudio.vm.ViewModels
             //};
         }
 
-        private void DataType_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void DataType_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             this.Tag = null;
         }
@@ -87,14 +87,14 @@ namespace vSharpStudio.vm.ViewModels
             : this(parent)
         {
             this._Name = name;
-            this.DataType = new DataType(type, guidOfType);
+            this.DataType = new DataType(this, type, guidOfType);
         }
 
         public Constant(ITreeConfigNode parent, string name, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null)
             : this(parent)
         {
             this._Name = name;
-            this.DataType = new DataType(type, length, accuracy);
+            this.DataType = new DataType(this, type, length, accuracy);
         }
 
         public IDataType IDataType { get { return this._DataType; } }

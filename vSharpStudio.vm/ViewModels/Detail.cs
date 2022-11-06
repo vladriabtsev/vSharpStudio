@@ -192,21 +192,22 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy)
         {
-            var node = new Property(this.GroupProperties) { Name = name, DataType = new DataType() { DataTypeEnum = type, Length = length, Accuracy = accuracy } };
+            var node = new Property(this.GroupProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyString(string name, uint length)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length };
-            var node = new Property(this.GroupProperties) { Name = name, DataType = dt };
+            var node = new Property(this.GroupProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyNumerical(string name, uint length, uint accuracy)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
-            var node = new Property(this.GroupProperties) { Name = name, DataType = dt };
+            var node = new Property(this.GroupProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
@@ -235,16 +236,16 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IProperty>();
             var cfg = this.GetConfig();
-            var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            var prp = cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             res.Add(prp);
             if (isSupportVersion)
             {
-                prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
+                prp = cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
                 res.Add(prp);
             }
             var parent = this.ParentGroupListDetails.Parent as ICompositeName;
             Debug.Assert(parent != null);
-            prp = cfg.Model.GetPropertyRefParent(this.PropertyRefParentGuid, "Ref" + parent.CompositeName);
+            prp = cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parent.CompositeName);
             res.Add(prp);
             foreach (var t in this.GroupProperties.ListProperties)
             {
@@ -278,13 +279,13 @@ namespace vSharpStudio.vm.ViewModels
         private void GetSpecialProperties(List<IProperty> res, bool isAll, bool isSupportVersion)
         {
             var cfg = this.GetConfig();
-            var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            var prp = cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             if (isAll)
             {
                 res.Add(prp);
                 if (isSupportVersion)
                 {
-                    prp = cfg.Model.GetPropertyVersion(this.PropertyVersionGuid);
+                    prp = cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
                     res.Add(prp);
                 }
             }
@@ -333,9 +334,9 @@ namespace vSharpStudio.vm.ViewModels
             ViewListData? viewListData = null;
             var cfg = this.GetConfig();
             Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
-            var pId = cfg.Model.GetPropertyId(this.PropertyIdGuid);
+            var pId = cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             viewListData = new ViewListData(pId);
-            var lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
+            var lst = this.SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);
             return new ViewFormData(null, viewListData);
         }

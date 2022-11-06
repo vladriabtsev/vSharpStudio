@@ -13,6 +13,7 @@ namespace vPlugin.Sample
 {
     public partial class GeneratorDbSchemaNodeSettings : IvPluginGeneratorNodeSettings, IvPluginGeneratorNodeIncludable
     {
+        private GeneratorDbSchemaNodeSettings() : base(null, GeneratorDbSchemaNodeSettingsValidator.Validator) { }
         partial void OnCreated()
         {
             this.DicNodeExcludedProperties = new Dictionary<string, string>();

@@ -13,6 +13,8 @@ using Serilog;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog.Extensions.Logging;
 using Microsoft.CodeAnalysis.Operations;
+using NSubstitute;
+using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.Unit
 {
@@ -247,15 +249,6 @@ namespace vSharpStudio.Unit
         }
         #endregion Enum
 
-        #region Property
-        [TestMethod]
-        public void Property001GuidInit()
-        {
-            var cfg = new Property((ITreeConfigNode)null);
-            Assert.IsTrue(cfg.Guid.Length > 0);
-        }
-        #endregion Property
-
         #region Catalog
         [TestMethod]
         public void Catalog001GuidInit()
@@ -263,6 +256,8 @@ namespace vSharpStudio.Unit
             var cfg = new Config();
             var c = cfg.Model.GroupCatalogs.AddCatalog();
             Assert.IsTrue(c.Guid.Length > 0);
+            var p = c.AddProperty("test");
+            Assert.IsTrue(p.Guid.Length > 0);
         }
         #endregion Catalog
 
@@ -580,7 +575,10 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Rules001_DataType()
         {
-            var dt = new DataType();
+            var cfg = new Config();
+            var c = cfg.Model.GroupCatalogs.AddCatalog("Test1");
+            var p = c.AddProperty("tp");
+            var dt = p.DataType; ;
 
             dt.Validate();
             Assert.IsTrue(dt.CountErrors == 0);

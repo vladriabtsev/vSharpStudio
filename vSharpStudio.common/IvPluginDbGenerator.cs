@@ -37,7 +37,7 @@ namespace vSharpStudio.common
         //string VersionFieldTypeStr { get; }
         //string VersionFieldStoreTypeStr { get; }
 
-        IvPluginGeneratorSettings GetConnectionStringMvvm(string connectionString);
+        IvPluginGeneratorSettings GetConnectionStringMvvm(IAppProjectGenerator parent, string connectionString);
 
         int GetMigrationVersion();
         // DatabaseModel GetDbModel(List<string> schemas, List<string> tables);

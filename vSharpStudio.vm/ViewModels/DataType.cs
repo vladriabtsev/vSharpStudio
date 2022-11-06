@@ -49,7 +49,7 @@ namespace vSharpStudio.vm.ViewModels
         //        this.OnRemoveChild();
         //    };
         //}
-        public DataType(BigInteger maxNumericalValue, bool isPositive = false) : this()
+        public DataType(ITreeConfigNode parent, BigInteger maxNumericalValue, bool isPositive = false) : this(parent)
         {
             BigInteger maxValue = maxNumericalValue;
             uint length = 0;
@@ -64,7 +64,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Accuracy = 0;
             this.IsPositive = isPositive;
         }
-        public DataType(EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this()
+        public DataType(ITreeConfigNode parent, EnumDataType type, uint? length = null, uint? accuracy = null, bool? isPositive = null) : this(parent)
         {
             this.DataTypeEnum = type;
             switch (this.DataTypeEnum)
@@ -92,7 +92,7 @@ namespace vSharpStudio.vm.ViewModels
                     throw new ArgumentException();
             }
         }
-        public DataType(EnumDataType type, string guidOfType) : this()
+        public DataType(ITreeConfigNode parent, EnumDataType type, string guidOfType) : this(parent)
         {
             this.DataTypeEnum = type;
             this.ObjectGuid = guidOfType;
@@ -111,6 +111,7 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             if (string.IsNullOrWhiteSpace(this.ObjectGuid))
                 return false;
+            Debug.Assert(this.Cfg != null);
             var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
             if (en.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
                 return true;
@@ -125,6 +126,7 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotImplementedException();
                 if (string.IsNullOrWhiteSpace(this.ObjectGuid))
                     throw new NotImplementedException();
+                Debug.Assert(this.Cfg != null);
                 var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
                 return en.DataTypeEnum;
             }
@@ -138,6 +140,7 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotImplementedException();
                 if (string.IsNullOrWhiteSpace(this.ObjectGuid))
                     throw new NotImplementedException();
+                Debug.Assert(this.Cfg != null);
                 var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
                 int len = 0;
                 if (en.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
@@ -159,6 +162,7 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotImplementedException();
                 if (string.IsNullOrWhiteSpace(this.ObjectGuid))
                     return "";
+                Debug.Assert(this.Cfg != null);
                 var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
                 return "Enum" + en.Name;
             }
@@ -478,6 +482,7 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.CATALOG:
+                    Debug.Assert(this.Cfg != null);
                     var en = (Catalog)this.Cfg.DicNodes[this.ObjectGuid];
                     this.ClrTypeName = en.Name;
                     break;
@@ -654,6 +659,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
+                Debug.Assert(this.Cfg != null);
                 switch (this.DataTypeEnum)
                 {
                     case EnumDataType.ENUMERATION:
@@ -916,7 +922,7 @@ namespace vSharpStudio.vm.ViewModels
                     while (p != null && p.Parent != null)
                         p = p.Parent;
                     if (p is Config c)
-                    this.cfg = c;
+                        this.cfg = c;
                 }
                 return this.cfg;
             }
@@ -924,7 +930,7 @@ namespace vSharpStudio.vm.ViewModels
         private Config? cfg = null;
         public IDataType? PrevStableVersion()
         {
-            IDataType res = null;
+            IDataType? res = null;
             if (this.Cfg != null && this.Cfg.PrevStableConfig != null && this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
                 res = (this.Cfg.PrevStableConfig.DicNodes[this.Parent.Guid] as IDataTypeObject)!.IDataType;

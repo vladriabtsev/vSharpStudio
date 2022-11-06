@@ -58,15 +58,3 @@ message proto_generator_db_access_node_settings {
     bool is_property_param1 = 3;
     bool is_catalog_form_param1 = 4;
 }
-
-// all simple nullable (generator check suffics '_nullable')
-/*
-message bool_nullable {
-    bool has_value = 1;
-    bool value = 2;
-}
-message string_nullable {
-    bool has_value = 1;
-    string value = 2;
-}
-*/

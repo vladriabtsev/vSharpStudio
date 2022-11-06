@@ -64,7 +64,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.IsNotifying && this.PluginDbGenerator != null)
             {
-                this.DynamicMainConnStrSettings = this.PluginDbGenerator.GetConnectionStringMvvm(this.ConnStr);
+                this.DynamicMainConnStrSettings = this.PluginDbGenerator.GetConnectionStringMvvm(this, this.ConnStr);
             }
         }
         partial void OnCreated()
@@ -138,7 +138,7 @@ namespace vSharpStudio.vm.ViewModels
                         var db_gen = this.PluginGenerator as IvPluginDbGenerator;
                         try
                         {
-                            this._DynamicMainConnStrSettings = db_gen?.GetConnectionStringMvvm(this.ConnStr);
+                            this._DynamicMainConnStrSettings = db_gen?.GetConnectionStringMvvm(this, this.ConnStr);
                         }
                         catch (Exception ex)
                         {

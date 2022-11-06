@@ -24,7 +24,7 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="settings"></param>
         /// <returns></returns>
-        IvPluginGroupSettings GetPluginGroupSettingsVm(ITreeConfigNode parent, string settings);
+        IvPluginGroupSettings GetPluginGroupSettingsVm(IAppSolution parent, string settings);
         /// <summary>
         /// Get protobuf model of settings from MVVM model (json format)
         /// </summary>

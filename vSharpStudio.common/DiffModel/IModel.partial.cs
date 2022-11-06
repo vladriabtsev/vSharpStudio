@@ -13,41 +13,41 @@ namespace vSharpStudio.common
         string PKeyTypeStr { get; }
         IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
         // numerical
-        IDataType GetDataTypeFromMaxValue(System.Numerics.BigInteger maxValue, bool isPositive, bool isPKey = false);
+        IDataType GetDataTypeFromMaxValue(ITreeConfigNode parent, System.Numerics.BigInteger maxValue, bool isPositive, bool isPKey = false);
         // Any
-        IDataType GetDataType(int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid);
-        IDataType GetDataType(EnumDataType enumDataType, uint length, bool isPositive);
+        IDataType GetDataType(ITreeConfigNode parent, int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid);
+        IDataType GetDataType(ITreeConfigNode parent, EnumDataType enumDataType, uint length, bool isPositive);
         // numerical
-        IDataType GetDataTypeNumerical(uint length, uint accuracy);
+        IDataType GetDataTypeNumerical(ITreeConfigNode parent, uint length, uint accuracy);
         // numerical
-        IDataType GetDataTypeNumerical(uint length, bool isPositive);
+        IDataType GetDataTypeNumerical(ITreeConfigNode parent, uint length, bool isPositive);
         // string
-        IDataType GetDataTypeString(uint length);
-        IDataType GetDataType(ICatalog obj);
-        IDataType GetDataType(IDocument obj);
-        IDataType GetDataTypeBool();
-        IDataType GetDataTypeDate();
+        IDataType GetDataTypeString(ITreeConfigNode parent, uint length);
+        IDataType GetDataType(ITreeConfigNode parent, ICatalog obj);
+        IDataType GetDataType(ITreeConfigNode parent, IDocument obj);
+        IDataType GetDataTypeBool(ITreeConfigNode parent);
+        IDataType GetDataTypeDate(ITreeConfigNode parent);
         //IDataType GetDataTypeDateTime();
         //IDataType GetDataTypeDateTimeZ();
-        IDataType GetDataTypeDateTimeUtc();
-        IDataType GetDataTypeTime();
+        IDataType GetDataTypeDateTimeUtc(ITreeConfigNode parent);
+        IDataType GetDataTypeTime(ITreeConfigNode parent);
         //IDataType GetDataTypeTimeZ();
-        IDataType GetIdDataType();
-        IDataType GetIdRefDataType();
+        IDataType GetIdDataType(ITreeConfigNode parent);
+        IDataType GetIdRefDataType(ITreeConfigNode parent);
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);
 
-        IProperty GetPropertyId(string guid);
-        IProperty GetPropertyRefParent(string guid, string name, bool isNullable = false);
-        IProperty GetPropertyCatalogCode(string guid, uint length);
-        IProperty GetPropertyCatalogCodeInt(string guid, uint length);
-        IProperty GetPropertyCatalogName(string guid, uint length);
-        IProperty GetPropertyCatalogDescription(string guid, uint length);
-        IProperty GetPropertyIsFolder(string guid);
-        IProperty GetPropertyIsOpen(string guid);
-        IProperty GetPropertyVersion(string guid);
-        IProperty GetPropertyDocumentDate(string guid);
-        IProperty GetPropertyDocumentCodeString(string guid, uint length);
-        IProperty GetPropertyDocumentCodeInt(string guid, uint length);
+        IProperty GetPropertyId(ITreeConfigNode parent, string guid);
+        IProperty GetPropertyRefParent(ITreeConfigNode parent, string guid, string name, bool isNullable = false);
+        IProperty GetPropertyCatalogCode(ITreeConfigNode parent, string guid, uint length);
+        IProperty GetPropertyCatalogCodeInt(ITreeConfigNode parent, string guid, uint length);
+        IProperty GetPropertyCatalogName(ITreeConfigNode parent, string guid, uint length);
+        IProperty GetPropertyCatalogDescription(ITreeConfigNode parent, string guid, uint length);
+        IProperty GetPropertyIsFolder(ITreeConfigNode parent, string guid);
+        IProperty GetPropertyIsOpen(ITreeConfigNode parent, string guid);
+        IProperty GetPropertyVersion(ITreeConfigNode parent, string guid);
+        IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid);
+        IProperty GetPropertyDocumentCodeString(ITreeConfigNode parent, string guid, uint length);
+        IProperty GetPropertyDocumentCodeInt(ITreeConfigNode parent, string guid, uint length);
 
         //IProperty GetPropertyBool(string guid, string name, bool isNullable);
         //IProperty GetPropertyInt(string guid, uint length, string name);

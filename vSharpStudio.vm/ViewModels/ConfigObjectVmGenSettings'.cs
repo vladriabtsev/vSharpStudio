@@ -21,7 +21,7 @@ namespace vSharpStudio.vm.ViewModels
       where TValidator : AbstractValidator<T>
       where T : ConfigObjectVmGenSettings<T, TValidator>//, IComparable<T>, ISortingValue 
     {
-        public ConfigObjectVmGenSettings(ITreeConfigNode? parent, TValidator validator)
+        public ConfigObjectVmGenSettings(ITreeConfigNode parent, TValidator validator)
             : base(parent, validator)
         {
             //this.HidePropertiesForXceedPropertyGrid();

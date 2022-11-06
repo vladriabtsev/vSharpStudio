@@ -24,13 +24,12 @@ namespace vPlugin.Sample
         public void Init() { }
         public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string settings)
         {
-            var vm = new GeneratorDbAccessSettings();
+            var vm = new GeneratorDbAccessSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 proto_generator_db_access_settings proto = proto_generator_db_access_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
                 vm = GeneratorDbAccessSettings.ConvertToVM(proto, vm);
             }
-            vm.Parent = parent;
             return vm;
         }
         public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string settings)
@@ -95,24 +94,22 @@ namespace vPlugin.Sample
         }
         public IvPluginGroupSettings GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string settings)
         {
-            var res = new PluginsGroupSolutionSettings();
+            var res = new PluginsGroupSolutionSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 var proto = proto_plugins_group_solution_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
                 res = PluginsGroupSolutionSettings.ConvertToVM(proto, res);
             }
-            res.Parent = parent;
             return res;
         }
         public IvPluginGroupSettings GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string settings)
         {
-            var res = new PluginsGroupProjectSettings();
+            var res = new PluginsGroupProjectSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
                 var proto = proto_plugins_group_project_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
                 res = PluginsGroupProjectSettings.ConvertToVM(proto, res);
             }
-            res.Parent = parent;
             return res;
         }
     }

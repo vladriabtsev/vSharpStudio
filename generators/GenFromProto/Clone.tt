@@ -24,15 +24,19 @@ public override void Sort(Type type) // <#=Helper.FilePos() #>
 <#    } #>
 }
 <# } #>
-public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase()) { #>ITreeConfigNode parent, <# } #>I<#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (message.IsDefaultBase()) { #>, bool isNewGuid = false<# } #>) // <#=Helper.FilePos() #>
+<# if (this.Doc.IsWithParent /*message.IsDefaultBase()*/) { #>
+public static <#= message.Name.ToNameCs() #> Clone(<#=this.Doc.ParentTypeName#> parent, I<#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (message.IsDefaultBase()) { #>, bool isNewGuid = false<# } #>) // <#=Helper.FilePos() #>
+<# } else { #>
+public static <#= message.Name.ToNameCs() #> Clone(I<#= message.Name.ToNameCs() #> from, bool isDeep = true<# if (message.IsDefaultBase()) { #>, bool isNewGuid = false<# } #>) // <#=Helper.FilePos() #>
+<# } #>
 {
     Debug.Assert(from != null);
-<# if (message.IsDefaultBase()) { #>
-    <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(parent);
+<# if (this.Doc.IsWithParent) { #>
+    <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(parent); // <#=Helper.FilePos() #>
 <# } else { #>
-    <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>();
+    <#= message.Name.ToNameCs() #> vm = new <#= message.Name.ToNameCs() #>(); // <#=Helper.FilePos() #>
 <# } #>
-    vm.IsNotifying = false;
+    vm.IsNotifying = false; // <#=Helper.FilePos() #>
     vm.IsValidate = false;
 <#    foreach (var field in message.Fields.InDeclarationOrder()) { #>
 <#      if (field.IsRepeated) { #>
@@ -43,24 +47,22 @@ public static <#= message.Name.ToNameCs() #> Clone(<# if (message.IsDefaultBase(
 <# } else if (!field.IsMessage()) { #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(t);
-<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
+<# } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { var isFieldWithParent=JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsWithParent; #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
-        vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
+        vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (isFieldWithParent) { #>parent, <# } #><# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
 <# } else { #>
     vm.<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=Helper.FilePos() #>
     foreach (var t in from.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>(<#= field.ToTypeCs() #>)t, isDeep));
 <# } #>
-<#      } else if (field.IsMessage() && field.MessageType.Name == "string_nullable") { #>
-    vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=Helper.FilePos() #>
 <#      } else if (field.IsMessage() && field.MessageType.Name.EndsWith("_nullable")) { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.HasValue ? from.<#= field.Name.ToNameCs() #>.Value : (<#= field.ToTypeCs() #>)null; // <#=Helper.FilePos() #>
 <#      } else if (field.IsMessage() && field.IsAny()) { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>.Clone(); // <#=Helper.FilePos() #>
-<#      } else if (!field.IsCsSimple() && field.IsMessage()) { #>
-    if (isDeep) // <#=Helper.FilePos() #>
-        vm.<#= field.Name.ToNameCs() #> = <#=nameSpace#>.<#= field.ToTypeCs() #>.Clone(<# if (field.IsDefaultBase()) { #>vm, <# } #>from.<#= field.Name.ToNameCs() #>, isDeep);
+<#      } else if (!field.IsCsSimple() && field.GetMessageDoc().IsWithParent) { #>
+    if (isDeep) // <#=Helper.FilePos() #> IsDefaultBase=<#=field.IsDefaultBase()#>
+        vm.<#= field.Name.ToNameCs() #> = <#=nameSpace#>.<#= field.ToTypeCs() #>.Clone(vm, from.<#= field.Name.ToNameCs() #>, isDeep);
 <#      } else { #>
     vm.<#= field.Name.ToNameCs() #> = from.<#= field.Name.ToNameCs() #>; // <#=Helper.FilePos() #>
 <#      } 
@@ -113,7 +115,7 @@ public static void Update(<#= message.Name.ToNameCs() #> to, I<#= message.Name.T
             }
             if (!isfound)
             {
-<# if (field.IsDefaultBase()) { #>
+<# if (field.IsMessage() && field.GetMessageDoc().IsWithParent) { #>
                 var p = new <#= field.ToTypeCs() #>(to); // <#=Helper.FilePos() #>
 <# } else { #>
                 var p = new <#= field.ToTypeCs() #>(); // <#=Helper.FilePos() #>
@@ -150,10 +152,10 @@ public override <#= message.Name.ToNameCs() #> Backup()
 {
     bool isDeep = true;
     this.OnBackupObjectStarting(ref isDeep);
-<# if (message.IsDefaultBase()) { #>
-    return <#= message.Name.ToNameCs() #>.Clone(<# if (message.IsDefaultBase()) { #>this.Parent, <# } #>this);
+<# if (this.Doc.IsWithParent) { #>
+    return <#= message.Name.ToNameCs() #>.Clone(this.Parent, this); // <#=Helper.FilePos() #>
 <# } else { #>
-    return <#= message.Name.ToNameCs() #>.Clone(<# if (message.IsDefaultBase()) { #>null, <# } #>this);
+    return <#= message.Name.ToNameCs() #>.Clone(<# if (message.IsDefaultBase()) { #>null, <# } #>this); // <#=Helper.FilePos() #>
 <# } #>
 }
 partial void OnBackupObjectStarting(ref bool isDeep);
@@ -186,32 +188,29 @@ public static <#= message.Name.ToNameCs() #> ConvertToVM(<#= this.protoNameSpace
     {
         vm.<#= field.Name.ToNameCs() #>.Add(t);
     }
-<#        } else if (!JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
+<#        } else if (field.GetMessageDoc().IsWithParent) { #>
+<#          if (field.GetMessageDoc().IsConfigObjectBase) { #>
+    vm.<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=Helper.FilePos() #>
+<#          } else { #>
     vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
+<#          } #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
-<#          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsDefaultBase) { #>
         var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>(vm)); // <#=Helper.FilePos() #>
-<#          } #>
-        var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>()); // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(tvm);
     }
 <#        } else { #>
-    vm.<#= field.Name.ToNameCs() #> = new ConfigNodesCollection<<#= field.ToTypeCs() #>>(vm); // <#=Helper.FilePos() #>
+    vm.<#= field.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= field.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
     foreach (var t in m.<#= field.Name.ToNameCs() #>) // <#=Helper.FilePos() #>
     {
-<#          if (JsonDoc.Files[root.Name].Messages[field.MessageType.Name].IsConfigObjectBase) { #>
-        var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>(vm)); // <#=Helper.FilePos() #>
-<#          } else { #>
-        var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t); // <#=Helper.FilePos() #>
-<#          } #>
+        var tvm = <#= field.ToTypeCs() #>.ConvertToVM(t, new <#= field.ToTypeCs() #>()); // <#=Helper.FilePos() #>
         vm.<#= field.Name.ToNameCs() #>.Add(tvm);
     }
 <#        } #>
 <#      } else { #>
 <#        if (!field.IsCsSimple() && field.IsMessage() && !field.IsNullable()) { #>
     if (vm.<#= field.Name.ToNameCs() #> == null) // <#=Helper.FilePos() #>
-<#          if (field.IsDefaultBase()) { #>
+<#          if (field.GetMessageDoc().IsWithParent) { #>
         vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(vm); // <#=Helper.FilePos() #>
 <#          } else { #>
         vm.<#= field.Name.ToNameCs() #> = new <#= field.ToTypeCs() #>(); // <#=Helper.FilePos() #>

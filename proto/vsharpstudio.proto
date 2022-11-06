@@ -21,15 +21,11 @@ message proto_test2 {
 }
 */
 /*
-message bool_nullable {
-    bool has_value = 1;
-    bool value = 2;
-}
-*/
 message timestamp_nullable {
     bool has_value = 1;
     google.protobuf.Timestamp value = 2;
 }
+*/
 /** 
  * @exclude
  *    ##### IMPORTANT #####
@@ -37,12 +33,12 @@ message timestamp_nullable {
  * if repeated property name is ending message name, than c# class will implement indexer to access such property elements 
  * ####################################### U S E R   S E T T I N G S ##################################
  */
-// @base BaseSettings
+// @base VmValidatableWithSeverity
 message proto_user_settings {
     // @attr [BrowsableAttribute(false)]
     repeated proto_user_settings_opened_config list_open_config_history = 11;
 }
-// @base BaseSettings
+// @base VmValidatableWithSeverity
 message proto_user_settings_opened_config {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -102,7 +98,7 @@ message proto_plugin_generator {
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
 }
-// @base BaseSettings
+// @base VmEditable
 message proto_settings_config {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
@@ -121,7 +117,7 @@ message proto_settings_config {
  * @exclude
  * ####################################### C O N F I G ##########################################
  */
-// @base BaseSettings
+// @base VmEditable
 message proto_config_short_history {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -223,7 +219,7 @@ message proto_config {
  * @exclude
  * ####################################### A P P S ##########################################
  */
-// @base BaseSettings
+// @base VmValidatable
 message proto_app_db_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
@@ -820,10 +816,19 @@ message proto_data_type {
     // @attr [PropertyOrderAttribute(5)]
     // @attr [DisplayName("Accuracy")]
     // @attr [Description("Number of decimal places in fractional part for numeric data)")]
-    uint32 accuracy = 5; 
+    uint32 accuracy = 5;
+    /// <summary>
+    /// Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
+    /// Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
+    /// If Guid of group types is assigned, then any type of such group of types is acceptable as type
+    /// If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
+    /// </summary>
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
     string object_guid = 6;
+    /// <summary>
+    /// Guids of selected complex types, that are acceptable as types
+    /// </summary>
     // @attr [PropertyOrderAttribute(8)]
     repeated string list_object_guids = 8;
     // @attr [BrowsableAttribute(false)]

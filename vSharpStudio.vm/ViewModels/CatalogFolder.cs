@@ -114,28 +114,29 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy)
         {
-            var node = new Property(this.GroupProperties) { Name = name, DataType = new DataType() { DataTypeEnum = type, Length = length, Accuracy = accuracy } };
+            var node = new Property(this.GroupProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyString(string name, uint length)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.STRING, Length = length };
-            var node = new Property(this.GroupProperties) { Name = name, DataType = dt };
+            var node = new Property(this.GroupProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyNumerical(string name, uint length, uint accuracy)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
-            var node = new Property(this.GroupProperties) { Name = name, DataType = dt };
+            var node = new Property(this.GroupProperties) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
-            var node = new Property(this) { Name = name, DataType = dt };
+            var node = new Property(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;
@@ -161,7 +162,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res);
+            this.GetSpecialProperties(res);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -220,9 +221,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             var ctlg = this.ParentCatalog;
             var model = ctlg.ParentGroupListCatalogs.ParentModel;
-            var prp = model.GetPropertyId(this.PropertyIdGuid);
+            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             res.Add(prp);
-            prp = model.GetPropertyRefParent(this.PropertyRefSelfGuid, "RefTreeParent", true);
+            prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
             (prp as Property)!.IsNullable = true;
             res.Add(prp);
             if (this.GetUseCodeProperty())
@@ -234,22 +235,22 @@ namespace vSharpStudio.vm.ViewModels
                         case EnumCodeType.AutoText:
                             throw new NotImplementedException();
                         case EnumCodeType.Number:
-                            prp = model.GetPropertyCatalogCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                            prp = model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
                             break;
                         case EnumCodeType.Text:
-                            prp = model.GetPropertyCatalogCode(this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                            prp = model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
                             break;
                     }
                     res.Add(prp);
             }
             if (this.GetUseNameProperty())
             {
-                prp = model.GetPropertyCatalogName(ctlg.PropertyNameGuid, ctlg.MaxNameLength);
+                prp = model.GetPropertyCatalogName(this.GroupProperties, ctlg.PropertyNameGuid, ctlg.MaxNameLength);
                 res.Add(prp);
             }
             if (this.GetUseDescriptionProperty())
             {
-                prp = model.GetPropertyCatalogDescription(ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength);
+                prp = model.GetPropertyCatalogDescription(this.GroupProperties, ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength);
                 res.Add(prp);
             }
         }

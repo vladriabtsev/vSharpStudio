@@ -165,33 +165,35 @@ namespace vSharpStudio.vm.ViewModels
         public bool CanAddSubNode() { return true; }
         public Constant AddConstant(string name)
         {
-            Constant node = new Constant(this) { Name = name, DataType = new DataType() };
+            Constant node = new Constant(this) { Name = name };
+            node.DataType = new DataType(node);
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Constant AddConstant(string name, DataType type)
-        {
-            Constant node = new Constant(this) { Name = name, DataType = type };
-            this.NodeAddNewSubNode(node);
-            return node;
-        }
+        //public Constant AddConstant(string name, DataType type)
+        //{
+        //    Constant node = new Constant(this) { Name = name, DataType = type };
+        //    this.NodeAddNewSubNode(node);
+        //    return node;
+        //}
         public Constant AddConstantString(string name)
         {
-            Constant node = new Constant(this) { Name = name, DataType = new DataType() {  } };
+            Constant node = new Constant(this) { Name = name };
+            node.DataType = new DataType(node);
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Constant AddConstantEnumeration(string name, Enumeration en)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
-            var node = new Constant(this) { Name = name, DataType = dt };
+            var node = new Constant(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Constant AddConstantCatalog(string name, Catalog cat)
         {
-            var dt = new DataType() { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = cat.Guid };
-            var node = new Constant(this) { Name = name, DataType = dt };
+            var node = new Constant(this) { Name = name };
+            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = cat.Guid };
             this.NodeAddNewSubNode(node);
             return node;
         }

@@ -8,11 +8,13 @@ using FluentValidation.Results;
 using Google.Protobuf;
 using Proto.Plugin;
 using vSharpStudio.common;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vPlugin.Sample
 {
     public partial class GeneratorDbAccessNodeSettings : IvPluginGeneratorNodeSettings, IvPluginGeneratorNodeIncludable
     {
+        private GeneratorDbAccessNodeSettings() : base(null, GeneratorDbAccessNodeSettingsValidator.Validator) { }
         partial void OnCreated()
         {
             this.DicNodeExcludedProperties = new Dictionary<string, string>();

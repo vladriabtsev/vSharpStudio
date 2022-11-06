@@ -415,7 +415,7 @@
           "name": "proto_app_db_settings",
           "longName": "proto_app_db_settings",
           "fullName": "proto_config.proto_app_db_settings",
-          "description": "@base BaseSettings",
+          "description": "@base VmValidatable",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -1904,7 +1904,7 @@
           "name": "proto_config_short_history",
           "longName": "proto_config_short_history",
           "fullName": "proto_config.proto_config_short_history",
-          "description": "@base BaseSettings",
+          "description": "@base VmEditable",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -2183,7 +2183,7 @@
             },
             {
               "name": "object_guid",
-              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
+              "description": "\u003csummary\u003e\n/ Guid of complex type. It can be Guid of Enumeration, Catalog, Document. \n/ Numerical, string, bool, date and similar are simple types. For simple types this property is empty.\n/ If Guid of group types is assigned, then any type of such group of types is acceptable as type\n/ If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2193,7 +2193,7 @@
             },
             {
               "name": "list_object_guids",
-              "description": "@attr [PropertyOrderAttribute(8)]",
+              "description": "\u003csummary\u003e\n/ Guids of selected complex types, that are acceptable as types\n/ \u003c/summary\u003e\n@attr [PropertyOrderAttribute(8)]",
               "label": "repeated",
               "type": "string",
               "longType": "string",
@@ -7604,7 +7604,7 @@
           "name": "proto_settings_config",
           "longName": "proto_settings_config",
           "fullName": "proto_config.proto_settings_config",
-          "description": "@base BaseSettings",
+          "description": "@base VmEditable",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -7665,7 +7665,7 @@
           "name": "proto_user_settings",
           "longName": "proto_user_settings",
           "fullName": "proto_config.proto_user_settings",
-          "description": "@base BaseSettings",
+          "description": "@base VmValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -7686,7 +7686,7 @@
           "name": "proto_user_settings_opened_config",
           "longName": "proto_user_settings_opened_config",
           "fullName": "proto_config.proto_user_settings_opened_config",
-          "description": "@base BaseSettings",
+          "description": "@base VmValidatableWithSeverity",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -7718,37 +7718,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "timestamp_nullable",
-          "longName": "timestamp_nullable",
-          "fullName": "proto_config.timestamp_nullable",
-          "description": "message bool_nullable {\nbool has_value = 1;\nbool value = 2;\n}",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "has_value",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "value",
-              "description": "",
-              "label": "",
-              "type": "Timestamp",
-              "longType": "google.protobuf.Timestamp",
-              "fullType": "google.protobuf.Timestamp",
               "ismap": false,
               "defaultValue": ""
             }

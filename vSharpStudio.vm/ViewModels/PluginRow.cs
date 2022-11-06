@@ -20,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
     public class PluginComparer : IEqualityComparer<PluginRow>
     {
         // Products are equal if their names and product numbers are equal.
-        public bool Equals(PluginRow x, PluginRow y)
+        public bool Equals(PluginRow? x, PluginRow? y)
         {
             Debug.Assert(x != null);
             Debug.Assert(y != null);
