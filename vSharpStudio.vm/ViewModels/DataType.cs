@@ -174,6 +174,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(p != null);
             string res = Enum.GetName(typeof(EnumDataType), (int)p.DataTypeEnum)!;
             string objName = "Not found";
+            Debug.Assert(p.Parent != null);
             ITreeConfigNode par = p.Parent;
             while (par != null && par.Parent != null)
             {
@@ -646,9 +647,9 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         /// <param name="to">New data type format</param>
         /// <returns>Description of problems. Null if there are no data lost</returns>
-        public string CanLooseData(DataType to)
+        public string? CanLooseData(DataType to)
         {
-            string res = null;
+            string? res = null;
 
             return res;
         }
@@ -930,6 +931,7 @@ namespace vSharpStudio.vm.ViewModels
         private Config? cfg = null;
         public IDataType? PrevStableVersion()
         {
+            Debug.Assert(this.Parent != null);
             IDataType? res = null;
             if (this.Cfg != null && this.Cfg.PrevStableConfig != null && this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
@@ -939,6 +941,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IDataType? PrevCurrentVersion()
         {
+            Debug.Assert(this.Parent != null);
             IDataType? res = null;
             if (this.Cfg != null && this.Cfg.PrevCurrentConfig != null && this.Cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {

@@ -18,28 +18,21 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Journal";
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListJournals.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
-
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconCatalogProperty"; } }
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnCreated()
         {
-            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.IsIncludableInModels = true;
             //    Init();
         }
@@ -128,7 +121,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Journal.Clone(this.Parent, this, true, true);
+            var node = Journal.Clone(this.ParentGroupListJournals, this, true, true);
             this.ParentGroupListJournals.Add(node);
             this._Name = this._Name + "2";
             this.SetSelected(node);
@@ -136,7 +129,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Journal(this.Parent);
+            var node = new Journal(this.ParentGroupListJournals);
             this.ParentGroupListJournals.Add(node);
             this.GetUniqueName(Journal.DefaultName, node, this.ParentGroupListJournals.ListJournals);
             this.SetSelected(node);

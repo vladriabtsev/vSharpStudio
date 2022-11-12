@@ -46,7 +46,7 @@ namespace vSharpStudio.common
         /// Type of generator
         /// </summary>
         vPluginLayerTypeEnum PluginGeneratorType { get; }
-        IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings);
+        IvPluginGeneratorNodeSettings? GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings);
         // MVVM settings model (if settings == null then empty model will be created)
         /// <summary>
         /// MVVM model for editing settings.
@@ -55,7 +55,7 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="settings, json format"></param>
         /// <returns>Stored outside plugin settings will be converted to a view model.</returns>
-        IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string? settings);
+        IvPluginGeneratorSettings? GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string? settings);
         /// <summary>
         /// If several plugins generators (same plugin or different) are having same GroupGuid on solution level, there are same parameters for 
         /// such plugins generators share create group of plugins parameters for solution.
@@ -68,7 +68,7 @@ namespace vSharpStudio.common
         /// Returns null if group parameters are not supported.
         /// If supported, return class of group settings
         /// </returns>
-        IvPluginGroupSettings GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string? settings);
+        IvPluginGroupSettings? GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string? settings);
         /// <summary>
         /// If there are same parameters for several plugins on project level, 
         /// such plugins create group of plugins parameters for project.
@@ -81,7 +81,7 @@ namespace vSharpStudio.common
         /// Returns null if group parameters are not supported.
         /// If supported, return class of group settings
         /// </returns>
-        IvPluginGroupSettings GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string? settings);
+        IvPluginGroupSettings? GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string? settings);
         /// <summary>
         /// Default setings name
         /// </summary>

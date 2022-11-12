@@ -14,8 +14,7 @@ public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.
 #>
     protected override void OnVisit(<#= message.Name.ToNameCs() #> p) // <#=Helper.FilePos() #>
     {
-        Debug.Assert(p != null);
-        this.OnVisit(p as IValidatableWithSeverity);
+        this.OnVisit((IValidatableWithSeverity)p);
 <# foreach (var field in message.Fields.InDeclarationOrder()) { 
      if (field.FieldType != Google.Protobuf.Reflection.FieldType.Message)
        continue;
@@ -47,8 +46,7 @@ public partial class Validation<#= root.Package.ToNameCs() #>Visitor : <#= root.
     }
     protected override void OnVisitEnd(<#= message.Name.ToNameCs() #> p) // <#=Helper.FilePos() #>
     {
-        Debug.Assert(p != null);
-        this.OnVisitEnd(p as IValidatableWithSeverity);
+        this.OnVisitEnd((IValidatableWithSeverity)p);
     }
 <# } #>
 }

@@ -12,8 +12,10 @@ namespace vPlugin.Sample
     {
         public ITreeConfigNode Parent { get; set; }
         public IvPluginGenerator CreateNew(IAppProjectGenerator appProjectGenerator) { return new GeneratorDbAccess(appProjectGenerator); }
-        public GeneratorDbAccess(ITreeConfigNode parent) : this() { this.Parent = parent; }
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public GeneratorDbAccess() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        public GeneratorDbAccess(ITreeConfigNode parent) : this() { this.Parent = parent; }
         public string Guid => "7C2902AF-DF34-46FC-8911-A48EE7F9B2B0";
         public string GroupGeneratorsGuid => SamplePlugin.GroupAccessGuidStatic;
         public string Name => "DbAccess";
@@ -22,7 +24,7 @@ namespace vPlugin.Sample
         public string Description => "Description Db Access Layer";
         public vPluginLayerTypeEnum PluginGeneratorType => vPluginLayerTypeEnum.DbAccess;
         public void Init() { }
-        public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string settings)
+        public IvPluginGeneratorSettings? GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string? settings)
         {
             var vm = new GeneratorDbAccessSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
@@ -32,7 +34,7 @@ namespace vPlugin.Sample
             }
             return vm;
         }
-        public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string settings)
+        public IvPluginGeneratorNodeSettings? GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings)
         {
             if (parent is IModel || parent is IConstant || parent is IGroupConstantGroups || parent is IForm ||
                 parent is IGroupListEnumerations || parent is IEnumeration ||
@@ -62,37 +64,40 @@ namespace vPlugin.Sample
         {
             List<PreRenameData> res = new List<PreRenameData>();
             string nname, cname;
-            PreRenameData prd = null;
+            PreRenameData prd = null!;
             var dic = annotatedConfig.DicNodes;
             foreach (var t in lstGuidsRenamedNodes)
             {
                 var node = dic[t];
-                var typeName = node.GetType().Name;
-                switch (typeName)
+                if (node is ICatalog c)
                 {
-                    case "ICatalog":
-                        var nc = node as ICatalog;
-
-                        if (nc.IsRenamed(false))
+                    if (c.IsRenamed(false))
+                    {
+                        var pn = c.PrevStableVersion();
+                        if (pn != null && pn is ICatalog cp)
                         {
-                            cname = (nc.PrevStableVersion() as ICatalog).Name;
+                            cname = cp.Name;
                             nname = "MyNamespace";
-                            prd = new PreRenameData(nname, cname, nc.Name);
-                            foreach (var tt in nc.GroupProperties.ListProperties)
+                            prd = new PreRenameData(nname, cname, c.Name);
+                            foreach (var tt in c.GroupProperties.ListProperties)
                             {
                                 if (tt.IsRenamed(false))
                                 {
-                                    var m = new RenamePropertyData((tt.PrevStableVersion() as IProperty).Name, tt.Name);
-                                    prd.ListRenamedProperties.Add(m);
+                                    var prev = tt.PrevStableVersion();
+                                    if (prev != null && prev is IProperty pp)
+                                    {
+                                        var m = new RenamePropertyData(pp.Name, tt.Name);
+                                        prd.ListRenamedProperties.Add(m);
+                                    }
                                 }
                             }
                         }
-                        break;
+                    }
                 }
             }
             return res;
         }
-        public IvPluginGroupSettings GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string settings)
+        public IvPluginGroupSettings? GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string? settings)
         {
             var res = new PluginsGroupSolutionSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
@@ -102,7 +107,7 @@ namespace vPlugin.Sample
             }
             return res;
         }
-        public IvPluginGroupSettings GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string settings)
+        public IvPluginGroupSettings? GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string? settings)
         {
             var res = new PluginsGroupProjectSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))

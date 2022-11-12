@@ -23,7 +23,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
     }*/
 <# } #>
 <# if (this.Doc.IsWithParent) { #>
-    public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#> parent) // <#=Helper.FilePos() #>
+    public <#= message.Name.ToNameCs() #>(<#=this.Doc.ParentTypeName#>? parent) // <#=Helper.FilePos() #>
         : base(parent, <#= message.Name.ToNameCs() #>Validator.Validator)
     {
         this.IsNotifying = false;
@@ -32,12 +32,12 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 <#    foreach (var t in message.Fields.InDeclarationOrder()) { 
          if (t.IsRepeated) {#>
 <# if (this.IsObservable(t)) { #>
-        this.<#= t.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } else { #>
-        this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#       } else if (t.IsMessage()) { if (t.IsCsSimple()) continue; #>
-        this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
 <#		 } else if (t.IsMap) { #>
 		map??? // <#=Helper.FilePos() #>
 <#		 } #>
@@ -57,16 +57,16 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
            continue;
 		if (t.IsRepeated) {#>
 <# if (!t.IsMessage() || t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-        this.<#= t.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new ObservableCollectionWithActions<<#= t.ToTypeCs() #>>(); // <#=Helper.FilePos() #>
 <# } else { #>
-        this.<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new ConfigNodesCollection<<#= t.ToTypeCs() #>>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMessage()) { #>
 <# if (t.IsAny() || !JsonDoc.Files[root.Name].Messages[t.MessageType.Name].IsDefaultBase) { #>
-        this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(); // <#=Helper.FilePos() #>
 <# } else if (t.IsNullable()) { #>
 <# } else { #>
-        this.<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
+        this._<#= t.Name.ToNameCs() #> = new <#= t.ToTypeCs() #>(this); // <#=Helper.FilePos() #>
 <# } #>
 <#		} else if (t.IsMap) { #>
 		map??? // <#=Helper.FilePos() #>

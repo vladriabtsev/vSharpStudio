@@ -13,12 +13,12 @@ namespace vSharpStudio.common
         //string DefaultValue { get; }
         bool IsComputed { get; set; }
         bool IsDocShared { get; set; }
-        string ComplexObjectName { get; set; }
+        string? ComplexObjectName { get; set; }
         string PropValueValue { get; }
-        IPropertyRangeValuesRequirements RangeValuesRequirementsI { get; }
+        IPropertyRangeValuesRequirements? RangeValuesRequirementsI { get; }
         string ComplexObjectNameWithDot();
-        object Tag { get; set; }
-        static IConfig Config { get; set; }
+        object? Tag { get; set; }
+        //static IConfig Config { get; set; }
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
@@ -33,7 +33,7 @@ namespace vSharpStudio.common
     }
     public interface IValidationBoundary
     {
-        public string BoundaryMin { get; }
-        public string BoundaryMax { get; }
+        public string? BoundaryMin { get; }
+        public string? BoundaryMax { get; }
     }
 }

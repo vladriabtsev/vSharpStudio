@@ -32,24 +32,19 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public IConfig ParentConfigI { get { Debug.Assert(this.Parent != null); return (IConfig)this.Parent; } }
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             var p = this.ParentConfig;
             return p.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
-        [Browsable(false)]
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
+
         #endregion ITree
 
-        protected IMigration _migration { get; set; }
+        protected IMigration? _migration { get; set; }
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
         //protected override string GetNodeIconName() { return "icon3DScene"; }
@@ -100,7 +95,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Model";
             VmBindable.IsNotifyingStatic = false;
-            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.Children.Add(this.GroupCommon);
             this.Children.Add(this.GroupConstantGroups);
             this.Children.Add(this.GroupEnumerations);
@@ -128,7 +122,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Validation
 
-        private CancellationTokenSource cancellationSourceForValidatingFullConfig = null;
+        private CancellationTokenSource? cancellationSourceForValidatingFullConfig = null;
         public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
         {
             // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
@@ -181,41 +175,49 @@ namespace vSharpStudio.vm.ViewModels
 
         public bool IsDatabaseServiceOn()
         {
+            Debug.Assert(this._migration != null);
             return this._migration.IsDatabaseServiceOn();
         }
 
         public Task<bool> IsDatabaseServiceOnAsync(CancellationToken cancellationToken)
         {
+            Debug.Assert(this._migration != null);
             return this._migration.IsDatabaseServiceOnAsync(cancellationToken);
         }
 
         public bool IsDatabaseExists()
         {
+            Debug.Assert(this._migration != null);
             return this._migration.IsDatabaseExists();
         }
 
         public Task<bool> IsDatabaseExistsAsync(CancellationToken cancellationToken)
         {
+            Debug.Assert(this._migration != null);
             return this._migration.IsDatabaseExistsAsync(cancellationToken);
         }
 
         public void CreateDatabase()
         {
+            Debug.Assert(this._migration != null);
             this._migration.CreateDatabase();
         }
 
         public Task CreateDatabaseAsync(CancellationToken cancellationToken)
         {
+            Debug.Assert(this._migration != null);
             return this._migration.CreateDatabaseAsync(cancellationToken);
         }
 
         public void DropDatabase()
         {
+            Debug.Assert(this._migration != null);
             this._migration.DropDatabase();
         }
 
         public Task DropDatabaseAsync(CancellationToken cancellationToken)
         {
+            Debug.Assert(this._migration != null);
             return this._migration.DropDatabaseAsync(cancellationToken);
         }
 
@@ -378,7 +380,7 @@ namespace vSharpStudio.vm.ViewModels
         //private object _DynamicNodeDefaultSettings;
 
         [BrowsableAttribute(false)]
-        public ITreeConfigNode SelectedNode
+        public ITreeConfigNode? SelectedNode
         {
             get
             {
@@ -399,9 +401,9 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
 
-        private ITreeConfigNode _SelectedNode;
+        private ITreeConfigNode? _SelectedNode;
         [BrowsableAttribute(false)]
-        public Action OnSelectedNodeChanged { get; set; }
+        public Action? OnSelectedNodeChanged { get; set; }
 
         #region Connection string editor
 
@@ -886,6 +888,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             foreach (var t in lstt)
             {
+                Debug.Assert(t.Parent != null);
+                Debug.Assert(t.Parent.Parent != null);
                 var ti = new TableInfo(t.Name, t.CompositeName, (t.Parent.Parent as ICompositeName)!.CompositeName, t, t.GetIncludedProperties(appGenGuig, isSupportVersion));
                 if (typeOp == EnumVisitType.Load) // from current to top
                 {

@@ -23,17 +23,13 @@ namespace vSharpStudio.vm.ViewModels
         public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentModel.Children;
-        }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
         }
         #endregion ITree
 
@@ -63,7 +59,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Tree operations
 
-        public ConfigNodesCollection<Catalog> Children { get { return this.ListCatalogs; } }
+        new public ConfigNodesCollection<Catalog> Children { get { return this.ListCatalogs; } }
 
         partial void OnCreated()
         {

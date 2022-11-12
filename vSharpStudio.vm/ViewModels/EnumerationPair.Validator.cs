@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (!o.IsDefault)
                     return true;
-                var p = (Enumeration)o.Parent;
+                var p = o.ParentEnumeration;
                 foreach (var t in p.ListEnumerationPairs)
                 {
                     if ((o.Guid != t.Guid) && t.IsDefault)

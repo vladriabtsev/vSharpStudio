@@ -5,10 +5,11 @@ using System.Text;
 namespace ViewModelBase
 {
     public class DictionaryExt<TKey, TValue> : Dictionary<TKey, TValue>
+        where TKey : notnull
     {
         private bool isReturnDefaultWhenNotInDictionary;
-        public DictionaryExt(int initialSize = 100, bool isReturnDefaultWhenNotInDictionary = false, bool isActivateActions = false, Action<TKey, TValue> onAddValue = null,
-            Action<TKey, TValue> onRemoveValue = null, Action onClear = null) : base(initialSize)
+        public DictionaryExt(int initialSize = 100, bool isReturnDefaultWhenNotInDictionary = false, bool isActivateActions = false, 
+            Action<TKey, TValue> onAddValue = null, Action<TKey, TValue> onRemoveValue = null, Action onClear = null) : base(initialSize)
         {
             this.IsActivateActions = isActivateActions;
             this.OnAddValue = onAddValue;

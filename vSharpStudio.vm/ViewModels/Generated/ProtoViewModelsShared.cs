@@ -78,7 +78,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return TestSharedMesssage.Clone(this); // Clone.tt Line: 158
+            return TestSharedMesssage.Clone(this); // Clone.tt Line: 159
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(TestSharedMesssage from)
@@ -90,7 +90,7 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'test_shared_messsage' to 'TestSharedMesssage'
-        public static TestSharedMesssage ConvertToVM(Proto.Config2.test_shared_messsage m, TestSharedMesssage vm) // Clone.tt Line: 172
+        public static TestSharedMesssage ConvertToVM(Proto.Config2.test_shared_messsage m, TestSharedMesssage vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -99,19 +99,19 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.BoolValue = m.BoolValue; // Clone.tt Line: 220
-            vm.StringValue = m.StringValue; // Clone.tt Line: 220
+            vm.BoolValue = m.BoolValue; // Clone.tt Line: 221
+            vm.StringValue = m.StringValue; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
         // Conversion from 'TestSharedMesssage' to 'test_shared_messsage'
-        public static Proto.Config2.test_shared_messsage ConvertToProto(TestSharedMesssage vm) // Clone.tt Line: 235
+        public static Proto.Config2.test_shared_messsage ConvertToProto(TestSharedMesssage vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Config2.test_shared_messsage m = new Proto.Config2.test_shared_messsage(); // Clone.tt Line: 238
-            m.BoolValue = vm.BoolValue; // Clone.tt Line: 275
-            m.StringValue = vm.StringValue; // Clone.tt Line: 275
+            Proto.Config2.test_shared_messsage m = new Proto.Config2.test_shared_messsage(); // Clone.tt Line: 239
+            m.BoolValue = vm.BoolValue; // Clone.tt Line: 276
+            m.StringValue = vm.StringValue; // Clone.tt Line: 276
             return m;
         }
         
@@ -184,13 +184,11 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         partial void OnVisitEnd(IValidatableWithSeverity p);
         protected override void OnVisit(TestSharedMesssage p) // ValidationVisitor.tt Line: 15
         {
-            Debug.Assert(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
+            this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(TestSharedMesssage p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(TestSharedMesssage p) // ValidationVisitor.tt Line: 47
         {
-            Debug.Assert(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
+            this.OnVisitEnd((IValidatableWithSeverity)p);
         }
     }
     

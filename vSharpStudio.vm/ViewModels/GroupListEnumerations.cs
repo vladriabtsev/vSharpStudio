@@ -22,21 +22,17 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentModel.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
 
-        public ConfigNodesCollection<Enumeration> Children { get { return this.ListEnumerations; } }
+        new public ConfigNodesCollection<Enumeration> Children { get { return this.ListEnumerations; } }
 
         partial void OnCreated()
         {

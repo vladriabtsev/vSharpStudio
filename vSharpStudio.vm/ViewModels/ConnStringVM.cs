@@ -10,20 +10,20 @@ namespace vSharpStudio.vm.ViewModels
 {
     public class ConnStringVM : VmValidatableWithSeverity<ConnStringVM, ConnStringVMValidator>
     {
-        private ILogger logger;
+        private ILogger? logger;
 
         public ConnStringVM()
             : base(ConnStringVMValidator.Validator)
         {
         }
 
-        public ConnStringVM(ILogger logger)
+        public ConnStringVM(ILogger? logger)
             : this()
         {
             this.logger = logger;
         }
 
-        public string Name
+        public string? Name
         {
             get
             {
@@ -36,10 +36,9 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
+        private string? _Name;
 
-        private string _Name;
-
-        public string ConnectionString
+        public string? ConnectionString
         {
             get
             {
@@ -52,10 +51,9 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
+        private string? _ConnectionString;
 
-        private string _ConnectionString;
-
-        public string Provider
+        public string? Provider
         {
             get
             {
@@ -68,7 +66,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.NotifyPropertyChanged();
             }
         }
-
-        private string _Provider;
+        private string? _Provider;
     }
 }

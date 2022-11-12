@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupListDetails : ITreeConfigNode
+    public partial interface IGroupListDetails : ITreeConfigNodeSortable
     {
         int IndexOf(IDetail det);
     }

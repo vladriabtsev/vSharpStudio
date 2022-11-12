@@ -15,7 +15,7 @@ namespace vSharpStudio.common
 {
     public interface IvPluginGroupSettings : IvPluginGeneratorValidatableSettings
     {
-        ITreeConfigNode Parent { get; set; }
+        ITreeConfigNode? Parent { get; set; }
         string Name { get; }
         string Version { get; }
         string Description { get; }
@@ -24,7 +24,7 @@ namespace vSharpStudio.common
         /// </summary>
         /// <param name="settings"></param>
         /// <returns></returns>
-        IvPluginGroupSettings GetPluginGroupSettingsVm(IAppSolution parent, string settings);
+        IvPluginGroupSettings? GetPluginGroupSettingsVm(IAppSolution parent, string settings);
         /// <summary>
         /// Get protobuf model of settings from MVVM model (json format)
         /// </summary>
@@ -32,6 +32,6 @@ namespace vSharpStudio.common
     }
     public interface IvPluginGroupSettingsDic
     {
-        DictionaryExt<string, IvPluginGroupSettings> DicPluginsGroupSettings { get; }
+        DictionaryExt<string, IvPluginGroupSettings?> DicPluginsGroupSettings { get; }
     }
 }

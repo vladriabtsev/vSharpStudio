@@ -14,6 +14,6 @@ namespace vSharpStudio.common
         bool ContainsSettings(string guidAppPrjGen);
         bool GetBoolSetting(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, bool?> func, bool isFromPrevStable = false);
         string GetStringSetting(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, string> func, bool isFromPrevStable = false);
-        Dictionary<string, Dictionary<string, string>> DicVmExclProps { get; }
+        Dictionary<string, Dictionary<string, string?>?>? DicVmExclProps { get; }
     }
 }

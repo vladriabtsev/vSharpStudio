@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Renamer;
 using vSharpStudio.common.DiffModel;
+using Microsoft.CodeAnalysis;
 
 namespace vSharpStudio.ViewModels
 {
     public class CompileUtils
     {
-        public async static Task CompileAsync(ILogger _logger, string solutionPath, CancellationToken cancellationToken)
+        public async static Task CompileAsync(ILogger? _logger, string solutionPath, CancellationToken cancellationToken)
         {
             //var lstBuilds = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances().ToList();
             //var build = lstBuilds[0];
@@ -42,6 +43,8 @@ namespace vSharpStudio.ViewModels
                 foreach (var project in solution.Projects)
                 {
                     var compilation = await project.GetCompilationAsync();
+                    if (compilation == null)
+                        throw new Exception("Can't get compilation for project.\nSolution: " + solutionPath + "\nProject: " + project.FilePath);
                     var diag = compilation.GetDiagnostics();
                     var lst = from p in diag where p.Severity == Microsoft.CodeAnalysis.DiagnosticSeverity.Error select p;
                     if (lst.Count() > 0)
@@ -49,7 +52,7 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        public async static Task RenameAsync(ILogger _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public async static Task RenameAsync(ILogger? _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
             using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {
@@ -59,27 +62,32 @@ namespace vSharpStudio.ViewModels
                 foreach (Microsoft.CodeAnalysis.ProjectId projectId in solution.ProjectIds)
                 {
                     // Look up the snapshot for the original project in the latest forked solution.
-                    Microsoft.CodeAnalysis.Project project = solution.GetProject(projectId);
+                    Microsoft.CodeAnalysis.Project? project = solution.GetProject(projectId);
+                    if (project == null)
+                        throw new Exception("Can't get project.\nSolution: " + solutionPath + "\nProjectId: " + projectId.Id);
                     if (project.FilePath == projectPath)
                     {
                         isProjectFound = true;
                         foreach (Microsoft.CodeAnalysis.DocumentId documentId in project.DocumentIds)
                         {
                             // Look up the snapshot for the original document in the latest forked solution.
-                            Microsoft.CodeAnalysis.Document document = solution.GetDocument(documentId);
+                            Microsoft.CodeAnalysis.Document? document = solution.GetDocument(documentId);
                             //tg.RelativePathToGeneratedFile
 
                             // only in 'main' declaration files
                             //TODO implement based on knowledge of generated file ???
-                            if (Path.GetDirectoryName(document.FilePath).EndsWith("ViewModels"))
+                            if (document == null)
+                                throw new Exception("Can't get document.\nSolution: " + solutionPath + "\nProject: " + project.FilePath + "\nDocumentId: " + documentId.Id);
+                            var filePath = Path.GetDirectoryName(document.FilePath);
+                            if (!string.IsNullOrWhiteSpace(filePath) && filePath.EndsWith("ViewModels"))
                             {
                                 if (Path.GetExtension(document.FilePath) == "cs")
                                 {
-                                    await CodeAnalysisCSharp.Rename(_logger, solution, document, lstRenames, cancellationToken);
+                                    await CodeAnalysisCSharp.RenameAsync(_logger, solution, document, lstRenames, cancellationToken);
                                 }
                                 else if (Path.GetExtension(document.FilePath) == "vb")
                                 {
-                                    await CodeAnalysisVisualBasic.Rename(solution, document, lstRenames, cancellationToken);
+                                    await CodeAnalysisVisualBasic.RenameAsync(solution, document, lstRenames, cancellationToken);
                                 }
                                 else
                                     throw new NotSupportedException();

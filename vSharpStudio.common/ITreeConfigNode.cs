@@ -54,7 +54,6 @@ namespace vSharpStudio.common
         void NodeUp();
         bool NodeCanDown();
         void NodeDown();
-        IConfig GetConfig();
         // Get path relative to config file path
         string GetRelativeToConfigDiskPath(string path);
         // Get combined config and relative path
@@ -63,5 +62,6 @@ namespace vSharpStudio.common
         // if false, this is group of objects. Can't be included in submodel, but show inclusion of objects in the group
         bool IsIncludableInModels { get; }
         List<IModelRow> ListInModels { get; }
+        IConfig GetConfig();
     }
 }

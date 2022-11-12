@@ -18,11 +18,11 @@ namespace vSharpStudio.vm.ViewModels
         public IEnumeration ParentEnumerationI { get { Debug.Assert(this.Parent != null); return (IEnumeration)this.Parent; } }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
-            return new List<ITreeConfigNode>();
+            return new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentEnumeration.Children;
         }
@@ -76,7 +76,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.IsDefault)
             {
-                var p = (Enumeration)this.Parent;
+                var p = this.ParentEnumeration;
                 foreach (var t in p.ListEnumerationPairs)
                 {
                     if ((this.Guid != t.Guid) && t.IsDefault)

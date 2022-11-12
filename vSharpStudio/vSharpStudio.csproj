@@ -15,6 +15,7 @@
         <OutputPath>bin\$(Configuration)\</OutputPath>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugType>full</DebugType>
@@ -67,7 +68,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="CompareNETObjects" Version="4.78.0" />
-        <PackageReference Include="GitVersion.MsBuild" Version="5.10.3">
+        <PackageReference Include="GitVersion.MsBuild" Version="5.11.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -75,12 +76,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>-->
-        <PackageReference Include="Microsoft.Build.Framework" Version="17.3.2" />
-        <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.3.2" />
-        <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.3.2" />
+        <PackageReference Include="Microsoft.Build.Framework" Version="17.4.0" />
+        <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.4.0" />
+        <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.4.0" />
         <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2" />
-        <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.3.48">
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
+        <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.4.27">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

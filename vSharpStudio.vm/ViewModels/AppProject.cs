@@ -27,11 +27,11 @@ namespace vSharpStudio.vm.ViewModels
         public IAppSolution ParentAppSolutionI { get { Debug.Assert(this.Parent != null); return (IAppSolution)this.Parent; } }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.ListAppProjectGenerators;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentAppSolution.ListAppProjects;
         }
@@ -41,7 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ConfigNodesCollection<AppProjectGenerator> Children { get { return this.ListAppProjectGenerators; } }
+        new public ConfigNodesCollection<AppProjectGenerator> Children { get { return this.ListAppProjectGenerators; } }
 
         [Browsable(false)]
         new public string IconName { get { return "iconApplication"; } }
@@ -241,7 +241,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new AppProject(this.Parent);
+            var node = new AppProject(this.ParentAppSolution);
             this.ParentAppSolution.ListAppProjects.Add(node);
             this.GetUniqueName(Defaults.AppProjectName, node, this.ParentAppSolution.ListAppProjects);
             this.SetSelected(node);
@@ -298,21 +298,21 @@ namespace vSharpStudio.vm.ViewModels
         }
         private object? _DynamicPluginGroupSettings;
         //// GroupGeneratorsSettings guid, settings
-        private DictionaryExt<string, IvPluginGroupSettings> dicPluginsGroupSettings = null;
+        private DictionaryExt<string, IvPluginGroupSettings?>? dicPluginsGroupSettings = null;
         [BrowsableAttribute(false)]
-        public DictionaryExt<string, IvPluginGroupSettings> DicPluginsGroupSettings
+        public DictionaryExt<string, IvPluginGroupSettings?> DicPluginsGroupSettings
         {
             get
             {
                 if (dicPluginsGroupSettings == null)
                 {
-                    dicPluginsGroupSettings = new DictionaryExt<string, IvPluginGroupSettings>(5, false, true,
+                    dicPluginsGroupSettings = new DictionaryExt<string, IvPluginGroupSettings?>(5, false, true,
                         (ki, v) => { }, (kr, v) => { }, () => { });
                 }
                 return dicPluginsGroupSettings;
             }
         }
-        public IvPluginGroupSettings GetGroupSettings(string groupSettingsGuid)
+        public IvPluginGroupSettings? GetGroupSettings(string groupSettingsGuid)
         {
             return this.DicPluginsGroupSettings[groupSettingsGuid];
         }
@@ -323,13 +323,18 @@ namespace vSharpStudio.vm.ViewModels
             {
                 var set = new PluginGroupGeneratorsSettings(this);
                 set.AppGroupGeneratorsGuid = t.Key;
-                set.Settings = t.Value.SettingsAsJson;
+                if (t.Value == null)
+                    set.Settings = String.Empty;
+                else
+                    set.Settings = t.Value.SettingsAsJson;
                 this.ListGroupGeneratorsSettings.Add(set);
             }
         }
         public void RestoreGroupSettings(IvPluginGenerator? gen = null)
         {
             var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
+            Debug.Assert(cfg !=null);
+            Debug.Assert(cfg.DicGroupSettingGenerators != null);
             if (gen == null)
             {
                 this.DicPluginsGroupSettings.Clear();
@@ -338,7 +343,8 @@ namespace vSharpStudio.vm.ViewModels
                     if (!cfg.DicGroupSettingGenerators.ContainsKey(t.AppGroupGeneratorsGuid))
                         throw new Exception();
                     var set = cfg.DicGroupSettingGenerators[t.AppGroupGeneratorsGuid].GetPluginGroupProjectSettingsVmFromJson(this, t.Settings);
-                    set.Parent = this;
+                    if (set != null)
+                        set.Parent = this;
                     this.DicPluginsGroupSettings[t.AppGroupGeneratorsGuid] = set;
                 }
             }
@@ -347,7 +353,8 @@ namespace vSharpStudio.vm.ViewModels
                 if (!cfg.DicGroupSettingGenerators.ContainsKey(gen.Guid))
                     cfg.DicGroupSettingGenerators[gen.Guid] = gen;
                 var set = gen.GetPluginGroupProjectSettingsVmFromJson(this, null);
-                set.Parent = this;
+                if (set != null)
+                    set.Parent = this;
                 this.DicPluginsGroupSettings[gen.GroupGeneratorsGuid] = set;
             }
         }
@@ -356,6 +363,8 @@ namespace vSharpStudio.vm.ViewModels
             //Severity? curSeverity = null;
             foreach (var t in this.DicPluginsGroupSettings)
             {
+                if (t.Value == null)
+                    continue;
                 var res2 = t.Value.ValidateSettings();
                 //curSeverity=CheckMaxSeverity(res2, curSeverity);
                 foreach (var tt in res2.Errors)

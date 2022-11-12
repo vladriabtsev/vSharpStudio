@@ -13,10 +13,9 @@ namespace vPlugin.Sample
 {
     public partial class GeneratorDbSchemaNodeSettings : IvPluginGeneratorNodeSettings, IvPluginGeneratorNodeIncludable
     {
-        private GeneratorDbSchemaNodeSettings() : base(null, GeneratorDbSchemaNodeSettingsValidator.Validator) { }
         partial void OnCreated()
         {
-            this.DicNodeExcludedProperties = new Dictionary<string, string>();
+            this.DicNodeExcludedProperties = new Dictionary<string, string?>();
             if (!(this.Parent is IConstant))
             {
                 DicNodeExcludedProperties[this.GetPropertyName(() => this.IsConstantParam1)] = null; ;
@@ -27,7 +26,7 @@ namespace vPlugin.Sample
             }
         }
         [BrowsableAttribute(false)]
-        public Dictionary<string, string> DicNodeExcludedProperties { get; private set; }
+        public Dictionary<string, string?> DicNodeExcludedProperties { get; private set; }
         //[BrowsableAttribute(false)]
         //[ReadOnly(true)]
         //public string Name { get { return "Schema"; } }
@@ -47,13 +46,13 @@ namespace vPlugin.Sample
             {
                 if (settingsAsJsonDefault == null)
                 {
-                    var proto = GeneratorDbSchemaNodeSettings.ConvertToProto(new GeneratorDbSchemaNodeSettings());
+                    var proto = GeneratorDbSchemaNodeSettings.ConvertToProto(new GeneratorDbSchemaNodeSettings(this.Parent));
                     settingsAsJsonDefault = JsonFormatter.Default.Format(proto);
                 }
                 return settingsAsJsonDefault;
             }
         }
-        private static string settingsAsJsonDefault = null;
+        private static string? settingsAsJsonDefault = null;
         public static string SearchPath = "";
         [BrowsableAttribute(false)]
         [ReadOnly(true)]

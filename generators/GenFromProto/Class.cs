@@ -207,7 +207,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" parent) // ");
+            this.Write("? parent) // ");
             
             #line 26 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
@@ -236,7 +236,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("        this.");
+            this.Write("        this._");
             
             #line 35 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
@@ -264,7 +264,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("        this.");
+            this.Write("        this._");
             
             #line 37 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
@@ -298,7 +298,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("        this.");
+            this.Write("        this._");
             
             #line 40 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
@@ -405,7 +405,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("        this.");
+            this.Write("        this._");
             
             #line 60 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
@@ -433,7 +433,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("        this.");
+            this.Write("        this._");
             
             #line 62 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
@@ -473,7 +473,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("        this.");
+            this.Write("        this._");
             
             #line 66 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
@@ -507,7 +507,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("        this.");
+            this.Write("        this._");
             
             #line 69 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));

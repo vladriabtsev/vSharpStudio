@@ -11,7 +11,7 @@ namespace vSharpStudio.common.ViewModels
     // https://docs.microsoft.com/en-us/windows/uwp/files/quickstart-using-file-and-folder-pickers
     public class EditorFilePicker : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
-        PropertyGridEditorTextBox textBox;
+        PropertyGridEditorTextBox textBox = null!;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);

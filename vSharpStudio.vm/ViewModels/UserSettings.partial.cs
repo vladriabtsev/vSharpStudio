@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using ViewModelBase;
 
@@ -8,29 +9,29 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class UserSettings
     {
-        public Action<UserSettingsOpenedConfig> OnOpenRecentConfig { get; set; }
+        public Action<UserSettingsOpenedConfig>? OnOpenRecentConfig { get; set; }
         public vCommand CommandOpenRecentConfig
         {
             get
             {
                 return this._CommandOpenRecentConfig ?? (this._CommandOpenRecentConfig = vCommand.Create(
-                (o) => { this.OnOpenRecentConfig(this.SelectedConfigHistory); },
+                (o) => { Debug.Assert(this.SelectedConfigHistory != null); Debug.Assert(this.OnOpenRecentConfig != null); this.OnOpenRecentConfig(this.SelectedConfigHistory); },
                 (o) => { return this.SelectedConfigHistory != null; }));
             }
         }
-        private vCommand _CommandOpenRecentConfig;
+        private vCommand? _CommandOpenRecentConfig;
         public vCommand CommandDeleteRecentConfig
         {
             get
             {
                 return this._CommandDeleteRecentConfig ?? (this._CommandDeleteRecentConfig = vCommand.Create(
-                (o) => { this.ListOpenConfigHistory.Remove(this.SelectedConfigHistory); },
+                (o) => { Debug.Assert(this.SelectedConfigHistory != null); this.ListOpenConfigHistory.Remove(this.SelectedConfigHistory); },
                 (o) => { return this.SelectedConfigHistory != null; }));
             }
         }
-        private vCommand _CommandDeleteRecentConfig;
+        private vCommand? _CommandDeleteRecentConfig;
         [BrowsableAttribute(false)]
-        public UserSettingsOpenedConfig SelectedConfigHistory
+        public UserSettingsOpenedConfig? SelectedConfigHistory
         {
             get { return this._SelectedConfigHistory; }
             set
@@ -44,6 +45,6 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private UserSettingsOpenedConfig _SelectedConfigHistory;
+        private UserSettingsOpenedConfig? _SelectedConfigHistory;
     }
 }

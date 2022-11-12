@@ -13,7 +13,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("PluginGeneratorSettings:{Name,nq}")]
     public partial class PluginGeneratorSettings : IParent
     {
-        public IvPluginGeneratorSettings SettingsVm { get; set; }
+        public IvPluginGeneratorSettings? SettingsVm { get; set; }
         [BrowsableAttribute(false)]
         protected override void OnIsChangedChanged()
         {

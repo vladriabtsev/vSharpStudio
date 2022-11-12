@@ -11,6 +11,6 @@ namespace vSharpStudio.common
         IvPluginGenerator? PluginGenerator { get; }
         IvPluginDbGenerator? PluginDbGenerator { get; }
         IvPluginGeneratorSettings? DynamicGeneratorSettings { get; }
-        IvPlugin Plugin { get; }
+        IvPlugin? Plugin { get; }
     }
 }

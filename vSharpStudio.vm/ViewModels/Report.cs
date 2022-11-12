@@ -20,21 +20,15 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Report";
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListReports.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
-
-        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconReport"; } }
@@ -50,7 +44,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -129,6 +122,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
+            Debug.Assert(this.Parent != null);
             var node = Report.Clone(this.Parent, this, true, true);
             this.ParentGroupListReports.Add(node);
             this._Name = this._Name + "2";

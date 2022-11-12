@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.Results;
@@ -12,7 +13,7 @@ namespace vPlugin.Sample
     public partial class GeneratorDbAccessSettings : IvPluginGeneratorSettings
     {
         [BrowsableAttribute(false)]
-        public IAppProjectGenerator ParentAppProjectGenerator { get { return (IAppProjectGenerator)this.Parent; } }
+        public IAppProjectGenerator ParentAppProjectGenerator { get { Debug.Assert(this.Parent != null); return (IAppProjectGenerator)this.Parent; } }
         [BrowsableAttribute(false)]
         public string SettingsAsJson
         {
@@ -32,7 +33,7 @@ namespace vPlugin.Sample
             visitor.Run(model.Model);
             return visitor.Result;
         }
-        public IvPluginGenerator Generator { get; set; }
+        public IvPluginGenerator? Generator { get; set; }
         public ValidationResult ValidateSettings()
         {
             this.Validate();

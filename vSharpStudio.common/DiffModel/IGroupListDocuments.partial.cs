@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupListDocuments : ITreeConfigNode, IGetNodeSetting
+    public partial interface IGroupListDocuments : ITreeConfigNodeSortable, IGetNodeSetting
     {
         IGroupDocuments ParentGroupDocumentsI { get; }
         int IndexOf(IDocument doc);

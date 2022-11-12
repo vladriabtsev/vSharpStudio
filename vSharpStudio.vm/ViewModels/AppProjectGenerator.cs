@@ -23,11 +23,11 @@ namespace vSharpStudio.vm.ViewModels
         public IAppProject ParentAppProjectI { get { Debug.Assert(this.Parent != null); return (IAppProject)this.Parent; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
-            return new List<ITreeConfigNode>();
+            return new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentAppProject.ListAppProjectGenerators;
         }
@@ -37,8 +37,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
         [BrowsableAttribute(false)]
-        public IvPlugin Plugin { get { return this.plugin; } }
-        private IvPlugin plugin;
+        public IvPlugin? Plugin { get { return this.plugin; } }
+        private IvPlugin? plugin;
         [BrowsableAttribute(false)]
         public IvPluginGenerator? PluginGenerator
         {
@@ -46,6 +46,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                     return null;
+                Debug.Assert(cfg.DicGenerators != null);
                 var gntr = cfg.DicGenerators[this.PluginGeneratorGuid];
                 if (gntr == null)
                     throw new Exception($"Can't find plugin generator '{this.DescriptionGenerator}' with Guid={this.PluginGeneratorGuid} for application project generator '{this.Name}'");
@@ -120,7 +121,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         [BrowsableAttribute(false)]
         // Used only to select generator in UI
-        public SortedObservableCollection<PluginGenerator> ListGenerators { get; private set; }
+        public SortedObservableCollection<PluginGenerator>? ListGenerators { get; private set; }
         [PropertyOrderAttribute(10)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
@@ -189,6 +190,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     Debug.Assert(this.PluginGenerator != null);
                     this._DynamicGeneratorSettings = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, this.GeneratorSettings);
+                    Debug.Assert(this._DynamicGeneratorSettings != null);
                     Debug.Assert(this._DynamicGeneratorSettings.ParentAppProjectGenerator != null);
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
@@ -320,6 +322,7 @@ namespace vSharpStudio.vm.ViewModels
             this.DynamicMainConnStrSettings = null;
             this.DynamicModelNodeSettings = null;
             // auto selection generator if it is only one
+            Debug.Assert(this.ListGenerators != null);
             if (this.ListGenerators.Count == 1)
             {
                 this.PluginGeneratorGuid = this.ListGenerators[0].Guid;
@@ -362,7 +365,10 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(this.PluginGenerator != null);
             cfg._DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
             if (this.plugin == null)
+            {
+                Debug.Assert(cfg.DicPlugins != null);
                 this.plugin = cfg.DicPlugins[this.PluginGuid];
+            }
             this.RestoreSettings();
             this.PluginGeneratorGroupGuid = this.PluginGenerator.GroupGeneratorsGuid;
             (this.ParentAppProject as AppProject).RestoreGroupSettings(this.PluginGenerator);
@@ -403,11 +409,12 @@ namespace vSharpStudio.vm.ViewModels
             }
             res.Errors.AddRange(res2.Errors);
         }
-        IvPluginGeneratorSettings PluginGeneratorSettings { get; set; }
+        IvPluginGeneratorSettings? PluginGeneratorSettings { get; set; }
         public void RestoreSettings()
         {
             if (this.PluginGenerator != null)
             {
+                Debug.Assert(cfg.DicGroupSettingGenerators != null);
                 if (!cfg.DicGroupSettingGenerators.ContainsKey(this.PluginGenerator.GroupGeneratorsGuid))
                     cfg.DicGroupSettingGenerators[this.PluginGenerator.GroupGeneratorsGuid] = this.PluginGenerator;
                 if (string.IsNullOrWhiteSpace(this.GeneratorSettings))
@@ -418,7 +425,6 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     this.PluginGeneratorSettings = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, this.GeneratorSettings);
                 }
-                Debug.Assert(this.PluginGeneratorSettings.ParentAppProjectGenerator != null);
                 this.DynamicGeneratorSettings = this.PluginGeneratorSettings;
             }
             //else if (this.PluginDbGenerator != null)
@@ -484,6 +490,7 @@ namespace vSharpStudio.vm.ViewModels
             if (cfg.IsInitialized && !string.IsNullOrWhiteSpace(this.PluginGuid))
             {
                 var plg = (Plugin)cfg.DicNodes[this.PluginGuid];
+                Debug.Assert(this.ListGenerators != null);
                 this.ListGenerators.Clear();
                 this.ListGenerators.AddRange(plg.ListGenerators);
                 this.DescriptionPlugin = plg.Description;
@@ -713,7 +720,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PluginGeneratorGuid = string.Empty;
             this.PluginGuid = string.Empty;
             this.ParentAppProject.ListAppProjectGenerators.Remove(this);
-            this.Parent = null;
+            this.Parent = null!;
         }
 
         public override ITreeConfigNode NodeAddClone()
@@ -728,7 +735,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new AppProjectGenerator(this.Parent);
+            var node = new AppProjectGenerator(this.ParentAppProject);
             this.ParentAppProject.ListAppProjectGenerators.Add(node);
             this.GetUniqueName(Defaults.AppPrjGeneratorName, node, this.ParentAppProject.ListAppProjectGenerators);
             this.SetSelected(node);

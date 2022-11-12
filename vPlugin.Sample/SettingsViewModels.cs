@@ -37,7 +37,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     public partial class DbConnectionStringSettings : BaseSettings<DbConnectionStringSettings, DbConnectionStringSettingsValidator>, IDbConnectionStringSettings // Class.tt Line: 16
     {
         #region CTOR
-        public DbConnectionStringSettings(ITreeConfigNode parent) // Class.tt Line: 26
+        public DbConnectionStringSettings(ITreeConfigNode? parent) // Class.tt Line: 26
             : base(parent, DbConnectionStringSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -74,7 +74,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return DbConnectionStringSettings.Clone(this.Parent, this); // Clone.tt Line: 156
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return DbConnectionStringSettings.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(DbConnectionStringSettings from)
@@ -86,7 +87,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_db_connection_string_settings' to 'DbConnectionStringSettings'
-        public static DbConnectionStringSettings ConvertToVM(Proto.Plugin.proto_db_connection_string_settings m, DbConnectionStringSettings vm) // Clone.tt Line: 172
+        public static DbConnectionStringSettings ConvertToVM(Proto.Plugin.proto_db_connection_string_settings m, DbConnectionStringSettings vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -95,17 +96,17 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.StringSettings = m.StringSettings; // Clone.tt Line: 220
+            vm.StringSettings = m.StringSettings; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
         // Conversion from 'DbConnectionStringSettings' to 'proto_db_connection_string_settings'
-        public static Proto.Plugin.proto_db_connection_string_settings ConvertToProto(DbConnectionStringSettings vm) // Clone.tt Line: 235
+        public static Proto.Plugin.proto_db_connection_string_settings ConvertToProto(DbConnectionStringSettings vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Plugin.proto_db_connection_string_settings m = new Proto.Plugin.proto_db_connection_string_settings(); // Clone.tt Line: 238
-            m.StringSettings = vm.StringSettings; // Clone.tt Line: 275
+            Proto.Plugin.proto_db_connection_string_settings m = new Proto.Plugin.proto_db_connection_string_settings(); // Clone.tt Line: 239
+            m.StringSettings = vm.StringSettings; // Clone.tt Line: 276
             return m;
         }
         
@@ -179,7 +180,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     public partial class PluginsGroupSolutionSubSettings : BaseSubSettings<PluginsGroupSolutionSubSettings, PluginsGroupSolutionSubSettingsValidator>, IPluginsGroupSolutionSubSettings // Class.tt Line: 16
     {
         #region CTOR
-        public PluginsGroupSolutionSubSettings(IEditableObjectExt parent) // Class.tt Line: 26
+        public PluginsGroupSolutionSubSettings(IEditableObjectExt? parent) // Class.tt Line: 26
             : base(parent, PluginsGroupSolutionSubSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -218,7 +219,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return PluginsGroupSolutionSubSettings.Clone(this.Parent, this); // Clone.tt Line: 156
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return PluginsGroupSolutionSubSettings.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(PluginsGroupSolutionSubSettings from)
@@ -230,7 +232,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_plugins_group_solution_sub_settings' to 'PluginsGroupSolutionSubSettings'
-        public static PluginsGroupSolutionSubSettings ConvertToVM(Proto.Plugin.proto_plugins_group_solution_sub_settings m, PluginsGroupSolutionSubSettings vm) // Clone.tt Line: 172
+        public static PluginsGroupSolutionSubSettings ConvertToVM(Proto.Plugin.proto_plugins_group_solution_sub_settings m, PluginsGroupSolutionSubSettings vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -239,19 +241,19 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.IsSubParam1 = m.IsSubParam1; // Clone.tt Line: 220
-            vm.IsSubParam2 = m.IsSubParam2; // Clone.tt Line: 220
+            vm.IsSubParam1 = m.IsSubParam1; // Clone.tt Line: 221
+            vm.IsSubParam2 = m.IsSubParam2; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
         // Conversion from 'PluginsGroupSolutionSubSettings' to 'proto_plugins_group_solution_sub_settings'
-        public static Proto.Plugin.proto_plugins_group_solution_sub_settings ConvertToProto(PluginsGroupSolutionSubSettings vm) // Clone.tt Line: 235
+        public static Proto.Plugin.proto_plugins_group_solution_sub_settings ConvertToProto(PluginsGroupSolutionSubSettings vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Plugin.proto_plugins_group_solution_sub_settings m = new Proto.Plugin.proto_plugins_group_solution_sub_settings(); // Clone.tt Line: 238
-            m.IsSubParam1 = vm.IsSubParam1; // Clone.tt Line: 275
-            m.IsSubParam2 = vm.IsSubParam2; // Clone.tt Line: 275
+            Proto.Plugin.proto_plugins_group_solution_sub_settings m = new Proto.Plugin.proto_plugins_group_solution_sub_settings(); // Clone.tt Line: 239
+            m.IsSubParam1 = vm.IsSubParam1; // Clone.tt Line: 276
+            m.IsSubParam2 = vm.IsSubParam2; // Clone.tt Line: 276
             return m;
         }
         
@@ -345,13 +347,13 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     public partial class PluginsGroupSolutionSettings : BaseSettings<PluginsGroupSolutionSettings, PluginsGroupSolutionSettingsValidator>, IPluginsGroupSolutionSettings // Class.tt Line: 16
     {
         #region CTOR
-        public PluginsGroupSolutionSettings(ITreeConfigNode parent) // Class.tt Line: 26
+        public PluginsGroupSolutionSettings(ITreeConfigNode? parent) // Class.tt Line: 26
             : base(parent, PluginsGroupSolutionSettingsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnCreating();
-            this.SubSettings = new PluginsGroupSolutionSubSettings(this); // Class.tt Line: 40
+            this._SubSettings = new PluginsGroupSolutionSubSettings(this); // Class.tt Line: 40
             this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
@@ -387,7 +389,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return PluginsGroupSolutionSettings.Clone(this.Parent, this); // Clone.tt Line: 156
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return PluginsGroupSolutionSettings.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(PluginsGroupSolutionSettings from)
@@ -399,7 +402,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_plugins_group_solution_settings' to 'PluginsGroupSolutionSettings'
-        public static PluginsGroupSolutionSettings ConvertToVM(Proto.Plugin.proto_plugins_group_solution_settings m, PluginsGroupSolutionSettings vm) // Clone.tt Line: 172
+        public static PluginsGroupSolutionSettings ConvertToVM(Proto.Plugin.proto_plugins_group_solution_settings m, PluginsGroupSolutionSettings vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -408,21 +411,21 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.IsGroupParam1 = m.IsGroupParam1; // Clone.tt Line: 220
-            if (vm.SubSettings == null) // Clone.tt Line: 212
-                vm.SubSettings = new PluginsGroupSolutionSubSettings(vm); // Clone.tt Line: 214
-            vPlugin.Sample.PluginsGroupSolutionSubSettings.ConvertToVM(m.SubSettings, (PluginsGroupSolutionSubSettings)vm.SubSettings); // Clone.tt Line: 218
+            vm.IsGroupParam1 = m.IsGroupParam1; // Clone.tt Line: 221
+            if (vm.SubSettings == null) // Clone.tt Line: 213
+                vm.SubSettings = new PluginsGroupSolutionSubSettings(vm); // Clone.tt Line: 215
+            vPlugin.Sample.PluginsGroupSolutionSubSettings.ConvertToVM(m.SubSettings, (PluginsGroupSolutionSubSettings)vm.SubSettings); // Clone.tt Line: 219
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
         // Conversion from 'PluginsGroupSolutionSettings' to 'proto_plugins_group_solution_settings'
-        public static Proto.Plugin.proto_plugins_group_solution_settings ConvertToProto(PluginsGroupSolutionSettings vm) // Clone.tt Line: 235
+        public static Proto.Plugin.proto_plugins_group_solution_settings ConvertToProto(PluginsGroupSolutionSettings vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Plugin.proto_plugins_group_solution_settings m = new Proto.Plugin.proto_plugins_group_solution_settings(); // Clone.tt Line: 238
-            m.IsGroupParam1 = vm.IsGroupParam1; // Clone.tt Line: 275
-            m.SubSettings = vPlugin.Sample.PluginsGroupSolutionSubSettings.ConvertToProto((PluginsGroupSolutionSubSettings)vm.SubSettings); // Clone.tt Line: 269
+            Proto.Plugin.proto_plugins_group_solution_settings m = new Proto.Plugin.proto_plugins_group_solution_settings(); // Clone.tt Line: 239
+            m.IsGroupParam1 = vm.IsGroupParam1; // Clone.tt Line: 276
+            m.SubSettings = vPlugin.Sample.PluginsGroupSolutionSubSettings.ConvertToProto((PluginsGroupSolutionSubSettings)vm.SubSettings); // Clone.tt Line: 270
             return m;
         }
         
@@ -527,7 +530,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     public partial class PluginsGroupProjectSettings : BaseSettings<PluginsGroupProjectSettings, PluginsGroupProjectSettingsValidator>, IPluginsGroupProjectSettings // Class.tt Line: 16
     {
         #region CTOR
-        public PluginsGroupProjectSettings(ITreeConfigNode parent) // Class.tt Line: 26
+        public PluginsGroupProjectSettings(ITreeConfigNode? parent) // Class.tt Line: 26
             : base(parent, PluginsGroupProjectSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -564,7 +567,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return PluginsGroupProjectSettings.Clone(this.Parent, this); // Clone.tt Line: 156
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return PluginsGroupProjectSettings.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(PluginsGroupProjectSettings from)
@@ -576,7 +580,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_plugins_group_project_settings' to 'PluginsGroupProjectSettings'
-        public static PluginsGroupProjectSettings ConvertToVM(Proto.Plugin.proto_plugins_group_project_settings m, PluginsGroupProjectSettings vm) // Clone.tt Line: 172
+        public static PluginsGroupProjectSettings ConvertToVM(Proto.Plugin.proto_plugins_group_project_settings m, PluginsGroupProjectSettings vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -585,17 +589,17 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.IsGroupProjectParam1 = m.IsGroupProjectParam1; // Clone.tt Line: 220
+            vm.IsGroupProjectParam1 = m.IsGroupProjectParam1; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
         // Conversion from 'PluginsGroupProjectSettings' to 'proto_plugins_group_project_settings'
-        public static Proto.Plugin.proto_plugins_group_project_settings ConvertToProto(PluginsGroupProjectSettings vm) // Clone.tt Line: 235
+        public static Proto.Plugin.proto_plugins_group_project_settings ConvertToProto(PluginsGroupProjectSettings vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Plugin.proto_plugins_group_project_settings m = new Proto.Plugin.proto_plugins_group_project_settings(); // Clone.tt Line: 238
-            m.IsGroupProjectParam1 = vm.IsGroupProjectParam1; // Clone.tt Line: 275
+            Proto.Plugin.proto_plugins_group_project_settings m = new Proto.Plugin.proto_plugins_group_project_settings(); // Clone.tt Line: 239
+            m.IsGroupProjectParam1 = vm.IsGroupProjectParam1; // Clone.tt Line: 276
             return m;
         }
         
@@ -669,7 +673,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     public partial class GeneratorDbSchemaSettings : BaseSettings<GeneratorDbSchemaSettings, GeneratorDbSchemaSettingsValidator>, IGeneratorDbSchemaSettings // Class.tt Line: 16
     {
         #region CTOR
-        public GeneratorDbSchemaSettings(ITreeConfigNode parent) // Class.tt Line: 26
+        public GeneratorDbSchemaSettings(ITreeConfigNode? parent) // Class.tt Line: 26
             : base(parent, GeneratorDbSchemaSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -710,7 +714,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return GeneratorDbSchemaSettings.Clone(this.Parent, this); // Clone.tt Line: 156
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return GeneratorDbSchemaSettings.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(GeneratorDbSchemaSettings from)
@@ -722,7 +727,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_generator_db_schema_settings' to 'GeneratorDbSchemaSettings'
-        public static GeneratorDbSchemaSettings ConvertToVM(Proto.Plugin.proto_generator_db_schema_settings m, GeneratorDbSchemaSettings vm) // Clone.tt Line: 172
+        public static GeneratorDbSchemaSettings ConvertToVM(Proto.Plugin.proto_generator_db_schema_settings m, GeneratorDbSchemaSettings vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -731,21 +736,21 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.IsSchemaParam1 = m.IsSchemaParam1; // Clone.tt Line: 220
-            vm.IsSchemaParam2 = m.IsSchemaParam2; // Clone.tt Line: 220
-            vm.SchemaParam3 = m.SchemaParam3; // Clone.tt Line: 220
+            vm.IsSchemaParam1 = m.IsSchemaParam1; // Clone.tt Line: 221
+            vm.IsSchemaParam2 = m.IsSchemaParam2; // Clone.tt Line: 221
+            vm.SchemaParam3 = m.SchemaParam3; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
         // Conversion from 'GeneratorDbSchemaSettings' to 'proto_generator_db_schema_settings'
-        public static Proto.Plugin.proto_generator_db_schema_settings ConvertToProto(GeneratorDbSchemaSettings vm) // Clone.tt Line: 235
+        public static Proto.Plugin.proto_generator_db_schema_settings ConvertToProto(GeneratorDbSchemaSettings vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Plugin.proto_generator_db_schema_settings m = new Proto.Plugin.proto_generator_db_schema_settings(); // Clone.tt Line: 238
-            m.IsSchemaParam1 = vm.IsSchemaParam1; // Clone.tt Line: 275
-            m.IsSchemaParam2 = vm.IsSchemaParam2; // Clone.tt Line: 275
-            m.SchemaParam3 = vm.SchemaParam3; // Clone.tt Line: 275
+            Proto.Plugin.proto_generator_db_schema_settings m = new Proto.Plugin.proto_generator_db_schema_settings(); // Clone.tt Line: 239
+            m.IsSchemaParam1 = vm.IsSchemaParam1; // Clone.tt Line: 276
+            m.IsSchemaParam2 = vm.IsSchemaParam2; // Clone.tt Line: 276
+            m.SchemaParam3 = vm.SchemaParam3; // Clone.tt Line: 276
             return m;
         }
         
@@ -859,7 +864,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     public partial class GeneratorDbSchemaNodeSettings : BaseSettings<GeneratorDbSchemaNodeSettings, GeneratorDbSchemaNodeSettingsValidator>, IGeneratorDbSchemaNodeSettings // Class.tt Line: 16
     {
         #region CTOR
-        public GeneratorDbSchemaNodeSettings(ITreeConfigNode parent) // Class.tt Line: 26
+        public GeneratorDbSchemaNodeSettings(ITreeConfigNode? parent) // Class.tt Line: 26
             : base(parent, GeneratorDbSchemaNodeSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -902,7 +907,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return GeneratorDbSchemaNodeSettings.Clone(this.Parent, this); // Clone.tt Line: 156
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return GeneratorDbSchemaNodeSettings.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(GeneratorDbSchemaNodeSettings from)
@@ -914,7 +920,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_generator_db_schema_node_settings' to 'GeneratorDbSchemaNodeSettings'
-        public static GeneratorDbSchemaNodeSettings ConvertToVM(Proto.Plugin.proto_generator_db_schema_node_settings m, GeneratorDbSchemaNodeSettings vm) // Clone.tt Line: 172
+        public static GeneratorDbSchemaNodeSettings ConvertToVM(Proto.Plugin.proto_generator_db_schema_node_settings m, GeneratorDbSchemaNodeSettings vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -923,23 +929,23 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.IsParam1 = m.IsParam1; // Clone.tt Line: 220
-            vm.IsIncluded = m.IsIncluded; // Clone.tt Line: 220
-            vm.IsConstantParam1 = m.IsConstantParam1; // Clone.tt Line: 220
-            vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 220
+            vm.IsParam1 = m.IsParam1; // Clone.tt Line: 221
+            vm.IsIncluded = m.IsIncluded; // Clone.tt Line: 221
+            vm.IsConstantParam1 = m.IsConstantParam1; // Clone.tt Line: 221
+            vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
         // Conversion from 'GeneratorDbSchemaNodeSettings' to 'proto_generator_db_schema_node_settings'
-        public static Proto.Plugin.proto_generator_db_schema_node_settings ConvertToProto(GeneratorDbSchemaNodeSettings vm) // Clone.tt Line: 235
+        public static Proto.Plugin.proto_generator_db_schema_node_settings ConvertToProto(GeneratorDbSchemaNodeSettings vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Plugin.proto_generator_db_schema_node_settings m = new Proto.Plugin.proto_generator_db_schema_node_settings(); // Clone.tt Line: 238
-            m.IsParam1 = vm.IsParam1; // Clone.tt Line: 275
-            m.IsIncluded = vm.IsIncluded; // Clone.tt Line: 275
-            m.IsConstantParam1 = vm.IsConstantParam1; // Clone.tt Line: 275
-            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 275
+            Proto.Plugin.proto_generator_db_schema_node_settings m = new Proto.Plugin.proto_generator_db_schema_node_settings(); // Clone.tt Line: 239
+            m.IsParam1 = vm.IsParam1; // Clone.tt Line: 276
+            m.IsIncluded = vm.IsIncluded; // Clone.tt Line: 276
+            m.IsConstantParam1 = vm.IsConstantParam1; // Clone.tt Line: 276
+            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 276
             return m;
         }
         
@@ -1073,7 +1079,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     public partial class GeneratorDbAccessSettings : BaseSettings<GeneratorDbAccessSettings, GeneratorDbAccessSettingsValidator>, IGeneratorDbAccessSettings // Class.tt Line: 16
     {
         #region CTOR
-        public GeneratorDbAccessSettings(ITreeConfigNode parent) // Class.tt Line: 26
+        public GeneratorDbAccessSettings(ITreeConfigNode? parent) // Class.tt Line: 26
             : base(parent, GeneratorDbAccessSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -1118,7 +1124,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return GeneratorDbAccessSettings.Clone(this.Parent, this); // Clone.tt Line: 156
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return GeneratorDbAccessSettings.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(GeneratorDbAccessSettings from)
@@ -1130,7 +1137,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_generator_db_access_settings' to 'GeneratorDbAccessSettings'
-        public static GeneratorDbAccessSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_settings m, GeneratorDbAccessSettings vm) // Clone.tt Line: 172
+        public static GeneratorDbAccessSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_settings m, GeneratorDbAccessSettings vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -1139,25 +1146,25 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.IsAccessParam1 = m.IsAccessParam1; // Clone.tt Line: 220
-            vm.IsAccessParam2 = m.IsAccessParam2; // Clone.tt Line: 220
-            vm.AccessParam3 = m.AccessParam3; // Clone.tt Line: 220
-            vm.AccessParam4 = m.AccessParam4; // Clone.tt Line: 220
-            vm.IsGenerateNotValidCode = m.IsGenerateNotValidCode; // Clone.tt Line: 220
+            vm.IsAccessParam1 = m.IsAccessParam1; // Clone.tt Line: 221
+            vm.IsAccessParam2 = m.IsAccessParam2; // Clone.tt Line: 221
+            vm.AccessParam3 = m.AccessParam3; // Clone.tt Line: 221
+            vm.AccessParam4 = m.AccessParam4; // Clone.tt Line: 221
+            vm.IsGenerateNotValidCode = m.IsGenerateNotValidCode; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
         // Conversion from 'GeneratorDbAccessSettings' to 'proto_generator_db_access_settings'
-        public static Proto.Plugin.proto_generator_db_access_settings ConvertToProto(GeneratorDbAccessSettings vm) // Clone.tt Line: 235
+        public static Proto.Plugin.proto_generator_db_access_settings ConvertToProto(GeneratorDbAccessSettings vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Plugin.proto_generator_db_access_settings m = new Proto.Plugin.proto_generator_db_access_settings(); // Clone.tt Line: 238
-            m.IsAccessParam1 = vm.IsAccessParam1; // Clone.tt Line: 275
-            m.IsAccessParam2 = vm.IsAccessParam2; // Clone.tt Line: 275
-            m.AccessParam3 = vm.AccessParam3; // Clone.tt Line: 275
-            m.AccessParam4 = vm.AccessParam4; // Clone.tt Line: 275
-            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // Clone.tt Line: 275
+            Proto.Plugin.proto_generator_db_access_settings m = new Proto.Plugin.proto_generator_db_access_settings(); // Clone.tt Line: 239
+            m.IsAccessParam1 = vm.IsAccessParam1; // Clone.tt Line: 276
+            m.IsAccessParam2 = vm.IsAccessParam2; // Clone.tt Line: 276
+            m.AccessParam3 = vm.AccessParam3; // Clone.tt Line: 276
+            m.AccessParam4 = vm.AccessParam4; // Clone.tt Line: 276
+            m.IsGenerateNotValidCode = vm.IsGenerateNotValidCode; // Clone.tt Line: 276
             return m;
         }
         
@@ -1311,7 +1318,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
     public partial class GeneratorDbAccessNodeSettings : BaseSettings<GeneratorDbAccessNodeSettings, GeneratorDbAccessNodeSettingsValidator>, IGeneratorDbAccessNodeSettings // Class.tt Line: 16
     {
         #region CTOR
-        public GeneratorDbAccessNodeSettings(ITreeConfigNode parent) // Class.tt Line: 26
+        public GeneratorDbAccessNodeSettings(ITreeConfigNode? parent) // Class.tt Line: 26
             : base(parent, GeneratorDbAccessNodeSettingsValidator.Validator)
         {
             this.IsNotifying = false;
@@ -1354,7 +1361,8 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
-            return GeneratorDbAccessNodeSettings.Clone(this.Parent, this); // Clone.tt Line: 156
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return GeneratorDbAccessNodeSettings.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
         public override void Restore(GeneratorDbAccessNodeSettings from)
@@ -1366,7 +1374,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
         // Conversion from 'proto_generator_db_access_node_settings' to 'GeneratorDbAccessNodeSettings'
-        public static GeneratorDbAccessNodeSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_node_settings m, GeneratorDbAccessNodeSettings vm) // Clone.tt Line: 172
+        public static GeneratorDbAccessNodeSettings ConvertToVM(Proto.Plugin.proto_generator_db_access_node_settings m, GeneratorDbAccessNodeSettings vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -1375,23 +1383,23 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
             }
             vm.IsNotifying = false;
             vm.IsValidate = false;
-            vm.IsParam1 = m.IsParam1; // Clone.tt Line: 220
-            vm.IsIncluded = m.IsIncluded; // Clone.tt Line: 220
-            vm.IsPropertyParam1 = m.IsPropertyParam1; // Clone.tt Line: 220
-            vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 220
+            vm.IsParam1 = m.IsParam1; // Clone.tt Line: 221
+            vm.IsIncluded = m.IsIncluded; // Clone.tt Line: 221
+            vm.IsPropertyParam1 = m.IsPropertyParam1; // Clone.tt Line: 221
+            vm.IsCatalogFormParam1 = m.IsCatalogFormParam1; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
         // Conversion from 'GeneratorDbAccessNodeSettings' to 'proto_generator_db_access_node_settings'
-        public static Proto.Plugin.proto_generator_db_access_node_settings ConvertToProto(GeneratorDbAccessNodeSettings vm) // Clone.tt Line: 235
+        public static Proto.Plugin.proto_generator_db_access_node_settings ConvertToProto(GeneratorDbAccessNodeSettings vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Plugin.proto_generator_db_access_node_settings m = new Proto.Plugin.proto_generator_db_access_node_settings(); // Clone.tt Line: 238
-            m.IsParam1 = vm.IsParam1; // Clone.tt Line: 275
-            m.IsIncluded = vm.IsIncluded; // Clone.tt Line: 275
-            m.IsPropertyParam1 = vm.IsPropertyParam1; // Clone.tt Line: 275
-            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 275
+            Proto.Plugin.proto_generator_db_access_node_settings m = new Proto.Plugin.proto_generator_db_access_node_settings(); // Clone.tt Line: 239
+            m.IsParam1 = vm.IsParam1; // Clone.tt Line: 276
+            m.IsIncluded = vm.IsIncluded; // Clone.tt Line: 276
+            m.IsPropertyParam1 = vm.IsPropertyParam1; // Clone.tt Line: 276
+            m.IsCatalogFormParam1 = vm.IsCatalogFormParam1; // Clone.tt Line: 276
             return m;
         }
         
@@ -1531,84 +1539,68 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnVisitEnd(IValidatableWithSeverity p);
         protected override void OnVisit(DbConnectionStringSettings p) // ValidationVisitor.tt Line: 15
         {
-            Debug.Assert(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
+            this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(DbConnectionStringSettings p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(DbConnectionStringSettings p) // ValidationVisitor.tt Line: 47
         {
-            Debug.Assert(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
+            this.OnVisitEnd((IValidatableWithSeverity)p);
         }
         protected override void OnVisit(PluginsGroupSolutionSubSettings p) // ValidationVisitor.tt Line: 15
         {
-            Debug.Assert(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
+            this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginsGroupSolutionSubSettings p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(PluginsGroupSolutionSubSettings p) // ValidationVisitor.tt Line: 47
         {
-            Debug.Assert(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
+            this.OnVisitEnd((IValidatableWithSeverity)p);
         }
         protected override void OnVisit(PluginsGroupSolutionSettings p) // ValidationVisitor.tt Line: 15
         {
-            Debug.Assert(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
-            p.ValidateSubAndCollectErrors(p.SubSettings); // ValidationVisitor.tt Line: 41
+            this.OnVisit((IValidatableWithSeverity)p);
+            p.ValidateSubAndCollectErrors(p.SubSettings); // ValidationVisitor.tt Line: 40
         }
-        protected override void OnVisitEnd(PluginsGroupSolutionSettings p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(PluginsGroupSolutionSettings p) // ValidationVisitor.tt Line: 47
         {
-            Debug.Assert(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
+            this.OnVisitEnd((IValidatableWithSeverity)p);
         }
         protected override void OnVisit(PluginsGroupProjectSettings p) // ValidationVisitor.tt Line: 15
         {
-            Debug.Assert(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
+            this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(PluginsGroupProjectSettings p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(PluginsGroupProjectSettings p) // ValidationVisitor.tt Line: 47
         {
-            Debug.Assert(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
+            this.OnVisitEnd((IValidatableWithSeverity)p);
         }
         protected override void OnVisit(GeneratorDbSchemaSettings p) // ValidationVisitor.tt Line: 15
         {
-            Debug.Assert(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
+            this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GeneratorDbSchemaSettings p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(GeneratorDbSchemaSettings p) // ValidationVisitor.tt Line: 47
         {
-            Debug.Assert(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
+            this.OnVisitEnd((IValidatableWithSeverity)p);
         }
         protected override void OnVisit(GeneratorDbSchemaNodeSettings p) // ValidationVisitor.tt Line: 15
         {
-            Debug.Assert(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
+            this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GeneratorDbSchemaNodeSettings p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(GeneratorDbSchemaNodeSettings p) // ValidationVisitor.tt Line: 47
         {
-            Debug.Assert(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
+            this.OnVisitEnd((IValidatableWithSeverity)p);
         }
         protected override void OnVisit(GeneratorDbAccessSettings p) // ValidationVisitor.tt Line: 15
         {
-            Debug.Assert(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
+            this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GeneratorDbAccessSettings p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(GeneratorDbAccessSettings p) // ValidationVisitor.tt Line: 47
         {
-            Debug.Assert(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
+            this.OnVisitEnd((IValidatableWithSeverity)p);
         }
         protected override void OnVisit(GeneratorDbAccessNodeSettings p) // ValidationVisitor.tt Line: 15
         {
-            Debug.Assert(p != null);
-            this.OnVisit(p as IValidatableWithSeverity);
+            this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GeneratorDbAccessNodeSettings p) // ValidationVisitor.tt Line: 48
+        protected override void OnVisitEnd(GeneratorDbAccessNodeSettings p) // ValidationVisitor.tt Line: 47
         {
-            Debug.Assert(p != null);
-            this.OnVisitEnd(p as IValidatableWithSeverity);
+            this.OnVisitEnd((IValidatableWithSeverity)p);
         }
     }
     

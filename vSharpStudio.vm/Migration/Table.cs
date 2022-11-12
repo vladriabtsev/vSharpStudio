@@ -7,10 +7,10 @@ namespace vSharpStudio.vm.Migration
 {
     public class Column
     {
-        public string Name { get; set; }
-        public string PropertyName { get; set; }
-        public string PropertyType { get; set; }
-        public string PropertyDbType { get; set; }
+        public string? Name { get; set; }
+        public string? PropertyName { get; set; }
+        public string? PropertyType { get; set; }
+        public string? PropertyDbType { get; set; }
         public bool IsPK { get; set; }
         public bool HasDefaultValue { get; set; }
         public bool IsNullable { get; set; }
@@ -22,24 +22,24 @@ namespace vSharpStudio.vm.Migration
 
     public class Key
     {
-        public string Name { get; set; }
-        public string ReferencedTableName { get; set; }
-        public string ReferencedTableColumnName { get; set; }
-        public string ReferencingTableName { get; set; }
-        public string ReferencingTableColumnName { get; set; }
+        public string? Name { get; set; }
+        public string? ReferencedTableName { get; set; }
+        public string? ReferencedTableColumnName { get; set; }
+        public string? ReferencingTableName { get; set; }
+        public string? ReferencingTableColumnName { get; set; }
     }
 
     public class Table
     {
-        public List<Column> Columns { get; }
+        public List<Column> Columns => new List<Column>();
         public List<Key> InnerKeys => new List<Key>();
         public List<Key> OuterKeys => new List<Key>();
-        public string Name { get; set; }
-        public string Schema { get; set; }
+        public string? Name { get; set; }
+        public string? Schema { get; set; }
         public bool IsView { get; set; }
-        public string CleanName { get; set; }
-        public string ClassName { get; set; }
-        public string SequenceName { get; set; }
+        public string? CleanName { get; set; }
+        public string? ClassName { get; set; }
+        public string? SequenceName { get; set; }
         public bool Ignore { get; set; }
         public bool Include { get; set; }
 

@@ -14,7 +14,7 @@ namespace vSharpStudio.ViewModels
 {
     public class ConverterDicToListPlugins : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, System.Globalization.CultureInfo culture)
         {
             if (parameter == null || !(parameter is vPluginLayerTypeEnum))
             {
@@ -26,7 +26,7 @@ namespace vSharpStudio.ViewModels
                 Trace.WriteLine("##### ERROR ##### Converter '" + typeof(ConverterDicToListPlugins).Name + "' is expecting to be used with object of type '" + typeof(Dictionary<vPluginLayerTypeEnum, List<PluginRow>>).Name + "'");
                 return null;
             }
-            Dictionary<vPluginLayerTypeEnum, List<PluginRow>> dic = value as Dictionary<vPluginLayerTypeEnum, List<PluginRow>>;
+            Dictionary<vPluginLayerTypeEnum, List<PluginRow>> dic = (Dictionary<vPluginLayerTypeEnum, List<PluginRow>>)value;
             if (dic.ContainsKey((vPluginLayerTypeEnum)parameter))
             {
                 var lst = dic[(vPluginLayerTypeEnum)parameter];

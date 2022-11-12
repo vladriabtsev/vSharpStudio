@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.Results;
@@ -12,7 +13,7 @@ namespace vPlugin.Sample
     public partial class DbConnectionStringSettings : IvPluginGeneratorSettings
     {
         [BrowsableAttribute(false)]
-        public IAppProjectGenerator ParentAppProjectGenerator { get { return (IAppProjectGenerator)this.Parent; } }
+        public IAppProjectGenerator ParentAppProjectGenerator { get { Debug.Assert(this.Parent != null); return (IAppProjectGenerator)this.Parent; } }
         public DbConnectionStringSettings(ITreeConfigNode parent, string connectionString) : this(parent)
         {
             this.StringSettings = connectionString;
@@ -30,7 +31,7 @@ namespace vPlugin.Sample
         {
             return this.StringSettings;
         }
-        public IvPluginGenerator Generator { get; set; }
+        public IvPluginGenerator? Generator { get; set; }
         public ValidationResult ValidateSettings()
         {
             this.Validate();

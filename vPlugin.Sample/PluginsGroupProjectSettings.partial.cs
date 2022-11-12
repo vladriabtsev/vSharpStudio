@@ -21,10 +21,10 @@ namespace vPlugin.Sample
             this.IsGroupProjectParam1 = false;
         }
         [BrowsableAttribute(false)]
-        public string Name { get; private set; }
+        public string Name { get; private set; } = string.Empty;
         [BrowsableAttribute(false)]
-        public string Version { get; private set; }
-        public string Description { get; private set; }
+        public string Version { get; private set; } = string.Empty;
+        public string Description { get; private set; } = string.Empty;
 
         [BrowsableAttribute(false)]
         public string SettingsAsJson

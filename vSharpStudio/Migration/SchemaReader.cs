@@ -11,10 +11,10 @@ namespace vSharpStudio.Migration
 {
     internal class SchemaReader
     {
-        private string projectPathWithDbConnectionString;
-        private string connectionStringName;
+        private string? projectPathWithDbConnectionString;
+        private string? connectionStringName;
 
-        internal SchemaReader(string projectPathWithDbConnectionString, string connectionStringName = null)
+        internal SchemaReader(string? projectPathWithDbConnectionString, string? connectionStringName = null)
         {
             this.projectPathWithDbConnectionString = projectPathWithDbConnectionString;
             this.connectionStringName = connectionStringName;

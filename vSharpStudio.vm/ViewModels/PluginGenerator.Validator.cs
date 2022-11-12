@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 using vSharpStudio.common;
@@ -20,6 +21,8 @@ namespace vSharpStudio.vm.ViewModels
                     return;
                 }
 
+                Debug.Assert(pg.Parent != null);
+                Debug.Assert(pg.Parent.Parent != null);
                 GroupListPlugins lst = (GroupListPlugins)pg.Parent.Parent;
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Not unique Generator Guid. Plugin/Generator: ");

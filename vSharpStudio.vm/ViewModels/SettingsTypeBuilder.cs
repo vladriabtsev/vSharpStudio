@@ -16,7 +16,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     internal class NodeSettings
     {
-        public object Run(ITreeConfigNode node, bool isShortVersion)
+        public object? Run(ITreeConfigNode node, bool isShortVersion)
         {
             TypeBuilder tbSol = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
             ConstructorBuilder constructor = tbSol.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
@@ -68,11 +68,13 @@ namespace vSharpStudio.vm.ViewModels
                         SettingsTypeBuilder.CreateProperty(tbPrjs, tt.Name, typeof(object), tt.NameUi, tt.Description);
                     }
                 }
-                if (is_projects && dic_prjs.Count==0) // projects level
+                if (is_projects && dic_prjs.Count == 0) // projects level
                     return null;
                 SettingsTypeBuilder.CreateToString(tbPrjs, $"Apps->{t.Name}->");
-                Type prjsType = tbPrjs.CreateType();
-                object objPrjs = Activator.CreateInstance(prjsType);
+                Type? prjsType = tbPrjs.CreateType();
+                Debug.Assert(prjsType != null);
+                object? objPrjs = Activator.CreateInstance(prjsType);
+                Debug.Assert(objPrjs != null);
                 foreach (var dt in dic_prjs)
                 {
                     prjsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objPrjs, new object[] { dt.Value });
@@ -85,15 +87,17 @@ namespace vSharpStudio.vm.ViewModels
             if (dic_sols.Count == 0) // solutions level
                 return null;
             SettingsTypeBuilder.CreateToString(tbSol, "Apps->");
-            Type solsType = tbSol.CreateType();
-            object objSol = Activator.CreateInstance(solsType);
+            Type? solsType = tbSol.CreateType();
+            Debug.Assert(solsType != null);
+            object? objSol = Activator.CreateInstance(solsType);
+            Debug.Assert(objSol != null);
             foreach (var dt in dic_sols)
             {
                 solsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objSol, new object[] { dt.Value });
             }
             return objSol;
         }
-        private static object CreateSettingsForProject(ITreeConfigNode node, IAppProject tt, Dictionary<string, object> dic_apgs, bool isShortVersion)
+        private static object? CreateSettingsForProject(ITreeConfigNode node, IAppProject tt, Dictionary<string, object> dic_apgs, bool isShortVersion)
         {
             TypeBuilder tbAppGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for app generators
             foreach (var ttt in tt.ListAppProjectGenerators)
@@ -115,7 +119,8 @@ namespace vSharpStudio.vm.ViewModels
             if (dic_apgs.Count == 0)
                 return null;
             SettingsTypeBuilder.CreateToString(tbAppGen, $"Apps->{tt.ParentAppSolutionI.Name}->{tt.Name}->");
-            Type apgsType = tbAppGen.CreateType();
+            Type? apgsType = tbAppGen.CreateType();
+            Debug.Assert(apgsType != null);
             var objAppGen = Activator.CreateInstance(apgsType);
             foreach (var dt in dic_apgs)
             {
@@ -154,10 +159,11 @@ namespace vSharpStudio.vm.ViewModels
         //    }
         //    return objAppGen;
         //}
-        private static object CreateSettingsForAppProjectGenerator(ITreeConfigNode node, AppProjectGenerator ttt, Dictionary<string, object> dic_gs, bool isShortVersion)
+        private static object? CreateSettingsForAppProjectGenerator(ITreeConfigNode node, AppProjectGenerator ttt, Dictionary<string, object> dic_gs, bool isShortVersion)
         {
             var nds = (IGetNodeSetting)node;
             TypeBuilder tbGen = SettingsTypeBuilder.GetTypeBuilder(); // type builder for generators
+            Debug.Assert(ttt.ListGenerators != null);
             foreach (var tttt in ttt.ListGenerators)
             {
                 if (tttt.Generator == null)
@@ -172,15 +178,17 @@ namespace vSharpStudio.vm.ViewModels
                 dic_gs[gen.Name] = nsettings;
             }
             SettingsTypeBuilder.CreateToString(tbGen, "Generator");
-            Type settingsType = tbGen.CreateType();
+            Type? settingsType = tbGen.CreateType();
+            Debug.Assert(settingsType != null);
             var objGen = Activator.CreateInstance(settingsType);
+            Debug.Assert(objGen != null);
             foreach (var dt in dic_gs)
             {
                 settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objGen, new object[] { dt.Value });
             }
             return objGen;
         }
-        public object Run(AppSolution node)
+        public object? Run(AppSolution node)
         {
             TypeBuilder tbSettings = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
             ConstructorBuilder constructor = tbSettings.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
@@ -193,15 +201,17 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (dic_groups.Count == 0)
                 return null;
-            Type settingsType = tbSettings.CreateType();
-            object objSettings = Activator.CreateInstance(settingsType);
+            Type? settingsType = tbSettings.CreateType();
+            Debug.Assert(settingsType != null);
+            var objSettings = Activator.CreateInstance(settingsType);
+            Debug.Assert(objSettings != null);
             foreach (var dt in dic_groups)
             {
                 settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objSettings, new object[] { dt.Value });
             }
             return objSettings;
         }
-        public object Run(AppProject node)
+        public object? Run(AppProject node)
         {
             TypeBuilder tbSettings = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
             ConstructorBuilder constructor = tbSettings.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
@@ -214,22 +224,24 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (dic_groups.Count == 0)
                 return null;
-            Type settingsType = tbSettings.CreateType();
-            object objSettings = Activator.CreateInstance(settingsType);
+            Type? settingsType = tbSettings.CreateType();
+            Debug.Assert(settingsType != null);
+            var objSettings = Activator.CreateInstance(settingsType);
+            Debug.Assert(objSettings != null);
             foreach (var dt in dic_groups)
             {
                 settingsType.InvokeMember(dt.Key, BindingFlags.SetProperty, null, objSettings, new object[] { dt.Value });
             }
             return objSettings;
         }
-        public object Run(AppProjectGenerator node)
+        public object? Run(AppProjectGenerator node)
         {
             if (!string.IsNullOrWhiteSpace(node.PluginGuid))
             {
                 if (!string.IsNullOrWhiteSpace(node.PluginGeneratorGuid))
                 {
                     Dictionary<string, object> dic_gs = new Dictionary<string, object>();
-                    object objGen = CreateSettingsForAppProjectGenerator(node.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig.Model, node, dic_gs, true);
+                    var objGen = CreateSettingsForAppProjectGenerator(node.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig.Model, node, dic_gs, true);
                     return objGen;
                 }
             }
@@ -244,19 +256,20 @@ namespace vSharpStudio.vm.ViewModels
     {
         public class Field
         {
-            public string Name { get; set; }
-            public object Value { get; set; }
+            public string? Name { get; set; }
+            public object? Value { get; set; }
         }
-        public static object CreateNodesSettingObject(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
+        public static object? CreateNodesSettingObject(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
         {
             Debug.Assert(lst != null);
             var myType = CompileNodesSettingResultType(lst);
+            Debug.Assert(myType != null);
             var myObject = Activator.CreateInstance(myType);
             foreach (var field in lst)
                 myType.InvokeMember(field.Name, BindingFlags.SetProperty, null, myObject, new object[] { field });
             return myObject;
         }
-        public static Type CompileNodesSettingResultType(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
+        public static Type? CompileNodesSettingResultType(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
         {
             Debug.Assert(lst != null);
             TypeBuilder tb = GetTypeBuilder();
@@ -266,19 +279,20 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var field in lst)
                 CreateProperty(tb, field.Name, typeof(Object), field.NameUi);
 
-            Type objectType = tb.CreateType();
+            Type? objectType = tb.CreateType();
             return objectType;
         }
-        public static object CreateNewObject(ObservableCollection<PluginGeneratorSettings> lst)
+        public static object? CreateNewObject(ObservableCollection<PluginGeneratorSettings> lst)
         {
             Debug.Assert(lst != null);
             var myType = CompileResultType(lst);
+            Debug.Assert(myType != null);
             var myObject = Activator.CreateInstance(myType);
             foreach (var field in lst)
                 myType.InvokeMember(field.Name, BindingFlags.SetProperty, null, myObject, new object[] { field });
             return myObject;
         }
-        public static Type CompileResultType(ObservableCollection<PluginGeneratorSettings> lst)
+        public static Type? CompileResultType(ObservableCollection<PluginGeneratorSettings> lst)
         {
             Debug.Assert(lst != null);
             TypeBuilder tb = GetTypeBuilder();
@@ -288,21 +302,22 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var field in lst)
                 CreateProperty(tb, field.Name, typeof(Object), field.NameUi);
 
-            Type objectType = tb.CreateType();
+            Type? objectType = tb.CreateType();
             return objectType;
         }
 
 
-        public static object CreateNewObject(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
+        public static object? CreateNewObject(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
         {
             Debug.Assert(lst != null);
             var myType = CompileResultType(lst);
+            Debug.Assert(myType != null);
             var myObject = Activator.CreateInstance(myType);
             foreach (var field in lst)
                 myType.InvokeMember(field.Name, BindingFlags.SetProperty, null, myObject, new object[] { field });
             return myObject;
         }
-        public static Type CompileResultType(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
+        public static Type? CompileResultType(SortedObservableCollection<PluginGeneratorNodeSettings> lst)
         {
             Debug.Assert(lst != null);
             TypeBuilder tb = GetTypeBuilder();
@@ -312,7 +327,7 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var field in lst)
                 CreateProperty(tb, field.Name, typeof(Object), field.NameUi);
 
-            Type objectType = tb.CreateType();
+            Type? objectType = tb.CreateType();
             return objectType;
         }
 
@@ -342,7 +357,9 @@ namespace vSharpStudio.vm.ViewModels
             ILGenerator getIl = mthdBldr.GetILGenerator();
             getIl.Emit(OpCodes.Ldstr, description);
             getIl.Emit(OpCodes.Ret);
-            tb.DefineMethodOverride(mthdBldr, typeof(object).GetMethod("ToString"));
+            var minfo = typeof(object).GetMethod("ToString");
+            Debug.Assert(minfo != null);
+            tb.DefineMethodOverride(mthdBldr, minfo);
         }
         internal static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType, string? propertyNameUI = null, string? propertyDescription = null)
         {
@@ -382,12 +399,14 @@ namespace vSharpStudio.vm.ViewModels
             Type attr = typeof(Xceed.Wpf.Toolkit.PropertyGrid.Attributes.ExpandableObjectAttribute);
             // Create a Constructorinfo object for attribute 'MyAttribute1'.
             //ConstructorInfo myConstructorInfo = attr.GetConstructor(               new Type[1] { typeof(string) });
-            ConstructorInfo constructorInfo = attr.GetConstructor(new Type[0]);
+            ConstructorInfo? constructorInfo = attr.GetConstructor(new Type[0]);
+            Debug.Assert(constructorInfo != null);
             CustomAttributeBuilder attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[0]);
             propertyBuilder.SetCustomAttribute(attributeBuilder);
 
             attr = typeof(ReadOnlyAttribute);
             constructorInfo = attr.GetConstructor(new Type[1] { typeof(bool) });
+            Debug.Assert(constructorInfo != null);
             attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[1] { true });
             propertyBuilder.SetCustomAttribute(attributeBuilder);
 
@@ -395,6 +414,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 attr = typeof(DisplayNameAttribute);
                 constructorInfo = attr.GetConstructor(new Type[1] { typeof(string) });
+                Debug.Assert(constructorInfo != null);
                 attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[1] { propertyNameUI });
                 propertyBuilder.SetCustomAttribute(attributeBuilder);
             }
@@ -402,6 +422,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 attr = typeof(DescriptionAttribute);
                 constructorInfo = attr.GetConstructor(new Type[1] { typeof(string) });
+                Debug.Assert(constructorInfo != null);
                 attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[1] { propertyDescription });
                 propertyBuilder.SetCustomAttribute(attributeBuilder);
             }

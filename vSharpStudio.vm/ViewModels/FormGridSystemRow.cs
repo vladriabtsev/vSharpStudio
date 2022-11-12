@@ -16,25 +16,17 @@ namespace vSharpStudio.vm.ViewModels
     public partial class FormGridSystemRow : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public FormGridSystem ParentFormGridSystem { get { return (FormGridSystem)this.Parent; } }
+        public FormGridSystem ParentFormGridSystem { get { Debug.Assert(this.Parent != null); return (FormGridSystem)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IFormGridSystem ParentFormGridSystemI { get { return (IFormGridSystem)this.Parent; } }
+        public IFormGridSystem ParentFormGridSystemI { get { Debug.Assert(this.Parent != null); return (IFormGridSystem)this.Parent; } }
 
         #region ITree
 
-        public override IEnumerable<ITreeConfigNodeSortable> GetListChildren()
-        {
-            return this.Children;
-        }
-        public override IEnumerable<ITreeConfigNodeSortable> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentFormGridSystem.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
-        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
+
         #region Tree operations
         #endregion Tree operations
 
@@ -47,8 +39,6 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = "Row";
             this._Description = "Grid System Row";
             this.IsIncludableInModels = true;
-
-            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -106,7 +96,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListColumns.AddRange(listColumns);
         }
         [ExpandableObjectAttribute()]
-        public dynamic Setting { get; set; }
+        public dynamic? Setting { get; set; }
 
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

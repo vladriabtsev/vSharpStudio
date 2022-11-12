@@ -82,12 +82,12 @@ namespace vSharpStudio.Views
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            (this.DataContext as MainPageVM).propertyGrid = this.propertyGrid;
+            ((MainPageVM)this.DataContext).propertyGrid = this.propertyGrid;
         }
 
         private void propertyGrid_SelectedObjectChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            var grid = sender as PropertyGrid;
+            var grid = (PropertyGrid)sender;
             foreach (PropertyItem prop in grid.Properties)
             {
                 if (prop.IsExpandable && !prop.IsExpanded) //Only expand things marked as Expandable, otherwise it will expand everything possible, such as strings, which you probably don't want.
@@ -100,7 +100,7 @@ namespace vSharpStudio.Views
                 }
             }
         }
-        private Dictionary<string, string> dic = new Dictionary<string, string>();
+        private Dictionary<string, string?> dic = new Dictionary<string, string?>();
         private void propertyGrid_SelectedPropertyItemChanged(object sender, RoutedPropertyChangedEventArgs<PropertyItemBase> e)
         {
             //var prop = e.NewValue as PropertyItem;

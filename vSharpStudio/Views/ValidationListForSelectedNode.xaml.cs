@@ -21,7 +21,7 @@ namespace vSharpStudio.Views
     /// </summary>
     public partial class ValidationListForSelectedNode : UserControl
     {
-        private MainPageVM vm = null;
+        private MainPageVM? vm = null;
 
         public ValidationListForSelectedNode()
         {
@@ -31,8 +31,8 @@ namespace vSharpStudio.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this.DataContext != null && this.DataContext is MainPageVM)
-                (this.DataContext as MainPageVM).validationListForSelectedNode = this;
+            if (this.DataContext != null && this.DataContext is MainPageVM mpvm)
+                mpvm.validationListForSelectedNode = this;
         }
     }
 }

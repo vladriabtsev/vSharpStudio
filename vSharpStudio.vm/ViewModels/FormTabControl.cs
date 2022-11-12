@@ -16,25 +16,16 @@ namespace vSharpStudio.vm.ViewModels
     public partial class FormTabControl : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public FormAutoLayoutBlock ParentFormAutoLayoutBlock { get { return (FormAutoLayoutBlock)this.Parent; } }
+        public FormAutoLayoutBlock ParentFormAutoLayoutBlock { get { Debug.Assert(this.Parent != null); return (FormAutoLayoutBlock)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IFormAutoLayoutBlock ParentFormAutoLayoutBlockI { get { return (IFormAutoLayoutBlock)this.Parent; } }
+        public IFormAutoLayoutBlock ParentFormAutoLayoutBlockI { get { Debug.Assert(this.Parent != null); return (IFormAutoLayoutBlock)this.Parent; } }
 
         #region ITree
 
-        public override IEnumerable<ITreeConfigNodeSortable> GetListChildren()
-        {
-            return this.Children;
-        }
-        public override IEnumerable<ITreeConfigNodeSortable> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentFormAutoLayoutBlock.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
-        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
         #region Tree operations
         #endregion Tree operations
 
@@ -47,8 +38,6 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = "TabControl";
             this._Description = "Tab Control";
             this.IsIncludableInModels = true;
-
-            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -114,7 +103,7 @@ namespace vSharpStudio.vm.ViewModels
 
 
         [ExpandableObjectAttribute()]
-        public dynamic Setting { get; set; }
+        public dynamic? Setting { get; set; }
 
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

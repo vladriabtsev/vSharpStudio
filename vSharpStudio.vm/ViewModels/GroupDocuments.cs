@@ -21,22 +21,15 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentModel.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
-
-        [BrowsableAttribute(false)]
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
@@ -56,7 +49,6 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             VmBindable.IsNotifyingStatic = false;
-            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.Children.Add(this.GroupSharedProperties);
             this.Children.Add(this.GroupListDocuments);
             VmBindable.IsNotifyingStatic = true;

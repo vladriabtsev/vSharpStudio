@@ -104,45 +104,46 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         // only for not ITreeConfigNode
-        IValidatableWithSeverity parent;
+        IValidatableWithSeverity? parent;
         partial void OnVisit(IValidatableWithSeverity p)
         {
-            var pp = p as ITreeConfigNode;
-            if (pp == null)
+            if (p is ITreeConfigNode pp)
             {
-                //pp = (ITreeConfigNode)this.parent;
-                pp = (p as IParent).Parent;
-            }
-            else
-            {
-                this._level++;
-            }
-            this.parent = p;
-            if (this._logger != null)
-            {
-                this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
-            }
-            p.ValidationCollection.Clear();
-            p.CountErrors = 0;
-            p.CountWarnings = 0;
-            p.CountInfos = 0;
+                if (pp == null)
+                {
+                    //pp = (ITreeConfigNode)this.parent;
+                    pp = (p as IParent).Parent;
+                }
+                else
+                {
+                    this._level++;
+                }
+                this.parent = p;
+                if (this._logger != null)
+                {
+                    this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
+                }
+                p.ValidationCollection.Clear();
+                p.CountErrors = 0;
+                p.CountWarnings = 0;
+                p.CountInfos = 0;
 
-            p.Validate();
+                p.Validate();
 
-            foreach (var t in p.ValidationCollection)
-            {
-                // t.Model = node;
-                this.AddMessage(pp, t);
+                foreach (var t in p.ValidationCollection)
+                {
+                    // t.Model = node;
+                    this.AddMessage(pp, t);
+                }
             }
         }
 
-        private object node = null;
+        private object? node = null;
 
         partial void OnVisitEnd(IValidatableWithSeverity p)
         {
-            if (p is ITreeConfigNode)
+            if (p is ITreeConfigNode pp)
             {
-                var pp = p as ITreeConfigNode;
                 if (this._logger != null)
                 {
                     this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + pp.GetType().Name + ": " + pp.Name);

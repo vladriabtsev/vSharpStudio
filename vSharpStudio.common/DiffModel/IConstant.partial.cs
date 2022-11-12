@@ -11,7 +11,7 @@ namespace vSharpStudio.common
     {
         IGroupListConstants ParentGroupListConstantsI { get; }
         //string DefaultValue { get; }
-        object Tag { get; set; }
-        static IConfig Config { get; set; }
+        object? Tag { get; set; }
+        //static IConfig Config { get; set; }
     }
 }

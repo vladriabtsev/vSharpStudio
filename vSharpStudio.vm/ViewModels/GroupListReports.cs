@@ -19,11 +19,11 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsNew { get { return false; } }
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             if (this.Parent is Catalog p)
             {
@@ -35,13 +35,9 @@ namespace vSharpStudio.vm.ViewModels
             }
             throw new NotImplementedException();
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
 
-        public ConfigNodesCollection<Report> Children { get { return this.ListReports; } }
+        new public ConfigNodesCollection<Report> Children { get { return this.ListReports; } }
         partial void OnCreated()
         {
             this._Name = "Reports";

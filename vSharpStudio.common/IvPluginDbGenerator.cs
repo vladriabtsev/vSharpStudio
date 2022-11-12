@@ -37,7 +37,7 @@ namespace vSharpStudio.common
         //string VersionFieldTypeStr { get; }
         //string VersionFieldStoreTypeStr { get; }
 
-        IvPluginGeneratorSettings GetConnectionStringMvvm(IAppProjectGenerator parent, string connectionString);
+        IvPluginGeneratorSettings? GetConnectionStringMvvm(IAppProjectGenerator parent, string connectionString);
 
         int GetMigrationVersion();
         // DatabaseModel GetDbModel(List<string> schemas, List<string> tables);
@@ -63,7 +63,7 @@ namespace vSharpStudio.common
         /// <param name="operations">To do what model differ will not capable to do. Probably renaming tables and fields propery</param>
         /// <param name="target_model"></param>
         /// <param name="onNeedDbCreate"></param>
-        string UpdateToModel(string connectionString, IConfig config, IAppSolution sln, IAppProject prj, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool> onNeedDbCreate = null);
+        string UpdateToModel(string connectionString, IConfig config, IAppSolution sln, IAppProject prj, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool>? onNeedDbCreate = null);
         // void UpdateToModel2(string connectionString, MigrationOperation[] operations, IConfig config, Func<bool> onNeedDbCreate, Action<Exception> onError);
         // void Backup(string filePath);
         // void Restore(string filePath);

@@ -23,12 +23,13 @@ namespace vSharpStudio.Views
     /// </summary>
     public partial class MainPage : UserControl
     {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public static MainPageVM MainPageVM { get; set; }
-
-        private MainPageVM _model = null;
+        private MainPageVM _model;
 
         public MainPage()
         {
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
             // https://www.abhishekshukla.com/wpf/advanced-wpf-part-4-threading-in-windows-presentation-foundation/
             VmBindable.AppDispatcher = UIDispatcher.Current;
             this.InitializeComponent();
@@ -50,10 +51,10 @@ namespace vSharpStudio.Views
             this._model.OnFormLoaded();
             this._model.Compose();
             this.DataContext = this._model;
-            FrameworkElement p = this.Parent as FrameworkElement;
+            FrameworkElement p = (FrameworkElement)this.Parent;
             while (!(p is MainWindow))
             {
-                p = p.Parent as FrameworkElement;
+                p = (FrameworkElement)p.Parent;
             }
             p.DataContext = this._model;
 #else

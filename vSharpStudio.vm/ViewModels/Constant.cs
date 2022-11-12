@@ -27,15 +27,14 @@ namespace vSharpStudio.vm.ViewModels
         // Can be used by a generator to keep calculated property data
         public object? Tag { get; set; }
         [Browsable(false)]
-        public static IConfig Config { get; set; }
+        public static IConfig? Config { get; set; }
 
         #region ITree
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
-            return new List<ITreeConfigNode>();
+            return new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListConstants.Children;
         }
@@ -194,7 +193,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Constant.Clone(this.Parent, this, true, true);
+            var node = Constant.Clone(this.ParentGroupListConstants, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListConstants.Add(node);
             this._Name = this._Name + "2";
@@ -204,7 +203,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Constant(this.Parent);
+            var node = new Constant(this.ParentGroupListConstants);
             this.ParentGroupListConstants.Add(node);
             this.GetUniqueName(Defaults.ConstantName, node, this.ParentGroupListConstants.ListConstants);
             this.SetSelected(node);
@@ -219,7 +218,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<string>();
             lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }
     }

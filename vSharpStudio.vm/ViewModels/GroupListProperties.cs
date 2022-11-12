@@ -19,11 +19,11 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsNew { get { return false; } }
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             if (this.Parent is Catalog c)
             {
@@ -47,13 +47,9 @@ namespace vSharpStudio.vm.ViewModels
             }
             throw new NotImplementedException();
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
 
-        public ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
+        new public ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
         partial void OnCreated()
         {
             this.IsEditable = false;
@@ -274,7 +270,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            Property node = null;
+            Property node = null!;
             if (node_impl == null)
             {
                 node = new Property(this);

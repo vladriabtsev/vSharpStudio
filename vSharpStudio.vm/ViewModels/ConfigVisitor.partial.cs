@@ -15,9 +15,9 @@ namespace vSharpStudio.vm.ViewModels
 
         }
 
-        private ILogger _logger = null;
+        private ILogger? _logger = null;
 
-        public ConfigVisitor(CancellationToken cancellationToken, ILogger logger = null)
+        public ConfigVisitor(CancellationToken cancellationToken, ILogger? logger = null)
         {
             this._cancellationToken = cancellationToken;
             this._logger = logger;

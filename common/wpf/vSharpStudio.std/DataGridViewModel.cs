@@ -9,11 +9,11 @@ namespace ViewModelBase
     public class DataGridViewModel<T> : VmBindable
       where T : VmBindable
     {
-        ItemCollection t2;
-        System.Windows.Data.BindingListCollectionView t3;
-        System.Windows.Data.ListCollectionView t1;
-        System.Windows.Data.CollectionView t4;
-        System.ComponentModel.IBindingList t5;
+        //ItemCollection t2;
+        //System.Windows.Data.BindingListCollectionView t3;
+        //System.Windows.Data.ListCollectionView t1;
+        //System.Windows.Data.CollectionView t4;
+        //System.ComponentModel.IBindingList t5;
         //public DataGridSelectionUnit SelectionUnit
         //{
         //    get { return _SelectionUnit; }

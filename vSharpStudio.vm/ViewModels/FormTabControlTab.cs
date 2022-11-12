@@ -16,25 +16,17 @@ namespace vSharpStudio.vm.ViewModels
     public partial class FormTabControlTab : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public FormTabControl? ParentFormTabControl { get { Debug.Assert(this.Parent != null); return this.Parent as FormTabControl; } }
+        public FormTabControl ParentFormTabControl { get { Debug.Assert(this.Parent != null); return (FormTabControl)this.Parent; } }
         [BrowsableAttribute(false)]
-        public IFormTabControl? ParentFormTabControlI { get { Debug.Assert(this.Parent != null); return this.Parent as IFormTabControl; } }
+        public IFormTabControl ParentFormTabControlI { get { Debug.Assert(this.Parent != null); return (IFormTabControl)this.Parent; } }
 
         #region ITree
 
-        public override IEnumerable<ITreeConfigNodeSortable> GetListChildren()
+        public override IChildrenCollection GetListSiblings()
         {
-            return this.Children;
+            return this.ParentFormTabControl.Children;
         }
-        public override IEnumerable<ITreeConfigNodeSortable> GetListSiblings()
-        {
-            return ParentFormTabControl?.Children;
-        }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
-        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
+
         #region Tree operations
         #endregion Tree operations
 
@@ -47,8 +39,6 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = "TabControlTab";
             this._Description = "Tab Control Tab";
             this.IsIncludableInModels = true;
-
-            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -114,7 +104,7 @@ namespace vSharpStudio.vm.ViewModels
 
 
         [ExpandableObjectAttribute()]
-        public dynamic Setting { get; set; }
+        public dynamic? Setting { get; set; }
 
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

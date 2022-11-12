@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -18,67 +19,85 @@ using vSharpStudio.common;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace vSharpStudio.vm.ViewModels
 {
     public partial class Config : ITreeModel, IMigration, ICanGoLeft, IEditableNodeGroup
     {
+        public Config() : this((ITreeConfigNode?)null)
+        {
+        }
+        public Config(ConfigShortHistory history) : this((ITreeConfigNode?)null)
+        {
+        }
+        public Config(Proto.Config.proto_config pconfig) : this((ITreeConfigNode?)null)
+        {
+            Config.ConvertToVM(pconfig, this);
+        }
+        public Config(string configJson) : this((ITreeConfigNode?)null)
+        {
+            var pconfig = Proto.Config.proto_config.Parser.WithDiscardUnknownFields(true).ParseJson(configJson);
+            Config.ConvertToVM(pconfig, this);
+        }
+        public static Config Clone(ConfigShortHistory parent, IConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
+        {
+            var vm = Config.Clone(default(ITreeConfigNode)!, from, isDeep, isNewGuid);
+            return vm;
+        }
         // to use xxxIsChanging(x from, x to)
         public bool IsInitialized = false;
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
-            return new List<ITreeConfigNode>();
+            return new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
         }
         public override bool HasChildren()
         {
-            return this.Children.Count > 0;
+            return true;
         }
         #endregion ITree
 
-        public DictionaryExt<string, ITreeConfigNode> _DicNodes;
-        public IReadOnlyDictionary<string, ITreeConfigNode> DicNodes { get { return _DicNodes; } }
+        public DictionaryExt<string, ITreeConfigNode> _DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true, true,
+                (ki, v) => { }, (kr, v) => { }, () => { });
+        public IReadOnlyDictionary<string, ITreeConfigNode> DicNodes { get { return (IReadOnlyDictionary<string, ITreeConfigNode>)_DicNodes; } }
         // Only active Plugin generators (generator selected in AppProjectGenerator) Guid  AppProjectGenerator node
         public DictionaryExt<string, IvPluginGenerator> _DicActiveAppProjectGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
                         (ki, v) => { }, (kr, v) => { }, () => { });
-        public IReadOnlyDictionary<string, IvPluginGenerator> DicActiveAppProjectGenerators { get { return _DicActiveAppProjectGenerators; } }
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
-        protected IMigration _migration { get; set; }
-        public string ConnectionString { get; set; }
-        public string DebugTag;
+        public IReadOnlyDictionary<string, IvPluginGenerator> DicActiveAppProjectGenerators { get { return (IReadOnlyDictionary<string, IvPluginGenerator>)_DicActiveAppProjectGenerators; } }
+        protected IMigration? _migration { get; set; }
+        public string? ConnectionString { get; set; }
+        public string? DebugTag;
         partial void OnCreating()
         {
-            _logger.Trace();
-            this._DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true, true,
-                (ki, v) => { }, (kr, v) => { }, () => { });
+            _logger?.Trace();
         }
         [Browsable(false)]
         new public string IconName { get { return "icon3DScene"; } }
         //protected override string GetNodeIconName() { return "icon3DScene"; }
         partial void OnCreated()
         {
-            _logger.Trace();
+            _logger?.Trace();
             if (string.IsNullOrWhiteSpace(this._Name))
             {
                 this._Name = Defaults.ConfigName;
             }
-            _logger.Trace();
+            _logger?.Trace();
             Init();
         }
         protected override void OnInitFromDto()
         {
-            _logger.Trace();
+            _logger?.Trace();
             Init();
         }
         private void Init()
         {
             VmBindable.IsNotifyingStatic = false;
-            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.Children.Add(this.GroupConfigLinks);
             this.Children.Add(this.Model);
             this.Children.Add(this.GroupPlugins);
@@ -101,37 +120,9 @@ namespace vSharpStudio.vm.ViewModels
             //    this.OnRemoveChild();
             //};
         }
-        public Config()
-            : this(default(ITreeConfigNode))
-        {
-            this.OnCreating();
-        }
-        public Config(ConfigShortHistory history)
-            : this(default(ITreeConfigNode))
-        {
-            this.OnCreating();
-        }
-        public static Config Clone(ConfigShortHistory parent, IConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27
-        {
-            var vm = Config.Clone(default(ITreeConfigNode)!, from, isDeep, isNewGuid);
-            return vm;
-        }
-        public Config(Proto.Config.proto_config pconfig)
-            : this(default(ITreeConfigNode)!)
-        {
-            this.OnCreating();
-            Config.ConvertToVM(pconfig, this);
-        }
-        public Config(string configJson)
-            : this(default(ITreeConfigNode)!)
-        {
-            this.OnCreating();
-            var pconfig = Proto.Config.proto_config.Parser.WithDiscardUnknownFields(true).ParseJson(configJson);
-            Config.ConvertToVM(pconfig, this);
-        }
         public string ExportToJson()
         {
-            _logger.Trace();
+            _logger?.Trace();
             var pconfig = Config.ConvertToProto(this);
             var res = JsonFormatter.Default.Format(pconfig);
             return res;
@@ -139,7 +130,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Validation
 
-        private CancellationTokenSource cancellationSourceForValidatingFullConfig = null;
+        private CancellationTokenSource? cancellationSourceForValidatingFullConfig = null;
 
         public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
         {
@@ -159,7 +150,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger? logger = null)
         {
-            _logger.Trace();
+            _logger?.Trace();
             if (node == null)
             {
                 return;
@@ -199,41 +190,49 @@ namespace vSharpStudio.vm.ViewModels
 
         public bool IsDatabaseServiceOn()
         {
+            Debug.Assert(this._migration != null);
             return this._migration.IsDatabaseServiceOn();
         }
 
         public Task<bool> IsDatabaseServiceOnAsync(CancellationToken cancellationToken)
         {
+            Debug.Assert(this._migration != null);
             return this._migration.IsDatabaseServiceOnAsync(cancellationToken);
         }
 
         public bool IsDatabaseExists()
         {
+            Debug.Assert(this._migration != null);
             return this._migration.IsDatabaseExists();
         }
 
         public Task<bool> IsDatabaseExistsAsync(CancellationToken cancellationToken)
         {
+            Debug.Assert(this._migration != null);
             return this._migration.IsDatabaseExistsAsync(cancellationToken);
         }
 
         public void CreateDatabase()
         {
+            Debug.Assert(this._migration != null);
             this._migration.CreateDatabase();
         }
 
         public Task CreateDatabaseAsync(CancellationToken cancellationToken)
         {
+            Debug.Assert(this._migration != null);
             return this._migration.CreateDatabaseAsync(cancellationToken);
         }
 
         public void DropDatabase()
         {
+            Debug.Assert(this._migration != null);
             this._migration.DropDatabase();
         }
 
         public Task DropDatabaseAsync(CancellationToken cancellationToken)
         {
+            Debug.Assert(this._migration != null);
             return this._migration.DropDatabaseAsync(cancellationToken);
         }
 
@@ -245,9 +244,9 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITreeNode
 
         [BrowsableAttribute(false)]
-        public string CurrentCfgFolderPath { get; set; }
+        public string? CurrentCfgFolderPath { get; set; }
         [BrowsableAttribute(false)]
-        public ITreeConfigNode SelectedNode
+        public ITreeConfigNode? SelectedNode
         {
             get { return this._SelectedNode; }
             set
@@ -267,9 +266,9 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private ITreeConfigNode _SelectedNode;
-        public Action OnSelectedNodeChanged { get; set; }
-        public Action<ITreeConfigNode, ITreeConfigNode> OnSelectedNodeChanging { get; set; }
+        private ITreeConfigNode? _SelectedNode;
+        public Action? OnSelectedNodeChanged { get; set; }
+        public Action<ITreeConfigNode?, ITreeConfigNode?>? OnSelectedNodeChanging { get; set; }
 
         #region Connection string editor
 
@@ -288,15 +287,15 @@ namespace vSharpStudio.vm.ViewModels
         // private string _SelectedDbProvider;
 
         #endregion Connection string editor
-        public Dictionary<vPluginLayerTypeEnum, List<PluginRow>> DicPluginLists { get; set; }
-        public Dictionary<string, IvPlugin> DicPlugins { get; set; }
+        public Dictionary<vPluginLayerTypeEnum, List<PluginRow>>? DicPluginLists { get; set; }
+        public Dictionary<string, IvPlugin>? DicPlugins { get; set; }
         // by GroupGuid of generator
-        public Dictionary<string, IvPluginGenerator> DicGroupSettingGenerators { get; set; }
+        public Dictionary<string, IvPluginGenerator>? DicGroupSettingGenerators { get; set; }
         // by Guid of generator
-        public Dictionary<string, IvPluginGenerator> DicGenerators { get; set; }
+        public Dictionary<string, IvPluginGenerator>? DicGenerators { get; set; }
 
-        public IConfig PrevCurrentConfig { get; set; }
-        public IConfig PrevStableConfig { get; set; }
+        public IConfig? PrevCurrentConfig { get; set; }
+        public IConfig? PrevStableConfig { get; set; }
         public IReadOnlyList<IConfig> GetListConfigs()
         {
             var lst = new List<IConfig>();
@@ -321,9 +320,9 @@ namespace vSharpStudio.vm.ViewModels
         public void RefillDicGenerators()
         {
             //_logger.LogTrace("".StackInfo());
-            _logger.Trace();
+            _logger?.Trace();
             this._DicActiveAppProjectGenerators.Clear();
-            _logger.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
+            _logger?.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
             foreach (var t in this.GroupAppSolutions.ListAppSolutions)
             {
                 foreach (var tt in t.ListAppProjects)
@@ -346,7 +345,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
             }
-            _logger.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
+            _logger?.LogTrace("{DicAppGenerators}", this.DicActiveAppProjectGenerators);
         }
         public void PluginSettingsToModel()
         {
@@ -382,7 +381,7 @@ namespace vSharpStudio.vm.ViewModels
                 return sb.ToString();
             }
         }
-        private void IsHasMarkedPath2(StringBuilder sb, IEnumerable<ITreeConfigNode> children)
+        private void IsHasMarkedPath2(StringBuilder sb, IChildrenCollection children)
         {
             foreach (var t in children)
             {
@@ -400,7 +399,8 @@ namespace vSharpStudio.vm.ViewModels
                             sb.Append(tt.IsChanged);
                         }
                         sb.AppendLine();
-                        IsHasMarkedPath2(sb, t.GetListChildren());
+                        var tr = (ITree)t;
+                        IsHasMarkedPath2(sb, tr.GetListChildren());
                         break;
                     }
                 }
@@ -419,7 +419,7 @@ namespace vSharpStudio.vm.ViewModels
                 return sb.ToString();
             }
         }
-        private void IsHasChangedPath2(StringBuilder sb, IEnumerable<ITreeConfigNode> children)
+        private void IsHasChangedPath2(StringBuilder sb, IChildrenCollection children)
         {
             foreach (var t in children)
             {
@@ -431,13 +431,14 @@ namespace vSharpStudio.vm.ViewModels
                         sb.Append(t.GetType().Name);
                         sb.Append(" IsHasChanged=");
                         sb.Append(p.IsHasChanged);
-                        if (t is IEditableNode)
+                        if (t is IEditableNode tt)
                         {
                             sb.Append(" IsChanged=");
-                            sb.Append(t.IsChanged);
+                            sb.Append(tt.IsChanged);
                         }
                         sb.AppendLine();
-                        IsHasChangedPath2(sb, t.GetListChildren());
+                        var tr = (ITree)t;
+                        IsHasChangedPath2(sb, tr.GetListChildren());
                         break;
                     }
                 }
@@ -451,6 +452,12 @@ namespace vSharpStudio.vm.ViewModels
 #if DEBUG
         public void DicDiffDebug(Config anotherCfg)
         {
+            Debug.Assert(this.DicGenerators != null);
+            Debug.Assert(anotherCfg.DicGenerators != null);
+            Debug.Assert(this.DicPlugins != null);
+            Debug.Assert(anotherCfg.DicPlugins != null);
+            Debug.Assert(this.DicPluginLists != null);
+            Debug.Assert(anotherCfg.DicPluginLists != null);
             var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(this._DicActiveAppProjectGenerators, anotherCfg._DicActiveAppProjectGenerators);
             Debug.Assert(0 == diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
             Debug.Assert(0 == diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);

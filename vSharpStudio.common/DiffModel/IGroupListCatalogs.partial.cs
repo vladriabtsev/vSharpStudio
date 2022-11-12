@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupListCatalogs : ITreeConfigNode, IGetNodeSetting
+    public partial interface IGroupListCatalogs : ITreeConfigNodeSortable, IGetNodeSetting
     {
         IModel ParentModelI { get; }
         int IndexOf(ICatalog cat);

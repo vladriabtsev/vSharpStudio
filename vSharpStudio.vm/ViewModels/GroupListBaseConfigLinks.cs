@@ -21,21 +21,17 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public IConfig ParentConfigI { get { Debug.Assert(this.Parent != null); return (IConfig)this.Parent; } }
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentConfig.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
 
-        public ConfigNodesCollection<BaseConfigLink> Children { get { return this.ListBaseConfigLinks; } }
+        new public ConfigNodesCollection<BaseConfigLink> Children { get { return this.ListBaseConfigLinks; } }
 
         // [BrowsableAttribute(false)]
         // public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }

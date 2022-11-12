@@ -13,32 +13,28 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
-    public partial class FormGridSystem : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
+    public partial class FormGridSystem : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, ITree
     {
         [BrowsableAttribute(false)]
-        public Form ParentForm { get { return (Form)this.Parent; } }
+        public Form? ParentForm { get { Debug.Assert(this.Parent != null); return this.Parent as Form; } }
         [BrowsableAttribute(false)]
-        public IForm ParentFormI { get { return (IForm)this.Parent; } }
+        public IForm? ParentFormI { get { Debug.Assert(this.Parent != null); return this.Parent as IForm; } }
         [BrowsableAttribute(false)]
-        public FormAutoLayoutBlock ParentFormAutoLayoutBlock { get { return (FormAutoLayoutBlock)this.Parent; } }
+        public FormAutoLayoutBlock? ParentFormAutoLayoutBlock { get { Debug.Assert(this.Parent != null); return this.Parent as FormAutoLayoutBlock; } }
         [BrowsableAttribute(false)]
-        public IFormAutoLayoutBlock ParentFormAutoLayoutBlockI { get { return (IFormAutoLayoutBlock)this.Parent; } }
+        public IFormAutoLayoutBlock? ParentFormAutoLayoutBlockI { get { Debug.Assert(this.Parent != null); return this.Parent as IFormAutoLayoutBlock; } }
 
         #region ITree
 
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentForm.Children;
+            Debug.Assert(this.Parent != null);
+            return this.Parent.GetListChildren();
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
-        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
         #region Tree operations
         #endregion Tree operations
 
@@ -51,8 +47,6 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = "Grid";
             this._Description = "Grid System";
             this.IsIncludableInModels = true;
-
-            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -110,7 +104,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListRows.AddRange(listRows);
         }
         [ExpandableObjectAttribute()]
-        public dynamic Setting { get; set; }
+        public dynamic? Setting { get; set; }
 
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

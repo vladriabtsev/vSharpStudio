@@ -12,14 +12,19 @@ namespace vPlugin.Sample
     public class GeneratorDbSchema : IvPluginDbGenerator
     {
         public IvPluginGenerator CreateNew(IAppProjectGenerator appProjectGenerator) { return new GeneratorDbSchema(appProjectGenerator); }
-        public GeneratorDbSchema(ITreeConfigNode parent) : this() { this.Parent = parent; }
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public GeneratorDbSchema()
         {
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
             this.DicPathTypes = new Dictionary<string, List<string>>();
+        }
+        public GeneratorDbSchema(ITreeConfigNode parent) : this()
+        {
+            this.Parent = parent;
         }
         public ILoggerFactory LoggerFactory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool IsStableDbConnection { get; set; }
-        public string ProviderName { get; set; }
+        public string ProviderName { get; set; } = String.Empty;
         public string Guid => "08744482-BE03-464B-81AB-DD482AB66103";
         public string GroupGeneratorsGuid => SamplePlugin.GroupDbGuidStatic;
         public string Name => "AbstractDbSchema";
@@ -36,7 +41,7 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public IvPluginGeneratorSettings GetConnectionStringMvvm(IAppProjectGenerator parent, string connectionString)
+        public IvPluginGeneratorSettings? GetConnectionStringMvvm(IAppProjectGenerator parent, string connectionString)
         {
             var res = new DbConnectionStringSettings(parent, connectionString);
             return res;
@@ -49,7 +54,7 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string settings)
+        public IvPluginGeneratorSettings? GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string? settings)
         {
             var vm = new GeneratorDbSchemaSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
@@ -60,7 +65,7 @@ namespace vPlugin.Sample
             vm.Parent = parent;
             return vm;
         }
-        public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string settings)
+        public IvPluginGeneratorNodeSettings? GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings)
         {
             if (parent is IModel || parent is ICatalog)
             {
@@ -93,7 +98,7 @@ namespace vPlugin.Sample
 
         public string PKeyStoreTypeStr => throw new NotImplementedException();
 
-        public IvPluginGeneratorSettings GetNodeGenerationSettingsVmFromJson(string fullTypeName, string settings)
+        public IvPluginGeneratorSettings? GetNodeGenerationSettingsVmFromJson(string fullTypeName, string settings)
         {
             return null;
         }
@@ -101,7 +106,7 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public string UpdateToModel(string connectionString, IConfig config, IAppSolution sln, IAppProject prj, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool> onNeedDbCreate = null)
+        public string UpdateToModel(string connectionString, IConfig config, IAppSolution sln, IAppProject prj, string guidAppPrjGen, EnumDbUpdateLevels dbUpdateLevels, bool isGenerateUpdateScript, Func<bool>? onNeedDbCreate = null)
         {
             throw new NotImplementedException();
         }
@@ -125,7 +130,7 @@ namespace vPlugin.Sample
         {
             return new List<ValidationPluginMessage>();
         }
-        public IvPluginGroupSettings GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string settings)
+        public IvPluginGroupSettings? GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string? settings)
         {
             var res = new PluginsGroupSolutionSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
@@ -136,7 +141,7 @@ namespace vPlugin.Sample
             res.Parent = parent;
             return res;
         }
-        public IvPluginGroupSettings GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string settings)
+        public IvPluginGroupSettings? GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string? settings)
         {
             var res = new PluginsGroupProjectSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))

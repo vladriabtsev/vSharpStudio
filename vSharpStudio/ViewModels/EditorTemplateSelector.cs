@@ -12,13 +12,13 @@ namespace vSharpStudio.ViewModels
     // https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.contentcontrol.contenttemplateselector?view=netframework-4.8
     public class EditorTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate DefaultTemplate { get; set; }
+        public DataTemplate? DefaultTemplate { get; set; }
 
-        public DataTemplate HighlightTemplate { get; set; }
+        public DataTemplate? HighlightTemplate { get; set; }
 
-        public string PropertyToEvaluate { get; set; }
+        public string? PropertyToEvaluate { get; set; }
 
-        public string PropertyValueToHighlight { get; set; }
+        public string? PropertyValueToHighlight { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {

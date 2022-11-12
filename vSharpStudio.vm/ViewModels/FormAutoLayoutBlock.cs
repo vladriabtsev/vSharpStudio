@@ -16,29 +16,25 @@ namespace vSharpStudio.vm.ViewModels
     public partial class FormAutoLayoutBlock : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
-        public Form? ParentForm { get { return this.Parent as Form; } }
+        public Form? ParentForm { get { Debug.Assert(this.Parent != null); return this.Parent as Form; } }
         [BrowsableAttribute(false)]
-        public IForm? ParentFormI { get { return this.Parent as IForm; } }
+        public IForm? ParentFormI { get { Debug.Assert(this.Parent != null); return this.Parent as IForm; } }
         [BrowsableAttribute(false)]
-        public FormAutoLayoutBlock? ParentFormAutoLayoutBlock { get { return this.Parent as FormAutoLayoutBlock; } }
+        public FormAutoLayoutBlock? ParentFormAutoLayoutBlock { get { Debug.Assert(this.Parent != null); return this.Parent as FormAutoLayoutBlock; } }
         [BrowsableAttribute(false)]
-        public IFormAutoLayoutBlock? ParentFormAutoLayoutBlockI { get { return this.Parent as IFormAutoLayoutBlock; } }
+        public IFormAutoLayoutBlock? ParentFormAutoLayoutBlockI { get { Debug.Assert(this.Parent != null); return this.Parent as IFormAutoLayoutBlock; } }
         [BrowsableAttribute(false)]
-        public FormTabControlTab? ParentFormTabControlTab { get { return this.Parent as FormTabControlTab; } }
+        public FormTabControlTab? ParentFormTabControlTab { get { Debug.Assert(this.Parent != null); return this.Parent as FormTabControlTab; } }
         [BrowsableAttribute(false)]
-        public IFormTabControlTab? ParentFormTabControlTabI { get { return this.Parent as IFormTabControlTab; } }
+        public IFormTabControlTab? ParentFormTabControlTabI { get { Debug.Assert(this.Parent != null); return this.Parent as IFormTabControlTab; } }
         [BrowsableAttribute(false)]
-        public FormGridSystemColumn? ParentFormGridSystemColumn { get { return this.Parent as FormGridSystemColumn; } }
+        public FormGridSystemColumn? ParentFormGridSystemColumn { get { Debug.Assert(this.Parent != null); return this.Parent as FormGridSystemColumn; } }
         [BrowsableAttribute(false)]
-        public IFormGridSystemColumn? ParentFormGridSystemColumnI { get { return this.Parent as IFormGridSystemColumn; } }
+        public IFormGridSystemColumn? ParentFormGridSystemColumnI { get { Debug.Assert(this.Parent != null); return this.Parent as IFormGridSystemColumn; } }
 
         #region ITree
 
-        public override IEnumerable<ITreeConfigNodeSortable> GetListChildren()
-        {
-            return this.Children;
-        }
-        public override IEnumerable<ITreeConfigNodeSortable> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             if (this.ParentFormAutoLayoutBlock != null)
                 return this.ParentFormAutoLayoutBlock.Children;
@@ -48,11 +44,6 @@ namespace vSharpStudio.vm.ViewModels
                 return this.ParentFormGridSystemColumn.Children;
             throw new NotImplementedException();
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
-        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
         #region Tree operations
         #endregion Tree operations
 
@@ -65,8 +56,6 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = "AutoLayoutBlock";
             this._Description = "Auto Layout Block";
             this.IsIncludableInModels = true;
-
-            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -126,7 +115,7 @@ namespace vSharpStudio.vm.ViewModels
 
 
         [ExpandableObjectAttribute()]
-        public dynamic Setting { get; set; }
+        public dynamic? Setting { get; set; }
 
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

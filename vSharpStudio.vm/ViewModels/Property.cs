@@ -26,14 +26,14 @@ namespace vSharpStudio.vm.ViewModels
         // Can be used by a generator to keep calculated property data
         public object? Tag { get; set; }
         [Browsable(false)]
-        public static IConfig Config { get; set; }
+        public static IConfig? Config { get; set; }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
-            return new List<ITreeConfigNode>();
+            return new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListProperties.Children;
         }
@@ -43,13 +43,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         public static readonly string DefaultName = "Property";
         [Browsable(false)]
         new public string IconName { get { return "iconProperty"; } }
         //protected override string GetNodeIconName() { return "iconProperty"; }
         [Browsable(false)]
-        public string ComplexObjectName { get; set; }
+        public string? ComplexObjectName { get; set; }
         public string ComplexObjectNameWithDot() { if (!string.IsNullOrEmpty(this.ComplexObjectName)) return $"{this.ComplexObjectName}."; return ""; }
         partial void OnCreated()
         {
@@ -200,6 +199,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
+            Debug.Assert(this.Parent != null);
             var node = Property.Clone(this.Parent, this, true, true);
             this.ParentGroupListProperties.Add(node);
             this._Name = this._Name + "2";
@@ -455,9 +455,9 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Editing logic
 
         [BrowsableAttribute(false)]
-        public PropertyRangeValuesRequirements RangeValuesRequirements { get; set; }
+        public PropertyRangeValuesRequirements? RangeValuesRequirements { get; set; }
         [BrowsableAttribute(false)]
-        public IPropertyRangeValuesRequirements RangeValuesRequirementsI { get { return RangeValuesRequirements; } }
+        public IPropertyRangeValuesRequirements? RangeValuesRequirementsI { get { return RangeValuesRequirements; } }
         [BrowsableAttribute(false)]
         public string PropValueValue
         {

@@ -8,15 +8,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using Proto.Renamer;
 using vSharpStudio.common.DiffModel;
+using System.Diagnostics;
 
 namespace Renamer
 {
     public class CodeAnalysisVisualBasic
     {
-        public async static Task Rename(Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public async static Task RenameAsync(Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
-            var root0 = await document.GetSyntaxRootAsync();
-            var root = (CompilationUnitSyntax)root0;
+            var syntaxNode = await document.GetSyntaxRootAsync();
+            Debug.Assert(syntaxNode != null);
+            var root = (CompilationUnitSyntax)syntaxNode;
             var diag = root.GetDiagnostics().ToList();
             if (diag.Count > 0)
             {

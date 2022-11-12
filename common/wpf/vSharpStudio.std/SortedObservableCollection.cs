@@ -6,6 +6,7 @@ using System.Text;
 using ViewModelBase;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Collections;
 
 namespace ViewModelBase
 {
@@ -28,6 +29,20 @@ namespace ViewModelBase
         object MoveDown(object current);
         object GetPrev(object current);
         object GetNext(object current);
+    }
+    public interface IObservableCollectionWithActions<T>
+    {
+        void Clear();
+        void Add(T item);
+        bool Remove(T item);
+        void RemoveAt(int indx);
+        void AddRange(IEnumerable<T> collection);
+        Action OnClearingAction { get; set; }
+        Action OnClearedAction { get; set; }
+        Action<T> OnRemovedAction { get; set; }
+        Action<T> OnAddedAction { get; set; }
+        Action<T> OnRemovingAction { get; set; }
+        Action<T> OnAddingAction { get; set; }
     }
     public class ObservableCollectionWithActions<T> : ObservableCollection<T>
     {
@@ -103,7 +118,11 @@ namespace ViewModelBase
         public Action<T> OnRemovingAction { get; set; }
         public Action<T> OnAddingAction { get; set; }
     }
-    public class SortedObservableCollection<T> : ObservableCollectionWithActions<T>, IMoveUpDown
+    public interface ISortedObservableCollection<T> : IObservableCollectionWithActions<T>, IMoveUpDown
+    {
+
+    }
+    public class SortedObservableCollection<T> : ObservableCollectionWithActions<T>, ISortedObservableCollection<T>
       where T : ISortingValue //, IComparable<T> //IEquatable<T>
     {
         private object _lock = new object();

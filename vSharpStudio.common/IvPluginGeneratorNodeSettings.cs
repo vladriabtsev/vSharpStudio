@@ -27,6 +27,6 @@ namespace vSharpStudio.common
         string SettingsAsJson { get; }
         string SettingsAsJsonDefault { get; }
         //string[] GetListPropertiesToHideOnNodeSettings(ITreeConfigNode modelNode);
-        Dictionary<string, string> DicNodeExcludedProperties { get; }
+        Dictionary<string, string?>? DicNodeExcludedProperties { get; }
     }
 }

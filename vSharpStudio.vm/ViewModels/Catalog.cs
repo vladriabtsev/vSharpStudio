@@ -16,7 +16,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        IDbTable, ITreeConfigNode, INodeWithProperties, IViewList
+        IDbTable, INodeWithProperties, IViewList, ITreeConfigNodeSortable
     {
         [BrowsableAttribute(false)]
         public GroupListCatalogs ParentGroupListCatalogs { get { Debug.Assert(this.Parent != null); return (GroupListCatalogs)this.Parent; } }
@@ -24,21 +24,16 @@ namespace vSharpStudio.vm.ViewModels
         public IGroupListCatalogs ParentGroupListCatalogsI { get { Debug.Assert(this.Parent != null); return (IGroupListCatalogs)this.Parent; } }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListCatalogs.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
 
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconCatalogProperty"; } }
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
@@ -47,7 +42,6 @@ namespace vSharpStudio.vm.ViewModels
             //this.ListGuidViewProperties = new ObservableCollectionWithActions<string>();
             //this.ListGuidViewFolderProperties = new ObservableCollectionWithActions<string>();
             this.IsIncludableInModels = true;
-            this.Children = new ObservableCollection<ITreeConfigNode>();
 #if DEBUG
             // SubNodes.Add(this.GroupConstants, 1);
 #endif
@@ -269,7 +263,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
 
         [ExpandableObjectAttribute()]
-        public dynamic Setting { get; set; }
+        public dynamic? Setting { get; set; }
 
         [PropertyOrder(100)]
         [ReadOnly(true)]

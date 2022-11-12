@@ -19,22 +19,16 @@ namespace vSharpStudio.vm.ViewModels
         public IGroupListDocuments ParentGroupListDocumentsI { get { Debug.Assert(this.Parent != null); return (IGroupListDocuments)this.Parent; } }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListDocuments.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
 
-        [BrowsableAttribute(false)]
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconDiagnosticesFile"; } }
         //protected override string GetNodeIconName() { return "iconDiagnosticesFile"; }
@@ -55,7 +49,6 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             VmBindable.IsNotifyingStatic = false;
-            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.Children.Add(this.GroupProperties);
             this.Children.Add(this.GroupDetails);
             this.Children.Add(this.GroupForms);
@@ -147,7 +140,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Document.Clone(this.Parent, this, true, true);
+            var node = Document.Clone(this.ParentGroupListDocuments, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListDocuments.Add(node);
             this.Name = this.Name + "2";
@@ -157,7 +150,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Document(this.Parent);
+            var node = new Document(this.ParentGroupListDocuments);
             this.ParentGroupListDocuments.Add(node);
             this.GetUniqueName(Defaults.DocumentName, node, this.ParentGroupListDocuments.ListDocuments);
             this.SetSelected(node);
@@ -227,7 +220,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
-            var grd = (GroupDocuments)this.Parent.Parent;
+            var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
             //var cfg = this.GetConfig();
             //var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             //res.Add(prp);
@@ -326,7 +319,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
-            var grd = (GroupDocuments)this.Parent.Parent;
+            var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
             foreach (var t in grd.GroupSharedProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))

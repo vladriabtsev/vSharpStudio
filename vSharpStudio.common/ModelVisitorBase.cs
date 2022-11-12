@@ -166,10 +166,10 @@ namespace vSharpStudio.common
             this.EndVisit(parent);
         }
 
-        protected IConfig currCfg;
+        protected IConfig? currCfg;
         protected IAppSolution? currSln = null;
         protected IAppProject? currPrj = null;
-        protected IModel currModel;
+        protected IModel? currModel;
         protected IEnumeration? currEnum = null;
         protected IForm? currForm = null;
         protected IReport? currRep = null;

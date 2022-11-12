@@ -22,21 +22,17 @@ namespace vSharpStudio.vm.ViewModels
         public IGroupListEnumerations ParentGroupListEnumerationsI { get { Debug.Assert(this.Parent != null); return (IGroupListEnumerations)this.Parent; } }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListEnumerations.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
 
-        public ConfigNodesCollection<EnumerationPair> Children { get { return this.ListEnumerationPairs; } }
+        new public ConfigNodesCollection<EnumerationPair> Children { get { return this.ListEnumerationPairs; } }
 
         [Browsable(false)]
         new public string IconName { get { return "iconEnumerator"; } }
@@ -221,7 +217,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = Enumeration.Clone(this.Parent, this, true, true);
+            var node = Enumeration.Clone(this.ParentGroupListEnumerations, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListEnumerations.Add(node);
             this.Name = this.Name + "2";
@@ -231,7 +227,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new Enumeration(this.Parent);
+            var node = new Enumeration(this.ParentGroupListEnumerations);
             this.ParentGroupListEnumerations.Add(node);
             this.GetUniqueName(Defaults.EnumerationName, node, this.ParentGroupListEnumerations.ListEnumerations);
             this.SetSelected(node);

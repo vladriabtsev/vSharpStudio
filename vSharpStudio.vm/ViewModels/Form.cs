@@ -22,21 +22,15 @@ namespace vSharpStudio.vm.ViewModels
         public IGroupListForms ParentGroupListFormsI { get { Debug.Assert(this.Parent != null); return (IGroupListForms)this.Parent; } }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListForms.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
-
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconWindowsForm"; } }
@@ -55,7 +49,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this.Children = new ObservableCollection<ITreeConfigNode>();
             //this.ListRoles.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -165,6 +158,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddClone()
         {
+            Debug.Assert(this.Parent != null);
             var node = Form.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListForms.Add(node);
@@ -175,6 +169,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
+            Debug.Assert(this.Parent != null);
             var node = new Form(this.Parent);
             this.ParentGroupListForms.Add(node);
             this.GetUniqueName(Defaults.FormName, node, this.ParentGroupListForms.ListForms);
@@ -219,6 +214,7 @@ namespace vSharpStudio.vm.ViewModels
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
+            Debug.Assert(this.Parent != null);
             if (this.Parent.Parent is ICatalog)
             {
                 var c = (Catalog)this.Parent.Parent;
@@ -324,7 +320,7 @@ namespace vSharpStudio.vm.ViewModels
                 return listViewFolderNotSpecialProperties;
             }
         }
-        private SortedObservableCollection<IProperty> listViewFolderNotSpecialProperties;
+        private SortedObservableCollection<IProperty>? listViewFolderNotSpecialProperties;
         [BrowsableAttribute(false)]
         public ObservableCollection<IProperty> ListAllFolderNotSpecialProperties
         {
@@ -361,9 +357,10 @@ namespace vSharpStudio.vm.ViewModels
                 return listAllFolderNotSpecialProperties;
             }
         }
-        private ObservableCollection<IProperty> listAllFolderNotSpecialProperties = null;
+        private ObservableCollection<IProperty>? listAllFolderNotSpecialProperties = null;
         private void ResFolder_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            Debug.Assert(this.listViewFolderNotSpecialProperties != null);
             this.ListGuidViewFolderProperties.Clear();
             foreach (var t in this.listViewFolderNotSpecialProperties)
             {
@@ -428,9 +425,10 @@ namespace vSharpStudio.vm.ViewModels
                 return listViewNotSpecialProperties;
             }
         }
-        private SortedObservableCollection<IProperty> listViewNotSpecialProperties;
+        private SortedObservableCollection<IProperty>? listViewNotSpecialProperties;
         private void Res_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            Debug.Assert(this.listViewFolderNotSpecialProperties != null);
             this.ListGuidViewProperties.Clear();
             foreach (var t in this.listViewNotSpecialProperties)
             {

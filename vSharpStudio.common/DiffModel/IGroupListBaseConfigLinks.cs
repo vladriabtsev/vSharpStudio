@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupListBaseConfigLinks : ITreeConfigNode
+    public partial interface IGroupListBaseConfigLinks : ITreeConfigNodeSortable
     {
         IConfig ParentConfigI { get; }
     }

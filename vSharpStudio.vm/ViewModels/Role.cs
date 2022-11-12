@@ -20,21 +20,15 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "Role";
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListRoles.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
-
-        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconWindowsForm"; } }
@@ -50,7 +44,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{
             //    t.IsNew = true;
@@ -136,6 +129,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
+            Debug.Assert(this.Parent != null);
             var node = Role.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListRoles.Add(node);

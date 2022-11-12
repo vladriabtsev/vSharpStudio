@@ -153,6 +153,7 @@ public override <#= message.Name.ToNameCs() #> Backup()
     bool isDeep = true;
     this.OnBackupObjectStarting(ref isDeep);
 <# if (this.Doc.IsWithParent) { #>
+    Debug.Assert(this is IConfig || this.Parent != null);
     return <#= message.Name.ToNameCs() #>.Clone(this.Parent, this); // <#=Helper.FilePos() #>
 <# } else { #>
     return <#= message.Name.ToNameCs() #>.Clone(<# if (message.IsDefaultBase()) { #>null, <# } #>this); // <#=Helper.FilePos() #>

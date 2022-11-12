@@ -20,28 +20,21 @@ namespace vSharpStudio.vm.ViewModels
         public static readonly string DefaultName = "MainViewForm";
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListMainViewForms.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
-
-        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
 
         [Browsable(false)]
         new public string IconName { get { return "iconWindowsForm"; } }
         //protected override string GetNodeIconName() { return "iconWindowsForm"; }
         partial void OnCreated()
         {
-            this.Children = new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
             this.IsIncludableInModels = true;
             //    Init();
         }
@@ -134,6 +127,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
+            Debug.Assert(this.Parent != null);
             var node = MainViewForm.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListMainViewForms.Add(node);

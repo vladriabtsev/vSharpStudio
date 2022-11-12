@@ -23,6 +23,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -149,6 +150,7 @@ namespace ViewModelBase
         //}
         protected void InvokeOnUIThread(Action action)
         {
+            Debug.Assert(Dispatcher != null);
             if (Dispatcher.CheckAccess())
                 action();
             else
@@ -280,6 +282,19 @@ namespace ViewModelBase
                 return true;
             }
         }
+        //protected bool SetProperty<T>(ref T? storage, T? value, [CallerMemberName] String? propertyName = null)
+        //{
+        //    if (System.Collections.Generic.EqualityComparer<T>.Default.Equals(storage, value))
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        storage = value;
+        //        this.NotifyPropertyChanged(propertyName);
+        //        return true;
+        //    }
+        //}
 
         /// <summary>
         /// Notifies listeners that a property value has changed.
@@ -411,6 +426,8 @@ namespace ViewModelBase
                 var toType = dp.PropertyType;
                 object from = p.GetValue(this, null);
                 var fromType = p.PropertyType;
+                Debug.Assert(from != null);
+                Debug.Assert(to != null);
                 switch (fromType.Name)
                 {
                     case "String":

@@ -20,22 +20,16 @@ namespace vSharpStudio.vm.ViewModels
         public IGroupListDetails ParentGroupListDetailsI { get { Debug.Assert(this.Parent != null); return (IGroupListDetails)this.Parent; } }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListDetails.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         #endregion ITree
 
-        [BrowsableAttribute(false)]
-        public ObservableCollection<ITreeConfigNode> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
@@ -65,7 +59,6 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             VmBindable.IsNotifyingStatic = false;
-            this.Children = new ObservableCollection<ITreeConfigNode>();
             this.Children.Add(this.GroupProperties);
             this.Children.Add(this.GroupDetails);
             VmBindable.IsNotifyingStatic = true;
@@ -149,6 +142,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
+            Debug.Assert(this.Parent != null);
             var node = Detail.Clone(this.Parent, this, true, true);
             this.ParentGroupListDetails.Add(node);
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
@@ -160,6 +154,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
+            Debug.Assert(this.Parent != null);
             var node = new Detail(this.Parent);
             this.ParentGroupListDetails.Add(node);
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);

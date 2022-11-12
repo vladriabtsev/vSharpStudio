@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupListForms : ITreeConfigNode, IGetNodeSetting
+    public partial interface IGroupListForms : ITreeConfigNodeSortable, IGetNodeSetting
     {
         IForm AddCatalogForm(FormType formType);
     }

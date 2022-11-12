@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupListReports : ITreeConfigNode
+    public partial interface IGroupListReports : ITreeConfigNodeSortable
     {
     }
 }

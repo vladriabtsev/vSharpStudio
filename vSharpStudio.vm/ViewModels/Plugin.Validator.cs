@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using FluentValidation;
 
@@ -14,6 +15,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Guid).Custom((guid, cntx) =>
             {
                 var pg = (Plugin)cntx.InstanceToValidate;
+                Debug.Assert(pg.Parent != null); 
                 GroupListPlugins lst = (GroupListPlugins)pg.Parent;
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Not unique Plugin Guid. Plugins: ");

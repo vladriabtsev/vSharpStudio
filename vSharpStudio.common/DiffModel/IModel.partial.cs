@@ -11,7 +11,7 @@ namespace vSharpStudio.common
     {
         IConfig ParentConfigI { get; }
         string PKeyTypeStr { get; }
-        IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings> DicGenNodeSettings { get; }
+        IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings?> DicGenNodeSettings { get; }
         // numerical
         IDataType GetDataTypeFromMaxValue(ITreeConfigNode parent, System.Numerics.BigInteger maxValue, bool isPositive, bool isPKey = false);
         // Any

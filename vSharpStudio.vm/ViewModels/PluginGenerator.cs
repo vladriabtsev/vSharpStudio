@@ -30,7 +30,6 @@ namespace vSharpStudio.vm.ViewModels
             this.Generator.Parent = this;
             this.IsEditable = false;
         }
-        public ConfigNodesCollection<ITreeConfigNodeSortable> Children { get; private set; }
         [Browsable(false)]
         new public string IconName { get { return "iconFolder"; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
@@ -62,7 +61,7 @@ namespace vSharpStudio.vm.ViewModels
         //}
 
         [BrowsableAttribute(false)]
-        public IvPluginGenerator Generator { get; private set; }
+        public IvPluginGenerator? Generator { get; private set; }
 
         public void SetGenerator(IvPluginGenerator generator)
         {
@@ -98,7 +97,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<string>();
             lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }
     }

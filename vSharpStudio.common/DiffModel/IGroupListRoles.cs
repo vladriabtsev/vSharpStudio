@@ -4,7 +4,7 @@ using System.Text;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupListRoles : ITreeConfigNode
+    public partial interface IGroupListRoles : ITreeConfigNodeSortable
     {
         IGroupListCommon ParentGroupListCommonI { get; }
     }

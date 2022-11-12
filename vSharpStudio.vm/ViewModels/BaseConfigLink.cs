@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
@@ -20,11 +21,11 @@ namespace vSharpStudio.vm.ViewModels
         public IGroupListBaseConfigLinks ParentGroupListBaseConfigLinksI { get { Debug.Assert(this.Parent != null); return (IGroupListBaseConfigLinks)this.Parent; } }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
-            return new List<ITreeConfigNode>();
+            return new ConfigNodesCollection<ITreeConfigNodeSortable>(this);
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupListBaseConfigLinks.Children;
         }

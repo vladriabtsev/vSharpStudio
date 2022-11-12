@@ -60,19 +60,11 @@ namespace ViewModelBase
         }
         public vCommand(Action<object> execute, Predicate<object> canExecute)
         {
-            if (execute == null)
-            {
-                throw new ArgumentNullException("execute");
-            }
             _execute = execute;
             _canExecute = canExecute;
         }
         public vCommand(Func<object, Task> executeAsync, Predicate<object> canExecute)
         {
-            if (executeAsync == null)
-            {
-                throw new ArgumentNullException("execute");
-            }
             _executeAsync = executeAsync;
             _canExecute = canExecute;
         }
@@ -145,7 +137,7 @@ namespace ViewModelBase
         private event EventHandler CanExecuteChangedInternal;
         public void RaiseCanExecuteChanged()
         {
-            if (this.Dispatcher != null) // to exclude errors in Design mode
+            if (this.Dispatcher != null && this.CanExecuteChangedInternal != null) // to exclude errors in Design mode
                 CanExecuteChangedInternal.Raise(this);
         }
     }

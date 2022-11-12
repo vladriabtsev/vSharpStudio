@@ -9,18 +9,22 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public class ConfigNodesCollection<T> : SortedObservableCollection<T>, System.Collections.IList
+    public class ConfigNodesCollection<T> : SortedObservableCollection<T>, IChildrenCollection
       where T : ITreeConfigNode, ISortingValue
     {
         private Config cfg;
-        private ITreeConfigNode parent;
+        private ITreeConfigNode? parent;
         private bool isUseDicNodes = false;
 
-        public ConfigNodesCollection(ITreeConfigNode parent)
+        public ConfigNodesCollection(ITreeConfigNode? parent)
         {
             this.isUseDicNodes = !(typeof(T).Name == typeof(PluginGeneratorNodeSettings).Name);
             this.parent = parent;
-            this.cfg = (Config)this.parent.GetConfig();
+            if (this.parent == null)
+            {
+            }
+            else
+                this.cfg = (Config)this.parent.GetConfig();
         }
         public new void AddRange(IEnumerable<T> collection, ulong sortingWeight = 0)
         {
@@ -34,6 +38,10 @@ namespace vSharpStudio.vm.ViewModels
             base.AddRange(collection, sortingWeight);
         }
 
+        public void Add(object item)
+        {
+            this.Add((T)item);
+        }
         public new void Add(T item)
         {
             if (isUseDicNodes && this.cfg.IsInitialized)

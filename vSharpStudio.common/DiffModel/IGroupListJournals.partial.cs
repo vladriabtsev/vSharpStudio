@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
-    public partial interface IGroupListJournals : ITreeConfigNode, IGetNodeSetting
+    public partial interface IGroupListJournals : ITreeConfigNodeSortable, IGetNodeSetting
     {
         IModel ParentModelI { get; }
     }

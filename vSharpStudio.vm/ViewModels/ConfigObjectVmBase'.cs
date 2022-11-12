@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -15,9 +16,9 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class ConfigObjectVmBase<T, TValidator> : ConfigObjectCommonBase<T, TValidator>
       where TValidator : AbstractValidator<T>
-      where T : ConfigObjectVmBase<T, TValidator>//, IComparable<T>, ISortingValue 
+      where T : ConfigObjectVmBase<T, TValidator> //, IComparable<T>, ISortingValue 
     {
-        public ConfigObjectVmBase(ITreeConfigNode parent, TValidator validator)
+        public ConfigObjectVmBase(ITreeConfigNode? parent, TValidator validator)
             : base(parent, validator)
         {
         }

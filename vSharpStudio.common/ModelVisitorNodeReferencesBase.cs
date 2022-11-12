@@ -77,6 +77,7 @@ namespace vSharpStudio.common
         //private List<IGuid> GrapfToSequenceForDb()
         private void ScanForDicNodesWithReferences()
         {
+            Debug.Assert(this.currModel != null);
             foreach (var t in currModel.GroupEnumerations.ListEnumerations)
             {
                 var md = new ModelNode(t);
@@ -144,6 +145,7 @@ namespace vSharpStudio.common
         {
             if (!md.DicReferenceToNodes.ContainsKey(d.ObjectGuid))
             {
+                Debug.Assert(this.currCfg != null);
                 md.DicReferenceToNodes[d.ObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[d.ObjectGuid]);
             }
             var tn = md.DicReferenceToNodes[d.ObjectGuid];
@@ -153,6 +155,7 @@ namespace vSharpStudio.common
         {
             if (!md.DicReferenceToNodes.ContainsKey(d.ObjectGuid))
             {
+                Debug.Assert(this.currCfg != null);
                 md.DicReferenceToNodes[d.ObjectGuid] = new ReferenceTo(this.currCfg.DicNodes[d.ObjectGuid]);
             }
             var tn = md.DicReferenceToNodes[d.ObjectGuid];
@@ -182,7 +185,7 @@ namespace vSharpStudio.common
         /// <param name="curr">Current config or clone</param>
         /// <param name="act"></param>
         /// <returns></returns>
-        public new void Run(IConfig curr, IAppSolution sln, IAppProject prj, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
+        public new void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currCfg = curr;

@@ -25,14 +25,14 @@
         where TValidator : AbstractValidator<T>
         where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
     {
-        protected static ILogger _logger;
-        public ConfigObjectCommonBase(ITreeConfigNode parent, TValidator validator)
+        protected static ILogger? _logger;
+        public ConfigObjectCommonBase(ITreeConfigNode? parent, TValidator validator)
             : base(validator)
         {
             if (_logger == null)
                 _logger = Logger.CreateLogger<T>();
             this.IsNotifying = false;
-            this.Parent = parent;
+            this._Parent = parent;
             this.ListInModels = new List<IModelRow>();
             this.PropertyChanged += ConfigObjectCommonBase_PropertyChanged;
             this.IsNotifying = true;
@@ -70,6 +70,8 @@
         {
             this.NotifyPropertyChanged(nameof(this.IconStatus));
         }
+        [Browsable(false)]
+        public IChildrenCollection Children { get; protected set; }
         [Browsable(false)]
         public string IconStatus
         {
@@ -279,7 +281,7 @@
                 return relative_path;
             return Path.Combine(cfg.CurrentCfgFolderPath, relative_path);
         }
-        private IConfig _cfg;
+        private IConfig? _cfg;
         public IConfig Cfg
         {
             get
@@ -291,6 +293,8 @@
         }
         public IConfig GetConfig()
         {
+            if (this is IConfig tt)
+                return tt;
             Debug.Assert(this.Parent != null);
             ITreeConfigNode p = this.Parent;
             while (p.Parent != null)
@@ -303,6 +307,7 @@
         public T? GetPrevious()
         {
             T? res = null;
+            Debug.Assert(this.Parent != null);
             if (this.GetConfig()?.PrevStableConfig != null && this.GetConfig().PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
                 res = (T)this.GetConfig().PrevStableConfig.DicNodes[this.__Guid];
@@ -337,7 +342,7 @@
         protected string GetCompositeName()
         {
             List<ITreeConfigNode> lst = new List<ITreeConfigNode>();
-            ITreeConfigNode p = this.Parent;
+            ITreeConfigNode? p = this.Parent;
             while (p != null)
             {
                 lst.Insert(0, p);
@@ -501,7 +506,7 @@
         }
 
         [BrowsableAttribute(false)]
-        public ITreeConfigNode Parent
+        public ITreeConfigNode? Parent
         {
             get
             {
@@ -519,7 +524,7 @@
                 }
             }
         }
-        private ITreeConfigNode _Parent;
+        private ITreeConfigNode? _Parent;
         protected virtual void OnParentChanged()
         {
         }
@@ -644,6 +649,7 @@
         }
         public void NodeLeft()
         {
+            Debug.Assert(this.Parent != null);
             this.SetSelected(this.Parent);
         }
         public bool NodeCanRight()
@@ -785,26 +791,27 @@
                 return;
             if (this is IConfig)
                 return;
-            if (this is IEditableNode)
+            if (this is IEditableNode p)
             {
-                var pp = (IEditableNodeGroup)this.Parent;
-                var p = (IEditableNode)this;
-                if (p.IsNew)
+                if (this.Parent is IEditableNodeGroup pp)
                 {
-                    pp.IsHasNew = true;
-                }
-                else
-                {
-                    foreach (var t in this.GetListSiblings())
+                    if (p.IsNew)
                     {
-                        var pt = (IEditableNode)t;
-                        if (pt.IsNew)
-                        {
-                            pp.IsHasNew = true;
-                            return;
-                        }
+                        pp.IsHasNew = true;
                     }
-                    pp.IsHasNew = false;
+                    else
+                    {
+                        foreach (var t in this.GetListSiblings())
+                        {
+                            var pt = (IEditableNode)t;
+                            if (pt.IsNew)
+                            {
+                                pp.IsHasNew = true;
+                                return;
+                            }
+                        }
+                        pp.IsHasNew = false;
+                    }
                 }
             }
         }
@@ -886,26 +893,27 @@
                 return;
             if (this is IConfig)
                 return;
-            if (this is IEditableNode)
+            if (this is IEditableNode p)
             {
-                var pp = (IEditableNodeGroup)this.Parent;
-                var p = (IEditableNode)this;
-                if (p.IsMarkedForDeletion)
+                if (this.Parent is IEditableNodeGroup pp)
                 {
-                    pp.IsHasMarkedForDeletion = true;
-                }
-                else
-                {
-                    foreach (var t in this.GetListSiblings())
+                    if (p.IsMarkedForDeletion)
                     {
-                        var pt = (IEditableNode)t;
-                        if (pt.IsMarkedForDeletion)
-                        {
-                            pp.IsHasMarkedForDeletion = true;
-                            return;
-                        }
+                        pp.IsHasMarkedForDeletion = true;
                     }
-                    pp.IsHasMarkedForDeletion = false;
+                    else
+                    {
+                        foreach (var t in this.GetListSiblings())
+                        {
+                            var pt = (IEditableNode)t;
+                            if (pt.IsMarkedForDeletion)
+                            {
+                                pp.IsHasMarkedForDeletion = true;
+                                return;
+                            }
+                        }
+                        pp.IsHasMarkedForDeletion = false;
+                    }
                 }
             }
         }
@@ -947,26 +955,27 @@
                 return;
             if (this is IConfig)
                 return;
-            if (this is IEditableNodeGroup)
+            if (this is IEditableNodeGroup p)
             {
-                var p = (IEditableNodeGroup)this;
-                var pp = (IEditableNodeGroup)this.Parent;
-                if (p.IsHasNew)
+                if (this.Parent is IEditableNodeGroup pp)
                 {
-                    pp.IsHasNew = true;
-                }
-                else
-                {
-                    foreach (var t in this.GetListSiblings())
+                    if (p.IsHasNew)
                     {
-                        var pt = (IEditableNodeGroup)t;
-                        if (pt.IsHasNew)
-                        {
-                            pp.IsHasNew = true;
-                            return;
-                        }
+                        pp.IsHasNew = true;
                     }
-                    pp.IsHasNew = false;
+                    else
+                    {
+                        foreach (var t in this.GetListSiblings())
+                        {
+                            var pt = (IEditableNodeGroup)t;
+                            if (pt.IsHasNew)
+                            {
+                                pp.IsHasNew = true;
+                                return;
+                            }
+                        }
+                        pp.IsHasNew = false;
+                    }
                 }
             }
         }
@@ -1002,26 +1011,27 @@
                 }
                 return;
             }
-            if (this is IEditableNodeGroup)
+            if (this is IEditableNodeGroup p)
             {
-                var p = (IEditableNodeGroup)this;
-                var pp = (IEditableNodeGroup)this.Parent;
-                if (p.IsHasChanged)
+                if (this.Parent is IEditableNodeGroup pp)
                 {
-                    pp.IsHasChanged = true;
-                }
-                else
-                {
-                    foreach (var t in this.GetListSiblings())
+                    if (p.IsHasChanged)
                     {
-                        var pt = (IEditableNodeGroup)t;
-                        if (pt.IsHasChanged)
-                        {
-                            pp.IsHasChanged = true;
-                            return;
-                        }
+                        pp.IsHasChanged = true;
                     }
-                    pp.IsHasChanged = false;
+                    else
+                    {
+                        foreach (var t in this.GetListSiblings())
+                        {
+                            var pt = (IEditableNodeGroup)t;
+                            if (pt.IsHasChanged)
+                            {
+                                pp.IsHasChanged = true;
+                                return;
+                            }
+                        }
+                        pp.IsHasChanged = false;
+                    }
                 }
             }
         }
@@ -1051,49 +1061,50 @@
                 return;
             if (this is IConfig)
                 return;
-            if (this is IEditableNodeGroup)
+            if (this is IEditableNodeGroup p)
             {
-                var p = (IEditableNodeGroup)this;
-                var pp = (IEditableNodeGroup)this.Parent;
-                if (p.IsHasMarkedForDeletion)
+                if (this.Parent is IEditableNodeGroup pp)
                 {
-                    pp.IsHasMarkedForDeletion = true;
-                }
-                else
-                {
-                    foreach (var t in this.GetListSiblings())
+                    if (p.IsHasMarkedForDeletion)
                     {
-                        var pt = (IEditableNodeGroup)t;
-                        if (pt.IsHasMarkedForDeletion)
-                        {
-                            pp.IsHasMarkedForDeletion = true;
-                            return;
-                        }
+                        pp.IsHasMarkedForDeletion = true;
                     }
-                    pp.IsHasMarkedForDeletion = false;
+                    else
+                    {
+                        foreach (var t in this.GetListSiblings())
+                        {
+                            var pt = (IEditableNodeGroup)t;
+                            if (pt.IsHasMarkedForDeletion)
+                            {
+                                pp.IsHasMarkedForDeletion = true;
+                                return;
+                            }
+                        }
+                        pp.IsHasMarkedForDeletion = false;
+                    }
                 }
             }
         }
 
         #region ITree
-        public virtual IEnumerable<ITreeConfigNode> GetListSiblings()
+        public virtual IChildrenCollection GetListChildren()
         {
             throw new NotImplementedException();
         }
-        public virtual IEnumerable<ITreeConfigNode> GetListChildren()
+        public virtual IChildrenCollection GetListSiblings()
         {
             throw new NotImplementedException();
         }
         public virtual bool HasChildren()
         {
-            throw new NotImplementedException();
+            return this.Children != null && this.Children.Count > 0;
         }
         #endregion ITree
         #region ITreeModel
         public IEnumerable<object> GetChildren(object parent)
         {
             var p = (ITreeConfigNode)parent;
-            return p.GetListChildren();
+            return (IEnumerable<object>)p.GetListChildren();
         }
         public bool HasChildren(object parent)
         {

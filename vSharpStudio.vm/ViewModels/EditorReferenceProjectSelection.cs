@@ -18,7 +18,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(propertyItem != null);
             // this.Config.GroupPlugins.ListPlugins
             var prj = (AppProject)propertyItem.Instance;
-            var gr = (GroupListAppSolutions)prj.Parent.Parent;
+            var gr = prj.ParentAppSolution.ParentGroupListAppSolutions;
             var lst = new List<AppProject>();
             foreach(var t in gr.ListAppSolutions)
             {

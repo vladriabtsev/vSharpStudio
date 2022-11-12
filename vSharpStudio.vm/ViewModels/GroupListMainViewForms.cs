@@ -22,21 +22,17 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public IGroupListCommon ParentGroupListCommonI { get { Debug.Assert(this.Parent != null); return (IGroupListCommon)this.Parent; } }
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
-                return this.ParentGroupListCommon.Children;
-        }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
+            return this.ParentGroupListCommon.Children;
         }
         #endregion ITree
 
-        public ConfigNodesCollection<MainViewForm> Children { get { return this.ListMainViewForms; } }
+        new public ConfigNodesCollection<MainViewForm> Children { get { return this.ListMainViewForms; } }
         partial void OnCreated()
         {
             this._Name = Defaults.ConstantsGroupName;
@@ -67,27 +63,27 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
-        {
-            Constant node = null;
-            //if (node_impl == null)
-            //{
-            //    node = new Constant(this);
-            //}
-            //else
-            //{
-            //    node = (Constant)node_impl;
-            //}
+        //public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
+        //{
+        //    Constant node = null;
+        //    //if (node_impl == null)
+        //    //{
+        //    //    node = new Constant(this);
+        //    //}
+        //    //else
+        //    //{
+        //    //    node = (Constant)node_impl;
+        //    //}
 
-            //this.Add(node);
-            //if (node_impl == null)
-            //{
-            //    this.GetUniqueName(Constant.DefaultName, node, this.ListConstants);
-            //}
+        //    //this.Add(node);
+        //    //if (node_impl == null)
+        //    //{
+        //    //    this.GetUniqueName(Constant.DefaultName, node, this.ListConstants);
+        //    //}
 
-            //this.SetSelected(node);
-            return node;
-        }
+        //    //this.SetSelected(node);
+        //    return node;
+        //}
         #endregion Tree operations
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

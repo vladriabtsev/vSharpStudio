@@ -42,8 +42,8 @@ namespace ViewModelBase
             }
             set { SetProperty(ref _PropertyDefinitions, value); }
         }
-        private Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection? _PropertyDefinitions = null;
-        protected virtual string[]? OnGetWhatHideOnPropertyGrid()
+        private Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection _PropertyDefinitions = null;
+        protected virtual string[] OnGetWhatHideOnPropertyGrid()
         {
             return null;
         }

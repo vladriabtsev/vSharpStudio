@@ -1849,6 +1849,16 @@
               "defaultValue": ""
             },
             {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_need_current_update",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -4601,11 +4611,21 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n\n@attr [BrowsableAttribute(false)]\nuint64 sorting_value = 3;",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4761,6 +4781,16 @@
               "defaultValue": ""
             },
             {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_app_solutions",
               "description": "List NET solutions\n@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -4818,6 +4848,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4919,6 +4959,16 @@
               "type": "proto_catalog",
               "longType": "proto_catalog",
               "fullType": "proto_config.proto_catalog",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5070,6 +5120,16 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5286,6 +5346,16 @@
               "defaultValue": ""
             },
             {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "use_code_property",
               "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for detail item\")]",
               "label": "",
@@ -5427,6 +5497,16 @@
               "defaultValue": ""
             },
             {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -5494,6 +5574,16 @@
               "type": "proto_enumeration",
               "longType": "proto_enumeration",
               "fullType": "proto_config.proto_enumeration",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5569,6 +5659,16 @@
               "defaultValue": ""
             },
             {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -5636,6 +5736,16 @@
               "type": "proto_journal",
               "longType": "proto_journal",
               "fullType": "proto_config.proto_journal",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5741,6 +5851,16 @@
               "defaultValue": ""
             },
             {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -5788,6 +5908,16 @@
               "type": "proto_plugin",
               "longType": "proto_plugin",
               "fullType": "proto_config.proto_plugin",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             }
@@ -5859,6 +5989,16 @@
               "type": "uint32",
               "longType": "uint32",
               "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5964,6 +6104,16 @@
               "defaultValue": ""
             },
             {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "repeated",
@@ -6031,6 +6181,16 @@
               "type": "proto_role",
               "longType": "proto_role",
               "fullType": "proto_config.proto_role",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
               "ismap": false,
               "defaultValue": ""
             },

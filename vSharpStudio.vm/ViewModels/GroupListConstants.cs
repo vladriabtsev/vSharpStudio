@@ -67,20 +67,16 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region ITree
-        public override IEnumerable<ITreeConfigNode> GetListChildren()
+        public override IChildrenCollection GetListChildren()
         {
             return this.Children;
         }
-        public override IEnumerable<ITreeConfigNode> GetListSiblings()
+        public override IChildrenCollection GetListSiblings()
         {
             return this.ParentGroupConstantGroups.Children;
         }
-        public override bool HasChildren()
-        {
-            return this.Children.Count > 0;
-        }
         [Browsable(false)]
-        public ConfigNodesCollection<Constant> Children { get { return this.ListConstants; } }
+        new public ConfigNodesCollection<Constant> Children { get { return this.ListConstants; } }
         #endregion ITree
 
         #region Tree operations
@@ -147,7 +143,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddClone()
         {
-            var node = GroupListConstants.Clone(this.Parent, this, true, true);
+            var node = GroupListConstants.Clone(this.ParentGroupConstantGroups, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupConstantGroups.ListConstantGroups.Add(node);
             this._Name = this._Name + "2";
@@ -156,7 +152,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new GroupListConstants(this.Parent);
+            var node = new GroupListConstants(this.ParentGroupConstantGroups);
             this.ParentGroupConstantGroups.ListConstantGroups.Add(node);
             this.GetUniqueName(Defaults.ConstantsGroupName, node, this.ParentGroupConstantGroups.ListConstantGroups);
             this.SetSelected(node);

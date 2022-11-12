@@ -9,6 +9,9 @@ namespace vSharpStudio.common
 {
     public partial interface IFormAutoLayoutSubBlock : ITreeConfigNodeSortable
     {
-        IFormAutoLayoutBlock ParentFormAutoLayoutBlockI { get; }
+        IForm? ParentFormI { get; }
+        IFormAutoLayoutBlock? ParentFormAutoLayoutBlockI { get; }
+        IFormTabControlTab? ParentFormTabControlTabI { get; }
+        IFormGridSystemColumn? ParentFormGridSystemColumnI { get; }
     }
 }
