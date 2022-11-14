@@ -127,7 +127,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write(" parent, I");
+            this.Write("? parent, I");
             
             #line 28 "D:\dev\vSharpStudio\generators\GenFromProto\Clone.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));

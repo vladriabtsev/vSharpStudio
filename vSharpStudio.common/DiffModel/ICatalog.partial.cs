@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICatalog : ITreeConfigNodeSortable, ISortingValue, IDbTable
+    public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IDbTable
     {
         IGroupListCatalogs ParentGroupListCatalogsI { get; }
         //IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);

@@ -218,7 +218,9 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable)
         {
             var node = new Property(this) { Name = name };
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
+            node.DataType = new DataType(node);
+            node.DataType.ObjectGuid = en.Guid;
+            node.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
             return node;

@@ -424,7 +424,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Connection string editor
 
         #region Utils
-        public IDataType GetDataType(ITreeConfigNode parent, int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid)
+        public IDataType GetDataType(ITreeConfigNode? parent, int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = Enum.Parse<EnumDataType>(enumDataType.ToString());
@@ -434,7 +434,7 @@ namespace vSharpStudio.vm.ViewModels
             dt.ObjectGuid = objectGuid;
             return dt;
         }
-        public IDataType GetDataType(ITreeConfigNode parent, EnumDataType enumDataType, uint length, bool isPositive)
+        public IDataType GetDataType(ITreeConfigNode? parent, EnumDataType enumDataType, uint length, bool isPositive)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = enumDataType;
@@ -454,7 +454,7 @@ namespace vSharpStudio.vm.ViewModels
             return length;
         }
         // numerical
-        public IDataType GetDataTypeFromMaxValue(ITreeConfigNode parent, System.Numerics.BigInteger maxValue, bool isPositive, bool isPKey = false)
+        public IDataType GetDataTypeFromMaxValue(ITreeConfigNode? parent, System.Numerics.BigInteger maxValue, bool isPositive, bool isPKey = false)
         {
             uint length = this.GetLengthFromMaxValue(maxValue);
             DataType dt = new DataType(parent);
@@ -465,7 +465,7 @@ namespace vSharpStudio.vm.ViewModels
             return dt;
         }
         // numerical
-        public IDataType GetDataTypeNumerical(ITreeConfigNode parent, uint length, uint accuracy)
+        public IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, uint accuracy)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.NUMERICAL;
@@ -474,7 +474,7 @@ namespace vSharpStudio.vm.ViewModels
             return dt;
         }
         // numerical
-        public IDataType GetDataTypeNumerical(ITreeConfigNode parent, uint length, bool isPositive)
+        public IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, bool isPositive)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.NUMERICAL;
@@ -483,7 +483,7 @@ namespace vSharpStudio.vm.ViewModels
             return dt;
         }
         // string
-        public IDataType GetDataTypeString(ITreeConfigNode parent, uint length)
+        public IDataType GetDataTypeString(ITreeConfigNode? parent, uint length)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.STRING;
@@ -491,7 +491,7 @@ namespace vSharpStudio.vm.ViewModels
             return dt;
         }
         // catalog
-        public IDataType GetDataType(ITreeConfigNode parent, ICatalog obj)
+        public IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.CATALOG;
@@ -499,32 +499,32 @@ namespace vSharpStudio.vm.ViewModels
             return dt;
         }
         // document
-        public IDataType GetDataType(ITreeConfigNode parent, IDocument obj)
+        public IDataType GetDataType(ITreeConfigNode? parent, IDocument obj)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.DOCUMENT;
             dt.ObjectGuid = obj.Guid;
             return dt;
         }
-        public IDataType GetDataTypeBool(ITreeConfigNode parent)
+        public IDataType GetDataTypeBool(ITreeConfigNode? parent)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.BOOL;
             return dt;
         }
-        public IDataType GetDataTypeDate(ITreeConfigNode parent)
+        public IDataType GetDataTypeDate(ITreeConfigNode? parent)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.DATE;
             return dt;
         }
-        public IDataType GetDataTypeDateTimeUtc(ITreeConfigNode parent)
+        public IDataType GetDataTypeDateTimeUtc(ITreeConfigNode? parent)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.DATETIMEUTC;
             return dt;
         }
-        public IDataType GetDataTypeDateTimeLocal(ITreeConfigNode parent)
+        public IDataType GetDataTypeDateTimeLocal(ITreeConfigNode? parent)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.DATETIMELOCAL;
@@ -543,7 +543,7 @@ namespace vSharpStudio.vm.ViewModels
         //    dt.DataTypeEnum = EnumDataType.DATETIMEZ;
         //    return dt;
         //}
-        public IDataType GetDataTypeTime(ITreeConfigNode parent)
+        public IDataType GetDataTypeTime(ITreeConfigNode? parent)
         {
             DataType dt = new DataType(parent);
             dt.DataTypeEnum = EnumDataType.TIME;

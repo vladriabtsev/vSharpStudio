@@ -426,8 +426,6 @@ namespace ViewModelBase
                 var toType = dp.PropertyType;
                 object from = p.GetValue(this, null);
                 var fromType = p.PropertyType;
-                Debug.Assert(from != null);
-                Debug.Assert(to != null);
                 switch (fromType.Name)
                 {
                     case "String":

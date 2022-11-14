@@ -25,8 +25,8 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data
         public object? Tag { get; set; }
-        [Browsable(false)]
-        public static IConfig? Config { get; set; }
+        //[Browsable(false)]
+        //public static IConfig? Config { get; set; }
 
         #region ITree
         public override IChildrenCollection GetListChildren()

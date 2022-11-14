@@ -13,27 +13,27 @@ namespace vSharpStudio.common
         string PKeyTypeStr { get; }
         IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings?> DicGenNodeSettings { get; }
         // numerical
-        IDataType GetDataTypeFromMaxValue(ITreeConfigNode parent, System.Numerics.BigInteger maxValue, bool isPositive, bool isPKey = false);
+        IDataType GetDataTypeFromMaxValue(ITreeConfigNode? parent, System.Numerics.BigInteger maxValue, bool isPositive, bool isPKey = false);
         // Any
-        IDataType GetDataType(ITreeConfigNode parent, int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid);
-        IDataType GetDataType(ITreeConfigNode parent, EnumDataType enumDataType, uint length, bool isPositive);
+        IDataType GetDataType(ITreeConfigNode? parent, int enumDataType, uint length, uint accuracy, bool isPositive, string objectGuid);
+        IDataType GetDataType(ITreeConfigNode? parent, EnumDataType enumDataType, uint length, bool isPositive);
         // numerical
-        IDataType GetDataTypeNumerical(ITreeConfigNode parent, uint length, uint accuracy);
+        IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, uint accuracy);
         // numerical
-        IDataType GetDataTypeNumerical(ITreeConfigNode parent, uint length, bool isPositive);
+        IDataType GetDataTypeNumerical(ITreeConfigNode? parent, uint length, bool isPositive);
         // string
-        IDataType GetDataTypeString(ITreeConfigNode parent, uint length);
-        IDataType GetDataType(ITreeConfigNode parent, ICatalog obj);
-        IDataType GetDataType(ITreeConfigNode parent, IDocument obj);
-        IDataType GetDataTypeBool(ITreeConfigNode parent);
-        IDataType GetDataTypeDate(ITreeConfigNode parent);
+        IDataType GetDataTypeString(ITreeConfigNode? parent, uint length);
+        IDataType GetDataType(ITreeConfigNode? parent, ICatalog obj);
+        IDataType GetDataType(ITreeConfigNode? parent, IDocument obj);
+        IDataType GetDataTypeBool(ITreeConfigNode? parent);
+        IDataType GetDataTypeDate(ITreeConfigNode? parent);
         //IDataType GetDataTypeDateTime();
         //IDataType GetDataTypeDateTimeZ();
-        IDataType GetDataTypeDateTimeUtc(ITreeConfigNode parent);
-        IDataType GetDataTypeTime(ITreeConfigNode parent);
+        IDataType GetDataTypeDateTimeUtc(ITreeConfigNode? parent);
+        IDataType GetDataTypeTime(ITreeConfigNode? parent);
         //IDataType GetDataTypeTimeZ();
-        IDataType GetIdDataType(ITreeConfigNode parent);
-        IDataType GetIdRefDataType(ITreeConfigNode parent);
+        IDataType GetIdDataType(ITreeConfigNode? parent);
+        IDataType GetIdRefDataType(ITreeConfigNode? parent);
         //string GetVersionFieldName(IvPluginDbGenerator dbGen);
 
         IProperty GetPropertyId(ITreeConfigNode parent, string guid);

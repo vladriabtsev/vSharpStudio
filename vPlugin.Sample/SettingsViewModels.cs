@@ -51,7 +51,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static DbConnectionStringSettings Clone(ITreeConfigNode parent, IDbConnectionStringSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static DbConnectionStringSettings Clone(ITreeConfigNode? parent, IDbConnectionStringSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             DbConnectionStringSettings vm = new DbConnectionStringSettings(parent); // Clone.tt Line: 35
@@ -194,7 +194,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static PluginsGroupSolutionSubSettings Clone(IEditableObjectExt parent, IPluginsGroupSolutionSubSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static PluginsGroupSolutionSubSettings Clone(IEditableObjectExt? parent, IPluginsGroupSolutionSubSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             PluginsGroupSolutionSubSettings vm = new PluginsGroupSolutionSubSettings(parent); // Clone.tt Line: 35
@@ -362,7 +362,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static PluginsGroupSolutionSettings Clone(ITreeConfigNode parent, IPluginsGroupSolutionSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static PluginsGroupSolutionSettings Clone(ITreeConfigNode? parent, IPluginsGroupSolutionSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             PluginsGroupSolutionSettings vm = new PluginsGroupSolutionSettings(parent); // Clone.tt Line: 35
@@ -544,7 +544,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static PluginsGroupProjectSettings Clone(ITreeConfigNode parent, IPluginsGroupProjectSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static PluginsGroupProjectSettings Clone(ITreeConfigNode? parent, IPluginsGroupProjectSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             PluginsGroupProjectSettings vm = new PluginsGroupProjectSettings(parent); // Clone.tt Line: 35
@@ -687,7 +687,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static GeneratorDbSchemaSettings Clone(ITreeConfigNode parent, IGeneratorDbSchemaSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static GeneratorDbSchemaSettings Clone(ITreeConfigNode? parent, IGeneratorDbSchemaSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GeneratorDbSchemaSettings vm = new GeneratorDbSchemaSettings(parent); // Clone.tt Line: 35
@@ -878,7 +878,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static GeneratorDbSchemaNodeSettings Clone(ITreeConfigNode parent, IGeneratorDbSchemaNodeSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static GeneratorDbSchemaNodeSettings Clone(ITreeConfigNode? parent, IGeneratorDbSchemaNodeSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GeneratorDbSchemaNodeSettings vm = new GeneratorDbSchemaNodeSettings(parent); // Clone.tt Line: 35
@@ -1093,7 +1093,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static GeneratorDbAccessSettings Clone(ITreeConfigNode parent, IGeneratorDbAccessSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static GeneratorDbAccessSettings Clone(ITreeConfigNode? parent, IGeneratorDbAccessSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GeneratorDbAccessSettings vm = new GeneratorDbAccessSettings(parent); // Clone.tt Line: 35
@@ -1332,7 +1332,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static GeneratorDbAccessNodeSettings Clone(ITreeConfigNode parent, IGeneratorDbAccessNodeSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static GeneratorDbAccessNodeSettings Clone(ITreeConfigNode? parent, IGeneratorDbAccessNodeSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GeneratorDbAccessNodeSettings vm = new GeneratorDbAccessNodeSettings(parent); // Clone.tt Line: 35

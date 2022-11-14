@@ -666,8 +666,9 @@ namespace vSharpStudio.ViewModels
             if (this.Config.IsHasChanged)
             {
                 var sss = this.Config.IsHasChangedPath;
+                //TODO fix it
+                //Debug.Assert(!this.Config.IsHasChanged);
             }
-            Debug.Assert(!this.Config.IsHasChanged);
             Debug.Assert(!this.Config.IsChanged);
         }
         private void UpdateUserSettingsSaveConfigs()

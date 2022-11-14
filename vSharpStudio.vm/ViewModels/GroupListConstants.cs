@@ -182,14 +182,18 @@ namespace vSharpStudio.vm.ViewModels
         public Constant AddConstantEnumeration(string name, Enumeration en)
         {
             var node = new Constant(this) { Name = name };
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
+            node.DataType = new DataType(node);
+            node.DataType.ObjectGuid = en.Guid;
+            node.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Constant AddConstantCatalog(string name, Catalog cat)
         {
             var node = new Constant(this) { Name = name };
-            node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CATALOG, ObjectGuid = cat.Guid };
+            node.DataType = new DataType(node);
+            node.DataType.ObjectGuid = cat.Guid;
+            node.DataType.DataTypeEnum = EnumDataType.CATALOG;
             this.NodeAddNewSubNode(node);
             return node;
         }

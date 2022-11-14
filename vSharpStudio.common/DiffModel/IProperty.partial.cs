@@ -7,11 +7,12 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IProperty : IParent, ITreeConfigNodeSortable, IGetNodeSetting //, ILayoutFieldParameters
+    public partial interface IProperty : IParent, ITreeConfigNodeSortable, IGetNodeSetting, ILayoutFieldParameters
     {
         IGroupListProperties ParentGroupListPropertiesI { get; }
         //string DefaultValue { get; }
         bool IsComputed { get; set; }
+        bool IsPKey { get; }
         bool IsDocShared { get; set; }
         string? ComplexObjectName { get; set; }
         string PropValueValue { get; }

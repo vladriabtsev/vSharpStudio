@@ -442,6 +442,16 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     }
                 }
+                else
+                {
+                    sb.Append(t.GetType().Name);
+                    if (t is IEditableNode tt)
+                    {
+                        sb.Append(" IsChanged=");
+                        sb.Append(tt.IsChanged);
+                    }
+                    sb.AppendLine();
+                }
             }
         }
         public void SetIsNeedCurrentUpdate(bool val)

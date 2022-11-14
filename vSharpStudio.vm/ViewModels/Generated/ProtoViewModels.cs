@@ -409,7 +409,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListPlugins.Sort();
             }
         }
-        public static GroupListPlugins Clone(ITreeConfigNode parent, IGroupListPlugins from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListPlugins Clone(ITreeConfigNode? parent, IGroupListPlugins from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListPlugins vm = new GroupListPlugins(parent); // Clone.tt Line: 35
@@ -708,7 +708,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListGenerators.Sort();
             }
         }
-        public static Plugin Clone(ITreeConfigNode parent, IPlugin from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Plugin Clone(ITreeConfigNode? parent, IPlugin from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Plugin vm = new Plugin(parent); // Clone.tt Line: 35
@@ -1031,7 +1031,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             // throw new Exception();
         }
-        public static PluginGenerator Clone(ITreeConfigNode parent, IPluginGenerator from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static PluginGenerator Clone(ITreeConfigNode? parent, IPluginGenerator from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             PluginGenerator vm = new PluginGenerator(parent); // Clone.tt Line: 35
@@ -1666,7 +1666,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListBaseConfigLinks Clone(ITreeConfigNode parent, IGroupListBaseConfigLinks from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListBaseConfigLinks Clone(ITreeConfigNode? parent, IGroupListBaseConfigLinks from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListBaseConfigLinks vm = new GroupListBaseConfigLinks(parent); // Clone.tt Line: 35
@@ -2065,7 +2065,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static BaseConfigLink Clone(ITreeConfigNode parent, IBaseConfigLink from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static BaseConfigLink Clone(ITreeConfigNode? parent, IBaseConfigLink from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             BaseConfigLink vm = new BaseConfigLink(parent); // Clone.tt Line: 35
@@ -2483,7 +2483,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             // throw new Exception();
         }
-        public static Config Clone(ITreeConfigNode parent, IConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Config Clone(ITreeConfigNode? parent, IConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Config vm = new Config(parent); // Clone.tt Line: 35
@@ -3229,7 +3229,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static PluginGroupGeneratorsDefaultSettings Clone(ITreeConfigNode parent, IPluginGroupGeneratorsDefaultSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static PluginGroupGeneratorsDefaultSettings Clone(ITreeConfigNode? parent, IPluginGroupGeneratorsDefaultSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             PluginGroupGeneratorsDefaultSettings vm = new PluginGroupGeneratorsDefaultSettings(parent); // Clone.tt Line: 35
@@ -3435,7 +3435,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListAppSolutions.Sort();
             }
         }
-        public static GroupListAppSolutions Clone(ITreeConfigNode parent, IGroupListAppSolutions from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListAppSolutions Clone(ITreeConfigNode? parent, IGroupListAppSolutions from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListAppSolutions vm = new GroupListAppSolutions(parent); // Clone.tt Line: 35
@@ -3836,7 +3836,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             // throw new Exception();
         }
-        public static PluginGroupGeneratorsSettings Clone(ITreeConfigNode parent, IPluginGroupGeneratorsSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static PluginGroupGeneratorsSettings Clone(ITreeConfigNode? parent, IPluginGroupGeneratorsSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             PluginGroupGeneratorsSettings vm = new PluginGroupGeneratorsSettings(parent); // Clone.tt Line: 35
@@ -4139,7 +4139,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListGroupGeneratorsSettings.Sort();
             }
         }
-        public static AppSolution Clone(ITreeConfigNode parent, IAppSolution from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static AppSolution Clone(ITreeConfigNode? parent, IAppSolution from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             AppSolution vm = new AppSolution(parent); // Clone.tt Line: 35
@@ -4654,7 +4654,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListGroupGeneratorsSettings.Sort();
             }
         }
-        public static AppProject Clone(ITreeConfigNode parent, IAppProject from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static AppProject Clone(ITreeConfigNode? parent, IAppProject from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             AppProject vm = new AppProject(parent); // Clone.tt Line: 35
@@ -5133,7 +5133,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             // throw new Exception();
         }
-        public static PluginGeneratorNodeSettings Clone(ITreeConfigNode parent, IPluginGeneratorNodeSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static PluginGeneratorNodeSettings Clone(ITreeConfigNode? parent, IPluginGeneratorNodeSettings from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             PluginGeneratorNodeSettings vm = new PluginGeneratorNodeSettings(parent); // Clone.tt Line: 35
@@ -5406,7 +5406,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static PluginGeneratorSettings Clone(ITreeConfigNode parent, IPluginGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static PluginGeneratorSettings Clone(ITreeConfigNode? parent, IPluginGeneratorSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             PluginGeneratorSettings vm = new PluginGeneratorSettings(parent); // Clone.tt Line: 35
@@ -5662,7 +5662,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             // throw new Exception();
         }
-        public static AppProjectGenerator Clone(ITreeConfigNode parent, IAppProjectGenerator from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static AppProjectGenerator Clone(ITreeConfigNode? parent, IAppProjectGenerator from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             AppProjectGenerator vm = new AppProjectGenerator(parent); // Clone.tt Line: 35
@@ -6332,7 +6332,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static PluginGeneratorNodeDefaultSettings Clone(ITreeConfigNode parent, IPluginGeneratorNodeDefaultSettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static PluginGeneratorNodeDefaultSettings Clone(ITreeConfigNode? parent, IPluginGeneratorNodeDefaultSettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             PluginGeneratorNodeDefaultSettings vm = new PluginGeneratorNodeDefaultSettings(parent); // Clone.tt Line: 35
@@ -6523,7 +6523,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Model Clone(ITreeConfigNode parent, IModel from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Model Clone(ITreeConfigNode? parent, IModel from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Model vm = new Model(parent); // Clone.tt Line: 35
@@ -7833,7 +7833,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static DataType Clone(ITreeConfigNode parent, IDataType from, bool isDeep = true) // Clone.tt Line: 28
+        public static DataType Clone(ITreeConfigNode? parent, IDataType from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             DataType vm = new DataType(parent); // Clone.tt Line: 35
@@ -8200,7 +8200,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListCommon Clone(ITreeConfigNode parent, IGroupListCommon from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListCommon Clone(ITreeConfigNode? parent, IGroupListCommon from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListCommon vm = new GroupListCommon(parent); // Clone.tt Line: 35
@@ -8602,7 +8602,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Role Clone(ITreeConfigNode parent, IRole from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Role Clone(ITreeConfigNode? parent, IRole from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Role vm = new Role(parent); // Clone.tt Line: 35
@@ -8991,7 +8991,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListRoles Clone(ITreeConfigNode parent, IGroupListRoles from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListRoles Clone(ITreeConfigNode? parent, IGroupListRoles from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListRoles vm = new GroupListRoles(parent); // Clone.tt Line: 35
@@ -9423,7 +9423,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static MainViewForm Clone(ITreeConfigNode parent, IMainViewForm from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static MainViewForm Clone(ITreeConfigNode? parent, IMainViewForm from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             MainViewForm vm = new MainViewForm(parent); // Clone.tt Line: 35
@@ -9847,7 +9847,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListMainViewForms Clone(ITreeConfigNode parent, IGroupListMainViewForms from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListMainViewForms Clone(ITreeConfigNode? parent, IGroupListMainViewForms from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListMainViewForms vm = new GroupListMainViewForms(parent); // Clone.tt Line: 35
@@ -10279,7 +10279,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListDetails Clone(ITreeConfigNode parent, IGroupListDetails from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListDetails Clone(ITreeConfigNode? parent, IGroupListDetails from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListDetails vm = new GroupListDetails(parent); // Clone.tt Line: 35
@@ -10872,7 +10872,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Detail Clone(ITreeConfigNode parent, IDetail from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Detail Clone(ITreeConfigNode? parent, IDetail from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Detail vm = new Detail(parent); // Clone.tt Line: 35
@@ -12009,7 +12009,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListProperties Clone(ITreeConfigNode parent, IGroupListProperties from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListProperties Clone(ITreeConfigNode? parent, IGroupListProperties from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListProperties vm = new GroupListProperties(parent); // Clone.tt Line: 35
@@ -12547,7 +12547,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Property Clone(ITreeConfigNode parent, IProperty from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Property Clone(ITreeConfigNode? parent, IProperty from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Property vm = new Property(parent); // Clone.tt Line: 35
@@ -13410,7 +13410,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupConstantGroups Clone(ITreeConfigNode parent, IGroupConstantGroups from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupConstantGroups Clone(ITreeConfigNode? parent, IGroupConstantGroups from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupConstantGroups vm = new GroupConstantGroups(parent); // Clone.tt Line: 35
@@ -13846,7 +13846,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListConstants Clone(ITreeConfigNode parent, IGroupListConstants from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListConstants Clone(ITreeConfigNode? parent, IGroupListConstants from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListConstants vm = new GroupListConstants(parent); // Clone.tt Line: 35
@@ -14383,7 +14383,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Constant Clone(ITreeConfigNode parent, IConstant from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Constant Clone(ITreeConfigNode? parent, IConstant from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Constant vm = new Constant(parent); // Clone.tt Line: 35
@@ -15021,7 +15021,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListEnumerations Clone(ITreeConfigNode parent, IGroupListEnumerations from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListEnumerations Clone(ITreeConfigNode? parent, IGroupListEnumerations from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListEnumerations vm = new GroupListEnumerations(parent); // Clone.tt Line: 35
@@ -15453,7 +15453,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Enumeration Clone(ITreeConfigNode parent, IEnumeration from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Enumeration Clone(ITreeConfigNode? parent, IEnumeration from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Enumeration vm = new Enumeration(parent); // Clone.tt Line: 35
@@ -15970,7 +15970,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static EnumerationPair Clone(ITreeConfigNode parent, IEnumerationPair from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static EnumerationPair Clone(ITreeConfigNode? parent, IEnumerationPair from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             EnumerationPair vm = new EnumerationPair(parent); // Clone.tt Line: 35
@@ -16441,7 +16441,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static CatalogFolder Clone(ITreeConfigNode parent, ICatalogFolder from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static CatalogFolder Clone(ITreeConfigNode? parent, ICatalogFolder from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             CatalogFolder vm = new CatalogFolder(parent); // Clone.tt Line: 35
@@ -17334,7 +17334,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static CatalogCodePropertySettings Clone(ITreeConfigNode parent, ICatalogCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static CatalogCodePropertySettings Clone(ITreeConfigNode? parent, ICatalogCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             CatalogCodePropertySettings vm = new CatalogCodePropertySettings(parent); // Clone.tt Line: 35
@@ -17576,7 +17576,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Catalog Clone(ITreeConfigNode parent, ICatalog from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Catalog Clone(ITreeConfigNode? parent, ICatalog from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Catalog vm = new Catalog(parent); // Clone.tt Line: 35
@@ -18844,7 +18844,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListCatalogs Clone(ITreeConfigNode parent, IGroupListCatalogs from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListCatalogs Clone(ITreeConfigNode? parent, IGroupListCatalogs from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListCatalogs vm = new GroupListCatalogs(parent); // Clone.tt Line: 35
@@ -19570,7 +19570,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupDocuments Clone(ITreeConfigNode parent, IGroupDocuments from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupDocuments Clone(ITreeConfigNode? parent, IGroupDocuments from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupDocuments vm = new GroupDocuments(parent); // Clone.tt Line: 35
@@ -20122,7 +20122,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static DocumentCodePropertySettings Clone(ITreeConfigNode parent, IDocumentCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static DocumentCodePropertySettings Clone(ITreeConfigNode? parent, IDocumentCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             DocumentCodePropertySettings vm = new DocumentCodePropertySettings(parent); // Clone.tt Line: 35
@@ -20390,7 +20390,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Document Clone(ITreeConfigNode parent, IDocument from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Document Clone(ITreeConfigNode? parent, IDocument from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Document vm = new Document(parent); // Clone.tt Line: 35
@@ -21207,7 +21207,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListDocuments Clone(ITreeConfigNode parent, IGroupListDocuments from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListDocuments Clone(ITreeConfigNode? parent, IGroupListDocuments from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListDocuments vm = new GroupListDocuments(parent); // Clone.tt Line: 35
@@ -21666,7 +21666,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListJournals Clone(ITreeConfigNode parent, IGroupListJournals from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListJournals Clone(ITreeConfigNode? parent, IGroupListJournals from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListJournals vm = new GroupListJournals(parent); // Clone.tt Line: 35
@@ -22183,7 +22183,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Journal Clone(ITreeConfigNode parent, IJournal from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Journal Clone(ITreeConfigNode? parent, IJournal from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Journal vm = new Journal(parent); // Clone.tt Line: 35
@@ -22729,7 +22729,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListForms Clone(ITreeConfigNode parent, IGroupListForms from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListForms Clone(ITreeConfigNode? parent, IGroupListForms from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListForms vm = new GroupListForms(parent); // Clone.tt Line: 35
@@ -23168,7 +23168,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Form Clone(ITreeConfigNode parent, IForm from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Form Clone(ITreeConfigNode? parent, IForm from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Form vm = new Form(parent); // Clone.tt Line: 35
@@ -23917,7 +23917,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static FormGridSystem Clone(ITreeConfigNode parent, IFormGridSystem from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static FormGridSystem Clone(ITreeConfigNode? parent, IFormGridSystem from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             FormGridSystem vm = new FormGridSystem(parent); // Clone.tt Line: 35
@@ -24421,7 +24421,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static FormGridSystemRow Clone(ITreeConfigNode parent, IFormGridSystemRow from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static FormGridSystemRow Clone(ITreeConfigNode? parent, IFormGridSystemRow from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             FormGridSystemRow vm = new FormGridSystemRow(parent); // Clone.tt Line: 35
@@ -24886,7 +24886,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static FormGridSystemColumn Clone(ITreeConfigNode parent, IFormGridSystemColumn from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static FormGridSystemColumn Clone(ITreeConfigNode? parent, IFormGridSystemColumn from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             FormGridSystemColumn vm = new FormGridSystemColumn(parent); // Clone.tt Line: 35
@@ -25503,7 +25503,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static FormAutoLayoutBlock Clone(ITreeConfigNode parent, IFormAutoLayoutBlock from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static FormAutoLayoutBlock Clone(ITreeConfigNode? parent, IFormAutoLayoutBlock from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             FormAutoLayoutBlock vm = new FormAutoLayoutBlock(parent); // Clone.tt Line: 35
@@ -25973,7 +25973,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static FormAutoLayoutSubBlock Clone(ITreeConfigNode parent, IFormAutoLayoutSubBlock from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static FormAutoLayoutSubBlock Clone(ITreeConfigNode? parent, IFormAutoLayoutSubBlock from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             FormAutoLayoutSubBlock vm = new FormAutoLayoutSubBlock(parent); // Clone.tt Line: 35
@@ -26553,7 +26553,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static FormField Clone(ITreeConfigNode parent, IFormField from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static FormField Clone(ITreeConfigNode? parent, IFormField from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             FormField vm = new FormField(parent); // Clone.tt Line: 35
@@ -26947,7 +26947,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static FormTabControlTab Clone(ITreeConfigNode parent, IFormTabControlTab from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static FormTabControlTab Clone(ITreeConfigNode? parent, IFormTabControlTab from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             FormTabControlTab vm = new FormTabControlTab(parent); // Clone.tt Line: 35
@@ -27413,7 +27413,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static FormTabControl Clone(ITreeConfigNode parent, IFormTabControl from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static FormTabControl Clone(ITreeConfigNode? parent, IFormTabControl from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             FormTabControl vm = new FormTabControl(parent); // Clone.tt Line: 35
@@ -27913,7 +27913,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static FormDataGrid Clone(ITreeConfigNode parent, IFormDataGrid from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static FormDataGrid Clone(ITreeConfigNode? parent, IFormDataGrid from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             FormDataGrid vm = new FormDataGrid(parent); // Clone.tt Line: 35
@@ -28341,7 +28341,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static FormTree Clone(ITreeConfigNode parent, IFormTree from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static FormTree Clone(ITreeConfigNode? parent, IFormTree from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             FormTree vm = new FormTree(parent); // Clone.tt Line: 35
@@ -28769,7 +28769,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListReports Clone(ITreeConfigNode parent, IGroupListReports from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListReports Clone(ITreeConfigNode? parent, IGroupListReports from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             GroupListReports vm = new GroupListReports(parent); // Clone.tt Line: 35
@@ -29200,7 +29200,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static Report Clone(ITreeConfigNode parent, IReport from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static Report Clone(ITreeConfigNode? parent, IReport from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
             Report vm = new Report(parent); // Clone.tt Line: 35

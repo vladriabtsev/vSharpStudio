@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net6.0-windows</TargetFramework>
+        <TargetFramework>net7.0-windows</TargetFramework>
         <RootNamespace>ViewModelBase</RootNamespace>
         <LangVersion>default</LangVersion>
         <UseWPF>true</UseWPF>

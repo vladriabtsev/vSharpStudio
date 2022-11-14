@@ -195,6 +195,7 @@ namespace vSharpStudio.vm.ViewModels
             var dic_groups = new Dictionary<string, object>();
             foreach (var t in node.DicPluginsGroupSettings)
             {
+                Debug.Assert(t.Value != null);
                 string groupName = t.Value.Name;
                 SettingsTypeBuilder.CreateProperty(tbSettings, t.Value.Name, typeof(Object), t.Value.Name, t.Value.Description);
                 dic_groups[groupName] = t.Value;
@@ -218,6 +219,7 @@ namespace vSharpStudio.vm.ViewModels
             var dic_groups = new Dictionary<string, object>();
             foreach (var t in node.DicPluginsGroupSettings)
             {
+                Debug.Assert(t.Value != null);
                 string groupName = t.Value.Name;
                 SettingsTypeBuilder.CreateProperty(tbSettings, t.Value.Name, typeof(Object), t.Value.Name, t.Value.Description);
                 dic_groups[groupName] = t.Value;
