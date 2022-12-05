@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
@@ -32,7 +32,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         CATALOGS = 12,
         DOCUMENT = 13,
         DOCUMENTS = 14,
-        //ANY = 15,
+        ANY = 15,
     }
     public enum EnumTimeAccuracyType // ModelInterfaces.tt Line: 15
     {
