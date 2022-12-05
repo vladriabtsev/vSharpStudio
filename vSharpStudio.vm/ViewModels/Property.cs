@@ -238,7 +238,7 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.DataType.DataTypeEnum)
             {
                 case EnumDataType.CHAR:
-                case EnumDataType.ANY:
+                //case EnumDataType.ANY:
                 case EnumDataType.BOOL:
                     this.Length = 0;
                     this.Accuracy = 0;

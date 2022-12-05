@@ -69,8 +69,8 @@ namespace vSharpStudio.vm.ViewModels
             this.DataTypeEnum = type;
             switch (this.DataTypeEnum)
             {
-                case EnumDataType.ANY:
-                    break;
+                //case EnumDataType.ANY:
+                //    break;
                 case EnumDataType.BOOL:
                     break;
                 case EnumDataType.CATALOGS:
@@ -183,8 +183,8 @@ namespace vSharpStudio.vm.ViewModels
             var config = (Config)par!;
             switch (p.DataTypeEnum)
             {
-                case EnumDataType.ANY:
-                    throw new NotImplementedException();
+                //case EnumDataType.ANY:
+                //    throw new NotImplementedException();
                 case EnumDataType.CATALOG:
                     foreach (var t in config.Model.GroupCatalogs.ListCatalogs)
                     {
@@ -484,14 +484,37 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case EnumDataType.CATALOG:
                     Debug.Assert(this.Cfg != null);
-                    var en = (Catalog)this.Cfg.DicNodes[this.ObjectGuid];
-                    this.ClrTypeName = en.Name;
+                    if (!string.IsNullOrEmpty(this.ObjectGuid))
+                    {
+                        var en = (Catalog?)this.Cfg.DicNodes[this.ObjectGuid];
+                        Debug.Assert(en != null);
+                        this.ClrTypeName = en.Name;
+                    }
+                    else
+                        this.ClrTypeName = string.Empty;
                     break;
                 case EnumDataType.CATALOGS:
-                    this.ClrTypeName = "Catalog";
+                    //bool found = false;
+                    //foreach(var t in this.ListObjectGuids)
+                    //{
+                    //    if (t==this.ObjectGuid)
+                    //    {
+                    //        found = true;
+                    //    }
+                    //}
+                    //Debug.Assert(!found);
+                    this.ClrTypeName = "Catalogs";
                     break;
                 case EnumDataType.DOCUMENT:
-                    this.ClrTypeName = "Document";
+                    Debug.Assert(this.Cfg != null);
+                    if (!string.IsNullOrEmpty(this.ObjectGuid))
+                    {
+                        var en = (Document?)this.Cfg.DicNodes[this.ObjectGuid];
+                        Debug.Assert(en != null);
+                        this.ClrTypeName = en.Name;
+                    }
+                    else
+                        this.ClrTypeName = string.Empty;
                     break;
                 case EnumDataType.DOCUMENTS:
                     this.ClrTypeName = "Documents";
@@ -704,7 +727,7 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.DataTypeEnum)
             {
                 case EnumDataType.CHAR:
-                case EnumDataType.ANY:
+                //case EnumDataType.ANY:
                 case EnumDataType.BOOL:
                 case EnumDataType.DATE:
                 case EnumDataType.DATETIMELOCAL:

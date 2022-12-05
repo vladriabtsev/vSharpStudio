@@ -1,19 +1,35 @@
-ü
-$7972593b-fdc6-4645-a489-078e8adfed5btest2*test2:õçÀ›°¼ÑÎ@×¯Àä–¶óƒª<
-$abdd9285-cec9-464d-8973-3b78265fd2feBaseConfigs@º¾ØÎú×œi²Ğ
-$b2dde2a9-b089-4ad6-a2b1-c8de589f307eModel óØ“Öƒ›©Ê*Model@dHPj$35f941ea-0496-465b-bd26-abbe1297edf7rIdŠ$e19c116a-2201-49cf-a5b0-79fd537b620f’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderâIsOpenêDocDateğÊ	DocNumberĞªK
-$407a1f82-4986-4d33-a3c2-6a9a8172e4ce	Constants»õ”–­†üt"	Constants2Cnst²L
-$9c9ebece-1a2d-40d1-8adc-3e84055dd907Enumerations"Enumerations@İÍ¾»«Òî…ºR
-$d6ae2446-de85-4ab0-8f11-01dd826f91aaCatalogs"Catalogs2Ctlg:cH¦Ÿ¦Ûƒàâq€ÂÖ
-$f4dd81ff-7bc2-449f-b4f4-bae4dffe3895	Documents¸ÀÖŸŒÓ¸}"	Documents2Doc:@
-$b9118350-b8cb-4578-98fe-7db7ec079467Shared"Shared@ÓŠ¼Î¶¨øûBH
-$d6fe9168-0884-4e89-b989-9c781d7247a3	Documents"	Documents2d@¸ÀÖŸŒÓ¸}ÊD
-$bc9cb3ce-6068-41e7-9fe0-5f734e76f796Journals"Journals@Ú½Ì—¦„ç°Ò¿
-$f63fdc00-56a4-4cd2-8a5f-259883f7907aCommon"Common0İ¡ÔÕ™ût:>
-$ee383c81-16ae-4a6d-be1c-daddd879bfb7Roles"Roles@—æÉ—¾ªŠõB>
-$2f0067ab-be67-48e5-88fa-0fdb8487f6e4Group"Group@Ë€îÙêõê—Âá
-$6ce7592c-9b63-485c-a905-71ba978d2ddbPlugins"¥
+ï
+$968227c1-8adf-4a9d-806a-f5a03c6d60e9test2*test2:Ñæ³œĞªÈ@×¯Àä–¶óƒª<
+$483d3a76-a69a-4909-b703-c590a2cc7cd1BaseConfigs@º¾ØÎú×œi²Ğ
+$14d3a935-9e94-4d45-a9c9-b14db2dcaea7Model óØ“Öƒ›©Ê*Model@dHPj$b042d10f-9287-45f3-8edb-1e32c7729a34rIdŠ$10d2ee0c-05dc-4710-9f63-8896ff6ea5a9’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderâIsOpenêDocDateğÊ	DocNumberĞªK
+$f7aca8be-31e0-4ce8-9d48-b8ecbf268a6b	Constants»õ”–­†üt"	Constants2Cnst²L
+$0af394d2-6d05-40ca-95fd-08e21d8adcd9Enumerations"Enumerations@İÍ¾»«Òî…ºR
+$d43f6426-6be6-439c-8043-4a2d8ea42068Catalogs"Catalogs2Ctlg:cH¦Ÿ¦Ûƒàâq€ÂÖ
+$7744d370-c428-4730-9f3b-f16cb17bf578	Documents¸ÀÖŸŒÓ¸}"	Documents2Doc:@
+$624fbbca-a83d-4907-a244-34314bf59056Shared"Shared@ÓŠ¼Î¶¨øûBH
+$276ff0c7-1770-47d1-819f-20296b6eb27c	Documents"	Documents2d@¸ÀÖŸŒÓ¸}ÊD
+$5730ab16-e891-488e-a5aa-a8b14c94d634Journals"Journals@Ú½Ì—¦„ç°Ò¿
+$f680c19a-9ac6-43fd-a3fc-ae9b2bf298b6Common"Common0İ¡ÔÕ™ût:>
+$1ffbd9aa-167d-4246-90d1-a2ae1a350ef9Roles"Roles@—æÉ—¾ªŠõB>
+$2bb65f7d-ed9b-4eb1-82f7-1520a8b822c1Group"Group@Ë€îÙêõê—ÂÕ
+$1ae29cdc-8c6e-478e-a5ff-962b326f6fcdPlugins"¸
+$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
+$1E35FCDB-6425-4C66-B047-6882738AF552
+RepositoryDB repository code generation ØŞèİ›Ÿæò"á
+$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(Øç»Â±¨ë—2|
+$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions °Œ½¹¨ë—"Ó
+$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
+$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{"Ü
+$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
+PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
+$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{"Æ
+$052C7318-3D73-4605-B1AE-749FC7E104120.1
+Repository"4vSharpStudio plugin. DB access layer repository code(ØŞèİ›Ÿæò2M
+$E59B393E-AF34-4438-977F-7BF120E28A0C
+RepositoryDb Access Layer ØŞèİ›Ÿæò"¥
 $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
-$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶z@„™„§à›®ãÊ5
-$a9a8d18a-cf37-42ef-b582-36d43eccf09bApps@È ›½¾d
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶z"Ô
+$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
+$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{@„™„§à›®ãÊ5
+$ce046cc8-20eb-4d19-a6ab-aa11afbdfefbApps@È ›½¾d
