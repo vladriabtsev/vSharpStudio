@@ -49,7 +49,7 @@ namespace ViewModelBase
         }
         private Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection GetUpdatedPropertyDefinitions()
         {
-            string[] lstExclude = OnGetWhatHideOnPropertyGrid();
+            string[] lstExclude = this.OnGetWhatHideOnPropertyGrid();
             //if (lstExclude.Count() > 0)
             //{
             this.AutoGenerateProperties = false;

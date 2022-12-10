@@ -31,6 +31,7 @@ namespace vSharpStudio.vm.ViewModels
             return this.ParentModel.Children;
         }
         #endregion ITree
+        new public ConfigNodesCollection<GroupListConstants> Children { get { return this.ListConstantGroups; } }
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }

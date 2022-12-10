@@ -243,11 +243,20 @@ namespace vSharpStudio.vm.ViewModels
             return true;
         }
         #endregion Tree operations
+
+        partial void OnDataTypeEnumChanged()
+        {
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+        }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
             lst.Add(this.GetPropertyName(() => this.Parent));
             lst.Add(this.GetPropertyName(() => this.Children));
+            if (this.DataTypeEnum != EnumEnumerationType.STRING_VALUE)
+            {
+                lst.Add(this.GetPropertyName(() => this.DataTypeLength));
+            }
             return lst.ToArray();
         }
     }

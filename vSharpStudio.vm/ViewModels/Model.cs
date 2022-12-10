@@ -95,12 +95,13 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Model";
             VmBindable.IsNotifyingStatic = false;
-            this.Children.Add(this.GroupCommon);
-            this.Children.Add(this.GroupConstantGroups);
-            this.Children.Add(this.GroupEnumerations);
-            this.Children.Add(this.GroupCatalogs);
-            this.Children.Add(this.GroupDocuments);
-            this.Children.Add(this.GroupJournals);
+            var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
+            children.Add(this.GroupCommon, 6);
+            children.Add(this.GroupConstantGroups, 7);
+            children.Add(this.GroupEnumerations, 8);
+            children.Add(this.GroupCatalogs, 9);
+            children.Add(this.GroupDocuments, 10);
+            children.Add(this.GroupJournals, 11);
             VmBindable.IsNotifyingStatic = true;
             //this.ListMainViewForms.OnAddingAction = (t) =>
             //{

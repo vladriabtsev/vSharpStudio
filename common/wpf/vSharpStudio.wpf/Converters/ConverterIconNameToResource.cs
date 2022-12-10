@@ -21,6 +21,8 @@ namespace vSharpStudio.wpf.Converters
             string iconName = value as string;
             //if (Application.Current.Resources.MergedDictionaries[0].Contains(iconName))
             //    return Application.Current.Resources.MergedDictionaries[0][iconName];
+            if (string.IsNullOrWhiteSpace(iconName))
+                return null;
             var res = Application.Current.FindResource(iconName);
             return res;
             //Trace.WriteLine("##### ERROR ##### Converter '" + typeof(ConverterIconNameToResource).Name + "'. Application resorces doesn't contain icon resource with name: " + iconName);

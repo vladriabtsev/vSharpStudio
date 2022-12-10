@@ -253,13 +253,27 @@ message proto_app_db_settings {
     string conn_name = 7;
 }
 // @base BaseSettings
-message proto_plugin_group_generators_default_settings {
+message proto_plugin_generator_solution_settings {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    //string app_generator_guid = 2;
+    string settings = 3; 
+}
+// @base BaseSettings
+message proto_plugin_generator_project_settings {
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    //string app_generator_guid = 2;
+    string settings = 3; 
+}
+// @base BaseSettings
+/*message proto_plugin_group_generators_default_settings {
     // @attr [ReadOnly(true)]
     string guid = 1;
     // Guid of group generators
     string app_group_generators_guid = 2;
     string settings = 3; 
-}
+}*/
 message proto_group_list_app_solutions {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -279,7 +293,8 @@ message proto_group_list_app_solutions {
     repeated proto_app_solution list_app_solutions = 9;
 
     // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_group_generators_default_settings list_group_generators_defult_settings = 17;
+    //repeated proto_plugin_generator_solution_settings list_group_generators_default_settings = 17;
+    //repeated proto_plugin_group_generators_default_settings list_group_generators_default_settings = 17;
 
     // @attr [PropertyOrderAttribute(3)]
     // @attr [ExpandableObjectAttribute()]
@@ -307,6 +322,7 @@ message proto_plugins_group {
 */
 // @interface ISortingValue
 // @base ConfigObjectCommonBase
+/*
 message proto_plugin_group_generators_settings {
     // @attr [ReadOnly(true)]
     string guid = 1;
@@ -320,7 +336,8 @@ message proto_plugin_group_generators_settings {
     bool is_new = 9;
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
-}
+}*/
+
 // @interface ICanAddNode
 // @interface ISortingValue
 message proto_app_solution {
@@ -361,7 +378,8 @@ message proto_app_solution {
     repeated proto_app_project list_app_projects = 17;
 
     // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
+    repeated proto_plugin_generator_solution_settings list_generators_solution_settings = 18;
+    //repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
 
     // @attr [PropertyOrderAttribute(8)]
     // @attr [ExpandableObjectAttribute()]
@@ -424,7 +442,8 @@ message proto_app_project {
     repeated proto_app_project_generator list_app_project_generators = 16;
 
     // @attr [BrowsableAttribute(false)]
-    repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
+    repeated proto_plugin_generator_project_settings list_generators_project_settings = 18;
+    //repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
 
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Reference")]
@@ -527,8 +546,6 @@ message proto_app_project_generator {
     // @attr [PropertyOrderAttribute(9)]
     // @attr [Description("Db connection string. Directly editable or generated based on settings")]
     string conn_str = 19;
-    // @attr [BrowsableAttribute(false)]
-    string plugin_generator_group_guid = 20;
     // @attr [PropertyOrderAttribute(13)]
     // @attr [DisplayName("Stable DB")]
     // @attr [Description("Db connection string to previous stable version")]
@@ -1200,15 +1217,19 @@ message proto_property {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
+    // @attr [DisplayName("Name")]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Typically used as UI field label")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Description")]
+    // @attr [Description("Description of property")]
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     proto_data_type data_type = 6;
@@ -1526,6 +1547,7 @@ message proto_enumeration {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
+    // @attr [DisplayName("Name")]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
@@ -1535,6 +1557,8 @@ message proto_enumeration {
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Description")]
+    // @attr [Description("Description of enumeration")]
     string description = 5;
     // Enumeration element type
     // @attr [PropertyOrderAttribute(4)]

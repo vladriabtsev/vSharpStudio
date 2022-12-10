@@ -203,11 +203,11 @@ namespace vSharpStudio.vm.ViewModels
             new DictionaryExt<string, IvPluginGeneratorNodeSettings?>(20, false, true,
                         (ki, v) => { }, (kr, v) => { }, () => { });
         /// <summary>
-        /// Getting VM of generator settings for node
+        /// Check if this node is included for generation for selected generator
         /// </summary>
         /// <param name="guidAppPrjGen">Guid of VM of generator node settings</param>
         /// <returns></returns>
-        public bool IsIncluded(string guidAppPrjGen, bool isFromPrevStable = false)
+        public bool IsIncluded(string guidAppPrjGen) //, bool isFromPrevStable = false)
         {
             //if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
             //    throw new Exception();
@@ -228,8 +228,8 @@ namespace vSharpStudio.vm.ViewModels
                                 return true;
                             }
                         }
-                        if (!isFromPrevStable)
-                            return this.IsIncludedInStable(guidAppPrjGen);
+                        //if (!isFromPrevStable)
+                        //    return this.IsIncludedInStable(guidAppPrjGen);
                         return false;
                     }
                     return true;
@@ -243,14 +243,11 @@ namespace vSharpStudio.vm.ViewModels
                         var nodeSettings = (IvPluginGeneratorNodeIncludable?)ngs.DicGenNodeSettings[guidAppPrjGen];
                         if (nodeSettings != null && nodeSettings.IsIncluded.HasValue)
                         {
-                            if (nodeSettings.IsIncluded.Value)
-                            {
-                                return true;
-                            }
+                            return nodeSettings.IsIncluded.Value;
                         }
-                        if (!isFromPrevStable)
-                            return this.IsIncludedInStable(guidAppPrjGen);
-                        return false;
+                        //if (!isFromPrevStable)
+                        //    return this.IsIncludedInStable(guidAppPrjGen);
+                        //return false;
                     }
                 }
                 //else
@@ -261,17 +258,17 @@ namespace vSharpStudio.vm.ViewModels
             }
             return true;
         }
-        private bool IsIncludedInStable(string guidAppPrjGen)
-        {
-            var cfg = this.GetConfig();
-            var prev = cfg.PrevStableConfig;
-            if (prev != null && prev.DicNodes.ContainsKey(this._Guid))
-            {
-                var prevNode = (IGetNodeSetting)prev.DicNodes[this._Guid];
-                return prevNode.IsIncluded(guidAppPrjGen, true);
-            }
-            return false;
-        }
+        //private bool IsIncludedInStable(string guidAppPrjGen)
+        //{
+        //    var cfg = this.GetConfig();
+        //    var prev = cfg.PrevStableConfig;
+        //    if (prev != null && prev.DicNodes.ContainsKey(this._Guid))
+        //    {
+        //        var prevNode = (IGetNodeSetting)prev.DicNodes[this._Guid];
+        //        return prevNode.IsIncluded(guidAppPrjGen, true);
+        //    }
+        //    return false;
+        //}
         public bool GetBoolSetting(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, bool?> func, bool isFromPrevStable = false)
         {
             if (!this.DicGenNodeSettings.ContainsKey(guidAppPrjGen))

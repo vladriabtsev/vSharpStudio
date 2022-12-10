@@ -984,15 +984,15 @@ namespace vSharpStudio.Unit
             prms.AccessParam3 = "test";
 
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupCommon.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
             foreach (var t in vm.Config.Model.GroupConstantGroups.ListConstantGroups)
             {
                 Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
             }
             Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(1, vm.Config.Model.GroupDocuments.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupDocuments.ListNodeGeneratorsSettings.Count);
             //Assert.AreEqual(1, vm.Config.Model.GroupJournals.ListNodeGeneratorsSettings.Count);
 
             vm.CommandConfigSave.Execute(null);
@@ -1015,8 +1015,6 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.IsAccessParam1, prms2.IsAccessParam1);
             Assert.AreEqual(prms.IsAccessParam2, prms2.IsAccessParam2);
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
-
-            Assert.IsFalse(true);
         }
         [TestMethod]
         public void Main014_Diff_WorkWithNodeGeneratorSettings()
@@ -1025,7 +1023,7 @@ namespace vSharpStudio.Unit
             // GeneratorDbAccessNodePropertySettings    "Property"
 
             // Settings workflow:
-            // 1. When Config is loaded: init all generators settings VMs on all model nodes
+            // 1. When Config is loaded: init all generators settings VMs on all model nodes supported by generator
             // 2. When model node is added: init all generators settings VMs on this node
             // 3. When new generator is selected: old generator has to be removed from all model nodes, 
             //     and new generator settings has to be added for all model nodes
@@ -1061,7 +1059,7 @@ namespace vSharpStudio.Unit
             {
                 Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
             }
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             gen.NodeRemove(false);
             Assert.AreEqual(1, vm.Config.GroupAppSolutions[0].ListAppProjects.Count);
             Assert.AreEqual(0, vm.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators.Count);
@@ -1085,7 +1083,7 @@ namespace vSharpStudio.Unit
             {
                 Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
             }
-            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
 
             // 2. When model node is added: init all generators settings VMs on this node
             Assert.AreEqual(1, vm.Config.Model.GroupEnumerations.ListNodeGeneratorsSettings.Count);
@@ -1099,20 +1097,20 @@ namespace vSharpStudio.Unit
             vm.Config.Model.GroupCatalogs.NodeAddNewSubNode();
             Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
             vm.Config.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
-            Assert.AreEqual(2, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
             vm.Config.Model.GroupCatalogs[0].GroupForms.NodeAddNewSubNode();
-            Assert.AreEqual(2, vm.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
             vm.Config.Model.GroupDocuments.GroupListDocuments.NodeAddNewSubNode();
             Assert.AreEqual(1, vm.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
             vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties.NodeAddNewSubNode();
-            Assert.AreEqual(2, vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
 
 
             var main = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicGeneratorSettings;
             main.IsAccessParam1 = true;
             main.IsAccessParam2 = false;
 
-            var ngs = (vPlugin.Sample.GeneratorDbAccessNodeSettings)gen.GetSettings(gen.Guid);
+            var ngs = (vPlugin.Sample.GeneratorDbAccessNodeSettings)gen.DynamicModelNodeSettings;
             var nds = (vPlugin.Sample.GeneratorDbAccessNodeSettings)vm.Config.Model.GetSettings(gen.Guid);
 
             // on model we have link to AppProjectGenerator settings
@@ -1151,10 +1149,10 @@ namespace vSharpStudio.Unit
                 Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
             }
             Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
-            Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
 
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.AreEqual(true, main.IsAccessParam1);
@@ -1164,46 +1162,49 @@ namespace vSharpStudio.Unit
 
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
 
-            //// if new app progect generator is added, new setting are attached to all appropriate nodes
-            //var gen0 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
-            //Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
-            //vm2.Config.GroupAppSolutions[0].ListAppProjects[0].NodeAddNewSubNode();
-            //var gen2 = (from p in vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators where p.Guid != gen0.Guid select p).Single();
-            //gen2.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
-            //gen2.GenFileName = "test_file.cs";
-            //gen2.PluginGuid = pluginNode.Guid;
-            //// Expect attached settings for Property and Catalog.Form
-            //gen2.PluginGeneratorGuid = genDbAccess.Guid;
-            //Assert.AreEqual(2, vm2.Config.DicActiveAppProjectGenerators.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupConstants[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            // if new app progect generator is added, new setting are attached to all appropriate nodes
+            var gen0 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
+            Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
+            vm2.Config.GroupAppSolutions[0].ListAppProjects[0].NodeAddNewSubNode();
+            var gen2 = (from p in vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators where p.Guid != gen0.Guid select p).Single();
+            gen2.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
+            gen2.GenFileName = "test_file.cs";
+            gen2.PluginGuid = pluginNode.Guid;
+            // Expect attached settings for Property and Catalog.Form
+            gen2.PluginGeneratorGuid = genDbAccess.Guid;
+            Assert.AreEqual(2, vm2.Config.DicActiveAppProjectGenerators.Count);
+            Assert.AreEqual(2, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(2, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            //Assert.AreEqual(2, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListNodeGeneratorsSettings.Count);
+            //Assert.AreEqual(2, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(2, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(2, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
 
-            //// if app progect generator is removed, attached seetings are removed from appropriate nodes as well
-            //gen2.NodeRemove(false);
-            //Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupConstants[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
-            //Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            // if app progect generator is removed, attached seetings are removed from appropriate nodes as well
+            gen2.NodeRemove(false);
+            Assert.AreEqual(1, vm2.Config.DicActiveAppProjectGenerators.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupEnumerations[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListNodeGeneratorsSettings.Count);
+            //Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListNodeGeneratorsSettings.Count);
+            //Assert.AreEqual(1, vm2.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupCatalogs[0].GroupForms[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].ListNodeGeneratorsSettings.Count);
+            Assert.AreEqual(1, vm2.Config.Model.GroupDocuments.GroupListDocuments[0].GroupProperties[0].ListNodeGeneratorsSettings.Count);
             _logger.LogTrace("End test".CallerInfo());
-            Assert.IsFalse(true);
         }
         [TestMethod]
         public void Main015_Diff_WorkWithPluginsGroupSettings()
         {
             // Settings workflow:
-            // 1. When Config is loaded: init group plugin settings on all solution nodes
-            // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
-            // 3. When new generator is added and it is new group plugin, than appropriate solution settings has to be added in solution
-            // 4. When saving Config: convert all solutions groups settings to string representations
+            // 1. When Config is loaded: init plugin generators settings on all solution and project nodes
+            // 2. When generator is removed, appropriate project/solution settings has to be removed if it is a last plugin generator in project/solution
+            // 3. When new generator is added and it is having new project/solution settings, than appropriate project/solution settings has to be added in project/solution
+            // 4. When saving Config: convert all projects/solutions settings to string representations
             _logger.LogTrace("Start test".CallerInfo());
             var vm = new MainPageVM(false);
             vm.OnFormLoaded();
@@ -1222,44 +1223,54 @@ namespace vSharpStudio.Unit
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\ConsoleApp1\Generated";
             gen.GenFileName = "test_file.cs";
+            Assert.IsTrue(gen.PluginGuid == string.Empty);
+            Assert.IsTrue(gen.PluginGeneratorGuid == string.Empty);
+            Assert.IsNull(gen.PluginGenerator);
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
+            Assert.IsTrue(gen.PluginGuid != string.Empty);
+            Assert.IsTrue(gen.PluginGeneratorGuid != string.Empty);
+            Assert.IsNotNull(gen.PluginGenerator);
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
 
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             var plgn = vm.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(SamplePlugin.GroupDbGuidStatic));
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
 
-            var set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[SamplePlugin.GroupDbGuidStatic];
+            var set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic];
             set.IsGroupParam1 = true;
 
             vm.CommandConfigSave.Execute(null);
 
-            // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
+            // 2. When generator is removed, appropriate project/solution settings has to be removed if it is a last plugin generator in project/solution
             gen.PluginGuid = null;
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
-            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(SamplePlugin.GroupDbGuidStatic));
+            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
             Assert.IsNull(sln.DynamicPluginGroupSettings);
 
-            // 3. When new generator is added and it is new group plugin, than appropriate solution settings has to be added in solution
+            // 3. When new generator is added and it is having new project/solution settings, than appropriate project/solution settings has to be added in project/solution
             gen.PluginGuid = pluginNode.Guid;
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             plgn = vm.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(SamplePlugin.GroupDbGuidStatic));
+            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
+            Assert.IsNull(sln.DynamicPluginGroupSettings);
+
+            gen.PluginGeneratorGuid = genDbAccess.Guid;
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
 
-            // 2. When generator is removed, appropriate solution settings has to be removed if it is a last plugin in group
+            // 2. When generator is removed, appropriate project/solution settings has to be removed if it is a last plugin generator in project/solution
             gen.NodeRemove(false);
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
-            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(SamplePlugin.GroupDbGuidStatic));
+            Assert.IsFalse(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
             Assert.IsNull(sln.DynamicPluginGroupSettings);
 
 
-            // 1. When Config is loaded: init group plugin settings on all solution nodes
+            // 1. When Config is loaded: init plugin generators settings on all solution and project nodes
             var vm2 = new MainPageVM(true);
             vm2.OnFormLoaded();
             vm2.Compose();
@@ -1268,14 +1279,13 @@ namespace vSharpStudio.Unit
             plgn = vm2.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
             sln = vm2.Config.GroupAppSolutions[0];
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(SamplePlugin.GroupDbGuidStatic));
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic));
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
 
-            // 4. When saving Config: convert all solutions groups settings to string representations
-            set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[SamplePlugin.GroupDbGuidStatic];
+            // 4. When saving Config: convert all projects/solutions settings to string representations
+            set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[vPlugin.Sample.PluginsGroupSolutionSettings.GuidStatic];
             Assert.IsTrue(set.IsGroupParam1);
             _logger.LogTrace("End test".CallerInfo());
-            Assert.IsFalse(true);
         }
 
         [TestMethod]

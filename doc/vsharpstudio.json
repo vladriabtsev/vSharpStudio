@@ -592,12 +592,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_group_generators_settings",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "name": "list_generators_project_settings",
+              "description": "@attr [BrowsableAttribute(false)]\n\nrepeated proto_plugin_group_generators_settings list_group_generators_settings = 18;",
               "label": "repeated",
-              "type": "proto_plugin_group_generators_settings",
-              "longType": "proto_plugin_group_generators_settings",
-              "fullType": "proto_config.proto_plugin_group_generators_settings",
+              "type": "proto_plugin_generator_project_settings",
+              "longType": "proto_plugin_generator_project_settings",
+              "fullType": "proto_config.proto_plugin_generator_project_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -773,16 +773,6 @@
               "defaultValue": ""
             },
             {
-              "name": "plugin_generator_group_guid",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "conn_str_to_prev_stable",
               "description": "@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Stable DB\")]\n@attr [Description(\"Db connection string to previous stable version\")]",
               "label": "",
@@ -924,12 +914,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_group_generators_settings",
-              "description": "@attr [BrowsableAttribute(false)]",
+              "name": "list_generators_solution_settings",
+              "description": "@attr [BrowsableAttribute(false)]\n\nrepeated proto_plugin_group_generators_settings list_group_generators_settings = 18;",
               "label": "repeated",
-              "type": "proto_plugin_group_generators_settings",
-              "longType": "proto_plugin_group_generators_settings",
-              "fullType": "proto_config.proto_plugin_group_generators_settings",
+              "type": "proto_plugin_generator_solution_settings",
+              "longType": "proto_plugin_generator_solution_settings",
+              "fullType": "proto_config.proto_plugin_generator_solution_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -2917,7 +2907,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2947,7 +2937,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Description\")]\n@attr [Description(\"Description of enumeration\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4745,7 +4735,7 @@
           "name": "proto_group_list_app_solutions",
           "longName": "proto_group_list_app_solutions",
           "fullName": "proto_config.proto_group_list_app_solutions",
-          "description": "",
+          "description": "message proto_plugin_group_generators_default_settings {\n// @attr [ReadOnly(true)]\nstring guid = 1;\n// Guid of group generators\nstring app_group_generators_guid = 2;\nstring settings = 3; \n}",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -4797,16 +4787,6 @@
               "type": "proto_app_solution",
               "longType": "proto_app_solution",
               "fullType": "proto_config.proto_app_solution",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_group_generators_defult_settings",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "proto_plugin_group_generators_default_settings",
-              "longType": "proto_plugin_group_generators_default_settings",
-              "fullType": "proto_config.proto_plugin_group_generators_default_settings",
               "ismap": false,
               "defaultValue": ""
             }
@@ -7135,6 +7115,37 @@
           ]
         },
         {
+          "name": "proto_plugin_generator_project_settings",
+          "longName": "proto_plugin_generator_project_settings",
+          "fullName": "proto_config.proto_plugin_generator_project_settings",
+          "description": "@base BaseSettings",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "settings",
+              "description": "string app_generator_guid = 2;",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_plugin_generator_settings",
           "longName": "proto_plugin_generator_settings",
           "fullName": "proto_config.proto_plugin_generator_settings",
@@ -7196,9 +7207,9 @@
           ]
         },
         {
-          "name": "proto_plugin_group_generators_default_settings",
-          "longName": "proto_plugin_group_generators_default_settings",
-          "fullName": "proto_config.proto_plugin_group_generators_default_settings",
+          "name": "proto_plugin_generator_solution_settings",
+          "longName": "proto_plugin_generator_solution_settings",
+          "fullName": "proto_config.proto_plugin_generator_solution_settings",
           "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
@@ -7215,103 +7226,12 @@
               "defaultValue": ""
             },
             {
-              "name": "app_group_generators_guid",
-              "description": "Guid of group generators",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "settings",
-              "description": "",
+              "description": "string app_generator_guid = 2;",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_plugin_group_generators_settings",
-          "longName": "proto_plugin_group_generators_settings",
-          "fullName": "proto_config.proto_plugin_group_generators_settings",
-          "description": "@interface ISortingValue\n@base ConfigObjectCommonBase",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "app_group_generators_guid",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "settings",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_new",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_marked_for_deletion",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             }
@@ -7338,7 +7258,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -7358,7 +7278,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Typically used as UI field label\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -7368,7 +7288,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Description\")]\n@attr [Description(\"Description of property\")]",
               "label": "",
               "type": "string",
               "longType": "string",

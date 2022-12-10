@@ -318,44 +318,53 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void SaveGroupSettings()
         {
-            this.ListGroupGeneratorsSettings.Clear();
+            this.ListGeneratorsProjectSettings.Clear();
             foreach (var t in this.DicPluginsGroupSettings)
             {
-                var set = new PluginGroupGeneratorsSettings(this);
-                set.AppGroupGeneratorsGuid = t.Key;
+                var set = new PluginGeneratorProjectSettings(this);
+                set.Guid = t.Key;
                 if (t.Value == null)
                     set.Settings = String.Empty;
                 else
                     set.Settings = t.Value.SettingsAsJson;
-                this.ListGroupGeneratorsSettings.Add(set);
+                this.ListGeneratorsProjectSettings.Add(set);
             }
         }
         public void RestoreGroupSettings(IvPluginGenerator? gen = null)
         {
-            var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
-            Debug.Assert(cfg !=null);
-            Debug.Assert(cfg.DicGroupSettingGenerators != null);
             if (gen == null)
             {
                 this.DicPluginsGroupSettings.Clear();
-                foreach (var t in this.ListGroupGeneratorsSettings)
+                foreach (var t in this.ListGeneratorsProjectSettings)
                 {
-                    if (!cfg.DicGroupSettingGenerators.ContainsKey(t.AppGroupGeneratorsGuid))
-                        throw new Exception();
-                    var set = cfg.DicGroupSettingGenerators[t.AppGroupGeneratorsGuid].GetPluginGroupProjectSettingsVmFromJson(this, t.Settings);
-                    if (set != null)
-                        set.Parent = this;
-                    this.DicPluginsGroupSettings[t.AppGroupGeneratorsGuid] = set;
+                    Debug.Assert(!this.DicPluginsGroupSettings.ContainsKey(t.Guid));
+                    foreach (var tt in this.ListAppProjectGenerators)
+                    {
+                        IvPluginGenerator? gn = tt.PluginDbGenerator;
+                        if (gn == null)
+                            gn = tt.PluginGenerator;
+                        if (gn == null)
+                            continue;
+                        if (gn.ProjectParametersGuid == t.Guid)
+                        {
+                            var set = gn.GetPluginGroupProjectSettingsVmFromJson(this, t.Settings);
+                            if (set != null)
+                            {
+                                this.DicPluginsGroupSettings[set.Guid] = set;
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             else
             {
-                if (!cfg.DicGroupSettingGenerators.ContainsKey(gen.Guid))
-                    cfg.DicGroupSettingGenerators[gen.Guid] = gen;
                 var set = gen.GetPluginGroupProjectSettingsVmFromJson(this, null);
-                if (set != null)
+                if (set != null && !this.DicPluginsGroupSettings.ContainsKey(set.Guid))
+                {
                     set.Parent = this;
-                this.DicPluginsGroupSettings[gen.GroupGeneratorsGuid] = set;
+                    this.DicPluginsGroupSettings[set.Guid] = set;
+                }
             }
         }
         protected override void OnValidated(ValidationResult res)

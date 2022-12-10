@@ -1,35 +1,19 @@
-ï
-$968227c1-8adf-4a9d-806a-f5a03c6d60e9test2*test2:Ñæ³œĞªÈ@×¯Àä–¶óƒª<
-$483d3a76-a69a-4909-b703-c590a2cc7cd1BaseConfigs@º¾ØÎú×œi²Ğ
-$14d3a935-9e94-4d45-a9c9-b14db2dcaea7Model óØ“Öƒ›©Ê*Model@dHPj$b042d10f-9287-45f3-8edb-1e32c7729a34rIdŠ$10d2ee0c-05dc-4710-9f63-8896ff6ea5a9’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderâIsOpenêDocDateğÊ	DocNumberĞªK
-$f7aca8be-31e0-4ce8-9d48-b8ecbf268a6b	Constants»õ”–­†üt"	Constants2Cnst²L
-$0af394d2-6d05-40ca-95fd-08e21d8adcd9Enumerations"Enumerations@İÍ¾»«Òî…ºR
-$d43f6426-6be6-439c-8043-4a2d8ea42068Catalogs"Catalogs2Ctlg:cH¦Ÿ¦Ûƒàâq€ÂÖ
-$7744d370-c428-4730-9f3b-f16cb17bf578	Documents¸ÀÖŸŒÓ¸}"	Documents2Doc:@
-$624fbbca-a83d-4907-a244-34314bf59056Shared"Shared@ÓŠ¼Î¶¨øûBH
-$276ff0c7-1770-47d1-819f-20296b6eb27c	Documents"	Documents2d@¸ÀÖŸŒÓ¸}ÊD
-$5730ab16-e891-488e-a5aa-a8b14c94d634Journals"Journals@Ú½Ì—¦„ç°Ò¿
-$f680c19a-9ac6-43fd-a3fc-ae9b2bf298b6Common"Common0İ¡ÔÕ™ût:>
-$1ffbd9aa-167d-4246-90d1-a2ae1a350ef9Roles"Roles@—æÉ—¾ªŠõB>
-$2bb65f7d-ed9b-4eb1-82f7-1520a8b822c1Group"Group@Ë€îÙêõê—ÂÕ
-$1ae29cdc-8c6e-478e-a5ff-962b326f6fcdPlugins"¸
-$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
-$1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generation ØŞèİ›Ÿæò"á
-$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(Øç»Â±¨ë—2|
-$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions °Œ½¹¨ë—"Ó
-$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
-$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{"Ü
-$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
-PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
-$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{"Æ
-$052C7318-3D73-4605-B1AE-749FC7E104120.1
-Repository"4vSharpStudio plugin. DB access layer repository code(ØŞèİ›Ÿæò2M
-$E59B393E-AF34-4438-977F-7BF120E28A0C
-RepositoryDb Access Layer ØŞèİ›Ÿæò"¥
+ü
+$5ed43a99-5a4b-4432-848a-4e52f2084252test2*test2:©›Ïœ¤±ÍÎ@×¯Àä–¶óƒª<
+$2dc963e1-7786-42b0-ab0a-a351759315eaBaseConfigs@º¾ØÎú×œi²Ğ
+$69ce178c-92a0-4b73-8ba2-3deb7d7d5d1fModel óØ“Öƒ›©Ê*Model@dHPj$60a647ed-873c-4f15-9654-78838cbbf4ebrIdŠ$355fcce0-41ec-4f4d-af75-ee568ad3ab22’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderâIsOpenêDocDateğÊ	DocNumberĞªK
+$e2a0ac37-ced5-4ac2-ba78-94a344876e8d	Constants»õ”–­†üt"	Constants2Cnst²L
+$732cffec-f53c-4444-a316-644ea6e84efdEnumerations"Enumerations@İÍ¾»«Òî…ºR
+$c1050806-5aee-4dc3-86cc-e20a96937017Catalogs"Catalogs2Ctlg:cH¦Ÿ¦Ûƒàâq€ÂÖ
+$acb7fb92-bb28-409b-b42a-c15855fc2fee	Documents¸ÀÖŸŒÓ¸}"	Documents2Doc:@
+$1c868f09-3567-4422-b1d0-a9733066bd1aShared"Shared@ÓŠ¼Î¶¨øûBH
+$dffc9ee8-9ea3-4a42-961f-05b7aac4d699	Documents"	Documents2d@¸ÀÖŸŒÓ¸}ÊD
+$7a16da32-c8c6-4f1a-bc85-35ff86422962Journals"Journals@Ú½Ì—¦„ç°Ò¿
+$5036712b-39c2-4d1b-9015-1c6f8449dfa6Common"Common0İ¡ÔÕ™ût:>
+$997d07a6-2f66-4c80-9e1b-c32f670d4839Roles"Roles@—æÉ—¾ªŠõB>
+$c6e52ded-dd90-47bd-8bd6-b450f63b7ec0Group"Group@Ë€îÙêõê—Âá
+$b5b09624-894b-4e42-90e5-69e965b8ffc5Plugins"¥
 $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
-$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶z"Ô
-$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
-$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{@„™„§à›®ãÊ5
-$ce046cc8-20eb-4d19-a6ab-aa11afbdfefbApps@È ›½¾d
+$7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶z@„™„§à›®ãÊ5
+$35ec2905-3615-4d4c-92a7-1b6675faea16Apps@È ›½¾d

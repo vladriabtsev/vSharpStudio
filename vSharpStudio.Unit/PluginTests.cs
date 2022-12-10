@@ -225,8 +225,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, diffPluginLists.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffPluginLists.Dic2ButNotInDic1.Count);
             var diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm.Config.DicNodes, vm2.Config.DicNodes);
-            //TODO initially expected 0, but 2
-            Assert.AreEqual(2, diffNodes.Dic1ButNotInDic2.Count);
+            Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
             #endregion DicDiffResult
 
@@ -508,10 +507,8 @@ namespace vSharpStudio.Unit
             // Empty settings without generator
             Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 0);
             Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 0);
-            Assert.IsTrue(cfg.DicGroupSettingGenerators.Count > 0);
             Assert.IsNull(sln.DynamicPluginGroupSettings);
             Assert.IsNull(prj.DynamicPluginGroupSettings);
-            Assert.IsTrue(gen.PluginGeneratorGroupGuid == string.Empty);
 
             // first generator adding
             gen.PluginGeneratorGuid = genDbAccess.Guid;
@@ -519,10 +516,9 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
-            Assert.IsTrue(gen.PluginGeneratorGroupGuid != string.Empty);
             //Assert.IsTrue(cfg.DicGroupSettings.Count == 1);
-            var slnSet = sln.GetGroupSettings(SamplePlugin.GroupAccessGuidStatic) as PluginsGroupSolutionSettings;
-            var prjSet = prj.GetGroupSettings(SamplePlugin.GroupAccessGuidStatic) as PluginsGroupProjectSettings;
+            var slnSet = sln.GetGroupSettings(genDbAccess.SolutionParametersGuid) as PluginsGroupSolutionSettings;
+            var prjSet = prj.GetGroupSettings(genDbAccess.ProjectParametersGuid) as PluginsGroupProjectSettings;
 
             prj.Validate();
             Assert.IsTrue(prj.ValidationCollection.Count == 0);
@@ -551,11 +547,9 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
-            Assert.IsTrue(gen2.PluginGeneratorGroupGuid == string.Empty);
             gen2.PluginGeneratorGuid = genDb.Guid;
-            Assert.IsTrue(gen2.PluginGeneratorGroupGuid != string.Empty);
-            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 2);
-            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 2);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
 
@@ -568,8 +562,8 @@ namespace vSharpStudio.Unit
 
             // second generator adding
             gen2.PluginGeneratorGuid = genDb.Guid;
-            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 2);
-            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 2);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
 
@@ -583,8 +577,8 @@ namespace vSharpStudio.Unit
             // second generator adding
             gen2.PluginGuid = pluginNode.Guid;
             gen2.PluginGeneratorGuid = genDb.Guid;
-            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 2);
-            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 2);
+            Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
+            Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
 
@@ -598,15 +592,15 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.DicPlugins.ContainsKey(pluginNode.Guid));
             var plgn = vm.Config.DicPlugins[pluginNode.Guid];
             Assert.IsNotNull(plgn);
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGeneratorGroupGuid));
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGenerator.SolutionParametersGuid));
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
-            Assert.IsTrue(prj.DicPluginsGroupSettings.ContainsKey(gen.PluginGeneratorGroupGuid));
+            Assert.IsTrue(prj.DicPluginsGroupSettings.ContainsKey(gen.PluginGenerator.ProjectParametersGuid));
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
 
             // SAVE
-            var set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[gen.PluginGeneratorGroupGuid];
+            var set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[gen.PluginGenerator.SolutionParametersGuid];
             set.IsGroupParam1 = true;
-            var setPrj = (vPlugin.Sample.PluginsGroupProjectSettings)prj.DicPluginsGroupSettings[gen.PluginGeneratorGroupGuid];
+            var setPrj = (vPlugin.Sample.PluginsGroupProjectSettings)prj.DicPluginsGroupSettings[gen.PluginGenerator.ProjectParametersGuid];
             setPrj.IsGroupProjectParam1 = true;
             vm.CommandConfigSave.Execute(null);
             Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
@@ -623,13 +617,13 @@ namespace vSharpStudio.Unit
             Assert.IsNotNull(plgn);
             sln = vm2.Config.GroupAppSolutions[0];
             prj = sln.ListAppProjects[0];
-            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGeneratorGroupGuid));
+            Assert.IsTrue(sln.DicPluginsGroupSettings.ContainsKey(gen.PluginGenerator.SolutionParametersGuid));
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
-            Assert.IsTrue(prj.DicPluginsGroupSettings.ContainsKey(gen.PluginGeneratorGroupGuid));
+            Assert.IsTrue(prj.DicPluginsGroupSettings.ContainsKey(gen.PluginGenerator.ProjectParametersGuid));
             Assert.IsNotNull(prj.DynamicPluginGroupSettings);
-            set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[gen.PluginGeneratorGroupGuid];
+            set = (vPlugin.Sample.PluginsGroupSolutionSettings)sln.DicPluginsGroupSettings[gen.PluginGenerator.SolutionParametersGuid];
             Assert.IsTrue(set.IsGroupParam1);
-            setPrj = (vPlugin.Sample.PluginsGroupProjectSettings)prj.DicPluginsGroupSettings[gen.PluginGeneratorGroupGuid];
+            setPrj = (vPlugin.Sample.PluginsGroupProjectSettings)prj.DicPluginsGroupSettings[gen.PluginGenerator.ProjectParametersGuid];
             Assert.IsTrue(setPrj.IsGroupProjectParam1);
             _logger.LogInformation("End test".CallerInfo());
         }

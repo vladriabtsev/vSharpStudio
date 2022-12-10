@@ -17,7 +17,9 @@ namespace vPlugin.Sample
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public GeneratorDbAccess(ITreeConfigNode parent) : this() { this.Parent = parent; }
         public string Guid => "7C2902AF-DF34-46FC-8911-A48EE7F9B2B0";
-        public string GroupGeneratorsGuid => SamplePlugin.GroupAccessGuidStatic;
+        //public string GroupGeneratorsGuid => SamplePlugin.GroupAccessGuidStatic;
+        public string SolutionParametersGuid => PluginsGroupSolutionSettings.GuidStatic;
+        public string ProjectParametersGuid => PluginsGroupProjectSettings.GuidStatic;
         public string Name => "DbAccess";
         public string NameUi => "Db Access Layer";
         public string DefaultSettingsName => throw new NotImplementedException();
@@ -38,8 +40,7 @@ namespace vPlugin.Sample
         {
             if (parent is IModel || parent is IConstant || parent is IGroupConstantGroups || parent is IForm ||
                 parent is IGroupListEnumerations || parent is IEnumeration ||
-                parent is IModel || parent is ICatalog || parent is IProperty ||
-                parent is IDocument)
+                parent is ICatalog || parent is IProperty || parent is IDocument)
             {
                 var vm = new GeneratorDbAccessNodeSettings(parent);
                 if (!string.IsNullOrWhiteSpace(settings))

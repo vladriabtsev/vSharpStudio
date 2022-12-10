@@ -208,16 +208,35 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string ConnName { get; } // ModelInterfaces.tt Line: 51
     }
     
-    public partial interface IPluginGroupGeneratorsDefaultSettings // ModelInterfaces.tt Line: 29
+    public partial interface IPluginGeneratorSolutionSettings // ModelInterfaces.tt Line: 29
     {
     	string Guid { get; } // ModelInterfaces.tt Line: 51
     	
     	///////////////////////////////////////////////////
-    	/// Guid of group generators
+    	/// string app_generator_guid = 2;
     	///////////////////////////////////////////////////
-    	string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 51
     	string Settings { get; } // ModelInterfaces.tt Line: 51
     }
+    
+    public partial interface IPluginGeneratorProjectSettings // ModelInterfaces.tt Line: 29
+    {
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	
+    	///////////////////////////////////////////////////
+    	/// string app_generator_guid = 2;
+    	///////////////////////////////////////////////////
+    	string Settings { get; } // ModelInterfaces.tt Line: 51
+    }
+    
+    ///////////////////////////////////////////////////
+    /// message proto_plugin_group_generators_default_settings {
+    /// // @attr [ReadOnly(true)]
+    /// string guid = 1;
+    /// // Guid of group generators
+    /// string app_group_generators_guid = 2;
+    /// string settings = 3; 
+    /// }
+    ///////////////////////////////////////////////////
     
     public partial interface IGroupListAppSolutions : IGuid, IName // ModelInterfaces.tt Line: 29
     {
@@ -230,15 +249,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IAppSolution> ListAppSolutions { get; } // ModelInterfaces.tt Line: 44
     	IAppSolution this[int index] { get; }
     	int Count();
-    	IReadOnlyList<IPluginGroupGeneratorsDefaultSettings> ListGroupGeneratorsDefultSettings { get; } // ModelInterfaces.tt Line: 44
-    }
-    
-    public partial interface IPluginGroupGeneratorsSettings // ModelInterfaces.tt Line: 29
-    {
-    	string AppGroupGeneratorsGuid { get; } // ModelInterfaces.tt Line: 51
-    	string Settings { get; } // ModelInterfaces.tt Line: 51
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 51
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IAppSolution : IGuid, IName // ModelInterfaces.tt Line: 29
@@ -251,7 +261,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IAppProject> ListAppProjects { get; } // ModelInterfaces.tt Line: 44
-    	IReadOnlyList<IPluginGroupGeneratorsSettings> ListGroupGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+    	
+    	///////////////////////////////////////////////////
+    	/// 
+    	/// repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
+    	///////////////////////////////////////////////////
+    	IReadOnlyList<IPluginGeneratorSolutionSettings> ListGeneratorsSolutionSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IAppProject : IGuid, IName // ModelInterfaces.tt Line: 29
@@ -263,7 +278,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 44
-    	IReadOnlyList<IPluginGroupGeneratorsSettings> ListGroupGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+    	
+    	///////////////////////////////////////////////////
+    	/// 
+    	/// repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
+    	///////////////////////////////////////////////////
+    	IReadOnlyList<IPluginGeneratorProjectSettings> ListGeneratorsProjectSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IPluginGeneratorNodeSettings // ModelInterfaces.tt Line: 29
@@ -322,7 +342,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string GeneratorSettings { get; } // ModelInterfaces.tt Line: 51
     	IPluginGeneratorSettings GeneratorSettingsVm { get; } // ModelInterfaces.tt Line: 55
     	string ConnStr { get; } // ModelInterfaces.tt Line: 51
-    	string PluginGeneratorGroupGuid { get; } // ModelInterfaces.tt Line: 51
     	string ConnStrToPrevStable { get; } // ModelInterfaces.tt Line: 51
     	bool IsGenerateSqlSqriptToUpdatePrevStable { get; } // ModelInterfaces.tt Line: 51
     	

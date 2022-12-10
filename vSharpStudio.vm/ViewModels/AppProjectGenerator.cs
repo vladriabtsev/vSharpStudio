@@ -246,18 +246,15 @@ namespace vSharpStudio.vm.ViewModels
         }
         private string prevRelativePathToGenFolder = string.Empty;
         private string prevGenFileName = string.Empty;
-        partial void OnPluginGuidChanging(ref string to)
-        {
-            cfg._DicActiveAppProjectGenerators.TryRemove(this.Guid);
-            if (!string.IsNullOrEmpty(this.PluginGuid))
-            {
-                this.PluginGeneratorGuid = String.Empty;
-            }
-            cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
-        }
 
         private void RemoveGroupSettingsIfLast()
         {
+            IvPluginGenerator? gnt = this.PluginDbGenerator;
+            if (gnt == null)
+                gnt = this.PluginGenerator;
+            if (gnt == null)
+                return;
+
             var sln = this.ParentAppProject.ParentAppSolution;
             bool is_only_in_sln = true;
             foreach (var t in sln.ListAppProjects)
@@ -267,30 +264,47 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (tt.Guid == this.Guid)
                         continue;
-                    if (tt.PluginGeneratorGroupGuid == this.PluginGeneratorGroupGuid)
+                    IvPluginGenerator? gn = tt.PluginDbGenerator;
+                    if (gn == null)
+                        gn = tt.PluginGenerator;
+                    if (gn == null)
+                        continue;
+                    if (gn.SolutionParametersGuid == gnt.SolutionParametersGuid)
+                    {
+                        is_only_in_sln = false;
+                    }
+                    if (gn.ProjectParametersGuid == gnt.ProjectParametersGuid)
                     {
                         is_only_in_prj = false;
-                        is_only_in_sln = false;
                     }
                 }
                 if (is_only_in_prj)
                 {
-                    if (t.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
-                        t.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
+                    if (t.DicPluginsGroupSettings.ContainsKey(gnt.ProjectParametersGuid))
+                        t.DicPluginsGroupSettings.Remove(gnt.ProjectParametersGuid);
                 }
             }
             if (is_only_in_sln)
             {
-                if (sln.DicPluginsGroupSettings.ContainsKey(this.PluginGeneratorGroupGuid))
-                    sln.DicPluginsGroupSettings.Remove(this.PluginGeneratorGroupGuid);
+                if (sln.DicPluginsGroupSettings.ContainsKey(gnt.SolutionParametersGuid))
+                    sln.DicPluginsGroupSettings.Remove(gnt.SolutionParametersGuid);
             }
         }
 
+        partial void OnPluginGuidChanging(ref string to)
+        {
+            cfg._DicActiveAppProjectGenerators.TryRemove(this.Guid);
+            if (!string.IsNullOrEmpty(this.PluginGuid))
+            {
+                this.PluginGeneratorGuid = String.Empty;
+            }
+            cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
+            //this.RemoveGroupSettingsIfLast();
+        }
         partial void OnPluginGuidChanged()
         {
             if (!this.IsNotifying)
                 return;
-            //this.RemoveGroupSettingsIfLast();
             this.PluginGeneratorGuid = string.Empty;
             this.GenFileName = string.Empty;
             UpdateListGenerators();
@@ -341,15 +355,11 @@ namespace vSharpStudio.vm.ViewModels
             {
                 p.RemoveNodeAppGenSettings(this.Guid);
             });
-            if (!string.IsNullOrWhiteSpace(this.PluginGeneratorGroupGuid))
-            {
-                this.RemoveGroupSettingsIfLast();
-            }
+            this.RemoveGroupSettingsIfLast();
             this.GeneratorSettings = string.Empty;
             this.DescriptionGenerator = string.Empty;
             //this.DicGenNodeSettings.TryRemove(this.Guid);
             //this.PluginGeneratorGuid = String.Empty;
-            this.PluginGeneratorGroupGuid = String.Empty;
             cfg.Model._DicGenNodeSettings.TryRemove(this.Guid);
             this.DynamicGeneratorSettings = null;
             this.DynamicMainConnStrSettings = null;
@@ -370,7 +380,6 @@ namespace vSharpStudio.vm.ViewModels
                 this.plugin = cfg.DicPlugins[this.PluginGuid];
             }
             this.RestoreSettings();
-            this.PluginGeneratorGroupGuid = this.PluginGenerator.GroupGeneratorsGuid;
             (this.ParentAppProject as AppProject).RestoreGroupSettings(this.PluginGenerator);
             (this.ParentAppProject.ParentAppSolution as AppSolution).RestoreGroupSettings(this.PluginGenerator);
             nv.NodeGenSettingsApplyAction(cfg, (p) =>
@@ -414,9 +423,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.PluginGenerator != null)
             {
-                Debug.Assert(cfg.DicGroupSettingGenerators != null);
-                if (!cfg.DicGroupSettingGenerators.ContainsKey(this.PluginGenerator.GroupGeneratorsGuid))
-                    cfg.DicGroupSettingGenerators[this.PluginGenerator.GroupGeneratorsGuid] = this.PluginGenerator;
                 if (string.IsNullOrWhiteSpace(this.GeneratorSettings))
                 {
                     this.PluginGeneratorSettings = this.PluginGenerator.GetAppGenerationSettingsVmFromJson(this, null);

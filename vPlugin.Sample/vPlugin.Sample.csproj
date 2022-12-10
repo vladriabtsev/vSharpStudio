@@ -49,6 +49,6 @@
     <Message Text="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" Importance="high" />
     <Message Text="**********" Importance="high" />-->
         <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" />
-        <!--<Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />-->
+        <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />
     </Target>
 </Project>

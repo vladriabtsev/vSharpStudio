@@ -12,12 +12,15 @@ namespace vPlugin.Sample
 {
     public partial class PluginsGroupSolutionSettings : IvPluginGroupSettings
     {
+        public const string GuidStatic = "1A2B31CD-E50F-490D-A5AD-485B14CF5A01";
         partial void OnCreated()
         {
             this.Name = "SolGrSet";
             this.Description = "vSharpStudio plugins group settings for solutions";
             this.Version = "0.1";
         }
+        [BrowsableAttribute(false)]
+        public string Guid { get { return GuidStatic; } }
         [BrowsableAttribute(false)]
         public string Name { get; private set; } = string.Empty;
         [BrowsableAttribute(false)]

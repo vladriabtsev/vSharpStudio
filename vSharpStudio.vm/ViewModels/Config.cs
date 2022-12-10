@@ -98,10 +98,11 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             VmBindable.IsNotifyingStatic = false;
-            this.Children.Add(this.GroupConfigLinks);
-            this.Children.Add(this.Model);
-            this.Children.Add(this.GroupPlugins);
-            this.Children.Add(this.GroupAppSolutions);
+            var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
+            children.Add(this.GroupConfigLinks, 0);
+            children.Add(this.Model, 1);
+            children.Add(this.GroupPlugins, 9);
+            children.Add(this.GroupAppSolutions, 10);
             VmBindable.IsNotifyingStatic = true;
             //this.ListRoles.OnAddingAction = (t) =>
             //{
@@ -289,8 +290,6 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Connection string editor
         public Dictionary<vPluginLayerTypeEnum, List<PluginRow>>? DicPluginLists { get; set; }
         public Dictionary<string, IvPlugin>? DicPlugins { get; set; }
-        // by GroupGuid of generator
-        public Dictionary<string, IvPluginGenerator>? DicGroupSettingGenerators { get; set; }
         // by Guid of generator
         public Dictionary<string, IvPluginGenerator>? DicGenerators { get; set; }
 

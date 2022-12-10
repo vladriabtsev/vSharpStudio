@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using Proto.Plugin;
@@ -26,7 +27,8 @@ namespace vPlugin.Sample
         public bool IsStableDbConnection { get; set; }
         public string ProviderName { get; set; } = String.Empty;
         public string Guid => "08744482-BE03-464B-81AB-DD482AB66103";
-        public string GroupGeneratorsGuid => SamplePlugin.GroupDbGuidStatic;
+        public string SolutionParametersGuid => PluginsGroupSolutionSettings.GuidStatic;
+        public string ProjectParametersGuid => PluginsGroupProjectSettings.GuidStatic;
         public string Name => "AbstractDbSchema";
         public string NameUi => "Abstract Db Provider Name";
         public string DefaultSettingsName => throw new NotImplementedException();

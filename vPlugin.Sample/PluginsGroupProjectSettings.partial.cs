@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.Results;
@@ -13,6 +14,7 @@ namespace vPlugin.Sample
     public partial class PluginsGroupProjectSettings : IvPluginGroupSettings
     {
         //private PluginsGroupProjectSettings() : base(null, PluginsGroupProjectSettingsValidator.Validator) { }
+        public const string GuidStatic = "89F0CCC4-492A-47BE-8075-28E4E71831F4";
         partial void OnCreated()
         {
             this.Name = "PrjGrSet";
@@ -20,6 +22,8 @@ namespace vPlugin.Sample
             this.Version = "0.1";
             this.IsGroupProjectParam1 = false;
         }
+        [BrowsableAttribute(false)]
+        public string Guid { get { return GuidStatic; } }
         [BrowsableAttribute(false)]
         public string Name { get; private set; } = string.Empty;
         [BrowsableAttribute(false)]

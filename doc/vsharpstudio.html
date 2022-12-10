@@ -391,15 +391,15 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_plugin_generator_project_settings"><span class="badge">M</span>proto_plugin_generator_project_settings</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_plugin_generator_settings"><span class="badge">M</span>proto_plugin_generator_settings</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_plugin_group_generators_default_settings"><span class="badge">M</span>proto_plugin_group_generators_default_settings</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_plugin_group_generators_settings"><span class="badge">M</span>proto_plugin_group_generators_settings</a>
+                  <a href="#proto_config.proto_plugin_generator_solution_settings"><span class="badge">M</span>proto_plugin_generator_solution_settings</a>
                 </li>
               
                 <li>
@@ -654,10 +654,12 @@
                 </tr>
               
                 <tr>
-                  <td>list_group_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_group_generators_settings">proto_plugin_group_generators_settings</a></td>
+                  <td>list_generators_project_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_project_settings">proto_plugin_generator_project_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)]
+
+repeated proto_plugin_group_generators_settings list_group_generators_settings = 18; </p></td>
                 </tr>
               
             </tbody>
@@ -814,13 +816,6 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>plugin_generator_group_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>conn_str_to_prev_stable</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -946,10 +941,12 @@ Generator output file name </p></td>
                 </tr>
               
                 <tr>
-                  <td>list_group_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_group_generators_settings">proto_plugin_group_generators_settings</a></td>
+                  <td>list_generators_solution_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_solution_settings">proto_plugin_generator_solution_settings</a></td>
                   <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                  <td><p>@attr [BrowsableAttribute(false)]
+
+repeated proto_plugin_group_generators_settings list_group_generators_settings = 18; </p></td>
                 </tr>
               
             </tbody>
@@ -2653,7 +2650,8 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
+@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2677,7 +2675,9 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(3)] </p></td>
+@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Description&#34;)]
+@attr [Description(&#34;Description of enumeration&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4254,7 +4254,7 @@ Reserved positions: 1 - primary key
         
       
         <h3 id="proto_config.proto_group_list_app_solutions">proto_group_list_app_solutions</h3>
-        <p></p>
+        <p>message proto_plugin_group_generators_default_settings {</p><p>// @attr [ReadOnly(true)]</p><p>string guid = 1;</p><p>// Guid of group generators</p><p>string app_group_generators_guid = 2;</p><p>string settings = 3; </p><p>}</p>
 
         
           <table class="field-table">
@@ -4301,13 +4301,6 @@ Reserved positions: 1 - primary key
                   <td>repeated</td>
                   <td><p>List NET solutions
 @attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_group_generators_defult_settings</td>
-                  <td><a href="#proto_config.proto_plugin_group_generators_default_settings">proto_plugin_group_generators_default_settings</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
                 </tr>
               
             </tbody>
@@ -6377,6 +6370,37 @@ Reserved positions: 1 - primary key
 
         
       
+        <h3 id="proto_config.proto_plugin_generator_project_settings">proto_plugin_generator_project_settings</h3>
+        <p>@base BaseSettings</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settings</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>string app_generator_guid = 2; </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_plugin_generator_settings">proto_plugin_generator_settings</h3>
         <p>@base BaseSettings</p>
 
@@ -6429,7 +6453,7 @@ Reserved positions: 1 - primary key
 
         
       
-        <h3 id="proto_config.proto_plugin_group_generators_default_settings">proto_plugin_group_generators_default_settings</h3>
+        <h3 id="proto_config.proto_plugin_generator_solution_settings">proto_plugin_generator_solution_settings</h3>
         <p>@base BaseSettings</p>
 
         
@@ -6447,83 +6471,10 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>app_group_generators_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Guid of group generators </p></td>
-                </tr>
-              
-                <tr>
                   <td>settings</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_plugin_group_generators_settings">proto_plugin_group_generators_settings</h3>
-        <p>@interface ISortingValue</p><p>@base ConfigObjectCommonBase</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>app_group_generators_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>settings</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_new</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_marked_for_deletion</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [BrowsableAttribute(false)] </p></td>
+                  <td><p>string app_generator_guid = 2; </p></td>
                 </tr>
               
             </tbody>
@@ -6557,7 +6508,8 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
+@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6573,7 +6525,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Typically used as UI field label&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6581,7 +6534,9 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(3)] </p></td>
+@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Description&#34;)]
+@attr [Description(&#34;Description of property&#34;)] </p></td>
                 </tr>
               
                 <tr>

@@ -16,6 +16,7 @@ namespace vSharpStudio.common
     public interface IvPluginGroupSettings : IvPluginGeneratorValidatableSettings
     {
         ITreeConfigNode? Parent { get; set; }
+        string Guid { get; }
         string Name { get; }
         string Version { get; }
         string Description { get; }

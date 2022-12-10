@@ -57,9 +57,9 @@
     - [proto_plugin_generator](#proto_config.proto_plugin_generator)
     - [proto_plugin_generator_node_default_settings](#proto_config.proto_plugin_generator_node_default_settings)
     - [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings)
+    - [proto_plugin_generator_project_settings](#proto_config.proto_plugin_generator_project_settings)
     - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
-    - [proto_plugin_group_generators_default_settings](#proto_config.proto_plugin_group_generators_default_settings)
-    - [proto_plugin_group_generators_settings](#proto_config.proto_plugin_group_generators_settings)
+    - [proto_plugin_generator_solution_settings](#proto_config.proto_plugin_generator_solution_settings)
     - [proto_property](#proto_config.proto_property)
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
@@ -134,7 +134,9 @@
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_app_project_generators | [proto_app_project_generator](#proto_config.proto_app_project_generator) | repeated | @attr [BrowsableAttribute(false)] |
-| list_group_generators_settings | [proto_plugin_group_generators_settings](#proto_config.proto_plugin_group_generators_settings) | repeated | @attr [BrowsableAttribute(false)] |
+| list_generators_project_settings | [proto_plugin_generator_project_settings](#proto_config.proto_plugin_generator_project_settings) | repeated | @attr [BrowsableAttribute(false)]
+
+repeated proto_plugin_group_generators_settings list_group_generators_settings = 18; |
 
 
 
@@ -167,7 +169,6 @@ Application project generator
 | generator_settings | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | generator_settings_vm | [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings) |  | @attr [PropertyOrderAttribute(29)] @attr [BrowsableAttribute(false)] |
 | conn_str | [string](#string) |  | @attr [PropertyOrderAttribute(9)] @attr [Description(&#34;Db connection string. Directly editable or generated based on settings&#34;)] |
-| plugin_generator_group_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | conn_str_to_prev_stable | [string](#string) |  | @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Stable DB&#34;)] @attr [Description(&#34;Db connection string to previous stable version&#34;)] |
 | is_generate_sql_sqript_to_update_prev_stable | [bool](#bool) |  | @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Migrate DB&#34;)] @attr [Description(&#34;Generate Sql script to update stable DB version to current state&#34;)] |
 | gen_script_file_name | [string](#string) |  | @attr [DisplayName(&#34;SQL file&#34;)] @attr [PropertyOrderAttribute(15)] @attr [Description(&#34;SQL script output file name&#34;)] Generator output file name |
@@ -196,7 +197,9 @@ Application project generator
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | list_app_projects | [proto_app_project](#proto_config.proto_app_project) | repeated | @attr [BrowsableAttribute(false)] |
-| list_group_generators_settings | [proto_plugin_group_generators_settings](#proto_config.proto_plugin_group_generators_settings) | repeated | @attr [BrowsableAttribute(false)] |
+| list_generators_solution_settings | [proto_plugin_generator_solution_settings](#proto_config.proto_plugin_generator_solution_settings) | repeated | @attr [BrowsableAttribute(false)]
+
+repeated proto_plugin_group_generators_settings list_group_generators_settings = 18; |
 
 
 
@@ -558,10 +561,10 @@ Constant application wise value
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Name&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
-| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Description of enumeration&#34;)] |
 | data_type_enum | [enum_enumeration_type](#proto_config.enum_enumeration_type) |  | Enumeration element type @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Type&#34;)] |
 | data_type_length | [int32](#int32) |  | Length of string if &#39;STRING&#39; is selected as enumeration element type @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Length&#34;)] |
 | list_enumeration_pairs | [proto_enumeration_pair](#proto_config.proto_enumeration_pair) | repeated | @attr [DisplayName(&#34;Elements&#34;)] @attr [NewItemTypes(typeof(EnumerationPair))] |
@@ -958,7 +961,13 @@ No Children
 <a name="proto_config.proto_group_list_app_solutions"></a>
 
 ### proto_group_list_app_solutions
-
+message proto_plugin_group_generators_default_settings {
+// @attr [ReadOnly(true)]
+string guid = 1;
+// Guid of group generators
+string app_group_generators_guid = 2;
+string settings = 3; 
+}
 
 
 | Field | Type | Label | Description |
@@ -968,7 +977,6 @@ No Children
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | list_app_solutions | [proto_app_solution](#proto_config.proto_app_solution) | repeated | List NET solutions @attr [BrowsableAttribute(false)] |
-| list_group_generators_defult_settings | [proto_plugin_group_generators_default_settings](#proto_config.proto_plugin_group_generators_default_settings) | repeated | @attr [BrowsableAttribute(false)] |
 
 
 
@@ -1498,6 +1506,22 @@ Configuration model
 
 
 
+<a name="proto_config.proto_plugin_generator_project_settings"></a>
+
+### proto_plugin_generator_project_settings
+@base BaseSettings
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [ReadOnly(true)] |
+| settings | [string](#string) |  | string app_generator_guid = 2; |
+
+
+
+
+
+
 <a name="proto_config.proto_plugin_generator_settings"></a>
 
 ### proto_plugin_generator_settings
@@ -1517,39 +1541,16 @@ Configuration model
 
 
 
-<a name="proto_config.proto_plugin_group_generators_default_settings"></a>
+<a name="proto_config.proto_plugin_generator_solution_settings"></a>
 
-### proto_plugin_group_generators_default_settings
+### proto_plugin_generator_solution_settings
 @base BaseSettings
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [ReadOnly(true)] |
-| app_group_generators_guid | [string](#string) |  | Guid of group generators |
-| settings | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="proto_config.proto_plugin_group_generators_settings"></a>
-
-### proto_plugin_group_generators_settings
-@interface ISortingValue
-@base ConfigObjectCommonBase
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [ReadOnly(true)] |
-| app_group_generators_guid | [string](#string) |  |  |
-| settings | [string](#string) |  |  |
-| sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
+| settings | [string](#string) |  | string app_generator_guid = 2; |
 
 
 
@@ -1566,10 +1567,10 @@ Configuration model
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Name&#34;)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] |
-| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Typically used as UI field label&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Description&#34;)] @attr [Description(&#34;Description of property&#34;)] |
 | data_type | [proto_data_type](#proto_config.proto_data_type) |  | @attr [BrowsableAttribute(false)] |
 | is_nullable | [bool](#bool) |  | @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Can be NULL&#34;)] @attr [Description(&#34;If unchecked always expected data&#34;)] |
 | default_value | [string](#string) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Default&#34;)] @attr [Description(&#34;Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)&#34;)] |
