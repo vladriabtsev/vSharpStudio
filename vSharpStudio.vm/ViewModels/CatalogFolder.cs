@@ -60,6 +60,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
+            if (this.Children.Count > 0)
+                return;
             VmBindable.IsNotifyingStatic = false;
             this.Children.Add(this.GroupProperties);
             this.Children.Add(this.GroupDetails);

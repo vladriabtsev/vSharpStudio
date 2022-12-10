@@ -102,16 +102,18 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void RefillChildren()
         {
+            if (this.Children.Count > 0)
+                return;
             VmBindable.IsNotifyingStatic = false;
-            this.Children.Clear();
+            var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             if (this.UseTree && this.UseSeparateTreeForFolders)
             {
-                this.Children.Add(this.Folder);
+                children.Add(this.Folder, 1);
             }
-            this.Children.Add(this.GroupProperties);
-            this.Children.Add(this.GroupDetails);
-            this.Children.Add(this.GroupForms);
-            this.Children.Add(this.GroupReports);
+            children.Add(this.GroupProperties, 2);
+            children.Add(this.GroupDetails, 3);
+            children.Add(this.GroupForms, 4);
+            children.Add(this.GroupReports, 5);
             this.CodePropertySettings.Parent = this;
             VmBindable.IsNotifyingStatic = true;
         }

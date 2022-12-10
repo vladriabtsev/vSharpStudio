@@ -94,6 +94,8 @@ namespace vSharpStudio.vm.ViewModels
         private void Init()
         {
             this._Name = "Model";
+            if (this.Children.Count > 0)
+                return;
             VmBindable.IsNotifyingStatic = false;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
             children.Add(this.GroupCommon, 6);

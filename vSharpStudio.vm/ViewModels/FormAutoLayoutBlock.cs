@@ -90,8 +90,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         void RefillChildren()
         {
+            if (this.Children.Count > 0)
+                return;
             VmBindable.IsNotifyingStatic = false;
-            this.Children.Clear();
             VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()
