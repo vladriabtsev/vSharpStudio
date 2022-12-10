@@ -115,6 +115,7 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public bool IsDocShared { get; set; }
 
+        [Category("")]
         [PropertyOrderAttribute(10)]
         public string ClrType
         {
@@ -356,6 +357,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst.ToArray();
         }
+        [Category("")]
         [DisplayName("Type")]
         [PropertyOrderAttribute(11)]
         public EnumDataType DataTypeEnum
@@ -371,6 +373,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.Tag = null;
             }
         }
+        [Category("")]
         [DisplayName("Length")]
         [Description("Maximum length of data (characters in string, or decimal digits for numeric data)")]
         [PropertyOrderAttribute(12)]
@@ -386,6 +389,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.Tag = null;
             }
         }
+        [Category("")]
         [DisplayName("Accuracy")]
         [Description("Number of decimal places in fractional part for numeric data)")]
         [PropertyOrderAttribute(13)]
@@ -402,6 +406,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.Tag = null;
             }
         }
+        [Category("")]
         [DisplayName("Positive")]
         [Description("Expected numerical value always >= 0")]
         [PropertyOrderAttribute(14)]
@@ -417,6 +422,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.Tag = null;
             }
         }
+        [Category("")]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         [PropertyOrderAttribute(15)]
         public string ObjectGuid
@@ -447,6 +453,7 @@ namespace vSharpStudio.vm.ViewModels
         //}
         //[DisplayName("Positive")]
         //[Description("Expected always >= 0")]
+        [Category("")]
         [PropertyOrderAttribute(16)]
         public ObservableCollection<string> ListObjectGuids
         {

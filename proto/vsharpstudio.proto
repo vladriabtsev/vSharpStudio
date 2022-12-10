@@ -60,6 +60,8 @@ message proto_group_list_plugins {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
+    // @attr [DisplayName("Plugins")]
+    // @attr [Description("Contains all registered plugins as children")]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin list_plugins = 4;
@@ -79,8 +81,10 @@ message proto_plugin {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
+    // @attr [Description("Name of plugin")]
     string name = 3;
     // @attr [ReadOnly(true)]
+    // @attr [Description("Description of plugin")]
     string description = 4;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 5;
@@ -94,8 +98,10 @@ message proto_plugin_generator {
     string guid = 1;
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
+    // @attr [Description("Name of plugin")]
     string name = 2;
     // @attr [ReadOnly(true)]
+    // @attr [Description("Description of plugin")]
     string description = 3;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 4;
@@ -599,6 +605,7 @@ message proto_model {
     uint64 sorting_value = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 5;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -907,6 +914,7 @@ message proto_role {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -930,6 +938,7 @@ message proto_group_list_roles {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -956,6 +965,7 @@ message proto_main_view_form {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -982,6 +992,7 @@ message proto_group_list_main_view_forms {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -1008,6 +1019,7 @@ message proto_group_list_details {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -1061,6 +1073,7 @@ message proto_detail {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -1179,6 +1192,7 @@ message proto_group_list_properties {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -1217,7 +1231,7 @@ message proto_property {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
-    // @attr [DisplayName("Name")]
+    // @attr [Description("Property name")]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
@@ -1233,10 +1247,12 @@ message proto_property {
     string description = 5;
     // @attr [BrowsableAttribute(false)]
     proto_data_type data_type = 6;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(20)]
     // @attr [DisplayName("Can be NULL")]
     // @attr [Description("If unchecked always expected data")]
     bool is_nullable = 7;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Default")]
     // @attr [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
@@ -1246,18 +1262,22 @@ message proto_property {
     // @attr [BrowsableAttribute(false)]
     bool is_marked_for_deletion = 11;
 
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(32)]
     // @attr [DisplayName("Expected")]
     // @attr [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
     string range_values_requirement_str = 16;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(34)]
     // @attr [DisplayName("Min Length")]
     // @attr [Description("Minimum length of string")]
     string min_length_requirement = 18;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(35)]
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum length of string")]
     string max_length_requirement = 19;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(36)]
     // @attr [DisplayName("Time accuracy")]
     // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
@@ -1388,16 +1408,20 @@ message proto_group_constant_groups {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
+    // @attr [Description("Constants group name")]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
+    // @attr [Description("Description constants group name")]
     string description = 5;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Db prefix")]
     // @attr [Description("Prefix for constants db table names. Used if set to use in config model")]
@@ -1416,12 +1440,14 @@ message proto_group_list_constants {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
+    // @attr [Description("Group name of constants")]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -1453,18 +1479,23 @@ message proto_constant {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
+    // @attr [Description("Constant name")]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
+    // @attr [Description("Description of constant")]
     string description = 5;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
     // @attr [ExpandableObjectAttribute()][DisplayName("Type")]
     proto_data_type data_type = 6;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(20)]
     // @attr [DisplayName("Can be NULL")]
     // @attr [Description("If unchecked always expected data")]
@@ -1520,6 +1551,7 @@ message proto_group_list_enumerations {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -1547,13 +1579,14 @@ message proto_enumeration {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
-    // @attr [DisplayName("Name")]
+    // @attr [Description("Enumeration name")]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -1561,10 +1594,12 @@ message proto_enumeration {
     // @attr [Description("Description of enumeration")]
     string description = 5;
     // Enumeration element type
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("Type")]
     enum_enumeration_type data_type_enum = 6; 
     // Length of string if 'STRING' is selected as enumeration element type
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(5)]
     // @attr [DisplayName("Length")]
     int32 data_type_length = 7; 
@@ -1588,7 +1623,6 @@ message proto_enumeration_pair {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Enumeration element name")]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
@@ -1596,6 +1630,7 @@ message proto_enumeration_pair {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(5)]
@@ -1638,6 +1673,7 @@ message proto_catalog_folder {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -1768,6 +1804,7 @@ message proto_catalog {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -1905,6 +1942,7 @@ message proto_group_list_catalogs {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -1982,6 +2020,7 @@ message proto_group_documents {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -2066,6 +2105,7 @@ message proto_document {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -2136,6 +2176,7 @@ message proto_group_list_documents {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -2166,6 +2207,7 @@ message proto_group_list_journals {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -2207,6 +2249,7 @@ message proto_journal {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -2251,6 +2294,7 @@ message proto_group_list_forms {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -2294,6 +2338,7 @@ message proto_form {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -2377,12 +2422,12 @@ message proto_form_grid_system {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Tab control name")]
     string name = 2;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -2419,12 +2464,12 @@ message proto_form_grid_system_row {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Tab control name")]
     string name = 2;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -2474,12 +2519,12 @@ message proto_form_grid_system_column {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Tab control name")]
     string name = 2;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -2543,12 +2588,12 @@ message proto_form_auto_layout_block {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Tab control name")]
     string name = 2;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -2579,12 +2624,12 @@ message proto_form_auto_layout_sub_block {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Tab control name")]
     string name = 2;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -2619,12 +2664,12 @@ message proto_form_field {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Tab control name")]
     string name = 2;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -2652,12 +2697,12 @@ message proto_form_tab_control_tab {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Tab control name")]
     string name = 2;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -2693,12 +2738,12 @@ message proto_form_tab_control {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Tab control name")]
     string name = 2;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -2730,12 +2775,12 @@ message proto_form_data_grid {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Tab control name")]
     string name = 2;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -2765,12 +2810,12 @@ message proto_form_tree {
     string guid = 1;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Name")]
     // @attr [Description("Tab control name")]
     string name = 2;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -2810,6 +2855,7 @@ message proto_group_list_reports {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -2837,6 +2883,7 @@ message proto_report {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]

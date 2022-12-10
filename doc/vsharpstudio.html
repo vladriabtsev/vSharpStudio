@@ -1085,7 +1085,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1472,7 +1473,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1844,7 +1846,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
+@attr [PropertyOrderAttribute(1)]
+@attr [Description(&#34;Constant name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1859,7 +1862,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [PropertyOrderAttribute(2)][DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -1867,14 +1871,16 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(3)] </p></td>
+@attr [PropertyOrderAttribute(3)]
+@attr [Description(&#34;Description of constant&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>data_type</td>
                   <td><a href="#proto_config.proto_data_type">proto_data_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(4)]
 @attr [ExpandableObjectAttribute()][DisplayName(&#34;Type&#34;)] </p></td>
                 </tr>
               
@@ -1882,7 +1888,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td>is_nullable</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(20)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(20)]
 @attr [DisplayName(&#34;Can be NULL&#34;)]
 @attr [Description(&#34;If unchecked always expected data&#34;)] </p></td>
                 </tr>
@@ -2106,7 +2113,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2407,7 +2415,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2651,7 +2660,7 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(1)]
-@attr [DisplayName(&#34;Name&#34;)] </p></td>
+@attr [Description(&#34;Enumeration name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2667,7 +2676,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2685,6 +2695,7 @@ Reserved positions: 1 - primary key
                   <td><a href="#proto_config.enum_enumeration_type">enum_enumeration_type</a></td>
                   <td></td>
                   <td><p>Enumeration element type
+@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(4)]
 @attr [DisplayName(&#34;Type&#34;)] </p></td>
                 </tr>
@@ -2694,6 +2705,7 @@ Reserved positions: 1 - primary key
                   <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p>Length of string if &#39;STRING&#39; is selected as enumeration element type
+@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(5)]
 @attr [DisplayName(&#34;Length&#34;)] </p></td>
                 </tr>
@@ -2759,7 +2771,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(1)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Enumeration element name&#34;)] </p></td>
                 </tr>
               
@@ -2776,7 +2787,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2883,7 +2895,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3058,7 +3071,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Tab control name&#34;)] </p></td>
                 </tr>
               
@@ -3068,7 +3080,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3148,7 +3161,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Tab control name&#34;)] </p></td>
                 </tr>
               
@@ -3158,7 +3170,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3273,7 +3286,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Tab control name&#34;)] </p></td>
                 </tr>
               
@@ -3283,7 +3295,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3363,7 +3376,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Tab control name&#34;)] </p></td>
                 </tr>
               
@@ -3373,7 +3385,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3446,7 +3459,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Tab control name&#34;)] </p></td>
                 </tr>
               
@@ -3456,7 +3468,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3543,7 +3556,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Tab control name&#34;)] </p></td>
                 </tr>
               
@@ -3553,7 +3565,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3689,7 +3702,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Tab control name&#34;)] </p></td>
                 </tr>
               
@@ -3699,7 +3711,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3779,7 +3792,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Tab control name&#34;)] </p></td>
                 </tr>
               
@@ -3789,7 +3801,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3876,7 +3889,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Tab control name&#34;)] </p></td>
                 </tr>
               
@@ -3886,7 +3898,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3973,7 +3986,6 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;Name&#34;)]
 @attr [Description(&#34;Tab control name&#34;)] </p></td>
                 </tr>
               
@@ -3983,7 +3995,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4062,7 +4075,8 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
+@attr [PropertyOrderAttribute(1)]
+@attr [Description(&#34;Constants group name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4078,7 +4092,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4086,14 +4101,16 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(3)] </p></td>
+@attr [PropertyOrderAttribute(3)]
+@attr [Description(&#34;Description constants group name&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>prefix_for_db_tables</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(4)]
 @attr [DisplayName(&#34;Db prefix&#34;)]
 @attr [Description(&#34;Prefix for constants db table names. Used if set to use in config model&#34;)] </p></td>
                 </tr>
@@ -4159,7 +4176,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4408,7 +4426,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4649,7 +4668,8 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
+@attr [PropertyOrderAttribute(1)]
+@attr [Description(&#34;Group name of constants&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4665,7 +4685,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4760,7 +4781,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4886,7 +4908,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -4967,7 +4990,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5039,7 +5063,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5112,7 +5137,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5212,7 +5238,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5276,7 +5303,9 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(1)]
-@attr [ReadOnly(true)] </p></td>
+@attr [ReadOnly(true)]
+@attr [DisplayName(&#34;Plugins&#34;)]
+@attr [Description(&#34;Contains all registered plugins as children&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5333,7 +5362,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5440,7 +5470,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5513,7 +5544,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5592,7 +5624,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5706,7 +5739,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5800,7 +5834,8 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(2)] </p></td>
+@attr [PropertyOrderAttribute(2)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6203,14 +6238,16 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(1)]
-@attr [ReadOnly(true)] </p></td>
+@attr [ReadOnly(true)]
+@attr [Description(&#34;Name of plugin&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
+                  <td><p>@attr [ReadOnly(true)]
+@attr [Description(&#34;Description of plugin&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6256,14 +6293,16 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(1)]
-@attr [ReadOnly(true)] </p></td>
+@attr [ReadOnly(true)]
+@attr [Description(&#34;Name of plugin&#34;)] </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [ReadOnly(true)] </p></td>
+                  <td><p>@attr [ReadOnly(true)]
+@attr [Description(&#34;Description of plugin&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6509,7 +6548,7 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(1)]
-@attr [DisplayName(&#34;Name&#34;)] </p></td>
+@attr [Description(&#34;Property name&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6550,7 +6589,8 @@ Reserved positions: 1 - primary key
                   <td>is_nullable</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(20)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(20)]
 @attr [DisplayName(&#34;Can be NULL&#34;)]
 @attr [Description(&#34;If unchecked always expected data&#34;)] </p></td>
                 </tr>
@@ -6559,7 +6599,8 @@ Reserved positions: 1 - primary key
                   <td>default_value</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(8)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(8)]
 @attr [DisplayName(&#34;Default&#34;)]
 @attr [Description(&#34;Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)&#34;)] </p></td>
                 </tr>
@@ -6582,7 +6623,8 @@ Reserved positions: 1 - primary key
                   <td>range_values_requirement_str</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(32)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(32)]
 @attr [DisplayName(&#34;Expected&#34;)]
 @attr [Description(&#34;Expected values or ranges of values. Use &#39;#&#39; to create range, and &#39;;&#39; to separate values or ranges&#34;)] </p></td>
                 </tr>
@@ -6591,7 +6633,8 @@ Reserved positions: 1 - primary key
                   <td>min_length_requirement</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(34)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(34)]
 @attr [DisplayName(&#34;Min Length&#34;)]
 @attr [Description(&#34;Minimum length of string&#34;)] </p></td>
                 </tr>
@@ -6600,7 +6643,8 @@ Reserved positions: 1 - primary key
                   <td>max_length_requirement</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(35)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(35)]
 @attr [DisplayName(&#34;Max Length&#34;)]
 @attr [Description(&#34;Maximum length of string&#34;)] </p></td>
                 </tr>
@@ -6609,7 +6653,8 @@ Reserved positions: 1 - primary key
                   <td>accuracy_for_time</td>
                   <td><a href="#proto_config.proto_enum_time_accuracy_type">proto_enum_time_accuracy_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(36)]
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(36)]
 @attr [DisplayName(&#34;Time accuracy&#34;)]
 @attr [Description(&#34;Time accuracy for TimeOnly type. Business model is expecting selected accuracy&#34;)] </p></td>
                 </tr>
@@ -6764,7 +6809,8 @@ Reserved positions: 1 - primary key
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6845,7 +6891,8 @@ repeated proto_document list_documents = 7;
                   <td></td>
                   <td><p>@attr [Category(&#34;&#34;)]
 @attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)] </p></td>
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
                 </tr>
               
                 <tr>

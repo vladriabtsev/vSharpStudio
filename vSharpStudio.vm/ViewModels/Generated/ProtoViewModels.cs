@@ -568,6 +568,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
+        [DisplayName("Plugins")]
+        [Description("Contains all registered plugins as children")]
         public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
@@ -897,6 +899,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
+        [Description("Name of plugin")]
         public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
@@ -917,6 +920,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanged();
         
         [ReadOnly(true)]
+        [Description("Description of plugin")]
         public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
@@ -1140,6 +1144,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
+        [Description("Name of plugin")]
         public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
@@ -1160,6 +1165,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanged();
         
         [ReadOnly(true)]
+        [Description("Description of plugin")]
         public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
@@ -6702,6 +6708,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -8591,6 +8598,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -9003,6 +9011,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -9422,6 +9431,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -9859,6 +9869,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -10315,6 +10326,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -10997,6 +11009,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -12037,6 +12050,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -12568,7 +12582,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(1)]
-        [DisplayName("Name")]
+        [Description("Property name")]
         public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
@@ -12678,6 +12692,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDataTypeChanged();
         //IDataType IProperty.DataType { get { return this._DataType; } }
         
+        [Category("")]
         [PropertyOrderAttribute(20)]
         [DisplayName("Can be NULL")]
         [Description("If unchecked always expected data")]
@@ -12701,6 +12716,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNullableChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(8)]
         [DisplayName("Default")]
         [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
@@ -12766,6 +12782,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(32)]
         [DisplayName("Expected")]
         [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
@@ -12789,6 +12806,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnRangeValuesRequirementStrChanging(ref string to); // Property.tt Line: 79
         partial void OnRangeValuesRequirementStrChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(34)]
         [DisplayName("Min Length")]
         [Description("Minimum length of string")]
@@ -12812,6 +12830,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnMinLengthRequirementChanging(ref string to); // Property.tt Line: 79
         partial void OnMinLengthRequirementChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(35)]
         [DisplayName("Max Length")]
         [Description("Maximum length of string")]
@@ -12835,6 +12854,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnMaxLengthRequirementChanging(ref string to); // Property.tt Line: 79
         partial void OnMaxLengthRequirementChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(36)]
         [DisplayName("Time accuracy")]
         [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
@@ -13408,6 +13428,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(1)]
+        [Description("Constants group name")]
         public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
@@ -13450,6 +13471,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -13471,6 +13493,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(3)]
+        [Description("Description constants group name")]
         public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
@@ -13491,6 +13514,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(4)]
         [DisplayName("Db prefix")]
         [Description("Prefix for constants db table names. Used if set to use in config model")]
@@ -13856,6 +13880,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(1)]
+        [Description("Group name of constants")]
         public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
@@ -13898,6 +13923,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -14376,6 +14402,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(1)]
+        [Description("Constant name")]
         public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
@@ -14418,6 +14445,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -14439,6 +14467,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(3)]
+        [Description("Description of constant")]
         public string Description // Property.tt Line: 55
         { 
             get { return this._Description; }
@@ -14459,6 +14488,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(4)]
         [ExpandableObjectAttribute()]
         [DisplayName("Type")]
@@ -14484,6 +14514,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDataTypeChanged();
         //IDataType IConstant.DataType { get { return this._DataType; } }
         
+        [Category("")]
         [PropertyOrderAttribute(20)]
         [DisplayName("Can be NULL")]
         [Description("If unchecked always expected data")]
@@ -15037,6 +15068,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -15463,7 +15495,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(1)]
-        [DisplayName("Name")]
+        [Description("Enumeration name")]
         public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
@@ -15506,6 +15538,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -15553,6 +15586,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         ///////////////////////////////////////////////////
         /// Enumeration element type
         ///////////////////////////////////////////////////
+        [Category("")]
         [PropertyOrderAttribute(4)]
         [DisplayName("Type")]
         public EnumEnumerationType DataTypeEnum // Property.tt Line: 55
@@ -15579,6 +15613,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         ///////////////////////////////////////////////////
         /// Length of string if 'STRING' is selected as enumeration element type
         ///////////////////////////////////////////////////
+        [Category("")]
         [PropertyOrderAttribute(5)]
         [DisplayName("Length")]
         public int DataTypeLength // Property.tt Line: 55
@@ -15936,7 +15971,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(1)]
-        [DisplayName("Name")]
         [Description("Enumeration element name")]
         public string Name // Property.tt Line: 55
         { 
@@ -15980,6 +16014,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(4)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -16531,6 +16566,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -17736,6 +17772,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -18907,6 +18944,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -19602,6 +19640,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -20476,6 +20515,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -21230,6 +21270,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -21697,6 +21738,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -22242,6 +22284,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -22748,6 +22791,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -23238,6 +23282,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -23936,7 +23981,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
-        [DisplayName("Name")]
         [Description("Tab control name")]
         public string Name // Property.tt Line: 55
         { 
@@ -23960,6 +24004,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(3)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -24426,7 +24471,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
-        [DisplayName("Name")]
         [Description("Tab control name")]
         public string Name // Property.tt Line: 55
         { 
@@ -24450,6 +24494,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(3)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -24878,7 +24923,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
-        [DisplayName("Name")]
         [Description("Tab control name")]
         public string Name // Property.tt Line: 55
         { 
@@ -24902,6 +24946,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(3)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -25508,7 +25553,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
-        [DisplayName("Name")]
         [Description("Tab control name")]
         public string Name // Property.tt Line: 55
         { 
@@ -25532,6 +25576,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(3)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -25987,7 +26032,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
-        [DisplayName("Name")]
         [Description("Tab control name")]
         public string Name // Property.tt Line: 55
         { 
@@ -26011,6 +26055,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(3)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -26507,7 +26552,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
-        [DisplayName("Name")]
         [Description("Tab control name")]
         public string Name // Property.tt Line: 55
         { 
@@ -26531,6 +26575,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(3)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -26925,7 +26970,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
-        [DisplayName("Name")]
         [Description("Tab control name")]
         public string Name // Property.tt Line: 55
         { 
@@ -26949,6 +26993,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(3)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -27432,7 +27477,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
-        [DisplayName("Name")]
         [Description("Tab control name")]
         public string Name // Property.tt Line: 55
         { 
@@ -27456,6 +27500,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(3)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -27881,7 +27926,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
-        [DisplayName("Name")]
         [Description("Tab control name")]
         public string Name // Property.tt Line: 55
         { 
@@ -27905,6 +27949,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(3)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -28309,7 +28354,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Category("")]
         [PropertyOrderAttribute(2)]
-        [DisplayName("Name")]
         [Description("Tab control name")]
         public string Name // Property.tt Line: 55
         { 
@@ -28333,6 +28377,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(3)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -28788,6 +28833,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }
@@ -29196,6 +29242,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }

@@ -1067,7 +1067,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1529,7 +1529,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1972,7 +1972,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Constant name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1992,7 +1992,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)][DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2002,7 +2002,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [Description(\"Description of constant\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2012,7 +2012,7 @@
             },
             {
               "name": "data_type",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [ExpandableObjectAttribute()][DisplayName(\"Type\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [ExpandableObjectAttribute()][DisplayName(\"Type\")]",
               "label": "",
               "type": "proto_data_type",
               "longType": "proto_data_type",
@@ -2022,7 +2022,7 @@
             },
             {
               "name": "is_nullable",
-              "description": "@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -2264,7 +2264,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2625,7 +2625,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2907,7 +2907,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Enumeration name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2927,7 +2927,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2947,7 +2947,7 @@
             },
             {
               "name": "data_type_enum",
-              "description": "Enumeration element type\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Type\")]",
+              "description": "Enumeration element type\n@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Type\")]",
               "label": "",
               "type": "enum_enumeration_type",
               "longType": "enum_enumeration_type",
@@ -2957,7 +2957,7 @@
             },
             {
               "name": "data_type_length",
-              "description": "Length of string if 'STRING' is selected as enumeration element type\n@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Length\")]",
+              "description": "Length of string if 'STRING' is selected as enumeration element type\n@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Length\")]",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -3028,7 +3028,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Enumeration element name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Enumeration element name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3048,7 +3048,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3169,7 +3169,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3360,7 +3360,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Tab control name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3370,7 +3370,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3461,7 +3461,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Tab control name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3471,7 +3471,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3612,7 +3612,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Tab control name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3622,7 +3622,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3713,7 +3713,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Tab control name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3723,7 +3723,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3804,7 +3804,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Tab control name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3814,7 +3814,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3915,7 +3915,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Tab control name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3925,7 +3925,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4086,7 +4086,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Tab control name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4096,7 +4096,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4187,7 +4187,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Tab control name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4197,7 +4197,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4298,7 +4298,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Tab control name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4308,7 +4308,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4409,7 +4409,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Name\")]\n@attr [Description(\"Tab control name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Tab control name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4419,7 +4419,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4510,7 +4510,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Constants group name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4530,7 +4530,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4540,7 +4540,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]\n@attr [Description(\"Description constants group name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4550,7 +4550,7 @@
             },
             {
               "name": "prefix_for_db_tables",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Db prefix\")]\n@attr [Description(\"Prefix for constants db table names. Used if set to use in config model\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Db prefix\")]\n@attr [Description(\"Prefix for constants db table names. Used if set to use in config model\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4621,7 +4621,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4894,7 +4894,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5166,7 +5166,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Group name of constants\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5186,7 +5186,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5297,7 +5297,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5438,7 +5438,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5529,7 +5529,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5610,7 +5610,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5691,7 +5691,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5802,7 +5802,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5873,7 +5873,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]\n@attr [DisplayName(\"Plugins\")]\n@attr [Description(\"Contains all registered plugins as children\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -5934,7 +5934,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6055,7 +6055,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6136,7 +6136,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6227,7 +6227,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6358,7 +6358,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6469,7 +6469,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6921,7 +6921,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]\n@attr [Description(\"Name of plugin\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6931,7 +6931,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [ReadOnly(true)]",
+              "description": "@attr [ReadOnly(true)]\n@attr [Description(\"Description of plugin\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6982,7 +6982,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [ReadOnly(true)]\n@attr [Description(\"Name of plugin\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6992,7 +6992,7 @@
             },
             {
               "name": "description",
-              "description": "@attr [ReadOnly(true)]",
+              "description": "@attr [ReadOnly(true)]\n@attr [Description(\"Description of plugin\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -7258,7 +7258,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Property name\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -7308,7 +7308,7 @@
             },
             {
               "name": "is_nullable",
-              "description": "@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Can be NULL\")]\n@attr [Description(\"If unchecked always expected data\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -7318,7 +7318,7 @@
             },
             {
               "name": "default_value",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Default\")]\n@attr [Description(\"Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Default\")]\n@attr [Description(\"Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -7348,7 +7348,7 @@
             },
             {
               "name": "range_values_requirement_str",
-              "description": "@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Expected\")]\n@attr [Description(\"Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(32)]\n@attr [DisplayName(\"Expected\")]\n@attr [Description(\"Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -7358,7 +7358,7 @@
             },
             {
               "name": "min_length_requirement",
-              "description": "@attr [PropertyOrderAttribute(34)]\n@attr [DisplayName(\"Min Length\")]\n@attr [Description(\"Minimum length of string\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(34)]\n@attr [DisplayName(\"Min Length\")]\n@attr [Description(\"Minimum length of string\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -7368,7 +7368,7 @@
             },
             {
               "name": "max_length_requirement",
-              "description": "@attr [PropertyOrderAttribute(35)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum length of string\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(35)]\n@attr [DisplayName(\"Max Length\")]\n@attr [Description(\"Maximum length of string\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -7378,7 +7378,7 @@
             },
             {
               "name": "accuracy_for_time",
-              "description": "@attr [PropertyOrderAttribute(36)]\n@attr [DisplayName(\"Time accuracy\")]\n@attr [Description(\"Time accuracy for TimeOnly type. Business model is expecting selected accuracy\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(36)]\n@attr [DisplayName(\"Time accuracy\")]\n@attr [Description(\"Time accuracy for TimeOnly type. Business model is expecting selected accuracy\")]",
               "label": "",
               "type": "proto_enum_time_accuracy_type",
               "longType": "proto_enum_time_accuracy_type",
@@ -7539,7 +7539,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -7630,7 +7630,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
               "label": "",
               "type": "string",
               "longType": "string",
