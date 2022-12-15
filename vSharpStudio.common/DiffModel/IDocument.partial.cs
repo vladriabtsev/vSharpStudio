@@ -16,6 +16,7 @@ namespace vSharpStudio.common
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
         IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
         ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
+        IForm GetForm(FormType ftype);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();

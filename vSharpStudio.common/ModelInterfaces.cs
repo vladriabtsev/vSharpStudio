@@ -563,7 +563,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 42
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -719,8 +718,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 51
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 55
@@ -738,6 +735,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
+    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

@@ -10634,7 +10634,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this._GroupProperties = new GroupListProperties(this); // Class.tt Line: 40
             this._GroupDetails = new GroupListDetails(this); // Class.tt Line: 40
             this._GroupForms = new GroupListForms(this); // Class.tt Line: 40
-            this._ListGuidViewProperties = new ObservableCollectionWithActions<string>(); // Class.tt Line: 35
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -10694,8 +10693,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
             if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
                 vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
-            foreach (var t in from.ListGuidViewProperties) // Clone.tt Line: 48
-                vm.ListGuidViewProperties.Add(t);
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -10745,11 +10742,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
             if (isDeep) // Clone.tt Line: 140
                 vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
-                to.ListGuidViewProperties.Clear(); // Clone.tt Line: 129
-                foreach (var tt in from.ListGuidViewProperties)
-                {
-                    to.ListGuidViewProperties.Add(tt);
-                }
             if (isDeep) // Clone.tt Line: 88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -10854,11 +10846,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupForms == null) // Clone.tt Line: 213
                 vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, (GroupListForms)vm.GroupForms); // Clone.tt Line: 219
-            vm.ListGuidViewProperties = new ObservableCollectionWithActions<string>(); // Clone.tt Line: 187
-            foreach (var t in m.ListGuidViewProperties) // Clone.tt Line: 188
-            {
-                vm.ListGuidViewProperties.Add(t);
-            }
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -10910,8 +10897,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
-            foreach (var t in vm.ListGuidViewProperties) // Clone.tt Line: 242
-                m.ListGuidViewProperties.Add(t); // Clone.tt Line: 244
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -11683,27 +11668,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupFormsChanging(ref GroupListForms to); // Property.tt Line: 79
         partial void OnGroupFormsChanged();
         //IGroupListForms IDetail.GroupForms { get { return this._GroupForms; } }
-        
-        [BrowsableAttribute(false)]
-        public ObservableCollectionWithActions<string> ListGuidViewProperties // Property.tt Line: 8
-        { 
-            get { return this._ListGuidViewProperties; }
-            set
-            {
-                if (this._ListGuidViewProperties != value)
-                {
-                    this.OnListGuidViewPropertiesChanging(value);
-                    _ListGuidViewProperties = value;
-                    this.OnListGuidViewPropertiesChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollectionWithActions<string> _ListGuidViewProperties;
-        IReadOnlyList<string> IDetail.ListGuidViewProperties { get { return (this as Detail).ListGuidViewProperties; } } // Property.tt Line: 26
-        partial void OnListGuidViewPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
-        partial void OnListGuidViewPropertiesChanged();
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -16231,9 +16195,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnCreating();
+            this._CodePropertySettings = new CatalogCodePropertySettings(this); // Class.tt Line: 40
             this._GroupProperties = new GroupListProperties(this); // Class.tt Line: 40
             this._GroupDetails = new GroupListDetails(this); // Class.tt Line: 40
-            this._CodePropertySettings = new CatalogCodePropertySettings(this); // Class.tt Line: 40
+            this._GroupForms = new GroupListForms(this); // Class.tt Line: 40
+            this._GroupReports = new GroupListReports(this); // Class.tt Line: 40
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -16264,10 +16230,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = from.Description; // Clone.tt Line: 67
             vm.IsNew = from.IsNew; // Clone.tt Line: 67
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 67
-            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
-                vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
-            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
-                vm.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.Clone(vm, from.GroupDetails, isDeep);
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 67
             vm.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 67
             if (isDeep) // Clone.tt Line: 64 IsDefaultBase=False
@@ -16286,6 +16248,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
             vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
             vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
+            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
+                vm.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupProperties, isDeep);
+            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
+                vm.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.Clone(vm, from.GroupDetails, isDeep);
+            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
+                vm.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.Clone(vm, from.GroupForms, isDeep);
+            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
+                vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -16306,10 +16276,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Description = from.Description; // Clone.tt Line: 143
             to.IsNew = from.IsNew; // Clone.tt Line: 143
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 140
-                vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
-            if (isDeep) // Clone.tt Line: 140
-                vSharpStudio.vm.ViewModels.GroupListDetails.Update((GroupListDetails)to.GroupDetails, from.GroupDetails, isDeep);
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 143
             to.UseCodeProperty = from.UseCodeProperty; // Clone.tt Line: 143
             if (isDeep) // Clone.tt Line: 140
@@ -16328,6 +16294,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
             to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
             to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
+            if (isDeep) // Clone.tt Line: 140
+                vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupProperties, from.GroupProperties, isDeep);
+            if (isDeep) // Clone.tt Line: 140
+                vSharpStudio.vm.ViewModels.GroupListDetails.Update((GroupListDetails)to.GroupDetails, from.GroupDetails, isDeep);
+            if (isDeep) // Clone.tt Line: 140
+                vSharpStudio.vm.ViewModels.GroupListForms.Update((GroupListForms)to.GroupForms, from.GroupForms, isDeep);
+            if (isDeep) // Clone.tt Line: 140
+                vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
             if (isDeep) // Clone.tt Line: 88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -16400,12 +16374,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            if (vm.GroupProperties == null) // Clone.tt Line: 213
-                vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // Clone.tt Line: 219
-            if (vm.GroupDetails == null) // Clone.tt Line: 213
-                vm.GroupDetails = new GroupListDetails(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToVM(m.GroupDetails, (GroupListDetails)vm.GroupDetails); // Clone.tt Line: 219
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
             vm.UseCodeProperty = (EnumUseType)m.UseCodeProperty; // Clone.tt Line: 221
             if (vm.CodePropertySettings == null) // Clone.tt Line: 213
@@ -16425,6 +16393,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
             vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
             vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
+            if (vm.GroupProperties == null) // Clone.tt Line: 213
+                vm.GroupProperties = new GroupListProperties(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToVM(m.GroupProperties, (GroupListProperties)vm.GroupProperties); // Clone.tt Line: 219
+            if (vm.GroupDetails == null) // Clone.tt Line: 213
+                vm.GroupDetails = new GroupListDetails(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToVM(m.GroupDetails, (GroupListDetails)vm.GroupDetails); // Clone.tt Line: 219
+            if (vm.GroupForms == null) // Clone.tt Line: 213
+                vm.GroupForms = new GroupListForms(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.GroupListForms.ConvertToVM(m.GroupForms, (GroupListForms)vm.GroupForms); // Clone.tt Line: 219
+            if (vm.GroupReports == null) // Clone.tt Line: 213
+                vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -16450,8 +16430,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
-            m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
             m.UseCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseCodeProperty; // Clone.tt Line: 274
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
@@ -16469,6 +16447,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
+            m.GroupProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupProperties); // Clone.tt Line: 270
+            m.GroupDetails = vSharpStudio.vm.ViewModels.GroupListDetails.ConvertToProto((GroupListDetails)vm.GroupDetails); // Clone.tt Line: 270
+            m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
+            m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -16482,11 +16464,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
+            this.CodePropertySettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
             this.GroupProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupDetails.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.CodePropertySettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.GroupForms.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.GroupReports.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
@@ -16651,52 +16637,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
-        
-        [BrowsableAttribute(false)]
-        public GroupListProperties GroupProperties // Property.tt Line: 55
-        { 
-            get { return this._GroupProperties; }
-            set
-            {
-                if (this._GroupProperties != value)
-                {
-                    this.OnGroupPropertiesChanging(ref value);
-                    this._GroupProperties = value;
-                    this.OnGroupPropertiesChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private GroupListProperties _GroupProperties;
-        IGroupListProperties ICatalogFolder.GroupProperties { get { return (this as CatalogFolder).GroupProperties; } } // Property.tt Line: 77
-        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 79
-        partial void OnGroupPropertiesChanged();
-        //IGroupListProperties ICatalogFolder.GroupProperties { get { return this._GroupProperties; } }
-        
-        [BrowsableAttribute(false)]
-        public GroupListDetails GroupDetails // Property.tt Line: 55
-        { 
-            get { return this._GroupDetails; }
-            set
-            {
-                if (this._GroupDetails != value)
-                {
-                    this.OnGroupDetailsChanging(ref value);
-                    this._GroupDetails = value;
-                    this.OnGroupDetailsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private GroupListDetails _GroupDetails;
-        IGroupListDetails ICatalogFolder.GroupDetails { get { return (this as CatalogFolder).GroupDetails; } } // Property.tt Line: 77
-        partial void OnGroupDetailsChanging(ref GroupListDetails to); // Property.tt Line: 79
-        partial void OnGroupDetailsChanged();
-        //IGroupListDetails ICatalogFolder.GroupDetails { get { return this._GroupDetails; } }
         
         [BrowsableAttribute(false)]
         public string PropertyIdGuid // Property.tt Line: 55
@@ -17075,6 +17015,98 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumUseType _IsGridFilterable;
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
+        
+        [BrowsableAttribute(false)]
+        public GroupListProperties GroupProperties // Property.tt Line: 55
+        { 
+            get { return this._GroupProperties; }
+            set
+            {
+                if (this._GroupProperties != value)
+                {
+                    this.OnGroupPropertiesChanging(ref value);
+                    this._GroupProperties = value;
+                    this.OnGroupPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private GroupListProperties _GroupProperties;
+        IGroupListProperties ICatalogFolder.GroupProperties { get { return (this as CatalogFolder).GroupProperties; } } // Property.tt Line: 77
+        partial void OnGroupPropertiesChanging(ref GroupListProperties to); // Property.tt Line: 79
+        partial void OnGroupPropertiesChanged();
+        //IGroupListProperties ICatalogFolder.GroupProperties { get { return this._GroupProperties; } }
+        
+        [BrowsableAttribute(false)]
+        public GroupListDetails GroupDetails // Property.tt Line: 55
+        { 
+            get { return this._GroupDetails; }
+            set
+            {
+                if (this._GroupDetails != value)
+                {
+                    this.OnGroupDetailsChanging(ref value);
+                    this._GroupDetails = value;
+                    this.OnGroupDetailsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private GroupListDetails _GroupDetails;
+        IGroupListDetails ICatalogFolder.GroupDetails { get { return (this as CatalogFolder).GroupDetails; } } // Property.tt Line: 77
+        partial void OnGroupDetailsChanging(ref GroupListDetails to); // Property.tt Line: 79
+        partial void OnGroupDetailsChanged();
+        //IGroupListDetails ICatalogFolder.GroupDetails { get { return this._GroupDetails; } }
+        
+        [BrowsableAttribute(false)]
+        public GroupListForms GroupForms // Property.tt Line: 55
+        { 
+            get { return this._GroupForms; }
+            set
+            {
+                if (this._GroupForms != value)
+                {
+                    this.OnGroupFormsChanging(ref value);
+                    this._GroupForms = value;
+                    this.OnGroupFormsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private GroupListForms _GroupForms;
+        IGroupListForms ICatalogFolder.GroupForms { get { return (this as CatalogFolder).GroupForms; } } // Property.tt Line: 77
+        partial void OnGroupFormsChanging(ref GroupListForms to); // Property.tt Line: 79
+        partial void OnGroupFormsChanged();
+        //IGroupListForms ICatalogFolder.GroupForms { get { return this._GroupForms; } }
+        
+        [BrowsableAttribute(false)]
+        public GroupListReports GroupReports // Property.tt Line: 55
+        { 
+            get { return this._GroupReports; }
+            set
+            {
+                if (this._GroupReports != value)
+                {
+                    this.OnGroupReportsChanging(ref value);
+                    this._GroupReports = value;
+                    this.OnGroupReportsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private GroupListReports _GroupReports;
+        IGroupListReports ICatalogFolder.GroupReports { get { return (this as CatalogFolder).GroupReports; } } // Property.tt Line: 77
+        partial void OnGroupReportsChanging(ref GroupListReports to); // Property.tt Line: 79
+        partial void OnGroupReportsChanged();
+        //IGroupListReports ICatalogFolder.GroupReports { get { return this._GroupReports; } }
         
         [BrowsableAttribute(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8

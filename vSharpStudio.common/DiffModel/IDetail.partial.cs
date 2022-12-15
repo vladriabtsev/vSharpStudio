@@ -10,9 +10,11 @@ namespace vSharpStudio.common
     public partial interface IDetail : ITreeConfigNodeSortable, IGetNodeSetting, IDbTable, ILayoutParameters
     {
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion);
-        IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
+        //IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
+        void GetSpecialProperties(List<IProperty> res, bool isAll, bool isSupportVersion);
         ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
+        IForm GetForm(FormType ftype);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();

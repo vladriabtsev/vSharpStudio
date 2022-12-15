@@ -11,6 +11,7 @@ namespace vSharpStudio.common
         ICatalog ParentCatalogI { get; }
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
+        IForm GetForm(FormType ftype);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();

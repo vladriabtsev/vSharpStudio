@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -229,6 +230,27 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+        public IForm GetForm(FormType ftype)
+        {
+            var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
+            if (f == null)
+            {
+                var lstp = new List<IProperty>();
+                int i = 0;
+                foreach (var t in this.GroupProperties.ListProperties)
+                {
+                    i++;
+                    if (i > 1)
+                        break;
+                    lstp.Add(t);
+                }
+                this.GetSpecialProperties(lstp, false, false);
+                f = new Form(this.GroupForms, lstp);
+                f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
+                f.EnumFormType = ftype;
+            }
+            return f;
+        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
@@ -253,27 +275,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen)
-        {
-            var res = new List<IProperty>();
-            GetSpecialProperties(res, true, false);
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                if (t.IsIncluded(guidAppPrjDbGen))
-                {
-                    foreach (var tt in this.ListGuidViewProperties)
-                    {
-                        if (tt == t.Guid)
-                        {
-                            res.Add(t);
-                            break;
-                        }
-                    }
-                }
-            }
-            return res;
-        }
-        private void GetSpecialProperties(List<IProperty> res, bool isAll, bool isSupportVersion)
+        public void GetSpecialProperties(List<IProperty> res, bool isAll, bool isSupportVersion)
         {
             var cfg = this.GetConfig();
             var prp = cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);

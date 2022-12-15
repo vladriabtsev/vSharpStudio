@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Text;
+using System.Linq;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -63,8 +64,11 @@ namespace vSharpStudio.vm.ViewModels
             if (this.Children.Count > 0)
                 return;
             VmBindable.IsNotifyingStatic = false;
-            this.Children.Add(this.GroupProperties);
-            this.Children.Add(this.GroupDetails);
+            var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
+            children.Add(this.GroupProperties, 2);
+            children.Add(this.GroupDetails, 3);
+            children.Add(this.GroupForms, 4);
+            children.Add(this.GroupReports, 5);
             VmBindable.IsNotifyingStatic = true;
         }
         public void OnAdded()
@@ -154,6 +158,27 @@ namespace vSharpStudio.vm.ViewModels
             {
                 return GetCompositeName();
             }
+        }
+        public IForm GetForm(FormType ftype)
+        {
+            var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
+            if (f == null)
+            {
+                var lstp = new List<IProperty>();
+                int i = 0;
+                foreach (var t in this.GroupProperties.ListProperties)
+                {
+                    i++;
+                    if (i > 1)
+                        break;
+                    lstp.Add(t);
+                }
+                this.GetSpecialProperties(lstp);
+                f = new Form(this.GroupForms, lstp);
+                f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
+                f.EnumFormType = ftype;
+            }
+            return f;
         }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {

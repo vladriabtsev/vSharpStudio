@@ -17,9 +17,9 @@ namespace vSharpStudio.common
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen);
         IReadOnlyList<IDetail> GetIncludedFolderDetails(string guidAppPrjDbGen);
         ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
+        IForm GetForm(FormType ftype);
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
-        IForm GetForm(FormType formType);
     }
 }

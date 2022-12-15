@@ -1176,8 +1176,7 @@ message proto_detail {
 
     // @attr [BrowsableAttribute(false)]
     proto_group_list_forms group_forms = 84;
-    // @attr [BrowsableAttribute(false)]
-    repeated string list_guid_view_properties = 91;
+
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -1684,10 +1683,6 @@ message proto_catalog_folder {
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_properties group_properties = 15;
-    // @attr [BrowsableAttribute(false)]
-    proto_group_list_details group_details = 16;
 
     // @attr [BrowsableAttribute(false)]
     string property_id_guid = 20;
@@ -1745,6 +1740,14 @@ message proto_catalog_folder {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_properties group_properties = 82;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_details group_details = 83;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_forms group_forms = 84;
+    // @attr [BrowsableAttribute(false)]
+    proto_group_list_reports group_reports = 85;
     // @attr [BrowsableAttribute(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

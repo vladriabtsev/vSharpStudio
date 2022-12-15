@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows.Documents;
 using FluentValidation;
+using Proto.Doc;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid;
@@ -20,6 +21,11 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListForms ParentGroupListForms { get { Debug.Assert(this.Parent != null); return (GroupListForms)this.Parent; } }
         [BrowsableAttribute(false)]
         public IGroupListForms ParentGroupListFormsI { get { Debug.Assert(this.Parent != null); return (IGroupListForms)this.Parent; } }
+
+        public Form(ITreeConfigNode? parent, List<IProperty> lst)  : this(parent)
+        {
+            this.ListProperties = lst;
+        }
 
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -291,6 +297,8 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(() => this.PropertyDefinitions);
         }
         #endregion Visibility
+
+        public IReadOnlyList<IProperty> ListProperties { get; private set; }
 
         #region Editor
 

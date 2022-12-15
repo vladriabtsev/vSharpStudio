@@ -472,46 +472,6 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst.ToArray();
         }
-        //public IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen)
-        //{
-        //    var res = new List<IProperty>();
-        //    GetSpecialProperties(res, false, true, false);
-        //    foreach (var t in this.GroupProperties.ListProperties)
-        //    {
-        //        if (t.IsIncluded(guidAppPrjDbGen))
-        //        {
-        //            foreach (var tt in this.ListGuidViewProperties)
-        //            {
-        //                if (tt == t.Guid)
-        //                {
-        //                    res.Add(t);
-        //                    break;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return res;
-        //}
-        //public IReadOnlyList<IProperty> GetIncludedFolderViewProperties(string guidAppPrjDbGen)
-        //{
-        //    var res = new List<IProperty>();
-        //    GetSpecialProperties(res, true, true, false);
-        //    foreach (var t in this.Folder.GroupProperties.ListProperties)
-        //    {
-        //        if (t.IsIncluded(guidAppPrjDbGen))
-        //        {
-        //            foreach (var tt in this.ListGuidViewFolderProperties)
-        //            {
-        //                if (tt == t.Guid)
-        //                {
-        //                    res.Add(t);
-        //                    break;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return res;
-        //}
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
@@ -719,63 +679,84 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
         }
-        public IForm GetForm(FormType formType)
+        public IForm GetForm(FormType ftype)
         {
-            var res = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
-            if (res == null)
+            var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
+            if (f == null)
             {
-                res = new Form(this.GroupForms);
-                switch (formType)
+                var lstp = new List<IProperty>();
+                int i = 0;
+                foreach (var t in this.GroupProperties.ListProperties)
                 {
-                    case FormType.ViewListWide:
-                    case FormType.ViewListNarrow:
-                        if (this.GetUseCodeProperty())
-                            res.ListGuidViewProperties.Add(this.PropertyCodeGuid);
-                        if (this.GetUseNameProperty())
-                            res.ListGuidViewProperties.Add(this.PropertyNameGuid);
-                        if (formType == FormType.ViewListWide)
-                        {
-                            if (this.GetUseDescriptionProperty())
-                                res.ListGuidViewProperties.Add(this.PropertyDescriptionGuid);
-                        }
-                        res.ListGuidViewProperties.Add(this.PropertyIdGuid);
-                        res.ListGuidViewProperties.Add(this.PropertyVersionGuid);
-                        if (this.UseTree && !this.UseSeparateTreeForFolders)
-                        {
-                            res.ListGuidViewProperties.Add(this.PropertyRefSelfGuid);
-                            res.ListGuidViewProperties.Add(this.PropertyIsOpenGuid);
-                            if (this.UseFolderTypeExplicitly)
-                            {
-                                res.ListGuidViewProperties.Add(this.PropertyIsFolderGuid);
-                            }
-                        }
-                        if (this.UseTree && this.UseSeparateTreeForFolders)
-                        {
-                            res.ListGuidViewProperties.Add(this.PropertyRefFolderGuid);
-                            if (this.GetUseCodeProperty())
-                                res.ListGuidViewFolderProperties.Add(this.PropertyCodeGuid);
-                            if (this.GetUseNameProperty())
-                                res.ListGuidViewFolderProperties.Add(this.PropertyNameGuid);
-                            if (formType == FormType.ViewListWide)
-                            {
-                                if (this.GetUseDescriptionProperty())
-                                    res.ListGuidViewFolderProperties.Add(this.PropertyDescriptionGuid);
-                            }
-                            res.ListGuidViewFolderProperties.Add(this.PropertyIdGuid);
-                            res.ListGuidViewFolderProperties.Add(this.PropertyRefSelfGuid);
-                            res.ListGuidViewFolderProperties.Add(this.PropertyIsOpenGuid);
-                            res.ListGuidViewFolderProperties.Add(this.PropertyVersionGuid);
-                        }
+                    i++;
+                    if (i > 1)
                         break;
-                    //case FormType.FolderEditForm:
-                    //    break;
-                    //case FormType.ItemEditForm:
-                    //    break;
-                    default:
-                        throw new NotImplementedException();
+                    lstp.Add(t);
                 }
+                this.GetSpecialProperties(lstp, false, false, false);
+                f = new Form(this.GroupForms, lstp);
+                f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
+                f.EnumFormType = ftype;
             }
-            return res;
+            return f;
         }
+        //public IForm GetForm(FormType formType)
+        //{
+        //    var res = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
+        //    if (res == null)
+        //    {
+        //        res = new Form(this.GroupForms);
+        //        switch (formType)
+        //        {
+        //            case FormType.ViewListWide:
+        //            case FormType.ViewListNarrow:
+        //                if (this.GetUseCodeProperty())
+        //                    res.ListGuidViewProperties.Add(this.PropertyCodeGuid);
+        //                if (this.GetUseNameProperty())
+        //                    res.ListGuidViewProperties.Add(this.PropertyNameGuid);
+        //                if (formType == FormType.ViewListWide)
+        //                {
+        //                    if (this.GetUseDescriptionProperty())
+        //                        res.ListGuidViewProperties.Add(this.PropertyDescriptionGuid);
+        //                }
+        //                res.ListGuidViewProperties.Add(this.PropertyIdGuid);
+        //                res.ListGuidViewProperties.Add(this.PropertyVersionGuid);
+        //                if (this.UseTree && !this.UseSeparateTreeForFolders)
+        //                {
+        //                    res.ListGuidViewProperties.Add(this.PropertyRefSelfGuid);
+        //                    res.ListGuidViewProperties.Add(this.PropertyIsOpenGuid);
+        //                    if (this.UseFolderTypeExplicitly)
+        //                    {
+        //                        res.ListGuidViewProperties.Add(this.PropertyIsFolderGuid);
+        //                    }
+        //                }
+        //                if (this.UseTree && this.UseSeparateTreeForFolders)
+        //                {
+        //                    res.ListGuidViewProperties.Add(this.PropertyRefFolderGuid);
+        //                    if (this.GetUseCodeProperty())
+        //                        res.ListGuidViewFolderProperties.Add(this.PropertyCodeGuid);
+        //                    if (this.GetUseNameProperty())
+        //                        res.ListGuidViewFolderProperties.Add(this.PropertyNameGuid);
+        //                    if (formType == FormType.ViewListWide)
+        //                    {
+        //                        if (this.GetUseDescriptionProperty())
+        //                            res.ListGuidViewFolderProperties.Add(this.PropertyDescriptionGuid);
+        //                    }
+        //                    res.ListGuidViewFolderProperties.Add(this.PropertyIdGuid);
+        //                    res.ListGuidViewFolderProperties.Add(this.PropertyRefSelfGuid);
+        //                    res.ListGuidViewFolderProperties.Add(this.PropertyIsOpenGuid);
+        //                    res.ListGuidViewFolderProperties.Add(this.PropertyVersionGuid);
+        //                }
+        //                break;
+        //            //case FormType.FolderEditForm:
+        //            //    break;
+        //            //case FormType.ItemEditForm:
+        //            //    break;
+        //            default:
+        //                throw new NotImplementedException();
+        //        }
+        //    }
+        //    return res;
+        //}
     }
 }

@@ -1568,26 +1568,6 @@
               "defaultValue": ""
             },
             {
-              "name": "group_properties",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_list_properties",
-              "longType": "proto_group_list_properties",
-              "fullType": "proto_config.proto_group_list_properties",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "group_details",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_group_list_details",
-              "longType": "proto_group_list_details",
-              "fullType": "proto_config.proto_group_list_details",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "property_id_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
@@ -1754,6 +1734,46 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_properties",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_properties",
+              "longType": "proto_group_list_properties",
+              "fullType": "proto_config.proto_group_list_properties",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_details",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_details",
+              "longType": "proto_group_list_details",
+              "fullType": "proto_config.proto_group_list_details",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_forms",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_forms",
+              "longType": "proto_group_list_forms",
+              "fullType": "proto_config.proto_group_list_forms",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_reports",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "proto_group_list_reports",
+              "longType": "proto_group_list_reports",
+              "fullType": "proto_config.proto_group_list_reports",
               "ismap": false,
               "defaultValue": ""
             },
@@ -2559,16 +2579,6 @@
               "type": "proto_group_list_forms",
               "longType": "proto_group_list_forms",
               "fullType": "proto_config.proto_group_list_forms",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_guid_view_properties",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "repeated",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
