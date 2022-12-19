@@ -244,12 +244,19 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     lstp.Add(t);
                 }
-                this.GetSpecialProperties(lstp, false, false);
+                this.GetSpecialProperties(lstp);
                 f = new Form(this.GroupForms, lstp);
                 f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
                 f.EnumFormType = ftype;
             }
             return f;
+        }
+        public IReadOnlyList<IForm> GetListForms()
+        {
+            var res = new List<IForm>();
+            res.Add(this.GetForm(FormType.ListNarrow));
+            res.Add(this.GetForm(FormType.ListWide));
+            return res;
         }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion)
         {
@@ -275,19 +282,39 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public void GetSpecialProperties(List<IProperty> res, bool isAll, bool isSupportVersion)
+        public void GetSpecialProperties(List<IProperty> res)
         {
+            string parentTable = "";
+            if (this.ParentGroupListDetails.Parent is Detail dt)
+            {
+                parentTable = dt.CompositeName;
+            }
+            else if (this.ParentGroupListDetails.Parent is Catalog c)
+            {
+                parentTable = c.CompositeName;
+            }
+            else if (this.ParentGroupListDetails.Parent is CatalogFolder cf)
+            {
+                parentTable = cf.CompositeName;
+            }
+            else if (this.ParentGroupListDetails.Parent is Document d)
+            {
+                parentTable = d.CompositeName;
+            }
+            else
+                throw new NotImplementedException();
             var cfg = this.GetConfig();
             var prp = cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
-            if (isAll)
-            {
-                res.Add(prp);
-                if (isSupportVersion)
-                {
-                    prp = cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
-                    res.Add(prp);
-                }
-            }
+            res.Add(prp);
+            prp = cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable);
+            res.Add(prp);
+            //if (isSupportVersion)
+            //{
+            //    prp = cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
+            //    res.Add(prp);
+            //}
+
+
             //if (this.GetUseCodeProperty())
             //{
             //    switch (this.CodePropertySettings.Type)

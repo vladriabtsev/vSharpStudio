@@ -107,7 +107,7 @@ namespace vSharpStudio.vm.ViewModels
             FormAutoLayoutBlock? ablock = null;
             switch (formType)
             {
-                case FormType.ViewListNarrow:
+                case FormType.ListNarrow:
                     form.Name = "ListViewNarrow";
                     if (c.UseTree && c.UseSeparateTreeForFolders)
                     {
@@ -127,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (c.GetUseNameProperty())
                         dg.ListGuidProperties.Add(c.PropertyNameGuid);
                     break;
-                case FormType.ViewListWide:
+                case FormType.ListWide:
                     form.Name = "ListViewWide";
                     if (c.UseTree && c.UseSeparateTreeForFolders)
                     {

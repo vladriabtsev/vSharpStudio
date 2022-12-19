@@ -331,6 +331,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | property_description_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | view_list_wide_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | view_list_narrow_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_is_folder_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
+| property_is_open_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | property_ref_self_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
@@ -1880,8 +1882,8 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ViewListWide | 0 | @attr [DisplayName(&#34;Wide list view form&#34;)] |
-| ViewListNarrow | 1 | @attr [DisplayName(&#34;Narrow list view form&#34;)] |
+| ListWide | 0 | @attr [DisplayName(&#34;Wide list view form&#34;)] |
+| ListNarrow | 1 | @attr [DisplayName(&#34;Narrow list view form&#34;)] |
 | ItemEditForm | 2 | @attr [DisplayName(&#34;Item edit form&#34;)] |
 | FolderEditForm | 3 | @attr [DisplayName(&#34;Folder edit form&#34;)] |
 

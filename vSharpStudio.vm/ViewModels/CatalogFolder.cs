@@ -46,6 +46,8 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDescriptionGuid = System.Guid.NewGuid().ToString();
             this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+            this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
+            this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
             this.ViewListWideGuid = System.Guid.NewGuid().ToString();
             this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
 
@@ -180,6 +182,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             return f;
         }
+        public IReadOnlyList<IForm> GetListForms()
+        {
+            var res = new List<IForm>();
+            res.Add(this.GetForm(FormType.ListNarrow));
+            res.Add(this.GetForm(FormType.ListWide));
+            return res;
+        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
         {
             var res = new List<IProperty>();
@@ -204,6 +213,96 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             return res;
+        }
+        public void GetSpecialProperties(List<IProperty> res)
+        {
+            var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
+            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+            res.Add(prp);
+            prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
+            res.Add(prp);
+            prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
+            res.Add(prp);
+            if (this.ParentCatalog.UseFolderTypeExplicitly)
+            {
+                prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
+                res.Add(prp);
+            }
+            //if (isSupportVersion)
+            //{
+            //    prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
+            //    res.Add(prp);
+            //}
+            if (this.GetUseCodeProperty())
+            {
+                prp = this.GetCodeProperty(model.ParentConfig);
+                res.Add(prp);
+            }
+            if (this.GetUseNameProperty())
+            {
+                prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
+                res.Add(prp);
+            }
+            if (this.GetUseDescriptionProperty())
+            {
+                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+                res.Add(prp);
+            }
+        }
+        //private void GetSpecialProperties(List<IProperty> res)
+        //{
+        //    var ctlg = this.ParentCatalog;
+        //    var model = ctlg.ParentGroupListCatalogs.ParentModel;
+        //    var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+        //    res.Add(prp);
+        //    prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
+        //    (prp as Property)!.IsNullable = true;
+        //    res.Add(prp);
+        //    if (this.GetUseCodeProperty())
+        //    {
+        //        switch (this.CodePropertySettings.Type)
+        //        {
+        //            case EnumCodeType.AutoNumber:
+        //                throw new NotImplementedException();
+        //            case EnumCodeType.AutoText:
+        //                throw new NotImplementedException();
+        //            case EnumCodeType.Number:
+        //                prp = model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
+        //                break;
+        //            case EnumCodeType.Text:
+        //                prp = model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
+        //                break;
+        //        }
+        //        res.Add(prp);
+        //    }
+        //    if (this.GetUseNameProperty())
+        //    {
+        //        prp = model.GetPropertyCatalogName(this.GroupProperties, ctlg.PropertyNameGuid, ctlg.MaxNameLength);
+        //        res.Add(prp);
+        //    }
+        //    if (this.GetUseDescriptionProperty())
+        //    {
+        //        prp = model.GetPropertyCatalogDescription(this.GroupProperties, ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength);
+        //        res.Add(prp);
+        //    }
+        //}
+        private IProperty GetCodeProperty(IConfig cfg)
+        {
+            IProperty prp = null!;
+            switch (this.CodePropertySettings.Type)
+            {
+                case EnumCodeType.AutoNumber:
+                    throw new NotImplementedException();
+                case EnumCodeType.AutoText:
+                    throw new NotImplementedException();
+                case EnumCodeType.Number:
+                    prp = cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                    break;
+                case EnumCodeType.Text:
+                    prp = cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                    break;
+            }
+            return prp;
         }
         public bool GetUseCodeProperty()
         {
@@ -238,43 +337,6 @@ namespace vSharpStudio.vm.ViewModels
                 res = false;
             return res;
         }
-        private void GetSpecialProperties(List<IProperty> res)
-        {
-            var ctlg = this.ParentCatalog;
-            var model = ctlg.ParentGroupListCatalogs.ParentModel;
-            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
-            res.Add(prp);
-            prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
-            (prp as Property)!.IsNullable = true;
-            res.Add(prp);
-            if (this.GetUseCodeProperty())
-            {
-                    switch (this.CodePropertySettings.Type)
-                    {
-                        case EnumCodeType.AutoNumber:
-                            throw new NotImplementedException();
-                        case EnumCodeType.AutoText:
-                            throw new NotImplementedException();
-                        case EnumCodeType.Number:
-                            prp = model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
-                            break;
-                        case EnumCodeType.Text:
-                            prp = model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
-                            break;
-                    }
-                    res.Add(prp);
-            }
-            if (this.GetUseNameProperty())
-            {
-                prp = model.GetPropertyCatalogName(this.GroupProperties, ctlg.PropertyNameGuid, ctlg.MaxNameLength);
-                res.Add(prp);
-            }
-            if (this.GetUseDescriptionProperty())
-            {
-                prp = model.GetPropertyCatalogDescription(this.GroupProperties, ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength);
-                res.Add(prp);
-            }
-        }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
@@ -304,7 +366,7 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.IsGridSortableCustom == EnumUseType.No)
                 return false;
-                return this.ParentCatalog.IsGridSortableCustomGet();
+            return this.ParentCatalog.IsGridSortableCustomGet();
         }
     }
 }

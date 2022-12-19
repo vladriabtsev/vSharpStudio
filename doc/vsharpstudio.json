@@ -387,12 +387,12 @@
           "description": "",
           "values": [
             {
-              "name": "ViewListWide",
+              "name": "ListWide",
               "number": "0",
               "description": "@attr [DisplayName(\"Wide list view form\")]"
             },
             {
-              "name": "ViewListNarrow",
+              "name": "ListNarrow",
               "number": "1",
               "description": "@attr [DisplayName(\"Narrow list view form\")]"
             },
@@ -1689,6 +1689,26 @@
             },
             {
               "name": "view_list_narrow_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_is_folder_guid",
+              "description": "@attr [BrowsableAttribute(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "property_is_open_guid",
               "description": "@attr [BrowsableAttribute(false)]",
               "label": "",
               "type": "string",

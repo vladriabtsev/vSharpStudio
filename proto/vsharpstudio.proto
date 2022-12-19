@@ -1725,6 +1725,10 @@ message proto_catalog_folder {
     string view_list_narrow_guid = 55;
 
     // @attr [BrowsableAttribute(false)]
+    string property_is_folder_guid = 63;
+    // @attr [BrowsableAttribute(false)]
+    string property_is_open_guid = 64;
+    // @attr [BrowsableAttribute(false)]
     string property_ref_self_guid = 65;
 
     // @attr [Category("Auto Layout")]
@@ -2316,9 +2320,9 @@ enum proto_form_orientation {
 }
 enum proto_form_type {
     // @attr [DisplayName("Wide list view form")]
-    ViewListWide = 0;
+    ListWide = 0;
     // @attr [DisplayName("Narrow list view form")]
-    ViewListNarrow = 1;
+    ListNarrow = 1;
     // @attr [DisplayName("Item edit form")]
     ItemEditForm = 2;
     // @attr [DisplayName("Folder edit form")]

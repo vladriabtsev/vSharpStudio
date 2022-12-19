@@ -22,9 +22,9 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public IGroupListForms ParentGroupListFormsI { get { Debug.Assert(this.Parent != null); return (IGroupListForms)this.Parent; } }
 
-        public Form(ITreeConfigNode? parent, List<IProperty> lst)  : this(parent)
+        public Form(ITreeConfigNode? parent, List<IProperty> lst) : this(parent)
         {
-            this.ListProperties = lst;
+            this._ListProperties = lst;
         }
 
         #region ITree
@@ -273,8 +273,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             switch (this.EnumFormType)
             {
-                case FormType.ViewListNarrow:
-                case FormType.ViewListWide:
+                case FormType.ListNarrow:
+                case FormType.ListWide:
                     lst.Add(this.GetPropertyName(() => this.IsDummy));
                     break;
                 case FormType.ItemEditForm:
@@ -298,7 +298,36 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Visibility
 
-        public IReadOnlyList<IProperty> ListProperties { get; private set; }
+        public IReadOnlyList<IProperty> ListProperties
+        {
+            get
+            {
+                if (this._ListProperties == null)
+                {
+                    this._ListProperties = new List<IProperty>();
+                    if (this.ParentGroupListForms.Parent is IDetail dt)
+                    {
+                        dt.GetSpecialProperties(this._ListProperties);
+                    }
+                    else if (this.ParentGroupListForms.Parent is ICatalog c)
+                    {
+                        c.GetSpecialProperties(this._ListProperties);
+                    }
+                    else if (this.ParentGroupListForms.Parent is IDocument d)
+                    {
+                        d.GetSpecialProperties(this._ListProperties);
+                    }
+                    else if (this.ParentGroupListForms.Parent is ICatalogFolder cf)
+                    {
+                        cf.GetSpecialProperties(this._ListProperties);
+                    }
+                    else
+                        throw new NotImplementedException();
+                }
+                return this._ListProperties;
+            }
+        }
+        private List<IProperty>? _ListProperties = null;
 
         #region Editor
 

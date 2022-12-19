@@ -16244,6 +16244,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 67
             vm.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 67
             vm.ViewListNarrowGuid = from.ViewListNarrowGuid; // Clone.tt Line: 67
+            vm.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 67
+            vm.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 67
             vm.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 67
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
             vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
@@ -16290,6 +16292,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 143
             to.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 143
             to.ViewListNarrowGuid = from.ViewListNarrowGuid; // Clone.tt Line: 143
+            to.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 143
+            to.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 143
             to.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 143
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
             to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
@@ -16389,6 +16393,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyDescriptionGuid = m.PropertyDescriptionGuid; // Clone.tt Line: 221
             vm.ViewListWideGuid = m.ViewListWideGuid; // Clone.tt Line: 221
             vm.ViewListNarrowGuid = m.ViewListNarrowGuid; // Clone.tt Line: 221
+            vm.PropertyIsFolderGuid = m.PropertyIsFolderGuid; // Clone.tt Line: 221
+            vm.PropertyIsOpenGuid = m.PropertyIsOpenGuid; // Clone.tt Line: 221
             vm.PropertyRefSelfGuid = m.PropertyRefSelfGuid; // Clone.tt Line: 221
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
             vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
@@ -16443,6 +16449,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // Clone.tt Line: 276
             m.ViewListWideGuid = vm.ViewListWideGuid; // Clone.tt Line: 276
             m.ViewListNarrowGuid = vm.ViewListNarrowGuid; // Clone.tt Line: 276
+            m.PropertyIsFolderGuid = vm.PropertyIsFolderGuid; // Clone.tt Line: 276
+            m.PropertyIsOpenGuid = vm.PropertyIsOpenGuid; // Clone.tt Line: 276
             m.PropertyRefSelfGuid = vm.PropertyRefSelfGuid; // Clone.tt Line: 276
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
@@ -16925,6 +16933,48 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _ViewListNarrowGuid = string.Empty;
         partial void OnViewListNarrowGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnViewListNarrowGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyIsFolderGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyIsFolderGuid; }
+            set
+            {
+                if (this._PropertyIsFolderGuid != value)
+                {
+                    this.OnPropertyIsFolderGuidChanging(ref value);
+                    this._PropertyIsFolderGuid = value;
+                    this.OnPropertyIsFolderGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyIsFolderGuid = string.Empty;
+        partial void OnPropertyIsFolderGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyIsFolderGuidChanged();
+        
+        [BrowsableAttribute(false)]
+        public string PropertyIsOpenGuid // Property.tt Line: 55
+        { 
+            get { return this._PropertyIsOpenGuid; }
+            set
+            {
+                if (this._PropertyIsOpenGuid != value)
+                {
+                    this.OnPropertyIsOpenGuidChanging(ref value);
+                    this._PropertyIsOpenGuid = value;
+                    this.OnPropertyIsOpenGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _PropertyIsOpenGuid = string.Empty;
+        partial void OnPropertyIsOpenGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyIsOpenGuidChanged();
         
         [BrowsableAttribute(false)]
         public string PropertyRefSelfGuid // Property.tt Line: 55

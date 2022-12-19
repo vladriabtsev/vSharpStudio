@@ -298,6 +298,47 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        public void GetSpecialProperties(List<IProperty> res)
+        {
+            var model = this.ParentGroupListCatalogs.ParentModel;
+            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+                res.Add(prp);
+            if (this.UseTree)
+            {
+                if (this.UseSeparateTreeForFolders)
+                {
+                        prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefFolderGuid, "Ref" + this.Folder.CompositeName);
+                        res.Add(prp);
+                }
+                else
+                {
+                        prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
+                        res.Add(prp);
+                        prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
+                        res.Add(prp);
+                    if (this.UseFolderTypeExplicitly)
+                    {
+                            prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
+                            res.Add(prp);
+                    }
+                }
+            }
+            if (this.GetUseCodeProperty())
+            {
+                prp = this.GetCodeProperty(model.ParentConfig);
+                res.Add(prp);
+            }
+            if (this.GetUseNameProperty())
+            {
+                prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
+                res.Add(prp);
+            }
+            if (this.GetUseDescriptionProperty())
+            {
+                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+                res.Add(prp);
+            }
+        }
         public void GetSpecialProperties(List<IProperty> res, bool isFolder, bool isAll, bool isSupportVersion)
         {
             var model = this.ParentGroupListCatalogs.ParentModel;
@@ -596,7 +637,7 @@ namespace vSharpStudio.vm.ViewModels
                     var prp = Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
                     res.Add(prp);
                 }
-                if (formType == FormType.ViewListWide)
+                if (formType == FormType.ListWide)
                 {
                     if (!this.GetUseDescriptionProperty())
                     {
@@ -693,12 +734,19 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     lstp.Add(t);
                 }
-                this.GetSpecialProperties(lstp, false, false, false);
+                this.GetSpecialProperties(lstp, false, true, false);
                 f = new Form(this.GroupForms, lstp);
                 f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
                 f.EnumFormType = ftype;
             }
             return f;
+        }
+        public IReadOnlyList<IForm> GetListForms()
+        {
+            var res = new List<IForm>();
+            res.Add(this.GetForm(FormType.ListNarrow));
+            res.Add(this.GetForm(FormType.ListWide));
+            return res;
         }
         //public IForm GetForm(FormType formType)
         //{

@@ -89,8 +89,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     }
     public enum FormType // ModelInterfaces.tt Line: 15
     {
-        ViewListWide = 0,
-        ViewListNarrow = 1,
+        ListWide = 0,
+        ListNarrow = 1,
         ItemEditForm = 2,
         FolderEditForm = 3,
     }
@@ -731,6 +731,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
     	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 51
     	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 51
+    	string PropertyIsOpenGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
