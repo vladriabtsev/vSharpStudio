@@ -278,26 +278,26 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
-        //public IReadOnlyList<IProperty> GetAllProperties(bool isUseRecordVersionField)
-        //{
-        //    var res = new List<IProperty>();
-        //    this.GetSpecialProperties(res, false, true, isUseRecordVersionField);
-        //    foreach (var t in this.GroupProperties.ListProperties)
-        //    {
-        //        res.Add(t);
-        //    }
-        //    return res;
-        //}
-        //public IReadOnlyList<IProperty> GetAllFolderProperties(bool isUseRecordVersionField)
-        //{
-        //    var res = new List<IProperty>();
-        //    this.GetSpecialProperties(res, true, true, isUseRecordVersionField);
-        //    foreach (var t in this.Folder.GroupProperties.ListProperties)
-        //    {
-        //        res.Add(t);
-        //    }
-        //    return res;
-        //}
+        public IReadOnlyList<IProperty> GetAllProperties(bool isUseRecordVersionField)
+        {
+            var res = new List<IProperty>();
+            this.GetSpecialProperties(res, isUseRecordVersionField);
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            return res;
+        }
+        public IReadOnlyList<IProperty> GetAllFolderProperties(bool isUseRecordVersionField)
+        {
+            var res = new List<IProperty>();
+            this.Folder.GetSpecialProperties(res, isUseRecordVersionField);
+            foreach (var t in this.Folder.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            return res;
+        }
         public void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
         {
             var model = this.ParentGroupListCatalogs.ParentModel;
