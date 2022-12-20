@@ -175,7 +175,7 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     lstp.Add(t);
                 }
-                this.GetSpecialProperties(lstp);
+                this.GetSpecialProperties(lstp, false);
                 f = new Form(this.GroupForms, lstp);
                 f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
                 f.EnumFormType = ftype;
@@ -189,10 +189,10 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(this.GetForm(FormType.ListWide));
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
-            this.GetSpecialProperties(res);
+            this.GetSpecialProperties(res, isSupportVersion);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -214,7 +214,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public void GetSpecialProperties(List<IProperty> res)
+        public void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
         {
             var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
             var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
@@ -228,11 +228,11 @@ namespace vSharpStudio.vm.ViewModels
                 prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
                 res.Add(prp);
             }
-            //if (isSupportVersion)
-            //{
-            //    prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
-            //    res.Add(prp);
-            //}
+            if (isSupportVersion)
+            {
+                prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
+                res.Add(prp);
+            }
             if (this.GetUseCodeProperty())
             {
                 prp = this.GetCodeProperty(model.ParentConfig);

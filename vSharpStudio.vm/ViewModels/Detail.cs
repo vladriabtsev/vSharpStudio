@@ -244,7 +244,7 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     lstp.Add(t);
                 }
-                this.GetSpecialProperties(lstp);
+                this.GetSpecialProperties(lstp, false);
                 f = new Form(this.GroupForms, lstp);
                 f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
                 f.EnumFormType = ftype;
@@ -261,18 +261,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
-            var cfg = this.GetConfig();
-            var prp = cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
-            res.Add(prp);
-            if (isSupportVersion)
-            {
-                prp = cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
-                res.Add(prp);
-            }
-            var parent = this.ParentGroupListDetails.Parent as ICompositeName;
-            Debug.Assert(parent != null);
-            prp = cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parent.CompositeName);
-            res.Add(prp);
+            this.GetSpecialProperties(res, isSupportVersion);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -282,7 +271,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public void GetSpecialProperties(List<IProperty> res)
+        public void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
         {
             string parentTable = "";
             if (this.ParentGroupListDetails.Parent is Detail dt)
@@ -308,11 +297,11 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
             prp = cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable);
             res.Add(prp);
-            //if (isSupportVersion)
-            //{
-            //    prp = cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
-            //    res.Add(prp);
-            //}
+            if (isSupportVersion)
+            {
+                prp = cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
+                res.Add(prp);
+            }
 
 
             //if (this.GetUseCodeProperty())

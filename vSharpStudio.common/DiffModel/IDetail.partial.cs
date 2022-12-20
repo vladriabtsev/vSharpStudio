@@ -12,7 +12,7 @@ namespace vSharpStudio.common
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion);
         //IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
-        void GetSpecialProperties(List<IProperty> res);
+        void GetSpecialProperties(List<IProperty> res, bool isSupportVersion);
         ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
         IForm GetForm(FormType ftype);
         IReadOnlyList<IForm> GetListForms();

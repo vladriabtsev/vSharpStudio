@@ -307,19 +307,19 @@ namespace vSharpStudio.vm.ViewModels
                     this._ListProperties = new List<IProperty>();
                     if (this.ParentGroupListForms.Parent is IDetail dt)
                     {
-                        dt.GetSpecialProperties(this._ListProperties);
+                        dt.GetSpecialProperties(this._ListProperties, false);
                     }
                     else if (this.ParentGroupListForms.Parent is ICatalog c)
                     {
-                        c.GetSpecialProperties(this._ListProperties);
+                        c.GetSpecialProperties(this._ListProperties, false);
                     }
                     else if (this.ParentGroupListForms.Parent is IDocument d)
                     {
-                        d.GetSpecialProperties(this._ListProperties);
+                        d.GetSpecialProperties(this._ListProperties, false);
                     }
                     else if (this.ParentGroupListForms.Parent is ICatalogFolder cf)
                     {
-                        cf.GetSpecialProperties(this._ListProperties);
+                        cf.GetSpecialProperties(this._ListProperties, false);
                     }
                     else
                         throw new NotImplementedException();
@@ -358,84 +358,84 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private SortedObservableCollection<IProperty>? listViewFolderNotSpecialProperties;
-        [BrowsableAttribute(false)]
-        public ObservableCollection<IProperty> ListAllFolderNotSpecialProperties
-        {
-            get
-            {
-                listAllFolderNotSpecialProperties = new ObservableCollection<IProperty>();
-                if (this.ParentGroupListForms.Parent is Catalog c)
-                {
-                    if (c.UseTree && c.UseSeparateTreeForFolders)
-                    {
-                        var res = new List<IProperty>();
-                        c.GetSpecialProperties(res, true, false, false);
-                        foreach (var t in c.Folder.GroupProperties.ListProperties)
-                        {
-                            res.Add(t);
-                        }
-                        foreach (var t in res)
-                        {
-                            bool notFound = true;
-                            foreach (var tt in this.ListGuidViewFolderProperties)
-                            {
-                                if (tt == t.Guid)
-                                {
-                                    notFound = false;
-                                    break;
-                                }
-                            }
-                            if (notFound)
-                                listAllFolderNotSpecialProperties.Add(t);
-                        }
-                        listAllFolderNotSpecialProperties.CollectionChanged += ResFolder_CollectionChanged;
-                    }
-                }
-                return listAllFolderNotSpecialProperties;
-            }
-        }
-        private ObservableCollection<IProperty>? listAllFolderNotSpecialProperties = null;
-        private void ResFolder_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            Debug.Assert(this.listViewFolderNotSpecialProperties != null);
-            this.ListGuidViewFolderProperties.Clear();
-            foreach (var t in this.listViewFolderNotSpecialProperties)
-            {
-                this.ListGuidViewFolderProperties.Add(t.Guid);
-            }
-        }
-        [BrowsableAttribute(false)]
-        public ObservableCollection<IProperty> ListAllNotSpecialProperties
-        {
-            get
-            {
-                var listAllNotSpecialProperties = new ObservableCollection<IProperty>();
-                if (this.ParentGroupListForms.Parent is Catalog c)
-                {
-                    var res = new List<IProperty>();
-                    c.GetSpecialProperties(res, true, false, false);
-                    foreach (var t in c.GroupProperties.ListProperties)
-                    {
-                        res.Add(t);
-                    }
-                    foreach (var t in res)
-                    {
-                        bool notFound = true;
-                        foreach (var tt in this.ListGuidViewProperties)
-                        {
-                            if (tt == t.Guid)
-                            {
-                                notFound = false;
-                                break;
-                            }
-                        }
-                        if (notFound)
-                            listAllNotSpecialProperties.Add(t);
-                    }
-                }
-                return listAllNotSpecialProperties;
-            }
-        }
+        //[BrowsableAttribute(false)]
+        //public ObservableCollection<IProperty> ListAllFolderNotSpecialProperties
+        //{
+        //    get
+        //    {
+        //        listAllFolderNotSpecialProperties = new ObservableCollection<IProperty>();
+        //        if (this.ParentGroupListForms.Parent is Catalog c)
+        //        {
+        //            if (c.UseTree && c.UseSeparateTreeForFolders)
+        //            {
+        //                var res = new List<IProperty>();
+        //                c.GetSpecialProperties(res, true, false, false);
+        //                foreach (var t in c.Folder.GroupProperties.ListProperties)
+        //                {
+        //                    res.Add(t);
+        //                }
+        //                foreach (var t in res)
+        //                {
+        //                    bool notFound = true;
+        //                    foreach (var tt in this.ListGuidViewFolderProperties)
+        //                    {
+        //                        if (tt == t.Guid)
+        //                        {
+        //                            notFound = false;
+        //                            break;
+        //                        }
+        //                    }
+        //                    if (notFound)
+        //                        listAllFolderNotSpecialProperties.Add(t);
+        //                }
+        //                listAllFolderNotSpecialProperties.CollectionChanged += ResFolder_CollectionChanged;
+        //            }
+        //        }
+        //        return listAllFolderNotSpecialProperties;
+        //    }
+        //}
+        //private ObservableCollection<IProperty>? listAllFolderNotSpecialProperties = null;
+        //private void ResFolder_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        //{
+        //    Debug.Assert(this.listViewFolderNotSpecialProperties != null);
+        //    this.ListGuidViewFolderProperties.Clear();
+        //    foreach (var t in this.listViewFolderNotSpecialProperties)
+        //    {
+        //        this.ListGuidViewFolderProperties.Add(t.Guid);
+        //    }
+        //}
+        //[BrowsableAttribute(false)]
+        //public ObservableCollection<IProperty> ListAllNotSpecialProperties
+        //{
+        //    get
+        //    {
+        //        var listAllNotSpecialProperties = new ObservableCollection<IProperty>();
+        //        if (this.ParentGroupListForms.Parent is Catalog c)
+        //        {
+        //            var res = new List<IProperty>();
+        //            c.GetSpecialProperties(res, true, false, false);
+        //            foreach (var t in c.GroupProperties.ListProperties)
+        //            {
+        //                res.Add(t);
+        //            }
+        //            foreach (var t in res)
+        //            {
+        //                bool notFound = true;
+        //                foreach (var tt in this.ListGuidViewProperties)
+        //                {
+        //                    if (tt == t.Guid)
+        //                    {
+        //                        notFound = false;
+        //                        break;
+        //                    }
+        //                }
+        //                if (notFound)
+        //                    listAllNotSpecialProperties.Add(t);
+        //            }
+        //        }
+        //        return listAllNotSpecialProperties;
+        //    }
+        //}
         [BrowsableAttribute(false)]
         public SortedObservableCollection<IProperty> ListViewNotSpecialProperties
         {

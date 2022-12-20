@@ -278,134 +278,55 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
-        public IReadOnlyList<IProperty> GetAllProperties(bool isUseRecordVersionField)
-        {
-            var res = new List<IProperty>();
-            this.GetSpecialProperties(res, false, true, isUseRecordVersionField);
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                res.Add(t);
-            }
-            return res;
-        }
-        public IReadOnlyList<IProperty> GetAllFolderProperties(bool isUseRecordVersionField)
-        {
-            var res = new List<IProperty>();
-            this.GetSpecialProperties(res, true, true, isUseRecordVersionField);
-            foreach (var t in this.Folder.GroupProperties.ListProperties)
-            {
-                res.Add(t);
-            }
-            return res;
-        }
-        public void GetSpecialProperties(List<IProperty> res)
+        //public IReadOnlyList<IProperty> GetAllProperties(bool isUseRecordVersionField)
+        //{
+        //    var res = new List<IProperty>();
+        //    this.GetSpecialProperties(res, false, true, isUseRecordVersionField);
+        //    foreach (var t in this.GroupProperties.ListProperties)
+        //    {
+        //        res.Add(t);
+        //    }
+        //    return res;
+        //}
+        //public IReadOnlyList<IProperty> GetAllFolderProperties(bool isUseRecordVersionField)
+        //{
+        //    var res = new List<IProperty>();
+        //    this.GetSpecialProperties(res, true, true, isUseRecordVersionField);
+        //    foreach (var t in this.Folder.GroupProperties.ListProperties)
+        //    {
+        //        res.Add(t);
+        //    }
+        //    return res;
+        //}
+        public void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
         {
             var model = this.ParentGroupListCatalogs.ParentModel;
             var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
-                res.Add(prp);
+            res.Add(prp);
             if (this.UseTree)
             {
                 if (this.UseSeparateTreeForFolders)
                 {
-                        prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefFolderGuid, "Ref" + this.Folder.CompositeName);
-                        res.Add(prp);
+                    prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefFolderGuid, "Ref" + this.Folder.CompositeName);
+                    res.Add(prp);
                 }
                 else
                 {
-                        prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
-                        res.Add(prp);
-                        prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
-                        res.Add(prp);
-                    if (this.UseFolderTypeExplicitly)
-                    {
-                            prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
-                            res.Add(prp);
-                    }
-                }
-            }
-            if (this.GetUseCodeProperty())
-            {
-                prp = this.GetCodeProperty(model.ParentConfig);
-                res.Add(prp);
-            }
-            if (this.GetUseNameProperty())
-            {
-                prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
-                res.Add(prp);
-            }
-            if (this.GetUseDescriptionProperty())
-            {
-                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
-                res.Add(prp);
-            }
-        }
-        public void GetSpecialProperties(List<IProperty> res, bool isFolder, bool isAll, bool isSupportVersion)
-        {
-            var model = this.ParentGroupListCatalogs.ParentModel;
-            var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
-            if (isAll)
-            {
-                res.Add(prp);
-            }
-            if (isFolder)
-            {
-                if (isAll)
-                {
-                    prp = model.GetPropertyRefParent(this.GroupProperties, this.Folder.PropertyRefSelfGuid, "RefTreeParent", true);
+                    prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
                     res.Add(prp);
                     prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
                     res.Add(prp);
-                }
-                if (this.UseFolderTypeExplicitly)
-                {
-                    if (isAll)
+                    if (this.UseFolderTypeExplicitly)
                     {
                         prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
                         res.Add(prp);
                     }
                 }
-                if (isSupportVersion)
-                {
-                    prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
-                    res.Add(prp);
-                }
             }
-            else
+            if (isSupportVersion)
             {
-                if (this.UseTree)
-                {
-                    if (this.UseSeparateTreeForFolders)
-                    {
-                        if (isAll)
-                        {
-                            prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefFolderGuid, "Ref" + this.Folder.CompositeName);
-                            res.Add(prp);
-                        }
-                    }
-                    else
-                    {
-                        if (isAll)
-                        {
-                            prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
-                            res.Add(prp);
-                            prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
-                            res.Add(prp);
-                        }
-                        if (this.UseFolderTypeExplicitly)
-                        {
-                            if (isAll)
-                            {
-                                prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
-                                res.Add(prp);
-                            }
-                        }
-                    }
-                }
-                if (isSupportVersion)
-                {
-                    prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
-                    res.Add(prp);
-                }
+                prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
+                res.Add(prp);
             }
             if (this.GetUseCodeProperty())
             {
@@ -423,6 +344,90 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(prp);
             }
         }
+        //public void GetSpecialProperties(List<IProperty> res, bool isFolder, bool isAll, bool isSupportVersion)
+        //{
+        //    var model = this.ParentGroupListCatalogs.ParentModel;
+        //    var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+        //    if (isAll)
+        //    {
+        //        res.Add(prp);
+        //    }
+        //    if (isFolder)
+        //    {
+        //        if (isAll)
+        //        {
+        //            prp = model.GetPropertyRefParent(this.GroupProperties, this.Folder.PropertyRefSelfGuid, "RefTreeParent", true);
+        //            res.Add(prp);
+        //            prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
+        //            res.Add(prp);
+        //        }
+        //        if (this.UseFolderTypeExplicitly)
+        //        {
+        //            if (isAll)
+        //            {
+        //                prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
+        //                res.Add(prp);
+        //            }
+        //        }
+        //        if (isSupportVersion)
+        //        {
+        //            prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
+        //            res.Add(prp);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (this.UseTree)
+        //        {
+        //            if (this.UseSeparateTreeForFolders)
+        //            {
+        //                if (isAll)
+        //                {
+        //                    prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefFolderGuid, "Ref" + this.Folder.CompositeName);
+        //                    res.Add(prp);
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (isAll)
+        //                {
+        //                    prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
+        //                    res.Add(prp);
+        //                    prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
+        //                    res.Add(prp);
+        //                }
+        //                if (this.UseFolderTypeExplicitly)
+        //                {
+        //                    if (isAll)
+        //                    {
+        //                        prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
+        //                        res.Add(prp);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        if (isSupportVersion)
+        //        {
+        //            prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
+        //            res.Add(prp);
+        //        }
+        //    }
+        //    if (this.GetUseCodeProperty())
+        //    {
+        //        prp = this.GetCodeProperty(model.ParentConfig);
+        //        res.Add(prp);
+        //    }
+        //    if (this.GetUseNameProperty())
+        //    {
+        //        prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
+        //        res.Add(prp);
+        //    }
+        //    if (this.GetUseDescriptionProperty())
+        //    {
+        //        prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+        //        res.Add(prp);
+        //    }
+        //}
         private IProperty GetCodeProperty(IConfig cfg)
         {
             IProperty prp = null!;
@@ -516,7 +521,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
-            this.GetSpecialProperties(res, false, true, isSupportVersion);
+            this.GetSpecialProperties(res, isSupportVersion);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
@@ -529,7 +534,7 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion)
         {
             var res = new List<IProperty>();
-            this.GetSpecialProperties(res, true, true, isSupportVersion);
+            this.Folder.GetSpecialProperties(res, isSupportVersion);
             foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
@@ -734,7 +739,7 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     lstp.Add(t);
                 }
-                this.GetSpecialProperties(lstp, false, true, false);
+                this.GetSpecialProperties(lstp, false);
                 f = new Form(this.GroupForms, lstp);
                 f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
                 f.EnumFormType = ftype;
