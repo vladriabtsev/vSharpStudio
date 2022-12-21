@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -56,7 +57,15 @@ namespace vSharpStudio
             // https://docs.microsoft.com/en-us/dotnet/desktop-wpf/data/data-binding-overview#debugging-mechanism
             //PresentationTraceSources.SetTraceLevel(wnd, PresentationTraceLevel.High);
 #endif
-            wnd.Show();
+            try
+            {
+                wnd.Show();
+            }
+            catch (Exception ex)
+            {
+                var res = MessageBox.Show($"Unhandled Exception\n{ex.Message}", "Error", System.Windows.MessageBoxButton.OK);
+                throw;
+            }
             //if (e.Args.Length == 1)
             //{
             //    this.logger.LogInformation("Application solution path from command parameter:" + e.Args[0]);

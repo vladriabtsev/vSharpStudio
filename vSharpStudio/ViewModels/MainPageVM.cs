@@ -424,7 +424,16 @@ namespace vSharpStudio.ViewModels
         private INotifyPropertyChanged? _SelectedDbDesignPluginSettings;
         private void AgregateCatalogs(string dir, string search, AggregateCatalog catalog)
         {
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+                return;
+            }
             var dirs = Directory.GetDirectories(dir);
+            if (dirs.Count() == 0)
+            {
+                MessageBox.Show($"Can't load any generator plugin from folder:\n{dir}", "Warning", System.Windows.MessageBoxButton.OK);
+            }
             foreach (var t in dirs)
             {
                 try
@@ -438,7 +447,7 @@ namespace vSharpStudio.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Can't load plugin from folder: {t}", ex);
+                    MessageBox.Show($"Can't load generator plugin from folder:\n{t}\nException: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK);
                 }
             }
         }
