@@ -13,7 +13,7 @@
         <ResultFiles Include="$(TargetDir)*.*" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="..\vSharpStudio.proto\obj\Debug\net6.0\PluginSample.cs" Link="PluginSample.cs" />
+        <Compile Include="..\vSharpStudio.proto\obj\Debug\net7.0\PluginSample.cs" Link="PluginSample.cs" />
     </ItemGroup>
     <ItemGroup>
         <None Include="..\proto\plugin_sample.proto" Link="plugin_sample.proto" />
