@@ -163,9 +163,6 @@
         <ProjectReference Include="..\..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Remove="GenFromProto.cs" />
-    </ItemGroup>
-    <ItemGroup>
         <Compile Include="..\..\vSharpStudio.common\LogExt.cs" Link="LogExt.cs" />
         <Compile Include="..\..\vSharpStudio.common\Logger.cs" Link="Logger.cs" />
         <Compile Include="..\..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />

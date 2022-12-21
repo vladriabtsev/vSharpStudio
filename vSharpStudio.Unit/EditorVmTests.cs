@@ -261,20 +261,21 @@ namespace vSharpStudio.Unit
         }
         #endregion Catalog
 
-        #region Diff
-        // [TestMethod]
-        // public void DiffConstant001Added()
-        // {
-        //    Assert.IsTrue(false);
-        // }
-        // [TestMethod]
-        // public void DiffConfig001CanDiffwithDb()
-        // {
-        //    Assert.IsTrue(false);
-        // }
-        #endregion Diff
+#region Diff
+// [TestMethod]
+// public void DiffConstant001Added()
+// {
+//    Assert.IsTrue(false);
+// }
+// [TestMethod]
+// public void DiffConfig001CanDiffwithDb()
+// {
+//    Assert.IsTrue(false);
+// }
+#endregion Diff
 
-        #region ITreeConfigNode
+#region ITreeConfigNode
+#if DEBUG
         [TestMethod]
         public void ITreeConfigNode001_UpdateSortingValueWhenNameIsChanged()
         {
@@ -344,6 +345,7 @@ namespace vSharpStudio.Unit
             cnst.Name = "AAC1";
             Assert.IsTrue(cnst.SortingValue < curr);
         }
+#endif
 
         [TestMethod]
         public void ITreeConfigNode002_RestoreSortingValueWhenObjectRestoredFromFile()
@@ -393,7 +395,7 @@ namespace vSharpStudio.Unit
         {
             var cfg = new Config();
 
-            #region Constants
+#region Constants
             Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanLeft() == true);
             Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanRight() == true);
             Assert.IsTrue(cfg.Model.GroupConstantGroups.NodeCanMoveUp() == false);
@@ -424,9 +426,9 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cnst2.NodeCanMoveUp() == true);
             Assert.IsTrue(cnst2.NodeCanMoveDown() == false);
 
-            #endregion Constants
+#endregion Constants
 
-            #region Enumerations
+#region Enumerations
 
             Assert.IsTrue(cfg.Model.GroupEnumerations.NodeCanLeft() == false);
             Assert.IsTrue(cfg.Model.GroupEnumerations.NodeCanRight() == true);
@@ -486,9 +488,9 @@ namespace vSharpStudio.Unit
 
             // #endregion Properties
 
-            #endregion Enumerations
+#endregion Enumerations
 
-            #region Catalogs
+#region Catalogs
 
             Assert.IsTrue(cfg.Model.GroupCatalogs.NodeCanLeft() == false);
             Assert.IsTrue(cfg.Model.GroupCatalogs.NodeCanRight() == true);
@@ -509,7 +511,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanAddNew() == true);
             Assert.IsTrue(cfg.Model.GroupCatalogs[0].NodeCanAddNewSubNode() == false);
 
-            #region Properties
+#region Properties
 
             cfg.Model.GroupCatalogs[0].GroupProperties.NodeAddNewSubNode();
             Assert.IsTrue(cfg.SelectedNode != null);
@@ -546,14 +548,14 @@ namespace vSharpStudio.Unit
             // Assert.IsTrue(5 == cfg.Model.GroupCatalogs[0].GroupProperties.ListProperties[2].DataType.MinValue);
             // Assert.IsTrue(6 == cfg.Model.GroupCatalogs[0].GroupProperties.ListProperties[2].DataType.MaxValue);
 
-            #endregion Properties
+#endregion Properties
 
-            #endregion Catalogs
+#endregion Catalogs
 
         }
-        #endregion ITreeConfigNode
+#endregion ITreeConfigNode
 
-        #region Compare Tree
+#region Compare Tree
         private Config createTree()
         {
             var cfg = new Config();
@@ -840,9 +842,9 @@ namespace vSharpStudio.Unit
             // Assert.IsTrue((string)errenum.Current == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE);
             // Assert.IsTrue(errenum.MoveNext() == false);
         }
-        #endregion Compare Tree
+#endregion Compare Tree
 
-        #region Db table names
+#region Db table names
         [TestMethod]
         public void DbName001_Catalog()
         {
@@ -937,7 +939,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, cfg.Model.ValidationCollection.Count);
         }
 
-        #endregion Db table names
+#endregion Db table names
         [TestMethod]
         public void ShortId()
         {

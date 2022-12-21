@@ -127,9 +127,6 @@ namespace vSharpStudio.vm.ViewModels.Shared // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         public bool BoolValue // Property.tt Line: 55
         { 

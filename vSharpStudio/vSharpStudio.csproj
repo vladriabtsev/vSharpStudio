@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <!--https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained-->
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <!--<Nullable>enable</Nullable>-->
@@ -23,14 +24,9 @@
         <DefineConstants>VSHARPSTUDIO</DefineConstants>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <DebugType>pdbonly</DebugType>
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
     </PropertyGroup>
-    <ItemGroup>
-        <Compile Remove="Migration\ConfigToModelVisitor.cs" />
-        <Compile Remove="Migration\DbMigration.cs" />
-        <Compile Remove="start\OperationReporter.cs" />
-        <Compile Remove="start\StartServices.cs" />
-    </ItemGroup>
     <ItemGroup>
         <None Remove="icons\SettingsFile_16x.png" />
         <None Remove="icons\Settings_16x.png" />
@@ -55,9 +51,6 @@
         <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
         <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
         <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="start\" />
     </ItemGroup>
     <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />

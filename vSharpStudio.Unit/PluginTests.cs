@@ -211,6 +211,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(1, sln2.DicPluginsGroupSettings.Count);
 
             #region DicDiffResult
+#if DEBUG
             // Check what was not restored after loading
             var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm.Config.DicActiveAppProjectGenerators, vm2.Config.DicActiveAppProjectGenerators);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
@@ -227,6 +228,7 @@ namespace vSharpStudio.Unit
             var diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm.Config.DicNodes, vm2.Config.DicNodes);
             Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
+#endif
             #endregion DicDiffResult
 
             gen2.GenFileName = "test.cs";
@@ -240,6 +242,7 @@ namespace vSharpStudio.Unit
             vm2.CommandConfigCurrentUpdate.Execute(new TestTransformation());
 
             #region DicDiffResult
+#if DEBUG
             diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicActiveAppProjectGenerators, vm2.Config.PrevCurrentConfig.DicActiveAppProjectGenerators);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);
@@ -255,6 +258,7 @@ namespace vSharpStudio.Unit
             diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm2.Config.DicNodes, vm2.Config.PrevCurrentConfig.DicNodes);
             //Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
+#endif
             #endregion DicDiffResult
 
             gen2 = (AppProjectGenerator)vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
@@ -269,6 +273,7 @@ namespace vSharpStudio.Unit
             vm2.CommandConfigCreateStableVersion.Execute(new TestTransformation());
 
             #region DicDiffResult
+#if DEBUG
             diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(vm2.Config.DicActiveAppProjectGenerators, vm2.Config.PrevCurrentConfig.DicActiveAppProjectGenerators);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);
@@ -284,6 +289,7 @@ namespace vSharpStudio.Unit
             diffNodes = DicDiffResult<string, ITreeConfigNode>.DicDiff(vm2.Config.DicNodes, vm2.Config.PrevCurrentConfig.DicNodes);
             //Assert.AreEqual(0, diffNodes.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffNodes.Dic2ButNotInDic1.Count);
+#endif
             #endregion DicDiffResult
             gen2 = (AppProjectGenerator)vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
             prms2 = (vPlugin.Sample.GeneratorDbAccessSettings)gen2.DynamicGeneratorSettings;
@@ -825,7 +831,7 @@ namespace vSharpStudio.Unit
                 File.Delete(genFilePath);
 
             // Can recognize not valid Config, SolutionPath is empty
-            #region not valid Config
+#region not valid Config
             // valid
             vm.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm.Config.CountErrors == 0);
@@ -843,9 +849,9 @@ namespace vSharpStudio.Unit
             await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.Config.CountErrors > 0);
-            #endregion not valid Config
+#endregion not valid Config
 
-            #region valid Config
+#region valid Config
             sln.RelativeAppSolutionPath = slnPath;
             tt = new TestTransformation();
             tt.IsThrowExceptionOnConfigValidated = true;
@@ -853,39 +859,39 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnConfigValidated));
             Assert.IsTrue(vm.Config.CountErrors == 0);
-            #endregion valid Config
+#endregion valid Config
 
-            #region compilable code
+#region compilable code
             tt = new TestTransformation();
             await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception == null);
-            #endregion compilable code
+#endregion compilable code
 
             // Can recognize exception before rename
-            #region not compilable code
+#region not compilable code
             tt = new TestTransformation();
             tt.IsThrowExceptionOnBuildValidated = true;
             await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
-            #endregion not compilable code
+#endregion not compilable code
 
             // Exclude compilation process if there are no renames
-            #region not compilable code
+#region not compilable code
             tt = new TestTransformation();
             File.WriteAllText(fpath, "wrong c# code");
             await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception == null);
-            #endregion not compilable code
+#endregion not compilable code
 
             // Include compilation process if there are renames
-            #region not compilable code
+#region not compilable code
             tt = new TestTransformation();
             tt.IsThrowExceptionOnBuildValidated = true;
             await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
-            #endregion not compilable code
+#endregion not compilable code
 
 
             // Can rename
@@ -910,8 +916,8 @@ namespace vSharpStudio.Unit
 
             // Can run unit test for generated code
 
-            #region generate not valid code
-            #endregion generate not valid code
+#region generate not valid code
+#endregion generate not valid code
 
             //Assert.IsTrue(false);
         }
@@ -957,6 +963,7 @@ namespace vSharpStudio.Unit
         //}
         public void DicDiffDebug(Config cfg, Config anotherCfg)
         {
+#if DEBUG
             var diffActiveAppProjectGenerators = DicDiffResult<string, IvPluginGenerator>.DicDiff(cfg.DicActiveAppProjectGenerators, anotherCfg.DicActiveAppProjectGenerators);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffActiveAppProjectGenerators.Dic2ButNotInDic1.Count);
@@ -972,6 +979,7 @@ namespace vSharpStudio.Unit
             var diffPluginLists = DicDiffResult<vPluginLayerTypeEnum, List<PluginRow>>.DicDiff(cfg.DicPluginLists, anotherCfg.DicPluginLists);
             Assert.AreEqual(0, diffPluginLists.Dic1ButNotInDic2.Count);
             Assert.AreEqual(0, diffPluginLists.Dic2ButNotInDic1.Count);
+#endif
         }
     }
 }

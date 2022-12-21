@@ -590,10 +590,9 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("    #endregion Procedures\r\n    #region Properties\r\n#if !DEBUG\r\n    [Browsable(fal" +
-                    "se)]\r\n#endif\r\n");
+            this.Write("    #endregion Procedures\r\n    #region Properties\r\n");
             
-            #line 103 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 100 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
 	this.PushIndent("    ");
 	foreach (var t in this.GetFields())
 	{
@@ -605,14 +604,14 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 110 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 107 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  if (this.Doc.IsWithParent) { 
             
             #line default
             #line hidden
             this.Write("    [BrowsableAttribute(false)]\r\n    public override bool IsChanged // ");
             
-            #line 112 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 109 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
@@ -636,14 +635,14 @@ namespace GenFromProto
     }
     partial void OnIsChangedChanging(ref bool v); // ");
             
-            #line 129 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 126 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 130 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 127 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  if (this.Doc.IsConfigObjectBase) { 
             
             #line default
@@ -651,48 +650,48 @@ namespace GenFromProto
             this.Write("    protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } //" +
                     " ");
             
-            #line 131 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 128 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 132 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 129 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  } else { 
             
             #line default
             #line hidden
             this.Write("    //partial void OnIsChangedChanged(); // ");
             
-            #line 133 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 130 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 134 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 131 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 135 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 132 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  if (this.Doc.IsICanAddNode) { 
             
             #line default
             #line hidden
             this.Write("    partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // ");
             
-            #line 136 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 133 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 136 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 133 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name));
             
             #line default
@@ -700,13 +699,13 @@ namespace GenFromProto
             this.Write("\r\n    partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChan" +
                     "ged(); }\r\n");
             
-            #line 138 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 135 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 139 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
+            #line 136 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
  } 
             
             #line default

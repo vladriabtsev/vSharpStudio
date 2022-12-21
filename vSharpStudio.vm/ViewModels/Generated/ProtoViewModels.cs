@@ -171,9 +171,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [BrowsableAttribute(false)]
         public ObservableCollectionWithActions<UserSettingsOpenedConfig> ListOpenConfigHistory // Property.tt Line: 8
@@ -304,9 +301,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [ReadOnly(true)]
         public string Guid // Property.tt Line: 55
@@ -539,9 +533,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -653,7 +644,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -670,8 +661,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -848,9 +839,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -982,7 +970,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGeneratorsChanging(ObservableCollection<PluginGenerator> to); // Property.tt Line: 27
         partial void OnListGeneratorsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -999,8 +987,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -1118,9 +1106,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [ReadOnly(true)]
         public string Guid // Property.tt Line: 55
@@ -1206,7 +1191,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -1223,8 +1208,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -1330,9 +1315,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [PropertyOrderAttribute(1)]
         [ReadOnly(true)]
@@ -1547,9 +1529,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [ReadOnly(true)]
         public string Guid // Property.tt Line: 55
@@ -1857,9 +1836,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -2013,7 +1989,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -2030,8 +2006,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -2227,9 +2203,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -2428,7 +2401,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -2445,8 +2418,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -2633,9 +2606,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -2902,7 +2872,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupAppSolutionsChanged();
         //IGroupListAppSolutions IConfig.GroupAppSolutions { get { return this._GroupAppSolutions; } }
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -2919,8 +2889,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -3046,9 +3016,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [PropertyOrderAttribute(1)]
         [Editor(typeof(EditorDbPluginSelection), typeof(EditorDbPluginSelection))]
@@ -3310,9 +3277,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [ReadOnly(true)]
         public string Guid // Property.tt Line: 55
@@ -3359,7 +3323,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -3376,8 +3340,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        //partial void OnIsChangedChanged(); // Class.tt Line: 133
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        //partial void OnIsChangedChanged(); // Class.tt Line: 130
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -3482,9 +3446,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [ReadOnly(true)]
         public string Guid // Property.tt Line: 55
@@ -3531,7 +3492,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -3548,8 +3509,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        //partial void OnIsChangedChanged(); // Class.tt Line: 133
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        //partial void OnIsChangedChanged(); // Class.tt Line: 130
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -3737,9 +3698,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -3874,7 +3832,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -3891,8 +3849,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -4142,9 +4100,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -4388,7 +4343,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGeneratorsSolutionSettingsChanging(ObservableCollection<PluginGeneratorSolutionSettings> to); // Property.tt Line: 27
         partial void OnListGeneratorsSolutionSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -4405,9 +4360,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_app_solution
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_app_solution
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -4654,9 +4609,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -4877,7 +4829,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGeneratorsProjectSettingsChanging(ObservableCollection<PluginGeneratorProjectSettings> to); // Property.tt Line: 27
         partial void OnListGeneratorsProjectSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -4894,9 +4846,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_app_project
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_app_project
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -5023,9 +4975,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [ReadOnly(true)]
         public string Guid // Property.tt Line: 55
@@ -5157,7 +5106,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -5174,8 +5123,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -5292,9 +5241,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [ReadOnly(true)]
         public string Guid // Property.tt Line: 55
@@ -5403,7 +5349,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -5420,8 +5366,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        //partial void OnIsChangedChanged(); // Class.tt Line: 133
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        //partial void OnIsChangedChanged(); // Class.tt Line: 130
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -5615,9 +5561,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -6056,7 +5999,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGenScriptFileNameChanging(ref string to); // Property.tt Line: 79
         partial void OnGenScriptFileNameChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -6073,9 +6016,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_app_project_generator
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_app_project_generator
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -6181,9 +6124,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         
         ///////////////////////////////////////////////////
@@ -6229,7 +6169,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -6246,8 +6186,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        //partial void OnIsChangedChanged(); // Class.tt Line: 133
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        //partial void OnIsChangedChanged(); // Class.tt Line: 130
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -6616,9 +6556,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -7559,7 +7496,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -7576,8 +7513,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -7717,9 +7654,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [PropertyOrderAttribute(1)]
         [DisplayName("Type")]
@@ -7912,7 +7846,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsRefParentChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsRefParentChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -7929,8 +7863,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        //partial void OnIsChangedChanged(); // Class.tt Line: 133
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        //partial void OnIsChangedChanged(); // Class.tt Line: 130
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -8138,9 +8072,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -8316,7 +8247,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -8333,8 +8264,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -8528,9 +8459,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -8703,7 +8631,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -8720,9 +8648,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_role
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_role
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -8961,9 +8889,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -9138,7 +9063,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -9155,8 +9080,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -9361,9 +9286,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -9559,7 +9481,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -9576,8 +9498,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -9819,9 +9741,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -9996,7 +9915,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -10013,8 +9932,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -10276,9 +10195,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -10591,7 +10507,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -10608,8 +10524,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -10924,9 +10840,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -11690,7 +11603,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -11707,9 +11620,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_detail
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_detail
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -11964,9 +11877,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -12235,7 +12145,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -12252,8 +12162,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -12518,9 +12428,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -13102,7 +13009,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -13119,9 +13026,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_property
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_property
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -13364,9 +13271,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -13544,7 +13448,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -13561,8 +13465,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -13816,9 +13720,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -14080,7 +13981,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -14097,9 +13998,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_group_list_constants
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_group_list_constants
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -14338,9 +14239,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -14724,7 +14622,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -14741,9 +14639,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_constant
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_constant
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -14982,9 +14880,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -15159,7 +15054,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -15176,8 +15071,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -15431,9 +15326,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -15685,7 +15577,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -15702,9 +15594,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_enumeration
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_enumeration
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -15907,9 +15799,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -16153,7 +16042,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -16170,9 +16059,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_enumeration_pair
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_enumeration_pair
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -16490,9 +16379,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -17179,7 +17065,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -17196,8 +17082,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -17310,9 +17196,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [PropertyOrderAttribute(3)]
         [DisplayName("Type")]
@@ -17406,7 +17289,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUniqueScopeChanging(ref EnumCatalogCodeUniqueScope to); // Property.tt Line: 79
         partial void OnUniqueScopeChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -17423,8 +17306,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        //partial void OnIsChangedChanged(); // Class.tt Line: 133
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        //partial void OnIsChangedChanged(); // Class.tt Line: 130
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -17784,9 +17667,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -18674,7 +18554,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -18691,9 +18571,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_catalog
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_catalog
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -18976,9 +18856,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -19406,7 +19283,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -19423,8 +19300,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -19652,9 +19529,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -19970,7 +19844,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -19987,8 +19861,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -20105,9 +19979,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [PropertyOrderAttribute(3)]
         [DisplayName("Type")]
@@ -20224,7 +20095,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnScopePeriodStartChanging(ref string to); // Property.tt Line: 79
         partial void OnScopePeriodStartChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -20241,8 +20112,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        //partial void OnIsChangedChanged(); // Class.tt Line: 133
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        //partial void OnIsChangedChanged(); // Class.tt Line: 130
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -20527,9 +20398,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -21040,7 +20908,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -21057,9 +20925,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_document
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_document
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -21302,9 +21170,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -21502,7 +21367,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -21519,8 +21384,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -21770,9 +21635,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -22020,7 +21882,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -22037,8 +21899,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -22296,9 +22158,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -22565,7 +22424,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -22582,9 +22441,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_journal
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_journal
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -22823,9 +22682,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -23004,7 +22860,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -23021,8 +22877,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -23294,9 +23150,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -23750,7 +23603,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -23767,9 +23620,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -24035,9 +23888,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -24255,7 +24105,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -24272,9 +24122,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_grid_system
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form_grid_system
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -24525,9 +24375,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -24724,7 +24571,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -24741,9 +24588,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_grid_system_row
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form_grid_system_row
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -24977,9 +24824,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -25332,7 +25176,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -25349,9 +25193,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_grid_system_column
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form_grid_system_column
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -25607,9 +25451,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -25806,7 +25647,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -25823,9 +25664,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_auto_layout_block
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form_auto_layout_block
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -26086,9 +25927,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -26396,7 +26234,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -26413,9 +26251,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_auto_layout_sub_block
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form_auto_layout_sub_block
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -26606,9 +26444,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -26784,7 +26619,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -26801,9 +26636,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_field
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form_field
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -27024,9 +26859,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -27246,7 +27078,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -27263,9 +27095,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_tab_control_tab
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form_tab_control_tab
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -27531,9 +27363,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -27751,7 +27580,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -27768,9 +27597,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_tab_control
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form_tab_control
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -27980,9 +27809,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -28179,7 +28005,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -28196,9 +28022,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_data_grid
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form_data_grid
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -28408,9 +28234,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -28607,7 +28430,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -28624,9 +28447,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_form_tree
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_form_tree
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -28865,9 +28688,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -29046,7 +28866,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -29063,8 +28883,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -29254,9 +29074,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         [Category("")]
         [PropertyOrderAttribute(-2)]
@@ -29434,7 +29251,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 112
+        public override bool IsChanged // Class.tt Line: 109
         { 
             get { return this._IsChanged; }
             set
@@ -29451,9 +29268,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 129
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 131
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 136 proto_report
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 128
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 133 proto_report
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -29539,9 +29356,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         #endregion Procedures
         #region Properties
-    #if !DEBUG
-        [Browsable(false)]
-    #endif
         
         public string GroupName // Property.tt Line: 55
         { 

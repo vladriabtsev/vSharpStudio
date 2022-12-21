@@ -97,9 +97,6 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 	this.PopIndent(); #>
     #endregion Procedures
     #region Properties
-#if !DEBUG
-    [Browsable(false)]
-#endif
 <#	this.PushIndent("    ");
 	foreach (var t in this.GetFields())
 	{

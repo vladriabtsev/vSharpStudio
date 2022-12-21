@@ -15,16 +15,9 @@
         <DebugType>full</DebugType>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <DebugType>pdbonly</DebugType>
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-        <DefineConstants>TRACE</DefineConstants>
-    </PropertyGroup>
-    <ItemGroup>
-        <Compile Remove="ConfigObjectBase%27.cs" />
-        <Compile Remove="DiffModelVisitorBase.cs" />
-        <Compile Remove="DiffModel\DiffLists%27.cs" />
-    </ItemGroup>
     <ItemGroup>
         <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
     </ItemGroup>
