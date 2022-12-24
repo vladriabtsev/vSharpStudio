@@ -29,6 +29,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             return this.ParentConfig.Children;
         }
+        new public ConfigNodesCollection<Plugin> Children { get { return this.ListPlugins; } }
         #endregion ITree
 
         partial void OnCreated()

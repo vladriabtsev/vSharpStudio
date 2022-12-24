@@ -67,8 +67,8 @@ namespace vSharpStudio.Views
             _model = new MainPageVM();
             Task task = Task.Run(() =>
             {
-                this._model.OnFormLoaded();
                 this._model.Compose();
+                this._model.OnFormLoaded();
                 this.DataContext = this._model;
             });
 #endif

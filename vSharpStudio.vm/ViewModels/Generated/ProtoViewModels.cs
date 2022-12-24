@@ -13297,6 +13297,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [Category("")]
         [PropertyOrderAttribute(1)]
         [Description("Constants group name")]
+        [ReadOnly(true)]
         public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
@@ -13340,6 +13341,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(2)]
         [DisplayName("UI name")]
         [Description("Used as label/name for UI")]
+        [ReadOnly(true)]
         public string NameUi // Property.tt Line: 55
         { 
             get { return this._NameUi; }

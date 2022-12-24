@@ -1408,6 +1408,7 @@ message proto_group_constant_groups {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Description("Constants group name")]
+    // @attr [ReadOnly(true)]
     string name = 2;
     // @attr [BrowsableAttribute(false)]
     uint64 sorting_value = 3;
@@ -1415,6 +1416,7 @@ message proto_group_constant_groups {
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("UI name")]
     // @attr [Description("Used as label/name for UI")]
+    // @attr [ReadOnly(true)]
     string name_ui = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]

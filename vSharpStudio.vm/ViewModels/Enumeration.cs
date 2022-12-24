@@ -30,9 +30,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             return this.ParentGroupListEnumerations.Children;
         }
-        #endregion ITree
-
         new public ConfigNodesCollection<EnumerationPair> Children { get { return this.ListEnumerationPairs; } }
+        #endregion ITree
 
         [Browsable(false)]
         new public string IconName { get { return "iconEnumerator"; } }

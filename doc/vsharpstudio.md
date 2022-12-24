@@ -920,9 +920,9 @@ No Children
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Constants group name&#34;)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] @attr [Description(&#34;Constants group name&#34;)] @attr [ReadOnly(true)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
-| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] @attr [ReadOnly(true)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;Description constants group name&#34;)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for constants db table names. Used if set to use in config model&#34;)] |
 | list_constant_groups | [proto_group_list_constants](#proto_config.proto_group_list_constants) | repeated | @attr [BrowsableAttribute(false)] |

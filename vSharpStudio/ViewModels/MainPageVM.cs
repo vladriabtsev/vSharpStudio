@@ -436,7 +436,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private INotifyPropertyChanged? _SelectedDbDesignPluginSettings;
-        private void AgregateCatalogs(string dir, string search, AggregateCatalog catalog)
+        private void AgregateCatalogs(string dir, string search, AggregateCatalog catalog, bool isPluginsFolder=false)
         {
             if (!Directory.Exists(dir))
             {
@@ -444,12 +444,15 @@ namespace vSharpStudio.ViewModels
                 return;
             }
             var dirs = Directory.GetDirectories(dir);
-            if (dirs.Count() == 0)
+            if (isPluginsFolder)
             {
+                if (dirs.Count() == 0)
+                {
 #if DEBUG
-                if (!VmBindable.isUnitTests)
+                    if (!VmBindable.isUnitTests)
 #endif
-                    MessageBox.Show($"Can't load any generator plugin from folder:\n{dir}", "Warning", System.Windows.MessageBoxButton.OK);
+                        MessageBox.Show($"No plugin's folders are found in folder:\n{dir}", "Warning", System.Windows.MessageBoxButton.OK);
+                }
             }
             foreach (var t in dirs)
             {
@@ -479,7 +482,7 @@ namespace vSharpStudio.ViewModels
                 string folder = (pluginsFolderPath == null ? Directory.GetCurrentDirectory() : pluginsFolderPath) + "\\Plugins";
                 _logger?.LogDebug("Loading plugins from folder: {folder}".CallerInfo(), folder);
                 AggregateCatalog catalog = new AggregateCatalog();
-                this.AgregateCatalogs(folder, "vPlugin*.dll", catalog);
+                this.AgregateCatalogs(folder, "vPlugin*.dll", catalog, true);
                 CompositionContainer container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
                 container.SatisfyImportsOnce(this);
                 //foreach (var sln in this.Config.GroupAppSolutions.ListAppSolutions)

@@ -4540,7 +4540,7 @@
             },
             {
               "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Constants group name\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]\n@attr [Description(\"Constants group name\")]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4560,7 +4560,7 @@
             },
             {
               "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]\n@attr [ReadOnly(true)]",
               "label": "",
               "type": "string",
               "longType": "string",

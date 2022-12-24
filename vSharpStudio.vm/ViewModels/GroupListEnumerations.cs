@@ -21,6 +21,7 @@ namespace vSharpStudio.vm.ViewModels
         public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
         [BrowsableAttribute(false)]
         public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
+
         #region ITree
         public override IChildrenCollection GetListChildren()
         {
@@ -99,6 +100,7 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #endregion Tree operations
+
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
