@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModelBase;
 using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.ViewModels
@@ -34,7 +35,10 @@ namespace vSharpStudio.ViewModels
                 sb.Append(" Line: ");
                 sb.AppendLine(sourceLineNumber.ToString());
                 sb.AppendLine(ex.ToString());
-                MessageBox.Show(sb.ToString(), "Error");
+#if DEBUG
+                if (!VmBindable.isUnitTests)
+#endif
+                    MessageBox.Show(sb.ToString(), "Error");
             }
         }
     }

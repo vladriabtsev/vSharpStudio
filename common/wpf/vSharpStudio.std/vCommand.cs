@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 // https://docs.microsoft.com/en-us/archive/msdn-magazine/2014/april/async-programming-patterns-for-asynchronous-mvvm-applications-commands
@@ -78,10 +79,12 @@ namespace ViewModelBase
                 return true;
             if (_canExecute(parameter))
             {
+                //this.IsEnabled = true;
                 //                this.Visibility = Visibility.Visible;
                 return true;
             }
             //          this.Visibility = Visibility.Collapsed;
+            //this.IsEnabled = false;
             return false;
         }
         async public void Execute(object parameter)
@@ -140,5 +143,23 @@ namespace ViewModelBase
             if (this.Dispatcher != null && this.CanExecuteChangedInternal != null) // to exclude errors in Design mode
                 CanExecuteChangedInternal.Raise(this);
         }
+        //public bool IsEnabled
+        //{
+        //    get { return this._IsEnabled; }
+        //    set
+        //    {
+        //        if (SetProperty<bool>(ref this._IsEnabled, value))
+        //        {
+        //            if (this._IsEnabled) this.Visibility = Visibility.Visible; else this.Visibility = Visibility.Hidden;
+        //        }
+        //    }
+        //}
+        //private bool _IsEnabled;
+        //public Visibility Visibility
+        //{
+        //    get { return this._Visibility; }
+        //    set { SetProperty<Visibility>(ref this._Visibility, value); }
+        //}
+        //private Visibility _Visibility;
     }
 }

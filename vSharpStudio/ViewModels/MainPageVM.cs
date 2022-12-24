@@ -40,11 +40,11 @@ namespace vSharpStudio.ViewModels
     //TODO 2020-08-07 Model node setting contains generator not selected in AppProjectGenerator
     public class MainPageVM : VmValidatableWithSeverity<MainPageVM, MainPageVMValidator>, IPartImportsSatisfiedNotification
     {
-        public static MainPageVM Create(string pluginsFolderPath)
+        public static MainPageVM Create(bool isLoadConfig, string? pluginsFolderPath = null, string? configFile = null)
         {
-            MainPageVM vm = new MainPageVM(false);
-            vm.OnFormLoaded();
+            MainPageVM vm = new MainPageVM(isLoadConfig);
             vm.Compose(pluginsFolderPath);
+            vm.OnFormLoaded();
             return vm;
         }
         private ILogger? _logger;
@@ -53,7 +53,7 @@ namespace vSharpStudio.ViewModels
         public MainPageVM() : base(MainPageVMValidator.Validator)
         {
             _logger = Logger.CreateLogger<MainPageVM>();
-            _Config = new Config();
+            //_Config = new Config();
         }
         //public MainPageVM(ILogger<MainPageVM> logger) : this()
         //{
@@ -69,7 +69,7 @@ namespace vSharpStudio.ViewModels
             //this.onImportsSatisfied = onImportsSatisfied;
             this.isLoadConfig = isLoadConfig;
             this.configFile = configFile;
-            this.Config = new Config();
+            //this.Config = new Config();
             if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
                 // Catalog c = new Catalog();
@@ -122,24 +122,30 @@ namespace vSharpStudio.ViewModels
                 Debug.Assert(this.Config != null);
                 if (this.Config.IsHasChanged)
                 {
-                    var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
-                    if (res != System.Windows.MessageBoxResult.OK)
-                        return;
+#if DEBUG
+                    if (!VmBindable.isUnitTests)
+                    {
+#endif
+                        var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                        if (res != System.Windows.MessageBoxResult.OK)
+                            return;
+#if DEBUG
+                    }
+#endif
                 }
-                this.LoadConfig(this.Config, p.ConfigPath, string.Empty, true);
+                this.Config = this.LoadConfig(p.ConfigPath, string.Empty, true);
             };
             if (isLoadConfig)
             {
-                Debug.Assert(this.Config != null);
                 if (configFile != null)
                 {
                     _logger?.LogDebug("Load Configuration from file {ConfigFile}".CallerInfo(), configFile);
-                    this.LoadConfig(this.Config, configFile, string.Empty, true);
+                    this.Config = this.LoadConfig(configFile, string.Empty, true);
                 }
                 else if (!string.IsNullOrEmpty(this.CurrentCfgFilePath) && File.Exists(this.CurrentCfgFilePath))
                 {
                     _logger?.LogDebug("Load Configuration from standard file {ConfigFile}".CallerInfo(), CurrentCfgFilePath);
-                    this.LoadConfig(this.Config, this.CurrentCfgFilePath, string.Empty, true);
+                    this.Config = this.LoadConfig(this.CurrentCfgFilePath, string.Empty, true);
                 }
                 else
                 {
@@ -152,7 +158,7 @@ namespace vSharpStudio.ViewModels
             }
             this.IsBusy = false;
         }
-        private void LoadConfig(Config config, string file_path, string indent, bool isRoot = false)
+        private Config LoadConfig(string file_path, string indent, bool isRoot = false)
         {
             if (!File.Exists(file_path))
             {
@@ -163,7 +169,7 @@ namespace vSharpStudio.ViewModels
             var protoarr = File.ReadAllBytes(file_path);
             this.pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
             _logger?.LogDebug("ConvertToVM Main Config".CallerInfo());
-            Config.ConvertToVM(this.pconfig_history.CurrentConfig, config);
+            var config = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
             var currFolder = Path.GetDirectoryName(this.CurrentCfgFilePath);
             config.CurrentCfgFolderPath = currFolder ?? String.Empty;
             config.PrevCurrentConfig = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
@@ -179,11 +185,23 @@ namespace vSharpStudio.ViewModels
             foreach (var t in config.GroupConfigLinks.ListBaseConfigLinks.ToList())
             {
                 _logger?.LogDebug("Load Base Config {Name} from {Path}".CallerInfo(), t.Name, t.RelativeConfigFilePath);
-                this.LoadConfig(t.ConfigBase as Config, Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
+                t.ConfigBase = this.LoadConfig(Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
                 t.Name = t.ConfigBase.Name;
             }
             this.CurrentCfgFilePath = file_path;
-            Config.IsInitialized = false;
+            config.IsInitialized = false;
+
+            InitConfig(config);
+            if (isRoot)
+            {
+                this.Config = config;
+                this.VisibilityAndMessageInstructions();
+            }
+            if (config.PrevStableConfig != null)
+                InitConfig((Config)config.PrevStableConfig);
+            if (config.PrevCurrentConfig != null)
+                InitConfig((Config)config.PrevCurrentConfig);
+            return config;
         }
         public Proto.Config.proto_config_short_history? pconfig_history { get; private set; }
         public UserSettings? UserSettings { get; private set; }
@@ -225,16 +243,13 @@ namespace vSharpStudio.ViewModels
         {
             Debug.Assert(this._plugins != null);
             _logger?.LogDebug("Loaded {Count} plugins".CallerInfo(), this._plugins.Count());
-            InitConfig(this.Config);
-            if (this.Config.PrevStableConfig != null)
-                InitConfig((Config)this.Config.PrevStableConfig);
-            if (this.Config.PrevCurrentConfig != null)
-                InitConfig((Config)this.Config.PrevCurrentConfig);
             if (this.onPluginsLoaded != null)
                 this.onPluginsLoaded();
         }
-        public void InitConfig(Config cfg)
+        public void InitConfig(Config? cfg)
         {
+            if (cfg == null)
+                return;
             try
             {
                 cfg.IsInitialized = true;
@@ -375,7 +390,6 @@ namespace vSharpStudio.ViewModels
                     // group plugins settings
                     t.RestoreGroupSettings();
                 }
-                this.VisibilityAndMessageInstructions();
             }
             catch (Exception ex)
             {
@@ -432,7 +446,10 @@ namespace vSharpStudio.ViewModels
             var dirs = Directory.GetDirectories(dir);
             if (dirs.Count() == 0)
             {
-                MessageBox.Show($"Can't load any generator plugin from folder:\n{dir}", "Warning", System.Windows.MessageBoxButton.OK);
+#if DEBUG
+                if (!VmBindable.isUnitTests)
+#endif
+                    MessageBox.Show($"Can't load any generator plugin from folder:\n{dir}", "Warning", System.Windows.MessageBoxButton.OK);
             }
             foreach (var t in dirs)
             {
@@ -447,12 +464,15 @@ namespace vSharpStudio.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Can't load generator plugin from folder:\n{t}\nException: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK);
+#if DEBUG
+                    if (!VmBindable.isUnitTests)
+#endif
+                        MessageBox.Show($"Can't load generator plugin from folder:\n{t}\nException: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK);
                 }
             }
         }
         private Action? onPluginsLoaded = null;
-        public void Compose(string? pluginsFolderPath = null)
+        internal void Compose(string? pluginsFolderPath = null)
         {
             try
             {
@@ -523,17 +543,24 @@ namespace vSharpStudio.ViewModels
             {
                 return this._CommandNewConfig ?? (this._CommandNewConfig = vCommand.Create(
                     (o) => { this.NewConfig(); this.SaveAs((string)o); },
-                    (o) => { return !string.IsNullOrEmpty(Config.CurrentCfgFolderPath); }));
+                    (o) => { return this.Config == null || !string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath); }));
             }
         }
         private vCommand? _CommandNewConfig;
         internal void NewConfig()
         {
-            if (this.Config.IsHasChanged)
+            if (this.Config != null && this.Config.IsHasChanged)
             {
-                var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
-                if (res != System.Windows.MessageBoxResult.OK)
-                    return;
+#if DEBUG
+                if (!VmBindable.isUnitTests)
+                {
+#endif
+                    var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                    if (res != System.Windows.MessageBoxResult.OK)
+                        return;
+#if DEBUG
+                }
+#endif
             }
             this.CurrentCfgFilePath = null;
             this.Config = new Config();
@@ -552,11 +579,18 @@ namespace vSharpStudio.ViewModels
         private vCommand? _CommandOpenConfig;
         internal void OpenConfig()
         {
-            if (this.Config.IsHasChanged)
+            if (this.Config != null && this.Config.IsHasChanged)
             {
-                var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
-                if (res != System.Windows.MessageBoxResult.OK)
-                    return;
+#if DEBUG
+                if (!VmBindable.isUnitTests)
+                {
+#endif
+                    var res = MessageBox.Show("Changes will be lost. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                    if (res != System.Windows.MessageBoxResult.OK)
+                        return;
+#if DEBUG
+                }
+#endif
             }
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = ""; // Default file name
@@ -565,7 +599,7 @@ namespace vSharpStudio.ViewModels
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
-                this.LoadConfig(this.Config, dlg.FileName, string.Empty, true);
+                this.Config = this.LoadConfig(dlg.FileName, string.Empty, true);
             }
         }
         //TODO saving is not appropriate operation because loosing information about deleted objects (DB has to be updated)
@@ -811,7 +845,10 @@ namespace vSharpStudio.ViewModels
                                 isException = true;
                                 this.ProgressVM.Exception = ex;
                                 if (tst == null)
-                                    MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
+#if DEBUG
+                                    if (!VmBindable.isUnitTests)
+#endif
+                                        MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
                             }
                             if (!isException)
                             {
@@ -819,7 +856,7 @@ namespace vSharpStudio.ViewModels
                                 this.CommandConfigSave.Execute(null);
                             }
                             this.ProgressVM.End();
-                        }, (o) => { return this.cancellationTokenSource == null && this.Config != null && this.CurrentCfgFilePath != null; }
+                        }, (o) => { return this.cancellationTokenSource == null && this.Config != null && this.Config.IsNeedCurrentUpdate && this.CurrentCfgFilePath != null; }
                     );
                 }
                 return this._CommandConfigCurrentUpdate;
@@ -1046,9 +1083,16 @@ namespace vSharpStudio.ViewModels
                         throw new Exception($"There are {this._Config.CountErrors} errors in configuration. Fix errors and try again.");
                     if (tst == null && this._Config.CountWarnings > 0)
                     {
-                        var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
-                        if (res != System.Windows.MessageBoxResult.OK)
-                            return resEx;
+#if DEBUG
+                        if (!VmBindable.isUnitTests)
+                        {
+#endif
+                            var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                            if (res != System.Windows.MessageBoxResult.OK)
+                                return resEx;
+#if DEBUG
+                        }
+#endif
                     }
 
                     // unit test

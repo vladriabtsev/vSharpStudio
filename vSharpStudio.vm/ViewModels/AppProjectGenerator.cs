@@ -143,7 +143,10 @@ namespace vSharpStudio.vm.ViewModels
                         }
                         catch (Exception ex)
                         {
-                            var res = MessageBox.Show($"Can't create connection string VM.\nError: {ex.Message}\nChoose another provider!", "Error", System.Windows.MessageBoxButton.OKCancel);
+#if DEBUG
+                            if (!VmBindable.isUnitTests)
+#endif
+                                MessageBox.Show($"Can't create connection string VM.\nError: {ex.Message}\nChoose another provider!", "Error", System.Windows.MessageBoxButton.OKCancel);
                             this._DynamicMainConnStrSettings = null;
                             return this._DynamicMainConnStrSettings;
                         }
@@ -719,9 +722,16 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (ask)
             {
-                var res = MessageBox.Show("You are deleting generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
-                if (res != System.Windows.MessageBoxResult.OK)
-                    return;
+#if DEBUG
+                if (!VmBindable.isUnitTests)
+                {
+#endif
+                    var res = MessageBox.Show("You are deleting generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                    if (res != System.Windows.MessageBoxResult.OK)
+                        return;
+#if DEBUG
+                }
+#endif
             }
             this.PluginGeneratorGuid = string.Empty;
             this.PluginGuid = string.Empty;

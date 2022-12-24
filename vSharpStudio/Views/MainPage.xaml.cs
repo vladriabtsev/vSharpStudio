@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ViewModelBase;
 using vSharpStudio.ViewModels;
+using vSharpStudio.vm.ViewModels;
 using vSharpStudio.wpf;
 
 namespace vSharpStudio.Views
@@ -48,8 +49,13 @@ namespace vSharpStudio.Views
                 return;
             }
 #if DEBUG
-            this._model.OnFormLoaded();
+            //InitConfig(this.Config);
+            //if (this.Config.PrevStableConfig != null)
+            //    InitConfig((Config)this.Config.PrevStableConfig);
+            //if (this.Config.PrevCurrentConfig != null)
+            //    InitConfig((Config)this.Config.PrevCurrentConfig);
             this._model.Compose();
+            this._model.OnFormLoaded();
             this.DataContext = this._model;
             FrameworkElement p = (FrameworkElement)this.Parent;
             while (!(p is MainWindow))

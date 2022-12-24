@@ -79,9 +79,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable014CanCancelSecondLevelCollection()
         {
-            var mvm = new MainPageVM(false);
-            mvm.OnFormLoaded();
-            mvm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            mvm.CommandNewConfig.Execute(@".\kuku.vcfg");
 
             var cfg = mvm.Config;
             Catalog vm = cfg.Model.GroupCatalogs.AddCatalog("test");
@@ -101,9 +100,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Editable021CanCancelCatalogPropertiy()
         {
-            var mvm = new MainPageVM(false);
-            mvm.OnFormLoaded();
-            mvm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            mvm.CommandNewConfig.Execute(@".\kuku.vcfg");
 
             var cfg = mvm.Config;
             Catalog vm = cfg.Model.GroupCatalogs.AddCatalog();
@@ -307,9 +305,8 @@ namespace vSharpStudio.Unit
         [TestMethod]
         public void Property001_Position()
         {
-            var mvm = new MainPageVM(false);
-            mvm.OnFormLoaded();
-            mvm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
+            var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            mvm.CommandNewConfig.Execute(@".\kuku.vcfg");
 
             var cfg = mvm.Config;
             int catPos = 14;
