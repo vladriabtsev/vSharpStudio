@@ -1,39 +1,22 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
-using System.Diagnostics;
-using System.Windows.Media;
 
-namespace vSharpStudio.common.ViewModels
+namespace vSharpStudio.vm.ViewModels
 {
-    //public class FirstNameEditor : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
-    //{
-    //    public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
-    //    {
-    //        TextBox textBox = new TextBox();
-    //        textBox.Background = new SolidColorBrush(Colors.Red);
-
-    //        //create the binding from the bound property item to the editor
-    //        var _binding = new Binding("Value"); //bind to the Value property of the PropertyItem
-    //        _binding.Source = propertyItem;
-    //        _binding.ValidatesOnExceptions = true;
-    //        _binding.ValidatesOnDataErrors = true;
-    //        _binding.Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
-    //        BindingOperations.SetBinding(textBox, TextBox.TextProperty, _binding);
-    //        return textBox;
-    //    }
-    //}
-
     // https://docs.microsoft.com/en-us/dotnet/api/microsoft.win32.openfiledialog?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(Microsoft.Win32.OpenFileDialog);k(SolutionItemsProject);k(SolutionItemsProject);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.0);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.8
     // https://docs.microsoft.com/en-us/windows/uwp/files/quickstart-using-file-and-folder-pickers
-    public class EditorFilePicker : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
+    public class EditorBaseConfigFilePicker : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
-        PropertyGridEditorTextBox textBox = null!;
+        PropertyGridEditorTextBox? textBox;
+        BaseConfigLink? m;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);
+            m = (BaseConfigLink)propertyItem.Instance;
             Grid grd = new Grid();
             var cd1 = new ColumnDefinition();
             cd1.Width = new GridLength(1, GridUnitType.Star);
@@ -67,12 +50,14 @@ namespace vSharpStudio.common.ViewModels
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = ""; // Default file name
-            dlg.DefaultExt = ".*"; // Default file extension
-            dlg.Filter = "Any file (.*)|*.*"; // Filter files by extension
+            dlg.DefaultExt = ".vcfg"; // Default file extension
+            dlg.Filter = "Solution file (.vcfg)|*.vcfg"; // Filter files by extension
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
-                textBox.Text = dlg.FileName;
+                textBox!.Text = dlg.FileName;
+                //TODO remove explicit assignment (binding stopped working)
+                m!.RelativeConfigFilePath = dlg.FileName;
             }
         }
     }

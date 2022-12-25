@@ -173,10 +173,9 @@ message proto_base_config_link {
     // @attr [PropertyOrderAttribute(3)]
     // @attr [ReadOnly(true)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
-    proto_config config_base = 6;
+    // @attr [Category("")]
     // @attr [PropertyOrderAttribute(6)]
-    // @attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
+    // @attr [Editor(typeof(EditorBaseConfigFilePicker), typeof(ITypeEditor))]
     string relative_config_file_path = 7;
     // @attr [BrowsableAttribute(false)]
     bool is_new = 11;

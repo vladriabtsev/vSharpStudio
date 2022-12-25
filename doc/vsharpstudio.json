@@ -975,18 +975,8 @@
               "defaultValue": ""
             },
             {
-              "name": "config_base",
-              "description": "@attr [BrowsableAttribute(false)]",
-              "label": "",
-              "type": "proto_config",
-              "longType": "proto_config",
-              "fullType": "proto_config.proto_config",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "relative_config_file_path",
-              "description": "@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(6)]\n@attr [Editor(typeof(EditorBaseConfigFilePicker), typeof(ITypeEditor))]",
               "label": "",
               "type": "string",
               "longType": "string",

@@ -123,7 +123,7 @@
                             <!--<Button Command="{Binding CommandConfigSave}" Visibility="{Binding CommandAddNew.Visibility}" ToolTip="Ctrl-S - save config">
                         <ContentControl Template="{StaticResource iconSaveAll}" />
                     </Button>-->
-                            <Button Command="{Binding CommandConfigSaveAs}" Visibility="{Binding CommandConfigSaveAs.Visibility}" ToolTip="Ctrl-A?? - save config as">
+                            <Button Command="{Binding CommandConfigSaveAs}" ToolTip="Ctrl-A?? - save config as">
                                 <ContentControl Template="{StaticResource iconSaveAs}" />
                             </Button>
                             <!--<Button Command="{Binding CommandEditConnStrings}" ToolTip="Ctrl-C - connection strings builder">

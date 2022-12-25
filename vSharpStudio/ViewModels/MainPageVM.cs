@@ -133,19 +133,19 @@ namespace vSharpStudio.ViewModels
                     }
 #endif
                 }
-                this.Config = this.LoadConfig(p.ConfigPath, string.Empty, true);
+                this.LoadConfig(p.ConfigPath, string.Empty, true);
             };
             if (isLoadConfig)
             {
                 if (configFile != null)
                 {
                     _logger?.LogDebug("Load Configuration from file {ConfigFile}".CallerInfo(), configFile);
-                    this.Config = this.LoadConfig(configFile, string.Empty, true);
+                    this.LoadConfig(configFile, string.Empty, true);
                 }
                 else if (!string.IsNullOrEmpty(this.CurrentCfgFilePath) && File.Exists(this.CurrentCfgFilePath))
                 {
                     _logger?.LogDebug("Load Configuration from standard file {ConfigFile}".CallerInfo(), CurrentCfgFilePath);
-                    this.Config = this.LoadConfig(this.CurrentCfgFilePath, string.Empty, true);
+                    this.LoadConfig(this.CurrentCfgFilePath, string.Empty, true);
                 }
                 else
                 {
@@ -158,13 +158,13 @@ namespace vSharpStudio.ViewModels
             }
             this.IsBusy = false;
         }
-        private Config LoadConfig(string file_path, string indent, bool isRoot = false)
+        private Config? LoadConfig(string file_path, string indent, bool isRoot = false)
         {
             if (!File.Exists(file_path))
             {
                 var ex = new ArgumentException("Configuration data are not found in the file: " + file_path);
                 _logger?.LogCritical(ex, "".CallerInfo());
-                throw ex;
+                return null;
             }
             var protoarr = File.ReadAllBytes(file_path);
             this.pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
@@ -186,7 +186,7 @@ namespace vSharpStudio.ViewModels
             {
                 _logger?.LogDebug("Load Base Config {Name} from {Path}".CallerInfo(), t.Name, t.RelativeConfigFilePath);
                 t.ConfigBase = this.LoadConfig(Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
-                t.Name = t.ConfigBase.Name;
+                t.Name = t.ConfigBase?.Name;
             }
             this.CurrentCfgFilePath = file_path;
             config.IsInitialized = false;
@@ -602,7 +602,7 @@ namespace vSharpStudio.ViewModels
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
-                this.Config = this.LoadConfig(dlg.FileName, string.Empty, true);
+                this.LoadConfig(dlg.FileName, string.Empty, true);
             }
         }
         //TODO saving is not appropriate operation because loosing information about deleted objects (DB has to be updated)

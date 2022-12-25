@@ -2029,7 +2029,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnCreating();
-            this._ConfigBase = new Config(this); // Class.tt Line: 40
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -2057,8 +2056,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Name = from.Name; // Clone.tt Line: 67
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
             vm.Description = from.Description; // Clone.tt Line: 67
-            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
-                vm.ConfigBase = vSharpStudio.vm.ViewModels.Config.Clone(vm, from.ConfigBase, isDeep);
             vm.RelativeConfigFilePath = from.RelativeConfigFilePath; // Clone.tt Line: 67
             vm.IsNew = from.IsNew; // Clone.tt Line: 67
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 67
@@ -2077,8 +2074,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Name = from.Name; // Clone.tt Line: 143
             to.SortingValue = from.SortingValue; // Clone.tt Line: 143
             to.Description = from.Description; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 140
-                vSharpStudio.vm.ViewModels.Config.Update((Config)to.ConfigBase, from.ConfigBase, isDeep);
             to.RelativeConfigFilePath = from.RelativeConfigFilePath; // Clone.tt Line: 143
             to.IsNew = from.IsNew; // Clone.tt Line: 143
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 143
@@ -2151,9 +2146,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Name = m.Name; // Clone.tt Line: 221
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
-            if (vm.ConfigBase == null) // Clone.tt Line: 213
-                vm.ConfigBase = new Config(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.Config.ConvertToVM(m.ConfigBase, (Config)vm.ConfigBase); // Clone.tt Line: 219
             vm.RelativeConfigFilePath = m.RelativeConfigFilePath; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
@@ -2176,7 +2168,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Name = vm.Name; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
-            m.ConfigBase = vSharpStudio.vm.ViewModels.Config.ConvertToProto((Config)vm.ConfigBase); // Clone.tt Line: 270
             m.RelativeConfigFilePath = vm.RelativeConfigFilePath; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
@@ -2193,8 +2184,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
-            this.ConfigBase.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -2291,31 +2280,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
-        public Config ConfigBase // Property.tt Line: 55
-        { 
-            get { return this._ConfigBase; }
-            set
-            {
-                if (this._ConfigBase != value)
-                {
-                    this.OnConfigBaseChanging(ref value);
-                    this._ConfigBase = value;
-                    this.OnConfigBaseChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private Config _ConfigBase;
-        IConfig IBaseConfigLink.ConfigBase { get { return (this as BaseConfigLink).ConfigBase; } } // Property.tt Line: 77
-        partial void OnConfigBaseChanging(ref Config to); // Property.tt Line: 79
-        partial void OnConfigBaseChanged();
-        //IConfig IBaseConfigLink.ConfigBase { get { return this._ConfigBase; } }
-        
+        [Category("")]
         [PropertyOrderAttribute(6)]
-        [Editor(typeof(EditorFilePicker), typeof(ITypeEditor))]
+        [Editor(typeof(EditorBaseConfigFilePicker), typeof(ITypeEditor))]
         public string RelativeConfigFilePath // Property.tt Line: 55
         { 
             get { return this._RelativeConfigFilePath; }

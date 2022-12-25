@@ -325,15 +325,18 @@
             {
                 if (this.__Name != value)
                 {
-                    this.__Name = value.Trim();
-                    if (this.ValidateProperty("Name"))
+                    if (value != null)
                     {
-                        this._SortingNameValue = this.EncodeNameToUlong(this.__Name);
-                        this._SortingValue = _SortingNameValue + this.SortingWeight;
-                        ITreeConfigNode p = (ITreeConfigNode)this;
-                        if (p.Parent != null)
+                        this.__Name = value.Trim();
+                        if (this.ValidateProperty("Name"))
                         {
-                            p.Parent.Sort(this.GetType());
+                            this._SortingNameValue = this.EncodeNameToUlong(this.__Name);
+                            this._SortingValue = _SortingNameValue + this.SortingWeight;
+                            ITreeConfigNode p = (ITreeConfigNode)this;
+                            if (p.Parent != null)
+                            {
+                                p.Parent.Sort(this.GetType());
+                            }
                         }
                     }
                 }

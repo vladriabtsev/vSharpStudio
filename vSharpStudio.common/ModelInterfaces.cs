@@ -172,7 +172,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     public partial interface IBaseConfigLink // ModelInterfaces.tt Line: 29
     {
     	string Description { get; } // ModelInterfaces.tt Line: 51
-    	IConfig ConfigBase { get; } // ModelInterfaces.tt Line: 55
     	string RelativeConfigFilePath { get; } // ModelInterfaces.tt Line: 51
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51

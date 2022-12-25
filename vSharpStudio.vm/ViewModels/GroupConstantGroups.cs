@@ -66,7 +66,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = Defaults.GroupConstantGroupsName;
             this.PrefixForDbTables = "Cnst";
-            this.IsEditable = true;
+            this.IsEditable = false;
             Init();
         }
         protected override void OnInitFromDto()

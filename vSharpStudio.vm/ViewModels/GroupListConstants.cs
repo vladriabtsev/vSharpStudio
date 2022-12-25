@@ -22,7 +22,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this.IsEditable = false;
+            this.IsEditable = true;
             this.ShortIdTypeForCacheKey = "t";
             Init();
         }

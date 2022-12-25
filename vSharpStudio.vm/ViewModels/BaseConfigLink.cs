@@ -69,6 +69,9 @@ namespace vSharpStudio.vm.ViewModels
         //{
         //    this.AddAllAppGenSettingsVmsToNode();
         //}
+        [BrowsableAttribute(false)]
+        public Config? ConfigBase { get; set; }
+        IConfig? IBaseConfigLink.ConfigBase { get { return this.ConfigBase; } }
         public IEnumerable<ITreeConfigNode> GetParentList()
         {
             return this.ParentGroupListBaseConfigLinks.ListBaseConfigLinks;
