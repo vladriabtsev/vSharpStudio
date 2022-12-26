@@ -22,6 +22,15 @@ namespace vSharpStudio.vm.ViewModels
                     return File.Exists(file);
                 })
             .WithMessage(Config.ValidationMessages.FILE_IS_NOT_EXISTS);
+            this.RuleFor(x => x.RelativeConfigFilePath).Must((o, file) =>
+            {
+                if (string.IsNullOrWhiteSpace(file))
+                {
+                    return true;
+                }
+                return Path.GetExtension(file) == ".vcfg";
+            })
+            .WithMessage("Expected file extention '.vcfg'");
         }
     }
 }

@@ -47,9 +47,9 @@ namespace vSharpStudio.vm.ViewModels
                 if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                     return null;
                 Debug.Assert(cfg.DicGenerators != null);
+                if (!cfg.DicGenerators.ContainsKey(this.PluginGeneratorGuid))
+                    return null;
                 var gntr = cfg.DicGenerators[this.PluginGeneratorGuid];
-                if (gntr == null)
-                    throw new Exception($"Can't find plugin generator '{this.DescriptionGenerator}' with Guid={this.PluginGeneratorGuid} for application project generator '{this.Name}'");
                 return gntr;
             }
         }
@@ -310,6 +310,16 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             this.PluginGeneratorGuid = string.Empty;
             this.GenFileName = string.Empty;
+            if (string.IsNullOrEmpty(this.PluginGuid))
+            {
+                this.plugin = null;
+            }
+            else
+            {
+                Debug.Assert(cfg.DicPlugins != null);
+                this.plugin = cfg.DicPlugins[this.PluginGuid];
+            }
+
             UpdateListGenerators();
             //if (cfg.IsInitialized)
             //{
@@ -377,11 +387,6 @@ namespace vSharpStudio.vm.ViewModels
             var nv = new ModelVisitorNodeGenSettings();
             Debug.Assert(this.PluginGenerator != null);
             cfg._DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
-            if (this.plugin == null)
-            {
-                Debug.Assert(cfg.DicPlugins != null);
-                this.plugin = cfg.DicPlugins[this.PluginGuid];
-            }
             this.RestoreSettings();
             (this.ParentAppProject as AppProject).RestoreGroupSettings(this.PluginGenerator);
             (this.ParentAppProject.ParentAppSolution as AppSolution).RestoreGroupSettings(this.PluginGenerator);
@@ -389,14 +394,26 @@ namespace vSharpStudio.vm.ViewModels
             {
                 p.AddNodeAppGenSettings(this.Guid);
             });
-            this.DescriptionGenerator = this.PluginGenerator.Description;
             if (this.PluginDbGenerator != null)
             {
                 this._GenFileName = "app-settings.json";
                 this._RelativePathToGenFolder = string.Empty;
+                if (this.Plugin!.ListGenerators.Count == 1)
+                    this.Name = this.Plugin!.Name;
+                else
+                    this.Name = $"{this.Plugin!.Name}-{this.PluginDbGenerator.Name}";
+                this.DescriptionGenerator = this.PluginDbGenerator.Description;
             }
             else
             {
+                if (this.PluginGenerator != null)
+                {
+                    if (this.Plugin!.ListGenerators.Count == 1)
+                        this.Name = this.Plugin!.Name;
+                    else
+                        this.Name = $"{this.Plugin!.Name}-{this.PluginGenerator.Name}";
+                    this.DescriptionGenerator = this.PluginGenerator.Description;
+                }
                 this._GenFileName = prevGenFileName;
                 this._RelativePathToGenFolder = prevRelativePathToGenFolder;
             }

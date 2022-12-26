@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{373A132D
 		proto\attr.proto = proto\attr.proto
 		proto\nullable.proto = proto\nullable.proto
 		proto\plugin_sample.proto = proto\plugin_sample.proto
+		proto\plugin_sample2.proto = proto\plugin_sample2.proto
 		proto\proto_doc.proto = proto\proto_doc.proto
 		proto\vsharpstudio.proto = proto\vsharpstudio.proto
 		proto\vsharpstudioshared.proto = proto\vsharpstudioshared.proto
@@ -62,6 +63,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.common", "vSharpStudio.common\vSharpStudio.common.csproj", "{788D7499-BC1E-40F7-9FAA-E05ACC86E227}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xceed.Wpf.Toolkit", "submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj", "{83B37A5C-2FEC-4488-AC57-0CDCE58DB9DF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vPlugin.Sample2", "vPlugin.Sample2\vPlugin.Sample2.csproj", "{E9C45505-E874-45A0-A3D3-A7693423BED4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -166,6 +169,12 @@ Global
 		{83B37A5C-2FEC-4488-AC57-0CDCE58DB9DF}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{83B37A5C-2FEC-4488-AC57-0CDCE58DB9DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83B37A5C-2FEC-4488-AC57-0CDCE58DB9DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9C45505-E874-45A0-A3D3-A7693423BED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9C45505-E874-45A0-A3D3-A7693423BED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9C45505-E874-45A0-A3D3-A7693423BED4}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9C45505-E874-45A0-A3D3-A7693423BED4}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{E9C45505-E874-45A0-A3D3-A7693423BED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9C45505-E874-45A0-A3D3-A7693423BED4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

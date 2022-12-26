@@ -279,6 +279,7 @@ message proto_plugin_generator_project_settings {
     string app_group_generators_guid = 2;
     string settings = 3; 
 }*/
+// @base ConfigObjectVmBase
 message proto_group_list_app_solutions {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -345,6 +346,7 @@ message proto_plugin_group_generators_settings {
 
 // @interface ICanAddNode
 // @interface ISortingValue
+// @base ConfigObjectVmBase
 message proto_app_solution {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -365,7 +367,7 @@ message proto_app_solution {
 
     // @attr [PropertyOrderAttribute(6)]
     // @attr [DisplayName("Short ID")]
-    // @attr [Description("Short solution ID for cache key generator. Need if projects from different solutions will same cache storage instance in deployment")]
+    // @attr [Description("Short solution ID for cache key generator. Need if projects from different solutions will use same cache storage instance in deployment")]
     string short_id_for_cache_key = 6;
 
     // @attr [PropertyOrderAttribute(7)]
@@ -414,6 +416,7 @@ message proto_app_solution {
 }
 // @interface ICanAddNode
 // @interface ISortingValue
+// @base ConfigObjectVmBase
 message proto_app_project {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -493,6 +496,7 @@ message proto_plugin_generator_settings {
 // Application project generator
 // @interface ICanAddNode
 // @interface ISortingValue
+// @base ConfigObjectVmBase
 message proto_app_project_generator {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]

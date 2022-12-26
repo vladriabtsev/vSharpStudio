@@ -118,6 +118,48 @@ namespace vSharpStudio.Unit
         //}
         //private string pluginsFolderPath = "";
         [TestMethod]
+        public void Plugin002WorkWithAppGeneratorNames()
+        {
+            _logger.LogTrace("Start test".CallerInfo());
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            vm.CommandNewConfig.Execute(@".\");
+            vm.CommandConfigSaveAs.Execute(@".\");
+
+            var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
+            var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
+            var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
+            vm.CommandConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
+
+            var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
+            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+
+            var prj = (AppProject)sln.NodeAddNewSubNode();
+            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+
+            var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
+            Assert.IsTrue(gen.Name.StartsWith(Defaults.AppPrjGeneratorName));
+            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen.GenFileName = "test_file.cs";
+            gen.PluginGuid = pluginNode.Guid;
+            gen.PluginGeneratorGuid = genDbAccess.Guid;
+            Assert.AreEqual("Sample-DbAccess", gen.Name);
+
+            gen.PluginGuid = "";
+            Assert.AreEqual("Sample-DbAccess", gen.Name);
+
+            gen.PluginGuid = pluginNode.Guid;
+            Assert.AreEqual("Sample-DbAccess", gen.Name);
+
+            gen.PluginGeneratorGuid = genDb.Guid;
+            Assert.AreEqual("Sample-AbstractDbSchema", gen.Name);
+
+            gen.PluginGeneratorGuid = genDbAccess.Guid;
+            Assert.AreEqual("Sample-DbAccess", gen.Name);
+
+            gen.PluginGuid = vPlugin.Sample2.SamplePlugin.GuidStatic;
+            Assert.AreEqual("Sample2", gen.Name);
+        }
+        [TestMethod]
         public void Plugin003CanLoadPlugin()
         {
             _logger.LogTrace("Start test".CallerInfo());

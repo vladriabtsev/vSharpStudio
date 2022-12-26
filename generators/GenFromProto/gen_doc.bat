@@ -33,6 +33,14 @@ echo **** plugin_sample markdown
 echo **** plugin_sample json
 %protoc%  -I=%1proto --plugin=protoc-gen-doc=%protdoc% --doc_out=%1doc --doc_opt=json,%prname%.json %1proto\%prname%.proto  
 
+SET prname=plugin_sample2
+echo **** plugin_sample html
+%protoc%  -I=%1proto --plugin=protoc-gen-doc=%protdoc% --doc_out=%1doc --doc_opt=html,%prname%.html %1proto\%prname%.proto  
+echo **** plugin_sample markdown
+%protoc%  -I=%1proto --plugin=protoc-gen-doc=%protdoc% --doc_out=%1doc --doc_opt=markdown,%prname%.md %1proto\%prname%.proto  
+echo **** plugin_sample json
+%protoc%  -I=%1proto --plugin=protoc-gen-doc=%protdoc% --doc_out=%1doc --doc_opt=json,%prname%.json %1proto\%prname%.proto  
+
 SET gen=%2
 rem echo *** %gen%
 echo **** model vsharpstudio
@@ -50,4 +58,8 @@ echo **** model plugin_sample
 echo **** interface plugin_sample
 %gen% -i -p plugin_sample -o %1vPlugin.Sample\SettingsInterfaces.cs -n vPlugin.Sample -d %1doc\
 
+echo **** model plugin_sample2
+%gen% -m -p plugin_sample2 -o %1vPlugin.Sample2\SettingsViewModels.cs -n vPlugin.Sample2 -d %1doc\ 
+echo **** interface plugin_sample
+%gen% -i -p plugin_sample2 -o %1vPlugin.Sample2\SettingsInterfaces.cs -n vPlugin.Sample2 -d %1doc\
 

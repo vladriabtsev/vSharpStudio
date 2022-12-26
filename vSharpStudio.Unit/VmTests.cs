@@ -11,6 +11,9 @@ using vSharpStudio.vm.ViewModels;
 
 namespace vSharpStudio.Unit
 {
+    //TODO Validate after property changed with accumulation (validate 0,5 sec after last change)
+    //TODO Propagate IsChanged on AppSolution-AppProject-AppProjectGenerator-Settings branch
+    //TODO Save buttons always enabled
     [TestClass]
     public class VmTests
     {

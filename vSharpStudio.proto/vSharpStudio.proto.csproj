@@ -37,7 +37,10 @@
     <Protobuf Include="..\proto\plugin_sample.proto">
       <Link>plugin_sample.proto</Link>
     </Protobuf>
-    <Protobuf Include="..\proto\proto_doc.proto" GrpcServices="Client">
+      <Protobuf Include="..\proto\plugin_sample2.proto">
+          <Link>plugin_sample2.proto</Link>
+      </Protobuf>
+      <Protobuf Include="..\proto\proto_doc.proto" GrpcServices="Client">
       <Link>proto\proto_doc.proto</Link>
     </Protobuf>
     <Protobuf Include="..\proto\vsharpstudio.proto">

@@ -121,6 +121,7 @@
 ### proto_app_project
 @interface ICanAddNode
 @interface ISortingValue
+@base ConfigObjectVmBase
 
 
 | Field | Type | Label | Description |
@@ -149,6 +150,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 Application project generator
 @interface ICanAddNode
 @interface ISortingValue
+@base ConfigObjectVmBase
 
 
 | Field | Type | Label | Description |
@@ -183,6 +185,7 @@ Application project generator
 ### proto_app_solution
 @interface ICanAddNode
 @interface ISortingValue
+@base ConfigObjectVmBase
 
 
 | Field | Type | Label | Description |
@@ -192,7 +195,7 @@ Application project generator
 | name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] |
 | sorting_value | [uint64](#uint64) |  | @attr [BrowsableAttribute(false)] |
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| short_id_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short solution ID for cache key generator. Need if projects from different solutions will same cache storage instance in deployment&#34;)] |
+| short_id_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short solution ID for cache key generator. Need if projects from different solutions will use same cache storage instance in deployment&#34;)] |
 | relative_app_solution_path | [string](#string) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Path&#34;)] @attr [Editor(typeof(EditorSolutionPicker), typeof(ITypeEditor))] @attr [Description(&#34;.NET solution file path relative to configuration file path&#34;)] |
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
@@ -963,13 +966,7 @@ No Children
 <a name="proto_config.proto_group_list_app_solutions"></a>
 
 ### proto_group_list_app_solutions
-message proto_plugin_group_generators_default_settings {
-// @attr [ReadOnly(true)]
-string guid = 1;
-// Guid of group generators
-string app_group_generators_guid = 2;
-string settings = 3; 
-}
+@base ConfigObjectVmBase
 
 
 | Field | Type | Label | Description |

@@ -6,6 +6,7 @@ using FluentValidation;
 using vSharpStudio.common;
 using FluentValidation.Results;
 using ViewModelBase;
+using System.Diagnostics;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -83,23 +84,53 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 });
             this.RuleFor(x => x.PluginGuid)
-                .NotEmpty()
-                .WithMessage("Plugin is not selected");
+                .Custom((guid, cntx) =>
+                {
+                    if (string.IsNullOrEmpty(guid))
+                    {
+                        cntx.AddFailure("Plugin is not selected");
+                    }
+                    else
+                    {
+                        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                        var cfg = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
+                        Debug.Assert(cfg != null);
+                        Debug.Assert(cfg.DicPlugins != null);
+                        if (!cfg.DicPlugins.ContainsKey(guid))
+                            cntx.AddFailure($"Plugin is not found. Guid:{guid}");
+                    }
+                });
             this.RuleFor(x => x.PluginGeneratorGuid)
-                .NotEmpty()
-                .WithMessage("Generator is not selected");
+                .Custom((guid, cntx) =>
+                {
+                    if (string.IsNullOrEmpty(guid))
+                    {
+                        cntx.AddFailure("Generator is not selected");
+                    }
+                    else
+                    {
+                        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                        var cfg = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
+                        Debug.Assert(cfg != null);
+                        Debug.Assert(cfg.DicGenerators != null);
+                        if (!cfg.DicGenerators.ContainsKey(guid))
+                            cntx.AddFailure($"Generator is not found. Guid:{guid}");
+                    }
+                });
             this.RuleFor(x => x.ConnStr)
                 .Custom((connStr, cntx) =>
                 {
-                    if (!string.IsNullOrEmpty(connStr))
+                    var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                    if (pg.PluginDbGenerator == null)
+                        return;
+                    if (string.IsNullOrEmpty(connStr))
                     {
-                        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
-                        if (pg.PluginDbGenerator == null)
-                            return;
-                        var cfg = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
-                        var lst = pg.PluginDbGenerator.ValidateDbModel(connStr, cfg, pg.Guid);
-                        AddValidationResults(cntx, lst);
+                        cntx.AddFailure("Connection String is empty");
+                        return;
                     }
+                    var cfg = pg.ParentAppProject.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
+                    var lst = pg.PluginDbGenerator.ValidateDbModel(connStr, cfg, pg.Guid);
+                    AddValidationResults(cntx, lst);
                 });
             //this.RuleFor(x => x.DynamicGeneratorSettings)
             //    .Custom((settings, cntx) =>

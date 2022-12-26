@@ -160,7 +160,7 @@ namespace vSharpStudio.ViewModels
         }
         private Config? LoadConfig(string file_path, string indent, bool isRoot = false)
         {
-            if (!File.Exists(file_path))
+            if (!File.Exists(file_path) || Path.GetExtension(file_path) != ".vcfg")
             {
                 var ex = new ArgumentException("Configuration data are not found in the file: " + file_path);
                 _logger?.LogCritical(ex, "".CallerInfo());
@@ -227,9 +227,21 @@ namespace vSharpStudio.ViewModels
                         this.Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) + "\\";
                 }
                 this.NotifyPropertyChanged();
+                this.NotifyPropertyChanged(() => this.CurrentCfgFilePathTitle);
             }
         }
         private string? _CurrentCfgFilePath;
+        public string CurrentCfgFilePathTitle
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(this._CurrentCfgFilePath))
+                {
+                    return "Config file is not selected. Create new one or open existing";
+                }
+                return this._CurrentCfgFilePath;
+            }
+        }
         public static Config? ConfigInstance;
 
         #region Plugins
@@ -436,7 +448,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private INotifyPropertyChanged? _SelectedDbDesignPluginSettings;
-        private void AgregateCatalogs(string dir, string search, AggregateCatalog catalog, bool isPluginsFolder=false)
+        private void AgregateCatalogs(string dir, string search, AggregateCatalog catalog, bool isPluginsFolder = false)
         {
             if (!Directory.Exists(dir))
             {

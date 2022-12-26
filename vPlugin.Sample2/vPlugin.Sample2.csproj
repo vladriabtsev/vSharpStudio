@@ -13,10 +13,10 @@
         <ResultFiles Include="$(TargetDir)*.*" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="..\vSharpStudio.proto\obj\Debug\net6.0\PluginSample.cs" Link="PluginSample.cs" />
+        <Compile Include="..\vSharpStudio.proto\obj\Debug\net6.0\PluginSample2.cs" Link="PluginSample2.cs" />
     </ItemGroup>
     <ItemGroup>
-        <None Include="..\proto\plugin_sample.proto" Link="plugin_sample.proto" />
+        <None Include="..\proto\plugin_sample2.proto" Link="plugin_sample2.proto" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Dapper" Version="2.0.123" />
@@ -42,15 +42,16 @@
         </Compile>
     </ItemGroup>
     <Target Name="CopyPlugin" AfterTargets="PostBuildEvent">
-        <Message Text="***** Copy Sample Plugin" Importance="high" />
+        <Message Text="***** Copy Sample2 Plugin" Importance="high" />
+        <!--<Message Text="@(ResultFiles)" Importance="high" />-->
         <!--<Message Text="**********" Importance="high" />
     <Message Text="@(ResultFiles)" Importance="high" />
     <Message Text="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" Importance="high" />
     <Message Text="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" Importance="high" />
     <Message Text="**********" Importance="high" />-->
-        <RemoveDir Directories="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" />
-        <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample\" />
-        <RemoveDir Directories="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />
-        <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample\" />
+        <RemoveDir Directories="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample2\" />
+        <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio\$(OutDir)Plugins\vPluginSample2\" />
+        <RemoveDir Directories="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample2\" />
+        <Copy SourceFiles="@(ResultFiles)" DestinationFolder="$(SolutionDir)vSharpStudio.Unit\$(OutDir)Plugins\vPluginSample2\" />
     </Target>
 </Project>

@@ -3482,25 +3482,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     }
     // Class.tt Line: 6
     //       IsWithParent: True 
-    //      IsDefaultBase: True 
+    //      IsDefaultBase: False 
     // IsConfigObjectBase: True 
-    //      IsGenSettings: True 
+    //      IsGenSettings: False 
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupListAppSolutionsValidator : ValidatorBase<GroupListAppSolutions, GroupListAppSolutionsValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// message proto_plugin_group_generators_default_settings {
-    /// // @attr [ReadOnly(true)]
-    /// string guid = 1;
-    /// // Guid of group generators
-    /// string app_group_generators_guid = 2;
-    /// string settings = 3; 
-    /// }
-    ///////////////////////////////////////////////////
-    public partial class GroupListAppSolutions : ConfigObjectVmGenSettings<GroupListAppSolutions, GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 16
+    public partial class GroupListAppSolutions : ConfigObjectVmBase<GroupListAppSolutions, GroupListAppSolutionsValidator>, IComparable<GroupListAppSolutions>, IConfigAcceptVisitor, IGroupListAppSolutions // Class.tt Line: 16
     {
         #region CTOR
         public GroupListAppSolutions(ITreeConfigNode? parent) // Class.tt Line: 26
@@ -3539,8 +3529,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListAppSolutions = new ConfigNodesCollection<AppSolution>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListAppSolutions) // Clone.tt Line: 56
                 vm.ListAppSolutions.Add(AppSolution.Clone(vm, (AppSolution)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 72
-                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -3628,9 +3616,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = AppSolution.ConvertToVM(t, new AppSolution(vm)); // Clone.tt Line: 200
                 vm.ListAppSolutions.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -3822,15 +3807,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     }
     // Class.tt Line: 6
     //       IsWithParent: True 
-    //      IsDefaultBase: True 
+    //      IsDefaultBase: False 
     // IsConfigObjectBase: True 
-    //      IsGenSettings: True 
+    //      IsGenSettings: False 
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class AppSolutionValidator : ValidatorBase<AppSolution, AppSolutionValidator> { } // Class.tt Line: 15
-    public partial class AppSolution : ConfigObjectVmGenSettings<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 16
+    public partial class AppSolution : ConfigObjectVmBase<AppSolution, AppSolutionValidator>, IComparable<AppSolution>, IConfigAcceptVisitor, IAppSolution // Class.tt Line: 16
     {
         #region CTOR
         public AppSolution(ITreeConfigNode? parent) // Class.tt Line: 26
@@ -3878,8 +3863,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGeneratorsSolutionSettings = new ObservableCollectionWithActions<PluginGeneratorSolutionSettings>(); // Clone.tt Line: 51
             foreach (var t in from.ListGeneratorsSolutionSettings) // Clone.tt Line: 52
                 vm.ListGeneratorsSolutionSettings.Add(PluginGeneratorSolutionSettings.Clone(parent, (PluginGeneratorSolutionSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 72
-                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4019,9 +4002,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGeneratorSolutionSettings.ConvertToVM(t, new PluginGeneratorSolutionSettings(vm)); // Clone.tt Line: 200
                 vm.ListGeneratorsSolutionSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4176,7 +4156,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [PropertyOrderAttribute(6)]
         [DisplayName("Short ID")]
-        [Description("Short solution ID for cache key generator. Need if projects from different solutions will same cache storage instance in deployment")]
+        [Description("Short solution ID for cache key generator. Need if projects from different solutions will use same cache storage instance in deployment")]
         public string ShortIdForCacheKey // Property.tt Line: 55
         { 
             get { return this._ShortIdForCacheKey; }
@@ -4335,15 +4315,15 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     }
     // Class.tt Line: 6
     //       IsWithParent: True 
-    //      IsDefaultBase: True 
+    //      IsDefaultBase: False 
     // IsConfigObjectBase: True 
-    //      IsGenSettings: True 
+    //      IsGenSettings: False 
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class AppProjectValidator : ValidatorBase<AppProject, AppProjectValidator> { } // Class.tt Line: 15
-    public partial class AppProject : ConfigObjectVmGenSettings<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 16
+    public partial class AppProject : ConfigObjectVmBase<AppProject, AppProjectValidator>, IComparable<AppProject>, IConfigAcceptVisitor, IAppProject // Class.tt Line: 16
     {
         #region CTOR
         public AppProject(ITreeConfigNode? parent) // Class.tt Line: 26
@@ -4390,8 +4370,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListGeneratorsProjectSettings = new ObservableCollectionWithActions<PluginGeneratorProjectSettings>(); // Clone.tt Line: 51
             foreach (var t in from.ListGeneratorsProjectSettings) // Clone.tt Line: 52
                 vm.ListGeneratorsProjectSettings.Add(PluginGeneratorProjectSettings.Clone(parent, (PluginGeneratorProjectSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 72
-                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -4529,9 +4507,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGeneratorProjectSettings.ConvertToVM(t, new PluginGeneratorProjectSettings(vm)); // Clone.tt Line: 200
                 vm.ListGeneratorsProjectSettings.Add(tvm);
             }
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -5339,9 +5314,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     }
     // Class.tt Line: 6
     //       IsWithParent: True 
-    //      IsDefaultBase: True 
+    //      IsDefaultBase: False 
     // IsConfigObjectBase: True 
-    //      IsGenSettings: True 
+    //      IsGenSettings: False 
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
@@ -5351,7 +5326,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     ///////////////////////////////////////////////////
     /// Application project generator
     ///////////////////////////////////////////////////
-    public partial class AppProjectGenerator : ConfigObjectVmGenSettings<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 16
+    public partial class AppProjectGenerator : ConfigObjectVmBase<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 16
     {
         #region CTOR
         public AppProjectGenerator(ITreeConfigNode? parent) // Class.tt Line: 26
@@ -5400,8 +5375,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ConnStrToPrevStable = from.ConnStrToPrevStable; // Clone.tt Line: 67
             vm.IsGenerateSqlSqriptToUpdatePrevStable = from.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 67
             vm.GenScriptFileName = from.GenScriptFileName; // Clone.tt Line: 67
-            if (isNewGuid) // Clone.tt Line: 72
-                vm.SetNewGuid();
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -5480,9 +5453,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ConnStrToPrevStable = m.ConnStrToPrevStable; // Clone.tt Line: 221
             vm.IsGenerateSqlSqriptToUpdatePrevStable = m.IsGenerateSqlSqriptToUpdatePrevStable; // Clone.tt Line: 221
             vm.GenScriptFileName = m.GenScriptFileName; // Clone.tt Line: 221
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -30612,14 +30582,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         System.Threading.CancellationToken Token { get; }
         void Visit(Config p);
         void VisitEnd(Config p);
-        void Visit(GroupListAppSolutions p);
-        void VisitEnd(GroupListAppSolutions p);
-        void Visit(AppSolution p);
-        void VisitEnd(AppSolution p);
-        void Visit(AppProject p);
-        void VisitEnd(AppProject p);
-        void Visit(AppProjectGenerator p);
-        void VisitEnd(AppProjectGenerator p);
         void Visit(Model p);
         void VisitEnd(Model p);
         void Visit(GroupListCommon p);
