@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             if (this.Parent == null)
                 return;
-            var cfg = (Config)this.GetConfig();
+            var cfg = (Config)this.Cfg;
             //if (cfg == null || cfg.GroupAppSolutions == null)
             //    return;
             _logger?.LogTrace("Try Add Node Settings. {Count}".CallerInfo(), cfg.DicActiveAppProjectGenerators.Count);
@@ -64,9 +64,8 @@ namespace vSharpStudio.vm.ViewModels
             _logger?.Trace();
             Debug.Assert(!this._DicGenNodeSettings.ContainsKey(appProjectGeneratorGuid));
             var ngs = (INodeGenSettings)this;
-            var cfg = this.GetConfig();
-            var appgen = (AppProjectGenerator)cfg.DicNodes[appProjectGeneratorGuid];
-            var gen = cfg.DicActiveAppProjectGenerators[appProjectGeneratorGuid];
+            var appgen = (AppProjectGenerator)this.Cfg.DicNodes[appProjectGeneratorGuid];
+            var gen = this.Cfg.DicActiveAppProjectGenerators[appProjectGeneratorGuid];
             PluginGeneratorNodeSettings? gs = null;
             foreach (var ts in ngs.ListNodeGeneratorsSettings)
             {
@@ -143,12 +142,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             _logger?.Trace();
             var ngs = (INodeGenSettings)this;
-            var cfg = this.GetConfig();
             foreach (var tt in ngs.ListNodeGeneratorsSettings)
             {
-                if (!cfg.DicActiveAppProjectGenerators.ContainsKey(tt.AppProjectGeneratorGuid))
+                if (!this.Cfg.DicActiveAppProjectGenerators.ContainsKey(tt.AppProjectGeneratorGuid))
                     continue;
-                var gen = cfg.DicActiveAppProjectGenerators[tt.AppProjectGeneratorGuid];
+                var gen = this.Cfg.DicActiveAppProjectGenerators[tt.AppProjectGeneratorGuid];
                 tt.SettingsVm = gen.GetGenerationNodeSettingsVmFromJson((ITreeConfigNode)this, tt.Settings);
                 if (tt.SettingsVm != null)
                     this.DicVmExclProps[tt.SettingsVm.GetType().Name] = tt.SettingsVm.DicNodeExcludedProperties;
@@ -326,8 +324,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private bool GetBoolSettingInStable(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, bool?> func)
         {
-            var cfg = this.GetConfig();
-            var prev = cfg.PrevStableConfig;
+            var prev = this.Cfg.PrevStableConfig;
             if (prev != null && prev.DicNodes.ContainsKey(this._Guid))
             {
                 var prevNode = (IGetNodeSetting)prev.DicNodes[this._Guid];
@@ -387,8 +384,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private string GetStringSettingInStable(string guidAppPrjGen, Func<IvPluginGeneratorNodeSettings, string> func)
         {
-            var cfg = this.GetConfig();
-            var prev = cfg.PrevStableConfig;
+            var prev = this.Cfg.PrevStableConfig;
             if (prev != null && prev.DicNodes.ContainsKey(this._Guid))
             {
                 var prevNode = (IGetNodeSetting)prev.DicNodes[this._Guid];

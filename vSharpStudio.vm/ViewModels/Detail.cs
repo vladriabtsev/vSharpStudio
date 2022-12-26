@@ -292,14 +292,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
                 throw new NotImplementedException();
-            var cfg = this.GetConfig();
-            var prp = cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+            var prp = this.Cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             res.Add(prp);
-            prp = cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable);
+            prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable);
             res.Add(prp);
             if (isSupportVersion)
             {
-                prp = cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
+                prp = this.Cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
                 res.Add(prp);
             }
 
@@ -347,9 +346,8 @@ namespace vSharpStudio.vm.ViewModels
         public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)
         {
             ViewListData? viewListData = null;
-            var cfg = this.GetConfig();
             Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
-            var pId = cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
+            var pId = this.Cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             viewListData = new ViewListData(pId);
             var lst = this.SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
             viewListData.ListViewProperties.AddRange(lst);

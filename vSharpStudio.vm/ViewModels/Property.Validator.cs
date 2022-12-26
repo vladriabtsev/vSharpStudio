@@ -39,7 +39,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (p.Parent == null)
                     return;
                 var pg = p.ParentGroupListProperties;
-                var model = pg.GetConfig().Model;
+                var model = pg.Cfg.Model;
                 if (pg.Parent is Catalog c)
                 {
                     Debug.Assert(c.Parent != null);
@@ -855,7 +855,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Detail dd)
         {
-            var model = dd.GetConfig().Model;
+            var model = dd.Cfg.Model;
             if (dd.GetUseCodeProperty())
             {
                 if (model.PropertyCodeName == name)

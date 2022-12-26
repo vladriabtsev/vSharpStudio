@@ -24,7 +24,7 @@ namespace vSharpStudio.vm.ViewModels
             {
             }
             else
-                this.cfg = (Config)this.parent.GetConfig();
+                this.cfg = (Config)this.parent.Cfg;
         }
         public new void AddRange(IEnumerable<T> collection, ulong sortingWeight = 0)
         {

@@ -20,7 +20,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             TypeBuilder tbSol = SettingsTypeBuilder.GetTypeBuilder(); // type builder for solutions
             ConstructorBuilder constructor = tbSol.DefineDefaultConstructor(MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName);
-            Config cfg = (Config)node.GetConfig();
+            Config cfg = (Config)node.Cfg;
             var dic_sols = new Dictionary<string, object>();
             bool is_projects = false;
             bool is_generators = false;

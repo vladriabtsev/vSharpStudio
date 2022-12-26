@@ -142,8 +142,9 @@ namespace vPlugin.Sample2 // NameSpace.tt Line: 23
         private string _StringSettings = string.Empty;
         partial void OnStringSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnStringSettingsChanged();
+    /*
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 109
+        public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
             set
@@ -160,8 +161,9 @@ namespace vPlugin.Sample2 // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
-        //partial void OnIsChangedChanged(); // Class.tt Line: 130
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
+        */
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -378,8 +380,9 @@ namespace vPlugin.Sample2 // NameSpace.tt Line: 23
         private bool _IsGenerateNotValidCode;
         partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsGenerateNotValidCodeChanged();
+    /*
         [BrowsableAttribute(false)]
-        public override bool IsChanged // Class.tt Line: 109
+        public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
             set
@@ -396,8 +399,9 @@ namespace vPlugin.Sample2 // NameSpace.tt Line: 23
                 }
             }
         }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 126
-        //partial void OnIsChangedChanged(); // Class.tt Line: 130
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
+        */
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
         #endregion Properties
     }
     

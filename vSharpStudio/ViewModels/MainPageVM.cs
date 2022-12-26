@@ -42,9 +42,11 @@ namespace vSharpStudio.ViewModels
     {
         public static MainPageVM Create(bool isLoadConfig, string? pluginsFolderPath = null, string? configFile = null)
         {
+            VmBindable.IsNotifyingStatic = false;
             MainPageVM vm = new MainPageVM(isLoadConfig);
             vm.Compose(pluginsFolderPath);
             vm.OnFormLoaded();
+            VmBindable.IsNotifyingStatic = true;
             return vm;
         }
         private ILogger? _logger;
@@ -52,6 +54,7 @@ namespace vSharpStudio.ViewModels
         public ValidationListForSelectedNode? validationListForSelectedNode;
         public MainPageVM() : base(MainPageVMValidator.Validator)
         {
+            VmBindable.IsChangedNotificationDelay = 200;
             _logger = Logger.CreateLogger<MainPageVM>();
             //_Config = new Config();
         }
@@ -180,6 +183,7 @@ namespace vSharpStudio.ViewModels
                     _logger?.LogDebug("ConvertToVM Prev Config".CallerInfo());
                     config.PrevStableConfig = Config.ConvertToVM(this.pconfig_history.PrevStableConfig, new Config());
                 }
+                this.CurrentCfgFilePath = file_path;
             }
             string ind2 = indent + "   ";
             foreach (var t in config.GroupConfigLinks.ListBaseConfigLinks.ToList())
@@ -188,7 +192,6 @@ namespace vSharpStudio.ViewModels
                 t.ConfigBase = this.LoadConfig(Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
                 t.Name = t.ConfigBase?.Name;
             }
-            this.CurrentCfgFilePath = file_path;
             config.IsInitialized = false;
 
             InitConfig(config);

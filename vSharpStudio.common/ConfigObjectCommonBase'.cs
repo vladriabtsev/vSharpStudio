@@ -218,7 +218,7 @@
                 {
                     return "MainConfig." + this._Name;
                 }
-                return this.GetConfig().Name + "." + this._Name;
+                return this.Cfg.Name + "." + this._Name;
             }
         }
         [BrowsableAttribute(false)]
@@ -265,21 +265,19 @@
         }
         public string GetRelativeToConfigDiskPath(string path)
         {
-            var cfg = this.GetConfig();
-            if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
+            if (string.IsNullOrEmpty(this.Cfg.CurrentCfgFolderPath))
                 throw new Exception("Config is not saved yet");
 #if NET48
             return vSharpStudio.common.Utils.GetRelativePath(cfg.CurrentCfgFolderPath, path);
 #else
-            return Path.GetRelativePath(cfg.CurrentCfgFolderPath, path);
+            return Path.GetRelativePath(this.Cfg.CurrentCfgFolderPath, path);
 #endif
         }
         public string GetCombinedPath(string relative_path)
         {
-            var cfg = this.GetConfig();
-            if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
+            if (string.IsNullOrEmpty(this.Cfg.CurrentCfgFolderPath))
                 return relative_path;
-            return Path.Combine(cfg.CurrentCfgFolderPath, relative_path);
+            return Path.Combine(this.Cfg.CurrentCfgFolderPath, relative_path);
         }
         private IConfig? _cfg;
         public IConfig Cfg
@@ -291,7 +289,7 @@
                 return this._cfg;
             }
         }
-        public IConfig GetConfig()
+        private IConfig GetConfig()
         {
             if (this is IConfig tt)
                 return tt;
@@ -308,9 +306,9 @@
         {
             T? res = null;
             Debug.Assert(this.Parent != null);
-            if (this.GetConfig()?.PrevStableConfig != null && this.GetConfig().PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
+            if (this.Cfg.PrevStableConfig != null && this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
-                res = (T)this.GetConfig().PrevStableConfig.DicNodes[this.__Guid];
+                res = (T)this.Cfg.PrevStableConfig.DicNodes[this.__Guid];
             }
             return res;
         }
@@ -387,34 +385,33 @@
             }
             string composit = sb.ToString();
             sb = new StringBuilder();
-            var cfg = this.GetConfig();
-            if (cfg.Model.IsUseGroupPrefix)
+            if (this.Cfg.Model.IsUseGroupPrefix)
                 sb.Append(prefix);
-            if (cfg.Model.IsUseCompositeNames)
+            if (this.Cfg.Model.IsUseCompositeNames)
                 sb.Append(composit);
             sb.Append(this._Name);
             return sb.ToString();
         }
 
 
-        public bool CheckIsCompositeNameUnique()
-        {
-            var cfg = this.GetConfig();
+        //public bool CheckIsCompositeNameUnique()
+        //{
+        //    var cfg = this.GetConfig();
 
-            //foreach (var t in cfg.gr.ListCatalogs)
-            //{
-            //    if ((val.Guid != t.Guid) && (val.Name == t.Name))
-            //    {
-            //        return false;
-            //    }
-            //}
-            return true;
-        }
+        //    //foreach (var t in cfg.gr.ListCatalogs)
+        //    //{
+        //    //    if ((val.Guid != t.Guid) && (val.Name == t.Name))
+        //    //    {
+        //    //        return false;
+        //    //    }
+        //    //}
+        //    return true;
+        //}
         protected void SetSelected(ITreeConfigNode node)
         {
             if (this.Parent != null)
             {
-                this.GetConfig().SelectedNode = node;
+                this.Cfg.SelectedNode = node;
             }
         }
         private string __Name = string.Empty;
@@ -704,17 +701,15 @@
         public List<IModelRow> ListInModels { get; protected set; }
         public ITreeConfigNode? PrevCurrentVersion()
         {
-            var cfg = this.GetConfig();
-            if (cfg.PrevCurrentConfig == null || !cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.__Guid))
+            if (this.Cfg.PrevCurrentConfig == null || !this.Cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.__Guid))
                 return null;
-            return cfg.PrevCurrentConfig.DicNodes[this.__Guid];
+            return this.Cfg.PrevCurrentConfig.DicNodes[this.__Guid];
         }
         public ITreeConfigNode? PrevStableVersion()
         {
-            var cfg = this.GetConfig();
-            if (cfg.PrevStableConfig == null || !cfg.PrevStableConfig.DicNodes.ContainsKey(this.__Guid))
+            if (this.Cfg.PrevStableConfig == null || !this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.__Guid))
                 return null;
-            return cfg.PrevStableConfig.DicNodes[this.__Guid];
+            return this.Cfg.PrevStableConfig.DicNodes[this.__Guid];
         }
         public bool IsRenamed(bool isStable)
         {

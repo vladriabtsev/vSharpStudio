@@ -594,5 +594,10 @@ namespace ViewModelBase
         //    }
         //    this.CopyMemberProperties(from, mutualBase);
         //}
+        /// <summary>
+        /// Delay value in milliseconds to notify by virtual method OnIsChangedChangedWithDelay().
+        /// Several changes during delay period will introduce only one notification.
+        /// </summary>
+        public static int IsChangedNotificationDelay { get; set; }
     }
 }

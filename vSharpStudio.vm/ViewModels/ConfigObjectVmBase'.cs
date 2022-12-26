@@ -54,5 +54,13 @@ namespace vSharpStudio.vm.ViewModels
         //            break;
         //    }
         //}
+        protected override void OnIsChangedChangedWithDelay()
+        {
+            var cfg = (Config)this.Cfg;
+            if (cfg.SelectedNode != null && cfg.SelectedNode == this)
+            {
+                cfg.ValidateSubTreeFromNode(cfg.SelectedNode);
+            }
+        }
     }
 }

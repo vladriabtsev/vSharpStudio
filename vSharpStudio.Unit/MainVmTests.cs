@@ -294,6 +294,25 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.IsChanged);
             Assert.IsTrue(vm.Config.IsHasChanged);
 
+            vm.CommandConfigSave.Execute(new object());
+            Assert.IsFalse(vm.Config.IsChanged);
+            Assert.IsFalse(vm.Config.IsHasChanged);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsChanged);
+            Assert.IsFalse(vm.Config.GroupAppSolutions.IsHasChanged);
+            Assert.IsFalse(vm.CommandConfigSave.CanExecute(null));
+            Assert.IsFalse(vm.CommandConfigSaveAs.CanExecute(null));
+
+            vm.Config.GroupAppSolutions.AddAppSolution("kuku", ".\\");
+            Assert.IsTrue(vm.Config.IsHasChanged);
+            Assert.IsTrue(vm.CommandConfigSave.CanExecute(null));
+            Assert.IsTrue(vm.CommandConfigSaveAs.CanExecute(null));
+
+            //AppSolution plugin settings
+
+            //AppProject plugin settings
+
+            //AppProjectGenerator plugin settings
+
             //TODO add test propogation of IsChanged for different setting
         }
         [TestMethod]

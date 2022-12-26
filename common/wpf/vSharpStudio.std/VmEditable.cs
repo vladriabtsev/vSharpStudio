@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ViewModelBase
 {
@@ -49,15 +50,37 @@ namespace ViewModelBase
             get { return _IsChanged; }
             set
             {
-                if (IsNotifying)
+                if (VmBindable.IsNotifyingStatic && IsNotifying)
                 {
                     SetProperty(ref _IsChanged, value);
                     OnIsChangedChanged();
+                    if (VmBindable.IsChangedNotificationDelay > 0)
+                    {
+                        lock (lockObject)
+                        {
+                            if (!isDelayActivated)
+                            {
+                                isDelayActivated = true;
+                                var t = Task.Run(async delegate
+                                {
+                                    await Task.Delay(VmBindable.IsChangedNotificationDelay);
+                                    this.InvokeOnUIThread(delegate
+                                    {
+                                        isDelayActivated = false;
+                                        OnIsChangedChangedWithDelay();
+                                    });
+                                });
+                            }
+                        }
+                    }
                 }
             }
         }
         protected bool _IsChanged;
+        private bool isDelayActivated = false;
+        private object lockObject = new object();
         protected virtual void OnIsChangedChanged() { }
+        protected virtual void OnIsChangedChangedWithDelay() { }
         [BrowsableAttribute(false)]
         public bool IsInEdit { get; private set; }
         public void BeginEdit()

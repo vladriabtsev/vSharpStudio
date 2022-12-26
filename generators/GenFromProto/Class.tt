@@ -105,6 +105,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 	}
 	this.PopIndent(); #>
 <# if (this.Doc.IsWithParent) { #>
+/*
     [BrowsableAttribute(false)]
     public override bool IsChanged // <#=Helper.FilePos() #>
     { 
@@ -124,6 +125,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
         }
     }
     partial void OnIsChangedChanging(ref bool v); // <#=Helper.FilePos() #>
+    */
 <# if (this.Doc.IsConfigObjectBase) { #>
     protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // <#=Helper.FilePos() #>
 <# } else { #>
