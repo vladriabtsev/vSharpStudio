@@ -460,6 +460,10 @@ namespace vSharpStudio.vm.ViewModels
             if (this._IsNeedCurrentUpdate != val)
                 this._IsNeedCurrentUpdate = val;
         }
+        public void SetLastUpdated(DateTime moment)
+        {
+            this._LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+        }
 #if DEBUG
         public void DicDiffDebug(Config anotherCfg)
         {

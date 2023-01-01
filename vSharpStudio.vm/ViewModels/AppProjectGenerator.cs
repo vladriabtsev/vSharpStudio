@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq}")]
+    [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq} HasChanged:{IsHasChanged}")]
     public partial class AppProjectGenerator : ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
         private Config cfg;

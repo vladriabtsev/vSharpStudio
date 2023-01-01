@@ -157,6 +157,16 @@ namespace vSharpStudio.vm.ViewModels
             //    //this.AddNodeAppGenSettings(t.Key);
             //}
         }
+        public override List<IEditableObjectExt> GetEditableNodeSettings()
+        {
+            var lst = new List<IEditableObjectExt>();
+            foreach (var t in this._DicGenNodeSettings.Values)
+            {
+                Debug.Assert(t is IEditableObjectExt);
+                lst.Add((IEditableObjectExt)t);
+            }
+            return lst;
+        }
         public void SaveNodeAppGenSettings()
         {
             //if (this is ConfigModel)

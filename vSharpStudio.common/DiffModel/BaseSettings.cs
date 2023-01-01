@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,24 @@ namespace vSharpStudio.common
         {
             this.Parent = parent;
         }
+        protected override void OnIsChangedChanged()
+        {
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
+                return;
+            if (this.Parent is IEditableNodeGroup pp)
+            {
+                pp.CheckChildrenIsOrHasChanged();
+            }
+            else if (this.Parent is IEditableObjectExt ed)
+            {
+                if (this.IsChanged)
+                    ed.IsChanged = true;
+            }
+            else
+                throw new NotImplementedException("Parent object of setting error. Interface 'IEditableNodeGroup' is not implemented");
+        }
     }
     public class BaseSubSettings<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator> //, IParentObject
         where TValidator : AbstractValidator<T>
@@ -30,6 +49,24 @@ namespace vSharpStudio.common
         public BaseSubSettings(IEditableObjectExt? parent, TValidator validator) : base(validator)
         {
             this.Parent = parent;
+        }
+        protected override void OnIsChangedChanged()
+        {
+            if (!VmBindable.IsNotifyingStatic)
+                return;
+            if (!this.IsNotifying)
+                return;
+            if (this.Parent is IEditableNodeGroup pp)
+            {
+                pp.CheckChildrenIsOrHasChanged();
+            }
+            else if (this.Parent is IEditableObjectExt ed)
+                    {
+                if (this.IsChanged)
+                    ed.IsChanged = true;
+            }
+            else
+                throw new NotImplementedException("Parent object of setting error. Interface 'IEditableNodeGroup' is not implemented");
         }
     }
 }

@@ -10,7 +10,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Plugin:{Name,nq} Count:{ListGenerators.Count,nq}")]
+    [DebuggerDisplay("Plugin:{Name,nq} Count:{ListGenerators.Count,nq} HasChanged:{IsHasChanged}")]
     public partial class Plugin : ICanGoLeft, ICanGoRight
     {
         [BrowsableAttribute(false)]
@@ -27,6 +27,7 @@ namespace vSharpStudio.vm.ViewModels
             this.Guid = plugin.Guid.ToString();
             this._Name = plugin.Name;
             this.Description = plugin.Description;
+            this.Version = plugin.Version;
             this.VPlugin = plugin;
             this.IsEditable = false;
         }

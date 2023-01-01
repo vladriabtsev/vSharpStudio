@@ -23,6 +23,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    [DebuggerDisplay("Model:{Name,nq} HasChanged:{IsHasChanged}")]
     public partial class Model : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup, INodeGenSettings
     {
         [BrowsableAttribute(false)]

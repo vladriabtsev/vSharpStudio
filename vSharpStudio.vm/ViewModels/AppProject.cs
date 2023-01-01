@@ -18,7 +18,7 @@ using FluentValidation.Results;
 namespace vSharpStudio.vm.ViewModels
 {
     // [DebuggerDisplay("AppProject:{Name,nq} props:{listProperties.Count,nq}")]
-    [DebuggerDisplay("AppProject:{Name,nq} RelPath:{RelativeAppProjectPath,nq}")]
+    [DebuggerDisplay("AppProject:{Name,nq} RelPath:{RelativeAppProjectPath,nq} HasChanged:{IsHasChanged}")]
     public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
@@ -382,6 +382,16 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 res.Errors.AddRange(res2.Errors);
             }
+        }
+        public override List<IEditableObjectExt> GetEditableNodeSettings()
+        {
+            var lst = new List<IEditableObjectExt>();
+            foreach (var t in this.DicPluginsGroupSettings.Values)
+            {
+                Debug.Assert(t is IEditableObjectExt);
+                lst.Add((IEditableObjectExt)t);
+            }
+            return lst;
         }
         #endregion Group Generator Project Settings
         protected override string[]? OnGetWhatHideOnPropertyGrid()

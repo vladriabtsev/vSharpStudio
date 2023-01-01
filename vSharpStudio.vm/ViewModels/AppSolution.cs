@@ -17,7 +17,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("AppSolution:{Name,nq} prj:{ListAppProjects.Count,nq}")]
+    [DebuggerDisplay("AppSolution:{Name,nq} prj:{ListAppProjects.Count,nq} HasChanged:{IsHasChanged}")]
     public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]
@@ -378,6 +378,16 @@ namespace vSharpStudio.vm.ViewModels
         public void Remove()
         {
             this.ParentGroupListAppSolutions.ListAppSolutions.Remove(this);
+        }
+        public override List<IEditableObjectExt> GetEditableNodeSettings()
+        {
+            var lst = new List<IEditableObjectExt>();
+            foreach(var t in this.DicPluginsGroupSettings.Values)
+            {
+                Debug.Assert(t is IEditableObjectExt);
+                lst.Add((IEditableObjectExt)t);
+            }
+            return lst;
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

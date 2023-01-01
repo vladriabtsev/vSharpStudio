@@ -10,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("MainViewForm:{Name,nq}")]
+    [DebuggerDisplay("MainViewForm:{Name,nq} HasChanged:{IsHasChanged}")]
     public partial class MainViewForm : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]

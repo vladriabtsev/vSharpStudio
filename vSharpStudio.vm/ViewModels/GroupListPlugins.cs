@@ -11,7 +11,7 @@ using vSharpStudio.wpf.Controls;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} Count:{ListPlugins.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} Count:{ListPlugins.Count,nq} HasChanged:{IsHasChanged}")]
     public partial class GroupListPlugins : ITreeModel, ICanGoRight, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]

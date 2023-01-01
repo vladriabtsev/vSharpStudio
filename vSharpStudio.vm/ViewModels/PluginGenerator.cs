@@ -10,7 +10,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("PluginGenerator:{Name,nq}")]
+    [DebuggerDisplay("PluginGenerator:{Name,nq} HasChanged:{IsHasChanged}")]
     public partial class PluginGenerator : ICanGoLeft, ICanGoRight
     {
         [BrowsableAttribute(false)]

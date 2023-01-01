@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} HasChanged:{IsHasChanged}")]
     public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]

@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} Count:{ListProperties.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} Count:{ListProperties.Count,nq} HasChanged:{IsHasChanged}")]
     public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
     {
         [BrowsableAttribute(false)]

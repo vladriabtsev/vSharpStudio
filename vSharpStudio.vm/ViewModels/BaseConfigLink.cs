@@ -13,6 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    [DebuggerDisplay("BaseConfigLink:{Name,nq} HasChanged:{IsHasChanged}")]
     public partial class BaseConfigLink : IEditableNode  // INodeGenSettings, 
     {
         [BrowsableAttribute(false)]

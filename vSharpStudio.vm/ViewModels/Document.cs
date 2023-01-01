@@ -11,6 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
+    [DebuggerDisplay("Document:{Name,nq} HasChanged:{IsHasChanged}")]
     public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
         [BrowsableAttribute(false)]

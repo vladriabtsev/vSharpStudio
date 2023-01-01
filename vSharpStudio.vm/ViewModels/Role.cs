@@ -10,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Role:{Name,nq}")]
+    [DebuggerDisplay("Role:{Name,nq} HasChanged:{IsHasChanged}")]
     public partial class Role : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
         [BrowsableAttribute(false)]

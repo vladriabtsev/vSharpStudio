@@ -199,6 +199,7 @@ namespace vSharpStudio.ViewModels
             {
                 this.Config = config;
                 this.VisibilityAndMessageInstructions();
+                this.Config.RestoreIsHas();
             }
             if (config.PrevStableConfig != null)
                 InitConfig((Config)config.PrevStableConfig);
@@ -560,7 +561,12 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._CommandNewConfig ?? (this._CommandNewConfig = vCommand.Create(
-                    (o) => { this.NewConfig(); this.SaveAs((string)o); },
+                    (o) =>
+                    {
+                        this.NewConfig();
+                        this.Config.SetIsNeedCurrentUpdate(false);
+                        this.SaveAs((string)o);
+                    },
                     (o) => { return this.Config == null || !string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath); }));
             }
         }
@@ -613,7 +619,7 @@ namespace vSharpStudio.ViewModels
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = ""; // Default file name
             dlg.DefaultExt = ".vcfg"; // Default file extension
-            dlg.Filter = "Any file (.*)|*.*"; // Filter files by extension
+            dlg.Filter = "Any file (.vcfg)|*.vcfg"; // Filter files by extension
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
@@ -634,7 +640,7 @@ namespace vSharpStudio.ViewModels
         internal void SavePrepare()
         {
             this.Config.PluginSettingsToModel();
-            this.Config.LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
+            this.Config.SetLastUpdated(DateTime.UtcNow);
             var proto = Config.ConvertToProto(this._Config);
             if (this.pconfig_history == null)
             {
@@ -719,15 +725,20 @@ namespace vSharpStudio.ViewModels
         private void ResetIsChangedBeforeSave()
         {
             var vis = new ModelVisitorBase();
+            IEditableNodeGroup.IsChangedNotPropagate = true;
             vis.Run(this.Config, null, null, null, (v, n) =>
             {
+                if (n is IEditableNodeGroup pp)
+                {
+                    pp.IsHasChanged = false;
+                }
                 n.IsChanged = false;
             });
+            IEditableNodeGroup.IsChangedNotPropagate = false;
             if (this.Config.IsHasChanged)
             {
                 var sss = this.Config.IsHasChangedPath;
-                //TODO fix it
-                //Debug.Assert(!this.Config.IsHasChanged);
+                Debug.Assert(!this.Config.IsHasChanged);
             }
             Debug.Assert(!this.Config.IsChanged);
         }
@@ -850,6 +861,7 @@ namespace vSharpStudio.ViewModels
 #else
                                 this.UpdateCurrentVersion(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
 #endif
+                                this.ResetIsChangedBeforeSave();
                                 this.cancellationTokenSource = null;
                                 if (ex != null)
                                     throw ex;
@@ -1231,9 +1243,9 @@ namespace vSharpStudio.ViewModels
 #else
                     this.GenerateCode(cancellationToken, this.Config, true);
 #endif
-                    this.Config.SetIsNeedCurrentUpdate(false);
                     var vis = new ModelVisitorRemoveMarkedIfNewObjects();
                     vis.Run(this.Config, null, null, null);
+                    this.Config.SetIsNeedCurrentUpdate(false);
                     this.Save();
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
@@ -1284,7 +1296,10 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._CommandConfigCreateStableVersion ?? (this._CommandConfigCreateStableVersion = vCommand.Create(
-                (o) => { this.CreateStableVersion(); },
+                (o) =>
+                {
+                    this.CreateStableVersion();
+                },
                 (o) => { return this.Config != null; }));
             }
         }
@@ -1351,14 +1366,16 @@ namespace vSharpStudio.ViewModels
             this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
             this.InitConfig((Config)this.Config.PrevCurrentConfig);
             this.pconfig_history.CurrentConfig.Version++;
+            IEditableNodeGroup.IsChangedNotPropagate = true;
             vis.Run(this.Config, null, null, null, (v, n) =>
             {
                 if (n is IEditableNode p)
                 {
                     p.IsNew = false;
-                    p.IsChanged = false;
+                    //p.IsChanged = false;
                 }
             });
+            IEditableNodeGroup.IsChangedNotPropagate = false;
             this.Config.SetIsNeedCurrentUpdate(false);
             Utils.TryCall(
                 () =>
@@ -1366,6 +1383,7 @@ namespace vSharpStudio.ViewModels
                     Debug.Assert(!string.IsNullOrWhiteSpace(CurrentCfgFilePath));
                     File.WriteAllBytes(CurrentCfgFilePath, this.pconfig_history.ToByteArray());
                 }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
+            this.ResetIsChangedBeforeSave();
         }
 
         #endregion Main
