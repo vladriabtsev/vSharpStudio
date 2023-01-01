@@ -64,13 +64,22 @@ namespace vSharpStudio.Views
             }
             p.DataContext = this._model;
 #else
-            _model = new MainPageVM();
-            Task task = Task.Run(() =>
+            this._model.Compose();
+            this._model.OnFormLoaded();
+            this.DataContext = this._model;
+            FrameworkElement p = (FrameworkElement)this.Parent;
+            while (!(p is MainWindow))
             {
-                this._model.Compose();
-                this._model.OnFormLoaded();
-                this.DataContext = this._model;
-            });
+                p = (FrameworkElement)p.Parent;
+            }
+            p.DataContext = this._model;
+            //_model = new MainPageVM();
+            //Task task = Task.Run(() =>
+            //{
+            //    this._model.Compose();
+            //    this._model.OnFormLoaded();
+            //    this.DataContext = this._model;
+            //});
 #endif
 
         }
