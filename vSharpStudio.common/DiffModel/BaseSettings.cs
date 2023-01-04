@@ -27,6 +27,7 @@ namespace vSharpStudio.common
                 return;
             if (!this.IsNotifying)
                 return;
+            Debug.Assert(this.Parent != null);
             if (this.Parent is IEditableNodeGroup pp)
             {
                 pp.CheckChildrenIsOrHasChanged();
@@ -37,7 +38,7 @@ namespace vSharpStudio.common
                     ed.IsChanged = true;
             }
             else
-                throw new NotImplementedException("Parent object of setting error. Interface 'IEditableNodeGroup' is not implemented");
+                throw new NotImplementedException("Parent object of setting error. Interface 'IEditableNodeGroup' or 'IEditableObjectExt' is not implemented");
         }
     }
     public class BaseSubSettings<T, TValidator> : VmValidatableWithSeverityAndAttributes<T, TValidator> //, IParentObject
@@ -56,17 +57,19 @@ namespace vSharpStudio.common
                 return;
             if (!this.IsNotifying)
                 return;
-            if (this.Parent is IEditableNodeGroup pp)
+            Debug.Assert(this.Parent != null);
+            //if (this.Parent is IEditableNodeGroup pp)
+            //{
+            //    pp.CheckChildrenIsOrHasChanged();
+            //}
+            //else 
+            if (this.Parent is IEditableObjectExt ed)
             {
-                pp.CheckChildrenIsOrHasChanged();
-            }
-            else if (this.Parent is IEditableObjectExt ed)
-                    {
                 if (this.IsChanged)
                     ed.IsChanged = true;
             }
             else
-                throw new NotImplementedException("Parent object of setting error. Interface 'IEditableNodeGroup' is not implemented");
+                throw new NotImplementedException("Parent object of setting error. Interface 'IEditableObjectExt' is not implemented");
         }
     }
 }

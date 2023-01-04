@@ -108,7 +108,7 @@ namespace vSharpStudio.vm.ViewModels
             switch (formType)
             {
                 case FormType.ListNarrow:
-                    form.Name = "ListViewNarrow";
+                    form.Name = "ViewListNarrow";
                     if (c.UseTree && c.UseSeparateTreeForFolders)
                     {
                         col = (FormGridSystemColumn)row.AddGridSystemColumn();
@@ -128,7 +128,7 @@ namespace vSharpStudio.vm.ViewModels
                         dg.ListGuidProperties.Add(c.PropertyNameGuid);
                     break;
                 case FormType.ListWide:
-                    form.Name = "ListViewWide";
+                    form.Name = "ViewListWide";
                     if (c.UseTree && c.UseSeparateTreeForFolders)
                     {
                         col = (FormGridSystemColumn)row.AddGridSystemColumn();

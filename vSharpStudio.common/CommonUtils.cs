@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Numerics;
+using Xceed.Wpf.Toolkit;
 
 namespace vSharpStudio.common
 {
@@ -182,23 +183,27 @@ namespace vSharpStudio.common
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(currentCfgFolderPath);
+            if (!currentCfgFolderPath.EndsWith('\\'))
+            {
+                sb.Append('\\');
+            }
             var folder = Path.GetDirectoryName(ts.RelativeAppSolutionPath);
             if (folder?.Length > 0)
             {
                 sb.Append(folder);
-                sb.Append("\\");
+                sb.Append('\\');
             }
             folder = Path.GetDirectoryName(tp.RelativeAppProjectPath);
             if (folder?.Length > 0)
             {
                 sb.Append(folder);
-                sb.Append("\\");
+                sb.Append('\\');
             }
             if (!string.IsNullOrWhiteSpace(relativePathToGenFolder))
             {
                 sb.Append(relativePathToGenFolder);
                 if (relativePathToGenFolder[relativePathToGenFolder.Length - 1] != '\\')
-                    sb.Append("\\");
+                    sb.Append('\\');
             }
             sb.Append(fileName);
             return sb.ToString();

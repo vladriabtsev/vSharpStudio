@@ -22,6 +22,10 @@ namespace vSharpStudio.vm.ViewModels
 
         #region ITree
 
+        public override IChildrenCollection GetListChildren()
+        {
+            return this.Children;
+        }
         public override IChildrenCollection GetListSiblings()
         {
             return this.ParentFormTabControl.Children;

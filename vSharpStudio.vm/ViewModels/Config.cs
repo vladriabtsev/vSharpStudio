@@ -179,12 +179,12 @@ namespace vSharpStudio.vm.ViewModels
                 // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...
                 node.ValidationCollection.Clear();
                 node.ValidationCollection = visitor.Result;
+                //Debug.Assert(node.ValidationCollection.Count == node.CountErrors + node.CountInfos + node.CountWarnings);
             }
             else
             {
                 logger?.LogInformation("=== Cancelled ===");
             }
-            Debug.Assert(node.ValidationCollection.Count == node.CountErrors + node.CountInfos + node.CountWarnings);
         }
 
         #endregion Validation
