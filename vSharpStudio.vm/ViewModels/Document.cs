@@ -192,7 +192,7 @@ namespace vSharpStudio.vm.ViewModels
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
-        public Detail AddPropertiesTab(string name)
+        public Detail AddDetails(string name)
         {
             var node = new Detail(this.GroupDetails) { Name = name };
             this.GroupDetails.NodeAddNewSubNode(node);
