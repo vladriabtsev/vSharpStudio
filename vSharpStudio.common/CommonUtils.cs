@@ -154,6 +154,20 @@ namespace vSharpStudio.common
             }
             return sb.ToString();
         }
+        public static void WriteToFileIfNotExist(string code, string path, string fileRelativePath, string fileName)
+        {
+            string outFolder = Path.Combine(path, fileRelativePath);
+            string outFile;
+            if (Path.EndsInDirectorySeparator(outFolder))
+                outFile = $"{outFolder}{fileName}";
+            else
+                outFile = $"{outFolder}\\{fileName}";
+            if (!File.Exists(outFile))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(code);
+                File.WriteAllBytes(outFile, bytes);
+            }
+        }
         public static void WriteToFile(string code, string path, string fileRelativePath, string fileName)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(code);
