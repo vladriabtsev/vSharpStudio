@@ -30,6 +30,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenFromProto", "generators\GenFromProto\GenFromProto.csproj", "{EEAF63A0-C59F-468B-AA1B-58865E84E44E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B382564-AEBD-480B-BD14-771F3669E1B3}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		README2.md = README2.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{8AF928D9-39F9-4787-8806-A24BE9DA252F}"
 EndProject

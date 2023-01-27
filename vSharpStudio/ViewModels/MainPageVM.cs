@@ -563,9 +563,7 @@ namespace vSharpStudio.ViewModels
                 return this._CommandNewConfig ?? (this._CommandNewConfig = vCommand.Create(
                     (o) =>
                     {
-                        this.NewConfig();
-                        this.Config.SetIsNeedCurrentUpdate(false);
-                        this.SaveAs((string)o);
+                        this.SaveAs((string)o, true);
                     },
                     (o) => { return this.Config == null || !string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath); }));
             }
@@ -683,7 +681,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand? _CommandConfigSaveAs;
-        internal void SaveAs(string? filePath = null)
+        internal void SaveAs(string? filePath = null, bool isCreateNewConfig = false)
         {
             SaveFileDialog openFileDialog = new SaveFileDialog();
             openFileDialog.Filter = "vConfig files (*.vcfg)|*.vcfg|All files (*.*)|*.*";
@@ -697,6 +695,12 @@ namespace vSharpStudio.ViewModels
             if (filePath != null || openFileDialog.ShowDialog() == true)
             {
                 this.FilePathSaveAs = filePath == null ? openFileDialog.FileName : Path.GetFullPath(filePath);
+
+                if (isCreateNewConfig)
+                {
+                    this.NewConfig();
+                    this.Config.SetIsNeedCurrentUpdate(false);
+                }
                 this.SavePrepare();
                 Utils.TryCall(
                     () =>
