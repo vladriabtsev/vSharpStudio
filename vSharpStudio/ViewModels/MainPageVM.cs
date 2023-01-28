@@ -564,6 +564,9 @@ namespace vSharpStudio.ViewModels
                     (o) =>
                     {
                         this.SaveAs((string)o, true);
+                        this.CommandConfigSave.RaiseCanExecuteChanged();
+                        this.CommandConfigSaveAs.RaiseCanExecuteChanged();
+                        this.CommandConfigCurrentUpdate.RaiseCanExecuteChanged();
                     },
                     (o) => { return this.Config == null || !string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath); }));
             }
@@ -594,7 +597,13 @@ namespace vSharpStudio.ViewModels
             get
             {
                 return this._CommandOpenConfig ?? (this._CommandOpenConfig = vCommand.Create(
-                    (o) => { this.OpenConfig(); },
+                    (o) =>
+                    {
+                        this.OpenConfig();
+                        this.CommandConfigSave.RaiseCanExecuteChanged();
+                        this.CommandConfigSaveAs.RaiseCanExecuteChanged();
+                        this.CommandConfigCurrentUpdate.RaiseCanExecuteChanged();
+                    },
                     (o) => { return true; }));
             }
         }
