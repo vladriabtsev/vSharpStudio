@@ -1,4 +1,4 @@
-# Business model editor and code generator
+# Business model editor with code generator plugins support
 ## Installation
 
 Download latest release [here](https://github.com/vladriabtsev/vSharpStudio/releases). 
