@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
@@ -11,7 +12,25 @@ namespace vSharpStudio.vm.ViewModels
     {
         public PluginGeneratorValidator()
         {
-            this.RuleFor(x => x.Generator).NotEmpty().WithMessage(Config.ValidationMessages.PLUGIN_GENERATOR_WAS_NOT_FOUND);
+            this.RuleFor(x => x.Generator).Custom((plg, cntx) =>
+            {
+                if (plg == null)
+                {
+                    var pg = (PluginGenerator)cntx.InstanceToValidate;
+                    Debug.Assert(pg.Parent != null);
+                    var sb = new StringBuilder();
+                    sb.Append("Generator '");
+                    sb.Append(pg.Name);
+                    sb.Append("' of plugin '");
+                    sb.Append(pg.ParentPlugin.Name);
+                    sb.Append("' is not found");
+                    var flr = new ValidationFailure();
+                    flr.ErrorMessage = sb.ToString();
+                    flr.Severity = Severity.Info;
+                    flr.PropertyName = cntx.PropertyName;
+                    cntx.AddFailure(flr);
+                }
+            });
             this.RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
             this.RuleFor(x => x.Guid).Custom((guid, cntx) =>
             {

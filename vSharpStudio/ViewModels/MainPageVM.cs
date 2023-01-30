@@ -1,5 +1,10 @@
 ﻿#define Async
 #define nPARRALEL
+//#if RELEASE && !PARRALEL
+#if RELEASE && PARRALEL
+Not tested yet
+//Release version is expecting #define PARRALEL in previous lines of code
+#endif
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,7 +86,7 @@ namespace vSharpStudio.ViewModels
                 return;
             }
 
-            #region Git Version
+#region Git Version
             //var assemblyName = assembly.GetName().Name;
             //var gitVersionInformationType = assembly.GetType("GitVersionInformation");
             //var fields = gitVersionInformationType.GetFields();
@@ -98,7 +103,7 @@ namespace vSharpStudio.ViewModels
             //{
             //    Trace.WriteLine(string.Format("{0}: {1}", property.Name, property.GetGetMethod(true).Invoke(null, null)));
             //}
-            #endregion Git Version
+#endregion Git Version
         }
         public void OnFormLoaded()
         {
@@ -248,7 +253,7 @@ namespace vSharpStudio.ViewModels
         }
         public static Config? ConfigInstance;
 
-        #region Plugins
+#region Plugins
 
         // https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/ff603380(v=vs.100) // debug
         // https://www.codeproject.com/Articles/376033/From-Zero-to-Proficient-with-MEF
@@ -519,7 +524,7 @@ namespace vSharpStudio.ViewModels
             }
         }
 
-        #endregion Plugins
+#endregion Plugins
 
         public Config Config
         {
@@ -555,7 +560,7 @@ namespace vSharpStudio.ViewModels
         public bool IsValidateSubTreeWhenModelChanged = true;
         private Config _Config;
 
-        #region Main
+#region Main
         public vCommand CommandNewConfig
         {
             get
@@ -899,7 +904,7 @@ namespace vSharpStudio.ViewModels
                                 this.CommandConfigSave.Execute(null);
                             }
                             this.ProgressVM.End();
-                        }, (o) => { return this.cancellationTokenSource == null && this.Config != null && this.Config.IsNeedCurrentUpdate && this.CurrentCfgFilePath != null; }
+                        }, (o) => { return this.cancellationTokenSource == null && this.Config != null && /*this.Config.IsNeedCurrentUpdate &&*/ this.CurrentCfgFilePath != null; }
                     );
                 }
                 return this._CommandConfigCurrentUpdate;
@@ -1090,7 +1095,7 @@ namespace vSharpStudio.ViewModels
                         dicRenamed[n.Guid] = null;
                     }
                 });
-                #region Remove New which are Marked for Deletion
+#region Remove New which are Marked for Deletion
                 var lst = new List<string>();
                 // delete from current model
                 var vis1 = new ModelVisitorBase();
@@ -1110,11 +1115,11 @@ namespace vSharpStudio.ViewModels
                     var p = (IEditableNode)n;
                     p.Remove();
                 }
-                #endregion Remove New which are Marked for Deletion
+#endregion Remove New which are Marked for Deletion
                 using (Transaction.Create(am))
                 {
                     // I. Model validation (no need for UNDO)
-                    #region
+#region
                     progress.SubName = "Model validation";
                     Debug.Assert(this._Config != null);
                     //#if Async
@@ -1144,10 +1149,10 @@ namespace vSharpStudio.ViewModels
                     progress.Progress = 5;
                     progress.SubProgress = 100;
                     onProgress(progress);
-                    #endregion
+#endregion
 
                     // II. Rename analysis
-                    #region
+#region
                     bool isNeedRenames = false;
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
@@ -1174,10 +1179,10 @@ namespace vSharpStudio.ViewModels
                         if (isNeedRenames)
                             break;
                     }
-                    #endregion
+#endregion
 
                     // III. Build all solutions. Exception if not compilible (no need for UNDO)
-                    #region
+#region
                     if (isNeedRenames)
                     {
                         progress.SubName = "Check current code compilation";
@@ -1203,10 +1208,10 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnBuildValidated)
                         throw new Exception(nameof(tst.IsThrowExceptionOnBuildValidated));
-                    #endregion
+#endregion
 
                     // IV. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
-                    #region
+#region
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
                         foreach (var tp in ts.ListAppProjects)
@@ -1231,10 +1236,10 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnRenamed)
                         throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
-                    #endregion
+#endregion
 
                     // V. Apply new DB schema to currentDB (no need for UNDO ???) Move into VI step
-                    #region
+#region
                     //foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     //{
                     //    if (cancellationToken.IsCancellationRequested)
@@ -1247,10 +1252,10 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnDbMigrated)
                         throw new Exception(nameof(tst.IsThrowExceptionOnDbMigrated));
-                    #endregion
+#endregion
 
                     // VI. Generate code (no need for UNDO)
-                    #region
+#region
 #if PARRALEL
                     await this.GenerateCodeAsync(cancellationToken, this.Config, true);
 #else
@@ -1263,10 +1268,10 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
                         throw new Exception();
-                    #endregion
+#endregion
 
                     // VII. Update history CurrentConfig (need UNDO)
-                    #region
+#region
 #if Async
 #else
 #endif
@@ -1288,7 +1293,7 @@ namespace vSharpStudio.ViewModels
 #else
 #endif
                     am.Execute(update_history);
-                    #endregion
+#endregion
 
                     // VIII. Generate Update SQL for previous stable DB
                     //TODO Generate Update SQL for previous stable DB
@@ -1345,7 +1350,7 @@ namespace vSharpStudio.ViewModels
             var vis = new ModelVisitorBase();
             if (this.Config.PrevStableConfig != null)
             {
-                #region Remove Deleted (was Deprecated)
+#region Remove Deleted (was Deprecated)
                 var lst = new List<string>();
                 // delete from current model
                 vis.Run(this.Config, null, null, null, (v, n) =>
@@ -1367,7 +1372,7 @@ namespace vSharpStudio.ViewModels
                     var p = (IEditableNode)n;
                     p.Remove();
                 }
-                #endregion Remove Deprecated
+#endregion Remove Deprecated
             }
             // todo check if model has DB connected changes. Return if not.
             // todo create migration code
@@ -1399,9 +1404,9 @@ namespace vSharpStudio.ViewModels
             this.ResetIsChangedBeforeSave();
         }
 
-        #endregion Main
+#endregion Main
 
-        #region ConfigTree
+#region ConfigTree
         private void VisibilityAndMessageInstructions()
         {
             this.VisibilityConfig = System.Windows.Visibility.Visible;
@@ -1534,7 +1539,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vCommand? _CommandSelectionUp;
-        #endregion ConfigTree
+#endregion ConfigTree
 
         public vCommand CommandFromErrorToSelection
         {
@@ -1555,7 +1560,7 @@ namespace vSharpStudio.ViewModels
 
         private vCommand? _CommandFromErrorToSelection;
 
-        #region ConnectionString
+#region ConnectionString
 
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev16.query%3FappId%3DDev16IDEF1%26l%3DEN-US%26k%3Dk(System.Configuration.ConfigurationManager);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.7.2);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.8
         // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configuration?view=netframework-4.8
@@ -1732,9 +1737,9 @@ namespace vSharpStudio.ViewModels
         // public const string PROVIDERName_SQLITE = "Microsoft.Data.Sqlite";
         // public const string PROVIDERName_MYSQL = "MySql.Data";
         // public const string PROVIDERName_NPGSQL = "Npgsql";
-        #endregion
+#endregion
 
-        #region Utils
+#region Utils
         public static string GetvSharpStudioPluginsPath()
         {
             string? path = null;
@@ -1745,6 +1750,6 @@ namespace vSharpStudio.ViewModels
             path = vss + s + s + bin;
             return path;
         }
-        #endregion Utils
+#endregion Utils
     }
 }

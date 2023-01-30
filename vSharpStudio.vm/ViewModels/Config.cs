@@ -142,6 +142,7 @@ namespace vSharpStudio.vm.ViewModels
             // https://devblogs.microsoft.com/pfxteam/asynclazyt/
             // https://github.com/StephenCleary/AsyncEx
             // https://msdn.microsoft.com/en-us/magazine/dn818493.aspx
+            //SortedObservableCollection<ValidationMessage> valCollection = null;
             await Task.Run(() =>
             {
                 this.ValidateSubTreeFromNode(node);

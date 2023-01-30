@@ -1,0 +1,8 @@
+{
+	"db_conns": {
+		"Sqlite": {
+			"provider": "Microsoft.Data.Sqlite",
+			"connection_string": "Data Source=./sample-sqlite.db"
+		}
+	}
+}

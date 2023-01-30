@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using FluentValidation;
+using FluentValidation.Results;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -10,12 +11,28 @@ namespace vSharpStudio.vm.ViewModels
     {
         public PluginValidator()
         {
-            this.RuleFor(x => x.VPlugin).NotEmpty().WithMessage(Config.ValidationMessages.PLUGIN_WAS_NOT_FOUND);
+            this.RuleFor(x => x.VPlugin).Custom((plg, cntx) =>
+            {
+                if (plg == null)
+                {
+                    var pg = (Plugin)cntx.InstanceToValidate;
+                    Debug.Assert(pg.Parent != null);
+                    var sb = new StringBuilder();
+                    sb.Append("Plugin '");
+                    sb.Append(pg.Name);
+                    sb.Append("' is not found");
+                    var flr = new ValidationFailure();
+                    flr.ErrorMessage = sb.ToString();
+                    flr.Severity = Severity.Info;
+                    flr.PropertyName = cntx.PropertyName;
+                    cntx.AddFailure(flr);
+                }
+            });
             this.RuleFor(x => x.Guid).NotEmpty().WithMessage(Config.ValidationMessages.GUID_IS_EMPTY);
             this.RuleFor(x => x.Guid).Custom((guid, cntx) =>
             {
                 var pg = (Plugin)cntx.InstanceToValidate;
-                Debug.Assert(pg.Parent != null); 
+                Debug.Assert(pg.Parent != null);
                 GroupListPlugins lst = (GroupListPlugins)pg.Parent;
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Not unique Plugin Guid. Plugins: ");

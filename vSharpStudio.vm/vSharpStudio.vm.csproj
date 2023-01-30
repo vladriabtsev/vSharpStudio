@@ -21,6 +21,9 @@
         <Optimize>true</Optimize>
     </PropertyGroup>
     <ItemGroup>
+      <Compile Remove="ViewModels\Generated\ProtoViewModelsShared.cs" />
+    </ItemGroup>
+    <ItemGroup>
         <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
     </ItemGroup>
     <ItemGroup Condition="'$(TargetFramework)' == 'net48'">

@@ -48,7 +48,6 @@
         <ProjectReference Include="..\common\wpf\vSharpStudio.wpf\vSharpStudio.wpf.csproj" />
         <ProjectReference Include="..\ext\UndoFramework\UndoFramework.csproj" />
         <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
-        <ProjectReference Include="..\vSharpStudio.proto\vSharpStudio.proto.csproj" />
         <ProjectReference Include="..\vSharpStudio.vm\vSharpStudio.vm.csproj" />
     </ItemGroup>
     <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
@@ -59,8 +58,8 @@
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="CompareNETObjects" Version="4.78.0" />
-        <PackageReference Include="GitVersion.MsBuild" Version="5.11.1">
+        <PackageReference Include="CompareNETObjects" Version="4.79.0" />
+        <PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -71,7 +70,6 @@
         <PackageReference Include="Microsoft.Build.Framework" Version="17.4.0" />
         <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.4.0" />
         <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.4.0" />
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.1" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
         <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.4.33">
             <PrivateAssets>all</PrivateAssets>

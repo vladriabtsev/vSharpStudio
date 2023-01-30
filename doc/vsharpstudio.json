@@ -704,7 +704,7 @@
             },
             {
               "name": "relative_path_to_gen_folder",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Output Folder\")]\n@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]\n@attr [Description(\"Get is returning relative folder path to project file\")]\nRelative folder path to project file",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Output Folder\")]\n@attr [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]\n@attr [Description(\"Project subfolder for generated file/files\")]\nRelative folder path to project file",
               "label": "",
               "type": "string",
               "longType": "string",

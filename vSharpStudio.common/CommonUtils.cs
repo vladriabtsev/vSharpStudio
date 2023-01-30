@@ -9,6 +9,27 @@ namespace vSharpStudio.common
 {
     public static class CommonUtils
     {
+        public static string ToMessage(this Exception ex)
+        {
+            return ToInnerMessage(ex);
+        }
+        private static string ToInnerMessage(Exception ex)
+        {
+            if (ex.InnerException != null)
+            {
+                return ToInnerMessage(ex.InnerException);
+            }
+            return ex.Message;
+        }
+        //private static void ToInnerMessage(StringBuilder sb, Exception ex, string indent = "")
+        //{
+        //    sb.Append(indent);
+        //    sb.AppendLine(ex.Message);
+        //    if (ex.InnerException != null)
+        //    {
+        //        ToInnerMessage(sb, ex.InnerException, indent + "  ");
+        //    }
+        //}
 #if NET48
         public static string GetRelativePath(string relativeTo, string path)
         {

@@ -33,10 +33,13 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.RelativePathToGenFolder)
                 .Custom((path, cntx) =>
                 {
-                    var pg = (AppProjectGenerator)cntx.InstanceToValidate;
-                    if (!string.IsNullOrEmpty(path) && !Directory.Exists(pg.GetGenerationFolderPath()))
+                    if (!string.IsNullOrEmpty(path))
                     {
-                        cntx.AddFailure("Output generation folder was not found:" + pg.GetGenerationFolderPath());
+                        var pg = (AppProjectGenerator)cntx.InstanceToValidate;
+                        if (!Directory.Exists(pg.GetGenerationFolderPath()))
+                        {
+                            cntx.AddFailure("Output generation folder was not found:" + pg.GetGenerationFolderPath());
+                        }
                     }
                 });
             this.RuleFor(x => x.GenFileName)

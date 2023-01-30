@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Rename;
 using System.Threading;
 using System.Threading.Tasks;
-using Proto.Renamer;
+//using Proto.Renamer;
 using Microsoft.Extensions.Logging;
 using vSharpStudio.common.DiffModel;
 using System.Diagnostics;

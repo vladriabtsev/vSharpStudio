@@ -619,7 +619,7 @@ namespace vSharpStudio.vm.ViewModels
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 return "";
             var path = this.ParentAppProject.GetProjectFolderPath();
-            if (string.IsNullOrWhiteSpace(this.RelativePathToGenFolder))
+            if (!string.IsNullOrWhiteSpace(this.RelativePathToGenFolder))
                 path = Path.Combine(path, this.RelativePathToGenFolder);
             return path;
         }

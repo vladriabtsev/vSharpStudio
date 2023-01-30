@@ -1,36 +1,21 @@
-¿
-$db7400f3-630b-46ca-874c-b450d8fa03e3test2*test2:™äı”ÓÒT@×¯Àä–¶óƒª<
-$e116713a-0f25-4a05-a014-011acb2eea90BaseConfigs@º¾ØÎú×œi²Ù
-$cb961a06-a6f2-4260-be4e-342cc1593a17Model óØ“Öƒ›©Ê*Model@dHPj$44a10a0f-923c-4fbf-ab83-1cd806e89ffdrIdŠ$4222ed4e-bd50-4fd1-a7cc-759984dfc64c’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderâIsOpenêDocDateğÊ	DocNumberĞªL
-$01301aa3-31d1-4cf2-bdff-ba13ba6c8883	Constants»õ”–­†üôp"	Constants2Cnst²M
-$a0b9a8b4-a9ca-48a8-aeea-f55cb2abcad1Enumerations"Enumerations@İÍ¾»«Òî…ºT
-$0ed3a7c8-98ce-40ff-8d7c-a9adaa4ca6d2Catalogs"Catalogs2Ctlg:cH¦Ÿ¦Ûƒàâñ€ÂÙ
-$23a932a2-dad7-4663-8a20-b68649a36955	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
-$65f4848c-6c19-48ee-b986-fd8fafd12e11Shared"Shared@ÓŠ¼Î¶¨øûBI
-$0b79801b-4903-4bf8-94aa-2c41a08c2e12	Documents"	Documents2d@¸ÀÖŸŒÓ¸ı ÊE
-$6bd04b7e-7706-4557-be84-ba8cac0266ecJournals"Journals@Ú½Ì—¦„ç°±ÒÀ
-$a52bcdde-0e54-4dea-9a5e-dae7ace213f2Common"Common0İ¡ÔÕ™ûô`:>
-$481c39b4-5995-411b-8640-cbd056a0bbe7Roles"Roles@—æÉ—¾ªŠõB>
-$331d0a1d-53f0-46d6-a1e7-3200feed84eaGroup"Group@Ë€îÙêõê—Âš
-$dc9e0556-204e-4ba6-938b-443e9a1ce9d8Plugins"¸
-$3829EEAB-71BB-4BE2-91E6-70872B6FB85C0.1Blazor"Blazor code generation plugin(†ÛİƒéÓk2[
-$1E35FCDB-6425-4C66-B047-6882738AF552
-RepositoryDB repository code generation ØŞèİ›Ÿæò"Ç
-$052C7318-3D73-4605-B1AE-749FC7E104120.1DbRepository"4vSharpStudio plugin. DB access layer repository code(ËËŠÄÄ‘Äz2M
-$E59B393E-AF34-4438-977F-7BF120E28A0C
-RepositoryDb Access Layer ØŞèİ›Ÿæò"á
-$EDE860F8-2E9B-4E17-8A80-2D52879D15AB0.1gRPC"&vSharpStudio plugin. gRPC service code(Øç»Â±¨ë—2|
-$32B15714-E660-4E29-9291-D647A1774149gRPC service<gRPC services server code, client code, protobuf defenitions °Œ½¹¨ë—"Ó
-$C94175E4-E8F4-4A84-871B-6994199A20760.1MsSql"7vSharpStudio plugin. Database design support for MS SQL(ÒœŸ°Ó«Ë2\
-$0D85CF93-9134-45C6-B3B9-6BFAF4A12183Design#DB structure creation and migration ®çÔ¢¥Õ{"Ü
-$3A29FC48-3892-498A-AE36-CB0C9916C6C90.1
-PostgreSql";vSharpStudio plugin. Database design support for PostgreSql(¨ôê–Æ…ä2\
-$C641770F-CBA5-4FC5-8068-A21C00D6E492Design#DB structure creation and migration ®çÔ¢¥Õ{"¥
+Ê
+$d976f70b-8c2b-4ca5-8063-b99d6ca59b73test2*test2:±«ÜÈÜ€e@×¯Àä–¶óƒª<
+$e2f71aea-acda-4fef-98c5-5cab458e2f21BaseConfigs@º¾ØÎú×œi²Ù
+$2347ff9c-03d2-4e45-9e27-b46ab787410bModel óØ“Öƒ›©Ê*Model@dHPj$5e76672c-29bd-4356-aff7-9698958a5822rIdŠ$ec108a94-c587-42b5-af9c-25f9253bd111’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderâIsOpenêDocDateğÊ	DocNumberĞªL
+$65beb9ea-ef3c-442e-a126-2fcf69746230	Constants»õ”–­†üôp"	Constants2Cnst²M
+$7714663a-c1bc-47d7-8670-35416c266813Enumerations"Enumerations@İÍ¾»«Òî…ºT
+$7719ba54-b608-4b72-b489-eb1ff422ad72Catalogs"Catalogs2Ctlg:cH¦Ÿ¦Ûƒàâñ€ÂÙ
+$48b95733-9ce0-4414-a0ff-4ca11e601b14	Documents¸ÀÖŸŒÓ¸ı "	Documents2Doc:@
+$b66e2178-0c9b-4094-9796-89ba1c5e8006Shared"Shared@ÓŠ¼Î¶¨øûBI
+$a405c1bd-0465-4bba-9001-6c74f592e231	Documents"	Documents2d@¸ÀÖŸŒÓ¸ı ÊE
+$14f8de32-78ec-4c6e-bdf6-227a38549061Journals"Journals@Ú½Ì—¦„ç°±ÒÀ
+$adf30284-f987-49db-996d-3be472e45be7Common"Common0İ¡ÔÕ™ûô`:>
+$295b1bc5-5108-4b04-8b12-5620bccf08bbRoles"Roles@—æÉ—¾ªŠõB>
+$1a13cc52-613f-49ca-9cff-3efaf7124323Group"Group@Ë€îÙêõê—Â¥
+$65429d13-4c29-457b-a47a-3d76fc6fcb59Plugins"¥
 $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with several generators(ö¨°‹º³ú2a
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema ¯¡„ÃÓœõ`2V
 $7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer ´•Ô¦•Á¶z"À
 $D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with one generators(É¾‡º³ú2W
-$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer ¿µÔ¦•Á¶z"Ô
-$16376EA9-1FBD-4945-8160-BCCC3262128B0.1Sqlite"7vSharpStudio plugin. Database design for Sqlite support(Ò‰Õ«ÑîŠş2\
-$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EDesign#DB structure creation and migration ®çÔ¢¥Õ{@„™„§à›®ã‘Ê7
-$b2c3ff9e-1f35-4908-af02-4c2038274655Apps@È ›½¾ä 
+$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer ¿µÔ¦•Á¶z@„™„§à›®ã‘Ê7
+$a77e7861-30f4-4159-84f3-e0e448cfddbeApps@È ›½¾ä 

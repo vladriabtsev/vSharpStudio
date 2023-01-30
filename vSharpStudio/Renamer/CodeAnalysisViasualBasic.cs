@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using System.Threading;
 using System.Threading.Tasks;
-using Proto.Renamer;
+//using Proto.Renamer;
 using vSharpStudio.common.DiffModel;
 using System.Diagnostics;
 

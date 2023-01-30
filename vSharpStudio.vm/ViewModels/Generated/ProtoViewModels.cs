@@ -5732,7 +5732,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(8)]
         [DisplayName("Output Folder")]
         [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
-        [Description("Get is returning relative folder path to project file")]
+        [Description("Project subfolder for generated file/files")]
         public string RelativePathToGenFolder // Property.tt Line: 55
         { 
             get { return this._RelativePathToGenFolder; }
