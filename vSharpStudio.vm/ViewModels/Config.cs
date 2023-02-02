@@ -135,23 +135,23 @@ namespace vSharpStudio.vm.ViewModels
 
         private CancellationTokenSource? cancellationSourceForValidatingFullConfig = null;
 
-        public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
-        {
-            // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
-            // https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
-            // https://devblogs.microsoft.com/pfxteam/asynclazyt/
-            // https://github.com/StephenCleary/AsyncEx
-            // https://msdn.microsoft.com/en-us/magazine/dn818493.aspx
-            //SortedObservableCollection<ValidationMessage> valCollection = null;
-            await Task.Run(() =>
-            {
-                this.ValidateSubTreeFromNode(node);
-            }).ConfigureAwait(false); // not keeping context because doing nothing after await
-        }
-        public void ValidateSubTreeFromNode(ILogger? logger = null)
-        {
-            this.ValidateSubTreeFromNode(this, logger);
-        }
+        //public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
+        //{
+        //    // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
+        //    // https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
+        //    // https://devblogs.microsoft.com/pfxteam/asynclazyt/
+        //    // https://github.com/StephenCleary/AsyncEx
+        //    // https://msdn.microsoft.com/en-us/magazine/dn818493.aspx
+        //    //SortedObservableCollection<ValidationMessage> valCollection = null;
+        //    await Task.Run(() =>
+        //    {
+        //        this.ValidateSubTreeFromNode(node);
+        //    }).ConfigureAwait(false); // not keeping context because doing nothing after await
+        //}
+        //public void ValidateSubTreeFromNode(ILogger? logger = null)
+        //{
+        //    this.ValidateSubTreeFromNode(this, logger);
+        //}
         public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger? logger = null)
         {
             _logger?.Trace();
@@ -172,14 +172,20 @@ namespace vSharpStudio.vm.ViewModels
             this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
             var token = this.cancellationSourceForValidatingFullConfig.Token;
 
-            var visitor = new ValidationConfigVisitor(token, logger);
-            visitor.UpdateSubstructCounts(node);
+            var visitor = new ValidationConfigVisitor(this.Dispatcher, token, logger);
+            this.InvokeOnUIThread(() =>
+            {
+                visitor.UpdateSubstructCounts(node);
+            });
             (node as IConfigAcceptVisitor)!.AcceptConfigNodeVisitor(visitor);
             if (!token.IsCancellationRequested)
             {
                 // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...
-                node.ValidationCollection.Clear();
-                node.ValidationCollection = visitor.Result;
+                this.InvokeOnUIThread(() =>
+                {
+                    node.ValidationCollection.Clear();
+                    node.ValidationCollection = visitor.Result;
+                });
                 //Debug.Assert(node.ValidationCollection.Count == node.CountErrors + node.CountInfos + node.CountWarnings);
             }
             else
@@ -257,6 +263,8 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this._SelectedNode != value)
                 {
+                    if (ITreeConfigNode.IsSorting)
+                        return;
                     if (this.OnSelectedNodeChanging != null)
                     {
                         this.OnSelectedNodeChanging(this._SelectedNode, value);

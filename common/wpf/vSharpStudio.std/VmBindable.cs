@@ -150,11 +150,15 @@ namespace ViewModelBase
         //}
         protected void InvokeOnUIThread(Action action)
         {
-            Debug.Assert(Dispatcher != null);
-            if (Dispatcher.CheckAccess())
-                action();
+            if (Dispatcher != null)
+            {
+                if (Dispatcher.CheckAccess())
+                    action();
+                else
+                    Dispatcher.BeginInvoke(() => action());
+            }
             else
-                Dispatcher.BeginInvoke(() => action());
+                action();
         }
 
         #endregion

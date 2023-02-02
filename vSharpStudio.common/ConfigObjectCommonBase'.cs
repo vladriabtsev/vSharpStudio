@@ -151,7 +151,9 @@
                     ITreeConfigNode p = (ITreeConfigNode)this;
                     if (p.Parent != null)
                     {
+                        ITreeConfigNode.IsSorting = true;
                         p.Parent.Sort(this.GetType());
+                        ITreeConfigNode.IsSorting = false;
                     }
                 }
             }
@@ -334,7 +336,9 @@
                             ITreeConfigNode p = (ITreeConfigNode)this;
                             if (p.Parent != null)
                             {
+                                ITreeConfigNode.IsSorting = true;
                                 p.Parent.Sort(this.GetType());
+                                ITreeConfigNode.IsSorting = false;
                             }
                         }
                     }

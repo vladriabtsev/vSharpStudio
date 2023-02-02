@@ -81,7 +81,6 @@ namespace vSharpStudio.Views
             //    this.DataContext = this._model;
             //});
 #endif
-
         }
     }
 }

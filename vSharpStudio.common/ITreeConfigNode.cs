@@ -16,6 +16,7 @@ namespace vSharpStudio.common
     }
     public interface ITreeConfigNode : ITree, IValidatableWithSeverity, IGuid, IName, ISettings
     {
+        public static bool IsSorting { get; set; }
         bool AutoGenerateProperties { get; }
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions { get; }
         string ModelPath { get; }

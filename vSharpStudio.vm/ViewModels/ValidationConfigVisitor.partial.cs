@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading;
+using System.Windows.Threading;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
 using vSharpStudio.common;
@@ -15,9 +16,11 @@ namespace vSharpStudio.vm.ViewModels
 
         private int _level = -1;
         private ILogger _logger = null;
+        private IDispatcher? dispatcher;
 
-        public ValidationConfigVisitor(CancellationToken cancellationToken, ILogger? logger = null)
+        public ValidationConfigVisitor(IDispatcher? dispatcher, CancellationToken cancellationToken, ILogger? logger = null)
         {
+            this.dispatcher = dispatcher;
             this._cancellationToken = cancellationToken;
             this._logger = logger;
             this.Result = new SortedObservableCollection<ValidationMessage>();
@@ -123,10 +126,13 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
                 }
-                p.ValidationCollection.Clear();
-                p.CountErrors = 0;
-                p.CountWarnings = 0;
-                p.CountInfos = 0;
+                this.InvokeOnUIThread(() =>
+                {
+                    p.ValidationCollection.Clear();
+                    p.CountErrors = 0;
+                    p.CountWarnings = 0;
+                    p.CountInfos = 0;
+                });
 
                 p.Validate();
 
@@ -151,5 +157,19 @@ namespace vSharpStudio.vm.ViewModels
                 this._level--;
             }
         }
+
+        protected void InvokeOnUIThread(Action action)
+        {
+            if (this.dispatcher != null)
+            {
+                if (this.dispatcher.CheckAccess())
+                    action();
+                else
+                    this.dispatcher.BeginInvoke(() => action());
+            }
+            else
+                action();
+        }
+
     }
 }

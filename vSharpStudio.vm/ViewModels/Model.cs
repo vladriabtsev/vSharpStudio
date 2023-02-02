@@ -127,51 +127,51 @@ namespace vSharpStudio.vm.ViewModels
         #region Validation
 
         private CancellationTokenSource? cancellationSourceForValidatingFullConfig = null;
-        public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
-        {
-            // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
-            // https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
-            // https://devblogs.microsoft.com/pfxteam/asynclazyt/
-            // https://github.com/StephenCleary/AsyncEx
-            // https://msdn.microsoft.com/en-us/magazine/dn818493.aspx
-            await Task.Run(() =>
-            {
-                this.ValidateSubTreeFromNode(node);
-            }).ConfigureAwait(false); // not keeping context because doing nothing after await
-        }
-        public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger? logger = null)
-        {
-            if (node == null)
-            {
-                return;
-            }
+        //public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
+        //{
+        //    // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx
+        //    // https://docs.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap
+        //    // https://devblogs.microsoft.com/pfxteam/asynclazyt/
+        //    // https://github.com/StephenCleary/AsyncEx
+        //    // https://msdn.microsoft.com/en-us/magazine/dn818493.aspx
+        //    await Task.Run(() =>
+        //    {
+        //        this.ValidateSubTreeFromNode(node);
+        //    }).ConfigureAwait(false); // not keeping context because doing nothing after await
+        //}
+        //public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger? logger = null)
+        //{
+        //    if (node == null)
+        //    {
+        //        return;
+        //    }
 
-            if (this.cancellationSourceForValidatingFullConfig != null)
-            {
-                this.cancellationSourceForValidatingFullConfig.Cancel();
-                // if (logger != null && logger.IsEnabled)
-                if (logger != null)
-                {
-                    logger.LogInformation("=== Cancellation request ===");
-                }
-            }
-            this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
-            var token = this.cancellationSourceForValidatingFullConfig.Token;
+        //    if (this.cancellationSourceForValidatingFullConfig != null)
+        //    {
+        //        this.cancellationSourceForValidatingFullConfig.Cancel();
+        //        // if (logger != null && logger.IsEnabled)
+        //        if (logger != null)
+        //        {
+        //            logger.LogInformation("=== Cancellation request ===");
+        //        }
+        //    }
+        //    this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
+        //    var token = this.cancellationSourceForValidatingFullConfig.Token;
 
-            var visitor = new ValidationConfigVisitor(token, logger);
-            visitor.UpdateSubstructCounts(node);
-            (node as IConfigAcceptVisitor)!.AcceptConfigNodeVisitor(visitor);
-            if (!token.IsCancellationRequested)
-            {
-                // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...
-                node.ValidationCollection.Clear();
-                node.ValidationCollection = visitor.Result;
-            }
-            else
-            {
-                logger?.LogInformation("=== Cancelled ===");
-            }
-        }
+        //    var visitor = new ValidationConfigVisitor(token, logger);
+        //    visitor.UpdateSubstructCounts(node);
+        //    (node as IConfigAcceptVisitor)!.AcceptConfigNodeVisitor(visitor);
+        //    if (!token.IsCancellationRequested)
+        //    {
+        //        // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...
+        //        node.ValidationCollection.Clear();
+        //        node.ValidationCollection = visitor.Result;
+        //    }
+        //    else
+        //    {
+        //        logger?.LogInformation("=== Cancelled ===");
+        //    }
+        //}
 
         #endregion Validation
 

@@ -14,27 +14,11 @@ namespace ViewModelBase
     {
         public static vCommand Create(Action<object> execute, Predicate<object> canExecute)
         {
-            return new vCommand(
-                (o) =>
-                {
-                    execute(o);
-                },
-                (o) =>
-                {
-                    return canExecute(o);
-                });
+            return new vCommand((o) => { execute(o); }, (o) => { return canExecute(o); });
         }
-        public static vCommand CreateAsync(Func<object, Task> executeAsync, Predicate<object> canExecute)
+        public static vCommand CreateAsync(Action<object> execute, Predicate<object> canExecute)
         {
-            return new vCommand(
-                (o) =>
-                {
-                    return executeAsync(o);
-                },
-                (o) =>
-                {
-                    return canExecute(o);
-                });
+            return new vCommand((o) => { Task.Run(() => { execute(o); }); }, (o) => { return canExecute(o); });
         }
         private bool _isexecuted = false;
         //public Visibility Visibility
@@ -53,7 +37,7 @@ namespace ViewModelBase
 
         private readonly Predicate<object> _canExecute;
         private readonly Action<object> _execute;
-        private readonly Func<object, Task> _executeAsync;
+        //private readonly Func<object, Task> _executeAsync;
         public vCommand(Action<object> execute)
            : this(execute, null)
         {
@@ -64,11 +48,11 @@ namespace ViewModelBase
             _execute = execute;
             _canExecute = canExecute;
         }
-        public vCommand(Func<object, Task> executeAsync, Predicate<object> canExecute)
-        {
-            _executeAsync = executeAsync;
-            _canExecute = canExecute;
-        }
+        //public vCommand(Func<object, Task> executeAsync, Predicate<object> canExecute)
+        //{
+        //    _executeAsync = executeAsync;
+        //    _canExecute = canExecute;
+        //}
         public bool CanExecute(object parameter)
         {
             if (this.Dispatcher == null) // to made visible all controls binded to visibility
@@ -87,20 +71,20 @@ namespace ViewModelBase
             //this.IsEnabled = false;
             return false;
         }
-        async public void Execute(object parameter)
+        public void Execute(object parameter)
         {
             _isexecuted = true;
             CanExecuteChangedInternal.Raise(this);
             try
             {
-                if (_execute != null)
-                {
-                    _execute(parameter);
-                }
-                else
-                {
-                    await _executeAsync(parameter);
-                }
+                //if (_execute != null)
+                //{
+                _execute(parameter);
+                //}
+                //else
+                //{
+                //    await _executeAsync(parameter);
+                //}
             }
             finally
             {
@@ -114,7 +98,11 @@ namespace ViewModelBase
             CanExecuteChangedInternal.Raise(this);
             try
             {
-                await _executeAsync(parameter);
+                await Task.Run(() =>
+                {
+                    _execute(parameter);
+                });
+                //await _executeAsync(parameter);
             }
             finally
             {

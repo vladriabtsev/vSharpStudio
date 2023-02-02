@@ -284,7 +284,10 @@ namespace ViewModelBase
             var properties = dic.Select(error => error.Key).ToList();
             foreach (var propertyName in properties)
                 ClearError(propertyName);
-            ValidationCollection.Clear();
+            InvokeOnUIThread(() =>
+            {
+                ValidationCollection.Clear();
+            });
         }
         public void RaiseErrorsChanged(string propertyName)
         {
