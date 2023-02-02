@@ -148,19 +148,18 @@ namespace ViewModelBase
         //        var task = this.Dispatcher.RunAsync(priority, () => action());
         //    }
         //}
-        protected void InvokeOnUIThread(Action action)
+        public static void InvokeOnUIThread(Action action)
         {
-            if (Dispatcher != null)
+            if (VmBindable.AppDispatcher != null)
             {
-                if (Dispatcher.CheckAccess())
+                if (VmBindable.AppDispatcher.CheckAccess())
                     action();
                 else
-                    Dispatcher.BeginInvoke(() => action());
+                    VmBindable.AppDispatcher.BeginInvoke(() => action());
             }
             else
                 action();
         }
-
         #endregion
 
         //#region MessageBox Methods

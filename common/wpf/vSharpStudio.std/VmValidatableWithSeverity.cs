@@ -284,7 +284,7 @@ namespace ViewModelBase
             var properties = dic.Select(error => error.Key).ToList();
             foreach (var propertyName in properties)
                 ClearError(propertyName);
-            InvokeOnUIThread(() =>
+            VmBindable.InvokeOnUIThread(() =>
             {
                 ValidationCollection.Clear();
             });

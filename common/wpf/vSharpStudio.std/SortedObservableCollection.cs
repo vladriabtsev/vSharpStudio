@@ -329,7 +329,10 @@ namespace ViewModelBase
                     if (OnSortMovedAction != null)
                         OnSortMovedAction(ifrom, ito);
                 }
-                OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
+                VmBindable.InvokeOnUIThread(() =>
+                {
+                    OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
+                });
             }
         }
 

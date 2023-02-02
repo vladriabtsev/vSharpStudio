@@ -892,8 +892,8 @@ namespace vSharpStudio.ViewModels
 #endif
                                 this.ResetIsChangedBeforeSave();
                                 this.cancellationTokenSource = null;
-                                if (ex != null)
-                                    throw ex;
+                                //if (ex != null)
+                                //    throw ex;
                             }
                             catch (CancellationException)
                             {
@@ -1096,6 +1096,7 @@ namespace vSharpStudio.ViewModels
             Exception? resEx = null;
             ProgressVM progress = new ProgressVM();
             progress.Progress = 0;
+            this.IsBusy = true;
             TestTransformation? tst = parm as TestTransformation;
             try
             {
@@ -1320,6 +1321,7 @@ namespace vSharpStudio.ViewModels
             finally
             {
                 //TODO roll back if Exception
+                this.IsBusy = false;
             }
             return resEx;
         }
