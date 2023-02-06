@@ -70,6 +70,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xceed.Wpf.Toolkit", "submod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vPlugin.Sample2", "vPlugin.Sample2\vPlugin.Sample2.csproj", "{E9C45505-E874-45A0-A3D3-A7693423BED4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfControlLibrary1", "WpfControlLibrary1\WpfControlLibrary1.csproj", "{102C1380-E504-460C-B89B-9B2774D462CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,12 @@ Global
 		{E9C45505-E874-45A0-A3D3-A7693423BED4}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{E9C45505-E874-45A0-A3D3-A7693423BED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9C45505-E874-45A0-A3D3-A7693423BED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{102C1380-E504-460C-B89B-9B2774D462CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{102C1380-E504-460C-B89B-9B2774D462CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{102C1380-E504-460C-B89B-9B2774D462CB}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
+		{102C1380-E504-460C-B89B-9B2774D462CB}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
+		{102C1380-E504-460C-B89B-9B2774D462CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{102C1380-E504-460C-B89B-9B2774D462CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -193,6 +201,7 @@ Global
 		{7A0BD212-E3D4-4419-B947-82B78E07ADAC} = {8AF928D9-39F9-4787-8806-A24BE9DA252F}
 		{211753FC-8C4D-4F05-AB4B-130FABECF30E} = {2308E25C-68C9-4F24-A3BC-3678253E77A0}
 		{83B37A5C-2FEC-4488-AC57-0CDCE58DB9DF} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
+		{102C1380-E504-460C-B89B-9B2774D462CB} = {E0EBA1FB-4B08-4546-BDD5-093C533713FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A7BE2D74-A2C5-46DF-B175-814908FA7DAD}

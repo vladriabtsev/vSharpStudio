@@ -172,8 +172,8 @@ namespace vSharpStudio.vm.ViewModels
             this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
             var token = this.cancellationSourceForValidatingFullConfig.Token;
 
-            var visitor = new ValidationConfigVisitor(this.Dispatcher, token, logger);
-            VmBindable.InvokeOnUIThread(() =>
+            var visitor = new ValidationConfigVisitor(token, logger);
+            UIDispatcher.Invoke(() =>
             {
                 visitor.UpdateSubstructCounts(node);
             });
@@ -181,7 +181,7 @@ namespace vSharpStudio.vm.ViewModels
             if (!token.IsCancellationRequested)
             {
                 // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...
-                VmBindable.InvokeOnUIThread(() =>
+                UIDispatcher.Invoke(() =>
                 {
                     node.ValidationCollection.Clear();
                     node.ValidationCollection = visitor.Result;

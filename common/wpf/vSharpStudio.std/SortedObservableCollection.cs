@@ -7,6 +7,7 @@ using ViewModelBase;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Collections;
+using System.Windows.Threading;
 
 namespace ViewModelBase
 {
@@ -58,7 +59,10 @@ namespace ViewModelBase
         {
             if (OnClearingAction != null)
                 OnClearingAction();
-            base.Clear();
+            UIDispatcher.Invoke(() =>
+            {
+                base.Clear();
+            });
             if (OnClearedAction != null)
                 OnClearedAction();
         }
@@ -68,7 +72,10 @@ namespace ViewModelBase
             {
                 if (OnAddingAction != null)
                     OnAddingAction(item);
-                base.Add(item);
+                UIDispatcher.Invoke(() =>
+                {
+                    base.Add(item);
+                });
                 if (OnAddedAction != null)
                     OnAddedAction(item);
             }
@@ -79,7 +86,11 @@ namespace ViewModelBase
             {
                 if (OnRemovingAction != null)
                     OnRemovingAction(item);
-                var res = base.Remove(item);
+                bool res = false;
+                UIDispatcher.Invoke(() =>
+                {
+                    res = base.Remove(item);
+                });
                 if (OnRemovedAction != null)
                     OnRemovedAction(item);
                 return res;
@@ -92,7 +103,10 @@ namespace ViewModelBase
                 var item = this[indx];
                 if (OnRemovingAction != null)
                     OnRemovingAction(item);
-                base.RemoveAt(indx);
+                UIDispatcher.Invoke(() =>
+                {
+                    base.RemoveAt(indx);
+                });
                 if (OnRemovedAction != null)
                     OnRemovedAction(item);
             }
@@ -325,15 +339,18 @@ namespace ViewModelBase
                     Debug.Assert(ifrom != -1);
                     var ito = i;
                     Debug.Assert(ito != -1);
-                    base.MoveItem(ifrom, ito);
+                    //UIDispatcher.Execute(() =>
+                    //{
+                        base.MoveItem(ifrom, ito);
+                    //});
                     if (OnSortMovedAction != null)
                         OnSortMovedAction(ifrom, ito);
                 }
-                VmBindable.InvokeOnUIThread(() =>
-                {
-                    OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
-                });
             }
+            UIDispatcher.Invoke(() =>
+            {
+                OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
+            });
         }
 
         #endregion Sort

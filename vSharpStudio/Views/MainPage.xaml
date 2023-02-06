@@ -8,6 +8,7 @@
              xmlns:common="clr-namespace:vSharpStudio.common;assembly=vSharpStudio.common"
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
+             xmlns:vc="clr-namespace:vSharpStudio.Controls"
              xmlns:vwpf="clr-namespace:vSharpStudio.wpf.Controls;assembly=vSharpStudio.wpf"  
              d:DataContext="{d:DesignInstance Type=vm:MainPageVM, IsDesignTimeCreatable=false}"
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
@@ -99,13 +100,16 @@
                                     </Grid>
                                 </xctk:DropDownButton.DropDownContent>
                             </xctk:DropDownButton>
-                            <Button Command="{Binding CommandOpenConfig}" ToolTip="Open Config File">
+                            <vc:vButton DataContext="{Binding BtnOpenConfig}" ToolTip="Open Config File"/>
+                            <!--<Button Command="{Binding CommandOpenConfig}" ToolTip="Open Config File">
                                 <ContentControl Template="{StaticResource iconSettingsFile}" />
-                                <!--<ContentControl Template="{StaticResource iconOpenfileDialog}" />-->
-                            </Button>
-                            <Button Command="{Binding CommandNewConfig}" ToolTip="Create Empty Config">
+                            </Button>-->
+                            <!--<vwpf:vButton DataContext="{Binding BtnNewConfig}" ToolTip="Create Empty Config"/>-->
+                            <vc:vButton DataContext="{Binding BtnNewConfig}" ToolTip="Create Empty Config"/>
+
+                            <!--<Button Command="{Binding CommandNewConfig}" ToolTip="Create Empty Config">
                                 <ContentControl Template="{StaticResource iconNewFile}" />
-                            </Button>
+                            </Button>-->
                             <!--<xctk:WatermarkComboBox ItemsSource="{Binding DicPlugins, Converter={StaticResource ConverterDicToListPlugins}, ConverterParameter={x:Static common:vPluginLayerTypeEnum.DbConnection}}" 
                                             SelectedItem="{Binding SelectedDbDesignPlugin}" 
                                             DisplayMemberPath="Plugin.NameUi"
@@ -117,15 +121,17 @@
                                     </DataTemplate>
                                 </xctk:WatermarkComboBox.WatermarkTemplate>
                             </xctk:WatermarkComboBox>-->
-                            <Button Command="{Binding CommandConfigSave}" ToolTip="{Binding SaveToolTip}">
+                            <vc:vButton DataContext="{Binding BtnConfigSave}" ToolTip="SaveToolTip"/>
+                            <!--<Button Command="{Binding CommandConfigSave}" ToolTip="{Binding SaveToolTip}">
                                 <ContentControl Template="{StaticResource iconSave}" />
-                            </Button>
+                            </Button>-->
                             <!--<Button Command="{Binding CommandConfigSave}" Visibility="{Binding CommandAddNew.Visibility}" ToolTip="Ctrl-S - save config">
                         <ContentControl Template="{StaticResource iconSaveAll}" />
                     </Button>-->
-                            <Button Command="{Binding CommandConfigSaveAs}" ToolTip="Ctrl-A?? - save config as">
+                            <vc:vButton DataContext="{Binding BtnConfigSaveAs}" ToolTip="Ctrl-A?? - save config as"/>
+                            <!--<Button Command="{Binding CommandConfigSaveAs}" ToolTip="Ctrl-A?? - save config as">
                                 <ContentControl Template="{StaticResource iconSaveAs}" />
-                            </Button>
+                            </Button>-->
                             <!--<Button Command="{Binding CommandEditConnStrings}" ToolTip="Ctrl-C - connection strings builder">
                                 <ContentControl Template="{StaticResource iconConnectionBuilder}" />
                             </Button>-->
@@ -150,9 +156,10 @@
                                     </DataTemplate>
                                 </xctk:WatermarkComboBox.WatermarkTemplate>
                             </xctk:WatermarkComboBox>-->
+                            <vc:vButton DataContext="{Binding BtnConfigSaveAs}" ToolTip="Ctrl-A?? - save config as"/>
                             <Button Command="{Binding CommandConfigCurrentUpdate, IsAsync=True, Mode=OneWay}"
-                                ToolTip="Run Generators">
-                                <ContentControl Template="{StaticResource iconRun}" />
+                                ToolTip="{Binding CommandConfigCurrentUpdate.ToolTipText}">
+                                <ContentControl Template="{StaticResource iconRun}" ToolTip="{Binding CommandConfigCurrentUpdate.ToolTipText}"/>
                             </Button>
                         </ToolBar>
                     </ToolBarPanel>

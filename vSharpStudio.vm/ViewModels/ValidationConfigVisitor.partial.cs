@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Threading;
@@ -16,11 +17,9 @@ namespace vSharpStudio.vm.ViewModels
 
         private int _level = -1;
         private ILogger _logger = null;
-        private IDispatcher? dispatcher;
 
-        public ValidationConfigVisitor(IDispatcher? dispatcher, CancellationToken cancellationToken, ILogger? logger = null)
+        public ValidationConfigVisitor(CancellationToken cancellationToken, ILogger? logger = null)
         {
-            this.dispatcher = dispatcher;
             this._cancellationToken = cancellationToken;
             this._logger = logger;
             this.Result = new SortedObservableCollection<ValidationMessage>();
@@ -114,8 +113,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (pp == null)
                 {
-                    //pp = (ITreeConfigNode)this.parent;
-                    pp = (p as IParent).Parent;
+                    if (p is IParent ip)
+                        pp = ip.Parent;
+                    else
+                        Debug.Assert(false);
                 }
                 else
                 {
@@ -126,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     this._logger.LogInformation(string.Empty.PadRight(this._level, ' ') + p.GetType().Name + ": " + pp.Name);
                 }
-                this.InvokeOnUIThread(() =>
+                UIDispatcher.Invoke(() =>
                 {
                     p.ValidationCollection.Clear();
                     p.CountErrors = 0;
@@ -136,7 +137,7 @@ namespace vSharpStudio.vm.ViewModels
 
                 p.Validate();
 
-                foreach (var t in p.ValidationCollection)
+                foreach (var t in p.ValidationCollection.ToList())
                 {
                     // t.Model = node;
                     this.AddMessage(pp, t);
@@ -157,19 +158,5 @@ namespace vSharpStudio.vm.ViewModels
                 this._level--;
             }
         }
-
-        protected void InvokeOnUIThread(Action action)
-        {
-            if (this.dispatcher != null)
-            {
-                if (this.dispatcher.CheckAccess())
-                    action();
-                else
-                    this.dispatcher.BeginInvoke(() => action());
-            }
-            else
-                action();
-        }
-
     }
 }

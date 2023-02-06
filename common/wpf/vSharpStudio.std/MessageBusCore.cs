@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using System.Windows.Threading;
 
 namespace ViewModelBase
 {
@@ -20,9 +21,9 @@ namespace ViewModelBase
         new Dictionary<string, List<WeakReference>>();
 
     // Dispatcher for cross-thread operations
-    protected readonly IDispatcher Dispatcher;
+    protected readonly Dispatcher Dispatcher;
 
-    protected MessageBusCore(IDispatcher dispatcher)
+    protected MessageBusCore(Dispatcher dispatcher)
     {
       Dispatcher = dispatcher;
     }

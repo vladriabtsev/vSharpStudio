@@ -34,6 +34,9 @@
         <Compile Include="..\common\wpf\vSharpStudio.std\LoggerExt.cs" Link="ViewModels\LoggerExt.cs" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Update="Controls\vButton.xaml.cs">
+          <SubType>Code</SubType>
+        </Compile>
         <Compile Update="Properties\Settings.Designer.cs">
             <DesignTimeSharedInput>True</DesignTimeSharedInput>
             <AutoGen>True</AutoGen>
@@ -59,6 +62,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="AsyncAwaitBestPractices.MVVM" Version="6.0.6" />
+        <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.1.0" />
         <PackageReference Include="CompareNETObjects" Version="4.79.0" />
         <PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
             <PrivateAssets>all</PrivateAssets>

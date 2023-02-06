@@ -55,8 +55,8 @@ namespace ViewModelBase
         //}
         public bool CanExecute(object parameter)
         {
-            if (this.Dispatcher == null) // to made visible all controls binded to visibility
-                return true;
+            //if (this.Dispatcher == null) // to made visible all controls binded to visibility
+            //    return true;
             if (_isexecuted)
                 return false;
             if (_canExecute == null)
@@ -128,7 +128,7 @@ namespace ViewModelBase
         private event EventHandler CanExecuteChangedInternal;
         public void RaiseCanExecuteChanged()
         {
-            if (this.Dispatcher != null && this.CanExecuteChangedInternal != null) // to exclude errors in Design mode
+            if (this.CanExecuteChangedInternal != null) // to exclude errors in Design mode
                 CanExecuteChangedInternal.Raise(this);
         }
         //public bool IsEnabled
@@ -149,5 +149,11 @@ namespace ViewModelBase
         //    set { SetProperty<Visibility>(ref this._Visibility, value); }
         //}
         //private Visibility _Visibility;
+        public string ToolTipText
+        {
+            get { return this._ToolTipText; }
+            set { SetProperty<string>(ref this._ToolTipText, value); }
+        }
+        private string _ToolTipText;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Debug;
@@ -23,6 +24,8 @@ namespace vSharpStudio.Unit
         // public VmTests(ITestOutputHelper output)
         public VmTests()
         {
+            UIDispatcher.Initialize();
+
             VmBindable.isUnitTests = true;
             // ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
             // loggerFactory.AddProvider(new DebugLoggerProvider());
@@ -81,7 +84,7 @@ namespace vSharpStudio.Unit
         public void Editable014CanCancelSecondLevelCollection()
         {
             var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            mvm.CommandNewConfig.Execute(@".\kuku.vcfg");
+            mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
 
             var cfg = mvm.Config;
             Catalog vm = cfg.Model.GroupCatalogs.AddCatalog("test");
@@ -102,7 +105,7 @@ namespace vSharpStudio.Unit
         public void Editable021CanCancelCatalogPropertiy()
         {
             var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            mvm.CommandNewConfig.Execute(@".\kuku.vcfg");
+            mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
 
             var cfg = mvm.Config;
             Catalog vm = cfg.Model.GroupCatalogs.AddCatalog();
@@ -307,7 +310,7 @@ namespace vSharpStudio.Unit
         public void Property001_Position()
         {
             var mvm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            mvm.CommandNewConfig.Execute(@".\kuku.vcfg");
+            mvm.BtnNewConfig.Execute(@".\kuku.vcfg");
 
             var cfg = mvm.Config;
             int catPos = 14;
@@ -349,5 +352,12 @@ namespace vSharpStudio.Unit
         //    Assert.IsTrue(cfg.Model.GroupCatalogs[0].GroupProperties.LastGenPosition == 4);
         //}
         //#endregion OnAdded in parent
+        [TestMethod]
+        public void OnUIThread_001_Position()
+        {
+            UIDispatcher.Invoke(() =>
+            {
+            });
+        }
     }
 }

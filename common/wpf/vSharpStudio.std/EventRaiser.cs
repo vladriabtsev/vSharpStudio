@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using System.Xml.Linq;
 
 namespace ViewModelBase
@@ -11,28 +12,28 @@ namespace ViewModelBase
     {
         public static void Raise(this EventHandler handler, object sender)
         {
-            VmBindable.InvokeOnUIThread(() =>
+            UIDispatcher.Invoke(() =>
             {
                 handler?.Invoke(sender, EventArgs.Empty);
             });
         }
         public static void Raise<T>(this EventHandler<EventArgs<T>> handler, object sender, T value)
         {
-            VmBindable.InvokeOnUIThread(() =>
+            UIDispatcher.Invoke(() =>
             {
                 handler?.Invoke(sender, new EventArgs<T>(value));
             });
         }
         public static void Raise<T>(this EventHandler<T> handler, object sender, T value) where T : EventArgs
         {
-            VmBindable.InvokeOnUIThread(() =>
+            UIDispatcher.Invoke(() =>
             {
                 handler?.Invoke(sender, value);
             });
         }
         public static void Raise<T>(this EventHandler<EventArgs<T>> handler, object sender, EventArgs<T> value)
         {
-            VmBindable.InvokeOnUIThread(() =>
+            UIDispatcher.Invoke(() =>
             {
                 handler?.Invoke(sender, value);
             });

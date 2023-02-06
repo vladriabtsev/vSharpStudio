@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Threading;
 using System.ComponentModel;
+using static ViewModelBase.MessageBusProxy;
 
 namespace ViewModelBase
 {
@@ -20,7 +21,6 @@ namespace ViewModelBase
 
         public ObservableCollectionExt()
         {
-            this.Dispatcher = VmBindable.AppDispatcher;
             _timer = new Timer(new TimerCallback(TimerCallback), null, Timeout.Infinite, Timeout.Infinite);
             base.PropertyChanged += ObservableCollectionExt_PropertyChanged;
             base.CollectionChanged += ObservableCollectionExt_CollectionChanged;
@@ -71,14 +71,10 @@ namespace ViewModelBase
             {
                 if (PropertyChanged != null)
                 {
-                    if (Dispatcher.CheckAccess())
+                    UIDispatcher.Invoke(() =>
                     {
                         PropertyChanged(sender, e);
-                    }
-                    else
-                    {
-                        Dispatcher.BeginInvoke(() => PropertyChanged(sender, e));
-                    }
+                    });
                 }
             }
         }
@@ -107,25 +103,16 @@ namespace ViewModelBase
 
                 if (CollectionChanged != null)
                 {
-                    if (Dispatcher.CheckAccess())
-                    {
 #if TEST
             logger.Debug("direct notification");
 #endif
-                        CollectionChanged(sender, e);
-                    }
-                    else
+                    UIDispatcher.Invoke(() =>
                     {
-#if TEST
-            logger.Debug("dispatcher notification");
-#endif
-                        Dispatcher.BeginInvoke(() => CollectionChanged(sender, e));
-                    }
+                        CollectionChanged(sender, e);
+                    });
                 }
             }
         }
-
-        protected readonly IDispatcher Dispatcher;
 
         private Timer _timer;
         //    private NotifyCollectionChangedEventArgs eLast;
@@ -136,21 +123,13 @@ namespace ViewModelBase
             {
                 //        trottlteNotification = false;
                 // Fire the event on the UI thread
-                if (Dispatcher.CheckAccess())
-                {
 #if TEST
           logger.Debug("direct notification");
 #endif
-                    base.OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
-                }
-                else
+                UIDispatcher.Invoke(() =>
                 {
-#if TEST
-          logger.Debug("dispatcher notification");
-#endif
-                    // base.
-                    Dispatcher.BeginInvoke(() => base.OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset)));
-                }
+                    base.OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
+                });
                 if (this.onCountChange != null)
                     this.onCountChange();
             }

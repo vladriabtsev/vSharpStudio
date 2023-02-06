@@ -9,6 +9,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace ViewModelBase
 {
@@ -284,7 +285,7 @@ namespace ViewModelBase
             var properties = dic.Select(error => error.Key).ToList();
             foreach (var propertyName in properties)
                 ClearError(propertyName);
-            VmBindable.InvokeOnUIThread(() =>
+            UIDispatcher.Invoke(() =>
             {
                 ValidationCollection.Clear();
             });

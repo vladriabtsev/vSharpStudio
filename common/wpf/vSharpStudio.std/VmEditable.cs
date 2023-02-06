@@ -64,7 +64,7 @@ namespace ViewModelBase
                                 var t = Task.Run(async delegate
                                 {
                                     await Task.Delay(VmBindable.IsChangedNotificationDelay);
-                                    VmBindable.InvokeOnUIThread(delegate
+                                    UIDispatcher.Invoke(delegate
                                     {
                                         isDelayActivated = false;
                                         OnIsChangedChangedWithDelay();

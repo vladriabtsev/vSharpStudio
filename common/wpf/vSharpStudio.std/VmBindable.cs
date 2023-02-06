@@ -34,19 +34,6 @@ using System.Windows.Threading;
 
 namespace ViewModelBase
 {
-    public class DispatcherDummy : IDispatcher
-    {
-        public void BeginInvoke(Action action)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckAccess()
-        {
-            return true;
-        }
-    }
-
     /// <summary>
     /// Implementation of <see cref="INotifyPropertyChanged"/> to simplify models.
     /// </summary>
@@ -54,8 +41,6 @@ namespace ViewModelBase
     {
         public VmBindable()
         {
-            if (VmBindable._AppDispatcher == null && isUnitTests)
-                VmBindable.AppDispatcher = new DispatcherDummy();
         }
         public static bool isUnitTests;
 #if DEBUG
@@ -117,18 +102,18 @@ namespace ViewModelBase
         //    }
         //}
         //private IDispatcher _Dispatcher;
-        protected IDispatcher Dispatcher { get { return VmBindable.AppDispatcher; } }
-        public static IDispatcher AppDispatcher
-        {
-            get { return VmBindable._AppDispatcher; }
-            set
-            {
-                if (VmBindable._AppDispatcher != null)
-                    throw new InvalidOperationException("'VmBindable.AppDispatcher' is already initialized");
-                VmBindable._AppDispatcher = value;
-            }
-        }
-        private static IDispatcher _AppDispatcher = null;
+        //protected Dispatcher Dispatcher { get { return VmBindable.AppDispatcher; } }
+        //public static Dispatcher AppDispatcher
+        //{
+        //    get { return VmBindable._AppDispatcher; }
+        //    set
+        //    {
+        //        if (VmBindable._AppDispatcher != null)
+        //            throw new InvalidOperationException("'VmBindable.AppDispatcher' is already initialized");
+        //        VmBindable._AppDispatcher = value;
+        //    }
+        //}
+        //private static Dispatcher _AppDispatcher = null;
 
         /// <summary>
         /// Runs a function on the currently executing platform's UI thread.
@@ -148,18 +133,6 @@ namespace ViewModelBase
         //        var task = this.Dispatcher.RunAsync(priority, () => action());
         //    }
         //}
-        public static void InvokeOnUIThread(Action action)
-        {
-            if (VmBindable.AppDispatcher != null)
-            {
-                if (VmBindable.AppDispatcher.CheckAccess())
-                    action();
-                else
-                    VmBindable.AppDispatcher.BeginInvoke(() => action());
-            }
-            else
-                action();
-        }
         #endregion
 
         //#region MessageBox Methods

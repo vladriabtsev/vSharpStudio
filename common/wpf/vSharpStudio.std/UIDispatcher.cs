@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using WindowsDispatcher = System.Windows.Threading.Dispatcher;
+using System.Windows.Threading;
 
 namespace ViewModelBase
 {
@@ -8,13 +8,13 @@ namespace ViewModelBase
     /// Helper class for dispatching work across threads.
     /// WPF apps should call Initialize from the UI thread in App_Start.
     /// </summary>
-    public sealed class UIDispatcher : IDispatcher
+    public sealed class UIDispatcher //: IDispatcher
     {
-        private static volatile IDispatcher _dispatcher;
+        private static volatile UIDispatcher _dispatcher;
         private static readonly object SyncRoot = new Object();
-        private readonly WindowsDispatcher _windowsDispatcher;
+        private readonly Dispatcher _windowsDispatcher;
 
-        private UIDispatcher(WindowsDispatcher windowsDispatcher)
+        private UIDispatcher(Dispatcher windowsDispatcher)
         {
             _windowsDispatcher = windowsDispatcher;
         }
@@ -31,29 +31,18 @@ namespace ViewModelBase
         }
 
         /// <summary>
-        /// Executes the specified delegate asynchronously with the specified array of arguments on the thread the Dispatcher is associated with.
-        /// </summary>
-        /// <param name="action">A delegate to a method that takes multiple arguments, which is pushed onto the Dispatcher event queue.</param>
-        public void BeginInvoke(Action action)
-        {
-            _windowsDispatcher.BeginInvoke(action);
-        }
-
-#if !SILVERLIGHT
-        /// <summary>
         /// Invoke from main UI thread.
         /// </summary>
         public static void Initialize()
         {
-            WindowsDispatcher windowsDispatcher = WindowsDispatcher.CurrentDispatcher;
+            var windowsDispatcher = Dispatcher.CurrentDispatcher;
             _dispatcher = new UIDispatcher(windowsDispatcher);
         }
 
-#endif
         /// <summary>
         /// Obtain the current dispatcher for cross-thread marshaling
         /// </summary>
-        public static IDispatcher Current
+        public static UIDispatcher Current
         {
             get
             {
@@ -61,11 +50,7 @@ namespace ViewModelBase
                 {
                     lock (SyncRoot)
                     {
-#if SILVERLIGHT
-						WindowsDispatcher windowsDispatcher = Deployment.Current.Dispatcher;
-#else
-                        WindowsDispatcher windowsDispatcher = WindowsDispatcher.CurrentDispatcher;
-#endif
+                        var windowsDispatcher = Dispatcher.CurrentDispatcher;
                         _dispatcher = new UIDispatcher(windowsDispatcher);
                     }
                 }
@@ -74,13 +59,22 @@ namespace ViewModelBase
         }
 
         /// <summary>
-        /// Execute an action on the UI thread.
+        /// Execute an action synchronously on the UI thread.
         /// </summary>
         /// <param name="action"></param>
-        public static void Execute(Action action)
+        public static void Invoke(Action action)
         {
             if (_dispatcher.CheckAccess()) action();
-            else _dispatcher.BeginInvoke(action);
+            else _dispatcher._windowsDispatcher.Invoke(action);
+        }
+        /// <summary>
+        /// Start execute an action asynchronously on the UI thread.
+        /// </summary>
+        /// <param name="action"></param>
+        public static void BeginInvoke(Action action)
+        {
+            if (_dispatcher.CheckAccess()) action();
+            else _dispatcher._windowsDispatcher.BeginInvoke(action);
         }
     }
 }

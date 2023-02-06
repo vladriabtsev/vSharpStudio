@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,6 +31,8 @@ namespace vSharpStudio.Unit
         [AssemblyInitialize]
         public static void InitializeTests(TestContext testContext)
         {
+            UIDispatcher.Initialize();
+
             //var hostBuilder = Host.CreateDefaultBuilder()
             //    .ConfigureLogging(builder => builder
             //        .AddDebug()
@@ -122,13 +125,13 @@ namespace vSharpStudio.Unit
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.CommandNewConfig.Execute(@".\");
-            vm.CommandConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute(@".\");
+            vm.BtnConfigSaveAs.Execute(@".\");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
-            vm.CommandConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
+            vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
             sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
@@ -164,8 +167,8 @@ namespace vSharpStudio.Unit
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.CommandNewConfig.Execute(@".\");
-            vm.CommandConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute(@".\");
+            vm.BtnConfigSaveAs.Execute(@".\");
 
             Assert.IsTrue(vm.Config.GroupPlugins.ListPlugins.Count > 0);
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
@@ -178,17 +181,17 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("End test".CallerInfo());
         }
         [TestMethod]
-        public void Plugin004WorkWithAppGeneratorSettings()
+        async public Task Plugin004WorkWithAppGeneratorSettings()
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.CommandNewConfig.Execute(@".\");
-            vm.CommandConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute(@".\");
+            vm.BtnConfigSaveAs.Execute(@".\");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
-            vm.CommandConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
+            vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
             sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
@@ -221,7 +224,7 @@ namespace vSharpStudio.Unit
             //Assert.IsNotNull(vm.Config.Model.DynamicNodeDefaultSettings);
             //Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessNodeSettings).Name, vm.Config.Model.DynamicNodesSettings.GetType().Name);
 
-            vm.CommandConfigSave.Execute(null);
+            vm.BtnConfigSave.Execute();
 
             var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions.Count());
@@ -279,7 +282,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm2.Config.GroupConfigLinks.CountErrors == 0);
             Assert.IsTrue(vm2.Config.CountErrors == 0);
             vm2.Config.DebugTag = "stop";
-            vm2.CommandConfigCurrentUpdate.Execute(new TestTransformation());
+            await vm2.BtnConfigCurrentUpdateAsync.ExecuteAsync(new TestTransformation());
 
             #region DicDiffResult
 #if DEBUG
@@ -339,7 +342,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.AccessParam4, prms2.AccessParam4);
         }
         [TestMethod]
-        public void Plugin005WorkWithNodeGeneratorSettings()
+        async public Task Plugin005WorkWithNodeGeneratorSettings()
         {
             // GeneratorDbAccessNodeCatalogFormSettings "Catalog.*.Form"
             // GeneratorDbAccessNodePropertySettings    "Property"
@@ -352,8 +355,8 @@ namespace vSharpStudio.Unit
             // 4. When saving Config: convert all model nodes generators settings to string representations
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.CommandNewConfig.Execute(@".\");
-            vm.CommandConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute(@".\");
+            vm.BtnConfigSaveAs.Execute(@".\");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -382,7 +385,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.DicGenNodeSettings.Count);
             Assert.AreEqual(0, vm.Config.Model.GroupCatalogs.ListNodeGeneratorsSettings.Count);
             Assert.AreEqual(1, vm.Config.Model.ListNodeGeneratorsSettings.Count);
-            foreach(var t in vm.Config.Model.GroupCatalogs.ListCatalogs)
+            foreach (var t in vm.Config.Model.GroupCatalogs.ListCatalogs)
             {
                 Assert.AreEqual(1, t.ListNodeGeneratorsSettings.Count);
             }
@@ -462,7 +465,7 @@ namespace vSharpStudio.Unit
 
             // 4. When saving Config: convert all model nodes generators settings to string representations
             //Assert.AreEqual("", vm.Config.Model.GroupConstants.ListGeneratorsSettings[0].Settings);
-            vm.CommandConfigSave.Execute(null);
+            vm.BtnConfigSave.Execute();
             //Assert.AreNotEqual("", vm.Config.Model.GroupConstants.ListGeneratorsSettings[0].Settings);
             Assert.AreEqual(1, vm.Config.DicActiveAppProjectGenerators.Count);
 
@@ -494,7 +497,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
             Assert.IsFalse(vm2.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
 
-            vm2.CommandConfigCurrentUpdate.Execute(new TestTransformation());
+            await vm2.BtnConfigCurrentUpdateAsync.ExecuteAsync(new TestTransformation());
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevCurrentConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.AreEqual(true, main.IsAccessParam1);
             Assert.AreEqual(false, main.IsAccessParam2);
@@ -524,8 +527,8 @@ namespace vSharpStudio.Unit
             // 4. When saving Config: convert all solutions and project groups settings to string representations
             _logger.LogInformation("".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.CommandNewConfig.Execute(@".\");
-            vm.CommandConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute(@".\");
+            vm.BtnConfigSaveAs.Execute(@".\");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -644,7 +647,7 @@ namespace vSharpStudio.Unit
             set.IsGroupParam1 = true;
             var setPrj = (vPlugin.Sample.PluginsGroupProjectSettings)prj.DicPluginsGroupSettings[gen.PluginGenerator.ProjectParametersGuid];
             setPrj.IsGroupProjectParam1 = true;
-            vm.CommandConfigSave.Execute(null);
+            vm.BtnConfigSave.Execute();
             Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
             Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
@@ -681,8 +684,8 @@ namespace vSharpStudio.Unit
             // 4. When saving Config: convert all model nodes generators settings to string representations
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.CommandNewConfig.Execute(@".\");
-            vm.CommandConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute(@".\");
+            vm.BtnConfigSaveAs.Execute(@".\");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -729,7 +732,7 @@ namespace vSharpStudio.Unit
             nds2.IsParam1 = false;
             Assert.AreNotEqual(nds.IsParam1, nds2.IsParam1);
 
-            vm.CommandConfigSave.Execute(null);
+            vm.BtnConfigSave.Execute();
 
             // 1. When Config is loaded: init all generators settings VMs on all model nodes
             var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -757,12 +760,12 @@ namespace vSharpStudio.Unit
         {
             _logger.LogTrace("Start test".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.CommandNewConfig.Execute(@".\");
-            vm.CommandConfigSaveAs.Execute(@".\");
+            vm.BtnNewConfig.Execute(@".\");
+            vm.BtnConfigSaveAs.Execute(@".\");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
-            vm.CommandConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
+            vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
             sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
@@ -787,7 +790,7 @@ namespace vSharpStudio.Unit
             connSettings = (vPlugin.Sample.DbConnectionStringSettings)gen.DynamicMainConnStrSettings;
             Assert.AreEqual("test_value2", connSettings.StringSettings);
 
-            vm.CommandConfigSave.Execute(null);
+            vm.BtnConfigSave.Execute();
 
             var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
             var gen2 = vm2.Config.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0];
@@ -809,13 +812,13 @@ namespace vSharpStudio.Unit
             var genFile = "test_file.cs";
 
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.CommandNewConfig.Execute(@".\");
+            vm.BtnNewConfig.Execute(@".\");
 
             vm.Config.Name = "test1";
             var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");
             var c1 = gr.NodeAddNewSubNode();
             var c2 = gr.NodeAddNewSubNode();
-            vm.CommandConfigSaveAs.Execute(cfgPath);
+            vm.BtnConfigSaveAs.Execute(cfgPath);
 
             //vm.Compose(MainPageVM.GetvSharpStudioPluginsPath());
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
@@ -851,74 +854,73 @@ namespace vSharpStudio.Unit
             prms.IsAccessParam1 = true;
             prms.IsAccessParam2 = false;
             prms.AccessParam3 = "test";
-            vm.CommandConfigSave.Execute(null);
+            vm.BtnConfigSave.Execute();
 
             var genFilePath = genFolder + genFile;
             if (File.Exists(genFilePath))
                 File.Delete(genFilePath);
 
-            // Can recognize not valid Config, SolutionPath is empty
-#region not valid Config
             // valid
             vm.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm.Config.CountErrors == 0);
-            // not valid
-            sln.RelativeAppSolutionPath = null;
-            vm.Config.ValidateSubTreeFromNode();
-            Assert.IsTrue(vm.Config.CountErrors > 0);
-            //// valid
-            //sln.RelativeAppSolutionPath = slnPath;
-            //vm.Config.ValidateSubTreeFromNode();
-            //Assert.IsTrue(vm.Config.CountErrors == 0);
 
             TestTransformation tt = new TestTransformation();
-            tt.IsThrowExceptionOnBuildValidated = true;
-            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
-            Assert.IsTrue(vm.ProgressVM.Exception != null);
-            Assert.IsTrue(vm.Config.CountErrors > 0);
-#endregion not valid Config
 
-#region valid Config
+            // valid
+            sln.RelativeAppSolutionPath = slnPath;
+            vm.Config.ValidateSubTreeFromNode(vm.Config);
+            Assert.IsTrue(vm.Config.CountErrors == 0);
+
+            // Can catch Exception
+            tt.IsThrowExceptionOnBuildValidated = true;
+            //await Assert.ThrowsExceptionAsync<Exception>(() =>
+            //{
+            //    return vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            //});
+            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            Assert.IsTrue(vm.ProgressVM.Exception != null);
+
+            #region valid Config
             sln.RelativeAppSolutionPath = slnPath;
             tt = new TestTransformation();
             tt.IsThrowExceptionOnConfigValidated = true;
-            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnConfigValidated));
             Assert.IsTrue(vm.Config.CountErrors == 0);
-#endregion valid Config
+            #endregion valid Config
 
-#region compilable code
+            #region compilable code
             tt = new TestTransformation();
-            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception == null);
-#endregion compilable code
+            #endregion compilable code
 
             // Can recognize exception before rename
-#region not compilable code
+            #region not compilable code
             tt = new TestTransformation();
             tt.IsThrowExceptionOnBuildValidated = true;
-            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
-#endregion not compilable code
+            #endregion not compilable code
 
             // Exclude compilation process if there are no renames
-#region not compilable code
+            #region not compilable code
             tt = new TestTransformation();
             File.WriteAllText(fpath, "wrong c# code");
-            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception == null);
-#endregion not compilable code
+            #endregion not compilable code
 
             // Include compilation process if there are renames
-#region not compilable code
+            #region not compilable code
             tt = new TestTransformation();
             tt.IsThrowExceptionOnBuildValidated = true;
-            await vm.CommandConfigCurrentUpdate.ExecuteAsync(tt);
+            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
-#endregion not compilable code
+            #endregion not compilable code
 
 
             // Can rename
@@ -943,8 +945,8 @@ namespace vSharpStudio.Unit
 
             // Can run unit test for generated code
 
-#region generate not valid code
-#endregion generate not valid code
+            #region generate not valid code
+            #endregion generate not valid code
 
             //Assert.IsTrue(false);
         }

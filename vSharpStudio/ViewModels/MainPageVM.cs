@@ -572,22 +572,22 @@ namespace vSharpStudio.ViewModels
         private Config _Config;
 
         #region Main
-        public vCommand CommandNewConfig
+        public vButtonVM<string> BtnNewConfig
         {
             get
             {
-                return this._CommandNewConfig ?? (this._CommandNewConfig = vCommand.Create(
+                return this._BtnNewConfig ?? (this._BtnNewConfig = new vButtonVM<string>("iconNewFile", "iconNewFile",
                     (o) =>
                     {
                         this.SaveAs((string)o, true);
-                        this.CommandConfigSave.RaiseCanExecuteChanged();
-                        this.CommandConfigSaveAs.RaiseCanExecuteChanged();
-                        this.CommandConfigCurrentUpdate.RaiseCanExecuteChanged();
+                        this.BtnConfigSave.Command.NotifyCanExecuteChanged();
+                        this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
+                        this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
                     },
                     (o) => { return this.Config == null || !string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath); }));
             }
         }
-        private vCommand? _CommandNewConfig;
+        private vButtonVM<string>? _BtnNewConfig;
         internal void NewConfig()
         {
             if (this.Config != null && this.Config.IsHasChanged)
@@ -608,22 +608,22 @@ namespace vSharpStudio.ViewModels
             this.InitConfig(this.Config);
             this.VisibilityAndMessageInstructions();
         }
-        public vCommand CommandOpenConfig
+        public vButtonVM<string> BtnOpenConfig
         {
             get
             {
-                return this._CommandOpenConfig ?? (this._CommandOpenConfig = vCommand.Create(
+                return this._BtnOpenConfig ?? (this._BtnOpenConfig = new vButtonVM<string>("iconSettingsFile", "iconSettingsFile",
                     (o) =>
                     {
                         this.OpenConfig();
-                        this.CommandConfigSave.RaiseCanExecuteChanged();
-                        this.CommandConfigSaveAs.RaiseCanExecuteChanged();
-                        this.CommandConfigCurrentUpdate.RaiseCanExecuteChanged();
+                        this.BtnConfigSave.Command.NotifyCanExecuteChanged();
+                        this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
+                        this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
                     },
                     (o) => { return true; }));
             }
         }
-        private vCommand? _CommandOpenConfig;
+        private vButtonVM<string>? _BtnOpenConfig;
         internal void OpenConfig()
         {
             if (this.Config != null && this.Config.IsHasChanged)
@@ -650,16 +650,16 @@ namespace vSharpStudio.ViewModels
             }
         }
         //TODO saving is not appropriate operation because loosing information about deleted objects (DB has to be updated)
-        public vCommand CommandConfigSave
+        public vButtonVM BtnConfigSave
         {
             get
             {
-                return this._CommandConfigSave ?? (this._CommandConfigSave = vCommand.Create(
-                    (o) => { this.Save(); },
-                    (o) => { return this.Config != null && this.CurrentCfgFilePath != null; }));
+                return this._BtnConfigSave ?? (this._BtnConfigSave = new vButtonVM("iconSave", "iconSave",
+                    () => { this.Save(); },
+                    () => { return this.Config != null && this.CurrentCfgFilePath != null; }));
             }
         }
-        private vCommand? _CommandConfigSave;
+        private vButtonVM? _BtnConfigSave;
         internal void SavePrepare()
         {
             this.Config.PluginSettingsToModel();
@@ -696,16 +696,16 @@ namespace vSharpStudio.ViewModels
             //CompareSaved(json);
 #endif
         }
-        public vCommand CommandConfigSaveAs
+        public vButtonVM<string> BtnConfigSaveAs
         {
             get
             {
-                return this._CommandConfigSaveAs ?? (this._CommandConfigSaveAs = vCommand.Create(
-                    (o) => { this.SaveAs((string)o); },
+                return this._BtnConfigSaveAs ?? (this._BtnConfigSaveAs = new vButtonVM<string>("iconSaveAs", "iconSaveAs",
+                    (o) => { this.SaveAs(o); },
                     (o) => { return this.Config != null; }));
             }
         }
-        private vCommand? _CommandConfigSaveAs;
+        private vButtonVM<string>? _BtnConfigSaveAs;
         internal void SaveAs(string? filePath = null, bool isCreateNewConfig = false)
         {
             SaveFileDialog openFileDialog = new SaveFileDialog();
@@ -749,7 +749,7 @@ namespace vSharpStudio.ViewModels
                 // CompareSaved(json);
 #endif
             }
-            this.CommandConfigCurrentUpdate.RaiseCanExecuteChanged();
+            this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
         }
         private void ResetIsChangedBeforeSave()
         {
@@ -862,19 +862,14 @@ namespace vSharpStudio.ViewModels
         }
         private ProgressVM? _ProgressVM;
         private CancellationTokenSource? cancellationTokenSource;
-        public vCommand CommandConfigCurrentUpdate
+        public vButtonVmAsync<TestTransformation?> BtnConfigCurrentUpdateAsync
         {
             get
             {
-                if (this._CommandConfigCurrentUpdate == null)
+                if (this._BtnConfigCurrentUpdate == null)
                 {
-#if Async
-                    this._CommandConfigCurrentUpdate = vCommand.CreateAsync(
+                    this._BtnConfigCurrentUpdate = new vButtonVmAsync<TestTransformation?>("iconRun", "iconRun",
                         async (o) =>
-#else
-                    this._CommandConfigCurrentUpdate = vCommand.Create(
-                        (o) =>
-#endif
                         {
                             Debug.Assert(this.ProgressVM != null);
                             this.ProgressVM.Start("Update Current Version Generated Projects", 0, "", 0);
@@ -885,11 +880,11 @@ namespace vSharpStudio.ViewModels
                                 //this.Config.PluginSettingsToModel();
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
-#if Async
-                                var ex = await this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
-#else
-                                this.UpdateCurrentVersion(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
-#endif
+//#if Async
+                                await this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+//#else
+//                                this.UpdateCurrentVersion(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+//#endif
                                 this.ResetIsChangedBeforeSave();
                                 this.cancellationTokenSource = null;
                                 //if (ex != null)
@@ -914,17 +909,21 @@ namespace vSharpStudio.ViewModels
                                 if (!isException)
                                 {
                                     //await this.CommandConfigSave.ExecuteAsync(null);
-                                    this.CommandConfigSave.Execute(null);
+                                    this.BtnConfigSave.Command.Execute(null);
                                 }
                                 this.ProgressVM.End();
                             }
-                        }, (o) => { return this.cancellationTokenSource == null && this.Config != null && /*this.Config.IsNeedCurrentUpdate &&*/ this.CurrentCfgFilePath != null; }
+                        }, (o) =>
+                        {
+                            //this._BtnConfigCurrentUpdate!.ToolTipText = "kuku";
+                            return this.cancellationTokenSource == null && this.Config != null && this.Config.IsNeedCurrentUpdate && this.CurrentCfgFilePath != null;
+                        }
                     );
                 }
-                return this._CommandConfigCurrentUpdate;
+                return this._BtnConfigCurrentUpdate;
             }
         }
-        private vCommand? _CommandConfigCurrentUpdate;
+        private vButtonVmAsync<TestTransformation?>? _BtnConfigCurrentUpdate;
 #if PARRALEL
         public async Task GenerateCodeAsync(CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
 #else
@@ -1087,11 +1086,7 @@ namespace vSharpStudio.ViewModels
             }
         }
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
-#if Async
-        private async Task<Exception?> UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object? parm = null, bool askWarning = true)
-#else
-        private void UpdateCurrentVersion(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object parm = null, bool askWarning = true)
-#endif
+        private async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object? parm = null, bool askWarning = true)
         {
             Exception? resEx = null;
             ProgressVM progress = new ProgressVM();
@@ -1143,7 +1138,7 @@ namespace vSharpStudio.ViewModels
                     this._Config.ValidateSubTreeFromNode(this._Config);
                     //#endif
                     if (this._Config.CountErrors > 0)
-                        throw new Exception($"There are {this._Config.CountErrors} errors in configuration. Fix errors and try again.");
+                        throw new Exception($"There are {this._Config.CountErrors} errors in configuration.\nFirst error is {this._Config.ValidationCollection[0].Message} \nFix errors and try again.");
                     if (tst == null && this._Config.CountWarnings > 0)
                     {
 #if DEBUG
@@ -1152,7 +1147,7 @@ namespace vSharpStudio.ViewModels
 #endif
                             var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
                             if (res != System.Windows.MessageBoxResult.OK)
-                                return resEx;
+                                return;
 #if DEBUG
                         }
 #endif
@@ -1314,16 +1309,15 @@ namespace vSharpStudio.ViewModels
                     //TODO Generate Update SQL for previous stable DB
                 }
             }
-            catch (Exception ex)
-            {
-                resEx = ex;
-            }
+            //catch (Exception ex)
+            //{
+            //    resEx = ex;
+            //}
             finally
             {
                 //TODO roll back if Exception
                 this.IsBusy = false;
             }
-            return resEx;
         }
         public vCommand CommandConfigCreateStableVersion
         {
@@ -1361,7 +1355,7 @@ namespace vSharpStudio.ViewModels
                 throw ex;
             }
 
-            this.CommandConfigSave.Execute(null);
+            this.BtnConfigSave.Command.Execute(null);
 
             var vis = new ModelVisitorBase();
             if (this.Config.PrevStableConfig != null)

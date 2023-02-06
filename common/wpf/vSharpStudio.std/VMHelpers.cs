@@ -12,21 +12,21 @@ namespace ViewModelBase
 	public class VMHelpers
 	{
 		// https://msdn.microsoft.com/en-us/library/ms973852.aspx
-		public static void InternalNotifyPropertyChanged(string propertyName,
-				object sender, PropertyChangedEventHandler propertyChanged, IDispatcher dispatcher)
-		{
-			if (propertyChanged != null)
-			{
-                if (dispatcher == null)
-                    return;
-				PropertyChangedEventArgs arg = new PropertyChangedEventArgs(propertyName);
-				// Fire the event on the UI thread
-				if (dispatcher.CheckAccess())
-					propertyChanged(sender, arg);
-				else
-					dispatcher.BeginInvoke(() => propertyChanged(sender, arg));
-			}
-		}
+		//public static void InternalNotifyPropertyChanged(string propertyName,
+		//		object sender, PropertyChangedEventHandler propertyChanged, Dispatcher dispatcher)
+		//{
+		//	if (propertyChanged != null)
+		//	{
+  //              if (dispatcher == null)
+  //                  return;
+		//		PropertyChangedEventArgs arg = new PropertyChangedEventArgs(propertyName);
+		//		// Fire the event on the UI thread
+		//		if (dispatcher.CheckAccess())
+		//			propertyChanged(sender, arg);
+		//		else
+		//			dispatcher.BeginInvoke(() => propertyChanged(sender, arg));
+		//	}
+		//}
 
 
 		//public static void InternalNotifyPropertyChanged(string propertyName,

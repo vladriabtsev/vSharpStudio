@@ -30,6 +30,9 @@
         <None Include="key.pfx" />
     </ItemGroup>
     <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.1.0" />
+    </ItemGroup>
+    <ItemGroup>
         <ProjectReference Include="..\vSharpStudio.std\vSharpStudio.std.csproj" />
     </ItemGroup>
     <ItemGroup>
