@@ -64,6 +64,11 @@ namespace ViewModelBase
         /// <param name="action"></param>
         public static void Invoke(Action action)
         {
+            if (_dispatcher == null)
+            {
+                action();
+                return;
+            }
             if (_dispatcher.CheckAccess()) action();
             else _dispatcher._windowsDispatcher.Invoke(action);
         }
@@ -73,6 +78,11 @@ namespace ViewModelBase
         /// <param name="action"></param>
         public static void BeginInvoke(Action action)
         {
+            if (_dispatcher == null)
+            {
+                action();
+                return;
+            }
             if (_dispatcher.CheckAccess()) action();
             else _dispatcher._windowsDispatcher.BeginInvoke(action);
         }

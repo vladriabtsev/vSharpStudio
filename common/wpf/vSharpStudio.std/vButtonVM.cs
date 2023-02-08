@@ -11,6 +11,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Diagnostics;
 using System.Diagnostics;
+using System.Windows.Media;
 
 namespace ViewModelBase
 {
@@ -29,8 +30,7 @@ namespace ViewModelBase
             this.IsEnabled = this.canExecute();
             return this.IsEnabled;
         };
-        public vButtonVM(string iconExecute, string iconCantExecute, Action execute, Func<bool> canExecute)
-            : base(iconExecute, iconCantExecute)
+        public vButtonVM(Action execute, Func<bool> canExecute)
         {
             ArgumentNullException.ThrowIfNull(execute);
             ArgumentNullException.ThrowIfNull(canExecute);
@@ -38,6 +38,15 @@ namespace ViewModelBase
             this.canExecute = canExecute;
             this.Command = new RelayCommand(executeInternal, canExecuteInternal);
         }
+        //public vButtonVM(string iconExecute, string iconCantExecute, Action execute, Func<bool> canExecute)
+        //    : base(iconExecute, iconCantExecute)
+        //{
+        //    ArgumentNullException.ThrowIfNull(execute);
+        //    ArgumentNullException.ThrowIfNull(canExecute);
+        //    this.execute = execute;
+        //    this.canExecute = canExecute;
+        //    this.Command = new RelayCommand(executeInternal, canExecuteInternal);
+        //}
         internal void Execute()
         {
             this.Command.Execute(null);
@@ -63,8 +72,7 @@ namespace ViewModelBase
             this.IsEnabled = this.canExecute(o);
             return this.IsEnabled;
         };
-        public vButtonVM(string iconExecute, string iconCantExecute, Action<T?> execute, Predicate<T?> canExecute)
-            : base(iconExecute, iconCantExecute)
+        public vButtonVM(Action<T?> execute, Predicate<T?> canExecute)
         {
             ArgumentNullException.ThrowIfNull(execute);
             ArgumentNullException.ThrowIfNull(canExecute);
@@ -72,6 +80,15 @@ namespace ViewModelBase
             this.canExecute = canExecute;
             this.Command = new RelayCommand<T?>(executeInternal, canExecuteInternal);
         }
+        //public vButtonVM(string iconExecute, string iconCantExecute, Action<T?> execute, Predicate<T?> canExecute)
+        //    : base(iconExecute, iconCantExecute)
+        //{
+        //    ArgumentNullException.ThrowIfNull(execute);
+        //    ArgumentNullException.ThrowIfNull(canExecute);
+        //    this.execute = execute;
+        //    this.canExecute = canExecute;
+        //    this.Command = new RelayCommand<T?>(executeInternal, canExecuteInternal);
+        //}
         internal void Execute(T? o = default(T))
         {
             this.Command.Execute(o);
@@ -97,8 +114,7 @@ namespace ViewModelBase
             this.IsEnabled = this.canExecute(o);
             return this.IsEnabled;
         };
-        public vButtonVmAsync(string iconExecute, string iconCantExecute, Func<T?, Task> execute, Predicate<T?> canExecute)
-            : base(iconExecute, iconCantExecute)
+        public vButtonVmAsync(Func<T?, Task> execute, Predicate<T?> canExecute)
         {
             ArgumentNullException.ThrowIfNull(execute);
             ArgumentNullException.ThrowIfNull(canExecute);
@@ -106,6 +122,15 @@ namespace ViewModelBase
             this.canExecute = canExecute;
             this.Command = new AsyncRelayCommand<T?>(executeInternal, canExecuteInternal);
         }
+        //public vButtonVmAsync(string iconExecute, string iconCantExecute, Func<T?, Task> execute, Predicate<T?> canExecute)
+        //    : base(iconExecute, iconCantExecute)
+        //{
+        //    ArgumentNullException.ThrowIfNull(execute);
+        //    ArgumentNullException.ThrowIfNull(canExecute);
+        //    this.execute = execute;
+        //    this.canExecute = canExecute;
+        //    this.Command = new AsyncRelayCommand<T?>(executeInternal, canExecuteInternal);
+        //}
         internal async Task ExecuteAsync(T? o = default(T))
         {
             await this.Command.ExecuteAsync(o);
@@ -118,14 +143,17 @@ namespace ViewModelBase
     }
     public partial class vButtonVmBase : ObservableObject
     {
-        private string iconExecute = "iconNewFile";
-        private string iconCantExecute;
-        public vButtonVmBase(string iconExecute, string iconCantExecute)
-        {
-            this.iconExecute = iconExecute;
-            this.iconCantExecute = iconCantExecute;
-            this.IconControlTemplate = this.GetIconControlTemplate(iconExecute);
-        }
+        private SolidColorBrush backGround = new SolidColorBrush(Color.FromArgb(0xFF, 0x22, 0x22, 0x22));
+        [ObservableProperty]
+        private SolidColorBrush? backGroundDisabled;
+        //private string iconExecute = "iconNewFile";
+        //private string iconCantExecute;
+        //public vButtonVmBase(string iconExecute, string iconCantExecute)
+        //{
+        //    this.iconExecute = iconExecute;
+        //    this.iconCantExecute = iconCantExecute;
+        //    this.IconControlTemplate = this.GetIconControlTemplate(iconExecute);
+        //}
         [ObservableProperty]
         private string isBusy;
         [ObservableProperty]
@@ -138,14 +166,22 @@ namespace ViewModelBase
             internal set
             {
                 SetProperty(ref isEnabled, value);
-                if (IsEnabled)
-                {
-                    this.IconControlTemplate = this.GetIconControlTemplate(this.iconExecute);
-                }
-                else
-                {
-                    this.IconControlTemplate = this.GetIconControlTemplate(this.iconCantExecute);
-                }
+                //if (IsEnabled)
+                //{
+                //    this.BackGroundDisabled = null;
+                //}
+                //else
+                //{
+                //    this.BackGroundDisabled = backGround;
+                //}
+                //if (IsEnabled)
+                //{
+                //    this.IconControlTemplate = this.GetIconControlTemplate(this.iconExecute);
+                //}
+                //else
+                //{
+                //    this.IconControlTemplate = this.GetIconControlTemplate(this.iconCantExecute);
+                //}
             }
         }
         private bool isEnabled;

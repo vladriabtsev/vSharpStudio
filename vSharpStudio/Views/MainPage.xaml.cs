@@ -82,5 +82,16 @@ namespace vSharpStudio.Views
             //});
 #endif
         }
+
+        private void PropertiesList_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (this._model.Config.SelectedNode != null)
+            {
+                Task.Run(() =>
+                {
+                    this._model.Config.ValidateSubTreeFromNode(this._model.Config.SelectedNode);
+                });
+            }
+        }
     }
 }

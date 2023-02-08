@@ -339,10 +339,10 @@ namespace ViewModelBase
                     Debug.Assert(ifrom != -1);
                     var ito = i;
                     Debug.Assert(ito != -1);
-                    //UIDispatcher.Execute(() =>
-                    //{
+                    UIDispatcher.Invoke(() =>
+                    {
                         base.MoveItem(ifrom, ito);
-                    //});
+                    });
                     if (OnSortMovedAction != null)
                         OnSortMovedAction(ifrom, ito);
                 }

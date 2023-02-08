@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Numerics;
 using System.Text;
 using FluentValidation;
@@ -138,7 +139,7 @@ namespace vSharpStudio.vm.ViewModels
                     Debug.Assert(false);
                     throw new NotImplementedException();
                 }
-                foreach (var t in pg.ListProperties)
+                foreach (var t in pg.ListProperties.ToList())
                 {
                     if ((p.Guid != t.Guid) && (name == t.Name))
                     {

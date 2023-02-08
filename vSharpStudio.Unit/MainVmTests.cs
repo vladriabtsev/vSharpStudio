@@ -64,46 +64,46 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.pconfig_history == null);
             Assert.IsTrue(vm.Config == null);
 
-            Assert.IsFalse(vm.CommandAddClone.CanExecute(null));
-            Assert.IsFalse(vm.CommandAddNew.CanExecute(null));
-            Assert.IsFalse(vm.CommandAddNewChild.CanExecute(null));
-            Assert.IsFalse(vm.CommandConfigCreateStableVersion.CanExecute(null));
-            Assert.IsFalse(vm.BtnConfigCurrentUpdateAsync.CanExecute(null));
+            Assert.IsFalse(vm.BtnAddClone.CanExecute());
+            Assert.IsFalse(vm.BtnAddNew.CanExecute());
+            Assert.IsFalse(vm.BtnAddNewChild.CanExecute());
+            Assert.IsFalse(vm.CommandConfigCreateStableVersion.CanExecute());
+            Assert.IsFalse(vm.BtnConfigCurrentUpdateAsync.CanExecute());
             Assert.IsFalse(vm.BtnConfigSave.CanExecute());
             Assert.IsFalse(vm.BtnConfigSaveAs.CanExecute(null));
-            Assert.IsFalse(vm.CommandDelete.CanExecute(null));
+            Assert.IsFalse(vm.BtnDelete.CanExecute());
             Assert.IsFalse(vm.CommandFromErrorToSelection.CanExecute(null));
-            Assert.IsFalse(vm.CommandMoveDown.CanExecute(null));
-            Assert.IsFalse(vm.CommandMoveUp.CanExecute(null));
+            Assert.IsFalse(vm.BtnMoveDown.CanExecute());
+            Assert.IsFalse(vm.BtnMoveUp.CanExecute());
             Assert.IsTrue(vm.BtnNewConfig.CanExecute());
             //Assert.IsTrue(vm.BtnNewConfig.IsEnabled);
             Assert.IsTrue(vm.BtnOpenConfig.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionDown.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionLeft.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionRight.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionUp.CanExecute(null));
+            Assert.IsFalse(vm.BtnSelectionDown.CanExecute());
+            Assert.IsFalse(vm.BtnSelectionLeft.CanExecute());
+            Assert.IsFalse(vm.BtnSelectionRight.CanExecute());
+            Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
 
             vm.BtnNewConfig.Execute(@".\kuku.vcfg");
             Assert.IsTrue(vm.Config != null);
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
 
-            Assert.IsFalse(vm.CommandAddClone.CanExecute(null));
-            Assert.IsFalse(vm.CommandAddNew.CanExecute(null));
-            Assert.IsFalse(vm.CommandAddNewChild.CanExecute(null));
-            Assert.IsTrue(vm.CommandConfigCreateStableVersion.CanExecute(null));
+            Assert.IsFalse(vm.BtnAddClone.CanExecute());
+            Assert.IsFalse(vm.BtnAddNew.CanExecute());
+            Assert.IsFalse(vm.BtnAddNewChild.CanExecute());
+            Assert.IsTrue(vm.CommandConfigCreateStableVersion.CanExecute());
             Assert.IsFalse(vm.BtnConfigCurrentUpdateAsync.CanExecute(null));
             Assert.IsTrue(vm.BtnConfigSave.CanExecute());
             Assert.IsTrue(vm.BtnConfigSaveAs.CanExecute(null));
-            Assert.IsFalse(vm.CommandDelete.CanExecute(null));
+            Assert.IsFalse(vm.BtnDelete.CanExecute());
             Assert.IsTrue(vm.CommandFromErrorToSelection.CanExecute(null));
-            Assert.IsFalse(vm.CommandMoveDown.CanExecute(null));
-            Assert.IsFalse(vm.CommandMoveUp.CanExecute(null));
+            Assert.IsFalse(vm.BtnMoveDown.CanExecute());
+            Assert.IsFalse(vm.BtnMoveUp.CanExecute());
             Assert.IsTrue(vm.BtnNewConfig.IsEnabled);
             Assert.IsTrue(vm.BtnOpenConfig.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionDown.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionLeft.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionRight.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionUp.CanExecute(null));
+            Assert.IsFalse(vm.BtnSelectionDown.CanExecute());
+            Assert.IsFalse(vm.BtnSelectionLeft.CanExecute());
+            Assert.IsFalse(vm.BtnSelectionRight.CanExecute());
+            Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
         }
 
         [TestMethod]
@@ -132,23 +132,23 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.Config.Version == 0);
             Assert.IsTrue(vm.Config.IsNeedCurrentUpdate);
 
-            Assert.IsTrue(vm.CommandAddClone.CanExecute(null));
-            Assert.IsTrue(vm.CommandAddNew.CanExecute(null));
-            Assert.IsFalse(vm.CommandAddNewChild.CanExecute(null));
-            Assert.IsTrue(vm.CommandConfigCreateStableVersion.CanExecute(null));
+            Assert.IsTrue(vm.BtnAddClone.CanExecute());
+            Assert.IsTrue(vm.BtnAddNew.CanExecute());
+            Assert.IsFalse(vm.BtnAddNewChild.CanExecute());
+            Assert.IsTrue(vm.CommandConfigCreateStableVersion.CanExecute());
             Assert.IsTrue(vm.BtnConfigCurrentUpdateAsync.CanExecute(null));
             Assert.IsTrue(vm.BtnConfigSave.CanExecute());
             Assert.IsTrue(vm.BtnConfigSaveAs.CanExecute(null));
-            Assert.IsTrue(vm.CommandDelete.CanExecute(null));
+            Assert.IsTrue(vm.BtnDelete.CanExecute());
             Assert.IsTrue(vm.CommandFromErrorToSelection.CanExecute(null));
-            Assert.IsFalse(vm.CommandMoveDown.CanExecute(null));
-            Assert.IsFalse(vm.CommandMoveUp.CanExecute(null));
+            Assert.IsFalse(vm.BtnMoveDown.CanExecute());
+            Assert.IsFalse(vm.BtnMoveUp.CanExecute());
             Assert.IsTrue(vm.BtnNewConfig.IsEnabled);
             Assert.IsTrue(vm.BtnOpenConfig.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionDown.CanExecute(null));
-            Assert.IsTrue(vm.CommandSelectionLeft.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionRight.CanExecute(null));
-            Assert.IsFalse(vm.CommandSelectionUp.CanExecute(null));
+            Assert.IsFalse(vm.BtnSelectionDown.CanExecute());
+            Assert.IsTrue(vm.BtnSelectionLeft.CanExecute());
+            Assert.IsFalse(vm.BtnSelectionRight.CanExecute());
+            Assert.IsFalse(vm.BtnSelectionUp.CanExecute());
 
             // reload
             vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
@@ -165,7 +165,7 @@ namespace vSharpStudio.Unit
             await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             // create stable version
-            vm.CommandConfigCreateStableVersion.Execute(null);
+            vm.CommandConfigCreateStableVersion.Execute();
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
@@ -182,7 +182,7 @@ namespace vSharpStudio.Unit
             // Assert.IsTrue(false);
 
             // create next stable version
-            vm.CommandConfigCreateStableVersion.Execute(new object());
+            vm.CommandConfigCreateStableVersion.Execute();
             vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
@@ -595,7 +595,7 @@ namespace vSharpStudio.Unit
 
             // c1-new -> not new, not del  
             Assert.IsFalse(vm.Config.IsHasChanged);
-            vm.CommandConfigCreateStableVersion.Execute(new object());
+            vm.CommandConfigCreateStableVersion.Execute();
             Assert.IsFalse(vm.Config.IsHasChanged);
             // prev c1 not new, not del
             Assert.AreEqual(1, gr.ListConstants.Count());
@@ -606,13 +606,13 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(c1.IsMarkedForDeletion);
             Assert.IsFalse(c1.IsDeprecated());
             vm.Config.SelectedNode = c1;
-            vm.CommandDelete.Execute(new object());
+            vm.BtnDelete.Execute();
             Assert.IsFalse(c1.IsNew);
             Assert.IsTrue(c1.IsMarkedForDeletion);
             Assert.IsTrue(c1.IsDeprecated());
             var c2 = gr.AddConstant("c2");
             vm.Config.SelectedNode = c2;
-            vm.CommandDelete.Execute(new object());
+            vm.BtnDelete.Execute();
             Assert.IsTrue(c2.IsNew);
             Assert.IsTrue(c2.IsMarkedForDeletion);
             Assert.IsFalse(c2.IsDeprecated());
@@ -639,7 +639,7 @@ namespace vSharpStudio.Unit
 
             // c1- not new, del -> not new, del => previous not new, del
             // c3- new -> not new
-            vm.CommandConfigCreateStableVersion.Execute(new object());
+            vm.CommandConfigCreateStableVersion.Execute();
             Assert.IsFalse(vm.Config.IsHasChanged);
             // prev c1 not new, del
             Assert.AreEqual(2, gr.ListConstants.Count());
@@ -654,7 +654,7 @@ namespace vSharpStudio.Unit
 
             // c1- not new, del -> removed
             // c3- new -> new
-            vm.CommandConfigCreateStableVersion.Execute(new object());
+            vm.CommandConfigCreateStableVersion.Execute();
             Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.AreEqual(1, gr.ListConstants.Count());
             Assert.AreEqual(c3, gr.ListConstants[0]);
@@ -695,7 +695,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(cfg.Model.GroupEnumerations.IsHasMarkedForDeletion);
 
             // c1-new -> not new, not del  
-            vm.CommandConfigCreateStableVersion.Execute(new object());
+            vm.CommandConfigCreateStableVersion.Execute();
             // prev c1 not new, not del
             Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.IsFalse(c1.IsNew);
@@ -730,7 +730,7 @@ namespace vSharpStudio.Unit
 
             // c1- not new, del -> not new, del => previous not new, del
             // c3- new -> not new
-            vm.CommandConfigCreateStableVersion.Execute(new object());
+            vm.CommandConfigCreateStableVersion.Execute();
             // prev c1 not new, del
             Assert.AreEqual(2, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.IsFalse(c1.IsNew);
@@ -744,7 +744,7 @@ namespace vSharpStudio.Unit
 
             // c1- not new, del -> removed
             // c3- new -> new
-            vm.CommandConfigCreateStableVersion.Execute(new object());
+            vm.CommandConfigCreateStableVersion.Execute();
             Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.AreEqual(c3, cfg.Model.GroupEnumerations.ListEnumerations[0]);
             Assert.IsFalse(c3.IsMarkedForDeletion);
@@ -1111,7 +1111,7 @@ namespace vSharpStudio.Unit
             vm.BtnConfigSave.Execute();
             await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
 
-            vm.CommandConfigCreateStableVersion.Execute(new object());
+            vm.CommandConfigCreateStableVersion.Execute();
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             // expect IsHasMarkedForDeletion and IsHasNew will be false

@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:vSharpStudio.Views" 
     xmlns:dat="clr-namespace:vSharpStudio.vm.ViewModels;assembly=vSharpStudio.vm"
     xmlns:vm="clr-namespace:vSharpStudio.ViewModels"
+    xmlns:vc="clr-namespace:vSharpStudio.Controls"
     xmlns:Converters="clr-namespace:vSharpStudio.wpf.Converters;assembly=vSharpStudio.wpf" 
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance IsDesignTimeCreatable=false, Type={x:Type vm:MainPageVM}}"
@@ -16,16 +17,16 @@
         <Converters:ConverterBoolToCollapsed x:Key="ConverterBoolToCollapsed"/>
     </UserControl.Resources>
     <UserControl.InputBindings>
-        <KeyBinding Modifiers="" Key="Insert" Command="{Binding CommandAddNew}"/>
-        <KeyBinding Modifiers="Alt" Key="Insert" Command="{Binding CommandAddNewChild}"/>
-        <KeyBinding Modifiers="Ctrl" Key="Insert" Command="{Binding CommandAddClone}"/>
-        <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding CommandMoveDown}"/>
-        <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding CommandMoveUp}"/>
-        <KeyBinding Modifiers="Ctrl" Key="Delete" Command="{Binding CommandDelete}"/>
-        <KeyBinding Modifiers="Alt" Key="Left" Command="{Binding CommandSelectionLeft}"/>
-        <KeyBinding Modifiers="Alt" Key="Right" Command="{Binding CommandSelectionRight}"/>
-        <KeyBinding Modifiers="Alt" Key="Down" Command="{Binding CommandSelectionDown}"/>
-        <KeyBinding Modifiers="Alt" Key="Up" Command="{Binding CommandSelectionUp}"/>
+        <KeyBinding Modifiers="" Key="Insert" Command="{Binding BtnAddNew.Command}"/>
+        <KeyBinding Modifiers="Alt" Key="Insert" Command="{Binding BtnAddNewChild.Command}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Insert" Command="{Binding BtnAddClone.Command}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding BtnMoveDown.Command}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding BtnMoveUp.Command}"/>
+        <KeyBinding Modifiers="Ctrl" Key="Delete" Command="{Binding BtnDelete.Command}"/>
+        <KeyBinding Modifiers="Alt" Key="Left" Command="{Binding BtnSelectionLeft.Command}"/>
+        <KeyBinding Modifiers="Alt" Key="Right" Command="{Binding BtnSelectionRight.Command}"/>
+        <KeyBinding Modifiers="Alt" Key="Down" Command="{Binding BtnSelectionDown.Command}"/>
+        <KeyBinding Modifiers="Alt" Key="Up" Command="{Binding BtnSelectionUp.Command}"/>
     </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -33,37 +34,47 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <ToolBarPanel>
-            <ToolBar>
-                <Button Command="{Binding CommandAddNew}" ToolTip="Ins - insert new object after selected">
+            <ToolBar Padding="0,1,0,0">
+                <vc:vButton IconControlTemplate="{StaticResource iconAdd}" DataContext="{Binding BtnAddNew}" ToolTip="Ins - insert new object after selected"/>
+                <!--<Button Command="{Binding CommandAddNew}" ToolTip="Ins - insert new object after selected">
                     <ContentControl Template="{StaticResource iconAdd}" />
-                </Button>
-                <Button Command="{Binding CommandAddNewChild}" ToolTip="Alt+Ins - insert new child object">
+                </Button>-->
+                <vc:vButton IconControlTemplate="{StaticResource iconAddChildNode}" DataContext="{Binding BtnAddNewChild}" ToolTip="Alt+Ins - insert new child object"/>
+                <!--<Button Command="{Binding CommandAddNewChild}" ToolTip="Alt+Ins - insert new child object">
                     <ContentControl Template="{StaticResource iconAddChildNode}" />
-                </Button>
-                <Button Command="{Binding CommandAddClone}" ToolTip="Ctrl+Ins - insert clone of selected object">
+                </Button>-->
+                <vc:vButton IconControlTemplate="{StaticResource iconCopy}" DataContext="{Binding BtnAddClone}" ToolTip="Ctrl+Ins - insert clone of selected object"/>
+                <!--<Button Command="{Binding CommandAddClone}" ToolTip="Ctrl+Ins - insert clone of selected object">
                     <ContentControl Template="{StaticResource iconCopy}" />
-                </Button>
-                <Button Command="{Binding CommandMoveDown}" ToolTip="Ctrl+Down - move select node down">
+                </Button>-->
+                <vc:vButton IconControlTemplate="{StaticResource iconGlyphDown2}" DataContext="{Binding BtnMoveDown}" ToolTip="Ctrl+Down - move select node down"/>
+                <!--<Button Command="{Binding CommandMoveDown}" ToolTip="Ctrl+Down - move select node down">
                     <ContentControl Template="{StaticResource iconGlyphDown2}" />
-                </Button>
-                <Button Command="{Binding CommandMoveUp}" ToolTip="Ctrl+Up - move select node upper">
+                </Button>-->
+                <vc:vButton IconControlTemplate="{StaticResource iconGlyphUp2}" DataContext="{Binding BtnMoveUp}" ToolTip="Ctrl+Up - move select node upper"/>
+                <!--<Button Command="{Binding CommandMoveUp}" ToolTip="Ctrl+Up - move select node upper">
                     <ContentControl Template="{StaticResource iconGlyphUp2}" />
-                </Button>
-                <Button Command="{Binding CommandDelete}" ToolTip="Ctrl-Del - delete selected object">
+                </Button>-->
+                <vc:vButton IconControlTemplate="{StaticResource iconCancel}" DataContext="{Binding BtnDelete}" ToolTip="Ctrl-Del - mark selected object for deletion"/>
+                <!--<Button Command="{Binding CommandDelete}" ToolTip="Ctrl-Del - delete selected object">
                     <ContentControl Template="{StaticResource iconCancel}" />
-                </Button>
-                <Button Command="{Binding CommandSelectionLeft}" ToolTip="Left - close current group and select parent node">
+                </Button>-->
+                <vc:vButton IconControlTemplate="{StaticResource iconGlyphLeft}" DataContext="{Binding BtnSelectionLeft}" ToolTip="Left - close current group and select parent node"/>
+                <!--<Button Command="{Binding CommandSelectionLeft}" ToolTip="Left - close current group and select parent node">
                     <ContentControl Template="{StaticResource iconGlyphLeft}" />
-                </Button>
-                <Button Command="{Binding CommandSelectionRight}" ToolTip="Right - open current group and select first subnode">
+                </Button>-->
+                <vc:vButton IconControlTemplate="{StaticResource iconGlyphRight}" DataContext="{Binding BtnSelectionRight}" ToolTip="Right - open current group and select first subnode"/>
+                <!--<Button Command="{Binding CommandSelectionRight}" ToolTip="Right - open current group and select first subnode">
                     <ContentControl Template="{StaticResource iconGlyphRight}" />
-                </Button>
-                <Button Command="{Binding CommandSelectionDown}" ToolTip="Down - select next node on the same level">
+                </Button>-->
+                <vc:vButton IconControlTemplate="{StaticResource iconGlyphDown}" DataContext="{Binding BtnSelectionDown}" ToolTip="Down - select next node on the same level"/>
+                <!--<Button Command="{Binding CommandSelectionDown}" ToolTip="Down - select next node on the same level">
                     <ContentControl Template="{StaticResource iconGlyphDown}" />
-                </Button>
-                <Button Command="{Binding CommandSelectionUp}" ToolTip="Up - select previous node on the same level">
+                </Button>-->
+                <vc:vButton IconControlTemplate="{StaticResource iconGlyphUp}" DataContext="{Binding BtnSelectionUp}" ToolTip="Up - select previous node on the same level"/>
+                <!--<Button Command="{Binding CommandSelectionUp}" ToolTip="Up - select previous node on the same level">
                     <ContentControl Template="{StaticResource iconGlyphUp}" />
-                </Button>
+                </Button>-->
             </ToolBar>
         </ToolBarPanel>
         <!--https://docs.microsoft.com/en-us/dotnet/api/system.windows.hierarchicaldatatemplate?view=netframework-4.7.2-->

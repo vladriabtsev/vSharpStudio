@@ -16,9 +16,10 @@
         <vm:ConverterDicToListPlugins x:Key="ConverterDicToListPlugins"/>
     </UserControl.Resources>
     <UserControl.InputBindings>
-        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding CommandConfigSave}"/>
-        <KeyBinding Modifiers="Ctrl" Key="A" Command="{Binding CommandConfigSaveAs}"/>
-        <!--<KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding CommandEditConnStrings}"/>-->
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding BtnConfigSave.Command}"/>
+        <KeyBinding Modifiers="Ctrl" Key="A" Command="{Binding BtnConfigSaveAs.Command}"/>
+        <KeyBinding Modifiers="Ctrl" Key="V" Command="{Binding BtnConfigValidateAsync.Command}"/>
+        <KeyBinding Modifiers="Ctrl" Key="U" Command="{Binding BtnConfigCurrentUpdateAsync.Command}"/>
     </UserControl.InputBindings>
     <xctk:BusyIndicator IsBusy="{Binding IsBusy}" DisplayAfter="0">
         <xctk:BusyIndicator.BusyContentTemplate>
@@ -63,13 +64,9 @@
                 <!--Menu-->
                 <Grid Grid.Row="0">
                     <ToolBarPanel>
-                        <ToolBar>
-                            <xctk:DropDownButton ToolTip="Recent Config Files" Margin="4,0,4,0" Height="16" 
-                                                 Padding="0,0,0,0" UseLayoutRounding="False">
-                                <!--Command="{Binding CommandOpenConfig}"-->
-                                <!--<ContentControl Template="{StaticResource iconOpenfileDialog}" />-->
-                                <!--<xctk:DropDownButton.Content>
-                                </xctk:DropDownButton.Content>-->
+                        <ToolBar Padding="0,1,0,0">
+                            <xctk:DropDownButton BorderThickness="0" ToolTip="Recent Config Files" Height="18" 
+                                                 Padding="0,0,0,0" UseLayoutRounding="False" Background="{x:Null}">
                                 <xctk:DropDownButton.DropDownContent>
                                     <Grid MinHeight="50" MaxHeight="300">
                                         <!--Background="{DynamicResource {x:Static SystemColors.WindowColor}}"-->
@@ -89,7 +86,6 @@
                                         <ListBox ItemsSource="{Binding UserSettings.ListOpenConfigHistory, Mode=OneWay}"
                                                  SelectedItem="{Binding UserSettings.SelectedConfigHistory}"
                                                  MinWidth="100" SelectionMode="Single">
-                                            <!--Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"-->
                                         </ListBox>
                                         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                                             <Button Command="{Binding UserSettings.CommandOpenRecentConfig}" 
@@ -100,16 +96,8 @@
                                     </Grid>
                                 </xctk:DropDownButton.DropDownContent>
                             </xctk:DropDownButton>
-                            <vc:vButton DataContext="{Binding BtnOpenConfig}" ToolTip="Open Config File"/>
-                            <!--<Button Command="{Binding CommandOpenConfig}" ToolTip="Open Config File">
-                                <ContentControl Template="{StaticResource iconSettingsFile}" />
-                            </Button>-->
-                            <!--<vwpf:vButton DataContext="{Binding BtnNewConfig}" ToolTip="Create Empty Config"/>-->
-                            <vc:vButton DataContext="{Binding BtnNewConfig}" ToolTip="Create Empty Config"/>
-
-                            <!--<Button Command="{Binding CommandNewConfig}" ToolTip="Create Empty Config">
-                                <ContentControl Template="{StaticResource iconNewFile}" />
-                            </Button>-->
+                            <vc:vButton IconControlTemplate="{StaticResource iconSettingsFile}" DataContext="{Binding BtnOpenConfig}" ToolTip="Open Config File"/>
+                            <vc:vButton IconControlTemplate="{StaticResource iconNewFile}" DataContext="{Binding BtnNewConfig}" ToolTip="Create Empty Config"/>
                             <!--<xctk:WatermarkComboBox ItemsSource="{Binding DicPlugins, Converter={StaticResource ConverterDicToListPlugins}, ConverterParameter={x:Static common:vPluginLayerTypeEnum.DbConnection}}" 
                                             SelectedItem="{Binding SelectedDbDesignPlugin}" 
                                             DisplayMemberPath="Plugin.NameUi"
@@ -121,20 +109,8 @@
                                     </DataTemplate>
                                 </xctk:WatermarkComboBox.WatermarkTemplate>
                             </xctk:WatermarkComboBox>-->
-                            <vc:vButton DataContext="{Binding BtnConfigSave}" ToolTip="SaveToolTip"/>
-                            <!--<Button Command="{Binding CommandConfigSave}" ToolTip="{Binding SaveToolTip}">
-                                <ContentControl Template="{StaticResource iconSave}" />
-                            </Button>-->
-                            <!--<Button Command="{Binding CommandConfigSave}" Visibility="{Binding CommandAddNew.Visibility}" ToolTip="Ctrl-S - save config">
-                        <ContentControl Template="{StaticResource iconSaveAll}" />
-                    </Button>-->
-                            <vc:vButton DataContext="{Binding BtnConfigSaveAs}" ToolTip="Ctrl-A?? - save config as"/>
-                            <!--<Button Command="{Binding CommandConfigSaveAs}" ToolTip="Ctrl-A?? - save config as">
-                                <ContentControl Template="{StaticResource iconSaveAs}" />
-                            </Button>-->
-                            <!--<Button Command="{Binding CommandEditConnStrings}" ToolTip="Ctrl-C - connection strings builder">
-                                <ContentControl Template="{StaticResource iconConnectionBuilder}" />
-                            </Button>-->
+                            <vc:vButton IconControlTemplate="{StaticResource iconSave}" DataContext="{Binding BtnConfigSave}" ToolTip="Ctrl-S - save configuration"/>
+                            <vc:vButton IconControlTemplate="{StaticResource iconSaveAs}" DataContext="{Binding BtnConfigSaveAs}" ToolTip="Ctrl-A - save configuration as"/>
                             <!--<TextBlock Text=" DB conn:" FontWeight="Bold" VerticalAlignment="Center">
                                 <TextBlock.ToolTip>Default DB connection. Will be used if solution and project DB connections are empty.</TextBlock.ToolTip>
                             </TextBlock>
@@ -156,11 +132,8 @@
                                     </DataTemplate>
                                 </xctk:WatermarkComboBox.WatermarkTemplate>
                             </xctk:WatermarkComboBox>-->
-                            <vc:vButton DataContext="{Binding BtnConfigSaveAs}" ToolTip="Ctrl-A?? - save config as"/>
-                            <Button Command="{Binding CommandConfigCurrentUpdate, IsAsync=True, Mode=OneWay}"
-                                ToolTip="{Binding CommandConfigCurrentUpdate.ToolTipText}">
-                                <ContentControl Template="{StaticResource iconRun}" ToolTip="{Binding CommandConfigCurrentUpdate.ToolTipText}"/>
-                            </Button>
+                            <vc:vButton IconControlTemplate="{StaticResource iconValidateModel}" DataContext="{Binding BtnConfigValidateAsync}" ToolTip="Ctrl-V - validate configuration"/>
+                            <vc:vButton IconControlTemplate="{StaticResource iconRun}" DataContext="{Binding BtnConfigCurrentUpdateAsync}" ToolTip="Ctrl-U - update generated code"/>
                         </ToolBar>
                     </ToolBarPanel>
                 </Grid>
@@ -217,7 +190,7 @@
                     </GridSplitter>
                     <!--List Properties-->
                     <Grid Grid.Column="4">
-                        <local:PropertiesList />
+                        <local:PropertiesList LostFocus="PropertiesList_LostFocus" />
                     </Grid>
                 </Grid>
                 <TextBlock Grid.Row="2" Margin="3,0,0,0" Text="{Binding MessageInstructions}" FontWeight="Bold" />

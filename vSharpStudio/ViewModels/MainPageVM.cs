@@ -33,6 +33,7 @@ using Microsoft.Win32;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
+using vSharpStudio.Controls;
 using vSharpStudio.std;
 using vSharpStudio.Views;
 using vSharpStudio.vm.ViewModels;
@@ -543,32 +544,32 @@ namespace vSharpStudio.ViewModels
                 this._Config.CurrentCfgFolderPath = Path.GetDirectoryName(this._CurrentCfgFilePath) ?? String.Empty;
                 this._Config.OnSelectedNodeChanged = () =>
                 {
-                    this.CommandAddNew.RaiseCanExecuteChanged();
-                    this.CommandAddNewChild.RaiseCanExecuteChanged();
-                    this.CommandAddClone.RaiseCanExecuteChanged();
-                    this.CommandMoveDown.RaiseCanExecuteChanged();
-                    this.CommandMoveUp.RaiseCanExecuteChanged();
-                    this.CommandDelete.RaiseCanExecuteChanged();
-                    this.CommandSelectionLeft.RaiseCanExecuteChanged();
-                    this.CommandSelectionRight.RaiseCanExecuteChanged();
-                    this.CommandSelectionDown.RaiseCanExecuteChanged();
-                    this.CommandSelectionUp.RaiseCanExecuteChanged();
-                    if (this._Config.SelectedNode != null)
-                    {
-#if Async
-                        Task.Run(() =>
-                        {
-                            this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
-                        }).ConfigureAwait(false); // not keeping context because doing nothing after await
-                        //this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode).SafeFireAndForget(onException: ex => Console.WriteLine(ex));
-#else
-                        this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
-#endif
-                    }
+                    this.BtnAddNew.Command.NotifyCanExecuteChanged();
+                    this.BtnAddNewChild.Command.NotifyCanExecuteChanged();
+                    this.BtnAddClone.Command.NotifyCanExecuteChanged();
+                    this.BtnMoveDown.Command.NotifyCanExecuteChanged();
+                    this.BtnMoveUp.Command.NotifyCanExecuteChanged();
+                    this.BtnDelete.Command.NotifyCanExecuteChanged();
+                    this.BtnSelectionLeft.Command.NotifyCanExecuteChanged();
+                    this.BtnSelectionRight.Command.NotifyCanExecuteChanged();
+                    this.BtnSelectionDown.Command.NotifyCanExecuteChanged();
+                    this.BtnSelectionUp.Command.NotifyCanExecuteChanged();
+//                    if (this._Config.SelectedNode != null)
+//                    {
+////#if Async
+////                        Task.Run(() =>
+////                        {
+////                            this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
+////                        });
+////                        //}).ConfigureAwait(false); // not keeping context because doing nothing after await
+////                        //this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode).SafeFireAndForget(onException: ex => Console.WriteLine(ex));
+////#else
+////                        this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
+////#endif
+//                    }
                 };
             }
         }
-        public bool IsValidateSubTreeWhenModelChanged = true;
         private Config _Config;
 
         #region Main
@@ -576,10 +577,10 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnNewConfig ?? (this._BtnNewConfig = new vButtonVM<string>("iconNewFile", "iconNewFile",
+                return this._BtnNewConfig ?? (this._BtnNewConfig = new vButtonVM<string>(
                     (o) =>
                     {
-                        this.SaveAs((string)o, true);
+                        this.SaveAs(o, true);
                         this.BtnConfigSave.Command.NotifyCanExecuteChanged();
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
                         this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
@@ -612,7 +613,7 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnOpenConfig ?? (this._BtnOpenConfig = new vButtonVM<string>("iconSettingsFile", "iconSettingsFile",
+                return this._BtnOpenConfig ?? (this._BtnOpenConfig = new vButtonVM<string>(
                     (o) =>
                     {
                         this.OpenConfig();
@@ -654,7 +655,7 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnConfigSave ?? (this._BtnConfigSave = new vButtonVM("iconSave", "iconSave",
+                return this._BtnConfigSave ?? (this._BtnConfigSave = new vButtonVM(
                     () => { this.Save(); },
                     () => { return this.Config != null && this.CurrentCfgFilePath != null; }));
             }
@@ -700,7 +701,7 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnConfigSaveAs ?? (this._BtnConfigSaveAs = new vButtonVM<string>("iconSaveAs", "iconSaveAs",
+                return this._BtnConfigSaveAs ?? (this._BtnConfigSaveAs = new vButtonVM<string>(
                     (o) => { this.SaveAs(o); },
                     (o) => { return this.Config != null; }));
             }
@@ -862,17 +863,70 @@ namespace vSharpStudio.ViewModels
         }
         private ProgressVM? _ProgressVM;
         private CancellationTokenSource? cancellationTokenSource;
+        public vButtonVmAsync<TestTransformation?> BtnConfigValidateAsync
+        {
+            get
+            {
+                if (this._BtnConfigValidateAsync == null)
+                {
+                    this._BtnConfigValidateAsync = new vButtonVmAsync<TestTransformation?>(
+                        async (o) =>
+                        {
+                            Debug.Assert(this.ProgressVM != null);
+                            this.ProgressVM.Start("Update Current Version Generated Projects", 0, "", 0);
+                            this.IsBusy = true;
+                            TestTransformation? tst = o as TestTransformation;
+                            try
+                            {
+                                this.cancellationTokenSource = new CancellationTokenSource();
+                                CancellationToken cancellationToken = this.cancellationTokenSource.Token;
+
+                                await Task.Run(() =>
+                                {
+                                    this._Config.ValidateSubTreeFromNode(this._Config);
+                                });
+                                this.cancellationTokenSource = null;
+                            }
+                            catch (CancellationException)
+                            {
+                            }
+                            catch (Exception ex)
+                            {
+                                this.ProgressVM.Exception = ex;
+                                if (tst == null)
+#if DEBUG
+                                    if (!VmBindable.isUnitTests)
+#endif
+                                        MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
+                            }
+                            finally
+                            {
+                                this.ProgressVM.End();
+                                this.IsBusy = false;
+                            }
+                        }, (o) =>
+                        {
+                            //this._BtnConfigCurrentUpdate!.ToolTipText = "kuku";
+                            return this.cancellationTokenSource == null && this.Config != null;
+                        }
+                    );
+                }
+                return this._BtnConfigValidateAsync;
+            }
+        }
+        private vButtonVmAsync<TestTransformation?>? _BtnConfigValidateAsync;
         public vButtonVmAsync<TestTransformation?> BtnConfigCurrentUpdateAsync
         {
             get
             {
                 if (this._BtnConfigCurrentUpdate == null)
                 {
-                    this._BtnConfigCurrentUpdate = new vButtonVmAsync<TestTransformation?>("iconRun", "iconRun",
+                    this._BtnConfigCurrentUpdate = new vButtonVmAsync<TestTransformation?>(
                         async (o) =>
                         {
                             Debug.Assert(this.ProgressVM != null);
                             this.ProgressVM.Start("Update Current Version Generated Projects", 0, "", 0);
+                            this.IsBusy = true;
                             TestTransformation? tst = o as TestTransformation;
                             bool isException = false;
                             try
@@ -912,6 +966,7 @@ namespace vSharpStudio.ViewModels
                                     this.BtnConfigSave.Command.Execute(null);
                                 }
                                 this.ProgressVM.End();
+                                this.IsBusy = false;
                             }
                         }, (o) =>
                         {
@@ -1319,19 +1374,19 @@ namespace vSharpStudio.ViewModels
                 this.IsBusy = false;
             }
         }
-        public vCommand CommandConfigCreateStableVersion
+        public vButtonVM CommandConfigCreateStableVersion
         {
             get
             {
-                return this._CommandConfigCreateStableVersion ?? (this._CommandConfigCreateStableVersion = vCommand.Create(
-                (o) =>
+                return this._CommandConfigCreateStableVersion ?? (this._CommandConfigCreateStableVersion = new vButtonVM(
+                () =>
                 {
                     this.CreateStableVersion();
                 },
-                (o) => { return this.Config != null; }));
+                () => { return this.Config != null; }));
             }
         }
-        private vCommand? _CommandConfigCreateStableVersion;
+        private vButtonVM? _CommandConfigCreateStableVersion;
         private void CreateStableVersion()
         {
             if (this.pconfig_history == null)
@@ -1449,106 +1504,106 @@ namespace vSharpStudio.ViewModels
             get { return _VisibilityConfig; }
         }
         private System.Windows.Visibility _VisibilityConfig = System.Windows.Visibility.Hidden;
-        public vCommand CommandAddNew
+        public vButtonVM BtnAddNew
         {
             get
             {
-                return this._CommandAddNew ?? (this._CommandAddNew = vCommand.Create(
-                (o) => { Utils.TryCall(() => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddNew(); }, "Add new node command"); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNew(); }));
+                return this._BtnAddNew ?? (this._BtnAddNew = new vButtonVM(
+                () => { Utils.TryCall(() => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddNew(); }, "Add new node command"); },
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNew(); }));
             }
         }
-        private vCommand? _CommandAddNew;
-        public vCommand CommandAddNewChild
+        private vButtonVM? _BtnAddNew;
+        public vButtonVM BtnAddNewChild
         {
             get
             {
-                return this._CommandAddNewChild ?? (this._CommandAddNewChild = vCommand.Create(
-                (o) => { Utils.TryCall(() => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNewSubNode(); }));
+                return this._BtnAddNewChild ?? (this._BtnAddNewChild = new vButtonVM(
+                () => { Utils.TryCall(() => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNewSubNode(); }));
             }
         }
-        private vCommand? _CommandAddNewChild;
-        public vCommand CommandAddClone
+        private vButtonVM? _BtnAddNewChild;
+        public vButtonVM BtnAddClone
         {
             get
             {
-                return this._CommandAddClone ?? (this._CommandAddClone = vCommand.Create(
-                (o) => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddClone(); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddClone(); }));
+                return this._BtnAddClone ?? (this._BtnAddClone = new vButtonVM(
+                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddClone(); },
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddClone(); }));
             }
         }
-        private vCommand? _CommandAddClone;
-        public vCommand CommandMoveDown
+        private vButtonVM? _BtnAddClone;
+        public vButtonVM BtnMoveDown
         {
             get
             {
-                return this._CommandMoveDown ?? (this._CommandMoveDown = vCommand.Create(
-                (o) => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveDown(); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); }));
+                return this._BtnMoveDown ?? (this._BtnMoveDown = new vButtonVM(
+                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveDown(); },
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); }));
             }
         }
-        private vCommand? _CommandMoveDown;
-        public vCommand CommandMoveUp
+        private vButtonVM? _BtnMoveDown;
+        public vButtonVM BtnMoveUp
         {
             get
             {
-                return this._CommandMoveUp ?? (this._CommandMoveUp = vCommand.Create(
-                (o) => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveUp(); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); }));
+                return this._BtnMoveUp ?? (this._BtnMoveUp = new vButtonVM(
+                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveUp(); },
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); }));
             }
         }
-        private vCommand? _CommandMoveUp;
-        public vCommand CommandDelete
+        private vButtonVM? _BtnMoveUp;
+        public vButtonVM BtnDelete
         {
             get
             {
-                return this._CommandDelete ?? (this._CommandDelete = vCommand.Create(
-                (o) => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMarkForDeletion(); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMarkForDeletion(); }));
+                return this._BtnDelete ?? (this._BtnDelete = new vButtonVM(
+                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMarkForDeletion(); },
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMarkForDeletion(); }));
             }
         }
-        private vCommand? _CommandDelete;
-        public vCommand CommandSelectionLeft
+        private vButtonVM? _BtnDelete;
+        public vButtonVM BtnSelectionLeft
         {
             get
             {
-                return this._CommandSelectionLeft ?? (this._CommandSelectionLeft = vCommand.Create(
-                (o) => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeLeft(); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanLeft(); }));
+                return this._BtnSelectionLeft ?? (this._BtnSelectionLeft = new vButtonVM(
+                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeLeft(); },
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanLeft(); }));
             }
         }
-        private vCommand? _CommandSelectionLeft;
-        public vCommand CommandSelectionRight
+        private vButtonVM? _BtnSelectionLeft;
+        public vButtonVM BtnSelectionRight
         {
             get
             {
-                return this._CommandSelectionRight ?? (this._CommandSelectionRight = vCommand.Create(
-                (o) => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeRight(); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRight(); }));
+                return this._BtnSelectionRight ?? (this._BtnSelectionRight = new vButtonVM(
+                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeRight(); },
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRight(); }));
             }
         }
-        private vCommand? _CommandSelectionRight;
-        public vCommand CommandSelectionDown
+        private vButtonVM? _BtnSelectionRight;
+        public vButtonVM BtnSelectionDown
         {
             get
             {
-                return this._CommandSelectionDown ?? (this._CommandSelectionDown = vCommand.Create(
-                (o) => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeDown(); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanDown(); }));
+                return this._BtnSelectionDown ?? (this._BtnSelectionDown = new vButtonVM(
+                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeDown(); },
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanDown(); }));
             }
         }
-        private vCommand? _CommandSelectionDown;
-        public vCommand CommandSelectionUp
+        private vButtonVM? _BtnSelectionDown;
+        public vButtonVM BtnSelectionUp
         {
             get
             {
-                return this._CommandSelectionUp ?? (this._CommandSelectionUp = vCommand.Create(
-                (o) => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeUp(); },
-                (o) => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanUp(); }));
+                return this._BtnSelectionUp ?? (this._BtnSelectionUp = new vButtonVM(
+                () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeUp(); },
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanUp(); }));
             }
         }
-        private vCommand? _CommandSelectionUp;
+        private vButtonVM? _BtnSelectionUp;
         #endregion ConfigTree
 
         public vCommand CommandFromErrorToSelection

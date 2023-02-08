@@ -313,7 +313,7 @@ namespace vSharpStudio.Unit
 
             vm2.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm2.Config.CountErrors == 0);
-            vm2.CommandConfigCreateStableVersion.Execute(new TestTransformation());
+            vm2.CommandConfigCreateStableVersion.Execute();
 
             #region DicDiffResult
 #if DEBUG
@@ -505,7 +505,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(true, nds.IsParam1);
             Assert.IsFalse(vm.Config.Model.GroupCatalogs[0].GroupProperties.IsIncluded(gen.Guid));
 
-            vm2.CommandConfigCreateStableVersion.Execute(new TestTransformation());
+            vm2.CommandConfigCreateStableVersion.Execute();
             Assert.IsFalse((vm2.Config.PrevStableConfig.Model.GroupCatalogs[0].GroupProperties as IGetNodeSetting).IsIncluded(gen.Guid));
             main = (vPlugin.Sample.GeneratorDbAccessSettings)(vm2.Config.PrevStableConfig.GroupAppSolutions[0].ListAppProjects[0].ListAppProjectGenerators[0].DynamicGeneratorSettings);
             Assert.AreEqual(true, main.IsAccessParam1);

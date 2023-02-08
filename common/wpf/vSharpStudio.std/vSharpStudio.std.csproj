@@ -26,5 +26,8 @@
         <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
             <_Parameter1>vSharpStudio.Unit</_Parameter1>
         </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>TestModelGenerator</_Parameter1>
+        </AssemblyAttribute>
     </ItemGroup>
 </Project>
