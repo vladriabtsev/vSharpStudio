@@ -2611,7 +2611,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			public partial class Catalogs // Catalogs.tt Line: 8, called from NameSpace.tt Line: 169
 			{
 				// PocoCatalogs.tt Line: 7, called from Catalogs.tt Line: 13
-				[Dapper.Contrib.Extensions.Table("CtlgCatalog1")]
+				[Dapper.Contrib.Extensions.Table("v.CtlgCatalog1")]
 				public partial class Catalog1 : RepoEntityBaseSync<Catalog1>, IEntityBaseExplicit<Catalog1>, ISameById<Catalog1>, IEntityBase // ModelCatalogClass.tt Line: 12, called from PocoCatalogs.tt Line: 10
 				{
 				    #region ctor // ModelCtor.tt Line: 8, called from ModelCatalogClass.tt Line: 25
@@ -2670,7 +2670,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionInsert() // ModelEntityCmd.tt Line: 32
 					{
 					    var cmd = new CommandDefinitionData(
-							"INSERT INTO CtlgCatalog1 (" + // ModelEntityCmd.tt Line: 48
+							"INSERT INTO v.CtlgCatalog1 (" + // ModelEntityCmd.tt Line: 48
 								"Id"+
 								",Code"+
 								",Name"+
@@ -2690,7 +2690,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadById(int id) // ModelEntityCmd.tt Line: 71
 					{
-					    var sql = @"SELECT Id, Code, Name FROM CtlgCatalog1 WHERE Id = @pid;"
+					    var sql = @"SELECT Id, Code, Name FROM v.CtlgCatalog1 WHERE Id = @pid;"
 					; // ModelEntityCmd.tt Line: 84
 					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
 					    return cmd;
@@ -2705,7 +2705,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionCountWhere(string? where, object? param) // ModelEntityCmd.tt Line: 104
 					{
 						StringBuilder sb = new StringBuilder();
-						sb.Append("SELECT Count(*) FROM CtlgCatalog1");
+						sb.Append("SELECT Count(*) FROM v.CtlgCatalog1");
 						if (where != null)
 						{
 							sb.Append(" WHERE ");
@@ -2746,7 +2746,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionUpdate() // ModelEntityCmd.tt Line: 183
 					{
 					    var cmd = new CommandDefinitionData(
-					        "UPDATE CtlgCatalog1 SET "+
+					        "UPDATE v.CtlgCatalog1 SET "+
 								"Code = @Code" + 
 								",Name = @Name" + 
 					        " WHERE Id = @Id;", // ModelEntityCmd.tt Line: 212
@@ -2760,21 +2760,21 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteById(int id) // ModelEntityCmd.tt Line: 233
 					{
-					    var sql = "DELETE FROM CtlgCatalog1 WHERE Id = @pid;";
+					    var sql = "DELETE FROM v.CtlgCatalog1 WHERE Id = @pid;";
 					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
 					    return cmd;
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionRemoveById(int id) // ModelEntityCmd.tt Line: 244
 					{
 					    var sql = "" +
-					    "DELETE FROM CtlgCatalog1 WHERE Id = @pid;\n"; // ModelEntityCmd.tt Line: 261
+					    "DELETE FROM v.CtlgCatalog1 WHERE Id = @pid;\n"; // ModelEntityCmd.tt Line: 261
 					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
 					    return cmd;
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteWhere(string? where, object? param) // ModelEntityCmd.tt Line: 266
 					{
 						StringBuilder sb = new StringBuilder();
-						sb.Append("DELETE FROM CtlgCatalog1");
+						sb.Append("DELETE FROM v.CtlgCatalog1");
 						if (!string.IsNullOrWhiteSpace(where))
 						{
 							sb.Append(" WHERE ");
@@ -2789,13 +2789,13 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 						var sb = new StringBuilder();
 						if (!string.IsNullOrWhiteSpace(where))
 						{
-					        sb.Append("DELETE FROM CtlgCatalog1 WHERE "); // ModelEntityCmd.tt Line: 309
+					        sb.Append("DELETE FROM v.CtlgCatalog1 WHERE "); // ModelEntityCmd.tt Line: 309
 					        sb.Append(where);
 					    	sb.AppendLine(";");
 						}
 					    else
 					    {
-					        sb.AppendLine("DELETE FROM CtlgCatalog1;"); // ModelEntityCmd.tt Line: 318
+					        sb.AppendLine("DELETE FROM v.CtlgCatalog1;"); // ModelEntityCmd.tt Line: 318
 					    }
 					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
 					    return cmd;
@@ -2826,7 +2826,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					}
 					#endregion Repository // CatalogRepository.tt Line: 51
 					#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 82
-					[Dapper.Contrib.Extensions.Table("CtlgCatalog1")]
+					[Dapper.Contrib.Extensions.Table("v.CtlgCatalog1")]
 					public partial class ViewListNarrow : ViewEntityBaseSync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 49
 					{
 					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
@@ -2864,7 +2864,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
 						{
 							StringBuilder sb = new StringBuilder();
-							sb.Append("SELECT Count(*) FROM CtlgCatalog1");
+							sb.Append("SELECT Count(*) FROM v.CtlgCatalog1");
 							if (where != null)
 							{
 								sb.Append(" WHERE ");
@@ -2879,7 +2879,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
 							StringBuilder sb = new StringBuilder();
 							sb.Append("SELECT ");
-						    sb.Append("Id, Code, Name FROM CtlgCatalog1");
+						    sb.Append("Id, Code, Name FROM v.CtlgCatalog1");
 							if (where != null)
 							{
 								sb.Append(" WHERE ");
@@ -2904,7 +2904,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 						}
 						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
 					}
-					[Dapper.Contrib.Extensions.Table("CtlgCatalog1")]
+					[Dapper.Contrib.Extensions.Table("v.CtlgCatalog1")]
 					public partial class ViewListWide : ViewEntityBaseSync<ViewListWide>, IViewPlainBaseExplicit<ViewListWide>, IViewItem, ISameById<ViewListWide>  // PocoView.tt Line: 49
 					{
 					    public bool SameById(ViewListWide other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
@@ -2942,7 +2942,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
 						{
 							StringBuilder sb = new StringBuilder();
-							sb.Append("SELECT Count(*) FROM CtlgCatalog1");
+							sb.Append("SELECT Count(*) FROM v.CtlgCatalog1");
 							if (where != null)
 							{
 								sb.Append(" WHERE ");
@@ -2957,7 +2957,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
 							StringBuilder sb = new StringBuilder();
 							sb.Append("SELECT ");
-						    sb.Append("Id, Code, Name FROM CtlgCatalog1");
+						    sb.Append("Id, Code, Name FROM v.CtlgCatalog1");
 							if (where != null)
 							{
 								sb.Append(" WHERE ");
@@ -3365,7 +3365,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        //{
 			        using var cn = new NpgsqlConnection(Model.ConnectionString);
 			        cn.Open();
-			        var lst = cn.Query<int>("SELECT _get_id_range(@gd, @tbl, @range)", p,
+			        var lst = cn.Query<int>("SELECT v._get_id_range(@gd, @tbl, @range)", p,
 			            commandTimeout: Model.CommandTimeout,
 			            commandType: CommandType.Text
 			        );
@@ -3452,7 +3452,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        int res = 0;
 			        ConnExecute((conn) =>
 			        {
-			            var rec = conn.QuerySingleOrDefault<_history_objects_ids>("SELECT * FROM _history_objects_ids WHERE object_guid=@g;",
+			            var rec = conn.QuerySingleOrDefault<_history_objects_ids>("SELECT * FROM v._history_objects_ids WHERE object_guid=@g;",
 			                new { g = guid }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			            if (rec == null)
 			            {
@@ -3461,7 +3461,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			                    Id = (int)Model.GetNextId(_history_objects_ids.T_GUID),
 			                    object_guid = guid
 			                };
-			                conn.Execute("INSERT INTO _history_objects_ids (Id,object_guid) VALUES (@i,@g);",
+			                conn.Execute("INSERT INTO v._history_objects_ids (Id,object_guid) VALUES (@i,@g);",
 			                    new { i=rec.Id, g=rec.object_guid }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			            }
 			            res = rec.Id;
@@ -3555,7 +3555,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        ConnExecute((conn) =>
 			        {
 			            var h = conn.QuerySingleOrDefault<_history>(
-			                "SELECT * FROM _history WHERE object_id=@i  AND date_time<@d ORDER BY date_time DESC FETCH FIRST 1 ROWS ONLY;", 
+			                "SELECT * FROM v._history WHERE object_id=@i  AND date_time<@d ORDER BY date_time DESC FETCH FIRST 1 ROWS ONLY;", 
 			                new { i = constantId, d = _history.FromDateTime(utc) },
 						    commandTimeout: Model.CommandTimeout, commandType: CommandType.Text
 						);
@@ -3577,14 +3577,14 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        var dt = _history.FromDateTime(utc);
 			        ConnExecute((conn) =>
 			        {
-			            var lst = conn.Query<_history>("SELECT * FROM _history WHERE " +
+			            var lst = conn.Query<_history>("SELECT * FROM v._history WHERE " +
 			                "object_id=@i AND date_time=@d",
 			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text).ToList();
 			            if (lst.Count == 1)
 			            {
 			                var rec = lst[0];
 			                rec.val = val;
-			                conn.Execute("UPDATE _history SET val=@v WHERE Id=@i;",
+			                conn.Execute("UPDATE v._history SET val=@v WHERE Id=@i;",
 			                    new { v = val, i = rec.Id }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			            }
 			            else if (lst.Count == 0)
@@ -3595,7 +3595,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			                    date_time = dt,
 			                    val = val
 			                };
-			                conn.Execute("INSERT INTO _history (Id,object_id,date_time,val) VALUES (@i,@o,@d,@v);",
+			                conn.Execute("INSERT INTO v._history (Id,object_id,date_time,val) VALUES (@i,@o,@d,@v);",
 			                    new { i = rec.Id, o = constantId, d = dt, v = val }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			            }
 			            else
@@ -3619,7 +3619,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        IEnumerable<_history>? lst = null;
 			        ConnExecute((conn) =>
 			        {
-			            lst = conn.Query<_history>("SELECT * FROM _history WHERE object_id=@i AND date_time<@d ORDER BY date_time DESC;",
+			            lst = conn.Query<_history>("SELECT * FROM v._history WHERE object_id=@i AND date_time<@d ORDER BY date_time DESC;",
 			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
 			        System.Diagnostics.Debug.Assert(lst != null);
@@ -3640,7 +3640,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        IEnumerable<_history>? lst = null;
 			        ConnExecute((conn) =>
 			        {
-			            lst = conn.Query<_history>("SELECT * FROM _history WHERE object_id=@i AND date_time>@d ORDER BY date_time DESC;",
+			            lst = conn.Query<_history>("SELECT * FROM v._history WHERE object_id=@i AND date_time>@d ORDER BY date_time DESC;",
 			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
 			        System.Diagnostics.Debug.Assert(lst != null);
@@ -3666,7 +3666,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        IEnumerable<_history>? lst = null;
 			        ConnExecute((conn) =>
 			        {
-			            lst = conn.Query<_history>("SELECT * FROM _history WHERE object_id=@i AND date_time>@d AND date_time<@t ORDER BY date_time DESC;",
+			            lst = conn.Query<_history>("SELECT * FROM v._history WHERE object_id=@i AND date_time>@d AND date_time<@t ORDER BY date_time DESC;",
 			                new { i = constantId, d = dt, t = dt2 }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
 			        System.Diagnostics.Debug.Assert(lst != null);
@@ -3682,7 +3682,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        IEnumerable<_history>? lst = null;
 			        ConnExecute((conn) =>
 			        {
-			            lst = conn.Query<_history>("SELECT * FROM _history WHERE object_id=@i ORDER BY date_time DESC;",
+			            lst = conn.Query<_history>("SELECT * FROM v._history WHERE object_id=@i ORDER BY date_time DESC;",
 			                new { i = constantId }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
 			        System.Diagnostics.Debug.Assert(lst != null);
@@ -3702,10 +3702,10 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        var dt = _history.FromDateTime(utc) + 1;
 			        ConnExecute((conn) => // Model.tt Line: 719
 			        {
-			            var dt2 = conn.ExecuteScalar("SELECT date_time FROM _history WHERE object_id=@i AND date_time<@d ORDER BY date_time DESC FETCH FIRST 1 ROWS ONLY;", 
+			            var dt2 = conn.ExecuteScalar("SELECT date_time FROM v._history WHERE object_id=@i AND date_time<@d ORDER BY date_time DESC FETCH FIRST 1 ROWS ONLY;", 
 			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text); // Model.tt Line: 748
 			            if (dt2 != null)
-			                conn.Execute("DELETE FROM _history WHERE object_id=@i AND date_time<@d;", 
+			                conn.Execute("DELETE FROM v._history WHERE object_id=@i AND date_time<@d;", 
 			                    new { i = constantId, d = dt2 }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
 			    }
@@ -3716,7 +3716,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			    {
 			        ConnExecute((conn) =>
 			        {
-			            conn.Execute("DELETE FROM _history WHERE id=@i;", new { i = id }, 
+			            conn.Execute("DELETE FROM v._history WHERE id=@i;", new { i = id }, 
 			                commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
 			    }
@@ -3727,7 +3727,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			    {
 			        ConnExecute((conn) =>
 			        {
-			            conn.Execute("DELETE FROM _history WHERE object_id=@i;", new { i = constantId }, 
+			            conn.Execute("DELETE FROM v._history WHERE object_id=@i;", new { i = constantId }, 
 			                commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
 			    }
@@ -4432,7 +4432,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			    }
 			    else
 			    {
-			        sb.Append("SELECT * FROM ");
+			        sb.Append("SELECT * FROM v.");
 			        sb.Append(table);
 			        sb.Append("");
 			    }
