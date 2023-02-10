@@ -554,19 +554,19 @@ namespace vSharpStudio.ViewModels
                     this.BtnSelectionRight.Command.NotifyCanExecuteChanged();
                     this.BtnSelectionDown.Command.NotifyCanExecuteChanged();
                     this.BtnSelectionUp.Command.NotifyCanExecuteChanged();
-//                    if (this._Config.SelectedNode != null)
-//                    {
-////#if Async
-////                        Task.Run(() =>
-////                        {
-////                            this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
-////                        });
-////                        //}).ConfigureAwait(false); // not keeping context because doing nothing after await
-////                        //this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode).SafeFireAndForget(onException: ex => Console.WriteLine(ex));
-////#else
-////                        this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
-////#endif
-//                    }
+                    //                    if (this._Config.SelectedNode != null)
+                    //                    {
+                    ////#if Async
+                    ////                        Task.Run(() =>
+                    ////                        {
+                    ////                            this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
+                    ////                        });
+                    ////                        //}).ConfigureAwait(false); // not keeping context because doing nothing after await
+                    ////                        //this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode).SafeFireAndForget(onException: ex => Console.WriteLine(ex));
+                    ////#else
+                    ////                        this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
+                    ////#endif
+                    //                    }
                 };
             }
         }
@@ -927,18 +927,17 @@ namespace vSharpStudio.ViewModels
                             Debug.Assert(this.ProgressVM != null);
                             this.ProgressVM.Start("Update Current Version Generated Projects", 0, "", 0);
                             this.IsBusy = true;
-                            TestTransformation? tst = o as TestTransformation;
                             bool isException = false;
                             try
                             {
                                 //this.Config.PluginSettingsToModel();
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
-//#if Async
+                                //#if Async
                                 await this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
-//#else
-//                                this.UpdateCurrentVersion(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
-//#endif
+                                //#else
+                                //                                this.UpdateCurrentVersion(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+                                //#endif
                                 this.ResetIsChangedBeforeSave();
                                 this.cancellationTokenSource = null;
                                 //if (ex != null)
@@ -952,7 +951,7 @@ namespace vSharpStudio.ViewModels
                             {
                                 isException = true;
                                 this.ProgressVM.Exception = ex;
-                                if (tst == null)
+                                if (o == null)
 #if DEBUG
                                     if (!VmBindable.isUnitTests)
 #endif
@@ -1193,7 +1192,7 @@ namespace vSharpStudio.ViewModels
                     this._Config.ValidateSubTreeFromNode(this._Config);
                     //#endif
                     if (this._Config.CountErrors > 0)
-                        throw new Exception($"There are {this._Config.CountErrors} errors in configuration.\nFirst error is {this._Config.ValidationCollection[0].Message} \nFix errors and try again.");
+                        throw new Exception($"There are {this._Config.CountErrors} errors in configuration.\nFirst error is {this._Config.FindValidationMessage()?.Message} \nFix errors and try again.");
                     if (tst == null && this._Config.CountWarnings > 0)
                     {
 #if DEBUG
@@ -1374,20 +1373,53 @@ namespace vSharpStudio.ViewModels
                 this.IsBusy = false;
             }
         }
-        public vButtonVM CommandConfigCreateStableVersion
+        public vButtonVmAsync<TestTransformation?> BtnConfigCreateStableVersionAsync
         {
             get
             {
-                return this._CommandConfigCreateStableVersion ?? (this._CommandConfigCreateStableVersion = new vButtonVM(
-                () =>
-                {
-                    this.CreateStableVersion();
-                },
-                () => { return this.Config != null; }));
+                return this._BtnConfigCreateStableVersionAsync ?? (this._BtnConfigCreateStableVersionAsync = new vButtonVmAsync<TestTransformation?>(
+                    (t) =>
+                    {
+                        this.IsBusy = true;
+                        try
+                        {
+                            this.CreateStableVersion(t);
+                        }
+                        finally
+                        {
+                            this.IsBusy = false;
+                        }
+                        return Task.CompletedTask;
+                    },
+                    (t) => { return this.Config != null; }));
             }
         }
-        private vButtonVM? _CommandConfigCreateStableVersion;
-        private void CreateStableVersion()
+        private vButtonVmAsync<TestTransformation?>? _BtnConfigCreateStableVersionAsync;
+        //public vButtonVmAsync<TestTransformation?> BtnConfigCreateStableVersionAsync
+        //{
+        //    get
+        //    {
+        //        return this._BtnConfigCreateStableVersionAsync ?? (this._BtnConfigCreateStableVersionAsync = new vButtonVmAsync<TestTransformation?>(
+        //            (t) =>
+        //            {
+        //                return Task.Run(() =>
+        //                {
+        //                    this.IsBusy = true;
+        //                    try
+        //                    {
+        //                        this.CreateStableVersion(t);
+        //                    }
+        //                    finally
+        //                    {
+        //                        this.IsBusy = false;
+        //                    }
+        //                });
+        //            },
+        //            (t) => { return this.Config != null; }));
+        //    }
+        //}
+        //private vButtonVmAsync<TestTransformation?>? _BtnConfigCreateStableVersionAsync;
+        private void CreateStableVersion(TestTransformation? tst)
         {
             if (this.pconfig_history == null)
             {

@@ -71,6 +71,43 @@
         {
             this.NotifyPropertyChanged(nameof(this.IconStatus));
         }
+        public ITreeConfigNode? FindSiblingWithValidationMessage(FluentValidation.Severity minSeverity)
+        {
+            return this.FindChildWithValidationMessage(this.GetListSiblings(), minSeverity);
+        }
+        public ITreeConfigNode? FindChildWithValidationMessage(FluentValidation.Severity minSeverity)
+        {
+            return this.FindChildWithValidationMessage(this.GetListChildren(), minSeverity);
+        }
+        private ITreeConfigNode? FindChildWithValidationMessage(IChildrenCollection lst, FluentValidation.Severity minSeverity)
+        {
+            foreach (var t in lst)
+            {
+                var p = (IValidatableWithSeverity)t;
+                foreach (var v in p.ValidationCollection)
+                {
+                    if (v.Severity <= minSeverity)
+                        return t as ITreeConfigNode;
+                }
+            }
+            foreach (var t in lst)
+            {
+                var tt = this.FindChildWithValidationMessage(((ITree)t).GetListChildren(), minSeverity);
+                if (tt != null)
+                    return tt;
+            }
+            return null;
+        }
+        public ValidationMessage? FindValidationMessage(FluentValidation.Severity minSeverity = FluentValidation.Severity.Error)
+        {
+            foreach (var v in this.ValidationCollection)
+            {
+                if (v.Severity <= minSeverity)
+                    return v;
+            }
+            var node = this.FindChildWithValidationMessage(FluentValidation.Severity.Error);
+            return node?.ValidationCollection[0];
+        }
         [Browsable(false)]
         public IChildrenCollection Children { get; protected set; }
         [Browsable(false)]
