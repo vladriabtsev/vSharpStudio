@@ -183,6 +183,7 @@ namespace vSharpStudio.Unit
 
             // create next stable version
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants.Count == 1);
             Assert.IsTrue(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].Name == cnst.Name);
@@ -596,6 +597,7 @@ namespace vSharpStudio.Unit
             // c1-new -> not new, not del  
             Assert.IsFalse(vm.Config.IsHasChanged);
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             Assert.IsFalse(vm.Config.IsHasChanged);
             // prev c1 not new, not del
             Assert.AreEqual(1, gr.ListConstants.Count());
@@ -640,6 +642,7 @@ namespace vSharpStudio.Unit
             // c1- not new, del -> not new, del => previous not new, del
             // c3- new -> not new
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             Assert.IsFalse(vm.Config.IsHasChanged);
             // prev c1 not new, del
             Assert.AreEqual(2, gr.ListConstants.Count());
@@ -655,6 +658,7 @@ namespace vSharpStudio.Unit
             // c1- not new, del -> removed
             // c3- new -> new
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.AreEqual(1, gr.ListConstants.Count());
             Assert.AreEqual(c3, gr.ListConstants[0]);
@@ -696,6 +700,7 @@ namespace vSharpStudio.Unit
 
             // c1-new -> not new, not del  
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             // prev c1 not new, not del
             Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.IsFalse(c1.IsNew);
@@ -731,6 +736,7 @@ namespace vSharpStudio.Unit
             // c1- not new, del -> not new, del => previous not new, del
             // c3- new -> not new
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             // prev c1 not new, del
             Assert.AreEqual(2, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.IsFalse(c1.IsNew);
@@ -745,6 +751,7 @@ namespace vSharpStudio.Unit
             // c1- not new, del -> removed
             // c3- new -> new
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             Assert.AreEqual(1, cfg.Model.GroupEnumerations.ListEnumerations.Count());
             Assert.AreEqual(c3, cfg.Model.GroupEnumerations.ListEnumerations[0]);
             Assert.IsFalse(c3.IsMarkedForDeletion);
@@ -1112,6 +1119,7 @@ namespace vSharpStudio.Unit
             await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync();
 
             await vm.BtnConfigCreateStableVersionAsync.ExecuteAsync();
+            Assert.IsFalse(vm.Config.IsNeedCurrentUpdate);
             Debug.Assert(vm.Config == vm.Config.Model.Parent);
             Debug.Assert(vm.Config.Model.GroupEnumerations == vm.Config.Model.GroupEnumerations[0].Parent);
             // expect IsHasMarkedForDeletion and IsHasNew will be false

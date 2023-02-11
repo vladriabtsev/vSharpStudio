@@ -951,19 +951,20 @@ namespace vSharpStudio.ViewModels
                             {
                                 isException = true;
                                 this.ProgressVM.Exception = ex;
-                                if (o == null)
 #if DEBUG
-                                    if (!VmBindable.isUnitTests)
+                                if (VmBindable.isUnitTests)
+                                    throw;
+                                else
 #endif
-                                        MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
+                                    MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
                             }
                             finally
                             {
-                                if (!isException)
-                                {
-                                    //await this.CommandConfigSave.ExecuteAsync(null);
-                                    this.BtnConfigSave.Command.Execute(null);
-                                }
+                                //if (!isException)
+                                //{
+                                //    //await this.CommandConfigSave.ExecuteAsync(null);
+                                //    this.BtnConfigSave.Command.Execute(null);
+                                //}
                                 this.ProgressVM.End();
                                 this.IsBusy = false;
                             }
@@ -1327,8 +1328,8 @@ namespace vSharpStudio.ViewModels
 #endif
                     var vis = new ModelVisitorRemoveMarkedIfNewObjects();
                     vis.Run(this.Config, null, null, null);
-                    this.Config.SetIsNeedCurrentUpdate(false);
-                    this.Save();
+                    //this.Config.SetIsNeedCurrentUpdate(false);
+                    //this.Save();
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnCodeGenerated)
                         throw new Exception();
@@ -1342,7 +1343,7 @@ namespace vSharpStudio.ViewModels
                     var update_history = new CallMethodAction(
                       () =>
                       {
-                          this.Save();
+                          //this.Save();
                           var proto = Config.ConvertToProto(this.Config);
                           this.Config.PrevCurrentConfig = Config.ConvertToVM(proto, new Config());
                           this.InitConfig((Config)this.Config.PrevCurrentConfig);
@@ -1361,6 +1362,9 @@ namespace vSharpStudio.ViewModels
 
                     // VIII. Generate Update SQL for previous stable DB
                     //TODO Generate Update SQL for previous stable DB
+
+                    this.Save();
+                    this.Config.SetIsNeedCurrentUpdate(false);
                 }
             }
             //catch (Exception ex)
