@@ -71,42 +71,52 @@
         {
             this.NotifyPropertyChanged(nameof(this.IconStatus));
         }
-        public ITreeConfigNode? FindSiblingWithValidationMessage(FluentValidation.Severity minSeverity)
+        public ITreeConfigNode? FindSiblingWithValidationMessage(FluentValidation.Severity severity)
         {
-            return this.FindChildWithValidationMessage(this.GetListSiblings(), minSeverity);
+            return this.FindChildWithValidationMessage(this.GetListSiblings(), severity);
         }
-        public ITreeConfigNode? FindChildWithValidationMessage(FluentValidation.Severity minSeverity)
+        public ITreeConfigNode? FindChildWithValidationMessage(FluentValidation.Severity severity)
         {
-            return this.FindChildWithValidationMessage(this.GetListChildren(), minSeverity);
+            return this.FindChildWithValidationMessage(this.GetListChildren(), severity);
         }
-        private ITreeConfigNode? FindChildWithValidationMessage(IChildrenCollection lst, FluentValidation.Severity minSeverity)
+        private ITreeConfigNode? FindChildWithValidationMessage(IChildrenCollection lst, FluentValidation.Severity severity)
         {
             foreach (var t in lst)
             {
                 var p = (IValidatableWithSeverity)t;
                 foreach (var v in p.ValidationCollection)
                 {
-                    if (v.Severity <= minSeverity)
+                    if (v.Severity == severity)
                         return t as ITreeConfigNode;
                 }
             }
             foreach (var t in lst)
             {
-                var tt = this.FindChildWithValidationMessage(((ITree)t).GetListChildren(), minSeverity);
+                var tt = this.FindChildWithValidationMessage(((ITree)t).GetListChildren(), severity);
                 if (tt != null)
                     return tt;
             }
             return null;
         }
-        public ValidationMessage? FindValidationMessage(FluentValidation.Severity minSeverity = FluentValidation.Severity.Error)
+        public ValidationMessage? FindValidationMessage(FluentValidation.Severity severity = FluentValidation.Severity.Error)
         {
+            // check this.CountXXXXX before calling this function
+            Debug.Assert((severity == Severity.Error && this.CountErrors > 0)
+                || (severity == Severity.Warning && this.CountWarnings > 0)
+                || (severity == Severity.Info && this.CountInfos > 0));
             foreach (var v in this.ValidationCollection)
             {
-                if (v.Severity <= minSeverity)
+                if (v.Severity == severity)
                     return v;
             }
-            var node = this.FindChildWithValidationMessage(FluentValidation.Severity.Error);
-            return node?.ValidationCollection[0];
+            var node = this.FindChildWithValidationMessage(severity);
+            Debug.Assert(node != null);
+            foreach (var v in node.ValidationCollection)
+            {
+                if (v.Severity == severity)
+                    return v;
+            }
+            throw new Exception($"Validation message with severity '{Enum.GetName(typeof(Severity), severity)}' is not found");
         }
         [Browsable(false)]
         public IChildrenCollection Children { get; protected set; }
@@ -1168,13 +1178,14 @@
         }
 
         #region ITree
+        public class DummyChildrenCollection : List<object>, IChildrenCollection { }
         public virtual IChildrenCollection GetListChildren()
         {
-            throw new NotImplementedException();
+            return new DummyChildrenCollection();
         }
         public virtual IChildrenCollection GetListSiblings()
         {
-            throw new NotImplementedException();
+            return new DummyChildrenCollection();
         }
         public virtual bool HasChildren()
         {
