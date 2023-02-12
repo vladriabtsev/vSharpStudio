@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AsyncAwaitBestPractices;
 using ViewModelBase;
 using vSharpStudio.ViewModels;
 using vSharpStudio.vm.ViewModels;
@@ -85,13 +86,7 @@ namespace vSharpStudio.Views
 
         private void PropertiesList_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (this._model.Config.SelectedNode != null)
-            {
-                Task.Run(() =>
-                {
-                    this._model.Config.ValidateSubTreeFromNode(this._model.Config.SelectedNode);
-                });
-            }
+            this._model.ValidateSelectedNodeAsync().SafeFireAndForget();
         }
     }
 }

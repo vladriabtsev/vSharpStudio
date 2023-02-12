@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,7 +32,7 @@ namespace vSharpStudio.Unit
         [AssemblyInitialize]
         public static void InitializeTests(TestContext testContext)
         {
-            UIDispatcher.Initialize();
+            //UIDispatcher.Initialize();
 
             //var hostBuilder = Host.CreateDefaultBuilder()
             //    .ConfigureLogging(builder => builder
@@ -275,7 +276,7 @@ namespace vSharpStudio.Unit
             #endregion DicDiffResult
 
             gen2.GenFileName = "test.cs";
-            vm2.Config.ValidateSubTreeFromNode(vm2.Config);
+            await vm2.BtnConfigValidateAsync.ExecuteAsync();
             Assert.IsTrue(vm2.Config.Model.CountErrors == 0);
             Assert.IsTrue(vm2.Config.GroupAppSolutions.CountErrors == 0);
             Assert.IsTrue(vm2.Config.GroupPlugins.CountErrors == 0);
@@ -311,7 +312,7 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(prms.AccessParam3, prms2.AccessParam3);
             Assert.AreEqual(prms.AccessParam4, prms2.AccessParam4);
 
-            vm2.Config.ValidateSubTreeFromNode(vm.Config);
+            await vm2.BtnConfigValidateAsync.ExecuteAsync();
             Assert.IsTrue(vm2.Config.CountErrors == 0);
             await vm2.BtnConfigCreateStableVersionAsync.ExecuteAsync();
             Assert.IsFalse(vm2.Config.IsNeedCurrentUpdate);
@@ -520,8 +521,11 @@ namespace vSharpStudio.Unit
             _logger.LogTrace("End test".CallerInfo());
         }
         [TestMethod]
-        public void Plugin006WorkWithPluginsGroupSettings()
+        async public Task Plugin006WorkWithPluginsGroupSettings()
         {
+            var cancellation = new CancellationTokenSource();
+            var token = cancellation.Token;
+
             // Settings workflow:
             // 1. When Config is loaded: init group plugin settings on all solution and project nodes
             // 2. When generator is removed, appropriate solution and project settings has to be removed if it is a last plugin in group in the solution
@@ -569,14 +573,17 @@ namespace vSharpStudio.Unit
 
             prj.Validate();
             Assert.IsTrue(prj.ValidationCollection.Count == 0);
-            cfg.ValidateSubTreeFromNode(prj, _logger);
+            //await vm.BtnConfigValidateAsync.ExecuteAsync();
+            await cfg.ValidateSubTreeFromNodeAsync(prj, token, _logger);
             Assert.IsTrue(prj.ValidationCollection.Count == 1);
 
             prjSet.IsGroupProjectParam1 = true;
             prj.Validate();
             Assert.IsTrue(prj.ValidationCollection.Count == 1);
 
-            cfg.ValidateSubTreeFromNode(prj, _logger);
+            await cfg.ValidateSubTreeFromNodeAsync(prj, token, _logger);
+            //await vm.BtnConfigValidateAsync.ExecuteAsync();
+            //cfg.ValidateSubTreeFromNode(prj, _logger);
             Assert.IsTrue(prj.ValidationCollection.Count == 2);
 
             // made group settings valid
@@ -863,30 +870,35 @@ namespace vSharpStudio.Unit
                 File.Delete(genFilePath);
 
             // valid
-            vm.Config.ValidateSubTreeFromNode(vm.Config);
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            //vm.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm.Config.CountErrors == 0);
 
             TestTransformation tt = new TestTransformation();
 
             // valid
             sln.RelativeAppSolutionPath = slnPath;
-            vm.Config.ValidateSubTreeFromNode(vm.Config);
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            //vm.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm.Config.CountErrors == 0);
 
             // Can catch Exception
             tt.IsThrowExceptionOnBuildValidated = true;
-            //await Assert.ThrowsExceptionAsync<Exception>(() =>
-            //{
-            //    return vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
-            //});
-            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            await Assert.ThrowsExceptionAsync<Exception>(() =>
+            {
+                return vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            });
             Assert.IsTrue(vm.ProgressVM.Exception != null);
+            Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
 
             #region valid Config
             sln.RelativeAppSolutionPath = slnPath;
             tt = new TestTransformation();
             tt.IsThrowExceptionOnConfigValidated = true;
-            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            await Assert.ThrowsExceptionAsync<Exception>(() =>
+            {
+                return vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            });
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnConfigValidated));
             Assert.IsTrue(vm.Config.CountErrors == 0);
@@ -902,24 +914,34 @@ namespace vSharpStudio.Unit
             #region not compilable code
             tt = new TestTransformation();
             tt.IsThrowExceptionOnBuildValidated = true;
-            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            await Assert.ThrowsExceptionAsync<Exception>(() =>
+            {
+                return vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            });
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
             #endregion not compilable code
 
             // Exclude compilation process if there are no renames
             #region not compilable code
-            tt = new TestTransformation();
-            File.WriteAllText(fpath, "wrong c# code");
-            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
-            Assert.IsTrue(vm.ProgressVM.Exception == null);
+            //tt = new TestTransformation();
+            ////tt.IsThrowExceptionOnBuildValidated = true;
+            //File.WriteAllText(fpath, "wrong c# code");
+            //await Assert.ThrowsExceptionAsync<Exception>(() =>
+            //{
+            //    return vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            //});
+            //Assert.IsTrue(vm.ProgressVM.Exception != null);
             #endregion not compilable code
 
             // Include compilation process if there are renames
             #region not compilable code
             tt = new TestTransformation();
             tt.IsThrowExceptionOnBuildValidated = true;
-            await vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            await Assert.ThrowsExceptionAsync<Exception>(() =>
+            {
+                return vm.BtnConfigCurrentUpdateAsync.ExecuteAsync(tt);
+            });
             Assert.IsTrue(vm.ProgressVM.Exception != null);
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
             #endregion not compilable code

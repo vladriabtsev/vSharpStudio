@@ -15,6 +15,9 @@ using Serilog.Extensions.Logging;
 using Microsoft.CodeAnalysis.Operations;
 using NSubstitute;
 using Xceed.Wpf.Toolkit;
+using System.Threading;
+using Microsoft.Build.Utilities;
+using Newtonsoft.Json.Linq;
 
 namespace vSharpStudio.Unit
 {
@@ -31,7 +34,7 @@ namespace vSharpStudio.Unit
             VmBindable.isUnitTests = true;
             if (_logger == null)
                 //_logger = Logger.ServiceProvider.GetRequiredService<ILogger<PluginTests>>();
-                _logger = Logger.CreateLogger<PluginTests>();
+                _logger = Microsoft.Extensions.Logging.Logger.CreateLogger<PluginTests>();
         }
 
         internal static void InitLogging(object type)
@@ -680,18 +683,21 @@ namespace vSharpStudio.Unit
         }
 
         [TestMethod]
-        public void Rules002_Enumeration()
+        async public System.Threading.Tasks.Task Rules002_Enumeration()
         {
+            var cancellation = new CancellationTokenSource();
+            var token = cancellation.Token;
+
             var cfg = this.createTree();
             //cfg.SolutionPath = @"..\..\..\..\";
-            cfg.ValidateSubTreeFromNode(cfg);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
             Assert.IsTrue(cfg.CountErrors == 0);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
 
             cfg.Model.GroupEnumerations[0].Name = "1a";
-            cfg.ValidateSubTreeFromNode(cfg);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountErrors == 1);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountInfos == 0);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountWarnings == 0);
@@ -736,7 +742,7 @@ namespace vSharpStudio.Unit
 
             cfg.Model.GroupEnumerations[0].Name = "a b";
             // cfg.Model.GroupConstants[1].DataType.ObjectName = "a b";
-            cfg.ValidateSubTreeFromNode(cfg);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
             Assert.IsTrue(cfg.ValidationCollection.Count == 1);
             Assert.IsTrue(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
             Assert.IsTrue(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
@@ -745,7 +751,7 @@ namespace vSharpStudio.Unit
             cfg.Model.GroupEnumerations[0].Name = "ab";
             cfg.Model.GroupEnumerations[1].Name = "ab";
             // cfg.Model.GroupConstants[1].DataType.ObjectName = "ab";
-            cfg.ValidateSubTreeFromNode(cfg);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
             Assert.IsTrue(cfg.ValidationCollection.Count == 2);
             Assert.IsTrue((from p in cfg.ValidationCollection where p.Severity == FluentValidation.Severity.Error select p).ToList().Count() == 2);
             Assert.IsTrue((from p in cfg.ValidationCollection where p.Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE select p).ToList().Count() == 2);
@@ -760,12 +766,15 @@ namespace vSharpStudio.Unit
         }
 
         [TestMethod]
-        public void Rules003_Constant()
+        async public System.Threading.Tasks.Task Rules003_Constant()
         {
+            var cancellation = new CancellationTokenSource();
+            var token = cancellation.Token;
+
             var cfg = this.createTree();
             //cfg.SolutionPath = @"..\..\..\..\";
 
-            cfg.ValidateSubTreeFromNode(cfg);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
             Assert.IsTrue(cfg.CountErrors == 0);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);

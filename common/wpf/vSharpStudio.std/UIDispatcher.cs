@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -64,6 +65,7 @@ namespace ViewModelBase
         /// <param name="action"></param>
         public static void Invoke(Action action)
         {
+            Debug.Assert((VmBindable.isUnitTests && _dispatcher == null) || (!VmBindable.isUnitTests && _dispatcher != null));
             if (_dispatcher == null)
             {
                 action();

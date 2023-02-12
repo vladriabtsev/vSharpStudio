@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Debug;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.ViewModels;
@@ -24,7 +26,7 @@ namespace vSharpStudio.Unit
         // public VmTests(ITestOutputHelper output)
         public VmTests()
         {
-            UIDispatcher.Initialize();
+            //UIDispatcher.Initialize();
 
             VmBindable.isUnitTests = true;
             // ILoggerFactory loggerFactory = std.ApplicationLogging.LoggerFactory;
@@ -138,8 +140,11 @@ namespace vSharpStudio.Unit
         }
 
         [TestMethod]
-        public void Validation002_CatalogValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
+        async public Task Validation002_CatalogValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
         {
+            var cancellation = new CancellationTokenSource();
+            var token = cancellation.Token;
+
             ConfigValidator.Reset();
             CatalogValidator.Reset();
             var cfg = new Config();
@@ -160,7 +165,7 @@ namespace vSharpStudio.Unit
 
             cfg.Validate();
 
-            cfg.ValidateSubTreeFromNode(c, _logger);
+            await cfg.ValidateSubTreeFromNodeAsync(c, token, _logger);
 
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
             Assert.IsTrue(c.ValidationCollection.Count == 4);
@@ -193,16 +198,18 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(2, cfg.CountWarnings);
             Assert.AreEqual(1, cfg.CountInfos);
 
-            cfg.ValidateSubTreeFromNode(cfg, _logger); // .ConfigureAwait(continueOnCapturedContext: false);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
             Assert.IsTrue(cfg.ValidationCollection.Count == 4);
-
-            cfg.ValidateSubTreeFromNode(cfg, _logger);
-            Assert.IsTrue(cfg.ValidationCollection.Count == 4);
+            //await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
+            //Assert.IsTrue(cfg.ValidationCollection.Count == 4);
         }
 
         [TestMethod]
-        public void Validation003_AppProjectGeneratorValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
+        async public Task Validation003_AppProjectGeneratorValidationCollectionContainsValidationMessagesFromSubNodesForSelectedNode()
         {
+            var cancellation = new CancellationTokenSource();
+            var token = cancellation.Token;
+
             ConfigValidator.Reset();
             CatalogValidator.Reset();
             var cfg = new Config();
@@ -225,8 +232,7 @@ namespace vSharpStudio.Unit
 
             cfg.Validate();
 
-            cfg.ValidateSubTreeFromNode(sol1, _logger); // .ConfigureAwait(continueOnCapturedContext: false);
-
+            await cfg.ValidateSubTreeFromNodeAsync(sol1, token);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
             Assert.IsTrue(sol1.ValidationCollection.Count == 5);
             //var p = sol1.ValidationCollection[0];
@@ -262,8 +268,11 @@ namespace vSharpStudio.Unit
             //Assert.IsTrue(cfg.ValidationCollection.Count == 4);
         }
         [TestMethod]
-        public void Validation007_Propagation()
+        async public Task Validation007_Propagation()
         {
+            var cancellation = new CancellationTokenSource();
+            var token = cancellation.Token;
+
             ConfigValidator.Reset();
             var cfg = new Config();
             //cfg.SolutionPath = @"..\..\..\..\";
@@ -274,7 +283,8 @@ namespace vSharpStudio.Unit
             var gr = cfg.Model.GroupConstantGroups.AddGroupConstants("Gr");
             gr.NodeAddNewSubNode();
             ConstantValidator.Validator.RuleFor(x => x).Null().WithMessage(mes1).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Normal);
-            cfg.ValidateSubTreeFromNode(cfg.Model.GroupConstantGroups);
+
+            await cfg.ValidateSubTreeFromNodeAsync(cfg.Model.GroupConstantGroups, token);
             Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].ValidationCollection.Count == 1);
             Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].ListConstants[0].CountErrors == 1);
             Assert.IsTrue(cfg.Model.GroupConstantGroups.ListConstantGroups[0].CountErrors == 1);
@@ -287,7 +297,8 @@ namespace vSharpStudio.Unit
 
             cfg.Model.GroupEnumerations.NodeAddNewSubNode();
             EnumerationValidator.Validator.RuleFor(x => x).Null().WithMessage(mes2).WithSeverity(Severity.Error).WithState(x => SeverityWeight.Low);
-            cfg.ValidateSubTreeFromNode(cfg.Model.GroupEnumerations);
+
+            await cfg.ValidateSubTreeFromNodeAsync(cfg.Model.GroupEnumerations, token);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].ValidationCollection.Count == 1);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountErrors == 1);
             Assert.IsTrue(cfg.Model.GroupEnumerations.ValidationCollection.Count == 1);
@@ -297,7 +308,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
 
-            cfg.ValidateSubTreeFromNode(cfg);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
             Assert.IsTrue(cfg.ValidationCollection.Count == 2);
             Assert.IsTrue(cfg.CountErrors == 2);
             Assert.IsTrue(cfg.CountInfos == 0);

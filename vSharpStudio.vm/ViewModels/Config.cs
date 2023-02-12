@@ -152,45 +152,55 @@ namespace vSharpStudio.vm.ViewModels
         //{
         //    this.ValidateSubTreeFromNode(this, logger);
         //}
-        public void ValidateSubTreeFromNode(ITreeConfigNode node, ILogger? logger = null)
+        public bool IsValidatingSubTreeFromNode = false;
+        async public Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node, CancellationToken cancellationToken, ILogger? logger = null)
         {
-            _logger?.Trace();
-            if (node == null)
+            try
             {
-                return;
-            }
-
-            if (this.cancellationSourceForValidatingFullConfig != null)
-            {
-                this.cancellationSourceForValidatingFullConfig.Cancel();
-                // if (logger != null && logger.IsEnabled)
-                if (logger != null)
+                _logger?.Trace();
+                int i = 0;
+                while (this.IsValidatingSubTreeFromNode)
                 {
-                    logger.LogInformation("=== Cancellation request ===");
+                    i++;
+                    int delayTime = 100;
+                    _logger?.Trace("Another validation in progress. Wait {delayTime} mc.");
+                    await Task.Delay(delayTime);
+#if DEBUG
+                    if (i >= 3)
+                        throw new Exception($"Waiting period to start validation exceeded {i * delayTime}mc. Need optimization.");
+#endif
                 }
-            }
-            this.cancellationSourceForValidatingFullConfig = new CancellationTokenSource();
-            var token = this.cancellationSourceForValidatingFullConfig.Token;
-
-            var visitor = new ValidationConfigVisitor(token, logger);
-            UIDispatcher.Invoke(() =>
-            {
-                visitor.UpdateSubstructCounts(node);
-            });
-            (node as IConfigAcceptVisitor)!.AcceptConfigNodeVisitor(visitor);
-            if (!token.IsCancellationRequested)
-            {
-                // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...
+                this.IsValidatingSubTreeFromNode = true;
+                var visitor = new ValidationConfigVisitor(cancellationToken, logger);
                 UIDispatcher.Invoke(() =>
                 {
-                    node.ValidationCollection.Clear();
-                    node.ValidationCollection = visitor.Result;
+                    visitor.UpdateSubstructCounts(node);
                 });
-                //Debug.Assert(node.ValidationCollection.Count == node.CountErrors + node.CountInfos + node.CountWarnings);
+                (node as IConfigAcceptVisitor)!.AcceptConfigNodeVisitor(visitor);
+                if (!cancellationToken.IsCancellationRequested)
+                {
+                    // update for UI from another Thread (if from async version) (it is not only update, many others including CountErrors, CountWarnings ...
+                    UIDispatcher.Invoke(() =>
+                    {
+                        node.ValidationCollection.Clear();
+                        node.ValidationCollection = visitor.Result;
+                    });
+                    //Debug.Assert(node.ValidationCollection.Count == node.CountErrors + node.CountInfos + node.CountWarnings);
+                }
+                else
+                {
+                    logger?.LogInformation("=== Cancelled ===");
+                }
             }
-            else
+#if DEBUG
+            catch(Exception ex)
             {
-                logger?.LogInformation("=== Cancelled ===");
+                throw;
+            }
+#endif
+            finally
+            {
+                this.IsValidatingSubTreeFromNode = false;
             }
         }
 

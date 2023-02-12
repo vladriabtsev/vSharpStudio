@@ -879,11 +879,11 @@ namespace vSharpStudio.ViewModels
                             try
                             {
                                 this.cancellationTokenSource = new CancellationTokenSource();
-                                CancellationToken cancellationToken = this.cancellationTokenSource.Token;
+                                var cancellationToken = this.cancellationTokenSource.Token;
 
                                 await Task.Run(() =>
                                 {
-                                    this._Config.ValidateSubTreeFromNode(this._Config);
+                                    return this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken,this._logger);
                                 });
                                 this.cancellationTokenSource = null;
                             }
@@ -915,6 +915,24 @@ namespace vSharpStudio.ViewModels
             }
         }
         private vButtonVmAsync<TestTransformation?>? _BtnConfigValidateAsync;
+        private CancellationTokenSource? cancellationSourceForValidatingSubTreeFromNode = null;
+        async public Task ValidateSelectedNodeAsync()
+        {
+            if (this.Config.SelectedNode != null)
+            {
+                if (this.cancellationSourceForValidatingSubTreeFromNode != null)
+                {
+                    this.cancellationSourceForValidatingSubTreeFromNode.Cancel();
+                    this._logger?.LogInformation("=== Cancellation request ===");
+                }
+                this.cancellationSourceForValidatingSubTreeFromNode = new CancellationTokenSource();
+                var token = this.cancellationSourceForValidatingSubTreeFromNode.Token;
+                await Task.Run(() =>
+                {
+                    return this.Config.ValidateSubTreeFromNodeAsync(this.Config.SelectedNode, token, this._logger);
+                });
+            }
+        }
         public vButtonVmAsync<TestTransformation?> BtnConfigCurrentUpdateAsync
         {
             get
@@ -1190,7 +1208,7 @@ namespace vSharpStudio.ViewModels
                     //#if Async
                     //                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config);
                     //#else
-                    this._Config.ValidateSubTreeFromNode(this._Config);
+                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger);
                     //#endif
                     if (this._Config.CountErrors > 0)
                         throw new Exception($"There are {this._Config.CountErrors} errors in configuration.\nFirst error is {this._Config.FindValidationMessage()?.Message} \nFix errors and try again.");
