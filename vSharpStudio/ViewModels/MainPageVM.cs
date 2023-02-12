@@ -888,7 +888,6 @@ namespace vSharpStudio.ViewModels
                                 {
                                     return this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken,this._logger);
                                 });
-                                this.cancellationTokenSource = null;
                             }
                             catch (CancellationException)
                             {
@@ -904,6 +903,7 @@ namespace vSharpStudio.ViewModels
                             }
                             finally
                             {
+                                this.cancellationTokenSource = null;
                                 this.ProgressVM.End();
                                 this.IsBusy = false;
                             }
@@ -967,7 +967,6 @@ namespace vSharpStudio.ViewModels
                                     return this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
                                 });
                                 this.ResetIsChangedBeforeSave();
-                                this.cancellationTokenSource = null;
                             }
                             catch (CancellationException)
                             {
@@ -991,6 +990,7 @@ namespace vSharpStudio.ViewModels
                                 //    //await this.CommandConfigSave.ExecuteAsync(null);
                                 //    this.BtnConfigSave.Command.Execute(null);
                                 //}
+                                this.cancellationTokenSource = null;
                                 this.ProgressVM.End();
                                 this.IsBusy = false;
                             }
