@@ -717,6 +717,377 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					}
 					#endregion Views // PocoView.tt Line: 289
 				}
+				[Dapper.Contrib.Extensions.Table("CtlgCatalog2")]
+				public partial class Catalog2 : RepoEntityBaseSync<Catalog2>, IEntityBaseExplicit<Catalog2>, ISameById<Catalog2>, IEntityBase // ModelCatalogClass.tt Line: 12, called from PocoCatalogs.tt Line: 10
+				{
+				    #region ctor // ModelCtor.tt Line: 8, called from ModelCatalogClass.tt Line: 25
+				    public IEnumerable<IEntityBase> GetChildren() // ModelCtor.tt Line: 17
+				    {
+				        return new List<IEntityBase>();
+				    }
+				    static Catalog2() 
+				    { 
+				    }
+				#if DEBUG
+				    private Catalog2() : base("c1")
+				#else
+				    public Catalog2() : base("c1")
+				#endif
+				    {
+				    }
+				    #endregion ctor
+				    #region Properties // ModelProperty.tt Line: 8, called from ModelCatalogClass.tt Line: 28
+					[Dapper.Contrib.Extensions.Key] // ModelProperty.tt Line: 19 - Utils.cs Line: 279
+					public int Id // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1174
+					{
+						get { return _Id; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
+						set { _Id = value; ___isNeedUpdate = true;}
+					}
+					private int _Id; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
+					public int Code // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1174
+					{
+						get { return _Code; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
+						set { _Code = value; ___isNeedUpdate = true;}
+					}
+					private int _Code; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
+					public string Name // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1154
+					{
+						get { return _Name; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
+						set { _Name = value; ___isNeedUpdate = true;}
+					}
+					private string _Name = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
+				
+					#region Fields // ModelProperty.tt Line: 21
+					public const string F_ID = "Id";
+					public const string F_CODE = "Code";
+					public const string F_NAME = "Name";
+					#endregion Fields // ModelProperty.tt Line: 28
+				    #endregion Properties // ModelProperty.tt Line: 29
+				    #region Special // ModelProperty.tt Line: 30
+					public const string T_GUID = "b6aa0e5e-6c47-4b64-bed2-8c6a8617232c";
+					public string GetGuid() { return T_GUID; }
+					public const string T_NAME = "CtlgCatalog2";
+				    public string GetDbTableName() { return T_NAME; }
+				    public bool IsMarkedForDeletion(bool? isMarkedForDeletion = null) { if (isMarkedForDeletion.HasValue) { this.___isMarkedForDeletion = isMarkedForDeletion ?? false; } return this.___isMarkedForDeletion; }
+				    private bool ___isMarkedForDeletion = false;
+				    public bool SameById(Catalog2 other) { return other != null && this.Id == other.Id; } // ModelProperty.tt Line: 45
+				    #endregion Special // ModelProperty.tt Line: 46
+					#region Command Definition Data // ModelEntityCmd.tt Line: 9, called from ModelCatalogClass.tt Line: 53
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionInsert() // ModelEntityCmd.tt Line: 32
+					{
+					    var cmd = new CommandDefinitionData(
+							"INSERT INTO CtlgCatalog2 (" + // ModelEntityCmd.tt Line: 48
+								"Id"+
+								",Code"+
+								",Name"+
+							") VALUES(" + // ModelEntityCmd.tt Line: 52
+								"@Id"+
+								",@Code"+
+								",@Name"+
+							");", // SELECT SCOPE_IDENTITY();", // ModelEntityCmd.tt Line: 56
+					        new 
+					        {
+					    		this.Id, 
+					    		this.Code, 
+					    		this.Name, 
+					        }, CommandType.Text) // ModelEntityCmd.tt Line: 66 
+					        { Entity = this }; // ModelEntityCmd.tt Line: 68
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadById(int id) // ModelEntityCmd.tt Line: 71
+					{
+					    var sql = @"SELECT Id, Code, Name FROM CtlgCatalog2 WHERE Id = @pid;"
+					; // ModelEntityCmd.tt Line: 84
+					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionSelect(string? where, object? param, string? sort, 
+					    int page, int pagesize) // ModelEntityCmd.tt Line: 90
+					{
+						var sql = CreateQuery(null, Model.Catalogs.Catalog2.T_NAME, null, where, sort, page, pagesize);
+					    var cmd = new CommandDefinitionData(sql, param, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionCountWhere(string? where, object? param) // ModelEntityCmd.tt Line: 104
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.Append("SELECT Count(*) FROM CtlgCatalog2");
+						if (where != null)
+						{
+							sb.Append(" WHERE ");
+							sb.Append(where);
+						}
+						sb.Append(';');
+					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+					    return cmd;
+					}
+					List<CommandDefinitionData> IEntityBaseExplicit.GetCommandDefinitionSave() // ModelEntityCmd.tt Line: 125
+					{
+					    Dictionary<string, Dictionary<int, string?>>? dicInsertedUpdatedGuidId = null;
+					    var lstCmd = new List<CommandDefinitionData>();
+					    CommandDefinitionData cd;
+					    bool isCanInsert = true; 
+					    if (dicInsertedUpdatedGuidId != null)
+					    {
+					        if (!dicInsertedUpdatedGuidId.ContainsKey(Model.Catalogs.Catalog2.T_GUID))
+					            dicInsertedUpdatedGuidId[Model.Catalogs.Catalog2.T_GUID] = new Dictionary<int, string?>();
+					        var dic = dicInsertedUpdatedGuidId[Model.Catalogs.Catalog2.T_GUID];
+					        if (dic.ContainsKey(this.Id))
+					            isCanInsert = false;
+					        else
+					            dic[this.Id] = null;
+					    }
+					    if (this.IsNeedInsert() && isCanInsert)
+					    {
+					        cd = ((IEntityBaseExplicit)this).GetCommandDefinitionInsert();
+					        lstCmd.Add(cd);
+					    } 
+					    else if (this.IsNeedUpdate())
+					    {
+					        cd = ((IEntityBaseExplicit)this).GetCommandDefinitionUpdate();
+					        lstCmd.Add(cd);
+					    }
+					    return lstCmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionUpdate() // ModelEntityCmd.tt Line: 183
+					{
+					    var cmd = new CommandDefinitionData(
+					        "UPDATE CtlgCatalog2 SET "+
+								"Code = @Code" + 
+								",Name = @Name" + 
+					        " WHERE Id = @Id;", // ModelEntityCmd.tt Line: 212
+							new {
+					    		this.Code, 
+					    		this.Name, 
+								this.Id // ModelEntityCmd.tt Line: 227
+							}, CommandType.Text) 
+					        { Entity = this };
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteById(int id) // ModelEntityCmd.tt Line: 233
+					{
+					    var sql = "DELETE FROM CtlgCatalog2 WHERE Id = @pid;";
+					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionRemoveById(int id) // ModelEntityCmd.tt Line: 244
+					{
+					    var sql = "" +
+					    "DELETE FROM CtlgCatalog2 WHERE Id = @pid;\n"; // ModelEntityCmd.tt Line: 261
+					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteWhere(string? where, object? param) // ModelEntityCmd.tt Line: 266
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.Append("DELETE FROM CtlgCatalog2");
+						if (!string.IsNullOrWhiteSpace(where))
+						{
+							sb.Append(" WHERE ");
+							sb.Append(where);
+						}
+						sb.Append(';');
+					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionRemoveWhere(string? where, object? param) // ModelEntityCmd.tt Line: 287
+					{
+						var sb = new StringBuilder();
+						if (!string.IsNullOrWhiteSpace(where))
+						{
+					        sb.Append("DELETE FROM CtlgCatalog2 WHERE "); // ModelEntityCmd.tt Line: 309
+					        sb.Append(where);
+					    	sb.AppendLine(";");
+						}
+					    else
+					    {
+					        sb.AppendLine("DELETE FROM CtlgCatalog2;"); // ModelEntityCmd.tt Line: 318
+					    }
+					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionMoveTo(int id, int idGroupTo) { throw new NotImplementedException(); } // ModelEntityCmd.tt Line: 376
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadSubTree(int id, int deep) { throw new NotImplementedException(); } // ModelEntityCmd.tt Line: 377
+					#endregion Command Definition Data // ModelEntityCmd.tt Line: 381
+					#region Repository // CatalogRepository.tt Line: 7, called from ModelCatalogClass.tt Line: 66
+					// Repository.tt Line: 8, called from CatalogRepository.partial.cs Line: 25
+					Catalogs.Catalog2 IEntityBaseExplicit<Catalog2>.CreateDto(int id) // Repository.tt Line: 15
+					{
+					    var dto = new Catalogs.Catalog2
+					    {
+					        Id = id,
+					        Name = string.Empty,
+					        ___isNeedInsert = true,
+					    };
+					    return dto;
+					}
+					protected override Catalogs.Catalog2 GetThis() { return this; }
+					Catalog2? IEntityBaseExplicit<Catalog2>.LoadUtil(SqlMapper.GridReader multi) // Repository.tt Line: 236
+					{
+					    Catalogs.Catalog2? resCatalog2 = null;
+					    var lstCtlgCatalog2 = new List<Catalogs.Catalog2>();
+					    resCatalog2 = multi.Read<Catalogs.Catalog2>().First();
+					    lstCtlgCatalog2.Add(resCatalog2);
+					    return resCatalog2;
+					}
+					#endregion Repository // CatalogRepository.tt Line: 51
+					#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 82
+					[Dapper.Contrib.Extensions.Table("CtlgCatalog2")]
+					public partial class ViewListNarrow : ViewEntityBaseSync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 49
+					{
+					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
+					    public string GetName() { return this.Name; }
+					#if DEBUG
+					    private ViewListNarrow()
+					#else
+					    public ViewListNarrow()
+					#endif
+					    {
+					        this.Name = string.Empty;
+					    }
+					    #region View Properties
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 103 - Utils.cs Line: 279
+						public int Id // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
+						{
+							get { return _Id; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Id = value; }
+						}
+						private int _Id; // PocoView.tt Line: 103 - Utils.cs Line: 466
+						public int Code // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
+						{
+							get { return _Code; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Code = value; }
+						}
+						private int _Code; // PocoView.tt Line: 103 - Utils.cs Line: 466
+						public string Name // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1154
+						{
+							get { return _Name; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Name = value; }
+						}
+						private string _Name = string.Empty; // PocoView.tt Line: 103 - Utils.cs Line: 466
+					    #endregion View Properties
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+						{
+						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Id, Code, Name FROM CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" LIMIT ");
+								sb.Append(pagesize);
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+					}
+					[Dapper.Contrib.Extensions.Table("CtlgCatalog2")]
+					public partial class ViewListWide : ViewEntityBaseSync<ViewListWide>, IViewPlainBaseExplicit<ViewListWide>, IViewItem, ISameById<ViewListWide>  // PocoView.tt Line: 49
+					{
+					    public bool SameById(ViewListWide other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
+					    public string GetName() { return this.Name; }
+					#if DEBUG
+					    private ViewListWide()
+					#else
+					    public ViewListWide()
+					#endif
+					    {
+					        this.Name = string.Empty;
+					    }
+					    #region View Properties
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 103 - Utils.cs Line: 279
+						public int Id // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
+						{
+							get { return _Id; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Id = value; }
+						}
+						private int _Id; // PocoView.tt Line: 103 - Utils.cs Line: 466
+						public int Code // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
+						{
+							get { return _Code; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Code = value; }
+						}
+						private int _Code; // PocoView.tt Line: 103 - Utils.cs Line: 466
+						public string Name // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1154
+						{
+							get { return _Name; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Name = value; }
+						}
+						private string _Name = string.Empty; // PocoView.tt Line: 103 - Utils.cs Line: 466
+					    #endregion View Properties
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+						{
+						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Id, Code, Name FROM CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" LIMIT ");
+								sb.Append(pagesize);
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+					}
+					#endregion Views // PocoView.tt Line: 289
+				}
 			}
 			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 173
 			{
@@ -1082,6 +1453,8 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        { "e1f0ae82-9268-4bc8-96b0-75492411e07e", "CnstGroup1Constant2" },
 			        { "5cc54978-0abe-4eef-a97a-f48713978731", "CtlgCatalog1" },
 			        { "2d30325d-5000-4a41-a464-cab89db5f4b5", "CtlgCatalog1Folder" },
+			        { "b6aa0e5e-6c47-4b64-bed2-8c6a8617232c", "CtlgCatalog2" },
+			        { "a9389f46-6029-4ce8-9a37-8959ea2fc380", "CtlgCatalog2Folder" },
 			    };
 			    public static int GetHiLo(string guid, int qtyId, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from IdGenerator.tt Line: 28*/) // IdGenerator.tt Line: 28
 			    {
@@ -2984,6 +3357,379 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					}
 					#endregion Views // PocoView.tt Line: 289
 				}
+				[Dapper.Contrib.Extensions.Table("v.CtlgCatalog2")]
+				public partial class Catalog2 : RepoEntityBaseSync<Catalog2>, IEntityBaseExplicit<Catalog2>, ISameById<Catalog2>, IEntityBase // ModelCatalogClass.tt Line: 12, called from PocoCatalogs.tt Line: 10
+				{
+				    #region ctor // ModelCtor.tt Line: 8, called from ModelCatalogClass.tt Line: 25
+				    public IEnumerable<IEntityBase> GetChildren() // ModelCtor.tt Line: 17
+				    {
+				        return new List<IEntityBase>();
+				    }
+				    static Catalog2() 
+				    { 
+				    }
+				#if DEBUG
+				    private Catalog2() : base("c1")
+				#else
+				    public Catalog2() : base("c1")
+				#endif
+				    {
+				    }
+				    #endregion ctor
+				    #region Properties // ModelProperty.tt Line: 8, called from ModelCatalogClass.tt Line: 28
+					[Dapper.Contrib.Extensions.Key] // ModelProperty.tt Line: 19 - Utils.cs Line: 279
+					public int Id // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1174
+					{
+						get { return _Id; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
+						set { _Id = value; ___isNeedUpdate = true;}
+					}
+					private int _Id; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
+					public int Code // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1174
+					{
+						get { return _Code; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
+						set { _Code = value; ___isNeedUpdate = true;}
+					}
+					private int _Code; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
+					public string Name // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1154
+					{
+						get { return _Name; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
+						set { _Name = value; ___isNeedUpdate = true;}
+					}
+					private string _Name = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
+				
+					#region Fields // ModelProperty.tt Line: 21
+					public const string F_ID = "Id";
+					public const string F_CODE = "Code";
+					public const string F_NAME = "Name";
+					#endregion Fields // ModelProperty.tt Line: 28
+				    #endregion Properties // ModelProperty.tt Line: 29
+				    #region Special // ModelProperty.tt Line: 30
+					public const string T_GUID = "b6aa0e5e-6c47-4b64-bed2-8c6a8617232c";
+					public string GetGuid() { return T_GUID; }
+					public const string T_NAME = "CtlgCatalog2";
+				    public string GetDbTableName() { return T_NAME; }
+				    public bool IsMarkedForDeletion(bool? isMarkedForDeletion = null) { if (isMarkedForDeletion.HasValue) { this.___isMarkedForDeletion = isMarkedForDeletion ?? false; } return this.___isMarkedForDeletion; }
+				    private bool ___isMarkedForDeletion = false;
+				    public bool SameById(Catalog2 other) { return other != null && this.Id == other.Id; } // ModelProperty.tt Line: 45
+				    #endregion Special // ModelProperty.tt Line: 46
+					#region Command Definition Data // ModelEntityCmd.tt Line: 9, called from ModelCatalogClass.tt Line: 53
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionInsert() // ModelEntityCmd.tt Line: 32
+					{
+					    var cmd = new CommandDefinitionData(
+							"INSERT INTO v.CtlgCatalog2 (" + // ModelEntityCmd.tt Line: 48
+								"Id"+
+								",Code"+
+								",Name"+
+							") VALUES(" + // ModelEntityCmd.tt Line: 52
+								"@Id"+
+								",@Code"+
+								",@Name"+
+							");", // SELECT SCOPE_IDENTITY();", // ModelEntityCmd.tt Line: 56
+					        new 
+					        {
+					    		this.Id, 
+					    		this.Code, 
+					    		this.Name, 
+					        }, CommandType.Text) // ModelEntityCmd.tt Line: 66 
+					        { Entity = this }; // ModelEntityCmd.tt Line: 68
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadById(int id) // ModelEntityCmd.tt Line: 71
+					{
+					    var sql = @"SELECT Id, Code, Name FROM v.CtlgCatalog2 WHERE Id = @pid;"
+					; // ModelEntityCmd.tt Line: 84
+					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionSelect(string? where, object? param, string? sort, 
+					    int page, int pagesize) // ModelEntityCmd.tt Line: 90
+					{
+						var sql = CreateQuery(null, Model.Catalogs.Catalog2.T_NAME, null, where, sort, page, pagesize);
+					    var cmd = new CommandDefinitionData(sql, param, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionCountWhere(string? where, object? param) // ModelEntityCmd.tt Line: 104
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.Append("SELECT Count(*) FROM v.CtlgCatalog2");
+						if (where != null)
+						{
+							sb.Append(" WHERE ");
+							sb.Append(where);
+						}
+						sb.Append(';');
+					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+					    return cmd;
+					}
+					List<CommandDefinitionData> IEntityBaseExplicit.GetCommandDefinitionSave() // ModelEntityCmd.tt Line: 125
+					{
+					    Dictionary<string, Dictionary<int, string?>>? dicInsertedUpdatedGuidId = null;
+					    var lstCmd = new List<CommandDefinitionData>();
+					    CommandDefinitionData cd;
+					    bool isCanInsert = true; 
+					    if (dicInsertedUpdatedGuidId != null)
+					    {
+					        if (!dicInsertedUpdatedGuidId.ContainsKey(Model.Catalogs.Catalog2.T_GUID))
+					            dicInsertedUpdatedGuidId[Model.Catalogs.Catalog2.T_GUID] = new Dictionary<int, string?>();
+					        var dic = dicInsertedUpdatedGuidId[Model.Catalogs.Catalog2.T_GUID];
+					        if (dic.ContainsKey(this.Id))
+					            isCanInsert = false;
+					        else
+					            dic[this.Id] = null;
+					    }
+					    if (this.IsNeedInsert() && isCanInsert)
+					    {
+					        cd = ((IEntityBaseExplicit)this).GetCommandDefinitionInsert();
+					        lstCmd.Add(cd);
+					    } 
+					    else if (this.IsNeedUpdate())
+					    {
+					        cd = ((IEntityBaseExplicit)this).GetCommandDefinitionUpdate();
+					        lstCmd.Add(cd);
+					    }
+					    return lstCmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionUpdate() // ModelEntityCmd.tt Line: 183
+					{
+					    var cmd = new CommandDefinitionData(
+					        "UPDATE v.CtlgCatalog2 SET "+
+								"Code = @Code" + 
+								",Name = @Name" + 
+					        " WHERE Id = @Id;", // ModelEntityCmd.tt Line: 212
+							new {
+					    		this.Code, 
+					    		this.Name, 
+								this.Id // ModelEntityCmd.tt Line: 227
+							}, CommandType.Text) 
+					        { Entity = this };
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteById(int id) // ModelEntityCmd.tt Line: 233
+					{
+					    var sql = "DELETE FROM v.CtlgCatalog2 WHERE Id = @pid;";
+					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionRemoveById(int id) // ModelEntityCmd.tt Line: 244
+					{
+					    var sql = "" +
+					    "DELETE FROM v.CtlgCatalog2 WHERE Id = @pid;\n"; // ModelEntityCmd.tt Line: 261
+					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteWhere(string? where, object? param) // ModelEntityCmd.tt Line: 266
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.Append("DELETE FROM v.CtlgCatalog2");
+						if (!string.IsNullOrWhiteSpace(where))
+						{
+							sb.Append(" WHERE ");
+							sb.Append(where);
+						}
+						sb.Append(';');
+					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionRemoveWhere(string? where, object? param) // ModelEntityCmd.tt Line: 287
+					{
+						var sb = new StringBuilder();
+						if (!string.IsNullOrWhiteSpace(where))
+						{
+					        sb.Append("DELETE FROM v.CtlgCatalog2 WHERE "); // ModelEntityCmd.tt Line: 309
+					        sb.Append(where);
+					    	sb.AppendLine(";");
+						}
+					    else
+					    {
+					        sb.AppendLine("DELETE FROM v.CtlgCatalog2;"); // ModelEntityCmd.tt Line: 318
+					    }
+					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionMoveTo(int id, int idGroupTo) { throw new NotImplementedException(); } // ModelEntityCmd.tt Line: 376
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadSubTree(int id, int deep) { throw new NotImplementedException(); } // ModelEntityCmd.tt Line: 377
+					#endregion Command Definition Data // ModelEntityCmd.tt Line: 381
+					#region Repository // CatalogRepository.tt Line: 7, called from ModelCatalogClass.tt Line: 66
+					// Repository.tt Line: 8, called from CatalogRepository.partial.cs Line: 25
+					Catalogs.Catalog2 IEntityBaseExplicit<Catalog2>.CreateDto(int id) // Repository.tt Line: 15
+					{
+					    var dto = new Catalogs.Catalog2
+					    {
+					        Id = id,
+					        Name = string.Empty,
+					        ___isNeedInsert = true,
+					    };
+					    return dto;
+					}
+					protected override Catalogs.Catalog2 GetThis() { return this; }
+					Catalog2? IEntityBaseExplicit<Catalog2>.LoadUtil(SqlMapper.GridReader multi) // Repository.tt Line: 236
+					{
+					    Catalogs.Catalog2? resCatalog2 = null;
+					    var lstCtlgCatalog2 = new List<Catalogs.Catalog2>();
+					    resCatalog2 = multi.Read<Catalogs.Catalog2>().First();
+					    lstCtlgCatalog2.Add(resCatalog2);
+					    return resCatalog2;
+					}
+					#endregion Repository // CatalogRepository.tt Line: 51
+					#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 82
+					[Dapper.Contrib.Extensions.Table("v.CtlgCatalog2")]
+					public partial class ViewListNarrow : ViewEntityBaseSync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 49
+					{
+					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
+					    public string GetName() { return this.Name; }
+					#if DEBUG
+					    private ViewListNarrow()
+					#else
+					    public ViewListNarrow()
+					#endif
+					    {
+					        this.Name = string.Empty;
+					    }
+					    #region View Properties
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 103 - Utils.cs Line: 279
+						public int Id // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
+						{
+							get { return _Id; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Id = value; }
+						}
+						private int _Id; // PocoView.tt Line: 103 - Utils.cs Line: 466
+						public int Code // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
+						{
+							get { return _Code; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Code = value; }
+						}
+						private int _Code; // PocoView.tt Line: 103 - Utils.cs Line: 466
+						public string Name // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1154
+						{
+							get { return _Name; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Name = value; }
+						}
+						private string _Name = string.Empty; // PocoView.tt Line: 103 - Utils.cs Line: 466
+					    #endregion View Properties
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM v.CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+						{
+						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Id, Code, Name FROM v.CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+								sb.Append(" ROWS FETCH NEXT ");
+								sb.Append(pagesize);
+								sb.Append(" ROWS ONLY");
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+					}
+					[Dapper.Contrib.Extensions.Table("v.CtlgCatalog2")]
+					public partial class ViewListWide : ViewEntityBaseSync<ViewListWide>, IViewPlainBaseExplicit<ViewListWide>, IViewItem, ISameById<ViewListWide>  // PocoView.tt Line: 49
+					{
+					    public bool SameById(ViewListWide other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
+					    public string GetName() { return this.Name; }
+					#if DEBUG
+					    private ViewListWide()
+					#else
+					    public ViewListWide()
+					#endif
+					    {
+					        this.Name = string.Empty;
+					    }
+					    #region View Properties
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 103 - Utils.cs Line: 279
+						public int Id // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
+						{
+							get { return _Id; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Id = value; }
+						}
+						private int _Id; // PocoView.tt Line: 103 - Utils.cs Line: 466
+						public int Code // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
+						{
+							get { return _Code; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Code = value; }
+						}
+						private int _Code; // PocoView.tt Line: 103 - Utils.cs Line: 466
+						public string Name // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1154
+						{
+							get { return _Name; } // PocoView.tt Line: 103 - Utils.cs Line: 458
+							set { _Name = value; }
+						}
+						private string _Name = string.Empty; // PocoView.tt Line: 103 - Utils.cs Line: 466
+					    #endregion View Properties
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM v.CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+						{
+						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Id, Code, Name FROM v.CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+								sb.Append(" ROWS FETCH NEXT ");
+								sb.Append(pagesize);
+								sb.Append(" ROWS ONLY");
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+					}
+					#endregion Views // PocoView.tt Line: 289
+				}
 			}
 			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 173
 			{
@@ -3349,6 +4095,8 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        { "e1f0ae82-9268-4bc8-96b0-75492411e07e", "cnstgroup1constant2" },
 			        { "5cc54978-0abe-4eef-a97a-f48713978731", "ctlgcatalog1" },
 			        { "2d30325d-5000-4a41-a464-cab89db5f4b5", "ctlgcatalog1folder" },
+			        { "b6aa0e5e-6c47-4b64-bed2-8c6a8617232c", "ctlgcatalog2" },
+			        { "a9389f46-6029-4ce8-9a37-8959ea2fc380", "ctlgcatalog2folder" },
 			    };
 			    public static int GetHiLo(string guid, int qtyId, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from IdGenerator.tt Line: 28*/) // IdGenerator.tt Line: 28
 			    {

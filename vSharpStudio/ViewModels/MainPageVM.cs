@@ -248,7 +248,7 @@ namespace vSharpStudio.ViewModels
             {
                 if (string.IsNullOrWhiteSpace(this._CurrentCfgFilePath))
                 {
-                    return "Config file is not selected. Create new one or open existing";
+                    return "Configuration file is not selected yet. Create new one or open existing";
                 }
                 return this._CurrentCfgFilePath;
             }
@@ -554,6 +554,9 @@ namespace vSharpStudio.ViewModels
                     this.BtnSelectionRight.Command.NotifyCanExecuteChanged();
                     this.BtnSelectionDown.Command.NotifyCanExecuteChanged();
                     this.BtnSelectionUp.Command.NotifyCanExecuteChanged();
+                    this.BtnConfigValidateAsync.Command.NotifyCanExecuteChanged();
+                    this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
+                    this.BtnConfigCreateStableVersionAsync.Command.NotifyCanExecuteChanged();
                     //                    if (this._Config.SelectedNode != null)
                     //                    {
                     ////#if Async
@@ -873,9 +876,9 @@ namespace vSharpStudio.ViewModels
                         async (o) =>
                         {
                             Debug.Assert(this.ProgressVM != null);
-                            this.ProgressVM.Start("Update Current Version Generated Projects", 0, "", 0);
+                            this.ProgressVM.Start("Configuration Validation", 0, "", 0);
                             this.IsBusy = true;
-                            TestTransformation? tst = o as TestTransformation;
+                            //TestTransformation? tst = o as TestTransformation;
                             try
                             {
                                 this.cancellationTokenSource = new CancellationTokenSource();
@@ -893,7 +896,7 @@ namespace vSharpStudio.ViewModels
                             catch (Exception ex)
                             {
                                 this.ProgressVM.Exception = ex;
-                                if (tst == null)
+                                if (o == null)
 #if DEBUG
                                     if (!VmBindable.isUnitTests)
 #endif
@@ -906,8 +909,16 @@ namespace vSharpStudio.ViewModels
                             }
                         }, (o) =>
                         {
+                            if (this.cancellationTokenSource != null)
+                            {
+                                return false;
+                            }
+                            if (this.Config == null)
+                            {
+                                return false;
+                            }
                             //this._BtnConfigCurrentUpdate!.ToolTipText = "kuku";
-                            return this.cancellationTokenSource == null && this.Config != null;
+                            return true;
                         }
                     );
                 }
@@ -943,23 +954,20 @@ namespace vSharpStudio.ViewModels
                         async (o) =>
                         {
                             Debug.Assert(this.ProgressVM != null);
-                            this.ProgressVM.Start("Update Current Version Generated Projects", 0, "", 0);
+                            this.ProgressVM.Start("Update Code/DB to Current Version of Configuration", 0, "", 0);
                             this.IsBusy = true;
                             bool isException = false;
                             try
                             {
-                                //this.Config.PluginSettingsToModel();
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
-                                //#if Async
-                                await this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
-                                //#else
-                                //                                this.UpdateCurrentVersion(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
-                                //#endif
+
+                                await Task.Run(() =>
+                                {
+                                    return this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+                                });
                                 this.ResetIsChangedBeforeSave();
                                 this.cancellationTokenSource = null;
-                                //if (ex != null)
-                                //    throw ex;
                             }
                             catch (CancellationException)
                             {
@@ -988,8 +996,23 @@ namespace vSharpStudio.ViewModels
                             }
                         }, (o) =>
                         {
-                            //this._BtnConfigCurrentUpdate!.ToolTipText = "kuku";
-                            return this.cancellationTokenSource == null && this.Config != null && this.Config.IsNeedCurrentUpdate && this.CurrentCfgFilePath != null;
+                            if (this.cancellationTokenSource != null)
+                            {
+                                return false;
+                            }
+                            if (this.Config == null)
+                            {
+                                return false;
+                            }
+                            //if (!this.Config.IsNeedCurrentUpdate)
+                            //{
+                            //    return false;
+                            //}
+                            if (string.IsNullOrWhiteSpace(this.CurrentCfgFilePath))
+                            {
+                                return false;
+                            }
+                            return true;
                         }
                     );
                 }
@@ -1218,9 +1241,12 @@ namespace vSharpStudio.ViewModels
                         if (!VmBindable.isUnitTests)
                         {
 #endif
-                            var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
-                            if (res != System.Windows.MessageBoxResult.OK)
-                                return;
+                            UIDispatcher.Invoke(() =>
+                            {
+                                var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                                if (res != System.Windows.MessageBoxResult.OK)
+                                    return;
+                            });
 #if DEBUG
                         }
 #endif
