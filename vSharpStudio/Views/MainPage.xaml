@@ -21,15 +21,16 @@
         <KeyBinding Modifiers="Ctrl" Key="V" Command="{Binding BtnConfigValidateAsync.Command}"/>
         <KeyBinding Modifiers="Ctrl" Key="U" Command="{Binding BtnConfigCurrentUpdateAsync.Command}"/>
     </UserControl.InputBindings>
-    <xctk:BusyIndicator IsBusy="{Binding IsBusy}" DisplayAfter="0">
+    <xctk:BusyIndicator IsBusy="{Binding ProgressVM.IsBusy}" DisplayAfter="0">
+        <!--https://elegantcode.com/2011/10/07/extended-wpf-toolkitusing-the-busyindicator/-->
         <xctk:BusyIndicator.BusyContentTemplate>
             <DataTemplate>
-                <StackPanel Margin="4">
-                    <TextBlock Text="{Binding ProgressVM.Name}" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <ProgressBar Value="{Binding ProgressVM.Progress}" Height="15" Visibility="{Binding ProgressVM.ProgressVisibility}"/>
+                <StackPanel Margin="4" Background="#00AFAFAF" DataContext="{Binding DataContext.ProgressVM, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type xctk:BusyIndicator}}}">
+                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Visibility="{Binding NameVisibility}" HorizontalAlignment="Center"/>
+                    <ProgressBar Value="{Binding Progress}" Height="15" Visibility="{Binding ProgressVisibility}"/>
                     <StackPanel Margin="4">
-                        <TextBlock Text="{Binding ProgressVM.SubName}" Visibility="{Binding ProgressVM.SubNameVisibility}"/>
-                        <ProgressBar Value="{Binding ProgressVM.SubProgress}" Height="15" Visibility="{Binding ProgressVM.SubProgressVisibility}"/>
+                        <TextBlock Text="{Binding SubName}" Visibility="{Binding SubNameVisibility}" HorizontalAlignment="Center"/>
+                        <ProgressBar Value="{Binding SubProgress}" Height="15" Visibility="{Binding SubProgressVisibility}"/>
                     </StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -38,7 +39,7 @@
                         </Grid.ColumnDefinitions>
                         <Button Grid.Column="0" Content="Pause" HorizontalAlignment="Right" Margin="0 0 2 0"/>
                         <Button Grid.Column="1" Content="Cancel" 
-                                Visibility="{Binding ProgressVM.CancelVisibility}"
+                                Visibility="{Binding CancelVisibility}"
                                 HorizontalAlignment="Left" Margin="2 0 0 0"/>
                     </Grid>
                 </StackPanel>
@@ -46,7 +47,7 @@
         </xctk:BusyIndicator.BusyContentTemplate>
         <xctk:BusyIndicator.OverlayStyle>
             <Style TargetType="Rectangle">
-                <Setter Property="Fill" Value="#ffffeeee"/>
+                <Setter Property="Fill" Value="#5FF0F0F0"/>
             </Style>
         </xctk:BusyIndicator.OverlayStyle>
         <xctk:BusyIndicator.ProgressBarStyle>

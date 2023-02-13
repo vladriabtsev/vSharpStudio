@@ -109,7 +109,7 @@ namespace vSharpStudio.ViewModels
         }
         public void OnFormLoaded()
         {
-            this.IsBusy = true;
+            this.ProgressVM.Start("Configuration Loading");
             _logger?.LogDebug("*** Application is starting. ***".CallerInfo());
             if (File.Exists(USER_SETTINGS_FILE_PATH))
             {
@@ -166,7 +166,7 @@ namespace vSharpStudio.ViewModels
             {
                 _logger?.LogDebug("Using empty Configuration".CallerInfo());
             }
-            this.IsBusy = false;
+            this.ProgressVM.End();
         }
         private Config? LoadConfig(string file_path, string indent, bool isRoot = false)
         {
@@ -876,17 +876,15 @@ namespace vSharpStudio.ViewModels
                         async (o) =>
                         {
                             Debug.Assert(this.ProgressVM != null);
-                            this.ProgressVM.Start("Configuration Validation", 0, "", 0);
-                            this.IsBusy = true;
                             //TestTransformation? tst = o as TestTransformation;
                             try
                             {
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 var cancellationToken = this.cancellationTokenSource.Token;
-
+                                this.ProgressVM.Start("Configuration Validation", 0, "", 0, cancellationToken);
                                 await Task.Run(() =>
                                 {
-                                    return this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken,this._logger);
+                                    return this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger);
                                 });
                             }
                             catch (CancellationException)
@@ -905,7 +903,6 @@ namespace vSharpStudio.ViewModels
                             {
                                 this.cancellationTokenSource = null;
                                 this.ProgressVM.End();
-                                this.IsBusy = false;
                             }
                         }, (o) =>
                         {
@@ -954,14 +951,30 @@ namespace vSharpStudio.ViewModels
                         async (o) =>
                         {
                             Debug.Assert(this.ProgressVM != null);
-                            this.ProgressVM.Start("Update Code/DB to Current Version of Configuration", 0, "", 0);
-                            this.IsBusy = true;
                             bool isException = false;
                             try
                             {
+                                await this.BtnConfigValidateAsync.ExecuteAsync(o);
+                                if (o == null && this._Config.CountErrors > 0)
+                                {
+#if DEBUG
+                                    if (!VmBindable.isUnitTests)
+                                    {
+#endif
+                                        var res = MessageBox.Show($"There are {this._Config.CountErrors} errors in configuration. First error is\n\n{this._Config.FindValidationMessage()?.Message}\n\nFix errors and try again.",
+                                            "Error", System.Windows.MessageBoxButton.OK);
+                                        this.cancellationTokenSource = null;
+                                        this.ProgressVM.End();
+                                        return;
+#if DEBUG
+                                    }
+#endif
+                                }
+
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
 
+                                this.ProgressVM.Start("Update Code/DB to Current Version of Configuration", 0, "", 0, cancellationToken);
                                 await Task.Run(() =>
                                 {
                                     return this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
@@ -992,7 +1005,6 @@ namespace vSharpStudio.ViewModels
                                 //}
                                 this.cancellationTokenSource = null;
                                 this.ProgressVM.End();
-                                this.IsBusy = false;
                             }
                         }, (o) =>
                         {
@@ -1184,13 +1196,13 @@ namespace vSharpStudio.ViewModels
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
         private async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object? parm = null, bool askWarning = true)
         {
+            var progress = new ProgressVM();
             Exception? resEx = null;
-            ProgressVM progress = new ProgressVM();
-            progress.Progress = 0;
-            this.IsBusy = true;
             TestTransformation? tst = parm as TestTransformation;
             try
             {
+                int iProgressSteps = 7;
+                int iProgressStep = 0;
                 GuiLabs.Undo.ActionManager am = new GuiLabs.Undo.ActionManager();
                 var dicRenamed = new Dictionary<string, string?>();
                 var mvr = new ModelVisitorNodeReferencesBase();
@@ -1222,19 +1234,14 @@ namespace vSharpStudio.ViewModels
                     p.Remove();
                 }
                 #endregion Remove New which are Marked for Deletion
+                iProgressStep++;
+                Debug.Assert(iProgressStep <= iProgressSteps);
+                progress.UpdateProgress(iProgressStep * 100 / iProgressSteps);
+                onProgress(progress);
                 using (Transaction.Create(am))
                 {
                     // I. Model validation (no need for UNDO)
                     #region
-                    progress.SubName = "Model validation";
-                    Debug.Assert(this._Config != null);
-                    //#if Async
-                    //                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config);
-                    //#else
-                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger);
-                    //#endif
-                    if (this._Config.CountErrors > 0)
-                        throw new Exception($"There are {this._Config.CountErrors} errors in configuration.\nFirst error is {this._Config.FindValidationMessage()?.Message} \nFix errors and try again.");
                     if (tst == null && this._Config.CountWarnings > 0)
                     {
 #if DEBUG
@@ -1255,8 +1262,9 @@ namespace vSharpStudio.ViewModels
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnConfigValidated)
                         throw new Exception(nameof(tst.IsThrowExceptionOnConfigValidated));
-                    progress.Progress = 5;
-                    progress.SubProgress = 100;
+                    iProgressStep++;
+                    Debug.Assert(iProgressStep <= iProgressSteps);
+                    progress.UpdateProgress(iProgressStep * 100 / iProgressSteps);
                     onProgress(progress);
                     #endregion
 
@@ -1418,7 +1426,6 @@ namespace vSharpStudio.ViewModels
             finally
             {
                 //TODO roll back if Exception
-                this.IsBusy = false;
             }
         }
         public vButtonVmAsync<TestTransformation?> BtnConfigCreateStableVersionAsync
@@ -1428,14 +1435,14 @@ namespace vSharpStudio.ViewModels
                 return this._BtnConfigCreateStableVersionAsync ?? (this._BtnConfigCreateStableVersionAsync = new vButtonVmAsync<TestTransformation?>(
                     (t) =>
                     {
-                        this.IsBusy = true;
+                        this.ProgressVM?.Start("Creating Version for Deployment");
                         try
                         {
                             this.CreateStableVersion(t);
                         }
                         finally
                         {
-                            this.IsBusy = false;
+                            this.ProgressVM?.End();
                         }
                         return Task.CompletedTask;
                     },

@@ -8,7 +8,7 @@ namespace ViewModelBase
 {
     public class ProgressVM : VmBindable
     {
-        private CancellationToken cancellationToken;
+        private CancellationToken? cancellationToken;
         public Visibility CancelVisibility
         {
             get { return _CancelVisibility; }
@@ -22,7 +22,7 @@ namespace ViewModelBase
             }
         }
         public Visibility _CancelVisibility;
-        private PauseToken pauseToken;
+        private PauseToken? pauseToken;
         public Visibility PauseVisibility
         {
             get { return _PauseVisibility; }
@@ -49,7 +49,20 @@ namespace ViewModelBase
             }
         }
         private string _Name;
-        public int? Progress
+        public Visibility NameVisibility
+        {
+            get { return _NameVisibility; }
+            set
+            {
+                if (_NameVisibility != value)
+                {
+                    _NameVisibility = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public Visibility _NameVisibility;
+        public int Progress
         {
             get { return _Progress; }
             set
@@ -65,7 +78,7 @@ namespace ViewModelBase
                 }
             }
         }
-        private int? _Progress;
+        private int _Progress;
         public Visibility ProgressVisibility
         {
             get { return _ProgressVisibility; }
@@ -88,15 +101,14 @@ namespace ViewModelBase
                 {
                     _SubName = value;
                     this.NotifyPropertyChanged();
+                    this.SubProgress = 0;
                     if (_SubName == null)
                     {
                         SubNameVisibility = Visibility.Collapsed;
-                        this.SubProgress = null;
                     }
                     else
                     {
                         SubNameVisibility = Visibility.Visible;
-                        this.SubProgress = 0;
                     }
                 }
             }
@@ -115,7 +127,7 @@ namespace ViewModelBase
             }
         }
         public Visibility _SubNameVisibility;
-        public int? SubProgress
+        public int SubProgress
         {
             get { return _SubProgress; }
             set
@@ -131,7 +143,7 @@ namespace ViewModelBase
                 }
             }
         }
-        private int? _SubProgress;
+        private int _SubProgress;
         public Visibility SubProgressVisibility
         {
             get { return _SubProgressVisibility; }
@@ -145,19 +157,31 @@ namespace ViewModelBase
             }
         }
         public Visibility _SubProgressVisibility;
-        public void Start(string taskName, int? progress = null, string subname = null, int? subprogress = null, CancellationToken cancellationToken = default(CancellationToken), PauseToken pauseToken = default(PauseToken))
+        public void Start(string taskName, int? progress = null, string subname = null, int? subprogress = null, CancellationToken? cancellationToken = null, PauseToken? pauseToken = null)
         {
             this.Name = taskName;
-            this.Progress = progress;
+            if (progress.HasValue)
+            {
+                this.Progress = progress.Value;
+                this.ProgressVisibility = Visibility.Visible;
+            }
+            else
+                this.ProgressVisibility = Visibility.Collapsed;
             this.SubName = subname;
-            this.SubProgress = subprogress;
+            if (subprogress.HasValue)
+            {
+                this.SubProgress = subprogress.Value;
+                this.SubProgressVisibility = Visibility.Visible;
+            }
+            else
+                this.SubProgressVisibility = Visibility.Collapsed;
             this.cancellationToken = cancellationToken;
-            if (cancellationToken == default(CancellationToken))
+            if (!this.cancellationToken.HasValue)
                 CancelVisibility = Visibility.Collapsed;
             else
                 CancelVisibility = Visibility.Visible;
             this.pauseToken = pauseToken;
-            if (pauseToken.IsNull())
+            if (!this.pauseToken.HasValue)
                 PauseVisibility = Visibility.Collapsed;
             else
                 PauseVisibility = Visibility.Visible;
@@ -168,19 +192,27 @@ namespace ViewModelBase
         {
             this.IsBusy = false;
         }
-        public void Update(string taskName)
+        public void UpdateProgress(int? progress)
         {
-            this.Name = taskName;
-            this.Progress = null;
-            this.SubName = null;
-            this.SubProgress = null;
+            if (progress.HasValue)
+                this.Progress = progress.Value;
+        }
+        public void UpdateSubProgress(string subTaskName, int? subProgress)
+        {
+            if (subTaskName != null)
+                this.SubName = subTaskName;
+            if (subProgress.HasValue)
+                this.SubProgress = subProgress.Value;
         }
         public void From(ProgressVM other)
         {
-            this.Name = other.Name;
-            this.Progress = other.Progress;
-            this.SubName = other.SubName;
-            this.SubProgress = other.SubProgress;
+            UIDispatcher.Invoke(() =>
+                {
+                    this.Name = other.Name;
+                    this.Progress = other.Progress;
+                    this.SubName = other.SubName;
+                    this.SubProgress = other.SubProgress;
+                });
         }
 
         public Exception Exception
@@ -196,5 +228,18 @@ namespace ViewModelBase
             }
         }
         public Exception _Exception;
+        public bool IsBusy
+        {
+            get { return _IsBusy; }
+            set
+            {
+                if (_IsBusy != value)
+                {
+                    _IsBusy = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        private bool _IsBusy;
     }
 }

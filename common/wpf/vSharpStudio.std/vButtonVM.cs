@@ -47,11 +47,11 @@ namespace ViewModelBase
         //    this.canExecute = canExecute;
         //    this.Command = new RelayCommand(executeInternal, canExecuteInternal);
         //}
-        internal void Execute()
+        public void Execute()
         {
             this.Command.Execute(null);
         }
-        internal bool CanExecute()
+        public bool CanExecute()
         {
             return this.canExecute.Invoke();
         }
@@ -89,11 +89,11 @@ namespace ViewModelBase
         //    this.canExecute = canExecute;
         //    this.Command = new RelayCommand<T?>(executeInternal, canExecuteInternal);
         //}
-        internal void Execute(T? o = default(T))
+        public void Execute(T? o = default(T))
         {
             this.Command.Execute(o);
         }
-        internal bool CanExecute(T? o = default(T))
+        public bool CanExecute(T? o = default(T))
         {
             return this.canExecute.Invoke(o);
         }
@@ -131,11 +131,11 @@ namespace ViewModelBase
         //    this.canExecute = canExecute;
         //    this.Command = new AsyncRelayCommand<T?>(executeInternal, canExecuteInternal);
         //}
-        internal async Task ExecuteAsync(T? o = default(T))
+        public async Task ExecuteAsync(T? o = default(T))
         {
             await this.Command.ExecuteAsync(o);
         }
-        internal bool CanExecute(T? o = default(T))
+        public bool CanExecute(T? o = default(T))
         {
             return this.canExecute.Invoke(o);
         }

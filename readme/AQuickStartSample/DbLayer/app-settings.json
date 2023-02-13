@@ -3,10 +3,4 @@
 		"Sqlite": {
 			"provider": "Microsoft.Data.Sqlite",
 			"connection_string": "Data Source=./sample-sqlite.db"
-		},
-		"PostgreSql": {
-			"provider": "Npgsql",
-			"connection_string": "Server=pg12-win2019;User ID=testuser;Password=123;Database=test1;Include Error Detail=True"
 		}
-	}
-}

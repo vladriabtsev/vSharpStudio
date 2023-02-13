@@ -61,20 +61,20 @@ namespace ViewModelBase
         public bool IsValidate { get; set; }
         public static bool IsValidateAll = true;
 
-        [BrowsableAttribute(false)]
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { if (SetProperty<bool>(ref _isBusy, value)) { this.IsNotBusy = !this.IsBusy; this.IsBusyChanged(); } }
-        }
-        private bool _isBusy;
-        [BrowsableAttribute(false)]
-        public bool IsNotBusy
-        {
-            get { return _isNotBusy; }
-            set { if (SetProperty<bool>(ref _isNotBusy, value)) { this.IsBusyChanged(); } }
-        }
-        private bool _isNotBusy = true;
+        //[BrowsableAttribute(false)]
+        //public bool IsBusy
+        //{
+        //    get { return _isBusy; }
+        //    set { if (SetProperty<bool>(ref _isBusy, value)) { this.IsNotBusy = !this.IsBusy; this.IsBusyChanged(); } }
+        //}
+        //private bool _isBusy;
+        //[BrowsableAttribute(false)]
+        //public bool IsNotBusy
+        //{
+        //    get { return _isNotBusy; }
+        //    set { if (SetProperty<bool>(ref _isNotBusy, value)) { this.IsBusyChanged(); } }
+        //}
+        //private bool _isNotBusy = true;
         protected virtual void IsBusyChanged() { }
 
         #region Dispatcher Methods
