@@ -876,12 +876,11 @@ namespace vSharpStudio.ViewModels
                         async (o) =>
                         {
                             Debug.Assert(this.ProgressVM != null);
-                            //TestTransformation? tst = o as TestTransformation;
                             try
                             {
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 var cancellationToken = this.cancellationTokenSource.Token;
-                                this.ProgressVM.Start("Configuration Validation", 0, "", 0, cancellationToken);
+                                this.ProgressVM.Start("Configuration Validation", 0, null, null, cancellationToken);
                                 await Task.Run(() =>
                                 {
                                     return this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger);
@@ -1312,11 +1311,8 @@ namespace vSharpStudio.ViewModels
                                 throw new CancellationException();
                             i++;
 
-#if Async
                             await CompileUtils.CompileAsync(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
-#else
-                            CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
-#endif
+                            //CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
 
                             progress.SubProgress = 100 * i / this.Config.GroupAppSolutions.ListAppSolutions.Count;
                             onProgress(progress);

@@ -26,22 +26,16 @@
         <xctk:BusyIndicator.BusyContentTemplate>
             <DataTemplate>
                 <StackPanel Margin="4" Background="#00AFAFAF" DataContext="{Binding DataContext.ProgressVM, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type xctk:BusyIndicator}}}">
-                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Visibility="{Binding NameVisibility}" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Visibility="{Binding NameVisibility}" HorizontalAlignment="Center" Margin="0,0,0,5"/>
                     <ProgressBar Value="{Binding Progress}" Height="15" Visibility="{Binding ProgressVisibility}"/>
-                    <StackPanel Margin="4">
+                    <StackPanel Visibility="{Binding SubNameVisibility}">
                         <TextBlock Text="{Binding SubName}" Visibility="{Binding SubNameVisibility}" HorizontalAlignment="Center"/>
                         <ProgressBar Value="{Binding SubProgress}" Height="15" Visibility="{Binding SubProgressVisibility}"/>
                     </StackPanel>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Content="Pause" HorizontalAlignment="Right" Margin="0 0 2 0"/>
-                        <Button Grid.Column="1" Content="Cancel" 
-                                Visibility="{Binding CancelVisibility}"
-                                HorizontalAlignment="Left" Margin="2 0 0 0"/>
-                    </Grid>
+                    <StackPanel Visibility="{Binding CancelVisibility}" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content=" Pause  " Visibility="{Binding PauseVisibility}" Margin="0 0 2 0"/>
+                        <Button Content=" Cancel " Visibility="{Binding CancelVisibility}"/>
+                    </StackPanel>
                 </StackPanel>
             </DataTemplate>
         </xctk:BusyIndicator.BusyContentTemplate>

@@ -8,12 +8,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
+using Microsoft.Extensions.Caching.Memory; // nuget package 'Microsoft.Extensions.Caching.Abstractions'
+using Microsoft.Extensions.Configuration;  // nuget package 'Microsoft.Extensions.Configuration'
+using Dapper;                              // nuget package 'Dapper'
+using Dapper.Contrib.Extensions;           // nuget package 'Dapper.Contrib'
+using Polly;                               // nuget package 'Polly'
 
 /// <summary>
 /// Auto generated
 /// </summary>
 #pragma warning disable IDE1006 // Naming Styles
-namespace vPlugins.DapperModels // NameSpace.tt Line: 37
+namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 {
 	//using CommonCodeAPI;
 	using System;
@@ -22,27 +27,23 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 	using System.Data;
     using System.Transactions;
     using System.IO;
-	using Dapper;
-    using Dapper.Contrib.Extensions;
-	using Polly;
-    using Microsoft.Extensions.Configuration;
 
     using System.Diagnostics;
 
-    namespace Sqlite // NameSpace.tt Line: 92
+    namespace Sqlite // NameSpace.tt Line: 93
     {
-        //using DTO = vPlugins.Models.Sqlite.Model; // NameSpace.tt Line: 95
-        //using DTO = vPlugins.DapperModels.Sqlite.Model; // NameSpace.tt Line: 96
-        //using CMD = vPlugins.DapperModels; // NameSpace.tt Line: 97
-        using Microsoft.Data.Sqlite;
+        //using DTO = vPlugins.Models.Sqlite.Model; // NameSpace.tt Line: 96
+        //using DTO = vPlugins.DapperModels.Sqlite.Model; // NameSpace.tt Line: 97
+        //using CMD = vPlugins.DapperModels; // NameSpace.tt Line: 98
+        using Microsoft.Data.Sqlite;	// nuget package 'Microsoft.Data.Sqlite'
         /// <include file='model_doc.xml' path='Doc/Model/Desc[@name="model"]/*' />
-        public partial class Model // NameSpace.tt Line: 110
+        public partial class Model // NameSpace.tt Line: 111
         {
-            public static bool LOGGING_EXTENTIONS { get; } = false; // NameSpace.tt Line: 145
+            public static bool LOGGING_EXTENTIONS { get; } = false; // NameSpace.tt Line: 146
             public static bool LOGGING_NLOG { get; } = false;
             public static bool LOGGING_SERILOG { get; } = false;
 			/// <include file='model_doc.xml' path='Doc/Model/Constants/Desc[@name="constants"]/*' />
-			public partial class Constants // Constants.tt Line: 14, called from NameSpace.tt Line: 164
+			public partial class Constants // Constants.tt Line: 14, called from NameSpace.tt Line: 165
 			{
 			    /// <include file='model_doc.xml' path='Doc/Model/Constants/Desc[@name="LoadValues"]/*' />
 			    public static void LoadValues(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Constants.tt Line: 19*/) // Constants.tt Line: 19
@@ -343,7 +344,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 				}
 			}
 			/// <include file='model_doc.xml' path='Doc/Model/Catalogs/Desc[@name="catalogs"]/*' />
-			public partial class Catalogs // Catalogs.tt Line: 8, called from NameSpace.tt Line: 169
+			public partial class Catalogs // Catalogs.tt Line: 8, called from NameSpace.tt Line: 170
 			{
 				// PocoCatalogs.tt Line: 7, called from Catalogs.tt Line: 13
 				[Dapper.Contrib.Extensions.Table("CtlgCatalog1")]
@@ -1089,7 +1090,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					#endregion Views // PocoView.tt Line: 289
 				}
 			}
-			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 173
+			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 174
 			{
 				// PocoDocuments.tt Line: 7, called from Documents.tt Line: 12
 			}
@@ -1332,7 +1333,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					return res;
 				}
 			}
-			public class ListChildren<T> : List<T> // ModelGlobal.tt Line: 12, called from NameSpace.tt Line: 176
+			public class ListChildren<T> : List<T> // ModelGlobal.tt Line: 12, called from NameSpace.tt Line: 177
 			    where T : class, IEntityBase
 			{
 			    /// <summary>
@@ -1442,7 +1443,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			
 			
 			#region Id Generator
-			public class IdGenerator // IdGenerator.tt Line: 8, called from NameSpace.tt Line: 187
+			public class IdGenerator // IdGenerator.tt Line: 8, called from NameSpace.tt Line: 188
 			{
 			    // connStr, table name, IdItem
 			    private static readonly Dictionary<string /* GUID */, string /* table name */> dicTableNames = new()
@@ -1501,7 +1502,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        return id;
 			    }
 			}
-			public class HiLoService : IHiLoService // ModelCacheId.tt Line: 9, called from NameSpace.tt Line: 190
+			public class HiLoService : IHiLoService // ModelCacheId.tt Line: 9, called from NameSpace.tt Line: 191
 			{
 			    public HiLoResult GetHiLo(HiLoRequest request)
 			    {
@@ -1550,7 +1551,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			}
 			#endregion Id Generator
 			
-			#region History // Model.tt Line: 19, called from NameSpace.tt Line: 194
+			#region History // Model.tt Line: 19, called from NameSpace.tt Line: 195
 			[Dapper.Contrib.Extensions.Table("_history_objects_ids")]
 			public partial class _history_objects_ids // Model.tt Line: 23
 			{
@@ -1857,7 +1858,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			    }
 			}
 			#endregion History
-			public partial class UnitOfWorkBase : IUnitOfWork // UnitOfWork.tt Line: 10, called from NameSpace.tt Line: 197
+			public partial class UnitOfWorkBase : IUnitOfWork // UnitOfWork.tt Line: 10, called from NameSpace.tt Line: 198
 			{
 			    // TODO https://docs.microsoft.com/en-us/dotnet/api/system.transactions?view=dotnet-plat-ext-3.1
 			    // https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=dotnet-plat-ext-3.1
@@ -2315,7 +2316,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			    #endregion General // DeferredTransaction.tt Line: 350 
 			}
 			
-			#region Connection // Connection.tt Line: 9, called from NameSpace.tt Line: 203
+			#region Connection // Connection.tt Line: 9, called from NameSpace.tt Line: 204
 			public static bool IsBuffered = true;
 			public static int? CommandTimeout = 100; // seconds
 			private static readonly object lock_object = new();
@@ -2370,7 +2371,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			private static string? __connString;
 			#endregion Connection // Connection.tt Line: 173
 			
-			#region Connection Wrapper // ConnectionWrapper.tt Line: 8, called from NameSpace.tt Line: 206
+			#region Connection Wrapper // ConnectionWrapper.tt Line: 8, called from NameSpace.tt Line: 207
 			/// <summary>
 			/// Execute any methods by using open db connection. Expecting return IEnumerable collection of T objects or null.
 			/// Execution will proceed with retry policy
@@ -2458,7 +2459,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			}
 			#endregion Connection Wrapper // ConnectionWrapper.tt Line: 199
 			
-			#region Dapper // ModelDapper.tt Line: 9, called from NameSpace.tt Line: 209
+			#region Dapper // ModelDapper.tt Line: 9, called from NameSpace.tt Line: 210
 			public static void DapperInit() // ModelDapper.tt Line: 10
 			{
 			
@@ -2626,7 +2627,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			}
 			#endregion Dapper
 			
-			#region Utils // Utils.tt Line: 8, called from NameSpace.tt Line: 212
+			#region Utils // Utils.tt Line: 8, called from NameSpace.tt Line: 213
 			// https://stackoverflow.com/questions/46940710/getting-value-from-appsettings-json-in-net-core
 			public static class ConfigurationManagerJson // Utils.tt Line: 10
 			{
@@ -2666,21 +2667,21 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			    }
 			}
         }
-            } // Sqlite // NameSpace.tt Line: 252
-    namespace PostgreSql // NameSpace.tt Line: 92
+            } // Sqlite // NameSpace.tt Line: 253
+    namespace PostgreSql // NameSpace.tt Line: 93
     {
-        //using DTO = vPlugins.Models.PostgreSql.Model; // NameSpace.tt Line: 95
-        //using DTO = vPlugins.DapperModels.PostgreSql.Model; // NameSpace.tt Line: 96
-        //using CMD = vPlugins.DapperModels; // NameSpace.tt Line: 97
-        using global::Npgsql;
+        //using DTO = vPlugins.Models.PostgreSql.Model; // NameSpace.tt Line: 96
+        //using DTO = vPlugins.DapperModels.PostgreSql.Model; // NameSpace.tt Line: 97
+        //using CMD = vPlugins.DapperModels; // NameSpace.tt Line: 98
+        using global::Npgsql;	// nuget package 'Npgsql'
         /// <include file='model_doc.xml' path='Doc/Model/Desc[@name="model"]/*' />
-        public partial class Model // NameSpace.tt Line: 110
+        public partial class Model // NameSpace.tt Line: 111
         {
-            public static bool LOGGING_EXTENTIONS { get; } = false; // NameSpace.tt Line: 145
+            public static bool LOGGING_EXTENTIONS { get; } = false; // NameSpace.tt Line: 146
             public static bool LOGGING_NLOG { get; } = false;
             public static bool LOGGING_SERILOG { get; } = false;
 			/// <include file='model_doc.xml' path='Doc/Model/Constants/Desc[@name="constants"]/*' />
-			public partial class Constants // Constants.tt Line: 14, called from NameSpace.tt Line: 164
+			public partial class Constants // Constants.tt Line: 14, called from NameSpace.tt Line: 165
 			{
 			    /// <include file='model_doc.xml' path='Doc/Model/Constants/Desc[@name="LoadValues"]/*' />
 			    public static void LoadValues(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Constants.tt Line: 19*/) // Constants.tt Line: 19
@@ -2981,7 +2982,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 				}
 			}
 			/// <include file='model_doc.xml' path='Doc/Model/Catalogs/Desc[@name="catalogs"]/*' />
-			public partial class Catalogs // Catalogs.tt Line: 8, called from NameSpace.tt Line: 169
+			public partial class Catalogs // Catalogs.tt Line: 8, called from NameSpace.tt Line: 170
 			{
 				// PocoCatalogs.tt Line: 7, called from Catalogs.tt Line: 13
 				[Dapper.Contrib.Extensions.Table("v.CtlgCatalog1")]
@@ -3731,7 +3732,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					#endregion Views // PocoView.tt Line: 289
 				}
 			}
-			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 173
+			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 174
 			{
 				// PocoDocuments.tt Line: 7, called from Documents.tt Line: 12
 			}
@@ -3974,7 +3975,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 					return res;
 				}
 			}
-			public class ListChildren<T> : List<T> // ModelGlobal.tt Line: 12, called from NameSpace.tt Line: 176
+			public class ListChildren<T> : List<T> // ModelGlobal.tt Line: 12, called from NameSpace.tt Line: 177
 			    where T : class, IEntityBase
 			{
 			    /// <summary>
@@ -4084,7 +4085,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			
 			
 			#region Id Generator
-			public class IdGenerator // IdGenerator.tt Line: 8, called from NameSpace.tt Line: 187
+			public class IdGenerator // IdGenerator.tt Line: 8, called from NameSpace.tt Line: 188
 			{
 			    // connStr, table name, IdItem
 			    private static readonly Dictionary<string /* GUID */, string /* table name */> dicTableNames = new()
@@ -4125,7 +4126,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			        return id;
 			    }
 			}
-			public class HiLoService : IHiLoService // ModelCacheId.tt Line: 9, called from NameSpace.tt Line: 190
+			public class HiLoService : IHiLoService // ModelCacheId.tt Line: 9, called from NameSpace.tt Line: 191
 			{
 			    public HiLoResult GetHiLo(HiLoRequest request)
 			    {
@@ -4174,7 +4175,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			}
 			#endregion Id Generator
 			
-			#region History // Model.tt Line: 19, called from NameSpace.tt Line: 194
+			#region History // Model.tt Line: 19, called from NameSpace.tt Line: 195
 			[Dapper.Contrib.Extensions.Table("_history_objects_ids")]
 			public partial class _history_objects_ids // Model.tt Line: 23
 			{
@@ -4481,7 +4482,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			    }
 			}
 			#endregion History
-			public partial class UnitOfWorkBase : IUnitOfWork // UnitOfWork.tt Line: 10, called from NameSpace.tt Line: 197
+			public partial class UnitOfWorkBase : IUnitOfWork // UnitOfWork.tt Line: 10, called from NameSpace.tt Line: 198
 			{
 			    // TODO https://docs.microsoft.com/en-us/dotnet/api/system.transactions?view=dotnet-plat-ext-3.1
 			    // https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=dotnet-plat-ext-3.1
@@ -4930,7 +4931,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			    #endregion General // DeferredTransaction.tt Line: 350 
 			}
 			
-			#region Connection // Connection.tt Line: 9, called from NameSpace.tt Line: 203
+			#region Connection // Connection.tt Line: 9, called from NameSpace.tt Line: 204
 			public static bool IsBuffered = true;
 			public static int? CommandTimeout = 100; // seconds
 			
@@ -4984,7 +4985,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			private static string? __connString;
 			#endregion Connection // Connection.tt Line: 173
 			
-			#region Connection Wrapper // ConnectionWrapper.tt Line: 8, called from NameSpace.tt Line: 206
+			#region Connection Wrapper // ConnectionWrapper.tt Line: 8, called from NameSpace.tt Line: 207
 			/// <summary>
 			/// Execute any methods by using open db connection. Expecting return IEnumerable collection of T objects or null.
 			/// Execution will proceed with retry policy
@@ -5060,7 +5061,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			}
 			#endregion Connection Wrapper // ConnectionWrapper.tt Line: 199
 			
-			#region Dapper // ModelDapper.tt Line: 9, called from NameSpace.tt Line: 209
+			#region Dapper // ModelDapper.tt Line: 9, called from NameSpace.tt Line: 210
 			public static void DapperInit() // ModelDapper.tt Line: 10
 			{
 			    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -5230,7 +5231,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			}
 			#endregion Dapper
 			
-			#region Utils // Utils.tt Line: 8, called from NameSpace.tt Line: 212
+			#region Utils // Utils.tt Line: 8, called from NameSpace.tt Line: 213
 			// https://stackoverflow.com/questions/46940710/getting-value-from-appsettings-json-in-net-core
 			public static class ConfigurationManagerJson // Utils.tt Line: 10
 			{
@@ -5270,8 +5271,8 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 			    }
 			}
         }
-            } // PostgreSql // NameSpace.tt Line: 252
-	#region ID Cache // CacheIdHiLo.tt Line: 8, called from NameSpace.tt Line: 258
+            } // PostgreSql // NameSpace.tt Line: 253
+	#region ID Cache // CacheIdHiLo.tt Line: 8, called from NameSpace.tt Line: 259
 	public interface ICacheId // CacheIdHiLo.tt Line: 10
 	{
 	    int GetNextId(string guid);
@@ -5835,8 +5836,8 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 	        public DateTime? LastCallDateTime;
 	    }
 	}
-	#endregion ID Cache // CacheIdHiLo.tt Line: 576, called from NameSpace.tt Line: 258
-    public interface IEntityBaseExplicit // NameSpace.tt Line: 263
+	#endregion ID Cache // CacheIdHiLo.tt Line: 576, called from NameSpace.tt Line: 259
+    public interface IEntityBaseExplicit // NameSpace.tt Line: 264
     {
         CommandDefinitionData GetCommandDefinitionInsert();
         CommandDefinitionData GetCommandDefinitionUpdate();
@@ -5851,11 +5852,11 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
         CommandDefinitionData GetCommandDefinitionMoveTo(int id, int idGroupTo);
         CommandDefinitionData GetCommandDefinitionLoadSubTree(int id, int deep);
     }
-    public interface IRecordId // NameSpace.tt Line: 278
+    public interface IRecordId // NameSpace.tt Line: 279
     {
         int Id { get; }
     }
-    public interface IEntityBase : IRecordId // NameSpace.tt Line: 282
+    public interface IEntityBase : IRecordId // NameSpace.tt Line: 283
     {
         string GetGuid();
         string GetDbTableName();
@@ -5865,28 +5866,28 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
         IEnumerable<IEntityBase> GetChildren();
         string TYPE_CACHE_ID { get; }
     }
-    public interface IEntityBaseExplicit<T> : IEntityBaseExplicit, IEntityBase // NameSpace.tt Line: 295
+    public interface IEntityBaseExplicit<T> : IEntityBaseExplicit, IEntityBase // NameSpace.tt Line: 296
     {
         T CreateDto(int id);
         T? LoadUtil(SqlMapper.GridReader multi);
     }
-    public interface IViewPlainBaseExplicit<T> // NameSpace.tt Line: 300
+    public interface IViewPlainBaseExplicit<T> // NameSpace.tt Line: 301
     {
         CommandDefinitionData GetCommandDefinitionCountWhere(string? where, object? param);
         CommandDefinitionData GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param);
     }
-    public interface IViewSelfTreeBaseExplicit<T> : IViewPlainBaseExplicit<T> // NameSpace.tt Line: 305
+    public interface IViewSelfTreeBaseExplicit<T> : IViewPlainBaseExplicit<T> // NameSpace.tt Line: 306
     {
         CommandDefinitionData GetCommandDefinitionSubTreeView(int? parentId, int deep, string? sort, string? where, object? param);
         CommandDefinitionData GetCommandDefinitionSubItemsView(int? folderId, int pagesize, int page, string? sort, string? where, object? param);
         CommandDefinitionData GetCommandDefinitionTreeListView(int? selectedId, string? where, object? param);
         CommandDefinitionData GetCommandDefinitionTreeListSubView(int? selectedId, string? sort, string? where, object? param);
     }
-    public interface IViewPlainForRefTreeBaseExplicit<T> : IViewPlainBaseExplicit<T> // NameSpace.tt Line: 312
+    public interface IViewPlainForRefTreeBaseExplicit<T> : IViewPlainBaseExplicit<T> // NameSpace.tt Line: 313
     {
         CommandDefinitionData GetCommandDefinitionSubItemsView(int? folderId, int pagesize, int page, string? sort, string? where, object? param);
     }
-    public class Op // NameSpace.tt Line: 316
+    public class Op // NameSpace.tt Line: 317
     {
         public enum EnumOpType { None, Insert, Update, Delete, Remove, Sql }
         public Op(IEntityBase entity, EnumOpType opType, string file, string member, int line)
@@ -5941,7 +5942,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
     /// <summary>
     /// Interface for UnitOfWork
     /// </summary>
-    public partial interface IUnitOfWork : IDisposable // NameSpace.tt Line: 371
+    public partial interface IUnitOfWork : IDisposable // NameSpace.tt Line: 372
     {
         /// <summary>
         /// Commit all changes as atomic operation. 
@@ -5953,7 +5954,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
         /// </summary>
 	    void Rollback();
     }
-	public struct CommandDefinitionData // DapperGlobal.tt Line: 8, called from NameSpace.tt Line: 390
+	public struct CommandDefinitionData // DapperGlobal.tt Line: 8, called from NameSpace.tt Line: 391
 	{
 	    public CommandDefinitionData(string commandText, object? parameters = null, CommandType? commandType = null)
 	    {
@@ -6108,7 +6109,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
 	    }
 	    */
 	}
-    public static class CacheUtils
+    public static class CacheUtils // NameSpace.tt Line: 525
     {
         public static T? GetFromCache<T>(this IMemoryCache mc, string modelKey, string catType, int catId)
             where T : IEntityBase
@@ -6130,7 +6131,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
             mc.Remove(key);
         }
     }
-    public class ConcurrencyOptimisticException : System.Exception // NameSpace.tt Line: 546
+    public class ConcurrencyOptimisticException : System.Exception // NameSpace.tt Line: 547
     {
         public ConcurrencyOptimisticException(string? message) : base(message) { }
         public ConcurrencyOptimisticException(string? message, bool isDeleted) : base(message)
@@ -6140,9 +6141,9 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 37
         public bool IsDeleted { get; private set; }
     }
 }
-namespace vPlugins // NameSpace.tt Line: 556
+namespace vPlugins // NameSpace.tt Line: 557
 {
-	// called from NameSpace.tt Line: 560
+	// called from NameSpace.tt Line: 561
 	#region Interfaces // Api.tt Line: 9
 	public interface ICount
 	{
@@ -6386,7 +6387,7 @@ namespace vPlugins // NameSpace.tt Line: 556
 	#endregion Interfaces
 	
 }
-#if !NET6_0 && !NET7_0 // Additional.tt Line: 8, called from NameSpace.tt Line: 566
+#if !NET6_0 && !NET7_0 // Additional.tt Line: 8, called from NameSpace.tt Line: 567
 /*
 namespace System 
 {

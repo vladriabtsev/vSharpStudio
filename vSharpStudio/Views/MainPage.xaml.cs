@@ -49,7 +49,6 @@ namespace vSharpStudio.Views
             {
                 return;
             }
-#if DEBUG
             //InitConfig(this.Config);
             //if (this.Config.PrevStableConfig != null)
             //    InitConfig((Config)this.Config.PrevStableConfig);
@@ -64,29 +63,14 @@ namespace vSharpStudio.Views
                 p = (FrameworkElement)p.Parent;
             }
             p.DataContext = this._model;
-#else
-            this._model.Compose();
-            this._model.OnFormLoaded();
-            this.DataContext = this._model;
-            FrameworkElement p = (FrameworkElement)this.Parent;
-            while (!(p is MainWindow))
-            {
-                p = (FrameworkElement)p.Parent;
-            }
-            p.DataContext = this._model;
-            //_model = new MainPageVM();
-            //Task task = Task.Run(() =>
-            //{
-            //    this._model.Compose();
-            //    this._model.OnFormLoaded();
-            //    this.DataContext = this._model;
-            //});
-#endif
         }
 
         private void PropertiesList_LostFocus(object sender, RoutedEventArgs e)
         {
-            this._model.ValidateSelectedNodeAsync().SafeFireAndForget();
+            Task.Run(() =>
+            {
+                return this._model.ValidateSelectedNodeAsync();
+            }).SafeFireAndForget();
         }
     }
 }

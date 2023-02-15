@@ -192,8 +192,11 @@ namespace vSharpStudio.vm.ViewModels
                     logger?.LogInformation("=== Cancelled ===");
                 }
             }
+            catch (TaskCanceledException)
+            {
+            }
 #if DEBUG
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }

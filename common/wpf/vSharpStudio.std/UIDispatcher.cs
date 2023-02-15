@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -72,7 +73,16 @@ namespace ViewModelBase
                 return;
             }
             if (_dispatcher.CheckAccess()) action();
-            else _dispatcher._windowsDispatcher.Invoke(action);
+            else
+            {
+                try
+                {
+                    _dispatcher._windowsDispatcher.Invoke(action);
+                }
+                catch (TaskCanceledException)
+                {
+                }
+            }
         }
         /// <summary>
         /// Start execute an action asynchronously on the UI thread.

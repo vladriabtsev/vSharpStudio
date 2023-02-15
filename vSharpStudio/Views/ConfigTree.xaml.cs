@@ -29,10 +29,5 @@ namespace vSharpStudio.Views
                 return;
             }
         }
-
-        // private void ConfigTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        // {
-        //    (DataContext as MainPageVM).OnSelectedItemChanged(e.OldValue, e.NewValue);
-        // }
     }
 }
