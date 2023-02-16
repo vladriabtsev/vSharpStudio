@@ -145,32 +145,33 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         #region Group Generator Solution Settings
-        [PropertyOrderAttribute(11)]
-        [ExpandableObjectAttribute()]
-        [ReadOnly(true)]
-        [DisplayName("Groups Settings2")]
-        [Description("Solution groups generators settings. Group generators are working together")]
-        public object? DynamicPluginGroupSettings2
-        {
-            get
-            {
-                if (_DynamicPluginGroupSettings2 == null)
-                {
-                    foreach (var t in this.DicPluginsGroupSettings)
-                    {
-                        _DynamicPluginGroupSettings2 = t.Value;
-                        break;
-                    }
-                }
-                return _DynamicPluginGroupSettings2;
-            }
-            set
-            {
-                _DynamicPluginGroupSettings2 = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-        private object? _DynamicPluginGroupSettings2;
+        //[PropertyOrderAttribute(11)]
+        //[ExpandableObjectAttribute()]
+        //[ReadOnly(true)]
+        //[DisplayName("Groups Settings2")]
+        //[Description("Solution groups generators settings. Group generators are working together")]
+        //public object? DynamicPluginGroupSettings2
+        //{
+        //    get
+        //    {
+        //        if (_DynamicPluginGroupSettings2 == null)
+        //        {
+        //            foreach (var t in this.DicPluginsGroupSettings)
+        //            {
+        //                _DynamicPluginGroupSettings2 = t.Value;
+        //                break;
+        //            }
+        //        }
+        //        return _DynamicPluginGroupSettings2;
+        //    }
+        //    set
+        //    {
+        //        _DynamicPluginGroupSettings2 = value;
+        //        this.NotifyPropertyChanged();
+        //    }
+        //}
+        //private object? _DynamicPluginGroupSettings2;
+
         [PropertyOrderAttribute(11)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
