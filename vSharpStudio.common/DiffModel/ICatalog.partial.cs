@@ -23,5 +23,12 @@ namespace vSharpStudio.common
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
+
+        bool GetUseCodeProperty();
+        bool GetUseCodePropertySeparateFolder();
+        bool GetUseNameProperty();
+        bool GetUseNamePropertySeparateFolder();
+        bool GetUseDescriptionProperty();
+        bool GetUseDescriptionPropertSeparateFoldery();
     }
 }

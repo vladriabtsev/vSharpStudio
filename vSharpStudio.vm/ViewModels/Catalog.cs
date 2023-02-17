@@ -683,7 +683,11 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseCodeProperty == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.GetUseCodeProperty();
+            if (this.ParentGroupListCatalogs.UseCodeProperty == EnumUseType.Yes)
+                return true;
+            if (this.ParentGroupListCatalogs.UseCodeProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.ParentModel.UseCodeProperty;
         }
         public bool GetUseCodePropertySeparateFolder()
         {
@@ -699,7 +703,11 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseNameProperty == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.GetUseNameProperty();
+            if (this.ParentGroupListCatalogs.UseNameProperty == EnumUseType.Yes)
+                return true;
+            if (this.ParentGroupListCatalogs.UseNameProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.ParentModel.UseNameProperty;
         }
         public bool GetUseNamePropertySeparateFolder()
         {
@@ -715,13 +723,21 @@ namespace vSharpStudio.vm.ViewModels
                 return true;
             if (this.UseDescriptionProperty == EnumUseType.No)
                 return false;
-            return this.ParentGroupListCatalogs.GetUseDescriptionProperty();
+            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.Yes)
+                return true;
+            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.ParentModel.UseDescriptionProperty;
         }
         public bool GetUseDescriptionPropertSeparateFoldery()
         {
             if (this.Folder.UseDescriptionProperty == EnumUseType.Yes)
                 return true;
             if (this.Folder.UseDescriptionProperty == EnumUseType.No)
+                return false;
+            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.Yes)
+                return true;
+            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.No)
                 return false;
             return this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
         }

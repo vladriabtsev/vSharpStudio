@@ -1,5 +1,5 @@
 #nullable enable
-// GlobalInterfaces.tt Line: 9, called from RepositoryGeneratorSettings.partial.cs Line: 98
+// GlobalInterfaces.tt Line: 9, called from RepositoryGeneratorSettings.partial.cs Line: 101
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;

@@ -145,30 +145,6 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentModel.IsGridSortableCustom;
         }
-        public bool GetUseCodeProperty()
-        {
-            if (this.UseCodeProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseCodeProperty == EnumUseType.No)
-                return false;
-            return this.ParentModel.UseCodeProperty;
-        }
-        public bool GetUseNameProperty()
-        {
-            if (this.UseNameProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseNameProperty == EnumUseType.No)
-                return false;
-            return this.ParentModel.UseNameProperty;
-        }
-        public bool GetUseDescriptionProperty()
-        {
-            if (this.UseDescriptionProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseDescriptionProperty == EnumUseType.No)
-                return false;
-            return this.ParentModel.UseDescriptionProperty;
-        }
         //partial void OnUseCodePropertyChanged()
         //{
         //    this.NotifyPropertyChanged(() => this.PropertyDefinitions);

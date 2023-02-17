@@ -14,7 +14,7 @@ using Microsoft.Extensions.Configuration.Json;                 // nuget package 
 using Dapper;                                                  // nuget package 'Dapper'
 using Dapper.Contrib.Extensions;                               // nuget package 'Dapper.Contrib'
 using Polly;                                                   // nuget package 'Polly'
-
+using Microsoft.Extensions.Caching.Memory; // from nuget Microsoft.Extensions.Caching.Abstractions
 /// <summary>
 /// Auto generated
 /// </summary>
@@ -43,6 +43,8 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
             public static bool LOGGING_EXTENTIONS { get; } = false; // NameSpace.tt Line: 147
             public static bool LOGGING_NLOG { get; } = false;
             public static bool LOGGING_SERILOG { get; } = false;
+            private const string MODEL_CACHE_ID = "0";
+            public static IMemoryCache? MemoryCache { get; set; }
 			/// <include file='model_doc.xml' path='Doc/Model/Catalogs/Desc[@name="catalogs"]/*' />
 			public partial class Catalogs // Catalogs.tt Line: 8, called from NameSpace.tt Line: 171
 			{
@@ -74,23 +76,16 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 						set { _Id = value; ___isNeedUpdate = true;}
 					}
 					private int _Id; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
-					public int Code // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1174
+					public string Property1 // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1154
 					{
-						get { return _Code; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
-						set { _Code = value; ___isNeedUpdate = true;}
+						get { return _Property1; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
+						set { _Property1 = value; ___isNeedUpdate = true;}
 					}
-					private int _Code; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
-					public string Name // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1154
-					{
-						get { return _Name; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
-						set { _Name = value; ___isNeedUpdate = true;}
-					}
-					private string _Name = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
+					private string _Property1 = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
 				
 					#region Fields // ModelProperty.tt Line: 21
 					public const string F_ID = "Id";
-					public const string F_CODE = "Code";
-					public const string F_NAME = "Name";
+					public const string F_PROPERTY1 = "Property1";
 					#endregion Fields // ModelProperty.tt Line: 28
 				    #endregion Properties // ModelProperty.tt Line: 29
 				    #region Special // ModelProperty.tt Line: 30
@@ -108,25 +103,22 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					    var cmd = new CommandDefinitionData(
 							"INSERT INTO v.CtlgCatalog1 (" + // ModelEntityCmd.tt Line: 48
 								"Id"+
-								",Code"+
-								",Name"+
+								",Property1"+
 							") VALUES(" + // ModelEntityCmd.tt Line: 52
 								"@Id"+
-								",@Code"+
-								",@Name"+
+								",@Property1"+
 							");", // SELECT SCOPE_IDENTITY();", // ModelEntityCmd.tt Line: 56
 					        new 
 					        {
 					    		this.Id, 
-					    		this.Code, 
-					    		this.Name, 
+					    		this.Property1, 
 					        }, CommandType.Text) // ModelEntityCmd.tt Line: 66 
 					        { Entity = this }; // ModelEntityCmd.tt Line: 68
 					    return cmd;
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadById(int id) // ModelEntityCmd.tt Line: 71
 					{
-					    var sql = @"SELECT Id, Code, Name FROM v.CtlgCatalog1 WHERE Id = @pid;"
+					    var sql = @"SELECT Id, Property1 FROM v.CtlgCatalog1 WHERE Id = @pid;"
 					; // ModelEntityCmd.tt Line: 84
 					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
 					    return cmd;
@@ -183,12 +175,10 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					{
 					    var cmd = new CommandDefinitionData(
 					        "UPDATE v.CtlgCatalog1 SET "+
-								"Code = @Code" + 
-								",Name = @Name" + 
+								"Property1 = @Property1" + 
 					        " WHERE Id = @Id;", // ModelEntityCmd.tt Line: 212
 							new {
-					    		this.Code, 
-					    		this.Name, 
+					    		this.Property1, 
 								this.Id // ModelEntityCmd.tt Line: 227
 							}, CommandType.Text) 
 					        { Entity = this };
@@ -246,7 +236,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					    var dto = new Catalogs.Catalog1
 					    {
 					        Id = id,
-					        Name = string.Empty,
+					        Property1 = string.Empty,
 					        ___isNeedInsert = true,
 					    };
 					    return dto;
@@ -261,164 +251,6 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					    return resCatalog1;
 					}
 					#endregion Repository // CatalogRepository.tt Line: 51
-					#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 82
-					[Dapper.Contrib.Extensions.Table("v.CtlgCatalog1")]
-					public partial class ViewListNarrow : ViewEntityBaseSyncAsync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 49
-					{
-					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
-					    public string GetName() { return this.Name; }
-					#if DEBUG
-					    private ViewListNarrow()
-					#else
-					    public ViewListNarrow()
-					#endif
-					    {
-					        this.Name = string.Empty;
-					    }
-					    #region View Properties
-						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 103 - Utils.cs Line: 279
-						public int Id // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
-						{
-							get { return _Id; } // PocoView.tt Line: 103 - Utils.cs Line: 458
-							set { _Id = value; }
-						}
-						private int _Id; // PocoView.tt Line: 103 - Utils.cs Line: 466
-						public int Code // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
-						{
-							get { return _Code; } // PocoView.tt Line: 103 - Utils.cs Line: 458
-							set { _Code = value; }
-						}
-						private int _Code; // PocoView.tt Line: 103 - Utils.cs Line: 466
-						public string Name // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1154
-						{
-							get { return _Name; } // PocoView.tt Line: 103 - Utils.cs Line: 458
-							set { _Name = value; }
-						}
-						private string _Name = string.Empty; // PocoView.tt Line: 103 - Utils.cs Line: 466
-					    #endregion View Properties
-						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
-						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
-						{
-							StringBuilder sb = new StringBuilder();
-							sb.Append("SELECT Count(*) FROM v.CtlgCatalog1");
-							if (where != null)
-							{
-								sb.Append(" WHERE ");
-								sb.Append(where);
-							}
-							sb.Append(';');
-						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
-						    return cmd;
-						}
-						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
-						{
-						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
-							StringBuilder sb = new StringBuilder();
-							sb.Append("SELECT ");
-						    sb.Append("Id, Code, Name FROM v.CtlgCatalog1");
-							if (where != null)
-							{
-								sb.Append(" WHERE ");
-								sb.Append(where);
-							}
-							if (sort != null)
-							{
-								sb.Append(" ORDER BY ");
-								sb.Append(sort);
-							}
-							if (page > 0 && pagesize > 0)
-							{
-								sb.Append(" OFFSET ");
-								sb.Append((page-1)*pagesize);
-								sb.Append(" ROWS FETCH NEXT ");
-								sb.Append(pagesize);
-								sb.Append(" ROWS ONLY");
-						    }
-							sb.Append(';');
-						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
-						    return cmd;
-						}
-						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
-					}
-					[Dapper.Contrib.Extensions.Table("v.CtlgCatalog1")]
-					public partial class ViewListWide : ViewEntityBaseSyncAsync<ViewListWide>, IViewPlainBaseExplicit<ViewListWide>, IViewItem, ISameById<ViewListWide>  // PocoView.tt Line: 49
-					{
-					    public bool SameById(ViewListWide other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
-					    public string GetName() { return this.Name; }
-					#if DEBUG
-					    private ViewListWide()
-					#else
-					    public ViewListWide()
-					#endif
-					    {
-					        this.Name = string.Empty;
-					    }
-					    #region View Properties
-						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 103 - Utils.cs Line: 279
-						public int Id // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
-						{
-							get { return _Id; } // PocoView.tt Line: 103 - Utils.cs Line: 458
-							set { _Id = value; }
-						}
-						private int _Id; // PocoView.tt Line: 103 - Utils.cs Line: 466
-						public int Code // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1174
-						{
-							get { return _Code; } // PocoView.tt Line: 103 - Utils.cs Line: 458
-							set { _Code = value; }
-						}
-						private int _Code; // PocoView.tt Line: 103 - Utils.cs Line: 466
-						public string Name // PocoView.tt Line: 103 - Utils.cs Line: 315 Utils.cs Line: 1154
-						{
-							get { return _Name; } // PocoView.tt Line: 103 - Utils.cs Line: 458
-							set { _Name = value; }
-						}
-						private string _Name = string.Empty; // PocoView.tt Line: 103 - Utils.cs Line: 466
-					    #endregion View Properties
-						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
-						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
-						{
-							StringBuilder sb = new StringBuilder();
-							sb.Append("SELECT Count(*) FROM v.CtlgCatalog1");
-							if (where != null)
-							{
-								sb.Append(" WHERE ");
-								sb.Append(where);
-							}
-							sb.Append(';');
-						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
-						    return cmd;
-						}
-						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
-						{
-						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
-							StringBuilder sb = new StringBuilder();
-							sb.Append("SELECT ");
-						    sb.Append("Id, Code, Name FROM v.CtlgCatalog1");
-							if (where != null)
-							{
-								sb.Append(" WHERE ");
-								sb.Append(where);
-							}
-							if (sort != null)
-							{
-								sb.Append(" ORDER BY ");
-								sb.Append(sort);
-							}
-							if (page > 0 && pagesize > 0)
-							{
-								sb.Append(" OFFSET ");
-								sb.Append((page-1)*pagesize);
-								sb.Append(" ROWS FETCH NEXT ");
-								sb.Append(pagesize);
-								sb.Append(" ROWS ONLY");
-						    }
-							sb.Append(';');
-						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
-						    return cmd;
-						}
-						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
-					}
-					#endregion Views // PocoView.tt Line: 289
 				}
 			}
 			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 175
@@ -634,6 +466,10 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    var entity = this.GetThis();
 				    dt.Save(entity);
 				    await dt.CommitAsync();
+				    if (MemoryCache?.GetFromCache<T>(MODEL_CACHE_ID, this.TYPE_CACHE_ID, entity.Id) == null)
+				    {
+				        MemoryCache?.PlaceInCache<T>(MODEL_CACHE_ID, this.TYPE_CACHE_ID, entity);
+				    }
 				}
 				public void Save([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 50*/) // BaseRepositoryEntity.tt Line: 50
 				{
@@ -643,6 +479,10 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    var entity = this.GetThis();
 				    dft.Save(entity);
 				    dft.Commit();
+				    if (MemoryCache?.GetFromCache<T>(MODEL_CACHE_ID, this.TYPE_CACHE_ID, entity.Id) == null)
+				    {
+				        MemoryCache?.PlaceInCache<T>(MODEL_CACHE_ID, this.TYPE_CACHE_ID, entity);
+				    }
 				}
 				public async Task RemoveAsync([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 85*/) // BaseRepositoryEntity.tt Line: 85
 				{
@@ -658,6 +498,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				{
 				    var cd = instance.GetCommandDefinitionRemoveById(id);
 				    await ConnExecuteAsync(async (conn) => { await conn.ExecuteAsync(cd.GetCommandDefinition()); }, RetryPolicyAsync);
+				    MemoryCache?.RemoveFromCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, id);
 				}
 				public static async Task RemoveAsync(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 120*/) // BaseRepositoryEntity.tt Line: 120
 				{
@@ -678,6 +519,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				{
 				    var cd = instance.GetCommandDefinitionRemoveById(id); // BaseRepositoryEntity.tt Line: 160
 				    ConnExecute((conn) => { conn.Execute(cd.GetCommandDefinition()); }, RetryPolicy);
+				    MemoryCache?.RemoveFromCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, id);
 				}
 				public static void Remove(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 176*/) // BaseRepositoryEntity.tt Line: 176
 				{
@@ -689,6 +531,11 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				{
 				    var cd = instance.GetCommandDefinitionLoadById(id); // BaseRepositoryEntity.tt Line: 208
 				    T? dto = null;
+				    dto = MemoryCache?.GetFromCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, id);
+				    if (dto != null)
+				    {
+				        return dto;
+				    }
 				    dto = await ConnSelectSingleAsync<T?>(async (conn) =>  // BaseRepositoryEntity.tt Line: 220
 				    { 
 				        if (isEntityWithTabs) // BaseRepositoryEntity.tt Line: 222
@@ -703,6 +550,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				            return (await conn.QueryAsync<T>(cd.GetCommandDefinition())).Single(); 
 				        }
 				    }, RetryPolicyAsync); // BaseRepositoryEntity.tt Line: 233
+				    MemoryCache?.PlaceInCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, dto);
 					return dto;
 				}
 				protected virtual Task<T?> LoadUtilAsync(int id) { throw new NotImplementedException(); } // BaseRepositoryEntity.tt Line: 247
@@ -710,6 +558,11 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				{
 				    var cd = instance.GetCommandDefinitionLoadById(id); // BaseRepositoryEntity.tt Line: 264
 				    T? dto = null;
+				    dto = MemoryCache?.GetFromCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, id);
+				    if (dto != null)
+				    {
+				        return dto;
+				    }
 				    dto = ConnSelectSingle<T>((conn) =>  // BaseRepositoryEntity.tt Line: 276
 				    { 
 				        if (isEntityWithTabs) // BaseRepositoryEntity.tt Line: 278
@@ -724,6 +577,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				            return conn.Query<T>(cd.GetCommandDefinition()).Single(); 
 				        }
 				    }, RetryPolicy); // BaseRepositoryEntity.tt Line: 289
+				    MemoryCache?.PlaceInCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, dto);
 					return dto;
 				}
 			}

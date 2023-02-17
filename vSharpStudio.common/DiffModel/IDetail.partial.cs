@@ -20,5 +20,9 @@ namespace vSharpStudio.common
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
         IGroupListDetails ParentGroupListDetailsI { get; }
+
+        bool GetUseCodeProperty();
+        bool GetUseNameProperty();
+        bool GetUseDescriptionProperty();
     }
 }
