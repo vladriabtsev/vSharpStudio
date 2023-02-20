@@ -1,4 +1,4 @@
-
+﻿
 // Repository NameSpace.tt
 
 // EnumVmType.Dapper
@@ -379,9 +379,11 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    this.IsNeedUpdate(false);
 				}
 				protected virtual void UpdateUtil() { throw new NotImplementedException(); } // BaseRepository.tt Line: 254
-				public async Task InsertAsync([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 260*/) // BaseRepository.tt Line: 260
+                partial void BeforeInsertAsync();
+                public async Task InsertAsync([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 260*/) // BaseRepository.tt Line: 260
 				{
-				    Debug.Assert(!this.IsRemoved());
+                    BeforeInsertAsync();
+                    Debug.Assert(!this.IsRemoved());
 				    Debug.Assert(this.IsNeedInsert());
 				    var cd = this.GetThis().GetCommandDefinitionInsert(); // BaseRepository.tt Line: 269
 					await ConnExecuteAsync(async (conn) => 

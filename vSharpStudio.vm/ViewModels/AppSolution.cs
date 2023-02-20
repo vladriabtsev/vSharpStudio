@@ -19,7 +19,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("AppSolution:{Name,nq} prj:{ListAppProjects.Count,nq} HasChanged:{IsHasChanged}")]
-    public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
+    public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
         [BrowsableAttribute(false)]
         public GroupListAppSolutions ParentGroupListAppSolutions { get { Debug.Assert(this.Parent != null); return (GroupListAppSolutions)this.Parent; } }
@@ -410,7 +410,7 @@ namespace vSharpStudio.vm.ViewModels
         public override List<IEditableObjectExt> GetEditableNodeSettings()
         {
             var lst = new List<IEditableObjectExt>();
-            foreach(var t in this.DicPluginsGroupSettings.Values)
+            foreach (var t in this.DicPluginsGroupSettings.Values)
             {
                 Debug.Assert(t is IEditableObjectExt);
                 lst.Add((IEditableObjectExt)t);
@@ -423,6 +423,17 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Parent));
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
+        }
+        public void Delete()
+        {
+            if (this.Children.Count > 0)
+            {
+                var res = MessageBox.Show("Solution contains projects. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                if (res == System.Windows.MessageBoxResult.OK)
+                    this.Remove();
+            }
+            else
+                this.Remove();
         }
     }
 }

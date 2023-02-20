@@ -37,7 +37,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Config(string configJson) : this((ITreeConfigNode?)null)
         {
-            var pconfig = Proto.Config.proto_config.Parser.WithDiscardUnknownFields(true).ParseJson(configJson);
+            var pconfig = CommonUtils.ParseJson<Proto.Config.proto_config>(configJson, true);
             Config.ConvertToVM(pconfig, this);
         }
         public static Config Clone(ConfigShortHistory parent, IConfig from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 27

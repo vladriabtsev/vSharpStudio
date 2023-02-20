@@ -114,7 +114,7 @@ namespace vSharpStudio.ViewModels
             if (File.Exists(USER_SETTINGS_FILE_PATH))
             {
                 var user_settings = File.ReadAllBytes(USER_SETTINGS_FILE_PATH);
-                var us = Proto.Config.proto_user_settings.Parser.ParseFrom(user_settings);
+                var us = Proto.Config.proto_user_settings.Parser.WithDiscardUnknownFields(true).ParseFrom(user_settings);
                 this.UserSettings = UserSettings.ConvertToVM(us, new UserSettings());
                 if (this.UserSettings.ListOpenConfigHistory.Count > 0 &&
                     !string.IsNullOrWhiteSpace(this.UserSettings.ListOpenConfigHistory[0].ConfigPath) &&
@@ -177,7 +177,7 @@ namespace vSharpStudio.ViewModels
                 return null;
             }
             var protoarr = File.ReadAllBytes(file_path);
-            this.pconfig_history = Proto.Config.proto_config_short_history.Parser.ParseFrom(protoarr);
+            this.pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseFrom(protoarr);
             _logger?.LogDebug("ConvertToVM Main Config".CallerInfo());
             var config = Config.ConvertToVM(this.pconfig_history.CurrentConfig, new Config());
             var currFolder = Path.GetDirectoryName(this.CurrentCfgFilePath);
@@ -814,7 +814,7 @@ namespace vSharpStudio.ViewModels
         private void CompareSaved(string json)
         {
             var model = new Config();
-            var pconfig_history = Proto.Config.proto_config_short_history.Parser.WithDiscardUnknownFields(true).ParseJson(json);
+            var pconfig_history = CommonUtils.ParseJson<Proto.Config.proto_config_short_history>(json, true);
             Config.ConvertToVM(pconfig_history.CurrentConfig, model);
             // https://github.com/GregFinzer/Compare-Net-Objects
             KellermanSoftware.CompareNetObjects.CompareLogic compareLogic = new KellermanSoftware.CompareNetObjects.CompareLogic();

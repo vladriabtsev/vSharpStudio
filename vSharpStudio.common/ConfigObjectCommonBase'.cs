@@ -685,9 +685,12 @@
         }
         public void NodeMarkForDeletion()
         {
-            if (this is IEditableNode)
+            if (this is INodeDeletable d)
             {
-                var p = (IEditableNode)this;
+                d.Delete();
+            }
+            else if (this is IEditableNode p)
+            {
                 p.IsMarkedForDeletion = !p.IsMarkedForDeletion;
             }
         }

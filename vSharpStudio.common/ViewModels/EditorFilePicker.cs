@@ -31,9 +31,11 @@ namespace vSharpStudio.common.ViewModels
     public class EditorFilePicker : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
         PropertyGridEditorTextBox textBox = null!;
+        Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propItem;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);
+            this.propItem = propertyItem;
             Grid grd = new Grid();
             var cd1 = new ColumnDefinition();
             cd1.Width = new GridLength(1, GridUnitType.Star);
@@ -72,7 +74,8 @@ namespace vSharpStudio.common.ViewModels
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
-                textBox.Text = dlg.FileName;
+                this.propItem.Value = dlg.FileName;
+                //textBox.Text = dlg.FileName;
             }
         }
     }

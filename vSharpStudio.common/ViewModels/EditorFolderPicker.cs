@@ -12,9 +12,11 @@ namespace vSharpStudio.common.ViewModels
     public class EditorFolderPicker : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
         PropertyGridEditorTextBox textBox = null!;
+        Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propItem;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);
+            this.propItem= propertyItem;
             Grid grd = new Grid();
             var cd1 = new ColumnDefinition();
             cd1.Width = new GridLength(1, GridUnitType.Star);
@@ -25,6 +27,7 @@ namespace vSharpStudio.common.ViewModels
 
             textBox = new PropertyGridEditorTextBox();
             textBox.Watermark = "Select folder";
+            // https://learn.microsoft.com/en-us/dotnet/api/system.windows.data.binding?view=windowsdesktop-7.0
             var _binding = new Binding("Value"); //bind to the Value property of the PropertyItem
             _binding.Source = propertyItem;
             _binding.ValidatesOnExceptions = true;
@@ -50,7 +53,8 @@ namespace vSharpStudio.common.ViewModels
             var result = dlg.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                textBox.Text = dlg.SelectedPath;
+                this.propItem.Value = dlg.SelectedPath;
+                //textBox.Text = dlg.SelectedPath;
             }
         }
     }

@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq} HasChanged:{IsHasChanged}")]
-    public partial class AppProjectGenerator : ICanRemoveNode, IEditableNode, IEditableNodeGroup
+    public partial class AppProjectGenerator : ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
         private Config cfg;
         [BrowsableAttribute(false)]
@@ -779,6 +779,17 @@ namespace vSharpStudio.vm.ViewModels
         public void Remove()
         {
             this.ParentAppProject.ListAppProjectGenerators.Remove(this);
+        }
+        public void Delete()
+        {
+            if (this.Children.Count > 0)
+            {
+                var res = MessageBox.Show("You are going remove generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                if (res == System.Windows.MessageBoxResult.OK)
+                    this.Remove();
+            }
+            else
+                this.Remove();
         }
     }
 }

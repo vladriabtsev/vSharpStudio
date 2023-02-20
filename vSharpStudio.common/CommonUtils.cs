@@ -4,11 +4,18 @@ using System.Text;
 using System.IO;
 using System.Numerics;
 using Xceed.Wpf.Toolkit;
+using Google.Protobuf;
 
 namespace vSharpStudio.common
 {
     public static class CommonUtils
     {
+        public static T ParseJson<T>(string json, bool discardUnknownFields = true) where T : IMessage<T>, new()
+        {
+            var jp = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(discardUnknownFields));
+            T msg = jp.Parse<T>(json);
+            return msg;
+        }
         public static string ToMessage(this Exception ex)
         {
             return ToInnerMessage(ex);

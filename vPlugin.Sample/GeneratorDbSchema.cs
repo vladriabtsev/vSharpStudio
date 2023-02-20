@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using Proto.Plugin;
+using vPlugin.Shared;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 
@@ -61,7 +62,7 @@ namespace vPlugin.Sample
             var vm = new GeneratorDbSchemaSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
-                proto_generator_db_schema_settings proto = proto_generator_db_schema_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
+                var proto = CommonUtils.ParseJson<proto_generator_db_schema_settings>(settings, true);
                 vm = GeneratorDbSchemaSettings.ConvertToVM(proto, vm);
             }
             vm.Parent = parent;
@@ -74,7 +75,7 @@ namespace vPlugin.Sample
                 var vm = new GeneratorDbSchemaNodeSettings(parent);
                 if (!string.IsNullOrWhiteSpace(settings))
                 {
-                    proto_generator_db_schema_node_settings proto = proto_generator_db_schema_node_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
+                    var proto = CommonUtils.ParseJson<proto_generator_db_schema_node_settings>(settings, true);
                     vm = GeneratorDbSchemaNodeSettings.ConvertToVM(proto, vm);
                     vm.Parent = parent;
                 }
@@ -137,7 +138,7 @@ namespace vPlugin.Sample
             var res = new PluginsGroupSolutionSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
-                var proto = proto_plugins_group_solution_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
+                var proto = CommonUtils.ParseJson<proto_plugins_group_solution_settings>(settings, true);
                 res = PluginsGroupSolutionSettings.ConvertToVM(proto, res);
             }
             res.Parent = parent;
@@ -148,7 +149,7 @@ namespace vPlugin.Sample
             var res = new PluginsGroupProjectSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
             {
-                var proto = proto_plugins_group_project_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
+                var proto = CommonUtils.ParseJson<proto_plugins_group_project_settings>(settings, true);
                 res = PluginsGroupProjectSettings.ConvertToVM(proto, res);
             }
             res.Parent = parent;

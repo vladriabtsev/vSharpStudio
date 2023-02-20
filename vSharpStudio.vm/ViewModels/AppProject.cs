@@ -19,7 +19,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     // [DebuggerDisplay("AppProject:{Name,nq} props:{listProperties.Count,nq}")]
     [DebuggerDisplay("AppProject:{Name,nq} RelPath:{RelativeAppProjectPath,nq} HasChanged:{IsHasChanged}")]
-    public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup
+    public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
         [BrowsableAttribute(false)]
         public AppSolution ParentAppSolution { get { Debug.Assert(this.Parent != null); return (AppSolution)this.Parent; } }
@@ -400,6 +400,17 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Parent));
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
+        }
+        public void Delete()
+        {
+            if (this.Children.Count > 0)
+            {
+                var res = MessageBox.Show("Project contains generators. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                if (res == System.Windows.MessageBoxResult.OK)
+                    this.Remove();
+            }
+            else
+                this.Remove();
         }
     }
 }

@@ -23,6 +23,7 @@
         <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\vSharpStudio.pro\vPlugin.Shared\vPlugin.Shared.csproj" />
         <ProjectReference Include="..\vSharpStudio.common\vSharpStudio.common.csproj" />
     </ItemGroup>
     <ItemGroup>

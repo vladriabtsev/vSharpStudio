@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FluentValidation.Results;
 using Google.Protobuf;
 using Proto.Plugin;
+using vPlugin.Shared;
 using vSharpStudio.common;
 
 namespace vPlugin.Sample
@@ -41,7 +42,7 @@ namespace vPlugin.Sample
             this.Parent = parent;
             if (string.IsNullOrWhiteSpace(settings))
                 return new PluginsGroupSolutionSettings(parent);
-            var proto = proto_plugins_group_solution_settings.Parser.WithDiscardUnknownFields(true).ParseJson(settings);
+            var proto = CommonUtils.ParseJson<proto_plugins_group_solution_settings>(settings, true);
             return PluginsGroupSolutionSettings.ConvertToVM(proto, new PluginsGroupSolutionSettings(parent));
         }
         public ValidationResult ValidateSettings()
