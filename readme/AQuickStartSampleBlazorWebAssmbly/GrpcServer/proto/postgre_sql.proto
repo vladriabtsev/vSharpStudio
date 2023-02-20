@@ -1,0 +1,203 @@
+syntax = "proto3"; // ProtoMain.tt Line: 7, called from GrpcGeneratorSettings.partial.cs Line: 173
+
+// https://docs.microsoft.com/en-us/dotnet/architecture/grpc-for-wcf-developers/protobuf-data-types
+
+import "google/protobuf/any.proto";
+import "google/protobuf/wrappers.proto";  // nullable
+import "google/protobuf/duration.proto";  
+import "google/protobuf/timestamp.proto";
+
+package vPlugins.GRPC.PostgreSql; // ProtoMain.tt Line: 16
+
+import "custom_types.proto";
+/*
+enum param_type {
+    ANSI_STRING = 0;
+    ANSI_STRING_FIXED_LENGTH = 1;
+    BINARY = 2;
+    BOOLEAN = 3;
+    BYTE = 4;
+    CURRENCY = 5;
+    DATE = 6;
+    DATE_TIME = 7;
+    DATE_TIME2 = 8;
+    DATE_TIME_OFFSET = 9;
+    DECIMAL = 10;
+    DOUBLE = 11;
+    GUID = 12;
+    INT16 = 13;
+    INT32 = 14;
+    INT64 = 15;
+    OBJECT = 16;
+    S_BYTE = 17;
+    SINGLE = 18;
+    STRING = 19;
+    STRING_FIXED_LENGTH = 20;
+    TIME = 21;
+    U_INT16 = 22;
+    U_INT32 = 23;
+    U_INT64 = 24;
+    VAR_NUMERIC = 25;
+    XML = 26;
+}
+*/
+message timestamp_nullable {
+    bool has_value = 1;
+    google.protobuf.Timestamp value = 2;
+}
+message duration_nullable {
+    bool has_value = 1;
+    google.protobuf.Duration value = 2;
+}
+message server_exception {
+    bool is_failure = 1;
+    string message = 2;
+    string stack = 3;
+}
+// ProtoMessage.tt Line: 7, called from ProtoMain.tt Line: 72
+message transaction_db_delete { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 98 // ProtoMessage.tt Line: 9 
+    google.protobuf.Any db_record = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 99
+}
+message transaction_db_remove { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 101 // ProtoMessage.tt Line: 9 
+    google.protobuf.Any db_record = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 102
+}
+message transaction_db_insert { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 112 // ProtoMessage.tt Line: 9 
+    google.protobuf.Any db_record = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 113
+}
+message transaction_db_update { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 115 // ProtoMessage.tt Line: 9 
+    google.protobuf.Any db_record = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 116
+}
+message transaction_db_sql { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 118 // ProtoMessage.tt Line: 9 
+    google.protobuf.Any params_where = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 119
+}
+message transaction_db_operation { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 121 // ProtoMessage.tt Line: 9 
+    int32 line = 13; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 129
+    string member = 14; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 130
+    string file = 15; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 131
+    oneof db_operation { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 122
+        transaction_db_insert db_insert = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 124
+        transaction_db_update db_update = 2; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 125
+        transaction_db_delete db_delete = 3; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 126
+        transaction_db_remove db_remove = 4; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 127
+        transaction_db_sql db_sql = 5; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 128
+    }
+}
+message transaction_data_insert_update_delete { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 134 // ProtoMessage.tt Line: 9 
+    repeated transaction_db_operation list_operations = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 135
+}
+message __history { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 144 // ProtoMessage.tt Line: 9 
+    int32 id = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 145
+    int32 object_id = 2; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 146
+    int32 date_time = 3; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 147
+    google.protobuf.StringValue val = 4; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 148
+}
+message period_datetime_from_to { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 150 // ProtoMessage.tt Line: 9 
+    google.protobuf.Timestamp utcFrom = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 151
+    google.protobuf.Timestamp utcTo = 2; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 152
+}
+message string_and_datetime { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 154 // ProtoMessage.tt Line: 9 
+    google.protobuf.Timestamp utc = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 155
+    string val = 2; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 156
+}
+message params_next_id { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 158 // ProtoMessage.tt Line: 9 
+    string guid = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 159
+    int32 requested_qty = 2; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 160
+}
+message params_where { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 167 // ProtoMessage.tt Line: 9 
+    google.protobuf.StringValue where = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 168
+    repeated customTypes.parameter parameters = 2; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 169
+}
+message params_where_sort_page { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 171 // ProtoMessage.tt Line: 9 
+    google.protobuf.StringValue where = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 172
+    repeated customTypes.parameter parameters = 2; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 173
+    google.protobuf.StringValue sort = 3; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 174
+    int32 page = 4; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 175
+    int32 pagesize = 5; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 176
+}
+message params_sub_tree_catalog { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 178 // ProtoMessage.tt Line: 9 
+    google.protobuf.Int32Value parent_id = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 179
+    int32 deep = 2; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 180
+    google.protobuf.StringValue sort = 3; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 181
+    google.protobuf.StringValue where = 4; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 182
+    repeated customTypes.parameter parameters = 5; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 183
+}
+message params_sub_items_catalog { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 185 // ProtoMessage.tt Line: 9 
+    google.protobuf.Int32Value parent_id = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 186
+    google.protobuf.StringValue where = 2; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 187
+    repeated customTypes.parameter parameters = 3; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 188
+    google.protobuf.StringValue sort = 4; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 189
+    int32 page = 5; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 190
+    int32 pagesize = 6; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 191
+}
+message reply_int_value { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 665 // ProtoMessage.tt Line: 9 
+    server_result server = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 666
+    int32 result = 2; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 670
+}
+message server_result { //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 222 // ProtoMessage.tt Line: 9 
+    bool is_success = 1; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 223
+    bool is_concurrency_optimistic_exception = 2; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 224
+    bool is_deleted = 3; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 225
+    string message = 4; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 226
+    string exception = 5; //-- CreateModel File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 227
+}
+message CtlgCatalog1 { //-- CreateModel File: 56b4d6ac-4a10-4d4c-b915-51186bef944b Line: 261 // ProtoMessage.tt Line: 9 
+    bool is_need_insert = 1; //-- AddUpdateInsertFlags File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 870
+    bool is_need_update = 2; //-- AddUpdateInsertFlags File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 871
+    bool is_removed = 3; //-- AddUpdateInsertFlags File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 872
+    int32 Id = 6; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 916
+}
+message int_value { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 647 // ProtoMessage.tt Line: 9 
+    int32 value = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 658
+}
+message reply_CtlgCatalog1 { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 665 // ProtoMessage.tt Line: 9 
+    server_result server = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 666
+    CtlgCatalog1 result = 2; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 675
+}
+message reply_ { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 665 // ProtoMessage.tt Line: 9 
+    server_result server = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 666
+}
+message reply_CtlgCatalog1_array { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 665 // ProtoMessage.tt Line: 9 
+    server_result server = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 666
+    repeated CtlgCatalog1 result = 2; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 675
+}
+message CtlgCatalog1ViewListNarrow { //-- Views File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 373 // ProtoMessage.tt Line: 9 
+    int32 Id = 6; //-- Views File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 377
+}
+message reply_CtlgCatalog1ViewListNarrow_array { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 665 // ProtoMessage.tt Line: 9 
+    server_result server = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 666
+    repeated CtlgCatalog1ViewListNarrow result = 2; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 675
+}
+message CtlgCatalog1ViewListWide { //-- Views File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 373 // ProtoMessage.tt Line: 9 
+    int32 Id = 6; //-- Views File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 377
+}
+message reply_CtlgCatalog1ViewListWide_array { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 665 // ProtoMessage.tt Line: 9 
+    server_result server = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 666
+    repeated CtlgCatalog1ViewListWide result = 2; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 675
+}
+// ProtoService.tt Line: 7, called from ProtoMain.tt Line: 75
+service repository_basePostgreSqlGrpc { // ProtoService.tt Line: 9
+    rpc get_next_id(params_next_id) returns(reply_int_value) {}
+}
+service CtlgCatalog1PostgreSqlGrpc { // ProtoService.tt Line: 9
+    rpc Load(int_value) returns(reply_CtlgCatalog1) {}
+    rpc Save(transaction_data_insert_update_delete) returns(reply_) {}
+    rpc RemoveById(int_value) returns(reply_) {}
+    rpc Select(params_where_sort_page) returns(reply_CtlgCatalog1_array) {}
+    rpc Count(params_where) returns(reply_int_value) {}
+    rpc Update(CtlgCatalog1) returns(reply_) {}
+    rpc Insert(CtlgCatalog1) returns(reply_int_value) {}
+    rpc DeleteById(int_value) returns(reply_) {}
+    rpc DeleteWhere(params_where) returns(reply_) {}
+    rpc RemoveWhere(params_where) returns(reply_) {}
+}
+service CtlgCatalog1ViewListNarrowPostgreSqlGrpc { // ProtoService.tt Line: 9
+    rpc Count(params_where) returns(reply_int_value) {}
+    rpc GetView(params_where_sort_page) returns(reply_CtlgCatalog1ViewListNarrow_array) {}
+}
+service CtlgCatalog1ViewListWidePostgreSqlGrpc { // ProtoService.tt Line: 9
+    rpc Count(params_where) returns(reply_int_value) {}
+    rpc GetView(params_where_sort_page) returns(reply_CtlgCatalog1ViewListWide_array) {}
+}
+service ModelGrpc {
+    rpc Commit(transaction_data_insert_update_delete) returns(reply_) {}
+}

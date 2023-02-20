@@ -765,8 +765,14 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IForm> GetListForms()
         {
             var res = new List<IForm>();
-            res.Add(this.GetForm(FormType.ListNarrow));
-            res.Add(this.GetForm(FormType.ListWide));
+            if (this.GetUseNameProperty())
+            {
+                res.Add(this.GetForm(FormType.ListNarrow));
+                if (this.GetUseDescriptionProperty())
+                {
+                    res.Add(this.GetForm(FormType.ListWide));
+                }
+            }
             return res;
         }
         //public IForm GetForm(FormType formType)
