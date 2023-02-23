@@ -15,14 +15,14 @@
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.1.0" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
-        <PackageReference Include="FluentValidation" Version="11.4.0" />
+        <PackageReference Include="FluentValidation" Version="11.5.1" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
     </ItemGroup>
-    <ItemGroup  Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
             <_Parameter1>vSharpStudio.Unit</_Parameter1>
         </AssemblyAttribute>

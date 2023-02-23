@@ -1,0 +1,75 @@
+// ProtoCustomTypes.tt Line: 8, called from GrpcGeneratorSettings.partial.cs Line: 182
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";  // nullable
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+option csharp_namespace = "CustomTypesGrpc";
+
+package customTypes;
+
+// Example: 12345.6789 -> { units18 = 0, units = 12345, nanos = 678900000 }
+// Example: 12345678901234567890.1234 -> { units18 = 12, units = 345678901234567890, nanos = 123400000 }
+message DecimalValue {
+
+  // Whole units part of the 10^18
+  int64 units18 = 1;
+
+  // Whole units part of the amount
+  int64 units = 2;
+
+  // Nano units of the amount (10^-9)
+  // Must be same sign as units
+  sfixed32 nanos = 3;
+}
+message DecimalValueNullable {
+    bool has_value = 1;
+    customTypes.DecimalValue value = 2;
+}
+message CharValue {
+  // string for storing char value
+  string str = 1;
+}
+message CharValueNullable {
+    bool has_value = 1;
+    customTypes.CharValue value = 2;
+}
+message TimestampValue {
+    google.protobuf.Timestamp value = 1;
+}
+message TimestampNullable {
+    bool has_value = 1;
+    google.protobuf.Timestamp value = 2;
+}
+message DurationNullable {
+    bool has_value = 1;
+    google.protobuf.Duration value = 2;
+}
+enum param_type {
+    BOOL = 0;
+    BYTE = 1;
+    SBYTE = 2;
+    CHAR = 3;
+    DECIMAL = 4;
+    DOUBLE = 5;
+    FLOAT = 6;
+    INT = 7;
+    UINT = 8;
+    LONG = 9;
+    ULONG = 10;
+    SHORT = 11;
+    USHORT = 12;
+    STRING = 13;
+    GUID = 14;
+    TIMEONLY = 15;
+    DATEONLY = 16;
+    DATETIME = 17;
+    DATETIMEOFFSET = 18;
+    NULL = 19;
+}
+message parameter {
+    string name = 1;
+    param_type type = 2;
+    google.protobuf.StringValue val = 3;
+}

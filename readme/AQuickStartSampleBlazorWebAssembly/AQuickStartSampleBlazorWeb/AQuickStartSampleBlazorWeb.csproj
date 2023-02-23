@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.3" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.51.0" />
+        <PackageReference Include="Grpc.AspNetCore.Web" Version="2.51.0" />
+
+        <PackageReference Include="Google.Protobuf" Version="3.22.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.51.0" PrivateAssets="All" />
+        
+        <Protobuf Include="./Generated/custom_types.proto" GrpcServices="Server" 
+                  Link="Protos\custom_types.proto" ProtoRoot="Generated" />
+        <Protobuf Include="./Generated/postgre_sql.proto" GrpcServices="Server"
+                  Link="Protos\postgre_sql.proto" ProtoRoot="Generated" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Generated\" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\AQuickStartSampleBlazorWebAssembly\AQuickStartSampleBlazorWebAssembly.csproj" />
+        <ProjectReference Include="..\DbRepository\DbRepository.csproj" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    </PropertyGroup>
+    <ItemGroup>
+        <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Generated\" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Grpc.Net.ClientFactory" Version="2.51.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.3" PrivateAssets="all" />
+
+        <PackageReference Include="Google.Protobuf" Version="3.22.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.51.0" PrivateAssets="All" />
+        <PackageReference Include="Grpc.Net.Client" Version="2.51.0" />
+        <PackageReference Include="Grpc.Net.Client.Web" Version="2.51.0" />
+        <PackageReference Include="Polly" Version="7.2.3" />
+
+        <!--<Protobuf Include="../AQuickStartSampleBlazorWeb/Generated/custom_types.proto" GrpcServices="Client" Link="Protos/custom_types.proto" Access="Internal" />
+        <Protobuf Include="../AQuickStartSampleBlazorWeb/Generated/postgre_sql.proto" GrpcServices="Client" Link="Protos/postgre_sql.proto" Access="Internal" />-->
+        <Protobuf Include="../AQuickStartSampleBlazorWeb/Generated/custom_types.proto" GrpcServices="Client" Link="Protos/custom_types.proto" ProtoRoot="../AQuickStartSampleBlazorWeb/Generated" />
+        <Protobuf Include="../AQuickStartSampleBlazorWeb/Generated/postgre_sql.proto" GrpcServices="Client" Link="Protos/postgre_sql.proto" ProtoRoot="../AQuickStartSampleBlazorWeb/Generated" />
+    </ItemGroup>
+</Project>
