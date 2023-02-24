@@ -111,23 +111,7 @@ namespace vSharpStudio.vm.ViewModels
                 //var path = to.Replace(this.Name, "");
                 to = this.GetRelativeToConfigDiskPath(to);
             }
-            //if (!this.IsNotifying || to == null)
-            //    return;
-            //to = Path.GetFullPath(to);
         }
-        //partial void OnRelativeAppSolutionPathChanged()
-        //{
-        //    if (!this.IsNotifying)
-        //        return;
-        //    //if (this._RelativeAppSolutionPath != null &&
-        //    //    this._RelativeAppSolutionPath.Length > 1 &&
-        //    //    this._RelativeAppSolutionPath[1] == ':')
-        //    //{
-        //    //    this._RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(this._RelativeAppSolutionPath);
-        //    //    this.Name = Path.GetFileName(this._RelativeAppSolutionPath);
-        //    //}
-        //    //this.Name = Path.GetFileName(this._RelativeAppSolutionPath);
-        //}
         public string GetSolutionPath()
         {
             var cfg = this.ParentGroupListAppSolutions.ParentConfig;
