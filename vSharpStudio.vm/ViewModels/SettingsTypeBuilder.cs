@@ -365,6 +365,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         internal static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType, string? propertyNameUI = null, string? propertyDescription = null)
         {
+            //if (propertyName.Contains('.'))
+            //    propertyName = propertyName.Substring(0, propertyName.IndexOf('.'));
             FieldBuilder fieldBuilder = tb.DefineField("_" + propertyName, propertyType, FieldAttributes.Private);
 
             PropertyBuilder propertyBuilder = tb.DefineProperty(propertyName, PropertyAttributes.HasDefault, propertyType, null);

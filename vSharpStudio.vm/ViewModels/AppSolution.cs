@@ -103,26 +103,31 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnRelativeAppSolutionPathChanging(ref string to)
         {
-            //#if DEBUG
-            //            if (to == null || to.Length < 2 || to[1] != ':')
-            //                throw new Exception("Full path is expected");
-            //#endif
-            if (!this.IsNotifying || to == null)
-                return;
-            to = Path.GetFullPath(to);
-        }
-        partial void OnRelativeAppSolutionPathChanged()
-        {
             if (!this.IsNotifying)
                 return;
-            if (this._RelativeAppSolutionPath != null &&
-                this._RelativeAppSolutionPath.Length > 1 &&
-                this._RelativeAppSolutionPath[1] == ':')
+            if (Path.IsPathRooted(to))
             {
-                this._RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(this._RelativeAppSolutionPath);
-                this.Name = Path.GetFileName(this._RelativeAppSolutionPath);
+                this.Name = Path.GetFileName(to);
+                //var path = to.Replace(this.Name, "");
+                to = this.GetRelativeToConfigDiskPath(to);
             }
+            //if (!this.IsNotifying || to == null)
+            //    return;
+            //to = Path.GetFullPath(to);
         }
+        //partial void OnRelativeAppSolutionPathChanged()
+        //{
+        //    if (!this.IsNotifying)
+        //        return;
+        //    //if (this._RelativeAppSolutionPath != null &&
+        //    //    this._RelativeAppSolutionPath.Length > 1 &&
+        //    //    this._RelativeAppSolutionPath[1] == ':')
+        //    //{
+        //    //    this._RelativeAppSolutionPath = this.GetRelativeToConfigDiskPath(this._RelativeAppSolutionPath);
+        //    //    this.Name = Path.GetFileName(this._RelativeAppSolutionPath);
+        //    //}
+        //    //this.Name = Path.GetFileName(this._RelativeAppSolutionPath);
+        //}
         public string GetSolutionPath()
         {
             var cfg = this.ParentGroupListAppSolutions.ParentConfig;

@@ -236,9 +236,20 @@ namespace vPlugins.GRPC.Client.PostgreSql // NameSpace.tt Line: 34
 						this.IsNeedInsert(true); // ModelProperty.tt Line: 19 - Utils.cs Line: 617
 					}
 				}
+				public string Property1 // ModelProperty.tt Line: 19 - Utils.cs Line: 501 Utils.cs Line: 1155
+				{
+					get { return dto.Property1; } // ModelProperty.tt Line: 19 - Utils.cs Line: 517
+					set
+					{
+						System.Diagnostics.Debug.Assert(value.Length <= 10); // Length in DB Utils.cs Line: 651
+						dto.Property1 = value; // ModelProperty.tt Line: 19 - Utils.cs Line: 612
+						this.IsNeedUpdate(true); // ModelProperty.tt Line: 19 - Utils.cs Line: 619
+					}
+				}
 			
 				#region Fields // ModelProperty.tt Line: 21
 				public const string F_ID = "Id";
+				public const string F_PROPERTY1 = "Property1";
 				#endregion Fields // ModelProperty.tt Line: 28
 			    #endregion Properties // ModelProperty.tt Line: 29
 			    #region Special // ModelProperty.tt Line: 30
@@ -262,6 +273,7 @@ namespace vPlugins.GRPC.Client.PostgreSql // NameSpace.tt Line: 34
 				    var dto = new CtlgCatalog1
 				    {
 				        Id = id,
+				        Property1 = string.Empty,
 				        IsNeedInsert = true,
 				    };
 				    return new Catalog1(dto);

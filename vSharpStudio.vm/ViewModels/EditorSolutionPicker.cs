@@ -12,10 +12,12 @@ namespace vSharpStudio.vm.ViewModels
     public class EditorSolutionPicker : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
         PropertyGridEditorTextBox? textBox;
+        Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propItem;
         AppSolution? sln;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);
+            this.propItem = propertyItem;
             sln = (AppSolution)propertyItem.Instance;
             Grid grd = new Grid();
             var cd1 = new ColumnDefinition();
@@ -55,9 +57,10 @@ namespace vSharpStudio.vm.ViewModels
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
-                textBox!.Text = dlg.FileName;
+                //textBox!.Text = dlg.FileName;
                 //TODO remove explicit assignment (binding stopped working)
-                sln!.RelativeAppSolutionPath = dlg.FileName;
+                //sln!.RelativeAppSolutionPath = dlg.FileName.Replace('.', '_');
+                this.propItem.Value = dlg.FileName;;
             }
         }
     }

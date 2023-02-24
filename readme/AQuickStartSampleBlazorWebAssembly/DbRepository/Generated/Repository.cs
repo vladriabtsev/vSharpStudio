@@ -75,9 +75,16 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 						set { _Id = value; ___isNeedUpdate = true;}
 					}
 					private int _Id; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+					public string Property1 // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1155
+					{
+						get { return _Property1; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+						set { _Property1 = value; ___isNeedUpdate = true;}
+					}
+					private string _Property1 = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
 				
 					#region Fields // ModelProperty.tt Line: 21
 					public const string F_ID = "Id";
+					public const string F_PROPERTY1 = "Property1";
 					#endregion Fields // ModelProperty.tt Line: 28
 				    #endregion Properties // ModelProperty.tt Line: 29
 				    #region Special // ModelProperty.tt Line: 30
@@ -95,19 +102,22 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 					    var cmd = new CommandDefinitionData(
 							"INSERT INTO v.CtlgCatalog1 (" + // ModelEntityCmd.tt Line: 48
 								"Id"+
+								",Property1"+
 							") VALUES(" + // ModelEntityCmd.tt Line: 52
 								"@Id"+
+								",@Property1"+
 							");", // SELECT SCOPE_IDENTITY();", // ModelEntityCmd.tt Line: 56
 					        new 
 					        {
 					    		this.Id, 
+					    		this.Property1, 
 					        }, CommandType.Text) // ModelEntityCmd.tt Line: 66 
 					        { Entity = this }; // ModelEntityCmd.tt Line: 68
 					    return cmd;
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadById(int id) // ModelEntityCmd.tt Line: 71
 					{
-					    var sql = @"SELECT Id FROM v.CtlgCatalog1 WHERE Id = @pid;"
+					    var sql = @"SELECT Id, Property1 FROM v.CtlgCatalog1 WHERE Id = @pid;"
 					; // ModelEntityCmd.tt Line: 84
 					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
 					    return cmd;
@@ -164,8 +174,10 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 					{
 					    var cmd = new CommandDefinitionData(
 					        "UPDATE v.CtlgCatalog1 SET "+
+								"Property1 = @Property1" + 
 					        " WHERE Id = @Id;", // ModelEntityCmd.tt Line: 212
 							new {
+					    		this.Property1, 
 								this.Id // ModelEntityCmd.tt Line: 227
 							}, CommandType.Text) 
 					        { Entity = this };
@@ -223,6 +235,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 					    var dto = new Catalogs.Catalog1
 					    {
 					        Id = id,
+					        Property1 = string.Empty,
 					        ___isNeedInsert = true,
 					    };
 					    return dto;

@@ -187,6 +187,7 @@ namespace vPlugins.GRPC.Server // NameSpace.tt Line: 416
 				#pragma warning restore CS8600
 				#pragma warning disable CS8602 // Dereference of a possibly null reference.
 				dto.Id = mes.Id; // GrpcServiceUtils.cs Line: 349
+				dto.Property1 = mes.Property1; // GrpcServiceUtils.cs Line: 349
 				#pragma warning restore CS8602
 				dto.IsNeedInsert(mes.IsNeedInsert); // GrpcServiceUtils.cs Line: 356
 				dto.IsNeedUpdate(mes.IsNeedUpdate);
@@ -197,6 +198,7 @@ namespace vPlugins.GRPC.Server // NameSpace.tt Line: 416
 				var res = new CtlgCatalog1()
 				{
 					Id = model.Id, // GrpcServiceUtils.cs Line: 435
+					Property1 = model.Property1, // GrpcServiceUtils.cs Line: 435
 				};
 				return res;
 			}

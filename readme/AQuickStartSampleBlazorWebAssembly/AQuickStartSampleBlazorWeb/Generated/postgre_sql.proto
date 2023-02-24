@@ -145,6 +145,7 @@ message CtlgCatalog1 { //-- CreateModel File: 56b4d6ac-4a10-4d4c-b915-51186bef94
     bool is_need_update = 2; //-- AddUpdateInsertFlags File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 874
     bool is_removed = 3; //-- AddUpdateInsertFlags File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 875
     int32 Id = 6; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 919
+    string Property1 = 14; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 919
 }
 message int_value { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 649 // ProtoMessage.tt Line: 9 
     int32 value = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 660

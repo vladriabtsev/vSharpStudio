@@ -105,30 +105,39 @@ namespace vSharpStudio.vm.ViewModels
         }
         partial void OnRelativeAppProjectPathChanging(ref string to)
         {
-            if (!this.IsNotifying || to == null)
-                return;
-            to = Path.GetFullPath(to);
-        }
-        partial void OnRelativeAppProjectPathChanged()
-        {
             if (!this.IsNotifying)
                 return;
-            var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
-            if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
-                throw new Exception("Config is not saved yet");
-            if (this.ParentAppSolution.RelativeAppSolutionPath == null)
-                throw new Exception("Solution path is not selected yet");
-            if (this._RelativeAppProjectPath != null)
+            if (Path.IsPathRooted(to))
             {
-                var path = this.ParentAppSolution.GetSolutionFolderPath();
-#if NET48
-                this._RelativeAppProjectPath = vSharpStudio.common.Utils..GetRelativePath(path, this._RelativeAppProjectPath);
-#else
-                this._RelativeAppProjectPath = Path.GetRelativePath(path, this._RelativeAppProjectPath);
-#endif
-                this.Name = Path.GetFileName(this._RelativeAppProjectPath);
+                this.Name = Path.GetFileName(to);
+                var slnPath = this.ParentAppSolution.GetSolutionFolderPath();
+                to = Path.GetRelativePath(slnPath, to);
             }
+            //if (!this.IsNotifying || to == null)
+            //    return;
+            //to = Path.GetFullPath(to);
         }
+        //partial void OnRelativeAppProjectPathChanged()
+        //{
+        //    if (!this.IsNotifying)
+        //        return;
+        //    //var cfg = this.ParentAppSolution.ParentGroupListAppSolutions.ParentConfig;
+        //    //if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
+        //    //    throw new Exception("Config is not saved yet");
+        //    //if (this.ParentAppSolution.RelativeAppSolutionPath == null)
+        //    //    throw new Exception("Solution path is not selected yet");
+        //    //            if (this._RelativeAppProjectPath != null)
+        //    //            {
+        //    //                var path = this.ParentAppSolution.GetSolutionFolderPath();
+        //    //#if NET48
+        //    //                this._RelativeAppProjectPath = vSharpStudio.common.Utils..GetRelativePath(path, this._RelativeAppProjectPath);
+        //    //#else
+        //    //                this._RelativeAppProjectPath = Path.GetRelativePath(path, this._RelativeAppProjectPath);
+        //    //#endif
+        //    //                this.Name = Path.GetFileName(this._RelativeAppProjectPath);
+        //    //            }
+        //    this.Name = Path.GetFileName(this._RelativeAppProjectPath);
+        //}
         public AppProjectGenerator AddGenerator(string name, string pluginGuid, string generatorGuid, string outFile, string? generationPath = null)
         {
             AppProjectGenerator node = new AppProjectGenerator(this);
