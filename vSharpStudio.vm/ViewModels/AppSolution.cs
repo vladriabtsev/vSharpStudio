@@ -107,7 +107,7 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             if (Path.IsPathRooted(to))
             {
-                this.Name = Path.GetFileName(to);
+                this.Name = Path.GetFileNameWithoutExtension(to);
                 //var path = to.Replace(this.Name, "");
                 to = this.GetRelativeToConfigDiskPath(to);
             }

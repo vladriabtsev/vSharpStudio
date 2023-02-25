@@ -109,7 +109,7 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             if (Path.IsPathRooted(to))
             {
-                this.Name = Path.GetFileName(to);
+                this.Name = Path.GetFileNameWithoutExtension(to);
                 var slnPath = this.ParentAppSolution.GetSolutionFolderPath();
                 to = Path.GetRelativePath(slnPath, to);
             }

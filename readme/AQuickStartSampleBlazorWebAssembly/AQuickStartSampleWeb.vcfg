@@ -1,5 +1,5 @@
- O
-$69736650-e8d6-4ba3-aa41-c329d031e713Config*Config:àïäŸœ§J@ÚïþüÏáût€ª<
+üN
+$69736650-e8d6-4ba3-aa41-c329d031e713Config*Config:¨±èŸ„‚Á(@ÚïþüÏáût€ª<
 $acf0601e-6f50-4769-9c1e-551414ef5051BaseConfigs@º¾ØÎú×œi²»-
 $a26d7eb0-fc5c-4017-b15c-6f93f9067513Model óØ“Öƒ›©Ê*Model@dHPj$ade04003-2c31-42cc-a1a0-47a2a205d5d0rIdŠ$4efefb34-e583-4cc1-aef5-eaf384d0402a’ReCoRdVeRsIoN˜ªCodeºNameÊDescriptionÚIsFolderâIsOpenêDocDateð€Ê	DocNumberÐª®
 $6546e8a0-aade-4eee-8342-5ec09786d2cd	Constants»õ”–­†üôp"	Constants2Cnstún
@@ -130,13 +130,13 @@ $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with sev
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema2M
 $7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer"­
 $D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with one generators2N
-$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer@„™„§à›®ã‘ÊÓ
-$c4d5df92-57ae-4558-9c75-4b23d5d37847Apps@È Ž›½¾ä J™
-$c1af2b9d-c095-4493-bc94-2beb16829851&AQuickStartSampleBlazorWebAssembly.sln&AQuickStartSampleBlazorWebAssembly.sln ŽÍÌì°é±d:&AQuickStartSampleBlazorWebAssembly.slnXŠë
-$c7a56957-5e33-4be3-984e-e1d42e1edf2c!AQuickStartSampleBlazorWeb.csproj!AQuickStartSampleBlazorWeb.csproj ŽÍÌì°é±d2<AQuickStartSampleBlazorWeb\AQuickStartSampleBlazorWeb.csprojX‚ö
+$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer@„™„§à›®ã‘Ê¯
+$c4d5df92-57ae-4558-9c75-4b23d5d37847Apps@È Ž›½¾ä Jõ
+$c1af2b9d-c095-4493-bc94-2beb16829851"AQuickStartSampleBlazorWebAssembly"AQuickStartSampleBlazorWebAssembly ŽÍÌì°é±d:&AQuickStartSampleBlazorWebAssembly.slnXŠÝ
+$c7a56957-5e33-4be3-984e-e1d42e1edf2cAQuickStartSampleBlazorWebAQuickStartSampleBlazorWeb ŽÍÌì°é±d2<AQuickStartSampleBlazorWeb\AQuickStartSampleBlazorWeb.csprojX‚ö
 $229c9b90-065e-485b-9d2a-aa33cd4639b2gRPCgRPC2$EDE860F8-2E9B-4E17-8A80-2D52879D15AB:&vSharpStudio plugin. gRPC service codeB$32B15714-E660-4E29-9291-D647A1774149J<gRPC services server code, client code, protobuf defenitionsR	GeneratedZGrpcServices.cs`Ší{ "dbAppProjectGeneratorGuid": "56b4d6ac-4a10-4d4c-b915-51186bef944b", "relativePathFolderToGenClientCode": "Generated", "relativePathToClientProject": "..\\AQuickStartSampleBlazorWebAssembly", "relativePathToCommonCodeProject": "Generated", "genFileNameCommonCode": "ModelCommon.cs", "isSendEnumByValueForUnsupportedTypes": true, "cacheApi": { "separator": "*" } }’ ’9
-$6E958159-C294-4EF2-B87E-958CEDFB6FB7{ "logApi": { } }Šƒ	
-$ff76fa66-a216-42d6-ba87-eba23010a1c4DbRepository.csprojDbRepository.csproj ËËŠÄÄ‘Äz2 DbRepository\DbRepository.csprojX‚É
+$6E958159-C294-4EF2-B87E-958CEDFB6FB7{ "logApi": { } }Šõ
+$ff76fa66-a216-42d6-ba87-eba23010a1c4DbRepositoryDbRepository ËËŠÄÄ‘Äz2 DbRepository\DbRepository.csprojX‚É
 $56b4d6ac-4a10-4d4c-b915-51186bef944b
 PostgreSql
 PostgreSql2$3A29FC48-3892-498A-AE36-CB0C9916C6C9:;vSharpStudio plugin. Database design support for PostgreSqlB$C641770F-CBA5-4FC5-8068-A21C00D6E492J#DB structure creation and migrationZapp-settings.jsonŠ\{ "dbSchema": "v", "isUseSyncMethods": true, "isUseAsyncMethods": true, "sharedStr": "{ }" }’ šeHost=pg12-win2019;Port=5432;Database=testweb1;Username=testuser;Password=123;IncludeErrorDetails=true‚ù
