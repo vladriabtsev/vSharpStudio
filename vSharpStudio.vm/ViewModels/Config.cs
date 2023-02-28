@@ -276,6 +276,10 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (this._SelectedNode != value)
                 {
+#if DEBUG
+                    var stopWatch = new Stopwatch();
+                    stopWatch.Start();
+#endif
                     if (ITreeConfigNode.IsSorting)
                         return;
                     if (this.OnSelectedNodeChanging != null)
@@ -284,10 +288,18 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     this._SelectedNode = value;
                     this.NotifyPropertyChanged();
-                }
-                if (this.OnSelectedNodeChanged != null)
-                {
-                    this.OnSelectedNodeChanged();
+                    if (this.OnSelectedNodeChanged != null)
+                    {
+                        this.OnSelectedNodeChanged();
+                    }
+#if DEBUG
+                    stopWatch.Stop();
+                    TimeSpan ts = stopWatch.Elapsed;
+                    //string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:000}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds);
+                    //Console.WriteLine("RunTime " + elapsedTime);
+                    string elapsedTime = String.Format("{0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds);
+                    Debug.WriteLine($"RunTime {elapsedTime} {t4.FilePos()}");
+#endif
                 }
             }
         }

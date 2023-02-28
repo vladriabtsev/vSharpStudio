@@ -10,7 +10,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Plugin:{Name,nq} Count:{ListGenerators.Count,nq} HasChanged:{IsHasChanged}")]
+    [DebuggerDisplay("Plugin:{Name,nq} Count:{ListGenerators.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class Plugin : ICanGoLeft, ICanGoRight
     {
         [BrowsableAttribute(false)]

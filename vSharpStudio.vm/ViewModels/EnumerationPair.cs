@@ -10,7 +10,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("EnumerationPair:{Name,nq} HasChanged:{IsHasChanged}")]
+    [DebuggerDisplay("EnumerationPair:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class EnumerationPair : IEditableNode, INodeGenSettings
     {
         [BrowsableAttribute(false)]

@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged}")]
+    [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
         [BrowsableAttribute(false)]
@@ -233,6 +233,11 @@ namespace vSharpStudio.vm.ViewModels
                 prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
                 res.Add(prp);
             }
+        }
+        public void GetNormalProperties(List<IProperty> res)
+        {
+            var model = this.ParentCatalog.ParentGroupListCatalogs.ParentModel;
+            IProperty prp = null!;
             if (this.GetUseCodeProperty())
             {
                 prp = this.GetCodeProperty(model.ParentConfig);
@@ -248,44 +253,11 @@ namespace vSharpStudio.vm.ViewModels
                 prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
                 res.Add(prp);
             }
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
         }
-        //private void GetSpecialProperties(List<IProperty> res)
-        //{
-        //    var ctlg = this.ParentCatalog;
-        //    var model = ctlg.ParentGroupListCatalogs.ParentModel;
-        //    var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
-        //    res.Add(prp);
-        //    prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
-        //    (prp as Property)!.IsNullable = true;
-        //    res.Add(prp);
-        //    if (this.GetUseCodeProperty())
-        //    {
-        //        switch (this.CodePropertySettings.Type)
-        //        {
-        //            case EnumCodeType.AutoNumber:
-        //                throw new NotImplementedException();
-        //            case EnumCodeType.AutoText:
-        //                throw new NotImplementedException();
-        //            case EnumCodeType.Number:
-        //                prp = model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
-        //                break;
-        //            case EnumCodeType.Text:
-        //                prp = model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
-        //                break;
-        //        }
-        //        res.Add(prp);
-        //    }
-        //    if (this.GetUseNameProperty())
-        //    {
-        //        prp = model.GetPropertyCatalogName(this.GroupProperties, ctlg.PropertyNameGuid, ctlg.MaxNameLength);
-        //        res.Add(prp);
-        //    }
-        //    if (this.GetUseDescriptionProperty())
-        //    {
-        //        prp = model.GetPropertyCatalogDescription(this.GroupProperties, ctlg.PropertyDescriptionGuid, ctlg.MaxDescriptionLength);
-        //        res.Add(prp);
-        //    }
-        //}
         private IProperty GetCodeProperty(IConfig cfg)
         {
             IProperty prp = null!;

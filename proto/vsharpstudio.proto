@@ -1828,15 +1828,15 @@ message proto_catalog {
 
     // @attr [BrowsableAttribute(false)]
     int32 short_id = 19;
-    // @attr [PropertyOrderAttribute(21)]
+    // @attr [PropertyOrderAttribute(20)]
     // @attr [DisplayName("Use Tree")]
     // @attr [Description("Use tree catalog structure")]
     bool use_tree = 21;
-    // @attr [PropertyOrderAttribute(22)]
-    // @attr [DisplayName("Separate Folders Tree")]
+    // @attr [PropertyOrderAttribute(21)]
+    // @attr [DisplayName("Separate Tree")]
     // @attr [Description("Separate tree object for folders")]
     bool use_separate_tree_for_folders = 22;
-    // @attr [PropertyOrderAttribute(23)]
+    // @attr [PropertyOrderAttribute(22)]
     // @attr [DisplayName("Max Levels")]
     // @attr [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
     uint32 max_tree_levels = 23;
@@ -1866,7 +1866,7 @@ message proto_catalog {
     // @attr [DisplayName("Desc Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
     uint32 max_description_length = 30;
-    // @attr [PropertyOrderAttribute(31)]
+    // @attr [PropertyOrderAttribute(23)]
     // @attr [DisplayName("Explicit Folders")]
     // @attr [Description("User has choose explicitly item or folder type for catalog element")]
     bool use_folder_type_explicitly = 31;
@@ -2324,14 +2324,16 @@ enum proto_form_orientation {
     Horizontal = 1;
 }
 enum proto_form_type {
+    // @attr [DisplayName("Not selected")]
+    FormTypeNotSelected = 0;
     // @attr [DisplayName("Wide list view form")]
-    ListWide = 0;
-    // @attr [DisplayName("Narrow list view form")]
-    ListNarrow = 1;
+    ListWide = 1;
     // @attr [DisplayName("Item edit form")]
     ItemEditForm = 2;
     // @attr [DisplayName("Folder edit form")]
     FolderEditForm = 3;
+    // @attr [DisplayName("Narrow list view form")]
+    ListNarrow = 4;
 }
 // Children collection can contain:
 //   - Children of Grid System

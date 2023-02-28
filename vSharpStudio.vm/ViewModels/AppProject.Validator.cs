@@ -19,13 +19,26 @@ namespace vSharpStudio.vm.ViewModels
                 .NotEmpty()
                 .WithMessage("Project is not selected");
             this.RuleFor(x => x.RelativeAppProjectPath)
-                .Must((o, path) =>
+                .Custom((path, cntx) =>
                 {
-                    if (string.IsNullOrEmpty(path))
-                        return true;
-                    return File.Exists(o.GetProjectPath());
-                })
-                .WithMessage("Project file was not found");
+                    if (!string.IsNullOrEmpty(path))
+                    {
+                        var pg = (AppProject)cntx.InstanceToValidate;
+                        var prjPath = pg.GetProjectPath();
+                        if (!File.Exists(prjPath))
+                        {
+                            cntx.AddFailure($"Project file was not found {prjPath}");
+                        }
+                    }
+                });
+            //this.RuleFor(x => x.RelativeAppProjectPath)
+            //    .Must((o, path) =>
+            //    {
+            //        if (string.IsNullOrEmpty(path))
+            //            return true;
+            //        return File.Exists(o.GetProjectPath());
+            //    })
+            //    .WithMessage($"Project file was not found");
             this.RuleFor(x => x.ListAppProjectGenerators)
                 .Must((o, lst) =>
                 {

@@ -37,6 +37,10 @@ namespace ViewModelBase
         //{
         //    return Task.FromResult(new ValidationResult());
         //}
+
+        /// <summary>
+        /// Amount of errors in this node and all subnodes
+        /// </summary>
         [BrowsableAttribute(false)]
         public int CountErrors
         {
@@ -52,6 +56,9 @@ namespace ViewModelBase
             }
         }
         private int _CountErrors;
+        /// <summary>
+        /// Amount of warnings in this node and all subnodes
+        /// </summary>
         [BrowsableAttribute(false)]
         public int CountWarnings
         {
@@ -67,6 +74,9 @@ namespace ViewModelBase
             }
         }
         private int _CountWarnings;
+        /// <summary>
+        /// Amount of info messages in this node and all subnodes
+        /// </summary>
         [BrowsableAttribute(false)]
         public int CountInfos
         {
@@ -319,17 +329,25 @@ namespace ViewModelBase
                 ? _infos[propertyName]
                 : null;
         }
-
+        /// <summary>
+        /// Has errors in this node (without children)
+        /// </summary>
         [BrowsableAttribute(false)]
         public bool HasErrors
         {
             get { return _errors.Count > 0; }
         }
+        /// <summary>
+        /// Has warnings in this node (without children)
+        /// </summary>
         [BrowsableAttribute(false)]
         public bool HasWarnings
         {
             get { return _warnings.Count > 0; }
         }
+        /// <summary>
+        /// Has info messages in this node (without children)
+        /// </summary>
         [BrowsableAttribute(false)]
         public bool HasInfos
         {

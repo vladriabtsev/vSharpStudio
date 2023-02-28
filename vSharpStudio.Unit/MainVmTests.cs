@@ -91,7 +91,7 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(vm.BtnAddNew.CanExecute());
             Assert.IsFalse(vm.BtnAddNewChild.CanExecute());
             Assert.IsTrue(vm.BtnConfigCreateStableVersionAsync.CanExecute());
-            Assert.IsFalse(vm.BtnConfigCurrentUpdateAsync.CanExecute(null));
+            Assert.IsTrue(vm.BtnConfigCurrentUpdateAsync.CanExecute(null));
             Assert.IsTrue(vm.BtnConfigSave.CanExecute());
             Assert.IsTrue(vm.BtnConfigSaveAs.CanExecute(null));
             Assert.IsFalse(vm.BtnDelete.CanExecute());

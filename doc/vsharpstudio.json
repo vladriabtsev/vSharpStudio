@@ -387,14 +387,14 @@
           "description": "",
           "values": [
             {
-              "name": "ListWide",
+              "name": "FormTypeNotSelected",
               "number": "0",
-              "description": "@attr [DisplayName(\"Wide list view form\")]"
+              "description": "@attr [DisplayName(\"Not selected\")]"
             },
             {
-              "name": "ListNarrow",
+              "name": "ListWide",
               "number": "1",
-              "description": "@attr [DisplayName(\"Narrow list view form\")]"
+              "description": "@attr [DisplayName(\"Wide list view form\")]"
             },
             {
               "name": "ItemEditForm",
@@ -405,6 +405,11 @@
               "name": "FolderEditForm",
               "number": "3",
               "description": "@attr [DisplayName(\"Folder edit form\")]"
+            },
+            {
+              "name": "ListNarrow",
+              "number": "4",
+              "description": "@attr [DisplayName(\"Narrow list view form\")]"
             }
           ]
         }
@@ -1107,7 +1112,7 @@
             },
             {
               "name": "use_tree",
-              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Tree\")]\n@attr [Description(\"Use tree catalog structure\")]",
+              "description": "@attr [PropertyOrderAttribute(20)]\n@attr [DisplayName(\"Use Tree\")]\n@attr [Description(\"Use tree catalog structure\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1117,7 +1122,7 @@
             },
             {
               "name": "use_separate_tree_for_folders",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Separate Folders Tree\")]\n@attr [Description(\"Separate tree object for folders\")]",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Separate Tree\")]\n@attr [Description(\"Separate tree object for folders\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1127,7 +1132,7 @@
             },
             {
               "name": "max_tree_levels",
-              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Max Levels\")]\n@attr [Description(\"Maximum amount levels in catalog item groups. If zero, than unlimited\")]",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Max Levels\")]\n@attr [Description(\"Maximum amount levels in catalog item groups. If zero, than unlimited\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -1197,7 +1202,7 @@
             },
             {
               "name": "use_folder_type_explicitly",
-              "description": "@attr [PropertyOrderAttribute(31)]\n@attr [DisplayName(\"Explicit Folders\")]\n@attr [Description(\"User has choose explicitly item or folder type for catalog element\")]",
+              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Explicit Folders\")]\n@attr [Description(\"User has choose explicitly item or folder type for catalog element\")]",
               "label": "",
               "type": "bool",
               "longType": "bool",

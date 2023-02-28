@@ -89,10 +89,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     }
     public enum FormType // ModelInterfaces.tt Line: 15
     {
-        ListWide = 0,
-        ListNarrow = 1,
+        FormTypeNotSelected = 0,
+        ListWide = 1,
         ItemEditForm = 2,
         FolderEditForm = 3,
+        ListNarrow = 4,
     }
     public enum EnumHiddenType // ModelInterfaces.tt Line: 15
     {

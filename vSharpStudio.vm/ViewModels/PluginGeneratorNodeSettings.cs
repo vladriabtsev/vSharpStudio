@@ -9,7 +9,7 @@ using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("NodeSettings:{Name,nq} Path:{ModelPath,nq}")]
+    [DebuggerDisplay("NodeSettings:{Name,nq} Path:{ModelPath,nq} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class PluginGeneratorNodeSettings : ISortingValue, ITreeConfigNode
     {
         public IvPluginGeneratorNodeSettings? SettingsVm { get; set; }

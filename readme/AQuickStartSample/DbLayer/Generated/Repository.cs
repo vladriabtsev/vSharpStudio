@@ -1,4 +1,4 @@
-﻿
+
 // Repository NameSpace.tt
 
 // EnumVmType.Dapper
@@ -8,18 +8,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
-using Microsoft.Extensions.Caching.Memory;                     // nuget package 'Microsoft.Extensions.Caching.Abstractions'
 using Microsoft.Extensions.Configuration;                      // nuget package 'Microsoft.Extensions.Configuration'
 using Microsoft.Extensions.Configuration.Json;                 // nuget package 'Microsoft.Extensions.Configuration.Json'
 using Dapper;                                                  // nuget package 'Dapper'
 using Dapper.Contrib.Extensions;                               // nuget package 'Dapper.Contrib'
 using Polly;                                                   // nuget package 'Polly'
-using Microsoft.Extensions.Caching.Memory; // from nuget Microsoft.Extensions.Caching.Abstractions
+using Microsoft.Extensions.Caching.Memory;                     // nuget package 'Microsoft.Extensions.Caching.Abstractions'
 /// <summary>
 /// Auto generated
 /// </summary>
 #pragma warning disable IDE1006 // Naming Styles
-namespace vPlugins.DapperModels // NameSpace.tt Line: 43
+namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 {
 	//using CommonCodeAPI;
 	using System;
@@ -31,26 +30,325 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 
     using System.Diagnostics;
 
-    namespace PostgreSql // NameSpace.tt Line: 94
+    namespace Sqlite // NameSpace.tt Line: 93
     {
-        //using DTO = vPlugins.Models.PostgreSql.Model; // NameSpace.tt Line: 97
-        //using DTO = vPlugins.DapperModels.PostgreSql.Model; // NameSpace.tt Line: 98
-        //using CMD = vPlugins.DapperModels; // NameSpace.tt Line: 99
-        using global::Npgsql;	// nuget package 'Npgsql'
+        //using DTO = vPlugins.Models.Sqlite.Model; // NameSpace.tt Line: 96
+        //using DTO = vPlugins.DapperModels.Sqlite.Model; // NameSpace.tt Line: 97
+        //using CMD = vPlugins.DapperModels; // NameSpace.tt Line: 98
+        using Microsoft.Data.Sqlite;	// nuget package 'Microsoft.Data.Sqlite'
         /// <include file='model_doc.xml' path='Doc/Model/Desc[@name="model"]/*' />
-        public partial class Model // NameSpace.tt Line: 112
+        public partial class Model // NameSpace.tt Line: 111
         {
-            public static bool LOGGING_EXTENTIONS { get; } = false; // NameSpace.tt Line: 147
+            public static bool LOGGING_EXTENTIONS { get; } = false; // NameSpace.tt Line: 146
             public static bool LOGGING_NLOG { get; } = false;
             public static bool LOGGING_SERILOG { get; } = false;
-            private const string MODEL_CACHE_ID = "0";
-            public static IMemoryCache? MemoryCache { get; set; }
+			/// <include file='model_doc.xml' path='Doc/Model/Constants/Desc[@name="constants"]/*' />
+			public partial class Constants // Constants.tt Line: 14, called from NameSpace.tt Line: 165
+			{
+			    /// <include file='model_doc.xml' path='Doc/Model/Constants/Desc[@name="LoadValues"]/*' />
+			    public static void LoadValues(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Constants.tt Line: 19*/) // Constants.tt Line: 19
+			    {
+					System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+			        if (utc.Kind == DateTimeKind.Local)
+			            utc = utc.ToUniversalTime();
+			        Group1.LoadValues(utc);
+			    }
+			    /// <include file='model_doc.xml' path='Doc/Model/Constants/Desc[@name="Reset"]/*' />
+			    public static void Reset([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Constants.tt Line: 31*/)
+			    {
+			        Group1.Reset();
+			    }
+				public class Group1 // Constants.tt Line: 44
+				{
+				    #region Methods // Constants.tt Line: 48
+				    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Desc[@name="LoadValues"]/*' />
+				    public static void LoadValues(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Constants.tt Line: 50*/) // Constants.tt Line: 50
+				    {
+						System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+				        if (utc.Kind == DateTimeKind.Local)
+				            utc = utc.ToUniversalTime();
+				        CONSTANT1.LoadValue(utc);
+				        CONSTANT2.LoadValue(utc);
+				    }
+				    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Desc[@name="CleanOlder"]/*' />
+				    public static void CleanOlder(DateTime utcTo, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Constants.tt Line: 62*/) // Constants.tt Line: 62
+				    {
+						System.Diagnostics.Debug.Assert(utcTo.Kind != DateTimeKind.Unspecified);
+				        if (utcTo.Kind == DateTimeKind.Local)
+				            utcTo = utcTo.ToUniversalTime();
+				        CONSTANT1.CleanOlder(utcTo);
+				        CONSTANT2.CleanOlder(utcTo);
+				    }
+				    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Desc[@name="Reset"]/*' />
+				    public static void Reset([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Constants.tt Line: 74*/) // Constants.tt Line: 74
+				    {
+				        CONSTANT1.Reset();
+				        CONSTANT2.Reset();
+				    }
+				    #endregion Methods // Constants.tt Line: 82
+					// PocoConstants.tt Line: 9, called from Constants.tt Line: 85
+					public class CONSTANT1 // PocoConstants.tt Line: 16
+					{
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="GUID"]/*' />
+					    public const string GUID = "a59b9a9d-5627-43d1-92a8-a5c610d52d78";
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Value"]/*' />
+					    public static string? Value { get; private set; } // PocoConstants.tt Line: 25
+						internal static Constants.Group1.CONSTANT1.History_Constant1 Create() // PocoConstants.tt Line: 26
+						{
+							var res = new Constants.Group1.CONSTANT1.History_Constant1
+					        {
+							    id = GetNextId(_history.T_GUID)
+					        };
+							return res;
+						}
+					    private static int _constantId; // PocoConstants.tt Line: 34
+					    private static int constantId { get { if (_constantId == 0) { _constantId = _history_objects_ids.GetObjectId(GUID); } return _constantId; }}
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="LoadValue"]/*' />
+					    public static void LoadValue(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 52*/) // PocoConstants.tt Line: 52
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        Value = Load(utc); // PocoConstants.tt Line: 63
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Load"]/*' />
+					    public static string? Load(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 70*/) // PocoConstants.tt Line: 70
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        string? res = null; // PocoConstants.tt Line: 79
+					        var h = _history.Load(constantId, utc);
+					        if (h != null)
+					            res = h; // PocoConstants.tt Line: 96
+					        return res;
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Save"]/*' />
+					    public static void Save(string val, DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 130*/) // PocoConstants.tt Line: 130
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        string? res = val; // PocoConstants.tt Line: 148
+					        _history.Save(constantId, res, utc);
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="SelectBefore"]/*' />
+					    public static List<History_Constant1> SelectBefore(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 174*/) // PocoConstants.tt Line: 174
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        var res = History_Constant1.ConvertToListOfConstants(_history.SelectBefore(constantId, utc)); // PocoConstants.tt Line: 181
+					        return res;
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="SelectAfter"]/*' />
+					    public static List<History_Constant1> SelectAfter(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 197*/) // PocoConstants.tt Line: 197
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        var res = History_Constant1.ConvertToListOfConstants(_history.SelectAfter(constantId, utc)); // PocoConstants.tt Line: 204
+					        return res;
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Select"]/*' />
+					    public static List<History_Constant1> Select(DateTime utcFrom, DateTime utcTo, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 220*/) // PocoConstants.tt Line: 220
+					    {
+							System.Diagnostics.Debug.Assert(utcFrom.Kind != DateTimeKind.Unspecified);
+							System.Diagnostics.Debug.Assert(utcTo.Kind != DateTimeKind.Unspecified);
+					        if (utcFrom.Kind == DateTimeKind.Local)
+					            utcFrom = utcFrom.ToUniversalTime();
+					        if (utcTo.Kind == DateTimeKind.Local)
+					            utcTo = utcTo.ToUniversalTime();
+					        var res = History_Constant1.ConvertToListOfConstants(_history.Select(constantId, utcFrom, utcTo)); // PocoConstants.tt Line: 230
+					        return res;
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Select()"]/*' />
+					    public static List<History_Constant1> Select([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 246*/) // PocoConstants.tt Line: 246
+					    {
+					        var res = History_Constant1.ConvertToListOfConstants(_history.Select(constantId)); // PocoConstants.tt Line: 250
+					        return res;
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="CleanOlder"]/*' />
+					    public static void CleanOlder(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 266*/) // PocoConstants.tt Line: 266
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        _history.CleanOlder(constantId, utc);
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Delete"]/*' />
+					    public static void Delete(History_Constant1 rec, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 287*/) // PocoConstants.tt Line: 287
+					    {
+					        _history.Delete(rec.id);
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Reset"]/*' />
+					    public static void Reset([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 305*/) // PocoConstants.tt Line: 305
+					    {
+					        _history.Reset(constantId);
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="History_"]/*' />
+					    public struct History_Constant1 // PocoConstants.tt Line: 328
+					    {
+					        public override string ToString() { return $"{this.Value} on date: {this.DateTime}"; }
+					        internal History_Constant1(_history t)
+					        {
+					            this.id = t.Id;
+					            this.DateTime = _history.ToDateTime(t.date_time);
+					            if (t.val != null)
+					            {
+					                this.Value = t.val; // PocoConstants.tt Line: 348
+					            } // PocoConstants.tt Line: 350
+					            else
+					                this.Value = null;
+					        }
+					        internal static List<History_Constant1> ConvertToListOfConstants(IEnumerable<_history> lst) // PocoConstants.tt Line: 354
+					        {
+					            var res = new List<History_Constant1>();
+					            if (lst != null)
+					                foreach (var t in lst)
+					                    res.Add(new History_Constant1(t));
+					            return res;
+					        }
+					        public int id;
+					        public DateTime DateTime;
+					        public string? Value;
+					    }
+					}
+					public class CONSTANT2 // PocoConstants.tt Line: 16
+					{
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="GUID"]/*' />
+					    public const string GUID = "e1f0ae82-9268-4bc8-96b0-75492411e07e";
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Value"]/*' />
+					    public static string? Value { get; private set; } // PocoConstants.tt Line: 25
+						internal static Constants.Group1.CONSTANT2.History_Constant2 Create() // PocoConstants.tt Line: 26
+						{
+							var res = new Constants.Group1.CONSTANT2.History_Constant2
+					        {
+							    id = GetNextId(_history.T_GUID)
+					        };
+							return res;
+						}
+					    private static int _constantId; // PocoConstants.tt Line: 34
+					    private static int constantId { get { if (_constantId == 0) { _constantId = _history_objects_ids.GetObjectId(GUID); } return _constantId; }}
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="LoadValue"]/*' />
+					    public static void LoadValue(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 52*/) // PocoConstants.tt Line: 52
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        Value = Load(utc); // PocoConstants.tt Line: 63
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Load"]/*' />
+					    public static string? Load(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 70*/) // PocoConstants.tt Line: 70
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        string? res = null; // PocoConstants.tt Line: 79
+					        var h = _history.Load(constantId, utc);
+					        if (h != null)
+					            res = h; // PocoConstants.tt Line: 96
+					        return res;
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Save"]/*' />
+					    public static void Save(string val, DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 130*/) // PocoConstants.tt Line: 130
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        string? res = val; // PocoConstants.tt Line: 148
+					        _history.Save(constantId, res, utc);
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="SelectBefore"]/*' />
+					    public static List<History_Constant2> SelectBefore(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 174*/) // PocoConstants.tt Line: 174
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        var res = History_Constant2.ConvertToListOfConstants(_history.SelectBefore(constantId, utc)); // PocoConstants.tt Line: 181
+					        return res;
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="SelectAfter"]/*' />
+					    public static List<History_Constant2> SelectAfter(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 197*/) // PocoConstants.tt Line: 197
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        var res = History_Constant2.ConvertToListOfConstants(_history.SelectAfter(constantId, utc)); // PocoConstants.tt Line: 204
+					        return res;
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Select"]/*' />
+					    public static List<History_Constant2> Select(DateTime utcFrom, DateTime utcTo, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 220*/) // PocoConstants.tt Line: 220
+					    {
+							System.Diagnostics.Debug.Assert(utcFrom.Kind != DateTimeKind.Unspecified);
+							System.Diagnostics.Debug.Assert(utcTo.Kind != DateTimeKind.Unspecified);
+					        if (utcFrom.Kind == DateTimeKind.Local)
+					            utcFrom = utcFrom.ToUniversalTime();
+					        if (utcTo.Kind == DateTimeKind.Local)
+					            utcTo = utcTo.ToUniversalTime();
+					        var res = History_Constant2.ConvertToListOfConstants(_history.Select(constantId, utcFrom, utcTo)); // PocoConstants.tt Line: 230
+					        return res;
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Select()"]/*' />
+					    public static List<History_Constant2> Select([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 246*/) // PocoConstants.tt Line: 246
+					    {
+					        var res = History_Constant2.ConvertToListOfConstants(_history.Select(constantId)); // PocoConstants.tt Line: 250
+					        return res;
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="CleanOlder"]/*' />
+					    public static void CleanOlder(DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 266*/) // PocoConstants.tt Line: 266
+					    {
+							System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
+					        if (utc.Kind == DateTimeKind.Local)
+					            utc = utc.ToUniversalTime();
+					        _history.CleanOlder(constantId, utc);
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Delete"]/*' />
+					    public static void Delete(History_Constant2 rec, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 287*/) // PocoConstants.tt Line: 287
+					    {
+					        _history.Delete(rec.id);
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="Reset"]/*' />
+					    public static void Reset([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from PocoConstants.tt Line: 305*/) // PocoConstants.tt Line: 305
+					    {
+					        _history.Reset(constantId);
+					    }
+					    /// <include file='model_doc.xml' path='Doc/Model/Constants/ConstantGroup/Constant/Desc[@name="History_"]/*' />
+					    public struct History_Constant2 // PocoConstants.tt Line: 328
+					    {
+					        public override string ToString() { return $"{this.Value} on date: {this.DateTime}"; }
+					        internal History_Constant2(_history t)
+					        {
+					            this.id = t.Id;
+					            this.DateTime = _history.ToDateTime(t.date_time);
+					            if (t.val != null)
+					            {
+					                this.Value = t.val; // PocoConstants.tt Line: 348
+					            } // PocoConstants.tt Line: 350
+					            else
+					                this.Value = null;
+					        }
+					        internal static List<History_Constant2> ConvertToListOfConstants(IEnumerable<_history> lst) // PocoConstants.tt Line: 354
+					        {
+					            var res = new List<History_Constant2>();
+					            if (lst != null)
+					                foreach (var t in lst)
+					                    res.Add(new History_Constant2(t));
+					            return res;
+					        }
+					        public int id;
+					        public DateTime DateTime;
+					        public string? Value;
+					    }
+					}
+				}
+			}
 			/// <include file='model_doc.xml' path='Doc/Model/Catalogs/Desc[@name="catalogs"]/*' />
-			public partial class Catalogs // Catalogs.tt Line: 8, called from NameSpace.tt Line: 171
+			public partial class Catalogs // Catalogs.tt Line: 8, called from NameSpace.tt Line: 170
 			{
 				// PocoCatalogs.tt Line: 7, called from Catalogs.tt Line: 13
-				[Dapper.Contrib.Extensions.Table("v.CtlgCatalog1")]
-				public partial class Catalog1 : RepoEntityBaseSyncAsync<Catalog1>, IEntityBaseExplicit<Catalog1>, ISameById<Catalog1>, IEntityBase // ModelCatalogClass.tt Line: 12, called from PocoCatalogs.tt Line: 10
+				[Dapper.Contrib.Extensions.Table("CtlgCatalog1")]
+				public partial class Catalog1 : RepoEntityBaseSync<Catalog1>, IEntityBaseExplicit<Catalog1>, ISameById<Catalog1>, IEntityBase // ModelCatalogClass.tt Line: 12, called from PocoCatalogs.tt Line: 10
 				{
 				    #region ctor // ModelCtor.tt Line: 8, called from ModelCatalogClass.tt Line: 25
 				    public IEnumerable<IEntityBase> GetChildren() // ModelCtor.tt Line: 17
@@ -69,27 +367,34 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    }
 				    #endregion ctor
 				    #region Properties // ModelProperty.tt Line: 8, called from ModelCatalogClass.tt Line: 28
-					[Dapper.Contrib.Extensions.Key] // ModelProperty.tt Line: 19 - Utils.cs Line: 279
-					public int Id // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1174
+					[Dapper.Contrib.Extensions.Key] // ModelProperty.tt Line: 19 - Utils.cs Line: 280
+					public int Id // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1175
 					{
-						get { return _Id; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
+						get { return _Id; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
 						set { _Id = value; ___isNeedUpdate = true;}
 					}
-					private int _Id; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
-					public string Property1 // ModelProperty.tt Line: 19 - Utils.cs Line: 315 Utils.cs Line: 1154
+					private int _Id; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+					public int Code // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1175
 					{
-						get { return _Property1; } // ModelProperty.tt Line: 19 - Utils.cs Line: 458
-						set { _Property1 = value; ___isNeedUpdate = true;}
+						get { return _Code; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+						set { _Code = value; ___isNeedUpdate = true;}
 					}
-					private string _Property1 = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 466
+					private int _Code; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+					public string Name // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1155
+					{
+						get { return _Name; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+						set { _Name = value; ___isNeedUpdate = true;}
+					}
+					private string _Name = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
 				
 					#region Fields // ModelProperty.tt Line: 21
 					public const string F_ID = "Id";
-					public const string F_PROPERTY1 = "Property1";
+					public const string F_CODE = "Code";
+					public const string F_NAME = "Name";
 					#endregion Fields // ModelProperty.tt Line: 28
 				    #endregion Properties // ModelProperty.tt Line: 29
 				    #region Special // ModelProperty.tt Line: 30
-					public const string T_GUID = "540acddf-b780-4e29-a0ba-8aa3ae737000";
+					public const string T_GUID = "5cc54978-0abe-4eef-a97a-f48713978731";
 					public string GetGuid() { return T_GUID; }
 					public const string T_NAME = "CtlgCatalog1";
 				    public string GetDbTableName() { return T_NAME; }
@@ -101,24 +406,27 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionInsert() // ModelEntityCmd.tt Line: 32
 					{
 					    var cmd = new CommandDefinitionData(
-							"INSERT INTO v.CtlgCatalog1 (" + // ModelEntityCmd.tt Line: 48
+							"INSERT INTO CtlgCatalog1 (" + // ModelEntityCmd.tt Line: 48
 								"Id"+
-								",Property1"+
+								",Code"+
+								",Name"+
 							") VALUES(" + // ModelEntityCmd.tt Line: 52
 								"@Id"+
-								",@Property1"+
+								",@Code"+
+								",@Name"+
 							");", // SELECT SCOPE_IDENTITY();", // ModelEntityCmd.tt Line: 56
 					        new 
 					        {
 					    		this.Id, 
-					    		this.Property1, 
+					    		this.Code, 
+					    		this.Name, 
 					        }, CommandType.Text) // ModelEntityCmd.tt Line: 66 
 					        { Entity = this }; // ModelEntityCmd.tt Line: 68
 					    return cmd;
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadById(int id) // ModelEntityCmd.tt Line: 71
 					{
-					    var sql = @"SELECT Id, Property1 FROM v.CtlgCatalog1 WHERE Id = @pid;"
+					    var sql = @"SELECT Id, Code, Name FROM CtlgCatalog1 WHERE Id = @pid;"
 					; // ModelEntityCmd.tt Line: 84
 					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
 					    return cmd;
@@ -133,7 +441,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionCountWhere(string? where, object? param) // ModelEntityCmd.tt Line: 104
 					{
 						StringBuilder sb = new StringBuilder();
-						sb.Append("SELECT Count(*) FROM v.CtlgCatalog1");
+						sb.Append("SELECT Count(*) FROM CtlgCatalog1");
 						if (where != null)
 						{
 							sb.Append(" WHERE ");
@@ -174,11 +482,13 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionUpdate() // ModelEntityCmd.tt Line: 183
 					{
 					    var cmd = new CommandDefinitionData(
-					        "UPDATE v.CtlgCatalog1 SET "+
-								"Property1 = @Property1" + 
+					        "UPDATE CtlgCatalog1 SET "+
+								"Code = @Code" + 
+								",Name = @Name" + 
 					        " WHERE Id = @Id;", // ModelEntityCmd.tt Line: 212
 							new {
-					    		this.Property1, 
+					    		this.Code, 
+					    		this.Name, 
 								this.Id // ModelEntityCmd.tt Line: 227
 							}, CommandType.Text) 
 					        { Entity = this };
@@ -186,21 +496,21 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteById(int id) // ModelEntityCmd.tt Line: 233
 					{
-					    var sql = "DELETE FROM v.CtlgCatalog1 WHERE Id = @pid;";
+					    var sql = "DELETE FROM CtlgCatalog1 WHERE Id = @pid;";
 					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
 					    return cmd;
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionRemoveById(int id) // ModelEntityCmd.tt Line: 244
 					{
 					    var sql = "" +
-					    "DELETE FROM v.CtlgCatalog1 WHERE Id = @pid;\n"; // ModelEntityCmd.tt Line: 261
+					    "DELETE FROM CtlgCatalog1 WHERE Id = @pid;\n"; // ModelEntityCmd.tt Line: 261
 					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
 					    return cmd;
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteWhere(string? where, object? param) // ModelEntityCmd.tt Line: 266
 					{
 						StringBuilder sb = new StringBuilder();
-						sb.Append("DELETE FROM v.CtlgCatalog1");
+						sb.Append("DELETE FROM CtlgCatalog1");
 						if (!string.IsNullOrWhiteSpace(where))
 						{
 							sb.Append(" WHERE ");
@@ -215,13 +525,13 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 						var sb = new StringBuilder();
 						if (!string.IsNullOrWhiteSpace(where))
 						{
-					        sb.Append("DELETE FROM v.CtlgCatalog1 WHERE "); // ModelEntityCmd.tt Line: 309
+					        sb.Append("DELETE FROM CtlgCatalog1 WHERE "); // ModelEntityCmd.tt Line: 309
 					        sb.Append(where);
 					    	sb.AppendLine(";");
 						}
 					    else
 					    {
-					        sb.AppendLine("DELETE FROM v.CtlgCatalog1;"); // ModelEntityCmd.tt Line: 318
+					        sb.AppendLine("DELETE FROM CtlgCatalog1;"); // ModelEntityCmd.tt Line: 318
 					    }
 					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
 					    return cmd;
@@ -236,7 +546,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					    var dto = new Catalogs.Catalog1
 					    {
 					        Id = id,
-					        Property1 = string.Empty,
+					        Name = string.Empty,
 					        ___isNeedInsert = true,
 					    };
 					    return dto;
@@ -251,9 +561,382 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					    return resCatalog1;
 					}
 					#endregion Repository // CatalogRepository.tt Line: 51
+					#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 84
+					[Dapper.Contrib.Extensions.Table("CtlgCatalog1")]
+					public partial class ViewListNarrow : ViewEntityBaseSync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 49
+					{
+					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
+					    public string GetName() { return this.Name; }
+					#if DEBUG
+					    private ViewListNarrow()
+					#else
+					    public ViewListNarrow()
+					#endif
+					    {
+					        this.Name = string.Empty;
+					    }
+					    #region View Properties
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 103 - Utils.cs Line: 280
+						public int Id // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Id; } // PocoView.tt Line: 103 - Utils.cs Line: 459
+							set { _Id = value; }
+						}
+						private int _Id; // PocoView.tt Line: 103 - Utils.cs Line: 467
+						public int Code // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Code; } // PocoView.tt Line: 103 - Utils.cs Line: 459
+							set { _Code = value; }
+						}
+						private int _Code; // PocoView.tt Line: 103 - Utils.cs Line: 467
+						public string Name // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1155
+						{
+							get { return _Name; } // PocoView.tt Line: 103 - Utils.cs Line: 459
+							set { _Name = value; }
+						}
+						private string _Name = string.Empty; // PocoView.tt Line: 103 - Utils.cs Line: 467
+					    #endregion View Properties
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM CtlgCatalog1");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+						{
+						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Id, Code, Name FROM CtlgCatalog1");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" LIMIT ");
+								sb.Append(pagesize);
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+					}
+					#endregion Views // PocoView.tt Line: 289
+				}
+				[Dapper.Contrib.Extensions.Table("CtlgCatalog2")]
+				public partial class Catalog2 : RepoEntityBaseSync<Catalog2>, IEntityBaseExplicit<Catalog2>, ISameById<Catalog2>, IEntityBase // ModelCatalogClass.tt Line: 12, called from PocoCatalogs.tt Line: 10
+				{
+				    #region ctor // ModelCtor.tt Line: 8, called from ModelCatalogClass.tt Line: 25
+				    public IEnumerable<IEntityBase> GetChildren() // ModelCtor.tt Line: 17
+				    {
+				        return new List<IEntityBase>();
+				    }
+				    static Catalog2() 
+				    { 
+				    }
+				#if DEBUG
+				    private Catalog2() : base("c1")
+				#else
+				    public Catalog2() : base("c1")
+				#endif
+				    {
+				    }
+				    #endregion ctor
+				    #region Properties // ModelProperty.tt Line: 8, called from ModelCatalogClass.tt Line: 28
+					[Dapper.Contrib.Extensions.Key] // ModelProperty.tt Line: 19 - Utils.cs Line: 280
+					public int Id // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1175
+					{
+						get { return _Id; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+						set { _Id = value; ___isNeedUpdate = true;}
+					}
+					private int _Id; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+					public int Code // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1175
+					{
+						get { return _Code; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+						set { _Code = value; ___isNeedUpdate = true;}
+					}
+					private int _Code; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+					public string Name // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1155
+					{
+						get { return _Name; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+						set { _Name = value; ___isNeedUpdate = true;}
+					}
+					private string _Name = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+				
+					#region Fields // ModelProperty.tt Line: 21
+					public const string F_ID = "Id";
+					public const string F_CODE = "Code";
+					public const string F_NAME = "Name";
+					#endregion Fields // ModelProperty.tt Line: 28
+				    #endregion Properties // ModelProperty.tt Line: 29
+				    #region Special // ModelProperty.tt Line: 30
+					public const string T_GUID = "b6aa0e5e-6c47-4b64-bed2-8c6a8617232c";
+					public string GetGuid() { return T_GUID; }
+					public const string T_NAME = "CtlgCatalog2";
+				    public string GetDbTableName() { return T_NAME; }
+				    public bool IsMarkedForDeletion(bool? isMarkedForDeletion = null) { if (isMarkedForDeletion.HasValue) { this.___isMarkedForDeletion = isMarkedForDeletion ?? false; } return this.___isMarkedForDeletion; }
+				    private bool ___isMarkedForDeletion = false;
+				    public bool SameById(Catalog2 other) { return other != null && this.Id == other.Id; } // ModelProperty.tt Line: 45
+				    #endregion Special // ModelProperty.tt Line: 46
+					#region Command Definition Data // ModelEntityCmd.tt Line: 9, called from ModelCatalogClass.tt Line: 53
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionInsert() // ModelEntityCmd.tt Line: 32
+					{
+					    var cmd = new CommandDefinitionData(
+							"INSERT INTO CtlgCatalog2 (" + // ModelEntityCmd.tt Line: 48
+								"Id"+
+								",Code"+
+								",Name"+
+							") VALUES(" + // ModelEntityCmd.tt Line: 52
+								"@Id"+
+								",@Code"+
+								",@Name"+
+							");", // SELECT SCOPE_IDENTITY();", // ModelEntityCmd.tt Line: 56
+					        new 
+					        {
+					    		this.Id, 
+					    		this.Code, 
+					    		this.Name, 
+					        }, CommandType.Text) // ModelEntityCmd.tt Line: 66 
+					        { Entity = this }; // ModelEntityCmd.tt Line: 68
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadById(int id) // ModelEntityCmd.tt Line: 71
+					{
+					    var sql = @"SELECT Id, Code, Name FROM CtlgCatalog2 WHERE Id = @pid;"
+					; // ModelEntityCmd.tt Line: 84
+					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionSelect(string? where, object? param, string? sort, 
+					    int page, int pagesize) // ModelEntityCmd.tt Line: 90
+					{
+						var sql = CreateQuery(null, Model.Catalogs.Catalog2.T_NAME, null, where, sort, page, pagesize);
+					    var cmd = new CommandDefinitionData(sql, param, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionCountWhere(string? where, object? param) // ModelEntityCmd.tt Line: 104
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.Append("SELECT Count(*) FROM CtlgCatalog2");
+						if (where != null)
+						{
+							sb.Append(" WHERE ");
+							sb.Append(where);
+						}
+						sb.Append(';');
+					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+					    return cmd;
+					}
+					List<CommandDefinitionData> IEntityBaseExplicit.GetCommandDefinitionSave() // ModelEntityCmd.tt Line: 125
+					{
+					    Dictionary<string, Dictionary<int, string?>>? dicInsertedUpdatedGuidId = null;
+					    var lstCmd = new List<CommandDefinitionData>();
+					    CommandDefinitionData cd;
+					    bool isCanInsert = true; 
+					    if (dicInsertedUpdatedGuidId != null)
+					    {
+					        if (!dicInsertedUpdatedGuidId.ContainsKey(Model.Catalogs.Catalog2.T_GUID))
+					            dicInsertedUpdatedGuidId[Model.Catalogs.Catalog2.T_GUID] = new Dictionary<int, string?>();
+					        var dic = dicInsertedUpdatedGuidId[Model.Catalogs.Catalog2.T_GUID];
+					        if (dic.ContainsKey(this.Id))
+					            isCanInsert = false;
+					        else
+					            dic[this.Id] = null;
+					    }
+					    if (this.IsNeedInsert() && isCanInsert)
+					    {
+					        cd = ((IEntityBaseExplicit)this).GetCommandDefinitionInsert();
+					        lstCmd.Add(cd);
+					    } 
+					    else if (this.IsNeedUpdate())
+					    {
+					        cd = ((IEntityBaseExplicit)this).GetCommandDefinitionUpdate();
+					        lstCmd.Add(cd);
+					    }
+					    return lstCmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionUpdate() // ModelEntityCmd.tt Line: 183
+					{
+					    var cmd = new CommandDefinitionData(
+					        "UPDATE CtlgCatalog2 SET "+
+								"Code = @Code" + 
+								",Name = @Name" + 
+					        " WHERE Id = @Id;", // ModelEntityCmd.tt Line: 212
+							new {
+					    		this.Code, 
+					    		this.Name, 
+								this.Id // ModelEntityCmd.tt Line: 227
+							}, CommandType.Text) 
+					        { Entity = this };
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteById(int id) // ModelEntityCmd.tt Line: 233
+					{
+					    var sql = "DELETE FROM CtlgCatalog2 WHERE Id = @pid;";
+					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionRemoveById(int id) // ModelEntityCmd.tt Line: 244
+					{
+					    var sql = "" +
+					    "DELETE FROM CtlgCatalog2 WHERE Id = @pid;\n"; // ModelEntityCmd.tt Line: 261
+					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteWhere(string? where, object? param) // ModelEntityCmd.tt Line: 266
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.Append("DELETE FROM CtlgCatalog2");
+						if (!string.IsNullOrWhiteSpace(where))
+						{
+							sb.Append(" WHERE ");
+							sb.Append(where);
+						}
+						sb.Append(';');
+					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionRemoveWhere(string? where, object? param) // ModelEntityCmd.tt Line: 287
+					{
+						var sb = new StringBuilder();
+						if (!string.IsNullOrWhiteSpace(where))
+						{
+					        sb.Append("DELETE FROM CtlgCatalog2 WHERE "); // ModelEntityCmd.tt Line: 309
+					        sb.Append(where);
+					    	sb.AppendLine(";");
+						}
+					    else
+					    {
+					        sb.AppendLine("DELETE FROM CtlgCatalog2;"); // ModelEntityCmd.tt Line: 318
+					    }
+					    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+					    return cmd;
+					}
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionMoveTo(int id, int idGroupTo) { throw new NotImplementedException(); } // ModelEntityCmd.tt Line: 376
+					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadSubTree(int id, int deep) { throw new NotImplementedException(); } // ModelEntityCmd.tt Line: 377
+					#endregion Command Definition Data // ModelEntityCmd.tt Line: 381
+					#region Repository // CatalogRepository.tt Line: 7, called from ModelCatalogClass.tt Line: 66
+					// Repository.tt Line: 8, called from CatalogRepository.partial.cs Line: 25
+					Catalogs.Catalog2 IEntityBaseExplicit<Catalog2>.CreateDto(int id) // Repository.tt Line: 15
+					{
+					    var dto = new Catalogs.Catalog2
+					    {
+					        Id = id,
+					        Name = string.Empty,
+					        ___isNeedInsert = true,
+					    };
+					    return dto;
+					}
+					protected override Catalogs.Catalog2 GetThis() { return this; }
+					Catalog2? IEntityBaseExplicit<Catalog2>.LoadUtil(SqlMapper.GridReader multi) // Repository.tt Line: 236
+					{
+					    Catalogs.Catalog2? resCatalog2 = null;
+					    var lstCtlgCatalog2 = new List<Catalogs.Catalog2>();
+					    resCatalog2 = multi.Read<Catalogs.Catalog2>().First();
+					    lstCtlgCatalog2.Add(resCatalog2);
+					    return resCatalog2;
+					}
+					#endregion Repository // CatalogRepository.tt Line: 51
+					#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 84
+					[Dapper.Contrib.Extensions.Table("CtlgCatalog2")]
+					public partial class ViewListNarrow : ViewEntityBaseSync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 49
+					{
+					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
+					    public string GetName() { return this.Name; }
+					#if DEBUG
+					    private ViewListNarrow()
+					#else
+					    public ViewListNarrow()
+					#endif
+					    {
+					        this.Name = string.Empty;
+					    }
+					    #region View Properties
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 103 - Utils.cs Line: 280
+						public int Id // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Id; } // PocoView.tt Line: 103 - Utils.cs Line: 459
+							set { _Id = value; }
+						}
+						private int _Id; // PocoView.tt Line: 103 - Utils.cs Line: 467
+						public int Code // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Code; } // PocoView.tt Line: 103 - Utils.cs Line: 459
+							set { _Code = value; }
+						}
+						private int _Code; // PocoView.tt Line: 103 - Utils.cs Line: 467
+						public string Name // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1155
+						{
+							get { return _Name; } // PocoView.tt Line: 103 - Utils.cs Line: 459
+							set { _Name = value; }
+						}
+						private string _Name = string.Empty; // PocoView.tt Line: 103 - Utils.cs Line: 467
+					    #endregion View Properties
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+						{
+						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Id, Code, Name FROM CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" LIMIT ");
+								sb.Append(pagesize);
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+					}
+					#endregion Views // PocoView.tt Line: 289
 				}
 			}
-			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 175
+			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 174
 			{
 				// PocoDocuments.tt Line: 7, called from Documents.tt Line: 12
 			}
@@ -270,8 +953,8 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    public bool IsRemoved(bool? isRemove = null) { if (isRemove.HasValue) { this.___isRemoved = isRemove ?? false; } return this.___isRemoved; }
 			    protected bool ___isRemoved = false;
 			}
-			public partial class RepoBaseSyncAsync<T> : RepoBase,  // BaseClasses.tt Line: 31, called from ModelGlobal.tt Line: 9
-			    IRepository<T>, IRepositoryAsync<T>
+			public partial class RepoBaseSync<T> : RepoBase, // BaseClasses.tt Line: 113, called from ModelGlobal.tt Line: 9
+			    IRepository<T>
 			    where T : class, IEntityBaseExplicit<T>, ISameById<T>, IEntityBase
 			#if !DEBUG
 			    , new()
@@ -281,24 +964,17 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    /// Unique string for current version
 			    /// </summary>
 				public string TYPE_CACHE_ID { get; private set; }
-				public RepoBaseSyncAsync(string typeId)
+				public RepoBaseSync(string typeId)
 				{
 					this.TYPE_CACHE_ID = typeId;
 				}
-				// BaseRepository.tt Line: 8, called from BaseClasses.tt Line: 49
+				// BaseRepository.tt Line: 8, called from BaseClasses.tt Line: 131
 				#if DEBUG
 				protected static T instance = (T)Activator.CreateInstance(typeof(T), true)!;
 				#else
 				protected static T instance = new T();
 				#endif
 				protected virtual T GetThis() { throw new NotImplementedException(); } // BaseRepository.tt Line: 14
-				public static async Task<T> CreateAsync([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 25*/) // BaseRepository.tt Line: 25
-				{
-					var id = await GetNextIdAsync(instance.GetGuid()); // BaseRepository.tt Line: 29
-					var res = instance.CreateDto(id);
-				    res.IsNeedInsert(true);
-					return res;
-				}
 				public static T Create([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 44*/) // BaseRepository.tt Line: 44
 				{
 					var id = GetNextId(instance.GetGuid()); // BaseRepository.tt Line: 48
@@ -306,24 +982,11 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    res.IsNeedInsert(true);
 					return res;
 				}
-				public static async Task<IEnumerable<T>> SelectAsync(string? where, object? param = null, string? sort = null, int page = 0, int pagesize = 0, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 66*/) // BaseRepository.tt Line: 66
-				{
-				    var cd = instance.GetCommandDefinitionSelect(where, param, sort, page, pagesize); // BaseRepository.tt Line: 72
-				    var lst_dto = await ConnSelectManyAsync<T>(async (conn) => { return await conn.QueryAsync<T>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-					return lst_dto;
-				}
 				public static IEnumerable<T> Select(string? where, object? param = null, string? sort = null, int page = 0, int pagesize = 0, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 96*/) // BaseRepository.tt Line: 96
 				{
 				    var cd = instance.GetCommandDefinitionSelect(where, param, sort, page, pagesize); // BaseRepository.tt Line: 102
 				    var lst_dto = ConnSelectMany<T>((conn) => { return conn.Query<T>(cd.GetCommandDefinition()); }, RetryPolicy);
 					return lst_dto;
-				}
-				public static async Task<int> CountAsync(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 129*/) // BaseRepository.tt Line: 129
-				{
-					int res = 0; // BaseRepository.tt Line: 135
-				    var cd = instance.GetCommandDefinitionCountWhere(where, param);
-				    res = await ConnExecuteScalarAsync<int>(async (conn) => { return await conn.ExecuteScalarAsync<int>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-					return res;
 				}
 				public static int Count(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 153*/) // BaseRepository.tt Line: 153
 				{
@@ -333,29 +996,6 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					return res;
 				}
 				protected virtual int CountUtil(string? where, object? param) { throw new NotImplementedException(); } // BaseRepository.tt Line: 175
-				public async Task UpdateAsync([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 182*/) // BaseRepository.tt Line: 182
-				{
-				    Debug.Assert(!this.IsNeedInsert());
-				    Debug.Assert(this.IsNeedUpdate());
-				    Debug.Assert(!this.IsRemoved());
-				    var cd = this.GetThis().GetCommandDefinitionUpdate();
-				    int n = 0; // BaseRepository.tt Line: 194
-					await ConnExecuteAsync(async (conn) => 
-				    { 
-				        n = await conn.ExecuteAsync(cd.GetCommandDefinition()); 
-				    }, RetryPolicyAsync);
-				    if (n == 0)
-				    {
-				        cd = instance.GetCommandDefinitionSelect("Id=@Id", new { Id = this.GetThis().Id }, null, 0, 0);
-				        var lst = (await ConnSelectManyAsync<T>(async (conn) => { return await conn.QueryAsync<T>(cd.GetCommandDefinition()); }, RetryPolicyAsync)).ToList();
-				        if (lst.Count == 1)
-				            throw new ConcurrencyOptimisticException("Can't update record. Was already updated by somebody else.", false);
-				        else
-				            throw new ConcurrencyOptimisticException("Can't update record. Already deleted.", true);
-				    }
-				    this.IsNeedUpdate(false);
-				}
-				protected virtual Task UpdateUtilAsync() { throw new NotImplementedException(); } // BaseRepository.tt Line: 217
 				public void Update([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 220*/) // BaseRepository.tt Line: 220
 				{
 				    Debug.Assert(!this.IsNeedInsert());
@@ -379,21 +1019,6 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    this.IsNeedUpdate(false);
 				}
 				protected virtual void UpdateUtil() { throw new NotImplementedException(); } // BaseRepository.tt Line: 254
-                partial void BeforeInsertAsync();
-                public async Task InsertAsync([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 260*/) // BaseRepository.tt Line: 260
-				{
-                    BeforeInsertAsync();
-                    Debug.Assert(!this.IsRemoved());
-				    Debug.Assert(this.IsNeedInsert());
-				    var cd = this.GetThis().GetCommandDefinitionInsert(); // BaseRepository.tt Line: 269
-					await ConnExecuteAsync(async (conn) => 
-				    { 
-				        await conn.ExecuteAsync(cd.GetCommandDefinition()); 
-				    }, RetryPolicyAsync);
-				    this.IsNeedInsert(false);
-				    this.IsNeedUpdate(false);
-				}
-				protected virtual Task InsertUtilAsync() { throw new NotImplementedException(); } // BaseRepository.tt Line: 284
 				public void Insert([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 287*/) // BaseRepository.tt Line: 287
 				{
 				    Debug.Assert(!this.IsRemoved());
@@ -407,26 +1032,6 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    this.IsNeedUpdate(false);
 				}
 				protected virtual void InsertUtil() { throw new NotImplementedException(); } // BaseRepository.tt Line: 311
-				public async Task DeleteAsync([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 320*/) // BaseRepository.tt Line: 320
-				{
-				    Debug.Assert(!this.IsNeedInsert());
-				    Debug.Assert(!this.IsRemoved());
-				    var cd = this.GetThis().GetCommandDefinitionDeleteById(this.GetThis().Id);
-				    await ConnExecuteAsync(async (conn) => { await conn.ExecuteAsync(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-					this.IsNeedInsert(false);
-					this.IsNeedUpdate(false);
-					this.IsRemoved(true);
-				}
-				public static async Task DeleteAsync(int id, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 347*/) // BaseRepository.tt Line: 347
-				{
-				    var cd = instance.GetCommandDefinitionDeleteById(id);
-				    await ConnExecuteAsync(async (conn) => { await conn.ExecuteAsync(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				}
-				public static async Task DeleteAsync(string? where, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 369*/) // BaseRepository.tt Line: 369
-				{
-				    var cd = instance.GetCommandDefinitionDeleteWhere(where, param);
-				    await ConnExecuteAsync(async (conn) => { await conn.ExecuteAsync(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				}
 				public void Delete([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepository.tt Line: 390*/) // BaseRepository.tt Line: 390
 				{
 				    Debug.Assert(!this.IsNeedInsert());
@@ -446,32 +1051,19 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    ConnExecute((conn) => { conn.Execute(cd.GetCommandDefinition()); }, RetryPolicy);
 				}
 			}
-			public partial class RepoEntityBaseSyncAsync<T> : RepoBaseSyncAsync<T>,  // BaseClasses.tt Line: 54, called from ModelGlobal.tt Line: 9
-			    IRepositoryEntity<T>, IRepositoryEntityAsync<T>, IAttachForUpdates
+			public partial class RepoEntityBaseSync<T> : RepoBaseSync<T>, // BaseClasses.tt Line: 136, called from ModelGlobal.tt Line: 9
+			    IRepositoryEntity<T>, IAttachForUpdates
 			    where T : class, IEntityBaseExplicit<T>, ISameById<T>, IEntityBase
 			#if !DEBUG
 			    , new()
 			#endif
 			{
-				public RepoEntityBaseSyncAsync(string typeId) : base(typeId) { }
-				// BaseRepositoryEntity.tt Line: 8, called from BaseClasses.tt Line: 65
+				public RepoEntityBaseSync(string typeId) : base(typeId)	{ }
+				// BaseRepositoryEntity.tt Line: 8, called from BaseClasses.tt Line: 147
 				protected TransactionOnCommit? transactionOnCommit = null;
 				public void AttachForUpdates(TransactionOnCommit tx)
 				{
 				    this.transactionOnCommit = tx;
-				}
-				public async Task SaveAsync([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 18*/) // BaseRepositoryEntity.tt Line: 18
-				{
-				    Debug.Assert(this.transactionOnCommit == null, "Entity already attached to transaction on commit");
-				    Debug.Assert(!this.IsRemoved());
-				    var dt = new TransactionOnCommit();
-				    var entity = this.GetThis();
-				    dt.Save(entity);
-				    await dt.CommitAsync();
-				    if (MemoryCache?.GetFromCache<T>(MODEL_CACHE_ID, this.TYPE_CACHE_ID, entity.Id) == null)
-				    {
-				        MemoryCache?.PlaceInCache<T>(MODEL_CACHE_ID, this.TYPE_CACHE_ID, entity);
-				    }
 				}
 				public void Save([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 50*/) // BaseRepositoryEntity.tt Line: 50
 				{
@@ -481,31 +1073,6 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    var entity = this.GetThis();
 				    dft.Save(entity);
 				    dft.Commit();
-				    if (MemoryCache?.GetFromCache<T>(MODEL_CACHE_ID, this.TYPE_CACHE_ID, entity.Id) == null)
-				    {
-				        MemoryCache?.PlaceInCache<T>(MODEL_CACHE_ID, this.TYPE_CACHE_ID, entity);
-				    }
-				}
-				public async Task RemoveAsync([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 85*/) // BaseRepositoryEntity.tt Line: 85
-				{
-				    Debug.Assert(this.transactionOnCommit == null, "Entity already attached to transaction on commit");
-				    Debug.Assert(!this.IsNeedInsert());
-				    Debug.Assert(!this.IsRemoved());
-					await RemoveAsync(this.GetThis().Id);
-				    this.IsRemoved(true);
-					foreach (var t in this.GetThis().GetChildren())
-						t.IsRemoved(true);
-				}
-				public static async Task RemoveAsync(int id, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 97*/) // BaseRepositoryEntity.tt Line: 97
-				{
-				    var cd = instance.GetCommandDefinitionRemoveById(id);
-				    await ConnExecuteAsync(async (conn) => { await conn.ExecuteAsync(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				    MemoryCache?.RemoveFromCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, id);
-				}
-				public static async Task RemoveAsync(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 120*/) // BaseRepositoryEntity.tt Line: 120
-				{
-				    var cd = instance.GetCommandDefinitionRemoveWhere(where, param);
-				    await ConnExecuteAsync(async (conn) => { await conn.ExecuteAsync(cd.GetCommandDefinition()); }, RetryPolicyAsync);
 				}
 				public void Remove([CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 141*/) // BaseRepositoryEntity.tt Line: 141
 				{
@@ -521,7 +1088,6 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				{
 				    var cd = instance.GetCommandDefinitionRemoveById(id); // BaseRepositoryEntity.tt Line: 160
 				    ConnExecute((conn) => { conn.Execute(cd.GetCommandDefinition()); }, RetryPolicy);
-				    MemoryCache?.RemoveFromCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, id);
 				}
 				public static void Remove(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 176*/) // BaseRepositoryEntity.tt Line: 176
 				{
@@ -529,42 +1095,10 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    ConnExecute((conn) => { conn.Execute(cd.GetCommandDefinition()); }, RetryPolicy);
 				}
 				protected static bool isEntityWithTabs;
-				public static async Task<T?> LoadAsync(int id, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 201*/) // BaseRepositoryEntity.tt Line: 201
-				{
-				    var cd = instance.GetCommandDefinitionLoadById(id); // BaseRepositoryEntity.tt Line: 208
-				    T? dto = null;
-				    dto = MemoryCache?.GetFromCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, id);
-				    if (dto != null)
-				    {
-				        return dto;
-				    }
-				    dto = await ConnSelectSingleAsync<T?>(async (conn) =>  // BaseRepositoryEntity.tt Line: 220
-				    { 
-				        if (isEntityWithTabs) // BaseRepositoryEntity.tt Line: 222
-				        {
-				            using(var multi = await conn.QueryMultipleAsync(cd.GetCommandDefinition()))
-				            {
-				                return instance.LoadUtil(multi);
-				            }
-				        }
-				        else // BaseRepositoryEntity.tt Line: 229
-				        {
-				            return (await conn.QueryAsync<T>(cd.GetCommandDefinition())).Single(); 
-				        }
-				    }, RetryPolicyAsync); // BaseRepositoryEntity.tt Line: 233
-				    MemoryCache?.PlaceInCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, dto);
-					return dto;
-				}
-				protected virtual Task<T?> LoadUtilAsync(int id) { throw new NotImplementedException(); } // BaseRepositoryEntity.tt Line: 247
 				public static T? Load(int id, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseRepositoryEntity.tt Line: 257*/) // BaseRepositoryEntity.tt Line: 257
 				{
 				    var cd = instance.GetCommandDefinitionLoadById(id); // BaseRepositoryEntity.tt Line: 264
 				    T? dto = null;
-				    dto = MemoryCache?.GetFromCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, id);
-				    if (dto != null)
-				    {
-				        return dto;
-				    }
 				    dto = ConnSelectSingle<T>((conn) =>  // BaseRepositoryEntity.tt Line: 276
 				    { 
 				        if (isEntityWithTabs) // BaseRepositoryEntity.tt Line: 278
@@ -579,36 +1113,21 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				            return conn.Query<T>(cd.GetCommandDefinition()).Single(); 
 				        }
 				    }, RetryPolicy); // BaseRepositoryEntity.tt Line: 289
-				    MemoryCache?.PlaceInCache<T>(MODEL_CACHE_ID, instance.TYPE_CACHE_ID, dto);
 					return dto;
 				}
 			}
-			public partial class ViewEntityBaseSyncAsync<T> : IViewEntity<T>, IViewEntityAsync<T> // BaseClasses.tt Line: 70, called from ModelGlobal.tt Line: 9
+			public partial class ViewEntityBaseSync<T> // BaseClasses.tt Line: 152, called from ModelGlobal.tt Line: 9
 			    where T : class, IViewPlainBaseExplicit<T>, ISameById<T>
 			#if !DEBUG
 			    , new()
 			#endif
 			{
-				// BaseView.tt Line: 8, called from BaseClasses.tt Line: 79
+				// BaseView.tt Line: 8, called from BaseClasses.tt Line: 161
 				#if DEBUG
 				private static T instance = (T)Activator.CreateInstance(typeof(T), true)!;
 				#else
 				private static T instance = new T();
 				#endif
-				public static async Task<int> CountAsync(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 226*/) // BaseView.tt Line: 226
-				{
-					int res = 0; // BaseView.tt Line: 232
-				    var cd = instance.GetCommandDefinitionCountWhere(where, param);
-				    res = await ConnExecuteScalarAsync<int>(async (conn) => { return await conn.ExecuteScalarAsync<int>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-					return res;
-				}
-				public static async Task<IEnumerable<T>> GetViewAsync(string? sort = null, int pagesize = 0, int page = 0, string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 248*/) // BaseView.tt Line: 248
-				{
-				    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0 && sort != null && sort.Count() > 0)); // if page is selected then pagesize and sort parameters has to be selected
-				    var cd = instance.GetCommandDefinitionView(pagesize, page, sort, where, param); // BaseView.tt Line: 256
-				    var res = await ConnSelectManyAsync<T>(async (conn) => { return await conn.QueryAsync<T>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				    return res;
-				}
 				public static int Count(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 271*/) // BaseView.tt Line: 271
 				{
 					int res; // BaseView.tt Line: 277
@@ -624,48 +1143,18 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					return res;
 				}
 			}
-			public partial class ViewTreeBaseSyncAsync<T> : IViewTree<T>, IViewTreeAsync<T> // BaseClasses.tt Line: 84, called from ModelGlobal.tt Line: 9
+			public partial class ViewTreeBaseSync<T> // BaseClasses.tt Line: 166, called from ModelGlobal.tt Line: 9
 			    where T : class, IViewSelfTreeBaseExplicit<T>, ISameById<T>
 			#if !DEBUG
 			    , new()
 			#endif
 			{
-				// BaseView.tt Line: 8, called from BaseClasses.tt Line: 93
+				// BaseView.tt Line: 8, called from BaseClasses.tt Line: 175
 				#if DEBUG
 				private static T instance = (T)Activator.CreateInstance(typeof(T), true)!;
 				#else
 				private static T instance = new T();
 				#endif
-				public static async Task<IEnumerable<T>> GetSubTreeViewAsync(int? parentId, int deep = 2, string? sort = null, string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 22*/) // BaseView.tt Line: 22
-				{
-				    var cd = instance.GetCommandDefinitionSubTreeView(parentId, deep, sort, where, param); // BaseView.tt Line: 26
-				    var res = await ConnSelectManyAsync<T>(async (conn) => { return await conn.QueryAsync<T>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				    return res;
-				}
-				public static async Task<IEnumerable<T>> GetTreeListViewAsync(int? selectedId, string? sort = null, int pagesize = 0, int page = 0, string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 42*/) // BaseView.tt Line: 42
-				{
-				    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0 && sort != null && sort.Count() > 0)); // if page is selected then pagesize and sort parameters has to be selected
-				    var res = new List<T>();
-				    var cd = instance.GetCommandDefinitionTreeListSubView(selectedId, sort, where, param); // BaseView.tt Line: 51
-				    var resItems = await ConnSelectManyAsync<T>(async (conn) => { return await conn.QueryAsync<T>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				    if (selectedId.HasValue)
-				    {
-				        cd = instance.GetCommandDefinitionTreeListView(selectedId, where, param); // BaseView.tt Line: 57
-				        var lst = await ConnSelectManyAsync<T>(async (conn) => { return await conn.QueryAsync<T>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				        res = lst.ToList();
-				    }
-				    res.AddRange(resItems);
-				    if (pagesize > 0)
-				        res = res.AsQueryable().Skip((page - 1) * pagesize).Take(pagesize).ToList();
-					return res;
-				}
-				public static async Task<IEnumerable<T>> GetViewByParentIdAsync(int? parentId, string? sort = null, int pagesize = 0, int page = 0, string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 75*/) // BaseView.tt Line: 75
-				{
-				    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0 && sort != null && sort.Count() > 0)); // if page is selected then pagesize and sort parameters has to be selected
-				    var cd = instance.GetCommandDefinitionSubItemsView(parentId, pagesize, page, sort, where, param); // BaseView.tt Line: 83
-				    var res = await ConnSelectManyAsync<T>(async (conn) => { return await conn.QueryAsync<T>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				    return res;
-				}
 				public static IEnumerable<T> GetSubTreeView(int? parentId, int deep = 2, string? sort = null, string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 101*/) // BaseView.tt Line: 101
 				{
 				    var cd = instance.GetCommandDefinitionSubTreeView(parentId, deep, sort, where, param); // BaseView.tt Line: 105
@@ -695,20 +1184,6 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    var res = ConnSelectMany<T>((conn) => { return conn.Query<T>(cd.GetCommandDefinition()); }, RetryPolicy);
 					return res;
 				}
-				public static async Task<int> CountAsync(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 226*/) // BaseView.tt Line: 226
-				{
-					int res = 0; // BaseView.tt Line: 232
-				    var cd = instance.GetCommandDefinitionCountWhere(where, param);
-				    res = await ConnExecuteScalarAsync<int>(async (conn) => { return await conn.ExecuteScalarAsync<int>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-					return res;
-				}
-				public static async Task<IEnumerable<T>> GetViewAsync(string? sort = null, int pagesize = 0, int page = 0, string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 248*/) // BaseView.tt Line: 248
-				{
-				    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0 && sort != null && sort.Count() > 0)); // if page is selected then pagesize and sort parameters has to be selected
-				    var cd = instance.GetCommandDefinitionView(pagesize, page, sort, where, param); // BaseView.tt Line: 256
-				    var res = await ConnSelectManyAsync<T>(async (conn) => { return await conn.QueryAsync<T>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				    return res;
-				}
 				public static int Count(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 271*/) // BaseView.tt Line: 271
 				{
 					int res; // BaseView.tt Line: 277
@@ -724,25 +1199,18 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					return res;
 				}
 			}
-			public partial class ViewDetailBaseSyncAsync<T> : IViewDetail<T>, IViewDetailAsync<T> // BaseClasses.tt Line: 98, called from ModelGlobal.tt Line: 9
+			public partial class ViewDetailBaseSync<T> // BaseClasses.tt Line: 180, called from ModelGlobal.tt Line: 9
 			    where T : class, IViewPlainForRefTreeBaseExplicit<T>, ISameById<T>
 			#if !DEBUG
 			    , new()
 			#endif
 			{
-				// BaseView.tt Line: 8, called from BaseClasses.tt Line: 107
+				// BaseView.tt Line: 8, called from BaseClasses.tt Line: 189
 				#if DEBUG
 				private static T instance = (T)Activator.CreateInstance(typeof(T), true)!;
 				#else
 				private static T instance = new T();
 				#endif
-				public static async Task<IEnumerable<T>> GetViewByParentIdAsync(int? parentId, string? sort = null, int pagesize = 0, int page = 0, string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 179*/) // BaseView.tt Line: 179
-				{
-				    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0 && sort != null && sort.Count() > 0)); // if page is selected then pagesize and sort parameters has to be selected
-				    var cd = instance.GetCommandDefinitionSubItemsView(parentId, pagesize, page, sort, where, param); // BaseView.tt Line: 187
-				    var res = await ConnSelectManyAsync<T>(async (conn) => { return await conn.QueryAsync<T>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				    return res;
-				}
 				public static IEnumerable<T> GetViewByParentId(int? parentId, string? sort = null, int pagesize = 0, int page = 0, string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 202*/) // BaseView.tt Line: 202
 				{
 				    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0 && sort != null && sort.Count() > 0)); // if page is selected then pagesize and sort parameters has to be selected
@@ -750,20 +1218,6 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				    var res = ConnSelectMany<T>((conn) => { return conn.Query<T>(cd.GetCommandDefinition()); }, RetryPolicy);
 					return res;
 				}
-				public static async Task<int> CountAsync(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 226*/) // BaseView.tt Line: 226
-				{
-					int res = 0; // BaseView.tt Line: 232
-				    var cd = instance.GetCommandDefinitionCountWhere(where, param);
-				    res = await ConnExecuteScalarAsync<int>(async (conn) => { return await conn.ExecuteScalarAsync<int>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-					return res;
-				}
-				public static async Task<IEnumerable<T>> GetViewAsync(string? sort = null, int pagesize = 0, int page = 0, string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 248*/) // BaseView.tt Line: 248
-				{
-				    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0 && sort != null && sort.Count() > 0)); // if page is selected then pagesize and sort parameters has to be selected
-				    var cd = instance.GetCommandDefinitionView(pagesize, page, sort, where, param); // BaseView.tt Line: 256
-				    var res = await ConnSelectManyAsync<T>(async (conn) => { return await conn.QueryAsync<T>(cd.GetCommandDefinition()); }, RetryPolicyAsync);
-				    return res;
-				}
 				public static int Count(string? where = null, object? param = null, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from BaseView.tt Line: 271*/) // BaseView.tt Line: 271
 				{
 					int res; // BaseView.tt Line: 277
@@ -779,7 +1233,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 					return res;
 				}
 			}
-			public class ListChildren<T> : List<T> // ModelGlobal.tt Line: 12, called from NameSpace.tt Line: 178
+			public class ListChildren<T> : List<T> // ModelGlobal.tt Line: 12, called from NameSpace.tt Line: 177
 			    where T : class, IEntityBase
 			{
 			    /// <summary>
@@ -790,13 +1244,11 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    /// <param name="onCreate">Function to create child</param>
 			    /// <param name="onAdd">Action for added child</param>
 			    /// <param name="onRemove">Action for removed child</param>
-			    public ListChildren(Func<T> onCreate, Func<Task<T>> onCreateAsync, Action<T> onAdd, Action<T> onRemove, Func<T, Task> onRemoveAsync) // ModelGlobal.tt Line: 24
+			    public ListChildren(Func<T> onCreate, Action<T> onAdd, Action<T> onRemove) // ModelGlobal.tt Line: 41
 			    {
 			        this.onCreate = onCreate;
 			        this.onAdd = onAdd;
 			        this.onRemove = onRemove;
-			        this.onCreateAsync = onCreateAsync;
-			        this.onRemoveAsync = onRemoveAsync;
 			    }
 			    readonly Func<T> onCreate;
 			    readonly Action<T> onAdd;
@@ -887,141 +1339,79 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			        }
 			        base.RemoveRange(index, count);
 			    }
-			    readonly Func<Task<T>> onCreateAsync;
-			    readonly Func<T, Task> onRemoveAsync;
-			    /// <summary>
-			    /// Create and add new child instance
-			    /// </summary>
-			    /// <returns>New created child instance</returns>
-			    public async Task<T> AddNewAsync() // ModelGlobal.tt Line: 161
-			    {
-			        Debug.Assert(this.onCreateAsync != null);
-			        Debug.Assert(this.onAdd != null);
-			        var item = await this.onCreateAsync();
-			        this.onAdd(item);
-			        base.Add(item);
-			        return item;
-			    }
-			    public async Task ClearAsync() // ModelGlobal.tt Line: 170
-			    {
-			        Debug.Assert(this.onRemoveAsync != null);
-			        foreach (var t in this)
-			        {
-			            await this.onRemoveAsync(t);
-			        }
-			        base.Clear();
-			    }
-			    public async Task RemoveAsync(T item) // ModelGlobal.tt Line: 179
-			    {
-			        Debug.Assert(this.onRemoveAsync != null);
-			        await this.onRemoveAsync(item);
-			        base.Remove(item);
-			    }
-			    public async Task RemoveAllAsync(Predicate<T> match) // ModelGlobal.tt Line: 185
-			    {
-			        Debug.Assert(this.onRemoveAsync != null);
-			        foreach (var t in this)
-			        {
-			            await this.onRemoveAsync(t);
-			        }
-			        base.RemoveAll(match);
-			    }
-			    public async Task RemoveAtAsync(int index) // ModelGlobal.tt Line: 194
-			    {
-			        Debug.Assert(this.onRemoveAsync != null);
-			        await this.onRemoveAsync(this[index]);
-			        base.RemoveAt(index);
-			    }
-			    public async Task RemoveRangeAsync(int index, int count) // ModelGlobal.tt Line: 200
-			    {
-			        Debug.Assert(this.onRemoveAsync != null);
-			        for (int i = 0; i < count; i++)
-			        {
-			            await this.onRemoveAsync(this[i + index]);
-			        }
-			        base.RemoveRange(index, count);
-			    }
 			}
 			
 			
 			#region Id Generator
-			public class IdGenerator // IdGenerator.tt Line: 8, called from NameSpace.tt Line: 189
+			public class IdGenerator // IdGenerator.tt Line: 8, called from NameSpace.tt Line: 188
 			{
 			    // connStr, table name, IdItem
 			    private static readonly Dictionary<string /* GUID */, string /* table name */> dicTableNames = new()
 			    {
 			        { "9468ACEC-52F0-4049-9A31-CC1A92F4EA4B", "_history_objects_ids" },
 			        { "433FBC18-BAF3-400C-BC77-1D5FC7C43C1F", "_history" },
-			        { "540acddf-b780-4e29-a0ba-8aa3ae737000", "ctlgcatalog1" },
-			        { "b40bc431-1460-474e-94f8-e7983205308b", "ctlgcatalog1folder" },
+			        { "a59b9a9d-5627-43d1-92a8-a5c610d52d78", "CnstGroup1Constant1" },
+			        { "e1f0ae82-9268-4bc8-96b0-75492411e07e", "CnstGroup1Constant2" },
+			        { "5cc54978-0abe-4eef-a97a-f48713978731", "CtlgCatalog1" },
+			        { "2d30325d-5000-4a41-a464-cab89db5f4b5", "CtlgCatalog1Folder" },
+			        { "b6aa0e5e-6c47-4b64-bed2-8c6a8617232c", "CtlgCatalog2" },
+			        { "a9389f46-6029-4ce8-9a37-8959ea2fc380", "CtlgCatalog2Folder" },
 			    };
 			    public static int GetHiLo(string guid, int qtyId, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from IdGenerator.tt Line: 28*/) // IdGenerator.tt Line: 28
 			    {
 			        var tableName = IdGenerator.dicTableNames[guid];
-			        // https://www.npgsql.org/doc/basic-usage.html#stored-functions-and-procedures
-			        var p = new DynamicParameters(); // IdGenerator.tt Line: 38
-			        p.Add("@gd", guid);
-			        p.Add("@tbl", tableName);
-			        p.Add("@range", qtyId);
-			
-			        //p.Add("@id", dbType: System.Data.DbType.Int32, direction: ParameterDirection.Output);
-			        //TODO Retry and connection close. SP is not ready?
-			        //RepositoryBase.RetryPolicyWithoutTransaction.Execute(() =>
-			        //{
-			        using var cn = new NpgsqlConnection(Model.ConnectionString);
-			        cn.Open();
-			        var lst = cn.Query<int>("SELECT v._get_id_range(@gd, @tbl, @range)", p,
-			            commandTimeout: Model.CommandTimeout,
-			            commandType: CommandType.Text
-			        );
-			        //});
-			        Debug.Assert(lst.Count() == 1);
-			        var en = lst.GetEnumerator();
-			        en.MoveNext();
-			        var id = en.Current;
-			        return id;
-			    }
-			    public static async Task<int> GetHiLoAsync(string guid, int qtyId, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from IdGenerator.tt Line: 135*/) // IdGenerator.tt Line: 135
-			    {
-			        var tableName = IdGenerator.dicTableNames[guid];
-			        var p = new DynamicParameters(); // IdGenerator.tt Line: 144
-			        p.Add("@gd", guid);
-			        p.Add("@tbl", tableName);
-			        p.Add("@range", qtyId);
-			
-			        //p.Add("@id", dbType: System.Data.DbType.Int32, direction: ParameterDirection.Output);
-			        //TODO Retry and connection close. SP is not ready?
-			        //RepositoryBase.RetryPolicyWithoutTransaction.Execute(() =>
-			        //{
-			        using var cn = new NpgsqlConnection(Model.ConnectionString);
-			        await cn.OpenAsync();
-			        var lst = await cn.QueryAsync<int>("SELECT v._get_id_range(@gd, @tbl, @range)", p,
-			            commandTimeout: Model.CommandTimeout,
-			            commandType: CommandType.Text
-			        );
-			        //});
-			        Debug.Assert(lst.Count() == 1);
-			        var en = lst.GetEnumerator();
-			        en.MoveNext();
-			        var id = en.Current;
+			        int id = 0; // IdGenerator.tt Line: 64
+			        int last_id = 0;
+			        UnitOfWorkBase? uow = null;
+			        if (uow != null)
+			        {
+			            int? prev_id = uow.Connection.ExecuteScalar<int?>(
+			                "SELECT LastId FROM _id_generator WHERE Guid = @g;", new { g = guid });
+			            if (prev_id == null)
+			            {
+			                prev_id = uow.Connection.ExecuteScalar<int?>($"SELECT Max(Id) FROM {tableName};", new { });
+			                if (prev_id == null) prev_id = 0;
+			                last_id = (prev_id ?? 0) + qtyId;
+			                uow.Connection.Execute("INSERT INTO _id_generator(Guid, LastId, TableName) VALUES(@g, @i, @t);",
+			                    new { g = guid, i = last_id, t = tableName });
+			            }
+			            last_id = (prev_id ?? 0) + qtyId;
+			            uow.Connection.Execute("UPDATE _id_generator SET LastId=@i WHERE Guid = @g;",
+			                new { i = last_id, g = guid });
+			            id = (prev_id ?? 0) + 1;
+			        }
+			        else // IdGenerator.tt Line: 85
+			        {
+			            int? prev_id = Model.ConnExecuteScalar<int?>((conn) => 
+			                { return conn.ExecuteScalar<int?>("SELECT LastId FROM _id_generator WHERE Guid = @g;", new { g = guid }); }, Model.RetryPolicy);
+			            if (prev_id == null)
+			            {
+			                prev_id = Model.ConnExecuteScalar<int?>((conn) => 
+			                    { return conn.ExecuteScalar<int?>($"SELECT Max(Id) FROM {tableName};", new { }); }, Model.RetryPolicy);
+			                if (prev_id == null) prev_id = 0;
+			                last_id = (prev_id ?? 0) + qtyId;
+			                Model.ConnExecute((conn) => 
+			                    { conn.Execute("INSERT INTO _id_generator(Guid, LastId, TableName) VALUES(@g, @i, @t);",
+			                    new { g = guid, i = last_id, t = tableName }); }, Model.RetryPolicy);
+			            }
+			            last_id = (prev_id ?? 0) + qtyId;
+			            Model.ConnExecute((conn) => 
+			                { conn.Execute("UPDATE _id_generator SET LastId=@i WHERE Guid = @g;", new { i = last_id, g = guid }); }, Model.RetryPolicy);
+			            id = (prev_id ?? 0) + 1;
+			        }
 			        return id;
 			    }
 			}
-			public class HiLoService : IHiLoService // ModelCacheId.tt Line: 9, called from NameSpace.tt Line: 192
+			public class HiLoService : IHiLoService // ModelCacheId.tt Line: 9, called from NameSpace.tt Line: 191
 			{
 			    public HiLoResult GetHiLo(HiLoRequest request)
 			    {
 			        var nextId = IdGenerator.GetHiLo(request.Guid, request.RequestedQty);
 			        return new HiLoResult() { NextId = nextId, ReturnedQty = request.RequestedQty };
 			    }
-			    public async Task<HiLoResult> GetHiLoAsync(HiLoRequest request)
-			    {
-			        var nextId = await IdGenerator.GetHiLoAsync(request.Guid, request.RequestedQty);
-			        return new HiLoResult() { NextId = nextId, ReturnedQty = request.RequestedQty };
-			    }
 			}
 			public enum EnumHiType { Fixed, PIDController }; // ModelCacheId.tt Line: 50
-			private static ICacheIdSyncAsync? cacheId;
+			private static ICacheId? cacheId;
 			public static void InitCacheId(EnumHiType type, IHiLoService? serv) // ModelCacheId.tt Line: 52
 			{
 			    if (serv == null)
@@ -1059,14 +1449,9 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    System.Diagnostics.Debug.Assert(Model.cacheId != null);
 			    return Model.cacheId.GetNextId(guid);
 			}
-			public static Task<int> GetNextIdAsync(string guid) // ModelCacheId.tt Line: 92
-			{
-			    System.Diagnostics.Debug.Assert(Model.cacheId != null);
-			    return Model.cacheId.GetNextIdAsync(guid);
-			}
 			#endregion Id Generator
 			
-			#region History // Model.tt Line: 19, called from NameSpace.tt Line: 196
+			#region History // Model.tt Line: 19, called from NameSpace.tt Line: 195
 			[Dapper.Contrib.Extensions.Table("_history_objects_ids")]
 			public partial class _history_objects_ids // Model.tt Line: 23
 			{
@@ -1092,7 +1477,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			        int res = 0;
 			        ConnExecute((conn) =>
 			        {
-			            var rec = conn.QuerySingleOrDefault<_history_objects_ids>("SELECT * FROM v._history_objects_ids WHERE object_guid=@g;",
+			            var rec = conn.QuerySingleOrDefault<_history_objects_ids>("SELECT * FROM _history_objects_ids WHERE object_guid=@g;",
 			                new { g = guid }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			            if (rec == null)
 			            {
@@ -1101,39 +1486,11 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			                    Id = (int)Model.GetNextId(_history_objects_ids.T_GUID),
 			                    object_guid = guid
 			                };
-			                conn.Execute("INSERT INTO v._history_objects_ids (Id,object_guid) VALUES (@i,@g);",
+			                conn.Execute("INSERT INTO _history_objects_ids (Id,object_guid) VALUES (@i,@g);",
 			                    new { i=rec.Id, g=rec.object_guid }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			            }
 			            res = rec.Id;
 			        }, Model.RetryPolicy);
-			        return res;
-			    }
-			    /// <summary>
-			    /// Get object int ID
-			    /// </summary>
-			    /// <returns>
-			    /// int value
-			    /// </returns>
-			    /// <param name="guid">Object guid</param>
-			    public async static Task<int> GetObjectIdAsync(string guid, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Model.tt Line: 86*/) // Model.tt Line: 86
-			    {
-			        int res = 0;
-			        await ConnExecuteAsync(async (conn) =>
-			        {
-			            var rec = await conn.QuerySingleOrDefaultAsync<_history_objects_ids>("SELECT * FROM v._history_objects_ids WHERE object_guid=@g;",
-			                new { g = guid }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			            if (rec == null)
-			            {
-			                rec = new _history_objects_ids
-						    {
-			                    Id = (int)(await Model.GetNextIdAsync(_history_objects_ids.T_GUID)),
-			                    object_guid = guid
-			                };
-			                await conn.ExecuteAsync("INSERT INTO v._history_objects_ids (Id,object_guid) VALUES (@i,@g);",
-			                    new { i=rec.Id, g=rec.object_guid }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			            }
-			            res = rec.Id;
-			        }, Model.RetryPolicyAsync);
 			        return res;
 			    }
 			}
@@ -1223,37 +1580,12 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			        ConnExecute((conn) =>
 			        {
 			            var h = conn.QuerySingleOrDefault<_history>(
-			                "SELECT * FROM v._history WHERE object_id=@i  AND date_time<@d ORDER BY date_time DESC FETCH FIRST 1 ROWS ONLY;", 
+			                "SELECT * FROM _history WHERE object_id=@i  AND date_time<@d ORDER BY date_time DESC LIMIT 1;", 
 			                new { i = constantId, d = _history.FromDateTime(utc) },
 						    commandTimeout: Model.CommandTimeout, commandType: CommandType.Text
 						);
 			            if (h != null) res = h.val;
 			        }, Model.RetryPolicy);
-			        return res;
-			    }
-			    /// <summary>
-			    /// Get constant history string value
-			    /// </summary>
-			    /// <returns>
-			    /// string value
-			    /// </returns>
-			    /// <param name="constantId">Constant ID</param>
-			    /// <param name="utc">UTC date and time</param>
-			    public static async Task<string?> LoadAsync(int constantId, DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Model.tt Line: 274*/) // Model.tt Line: 274
-			    {
-					System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
-			        if (utc.Kind == DateTimeKind.Local)
-			            utc = utc.ToUniversalTime();
-			        string? res = null;
-			        await ConnExecuteAsync(async (conn) =>
-			        {
-			            var h = await conn.QuerySingleOrDefaultAsync<_history>(
-			                "SELECT * FROM v._history WHERE object_id=@i  AND date_time<@d ORDER BY date_time DESC FETCH FIRST 1 ROWS ONLY;", 
-			                new { i = constantId, d = _history.FromDateTime(utc) },
-						    commandTimeout: Model.CommandTimeout, commandType: CommandType.Text
-			            );
-			            if (h != null) res = h.val;
-			        }, Model.RetryPolicyAsync);
 			        return res;
 			    }
 			    /// <summary>
@@ -1270,14 +1602,14 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			        var dt = _history.FromDateTime(utc);
 			        ConnExecute((conn) =>
 			        {
-			            var lst = conn.Query<_history>("SELECT * FROM v._history WHERE " +
+			            var lst = conn.Query<_history>("SELECT * FROM _history WHERE " +
 			                "object_id=@i AND date_time=@d",
 			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text).ToList();
 			            if (lst.Count == 1)
 			            {
 			                var rec = lst[0];
 			                rec.val = val;
-			                conn.Execute("UPDATE v._history SET val=@v WHERE Id=@i;",
+			                conn.Execute("UPDATE _history SET val=@v WHERE Id=@i;",
 			                    new { v = val, i = rec.Id }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			            }
 			            else if (lst.Count == 0)
@@ -1288,7 +1620,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			                    date_time = dt,
 			                    val = val
 			                };
-			                conn.Execute("INSERT INTO v._history (Id,object_id,date_time,val) VALUES (@i,@o,@d,@v);",
+			                conn.Execute("INSERT INTO _history (Id,object_id,date_time,val) VALUES (@i,@o,@d,@v);",
 			                    new { i = rec.Id, o = constantId, d = dt, v = val }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			            }
 			            else
@@ -1296,48 +1628,6 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			                System.Diagnostics.Debug.Assert(false);
 			            }
 			        }, Model.RetryPolicy);
-			    }
-			    /// <summary>
-			    /// Save constant string value in history
-			    /// </summary>
-			    /// <param name="constantId">Constant int ID</param>
-			    /// <param name="val">New value for constant.</param>
-			    /// <param name="utc">UTC DateTime</param>
-			    public static async Task SaveAsync(int constantId, string? val, DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Model.tt Line: 392*/) // Model.tt Line: 392
-			    {
-					System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
-			        if (utc.Kind == DateTimeKind.Local)
-			            utc = utc.ToUniversalTime();
-			        var dt = _history.FromDateTime(utc);
-			        await ConnExecuteAsync(async (conn) =>
-			        {
-			            var ls = await conn.QueryAsync<_history>("SELECT * FROM v._history WHERE " +
-			                "object_id=@i AND date_time=@d",
-			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			            var lst = ls.ToList();
-			            if (lst.Count == 1)
-			            {
-			                var rec = lst[0];
-			                rec.val = val;
-			                await conn.ExecuteAsync("UPDATE v._history SET val=@v WHERE Id=@i;",
-			                    new { v = val, i = rec.Id }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			            }
-			            else if (lst.Count == 0)
-			            {
-			                var rec = new _history()
-			                {
-			                    Id = (int) await Model.GetNextIdAsync(_history.T_GUID),
-			                    date_time = dt,
-			                    val = val
-			                };
-			                await conn.ExecuteAsync("INSERT INTO v._history (Id,object_id,date_time,val) VALUES (@i,@o,@d,@v);",
-			                    new { i = rec.Id, o = constantId, d = dt, v = val }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			            }
-			            else
-			            {
-			                System.Diagnostics.Debug.Assert(false);
-			            }
-			        }, Model.RetryPolicyAsync);
 			    }
 			    /// <summary>
 			    /// Select list constant history records before utc date and time.
@@ -1354,30 +1644,9 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			        IEnumerable<_history>? lst = null;
 			        ConnExecute((conn) =>
 			        {
-			            lst = conn.Query<_history>("SELECT * FROM v._history WHERE object_id=@i AND date_time<@d ORDER BY date_time DESC;",
+			            lst = conn.Query<_history>("SELECT * FROM _history WHERE object_id=@i AND date_time<@d ORDER BY date_time DESC;",
 			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
-			        System.Diagnostics.Debug.Assert(lst != null);
-			        return lst;
-			    }
-			    /// <summary>
-			    /// Select list constant history records before utc date and time.
-			    /// </summary>
-			    /// <returns>Return list of '_history' objects</returns>
-			    /// <param name="constantId">Constant int ID</param>
-			    /// <param name="utc">UTC DateTime</param>
-			    public static async Task<IEnumerable<_history>> SelectBeforeAsync(int constantId, DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Model.tt Line: 479*/) // Model.tt Line: 479
-			    {
-					System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
-			        if (utc.Kind == DateTimeKind.Local)
-			            utc = utc.ToUniversalTime();
-			        var dt = _history.FromDateTime(utc);
-			        IEnumerable<_history>? lst = null;
-			        await ConnExecuteAsync(async (conn) =>
-			        {
-			            lst = await conn.QueryAsync<_history>("SELECT * FROM v._history WHERE object_id=@i AND date_time<@d ORDER BY date_time DESC;",
-			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			        }, Model.RetryPolicyAsync);
 			        System.Diagnostics.Debug.Assert(lst != null);
 			        return lst;
 			    }
@@ -1396,30 +1665,9 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			        IEnumerable<_history>? lst = null;
 			        ConnExecute((conn) =>
 			        {
-			            lst = conn.Query<_history>("SELECT * FROM v._history WHERE object_id=@i AND date_time>@d ORDER BY date_time DESC;",
+			            lst = conn.Query<_history>("SELECT * FROM _history WHERE object_id=@i AND date_time>@d ORDER BY date_time DESC;",
 			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
-			        System.Diagnostics.Debug.Assert(lst != null);
-			        return lst;
-			    }
-			    /// <summary>
-			    /// Select list constant history records after utc date and time.
-			    /// </summary>
-			    /// <returns>Return list of '_history' objects</returns>
-			    /// <param name="constantId">Constant int ID</param>
-			    /// <param name="utc">UTC DateTime</param>
-			    public static async Task<IEnumerable<_history>> SelectAfterAsync(int constantId, DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Model.tt Line: 545*/) // Model.tt Line: 545
-			    {
-					System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
-			        if (utc.Kind == DateTimeKind.Local)
-			            utc = utc.ToUniversalTime();
-			        var dt = _history.FromDateTime(utc);
-			        IEnumerable<_history>? lst = null;
-			        await ConnExecuteAsync(async (conn) =>
-			        {
-			            lst = await conn.QueryAsync<_history>("SELECT * FROM v._history WHERE object_id=@i AND date_time>@d ORDER BY date_time DESC;",
-			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			        }, Model.RetryPolicyAsync);
 			        System.Diagnostics.Debug.Assert(lst != null);
 			        return lst;
 			    }
@@ -1443,35 +1691,9 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			        IEnumerable<_history>? lst = null;
 			        ConnExecute((conn) =>
 			        {
-			            lst = conn.Query<_history>("SELECT * FROM v._history WHERE object_id=@i AND date_time>@d AND date_time<@t ORDER BY date_time DESC;",
+			            lst = conn.Query<_history>("SELECT * FROM _history WHERE object_id=@i AND date_time>@d AND date_time<@t ORDER BY date_time DESC;",
 			                new { i = constantId, d = dt, t = dt2 }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
-			        System.Diagnostics.Debug.Assert(lst != null);
-			        return lst;
-			    }
-			    /// <summary>
-			    /// Select list constant history records for period.
-			    /// </summary>
-			    /// <returns>Return list of '_history' objects</returns>
-			    /// <param name="constantId">Constant int ID</param>
-			    /// <param name="utcTo">UTC DateTime</param>
-			    /// <param name="utcFrom">UTC DateTime</param>
-			    public static async Task<IEnumerable<_history>> SelectAsync(int constantId, DateTime utcFrom, DateTime utcTo, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Model.tt Line: 617*/) // Model.tt Line: 617
-			    {
-					System.Diagnostics.Debug.Assert(utcFrom.Kind != DateTimeKind.Unspecified);
-					System.Diagnostics.Debug.Assert(utcTo.Kind != DateTimeKind.Unspecified);
-			        if (utcFrom.Kind == DateTimeKind.Local)
-			            utcFrom = utcFrom.ToUniversalTime();
-			        if (utcTo.Kind == DateTimeKind.Local)
-			            utcTo = utcTo.ToUniversalTime();
-			        var dt = _history.FromDateTime(utcFrom);
-			        var dt2 = _history.FromDateTime(utcTo);
-			        IEnumerable<_history>? lst = null;
-			        await ConnExecuteAsync(async (conn) =>
-			        {
-			            lst = await conn.QueryAsync<_history>("SELECT * FROM v._history WHERE object_id=@i AND date_time>@d AND date_time<@t ORDER BY date_time DESC;",
-			                new { i = constantId, d = dt, t = dt2 }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			        }, Model.RetryPolicyAsync);
 			        System.Diagnostics.Debug.Assert(lst != null);
 			        return lst;
 			    }
@@ -1485,25 +1707,9 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			        IEnumerable<_history>? lst = null;
 			        ConnExecute((conn) =>
 			        {
-			            lst = conn.Query<_history>("SELECT * FROM v._history WHERE object_id=@i ORDER BY date_time DESC;",
+			            lst = conn.Query<_history>("SELECT * FROM _history WHERE object_id=@i ORDER BY date_time DESC;",
 			                new { i = constantId }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
-			        System.Diagnostics.Debug.Assert(lst != null);
-			        return lst;
-			    }
-			    /// <summary>
-			    /// Select list constant all history records.
-			    /// </summary>
-			    /// <returns>Return list of '_history' objects</returns>
-			    /// <param name="constantId">Constant int ID</param>
-			    public static async Task<IEnumerable<_history>> SelectAsync(int constantId, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Model.tt Line: 681*/) // Model.tt Line: 681
-			    {
-			        IEnumerable<_history>? lst = null;
-			        await ConnExecuteAsync(async (conn) =>
-			        {
-			            lst = await conn.QueryAsync<_history>("SELECT * FROM v._history WHERE object_id=@i ORDER BY date_time DESC;",
-			                new { i = constantId }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			        }, Model.RetryPolicyAsync);
 			        System.Diagnostics.Debug.Assert(lst != null);
 			        return lst;
 			    }
@@ -1521,33 +1727,12 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			        var dt = _history.FromDateTime(utc) + 1;
 			        ConnExecute((conn) => // Model.tt Line: 719
 			        {
-			            var dt2 = conn.ExecuteScalar("SELECT date_time FROM v._history WHERE object_id=@i AND date_time<@d ORDER BY date_time DESC FETCH FIRST 1 ROWS ONLY;", 
-			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text); // Model.tt Line: 748
+			            var dt2 = conn.ExecuteScalar("SELECT date_time FROM _history WHERE object_id=@i AND date_time<@d ORDER BY date_time DESC LIMIT 1;", 
+			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text); // Model.tt Line: 737
 			            if (dt2 != null)
-			                conn.Execute("DELETE FROM v._history WHERE object_id=@i AND date_time<@d;", 
+			                conn.Execute("DELETE FROM _history WHERE object_id=@i AND date_time<@d;", 
 			                    new { i = constantId, d = dt2 }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
-			    }
-			    /// <summary>
-			    /// Clean history records older utc.
-			    /// Arter cleaning only one record older utc will be kept.
-			    /// </summary>
-			    /// <param name="constantId">Constant int ID</param>
-			    /// <param name="utc">UTC DateTime</param>
-			    public static async Task CleanOlderAsync(int constantId, DateTime utc, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Model.tt Line: 787*/) // Model.tt Line: 787
-			    {
-					System.Diagnostics.Debug.Assert(utc.Kind != DateTimeKind.Unspecified);
-			        if (utc.Kind == DateTimeKind.Local)
-			            utc = utc.ToUniversalTime();
-			        var dt = _history.FromDateTime(utc) + 1;
-			        await ConnExecuteAsync(async (conn) => // Model.tt Line: 796
-			        {
-			            var dt2 = await conn.ExecuteScalarAsync("SELECT date_time FROM v._history WHERE object_id=@i AND date_time<@d ORDER BY date_time DESC FETCH FIRST 1 ROWS ONLY;", 
-			                new { i = constantId, d = dt }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text); // Model.tt Line: 825
-			            if (dt2 != null)
-			                await conn.ExecuteAsync("DELETE FROM v._history WHERE object_id=@i AND date_time<@d;", 
-			                    new { i = constantId, d = dt2 }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			        }, Model.RetryPolicyAsync);
 			    }
 			    /// <summary>
 			    /// Remove history record
@@ -1556,20 +1741,9 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    {
 			        ConnExecute((conn) =>
 			        {
-			            conn.Execute("DELETE FROM v._history WHERE id=@i;", new { i = id }, 
+			            conn.Execute("DELETE FROM _history WHERE id=@i;", new { i = id }, 
 			                commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
-			    }
-			    /// <summary>
-			    /// Remove history record
-			    /// </summary>
-			    public static async Task DeleteAsync(int id, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Model.tt Line: 884*/) // Model.tt Line: 884
-			    {
-			        await ConnExecuteAsync(async (conn) =>
-			        {
-			            await conn.ExecuteAsync("DELETE FROM v._history WHERE id=@i;", new { i = id }, 
-			                commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			        }, Model.RetryPolicyAsync);
 			    }
 			    /// <summary>
 			    /// Remove all history records for constant
@@ -1578,23 +1752,13 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    {
 			        ConnExecute((conn) =>
 			        {
-			            conn.Execute("DELETE FROM v._history WHERE object_id=@i;", new { i = constantId }, 
+			            conn.Execute("DELETE FROM _history WHERE object_id=@i;", new { i = constantId }, 
 			                commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
 			        }, Model.RetryPolicy);
 			    }
-			    /// <summary>
-			    /// Remove all history records for constant
-			    /// </summary>
-			    public static async Task ResetAsync(int constantId, [CallerFilePath] string file = "", [CallerMemberName] string member = "", [CallerLineNumber] int line = 0 /*NameSpace.partial.shared.cs Line: 316, call from Model.tt Line: 930*/) // Model.tt Line: 930
-			    {
-			        await ConnExecuteAsync(async (conn) =>
-			        {
-			            await conn.ExecuteAsync("DELETE FROM v._history WHERE object_id=@i;", new { i = constantId }, commandTimeout: Model.CommandTimeout, commandType: CommandType.Text);
-			        }, Model.RetryPolicyAsync);
-			    }
 			}
 			#endregion History
-			public partial class UnitOfWorkBase : IUnitOfWork // UnitOfWork.tt Line: 10, called from NameSpace.tt Line: 199
+			public partial class UnitOfWorkBase : IUnitOfWork // UnitOfWork.tt Line: 10, called from NameSpace.tt Line: 198
 			{
 			    // TODO https://docs.microsoft.com/en-us/dotnet/api/system.transactions?view=dotnet-plat-ext-3.1
 			    // https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection.begintransaction?view=dotnet-plat-ext-3.1
@@ -1603,11 +1767,17 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    protected readonly List<IEntityBase> listResetFlags = new();
 			    public System.Data.Common.DbConnection Connection { get; private set; }
 			    public System.Data.Common.DbTransaction Transaction { get; private set; }
+			    #if DEBUG
+			    public static bool IsInTransaction;
+			    #endif
 				public UnitOfWorkBase() // UnitOfWork.tt Line: 25
 				{
-			        this.Connection = new NpgsqlConnection(Model.ConnectionString);
+			        this.Connection = new SqliteConnection(Model.ConnectionString);
 			        this.Connection.Open();
 			        this.Transaction = this.Connection.BeginTransaction();
+			        #if DEBUG
+			        UnitOfWorkBase.IsInTransaction = true;
+			        #endif
 				}
 			    private Exception? exTransaction = null;
 				public void Commit() // UnitOfWork.tt Line: 42
@@ -1650,6 +1820,9 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			            Connection.Close();
 					dispose(true);
 					GC.SuppressFinalize(this);
+			        #if DEBUG
+			        UnitOfWorkBase.IsInTransaction = false;
+			        #endif
 				}
 				private void dispose(bool disposing)
 				{
@@ -1951,68 +2124,6 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			            }
 			        }, RetryPolicy);
 			    }
-			    public async Task CommitAsync() // DeferredTransaction.tt Line: 141 
-			    {
-			        await ConnExecuteAsync(async (conn) =>
-			        {
-						var curr_op = default(Op);
-			            try
-			            {
-			                await conn.OpenAsync();
-			                this.transaction = await conn.BeginTransactionAsync();
-			                foreach (var op in this.ListOperations)
-			                {
-			                    var cd = op.Cd;
-			                    var cmd = new CommandDefinition(cd.CommandText, cd.Parameters, transaction, CommandTimeout, cd.CommandType);
-						        curr_op = op;
-			                    await conn.ExecuteAsync(cmd);
-			                }
-			                await transaction.CommitAsync();
-			                curr_op = null;
-					        foreach(var t in this.ListOperations)
-					        {
-			                    if (t.Entity == null)
-			                        continue;
-					            if (t.OpType == Op.EnumOpType.Delete)
-					            {
-					                t.Entity.IsRemoved(true);
-					            }
-					            else if (t.OpType == Op.EnumOpType.Remove)
-							    {
-							        t.Entity.IsRemoved(true);
-							        foreach(var tt in t.Entity.GetChildren())
-							        {
-							            tt.IsRemoved(true);
-							        }
-							    }
-					            else if (t.OpType == Op.EnumOpType.Sql) { }
-					            else
-					            {
-					                t.Entity.IsNeedInsert(false);
-					                t.Entity.IsNeedUpdate(false);
-					            }
-					        }
-			                this.ListOperations.Clear();
-			            }
-			            catch (Exception ex)
-			            {
-			                if (transaction != null)
-			                {
-			                    await transaction.RollbackAsync();
-			                }
-			                if (curr_op != null)
-			                    throw new Exception($"{ex.Message}  File:{curr_op.File}, Line:{curr_op.Line}, Member:{curr_op.Member}. See inner exception.", ex);
-			                else
-			                    throw;
-			            }
-			            finally
-			            {
-			                transaction?.DisposeAsync();
-			                if (conn.State != ConnectionState.Closed)
-			                    await conn.CloseAsync();
-			            }
-			        }, RetryPolicyAsync);
-			    }
 			    //TODO commandTimeout from this
 			    public void AddCommand(string commandText, object? parameters = null,
 			                [CallerFilePath] string file = "",
@@ -2105,9 +2216,10 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    #endregion General // DeferredTransaction.tt Line: 350 
 			}
 			
-			#region Connection // Connection.tt Line: 9, called from NameSpace.tt Line: 205
+			#region Connection // Connection.tt Line: 9, called from NameSpace.tt Line: 204
 			public static bool IsBuffered = true;
 			public static int? CommandTimeout = 100; // seconds
+			private static readonly object lock_object = new();
 			
 			public static Policy RetryPolicy = Policy // Connection.tt Line: 17
 			    .Handle<Exception>(ex => false)
@@ -2150,7 +2262,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    {
 			        if (__connString == null)
 			        {
-			            __connString = ConfigurationManagerJson.GetConnectionString("PostgreSql");
+			            __connString = ConfigurationManagerJson.GetConnectionString("Sqlite");
 			        }
 			        return __connString;
 			    }
@@ -2159,31 +2271,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			private static string? __connString;
 			#endregion Connection // Connection.tt Line: 173
 			
-			#region Connection Wrapper // ConnectionWrapper.tt Line: 8, called from NameSpace.tt Line: 208
-			/// <summary>
-			/// Execute any ASYNC methods by using open db connection. Expecting return Task of IEnumerable collection of T objects or null.
-			/// Execution will proceed with retry policy
-			/// </summary>
-			/// <typeparam name="T">Any type for appropriate database table. For example from Catalogs class</typeparam>
-			/// <param name="onConnection">function which accept DbConnection and return IEnumerable collection of T objects or null </param>
-			/// <returns>Task of IEnumerable collection of T objects or null</returns>
-			/// <example>
-			/// <code>
-			/// var lst2 = await Db.ConnSelectManyAsync(async (conn) => { return await conn.GetAllAsync&lt;Catalogs.Simple&gt;(); });
-			/// </code>
-			/// </example>    
-			public static async Task<IEnumerable<T>> ConnSelectManyAsync<T>(Func<System.Data.Common.DbConnection, Task<IEnumerable<T>>> onConnection, Polly.Retry.AsyncRetryPolicy? policy = null) // ConnectionWrapper.tt Line: 22
-			{
-			    if (policy == null) policy = Model.RetryPolicyAsync;
-			    IEnumerable<T>? res = null;
-			    await policy.ExecuteAsync(async () =>
-			    {
-			        using var conn = new NpgsqlConnection(Model.ConnectionString);
-			        res = await onConnection(conn);
-			    });
-			    System.Diagnostics.Debug.Assert(res != null);
-			    return res;
-			}
+			#region Connection Wrapper // ConnectionWrapper.tt Line: 8, called from NameSpace.tt Line: 207
 			/// <summary>
 			/// Execute any methods by using open db connection. Expecting return IEnumerable collection of T objects or null.
 			/// Execution will proceed with retry policy
@@ -2202,26 +2290,11 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    IEnumerable<T> res = new List<T>();
 			    policy.Execute(() =>
 			    {
-			        using var conn = new NpgsqlConnection(Model.ConnectionString);
-			        res = onConnection(conn);
-			    });
-			    return res;
-			}
-			/// <summary>
-			/// Execute any ASYNC methods by using open db connection. Expecting return Task of one T objects or null.
-			/// Execution will proceed with retry policy
-			/// </summary>
-			/// <typeparam name="T">Any type for appropriate database table. For example from Catalogs class</typeparam>
-			/// <param name="onConnection">function which accept DbConnection and return one T object or null </param>
-			/// <returns>Task of one T object or null</returns>
-			public static async Task<T?> ConnSelectSingleAsync<T>(Func<System.Data.Common.DbConnection, Task<T>> onConnection, Polly.Retry.AsyncRetryPolicy? policy = null) // ConnectionWrapper.tt Line: 75
-			{
-			    if (policy == null) policy = Model.RetryPolicyAsync;
-			    T? res = default;
-			    await policy.ExecuteAsync(async () =>
-			    {
-			        using var conn = new NpgsqlConnection(Model.ConnectionString);
-			        res = await onConnection(conn);
+			        using var conn = new SqliteConnection(Model.ConnectionString);
+			        lock(lock_object) // multi-thread connection is not supported 
+			        {
+			            res = onConnection(conn);
+			        }
 			    });
 			    return res;
 			}
@@ -2239,24 +2312,13 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    T? res = null;
 			    policy.Execute(() =>
 			    {
-			        using var conn = new NpgsqlConnection(Model.ConnectionString);
-			        res = onConnection(conn);
+			        using var conn = new SqliteConnection(Model.ConnectionString);
+			        lock(lock_object) // multi-thread connection is not supporting 
+			        {
+			            res = onConnection(conn);
+			        }
 			    });
 			    return res;
-			}
-			/// <summary>
-			/// Execute any ASYNC methods by using open db connection.
-			/// Execution will proceed with retry policy
-			/// </summary>
-			/// <param name="onConnection">action which accept DbConnection</param>
-			public static async Task ConnExecuteAsync(Func<System.Data.Common.DbConnection, Task> onConnection, Polly.Retry.AsyncRetryPolicy? policy = null) // ConnectionWrapper.tt Line: 121
-			{
-			    if (policy == null) policy = Model.RetryPolicyAsync;
-			    await policy.ExecuteAsync(async () =>
-			    {
-			        using var conn = new NpgsqlConnection(Model.ConnectionString);
-			        await onConnection(conn);
-			    });
 			}
 			/// <summary>
 			/// Execute any methods by using open db connection.
@@ -2268,26 +2330,12 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    if (policy == null) policy = Model.RetryPolicy;
 			    policy.Execute(() =>
 			    {
-			        using var conn = new NpgsqlConnection(Model.ConnectionString);
-			        onConnection(conn);
+			        using var conn = new SqliteConnection(Model.ConnectionString);
+			        lock(lock_object) // multi-thread connection is not supported 
+			        {
+			            onConnection(conn);
+			        }
 			    });
-			}
-			/// <summary>
-			/// Execute any ASYNC methods returning Task of scalar value by using open db connection.
-			/// Execution will proceed with retry policy
-			/// </summary>
-			/// <param name="onConnection">function which accept DbConnection</param>
-			/// <returns>Task of one T object (int or long)</returns>
-			public static async Task<T?> ConnExecuteScalarAsync<T>(Func<System.Data.Common.DbConnection, Task<T>> onConnection, Polly.Retry.AsyncRetryPolicy? policy = null) where T : notnull // ConnectionWrapper.tt Line: 161
-			{
-			    if (policy == null) policy = Model.RetryPolicyAsync;
-			    T? res = default;
-			    await policy.ExecuteAsync(async () =>
-			    {
-			        using var conn = new NpgsqlConnection(Model.ConnectionString);
-			        res = await onConnection(conn);
-			    });
-			    return res;
 			}
 			/// <summary>
 			/// Execute any methods returning scalar value by using open db connection.
@@ -2301,17 +2349,19 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    T? res = default;
 			    policy.Execute(() =>
 			    {
-			        using var conn = new NpgsqlConnection(Model.ConnectionString);
-			        res = onConnection(conn);
+			        using var conn = new SqliteConnection(Model.ConnectionString);
+			        lock(lock_object) // multi-thread connection is not supporting 
+			        {
+			            res = onConnection(conn);
+			        }
 			    });
 			    return res;
 			}
 			#endregion Connection Wrapper // ConnectionWrapper.tt Line: 199
 			
-			#region Dapper // ModelDapper.tt Line: 9, called from NameSpace.tt Line: 211
+			#region Dapper // ModelDapper.tt Line: 9, called from NameSpace.tt Line: 210
 			public static void DapperInit() // ModelDapper.tt Line: 10
 			{
-			    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 			
 			
 			    //SqlMapper.AddTypeHandler(typeof(DateTime), DateTimeHandler.Default);
@@ -2428,7 +2478,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    }
 			    else
 			    {
-			        sb.Append("SELECT * FROM v.");
+			        sb.Append("SELECT * FROM ");
 			        sb.Append(table);
 			        sb.Append("");
 			    }
@@ -2467,18 +2517,17 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 				}
 				if (page > 0 && pagesize > 0)
 				{
+					sb.Append(" LIMIT ");
+					sb.Append(pagesize);
 					sb.Append(" OFFSET ");
 			        sb.Append((page - 1) * pagesize);
-					sb.Append(" ROWS FETCH NEXT ");
-					sb.Append(pagesize);
-					sb.Append(" ROWS ONLY");
 				}
 				sb.Append(';');
 			    return sb.ToString();
 			}
 			#endregion Dapper
 			
-			#region Utils // Utils.tt Line: 8, called from NameSpace.tt Line: 214
+			#region Utils // Utils.tt Line: 8, called from NameSpace.tt Line: 213
 			// https://stackoverflow.com/questions/46940710/getting-value-from-appsettings-json-in-net-core
 			public static class ConfigurationManagerJson // Utils.tt Line: 10
 			{
@@ -2518,8 +2567,8 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 			    }
 			}
         }
-            } // PostgreSql // NameSpace.tt Line: 254
-	#region ID Cache // CacheIdHiLo.tt Line: 8, called from NameSpace.tt Line: 260
+            } // Sqlite // NameSpace.tt Line: 253
+	#region ID Cache // CacheIdHiLo.tt Line: 8, called from NameSpace.tt Line: 259
 	public interface ICacheId // CacheIdHiLo.tt Line: 10
 	{
 	    int GetNextId(string guid);
@@ -3083,8 +3132,8 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 	        public DateTime? LastCallDateTime;
 	    }
 	}
-	#endregion ID Cache // CacheIdHiLo.tt Line: 576, called from NameSpace.tt Line: 260
-    public interface IEntityBaseExplicit // NameSpace.tt Line: 265
+	#endregion ID Cache // CacheIdHiLo.tt Line: 576, called from NameSpace.tt Line: 259
+    public interface IEntityBaseExplicit // NameSpace.tt Line: 264
     {
         CommandDefinitionData GetCommandDefinitionInsert();
         CommandDefinitionData GetCommandDefinitionUpdate();
@@ -3099,11 +3148,11 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
         CommandDefinitionData GetCommandDefinitionMoveTo(int id, int idGroupTo);
         CommandDefinitionData GetCommandDefinitionLoadSubTree(int id, int deep);
     }
-    public interface IRecordId // NameSpace.tt Line: 280
+    public interface IRecordId // NameSpace.tt Line: 279
     {
         int Id { get; }
     }
-    public interface IEntityBase : IRecordId // NameSpace.tt Line: 284
+    public interface IEntityBase : IRecordId // NameSpace.tt Line: 283
     {
         string GetGuid();
         string GetDbTableName();
@@ -3113,28 +3162,28 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
         IEnumerable<IEntityBase> GetChildren();
         string TYPE_CACHE_ID { get; }
     }
-    public interface IEntityBaseExplicit<T> : IEntityBaseExplicit, IEntityBase // NameSpace.tt Line: 297
+    public interface IEntityBaseExplicit<T> : IEntityBaseExplicit, IEntityBase // NameSpace.tt Line: 296
     {
         T CreateDto(int id);
         T? LoadUtil(SqlMapper.GridReader multi);
     }
-    public interface IViewPlainBaseExplicit<T> // NameSpace.tt Line: 302
+    public interface IViewPlainBaseExplicit<T> // NameSpace.tt Line: 301
     {
         CommandDefinitionData GetCommandDefinitionCountWhere(string? where, object? param);
         CommandDefinitionData GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param);
     }
-    public interface IViewSelfTreeBaseExplicit<T> : IViewPlainBaseExplicit<T> // NameSpace.tt Line: 307
+    public interface IViewSelfTreeBaseExplicit<T> : IViewPlainBaseExplicit<T> // NameSpace.tt Line: 306
     {
         CommandDefinitionData GetCommandDefinitionSubTreeView(int? parentId, int deep, string? sort, string? where, object? param);
         CommandDefinitionData GetCommandDefinitionSubItemsView(int? folderId, int pagesize, int page, string? sort, string? where, object? param);
         CommandDefinitionData GetCommandDefinitionTreeListView(int? selectedId, string? where, object? param);
         CommandDefinitionData GetCommandDefinitionTreeListSubView(int? selectedId, string? sort, string? where, object? param);
     }
-    public interface IViewPlainForRefTreeBaseExplicit<T> : IViewPlainBaseExplicit<T> // NameSpace.tt Line: 314
+    public interface IViewPlainForRefTreeBaseExplicit<T> : IViewPlainBaseExplicit<T> // NameSpace.tt Line: 313
     {
         CommandDefinitionData GetCommandDefinitionSubItemsView(int? folderId, int pagesize, int page, string? sort, string? where, object? param);
     }
-    public class Op // NameSpace.tt Line: 318
+    public class Op // NameSpace.tt Line: 317
     {
         public enum EnumOpType { None, Insert, Update, Delete, Remove, Sql }
         public Op(IEntityBase entity, EnumOpType opType, string file, string member, int line)
@@ -3189,7 +3238,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
     /// <summary>
     /// Interface for UnitOfWork
     /// </summary>
-    public partial interface IUnitOfWork : IDisposable // NameSpace.tt Line: 373
+    public partial interface IUnitOfWork : IDisposable // NameSpace.tt Line: 372
     {
         /// <summary>
         /// Commit all changes as atomic operation. 
@@ -3201,7 +3250,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
         /// </summary>
 	    void Rollback();
     }
-	public struct CommandDefinitionData // DapperGlobal.tt Line: 8, called from NameSpace.tt Line: 392
+	public struct CommandDefinitionData // DapperGlobal.tt Line: 8, called from NameSpace.tt Line: 391
 	{
 	    public CommandDefinitionData(string commandText, object? parameters = null, CommandType? commandType = null)
 	    {
@@ -3356,7 +3405,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
 	    }
 	    */
 	}
-    public static class CacheUtils // NameSpace.tt Line: 526
+    public static class CacheUtils // NameSpace.tt Line: 525
     {
         public static T? GetFromCache<T>(this IMemoryCache mc, string modelKey, string catType, int catId)
             where T : IEntityBase
@@ -3378,7 +3427,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
             mc.Remove(key);
         }
     }
-    public class ConcurrencyOptimisticException : System.Exception // NameSpace.tt Line: 548
+    public class ConcurrencyOptimisticException : System.Exception // NameSpace.tt Line: 547
     {
         public ConcurrencyOptimisticException(string? message) : base(message) { }
         public ConcurrencyOptimisticException(string? message, bool isDeleted) : base(message)
@@ -3388,9 +3437,9 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 43
         public bool IsDeleted { get; private set; }
     }
 }
-namespace vPlugins // NameSpace.tt Line: 558
+namespace vPlugins // NameSpace.tt Line: 557
 {
-	// called from NameSpace.tt Line: 562
+	// called from NameSpace.tt Line: 561
 	#region Interfaces // Api.tt Line: 9
 	public interface ICount
 	{
@@ -3634,7 +3683,7 @@ namespace vPlugins // NameSpace.tt Line: 558
 	#endregion Interfaces
 	
 }
-#if !NET6_0 && !NET7_0 // Additional.tt Line: 8, called from NameSpace.tt Line: 568
+#if !NET6_0 && !NET7_0 // Additional.tt Line: 8, called from NameSpace.tt Line: 567
 /*
 namespace System 
 {

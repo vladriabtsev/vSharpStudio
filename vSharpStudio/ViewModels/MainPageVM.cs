@@ -218,7 +218,6 @@ namespace vSharpStudio.ViewModels
         public UserSettings? UserSettings { get; private set; }
         public static readonly string USER_SETTINGS_FILE_PATH = @".\.vSharpStudio.settings";
         public static readonly string DEFAULT_CFG_FILEName = "vSharpStudio.vcfg";
-        public static string? CurrentCfgFolderPath { get; private set; }
         public string? CurrentCfgFilePath
         {
             get { return this._CurrentCfgFilePath; }

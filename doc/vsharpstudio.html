@@ -1116,7 +1116,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td>use_tree</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(21)]
+                  <td><p>@attr [PropertyOrderAttribute(20)]
 @attr [DisplayName(&#34;Use Tree&#34;)]
 @attr [Description(&#34;Use tree catalog structure&#34;)] </p></td>
                 </tr>
@@ -1125,8 +1125,8 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td>use_separate_tree_for_folders</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(22)]
-@attr [DisplayName(&#34;Separate Folders Tree&#34;)]
+                  <td><p>@attr [PropertyOrderAttribute(21)]
+@attr [DisplayName(&#34;Separate Tree&#34;)]
 @attr [Description(&#34;Separate tree object for folders&#34;)] </p></td>
                 </tr>
               
@@ -1134,7 +1134,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td>max_tree_levels</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(23)]
+                  <td><p>@attr [PropertyOrderAttribute(22)]
 @attr [DisplayName(&#34;Max Levels&#34;)]
 @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] </p></td>
                 </tr>
@@ -1198,7 +1198,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td>use_folder_type_explicitly</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(31)]
+                  <td><p>@attr [PropertyOrderAttribute(23)]
 @attr [DisplayName(&#34;Explicit Folders&#34;)]
 @attr [Description(&#34;User has choose explicitly item or folder type for catalog element&#34;)] </p></td>
                 </tr>
@@ -7562,15 +7562,15 @@ repeated proto_document list_documents = 7;
           <tbody>
             
               <tr>
-                <td>ListWide</td>
+                <td>FormTypeNotSelected</td>
                 <td>0</td>
-                <td><p>@attr [DisplayName(&#34;Wide list view form&#34;)]</p></td>
+                <td><p>@attr [DisplayName(&#34;Not selected&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>ListNarrow</td>
+                <td>ListWide</td>
                 <td>1</td>
-                <td><p>@attr [DisplayName(&#34;Narrow list view form&#34;)]</p></td>
+                <td><p>@attr [DisplayName(&#34;Wide list view form&#34;)]</p></td>
               </tr>
             
               <tr>
@@ -7583,6 +7583,12 @@ repeated proto_document list_documents = 7;
                 <td>FolderEditForm</td>
                 <td>3</td>
                 <td><p>@attr [DisplayName(&#34;Folder edit form&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListNarrow</td>
+                <td>4</td>
+                <td><p>@attr [DisplayName(&#34;Narrow list view form&#34;)]</p></td>
               </tr>
             
           </tbody>

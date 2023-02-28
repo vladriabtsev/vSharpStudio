@@ -18,7 +18,7 @@ using FluentValidation.Results;
 namespace vSharpStudio.vm.ViewModels
 {
     // [DebuggerDisplay("AppProject:{Name,nq} props:{listProperties.Count,nq}")]
-    [DebuggerDisplay("AppProject:{Name,nq} RelPath:{RelativeAppProjectPath,nq} HasChanged:{IsHasChanged}")]
+    [DebuggerDisplay("AppProject:{Name,nq} RelPath:{RelativeAppProjectPath,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
         [BrowsableAttribute(false)]
@@ -41,6 +41,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
+        [Browsable(false)]
         new public ConfigNodesCollection<AppProjectGenerator> Children { get { return this.ListAppProjectGenerators; } }
 
         [Browsable(false)]
@@ -383,7 +384,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<string>();
             lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            //lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }
         public void Delete()

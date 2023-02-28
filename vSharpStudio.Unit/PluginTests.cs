@@ -135,17 +135,17 @@ namespace vSharpStudio.Unit
             vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+            sln.RelativeAppSolutionPath = Path.Combine(vm.Config.CurrentCfgFolderPath, @"Solution.sln");
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+            prj.RelativeAppProjectPath = Path.Combine(sln.GetSolutionFolderPath(), @"ConsoleApp1\ConsoleApp1.csproj");
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             Assert.IsTrue(gen.Name.StartsWith(Defaults.AppPrjGeneratorName));
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
-            gen.GenFileName = "test_file.cs";
+            gen.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
+            gen.GenFileName = "test_file.cs";
             Assert.AreEqual("Sample-DbAccess", gen.Name);
 
             gen.PluginGuid = "";
@@ -195,16 +195,18 @@ namespace vSharpStudio.Unit
             vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+            sln.RelativeAppSolutionPath = Path.Combine(vm.Config.CurrentCfgFolderPath, 
+                @"Solution.sln");
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+            prj.RelativeAppProjectPath = Path.Combine(sln.GetSolutionFolderPath(), 
+                @"ConsoleApp1\ConsoleApp1.csproj");
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
-            gen.GenFileName = "test_file.cs";
+            gen.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
+            gen.GenFileName = "test_file.cs";
 
             var prms = (vPlugin.Sample.GeneratorDbAccessSettings)gen.DynamicGeneratorSettings;
             prms.IsAccessParam1 = true;
@@ -226,6 +228,8 @@ namespace vSharpStudio.Unit
             //Assert.AreEqual(typeof(vPlugin.Sample.GeneratorDbAccessNodeSettings).Name, vm.Config.Model.DynamicNodesSettings.GetType().Name);
 
             vm.BtnConfigSave.Execute();
+            await vm.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.IsTrue(vm.Config.CountErrors == 0);
 
             var vm2 = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
             Assert.AreEqual(1, vm2.Config.GroupAppSolutions.Count());
@@ -276,9 +280,14 @@ namespace vSharpStudio.Unit
             #endregion DicDiffResult
 
             gen2.GenFileName = "test.cs";
-            await vm2.BtnConfigValidateAsync.ExecuteAsync();
-            Assert.IsTrue(vm2.Config.Model.CountErrors == 0);
+            vm2.Config.SelectedNode = vm2.Config.GroupAppSolutions;
             Assert.IsTrue(vm2.Config.GroupAppSolutions.CountErrors == 0);
+            Assert.IsTrue(vm2.Config.CountErrors == 0);
+            await vm2.BtnConfigValidateAsync.ExecuteAsync();
+            Assert.IsTrue(vm2.Config.GroupAppSolutions.ListAppSolutions[0].ListAppProjects[0].CountErrors == 0);
+            Assert.IsTrue(vm2.Config.GroupAppSolutions.ListAppSolutions[0].CountErrors == 0);
+            Assert.IsTrue(vm2.Config.GroupAppSolutions.CountErrors == 0);
+            Assert.IsTrue(vm2.Config.Model.CountErrors == 0);
             Assert.IsTrue(vm2.Config.GroupPlugins.CountErrors == 0);
             Assert.IsTrue(vm2.Config.GroupConfigLinks.CountErrors == 0);
             Assert.IsTrue(vm2.Config.CountErrors == 0);
@@ -365,14 +374,14 @@ namespace vSharpStudio.Unit
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+            sln.RelativeAppSolutionPath = Path.Combine(vm.Config.CurrentCfgFolderPath, @"Solution.sln");
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+            prj.RelativeAppProjectPath = Path.Combine(sln.GetSolutionFolderPath(), @"ConsoleApp1\ConsoleApp1.csproj");
             //Assert.AreEqual(0, vm.Config.DicAppGenerators.Count);
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
             gen.GenFileName = "test_file.cs";
@@ -403,7 +412,7 @@ namespace vSharpStudio.Unit
                 Assert.AreEqual(0, t.ListNodeGeneratorsSettings.Count);
             }
             gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
             gen.GenFileName = "test_file.cs";
@@ -534,7 +543,7 @@ namespace vSharpStudio.Unit
             _logger.LogInformation("".CallerInfo());
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute(@".\");
-            vm.BtnConfigSaveAs.Execute(@".\");
+            vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var pluginNode = (from p in vm.Config.GroupPlugins.ListPlugins where p.VPlugin is vPlugin.Sample.SamplePlugin select p).Single();
             var genDb = (IvPluginDbGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbSchema select p).Single().Generator;
@@ -542,18 +551,18 @@ namespace vSharpStudio.Unit
 
             var cfg = vm.Config;
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+            sln.RelativeAppSolutionPath = Path.Combine(vm.Config.CurrentCfgFolderPath, @"Solution.sln");
             Assert.IsNull(sln.DynamicPluginGroupSettings);
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+            prj.RelativeAppProjectPath = Path.Combine(sln.GetSolutionFolderPath(), @"ConsoleApp1\ConsoleApp1.csproj");
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
-            gen.GenFileName = "test_file.cs";
+            gen.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
             gen.Name = "AppGenName";
             gen.NameUi = "App Gen Name";
             gen.PluginGuid = pluginNode.Guid;
+            gen.GenFileName = "test_file.cs";
 
             // Empty settings without generator
             Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 0);
@@ -592,11 +601,11 @@ namespace vSharpStudio.Unit
 
             // second generator adding
             var gen2 = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen2.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen2.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
+            gen2.PluginGuid = pluginNode.Guid;
             gen2.GenFileName = "test_file2.cs";
             gen2.Name = "AppGenName2";
             gen2.NameUi = "App Gen Name2";
-            gen2.PluginGuid = pluginNode.Guid;
             Assert.IsTrue(sln.DicPluginsGroupSettings.Count == 1);
             Assert.IsTrue(prj.DicPluginsGroupSettings.Count == 1);
             Assert.IsNotNull(sln.DynamicPluginGroupSettings);
@@ -701,13 +710,13 @@ namespace vSharpStudio.Unit
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+            sln.RelativeAppSolutionPath = Path.Combine(vm.Config.CurrentCfgFolderPath, @"Solution.sln");
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+            prj.RelativeAppProjectPath = Path.Combine(sln.GetSolutionFolderPath(), @"ConsoleApp1\ConsoleApp1.csproj");
             Assert.AreEqual(0, vm.Config.DicActiveAppProjectGenerators.Count);
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
             gen.GenFileName = "test_file.cs";
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
@@ -719,7 +728,7 @@ namespace vSharpStudio.Unit
             main.IsAccessParam2 = false;
 
             var gen2 = (AppProjectGenerator)prj.NodeAddNewSubNode();
-            gen2.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen2.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
             gen2.GenFileName = "test_file2.cs";
             gen2.PluginGuid = pluginNode.Guid;
             gen2.PluginGeneratorGuid = genDbAccess.Guid;
@@ -777,15 +786,15 @@ namespace vSharpStudio.Unit
             vm.BtnConfigSaveAs.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = @"..\..\..\..\TestApps\OldProject\Solution.sln";
+            sln.RelativeAppSolutionPath = Path.Combine(vm.Config.CurrentCfgFolderPath, @"Solution.sln");
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\ConsoleApp1.csproj";
+            prj.RelativeAppProjectPath = Path.Combine(sln.GetSolutionFolderPath(), @"ConsoleApp1\ConsoleApp1.csproj");
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             Assert.AreEqual("", gen.ConnStr);
 
-            gen.RelativePathToGenFolder = @"..\..\..\..\TestApps\OldProject\ConsoleApp1\Generated";
+            gen.RelativePathToGenFolder = Path.Combine(prj.GetProjectFolderPath(), @"Generated");
             gen.GenFileName = "test_file.cs";
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDb.Guid;
@@ -810,8 +819,11 @@ namespace vSharpStudio.Unit
         [TestMethod]
         [DataRow(@"OldProject\")]
         //[DataRow(@"SdkProject\")]
-        public async Task Plugin012CanProduceCodeFileCompileTrgetProjectsAndUnitTestThem(string prType)
+        public async Task Plugin012CanProduceCodeFileCompileTargetProjectsAndUnitTestThem(string prType)
         {
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            vm.BtnNewConfig.Execute(@"..\..\..\..\TestApps\OldProject\test1.vcfg");
+
             var slnFolder = @"..\..\..\..\TestApps\" + prType;
             var slnPath = slnFolder + "Solution.sln";
             var cfgPath = slnFolder + "test1.vcfg";
@@ -819,9 +831,6 @@ namespace vSharpStudio.Unit
             var prjPath = prjFolder + "ConsoleApp1.csproj";
             var genFolder = prjFolder + @"Generated\";
             var genFile = "test_file.cs";
-
-            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
-            vm.BtnNewConfig.Execute(@".\");
 
             vm.Config.Name = "test1";
             var gr = vm.Config.Model.GroupConstantGroups.AddGroupConstants("Gr");

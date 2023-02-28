@@ -15,7 +15,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     // https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netframework-4.7.2
-    [DebuggerDisplay("DataType:{DataType.GetTypeDesc(this),nq}")]
+    [DebuggerDisplay("DataType:{DataType.GetTypeDesc(this),nq} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class DataType : IParent
     {
         partial void OnCreating()

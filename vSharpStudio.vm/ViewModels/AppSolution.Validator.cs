@@ -35,13 +35,26 @@ namespace vSharpStudio.vm.ViewModels
                 .NotEmpty()
                 .WithMessage("Solution is not selected");
             this.RuleFor(x => x.RelativeAppSolutionPath)
-                .Must((o, path) =>
+                .Custom((path, cntx) =>
                 {
-                    if (string.IsNullOrEmpty(path))
-                        return true;
-                    return File.Exists(o.GetCombinedPath(path));
-                })
-                .WithMessage("Solution file was not found");
+                    if (!string.IsNullOrEmpty(path))
+                    {
+                        var pg = (AppSolution)cntx.InstanceToValidate;
+                        var slnPath = pg.GetSolutionPath();
+                        if (!File.Exists(slnPath))
+                        {
+                            cntx.AddFailure($"Solution file was not found {slnPath}");
+                        }
+                    }
+                });
+            //this.RuleFor(x => x.RelativeAppSolutionPath)
+            //    .Must((o, path) =>
+            //    {
+            //        if (string.IsNullOrEmpty(path))
+            //            return true;
+            //        return File.Exists(o.GetCombinedPath(path));
+            //    })
+            //    .WithMessage("Solution file was not found");
             this.RuleFor(x => x.ListAppProjects)
                 .Must((o, lst) =>
                 {

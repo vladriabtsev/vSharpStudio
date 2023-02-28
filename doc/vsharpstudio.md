@@ -249,16 +249,16 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | is_new | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [BrowsableAttribute(false)] |
 | short_id | [int32](#int32) |  | @attr [BrowsableAttribute(false)] |
-| use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
-| use_separate_tree_for_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Separate Folders Tree&#34;)] @attr [Description(&#34;Separate tree object for folders&#34;)] |
-| max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Max Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
+| use_tree | [bool](#bool) |  | @attr [PropertyOrderAttribute(20)] @attr [DisplayName(&#34;Use Tree&#34;)] @attr [Description(&#34;Use tree catalog structure&#34;)] |
+| use_separate_tree_for_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Separate Tree&#34;)] @attr [Description(&#34;Separate tree object for folders&#34;)] |
+| max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Max Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
 | use_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(26)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
 | use_name_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(28)] @attr [DisplayName(&#34;Name Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | use_description_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Desc Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
-| use_folder_type_explicitly | [bool](#bool) |  | @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Explicit Folders&#34;)] @attr [Description(&#34;User has choose explicitly item or folder type for catalog element&#34;)] |
+| use_folder_type_explicitly | [bool](#bool) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Explicit Folders&#34;)] @attr [Description(&#34;User has choose explicitly item or folder type for catalog element&#34;)] |
 | item_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
 | group_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
 | view_list_wide_guid | [string](#string) |  | @attr [BrowsableAttribute(false)] |
@@ -1878,10 +1878,11 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ListWide | 0 | @attr [DisplayName(&#34;Wide list view form&#34;)] |
-| ListNarrow | 1 | @attr [DisplayName(&#34;Narrow list view form&#34;)] |
+| FormTypeNotSelected | 0 | @attr [DisplayName(&#34;Not selected&#34;)] |
+| ListWide | 1 | @attr [DisplayName(&#34;Wide list view form&#34;)] |
 | ItemEditForm | 2 | @attr [DisplayName(&#34;Item edit form&#34;)] |
 | FolderEditForm | 3 | @attr [DisplayName(&#34;Folder edit form&#34;)] |
+| ListNarrow | 4 | @attr [DisplayName(&#34;Narrow list view form&#34;)] |
 
 
  

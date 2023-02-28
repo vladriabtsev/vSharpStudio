@@ -12,7 +12,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} details:{GroupDetails.ListDetails.Count,nq} HasChanged:{IsHasChanged}")]
+    [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} details:{GroupDetails.ListDetails.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
     {
         [BrowsableAttribute(false)]
@@ -301,35 +301,15 @@ namespace vSharpStudio.vm.ViewModels
                 prp = this.Cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
                 res.Add(prp);
             }
-
-
-            //if (this.GetUseCodeProperty())
-            //{
-            //    switch (this.CodePropertySettings.Type)
-            //    {
-            //        case EnumCodeType.AutoNumber:
-            //            throw new NotImplementedException();
-            //        case EnumCodeType.AutoText:
-            //            throw new NotImplementedException();
-            //        case EnumCodeType.Number:
-            //            prp = cfg.Model.GetPropertyCatalogCodeInt(this.PropertyCodeGuid, this.CodePropertySettings.Length);
-            //            break;
-            //        case EnumCodeType.Text:
-            //            prp = cfg.Model.GetPropertyCatalogCode(this.PropertyCodeGuid, this.CodePropertySettings.Length);
-            //            break;
-            //    }
-            //    res.Add(prp);
-            //}
-            //if (this.GetUseNameProperty())
-            //{
-            //    prp = cfg.Model.GetPropertyCatalogName(this.PropertyNameGuid, this.MaxNameLength);
-            //    res.Add(prp);
-            //}
-            //if (this.GetUseDescriptionProperty())
-            //{
-            //    prp = cfg.Model.GetPropertyCatalogDescription(this.PropertyDescriptionGuid, this.MaxDescriptionLength);
-            //    res.Add(prp);
-            //}
+        }
+        public void GetNormalProperties(List<IProperty> res)
+        {
+            var model = this.Cfg.Model;
+            IProperty prp = null!;
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
         }
         public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
         {

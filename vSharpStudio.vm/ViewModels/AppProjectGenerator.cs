@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq} HasChanged:{IsHasChanged}")]
+    [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class AppProjectGenerator : ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
         private Config cfg;
@@ -36,6 +36,8 @@ namespace vSharpStudio.vm.ViewModels
             return false;
         }
         #endregion ITree
+        //[BrowsableAttribute(false)]
+        //new public ConfigNodesCollection<AppProjectGenerator> Children { get { return this.ListAppProjectGenerators; } }
         [BrowsableAttribute(false)]
         public IvPlugin? Plugin { get { return this.plugin; } }
         private IvPlugin? plugin;
@@ -782,13 +784,8 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void Delete()
         {
-            if (this.Children.Count > 0)
-            {
-                var res = MessageBox.Show("You are going remove generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
-                if (res == System.Windows.MessageBoxResult.OK)
-                    this.Remove();
-            }
-            else
+            var res = MessageBox.Show("You are going remove generator. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+            if (res == System.Windows.MessageBoxResult.OK)
                 this.Remove();
         }
     }

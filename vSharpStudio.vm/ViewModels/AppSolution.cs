@@ -18,7 +18,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("AppSolution:{Name,nq} prj:{ListAppProjects.Count,nq} HasChanged:{IsHasChanged}")]
+    [DebuggerDisplay("AppSolution:{Name,nq} prj:{ListAppProjects.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
         [BrowsableAttribute(false)]
@@ -40,6 +40,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
+        [Browsable(false)]
         new public ConfigNodesCollection<AppProject> Children { get { return this.ListAppProjects; } }
         [Browsable(false)]
         new public string IconName { get { return "iconApplicationGroup"; } }
@@ -410,7 +411,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<string>();
             lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            //lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }
         public void Delete()

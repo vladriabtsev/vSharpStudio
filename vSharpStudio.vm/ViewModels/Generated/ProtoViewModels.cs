@@ -17846,7 +17846,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnShortIdChanged();
         
-        [PropertyOrderAttribute(21)]
+        [PropertyOrderAttribute(20)]
         [DisplayName("Use Tree")]
         [Description("Use tree catalog structure")]
         public bool UseTree // Property.tt Line: 55
@@ -17869,8 +17869,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseTreeChanging(ref bool to); // Property.tt Line: 79
         partial void OnUseTreeChanged();
         
-        [PropertyOrderAttribute(22)]
-        [DisplayName("Separate Folders Tree")]
+        [PropertyOrderAttribute(21)]
+        [DisplayName("Separate Tree")]
         [Description("Separate tree object for folders")]
         public bool UseSeparateTreeForFolders // Property.tt Line: 55
         { 
@@ -17892,7 +17892,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseSeparateTreeForFoldersChanging(ref bool to); // Property.tt Line: 79
         partial void OnUseSeparateTreeForFoldersChanged();
         
-        [PropertyOrderAttribute(23)]
+        [PropertyOrderAttribute(22)]
         [DisplayName("Max Levels")]
         [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
         public uint MaxTreeLevels // Property.tt Line: 55
@@ -18056,7 +18056,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnMaxDescriptionLengthChanging(ref uint to); // Property.tt Line: 79
         partial void OnMaxDescriptionLengthChanged();
         
-        [PropertyOrderAttribute(31)]
+        [PropertyOrderAttribute(23)]
         [DisplayName("Explicit Folders")]
         [Description("User has choose explicitly item or folder type for catalog element")]
         public bool UseFolderTypeExplicitly // Property.tt Line: 55

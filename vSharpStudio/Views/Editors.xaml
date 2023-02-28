@@ -28,7 +28,7 @@
             <!--<ContentControl Name="cc" DataContext="{Binding Config.SelectedNode}" DataContextChanged="ContentControl_DataContextChanged">-->
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type bvm:Catalog}">
-                    <local:EditorCatalog />
+                    <!--<local:EditorCatalog />-->
                     <!--DataContext="{Binding Config.SelectedNode}"-->
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type bvm:Form}">

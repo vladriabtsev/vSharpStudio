@@ -16,15 +16,66 @@
         <Converters:ConverterBoolToCollapsed x:Key="ConverterBoolToCollapsed"/>
         <Converters:ConverterBoolToVisible x:Key="ConverterBoolToVisible"/>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        
+    <Grid Visibility="{Binding IsListForm, Converter={StaticResource ConverterBoolToVisible}}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding UseSeparateTreeForFolders, ConverterParameter='*', Converter={StaticResource ConverterBoolToGridLength}}"/>
+                <!--<ColumnDefinition Width="{Binding UseSeparateTreeForFolders, ConverterParameter='3', Converter={StaticResource ConverterBoolToGridLength}}"/>-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Separate tree folder" FontWeight="Bold" />
+                <controls:CollectionFromCollection Grid.Row="1"
+                                                           ListAll="{Binding ListAllFolderNotSpecialProperties}"
+                                                           ListSelected="{Binding ListViewFolderNotSpecialProperties}">
+                    <controls:CollectionFromCollection.UpperRightContent>
+                        <Grid>
+                            <StackPanel>
+                                <TextBlock Text="Special:" FontWeight="Bold" />
+                                <StackPanel Margin="8,0,0,0">
+                                    <TextBlock Text="Id"/>
+                                    <TextBlock Text="RefTreeParent"/>
+                                    <!--<TextBlock Text="{Binding CodePropertyName}" Visibility="{Binding UseCodePropertySeparateFolder, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                    <TextBlock Text="{Binding DescriptionPropertyName}" Visibility="{Binding UseDescriptionPropertySeparateFolder, Converter={StaticResource ConverterBoolToVisible}}"/>-->
+                                    <TextBlock Text="{Binding IsOpenPropertyName}"/>
+                                    <TextBlock Text="{Binding IsFolderPropertyName}" Visibility="{Binding UseFolderTypeExplicitly, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </controls:CollectionFromCollection.UpperRightContent>
+                </controls:CollectionFromCollection>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="View properties for item" FontWeight="Bold" />
+                <controls:CollectionFromCollection Grid.Row="1"
+                                                           ListAll="{Binding ListAllNotSpecialProperties}"
+                                                           ListSelected="{Binding ListViewNotSpecialProperties}">
+                    <controls:CollectionFromCollection.UpperRightContent>
+                        <Grid>
+                            <StackPanel>
+                                <TextBlock Text="Special:" FontWeight="Bold" />
+                                <StackPanel Margin="8,0,0,0">
+                                    <TextBlock Text="Id"/>
+                                    <TextBlock Text="RefTreeParent" Visibility="{Binding IsShowRefSelfTree, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                    <TextBlock Text="RefParent" Visibility="{Binding UseSeparateTreeForFolders, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                    <!--<TextBlock Text="{Binding CodePropertyName}" Visibility="{Binding UseCodeProperty, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                    <TextBlock Text="{Binding DescriptionPropertyName}" Visibility="{Binding UseDescriptionProperty, Converter={StaticResource ConverterBoolToVisible}}"/>-->
+                                    <TextBlock Text="{Binding Parent.PropertyIsOpenName}" Visibility="{Binding IsShowRefSelfTree, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                    <TextBlock Text="{Binding Parent.PropertyIsFolderName}" Visibility="{Binding IsShowIsFolder, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </controls:CollectionFromCollection.UpperRightContent>
+                </controls:CollectionFromCollection>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

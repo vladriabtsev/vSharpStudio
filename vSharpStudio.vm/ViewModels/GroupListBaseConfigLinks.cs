@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigLinks.Count,nq}")]
+    [DebuggerDisplay("Group:{Name,nq} configs:{ListBaseConfigLinks.Count,nq} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class GroupListBaseConfigLinks : ITreeModel, ICanAddSubNode, ICanGoRight, IEditableNodeGroup // , INodeGenSettings
     {
         [BrowsableAttribute(false)]
