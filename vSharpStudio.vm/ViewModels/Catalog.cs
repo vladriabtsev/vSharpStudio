@@ -417,13 +417,13 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(this.GetPropertyName(() => this.UseSeparateTreeForFolders));
                 lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
             }
-            else
-            {
-                if (this.UseSeparateTreeForFolders)
-                {
-                    lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
-                }
-            }
+            //else
+            //{
+            //    if (this.UseSeparateTreeForFolders)
+            //    {
+            //        lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
+            //    }
+            //}
             if (!this.GetUseCodeProperty())
             {
                 lst.Add(this.GetPropertyName(() => this.CodePropertySettings));

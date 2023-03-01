@@ -17893,7 +17893,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseSeparateTreeForFoldersChanged();
         
         [PropertyOrderAttribute(22)]
-        [DisplayName("Max Levels")]
+        [DisplayName("Max Tree Levels")]
         [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
         public uint MaxTreeLevels // Property.tt Line: 55
         { 

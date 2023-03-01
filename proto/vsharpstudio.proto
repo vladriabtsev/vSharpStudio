@@ -1837,7 +1837,7 @@ message proto_catalog {
     // @attr [Description("Separate tree object for folders")]
     bool use_separate_tree_for_folders = 22;
     // @attr [PropertyOrderAttribute(22)]
-    // @attr [DisplayName("Max Levels")]
+    // @attr [DisplayName("Max Tree Levels")]
     // @attr [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
     uint32 max_tree_levels = 23;
 

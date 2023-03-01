@@ -1132,7 +1132,7 @@
             },
             {
               "name": "max_tree_levels",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Max Levels\")]\n@attr [Description(\"Maximum amount levels in catalog item groups. If zero, than unlimited\")]",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Max Tree Levels\")]\n@attr [Description(\"Maximum amount levels in catalog item groups. If zero, than unlimited\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",

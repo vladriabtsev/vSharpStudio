@@ -36,6 +36,8 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Custom((name, cntx) =>
             {
+                if (string.IsNullOrEmpty(name))
+                    return;
                 var p = (Property)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
@@ -45,7 +47,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     Debug.Assert(c.Parent != null);
                     var gc = (IGroupListCatalogs)c.Parent;
-                    ValidateSpecialProperties(name, cntx, p, c);
+                    if (!p.isSpecialItself)
+                        ValidateSpecialProperties(name, cntx, p, c);
                     if (c.UseTree)
                     {
                         if (c.UseSeparateTreeForFolders)
@@ -90,7 +93,8 @@ namespace vSharpStudio.vm.ViewModels
                 else if (pg.Parent is CatalogFolder cf)
                 {
                     var cc = cf.ParentCatalog;
-                    ValidateSpecialProperties(name, cntx, p, cf);
+                    if (!p.isSpecialItself)
+                        ValidateSpecialProperties(name, cntx, p, cf);
                     if (cc.UseTree)
                     {
                         if (cc.UseSeparateTreeForFolders)

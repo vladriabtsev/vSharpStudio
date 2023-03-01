@@ -88,10 +88,12 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.AddAllAppGenSettingsVmsToNode();
         }
-        internal Property(ITreeConfigNode parent, string guid, string name)
-            : this(parent)
+        internal bool isSpecialItself;
+        internal Property(ITreeConfigNode parent, string guid, string name, bool isSpecial)
+        : this(parent)
         {
-            this.Guid = guid;
+            this.isSpecialItself = isSpecial;
+            this._Guid = guid;
             this._Name = name;
         }
         internal Property(ITreeConfigNode parent, string name, EnumDataType type, string guidOfType)

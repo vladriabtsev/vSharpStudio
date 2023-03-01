@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:vSharpStudio.Controls" 
              xmlns:Converters="clr-namespace:vSharpStudio.wpf.Converters;assembly=vSharpStudio.wpf" 
+             xmlns:vc="clr-namespace:vSharpStudio.Controls"
              x:Class="vSharpStudio.Controls.CollectionFromCollection" 
              mc:Ignorable="d"
              x:Name="collectionFromCollection"
@@ -40,19 +41,21 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="1">
                 <StackPanel>
-                    <Button Margin="3" Click="Button_AllLeft_Click" 
+                    <Button Margin="2" Click="Button_AllLeft_Click" 
                             IsEnabled="{Binding IsEnableTo, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
                         <TextBlock Text="&lt;&lt;" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Button>
-                    <Button Margin="3" Click="Button_Left_Click" 
+                    <!--<vc:vButton IconControlTemplate="{StaticResource iconGlyphLeft}" DataContext="{Binding BtnSelectionLeft}" ToolTip="Left - close current group and select parent node"/>-->
+                    <Button Margin="2" Click="Button_Left_Click" 
                             IsEnabled="{Binding IsEnableTo, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
                         <TextBlock Text="&lt;" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Button>
-                    <Button Margin="3" Click="Button_Right_Click" 
+                    <!--<vc:vButton IconControlTemplate="{StaticResource iconGlyphRight}" DataContext="{Binding BtnSelectionRight}" ToolTip="Right - open current group and select first subnode"/>-->
+                    <Button Margin="2" Click="Button_Right_Click" 
                             IsEnabled="{Binding IsEnableFrom, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
                         <TextBlock Text="&gt;" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Button>
-                    <Button Margin="3" Click="Button_AllRight_Click" 
+                    <Button Margin="2" Click="Button_AllRight_Click" 
                             IsEnabled="{Binding IsEnableFrom, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
                         <TextBlock Text="&gt;&gt;" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Button>
@@ -69,23 +72,30 @@
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Selected:" FontWeight="Bold" />
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,3" HorizontalAlignment="Right">
-                        <Button Margin="0,0,3,0" Width="40" Height="18" 
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Selected:" FontWeight="Bold" />
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,3" HorizontalAlignment="Right">
+                            <!--<vc:vButton IconControlTemplate="{StaticResource iconGlyphUp}" DataContext="{Binding BtnSelectionUp}" ToolTip="Up - select previous node on the same level"/>-->
+                            <Button Margin="0,0,3,0" Width="40" Height="18" 
                                 Click="Button_Up_Click"
                                 IsEnabled="{Binding IsCanUp, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
-                            <TextBlock Text="Up" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </Button>
-                        <Button Width="40" Height="18" 
+                                <TextBlock Text="Up" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                            <!--<vc:vButton IconControlTemplate="{StaticResource iconGlyphDown}" DataContext="{Binding BtnSelectionDown}" ToolTip="Down - select next node on the same level"/>-->
+                            <Button Width="40" Height="18" 
                                 Click="Button_Down_Click"
                                 IsEnabled="{Binding IsCanDown, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
-                            <TextBlock Text="Down" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </Button>
-                    </StackPanel>
-                    <ListBox Grid.Row="2" 
+                                <TextBlock Text="Down" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <ListBox Grid.Row="1" 
                              ItemsSource="{Binding ListSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
                              DisplayMemberPath="Name" 
                              SelectedItem="{Binding SelectedTo, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 

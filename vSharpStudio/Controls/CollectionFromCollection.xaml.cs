@@ -53,7 +53,20 @@ namespace vSharpStudio.Controls
         public static readonly DependencyProperty IsEnableFromProperty =
             DependencyProperty.Register("IsEnableFrom", typeof(bool), typeof(CollectionFromCollection), new PropertyMetadata(false));
 
-
+        public IProperty SelectedFrom
+        {
+            get { return (IProperty)GetValue(SelectedFromProperty); }
+            set { SetValue(SelectedFromProperty, value); }
+        }
+        public static readonly DependencyProperty SelectedFromProperty =
+            DependencyProperty.Register("SelectedFrom", typeof(IProperty), typeof(CollectionFromCollection), new PropertyMetadata(null));
+        public IProperty SelectedTo
+        {
+            get { return (IProperty)GetValue(SelectedToProperty); }
+            set { SetValue(SelectedToProperty, value); }
+        }
+        public static readonly DependencyProperty SelectedToProperty =
+            DependencyProperty.Register("SelectedTo", typeof(IProperty), typeof(CollectionFromCollection), new PropertyMetadata(null));
 
         public SortedObservableCollection<IProperty> ListSelected
         {
@@ -91,8 +104,11 @@ namespace vSharpStudio.Controls
             DependencyProperty.Register("IsCanUp", typeof(bool), typeof(CollectionFromCollection), new PropertyMetadata(false));
         private void Button_Up_Click(object sender, RoutedEventArgs e)
         {
-            this.ListSelected.MoveUp(this.listSelectedTo[0]);
+            var sel = this.SelectedTo;
+            //this.ListSelected.MoveUp(this.listSelectedTo[0]);
+            this.ListSelected.MoveUp(sel);
             this.ListSelected.Sort();
+            this.SelectedTo = sel;
             CheckCanUpDown();
         }
         private void CheckCanUpDown()
@@ -123,8 +139,11 @@ namespace vSharpStudio.Controls
             DependencyProperty.Register("IsCanDown", typeof(bool), typeof(CollectionFromCollection), new PropertyMetadata(false));
         private void Button_Down_Click(object sender, RoutedEventArgs e)
         {
-            this.ListSelected.MoveDown(this.listSelectedTo[0]);
+            var sel = this.SelectedTo;
+            //this.ListSelected.MoveDown(this.listSelectedTo[0]);
+            this.ListSelected.MoveDown(sel);
             this.ListSelected.Sort();
+            this.SelectedTo = sel;
             CheckCanUpDown();
         }
         private void Button_AllLeft_Click(object sender, RoutedEventArgs e)
