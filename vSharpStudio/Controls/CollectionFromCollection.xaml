@@ -13,95 +13,77 @@
     <UserControl.Resources>
         <Converters:ConverterObjectToBool x:Key="ConverterObjectToBool"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="For Selection:" FontWeight="Bold" />
-                <ListBox Grid.Row="1" 
-                         ItemsSource="{Binding ListAll, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
-                         DisplayMemberPath="Name" 
-                         SelectedItem="{Binding SelectedFrom, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}"
-                         SelectionChanged="ListBoxFrom_SelectionChanged" />
-            </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0">
+            <TextBlock Text="For Selection:" FontWeight="Bold" />
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="0" Grid.Row="1">
+            <ListBox Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ItemsSource="{Binding ListAll, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                DisplayMemberPath="Name" 
+                SelectedItem="{Binding SelectedFrom, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}"
+                SelectionChanged="ListBoxFrom_SelectionChanged" />
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" Background="#FFEEF5FD">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1">
-                <StackPanel>
-                    <Button Margin="2" Click="Button_AllLeft_Click" 
-                            IsEnabled="{Binding IsEnableTo, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
-                        <TextBlock Text="&lt;&lt;" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Button>
-                    <!--<vc:vButton IconControlTemplate="{StaticResource iconGlyphLeft}" DataContext="{Binding BtnSelectionLeft}" ToolTip="Left - close current group and select parent node"/>-->
-                    <Button Margin="2" Click="Button_Left_Click" 
-                            IsEnabled="{Binding IsEnableTo, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
-                        <TextBlock Text="&lt;" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Button>
-                    <!--<vc:vButton IconControlTemplate="{StaticResource iconGlyphRight}" DataContext="{Binding BtnSelectionRight}" ToolTip="Right - open current group and select first subnode"/>-->
-                    <Button Margin="2" Click="Button_Right_Click" 
-                            IsEnabled="{Binding IsEnableFrom, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
-                        <TextBlock Text="&gt;" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Button>
-                    <Button Margin="2" Click="Button_AllRight_Click" 
-                            IsEnabled="{Binding IsEnableFrom, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
-                        <TextBlock Text="&gt;&gt;" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Button>
-                </StackPanel>
-            </Grid>
+            <StackPanel Grid.Row="1">
+                <vc:vButton IconControlTemplate="{StaticResource iconCollapseChevronLeftGroup}" 
+                            DataContext="{Binding BtnLeftAll, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                            ToolTip="Move all elements in right 'Selected' collection to left 'For Selection' collection"/>
+                <vc:vButton IconControlTemplate="{StaticResource iconCollapseChevronLeft}" Margin="0,3,0,3"
+                            DataContext="{Binding BtnLeft, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                            ToolTip="Move selected element in right 'Selected' collection to left 'For Selection' collection"/>
+                <vc:vButton IconControlTemplate="{StaticResource iconExpandChevronRight}" 
+                            DataContext="{Binding BtnRight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                            ToolTip="Move selected element in left 'For Selection' collection to right 'Selected' collection"/>
+                <vc:vButton IconControlTemplate="{StaticResource iconExpandChevronRightGroup}" Margin="0,3,0,3"
+                            DataContext="{Binding BtnRightAll, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                            ToolTip="Move all elements in left 'For Selection' collection to right 'Selected' collection"/>
+                <vc:vButton IconControlTemplate="{StaticResource iconCollapseChevronUp}" Margin="0,10,0,3"
+                            DataContext="{Binding BtnUp, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                            ToolTip="Move up selected property in 'Selected' collection"/>
+                <vc:vButton IconControlTemplate="{StaticResource iconCollapseChevronDown}" 
+                            DataContext="{Binding BtnDown, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                            ToolTip="Move down selected property in 'Selected' collection"/>
+            </StackPanel>
         </Grid>
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2" Grid.Row="0">
+            <TextBlock Grid.Row="1" Text="Selected:" FontWeight="Bold" />
+        </Grid>
+        <Border Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="#FFABADB3">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <ContentPresenter Grid.Row="0" Content="{Binding UpperRightContent, ElementName=collectionFromCollection}" />
-                <Grid Grid.Row="1">
+                <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="Selected:" FontWeight="Bold" />
-                        <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,3" HorizontalAlignment="Right">
-                            <!--<vc:vButton IconControlTemplate="{StaticResource iconGlyphUp}" DataContext="{Binding BtnSelectionUp}" ToolTip="Up - select previous node on the same level"/>-->
-                            <Button Margin="0,0,3,0" Width="40" Height="18" 
-                                Click="Button_Up_Click"
-                                IsEnabled="{Binding IsCanUp, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
-                                <TextBlock Text="Up" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Button>
-                            <!--<vc:vButton IconControlTemplate="{StaticResource iconGlyphDown}" DataContext="{Binding BtnSelectionDown}" ToolTip="Down - select next node on the same level"/>-->
-                            <Button Width="40" Height="18" 
-                                Click="Button_Down_Click"
-                                IsEnabled="{Binding IsCanDown, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}">
-                                <TextBlock Text="Down" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            </Button>
-                        </StackPanel>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ContentPresenter Grid.Row="0" Content="{Binding UpperRightContent, ElementName=collectionFromCollection}" />
                     </Grid>
-                    <ListBox Grid.Row="1" 
-                             ItemsSource="{Binding ListSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
-                             DisplayMemberPath="Name" 
-                             SelectedItem="{Binding SelectedTo, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
-                             SelectionChanged="ListBoxTo_SelectionChanged" />
+                    <ListBox Grid.Row="1" BorderBrush="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        ItemsSource="{Binding ListSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                        DisplayMemberPath="Name" 
+                        SelectedItem="{Binding SelectedTo, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CollectionFromCollection}}}" 
+                        SelectionChanged="ListBoxTo_SelectionChanged" />
                 </Grid>
             </Grid>
-        </Grid>
+        </Border>
     </Grid>
 </UserControl>

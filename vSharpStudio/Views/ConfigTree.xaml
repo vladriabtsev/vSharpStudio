@@ -36,45 +36,15 @@
         <ToolBarPanel>
             <ToolBar Padding="0,1,0,0">
                 <vc:vButton IconControlTemplate="{StaticResource iconAdd}" DataContext="{Binding BtnAddNew}" ToolTip="Ins - insert new object after selected"/>
-                <!--<Button Command="{Binding CommandAddNew}" ToolTip="Ins - insert new object after selected">
-                    <ContentControl Template="{StaticResource iconAdd}" />
-                </Button>-->
                 <vc:vButton IconControlTemplate="{StaticResource iconAddChildNode}" DataContext="{Binding BtnAddNewChild}" ToolTip="Alt+Ins - insert new child object"/>
-                <!--<Button Command="{Binding CommandAddNewChild}" ToolTip="Alt+Ins - insert new child object">
-                    <ContentControl Template="{StaticResource iconAddChildNode}" />
-                </Button>-->
                 <vc:vButton IconControlTemplate="{StaticResource iconCopy}" DataContext="{Binding BtnAddClone}" ToolTip="Ctrl+Ins - insert clone of selected object"/>
-                <!--<Button Command="{Binding CommandAddClone}" ToolTip="Ctrl+Ins - insert clone of selected object">
-                    <ContentControl Template="{StaticResource iconCopy}" />
-                </Button>-->
-                <vc:vButton IconControlTemplate="{StaticResource iconGlyphDown2}" DataContext="{Binding BtnMoveDown}" ToolTip="Ctrl+Down - move select node down"/>
-                <!--<Button Command="{Binding CommandMoveDown}" ToolTip="Ctrl+Down - move select node down">
-                    <ContentControl Template="{StaticResource iconGlyphDown2}" />
-                </Button>-->
-                <vc:vButton IconControlTemplate="{StaticResource iconGlyphUp2}" DataContext="{Binding BtnMoveUp}" ToolTip="Ctrl+Up - move select node upper"/>
-                <!--<Button Command="{Binding CommandMoveUp}" ToolTip="Ctrl+Up - move select node upper">
-                    <ContentControl Template="{StaticResource iconGlyphUp2}" />
-                </Button>-->
+                <vc:vButton IconControlTemplate="{StaticResource iconCollapseChevronDown}" DataContext="{Binding BtnMoveDown}" ToolTip="Ctrl+Down - move select node down"/>
+                <vc:vButton IconControlTemplate="{StaticResource iconCollapseChevronUp}" DataContext="{Binding BtnMoveUp}" ToolTip="Ctrl+Up - move select node upper"/>
                 <vc:vButton IconControlTemplate="{StaticResource iconCancel}" DataContext="{Binding BtnDelete}" ToolTip="Ctrl-Del - mark selected object for deletion"/>
-                <!--<Button Command="{Binding CommandDelete}" ToolTip="Ctrl-Del - delete selected object">
-                    <ContentControl Template="{StaticResource iconCancel}" />
-                </Button>-->
                 <vc:vButton IconControlTemplate="{StaticResource iconGlyphLeft}" DataContext="{Binding BtnSelectionLeft}" ToolTip="Left - close current group and select parent node"/>
-                <!--<Button Command="{Binding CommandSelectionLeft}" ToolTip="Left - close current group and select parent node">
-                    <ContentControl Template="{StaticResource iconGlyphLeft}" />
-                </Button>-->
                 <vc:vButton IconControlTemplate="{StaticResource iconGlyphRight}" DataContext="{Binding BtnSelectionRight}" ToolTip="Right - open current group and select first subnode"/>
-                <!--<Button Command="{Binding CommandSelectionRight}" ToolTip="Right - open current group and select first subnode">
-                    <ContentControl Template="{StaticResource iconGlyphRight}" />
-                </Button>-->
                 <vc:vButton IconControlTemplate="{StaticResource iconGlyphDown}" DataContext="{Binding BtnSelectionDown}" ToolTip="Down - select next node on the same level"/>
-                <!--<Button Command="{Binding CommandSelectionDown}" ToolTip="Down - select next node on the same level">
-                    <ContentControl Template="{StaticResource iconGlyphDown}" />
-                </Button>-->
                 <vc:vButton IconControlTemplate="{StaticResource iconGlyphUp}" DataContext="{Binding BtnSelectionUp}" ToolTip="Up - select previous node on the same level"/>
-                <!--<Button Command="{Binding CommandSelectionUp}" ToolTip="Up - select previous node on the same level">
-                    <ContentControl Template="{StaticResource iconGlyphUp}" />
-                </Button>-->
             </ToolBar>
         </ToolBarPanel>
         <!--https://docs.microsoft.com/en-us/dotnet/api/system.windows.hierarchicaldatatemplate?view=netframework-4.7.2-->

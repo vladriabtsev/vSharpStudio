@@ -450,6 +450,106 @@
             </Rectangle>
         </Viewbox>
     </ControlTemplate>
+    <!--D:\ext\icons\VS2017 Image Library\VS2017\CollapseChevronDown-->
+    <ControlTemplate x:Key="iconCollapseChevronDown">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M0,0L16,0 16,16 0,16z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M2.3057,6.3906L4.7807,3.9156 7.9997,7.1356 11.2197,3.9156 13.6947,6.3906 7.9997,12.0836z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M3.7197,6.3901L4.7807,5.3291 7.9997,8.5491 11.2197,5.3291 12.2807,6.3901 7.9997,10.6701z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
+    <!--D:\ext\icons\VS2017 Image Library\VS2017\CollapseChevronDown-->
+    <ControlTemplate x:Key="iconCollapseChevronDown2">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M8.0001,8.4517L2.8541,3.3057 0.7321,5.4267 8.0001,12.6947 15.2671,5.4267 13.1461,3.3057z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M8,11.2803L2.146,5.4263 2.854,4.7193 8,9.8663 13.146,4.7193 13.854,5.4263 8,11.2803z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
+    <!--D:\ext\icons\VS2017 Image Library\VS2017\CollapseChevronLeft-->
+    <ControlTemplate x:Key="iconCollapseChevronLeft">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M0,0L16,0 16,16 0,16z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M9.6094,2.3057L12.0844,4.7807 8.8644,7.9997 12.0844,11.2197 9.6094,13.6947 3.9154,7.9997z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M9.6094,3.7197L10.6704,4.7807 7.4504,7.9997 10.6704,11.2197 9.6094,12.2807 5.3294,7.9997z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
+    <!--D:\ext\icons\VS2017 Image Library\VS2017\CollapseChevronLeftGroup-->
+    <ControlTemplate x:Key="iconCollapseChevronLeftGroup">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M11,8.3164L13.58,10.8964 11.459,13.0174 9.441,11.0004 9.102,11.0004 7.084,13.0174 2.066,8.0004 7.084,2.9824 9.102,5.0004 9.441,5.0004 11.459,2.9824 13.58,5.1034 11,7.6834z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M7.791,10.8965L4.895,8.0005 7.791,5.1035 7.084,4.3965 3.48,8.0005 7.084,11.6035z M11.459,11.6035L7.855,8.0005 11.459,4.3965 12.166,5.1035 9.27,8.0005 12.166,10.8965z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
+    <!--D:\ext\icons\VS2017 Image Library\VS2017\CollapseChevronUp-->
+    <ControlTemplate x:Key="iconCollapseChevronUp">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M13.6943,9.6094L11.2193,12.0844 8.0003,8.8644 4.7803,12.0844 2.3053,9.6094 8.0003,3.9154z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M12.2803,9.6094L11.2193,10.6704 8.0003,7.4504 4.7803,10.6704 3.7193,9.6094 8.0003,5.3294z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
     <!--C:\ext\icons\VS2017 Image Library\VS2017\ConfigureDatabaseWizard-->
     <ControlTemplate x:Key="iconConfigureDatabaseWizard">
         <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
@@ -837,6 +937,46 @@
                                     <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M7.5852,0.999700000000001L6.0002,2.5867 6.0002,5.9997 0.000200000000000422,5.9997 0.000200000000000422,14.9997 10.0002,14.9997 10.0002,9.9997 14.4142,9.9997 16.0002,8.4147 16.0002,2.5867 14.4142,0.999700000000001z" />
                                     <GeometryDrawing Brush="#FFEFEFF0" Geometry="F1M7,11L3,11 3,10 7,10z M2,13L8,13 8,8 2,8z M13,5L9,5 9,4 13,4z M8,3L8,6 9,6 10,6 13,6 13,7 10,7 10,8 14,8 14,6 14,3z" />
                                     <GeometryDrawing Brush="#FF00529C" Geometry="F1M8,8L2,8 2,13 8,13z M9,14L1,14 1,7 9,7z M7,10L3,10 3,11 7,11z M14,2L8,2 7,3 7,6 8,6 8,3 14,3 14,6 14,8 10,8 10,9 14,9 15,8 15,3z M9,5L13,5 13,4 9,4z M10,6L13,6 13,7 10,7z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
+    <!--D:\ext\icons\VS2017 Image Library\VS2017\ExpandChevronRight-->
+    <ControlTemplate x:Key="iconExpandChevronRight">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M6.3906,13.6943L3.9156,11.2193 7.1356,8.0003 3.9156,4.7803 6.3906,2.3053 12.0836,8.0003z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M6.3901,12.2803L5.3291,11.2193 8.5491,8.0003 5.3291,4.7803 6.3901,3.7193 10.6701,8.0003z" />
+                                </DrawingGroup.Children>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Viewbox>
+    </ControlTemplate>
+    <!--D:\ext\icons\VS2017 Image Library\VS2017\ExpandChevronRightGroup-->
+    <ControlTemplate x:Key="iconExpandChevronRightGroup">
+        <Viewbox Width="16" Height="16" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Rectangle Width="16" Height="16">
+                <Rectangle.Fill>
+                    <DrawingBrush>
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <DrawingGroup.Children>
+                                    <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M0,0L16,0 16,16 0,16z" />
+                                    <GeometryDrawing Brush="#FFF6F6F6" Geometry="F1M5,7.6836L2.42,5.1036 4.541,2.9826 6.559,4.9996 6.898,4.9996 8.916,2.9826 13.934,7.9996 8.916,13.0176 6.898,10.9996 6.559,10.9996 4.541,13.0176 2.42,10.8966 5,8.3166z" />
+                                    <GeometryDrawing Brush="#FF424242" Geometry="F1M8.916,11.6035L12.52,7.9995 8.916,4.3965 8.209,5.1035 11.105,7.9995 8.209,10.8965z M3.834,10.8965L6.73,7.9995 3.834,5.1035 4.541,4.3965 8.145,7.9995 4.541,11.6035z" />
                                 </DrawingGroup.Children>
                             </DrawingGroup>
                         </DrawingBrush.Drawing>

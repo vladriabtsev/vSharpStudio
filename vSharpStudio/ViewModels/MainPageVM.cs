@@ -1704,7 +1704,6 @@ namespace vSharpStudio.ViewModels
                 (o) => { return this.Config != null; }));
             }
         }
-
         private vCommand? _CommandFromErrorToSelection;
 
         #region ConnectionString
