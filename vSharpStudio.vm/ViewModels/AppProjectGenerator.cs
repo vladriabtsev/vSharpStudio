@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class AppProjectGenerator : ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
+    public partial class AppProjectGenerator : ICanRemoveNode, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
         private Config cfg;
         [BrowsableAttribute(false)]
@@ -146,7 +146,9 @@ namespace vSharpStudio.vm.ViewModels
                         catch (Exception ex)
                         {
 #if DEBUG
-                            if (!VmBindable.isUnitTests)
+                            if (VmBindable.isUnitTests)
+                                throw;
+                            else
 #endif
                                 MessageBox.Show($"Can't create connection string VM.\nError: {ex.Message}\nChoose another provider!", "Error", System.Windows.MessageBoxButton.OKCancel);
                             this._DynamicMainConnStrSettings = null;

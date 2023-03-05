@@ -11,7 +11,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("EnumerationPair:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class EnumerationPair : IEditableNode, INodeGenSettings
+    public partial class EnumerationPair : IEditableNode, ICanAddNode, INodeGenSettings
     {
         [BrowsableAttribute(false)]
         public Enumeration ParentEnumeration { get { Debug.Assert(this.Parent != null); return (Enumeration) this.Parent; } }

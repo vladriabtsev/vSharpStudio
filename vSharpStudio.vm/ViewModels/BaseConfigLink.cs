@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("BaseConfigLink:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class BaseConfigLink : IEditableNode  // INodeGenSettings, 
+    public partial class BaseConfigLink : IEditableNode, ICanAddNode  // INodeGenSettings, 
     {
         [BrowsableAttribute(false)]
         public GroupListBaseConfigLinks ParentGroupListBaseConfigLinks { get { Debug.Assert(this.Parent != null); return (GroupListBaseConfigLinks)this.Parent; } }

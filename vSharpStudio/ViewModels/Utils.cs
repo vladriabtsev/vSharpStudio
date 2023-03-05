@@ -36,7 +36,9 @@ namespace vSharpStudio.ViewModels
                 sb.AppendLine(sourceLineNumber.ToString());
                 sb.AppendLine(ex.ToString());
 #if DEBUG
-                if (!VmBindable.isUnitTests)
+                if (VmBindable.isUnitTests)
+                    throw;
+                else
 #endif
                     MessageBox.Show(sb.ToString(), "Error");
             }

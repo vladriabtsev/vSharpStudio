@@ -787,7 +787,7 @@
         }
         virtual public bool IsNewNode()
         {
-            if (this is IEditableNode tt)
+            if (this is ICanAddNode tt)
             {
                 if (tt.IsNew)
                     return true;
@@ -837,7 +837,7 @@
                     {
                         if (p.IsChanged)
                             isHasChanged = true;
-                        if (p.IsNew)
+                        if (t is ICanAddNode p2 && p2.IsNew)
                             isHasNew = true;
                         if (p.IsMarkedForDeletion)
                             isHasMarked = true;
@@ -920,7 +920,7 @@
                 bool isHasNew = false;
                 foreach (var t in this.GetListChildren())
                 {
-                    if (t is IEditableNode p)
+                    if (t is ICanAddNode p)
                     {
                         if (p.IsNew)
                         {
@@ -1018,7 +1018,7 @@
         [BrowsableAttribute(false)]
         public bool IsNewOrHasNew
         {
-            get { return this._IsHasNew || (this is IEditableNode d && d.IsNew); }
+            get { return this._IsHasNew || (this is ICanAddNode d && d.IsNew); }
         }
         [BrowsableAttribute(false)]
         public bool IsHasNew

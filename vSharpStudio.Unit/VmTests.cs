@@ -217,7 +217,7 @@ namespace vSharpStudio.Unit
             //cfg.SolutionPath = @"..\..\..\..\";
 
             var sol1 = cfg.GroupAppSolutions.AddAppSolution("sol1","./");
-            var prj1 = sol1.AddProject("prj1", "./");
+            var prj1 = sol1.AddAppProject("prj1", "./");
             var gen1 = prj1.AddGenerator("gen1", null, null, "");
 
             string mes1 = "test error message";

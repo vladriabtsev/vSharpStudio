@@ -129,7 +129,13 @@ namespace vSharpStudio.vm.ViewModels
             path = path.Substring(0, path.LastIndexOf(@"\") + 1);
             return path;
         }
-        public AppProject AddProject(string name, string projectPath)
+        /// <summary>
+        /// Add project in config. Useful for unit testing
+        /// </summary>
+        /// <param name="name">Name of project in config</param>
+        /// <param name="projectPath">Project path. Full or relative to current working path</param>
+        /// <returns></returns>
+        public AppProject AddAppProject(string name, string projectPath)
         {
             AppProject node = new AppProject(this, name, projectPath);
             return node;

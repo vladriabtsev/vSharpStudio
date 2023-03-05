@@ -844,17 +844,17 @@ namespace vSharpStudio.Unit
             var genDbAccess = (IvPluginGenerator)(from p in pluginNode.ListGenerators where p.Generator is vPlugin.Sample.GeneratorDbAccess select p).Single().Generator;
 
             var sln = (AppSolution)vm.Config.GroupAppSolutions.NodeAddNewSubNode();
-            sln.RelativeAppSolutionPath = slnPath;
+            sln.RelativeAppSolutionPath = Path.GetFullPath(slnPath);
             Assert.AreEqual("Solution.sln", sln.RelativeAppSolutionPath);
 
             var prj = (AppProject)sln.NodeAddNewSubNode();
-            prj.RelativeAppProjectPath = prjPath;
+            prj.RelativeAppProjectPath = Path.GetFullPath(prjPath);
             Assert.AreEqual(@"ConsoleApp1\ConsoleApp1.csproj", prj.RelativeAppProjectPath);
 
             var gen = (AppProjectGenerator)prj.NodeAddNewSubNode();
             gen.PluginGuid = pluginNode.Guid;
             gen.PluginGeneratorGuid = genDbAccess.Guid;
-            gen.RelativePathToGenFolder = genFolder;
+            gen.RelativePathToGenFolder = Path.GetFullPath(genFolder);
             Assert.AreEqual(@"Generated\", gen.RelativePathToGenFolder);
             gen.GenFileName = genFile;
 
@@ -886,7 +886,7 @@ namespace vSharpStudio.Unit
             TestTransformation tt = new TestTransformation();
 
             // valid
-            sln.RelativeAppSolutionPath = slnPath;
+            sln.RelativeAppSolutionPath = Path.GetFullPath(slnPath);
             await vm.BtnConfigValidateAsync.ExecuteAsync();
             //vm.Config.ValidateSubTreeFromNode(vm.Config);
             Assert.IsTrue(vm.Config.CountErrors == 0);
@@ -901,7 +901,7 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(vm.ProgressVM.Exception.Message == nameof(tt.IsThrowExceptionOnBuildValidated));
 
             #region valid Config
-            sln.RelativeAppSolutionPath = slnPath;
+            sln.RelativeAppSolutionPath = Path.GetFullPath(slnPath);
             tt = new TestTransformation();
             tt.IsThrowExceptionOnConfigValidated = true;
             await Assert.ThrowsExceptionAsync<Exception>(() =>

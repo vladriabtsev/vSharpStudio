@@ -23,7 +23,7 @@ namespace vSharpStudio.common
     {
         bool IsNew { get; set; }
     }
-    public interface IEditableNode : ICanAddNode
+    public interface IEditableNode
     {
         bool IsChanged { get; set; }
         bool IsMarkedForDeletion { get; set; }

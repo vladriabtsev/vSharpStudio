@@ -893,7 +893,9 @@ namespace vSharpStudio.ViewModels
                                 this.ProgressVM.Exception = ex;
                                 if (o == null)
 #if DEBUG
-                                    if (!VmBindable.isUnitTests)
+                                    if (VmBindable.isUnitTests)
+                                        throw;
+                                    else
 #endif
                                         MessageBox.Show(this.ProgressVM.Exception.ToString(), "Error");
                             }
@@ -965,6 +967,10 @@ namespace vSharpStudio.ViewModels
                                         this.ProgressVM.End();
                                         return;
 #if DEBUG
+                                    }
+                                    else
+                                    {
+                                        throw new Exception($"There are {this._Config.CountErrors} config errors. First: {this._Config.ValidationCollection[0].Message}");
                                     }
 #endif
                                 }
@@ -1219,7 +1225,7 @@ namespace vSharpStudio.ViewModels
                 {
                     if (n is IEditableNode p)
                     {
-                        if (p.IsMarkedForDeletion && p.IsNew)
+                        if (p.IsMarkedForDeletion && n is ICanAddNode pn && pn.IsNew)
                         {
                             lst.Add(n.Guid);
                         }
@@ -1534,7 +1540,7 @@ namespace vSharpStudio.ViewModels
             IEditableNodeGroup.IsChangedNotPropagate = true;
             vis.Run(this.Config, null, null, null, (v, n) =>
             {
-                if (n is IEditableNode p)
+                if (n is ICanAddNode p)
                 {
                     p.IsNew = false;
                     //p.IsChanged = false;
