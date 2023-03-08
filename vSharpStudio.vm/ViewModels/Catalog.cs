@@ -526,7 +526,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IForm GetForm(FormType ftype)
+        public IForm GetForm(FormType ftype, string guidAppPrjGen)
         {
             var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
             if (f == null)
@@ -535,10 +535,13 @@ namespace vSharpStudio.vm.ViewModels
                 int i = 0;
                 foreach (var t in this.GroupProperties.ListProperties)
                 {
-                    i++;
-                    if (i > 1)
-                        break;
-                    lstp.Add(t);
+                    if (t.IsIncluded(guidAppPrjGen))
+                    {
+                        i++;
+                        if (i > 1)
+                            break;
+                        lstp.Add(t);
+                    }
                 }
                 this.GetSpecialProperties(lstp, false);
                 f = new Form(this.GroupForms, lstp);
@@ -547,15 +550,15 @@ namespace vSharpStudio.vm.ViewModels
             }
             return f;
         }
-        public IReadOnlyList<IForm> GetListForms()
+        public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
         {
             var res = new List<IForm>();
             if (this.GetUseNameProperty())
             {
-                res.Add(this.GetForm(FormType.ListNarrow));
+                res.Add(this.GetForm(FormType.ListNarrow, guidAppPrjGen));
                 if (this.GetUseDescriptionProperty())
                 {
-                    res.Add(this.GetForm(FormType.ListWide));
+                    res.Add(this.GetForm(FormType.ListWide, guidAppPrjGen));
                 }
             }
             return res;
