@@ -526,6 +526,40 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        public IForm GetForm(FormType ftype)
+        {
+            var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
+            if (f == null)
+            {
+                var lstp = new List<IProperty>();
+                int i = 0;
+                foreach (var t in this.GroupProperties.ListProperties)
+                {
+                    i++;
+                    if (i > 1)
+                        break;
+                    lstp.Add(t);
+                }
+                this.GetSpecialProperties(lstp, false);
+                f = new Form(this.GroupForms, lstp);
+                f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
+                f.EnumFormType = ftype;
+            }
+            return f;
+        }
+        public IReadOnlyList<IForm> GetListForms()
+        {
+            var res = new List<IForm>();
+            if (this.GetUseNameProperty())
+            {
+                res.Add(this.GetForm(FormType.ListNarrow));
+                if (this.GetUseDescriptionProperty())
+                {
+                    res.Add(this.GetForm(FormType.ListWide));
+                }
+            }
+            return res;
+        }
         public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)
         {
             ViewTreeData? viewTreeData = null;
@@ -698,40 +732,6 @@ namespace vSharpStudio.vm.ViewModels
             if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.No)
                 return false;
             return this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
-        }
-        public IForm GetForm(FormType ftype)
-        {
-            var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
-            if (f == null)
-            {
-                var lstp = new List<IProperty>();
-                int i = 0;
-                foreach (var t in this.GroupProperties.ListProperties)
-                {
-                    i++;
-                    if (i > 1)
-                        break;
-                    lstp.Add(t);
-                }
-                this.GetSpecialProperties(lstp, false);
-                f = new Form(this.GroupForms, lstp);
-                f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
-                f.EnumFormType = ftype;
-            }
-            return f;
-        }
-        public IReadOnlyList<IForm> GetListForms()
-        {
-            var res = new List<IForm>();
-            if (this.GetUseNameProperty())
-            {
-                res.Add(this.GetForm(FormType.ListNarrow));
-                if (this.GetUseDescriptionProperty())
-                {
-                    res.Add(this.GetForm(FormType.ListWide));
-                }
-            }
-            return res;
         }
         //public IForm GetForm(FormType formType)
         //{

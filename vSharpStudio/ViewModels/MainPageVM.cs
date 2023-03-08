@@ -22,6 +22,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Xml.Linq;
+using AsyncAwaitBestPractices;
 using Google.Protobuf;
 using GuiLabs.Undo;
 //using Microsoft.AspNetCore.Components;
@@ -880,10 +881,16 @@ namespace vSharpStudio.ViewModels
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 var cancellationToken = this.cancellationTokenSource.Token;
                                 this.ProgressVM.Start("Configuration Validation", 0, null, null, cancellationToken);
-                                await Task.Run(() =>
-                                {
-                                    return this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger);
-                                });
+                                // https://learn.microsoft.com/en-us/archive/msdn-magazine/2014/april/mvvm-multithreading-and-dispatching-in-mvvm-applications
+                                // https://softwareengineering.stackexchange.com/questions/347970/multithreaded-c-mvvm-application-architecture
+                                if (VmBindable.isUnitTests)
+                                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger);
+                                else
+                                    await Task.Run(() =>
+                                    {
+                                        return this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger);
+                                    });
+                                //this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger).SafeFireAndForget(onException: ex => Trace.WriteLine(ex));
                             }
                             catch (CancellationException)
                             {
@@ -955,7 +962,7 @@ namespace vSharpStudio.ViewModels
                             try
                             {
                                 await this.BtnConfigValidateAsync.ExecuteAsync(o);
-                                if (o == null && this._Config.CountErrors > 0)
+                                if (this._Config.CountErrors > 0)
                                 {
 #if DEBUG
                                     if (!VmBindable.isUnitTests)
@@ -970,7 +977,14 @@ namespace vSharpStudio.ViewModels
                                     }
                                     else
                                     {
-                                        throw new Exception($"There are {this._Config.CountErrors} config errors. First: {this._Config.ValidationCollection[0].Message}");
+                                        var sb = new StringBuilder();
+                                        sb.AppendLine();
+                                        foreach (var t in this._Config.ValidationCollection)
+                                        {
+                                            if (t.Severity == FluentValidation.Severity.Error)
+                                                sb.AppendLine(t.Message);
+                                        }
+                                        throw new Exception($"There are {this._Config.CountErrors} config errors.{sb.ToString()}");
                                     }
 #endif
                                 }
@@ -979,10 +993,13 @@ namespace vSharpStudio.ViewModels
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
 
                                 this.ProgressVM.Start("Update Code/DB to Current Version of Configuration", 0, "", 0, cancellationToken);
-                                await Task.Run(() =>
-                                {
-                                    return this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
-                                });
+                                if (VmBindable.isUnitTests)
+                                    await this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+                                else
+                                    await Task.Run(() =>
+                                    {
+                                        return this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+                                    });
                                 this.ResetIsChangedBeforeSave();
                             }
                             catch (CancellationException)

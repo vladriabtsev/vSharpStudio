@@ -22,11 +22,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._cancellationToken = cancellationToken;
             this._logger = logger;
-            UIDispatcher.Invoke(() =>
-            {
-                this.Result = new SortedObservableCollection<ValidationMessage>();
-                this.Result.SortDirection = SortDirection.Descending;
-            });
+            this.Result = new SortedObservableCollection<ValidationMessage>();
+            this.Result.SortDirection = SortDirection.Descending;
         }
 
         public void UpdateSubstructCounts(ITreeConfigNode p)
@@ -140,11 +137,14 @@ namespace vSharpStudio.vm.ViewModels
 
                 p.Validate();
 
-                foreach (var t in p.ValidationCollection.ToList())
+                UIDispatcher.Invoke(() =>
                 {
-                    // t.Model = node;
-                    this.AddMessage(pp, t);
-                }
+                    foreach (var t in p.ValidationCollection.ToList())
+                    {
+                        // t.Model = node;
+                        this.AddMessage(pp, t);
+                    }
+                });
             }
         }
 

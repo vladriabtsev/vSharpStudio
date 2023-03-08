@@ -49,9 +49,12 @@ namespace ViewModelBase
             {
                 if (_CountErrors != value)
                 {
-                    _CountErrors = value;
-                    NotifyPropertyChanged();
-                    OnCountErrorsChanged();
+                    UIDispatcher.Invoke(() =>
+                    {
+                        _CountErrors = value;
+                        NotifyPropertyChanged();
+                        OnCountErrorsChanged();
+                    });
                 }
             }
         }
@@ -67,9 +70,12 @@ namespace ViewModelBase
             {
                 if (_CountWarnings != value)
                 {
-                    _CountWarnings = value;
-                    NotifyPropertyChanged();
-                    OnCountWarningsChanged();
+                    UIDispatcher.Invoke(() =>
+                    {
+                        _CountWarnings = value;
+                        NotifyPropertyChanged();
+                        OnCountWarningsChanged();
+                    });
                 }
             }
         }
@@ -85,9 +91,12 @@ namespace ViewModelBase
             {
                 if (_CountInfos != value)
                 {
-                    _CountInfos = value;
-                    NotifyPropertyChanged();
-                    OnCountInfosChanged();
+                    UIDispatcher.Invoke(() =>
+                    {
+                        _CountInfos = value;
+                        NotifyPropertyChanged();
+                        OnCountInfosChanged();
+                    });
                 }
             }
         }
@@ -100,8 +109,11 @@ namespace ViewModelBase
             {
                 if (_ValidationCollection != value)
                 {
-                    _ValidationCollection = value;
-                    NotifyPropertyChanged();
+                    UIDispatcher.Invoke(() =>
+                    {
+                        _ValidationCollection = value;
+                        NotifyPropertyChanged();
+                    });
                 }
             }
         }
@@ -135,7 +147,10 @@ namespace ViewModelBase
                             msg = new ValidationMessage(this, t.PropertyName, FluentValidation.Severity.Info, t.CustomState == null ? SeverityWeight.Normal : (SeverityWeight)t.CustomState, t.ErrorMessage);
                             break;
                     }
-                    ValidationCollection.Add(msg);
+                    UIDispatcher.Invoke(() =>
+                    {
+                        ValidationCollection.Add(msg);
+                    });
                 }
                 Dictionary<string, string> dic = new Dictionary<string, string>();
                 foreach (var t in _errors)
@@ -145,8 +160,11 @@ namespace ViewModelBase
                 foreach (var t in _infos)
                     dic[t.Key] = null;
                 var properties = dic.Select(error => error.Key).ToList();
-                foreach (var propertyName in properties)
-                    RaiseErrorsChanged(propertyName);
+                UIDispatcher.Invoke(() =>
+                {
+                    foreach (var propertyName in properties)
+                        RaiseErrorsChanged(propertyName);
+                });
             }
             return res.IsValid;
         }
@@ -293,10 +311,10 @@ namespace ViewModelBase
             foreach (var t in _infos)
                 dic[t.Key] = null;
             var properties = dic.Select(error => error.Key).ToList();
-            foreach (var propertyName in properties)
-                ClearError(propertyName);
             UIDispatcher.Invoke(() =>
             {
+                foreach (var propertyName in properties)
+                    ClearError(propertyName);
                 ValidationCollection.Clear();
             });
         }

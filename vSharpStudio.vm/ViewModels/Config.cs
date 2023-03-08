@@ -194,10 +194,12 @@ namespace vSharpStudio.vm.ViewModels
             }
             catch (TaskCanceledException)
             {
+                Trace.WriteLine("TaskCanceledException");
             }
 #if DEBUG
             catch (Exception ex)
             {
+                Trace.WriteLine(ex);
                 throw;
             }
 #endif
