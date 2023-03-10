@@ -24,9 +24,19 @@ namespace vSharpStudio.vm.ViewModels
         [BrowsableAttribute(false)]
         public IGroupListForms ParentGroupListFormsI { get { Debug.Assert(this.Parent != null); return (IGroupListForms)this.Parent; } }
 
-        public Form(ITreeConfigNode? parent, List<IProperty> lst) : this(parent)
+        public Form(ITreeConfigNode? parent, FormType ftype, List<IProperty> lst) : this(parent)
         {
             this._ListProperties = lst;
+            switch(ftype)
+            {
+                case FormType.ListWide:
+                case FormType.ListNarrow:
+                    this._Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            this._EnumFormType = ftype;
         }
 
         #region ITree

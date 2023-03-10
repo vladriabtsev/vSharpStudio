@@ -248,9 +248,14 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
                 this.GetSpecialProperties(lstp, false);
-                f = new Form(this.GroupForms, lstp);
-                f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
-                f.EnumFormType = ftype;
+                f = new Form(this.GroupForms, ftype, lstp);
+            }
+            else
+            {
+                var lstp = new List<IProperty>();
+                lstp.AddRange(f.ListAllNotSpecialProperties);
+                this.GetSpecialProperties(lstp, false);
+                f = new Form(this.GroupForms, ftype, lstp);
             }
             return f;
         }

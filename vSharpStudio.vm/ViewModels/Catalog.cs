@@ -544,23 +544,22 @@ namespace vSharpStudio.vm.ViewModels
                     }
                 }
                 this.GetSpecialProperties(lstp, false);
-                f = new Form(this.GroupForms, lstp);
-                f.Name = $"View{Enum.GetName(typeof(FormType), ftype)}";
-                f.EnumFormType = ftype;
+                f = new Form(this.GroupForms, ftype, lstp);
+            }
+            else  
+            {
+                var lstp = new List<IProperty>();
+                lstp.AddRange(f.ListAllNotSpecialProperties);
+                this.GetSpecialProperties(lstp, false);
+                f = new Form(this.GroupForms, ftype, lstp);
             }
             return f;
         }
         public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
         {
             var res = new List<IForm>();
-            if (this.GetUseNameProperty())
-            {
-                res.Add(this.GetForm(FormType.ListNarrow, guidAppPrjGen));
-                if (this.GetUseDescriptionProperty())
-                {
-                    res.Add(this.GetForm(FormType.ListWide, guidAppPrjGen));
-                }
-            }
+            res.Add(this.GetForm(FormType.ListNarrow, guidAppPrjGen));
+            res.Add(this.GetForm(FormType.ListWide, guidAppPrjGen));
             return res;
         }
         public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)

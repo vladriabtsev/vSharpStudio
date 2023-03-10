@@ -1,4 +1,4 @@
-﻿using M = vPlugins.DapperModels.PostgreSql.Model;
+﻿using M = vPlugins.DapperModels.Sqlite.Model;
 
 M.Settings.InitDefault();
 

@@ -374,6 +374,12 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 						set { _Id = value; ___isNeedUpdate = true;}
 					}
 					private int _Id; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+					public int RefCtlgCatalog1Folder // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1175
+					{
+						get { return _RefCtlgCatalog1Folder; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+						set { _RefCtlgCatalog1Folder = value; ___isNeedUpdate = true;}
+					}
+					private int _RefCtlgCatalog1Folder; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
 					public int Code // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1175
 					{
 						get { return _Code; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
@@ -386,11 +392,20 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 						set { _Name = value; ___isNeedUpdate = true;}
 					}
 					private string _Name = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+					public string Property1 // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1155
+					{
+						get { return _Property1; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+						set { _Property1 = value; ___isNeedUpdate = true;}
+					}
+					private string _Property1 = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
 				
 					#region Fields // ModelProperty.tt Line: 21
 					public const string F_ID = "Id";
+					public const string F_REF_PARENT = "RefCtlgCatalog1Folder";
+					public const string F_REFCTLGCATALOG1FOLDER = "RefCtlgCatalog1Folder";
 					public const string F_CODE = "Code";
 					public const string F_NAME = "Name";
+					public const string F_PROPERTY1 = "Property1";
 					#endregion Fields // ModelProperty.tt Line: 28
 				    #endregion Properties // ModelProperty.tt Line: 29
 				    #region Special // ModelProperty.tt Line: 30
@@ -408,25 +423,31 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 					    var cmd = new CommandDefinitionData(
 							"INSERT INTO CtlgCatalog1 (" + // ModelEntityCmd.tt Line: 48
 								"Id"+
+								",RefCtlgCatalog1Folder"+
 								",Code"+
 								",Name"+
+								",Property1"+
 							") VALUES(" + // ModelEntityCmd.tt Line: 52
 								"@Id"+
+								",@RefCtlgCatalog1Folder"+
 								",@Code"+
 								",@Name"+
+								",@Property1"+
 							");", // SELECT SCOPE_IDENTITY();", // ModelEntityCmd.tt Line: 56
 					        new 
 					        {
 					    		this.Id, 
+					    		this.RefCtlgCatalog1Folder, 
 					    		this.Code, 
 					    		this.Name, 
+					    		this.Property1, 
 					        }, CommandType.Text) // ModelEntityCmd.tt Line: 66 
 					        { Entity = this }; // ModelEntityCmd.tt Line: 68
 					    return cmd;
 					}
 					CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadById(int id) // ModelEntityCmd.tt Line: 71
 					{
-					    var sql = @"SELECT Id, Code, Name FROM CtlgCatalog1 WHERE Id = @pid;"
+					    var sql = @"SELECT Id, RefCtlgCatalog1Folder, Code, Name, Property1 FROM CtlgCatalog1 WHERE Id = @pid;"
 					; // ModelEntityCmd.tt Line: 84
 					    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
 					    return cmd;
@@ -483,12 +504,16 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 					{
 					    var cmd = new CommandDefinitionData(
 					        "UPDATE CtlgCatalog1 SET "+
-								"Code = @Code" + 
+								"RefCtlgCatalog1Folder = @RefCtlgCatalog1Folder" + 
+								",Code = @Code" + 
 								",Name = @Name" + 
+								",Property1 = @Property1" + 
 					        " WHERE Id = @Id;", // ModelEntityCmd.tt Line: 212
 							new {
+					    		this.RefCtlgCatalog1Folder, 
 					    		this.Code, 
 					    		this.Name, 
+					    		this.Property1, 
 								this.Id // ModelEntityCmd.tt Line: 227
 							}, CommandType.Text) 
 					        { Entity = this };
@@ -547,6 +572,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 					    {
 					        Id = id,
 					        Name = string.Empty,
+					        Property1 = string.Empty,
 					        ___isNeedInsert = true,
 					    };
 					    return dto;
@@ -563,40 +589,41 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 					#endregion Repository // CatalogRepository.tt Line: 51
 					#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 84
 					[Dapper.Contrib.Extensions.Table("CtlgCatalog1")]
-					public partial class ViewListNarrow : ViewEntityBaseSync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 49
+					public partial class ViewListNarrow : ViewDetailBaseSync<ViewListNarrow>, IViewPlainForRefTreeBaseExplicit<ViewListNarrow>, IRefToTreeIViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 54
 					{
-					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
-					    public string GetName() { return this.Name; }
+					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 56
+					    public string GetName() { return this.Property1; } // PocoView.tt Line: 61
+					    public int GetRefToTree() { return RefCtlgCatalog1Folder; } // PocoView.tt Line: 64
 					#if DEBUG
-					    private ViewListNarrow()
+					    private ViewListNarrow() // PocoView.tt Line: 72
 					#else
 					    public ViewListNarrow()
 					#endif
 					    {
-					        this.Name = string.Empty;
+					        this.Property1 = string.Empty;
 					    }
 					    #region View Properties
-						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 103 - Utils.cs Line: 280
-						public int Id // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1175
+						public string Property1 // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1155
 						{
-							get { return _Id; } // PocoView.tt Line: 103 - Utils.cs Line: 459
+							get { return _Property1; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _Property1 = value; }
+						}
+						private string _Property1 = string.Empty; // PocoView.tt Line: 108 - Utils.cs Line: 467
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 108 - Utils.cs Line: 280
+						public int Id // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Id; } // PocoView.tt Line: 108 - Utils.cs Line: 459
 							set { _Id = value; }
 						}
-						private int _Id; // PocoView.tt Line: 103 - Utils.cs Line: 467
-						public int Code // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1175
+						private int _Id; // PocoView.tt Line: 108 - Utils.cs Line: 467
+						public int RefCtlgCatalog1Folder // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
 						{
-							get { return _Code; } // PocoView.tt Line: 103 - Utils.cs Line: 459
-							set { _Code = value; }
+							get { return _RefCtlgCatalog1Folder; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _RefCtlgCatalog1Folder = value; }
 						}
-						private int _Code; // PocoView.tt Line: 103 - Utils.cs Line: 467
-						public string Name // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1155
-						{
-							get { return _Name; } // PocoView.tt Line: 103 - Utils.cs Line: 459
-							set { _Name = value; }
-						}
-						private string _Name = string.Empty; // PocoView.tt Line: 103 - Utils.cs Line: 467
+						private int _RefCtlgCatalog1Folder; // PocoView.tt Line: 108 - Utils.cs Line: 467
 					    #endregion View Properties
-						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 124
 						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
 						{
 							StringBuilder sb = new StringBuilder();
@@ -610,12 +637,56 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
 						    return cmd;
 						}
+						CommandDefinitionData IViewPlainForRefTreeBaseExplicit<ViewListNarrow>.GetCommandDefinitionSubItemsView(int? folderId, 
+						    int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 242
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Property1, Id, RefCtlgCatalog1Folder FROM CtlgCatalog1");
+							if (folderId.HasValue || where != null)
+							{
+								sb.Append(" WHERE ");
+							}
+						    if (folderId.HasValue)
+						    {
+						        sb.Append("RefCtlgCatalog1Folder=@rEfPaReNt");
+						        if (where != null)
+						        {
+						            sb.Append(" AND (");
+						            sb.Append(where);
+						            sb.Append(")");
+						        }
+						        param = AnonymousTypeExtensions.ToDynamicParameters(param, (dt) => { dt.Add("@rEfPaReNt", folderId); }, new[] { "rEfPaReNt" });
+						    }
+						    else
+						    {
+						        if (where != null)
+						        {
+						            sb.Append(where);
+						        }
+						    }
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" LIMIT ");
+								sb.Append(pagesize);
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
 						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
 						{
 						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
 							StringBuilder sb = new StringBuilder();
 							sb.Append("SELECT ");
-						    sb.Append("Id, Code, Name FROM CtlgCatalog1");
+						    sb.Append("Property1, Id, RefCtlgCatalog1Folder FROM CtlgCatalog1");
 							if (where != null)
 							{
 								sb.Append(" WHERE ");
@@ -639,7 +710,973 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 						}
 						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
 					}
-					#endregion Views // PocoView.tt Line: 289
+					[Dapper.Contrib.Extensions.Table("CtlgCatalog1")]
+					public partial class ViewListWide : ViewDetailBaseSync<ViewListWide>, IViewPlainForRefTreeBaseExplicit<ViewListWide>, IRefToTreeIViewItem, ISameById<ViewListWide>  // PocoView.tt Line: 54
+					{
+					    public bool SameById(ViewListWide other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 56
+					    public string GetName() { return this.Code.ToString(); } // PocoView.tt Line: 61
+					    public int GetRefToTree() { return RefCtlgCatalog1Folder; } // PocoView.tt Line: 64
+					#if DEBUG
+					    private ViewListWide() // PocoView.tt Line: 72
+					#else
+					    public ViewListWide()
+					#endif
+					    {
+					        this.Name = string.Empty;
+					        this.Property1 = string.Empty;
+					    }
+					    #region View Properties
+						public int Code // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Code; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _Code = value; }
+						}
+						private int _Code; // PocoView.tt Line: 108 - Utils.cs Line: 467
+						public string Name // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1155
+						{
+							get { return _Name; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _Name = value; }
+						}
+						private string _Name = string.Empty; // PocoView.tt Line: 108 - Utils.cs Line: 467
+						public string Property1 // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1155
+						{
+							get { return _Property1; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _Property1 = value; }
+						}
+						private string _Property1 = string.Empty; // PocoView.tt Line: 108 - Utils.cs Line: 467
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 108 - Utils.cs Line: 280
+						public int Id // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Id; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _Id = value; }
+						}
+						private int _Id; // PocoView.tt Line: 108 - Utils.cs Line: 467
+						public int RefCtlgCatalog1Folder // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _RefCtlgCatalog1Folder; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _RefCtlgCatalog1Folder = value; }
+						}
+						private int _RefCtlgCatalog1Folder; // PocoView.tt Line: 108 - Utils.cs Line: 467
+					    #endregion View Properties
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 124
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM CtlgCatalog1");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainForRefTreeBaseExplicit<ViewListWide>.GetCommandDefinitionSubItemsView(int? folderId, 
+						    int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 242
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Code, Name, Property1, Id, RefCtlgCatalog1Folder FROM CtlgCatalog1");
+							if (folderId.HasValue || where != null)
+							{
+								sb.Append(" WHERE ");
+							}
+						    if (folderId.HasValue)
+						    {
+						        sb.Append("RefCtlgCatalog1Folder=@rEfPaReNt");
+						        if (where != null)
+						        {
+						            sb.Append(" AND (");
+						            sb.Append(where);
+						            sb.Append(")");
+						        }
+						        param = AnonymousTypeExtensions.ToDynamicParameters(param, (dt) => { dt.Add("@rEfPaReNt", folderId); }, new[] { "rEfPaReNt" });
+						    }
+						    else
+						    {
+						        if (where != null)
+						        {
+						            sb.Append(where);
+						        }
+						    }
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" LIMIT ");
+								sb.Append(pagesize);
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+						{
+						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Code, Name, Property1, Id, RefCtlgCatalog1Folder FROM CtlgCatalog1");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" LIMIT ");
+								sb.Append(pagesize);
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+					}
+					#endregion Views // PocoView.tt Line: 294
+					[Dapper.Contrib.Extensions.Table("CtlgCatalog1Folder")]
+					public partial class Folder : RepoEntityBaseSync<Folder>, IEntityBaseExplicit<Folder>, ISameById<Folder>, IEntityBase // ModelCatalogClass.tt Line: 12, called from ModelCatalogClass.tt Line: 90
+					{
+					    #region ctor // ModelCtor.tt Line: 8, called from ModelCatalogClass.tt Line: 25
+					    public IEnumerable<IEntityBase> GetChildren() // ModelCtor.tt Line: 17
+					    {
+					        return new List<IEntityBase>();
+					    }
+					    static Folder() 
+					    { 
+					    }
+					#if DEBUG
+					    private Folder() : base("c0")
+					#else
+					    public Folder() : base("c0")
+					#endif
+					    {
+					    }
+					    #endregion ctor
+					    #region Properties // ModelProperty.tt Line: 8, called from ModelCatalogClass.tt Line: 28
+						[Dapper.Contrib.Extensions.Key] // ModelProperty.tt Line: 19 - Utils.cs Line: 280
+						public int Id // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Id; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+							set { _Id = value; ___isNeedUpdate = true;}
+						}
+						private int _Id; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+						public int? RefTreeParent // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _RefTreeParent; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+							set { _RefTreeParent = value; ___isNeedUpdate = true;}
+						}
+						private int? _RefTreeParent; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+						public bool IsOpen // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1115
+						{
+							get { return _IsOpen; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+							set { _IsOpen = value; ___isNeedUpdate = true;}
+						}
+						private bool _IsOpen; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+						public int Code // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Code; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+							set { _Code = value; ___isNeedUpdate = true;}
+						}
+						private int _Code; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+						public string Name // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1155
+						{
+							get { return _Name; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+							set { _Name = value; ___isNeedUpdate = true;}
+						}
+						private string _Name = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+						public string Property11 // ModelProperty.tt Line: 19 - Utils.cs Line: 316 Utils.cs Line: 1155
+						{
+							get { return _Property11; } // ModelProperty.tt Line: 19 - Utils.cs Line: 459
+							set { _Property11 = value; ___isNeedUpdate = true;}
+						}
+						private string _Property11 = string.Empty; // ModelProperty.tt Line: 19 - Utils.cs Line: 467
+					
+						#region Fields // ModelProperty.tt Line: 21
+						public const string F_ID = "Id";
+						public const string F_REF_PARENT = "RefTreeParent";
+						public const string F_REFTREEPARENT = "RefTreeParent";
+						public const string F_ISOPEN = "IsOpen";
+						public const string F_CODE = "Code";
+						public const string F_NAME = "Name";
+						public const string F_PROPERTY11 = "Property11";
+						#endregion Fields // ModelProperty.tt Line: 28
+					    #endregion Properties // ModelProperty.tt Line: 29
+					    #region Special // ModelProperty.tt Line: 30
+						public const string T_GUID = "2d30325d-5000-4a41-a464-cab89db5f4b5";
+						public string GetGuid() { return T_GUID; }
+						public const string T_NAME = "CtlgCatalog1Folder";
+					    public string GetDbTableName() { return T_NAME; }
+					    public bool IsMarkedForDeletion(bool? isMarkedForDeletion = null) { if (isMarkedForDeletion.HasValue) { this.___isMarkedForDeletion = isMarkedForDeletion ?? false; } return this.___isMarkedForDeletion; }
+					    private bool ___isMarkedForDeletion = false;
+					    public bool SameById(Folder other) { return other != null && this.Id == other.Id; } // ModelProperty.tt Line: 45
+					    #endregion Special // ModelProperty.tt Line: 46
+						#region Command Definition Data // ModelEntityCmd.tt Line: 9, called from ModelCatalogClass.tt Line: 50
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionInsert() // ModelEntityCmd.tt Line: 32
+						{
+						    var cmd = new CommandDefinitionData(
+								"INSERT INTO CtlgCatalog1Folder (" + // ModelEntityCmd.tt Line: 48
+									"Id"+
+									",RefTreeParent"+
+									",IsOpen"+
+									",Code"+
+									",Name"+
+									",Property11"+
+								") VALUES(" + // ModelEntityCmd.tt Line: 52
+									"@Id"+
+									",@RefTreeParent"+
+									",@IsOpen"+
+									",@Code"+
+									",@Name"+
+									",@Property11"+
+								");", // SELECT SCOPE_IDENTITY();", // ModelEntityCmd.tt Line: 56
+						        new 
+						        {
+						    		this.Id, 
+						    		this.RefTreeParent, 
+						    		this.IsOpen, 
+						    		this.Code, 
+						    		this.Name, 
+						    		this.Property11, 
+						        }, CommandType.Text) // ModelEntityCmd.tt Line: 66 
+						        { Entity = this }; // ModelEntityCmd.tt Line: 68
+						    return cmd;
+						}
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadById(int id) // ModelEntityCmd.tt Line: 71
+						{
+						    var sql = @"SELECT Id, RefTreeParent, IsOpen, Code, Name, Property11 FROM CtlgCatalog1Folder WHERE Id = @pid;"
+						; // ModelEntityCmd.tt Line: 84
+						    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionSelect(string? where, object? param, string? sort, 
+						    int page, int pagesize) // ModelEntityCmd.tt Line: 90
+						{
+							var sql = CreateQuery(null, Model.Catalogs.Catalog1.Folder.T_NAME, null, where, sort, page, pagesize);
+						    var cmd = new CommandDefinitionData(sql, param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionCountWhere(string? where, object? param) // ModelEntityCmd.tt Line: 104
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM CtlgCatalog1Folder");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						List<CommandDefinitionData> IEntityBaseExplicit.GetCommandDefinitionSave() // ModelEntityCmd.tt Line: 125
+						{
+						    Dictionary<string, Dictionary<int, string?>>? dicInsertedUpdatedGuidId = null;
+						    var lstCmd = new List<CommandDefinitionData>();
+						    CommandDefinitionData cd;
+						    bool isCanInsert = true; 
+						    if (dicInsertedUpdatedGuidId != null)
+						    {
+						        if (!dicInsertedUpdatedGuidId.ContainsKey(Model.Catalogs.Catalog1.Folder.T_GUID))
+						            dicInsertedUpdatedGuidId[Model.Catalogs.Catalog1.Folder.T_GUID] = new Dictionary<int, string?>();
+						        var dic = dicInsertedUpdatedGuidId[Model.Catalogs.Catalog1.Folder.T_GUID];
+						        if (dic.ContainsKey(this.Id))
+						            isCanInsert = false;
+						        else
+						            dic[this.Id] = null;
+						    }
+						    if (this.IsNeedInsert() && isCanInsert)
+						    {
+						        cd = ((IEntityBaseExplicit)this).GetCommandDefinitionInsert();
+						        lstCmd.Add(cd);
+						    } 
+						    else if (this.IsNeedUpdate())
+						    {
+						        cd = ((IEntityBaseExplicit)this).GetCommandDefinitionUpdate();
+						        lstCmd.Add(cd);
+						    }
+						    return lstCmd;
+						}
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionUpdate() // ModelEntityCmd.tt Line: 183
+						{
+						    var cmd = new CommandDefinitionData(
+						        "UPDATE CtlgCatalog1Folder SET "+
+									"RefTreeParent = @RefTreeParent" + 
+									",IsOpen = @IsOpen" + 
+									",Code = @Code" + 
+									",Name = @Name" + 
+									",Property11 = @Property11" + 
+						        " WHERE Id = @Id;", // ModelEntityCmd.tt Line: 212
+								new {
+						    		this.RefTreeParent, 
+						    		this.IsOpen, 
+						    		this.Code, 
+						    		this.Name, 
+						    		this.Property11, 
+									this.Id // ModelEntityCmd.tt Line: 227
+								}, CommandType.Text) 
+						        { Entity = this };
+						    return cmd;
+						}
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteById(int id) // ModelEntityCmd.tt Line: 233
+						{
+						    var sql = "DELETE FROM CtlgCatalog1Folder WHERE Id = @pid;";
+						    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionRemoveById(int id) // ModelEntityCmd.tt Line: 244
+						{
+						    var sql = "" +
+						    "DELETE FROM CtlgCatalog1Folder WHERE Id = @pid;\n"; // ModelEntityCmd.tt Line: 261
+						    var cmd = new CommandDefinitionData(sql, new { pid = id }, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionDeleteWhere(string? where, object? param) // ModelEntityCmd.tt Line: 266
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("DELETE FROM CtlgCatalog1Folder");
+							if (!string.IsNullOrWhiteSpace(where))
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionRemoveWhere(string? where, object? param) // ModelEntityCmd.tt Line: 287
+						{
+							var sb = new StringBuilder();
+							if (!string.IsNullOrWhiteSpace(where))
+							{
+						        sb.Append("DELETE FROM CtlgCatalog1Folder WHERE "); // ModelEntityCmd.tt Line: 309
+						        sb.Append(where);
+						    	sb.AppendLine(";");
+							}
+						    else
+						    {
+						        sb.AppendLine("DELETE FROM CtlgCatalog1Folder;"); // ModelEntityCmd.tt Line: 318
+						    }
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionMoveTo(int id, int idGroupTo) // ModelEntityCmd.tt Line: 324
+						{
+						    var sql = @"UPDATE CtlgCatalog1Folder SET RefTreeParent=@ptid WHERE Id=@pid;";
+						    var cmd = new CommandDefinitionData(sql, new { ptid = idGroupTo, pid = id }, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IEntityBaseExplicit.GetCommandDefinitionLoadSubTree(int id, int deep) // ModelEntityCmd.tt Line: 335
+						{
+						    var sql = 
+						        "WITH CtlgCatalog1Folder_CTE(Id, RefTreeParent, IsOpen, Code, Name, Property11, _level) AS \n" +  
+						        "( \n" +
+						            "SELECT e.Id, e.RefTreeParent, e.IsOpen, e.Code, e.Name, e.Property11, 0 AS _level \n" +  
+						            "FROM CtlgCatalog1Folder \n" +
+						            "WHERE Id=@pid \n" +
+						            "UNION ALL \n" +  
+						            "SELECT Id, RefTreeParent, IsOpen, Code, Name, Property11, _level+1 \n" +
+						            "FROM CtlgCatalog1Folder AS e \n" +
+						                "INNER JOIN CtlgCatalog1Folder_CTE AS d \n" +  
+						                "ON e.RefTreeParent=d.Id \n" +
+						        ") \n" +  
+						        "SELECT Id, RefTreeParent, IsOpen, Code, Name, Property11, _level \n" +
+						        "FROM CtlgCatalog1Folder_CTE \n" +  
+						        "WHERE _level<=@pd;\n" +
+						        "WITH CtlgCatalog1Folder_CTE(Id, RefTreeParent, _level) AS \n" +     
+						        "( \n" +    
+						            "SELECT Id, RefTreeParent, 0 AS _level \n" +    
+						            "FROM CtlgCatalog1Folder \n" +  
+						            "WHERE Id=@pid \n" +  
+						            "UNION ALL \n" +    
+						            "SELECT e.Id, e.RefTreeParent, _level+1 \n" +  
+						            "FROM CtlgCatalog1Folder AS e \n" +  
+						                "INNER JOIN CtlgCatalog1Folder_CTE AS d \n" +    
+						                "ON e.RefTreeParent = d.Id \n" +  
+						        ") \n" +    
+						        "SELECT l.Id, l.RefTreeParent, l.IsOpen, l.Code, l.Name, l.Property11 \n" +  
+						        "FROM CtlgCatalog1Folder as l \n" +  
+						        "INNER JOIN CtlgCatalog1Folder_CTE as t ON t.Id=l.RefCtlgCatalog1Folder \n" +  
+						        "WHERE t._level<=@pd;\n";
+						    var cmd = new CommandDefinitionData(sql, new { pid = id, pd = deep }, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Command Definition Data // ModelEntityCmd.tt Line: 381
+						#region Repository // CatalogRepository.tt Line: 7, called from ModelCatalogClass.tt Line: 64
+						// Repository.tt Line: 8, called from CatalogRepository.partial.cs Line: 34
+						Catalogs.Catalog1.Folder IEntityBaseExplicit<Folder>.CreateDto(int id) // Repository.tt Line: 15
+						{
+						    var dto = new Catalogs.Catalog1.Folder
+						    {
+						        Id = id,
+						        Name = string.Empty,
+						        Property11 = string.Empty,
+						        ___isNeedInsert = true,
+						    };
+						    return dto;
+						}
+						protected override Catalogs.Catalog1.Folder GetThis() { return this; }
+						Folder? IEntityBaseExplicit<Folder>.LoadUtil(SqlMapper.GridReader multi) // Repository.tt Line: 236
+						{
+						    Catalogs.Catalog1.Folder? resFolder = null;
+						    var lstCtlgCatalog1Folder = new List<Catalogs.Catalog1.Folder>();
+						    resFolder = multi.Read<Catalogs.Catalog1.Folder>().First();
+						    lstCtlgCatalog1Folder.Add(resFolder);
+						    return resFolder;
+						}
+						/*
+						/// <summary>
+						/// Load sub tree 'Catalog1' full object and children (with all tab objects) by ID
+						/// </summary>
+						/// <returns>
+						/// Return 'Catalog1' full object with all tab objects
+						/// </returns>
+						/// See <see cref="Select(string,ServiceSqlParameter[],string[],int,int)"/> for sample.
+						public static Folder LoadSubTree(int id, int deep) // CatalogRepository.tt Line: 20
+						{
+							Folder res = null;
+							IEnumerable<Folder> lstSub = null;
+							IEnumerable<Catalog1> lstItems = null;
+						    var cd = Model.CmdDefinitions.Catalogs.Catalog1.Folder.LoadSubTree(id, deep);
+						    Model.ConnSelectSingle<Folder>((conn) => 
+						    { 
+						        using(var multi = conn.QueryMultiple(cd.GetCommandDefinition()))
+						        {
+						            res = multi.Read<Folder>().First();
+						            lstSub = multi.Read<Folder>();
+						            lstItems = multi.Read<Catalog1>();
+						        }
+						    	return res;
+						    }, Model.RetryPolicy);
+						    var dicSub = new Dictionary<int, Folder>();
+						    dicSub[res.Id] = res;
+						    foreach(var t in lstSub)
+						        dicSub[t.Id] = t;
+						    foreach(var t in lstSub)
+						        dicSub[t.RefTreeParent.Value]._ListChildrenGroups.Add(t);
+						    foreach(var t in lstItems)
+						        dicSub[t.RefCtlgCatalog1Folder]._ListChildrenItems.Add(t);
+							return res;
+						}
+						*/
+						#endregion Repository // CatalogRepository.tt Line: 51
+						#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 84
+						[Dapper.Contrib.Extensions.Table("CtlgCatalog1.Folder")]
+						public partial class ViewListNarrow : ViewTreeBaseSync<ViewListNarrow>, IViewSelfTreeBaseExplicit<ViewListNarrow>, ISelfTreeIViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 54
+						{
+						    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 56
+						    public string GetName() { return this.Property11; } // PocoView.tt Line: 61
+						#if DEBUG
+						    private ViewListNarrow() // PocoView.tt Line: 72
+						#else
+						    public ViewListNarrow()
+						#endif
+						    {
+						        this.Property11 = string.Empty;
+						    }
+						    #region View Properties
+							public string Property11 // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1155
+							{
+								get { return _Property11; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+								set { _Property11 = value; }
+							}
+							private string _Property11 = string.Empty; // PocoView.tt Line: 108 - Utils.cs Line: 467
+							[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 108 - Utils.cs Line: 280
+							public int Id // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+							{
+								get { return _Id; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+								set { _Id = value; }
+							}
+							private int _Id; // PocoView.tt Line: 108 - Utils.cs Line: 467
+							public int? RefTreeParent // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+							{
+								get { return _RefTreeParent; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+								set { _RefTreeParent = value; }
+							}
+							private int? _RefTreeParent; // PocoView.tt Line: 108 - Utils.cs Line: 467
+							public bool IsOpen // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1115
+							{
+								get { return _IsOpen; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+								set { _IsOpen = value; }
+							}
+							private bool _IsOpen; // PocoView.tt Line: 108 - Utils.cs Line: 467
+						    #endregion View Properties
+							#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
+							CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+							{
+								StringBuilder sb = new StringBuilder();
+								sb.Append("SELECT Count(*) FROM CtlgCatalog1Folder");
+								if (where != null)
+								{
+									sb.Append(" WHERE ");
+									sb.Append(where);
+								}
+								sb.Append(';');
+							    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+							    return cmd;
+							}
+							CommandDefinitionData IViewSelfTreeBaseExplicit<ViewListNarrow>.GetCommandDefinitionSubTreeView(int? id, int deep, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 31
+							{
+							    var sb = new StringBuilder();
+							    if (id.HasValue || deep > 0)
+							    {
+							        sb.Append(
+							            "WITH CtlgCatalog1Folder_cte(Property11, Id, RefTreeParent, IsOpen, _level) AS\n" +  
+							            "( \n" +
+							                "SELECT Property11, Id, RefTreeParent, IsOpen, 1 AS _level \n" +  
+							                "FROM CtlgCatalog1Folder \n");
+							        if (id.HasValue)
+							            sb.Append("WHERE RefTreeParent=@pArMid \n");
+							        else 
+							            sb.Append("WHERE RefTreeParent IS NULL \n");
+							        sb.Append(
+							                "UNION ALL \n" +  
+							                "SELECT e.Property11, e.Id, e.RefTreeParent, e.IsOpen, _level+1 \n" +
+							                "FROM CtlgCatalog1Folder AS e \n" +
+							                    "INNER JOIN CtlgCatalog1Folder_cte AS d \n" +  
+							                    "ON e.RefTreeParent=d.Id \n" +
+							            ") \n" +  
+							            "SELECT Property11, Id, RefTreeParent, IsOpen \n" +
+							            "FROM CtlgCatalog1Folder_cte");  
+								    if (where != null)
+								    {
+							            if (deep > 0)
+							            {
+									        sb.Append("\nWHERE _level<=@pArMdeep AND (");
+									        sb.Append(where);
+									        sb.Append(')');
+							            }
+							            else
+							            {
+									        sb.Append("\nWHERE ");
+									        sb.Append(where);
+							            }
+								    }
+							        else if (deep > 0)
+							        {
+									    sb.Append("\nWHERE _level<=@pArMdeep");
+							        }
+							        param = AnonymousTypeExtensions.ToDynamicParameters(param, (dt) => { if (id.HasValue) dt.Add("@pArMid", id); if (deep > 0) dt.Add("@pArMdeep", deep); }, new[] { "pArMid", "pArMdeep" });
+							    }
+							    else
+							    {
+							        sb.Append("SELECT Property11, Id, RefTreeParent, IsOpen FROM CtlgCatalog1Folder");
+								    if (where != null)
+								    {
+									    sb.Append("\nWHERE ");
+									    sb.Append(where);
+								    }
+							    }
+								if (sort != null)
+								{
+									sb.Append("\nORDER BY ");
+									sb.Append(sort);
+								}
+								sb.Append(";\n");
+							    var sql = sb.ToString();
+							    var cmd = new CommandDefinitionData(sql, param, CommandType.Text);
+							    return cmd;
+							}
+							CommandDefinitionData IViewSelfTreeBaseExplicit<ViewListNarrow>.GetCommandDefinitionSubItemsView(int? folderId, 
+							    int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 102
+							{
+								StringBuilder sb = new StringBuilder();
+								sb.Append("SELECT ");
+							    sb.Append("Property11, Id, RefTreeParent, IsOpen FROM CtlgCatalog1Folder");
+								if (folderId.HasValue || where != null)
+								{
+									sb.Append(" WHERE ");
+								}
+							    if (folderId.HasValue)
+							    {
+							        sb.Append("RefTreeParent=@rEfPaReNt");
+							        if (where != null)
+							        {
+							            sb.Append(" AND (");
+							            sb.Append(where);
+							            sb.Append(")");
+							        }
+							        param = AnonymousTypeExtensions.ToDynamicParameters(param, (dt) => { dt.Add("@rEfPaReNt", folderId); }, new[] { "rEfPaReNt" });
+							    }
+							    else
+							    {
+							        if (where != null)
+							        {
+							            sb.Append(where);
+							        }
+							    }
+								if (sort != null)
+								{
+									sb.Append(" ORDER BY ");
+									sb.Append(sort);
+								}
+								if (page > 0 && pagesize > 0)
+								{
+									sb.Append(" LIMIT ");
+									sb.Append(pagesize);
+									sb.Append(" OFFSET ");
+									sb.Append((page-1)*pagesize);
+							    }
+								sb.Append(';');
+							    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+							    return cmd;
+							}
+							CommandDefinitionData IViewSelfTreeBaseExplicit<ViewListNarrow>.GetCommandDefinitionTreeListSubView(int? selectedId, 
+							    string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 162
+							{
+							    var sb = new StringBuilder();
+							    sb.Append("SELECT Property11, Id, RefTreeParent, IsOpen FROM CtlgCatalog1Folder\nWHERE ");
+							    if (selectedId.HasValue)
+							    {
+							        sb.Append("RefTreeParent=@rEfPaReNt");
+									param = AnonymousTypeExtensions.ToDynamicParameters(param, (dt) => { dt.Add("@rEfPaReNt", selectedId); }, new[] { "rEfPaReNt" });
+							    }
+							    else
+							    {
+							        sb.Append("RefTreeParent is NULL");
+							    }
+							    if (where != null)
+							    {
+							        sb.Append(" AND (");
+							        sb.Append(where);
+							        sb.Append(")");
+							    }
+							    if (sort != null)
+							    {
+								    sb.Append("\nORDER BY ");
+								    sb.Append(sort);
+							    }
+							    sb.Append(";");
+							    var sql = sb.ToString();
+							    var cmd = new CommandDefinitionData(sql, param, CommandType.Text);
+							    return cmd;
+							}
+							CommandDefinitionData IViewSelfTreeBaseExplicit<ViewListNarrow>.GetCommandDefinitionTreeListView(int? selectedId, 
+							    string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 200
+							{
+							    var sb = new StringBuilder();
+							    if (selectedId.HasValue)
+							    {
+							        sb.Append(
+							            "WITH CtlgCatalog1Folder_cte(Property11, Id, RefTreeParent, IsOpen, _level) AS\n" +  
+							            "( \n" +
+							                "SELECT Property11, Id, RefTreeParent, IsOpen, 1 AS _level \n" +  
+							                "FROM CtlgCatalog1Folder \n");
+							        sb.Append("WHERE Id=@rEfPaReNt \n");
+							        sb.Append(
+							                "UNION ALL\n" +  
+							                "SELECT e.Property11, e.Id, e.RefTreeParent, e.IsOpen, _level+1 \n" +
+							                "FROM CtlgCatalog1Folder AS e \n" +
+							                    "INNER JOIN CtlgCatalog1Folder_cte AS d \n" +  
+							                    "ON e.Id=d.RefTreeParent \n" +
+							            ") \n" +  
+							            "SELECT Property11, Id, RefTreeParent, IsOpen \n" +
+							            "FROM CtlgCatalog1Folder_cte ORDER BY _level desc;");  
+							        param = AnonymousTypeExtensions.ToDynamicParameters(param, (dt) => { dt.Add("@rEfPaReNt", selectedId); }, new[] { "rEfPaReNt" });
+							    }
+							    else
+							    {
+							        Debug.Assert(false, "Use GetCommandDefinitionSubItemsView");
+							    }
+							    sb.Append(";\n");
+							    var sql = sb.ToString();
+							    var cmd = new CommandDefinitionData(sql, param, CommandType.Text);
+							    return cmd;
+							}
+							CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+							{
+							    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+								StringBuilder sb = new StringBuilder();
+								sb.Append("SELECT ");
+							    sb.Append("Property11, Id, RefTreeParent, IsOpen FROM CtlgCatalog1Folder");
+								if (where != null)
+								{
+									sb.Append(" WHERE ");
+									sb.Append(where);
+								}
+								if (sort != null)
+								{
+									sb.Append(" ORDER BY ");
+									sb.Append(sort);
+								}
+								if (page > 0 && pagesize > 0)
+								{
+									sb.Append(" LIMIT ");
+									sb.Append(pagesize);
+									sb.Append(" OFFSET ");
+									sb.Append((page-1)*pagesize);
+							    }
+								sb.Append(';');
+							    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+							    return cmd;
+							}
+							#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+						}
+						[Dapper.Contrib.Extensions.Table("CtlgCatalog1.Folder")]
+						public partial class ViewListWide : ViewTreeBaseSync<ViewListWide>, IViewSelfTreeBaseExplicit<ViewListWide>, ISelfTreeIViewItem, ISameById<ViewListWide>  // PocoView.tt Line: 54
+						{
+						    public bool SameById(ViewListWide other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 56
+						    public string GetName() { return this.Property11; } // PocoView.tt Line: 61
+						#if DEBUG
+						    private ViewListWide() // PocoView.tt Line: 72
+						#else
+						    public ViewListWide()
+						#endif
+						    {
+						        this.Property11 = string.Empty;
+						    }
+						    #region View Properties
+							public string Property11 // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1155
+							{
+								get { return _Property11; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+								set { _Property11 = value; }
+							}
+							private string _Property11 = string.Empty; // PocoView.tt Line: 108 - Utils.cs Line: 467
+							[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 108 - Utils.cs Line: 280
+							public int Id // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+							{
+								get { return _Id; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+								set { _Id = value; }
+							}
+							private int _Id; // PocoView.tt Line: 108 - Utils.cs Line: 467
+							public int? RefTreeParent // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+							{
+								get { return _RefTreeParent; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+								set { _RefTreeParent = value; }
+							}
+							private int? _RefTreeParent; // PocoView.tt Line: 108 - Utils.cs Line: 467
+							public bool IsOpen // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1115
+							{
+								get { return _IsOpen; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+								set { _IsOpen = value; }
+							}
+							private bool _IsOpen; // PocoView.tt Line: 108 - Utils.cs Line: 467
+						    #endregion View Properties
+							#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
+							CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+							{
+								StringBuilder sb = new StringBuilder();
+								sb.Append("SELECT Count(*) FROM CtlgCatalog1Folder");
+								if (where != null)
+								{
+									sb.Append(" WHERE ");
+									sb.Append(where);
+								}
+								sb.Append(';');
+							    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+							    return cmd;
+							}
+							CommandDefinitionData IViewSelfTreeBaseExplicit<ViewListWide>.GetCommandDefinitionSubTreeView(int? id, int deep, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 31
+							{
+							    var sb = new StringBuilder();
+							    if (id.HasValue || deep > 0)
+							    {
+							        sb.Append(
+							            "WITH CtlgCatalog1Folder_cte(Property11, Id, RefTreeParent, IsOpen, _level) AS\n" +  
+							            "( \n" +
+							                "SELECT Property11, Id, RefTreeParent, IsOpen, 1 AS _level \n" +  
+							                "FROM CtlgCatalog1Folder \n");
+							        if (id.HasValue)
+							            sb.Append("WHERE RefTreeParent=@pArMid \n");
+							        else 
+							            sb.Append("WHERE RefTreeParent IS NULL \n");
+							        sb.Append(
+							                "UNION ALL \n" +  
+							                "SELECT e.Property11, e.Id, e.RefTreeParent, e.IsOpen, _level+1 \n" +
+							                "FROM CtlgCatalog1Folder AS e \n" +
+							                    "INNER JOIN CtlgCatalog1Folder_cte AS d \n" +  
+							                    "ON e.RefTreeParent=d.Id \n" +
+							            ") \n" +  
+							            "SELECT Property11, Id, RefTreeParent, IsOpen \n" +
+							            "FROM CtlgCatalog1Folder_cte");  
+								    if (where != null)
+								    {
+							            if (deep > 0)
+							            {
+									        sb.Append("\nWHERE _level<=@pArMdeep AND (");
+									        sb.Append(where);
+									        sb.Append(')');
+							            }
+							            else
+							            {
+									        sb.Append("\nWHERE ");
+									        sb.Append(where);
+							            }
+								    }
+							        else if (deep > 0)
+							        {
+									    sb.Append("\nWHERE _level<=@pArMdeep");
+							        }
+							        param = AnonymousTypeExtensions.ToDynamicParameters(param, (dt) => { if (id.HasValue) dt.Add("@pArMid", id); if (deep > 0) dt.Add("@pArMdeep", deep); }, new[] { "pArMid", "pArMdeep" });
+							    }
+							    else
+							    {
+							        sb.Append("SELECT Property11, Id, RefTreeParent, IsOpen FROM CtlgCatalog1Folder");
+								    if (where != null)
+								    {
+									    sb.Append("\nWHERE ");
+									    sb.Append(where);
+								    }
+							    }
+								if (sort != null)
+								{
+									sb.Append("\nORDER BY ");
+									sb.Append(sort);
+								}
+								sb.Append(";\n");
+							    var sql = sb.ToString();
+							    var cmd = new CommandDefinitionData(sql, param, CommandType.Text);
+							    return cmd;
+							}
+							CommandDefinitionData IViewSelfTreeBaseExplicit<ViewListWide>.GetCommandDefinitionSubItemsView(int? folderId, 
+							    int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 102
+							{
+								StringBuilder sb = new StringBuilder();
+								sb.Append("SELECT ");
+							    sb.Append("Property11, Id, RefTreeParent, IsOpen FROM CtlgCatalog1Folder");
+								if (folderId.HasValue || where != null)
+								{
+									sb.Append(" WHERE ");
+								}
+							    if (folderId.HasValue)
+							    {
+							        sb.Append("RefTreeParent=@rEfPaReNt");
+							        if (where != null)
+							        {
+							            sb.Append(" AND (");
+							            sb.Append(where);
+							            sb.Append(")");
+							        }
+							        param = AnonymousTypeExtensions.ToDynamicParameters(param, (dt) => { dt.Add("@rEfPaReNt", folderId); }, new[] { "rEfPaReNt" });
+							    }
+							    else
+							    {
+							        if (where != null)
+							        {
+							            sb.Append(where);
+							        }
+							    }
+								if (sort != null)
+								{
+									sb.Append(" ORDER BY ");
+									sb.Append(sort);
+								}
+								if (page > 0 && pagesize > 0)
+								{
+									sb.Append(" LIMIT ");
+									sb.Append(pagesize);
+									sb.Append(" OFFSET ");
+									sb.Append((page-1)*pagesize);
+							    }
+								sb.Append(';');
+							    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+							    return cmd;
+							}
+							CommandDefinitionData IViewSelfTreeBaseExplicit<ViewListWide>.GetCommandDefinitionTreeListSubView(int? selectedId, 
+							    string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 162
+							{
+							    var sb = new StringBuilder();
+							    sb.Append("SELECT Property11, Id, RefTreeParent, IsOpen FROM CtlgCatalog1Folder\nWHERE ");
+							    if (selectedId.HasValue)
+							    {
+							        sb.Append("RefTreeParent=@rEfPaReNt");
+									param = AnonymousTypeExtensions.ToDynamicParameters(param, (dt) => { dt.Add("@rEfPaReNt", selectedId); }, new[] { "rEfPaReNt" });
+							    }
+							    else
+							    {
+							        sb.Append("RefTreeParent is NULL");
+							    }
+							    if (where != null)
+							    {
+							        sb.Append(" AND (");
+							        sb.Append(where);
+							        sb.Append(")");
+							    }
+							    if (sort != null)
+							    {
+								    sb.Append("\nORDER BY ");
+								    sb.Append(sort);
+							    }
+							    sb.Append(";");
+							    var sql = sb.ToString();
+							    var cmd = new CommandDefinitionData(sql, param, CommandType.Text);
+							    return cmd;
+							}
+							CommandDefinitionData IViewSelfTreeBaseExplicit<ViewListWide>.GetCommandDefinitionTreeListView(int? selectedId, 
+							    string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 200
+							{
+							    var sb = new StringBuilder();
+							    if (selectedId.HasValue)
+							    {
+							        sb.Append(
+							            "WITH CtlgCatalog1Folder_cte(Property11, Id, RefTreeParent, IsOpen, _level) AS\n" +  
+							            "( \n" +
+							                "SELECT Property11, Id, RefTreeParent, IsOpen, 1 AS _level \n" +  
+							                "FROM CtlgCatalog1Folder \n");
+							        sb.Append("WHERE Id=@rEfPaReNt \n");
+							        sb.Append(
+							                "UNION ALL\n" +  
+							                "SELECT e.Property11, e.Id, e.RefTreeParent, e.IsOpen, _level+1 \n" +
+							                "FROM CtlgCatalog1Folder AS e \n" +
+							                    "INNER JOIN CtlgCatalog1Folder_cte AS d \n" +  
+							                    "ON e.Id=d.RefTreeParent \n" +
+							            ") \n" +  
+							            "SELECT Property11, Id, RefTreeParent, IsOpen \n" +
+							            "FROM CtlgCatalog1Folder_cte ORDER BY _level desc;");  
+							        param = AnonymousTypeExtensions.ToDynamicParameters(param, (dt) => { dt.Add("@rEfPaReNt", selectedId); }, new[] { "rEfPaReNt" });
+							    }
+							    else
+							    {
+							        Debug.Assert(false, "Use GetCommandDefinitionSubItemsView");
+							    }
+							    sb.Append(";\n");
+							    var sql = sb.ToString();
+							    var cmd = new CommandDefinitionData(sql, param, CommandType.Text);
+							    return cmd;
+							}
+							CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+							{
+							    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+								StringBuilder sb = new StringBuilder();
+								sb.Append("SELECT ");
+							    sb.Append("Property11, Id, RefTreeParent, IsOpen FROM CtlgCatalog1Folder");
+								if (where != null)
+								{
+									sb.Append(" WHERE ");
+									sb.Append(where);
+								}
+								if (sort != null)
+								{
+									sb.Append(" ORDER BY ");
+									sb.Append(sort);
+								}
+								if (page > 0 && pagesize > 0)
+								{
+									sb.Append(" LIMIT ");
+									sb.Append(pagesize);
+									sb.Append(" OFFSET ");
+									sb.Append((page-1)*pagesize);
+							    }
+								sb.Append(';');
+							    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+							    return cmd;
+							}
+							#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+						}
+						#endregion Views // PocoView.tt Line: 294
+					}
 				}
 				[Dapper.Contrib.Extensions.Table("CtlgCatalog2")]
 				public partial class Catalog2 : RepoEntityBaseSync<Catalog2>, IEntityBaseExplicit<Catalog2>, ISameById<Catalog2>, IEntityBase // ModelCatalogClass.tt Line: 12, called from PocoCatalogs.tt Line: 10
@@ -857,40 +1894,27 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 					#endregion Repository // CatalogRepository.tt Line: 51
 					#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 84
 					[Dapper.Contrib.Extensions.Table("CtlgCatalog2")]
-					public partial class ViewListNarrow : ViewEntityBaseSync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 49
+					public partial class ViewListNarrow : ViewEntityBaseSync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 54
 					{
-					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 51
-					    public string GetName() { return this.Name; }
+					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 56
+					    public string GetName() { return this.Id.ToString(); } // PocoView.tt Line: 61
 					#if DEBUG
-					    private ViewListNarrow()
+					    private ViewListNarrow() // PocoView.tt Line: 72
 					#else
 					    public ViewListNarrow()
 					#endif
 					    {
-					        this.Name = string.Empty;
 					    }
 					    #region View Properties
-						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 103 - Utils.cs Line: 280
-						public int Id // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1175
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 108 - Utils.cs Line: 280
+						public int Id // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
 						{
-							get { return _Id; } // PocoView.tt Line: 103 - Utils.cs Line: 459
+							get { return _Id; } // PocoView.tt Line: 108 - Utils.cs Line: 459
 							set { _Id = value; }
 						}
-						private int _Id; // PocoView.tt Line: 103 - Utils.cs Line: 467
-						public int Code // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1175
-						{
-							get { return _Code; } // PocoView.tt Line: 103 - Utils.cs Line: 459
-							set { _Code = value; }
-						}
-						private int _Code; // PocoView.tt Line: 103 - Utils.cs Line: 467
-						public string Name // PocoView.tt Line: 103 - Utils.cs Line: 316 Utils.cs Line: 1155
-						{
-							get { return _Name; } // PocoView.tt Line: 103 - Utils.cs Line: 459
-							set { _Name = value; }
-						}
-						private string _Name = string.Empty; // PocoView.tt Line: 103 - Utils.cs Line: 467
+						private int _Id; // PocoView.tt Line: 108 - Utils.cs Line: 467
 					    #endregion View Properties
-						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 119
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 124
 						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
 						{
 							StringBuilder sb = new StringBuilder();
@@ -909,7 +1933,7 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
 							StringBuilder sb = new StringBuilder();
 							sb.Append("SELECT ");
-						    sb.Append("Id, Code, Name FROM CtlgCatalog2");
+						    sb.Append("Id FROM CtlgCatalog2");
 							if (where != null)
 							{
 								sb.Append(" WHERE ");
@@ -933,7 +1957,71 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 						}
 						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
 					}
-					#endregion Views // PocoView.tt Line: 289
+					[Dapper.Contrib.Extensions.Table("CtlgCatalog2")]
+					public partial class ViewListWide : ViewEntityBaseSync<ViewListWide>, IViewPlainBaseExplicit<ViewListWide>, IViewItem, ISameById<ViewListWide>  // PocoView.tt Line: 54
+					{
+					    public bool SameById(ViewListWide other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 56
+					    public string GetName() { return this.Id.ToString(); } // PocoView.tt Line: 61
+					#if DEBUG
+					    private ViewListWide() // PocoView.tt Line: 72
+					#else
+					    public ViewListWide()
+					#endif
+					    {
+					    }
+					    #region View Properties
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 108 - Utils.cs Line: 280
+						public int Id // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Id; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _Id = value; }
+						}
+						private int _Id; // PocoView.tt Line: 108 - Utils.cs Line: 467
+					    #endregion View Properties
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 124
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+						{
+						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Id FROM CtlgCatalog2");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" LIMIT ");
+								sb.Append(pagesize);
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+					}
+					#endregion Views // PocoView.tt Line: 294
 				}
 			}
 			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 174

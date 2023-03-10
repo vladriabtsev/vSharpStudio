@@ -1,5 +1,5 @@
-Ê
-$00a8e82a-f50b-4f17-a625-95121e041981Config*Config:·‰ ÈùýÖ@ÚïþüÏáût€ª<
+É
+$00a8e82a-f50b-4f17-a625-95121e041981Config*Config:œ…ª Ôÿ©›@ÚïþüÏáût€ª<
 $45e30919-6608-422a-8eaf-9673a8ff1924BaseConfigs@º¾ØÎú×œi² w
 $61dbe31a-ecdb-4e39-b3d1-518d6dbd6393Model óØ“Öƒ›©Ê*Model@dHPj$eea47a37-3f8e-41e5-8454-195a10bf2687rIdŠ$92ebd69d-4ddf-43f7-98e3-0e4c3997fb5f’ReCoRdVeRsIoN˜ªCode°ºNameÀÊDescriptionÚIsFolderâIsOpenêDocDateðø€Ê	DocNumberÐªÿ
 $0cd9d499-f242-428f-844f-043102155a9e	Constants»õ”–­†üôp"	Constants2CnstBø
@@ -260,13 +260,12 @@ $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with sev
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema2M
 $7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer"­
 $D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with one generators2N
-$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer@„™„§à›®ã‘Ê—
-$0396bc5b-ef64-4b52-b7c6-6769944fd69aApps@È Ž›½¾ä JÝ
+$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer@„™„§à›®ã‘Ê–
+$0396bc5b-ef64-4b52-b7c6-6769944fd69aApps@È Ž›½¾ä JÜ
 
-$6125dba2-ab20-46b0-853b-d3ff94031fdbAQuickStartSampleAQuickStartSample ŽÍÌì°é±d:AQuickStartSample.slnŠâ
+$6125dba2-ab20-46b0-853b-d3ff94031fdbAQuickStartSampleAQuickStartSample ŽÍÌì°é±d:AQuickStartSample.slnŠá
 $8eee9385-c57f-4214-a1d7-40fe233472d6DbLayerDbLayer ‘Ý¸ªã¡¿z2DbLayer\DbLayer.csprojX‚È
-$44cb587f-1835-4019-9243-fd38356668b6SqliteSqlite2$16376EA9-1FBD-4945-8160-BCCC3262128B:7vSharpStudio plugin. Database design for Sqlite supportB$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EJ#DB structure creation and migrationZapp-settings.json`Š-{ "isNotUseCache": true, "sharedStr": "{ }" }’ šDataSource=./sample-sqlite.db‚û
-$53691223-4f49-41b4-80d9-85307ad36486DbRepositoryDbRepository2$052C7318-3D73-4605-B1AE-749FC7E10412:4vSharpStudio plugin. DB access layer repository codeB$E59B393E-AF34-4438-977F-7BF120E28A0CJDb Access LayerR
-Generated\ZRepository.cs`Š‚{ "relativePathToGenFolderModel": "Generated", "genFileNameModel": "Model.cs", "genFileNameCommonCode": "ModelCommon.cs", "nameSpaceCommonCode": "CommonCodeAPI", "isUseRetryDbAccessPolicy": true, "cacheApi": { "cacheType": "MemoryCache", "separator": "*" } }’ ’9
+$44cb587f-1835-4019-9243-fd38356668b6SqliteSqlite2$16376EA9-1FBD-4945-8160-BCCC3262128B:7vSharpStudio plugin. Database design for Sqlite supportB$553A6E65-FF70-4CEA-B7B4-53DD1DC55F0EJ#DB structure creation and migrationZapp-settings.json`Š-{ "isNotUseCache": true, "sharedStr": "{ }" }’ šDataSource=./sample-sqlite.db‚ú
+$53691223-4f49-41b4-80d9-85307ad36486DbRepositoryDbRepository2$052C7318-3D73-4605-B1AE-749FC7E10412:4vSharpStudio plugin. DB access layer repository codeB$E59B393E-AF34-4438-977F-7BF120E28A0CJDb Access LayerR	GeneratedZRepository.cs`Š‚{ "relativePathToGenFolderModel": "Generated", "genFileNameModel": "Model.cs", "genFileNameCommonCode": "ModelCommon.cs", "nameSpaceCommonCode": "CommonCodeAPI", "isUseRetryDbAccessPolicy": true, "cacheApi": { "cacheType": "MemoryCache", "separator": "*" } }’ ’9
 $6E958159-C294-4EF2-B87E-958CEDFB6FB7{ "logApi": { } }’‡
 $520C8C71-9D82-4AED-A7FA-7B92B3120E1DÞ{ "namespace": "vPlugins", "logApi": { "isLogApiCalls": true, "isLogApiCallsParams": true, "isLogExecutionTime": true }, "dbSettings": { "dbSchema": "v", "idGenerator": "HiLo", "useDbRecordApi": true }, "uiSettings": { } }
