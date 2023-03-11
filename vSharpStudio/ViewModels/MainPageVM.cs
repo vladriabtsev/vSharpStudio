@@ -110,7 +110,7 @@ namespace vSharpStudio.ViewModels
         }
         public void OnFormLoaded()
         {
-            this.ProgressVM.Start("Configuration Loading");
+            this.ProgressVM.ProgressStart("Configuration Loading");
             _logger?.LogDebug("*** Application is starting. ***".CallerInfo());
             if (File.Exists(USER_SETTINGS_FILE_PATH))
             {
@@ -167,7 +167,7 @@ namespace vSharpStudio.ViewModels
             {
                 _logger?.LogDebug("Using empty Configuration".CallerInfo());
             }
-            this.ProgressVM.End();
+            this.ProgressVM.ProgressClose();
         }
         private Config? LoadConfig(string file_path, string indent, bool isRoot = false)
         {
@@ -880,15 +880,15 @@ namespace vSharpStudio.ViewModels
                             {
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 var cancellationToken = this.cancellationTokenSource.Token;
-                                this.ProgressVM.Start("Configuration Validation", 0, null, null, cancellationToken);
+                                this.ProgressVM.ProgressStart("Configuration Validation", 0, null, null, cancellationToken);
                                 // https://learn.microsoft.com/en-us/archive/msdn-magazine/2014/april/mvvm-multithreading-and-dispatching-in-mvvm-applications
                                 // https://softwareengineering.stackexchange.com/questions/347970/multithreaded-c-mvvm-application-architecture
                                 if (VmBindable.isUnitTests)
-                                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger);
+                                    await this._Config.ValidateSubTreeFromNodeAsync(this._Config, null, cancellationToken, this._logger);
                                 else
                                     await Task.Run(() =>
                                     {
-                                        return this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger);
+                                        return this._Config.ValidateSubTreeFromNodeAsync(this._Config, this.ProgressVM, cancellationToken, this._logger);
                                     });
                                 //this._Config.ValidateSubTreeFromNodeAsync(this._Config, cancellationToken, this._logger).SafeFireAndForget(onException: ex => Trace.WriteLine(ex));
                             }
@@ -909,7 +909,7 @@ namespace vSharpStudio.ViewModels
                             finally
                             {
                                 this.cancellationTokenSource = null;
-                                this.ProgressVM.End();
+                                this.ProgressVM.ProgressClose();
                             }
                         }, (o) =>
                         {
@@ -944,7 +944,7 @@ namespace vSharpStudio.ViewModels
                 var token = this.cancellationSourceForValidatingSubTreeFromNode.Token;
                 await Task.Run(() =>
                 {
-                    return this.Config.ValidateSubTreeFromNodeAsync(this.Config.SelectedNode, token, this._logger);
+                    return this.Config.ValidateSubTreeFromNodeAsync(this.Config.SelectedNode, null, token, this._logger);
                 });
             }
         }
@@ -971,7 +971,7 @@ namespace vSharpStudio.ViewModels
                                         var res = MessageBox.Show($"There are {this._Config.CountErrors} errors in configuration. First error is\n\n{this._Config.FindValidationMessage()?.Message}\n\nFix errors and try again.",
                                             "Error", System.Windows.MessageBoxButton.OK);
                                         this.cancellationTokenSource = null;
-                                        this.ProgressVM.End();
+                                        this.ProgressVM.ProgressClose();
                                         return;
 #if DEBUG
                                     }
@@ -988,17 +988,33 @@ namespace vSharpStudio.ViewModels
                                     }
 #endif
                                 }
+                                #region
+#if DEBUG
+                                if (!VmBindable.isUnitTests)
+                                {
+#endif
+                                    if (this._Config.CountWarnings > 0)
+                                    {
+                                        var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
+                                        if (res != System.Windows.MessageBoxResult.OK)
+                                            return;
+                                    }
+#if DEBUG
+                                }
+#endif
+                                #endregion
+
 
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
 
-                                this.ProgressVM.Start("Update Code/DB to Current Version of Configuration", 0, "", 0, cancellationToken);
+                                this.ProgressVM.ProgressStart("Updating Code/DB to Current Version of Configuration", 0, "", 0, cancellationToken);
                                 if (VmBindable.isUnitTests)
-                                    await this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+                                    await this.UpdateCurrentVersionAsync(cancellationToken, o);
                                 else
                                     await Task.Run(() =>
                                     {
-                                        return this.UpdateCurrentVersionAsync(cancellationToken, (p) => { this.ProgressVM.From(p); }, o);
+                                        return this.UpdateCurrentVersionAsync(cancellationToken, o);
                                     });
                                 this.ResetIsChangedBeforeSave();
                             }
@@ -1025,7 +1041,7 @@ namespace vSharpStudio.ViewModels
                                 //    this.BtnConfigSave.Command.Execute(null);
                                 //}
                                 this.cancellationTokenSource = null;
-                                this.ProgressVM.End();
+                                this.ProgressVM.ProgressClose();
                             }
                         }, (o) =>
                         {
@@ -1059,6 +1075,7 @@ namespace vSharpStudio.ViewModels
         public void GenerateCode(CancellationToken cancellationToken, IConfig diffConfig, bool isCurrentUpdate, bool isDeleteDb = false)
 #endif
         {
+            var nGens = 0;
             //var dicGroupGuids = new Dictionary<string, string?>();
             foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
             {
@@ -1074,14 +1091,17 @@ namespace vSharpStudio.ViewModels
                             if (tg.Generator != null)
                             {
                                 tg.Generator.Init();
+                                nGens++;
                             }
                         }
                     }
                 }
             }
             //IProperty.Config = diffConfig;
-            var nvb = new ModelVisitorBase();
-            nvb.Run(diffConfig, null, null, null, (p, n) => { if (n is Property pp) pp.Tag = null; });
+
+            //var nvb = new ModelVisitorBase();
+            //nvb.Run(diffConfig, null, null, null, (p, n) => { if (n is Property pp) pp.Tag = null; });
+            int i = 0;
             foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
             {
                 if (ts.IsMarkedForDeletion)
@@ -1109,6 +1129,8 @@ namespace vSharpStudio.ViewModels
                             {
                                 if (tg.Generator != null)
                                 {
+                                    this.ProgressVM?.ProgressUpdateSubTask($"Project '{ts.Name}'-'{tp.Name}'-'{tpg.Name}'", 100 * i / nGens);
+                                    i++;
                                     string? code = null;
                                     switch (tg.Generator.PluginGeneratorType)
                                     {
@@ -1215,15 +1237,14 @@ namespace vSharpStudio.ViewModels
             }
         }
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
-        private async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, Action<ProgressVM> onProgress, object? parm = null, bool askWarning = true)
+        private async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, object? parm = null, bool askWarning = true)
         {
-            var progress = new ProgressVM();
             Exception? resEx = null;
             TestTransformation? tst = parm as TestTransformation;
             try
             {
-                int iProgressSteps = 7;
-                int iProgressStep = 0;
+                int iProgressSteps = 5;
+                int iProgressStep = 1;
                 GuiLabs.Undo.ActionManager am = new GuiLabs.Undo.ActionManager();
                 var dicRenamed = new Dictionary<string, string?>();
                 var mvr = new ModelVisitorNodeReferencesBase();
@@ -1234,7 +1255,10 @@ namespace vSharpStudio.ViewModels
                         dicRenamed[n.Guid] = null;
                     }
                 });
-                #region Remove New which are Marked for Deletion
+
+                // I. Remove new marked for deletion nodes
+                #region
+                this.ProgressVM?.ProgressUpdate($"{iProgressStep}/{iProgressSteps}. Removing new marked for deletion nodes", 0);
                 var lst = new List<string>();
                 // delete from current model
                 var vis1 = new ModelVisitorBase();
@@ -1254,43 +1278,14 @@ namespace vSharpStudio.ViewModels
                     var p = (IEditableNode)n;
                     p.Remove();
                 }
-                #endregion Remove New which are Marked for Deletion
-                iProgressStep++;
-                Debug.Assert(iProgressStep <= iProgressSteps);
-                progress.UpdateProgress(iProgressStep * 100 / iProgressSteps);
-                onProgress(progress);
+                #endregion
+
                 using (Transaction.Create(am))
                 {
-                    // I. Model validation (no need for UNDO)
-                    #region
-                    if (tst == null && this._Config.CountWarnings > 0)
-                    {
-#if DEBUG
-                        if (!VmBindable.isUnitTests)
-                        {
-#endif
-                            UIDispatcher.Invoke(() =>
-                            {
-                                var res = MessageBox.Show("There are warnings in the config model. Continue?", "Warning", System.Windows.MessageBoxButton.OKCancel);
-                                if (res != System.Windows.MessageBoxResult.OK)
-                                    return;
-                            });
-#if DEBUG
-                        }
-#endif
-                    }
-
-                    // unit test
-                    if (tst != null && tst.IsThrowExceptionOnConfigValidated)
-                        throw new Exception(nameof(tst.IsThrowExceptionOnConfigValidated));
-                    iProgressStep++;
-                    Debug.Assert(iProgressStep <= iProgressSteps);
-                    progress.UpdateProgress(iProgressStep * 100 / iProgressSteps);
-                    onProgress(progress);
-                    #endregion
-
                     // II. Rename analysis
                     #region
+                    this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Finding objects for renaming", iProgressStep * 100 / iProgressSteps);
+                    iProgressStep++;
                     bool isNeedRenames = false;
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
@@ -1323,22 +1318,26 @@ namespace vSharpStudio.ViewModels
                     #region
                     if (isNeedRenames)
                     {
-                        progress.SubName = "Check current code compilation";
-                        onProgress(progress);
+                        this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Compiling current code", iProgressStep * 100 / iProgressSteps);
+                        iProgressStep++;
 
-                        int i = 0;
+                        int ii = 0;
                         foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                         {
                             if (cancellationToken.IsCancellationRequested)
                                 throw new CancellationException();
-                            i++;
+                            this.ProgressVM?.ProgressUpdateSubTask($"Compiling solution '{ts.Name}'", 100 * ii / this.Config.GroupAppSolutions.ListAppSolutions.Count);
+                            ii++;
 
                             await CompileUtils.CompileAsync(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
                             //CompileUtils.Compile(_logger, ts.GetCombinedPath(ts.RelativeAppSolutionPath), cancellationToken);
 
-                            progress.SubProgress = 100 * i / this.Config.GroupAppSolutions.ListAppSolutions.Count;
-                            onProgress(progress);
+                            //TODO result of compilation
                         }
+                    }
+                    else
+                    {
+                        iProgressStep++;
                     }
                     // unit test
                     if (tst != null && tst.IsThrowExceptionOnBuildValidated)
@@ -1347,10 +1346,23 @@ namespace vSharpStudio.ViewModels
 
                     // IV. Rename objects and properties by solution (code can be not compilible after that) (need UNDO from zip code backup)
                     #region
+                    this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Renaming objects in code", iProgressStep * 100 / iProgressSteps);
+                    iProgressStep++;
+                    var nProjects = 0;
                     foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
                     {
                         foreach (var tp in ts.ListAppProjects)
                         {
+                            nProjects++;
+                        }
+                    }
+                    int i = 0;
+                    foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
+                    {
+                        foreach (var tp in ts.ListAppProjects)
+                        {
+                            this.ProgressVM?.ProgressUpdateSubTask($"Project '{ts.Name}'-'{tp.Name}'", 100 * i / nProjects);
+                            i++;
                             foreach (var tg in tp.ListAppProjectGenerators)
                             {
                                 if (cancellationToken.IsCancellationRequested)
@@ -1373,24 +1385,10 @@ namespace vSharpStudio.ViewModels
                         throw new Exception(nameof(tst.IsThrowExceptionOnRenamed));
                     #endregion
 
-                    // V. Apply new DB schema to currentDB (no need for UNDO ???) Move into VI step
+                    // V. Generate code (no need for UNDO)
                     #region
-                    //foreach (var ts in this.Config.GroupAppSolutions.ListAppSolutions)
-                    //{
-                    //    if (cancellationToken.IsCancellationRequested)
-                    //        throw new CancellationException();
-                    //    foreach (var tp in ts.ListAppProjects)
-                    //    {
-                    //        // generate db
-                    //    }
-                    //}
-                    // unit test
-                    if (tst != null && tst.IsThrowExceptionOnDbMigrated)
-                        throw new Exception(nameof(tst.IsThrowExceptionOnDbMigrated));
-                    #endregion
-
-                    // VI. Generate code (no need for UNDO)
-                    #region
+                    this.ProgressVM?.ProgressUpdate($"{iProgressStep}. Generating code/DB", iProgressStep * 100 / iProgressSteps);
+                    iProgressStep++;
 #if PARRALEL
                     await this.GenerateCodeAsync(cancellationToken, this.Config, true);
 #else
@@ -1405,7 +1403,7 @@ namespace vSharpStudio.ViewModels
                         throw new Exception();
                     #endregion
 
-                    // VII. Update history CurrentConfig (need UNDO)
+                    // VI. Update history CurrentConfig (need UNDO)
                     #region
 #if Async
 #else
@@ -1430,7 +1428,7 @@ namespace vSharpStudio.ViewModels
                     am.Execute(update_history);
                     #endregion
 
-                    // VIII. Generate Update SQL for previous stable DB
+                    // VII. Generate Update SQL for previous stable DB
                     //TODO Generate Update SQL for previous stable DB
 
                     this.Save();
@@ -1453,14 +1451,14 @@ namespace vSharpStudio.ViewModels
                 return this._BtnConfigCreateStableVersionAsync ?? (this._BtnConfigCreateStableVersionAsync = new vButtonVmAsync<TestTransformation?>(
                     (t) =>
                     {
-                        this.ProgressVM?.Start("Creating Version for Deployment");
+                        this.ProgressVM?.ProgressStart("Creating Version for Deployment");
                         try
                         {
                             this.CreateStableVersion(t);
                         }
                         finally
                         {
-                            this.ProgressVM?.End();
+                            this.ProgressVM?.ProgressClose();
                         }
                         return Task.CompletedTask;
                     },

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Windows;
@@ -8,7 +9,23 @@ namespace ViewModelBase
 {
     public class ProgressVM : VmBindable
     {
-        private CancellationToken? cancellationToken;
+        private CancellationToken? cancellationToken
+        {
+            get { return _cancellationToken; }
+            set
+            {
+                UIDispatcher.Invoke(() =>
+                {
+                    _cancellationToken = value;
+                    this.NotifyPropertyChanged();
+                    if (_cancellationToken == null)
+                        CancelVisibility = Visibility.Collapsed;
+                    else
+                        CancelVisibility = Visibility.Visible;
+                });
+            }
+        }
+        private CancellationToken? _cancellationToken;
         public Visibility CancelVisibility
         {
             get { return _CancelVisibility; }
@@ -22,7 +39,24 @@ namespace ViewModelBase
             }
         }
         public Visibility _CancelVisibility;
-        private PauseToken? pauseToken;
+        private PauseToken? pauseToken
+        {
+            get { return _pauseToken; }
+            set
+            {
+                UIDispatcher.Invoke(() =>
+                {
+                    _pauseToken = value;
+                    this.NotifyPropertyChanged();
+                    if (_pauseToken == null)
+                        PauseVisibility = Visibility.Collapsed;
+                    else
+                        PauseVisibility = Visibility.Visible;
+                });
+            }
+        }
+        private PauseToken? _pauseToken;
+
         public Visibility PauseVisibility
         {
             get { return _PauseVisibility; }
@@ -36,19 +70,67 @@ namespace ViewModelBase
             }
         }
         public Visibility _PauseVisibility;
-        public string Name
+        /// <summary>
+        /// Name for progress bar
+        /// To indicate progress use methods ProgressStart, ProgressUpdate, ProgressUpdateSubTask, ProgressClose
+        /// </summary>
+        public string? Title
+        {
+            get { return _Title; }
+            set
+            {
+                if (_Title != value)
+                {
+                    UIDispatcher.Invoke(() =>
+                    {
+                        _Title = value;
+                        this.NotifyPropertyChanged();
+                        if (_Title == null)
+                            TitleVisibility = Visibility.Collapsed;
+                        else
+                            TitleVisibility = Visibility.Visible;
+                    });
+                }
+            }
+        }
+        private string? _Title;
+        public Visibility TitleVisibility
+        {
+            get { return _TitleVisibility; }
+            set
+            {
+                if (_TitleVisibility != value)
+                {
+                    _TitleVisibility = value;
+                    this.NotifyPropertyChanged();
+                }
+            }
+        }
+        public Visibility _TitleVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// Name for progress step
+        /// To indicate progress use methods ProgressStart, ProgressUpdate, ProgressUpdateSubTask, ProgressClose
+        /// </summary>
+        public string? Name
         {
             get { return _Name; }
             set
             {
                 if (_Name != value)
                 {
-                    _Name = value;
-                    this.NotifyPropertyChanged();
+                    UIDispatcher.Invoke(() =>
+                    {
+                        _Name = value;
+                        this.NotifyPropertyChanged();
+                        if (_Name == null)
+                            NameVisibility = Visibility.Collapsed;
+                        else
+                            NameVisibility = Visibility.Visible;
+                    });
                 }
             }
         }
-        private string _Name;
+        private string? _Name;
         public Visibility NameVisibility
         {
             get { return _NameVisibility; }
@@ -61,24 +143,32 @@ namespace ViewModelBase
                 }
             }
         }
-        public Visibility _NameVisibility;
-        public int Progress
+        public Visibility _NameVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// Progress in percent. Range from 0 to 100. If null progress bar will be collapsed
+        /// To indicate progress use methods ProgressStart, ProgressUpdate, ProgressUpdateSubTask, ProgressClose
+        /// </summary>
+        public int? Progress
         {
             get { return _Progress; }
             set
             {
                 if (_Progress != value)
                 {
-                    _Progress = value;
-                    this.NotifyPropertyChanged();
-                    if (_Progress == null)
-                        ProgressVisibility = Visibility.Collapsed;
-                    else
-                        ProgressVisibility = Visibility.Visible;
+                    UIDispatcher.Invoke(() =>
+                    {
+                        Debug.Assert(value == null || (value.Value >= 0 && value.Value <= 100));
+                        _Progress = value;
+                        this.NotifyPropertyChanged();
+                        if (_Progress == null)
+                            ProgressVisibility = Visibility.Collapsed;
+                        else
+                            ProgressVisibility = Visibility.Visible;
+                    });
                 }
             }
         }
-        private int _Progress;
+        private int? _Progress;
         public Visibility ProgressVisibility
         {
             get { return _ProgressVisibility; }
@@ -91,29 +181,36 @@ namespace ViewModelBase
                 }
             }
         }
-        public Visibility _ProgressVisibility;
-        public string SubName
+        public Visibility _ProgressVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// Name for sub task progress bar step
+        /// To indicate progress use methods ProgressStart, ProgressUpdate, ProgressUpdateSubTask, ProgressClose
+        /// </summary>
+        public string? SubName
         {
             get { return _SubName; }
             set
             {
                 if (_SubName != value)
                 {
-                    _SubName = value;
-                    this.NotifyPropertyChanged();
-                    this.SubProgress = 0;
-                    if (_SubName == null)
+                    UIDispatcher.Invoke(() =>
                     {
-                        SubNameVisibility = Visibility.Collapsed;
-                    }
-                    else
-                    {
-                        SubNameVisibility = Visibility.Visible;
-                    }
+                        _SubName = value;
+                        this.NotifyPropertyChanged();
+                        //this.SubProgress = null;
+                        if (_SubName == null)
+                        {
+                            SubNameVisibility = Visibility.Collapsed;
+                        }
+                        else
+                        {
+                            SubNameVisibility = Visibility.Visible;
+                        }
+                    });
                 }
             }
         }
-        private string _SubName;
+        private string? _SubName;
         public Visibility SubNameVisibility
         {
             get { return _SubNameVisibility; }
@@ -126,24 +223,32 @@ namespace ViewModelBase
                 }
             }
         }
-        public Visibility _SubNameVisibility;
-        public int SubProgress
+        public Visibility _SubNameVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// Sub task percent of progress
+        /// To indicate progress use methods ProgressStart, ProgressUpdate, ProgressUpdateSubTask, ProgressClose
+        /// </summary>
+        public int? SubProgress
         {
             get { return _SubProgress; }
             set
             {
                 if (_SubProgress != value)
                 {
-                    _SubProgress = value;
-                    this.NotifyPropertyChanged();
-                    if (_SubProgress == null)
-                        SubProgressVisibility = Visibility.Collapsed;
-                    else
-                        SubProgressVisibility = Visibility.Visible;
+                    UIDispatcher.Invoke(() =>
+                    {
+                        Debug.Assert(value == null || (value.Value >= 0 && value.Value <= 100));
+                        _SubProgress = value;
+                        this.NotifyPropertyChanged();
+                        if (_SubProgress == null)
+                            SubProgressVisibility = Visibility.Collapsed;
+                        else
+                            SubProgressVisibility = Visibility.Visible;
+                    });
                 }
             }
         }
-        private int _SubProgress;
+        private int? _SubProgress;
         public Visibility SubProgressVisibility
         {
             get { return _SubProgressVisibility; }
@@ -156,59 +261,74 @@ namespace ViewModelBase
                 }
             }
         }
-        public Visibility _SubProgressVisibility;
-        public void Start(string taskName, int? progress = null, string subname = null, int? subprogress = null, CancellationToken? cancellationToken = null, PauseToken? pauseToken = null)
+        public Visibility _SubProgressVisibility = Visibility.Collapsed;
+        /// <summary>
+        /// Progress Start method
+        /// </summary>
+        /// <param name="taskName">Name of progress</param>
+        /// <param name="progress">Percent of initial progress. Progress bar is hidden if null</param>
+        /// <param name="subname">Sub task name. Hidden if null</param>
+        /// <param name="subprogress">Percent of initial sub task progress. Sub task progress bar is hidden if null</param>
+        /// <param name="cancellationToken">Cancellation token. If provided then 'Cancel' button will be visible</param>
+        /// <param name="pauseToken">Pause token. If provided then 'Pause' button will be visible</param>
+        public void ProgressStart(string taskName, int? progress = null, string? subname = null, int? subprogress = null, CancellationToken? cancellationToken = null, PauseToken? pauseToken = null)
         {
-            this.Name = taskName;
-            if (progress.HasValue)
-            {
-                this.Progress = progress.Value;
-                this.ProgressVisibility = Visibility.Visible;
-            }
-            else
-                this.ProgressVisibility = Visibility.Collapsed;
+            this.Title = taskName;
+            this.Progress = progress;
             this.SubName = subname;
-            if (subprogress.HasValue)
-            {
-                this.SubProgress = subprogress.Value;
-                this.SubProgressVisibility = Visibility.Visible;
-            }
-            else
-                this.SubProgressVisibility = Visibility.Collapsed;
+            this.SubProgress = subprogress;
             this.cancellationToken = cancellationToken;
-            if (!this.cancellationToken.HasValue)
-                CancelVisibility = Visibility.Collapsed;
-            else
-                CancelVisibility = Visibility.Visible;
             this.pauseToken = pauseToken;
-            if (!this.pauseToken.HasValue)
-                PauseVisibility = Visibility.Collapsed;
-            else
-                PauseVisibility = Visibility.Visible;
             this.Exception = null;
             this.IsBusy = true;
         }
-        public void End()
+        /// <summary>
+        /// Close progress dialog
+        /// </summary>
+        public void ProgressClose()
         {
             this.IsBusy = false;
         }
-        public void UpdateProgress(int? progress)
+        /// <summary>
+        /// Update progress
+        /// </summary>
+        /// <param name="progress">Percent of progress. Progress bar is hidden if null</param>
+        public void ProgressUpdate(int? progress)
         {
-            if (progress.HasValue)
-                this.Progress = progress.Value;
+            this.Progress = progress;
         }
-        public void UpdateSubProgress(string subTaskName, int? subProgress)
+        /// <summary>
+        /// Update progress
+        /// </summary>
+        /// <param name="progress">Percent of progress. Progress bar is hidden if null</param>
+        public void ProgressUpdate(string? stepName, int? progress)
         {
-            if (subTaskName != null)
-                this.SubName = subTaskName;
-            if (subProgress.HasValue)
-                this.SubProgress = subProgress.Value;
+            this.Name = stepName;
+            this.Progress = progress;
+        }
+        /// <summary>
+        /// Update progress of sub task
+        /// </summary>
+        /// <param name="subProgress">Percent of sub task progress. Sub task progress bar is hidden if null</param>
+        public void ProgressUpdateSubTask(int? subProgress)
+        {
+            this.SubProgress = subProgress;
+        }
+        /// <summary>
+        /// Update progress of sub task
+        /// </summary>
+        /// <param name="subTaskName">Name of sub task progress bar. Name is hidden if null</param>
+        /// <param name="subProgress">Percent of sub task progress. Sub task progress bar is hidden if null</param>
+        public void ProgressUpdateSubTask(string? subTaskName, int? subProgress)
+        {
+            this.SubName = subTaskName;
+            this.SubProgress = subProgress;
         }
         public void From(ProgressVM other)
         {
             UIDispatcher.Invoke(() =>
                 {
-                    this.Name = other.Name;
+                    this.Title = other.Title;
                     this.Progress = other.Progress;
                     this.SubName = other.SubName;
                     this.SubProgress = other.SubProgress;

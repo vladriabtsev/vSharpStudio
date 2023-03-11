@@ -14,13 +14,19 @@ namespace vSharpStudio.vm.ViewModels
     public partial class ValidationConfigVisitor
     {
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
+        public int CountTotalValidatableNodes;
+        public int CountCurrentValidatableNode { get; set; }
+        private ProgressVM? progressVM;
+        public bool IsCountOnly { get; set; } = true;
 
         private int _level = -1;
-        private ILogger _logger = null;
+        private ILogger? _logger = null;
 
-        public ValidationConfigVisitor(CancellationToken cancellationToken, ILogger? logger = null)
+        public ValidationConfigVisitor(CancellationToken cancellationToken, ProgressVM? progressVM, ILogger? logger = null)
         {
             this._cancellationToken = cancellationToken;
+            this.progressVM = progressVM;
+            this.CountCurrentValidatableNode = 0;
             this._logger = logger;
             this.Result = new SortedObservableCollection<ValidationMessage>();
             this.Result.SortDirection = SortDirection.Descending;
@@ -109,6 +115,9 @@ namespace vSharpStudio.vm.ViewModels
         IValidatableWithSeverity? parent;
         partial void OnVisit(IValidatableWithSeverity p)
         {
+            this.CountCurrentValidatableNode++;
+            if (IsCountOnly)
+                return;
             if (p is ITreeConfigNode pp)
             {
                 if (pp == null)
@@ -152,6 +161,9 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnVisitEnd(IValidatableWithSeverity p)
         {
+            if (IsCountOnly)
+                return;
+            this.progressVM?.ProgressUpdate(this.CountCurrentValidatableNode * 100 / this.CountTotalValidatableNodes);
             if (p is ITreeConfigNode pp)
             {
                 if (this._logger != null)

@@ -26,13 +26,14 @@
         <xctk:BusyIndicator.BusyContentTemplate>
             <DataTemplate>
                 <StackPanel Margin="4" Background="#00AFAFAF" DataContext="{Binding DataContext.ProgressVM, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type xctk:BusyIndicator}}}">
-                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Visibility="{Binding NameVisibility}" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding Title}" FontWeight="Bold" Visibility="{Binding TitleVisibility}" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding Name}" Visibility="{Binding NameVisibility}" Margin="0,0,0,2"/>
                     <ProgressBar Value="{Binding Progress}" Height="15" Visibility="{Binding ProgressVisibility}"/>
                     <StackPanel Visibility="{Binding SubNameVisibility}">
-                        <TextBlock Text="{Binding SubName}" Visibility="{Binding SubNameVisibility}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding SubName}" Visibility="{Binding SubNameVisibility}"/>
                         <ProgressBar Value="{Binding SubProgress}" Height="15" Visibility="{Binding SubProgressVisibility}"/>
                     </StackPanel>
-                    <StackPanel Visibility="{Binding CancelVisibility}" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Visibility="{Binding CancelVisibility}" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                         <Button Content=" Pause  " Visibility="{Binding PauseVisibility}" Margin="0 0 2 0"/>
                         <Button Content=" Cancel " Visibility="{Binding CancelVisibility}"/>
                     </StackPanel>

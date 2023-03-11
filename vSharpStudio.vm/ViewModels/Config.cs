@@ -153,7 +153,7 @@ namespace vSharpStudio.vm.ViewModels
         //    this.ValidateSubTreeFromNode(this, logger);
         //}
         public bool IsValidatingSubTreeFromNode = false;
-        async public Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node, CancellationToken cancellationToken, ILogger? logger = null)
+        async public Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node, ProgressVM? progressVM, CancellationToken cancellationToken, ILogger? logger = null)
         {
             try
             {
@@ -171,7 +171,26 @@ namespace vSharpStudio.vm.ViewModels
 #endif
                 }
                 this.IsValidatingSubTreeFromNode = true;
-                var visitor = new ValidationConfigVisitor(cancellationToken, logger);
+
+                // Count nodes
+                if (progressVM != null)
+                    progressVM.Title = "Counting nodes for validation";
+                var visitor = new ValidationConfigVisitor(cancellationToken, progressVM, logger);
+                (node as IConfigAcceptVisitor)!.AcceptConfigNodeVisitor(visitor);
+
+                // prepare visitor for validation
+                visitor.IsCountOnly = false;
+                visitor.CountTotalValidatableNodes = visitor.CountCurrentValidatableNode;
+
+                // validate and update progress
+                if (progressVM != null)
+                {
+                    if (node is Config)
+                        progressVM.Title = "Validating Configuration";
+                    else
+                        progressVM.Title = $"Validating {node.Name}";
+                }
+                visitor.CountCurrentValidatableNode = 0;
                 UIDispatcher.Invoke(() =>
                 {
                     visitor.UpdateSubstructCounts(node);
