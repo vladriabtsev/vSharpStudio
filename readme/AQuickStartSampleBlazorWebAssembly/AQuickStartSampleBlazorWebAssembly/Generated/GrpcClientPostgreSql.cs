@@ -436,6 +436,138 @@ namespace vPlugins.GRPC.Client.PostgreSql // NameSpace.tt Line: 34
 				    modelInstance.ValidateResponce(response.Server);
 				}
 				#endregion Repository // CatalogRepository.tt Line: 51
+				#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 82
+				public partial class ViewListNarrow : ViewEntityBaseSyncAsync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 54
+				{
+				    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 56
+				    public string GetName() { return this.Property1; } // PocoView.tt Line: 61
+				    private readonly CtlgCatalog1ViewListNarrow dto = new(); // PocoView.tt Line: 95
+				    #if DEBUG
+				    private ViewListNarrow() { }
+				    #else
+				    public ViewListNarrow() { }
+				    #endif
+				    public ViewListNarrow(CtlgCatalog1ViewListNarrow dto) : this()
+				    {
+				        this.dto = dto;
+				    }
+				    #region View Properties
+					public string Property1 // PocoView.tt Line: 108 - Utils.cs Line: 501 Utils.cs Line: 1155
+					{
+						get { return dto.Property1; } // PocoView.tt Line: 108 - Utils.cs Line: 517
+					}
+					public int Id // PocoView.tt Line: 108 - Utils.cs Line: 501 Utils.cs Line: 1175
+					{
+						get { return dto.Id; } // PocoView.tt Line: 108 - Utils.cs Line: 558
+					}
+				    #endregion View Properties
+					async Task<int> IViewPlainBaseExplicit<ViewListNarrow>.CountUtilAsync(string? where, object? param) // PocoView.tt Line: 147
+					{
+					    var pp = new params_where() { Where = where };
+					    CustomTypesGrpc.parameter.Translate(param, pp.Parameters);
+					    var client = new CtlgCatalog1ViewListNarrowPostgreSqlGrpc.CtlgCatalog1ViewListNarrowPostgreSqlGrpcClient(Model.Channel); // PocoView.tt Line: 151
+					    var response = await client.CountAsync(pp);
+					    modelInstance.ValidateResponce(response.Server);
+					    return response.Result;
+					}
+					async Task<IEnumerable<ViewListNarrow>> IViewPlainBaseExplicit<ViewListNarrow>.GetViewUtilAsync(int pagesize, int page, string? sort, string? where, object? param) // PocoView.tt Line: 203
+					{
+					    var request = new params_where_sort_page() { Pagesize = pagesize, Page = page, Sort = sort, Where = where };
+					    CustomTypesGrpc.parameter.Translate(param, request.Parameters);
+					    var client = new CtlgCatalog1ViewListNarrowPostgreSqlGrpc.CtlgCatalog1ViewListNarrowPostgreSqlGrpcClient(Model.Channel); // PocoView.tt Line: 207
+					    var response = await client.GetViewAsync(request);
+					    modelInstance.ValidateResponce(response.Server);
+					    var res = new List<ViewListNarrow>();
+					    foreach (var t in response.Result) { res.Add(new ViewListNarrow(t)); }
+					    return res;
+					}
+					int IViewPlainBaseExplicit<ViewListNarrow>.CountUtil(string? where, object? param) // PocoView.tt Line: 222
+					{
+					    var pp = new params_where() { Where = where };
+					    CustomTypesGrpc.parameter.Translate(param, pp.Parameters);
+					    var client = new CtlgCatalog1ViewListNarrowPostgreSqlGrpc.CtlgCatalog1ViewListNarrowPostgreSqlGrpcClient(Model.Channel); // PocoView.tt Line: 226
+					    var response = client.Count(pp);
+					    modelInstance.ValidateResponce(response.Server);
+					    return response.Result;
+					}
+					IEnumerable<ViewListNarrow> IViewPlainBaseExplicit<ViewListNarrow>.GetViewUtil(int pagesize, int page, string? sort, string? where, object? param) // PocoView.tt Line: 278
+					{
+					    var request = new params_where_sort_page() { Pagesize = pagesize, Page = page, Sort = sort, Where = where };
+					    CustomTypesGrpc.parameter.Translate(param, request.Parameters);
+					    var client = new CtlgCatalog1ViewListNarrowPostgreSqlGrpc.CtlgCatalog1ViewListNarrowPostgreSqlGrpcClient(Model.Channel); // PocoView.tt Line: 282
+					    var response = client.GetView(request);
+					    modelInstance.ValidateResponce(response.Server);
+					    var res = new List<ViewListNarrow>();
+					    foreach (var t in response.Result) { res.Add(new ViewListNarrow(t)); }
+					    return res;
+					}
+				}
+				public partial class ViewListWide : ViewEntityBaseSyncAsync<ViewListWide>, IViewPlainBaseExplicit<ViewListWide>, IViewItem, ISameById<ViewListWide>  // PocoView.tt Line: 54
+				{
+				    public bool SameById(ViewListWide other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 56
+				    public string GetName() { return this.Property1; } // PocoView.tt Line: 61
+				    private readonly CtlgCatalog1ViewListWide dto = new(); // PocoView.tt Line: 95
+				    #if DEBUG
+				    private ViewListWide() { }
+				    #else
+				    public ViewListWide() { }
+				    #endif
+				    public ViewListWide(CtlgCatalog1ViewListWide dto) : this()
+				    {
+				        this.dto = dto;
+				    }
+				    #region View Properties
+					public string Property1 // PocoView.tt Line: 108 - Utils.cs Line: 501 Utils.cs Line: 1155
+					{
+						get { return dto.Property1; } // PocoView.tt Line: 108 - Utils.cs Line: 517
+					}
+					public int Id // PocoView.tt Line: 108 - Utils.cs Line: 501 Utils.cs Line: 1175
+					{
+						get { return dto.Id; } // PocoView.tt Line: 108 - Utils.cs Line: 558
+					}
+				    #endregion View Properties
+					async Task<int> IViewPlainBaseExplicit<ViewListWide>.CountUtilAsync(string? where, object? param) // PocoView.tt Line: 147
+					{
+					    var pp = new params_where() { Where = where };
+					    CustomTypesGrpc.parameter.Translate(param, pp.Parameters);
+					    var client = new CtlgCatalog1ViewListWidePostgreSqlGrpc.CtlgCatalog1ViewListWidePostgreSqlGrpcClient(Model.Channel); // PocoView.tt Line: 151
+					    var response = await client.CountAsync(pp);
+					    modelInstance.ValidateResponce(response.Server);
+					    return response.Result;
+					}
+					async Task<IEnumerable<ViewListWide>> IViewPlainBaseExplicit<ViewListWide>.GetViewUtilAsync(int pagesize, int page, string? sort, string? where, object? param) // PocoView.tt Line: 203
+					{
+					    var request = new params_where_sort_page() { Pagesize = pagesize, Page = page, Sort = sort, Where = where };
+					    CustomTypesGrpc.parameter.Translate(param, request.Parameters);
+					    var client = new CtlgCatalog1ViewListWidePostgreSqlGrpc.CtlgCatalog1ViewListWidePostgreSqlGrpcClient(Model.Channel); // PocoView.tt Line: 207
+					    var response = await client.GetViewAsync(request);
+					    modelInstance.ValidateResponce(response.Server);
+					    var res = new List<ViewListWide>();
+					    foreach (var t in response.Result) { res.Add(new ViewListWide(t)); }
+					    return res;
+					}
+					int IViewPlainBaseExplicit<ViewListWide>.CountUtil(string? where, object? param) // PocoView.tt Line: 222
+					{
+					    var pp = new params_where() { Where = where };
+					    CustomTypesGrpc.parameter.Translate(param, pp.Parameters);
+					    var client = new CtlgCatalog1ViewListWidePostgreSqlGrpc.CtlgCatalog1ViewListWidePostgreSqlGrpcClient(Model.Channel); // PocoView.tt Line: 226
+					    var response = client.Count(pp);
+					    modelInstance.ValidateResponce(response.Server);
+					    return response.Result;
+					}
+					IEnumerable<ViewListWide> IViewPlainBaseExplicit<ViewListWide>.GetViewUtil(int pagesize, int page, string? sort, string? where, object? param) // PocoView.tt Line: 278
+					{
+					    var request = new params_where_sort_page() { Pagesize = pagesize, Page = page, Sort = sort, Where = where };
+					    CustomTypesGrpc.parameter.Translate(param, request.Parameters);
+					    var client = new CtlgCatalog1ViewListWidePostgreSqlGrpc.CtlgCatalog1ViewListWidePostgreSqlGrpcClient(Model.Channel); // PocoView.tt Line: 282
+					    var response = client.GetView(request);
+					    modelInstance.ValidateResponce(response.Server);
+					    var res = new List<ViewListWide>();
+					    foreach (var t in response.Result) { res.Add(new ViewListWide(t)); }
+					    return res;
+					}
+				}
+				#endregion Views // PocoView.tt Line: 294
 			}
 		}
 		public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 284

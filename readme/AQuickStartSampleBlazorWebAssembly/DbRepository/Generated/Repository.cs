@@ -250,6 +250,152 @@ namespace vPlugins.DapperModels // NameSpace.tt Line: 42
 					    return resCatalog1;
 					}
 					#endregion Repository // CatalogRepository.tt Line: 51
+					#region Views // PocoView.tt Line: 9, called from ModelCatalogClass.tt Line: 82
+					[Dapper.Contrib.Extensions.Table("v.CtlgCatalog1")]
+					public partial class ViewListNarrow : ViewEntityBaseSyncAsync<ViewListNarrow>, IViewPlainBaseExplicit<ViewListNarrow>, IViewItem, ISameById<ViewListNarrow>  // PocoView.tt Line: 54
+					{
+					    public bool SameById(ViewListNarrow other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 56
+					    public string GetName() { return this.Property1; } // PocoView.tt Line: 61
+					#if DEBUG
+					    private ViewListNarrow() // PocoView.tt Line: 72
+					#else
+					    public ViewListNarrow()
+					#endif
+					    {
+					        this.Property1 = string.Empty;
+					    }
+					    #region View Properties
+						public string Property1 // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1155
+						{
+							get { return _Property1; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _Property1 = value; }
+						}
+						private string _Property1 = string.Empty; // PocoView.tt Line: 108 - Utils.cs Line: 467
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 108 - Utils.cs Line: 280
+						public int Id // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Id; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _Id = value; }
+						}
+						private int _Id; // PocoView.tt Line: 108 - Utils.cs Line: 467
+					    #endregion View Properties
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 124
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM v.CtlgCatalog1");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListNarrow>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+						{
+						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Property1, Id FROM v.CtlgCatalog1");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+								sb.Append(" ROWS FETCH NEXT ");
+								sb.Append(pagesize);
+								sb.Append(" ROWS ONLY");
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+					}
+					[Dapper.Contrib.Extensions.Table("v.CtlgCatalog1")]
+					public partial class ViewListWide : ViewEntityBaseSyncAsync<ViewListWide>, IViewPlainBaseExplicit<ViewListWide>, IViewItem, ISameById<ViewListWide>  // PocoView.tt Line: 54
+					{
+					    public bool SameById(ViewListWide other) { return other != null && this.Id == other.Id; } // PocoView.tt Line: 56
+					    public string GetName() { return this.Property1; } // PocoView.tt Line: 61
+					#if DEBUG
+					    private ViewListWide() // PocoView.tt Line: 72
+					#else
+					    public ViewListWide()
+					#endif
+					    {
+					        this.Property1 = string.Empty;
+					    }
+					    #region View Properties
+						public string Property1 // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1155
+						{
+							get { return _Property1; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _Property1 = value; }
+						}
+						private string _Property1 = string.Empty; // PocoView.tt Line: 108 - Utils.cs Line: 467
+						[Dapper.Contrib.Extensions.Key] // PocoView.tt Line: 108 - Utils.cs Line: 280
+						public int Id // PocoView.tt Line: 108 - Utils.cs Line: 316 Utils.cs Line: 1175
+						{
+							get { return _Id; } // PocoView.tt Line: 108 - Utils.cs Line: 459
+							set { _Id = value; }
+						}
+						private int _Id; // PocoView.tt Line: 108 - Utils.cs Line: 467
+					    #endregion View Properties
+						#region Views // CmdDefinitionsCatalogView.tt Line: 7, called from PocoView.tt Line: 124
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionCountWhere(string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 9
+						{
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT Count(*) FROM v.CtlgCatalog1");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						CommandDefinitionData IViewPlainBaseExplicit<ViewListWide>.GetCommandDefinitionView(int pagesize, int page, string? sort, string? where, object? param) // CmdDefinitionsCatalogView.tt Line: 302
+						{
+						    Debug.Assert((pagesize == 0 && page == 0) || (pagesize > 0 && page > 0));
+							StringBuilder sb = new StringBuilder();
+							sb.Append("SELECT ");
+						    sb.Append("Property1, Id FROM v.CtlgCatalog1");
+							if (where != null)
+							{
+								sb.Append(" WHERE ");
+								sb.Append(where);
+							}
+							if (sort != null)
+							{
+								sb.Append(" ORDER BY ");
+								sb.Append(sort);
+							}
+							if (page > 0 && pagesize > 0)
+							{
+								sb.Append(" OFFSET ");
+								sb.Append((page-1)*pagesize);
+								sb.Append(" ROWS FETCH NEXT ");
+								sb.Append(pagesize);
+								sb.Append(" ROWS ONLY");
+						    }
+							sb.Append(';');
+						    var cmd = new CommandDefinitionData(sb.ToString(), param, CommandType.Text);
+						    return cmd;
+						}
+						#endregion Views // CmdDefinitionsCatalogView.tt Line: 346
+					}
+					#endregion Views // PocoView.tt Line: 294
 				}
 			}
 			public partial class Documents // Documents.tt Line: 7, called from NameSpace.tt Line: 174

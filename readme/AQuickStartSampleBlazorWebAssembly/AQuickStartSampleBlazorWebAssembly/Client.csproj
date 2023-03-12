@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+    <!--see sample https://github.com/grpc/grpc-dotnet/tree/master/examples/Blazor-->
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
