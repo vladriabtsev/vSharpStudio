@@ -21,6 +21,7 @@
         <Folder Include="Generated\" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\Client\Client.csproj" />
         <ProjectReference Include="..\DbRepository\DbRepository.csproj" />
     </ItemGroup>
 </Project>

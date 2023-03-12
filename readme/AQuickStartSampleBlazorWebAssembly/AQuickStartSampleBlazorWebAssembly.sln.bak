@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbRepository", "DbRepository\DbRepository.csproj", "{481B87BB-61BE-4EA0-A09A-9BDD42E9ED32}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "Server\Server.csproj", "{D3A63269-82D6-42F6-A483-0DEFF940598E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "AQuickStartSampleBlazorWeb\Server.csproj", "{D3A63269-82D6-42F6-A483-0DEFF940598E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{E1D3CA44-9161-4307-B29E-1F7947BA6A48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "AQuickStartSampleBlazorWebAssembly\Client.csproj", "{E1D3CA44-9161-4307-B29E-1F7947BA6A48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

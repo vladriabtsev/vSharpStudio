@@ -25,7 +25,7 @@
 
         <!--<Protobuf Include="../AQuickStartSampleBlazorWeb/Generated/custom_types.proto" GrpcServices="Client" Link="Protos/custom_types.proto" Access="Internal" />
         <Protobuf Include="../AQuickStartSampleBlazorWeb/Generated/postgre_sql.proto" GrpcServices="Client" Link="Protos/postgre_sql.proto" Access="Internal" />-->
-        <Protobuf Include="../AQuickStartSampleBlazorWeb/Generated/custom_types.proto" GrpcServices="Client" Link="Protos/custom_types.proto" ProtoRoot="../AQuickStartSampleBlazorWeb/Generated" />
-        <Protobuf Include="../AQuickStartSampleBlazorWeb/Generated/postgre_sql.proto" GrpcServices="Client" Link="Protos/postgre_sql.proto" ProtoRoot="../AQuickStartSampleBlazorWeb/Generated" />
+        <Protobuf Include="../Server/Generated/custom_types.proto" GrpcServices="Client" Link="Protos/custom_types.proto" ProtoRoot="../Server/Generated" />
+        <Protobuf Include="../Server/Generated/postgre_sql.proto" GrpcServices="Client" Link="Protos/postgre_sql.proto" ProtoRoot="../Server/Generated" />
     </ItemGroup>
 </Project>
