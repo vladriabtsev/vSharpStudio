@@ -194,6 +194,8 @@ namespace vPlugins.GRPC.Client.PostgreSql // NameSpace.tt Line: 34
             Model.Settings.InitDefault();
             services.AddGrpcClient<repository_basePostgreSqlGrpc.repository_basePostgreSqlGrpcClient>((s, o) => { o.Address = currAddr; }); //.EnableCallContextPropagation();
             services.AddGrpcClient<CtlgCatalog1PostgreSqlGrpc.CtlgCatalog1PostgreSqlGrpcClient>((s, o) => { o.Address = currAddr; }); //.EnableCallContextPropagation();
+            services.AddGrpcClient<CtlgCatalog1ViewListNarrowPostgreSqlGrpc.CtlgCatalog1ViewListNarrowPostgreSqlGrpcClient>((s, o) => { o.Address = currAddr; }); //.EnableCallContextPropagation();
+            services.AddGrpcClient<CtlgCatalog1ViewListWidePostgreSqlGrpc.CtlgCatalog1ViewListWidePostgreSqlGrpcClient>((s, o) => { o.Address = currAddr; }); //.EnableCallContextPropagation();
         }
 		/// <include file='model_doc.xml' path='Doc/Model/Catalogs/Desc[@name="catalogs"]/*' />
 		public partial class Catalogs // Catalogs.tt Line: 8, called from NameSpace.tt Line: 281

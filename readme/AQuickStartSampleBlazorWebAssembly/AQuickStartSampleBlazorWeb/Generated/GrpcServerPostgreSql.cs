@@ -202,6 +202,64 @@ namespace vPlugins.GRPC.Server // NameSpace.tt Line: 416
 				};
 				return res;
 			}
+			// List form ViewListNarrow // GrpcServiceUtils.cs Line: 212
+			public static M.Catalogs.Catalog1.ViewListNarrow ToModel(this CtlgCatalog1ViewListNarrow mes) // GrpcServiceUtils.cs Line: 289
+			{
+				return ToDbDto(mes);
+			}
+			public static M.Catalogs.Catalog1.ViewListNarrow ToDbDto(this CtlgCatalog1ViewListNarrow mes) // GrpcServiceUtils.cs Line: 295
+			{
+				#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+				#if DEBUG
+				var dto = (M.Catalogs.Catalog1.ViewListNarrow)Activator.CreateInstance(typeof(M.Catalogs.Catalog1.ViewListNarrow), true);
+				#else
+				var dto = new M.Catalogs.Catalog1.ViewListNarrow();
+				#endif
+				#pragma warning restore CS8600
+				#pragma warning disable CS8602 // Dereference of a possibly null reference.
+				dto.Property1 = mes.Property1; // GrpcServiceUtils.cs Line: 349
+				dto.Id = mes.Id; // GrpcServiceUtils.cs Line: 349
+				#pragma warning restore CS8602
+				return dto;
+			}
+			public static CtlgCatalog1ViewListNarrow ToMessage(this M.Catalogs.Catalog1.ViewListNarrow model) // GrpcServiceUtils.cs Line: 375
+			{
+				var res = new CtlgCatalog1ViewListNarrow()
+				{
+					Property1 = model.Property1, // GrpcServiceUtils.cs Line: 435
+					Id = model.Id, // GrpcServiceUtils.cs Line: 435
+				};
+				return res;
+			}
+			// List form ViewListWide // GrpcServiceUtils.cs Line: 212
+			public static M.Catalogs.Catalog1.ViewListWide ToModel(this CtlgCatalog1ViewListWide mes) // GrpcServiceUtils.cs Line: 289
+			{
+				return ToDbDto(mes);
+			}
+			public static M.Catalogs.Catalog1.ViewListWide ToDbDto(this CtlgCatalog1ViewListWide mes) // GrpcServiceUtils.cs Line: 295
+			{
+				#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+				#if DEBUG
+				var dto = (M.Catalogs.Catalog1.ViewListWide)Activator.CreateInstance(typeof(M.Catalogs.Catalog1.ViewListWide), true);
+				#else
+				var dto = new M.Catalogs.Catalog1.ViewListWide();
+				#endif
+				#pragma warning restore CS8600
+				#pragma warning disable CS8602 // Dereference of a possibly null reference.
+				dto.Property1 = mes.Property1; // GrpcServiceUtils.cs Line: 349
+				dto.Id = mes.Id; // GrpcServiceUtils.cs Line: 349
+				#pragma warning restore CS8602
+				return dto;
+			}
+			public static CtlgCatalog1ViewListWide ToMessage(this M.Catalogs.Catalog1.ViewListWide model) // GrpcServiceUtils.cs Line: 375
+			{
+				var res = new CtlgCatalog1ViewListWide()
+				{
+					Property1 = model.Property1, // GrpcServiceUtils.cs Line: 435
+					Id = model.Id, // GrpcServiceUtils.cs Line: 435
+				};
+				return res;
+			}
 			#endregion Catalog Catalog1 // GrpcServiceUtils.cs Line: 241
         }
         public static partial class StartupUtils // NameSpace.tt Line: 560
@@ -212,6 +270,8 @@ namespace vPlugins.GRPC.Server // NameSpace.tt Line: 416
                 endpoints.MapGrpcService<ModelPostgreSqlService>();
                 endpoints.MapGrpcService<repository_basePostgreSqlService>();
                 endpoints.MapGrpcService<CtlgCatalog1PostgreSqlService>();
+                endpoints.MapGrpcService<CtlgCatalog1ViewListNarrowPostgreSqlService>();
+                endpoints.MapGrpcService<CtlgCatalog1ViewListWidePostgreSqlService>();
             }
         }
 #region Services
@@ -431,6 +491,92 @@ namespace vPlugins.GRPC.Server // NameSpace.tt Line: 416
 				catch (Exception ex)
 				{
 					return new reply_() { Server = new server_result() { Exception = ex.ToString(), Message = ex.Message }};
+				}
+			}
+			#endregion Services
+        }
+        public partial class CtlgCatalog1ViewListNarrowPostgreSqlService : CtlgCatalog1ViewListNarrowPostgreSqlGrpc.CtlgCatalog1ViewListNarrowPostgreSqlGrpcBase // NameSpace.tt Line: 621
+        {
+            //private readonly ILogger<CtlgCatalog1ViewListNarrowPostgreSqlService> _logger;
+            //public CtlgCatalog1ViewListNarrowPostgreSqlService(ILogger<CtlgCatalog1ViewListNarrowPostgreSqlService> logger) { _logger = logger; }
+			#region Services
+			public override async Task<reply_int_value> Count(params_where request, ServerCallContext context) // GrpcServiceUtils.cs Line: 517
+			{
+				try // service method model is created from ProtoMain.partial.cs Line: 385
+				{
+					var p = request.Parameters.GetDynamicParameters();
+					var res = await M.Catalogs.Catalog1.ViewListNarrow.CountAsync(request.Where, p);
+					return new reply_int_value() { Result = res, Server = new server_result() { IsSuccess = true }}; // GrpcServiceUtils.cs Line: 608
+				}
+				catch (ConcurrencyOptimisticException ex)
+				{
+					return new reply_int_value() { Server = new server_result() { Exception = ex.ToString(), Message = ex.Message, IsDeleted = ex.IsDeleted, IsConcurrencyOptimisticException = true }};
+				}
+				catch (Exception ex)
+				{
+					return new reply_int_value() { Server = new server_result() { Exception = ex.ToString(), Message = ex.Message }};
+				}
+			}
+			public override async Task<reply_CtlgCatalog1ViewListNarrow_array> GetView(params_where_sort_page request, ServerCallContext context) // GrpcServiceUtils.cs Line: 517
+			{
+				try // service method model is created from ProtoMain.partial.cs Line: 403
+				{
+					var p = request.Parameters.GetDynamicParameters(); // GrpcServiceUtils.cs Line: 929
+					var lst = await M.Catalogs.Catalog1.ViewListNarrow.GetViewAsync(request.Sort, request.Pagesize, request.Page, request.Where, p);
+					var res = new reply_CtlgCatalog1ViewListNarrow_array() { Server = new server_result() { IsSuccess = true } };
+					foreach (var t in lst) { res.Result.Add(t.ToMessage()); }
+					return res;
+				}
+				catch (ConcurrencyOptimisticException ex)
+				{
+					return new reply_CtlgCatalog1ViewListNarrow_array() { Server = new server_result() { Exception = ex.ToString(), Message = ex.Message, IsDeleted = ex.IsDeleted, IsConcurrencyOptimisticException = true }};
+				}
+				catch (Exception ex)
+				{
+					return new reply_CtlgCatalog1ViewListNarrow_array() { Server = new server_result() { Exception = ex.ToString(), Message = ex.Message }};
+				}
+			}
+			#endregion Services
+        }
+        public partial class CtlgCatalog1ViewListWidePostgreSqlService : CtlgCatalog1ViewListWidePostgreSqlGrpc.CtlgCatalog1ViewListWidePostgreSqlGrpcBase // NameSpace.tt Line: 621
+        {
+            //private readonly ILogger<CtlgCatalog1ViewListWidePostgreSqlService> _logger;
+            //public CtlgCatalog1ViewListWidePostgreSqlService(ILogger<CtlgCatalog1ViewListWidePostgreSqlService> logger) { _logger = logger; }
+			#region Services
+			public override async Task<reply_int_value> Count(params_where request, ServerCallContext context) // GrpcServiceUtils.cs Line: 517
+			{
+				try // service method model is created from ProtoMain.partial.cs Line: 385
+				{
+					var p = request.Parameters.GetDynamicParameters();
+					var res = await M.Catalogs.Catalog1.ViewListWide.CountAsync(request.Where, p);
+					return new reply_int_value() { Result = res, Server = new server_result() { IsSuccess = true }}; // GrpcServiceUtils.cs Line: 608
+				}
+				catch (ConcurrencyOptimisticException ex)
+				{
+					return new reply_int_value() { Server = new server_result() { Exception = ex.ToString(), Message = ex.Message, IsDeleted = ex.IsDeleted, IsConcurrencyOptimisticException = true }};
+				}
+				catch (Exception ex)
+				{
+					return new reply_int_value() { Server = new server_result() { Exception = ex.ToString(), Message = ex.Message }};
+				}
+			}
+			public override async Task<reply_CtlgCatalog1ViewListWide_array> GetView(params_where_sort_page request, ServerCallContext context) // GrpcServiceUtils.cs Line: 517
+			{
+				try // service method model is created from ProtoMain.partial.cs Line: 403
+				{
+					var p = request.Parameters.GetDynamicParameters(); // GrpcServiceUtils.cs Line: 929
+					var lst = await M.Catalogs.Catalog1.ViewListWide.GetViewAsync(request.Sort, request.Pagesize, request.Page, request.Where, p);
+					var res = new reply_CtlgCatalog1ViewListWide_array() { Server = new server_result() { IsSuccess = true } };
+					foreach (var t in lst) { res.Result.Add(t.ToMessage()); }
+					return res;
+				}
+				catch (ConcurrencyOptimisticException ex)
+				{
+					return new reply_CtlgCatalog1ViewListWide_array() { Server = new server_result() { Exception = ex.ToString(), Message = ex.Message, IsDeleted = ex.IsDeleted, IsConcurrencyOptimisticException = true }};
+				}
+				catch (Exception ex)
+				{
+					return new reply_CtlgCatalog1ViewListWide_array() { Server = new server_result() { Exception = ex.ToString(), Message = ex.Message }};
 				}
 			}
 			#endregion Services

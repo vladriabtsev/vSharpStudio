@@ -161,6 +161,22 @@ message reply_CtlgCatalog1_array { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlu
     server_result server = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 668
     repeated CtlgCatalog1 result = 2; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 677
 }
+message CtlgCatalog1ViewListNarrow { //-- Views File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 374 // ProtoMessage.tt Line: 9 
+    string Property1 = 14; //-- Views File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 378
+    int32 Id = 6; //-- Views File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 378
+}
+message reply_CtlgCatalog1ViewListNarrow_array { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 667 // ProtoMessage.tt Line: 9 
+    server_result server = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 668
+    repeated CtlgCatalog1ViewListNarrow result = 2; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 677
+}
+message CtlgCatalog1ViewListWide { //-- Views File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 374 // ProtoMessage.tt Line: 9 
+    string Property1 = 14; //-- Views File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 378
+    int32 Id = 6; //-- Views File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 378
+}
+message reply_CtlgCatalog1ViewListWide_array { //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 667 // ProtoMessage.tt Line: 9 
+    server_result server = 1; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 668
+    repeated CtlgCatalog1ViewListWide result = 2; //-- .ctor File: D:\dev\vSharpStudio.pro\vPlugin.gRPC\Generators\ProtoMain.partial.cs Line: 677
+}
 // ProtoService.tt Line: 7, called from ProtoMain.tt Line: 75
 service repository_basePostgreSqlGrpc { // ProtoService.tt Line: 9
     rpc get_next_id(params_next_id) returns(reply_int_value) {}
@@ -176,6 +192,14 @@ service CtlgCatalog1PostgreSqlGrpc { // ProtoService.tt Line: 9
     rpc DeleteById(int_value) returns(reply_) {}
     rpc DeleteWhere(params_where) returns(reply_) {}
     rpc RemoveWhere(params_where) returns(reply_) {}
+}
+service CtlgCatalog1ViewListNarrowPostgreSqlGrpc { // ProtoService.tt Line: 9
+    rpc Count(params_where) returns(reply_int_value) {}
+    rpc GetView(params_where_sort_page) returns(reply_CtlgCatalog1ViewListNarrow_array) {}
+}
+service CtlgCatalog1ViewListWidePostgreSqlGrpc { // ProtoService.tt Line: 9
+    rpc Count(params_where) returns(reply_int_value) {}
+    rpc GetView(params_where_sort_page) returns(reply_CtlgCatalog1ViewListWide_array) {}
 }
 service ModelGrpc {
     rpc Commit(transaction_data_insert_update_delete) returns(reply_) {}
