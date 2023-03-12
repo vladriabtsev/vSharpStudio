@@ -690,14 +690,14 @@ namespace vSharpStudio.Unit
 
             var cfg = this.createTree();
             //cfg.SolutionPath = @"..\..\..\..\";
-            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountErrors == 0);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
             Assert.IsTrue(cfg.ValidationCollection.Count == 0);
 
             cfg.Model.GroupEnumerations[0].Name = "1a";
-            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountErrors == 1);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountInfos == 0);
             Assert.IsTrue(cfg.Model.GroupEnumerations[0].CountWarnings == 0);
@@ -742,7 +742,7 @@ namespace vSharpStudio.Unit
 
             cfg.Model.GroupEnumerations[0].Name = "a b";
             // cfg.Model.GroupConstants[1].DataType.ObjectName = "a b";
-            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.ValidationCollection.Count == 1);
             Assert.IsTrue(cfg.ValidationCollection[0].Severity == FluentValidation.Severity.Error);
             Assert.IsTrue(cfg.ValidationCollection[0].Message == Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
@@ -751,7 +751,7 @@ namespace vSharpStudio.Unit
             cfg.Model.GroupEnumerations[0].Name = "ab";
             cfg.Model.GroupEnumerations[1].Name = "ab";
             // cfg.Model.GroupConstants[1].DataType.ObjectName = "ab";
-            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.ValidationCollection.Count == 2);
             Assert.IsTrue((from p in cfg.ValidationCollection where p.Severity == FluentValidation.Severity.Error select p).ToList().Count() == 2);
             Assert.IsTrue((from p in cfg.ValidationCollection where p.Message == Config.ValidationMessages.NAME_HAS_TO_BE_UNIQUE select p).ToList().Count() == 2);
@@ -774,7 +774,7 @@ namespace vSharpStudio.Unit
             var cfg = this.createTree();
             //cfg.SolutionPath = @"..\..\..\..\";
 
-            await cfg.ValidateSubTreeFromNodeAsync(cfg, token);
+            await cfg.ValidateSubTreeFromNodeAsync(cfg, null, token);
             Assert.IsTrue(cfg.CountErrors == 0);
             Assert.IsTrue(cfg.CountInfos == 0);
             Assert.IsTrue(cfg.CountWarnings == 0);
