@@ -1,6 +1,6 @@
-îM
-$69736650-e8d6-4ba3-aa41-c329d031e713Config*Config:›€¸ Èğ†,@ÚïşüÏáût€ª<
-$acf0601e-6f50-4769-9c1e-551414ef5051BaseConfigs@º¾ØÎú×œi²»-
+ï[
+$69736650-e8d6-4ba3-aa41-c329d031e713Config*Config:Õ¤é ¸Ó¶Ù@ÚïşüÏáût€ª<
+$acf0601e-6f50-4769-9c1e-551414ef5051BaseConfigs@º¾ØÎú×œi²¢4
 $a26d7eb0-fc5c-4017-b15c-6f93f9067513Model óØ“Öƒ›©Ê*Model@dHPj$ade04003-2c31-42cc-a1a0-47a2a205d5d0rIdŠ$4efefb34-e583-4cc1-aef5-eaf384d0402a’ReCoRdVeRsIoN˜ªCodeºNameÊDescriptionÚIsFolderâIsOpenêDocDateğ€Ê	DocNumberĞª®
 $6546e8a0-aade-4eee-8342-5ec09786d2cd	Constants»õ”–­†üôp"	Constants2Cnstún
 $b3a56748-15cf-401d-82f2-7f88074261b6$56b4d6ac-4a10-4d4c-b915-51186bef944b
@@ -15,8 +15,8 @@ Generator1"
 Generator1(ëÂËãÉĞé”ún
 $5082a425-7a63-472b-b55e-0cfa97c508e8$c258a031-e035-417d-b3a3-e24b83e19fcf
 Generator1"
-Generator1(ëÂËãÉĞé”º†
-$58289f67-eb15-427b-8843-483bfa9ee87bCatalogs"Catalogs2Ctlg:cBÍ
+Generator1(ëÂËãÉĞé”ºî
+$58289f67-eb15-427b-8843-483bfa9ee87bCatalogs"Catalogs2Ctlg:cBµ
 $95b20a95-1a31-4e61-96ef-f56e192f9f4dCatalog1×âÒÚƒàâq"Catalog1H˜¸Ò 8àğdĞ²$e42e5943-db06-489e-b803-d3554b9fc4b0º$c71c1fff-d3ff-43fa-bb95-d1ce8c3c7bdfê$04bcdfae-8f58-4b66-b7c2-ea721b8e7751ò$e7cf8cae-6227-44f4-a99b-4b913af80400ú$e2d12e77-a690-42c5-ae54-28b0277eb4ab‚$01ddec08-a932-459a-a08c-93f4c48c2ec0Š$6e57e621-87a3-4883-8202-f805b690a4c4’$259b2e46-58bb-4e1e-bd4e-4225c6bb31a4š$5b9639bd-2239-4202-bb0d-3c677891ce00¢$cca16f4f-fd9b-4e74-8277-e3ee1a61c508ª$205dc134-7ced-4148-a459-1a6a27bef14bŠÅ	
 $20c4bcc3-7d4f-4a99-b67e-f4d7ce18072bFolder¬·è´…”Ê"Folder*Catalog items groups¢$22bf2fa7-65d8-4fef-a717-e0fe1ff3b9ba² 8º$ba2d18c8-3c80-423a-aafa-4cde1b37f92cÂ$0dbafced-6f52-41e8-8c1e-4a1b7f002de2ĞÚ$51601416-c6cb-4c7f-a831-7ad124d09691 dª$7978cee1-343d-47c0-9393-7417e1ef59b2²$da9cac9a-ccc2-402d-85d1-0d0c53a945ebº$39b564dc-7b72-47ad-b3cb-079662397e6eú$5a9aa975-46c2-407b-81ef-5d1c60abcaa1‚$ce9e48a2-763f-423d-97b9-e0431416f3f9Š$87760f8d-0771-43b9-90b7-a9bbee1b76a1’ª
 $e08e14ae-5b11-420b-88f6-9998b845dfe6
@@ -60,7 +60,8 @@ $ce10a76d-e29d-4390-9ea8-5a1d7110842d$c258a031-e035-417d-b3a3-e24b83e19fcf
 Generator1"
 Generator1(ëÂËãÉĞé”¢>
 $5d745010-e3cc-42b4-a00a-938b1495c4d0Forms"Forms@™œåî “ÏAªB
-$720fd5c4-9d83-4dcb-8e67-47741d2cb205Reports"Reports@åŞË€•ŸæòQún
+$720fd5c4-9d83-4dcb-8e67-47741d2cb205Reports"Reports@åŞË€•ŸæòQúe
+$4369e78d-8e61-49f9-9593-bc841d47b210$bc3e7681-827a-40e6-aa04-f6ada3ccf875Blazor"Blazor(†ÛİƒéÓkún
 $c7032ac9-234e-465a-8c79-4ed717fe8873$56b4d6ac-4a10-4d4c-b915-51186bef944b
 Generator1"
 Generator1(ëÂËãÉĞé”ún
@@ -103,7 +104,8 @@ Generator1"
 Generator1(ëÂËãÉĞé”ún
 $22255e4c-d4c9-447c-a595-e59fa8973ab1$c258a031-e035-417d-b3a3-e24b83e19fcf
 Generator1"
-Generator1(ëÂËãÉĞé”ún
+Generator1(ëÂËãÉĞé”úû
+$c54abf2a-a493-41a1-9fa9-be98ea4d36f6$bc3e7681-827a-40e6-aa04-f6ada3ccf875Blazor"Blazor(†ÛİƒéÓk:“{ "formLayoutType": "FlatLayout", "dataGrid": { "isMultiSelection": false, "sortModeType": "SortMultiple", "isFilterable": false, "isHideable": false, "isSearchable": true, "filterModeType": "FilterSimple", "pagesize": 10, "isGroupable": false, "isGroupExpanded": false, "isBordered": false, "isCanCancelEdit": true, "columnResizeModeType": "ResizeNone", "isFixedHeader": false, "isFixedFooter": false, "isHorizontalScrollbar": false, "isHover": false, "isLoading": false, "isOutlined": false, "isReadOnly": true, "isShowColumnOptions": true, "isShowFilterIcons": true, "isSquare": false, "isStriped": false, "isVirtualize": false, "isShowMenuIcon": false } }ún
 $a16bfab9-6bfe-43d8-a2d5-a74ca851c976$56b4d6ac-4a10-4d4c-b915-51186bef944b
 Generator1"
 Generator1(ëÂËãÉĞé”ún
@@ -130,9 +132,13 @@ $ED93228B-8D8E-456C-9688-37EEB1B2D8350.1Sample"+vSharpStudio plugin with sev
 $08744482-BE03-464B-81AB-DD482AB66103AbstractDbSchemaDescription Abstract Db Schema2M
 $7C2902AF-DF34-46FC-8911-A48EE7F9B2B0DbAccessDescription Db Access Layer"­
 $D535B939-6A33-4B96-B64C-F8FB78FD9F940.1Sample2"'vSharpStudio plugin with one generators2N
-$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer@„™„§à›®ã‘Ê¡
-$c4d5df92-57ae-4558-9c75-4b23d5d37847Apps@È ›½¾ä Jç
-$c1af2b9d-c095-4493-bc94-2beb16829851"AQuickStartSampleBlazorWebAssembly"AQuickStartSampleBlazorWebAssembly ÍÌì°é±d:&AQuickStartSampleBlazorWebAssembly.slnXŠĞ
+$8876C5ED-8375-403B-A792-D05019BD89E0	DbAccess2Description Db Access Layer@„™„§à›®ã‘Êº
+$c4d5df92-57ae-4558-9c75-4b23d5d37847Apps@È ›½¾ä J€
+$c1af2b9d-c095-4493-bc94-2beb16829851"AQuickStartSampleBlazorWebAssembly"AQuickStartSampleBlazorWebAssembly ÍÌì°é±d:&AQuickStartSampleBlazorWebAssembly.slnXŠ•
+$e9c28171-4e1a-4ebe-8a91-b96b4c243599RazorClassLibraryRazorClassLibrary2*RazorClassLibrary\RazorClassLibrary.csproj‚İ
+$bc3e7681-827a-40e6-aa04-f6ada3ccf875BlazorBlazor2$3829EEAB-71BB-4BE2-91E6-70872B6FB85C:Blazor code generation pluginB$1E35FCDB-6425-4C66-B047-6882738AF552JDB repository code generationR
+Generated\`Šˆ{ "dbAppProjectGeneratorGuid": "56b4d6ac-4a10-4d4c-b915-51186bef944b", "relativePathFolderToGenCode": "Generated", "relativePathFolderForInitialTemplates": "Components", "blazorLib": "MudBlazor", "relativePathFolderForBlazorComponents": "D:\\dev\\vSharpStudio\\readme\\AQuickStartSampleBlazorWebAssembly\\RazorClassLibrary\\Components", "nameSpaceComponents": "Components", "fieldLabelType": "CompactField", "contentGridRowGap": 5, "contentGridColGap": 15, "contentGridColWidth": 100, "dataGridMaxAutoDetailColumns": 5 }’ ’9
+$6E958159-C294-4EF2-B87E-958CEDFB6FB7{ "logApi": { } }ŠĞ
 $c7a56957-5e33-4be3-984e-e1d42e1edf2cServerServer ÍÌì°é±d2Server\Server.csprojX‚¹
 $229c9b90-065e-485b-9d2a-aa33cd4639b2gRPCgRPC2$EDE860F8-2E9B-4E17-8A80-2D52879D15AB:&vSharpStudio plugin. gRPC service codeB$32B15714-E660-4E29-9291-D647A1774149J<gRPC services server code, client code, protobuf defenitionsR	GeneratedZGrpcServices.cs`Š°{ "dbAppProjectGeneratorGuid": "56b4d6ac-4a10-4d4c-b915-51186bef944b", "relativePathFolderToGenClientCode": "Generated", "relativePathToClientProject": "..\\Client\\Client.csproj", "genFileNameCommonCode": "ModelCommon.cs", "isSendEnumByValueForUnsupportedTypes": true, "cacheApi": { "separator": "*" } }’ ’9
 $6E958159-C294-4EF2-B87E-958CEDFB6FB7{ "logApi": { } }Šô

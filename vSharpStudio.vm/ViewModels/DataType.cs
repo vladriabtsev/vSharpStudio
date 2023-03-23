@@ -601,7 +601,8 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             if (this.MaxNumericalValue <= sbyte.MaxValue)
                             {
-                                this.ClrTypeName = "sbyte";
+                                //this.ClrTypeName = "short";
+                                this.ClrTypeName = "sbyte"; // problem with Dapper, writing wrong value in DB
                                 break;
                             }
                             if (this.MaxNumericalValue <= short.MaxValue)

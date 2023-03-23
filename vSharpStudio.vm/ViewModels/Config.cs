@@ -162,7 +162,7 @@ namespace vSharpStudio.vm.ViewModels
                 while (this.IsValidatingSubTreeFromNode)
                 {
                     i++;
-                    int delayTime = 100;
+                    int delayTime = 300;
                     _logger?.Trace("Another validation in progress. Wait {delayTime} mc.");
                     await Task.Delay(delayTime);
 #if DEBUG
