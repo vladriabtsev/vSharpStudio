@@ -14,6 +14,10 @@ namespace vSharpStudio.common
         bool IsComputed { get; set; }
         bool IsPKey { get; }
         bool IsDocShared { get; set; }
+        /// <summary>
+        /// Is hidden on UI (special properties)
+        /// </summary>
+        bool IsHidden { get; set; }
         string? ComplexObjectName { get; set; }
         string PropValueValue { get; }
         IPropertyRangeValuesRequirements? RangeValuesRequirementsI { get; }

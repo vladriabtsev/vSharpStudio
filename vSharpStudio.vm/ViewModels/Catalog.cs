@@ -326,47 +326,57 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetNormalProperties(List<IProperty> res)
         {
-            var model = this.ParentGroupListCatalogs.ParentModel;
             IProperty prp = null!;
-            if (this.GetUseCodeProperty())
-            {
-                prp = this.GetCodeProperty(model.ParentConfig);
-                res.Add(prp);
-            }
-            if (this.GetUseNameProperty())
-            {
-                prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
-                res.Add(prp);
-            }
-            if (this.GetUseDescriptionProperty())
-            {
-                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
-                res.Add(prp);
-            }
+            this.GetCodeProperty(res);
+            this.GetNameProperty(res);
+            this.GetDescriptionProperty(res);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 res.Add(t);
             }
         }
-        private IProperty GetCodeProperty(IConfig cfg)
+        private IProperty GetCodeProperty(List<IProperty> lst)
         {
             IProperty prp = null!;
-            switch (this.CodePropertySettings.Type)
+            if (this.GetUseCodeProperty())
             {
-                case EnumCodeType.AutoNumber:
-                    throw new NotImplementedException();
-                case EnumCodeType.AutoText:
-                    throw new NotImplementedException();
-                case EnumCodeType.Number:
-                    prp = cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
-                    break;
-                case EnumCodeType.Text:
-                    prp = cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
-                    break;
+                switch (this.CodePropertySettings.Type)
+                {
+                    case EnumCodeType.AutoNumber:
+                        throw new NotImplementedException();
+                    case EnumCodeType.AutoText:
+                        throw new NotImplementedException();
+                    case EnumCodeType.Number:
+                        prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                        break;
+                    case EnumCodeType.Text:
+                        prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                        break;
+                }
+                lst.Add(prp);
             }
             return prp;
         }
-
+        private IProperty GetNameProperty(List<IProperty> lst)
+        {
+            IProperty prp = null!;
+            if (this.GetUseNameProperty())
+            {
+                prp = this.Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
+                lst.Add(prp);
+            }
+            return prp;
+        }
+        private IProperty GetDescriptionProperty(List<IProperty> lst)
+        {
+            IProperty prp = null!;
+            if (this.GetUseDescriptionProperty())
+            {
+                prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+                lst.Add(prp);
+            }
+            return prp;
+        }
         partial void OnUseCodePropertyChanged()
         {
             this.NotifyPropertyChanged(() => this.PropertyDefinitions);
@@ -447,22 +457,9 @@ namespace vSharpStudio.vm.ViewModels
             var res = new List<IProperty>();
             this.GetSpecialProperties(res, isSupportVersion);
             var model = this.ParentGroupListCatalogs.ParentModel;
-            IProperty prp = null!;
-            if (this.GetUseCodeProperty())
-            {
-                prp = this.GetCodeProperty(model.ParentConfig);
-                res.Add(prp);
-            }
-            if (this.GetUseNameProperty())
-            {
-                prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
-                res.Add(prp);
-            }
-            if (this.GetUseDescriptionProperty())
-            {
-                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
-                res.Add(prp);
-            }
+            this.GetCodeProperty(res);
+            this.GetNameProperty(res);
+            this.GetDescriptionProperty(res);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
@@ -476,23 +473,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new List<IProperty>();
             this.Folder.GetSpecialProperties(res, isSupportVersion);
-            var model = this.ParentGroupListCatalogs.ParentModel;
-            IProperty prp = null!;
-            if (this.GetUseCodeProperty())
-            {
-                prp = this.GetCodeProperty(model.ParentConfig);
-                res.Add(prp);
-            }
-            if (this.GetUseNameProperty())
-            {
-                prp = model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
-                res.Add(prp);
-            }
-            if (this.GetUseDescriptionProperty())
-            {
-                prp = model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
-                res.Add(prp);
-            }
+            this.GetCodeProperty(res);
+            this.GetNameProperty(res);
+            this.GetDescriptionProperty(res);
             foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
@@ -532,21 +515,30 @@ namespace vSharpStudio.vm.ViewModels
             if (f == null)
             {
                 var lstp = new List<IProperty>();
-                int i = 0;
-                foreach (var t in this.GroupProperties.ListProperties)
+                this.GetCodeProperty(lstp);
+                this.GetNameProperty(lstp);
+                if (ftype== FormType.ListWide)
                 {
-                    if (t.IsIncluded(guidAppPrjGen))
+                    this.GetDescriptionProperty(lstp);
+                }
+                if (lstp.Count == 0)
+                {
+                    int i = 0;
+                    foreach (var t in this.GroupProperties.ListProperties)
                     {
-                        i++;
-                        if (i > 1)
-                            break;
-                        lstp.Add(t);
+                        if (t.IsIncluded(guidAppPrjGen))
+                        {
+                            i++;
+                            if (i > 1)
+                                break;
+                            lstp.Add(t);
+                        }
                     }
                 }
                 this.GetSpecialProperties(lstp, false);
                 f = new Form(this.GroupForms, ftype, lstp);
             }
-            else  
+            else
             {
                 var lstp = new List<IProperty>();
                 lstp.AddRange(f.ListAllNotSpecialProperties);
@@ -626,23 +618,11 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
-                if (!this.GetUseCodeProperty())
-                {
-                    var prp = this.GetCodeProperty(this.Cfg);
-                    res.Add(prp);
-                }
-                if (!this.GetUseNameProperty())
-                {
-                    var prp = Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
-                    res.Add(prp);
-                }
+                this.GetCodeProperty(res);
+                this.GetNameProperty(res);
                 if (formType == FormType.ListWide)
                 {
-                    if (!this.GetUseDescriptionProperty())
-                    {
-                        var prp = Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
-                        res.Add(prp);
-                    }
+                    this.GetDescriptionProperty(res);
                 }
             }
             return res;

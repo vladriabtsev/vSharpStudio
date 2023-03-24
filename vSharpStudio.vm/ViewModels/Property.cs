@@ -18,6 +18,11 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode
     {
+        /// <summary>
+        /// Is hidden on UI
+        /// </summary>
+        [BrowsableAttribute(false)]
+        public bool IsHidden { get; set; }
         [BrowsableAttribute(false)]
         public GroupListProperties ParentGroupListProperties { get { Debug.Assert(this.Parent != null); return (GroupListProperties)this.Parent; } }
         [BrowsableAttribute(false)]

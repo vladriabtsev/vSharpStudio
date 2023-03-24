@@ -671,6 +671,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, idGuid, this.PKeyName, true);
             res.DataType = (DataType)this.GetIdDataType(res);
             res.DataType.IsPKey = true;
+            res.IsHidden = true;
             res.Position = 6;
             return res;
         }
@@ -678,6 +679,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Property(parent, guid, this.RecordVersionFieldName, true);
             res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false);
+            res.IsHidden = true;
             res.IsNullable = false;
             res.Position = 7;
             return res;
@@ -687,6 +689,7 @@ namespace vSharpStudio.vm.ViewModels
             var res = new Property(parent, guid, name, true);
             res.DataType = (DataType)this.GetIdRefDataType(res);
             res.DataType.IsRefParent = true;
+            res.IsHidden = true;
             res.Position = 8;
             res.IsNullable = isNullable;
             return res;
@@ -723,6 +726,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Property(parent, guid, this.PropertyIsFolderName, true);
             res.DataType = new DataType(res) { DataTypeEnum = EnumDataType.BOOL };
+            res.IsHidden = true;
             res.IsNullable = false;
             res.Position = 12;
             return res;
@@ -731,6 +735,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Property(parent, guid, this.PropertyIsOpenName, true);
             res.DataType = new DataType(res) { DataTypeEnum = EnumDataType.BOOL };
+            res.IsHidden = true;
             res.IsNullable = false;
             res.Position = 13;
             return res;

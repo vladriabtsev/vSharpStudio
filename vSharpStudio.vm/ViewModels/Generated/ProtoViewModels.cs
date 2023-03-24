@@ -19134,7 +19134,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseDescriptionPropertyChanged();
         
         [PropertyOrderAttribute(32)]
-        [DisplayName("Sep Use Code")]
+        [DisplayName("Tree Use Code")]
         [Description("Use Code property in separate tree for catalog folder by default")]
         public bool UseCodePropertyInSeparateTree // Property.tt Line: 55
         { 
@@ -19157,7 +19157,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseCodePropertyInSeparateTreeChanged();
         
         [PropertyOrderAttribute(34)]
-        [DisplayName("Sep Use Name")]
+        [DisplayName("Tree Use Name")]
         [Description("Use Name property in separate tree for catalog item by default")]
         public bool UseNamePropertyInSeparateTree // Property.tt Line: 55
         { 
@@ -19180,7 +19180,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseNamePropertyInSeparateTreeChanged();
         
         [PropertyOrderAttribute(36)]
-        [DisplayName("Sep Use Description")]
+        [DisplayName("Tree Use Description")]
         [Description("Use Description property in separate tree for catalog item by default")]
         public bool UseDescriptionPropertyInSeparateTree // Property.tt Line: 55
         { 

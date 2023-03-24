@@ -1986,15 +1986,15 @@ message proto_group_list_catalogs {
     proto_enum_use_type use_description_property = 26;
 
     // @attr [PropertyOrderAttribute(32)]
-    // @attr [DisplayName("Sep Use Code")]
+    // @attr [DisplayName("Tree Use Code")]
     // @attr [Description("Use Code property in separate tree for catalog folder by default")]
     bool use_code_property_in_separate_tree = 32;
     // @attr [PropertyOrderAttribute(34)]
-    // @attr [DisplayName("Sep Use Name")]
+    // @attr [DisplayName("Tree Use Name")]
     // @attr [Description("Use Name property in separate tree for catalog item by default")]
     bool use_name_property_in_separate_tree = 34;
     // @attr [PropertyOrderAttribute(36)]
-    // @attr [DisplayName("Sep Use Description")]
+    // @attr [DisplayName("Tree Use Description")]
     // @attr [Description("Use Description property in separate tree for catalog item by default")]
     bool use_description_property_in_separate_tree = 36;
 
