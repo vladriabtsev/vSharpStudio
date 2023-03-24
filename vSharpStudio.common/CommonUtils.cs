@@ -5,11 +5,25 @@ using System.IO;
 using System.Numerics;
 using Xceed.Wpf.Toolkit;
 using Google.Protobuf;
+using Polly;
 
 namespace vSharpStudio.common
 {
     public static class CommonUtils
     {
+        public static Policy RetryPolicy = Policy // Connection.tt Line: 17
+            .Handle<Exception>(ex => false)
+            .WaitAndRetry(new[]
+            {
+                    TimeSpan.FromSeconds(5),
+                    TimeSpan.FromSeconds(10),
+                    TimeSpan.FromSeconds(20)
+            }, (exception, timeSpan) =>
+            {
+                //if (exception.InnerException != null)
+                //{
+                //}
+            });
         public static T ParseJson<T>(string json, bool discardUnknownFields = true) where T : IMessage<T>, new()
         {
             var jp = new JsonParser(JsonParser.Settings.Default.WithIgnoreUnknownFields(discardUnknownFields));
@@ -182,6 +196,13 @@ namespace vSharpStudio.common
             }
             return sb.ToString();
         }
+        public static void WritesAllBytesWithRetry(string outFile, byte[] bytes)
+        {
+            CommonUtils.RetryPolicy.Execute(() =>
+            {
+                File.WriteAllBytes(outFile, bytes);
+            });
+        }
         public static void WriteToFileIfNotExist(string code, string path, string fileRelativePath, string fileName)
         {
             string outFolder = Path.Combine(path, fileRelativePath);
@@ -193,7 +214,7 @@ namespace vSharpStudio.common
             if (!File.Exists(outFile))
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(code);
-                File.WriteAllBytes(outFile, bytes);
+                CommonUtils.WritesAllBytesWithRetry(outFile, bytes);
             }
         }
         public static void WriteToFile(string code, string path, string fileRelativePath, string fileName)
@@ -205,7 +226,7 @@ namespace vSharpStudio.common
                 outFile = $"{outFolder}{fileName}";
             else
                 outFile = $"{outFolder}\\{fileName}";
-            File.WriteAllBytes(outFile, bytes);
+            CommonUtils.WritesAllBytesWithRetry(outFile, bytes);
         }
         public static void WriteToFile(byte[] bytes, string path, string fileRelativePath, string fileName)
         {
@@ -215,7 +236,7 @@ namespace vSharpStudio.common
                 outFile = $"{outFolder}{fileName}";
             else
                 outFile = $"{outFolder}\\{fileName}";
-            File.WriteAllBytes(outFile, bytes);
+            CommonUtils.WritesAllBytesWithRetry(outFile, bytes);
         }
         public static string GetOuputFilePath(string currentCfgFolderPath, IAppSolution ts, IAppProject tp, IAppProjectGenerator tpg, string fileName)
         {

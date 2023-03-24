@@ -311,13 +311,13 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsGridSortable == EnumUseType.No)
                 return false;
             if (this.Parent is Detail dd)
-                return dd.ParentGroupListDetails.GetIsGridSortable();
+                return dd.IsGridSortableGet();
             else if (this.Parent is Catalog c)
-                return c.ParentGroupListCatalogs.GetIsGridSortable();
+                return c.IsGridSortableGet();
             else if (this.Parent is Document d)
-                return d.ParentGroupListDocuments.ParentGroupDocuments.IsGridSortableGet();
+                return d.IsGridSortableGet();
             else if (this.Parent is CatalogFolder cf)
-                return cf.ParentCatalog.IsGridSortableGet();
+                return cf.IsGridSortableGet();
             else if (this.Parent is GroupDocuments gd)
                 return gd.IsGridSortableGet();
             else
@@ -330,13 +330,13 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsGridFilterable == EnumUseType.No)
                 return false;
             if (this.Parent is Detail dd)
-                return dd.ParentGroupListDetails.GetIsGridFilterable();
+                return dd.IsGridFilterableGet();
             else if (this.Parent is Catalog c)
-                return c.ParentGroupListCatalogs.GetIsGridFilterable();
+                return c.IsGridFilterableGet();
             else if (this.Parent is Document d)
-                return d.ParentGroupListDocuments.ParentGroupDocuments.IsGridFilterableGet();
+                return d.IsGridFilterableGet();
             else if (this.Parent is CatalogFolder cf)
-                return cf.ParentCatalog.IsGridFilterableGet();
+                return cf.IsGridFilterableGet();
             else if (this.Parent is GroupDocuments gd)
                 return gd.IsGridFilterableGet();
             else
@@ -349,13 +349,13 @@ namespace vSharpStudio.vm.ViewModels
             if (this.IsGridSortableCustom == EnumUseType.No)
                 return false;
             if (this.Parent is Detail dd)
-                return dd.ParentGroupListDetails.GetIsGridSortableCustom();
+                return dd.IsGridSortableCustomGet();
             else if (this.Parent is Catalog c)
-                return c.ParentGroupListCatalogs.GetIsGridSortableCustom();
+                return c.IsGridSortableCustomGet();
             else if (this.Parent is Document d)
-                return d.ParentGroupListDocuments.ParentGroupDocuments.IsGridSortableCustomGet();
+                return d.IsGridSortableCustomGet();
             else if (this.Parent is CatalogFolder cf)
-                return cf.ParentCatalog.IsGridSortableCustomGet();
+                return cf.IsGridSortableCustomGet();
             else if (this.Parent is GroupDocuments gd)
                 return gd.IsGridSortableCustomGet();
             else
