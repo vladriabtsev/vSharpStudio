@@ -1,4 +1,5 @@
-﻿using M = vPlugins.DapperModels.Sqlite.Model;
+﻿using System.Security.Cryptography;
+using M = vPlugins.DapperModels.Sqlite.Model;
 
 M.Settings.InitDefault();
 
@@ -40,6 +41,12 @@ using (var uow = new M.UnitOfWork())
 }
 cnt = M.Catalogs.Catalog1.Count(); // count all catalog records
 if (cnt != 2) throw new Exception();
+
+// Sample of where clause
+M.Catalogs.Catalog1.Delete($"{M.Catalogs.Catalog1.F_ID}=@p1", new { p1 = cat1.Id });
+cnt = M.Catalogs.Catalog1.Count(); // count all catalog records
+if (cnt != 1) throw new Exception();
+
 using (var uow = new M.UnitOfWork())
 {
     uow.Delete(cat1);
