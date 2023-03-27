@@ -143,7 +143,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnStringSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnStringSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -309,7 +309,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsSubParam2Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsSubParam2Changed();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -491,7 +491,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnSubSettingsChanged();
         //IPluginsGroupSolutionSubSettings IPluginsGroupSolutionSettings.SubSettings { get { return this._SubSettings; } }
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -633,7 +633,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsGroupProjectParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsGroupProjectParam1Changed();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -823,7 +823,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnSchemaParam3Changing(ref string to); // Property.tt Line: 79
         partial void OnSchemaParam3Changed();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -1037,7 +1037,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsCatalogFormParam1Changed();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -1275,7 +1275,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsGenerateNotValidCodeChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -1489,7 +1489,7 @@ namespace vPlugin.Sample // NameSpace.tt Line: 23
         partial void OnIsCatalogFormParam1Changing(ref bool to); // Property.tt Line: 79
         partial void OnIsCatalogFormParam1Changed();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }

@@ -15,9 +15,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class FormTree : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public FormAutoLayoutBlock ParentFormAutoLayoutBlock { get { Debug.Assert(this.Parent != null); return (FormAutoLayoutBlock)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IFormAutoLayoutBlock ParentFormAutoLayoutBlockI { get { Debug.Assert(this.Parent != null); return (IFormAutoLayoutBlock)this.Parent; } }
 
         #region ITree

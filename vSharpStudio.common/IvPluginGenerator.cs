@@ -46,7 +46,13 @@ namespace vSharpStudio.common
         /// Type of generator
         /// </summary>
         vPluginLayerTypeEnum PluginGeneratorType { get; }
-        IvPluginGeneratorNodeSettings? GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings);
+        /// <summary>
+        /// MVVM model for editing node settings for generator
+        /// </summary>
+        /// <param name="node">Configuration node</param>
+        /// <param name="settings">Json representation of node generator settings</param>
+        /// <returns></returns>
+        IvPluginGeneratorNodeSettings? GetGenerationNodeSettingsVmFromJson(ITreeConfigNode node, string? settings);
         // MVVM settings model (if settings == null then empty model will be created)
         /// <summary>
         /// MVVM model for editing settings.

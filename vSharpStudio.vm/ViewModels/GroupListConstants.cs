@@ -15,9 +15,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("GroupConstants:{Name,nq} Count:{ListConstants.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IEditableNode
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupConstantGroups ParentGroupConstantGroups { get { Debug.Assert(this.Parent != null); return (GroupConstantGroups)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IGroupConstantGroups ParentGroupConstantGroupsI { get { Debug.Assert(this.Parent != null); return (IGroupConstantGroups)this.Parent; } }
 
         partial void OnCreated()

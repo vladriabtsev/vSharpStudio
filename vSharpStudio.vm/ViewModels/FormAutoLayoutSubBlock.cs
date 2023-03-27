@@ -15,21 +15,21 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class FormAutoLayoutSubBlock : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Form? ParentForm { get { Debug.Assert(this.Parent != null); return this.Parent as Form; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IForm? ParentFormI { get { Debug.Assert(this.Parent != null); return this.Parent as IForm; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public FormAutoLayoutBlock? ParentFormAutoLayoutBlock { get { Debug.Assert(this.Parent != null); return this.Parent as FormAutoLayoutBlock; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IFormAutoLayoutBlock? ParentFormAutoLayoutBlockI { get { Debug.Assert(this.Parent != null); return this.Parent as IFormAutoLayoutBlock; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public FormTabControlTab? ParentFormTabControlTab { get { Debug.Assert(this.Parent != null); return this.Parent as FormTabControlTab; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IFormTabControlTab? ParentFormTabControlTabI { get { Debug.Assert(this.Parent != null); return this.Parent as IFormTabControlTab; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public FormGridSystemColumn? ParentFormGridSystemColumn { get { Debug.Assert(this.Parent != null); return this.Parent as FormGridSystemColumn; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IFormGridSystemColumn? ParentFormGridSystemColumnI { get { Debug.Assert(this.Parent != null); return this.Parent as IFormGridSystemColumn; } }
         public static readonly string DefaultName = "Auto Layout Block";
 

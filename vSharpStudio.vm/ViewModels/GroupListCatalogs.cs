@@ -15,11 +15,11 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListCatalogs.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew { get { return false; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
 
         #region ITree

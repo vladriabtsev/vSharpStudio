@@ -16,11 +16,11 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Group:{Name,nq} Count:{ListAppSolutions.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class GroupListAppSolutions : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, IEditableNodeGroup
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew { get { return false; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Config ParentConfig { get { Debug.Assert(this.Parent != null); return (Config)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IConfig ParentConfigI { get { Debug.Assert(this.Parent != null); return (IConfig)this.Parent; } }
         #region ITree
         public override IChildrenCollection GetListChildren()

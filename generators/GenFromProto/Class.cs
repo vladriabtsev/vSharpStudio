@@ -609,7 +609,7 @@ namespace GenFromProto
             
             #line default
             #line hidden
-            this.Write("/*\r\n    [BrowsableAttribute(false)]\r\n    public override bool IsChanged // ");
+            this.Write("/*\r\n    [Browsable(false)]\r\n    public override bool IsChanged // ");
             
             #line 110 "D:\dev\vSharpStudio\generators\GenFromProto\Class.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));

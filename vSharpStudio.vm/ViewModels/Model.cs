@@ -26,11 +26,11 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Model:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class Model : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup, INodeGenSettings
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew { get { return false; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Config ParentConfig { get { Debug.Assert(this.Parent != null); return (Config)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IConfig ParentConfigI { get { Debug.Assert(this.Parent != null); return (IConfig)this.Parent; } }
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -383,7 +383,7 @@ namespace vSharpStudio.vm.ViewModels
         //}
         //private object _DynamicNodeDefaultSettings;
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ITreeConfigNode? SelectedNode
         {
             get
@@ -406,7 +406,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         private ITreeConfigNode? _SelectedNode;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Action? OnSelectedNodeChanged { get; set; }
 
         #region Connection string editor
@@ -599,7 +599,7 @@ namespace vSharpStudio.vm.ViewModels
         //    return this.DbSettings.VersionFieldGuid;
         //}
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PKeyTypeStr
         {
             get

@@ -35,16 +35,16 @@ message timestamp_nullable {
  */
 // @base VmValidatableWithSeverity
 message proto_user_settings {
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_user_settings_opened_config list_open_config_history = 11;
 }
 // @base VmValidatableWithSeverity
 message proto_user_settings_opened_config {
     // @attr [ReadOnly(true)]
     string guid = 1;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     google.protobuf.Timestamp opened_last_time_on = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string config_path = 3;
 }
 /** 
@@ -63,9 +63,9 @@ message proto_group_list_plugins {
     // @attr [DisplayName("Plugins")]
     // @attr [Description("Contains all registered plugins as children")]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin list_plugins = 4;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
 }
 // @interface ISortingValue
@@ -86,9 +86,9 @@ message proto_plugin {
     // @attr [ReadOnly(true)]
     // @attr [Description("Description of plugin")]
     string description = 4;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator list_generators = 6;
 }
 // @interface ISortingValue
@@ -103,7 +103,7 @@ message proto_plugin_generator {
     // @attr [ReadOnly(true)]
     // @attr [Description("Description of plugin")]
     string description = 3;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 4;
 }
 // @base VmEditable
@@ -149,11 +149,11 @@ message proto_group_list_base_config_links {
     // @attr [PropertyOrderAttribute(3)]
     // @attr [ReadOnly(true)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_base_config_link list_base_config_links = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ISortingValue
@@ -167,7 +167,7 @@ message proto_base_config_link {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [ReadOnly(true)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -177,13 +177,13 @@ message proto_base_config_link {
     // @attr [PropertyOrderAttribute(6)]
     // @attr [Editor(typeof(EditorBaseConfigFilePicker), typeof(ITypeEditor))]
     string relative_config_file_path = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 13;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // Configuration config
@@ -200,7 +200,7 @@ message proto_config {
     // @attr [ReadOnly(true)]
     int32 version = 3;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //uint64 sorting_value = 4;
 
     // @attr [Category("")]
@@ -212,18 +212,18 @@ message proto_config {
     string description = 6;
     // @attr [PropertyOrderAttribute(6)]
     google.protobuf.Timestamp last_updated = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_need_current_update = 16;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_base_config_links group_config_links = 101;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_model model = 102;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_plugins group_plugins = 104;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_app_solutions  group_app_solutions = 105;
 }
 /** 
@@ -292,13 +292,13 @@ message proto_group_list_app_solutions {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
     // List NET solutions
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_app_solution list_app_solutions = 9;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //repeated proto_plugin_generator_solution_settings list_group_generators_default_settings = 17;
     //repeated proto_plugin_group_generators_default_settings list_group_generators_default_settings = 17;
 
@@ -336,11 +336,11 @@ message proto_plugin_group_generators_settings {
     string name = 2;
     string app_group_generators_guid = 3;
     string settings = 4; 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 11;
 }*/
 
@@ -358,7 +358,7 @@ message proto_app_solution {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     string name_ui = 3;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 4;
 
     // @attr [Category("")]
@@ -376,15 +376,15 @@ message proto_app_solution {
     // @attr [Description(".NET solution file path relative to configuration file path")]
     string relative_app_solution_path = 7;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 13;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_app_project list_app_projects = 17;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_solution_settings list_generators_solution_settings = 18;
     //repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
 
@@ -428,7 +428,7 @@ message proto_app_project {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     string name_ui = 3;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 4;
 
     // @attr [Category("")]
@@ -441,15 +441,15 @@ message proto_app_project {
     // @attr [Description(".NET project file path relative to solution file path")]
     string relative_app_project_path = 6;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 13;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_app_project_generator list_app_project_generators = 16;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_project_settings list_generators_project_settings = 18;
     //repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
 
@@ -476,7 +476,7 @@ message proto_plugin_generator_node_settings {
     // Name of solution-project-generator node
     string name = 3;
     string name_ui = 4;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 5;
     //string node_settings_vm_guid = 6;
     string settings = 7;
@@ -508,7 +508,7 @@ message proto_app_project_generator {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
     string name_ui = 3;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
@@ -542,15 +542,15 @@ message proto_app_project_generator {
     // @attr [Description("Generator output file name")]
     // Generator output file name
     string gen_file_name = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 12;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 14;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string generator_settings = 17;
     // @attr [PropertyOrderAttribute(29)]
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_plugin_generator_settings generator_settings_vm = 18;
     // @attr [PropertyOrderAttribute(9)]
     // @attr [Description("Db connection string. Directly editable or generated based on settings")]
@@ -604,7 +604,7 @@ message proto_model {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 3;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 4;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -628,7 +628,7 @@ message proto_model {
     // @attr [Category("Composite Names Generation")]
     bool is_use_group_prefix = 10;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string p_key_guid = 13;
     // @attr [PropertyOrderAttribute(14)]
     // @attr [DisplayName("Id name")]
@@ -641,7 +641,7 @@ message proto_model {
     // @attr [Category("Property settings")]
     proto_enum_primary_key_type p_key_type = 15;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string record_version_field_guid = 17;
     // @attr [PropertyOrderAttribute(18)]
     // @attr [DisplayName("Version field")]
@@ -658,7 +658,7 @@ message proto_model {
     // @attr [DisplayName("Version field")]
     // @attr [Description("Version/timestamp field name")]
     //string version_field_name = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //string version_field_guid = 7;
 
     // @attr [Category("Property settings")]
@@ -723,13 +723,13 @@ message proto_model {
     bool use_doc_code_property = 42;
 
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     int32 last_constant_group_short_id = 31;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     int32 last_catalog_short_id = 32;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     int32 last_document_short_id = 33;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     int32 last_detail_short_id = 34;
 
     // @attr [Category("DataGrid settings")]
@@ -745,20 +745,20 @@ message proto_model {
     // @attr [Description("Filterable in data grid")]
     bool is_grid_filterable = 73;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_common group_common = 106;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_constant_groups group_constant_groups = 101;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_enumerations group_enumerations = 102;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_catalogs group_catalogs = 103;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_documents group_documents = 104;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_journals group_journals = 105;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
@@ -866,9 +866,9 @@ message proto_data_type {
     /// </summary>
     // @attr [PropertyOrderAttribute(8)]
     repeated string list_object_guids = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_p_key = 21;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_ref_parent = 22;
 }
 /** 
@@ -892,13 +892,13 @@ message proto_group_list_common {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_roles group_roles = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_main_view_forms group_view_forms = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // User's role
@@ -912,7 +912,7 @@ message proto_role {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -922,12 +922,12 @@ message proto_role {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 10;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_roles {
@@ -946,11 +946,11 @@ message proto_group_list_roles {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_role list_roles = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // main view forms hierarchy parent
@@ -963,7 +963,7 @@ message proto_main_view_form {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -973,14 +973,14 @@ message proto_main_view_form {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_main_view_forms group_list_view_forms = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // main view forms hierarchy node with children
@@ -1000,11 +1000,11 @@ message proto_group_list_main_view_forms {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_main_view_form list_main_view_forms = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
@@ -1027,9 +1027,9 @@ message proto_group_list_details {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_detail list_details = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
 
     // @attr [PropertyOrderAttribute(22)]
@@ -1058,7 +1058,7 @@ message proto_group_list_details {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -1071,7 +1071,7 @@ message proto_detail {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -1085,13 +1085,13 @@ message proto_detail {
     // Create Index for foreign key navigation property
     // @attr [PropertyOrderAttribute(5)]
     bool is_index_fk = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_properties group_properties = 13;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_details group_details = 14;
 
     // Protobuf field position
@@ -1112,7 +1112,7 @@ message proto_detail {
     // @attr [Description("Use Description property for detail item")]
     proto_enum_use_type use_description_property = 18;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     int32 short_id = 19;
 
     // @attr [PropertyOrderAttribute(22)]
@@ -1146,22 +1146,22 @@ message proto_detail {
     // @attr [Description("Stop using tab control for layout")]
     bool is_stop_tab_control = 27;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string view_list_wide_guid = 54;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string view_list_narrow_guid = 55;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_id_guid = 61;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_code_guid = 62;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_name_guid = 63;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_description_guid = 64;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_ref_parent_guid = 65;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_version_guid = 70;
 
     // @attr [Category("Auto Layout")]
@@ -1177,10 +1177,10 @@ message proto_detail {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_forms group_forms = 84;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_properties {
@@ -1199,12 +1199,12 @@ message proto_group_list_properties {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_property list_properties = 6;
     // Last generated Protobuf field position
     // @attr [ReadOnly(true)]
     uint32 last_gen_position = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
 
     // @attr [Category("Auto Layout")]
@@ -1220,7 +1220,7 @@ message proto_group_list_properties {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -1235,7 +1235,7 @@ message proto_property {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Description("Property name")]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -1247,7 +1247,7 @@ message proto_property {
     // @attr [DisplayName("Description")]
     // @attr [Description("Description of property")]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_data_type data_type = 6;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(20)]
@@ -1259,9 +1259,9 @@ message proto_property {
     // @attr [DisplayName("Default")]
     // @attr [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
     string default_value = 8; 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 11;
 
     // @attr [Category("")]
@@ -1396,7 +1396,7 @@ message proto_property {
     // Reserved positions: 1 - primary key
     // @attr [ReadOnly(true)]
     uint32 position = 110;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
@@ -1413,7 +1413,7 @@ message proto_group_constant_groups {
     // @attr [Description("Constants group name")]
     // @attr [ReadOnly(true)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -1430,9 +1430,9 @@ message proto_group_constant_groups {
     // @attr [DisplayName("Db prefix")]
     // @attr [Description("Prefix for constants db table names. Used if set to use in config model")]
     string prefix_for_db_tables = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_group_list_constants list_constant_groups = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -1446,7 +1446,7 @@ message proto_group_list_constants {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Description("Group name of constants")]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -1456,19 +1456,19 @@ message proto_group_list_constants {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_constant list_constants = 6;
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short constant type ID for cache key generator")]
     string short_id_type_for_cache_key = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     int32 short_id = 19;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 //
@@ -1485,7 +1485,7 @@ message proto_constant {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Description("Constant name")]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)][DisplayName("UI name")]
@@ -1504,12 +1504,12 @@ message proto_constant {
     // @attr [DisplayName("Can be NULL")]
     // @attr [Description("If unchecked always expected data")]
     bool is_nullable = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     int32 short_id = 19;
 
     // @attr [Category("Auto Layout")]
@@ -1537,7 +1537,7 @@ message proto_constant {
     // @attr [Description("Stop using tab control for layout")]
     bool is_stop_tab_control = 27;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
@@ -1560,11 +1560,11 @@ message proto_group_list_enumerations {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_enumeration list_enumerations = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss
@@ -1585,7 +1585,7 @@ message proto_enumeration {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Description("Enumeration name")]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -1610,12 +1610,12 @@ message proto_enumeration {
     // @attr [DisplayName("Elements")]
     // @attr [NewItemTypes(typeof(EnumerationPair))]
     repeated proto_enumeration_pair list_enumeration_pairs = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 10;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -1629,7 +1629,7 @@ message proto_enumeration_pair {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [Description("Enumeration element name")]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(4)]
@@ -1652,12 +1652,12 @@ message proto_enumeration_pair {
     // @attr [DisplayName("Numeric Value")]
     // @attr [Description("Enumeration element numeric value")]
     int32 numeric_value = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
@@ -1672,7 +1672,7 @@ message proto_catalog_folder {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -1682,14 +1682,14 @@ message proto_catalog_folder {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     // @attr [DisplayName("For deletion")]
     // @attr [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
     bool is_marked_for_deletion = 10;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_id_guid = 20;
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Code")]
@@ -1700,9 +1700,9 @@ message proto_catalog_folder {
     // @attr [DisplayName("Code")]
     // @attr [Description("Code property settings for catalog item")]
     proto_catalog_code_property_settings code_property_settings = 22;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_code_guid = 23;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_version_guid = 24;
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Use Name")]
@@ -1712,7 +1712,7 @@ message proto_catalog_folder {
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item name length. If zero, than unlimited length")]
     uint32 max_name_length = 42;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_name_guid = 43;
     // @attr [PropertyOrderAttribute(51)]
     // @attr [DisplayName("Use Description")]
@@ -1722,18 +1722,18 @@ message proto_catalog_folder {
     // @attr [DisplayName("Max Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
     uint32 max_description_length = 52;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_description_guid = 53;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string view_list_wide_guid = 54;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string view_list_narrow_guid = 55;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_is_folder_guid = 63;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_is_open_guid = 64;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_ref_self_guid = 65;
 
     // @attr [Category("Auto Layout")]
@@ -1749,15 +1749,15 @@ message proto_catalog_folder {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_properties group_properties = 82;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_details group_details = 83;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_forms group_forms = 84;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_reports group_reports = 85;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 enum proto_enum_catalog_tree_icon {
@@ -1811,7 +1811,7 @@ message proto_catalog {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -1821,12 +1821,12 @@ message proto_catalog {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 10;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     int32 short_id = 19;
     // @attr [PropertyOrderAttribute(20)]
     // @attr [DisplayName("Use Tree")]
@@ -1880,28 +1880,28 @@ message proto_catalog {
     // @attr [Description("Catalog group icon type")]
     proto_enum_catalog_tree_icon group_icon_type = 42;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string view_list_wide_guid = 54;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string view_list_narrow_guid = 55;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_id_guid = 61;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_code_guid = 62;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_name_guid = 63;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_description_guid = 64;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_is_folder_guid = 65;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_is_open_guid = 66;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_ref_self_guid = 67;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_ref_folder_guid = 68;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_version_guid = 69;
 
     // @attr [Category("Auto Layout")]
@@ -1917,30 +1917,30 @@ message proto_catalog {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_catalog_folder folder = 81;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_properties group_properties = 82;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_details group_details = 83;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_forms group_forms = 84;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_reports group_reports = 85;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //repeated string list_guid_view_properties = 91;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //repeated string list_guid_view_folder_properties = 92;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //string guid_narrow_list_form = 91;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //string guid_wide_list_form = 92;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //string guid_edit_form = 93;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_catalogs {
@@ -1967,9 +1967,9 @@ message proto_group_list_catalogs {
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short catalog type ID for cache key generator")]
     string short_id_type_for_cache_key = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_catalog list_catalogs = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 9;
 
     // @attr [PropertyOrderAttribute(22)]
@@ -2011,7 +2011,7 @@ message proto_group_list_catalogs {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
@@ -2026,7 +2026,7 @@ message proto_group_documents {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
 
     // @attr [Category("")]
@@ -2041,10 +2041,10 @@ message proto_group_documents {
     // @attr [DisplayName("Db prefix")]
     // @attr [Description("Prefix for document db table names. Used if set to use in config model")]
     string prefix_for_db_tables = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     // @attr [Description("Properties for all documents")]
     proto_group_list_properties group_shared_properties = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_documents group_list_documents = 8;
     // @attr [PropertyOrderAttribute(22)]
     // @attr [DisplayName("Use Code")]
@@ -2070,7 +2070,7 @@ message proto_group_documents {
     proto_enum_use_type is_grid_filterable = 73;
 
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 enum proto_enum_document_code_unique_scope {
@@ -2112,7 +2112,7 @@ message proto_document {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -2122,21 +2122,21 @@ message proto_document {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 10;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_properties group_properties = 14;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_details group_details = 15;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_forms group_forms = 17;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_group_list_reports group_reports = 18;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     int32 short_id = 19;
     // @attr [PropertyOrderAttribute(21)]
     // @attr [DisplayName("Use Code")]
@@ -2152,13 +2152,13 @@ message proto_document {
     // @attr [Description("Use Date property for document")]
     proto_enum_use_type use_doc_date_property = 24;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_id_guid = 61;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_doc_code_guid = 62;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_doc_date_guid = 63;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     string property_version_guid = 70;
 
     // @attr [Category("Auto Layout")]
@@ -2174,7 +2174,7 @@ message proto_document {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 message proto_group_list_documents {
@@ -2197,11 +2197,11 @@ message proto_group_list_documents {
     // @attr [DisplayName("Short ID")]
     // @attr [Description("Short document type ID for cache key generator")]
     string short_id_type_for_cache_key = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_document list_documents = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
@@ -2225,9 +2225,9 @@ message proto_group_list_journals {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_journal list_journals = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
 
     // @attr [Category("Auto Layout")]
@@ -2243,7 +2243,7 @@ message proto_group_list_journals {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -2256,7 +2256,7 @@ message proto_journal {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -2267,11 +2267,11 @@ message proto_journal {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_group_properties list_properties = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_document list_documents = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 10;
 
 
@@ -2288,7 +2288,7 @@ message proto_journal {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
@@ -2312,11 +2312,11 @@ message proto_group_list_forms {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_form list_forms = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 enum proto_form_orientation {
@@ -2347,7 +2347,7 @@ message proto_form {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -2358,9 +2358,9 @@ message proto_form {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
     // @attr [Category("List form")]
@@ -2412,13 +2412,13 @@ message proto_form {
     // @attr [Description("Form type")]
     proto_form_type enum_form_type = 75;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_form_grid_system grid_system = 90;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated string list_guid_view_properties = 91;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated string list_guid_view_folder_properties = 92;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 
@@ -2449,23 +2449,23 @@ message proto_form_grid_system {
     // @attr [Description("Tab control description")]
     string description = 4;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 6;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_form_grid_system_row list_rows = 31;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated string list_guid_properties = 32;
     
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //repeated proto_form_auto_layout_block list_form_blocks = 33;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // Children are collection of Grid System Columns 
@@ -2491,16 +2491,16 @@ message proto_form_grid_system_row {
     // @attr [Description("Tab control description")]
     string description = 4;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_form_grid_system_column list_columns = 31;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 enum proto_enum_hidden_type {
@@ -2567,24 +2567,24 @@ message proto_form_grid_system_column {
     // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
     google.protobuf.UInt32Value width_xx = 16;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 21;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 22;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 23;
     
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //repeated proto_form_grid_system_row list_rows = 31;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //repeated string list_guid_properties = 32;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //repeated proto_form_auto_layout_block list_form_blocks = 33;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_form_auto_layout_block form_block = 34;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // Children collection can contain:
@@ -2615,17 +2615,17 @@ message proto_form_auto_layout_block {
     // @attr [Description("Tab control description")]
     string description = 4;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_form_auto_layout_sub_block list_form_auto_layout_sub_block = 15;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
@@ -2651,11 +2651,11 @@ message proto_form_auto_layout_sub_block {
     // @attr [Description("Tab control description")]
     string description = 4;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
     oneof result {
@@ -2666,7 +2666,7 @@ message proto_form_auto_layout_sub_block {
         proto_form_grid_system grid_system_control = 25;
         proto_form_tree tree_control = 26;
     }
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -2691,14 +2691,14 @@ message proto_form_field {
     // @attr [Description("Tab control description")]
     string description = 4;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // Children are collection of Auto Layout Block children
@@ -2724,22 +2724,22 @@ message proto_form_tab_control_tab {
     // @attr [Description("Tab control description")]
     string description = 4;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated string list_guid_properties = 32;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     //repeated proto_form_auto_layout_block list_form_blocks = 33;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     proto_form_auto_layout_block form_block = 34;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // Children are collection of Tab Control Tabs
@@ -2765,18 +2765,18 @@ message proto_form_tab_control {
     // @attr [Description("Tab control description")]
     string description = 4;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_form_tab_control_tab list_tabs = 31;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated string list_guid_properties = 32;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // No Children
@@ -2802,16 +2802,16 @@ message proto_form_data_grid {
     // @attr [Description("Tab control description")]
     string description = 4;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated string list_guid_properties = 32;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // No Children
@@ -2837,16 +2837,16 @@ message proto_form_tree {
     // @attr [Description("Tab control description")]
     string description = 4;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 10;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 11;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 12;
 
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated string list_guid_properties = 32;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 
@@ -2875,11 +2875,11 @@ message proto_group_list_reports {
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
     //repeated proto_property list_shared_properties = 6;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_report list_reports = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 8;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -2892,7 +2892,7 @@ message proto_report {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(1)]
     string name = 2;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     uint64 sorting_value = 3;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(2)]
@@ -2902,13 +2902,13 @@ message proto_report {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(3)]
     string description = 5;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_new = 9;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     bool is_marked_for_deletion = 10;
     //repeated proto_group_properties list_properties = 6;
     //repeated proto_document list_documents = 7;
-    // @attr [BrowsableAttribute(false)]
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 

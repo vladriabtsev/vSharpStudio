@@ -13,9 +13,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Role:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class Role : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListRoles ParentGroupListRoles { get { Debug.Assert(this.Parent != null); return (GroupListRoles)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IGroupListRoles ParentGroupListRolesI { get { Debug.Assert(this.Parent != null); return (IGroupListRoles)this.Parent; } }
         public static readonly string DefaultName = "Role";
 

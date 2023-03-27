@@ -143,7 +143,7 @@ namespace vPlugin.Sample2 // NameSpace.tt Line: 23
         partial void OnStringSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnStringSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -381,7 +381,7 @@ namespace vPlugin.Sample2 // NameSpace.tt Line: 23
         partial void OnIsGenerateNotValidCodeChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsGenerateNotValidCodeChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }

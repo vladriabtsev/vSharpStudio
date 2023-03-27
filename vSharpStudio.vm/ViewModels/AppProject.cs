@@ -21,9 +21,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("AppProject:{Name,nq} RelPath:{RelativeAppProjectPath,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class AppProject : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public AppSolution ParentAppSolution { get { Debug.Assert(this.Parent != null); return (AppSolution)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IAppSolution ParentAppSolutionI { get { Debug.Assert(this.Parent != null); return (IAppSolution)this.Parent; } }
 
         #region ITree
@@ -285,7 +285,7 @@ namespace vSharpStudio.vm.ViewModels
         private object? _DynamicPluginGroupSettings;
         //// GroupGeneratorsSettings guid, settings
         private DictionaryExt<string, IvPluginGroupSettings?>? dicPluginsGroupSettings = null;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public DictionaryExt<string, IvPluginGroupSettings?> DicPluginsGroupSettings
         {
             get

@@ -12,9 +12,9 @@ namespace vPlugin.Sample
 {
     public partial class GeneratorDbSchemaSettings : IvPluginGeneratorSettings
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IAppProjectGenerator ParentAppProjectGenerator { get { Debug.Assert(this.Parent != null); return (IAppProjectGenerator)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string SettingsAsJson
         {
             get

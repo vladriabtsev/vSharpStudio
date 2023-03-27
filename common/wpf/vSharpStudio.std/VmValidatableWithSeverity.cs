@@ -41,7 +41,7 @@ namespace ViewModelBase
         /// <summary>
         /// Amount of errors in this node and all subnodes
         /// </summary>
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int CountErrors
         {
             get { return _CountErrors; }
@@ -62,7 +62,7 @@ namespace ViewModelBase
         /// <summary>
         /// Amount of warnings in this node and all subnodes
         /// </summary>
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int CountWarnings
         {
             get { return _CountWarnings; }
@@ -83,7 +83,7 @@ namespace ViewModelBase
         /// <summary>
         /// Amount of info messages in this node and all subnodes
         /// </summary>
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int CountInfos
         {
             get { return _CountInfos; }
@@ -101,7 +101,7 @@ namespace ViewModelBase
             }
         }
         private int _CountInfos;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public SortedObservableCollection<ValidationMessage> ValidationCollection
         {
             get { return _ValidationCollection; }
@@ -350,7 +350,7 @@ namespace ViewModelBase
         /// <summary>
         /// Has errors in this node (without children)
         /// </summary>
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool HasErrors
         {
             get { return _errors.Count > 0; }
@@ -358,7 +358,7 @@ namespace ViewModelBase
         /// <summary>
         /// Has warnings in this node (without children)
         /// </summary>
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool HasWarnings
         {
             get { return _warnings.Count > 0; }
@@ -366,7 +366,7 @@ namespace ViewModelBase
         /// <summary>
         /// Has info messages in this node (without children)
         /// </summary>
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool HasInfos
         {
             get { return _infos.Count > 0; }

@@ -106,7 +106,7 @@ public partial class <#= message.Name.ToNameCs() #>Validator : ValidatorBase<<#=
 	this.PopIndent(); #>
 <# if (this.Doc.IsWithParent) { #>
 /*
-    [BrowsableAttribute(false)]
+    [Browsable(false)]
     public override bool IsChanged // <#=Helper.FilePos() #>
     { 
         get { return this._IsChanged; }

@@ -18,9 +18,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
         IDbTable, INodeWithProperties, IViewList, ITreeConfigNodeSortable
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListCatalogs ParentGroupListCatalogs { get { Debug.Assert(this.Parent != null); return (GroupListCatalogs)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IGroupListCatalogs ParentGroupListCatalogsI { get { Debug.Assert(this.Parent != null); return (IGroupListCatalogs)this.Parent; } }
 
         #region ITree
@@ -413,9 +413,9 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(() => this.IsShowRefSelfTree);
             this.NotifyPropertyChanged(() => this.IsShowIsFolder);
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsShowRefSelfTree { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsShowIsFolder { get { if (this.UseTree && !this.UseSeparateTreeForFolders && this.UseFolderTypeExplicitly) return true; return false; } }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {

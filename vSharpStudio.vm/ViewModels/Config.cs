@@ -287,9 +287,9 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion ITreeNode
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string? CurrentCfgFolderPath { get; set; }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ITreeConfigNode? SelectedNode
         {
             get { return this._SelectedNode; }

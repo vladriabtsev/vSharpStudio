@@ -15,7 +15,7 @@ namespace vSharpStudio.common
         where TValidator : AbstractValidator<T>
         where T : VmValidatableWithSeverityAndAttributes<T, TValidator>//, IComparable<T>
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ITreeConfigNode? Parent { get; set; }
         public BaseSettings(ITreeConfigNode? parent, TValidator validator) : base(validator)
         {
@@ -45,7 +45,7 @@ namespace vSharpStudio.common
         where TValidator : AbstractValidator<T>
         where T : VmValidatableWithSeverityAndAttributes<T, TValidator>//, IComparable<T>
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IEditableObjectExt? Parent { get; set; }
         public BaseSubSettings(IEditableObjectExt? parent, TValidator validator) : base(validator)
         {

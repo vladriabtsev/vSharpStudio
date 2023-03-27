@@ -19,9 +19,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Form:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class Form : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListForms ParentGroupListForms { get { Debug.Assert(this.Parent != null); return (GroupListForms)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IGroupListForms ParentGroupListFormsI { get { Debug.Assert(this.Parent != null); return (IGroupListForms)this.Parent; } }
 
         public Form(ITreeConfigNode? parent, FormType ftype, List<IProperty> lst) : this(parent)
@@ -290,7 +290,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Visibility
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IReadOnlyList<IProperty> ListProperties
         {
             get
@@ -324,7 +324,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Editor
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public SortedObservableCollection<IProperty> ListSeparateTreeSelectedNotSpecialProperties
         {
             get
@@ -356,7 +356,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private SortedObservableCollection<IProperty>? listSeparateTreeSelectedNotSpecialProperties;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollection<IProperty> ListSeparateTreeAllNotSpecialProperties
         {
             get
@@ -401,7 +401,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.ListGuidViewFolderProperties.Add(t.Guid);
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollection<IProperty> ListAllNotSpecialProperties
         {
             get
@@ -433,7 +433,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private ObservableCollection<IProperty> listAllNotSpecialProperties;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public SortedObservableCollection<IProperty> ListSelectedNotSpecialProperties
         {
             get
@@ -494,7 +494,7 @@ namespace vSharpStudio.vm.ViewModels
             this.NotifyPropertyChanged(() => this.PropertyDefinitions);
             this.NotifyPropertyChanged(() => this.IsListForm);
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsListForm
         {
             get
@@ -502,7 +502,7 @@ namespace vSharpStudio.vm.ViewModels
                 return this.EnumFormType == FormType.ListWide || this.EnumFormType == FormType.ListNarrow;
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool UseSeparateTreeForFolders
         {
             get
@@ -514,7 +514,7 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool UseSelfTreeForFolders
         {
             get
@@ -572,11 +572,11 @@ namespace vSharpStudio.vm.ViewModels
         //        return false;
         //    }
         //}
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string IsFolderPropertyName { get { return this.Cfg.Model.PropertyIsFolderName; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string IsOpenPropertyName { get { return this.Cfg.Model.PropertyIsOpenName; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool UseFolderTypeExplicitlyForSeparateTree
         {
             get
@@ -588,7 +588,7 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool UseFolderTypeExplicitly
         {
             get

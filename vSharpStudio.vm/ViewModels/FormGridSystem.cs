@@ -15,13 +15,13 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class FormGridSystem : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, ITree
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Form? ParentForm { get { Debug.Assert(this.Parent != null); return this.Parent as Form; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IForm? ParentFormI { get { Debug.Assert(this.Parent != null); return this.Parent as IForm; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public FormAutoLayoutBlock? ParentFormAutoLayoutBlock { get { Debug.Assert(this.Parent != null); return this.Parent as FormAutoLayoutBlock; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IFormAutoLayoutBlock? ParentFormAutoLayoutBlockI { get { Debug.Assert(this.Parent != null); return this.Parent as IFormAutoLayoutBlock; } }
 
         #region ITree

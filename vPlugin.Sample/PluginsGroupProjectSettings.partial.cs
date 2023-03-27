@@ -23,15 +23,15 @@ namespace vPlugin.Sample
             this.Version = "0.1";
             this.IsGroupProjectParam1 = false;
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string Guid { get { return GuidStatic; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string Name { get; private set; } = string.Empty;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string Version { get; private set; } = string.Empty;
         public string Description { get; private set; } = string.Empty;
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string SettingsAsJson
         {
             get

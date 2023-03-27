@@ -13,9 +13,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("EnumerationPair:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class EnumerationPair : IEditableNode, ICanAddNode, INodeGenSettings
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Enumeration ParentEnumeration { get { Debug.Assert(this.Parent != null); return (Enumeration) this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IEnumeration ParentEnumerationI { get { Debug.Assert(this.Parent != null); return (IEnumeration)this.Parent; } }
 
         #region ITree

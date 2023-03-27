@@ -172,7 +172,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Procedures
         #region Properties
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollectionWithActions<UserSettingsOpenedConfig> ListOpenConfigHistory // Property.tt Line: 8
         { 
             get { return this._ListOpenConfigHistory; }
@@ -323,7 +323,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn // Property.tt Line: 55
         { 
             get { return this._OpenedLastTimeOn; }
@@ -345,7 +345,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnOpenedLastTimeOnChanged();
         //IGoogle.Protobuf.WellKnownTypes.Timestamp IUserSettingsOpenedConfig.OpenedLastTimeOn { get { return this._OpenedLastTimeOn; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string ConfigPath // Property.tt Line: 55
         { 
             get { return this._ConfigPath; }
@@ -580,7 +580,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Plugin> ListPlugins // Property.tt Line: 8
         { 
             get { return this._ListPlugins; }
@@ -624,7 +624,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -644,7 +644,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -931,7 +931,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -951,7 +951,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGenerator> ListGenerators // Property.tt Line: 8
         { 
             get { return this._ListGenerators; }
@@ -972,7 +972,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGeneratorsChanging(ObservableCollection<PluginGenerator> to); // Property.tt Line: 27
         partial void OnListGeneratorsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -1175,7 +1175,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -1195,7 +1195,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -1910,7 +1910,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -1930,7 +1930,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<BaseConfigLink> ListBaseConfigLinks // Property.tt Line: 8
         { 
             get { return this._ListBaseConfigLinks; }
@@ -1974,7 +1974,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -1995,7 +1995,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -2245,7 +2245,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -2311,7 +2311,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnRelativeConfigFilePathChanging(ref string to); // Property.tt Line: 79
         partial void OnRelativeConfigFilePathChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -2332,7 +2332,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -2355,7 +2355,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -2376,7 +2376,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -2716,7 +2716,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnLastUpdatedChanged();
         //IGoogle.Protobuf.WellKnownTypes.Timestamp IConfig.LastUpdated { get { return this._LastUpdated; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -2736,7 +2736,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNeedCurrentUpdate // Property.tt Line: 55
         { 
             get { return this._IsNeedCurrentUpdate; }
@@ -2757,7 +2757,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNeedCurrentUpdateChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNeedCurrentUpdateChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListBaseConfigLinks GroupConfigLinks // Property.tt Line: 55
         { 
             get { return this._GroupConfigLinks; }
@@ -2780,7 +2780,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupConfigLinksChanged();
         //IGroupListBaseConfigLinks IConfig.GroupConfigLinks { get { return this._GroupConfigLinks; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Model Model // Property.tt Line: 55
         { 
             get { return this._Model; }
@@ -2803,7 +2803,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnModelChanged();
         //IModel IConfig.Model { get { return this._Model; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListPlugins GroupPlugins // Property.tt Line: 55
         { 
             get { return this._GroupPlugins; }
@@ -2826,7 +2826,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupPluginsChanged();
         //IGroupListPlugins IConfig.GroupPlugins { get { return this._GroupPlugins; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListAppSolutions GroupAppSolutions // Property.tt Line: 55
         { 
             get { return this._GroupAppSolutions; }
@@ -2849,7 +2849,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupAppSolutionsChanged();
         //IGroupListAppSolutions IConfig.GroupAppSolutions { get { return this._GroupAppSolutions; } }
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -3302,7 +3302,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -3473,7 +3473,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -3732,7 +3732,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -3756,7 +3756,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         ///////////////////////////////////////////////////
         /// List NET solutions
         ///////////////////////////////////////////////////
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<AppSolution> ListAppSolutions // Property.tt Line: 8
         { 
             get { return this._ListAppSolutions; }
@@ -3800,7 +3800,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -4130,7 +4130,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -4219,7 +4219,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnRelativeAppSolutionPathChanging(ref string to); // Property.tt Line: 79
         partial void OnRelativeAppSolutionPathChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -4240,7 +4240,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -4261,7 +4261,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<AppProject> ListAppProjects // Property.tt Line: 8
         { 
             get { return this._ListAppProjects; }
@@ -4287,7 +4287,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         /// 
         /// repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
         ///////////////////////////////////////////////////
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollectionWithActions<PluginGeneratorSolutionSettings> ListGeneratorsSolutionSettings // Property.tt Line: 8
         { 
             get { return this._ListGeneratorsSolutionSettings; }
@@ -4308,7 +4308,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGeneratorsSolutionSettingsChanging(ObservableCollection<PluginGeneratorSolutionSettings> to); // Property.tt Line: 27
         partial void OnListGeneratorsSolutionSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -4636,7 +4636,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -4702,7 +4702,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnRelativeAppProjectPathChanging(ref string to); // Property.tt Line: 79
         partial void OnRelativeAppProjectPathChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -4723,7 +4723,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -4744,7 +4744,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<AppProjectGenerator> ListAppProjectGenerators // Property.tt Line: 8
         { 
             get { return this._ListAppProjectGenerators; }
@@ -4770,7 +4770,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         /// 
         /// repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
         ///////////////////////////////////////////////////
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollectionWithActions<PluginGeneratorProjectSettings> ListGeneratorsProjectSettings // Property.tt Line: 8
         { 
             get { return this._ListGeneratorsProjectSettings; }
@@ -4791,7 +4791,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGeneratorsProjectSettingsChanging(ObservableCollection<PluginGeneratorProjectSettings> to); // Property.tt Line: 27
         partial void OnListGeneratorsProjectSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -5026,7 +5026,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -5070,7 +5070,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -5315,7 +5315,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -5589,7 +5589,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -5780,7 +5780,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGenFileNameChanging(ref string to); // Property.tt Line: 79
         partial void OnGenFileNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -5801,7 +5801,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -5822,7 +5822,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string GeneratorSettings // Property.tt Line: 55
         { 
             get { return this._GeneratorSettings; }
@@ -5844,7 +5844,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGeneratorSettingsChanged();
         
         [PropertyOrderAttribute(29)]
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public PluginGeneratorSettings GeneratorSettingsVm // Property.tt Line: 55
         { 
             get { return this._GeneratorSettingsVm; }
@@ -5962,7 +5962,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGenScriptFileNameChanging(ref string to); // Property.tt Line: 79
         partial void OnGenScriptFileNameChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -6134,7 +6134,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSettingsChanging(ref string to); // Property.tt Line: 79
         partial void OnSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -6590,7 +6590,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -6725,7 +6725,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsUseGroupPrefixChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsUseGroupPrefixChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PKeyGuid // Property.tt Line: 55
         { 
             get { return this._PKeyGuid; }
@@ -6794,7 +6794,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPKeyTypeChanging(ref EnumPrimaryKeyType to); // Property.tt Line: 79
         partial void OnPKeyTypeChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string RecordVersionFieldGuid // Property.tt Line: 55
         { 
             get { return this._RecordVersionFieldGuid; }
@@ -7151,7 +7151,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseDocCodePropertyChanging(ref bool to); // Property.tt Line: 79
         partial void OnUseDocCodePropertyChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int LastConstantGroupShortId // Property.tt Line: 55
         { 
             get { return this._LastConstantGroupShortId; }
@@ -7172,7 +7172,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnLastConstantGroupShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnLastConstantGroupShortIdChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int LastCatalogShortId // Property.tt Line: 55
         { 
             get { return this._LastCatalogShortId; }
@@ -7193,7 +7193,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnLastCatalogShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnLastCatalogShortIdChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int LastDocumentShortId // Property.tt Line: 55
         { 
             get { return this._LastDocumentShortId; }
@@ -7214,7 +7214,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnLastDocumentShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnLastDocumentShortIdChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int LastDetailShortId // Property.tt Line: 55
         { 
             get { return this._LastDetailShortId; }
@@ -7304,7 +7304,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListCommon GroupCommon // Property.tt Line: 55
         { 
             get { return this._GroupCommon; }
@@ -7327,7 +7327,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupCommonChanged();
         //IGroupListCommon IModel.GroupCommon { get { return this._GroupCommon; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupConstantGroups GroupConstantGroups // Property.tt Line: 55
         { 
             get { return this._GroupConstantGroups; }
@@ -7350,7 +7350,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupConstantGroupsChanged();
         //IGroupConstantGroups IModel.GroupConstantGroups { get { return this._GroupConstantGroups; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListEnumerations GroupEnumerations // Property.tt Line: 55
         { 
             get { return this._GroupEnumerations; }
@@ -7373,7 +7373,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupEnumerationsChanged();
         //IGroupListEnumerations IModel.GroupEnumerations { get { return this._GroupEnumerations; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListCatalogs GroupCatalogs // Property.tt Line: 55
         { 
             get { return this._GroupCatalogs; }
@@ -7396,7 +7396,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupCatalogsChanged();
         //IGroupListCatalogs IModel.GroupCatalogs { get { return this._GroupCatalogs; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupDocuments GroupDocuments // Property.tt Line: 55
         { 
             get { return this._GroupDocuments; }
@@ -7419,7 +7419,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupDocumentsChanged();
         //IGroupDocuments IModel.GroupDocuments { get { return this._GroupDocuments; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListJournals GroupJournals // Property.tt Line: 55
         { 
             get { return this._GroupJournals; }
@@ -7442,7 +7442,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupJournalsChanged();
         //IGroupListJournals IModel.GroupJournals { get { return this._GroupJournals; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -7463,7 +7463,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -7773,7 +7773,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListObjectGuidsChanging(ObservableCollection<string> to); // Property.tt Line: 27
         partial void OnListObjectGuidsChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsPKey // Property.tt Line: 55
         { 
             get { return this._IsPKey; }
@@ -7794,7 +7794,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsPKeyChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsPKeyChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsRefParent // Property.tt Line: 55
         { 
             get { return this._IsRefParent; }
@@ -7815,7 +7815,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsRefParentChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsRefParentChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -8131,7 +8131,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -8151,7 +8151,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListRoles GroupRoles // Property.tt Line: 55
         { 
             get { return this._GroupRoles; }
@@ -8174,7 +8174,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupRolesChanged();
         //IGroupListRoles IGroupListCommon.GroupRoles { get { return this._GroupRoles; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListMainViewForms GroupViewForms // Property.tt Line: 55
         { 
             get { return this._GroupViewForms; }
@@ -8197,7 +8197,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupViewFormsChanged();
         //IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return this._GroupViewForms; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -8218,7 +8218,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -8476,7 +8476,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -8541,7 +8541,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -8562,7 +8562,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -8583,7 +8583,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -8604,7 +8604,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -8953,7 +8953,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Role> ListRoles // Property.tt Line: 8
         { 
             get { return this._ListRoles; }
@@ -8997,7 +8997,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -9017,7 +9017,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -9038,7 +9038,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -9307,7 +9307,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -9372,7 +9372,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListMainViewForms GroupListViewForms // Property.tt Line: 55
         { 
             get { return this._GroupListViewForms; }
@@ -9395,7 +9395,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupListViewFormsChanged();
         //IGroupListMainViewForms IMainViewForm.GroupListViewForms { get { return this._GroupListViewForms; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -9416,7 +9416,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -9437,7 +9437,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -9458,7 +9458,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -9809,7 +9809,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<MainViewForm> ListMainViewForms // Property.tt Line: 8
         { 
             get { return this._ListMainViewForms; }
@@ -9853,7 +9853,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -9873,7 +9873,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -9894,7 +9894,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -10265,7 +10265,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Detail> ListDetails // Property.tt Line: 8
         { 
             get { return this._ListDetails; }
@@ -10309,7 +10309,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -10467,7 +10467,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -10488,7 +10488,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -10867,7 +10867,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -10957,7 +10957,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsIndexFkChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsIndexFkChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -10978,7 +10978,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -10999,7 +10999,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListProperties GroupProperties // Property.tt Line: 55
         { 
             get { return this._GroupProperties; }
@@ -11022,7 +11022,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties IDetail.GroupProperties { get { return this._GroupProperties; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListDetails GroupDetails // Property.tt Line: 55
         { 
             get { return this._GroupDetails; }
@@ -11140,7 +11140,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseDescriptionPropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseDescriptionPropertyChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int ShortId // Property.tt Line: 55
         { 
             get { return this._ShortId; }
@@ -11305,7 +11305,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsStopTabControlChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsStopTabControlChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string ViewListWideGuid // Property.tt Line: 55
         { 
             get { return this._ViewListWideGuid; }
@@ -11326,7 +11326,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnViewListWideGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnViewListWideGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string ViewListNarrowGuid // Property.tt Line: 55
         { 
             get { return this._ViewListNarrowGuid; }
@@ -11347,7 +11347,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnViewListNarrowGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnViewListNarrowGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyIdGuid // Property.tt Line: 55
         { 
             get { return this._PropertyIdGuid; }
@@ -11368,7 +11368,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyIdGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIdGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyCodeGuid // Property.tt Line: 55
         { 
             get { return this._PropertyCodeGuid; }
@@ -11389,7 +11389,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyCodeGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyCodeGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyNameGuid // Property.tt Line: 55
         { 
             get { return this._PropertyNameGuid; }
@@ -11410,7 +11410,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyNameGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyNameGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyDescriptionGuid // Property.tt Line: 55
         { 
             get { return this._PropertyDescriptionGuid; }
@@ -11431,7 +11431,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyDescriptionGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyDescriptionGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyRefParentGuid // Property.tt Line: 55
         { 
             get { return this._PropertyRefParentGuid; }
@@ -11452,7 +11452,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyRefParentGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyRefParentGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyVersionGuid // Property.tt Line: 55
         { 
             get { return this._PropertyVersionGuid; }
@@ -11542,7 +11542,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListForms GroupForms // Property.tt Line: 55
         { 
             get { return this._GroupForms; }
@@ -11565,7 +11565,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupFormsChanged();
         //IGroupListForms IDetail.GroupForms { get { return this._GroupForms; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -11586,7 +11586,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -11951,7 +11951,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Property> ListProperties // Property.tt Line: 8
         { 
             get { return this._ListProperties; }
@@ -12020,7 +12020,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnLastGenPositionChanging(ref uint to); // Property.tt Line: 79
         partial void OnLastGenPositionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -12109,7 +12109,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -12130,7 +12130,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -12460,7 +12460,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -12527,7 +12527,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public DataType DataType // Property.tt Line: 55
         { 
             get { return this._DataType; }
@@ -12598,7 +12598,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDefaultValueChanging(ref string to); // Property.tt Line: 79
         partial void OnDefaultValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -12619,7 +12619,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -12975,7 +12975,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPositionChanging(ref uint to); // Property.tt Line: 79
         partial void OnPositionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -12996,7 +12996,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -13306,7 +13306,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -13397,7 +13397,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPrefixForDbTablesChanging(ref string to); // Property.tt Line: 79
         partial void OnPrefixForDbTablesChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<GroupListConstants> ListConstantGroups // Property.tt Line: 8
         { 
             get { return this._ListConstantGroups; }
@@ -13418,7 +13418,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListConstantGroupsChanging(ObservableCollection<GroupListConstants> to); // Property.tt Line: 27
         partial void OnListConstantGroupsChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -13439,7 +13439,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -13758,7 +13758,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -13823,7 +13823,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Constant> ListConstants // Property.tt Line: 8
         { 
             get { return this._ListConstants; }
@@ -13890,7 +13890,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnShortIdTypeForCacheKeyChanging(ref string to); // Property.tt Line: 79
         partial void OnShortIdTypeForCacheKeyChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -13911,7 +13911,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -13932,7 +13932,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int ShortId // Property.tt Line: 55
         { 
             get { return this._ShortId; }
@@ -13953,7 +13953,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnShortIdChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -13974,7 +13974,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -14279,7 +14279,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -14395,7 +14395,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNullableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -14416,7 +14416,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -14437,7 +14437,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int ShortId // Property.tt Line: 55
         { 
             get { return this._ShortId; }
@@ -14596,7 +14596,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsStopTabControlChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsStopTabControlChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -14617,7 +14617,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -14966,7 +14966,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Enumeration> ListEnumerations // Property.tt Line: 8
         { 
             get { return this._ListEnumerations; }
@@ -15010,7 +15010,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -15030,7 +15030,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -15051,7 +15051,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -15370,7 +15370,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -15513,7 +15513,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListEnumerationPairsChanging(ObservableCollection<EnumerationPair> to); // Property.tt Line: 27
         partial void OnListEnumerationPairsChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -15534,7 +15534,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -15555,7 +15555,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -15576,7 +15576,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -15845,7 +15845,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -15980,7 +15980,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNumericValueChanging(ref int to); // Property.tt Line: 79
         partial void OnNumericValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -16001,7 +16001,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -16022,7 +16022,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -16043,7 +16043,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -16426,7 +16426,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -16491,7 +16491,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -16512,7 +16512,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         [DisplayName("For deletion")]
         [Description("Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version")]
         public bool IsMarkedForDeletion // Property.tt Line: 55
@@ -16535,7 +16535,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyIdGuid // Property.tt Line: 55
         { 
             get { return this._PropertyIdGuid; }
@@ -16605,7 +16605,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnCodePropertySettingsChanged();
         //ICatalogCodePropertySettings ICatalogFolder.CodePropertySettings { get { return this._CodePropertySettings; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyCodeGuid // Property.tt Line: 55
         { 
             get { return this._PropertyCodeGuid; }
@@ -16626,7 +16626,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyCodeGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyCodeGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyVersionGuid // Property.tt Line: 55
         { 
             get { return this._PropertyVersionGuid; }
@@ -16693,7 +16693,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnMaxNameLengthChanging(ref uint to); // Property.tt Line: 79
         partial void OnMaxNameLengthChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyNameGuid // Property.tt Line: 55
         { 
             get { return this._PropertyNameGuid; }
@@ -16760,7 +16760,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnMaxDescriptionLengthChanging(ref uint to); // Property.tt Line: 79
         partial void OnMaxDescriptionLengthChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyDescriptionGuid // Property.tt Line: 55
         { 
             get { return this._PropertyDescriptionGuid; }
@@ -16781,7 +16781,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyDescriptionGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyDescriptionGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string ViewListWideGuid // Property.tt Line: 55
         { 
             get { return this._ViewListWideGuid; }
@@ -16802,7 +16802,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnViewListWideGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnViewListWideGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string ViewListNarrowGuid // Property.tt Line: 55
         { 
             get { return this._ViewListNarrowGuid; }
@@ -16823,7 +16823,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnViewListNarrowGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnViewListNarrowGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyIsFolderGuid // Property.tt Line: 55
         { 
             get { return this._PropertyIsFolderGuid; }
@@ -16844,7 +16844,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyIsFolderGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIsFolderGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyIsOpenGuid // Property.tt Line: 55
         { 
             get { return this._PropertyIsOpenGuid; }
@@ -16865,7 +16865,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyIsOpenGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIsOpenGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyRefSelfGuid // Property.tt Line: 55
         { 
             get { return this._PropertyRefSelfGuid; }
@@ -16955,7 +16955,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListProperties GroupProperties // Property.tt Line: 55
         { 
             get { return this._GroupProperties; }
@@ -16978,7 +16978,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties ICatalogFolder.GroupProperties { get { return this._GroupProperties; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListDetails GroupDetails // Property.tt Line: 55
         { 
             get { return this._GroupDetails; }
@@ -17001,7 +17001,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupDetailsChanged();
         //IGroupListDetails ICatalogFolder.GroupDetails { get { return this._GroupDetails; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListForms GroupForms // Property.tt Line: 55
         { 
             get { return this._GroupForms; }
@@ -17024,7 +17024,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupFormsChanged();
         //IGroupListForms ICatalogFolder.GroupForms { get { return this._GroupForms; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListReports GroupReports // Property.tt Line: 55
         { 
             get { return this._GroupReports; }
@@ -17047,7 +17047,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupReportsChanged();
         //IGroupListReports ICatalogFolder.GroupReports { get { return this._GroupReports; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -17068,7 +17068,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -17294,7 +17294,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUniqueScopeChanging(ref EnumCatalogCodeUniqueScope to); // Property.tt Line: 79
         partial void OnUniqueScopeChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -17718,7 +17718,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -17783,7 +17783,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -17804,7 +17804,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -17825,7 +17825,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int ShortId // Property.tt Line: 55
         { 
             get { return this._ShortId; }
@@ -18125,7 +18125,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupIconTypeChanging(ref EnumCatalogTreeIcon to); // Property.tt Line: 79
         partial void OnGroupIconTypeChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string ViewListWideGuid // Property.tt Line: 55
         { 
             get { return this._ViewListWideGuid; }
@@ -18146,7 +18146,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnViewListWideGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnViewListWideGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string ViewListNarrowGuid // Property.tt Line: 55
         { 
             get { return this._ViewListNarrowGuid; }
@@ -18167,7 +18167,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnViewListNarrowGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnViewListNarrowGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyIdGuid // Property.tt Line: 55
         { 
             get { return this._PropertyIdGuid; }
@@ -18188,7 +18188,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyIdGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIdGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyCodeGuid // Property.tt Line: 55
         { 
             get { return this._PropertyCodeGuid; }
@@ -18209,7 +18209,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyCodeGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyCodeGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyNameGuid // Property.tt Line: 55
         { 
             get { return this._PropertyNameGuid; }
@@ -18230,7 +18230,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyNameGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyNameGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyDescriptionGuid // Property.tt Line: 55
         { 
             get { return this._PropertyDescriptionGuid; }
@@ -18251,7 +18251,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyDescriptionGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyDescriptionGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyIsFolderGuid // Property.tt Line: 55
         { 
             get { return this._PropertyIsFolderGuid; }
@@ -18272,7 +18272,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyIsFolderGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIsFolderGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyIsOpenGuid // Property.tt Line: 55
         { 
             get { return this._PropertyIsOpenGuid; }
@@ -18293,7 +18293,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyIsOpenGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIsOpenGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyRefSelfGuid // Property.tt Line: 55
         { 
             get { return this._PropertyRefSelfGuid; }
@@ -18314,7 +18314,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyRefSelfGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyRefSelfGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyRefFolderGuid // Property.tt Line: 55
         { 
             get { return this._PropertyRefFolderGuid; }
@@ -18335,7 +18335,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyRefFolderGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyRefFolderGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyVersionGuid // Property.tt Line: 55
         { 
             get { return this._PropertyVersionGuid; }
@@ -18425,7 +18425,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public CatalogFolder Folder // Property.tt Line: 55
         { 
             get { return this._Folder; }
@@ -18448,7 +18448,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnFolderChanged();
         //ICatalogFolder ICatalog.Folder { get { return this._Folder; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListProperties GroupProperties // Property.tt Line: 55
         { 
             get { return this._GroupProperties; }
@@ -18471,7 +18471,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties ICatalog.GroupProperties { get { return this._GroupProperties; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListDetails GroupDetails // Property.tt Line: 55
         { 
             get { return this._GroupDetails; }
@@ -18494,7 +18494,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupDetailsChanged();
         //IGroupListDetails ICatalog.GroupDetails { get { return this._GroupDetails; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListForms GroupForms // Property.tt Line: 55
         { 
             get { return this._GroupForms; }
@@ -18517,7 +18517,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupFormsChanged();
         //IGroupListForms ICatalog.GroupForms { get { return this._GroupForms; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListReports GroupReports // Property.tt Line: 55
         { 
             get { return this._GroupReports; }
@@ -18540,7 +18540,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupReportsChanged();
         //IGroupListReports ICatalog.GroupReports { get { return this._GroupReports; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -18561,7 +18561,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -19000,7 +19000,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnShortIdTypeForCacheKeyChanging(ref string to); // Property.tt Line: 79
         partial void OnShortIdTypeForCacheKeyChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Catalog> ListCatalogs // Property.tt Line: 8
         { 
             get { return this._ListCatalogs; }
@@ -19044,7 +19044,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -19271,7 +19271,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -19292,7 +19292,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -19584,7 +19584,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -19672,7 +19672,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPrefixForDbTablesChanging(ref string to); // Property.tt Line: 79
         partial void OnPrefixForDbTablesChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         [Description("Properties for all documents")]
         public GroupListProperties GroupSharedProperties // Property.tt Line: 55
         { 
@@ -19696,7 +19696,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupSharedPropertiesChanged();
         //IGroupListProperties IGroupDocuments.GroupSharedProperties { get { return this._GroupSharedProperties; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListDocuments GroupListDocuments // Property.tt Line: 55
         { 
             get { return this._GroupListDocuments; }
@@ -19834,7 +19834,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -19855,7 +19855,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -20108,7 +20108,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnScopePeriodStartChanging(ref string to); // Property.tt Line: 79
         partial void OnScopePeriodStartChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -20457,7 +20457,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -20522,7 +20522,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -20543,7 +20543,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -20564,7 +20564,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListProperties GroupProperties // Property.tt Line: 55
         { 
             get { return this._GroupProperties; }
@@ -20587,7 +20587,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupPropertiesChanged();
         //IGroupListProperties IDocument.GroupProperties { get { return this._GroupProperties; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListDetails GroupDetails // Property.tt Line: 55
         { 
             get { return this._GroupDetails; }
@@ -20610,7 +20610,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupDetailsChanged();
         //IGroupListDetails IDocument.GroupDetails { get { return this._GroupDetails; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListForms GroupForms // Property.tt Line: 55
         { 
             get { return this._GroupForms; }
@@ -20633,7 +20633,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupFormsChanged();
         //IGroupListForms IDocument.GroupForms { get { return this._GroupForms; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListReports GroupReports // Property.tt Line: 55
         { 
             get { return this._GroupReports; }
@@ -20656,7 +20656,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupReportsChanged();
         //IGroupListReports IDocument.GroupReports { get { return this._GroupReports; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public int ShortId // Property.tt Line: 55
         { 
             get { return this._ShortId; }
@@ -20749,7 +20749,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseDocDatePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseDocDatePropertyChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyIdGuid // Property.tt Line: 55
         { 
             get { return this._PropertyIdGuid; }
@@ -20770,7 +20770,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyIdGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIdGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyDocCodeGuid // Property.tt Line: 55
         { 
             get { return this._PropertyDocCodeGuid; }
@@ -20791,7 +20791,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyDocCodeGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyDocCodeGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyDocDateGuid // Property.tt Line: 55
         { 
             get { return this._PropertyDocDateGuid; }
@@ -20812,7 +20812,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyDocDateGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyDocDateGuidChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropertyVersionGuid // Property.tt Line: 55
         { 
             get { return this._PropertyVersionGuid; }
@@ -20902,7 +20902,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -20923,7 +20923,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -21299,7 +21299,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnShortIdTypeForCacheKeyChanging(ref string to); // Property.tt Line: 79
         partial void OnShortIdTypeForCacheKeyChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Document> ListDocuments // Property.tt Line: 8
         { 
             get { return this._ListDocuments; }
@@ -21343,7 +21343,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -21363,7 +21363,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -21384,7 +21384,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -21747,7 +21747,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         ///////////////////////////////////////////////////
         /// repeated proto_property list_shared_properties = 6;
         ///////////////////////////////////////////////////
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Journal> ListJournals // Property.tt Line: 8
         { 
             get { return this._ListJournals; }
@@ -21791,7 +21791,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -21880,7 +21880,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -21901,7 +21901,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -22223,7 +22223,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -22292,7 +22292,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         ///////////////////////////////////////////////////
         /// repeated proto_group_properties list_properties = 6;
         ///////////////////////////////////////////////////
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Document> ListDocuments // Property.tt Line: 8
         { 
             get { return this._ListDocuments; }
@@ -22313,7 +22313,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListDocumentsChanging(ObservableCollection<Document> to); // Property.tt Line: 27
         partial void OnListDocumentsChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -22334,7 +22334,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -22424,7 +22424,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -22445,7 +22445,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -22798,7 +22798,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         ///////////////////////////////////////////////////
         /// repeated proto_property list_shared_properties = 6;
         ///////////////////////////////////////////////////
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Form> ListForms // Property.tt Line: 8
         { 
             get { return this._ListForms; }
@@ -22842,7 +22842,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -22862,7 +22862,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -22883,7 +22883,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -23219,7 +23219,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -23284,7 +23284,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -23305,7 +23305,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -23542,7 +23542,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnEnumFormTypeChanging(ref FormType to); // Property.tt Line: 79
         partial void OnEnumFormTypeChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public FormGridSystem GridSystem // Property.tt Line: 55
         { 
             get { return this._GridSystem; }
@@ -23565,7 +23565,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGridSystemChanged();
         //IFormGridSystem IForm.GridSystem { get { return this._GridSystem; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollectionWithActions<string> ListGuidViewProperties // Property.tt Line: 8
         { 
             get { return this._ListGuidViewProperties; }
@@ -23586,7 +23586,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGuidViewPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
         partial void OnListGuidViewPropertiesChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollectionWithActions<string> ListGuidViewFolderProperties // Property.tt Line: 8
         { 
             get { return this._ListGuidViewFolderProperties; }
@@ -23607,7 +23607,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGuidViewFolderPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
         partial void OnListGuidViewFolderPropertiesChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -23628,7 +23628,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -24007,7 +24007,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -24027,7 +24027,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -24048,7 +24048,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -24069,7 +24069,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<FormGridSystemRow> ListRows // Property.tt Line: 8
         { 
             get { return this._ListRows; }
@@ -24090,7 +24090,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListRowsChanging(ObservableCollection<FormGridSystemRow> to); // Property.tt Line: 27
         partial void OnListRowsChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollectionWithActions<string> ListGuidProperties // Property.tt Line: 8
         { 
             get { return this._ListGuidProperties; }
@@ -24111,7 +24111,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
         partial void OnListGuidPropertiesChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -24132,7 +24132,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -24496,7 +24496,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -24516,7 +24516,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -24537,7 +24537,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -24558,7 +24558,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<FormGridSystemColumn> ListColumns // Property.tt Line: 8
         { 
             get { return this._ListColumns; }
@@ -24579,7 +24579,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListColumnsChanging(ObservableCollection<FormGridSystemColumn> to); // Property.tt Line: 27
         partial void OnListColumnsChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -24600,7 +24600,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -25101,7 +25101,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnWidthXxChanging(ref uint? to); // Property.tt Line: 79
         partial void OnWidthXxChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -25121,7 +25121,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -25142,7 +25142,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -25163,7 +25163,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public FormAutoLayoutBlock FormBlock // Property.tt Line: 55
         { 
             get { return this._FormBlock; }
@@ -25186,7 +25186,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnFormBlockChanged();
         //IFormAutoLayoutBlock IFormGridSystemColumn.FormBlock { get { return this._FormBlock; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -25207,7 +25207,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -25576,7 +25576,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -25596,7 +25596,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -25617,7 +25617,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -25638,7 +25638,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<FormAutoLayoutSubBlock> ListFormAutoLayoutSubBlock // Property.tt Line: 8
         { 
             get { return this._ListFormAutoLayoutSubBlock; }
@@ -25659,7 +25659,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListFormAutoLayoutSubBlockChanging(ObservableCollection<FormAutoLayoutSubBlock> to); // Property.tt Line: 27
         partial void OnListFormAutoLayoutSubBlockChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -25680,7 +25680,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -26054,7 +26054,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -26074,7 +26074,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -26095,7 +26095,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -26248,7 +26248,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnTreeControlChanged();
         //IFormTree IFormAutoLayoutSubBlock.TreeControl { get { return this._TreeControl; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -26269,7 +26269,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -26573,7 +26573,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -26593,7 +26593,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -26614,7 +26614,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -26635,7 +26635,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -26656,7 +26656,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -26990,7 +26990,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -27010,7 +27010,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -27031,7 +27031,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -27052,7 +27052,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollectionWithActions<string> ListGuidProperties // Property.tt Line: 8
         { 
             get { return this._ListGuidProperties; }
@@ -27073,7 +27073,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
         partial void OnListGuidPropertiesChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public FormAutoLayoutBlock FormBlock // Property.tt Line: 55
         { 
             get { return this._FormBlock; }
@@ -27096,7 +27096,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnFormBlockChanged();
         //IFormAutoLayoutBlock IFormTabControlTab.FormBlock { get { return this._FormBlock; } }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -27117,7 +27117,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -27496,7 +27496,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -27516,7 +27516,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -27537,7 +27537,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -27558,7 +27558,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<FormTabControlTab> ListTabs // Property.tt Line: 8
         { 
             get { return this._ListTabs; }
@@ -27579,7 +27579,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListTabsChanging(ObservableCollection<FormTabControlTab> to); // Property.tt Line: 27
         partial void OnListTabsChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollectionWithActions<string> ListGuidProperties // Property.tt Line: 8
         { 
             get { return this._ListGuidProperties; }
@@ -27600,7 +27600,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
         partial void OnListGuidPropertiesChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -27621,7 +27621,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -27944,7 +27944,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -27964,7 +27964,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -27985,7 +27985,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -28006,7 +28006,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollectionWithActions<string> ListGuidProperties // Property.tt Line: 8
         { 
             get { return this._ListGuidProperties; }
@@ -28027,7 +28027,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
         partial void OnListGuidPropertiesChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -28048,7 +28048,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -28371,7 +28371,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -28391,7 +28391,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -28412,7 +28412,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -28433,7 +28433,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ObservableCollectionWithActions<string> ListGuidProperties // Property.tt Line: 8
         { 
             get { return this._ListGuidProperties; }
@@ -28454,7 +28454,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListGuidPropertiesChanging(ObservableCollection<string> to); // Property.tt Line: 27
         partial void OnListGuidPropertiesChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -28475,7 +28475,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -28828,7 +28828,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         ///////////////////////////////////////////////////
         /// repeated proto_property list_shared_properties = 6;
         ///////////////////////////////////////////////////
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<Report> ListReports // Property.tt Line: 8
         { 
             get { return this._ListReports; }
@@ -28872,7 +28872,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -28892,7 +28892,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -28913,7 +28913,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }
@@ -29167,7 +29167,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameChanging(ref string to); // Property.tt Line: 79
         partial void OnNameChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingValue // Property.tt Line: 55
         { 
             get { return this._SortingValue; }
@@ -29232,7 +29232,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
         { 
             get { return this._IsNew; }
@@ -29253,7 +29253,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNewChanged();
         
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsMarkedForDeletion // Property.tt Line: 55
         { 
             get { return this._IsMarkedForDeletion; }
@@ -29279,7 +29279,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         /// repeated proto_group_properties list_properties = 6;
         /// repeated proto_document list_documents = 7;
         ///////////////////////////////////////////////////
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -29300,7 +29300,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
         { 
             get { return this._IsChanged; }

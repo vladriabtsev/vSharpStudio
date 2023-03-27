@@ -26,12 +26,12 @@ namespace vPlugin.Sample
                 DicNodeExcludedProperties[this.GetPropertyName(() => this.IsCatalogFormParam1)] = null;
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Dictionary<string, string?>? DicNodeExcludedProperties { get; private set; }
         //[BrowsableAttribute(false)]
         //[ReadOnly(true)]
         //public string Name { get { return "Access"; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string SettingsAsJson
         {
             get
@@ -40,7 +40,7 @@ namespace vPlugin.Sample
                 return JsonFormatter.Default.Format(proto);
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string SettingsAsJsonDefault
         {
             get
@@ -55,7 +55,7 @@ namespace vPlugin.Sample
         }
         private static string? settingsAsJsonDefault = null;
         public static string SearchPath = "";
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         [ReadOnly(true)]
         public string SearchPathInModel { get { return SearchPath; } }
         public string[] GetListPropertiesToHideOnNodeSettings(ITreeConfigNode modelNode)

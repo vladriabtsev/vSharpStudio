@@ -13,11 +13,11 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Plugin:{Name,nq} Count:{ListGenerators.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class Plugin : ICanGoLeft, ICanGoRight
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew { get { return false; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListPlugins ParentGroupListPlugins { get { Debug.Assert(this.Parent != null); return (GroupListPlugins)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IGroupListPlugins ParentGroupListPluginsI { get { Debug.Assert(this.Parent != null); return (IGroupListPlugins)this.Parent; } }
         new public ConfigNodesCollection<PluginGenerator> Children { get { return this.ListGenerators; } }
         public Plugin(ITreeConfigNode parent, IvPlugin plugin)
@@ -61,7 +61,7 @@ namespace vSharpStudio.vm.ViewModels
         //    };
         //}
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IvPlugin? VPlugin { get; private set; }
 
         public void SetVPlugin(IvPlugin plugin)

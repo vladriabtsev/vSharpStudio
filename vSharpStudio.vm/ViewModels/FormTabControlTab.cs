@@ -15,9 +15,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class FormTabControlTab : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public FormTabControl ParentFormTabControl { get { Debug.Assert(this.Parent != null); return (FormTabControl)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IFormTabControl ParentFormTabControlI { get { Debug.Assert(this.Parent != null); return (IFormTabControl)this.Parent; } }
 
         #region ITree

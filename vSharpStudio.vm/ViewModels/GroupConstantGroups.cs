@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("ConstantGroups:{Name,nq} Count:{ListConstantGroups.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
         public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }

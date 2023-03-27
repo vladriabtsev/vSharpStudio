@@ -12,13 +12,13 @@ namespace vPlugin.Sample2
 {
     public partial class DbConnectionStringSettings2 : IvPluginGeneratorSettings
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IAppProjectGenerator ParentAppProjectGenerator { get { Debug.Assert(this.Parent != null); return (IAppProjectGenerator)this.Parent; } }
         public DbConnectionStringSettings2(ITreeConfigNode parent, string connectionString) : this(parent)
         {
             this.StringSettings = connectionString;
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string SettingsAsJson
         {
             get

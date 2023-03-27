@@ -30,7 +30,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private vCommand? _CommandDeleteRecentConfig;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public UserSettingsOpenedConfig? SelectedConfigHistory
         {
             get { return this._SelectedConfigHistory; }

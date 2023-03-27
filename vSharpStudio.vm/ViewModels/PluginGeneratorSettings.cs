@@ -14,7 +14,7 @@ namespace vSharpStudio.vm.ViewModels
     public partial class PluginGeneratorSettings : IParent
     {
         public IvPluginGeneratorSettings? SettingsVm { get; set; }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         protected override void OnIsChangedChanged()
         {
             if (this.Parent != null && this.IsChanged)

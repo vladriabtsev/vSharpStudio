@@ -12,9 +12,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Journal:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class Journal : ICanAddNode, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNode, IEditableNodeGroup
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListJournals ParentGroupListJournals { get { Debug.Assert(this.Parent != null); return (GroupListJournals)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IGroupListJournals ParentGroupListJournalsI { get { Debug.Assert(this.Parent != null); return (IGroupListJournals)this.Parent; } }
         public static readonly string DefaultName = "Journal";
 

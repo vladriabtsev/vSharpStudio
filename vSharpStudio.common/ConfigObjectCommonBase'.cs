@@ -180,9 +180,9 @@
         }
 
         #region Sort
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong SortingWeight { get; set; }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ulong _SortingNameValue { get; private set; }
         protected ulong _SortingValue
         {
@@ -271,7 +271,7 @@
                 return this.Cfg.Name + "." + this._Name;
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public System.Windows.TextDecorationCollection? NodeNameDecorations
         {
             get
@@ -557,7 +557,7 @@
             configObject.Name = defName + i;
         }
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public ITreeConfigNode? Parent
         {
             get
@@ -580,7 +580,7 @@
         protected virtual void OnParentChanged()
         {
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsSelected
         {
             get
@@ -597,7 +597,7 @@
             }
         }
         private bool _IsSelected;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsExpanded
         {
             get
@@ -749,9 +749,9 @@
         }
         #endregion Commands
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsIncludableInModels { get; protected set; }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         // support submodules (wip)
         public List<IModelRow> ListInModels { get; protected set; }
         public ITreeConfigNode? PrevCurrentVersion()
@@ -1010,17 +1010,17 @@
             this.CheckChildrenIsOrHasMarkedForDeletion();
         }
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsChangedOrHasChanged
         {
             get { return this.IsChanged || this.IsHasChanged; }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNewOrHasNew
         {
             get { return this._IsHasNew || (this is ICanAddNode d && d.IsNew); }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsHasNew
         {
             get { return this._IsHasNew; }
@@ -1071,7 +1071,7 @@
                 }
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsHasChanged
         {
             get { return this._IsHasChanged; }
@@ -1129,7 +1129,7 @@
                 }
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsHasMarkedForDeletion
         {
             get { return this._IsHasMarkedForDeletion; }

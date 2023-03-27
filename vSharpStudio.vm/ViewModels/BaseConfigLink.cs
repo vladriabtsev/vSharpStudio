@@ -16,9 +16,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("BaseConfigLink:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class BaseConfigLink : IEditableNode, ICanAddNode  // INodeGenSettings, 
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListBaseConfigLinks ParentGroupListBaseConfigLinks { get { Debug.Assert(this.Parent != null); return (GroupListBaseConfigLinks)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IGroupListBaseConfigLinks ParentGroupListBaseConfigLinksI { get { Debug.Assert(this.Parent != null); return (IGroupListBaseConfigLinks)this.Parent; } }
 
         #region ITree
@@ -70,7 +70,7 @@ namespace vSharpStudio.vm.ViewModels
         //{
         //    this.AddAllAppGenSettingsVmsToNode();
         //}
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Config? ConfigBase { get; set; }
         IConfig? IBaseConfigLink.ConfigBase { get { return this.ConfigBase; } }
         public IEnumerable<ITreeConfigNode> GetParentList()

@@ -327,7 +327,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public BigInteger? MaxNumericalValue
         {
             get { if (_MaxNumericalValue == null) ClrTypeNameCalc(); return _MaxNumericalValue; }
@@ -353,7 +353,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             return length;
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Type ClrType
         {
             get
@@ -446,7 +446,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private string? _ClrTypeName = null;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string ClrLiteralSuf
         {
             get { if (_ClrLiteralSuf == null) ClrTypeNameCalc(); Debug.Assert(_ClrLiteralSuf != null); return _ClrLiteralSuf!; }
@@ -679,7 +679,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Visibility
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public SortedObservableCollection<ITreeConfigNodeSortable>? ListObjects
         {
             get
@@ -855,7 +855,7 @@ namespace vSharpStudio.vm.ViewModels
         //    MaxValueCalc();
         //    MinValueCalc();
         //}
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Visibility VisibilityLength
         {
             get
@@ -874,7 +874,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private Visibility _VisibilityLength = Visibility.Collapsed;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Visibility VisibilityAccuracy
         {
             get
@@ -893,7 +893,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private Visibility _VisibilityAccuracy = Visibility.Collapsed;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Visibility VisibilityIsPositive
         {
             get
@@ -912,7 +912,7 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private Visibility _VisibilityIsPositive = Visibility.Collapsed;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Visibility VisibilityObjectName
         {
             get

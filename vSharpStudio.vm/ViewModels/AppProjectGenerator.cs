@@ -17,9 +17,9 @@ namespace vSharpStudio.vm.ViewModels
     public partial class AppProjectGenerator : ICanRemoveNode, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
         private Config cfg;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public AppProject ParentAppProject { get { Debug.Assert(this.Parent != null); return (AppProject)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IAppProject ParentAppProjectI { get { Debug.Assert(this.Parent != null); return (IAppProject)this.Parent; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
         #region ITree
@@ -38,10 +38,10 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
         //[BrowsableAttribute(false)]
         //new public ConfigNodesCollection<AppProjectGenerator> Children { get { return this.ListAppProjectGenerators; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IvPlugin? Plugin { get { return this.plugin; } }
         private IvPlugin? plugin;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IvPluginGenerator? PluginGenerator
         {
             get
@@ -55,7 +55,7 @@ namespace vSharpStudio.vm.ViewModels
                 return gntr;
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IvPluginDbGenerator? PluginDbGenerator
         {
             get
@@ -121,7 +121,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         // Used only to select generator in UI
         public SortedObservableCollection<PluginGenerator>? ListGenerators { get; private set; }
         [PropertyOrderAttribute(10)]

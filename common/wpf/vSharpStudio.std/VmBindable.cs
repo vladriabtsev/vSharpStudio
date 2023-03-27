@@ -49,7 +49,7 @@ namespace ViewModelBase
         public static ushort MaxSortingWeightShift = 4;
         public static ushort MaxSortingWeight = (ushort)(ulong.MaxValue - (ulong.MaxValue << MaxSortingWeightShift));
         public static ulong SortingWeightBase = ((ulong)1) << (64 - MaxSortingWeightShift);
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsNotifying
         {
             get { return isNotifying; }
@@ -57,7 +57,7 @@ namespace ViewModelBase
         }
         private bool isNotifying = true;
         public static bool IsNotifyingStatic = true;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsValidate { get; set; }
         public static bool IsValidateAll = true;
 

@@ -15,9 +15,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class FormGridSystemColumn : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public FormGridSystemRow ParentFormGridSystemRow { get { Debug.Assert(this.Parent != null); return (FormGridSystemRow)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IFormGridSystemRow ParentFormGridSystemRowI { get { Debug.Assert(this.Parent != null); return (IFormGridSystemRow)this.Parent; } }
 
         #region ITree

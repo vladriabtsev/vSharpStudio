@@ -27,10 +27,10 @@ namespace ViewModelBase
         public VmValidatableWithSeverityAndAttributes(TValidator validator) : base(validator)
         {
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool AutoGenerateProperties { get { return this._AutoGenerateProperties; } set { SetProperty(ref _AutoGenerateProperties, value); } }
         private bool _AutoGenerateProperties = true;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions
         {
             get

@@ -30,21 +30,21 @@ namespace ViewModelBase
 
         #region IEditableObject
         private T _dtoBackupTmp;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsReadonly
         {
             get { return _IsReadonly; }
             set { if (SetProperty(ref _IsReadonly, value)) { IsEditable = !_IsReadonly; } }
         }
         private bool _IsReadonly = false;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsEditable
         {
             get { return _IsEditable; }
             set { if (SetProperty(ref _IsEditable, value)) { IsReadonly = !_IsEditable; } }
         }
         private bool _IsEditable = true;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public virtual bool IsChanged
         {
             get { return _IsChanged; }
@@ -81,7 +81,7 @@ namespace ViewModelBase
         private object lockObject = new object();
         protected virtual void OnIsChangedChanged() { }
         protected virtual void OnIsChangedChangedWithDelay() { }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsInEdit { get; private set; }
         public void BeginEdit()
         {

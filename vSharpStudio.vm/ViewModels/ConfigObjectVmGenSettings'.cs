@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
             //this.HidePropertiesForXceedPropertyGrid();
             this.DicVmExclProps = new Dictionary<string, Dictionary<string, string?>?>();
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public Dictionary<string, Dictionary<string, string?>?> DicVmExclProps { get; private set; }
         public void AddAllAppGenSettingsVmsToNode()
         {
@@ -204,7 +204,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #endregion Node App Generator Settings
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         // AppProjectGenerator guid, Settings quid, IvPluginGeneratorNodeSettings
         public IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings?> DicGenNodeSettings { get { return _DicGenNodeSettings; } }
         internal DictionaryExt<string, IvPluginGeneratorNodeSettings?> _DicGenNodeSettings =

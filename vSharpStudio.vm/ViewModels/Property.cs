@@ -21,11 +21,11 @@ namespace vSharpStudio.vm.ViewModels
         /// <summary>
         /// Is hidden on UI
         /// </summary>
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsHidden { get; set; }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListProperties ParentGroupListProperties { get { Debug.Assert(this.Parent != null); return (GroupListProperties)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IGroupListProperties ParentGroupListPropertiesI { get { Debug.Assert(this.Parent != null); return (IGroupListProperties)this.Parent; } }
         [Browsable(false)]
         // Can be used by a generator to keep calculated property data
@@ -113,13 +113,13 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = name;
             this._DataType = new DataType(this, type, length, accuracy);
         }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsPKey { get { return this.DataType.IsPKey; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsRefParent { get { return this.DataType.IsRefParent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsComputed { get; set; }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public bool IsDocShared { get; set; }
 
         [Category("")]
@@ -137,7 +137,7 @@ namespace vSharpStudio.vm.ViewModels
         //{
         //    get { return this.DataType.ProtoType; }
         //}
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IDataType IDataType { get { return this._DataType; } }
         //public string DefaultValue { get { return this.DataType.DefaultValue; } }
 
@@ -468,11 +468,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion Editing logic
 
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public PropertyRangeValuesRequirements? RangeValuesRequirements { get; set; }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IPropertyRangeValuesRequirements? RangeValuesRequirementsI { get { return RangeValuesRequirements; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public string PropValueValue
         {
             get

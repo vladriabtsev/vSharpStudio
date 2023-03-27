@@ -21,9 +21,9 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("AppSolution:{Name,nq} prj:{ListAppProjects.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class AppSolution : ICanGoLeft, ICanGoRight, ICanAddNode, ICanAddSubNode, ICanRemoveNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public GroupListAppSolutions ParentGroupListAppSolutions { get { Debug.Assert(this.Parent != null); return (GroupListAppSolutions)this.Parent; } }
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public IGroupListAppSolutions ParentGroupListAppSolutionsI { get { Debug.Assert(this.Parent != null); return (IGroupListAppSolutions)this.Parent; } }
         #region ITree
         public override IChildrenCollection GetListChildren()
@@ -193,7 +193,7 @@ namespace vSharpStudio.vm.ViewModels
         private object? _DynamicPluginGroupSettings;
         // GroupGeneratorsSettings guid, settings
         private DictionaryExt<string, IvPluginGroupSettings?>? dicPluginsGroupSettings = null;
-        [BrowsableAttribute(false)]
+        [Browsable(false)]
         public DictionaryExt<string, IvPluginGroupSettings?> DicPluginsGroupSettings
         {
             get
