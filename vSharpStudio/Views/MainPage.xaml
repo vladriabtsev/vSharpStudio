@@ -190,6 +190,11 @@
                     </Grid>
                 </Grid>
                 <TextBlock Grid.Row="2" Margin="3,0,0,0" Text="{Binding MessageInstructions}" FontWeight="Bold" />
+                <xctk:WindowContainer Grid.Row="0" Grid.RowSpan="3" x:Name="_windowContainer" ModalBackgroundBrush="LightGray">
+                    <xctk:ChildWindow x:Name="_modalNodeSettingsWindow">
+                        <local:GenSettings x:Name="_GenSettings" />
+                    </xctk:ChildWindow>
+                </xctk:WindowContainer>
             </Grid>
         </ContentControl>
     </xctk:BusyIndicator>

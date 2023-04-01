@@ -9,6 +9,7 @@ using System.Reflection.Emit;
 using System.Windows.Documents;
 using ViewModelBase;
 using vSharpStudio.common;
+using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 // https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.assemblybuilder?view=netcore-3.1
 // https://docs.microsoft.com/en-us/dotnet/api/system.reflection.emit.fieldbuilder.setcustomattribute?view=netcore-3.1
@@ -111,7 +112,7 @@ namespace vSharpStudio.vm.ViewModels
                         if (nsettings != null)
                         {
                             dic_apgs[ttt.Name] = nsettings;
-                            SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, nsettings.GetType(), ttt.NameUi, ttt.Description);
+                            SettingsTypeBuilder.CreateProperty(tbAppGen, ttt.Name, nsettings.GetType(), ttt.NameUi, ttt.Description, ttt.Guid);
                         }
                     }
                 }
@@ -363,7 +364,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(minfo != null);
             tb.DefineMethodOverride(mthdBldr, minfo);
         }
-        internal static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType, string? propertyNameUI = null, string? propertyDescription = null)
+        internal static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType, string? propertyNameUI = null, string? propertyDescription = null, string? appRojectGeneratorGuid = null)
         {
             //propertyName = propertyName.Replace('.', '_');
             //if (propertyName.Contains('.'))
@@ -429,6 +430,15 @@ namespace vSharpStudio.vm.ViewModels
                 constructorInfo = attr.GetConstructor(new Type[1] { typeof(string) });
                 Debug.Assert(constructorInfo != null);
                 attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[1] { propertyDescription });
+                propertyBuilder.SetCustomAttribute(attributeBuilder);
+            }
+            // [Editor(typeof(EditorBaseConfigFilePicker), typeof(ITypeEditor))]
+            if (!string.IsNullOrWhiteSpace(appRojectGeneratorGuid))
+            {
+                attr = typeof(EditorAttribute);
+                constructorInfo = attr.GetConstructor(new Type[2] { typeof(Type), typeof(Type) });
+                Debug.Assert(constructorInfo != null);
+                attributeBuilder = new CustomAttributeBuilder(constructorInfo, new object[2] { typeof(EditorGenSettingsDialog), typeof(ITypeEditor) });
                 propertyBuilder.SetCustomAttribute(attributeBuilder);
             }
         }

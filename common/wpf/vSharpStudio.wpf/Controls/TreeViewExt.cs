@@ -111,7 +111,9 @@ namespace vSharpStudio.wpf.Controls
             foreach (object data in parent.Items)
             {
                 node = parent.ItemContainerGenerator.ContainerFromItem(data) as TreeViewItem;
-                if (data == item && node != null)
+                if (node == null)
+                    continue;
+                if (data == item)
                     break;
                 node = FindItemNodeInChildren(node, item);
                 if (node != null)

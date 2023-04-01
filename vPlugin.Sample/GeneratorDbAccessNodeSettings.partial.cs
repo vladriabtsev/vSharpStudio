@@ -14,6 +14,8 @@ namespace vPlugin.Sample
 {
     public partial class GeneratorDbAccessNodeSettings : IvPluginGeneratorNodeSettings, IvPluginGeneratorNodeIncludable
     {
+        [BrowsableAttribute(false)]
+        public string AppProjectGeneratorGuid { get; set; }
         partial void OnCreated()
         {
             this.DicNodeExcludedProperties = new Dictionary<string, string?>();

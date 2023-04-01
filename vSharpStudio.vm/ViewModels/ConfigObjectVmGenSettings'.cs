@@ -96,6 +96,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     this.DicVmExclProps[t.GetType().Name] = t.DicNodeExcludedProperties;
                     gs.SettingsVm = t;
+                    gs.AppProjectGeneratorGuid = appgen.Guid;
                     this._DicGenNodeSettings[appProjectGeneratorGuid] = t;
                 }
             }
@@ -149,7 +150,10 @@ namespace vSharpStudio.vm.ViewModels
                 var gen = this.Cfg.DicActiveAppProjectGenerators[tt.AppProjectGeneratorGuid];
                 tt.SettingsVm = gen.GetGenerationNodeSettingsVmFromJson((ITreeConfigNode)this, tt.Settings);
                 if (tt.SettingsVm != null)
+                {
+                    tt.SettingsVm.AppProjectGeneratorGuid = tt.AppProjectGeneratorGuid;
                     this.DicVmExclProps[tt.SettingsVm.GetType().Name] = tt.SettingsVm.DicNodeExcludedProperties;
+                }
                 this._DicGenNodeSettings[tt.AppProjectGeneratorGuid] = tt.SettingsVm;
             }
             //foreach (var t in cfg.DicActiveAppProjectGenerators)

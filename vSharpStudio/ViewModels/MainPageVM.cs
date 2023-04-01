@@ -64,6 +64,23 @@ namespace vSharpStudio.ViewModels
         {
             VmBindable.IsChangedNotificationDelay = 200;
             _logger = Logger.CreateLogger<MainPageVM>();
+            EditorGenSettingsDialog.GenSettingsDialogAction = (node, guid) =>
+            {
+                Debug.Assert(this._mainPage != null);
+                var vm = new GenSettingsVm(node, guid);
+                var maxMargin = 10;
+                var ctnr = this._mainPage._windowContainer;
+                this._mainPage._modalNodeSettingsWindow.Top = maxMargin;
+                this._mainPage._modalNodeSettingsWindow.Height = ctnr.ActualHeight - 2 * maxMargin;
+                var collPropertyGridWidth = GenSettingsVm.PropertyGridWidthStatic;
+                this._mainPage._modalNodeSettingsWindow.Width = Math.Min(ctnr.ActualWidth - 2 * maxMargin,
+                    Math.Max(collPropertyGridWidth, vm.NotEmptyColumns * collPropertyGridWidth + (vm.NotEmptyColumns - 1) * 3)) + 6;
+                this._mainPage._modalNodeSettingsWindow.Left = (ctnr.ActualWidth - this._mainPage._modalNodeSettingsWindow.Width) / 2;
+                this._mainPage._modalNodeSettingsWindow.Caption = $"Node settings for '{node.Name}' by generator '{this.Config.DicNodes[guid].Name}'";
+                this._mainPage._GenSettings.ViewVm = vm;
+                this._mainPage._modalNodeSettingsWindow.WindowState = WindowState.Open;
+            };
+
             //_Config = new Config();
         }
         //public MainPageVM(ILogger<MainPageVM> logger) : this()
@@ -73,10 +90,12 @@ namespace vSharpStudio.ViewModels
         bool isLoadConfig;
         string? configFile;
         //public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
-        public MainPageVM(bool isLoadConfig, string? configFile = null) : this()
+        MainPage? _mainPage = null;
+        public MainPageVM(bool isLoadConfig, string? configFile = null, MainPage? mainPage = null) : this()
         {
             _logger?.LogDebug("Created with isLoadConfig={isLoadConfig}, configFile='{configFile}'".CallerInfo(),
                 isLoadConfig, configFile);
+            this._mainPage = mainPage;
             //this.onImportsSatisfied = onImportsSatisfied;
             this.isLoadConfig = isLoadConfig;
             this.configFile = configFile;

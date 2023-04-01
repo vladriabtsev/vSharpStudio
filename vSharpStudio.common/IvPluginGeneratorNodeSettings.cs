@@ -28,5 +28,9 @@ namespace vSharpStudio.common
         string SettingsAsJsonDefault { get; }
         //string[] GetListPropertiesToHideOnNodeSettings(ITreeConfigNode modelNode);
         Dictionary<string, string?>? DicNodeExcludedProperties { get; }
+        /// <summary>
+        /// Set by vSharpStudio Configuration editor. For internal usage.
+        /// </summary>
+        string AppProjectGeneratorGuid { get; set; }
     }
 }

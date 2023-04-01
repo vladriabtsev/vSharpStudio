@@ -39,7 +39,7 @@ namespace vSharpStudio.Views
             {
                 return;
             }
-            this._model = new MainPageVM(true);
+            this._model = new MainPageVM(true, null, this);
             MainPage.MainPageVM = this._model;
         }
 
