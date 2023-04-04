@@ -166,8 +166,11 @@ namespace vSharpStudio.vm.ViewModels
                     _logger?.Trace("Another validation in progress. Wait {delayTime} mc.");
                     await Task.Delay(delayTime);
 #if DEBUG
-                    if (i >= 3)
+                    if (i >= 10)
                         throw new Exception($"Waiting period to start validation exceeded {i * delayTime}mc. Need optimization.");
+#else
+                    if (i >= 100)
+                        break;
 #endif
                 }
                 this.IsValidatingSubTreeFromNode = true;
