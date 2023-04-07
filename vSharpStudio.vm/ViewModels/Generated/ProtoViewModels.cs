@@ -6232,7 +6232,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyDescriptionName = from.PropertyDescriptionName; // Clone.tt Line: 67
             vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 67
             vm.PropertyIsFolderName = from.PropertyIsFolderName; // Clone.tt Line: 67
-            vm.PropertyIsOpenName = from.PropertyIsOpenName; // Clone.tt Line: 67
             vm.PropertyDocDateName = from.PropertyDocDateName; // Clone.tt Line: 67
             vm.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 67
             vm.PropertyDocCodeName = from.PropertyDocCodeName; // Clone.tt Line: 67
@@ -6291,7 +6290,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.PropertyDescriptionName = from.PropertyDescriptionName; // Clone.tt Line: 143
             to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 143
             to.PropertyIsFolderName = from.PropertyIsFolderName; // Clone.tt Line: 143
-            to.PropertyIsOpenName = from.PropertyIsOpenName; // Clone.tt Line: 143
             to.PropertyDocDateName = from.PropertyDocDateName; // Clone.tt Line: 143
             to.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 143
             to.PropertyDocCodeName = from.PropertyDocCodeName; // Clone.tt Line: 143
@@ -6402,7 +6400,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyDescriptionName = m.PropertyDescriptionName; // Clone.tt Line: 221
             vm.UseDescriptionProperty = m.UseDescriptionProperty; // Clone.tt Line: 221
             vm.PropertyIsFolderName = m.PropertyIsFolderName; // Clone.tt Line: 221
-            vm.PropertyIsOpenName = m.PropertyIsOpenName; // Clone.tt Line: 221
             vm.PropertyDocDateName = m.PropertyDocDateName; // Clone.tt Line: 221
             vm.UseDocDateProperty = m.UseDocDateProperty; // Clone.tt Line: 221
             vm.PropertyDocCodeName = m.PropertyDocCodeName; // Clone.tt Line: 221
@@ -6472,7 +6469,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.PropertyDescriptionName = vm.PropertyDescriptionName; // Clone.tt Line: 276
             m.UseDescriptionProperty = vm.UseDescriptionProperty; // Clone.tt Line: 276
             m.PropertyIsFolderName = vm.PropertyIsFolderName; // Clone.tt Line: 276
-            m.PropertyIsOpenName = vm.PropertyIsOpenName; // Clone.tt Line: 276
             m.PropertyDocDateName = vm.PropertyDocDateName; // Clone.tt Line: 276
             m.UseDocDateProperty = vm.UseDocDateProperty; // Clone.tt Line: 276
             m.PropertyDocCodeName = vm.PropertyDocCodeName; // Clone.tt Line: 276
@@ -7030,30 +7026,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyIsFolderName = string.Empty;
         partial void OnPropertyIsFolderNameChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIsFolderNameChanged();
-        
-        [Category("Property settings")]
-        [PropertyOrderAttribute(28)]
-        [DisplayName("IsOpen property")]
-        [Description("Name of is open auto generated property if folder is used in catalog")]
-        public string PropertyIsOpenName // Property.tt Line: 55
-        { 
-            get { return this._PropertyIsOpenName; }
-            set
-            {
-                if (this._PropertyIsOpenName != value)
-                {
-                    this.OnPropertyIsOpenNameChanging(ref value);
-                    this._PropertyIsOpenName = value;
-                    this.OnPropertyIsOpenNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyIsOpenName = string.Empty;
-        partial void OnPropertyIsOpenNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyIsOpenNameChanged();
         
         [Category("Property settings")]
         [PropertyOrderAttribute(31)]
@@ -16137,7 +16109,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 67
             vm.ViewListNarrowGuid = from.ViewListNarrowGuid; // Clone.tt Line: 67
             vm.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 67
-            vm.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 67
             vm.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 67
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
             vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
@@ -16185,7 +16156,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 143
             to.ViewListNarrowGuid = from.ViewListNarrowGuid; // Clone.tt Line: 143
             to.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 143
-            to.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 143
             to.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 143
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
             to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
@@ -16286,7 +16256,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ViewListWideGuid = m.ViewListWideGuid; // Clone.tt Line: 221
             vm.ViewListNarrowGuid = m.ViewListNarrowGuid; // Clone.tt Line: 221
             vm.PropertyIsFolderGuid = m.PropertyIsFolderGuid; // Clone.tt Line: 221
-            vm.PropertyIsOpenGuid = m.PropertyIsOpenGuid; // Clone.tt Line: 221
             vm.PropertyRefSelfGuid = m.PropertyRefSelfGuid; // Clone.tt Line: 221
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
             vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
@@ -16342,7 +16311,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.ViewListWideGuid = vm.ViewListWideGuid; // Clone.tt Line: 276
             m.ViewListNarrowGuid = vm.ViewListNarrowGuid; // Clone.tt Line: 276
             m.PropertyIsFolderGuid = vm.PropertyIsFolderGuid; // Clone.tt Line: 276
-            m.PropertyIsOpenGuid = vm.PropertyIsOpenGuid; // Clone.tt Line: 276
             m.PropertyRefSelfGuid = vm.PropertyRefSelfGuid; // Clone.tt Line: 276
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
@@ -16843,27 +16811,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyIsFolderGuid = string.Empty;
         partial void OnPropertyIsFolderGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIsFolderGuidChanged();
-        
-        [Browsable(false)]
-        public string PropertyIsOpenGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyIsOpenGuid; }
-            set
-            {
-                if (this._PropertyIsOpenGuid != value)
-                {
-                    this.OnPropertyIsOpenGuidChanging(ref value);
-                    this._PropertyIsOpenGuid = value;
-                    this.OnPropertyIsOpenGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyIsOpenGuid = string.Empty;
-        partial void OnPropertyIsOpenGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyIsOpenGuidChanged();
         
         [Browsable(false)]
         public string PropertyRefSelfGuid // Property.tt Line: 55
@@ -17383,7 +17330,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 67
             vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 67
             vm.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 67
-            vm.UseFolderTypeExplicitly = from.UseFolderTypeExplicitly; // Clone.tt Line: 67
             vm.ItemIconType = from.ItemIconType; // Clone.tt Line: 67
             vm.GroupIconType = from.GroupIconType; // Clone.tt Line: 67
             vm.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 67
@@ -17393,7 +17339,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 67
             vm.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 67
             vm.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 67
-            vm.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 67
             vm.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 67
             vm.PropertyRefFolderGuid = from.PropertyRefFolderGuid; // Clone.tt Line: 67
             vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 67
@@ -17441,7 +17386,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 143
             to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 143
             to.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 143
-            to.UseFolderTypeExplicitly = from.UseFolderTypeExplicitly; // Clone.tt Line: 143
             to.ItemIconType = from.ItemIconType; // Clone.tt Line: 143
             to.GroupIconType = from.GroupIconType; // Clone.tt Line: 143
             to.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 143
@@ -17451,7 +17395,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 143
             to.PropertyDescriptionGuid = from.PropertyDescriptionGuid; // Clone.tt Line: 143
             to.PropertyIsFolderGuid = from.PropertyIsFolderGuid; // Clone.tt Line: 143
-            to.PropertyIsOpenGuid = from.PropertyIsOpenGuid; // Clone.tt Line: 143
             to.PropertyRefSelfGuid = from.PropertyRefSelfGuid; // Clone.tt Line: 143
             to.PropertyRefFolderGuid = from.PropertyRefFolderGuid; // Clone.tt Line: 143
             to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 143
@@ -17552,7 +17495,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
             vm.UseDescriptionProperty = (EnumUseType)m.UseDescriptionProperty; // Clone.tt Line: 221
             vm.MaxDescriptionLength = m.MaxDescriptionLength; // Clone.tt Line: 221
-            vm.UseFolderTypeExplicitly = m.UseFolderTypeExplicitly; // Clone.tt Line: 221
             vm.ItemIconType = (EnumCatalogTreeIcon)m.ItemIconType; // Clone.tt Line: 221
             vm.GroupIconType = (EnumCatalogTreeIcon)m.GroupIconType; // Clone.tt Line: 221
             vm.ViewListWideGuid = m.ViewListWideGuid; // Clone.tt Line: 221
@@ -17562,7 +17504,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
             vm.PropertyDescriptionGuid = m.PropertyDescriptionGuid; // Clone.tt Line: 221
             vm.PropertyIsFolderGuid = m.PropertyIsFolderGuid; // Clone.tt Line: 221
-            vm.PropertyIsOpenGuid = m.PropertyIsOpenGuid; // Clone.tt Line: 221
             vm.PropertyRefSelfGuid = m.PropertyRefSelfGuid; // Clone.tt Line: 221
             vm.PropertyRefFolderGuid = m.PropertyRefFolderGuid; // Clone.tt Line: 221
             vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
@@ -17619,7 +17560,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
             m.UseDescriptionProperty = (Proto.Config.proto_enum_use_type)vm.UseDescriptionProperty; // Clone.tt Line: 274
             m.MaxDescriptionLength = vm.MaxDescriptionLength; // Clone.tt Line: 276
-            m.UseFolderTypeExplicitly = vm.UseFolderTypeExplicitly; // Clone.tt Line: 276
             m.ItemIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.ItemIconType; // Clone.tt Line: 274
             m.GroupIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.GroupIconType; // Clone.tt Line: 274
             m.ViewListWideGuid = vm.ViewListWideGuid; // Clone.tt Line: 276
@@ -17629,7 +17569,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
             m.PropertyDescriptionGuid = vm.PropertyDescriptionGuid; // Clone.tt Line: 276
             m.PropertyIsFolderGuid = vm.PropertyIsFolderGuid; // Clone.tt Line: 276
-            m.PropertyIsOpenGuid = vm.PropertyIsOpenGuid; // Clone.tt Line: 276
             m.PropertyRefSelfGuid = vm.PropertyRefSelfGuid; // Clone.tt Line: 276
             m.PropertyRefFolderGuid = vm.PropertyRefFolderGuid; // Clone.tt Line: 276
             m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
@@ -18056,29 +17995,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnMaxDescriptionLengthChanging(ref uint to); // Property.tt Line: 79
         partial void OnMaxDescriptionLengthChanged();
         
-        [PropertyOrderAttribute(23)]
-        [DisplayName("Explicit Folders")]
-        [Description("User has choose explicitly item or folder type for catalog element")]
-        public bool UseFolderTypeExplicitly // Property.tt Line: 55
-        { 
-            get { return this._UseFolderTypeExplicitly; }
-            set
-            {
-                if (this._UseFolderTypeExplicitly != value)
-                {
-                    this.OnUseFolderTypeExplicitlyChanging(ref value);
-                    this._UseFolderTypeExplicitly = value;
-                    this.OnUseFolderTypeExplicitlyChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _UseFolderTypeExplicitly;
-        partial void OnUseFolderTypeExplicitlyChanging(ref bool to); // Property.tt Line: 79
-        partial void OnUseFolderTypeExplicitlyChanged();
-        
         [PropertyOrderAttribute(41)]
         [DisplayName("Item Icon")]
         [Description("Catalog item icon type")]
@@ -18271,27 +18187,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _PropertyIsFolderGuid = string.Empty;
         partial void OnPropertyIsFolderGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnPropertyIsFolderGuidChanged();
-        
-        [Browsable(false)]
-        public string PropertyIsOpenGuid // Property.tt Line: 55
-        { 
-            get { return this._PropertyIsOpenGuid; }
-            set
-            {
-                if (this._PropertyIsOpenGuid != value)
-                {
-                    this.OnPropertyIsOpenGuidChanging(ref value);
-                    this._PropertyIsOpenGuid = value;
-                    this.OnPropertyIsOpenGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _PropertyIsOpenGuid = string.Empty;
-        partial void OnPropertyIsOpenGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyIsOpenGuidChanged();
         
         [Browsable(false)]
         public string PropertyRefSelfGuid // Property.tt Line: 55

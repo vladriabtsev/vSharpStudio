@@ -1201,16 +1201,6 @@
               "defaultValue": ""
             },
             {
-              "name": "use_folder_type_explicitly",
-              "description": "@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Explicit Folders\")]\n@attr [Description(\"User has choose explicitly item or folder type for catalog element\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "item_icon_type",
               "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Item Icon\")]\n@attr [Description(\"Catalog item icon type\")]",
               "label": "",
@@ -1292,16 +1282,6 @@
             },
             {
               "name": "property_is_folder_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_is_open_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -1694,16 +1674,6 @@
             },
             {
               "name": "property_is_folder_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_is_open_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -6665,16 +6635,6 @@
             {
               "name": "property_is_folder_name",
               "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(27)]\n@attr [DisplayName(\"IsFolder property\")]\n@attr [Description(\"Name of is folder auto generated property if it is used in catalog\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "property_is_open_name",
-              "description": "@attr [Category(\"Property settings\")]\n@attr [PropertyOrderAttribute(28)]\n@attr [DisplayName(\"IsOpen property\")]\n@attr [Description(\"Name of is open auto generated property if folder is used in catalog\")]",
               "label": "",
               "type": "string",
               "longType": "string",

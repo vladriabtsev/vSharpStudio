@@ -47,7 +47,6 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
-            this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
             this.ViewListWideGuid = System.Guid.NewGuid().ToString();
             this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
 
@@ -229,9 +228,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
             prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
             res.Add(prp);
-            prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
-            res.Add(prp);
-            if (this.ParentCatalog.UseFolderTypeExplicitly)
+            if (this.ParentCatalog.UseTree && !this.ParentCatalog.UseSeparateTreeForFolders)
             {
                 prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
                 res.Add(prp);

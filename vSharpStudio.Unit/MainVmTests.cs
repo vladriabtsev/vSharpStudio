@@ -425,27 +425,23 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(6, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyIsOpenName, lst[2].Name);
             Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[3].Name);
             Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[4].Name);
             Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[5].Name);
 
             // Tree catalog
             c.UseTree = true;
-            c.UseFolderTypeExplicitly = true;
             lst = c.GetAllProperties(true);
-            Assert.AreEqual(7, lst.Count);
+            Assert.AreEqual(6, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyIsOpenName, lst[2].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyIsFolderName, lst[3].Name);
-            Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[4].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[5].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[6].Name);
+            Assert.AreEqual(vm.Config.Model.PropertyIsFolderName, lst[2].Name);
+            Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[3].Name);
+            Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[4].Name);
+            Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[5].Name);
 
             // Tree catalog with separate properties for tree
             c.UseTree = true;
-            c.UseFolderTypeExplicitly = true;
             c.UseSeparateTreeForFolders = true;
             lst = c.GetAllProperties(true);
             Assert.AreEqual(5, lst.Count);
@@ -455,14 +451,12 @@ namespace vSharpStudio.Unit
             Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[3].Name);
             Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[4].Name);
             lst = c.GetAllFolderProperties(true);
-            Assert.AreEqual(7, lst.Count);
+            Assert.AreEqual(5, lst.Count);
             Assert.AreEqual(vm.Config.Model.PKeyName, lst[0].Name);
             Assert.AreEqual("RefTreeParent", lst[1].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyIsOpenName, lst[2].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyIsFolderName, lst[3].Name);
-            Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[4].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[5].Name);
-            Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[6].Name);
+            Assert.AreEqual(vm.Config.Model.RecordVersionFieldName, lst[2].Name);
+            Assert.AreEqual(vm.Config.Model.PropertyCodeName, lst[3].Name);
+            Assert.AreEqual(vm.Config.Model.PropertyNameName, lst[4].Name);
         }
         [TestMethod]
         public void Main009_Diff()

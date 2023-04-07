@@ -697,11 +697,6 @@ message proto_model {
     // @attr [Description("Name of is folder auto generated property if it is used in catalog")]
     string property_is_folder_name = 27;
     // @attr [Category("Property settings")]
-    // @attr [PropertyOrderAttribute(28)]
-    // @attr [DisplayName("IsOpen property")]
-    // @attr [Description("Name of is open auto generated property if folder is used in catalog")]
-    string property_is_open_name = 28;
-    // @attr [Category("Property settings")]
     // @attr [PropertyOrderAttribute(31)]
     // @attr [DisplayName("Date property")]
     // @attr [Description("Name of date auto generated property if it is used in documents")]
@@ -1732,8 +1727,6 @@ message proto_catalog_folder {
     // @attr [Browsable(false)]
     string property_is_folder_guid = 63;
     // @attr [Browsable(false)]
-    string property_is_open_guid = 64;
-    // @attr [Browsable(false)]
     string property_ref_self_guid = 65;
 
     // @attr [Category("Auto Layout")]
@@ -1866,10 +1859,6 @@ message proto_catalog {
     // @attr [DisplayName("Desc Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
     uint32 max_description_length = 30;
-    // @attr [PropertyOrderAttribute(23)]
-    // @attr [DisplayName("Explicit Folders")]
-    // @attr [Description("User has choose explicitly item or folder type for catalog element")]
-    bool use_folder_type_explicitly = 31;
 
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Item Icon")]
@@ -1895,8 +1884,6 @@ message proto_catalog {
     string property_description_guid = 64;
     // @attr [Browsable(false)]
     string property_is_folder_guid = 65;
-    // @attr [Browsable(false)]
-    string property_is_open_guid = 66;
     // @attr [Browsable(false)]
     string property_ref_self_guid = 67;
     // @attr [Browsable(false)]

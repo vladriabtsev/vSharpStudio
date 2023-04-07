@@ -77,7 +77,6 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyNameName = "Name";
             this.PropertyDescriptionName = "Description";
             this.PropertyIsFolderName = "IsFolder";
-            this.PropertyIsOpenName = "IsOpen";
             this.PropertyDocCodeName = "DocNumber";
             this.PropertyDocDateName = "DocDate";
 
@@ -729,15 +728,6 @@ namespace vSharpStudio.vm.ViewModels
             res.IsHidden = true;
             res.IsNullable = false;
             res.Position = 12;
-            return res;
-        }
-        public IProperty GetPropertyIsOpen(ITreeConfigNode parent, string guid)
-        {
-            var res = new Property(parent, guid, this.PropertyIsOpenName, true);
-            res.DataType = new DataType(res) { DataTypeEnum = EnumDataType.BOOL };
-            res.IsHidden = true;
-            res.IsNullable = false;
-            res.Position = 13;
             return res;
         }
         public IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid)

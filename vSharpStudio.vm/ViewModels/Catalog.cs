@@ -59,7 +59,6 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyRefFolderGuid = System.Guid.NewGuid().ToString();
             this.PropertyRefSelfGuid = System.Guid.NewGuid().ToString();
             this.PropertyIsFolderGuid = System.Guid.NewGuid().ToString();
-            this.PropertyIsOpenGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             this.ViewListWideGuid = System.Guid.NewGuid().ToString();
             this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
@@ -309,13 +308,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     prp = model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefSelfGuid, "RefTreeParent", true);
                     res.Add(prp);
-                    prp = model.GetPropertyIsOpen(this.GroupProperties, this.PropertyIsOpenGuid);
+                    prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
                     res.Add(prp);
-                    if (this.UseFolderTypeExplicitly)
-                    {
-                        prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
-                        res.Add(prp);
-                    }
                 }
             }
             if (isSupportVersion)
@@ -389,10 +383,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.NotifyPropertyChanged(() => this.PropertyDefinitions);
         }
-        partial void OnUseFolderTypeExplicitlyChanged()
-        {
-            this.NotifyPropertyChanged(() => this.IsShowIsFolder);
-        }
         partial void OnUseSeparateTreeForFoldersChanged()
         {
             this.RefillChildren();
@@ -405,7 +395,6 @@ namespace vSharpStudio.vm.ViewModels
             if (!this.UseTree)
             {
                 this.UseSeparateTreeForFolders = false;
-                this.UseFolderTypeExplicitly = false;
             }
             this.RefillChildren();
             this.NotifyPropertyChanged(() => this.Children);
@@ -416,7 +405,7 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public bool IsShowRefSelfTree { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
         [Browsable(false)]
-        public bool IsShowIsFolder { get { if (this.UseTree && !this.UseSeparateTreeForFolders && this.UseFolderTypeExplicitly) return true; return false; } }
+        public bool IsShowIsFolder { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
@@ -425,7 +414,6 @@ namespace vSharpStudio.vm.ViewModels
                 lst.Add(this.GetPropertyName(() => this.GroupIconType));
                 lst.Add(this.GetPropertyName(() => this.MaxTreeLevels));
                 lst.Add(this.GetPropertyName(() => this.UseSeparateTreeForFolders));
-                lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
             }
             //else
             //{
@@ -517,7 +505,7 @@ namespace vSharpStudio.vm.ViewModels
                 var lstp = new List<IProperty>();
                 this.GetCodeProperty(lstp);
                 this.GetNameProperty(lstp);
-                if (ftype== FormType.ListWide)
+                if (ftype == FormType.ListWide)
                 {
                     this.GetDescriptionProperty(lstp);
                 }
@@ -563,26 +551,23 @@ namespace vSharpStudio.vm.ViewModels
             IProperty pId = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             IProperty? pRefTreeParent = null;
             IProperty? pRefParent = null;
-            IProperty? pIsFolder = null;
             if (this.UseTree)
             {
                 pRefTreeParent = model.GetPropertyRefParent(this.GroupProperties, this.Folder.PropertyRefSelfGuid, "RefTreeParent", true);
-                if (this.UseFolderTypeExplicitly)
-                {
-                    pIsFolder = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
-                }
                 if (this.UseSeparateTreeForFolders) // self tree and separate data grid for children
                 {
-                    viewTreeData = new ViewTreeData(pId, pRefTreeParent, pIsFolder);
+                    viewTreeData = new ViewTreeData(pId, pRefTreeParent, null);
                     var lst = this.SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
                     viewTreeData.ListViewProperties.AddRange(lst);
 
-                    viewListData = new ViewListData(pId, pRefParent, pIsFolder);
+                    viewListData = new ViewListData(pId, pRefParent, null);
                     lst = this.SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);
                     viewListData.ListViewProperties.AddRange(lst);
                 }
                 else // only self tree
                 {
+                    IProperty? pIsFolder = null;
+                    pIsFolder = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
                     viewTreeData = new ViewTreeData(pId, pRefParent, pIsFolder);
                     var lst = this.SelectViewProperties(formType, this.Folder.GroupProperties.ListProperties, form.ListGuidViewFolderProperties, guidAppPrjGen);
                     viewTreeData.ListViewProperties.AddRange(lst);

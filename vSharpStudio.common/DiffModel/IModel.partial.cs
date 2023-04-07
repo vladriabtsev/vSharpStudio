@@ -43,7 +43,6 @@ namespace vSharpStudio.common
         IProperty GetPropertyCatalogName(ITreeConfigNode parent, string guid, uint length);
         IProperty GetPropertyCatalogDescription(ITreeConfigNode parent, string guid, uint length);
         IProperty GetPropertyIsFolder(ITreeConfigNode parent, string guid);
-        IProperty GetPropertyIsOpen(ITreeConfigNode parent, string guid);
         IProperty GetPropertyVersion(ITreeConfigNode parent, string guid);
         IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid);
         IProperty GetPropertyDocumentCodeString(ITreeConfigNode parent, string guid, uint length);

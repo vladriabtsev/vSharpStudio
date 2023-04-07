@@ -575,27 +575,13 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public string IsFolderPropertyName { get { return this.Cfg.Model.PropertyIsFolderName; } }
         [Browsable(false)]
-        public string IsOpenPropertyName { get { return this.Cfg.Model.PropertyIsOpenName; } }
-        [Browsable(false)]
-        public bool UseFolderTypeExplicitlyForSeparateTree
-        {
-            get
-            {
-                if (this.ParentGroupListForms.Parent is Catalog c)
-                {
-                    return c.UseFolderTypeExplicitly;
-                }
-                return false;
-            }
-        }
-        [Browsable(false)]
         public bool UseFolderTypeExplicitly
         {
             get
             {
                 if (this.ParentGroupListForms.Parent is Catalog c)
                 {
-                    return c.UseFolderTypeExplicitly && c.UseTree && !c.UseSeparateTreeForFolders;
+                    return c.UseTree && !c.UseSeparateTreeForFolders;
                 }
                 return false;
             }

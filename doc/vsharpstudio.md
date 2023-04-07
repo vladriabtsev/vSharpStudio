@@ -258,7 +258,6 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(28)] @attr [DisplayName(&#34;Name Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | use_description_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Desc Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
-| use_folder_type_explicitly | [bool](#bool) |  | @attr [PropertyOrderAttribute(23)] @attr [DisplayName(&#34;Explicit Folders&#34;)] @attr [Description(&#34;User has choose explicitly item or folder type for catalog element&#34;)] |
 | item_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
 | group_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
 | view_list_wide_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -268,7 +267,6 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | property_name_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_description_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_is_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_is_open_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_ref_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -334,7 +332,6 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | view_list_wide_guid | [string](#string) |  | @attr [Browsable(false)] |
 | view_list_narrow_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_is_folder_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_is_open_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_ref_self_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
@@ -1385,7 +1382,6 @@ Configuration model
 | property_description_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Description property&#34;)] @attr [Description(&#34;Name of description auto generated property if it is used in catalog&#34;)] |
 | use_description_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item by default&#34;)] |
 | property_is_folder_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;IsFolder property&#34;)] @attr [Description(&#34;Name of is folder auto generated property if it is used in catalog&#34;)] |
-| property_is_open_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(28)] @attr [DisplayName(&#34;IsOpen property&#34;)] @attr [Description(&#34;Name of is open auto generated property if folder is used in catalog&#34;)] |
 | property_doc_date_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(31)] @attr [DisplayName(&#34;Date property&#34;)] @attr [Description(&#34;Name of date auto generated property if it is used in documents&#34;)] |
 | use_doc_date_property | [bool](#bool) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(32)] @attr [DisplayName(&#34;Use Doc Date&#34;)] @attr [Description(&#34;Use Date property for documents&#34;)] |
 | property_doc_code_name | [string](#string) |  | @attr [Category(&#34;Property settings&#34;)] @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Doc Code property&#34;)] @attr [Description(&#34;Name of document code auto generated property&#34;)] |

@@ -70,14 +70,7 @@ namespace vSharpStudio.vm.ViewModels
                                 vf.Severity = Severity.Error;
                                 cntx.AddFailure(vf);
                             }
-                            if (model.PropertyIsOpenName == name)
-                            {
-                                var vf = new ValidationFailure(nameof(p.Name),
-                                    $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'false'. Property name '{model.PropertyIsOpenName}' is reserved for auto generated property");
-                                vf.Severity = Severity.Error;
-                                cntx.AddFailure(vf);
-                            }
-                            if (c.UseFolderTypeExplicitly)
+                            if (c.UseTree && !c.UseSeparateTreeForFolders)
                             {
                                 if (model.PropertyIsFolderName == name)
                                 {
@@ -105,16 +98,6 @@ namespace vSharpStudio.vm.ViewModels
                                     $"Catalog parameter 'Use Tree' is set to 'true' and 'Separate Folder' is set to 'true'. Property name 'RefTreeParent' is reserved for auto generated property");
                                 vf.Severity = Severity.Error;
                                 cntx.AddFailure(vf);
-                            }
-                            if (cc.UseFolderTypeExplicitly)
-                            {
-                                if (model.PropertyIsOpenName == name)
-                                {
-                                    var vf = new ValidationFailure(nameof(p.Name),
-                                        $"Catalog parameter 'Explicit Folders' is set to 'true'. Property name '{model.PropertyIsOpenName}' is reserved for auto generated property");
-                                    vf.Severity = Severity.Error;
-                                    cntx.AddFailure(vf);
-                                }
                             }
                         }
                     }

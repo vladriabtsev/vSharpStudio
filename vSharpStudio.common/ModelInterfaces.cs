@@ -373,7 +373,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string PropertyDescriptionName { get; } // ModelInterfaces.tt Line: 51
     	bool UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIsFolderName { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyIsOpenName { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDocDateName { get; } // ModelInterfaces.tt Line: 51
     	bool UseDocDateProperty { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDocCodeName { get; } // ModelInterfaces.tt Line: 51
@@ -718,7 +717,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 51
     	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyIsOpenGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
@@ -755,7 +753,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 51
     	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 51
-    	bool UseFolderTypeExplicitly { get; } // ModelInterfaces.tt Line: 51
     	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 51
     	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 51
     	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 51
@@ -765,7 +762,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 51
-    	string PropertyIsOpenGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyRefFolderGuid { get; } // ModelInterfaces.tt Line: 51
     	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 51
