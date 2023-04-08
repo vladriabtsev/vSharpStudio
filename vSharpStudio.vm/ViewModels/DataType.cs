@@ -118,6 +118,20 @@ namespace vSharpStudio.vm.ViewModels
             return false;
         }
         [Browsable(false)]
+        public string EnumerationDefault
+        {
+            get
+            {
+                if (this.DataTypeEnum != EnumDataType.ENUMERATION)
+                    throw new NotImplementedException();
+                if (string.IsNullOrWhiteSpace(this.ObjectGuid))
+                    throw new NotImplementedException();
+                Debug.Assert(this.Cfg != null);
+                var en = (Enumeration)this.Cfg.DicNodes[this.ObjectGuid];
+                return en.ListEnumerationPairs[0].Value;
+            }
+        }
+        [Browsable(false)]
         public EnumEnumerationType EnumerationType
         {
             get

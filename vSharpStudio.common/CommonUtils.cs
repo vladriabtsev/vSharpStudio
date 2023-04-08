@@ -222,6 +222,7 @@ namespace vSharpStudio.common
             byte[] bytes = Encoding.UTF8.GetBytes(code);
             string outFolder = Path.Combine(path, fileRelativePath);
             string outFile;
+            //TODO Read first. Rewrite only if changed. Reduce recompilation
             if (Path.EndsInDirectorySeparator(outFolder))
                 outFile = $"{outFolder}{fileName}";
             else
@@ -232,6 +233,7 @@ namespace vSharpStudio.common
         {
             string outFolder = Path.Combine(path, fileRelativePath);
             string outFile;
+            //TODO Read first. Rewrite only if changed. Reduce recompilation
             if (Path.EndsInDirectorySeparator(outFolder))
                 outFile = $"{outFolder}{fileName}";
             else

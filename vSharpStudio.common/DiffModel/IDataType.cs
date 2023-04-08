@@ -25,5 +25,6 @@ namespace vSharpStudio.common
         EnumEnumerationType EnumerationType { get; }
         int EnumerationStrFieldLength { get; }
         bool IsEnumStr();
+        string EnumerationDefault { get; }
     }
 }
