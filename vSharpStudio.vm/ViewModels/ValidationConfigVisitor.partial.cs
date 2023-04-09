@@ -99,6 +99,8 @@ namespace vSharpStudio.vm.ViewModels
 
         private void ValidateSubAndCollectErrors(ITreeConfigNode p, IValidatableWithSeverity sub)
         {
+            if (IsCountOnly)
+                return;
             if (p is ICanGoLeft || p is ICanGoRight) // is visible in the tree
             {
                 this.node = p;
