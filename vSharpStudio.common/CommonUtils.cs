@@ -6,6 +6,7 @@ using System.Numerics;
 using Xceed.Wpf.Toolkit;
 using Google.Protobuf;
 using Polly;
+using System.Threading.Tasks;
 
 namespace vSharpStudio.common
 {
@@ -198,6 +199,28 @@ namespace vSharpStudio.common
         }
         public static void WritesAllBytesWithRetry(string outFile, byte[] bytes)
         {
+            bool isRewrite = false;
+            var bytesCurrent = new byte[0];
+            if (File.Exists(outFile))
+            {
+                bytesCurrent = File.ReadAllBytes(outFile);
+                isRewrite = bytesCurrent.Length != bytes.Length;
+            }
+            else
+                isRewrite = true;
+            if (!isRewrite)
+            {
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    if (bytes[i] != bytesCurrent[i])
+                    {
+                        isRewrite = true;
+                        break;
+                    }
+                }
+            }
+            if (!isRewrite)
+                return;
             CommonUtils.RetryPolicy.Execute(() =>
             {
                 File.WriteAllBytes(outFile, bytes);
@@ -222,7 +245,6 @@ namespace vSharpStudio.common
             byte[] bytes = Encoding.UTF8.GetBytes(code);
             string outFolder = Path.Combine(path, fileRelativePath);
             string outFile;
-            //TODO Read first. Rewrite only if changed. Reduce recompilation
             if (Path.EndsInDirectorySeparator(outFolder))
                 outFile = $"{outFolder}{fileName}";
             else
@@ -233,7 +255,6 @@ namespace vSharpStudio.common
         {
             string outFolder = Path.Combine(path, fileRelativePath);
             string outFile;
-            //TODO Read first. Rewrite only if changed. Reduce recompilation
             if (Path.EndsInDirectorySeparator(outFolder))
                 outFile = $"{outFolder}{fileName}";
             else
