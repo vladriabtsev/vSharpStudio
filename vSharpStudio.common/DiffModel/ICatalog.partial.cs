@@ -12,8 +12,8 @@ namespace vSharpStudio.common
         IGroupListCatalogs ParentGroupListCatalogsI { get; }
         //IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
         //IReadOnlyList<IProperty> GetIncludedFolderViewProperties(string guidAppPrjDbGen);
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion);
-        IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false);
+        IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen);
         IReadOnlyList<IDetail> GetIncludedFolderDetails(string guidAppPrjDbGen);
         void GetSpecialProperties(List<IProperty> res, bool isSupportVersion);

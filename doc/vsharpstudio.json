@@ -38,6 +38,119 @@
           ]
         },
         {
+          "name": "proto_enum_address_data_type",
+          "longName": "proto_enum_address_data_type",
+          "fullName": "proto_config.proto_enum_address_data_type",
+          "description": "https://github.com/bchavez/Bogus",
+          "values": [
+            {
+              "name": "A_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "A_COUNTRY",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "A_COUNTRY_CODE",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "A_COUNTY",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "A_STATE",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "A_STATE_ABBR",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "A_ZIP_CODE",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "A_CITY_PREFIX",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "A_CITY",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "A_CITY_SUFFIX",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "A_STREET_ADDRESS",
+              "number": "10",
+              "description": ""
+            },
+            {
+              "name": "A_STREET_NAME",
+              "number": "11",
+              "description": ""
+            },
+            {
+              "name": "A_STREET_SUFFIX",
+              "number": "12",
+              "description": ""
+            },
+            {
+              "name": "A_BUILDING_NUMBER",
+              "number": "13",
+              "description": ""
+            },
+            {
+              "name": "A_SECONDARY_ADDRESS",
+              "number": "14",
+              "description": ""
+            },
+            {
+              "name": "A_FULL_ADDRESS",
+              "number": "15",
+              "description": ""
+            },
+            {
+              "name": "A_LATITUDE",
+              "number": "16",
+              "description": ""
+            },
+            {
+              "name": "A_LONGITUDE",
+              "number": "17",
+              "description": ""
+            },
+            {
+              "name": "A_DIRECTION",
+              "number": "18",
+              "description": ""
+            },
+            {
+              "name": "A_CARDINAL_DIRECTION",
+              "number": "19",
+              "description": ""
+            },
+            {
+              "name": "A_ORDINAL_DIRECTION",
+              "number": "20",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "proto_enum_catalog_code_unique_scope",
           "longName": "proto_enum_catalog_code_unique_scope",
           "fullName": "proto_config.proto_enum_catalog_code_unique_scope",
@@ -112,6 +225,102 @@
             {
               "name": "AutoText",
               "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_commerce_data_type",
+          "longName": "proto_enum_commerce_data_type",
+          "fullName": "proto_config.proto_enum_commerce_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "C_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "C_DEPARTMENT",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "C_CATEGORIES",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "C_PRODUCT_NAME",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "C_PRODUCT",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "C_PRODUCT_ADJECTIVE",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "C_PRODUCT_MATERIAL",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "C_COLOR",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "C_PRICE",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "C_EAN8",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "C_EAN13",
+              "number": "10",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_company_data_type",
+          "longName": "proto_enum_company_data_type",
+          "fullName": "proto_config.proto_enum_company_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "P_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "P_COMPANY_NAME",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "P_COMPANY_SUFFIX",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "P_CATCH_PHRASE",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "P_BS",
+              "number": "4",
               "description": ""
             }
           ]
@@ -195,6 +404,117 @@
           ]
         },
         {
+          "name": "proto_enum_database_data_type",
+          "longName": "proto_enum_database_data_type",
+          "fullName": "proto_config.proto_enum_database_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "DB_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "DB_COLUMN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "DB_TYPE",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "DB_COLLATION",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "DB_ENGINE",
+              "number": "4",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_date_data_type",
+          "longName": "proto_enum_date_data_type",
+          "fullName": "proto_config.proto_enum_date_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "D_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "D_PAST_OFFSET",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "D_RECENT_OFFSET",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "D_BETWEEN_OFFSET",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "D_SOON_OFFSET",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "D_FUTURE_OFFSET",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "D_PAST",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "D_RECENT",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "D_BETWEEN",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "D_SOON",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "D_FUTURE",
+              "number": "10",
+              "description": ""
+            },
+            {
+              "name": "D_TIMESPAN",
+              "number": "11",
+              "description": ""
+            },
+            {
+              "name": "D_MONTH",
+              "number": "12",
+              "description": ""
+            },
+            {
+              "name": "D_WEEKDAY",
+              "number": "13",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "proto_enum_document_code_unique_scope",
           "longName": "proto_enum_document_code_unique_scope",
           "fullName": "proto_config.proto_enum_document_code_unique_scope",
@@ -218,6 +538,117 @@
             {
               "name": "Month",
               "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_finance_data_type",
+          "longName": "proto_enum_finance_data_type",
+          "fullName": "proto_config.proto_enum_finance_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "F_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "F_ACCOUNT",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "F_ACCOUNT_NAME",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "F_TRANSACTION_TYPE",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "F_CURRENCY",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "F_CREDIT_CARD_NUMBER",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "F_CREDIT_CARD_CVV",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "F_BITCOIN_ADDRESS",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "F_ETHEREUM_ADDRESS",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "F_ROUTING_NUMBER",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "F_BIC",
+              "number": "10",
+              "description": ""
+            },
+            {
+              "name": "F_IBAN",
+              "number": "11",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_hacker_data_type",
+          "longName": "proto_enum_hacker_data_type",
+          "fullName": "proto_config.proto_enum_hacker_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "H_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "H_ABBREVIATION",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "H_ADJECTIVE",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "H_NOUN",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "H_VERB",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "H_INGVERB",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "H_PHRASE",
+              "number": "6",
               "description": ""
             }
           ]
@@ -261,6 +692,381 @@
           ]
         },
         {
+          "name": "proto_enum_image_data_type",
+          "longName": "proto_enum_image_data_type",
+          "fullName": "proto_config.proto_enum_image_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "I_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "I_DATAURI",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "I_PICSUM",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "I_PLACEHOLDER",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMFLICKR",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_ABSTRACT",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_ANIMALS",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_BUSINESS",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_CATS",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_CITY",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_FOOD",
+              "number": "10",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_NIGHTLIFE",
+              "number": "11",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_FASHION",
+              "number": "12",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_PEOPLE",
+              "number": "13",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_NATURE",
+              "number": "14",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_SPORTS",
+              "number": "15",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_TECHNICS",
+              "number": "16",
+              "description": ""
+            },
+            {
+              "name": "I_LOREMPIXEL_TRANSPORT",
+              "number": "17",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_internet_data_type",
+          "longName": "proto_enum_internet_data_type",
+          "fullName": "proto_config.proto_enum_internet_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "N_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "N_AVATAR",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "N_EMAIL",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "N_EMAIL_EXAMPLE",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "N_USER_NAME",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "N_USER_NAME_UNICODE",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "N_DOMAIN_NAME",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "N_DOMAIN_WORD",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "N_DOMAIN_SUFFIX",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "N_IP",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "N_PORT",
+              "number": "10",
+              "description": ""
+            },
+            {
+              "name": "N_IP_ADDRESS",
+              "number": "11",
+              "description": ""
+            },
+            {
+              "name": "N_IP_END_POINT",
+              "number": "12",
+              "description": ""
+            },
+            {
+              "name": "N_IPV6",
+              "number": "13",
+              "description": ""
+            },
+            {
+              "name": "N_IPV6_ADDRESS",
+              "number": "14",
+              "description": ""
+            },
+            {
+              "name": "N_IPV6_END_POINT",
+              "number": "15",
+              "description": ""
+            },
+            {
+              "name": "N_USER_AGENT",
+              "number": "16",
+              "description": ""
+            },
+            {
+              "name": "N_MAC",
+              "number": "17",
+              "description": ""
+            },
+            {
+              "name": "N_PASSWORD",
+              "number": "18",
+              "description": ""
+            },
+            {
+              "name": "N_COLOR",
+              "number": "19",
+              "description": ""
+            },
+            {
+              "name": "N_PROTOCOL",
+              "number": "20",
+              "description": ""
+            },
+            {
+              "name": "N_URL",
+              "number": "21",
+              "description": ""
+            },
+            {
+              "name": "N_URL_WITH_PATH",
+              "number": "22",
+              "description": ""
+            },
+            {
+              "name": "N_URL_ROOTED_PATH",
+              "number": "23",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_lorem_data_type",
+          "longName": "proto_enum_lorem_data_type",
+          "fullName": "proto_config.proto_enum_lorem_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "L_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "L_WORD",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "L_WORDS",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "L_LETTER",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "L_SENTENCE",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "L_SENTENCES",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "L_PARAGRAPH",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "L_PARAGRAPHS",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "L_TEXT",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "L_LINES",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "L_SLUG",
+              "number": "10",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_name_data_type",
+          "longName": "proto_enum_name_data_type",
+          "fullName": "proto_config.proto_enum_name_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "M_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "M_FIRST_NAME",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "M_LAST_NAME",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "M_FULL_NAME",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "M_PREFIX",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "M_SUFFIX",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "M_FIND_NAME",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "M_JOB_TITLE",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "M_JOB_DESCRIPTOR",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "M_JOB_AREA",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "M_JOB_TYPE",
+              "number": "10",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_phone_data_type",
+          "longName": "proto_enum_phone_data_type",
+          "fullName": "proto_config.proto_enum_phone_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "PH_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "PH_PHONE_NUMBER",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PH_PHONE_NUMBER_FORMAT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "proto_enum_primary_key_type",
           "longName": "proto_enum_primary_key_type",
           "fullName": "proto_config.proto_enum_primary_key_type",
@@ -274,6 +1080,253 @@
             {
               "name": "LONG",
               "number": "1",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_property_data_type",
+          "longName": "proto_enum_property_data_type",
+          "fullName": "proto_config.proto_enum_property_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "PT_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "PT_ADDRESS",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PT_COMMERCE",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "PT_COMPANY",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "PT_DATE",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "PT_DATABASE",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "PT_FINANCE",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "PT_HACKER",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "PT_IMAGE",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "PT_INTERNET",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "PT_LOREM",
+              "number": "10",
+              "description": ""
+            },
+            {
+              "name": "PT_NAME",
+              "number": "11",
+              "description": ""
+            },
+            {
+              "name": "PT_PHONE",
+              "number": "12",
+              "description": ""
+            },
+            {
+              "name": "PT_RANT",
+              "number": "13",
+              "description": ""
+            },
+            {
+              "name": "PT_SYSTEM",
+              "number": "14",
+              "description": ""
+            },
+            {
+              "name": "PT_VEHICLE",
+              "number": "15",
+              "description": ""
+            },
+            {
+              "name": "PT_RANDOM",
+              "number": "16",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_random_data_type",
+          "longName": "proto_enum_random_data_type",
+          "fullName": "proto_config.proto_enum_random_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "RN_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "RN_NUMBER",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "RN_STRING",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "RN_STRING2",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "RN_HASH",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "RN_ALPHANUMERIC",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "RN_HEXADECIMAL",
+              "number": "6",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_rant_data_type",
+          "longName": "proto_enum_rant_data_type",
+          "fullName": "proto_config.proto_enum_rant_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "R_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "R_REVIEW",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "R_REVIEWS",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_system_data_type",
+          "longName": "proto_enum_system_data_type",
+          "fullName": "proto_config.proto_enum_system_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "S_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "S_FILE_NAME",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "S_DIRECTORY_PATH",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "S_FILE_PATH",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "S_COMMON_FILE_NAME",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "S_MIME_TYPE",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "S_COMMON_FILE_TYPE",
+              "number": "6",
+              "description": ""
+            },
+            {
+              "name": "S_COMMON_FILE_EXT",
+              "number": "7",
+              "description": ""
+            },
+            {
+              "name": "S_FILE_TYPE",
+              "number": "8",
+              "description": ""
+            },
+            {
+              "name": "S_FILE_EXT",
+              "number": "9",
+              "description": ""
+            },
+            {
+              "name": "S_SEMVER",
+              "number": "10",
+              "description": ""
+            },
+            {
+              "name": "S_VERSION",
+              "number": "11",
+              "description": ""
+            },
+            {
+              "name": "S_EXCEPTION",
+              "number": "12",
+              "description": ""
+            },
+            {
+              "name": "S_ANDROID_ID",
+              "number": "13",
+              "description": ""
+            },
+            {
+              "name": "S_APPLE_PUSH_TOKEN",
+              "number": "14",
+              "description": ""
+            },
+            {
+              "name": "S_BLACKBERRY_PIN",
+              "number": "15",
               "description": ""
             }
           ]
@@ -330,6 +1383,44 @@
             {
               "name": "No",
               "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_vehicle_data_type",
+          "longName": "proto_enum_vehicle_data_type",
+          "fullName": "proto_config.proto_enum_vehicle_data_type",
+          "description": "",
+          "values": [
+            {
+              "name": "V_NONE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "V_VIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "V_MANUFACTURER",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "V_MODEL",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "V_TYPE",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "V_FUEL",
+              "number": "5",
               "description": ""
             }
           ]
@@ -7432,6 +8523,16 @@
               "defaultValue": ""
             },
             {
+              "name": "data_generator",
+              "description": "@attr [PropertyOrderAttribute(31)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Data Generator\")]\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_property_data_generator",
+              "longType": "proto_property_data_generator",
+              "fullType": "proto_config.proto_property_data_generator",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_grid_sortable",
               "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
@@ -7478,6 +8579,187 @@
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",
               "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_property_data_generator",
+          "longName": "proto_property_data_generator",
+          "fullName": "proto_config.proto_property_data_generator",
+          "description": "@base BaseSettings",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "data_type",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Group\")]\n@attr [Description(\"Data generator type\")]",
+              "label": "",
+              "type": "proto_enum_property_data_type",
+              "longType": "proto_enum_property_data_type",
+              "fullType": "proto_config.proto_enum_property_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "address",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_address_data_type",
+              "longType": "proto_enum_address_data_type",
+              "fullType": "proto_config.proto_enum_address_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "commerce",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_commerce_data_type",
+              "longType": "proto_enum_commerce_data_type",
+              "fullType": "proto_config.proto_enum_commerce_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "company",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_company_data_type",
+              "longType": "proto_enum_company_data_type",
+              "fullType": "proto_config.proto_enum_company_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "date",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_date_data_type",
+              "longType": "proto_enum_date_data_type",
+              "fullType": "proto_config.proto_enum_date_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "database",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_database_data_type",
+              "longType": "proto_enum_database_data_type",
+              "fullType": "proto_config.proto_enum_database_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "finance",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_finance_data_type",
+              "longType": "proto_enum_finance_data_type",
+              "fullType": "proto_config.proto_enum_finance_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "hacker",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_hacker_data_type",
+              "longType": "proto_enum_hacker_data_type",
+              "fullType": "proto_config.proto_enum_hacker_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "image",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_image_data_type",
+              "longType": "proto_enum_image_data_type",
+              "fullType": "proto_config.proto_enum_image_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "internet",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_internet_data_type",
+              "longType": "proto_enum_internet_data_type",
+              "fullType": "proto_config.proto_enum_internet_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "lorem",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_lorem_data_type",
+              "longType": "proto_enum_lorem_data_type",
+              "fullType": "proto_config.proto_enum_lorem_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_name_data_type",
+              "longType": "proto_enum_name_data_type",
+              "fullType": "proto_config.proto_enum_name_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "phone",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_phone_data_type",
+              "longType": "proto_enum_phone_data_type",
+              "fullType": "proto_config.proto_enum_phone_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "rant",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_rant_data_type",
+              "longType": "proto_enum_rant_data_type",
+              "fullType": "proto_config.proto_enum_rant_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "system",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_system_data_type",
+              "longType": "proto_enum_system_data_type",
+              "fullType": "proto_config.proto_enum_system_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "vehicle",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_vehicle_data_type",
+              "longType": "proto_enum_vehicle_data_type",
+              "fullType": "proto_config.proto_enum_vehicle_data_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "random",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_random_data_type",
+              "longType": "proto_enum_random_data_type",
+              "fullType": "proto_config.proto_enum_random_data_type",
               "ismap": false,
               "defaultValue": ""
             }

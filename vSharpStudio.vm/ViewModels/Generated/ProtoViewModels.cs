@@ -12127,6 +12127,535 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     }
     // Class.tt Line: 6
     //       IsWithParent: True 
+    //      IsDefaultBase: False 
+    // IsConfigObjectBase: False 
+    //      IsGenSettings: False 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: False 
+    public partial class PropertyDataGeneratorValidator : ValidatorBase<PropertyDataGenerator, PropertyDataGeneratorValidator> { } // Class.tt Line: 15
+    public partial class PropertyDataGenerator : BaseSettings<PropertyDataGenerator, PropertyDataGeneratorValidator>, IPropertyDataGenerator // Class.tt Line: 16
+    {
+        #region CTOR
+        public PropertyDataGenerator(ITreeConfigNode? parent) // Class.tt Line: 26
+            : base(parent, PropertyDataGeneratorValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        public static PropertyDataGenerator Clone(ITreeConfigNode? parent, IPropertyDataGenerator from, bool isDeep = true) // Clone.tt Line: 28
+        {
+            Debug.Assert(from != null);
+            PropertyDataGenerator vm = new PropertyDataGenerator(parent); // Clone.tt Line: 35
+            vm.IsNotifying = false; // Clone.tt Line: 39
+            vm.IsValidate = false;
+            vm.DataType = from.DataType; // Clone.tt Line: 67
+            vm.Address = from.Address; // Clone.tt Line: 67
+            vm.Commerce = from.Commerce; // Clone.tt Line: 67
+            vm.Company = from.Company; // Clone.tt Line: 67
+            vm.Date = from.Date; // Clone.tt Line: 67
+            vm.Database = from.Database; // Clone.tt Line: 67
+            vm.Finance = from.Finance; // Clone.tt Line: 67
+            vm.Hacker = from.Hacker; // Clone.tt Line: 67
+            vm.Image = from.Image; // Clone.tt Line: 67
+            vm.Internet = from.Internet; // Clone.tt Line: 67
+            vm.Lorem = from.Lorem; // Clone.tt Line: 67
+            vm.Name = from.Name; // Clone.tt Line: 67
+            vm.Phone = from.Phone; // Clone.tt Line: 67
+            vm.Rant = from.Rant; // Clone.tt Line: 67
+            vm.System = from.System; // Clone.tt Line: 67
+            vm.Vehicle = from.Vehicle; // Clone.tt Line: 67
+            vm.Random = from.Random; // Clone.tt Line: 67
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(PropertyDataGenerator to, IPropertyDataGenerator from, bool isDeep = true) // Clone.tt Line: 79
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to.DataType = from.DataType; // Clone.tt Line: 143
+            to.Address = from.Address; // Clone.tt Line: 143
+            to.Commerce = from.Commerce; // Clone.tt Line: 143
+            to.Company = from.Company; // Clone.tt Line: 143
+            to.Date = from.Date; // Clone.tt Line: 143
+            to.Database = from.Database; // Clone.tt Line: 143
+            to.Finance = from.Finance; // Clone.tt Line: 143
+            to.Hacker = from.Hacker; // Clone.tt Line: 143
+            to.Image = from.Image; // Clone.tt Line: 143
+            to.Internet = from.Internet; // Clone.tt Line: 143
+            to.Lorem = from.Lorem; // Clone.tt Line: 143
+            to.Name = from.Name; // Clone.tt Line: 143
+            to.Phone = from.Phone; // Clone.tt Line: 143
+            to.Rant = from.Rant; // Clone.tt Line: 143
+            to.System = from.System; // Clone.tt Line: 143
+            to.Vehicle = from.Vehicle; // Clone.tt Line: 143
+            to.Random = from.Random; // Clone.tt Line: 143
+        }
+        // Clone.tt Line: 149
+        #region IEditable
+        public override PropertyDataGenerator Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return PropertyDataGenerator.Clone(this.Parent, this); // Clone.tt Line: 157
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(PropertyDataGenerator from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            PropertyDataGenerator.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_property_data_generator' to 'PropertyDataGenerator'
+        public static PropertyDataGenerator ConvertToVM(Proto.Config.proto_property_data_generator m, PropertyDataGenerator vm) // Clone.tt Line: 173
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.DataType = (EnumPropertyDataType)m.DataType; // Clone.tt Line: 221
+            vm.Address = (EnumAddressDataType)m.Address; // Clone.tt Line: 221
+            vm.Commerce = (EnumCommerceDataType)m.Commerce; // Clone.tt Line: 221
+            vm.Company = (EnumCompanyDataType)m.Company; // Clone.tt Line: 221
+            vm.Date = (EnumDateDataType)m.Date; // Clone.tt Line: 221
+            vm.Database = (EnumDatabaseDataType)m.Database; // Clone.tt Line: 221
+            vm.Finance = (EnumFinanceDataType)m.Finance; // Clone.tt Line: 221
+            vm.Hacker = (EnumHackerDataType)m.Hacker; // Clone.tt Line: 221
+            vm.Image = (EnumImageDataType)m.Image; // Clone.tt Line: 221
+            vm.Internet = (EnumInternetDataType)m.Internet; // Clone.tt Line: 221
+            vm.Lorem = (EnumLoremDataType)m.Lorem; // Clone.tt Line: 221
+            vm.Name = (EnumNameDataType)m.Name; // Clone.tt Line: 221
+            vm.Phone = (EnumPhoneDataType)m.Phone; // Clone.tt Line: 221
+            vm.Rant = (EnumRantDataType)m.Rant; // Clone.tt Line: 221
+            vm.System = (EnumSystemDataType)m.System; // Clone.tt Line: 221
+            vm.Vehicle = (EnumVehicleDataType)m.Vehicle; // Clone.tt Line: 221
+            vm.Random = (EnumRandomDataType)m.Random; // Clone.tt Line: 221
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'PropertyDataGenerator' to 'proto_property_data_generator'
+        public static Proto.Config.proto_property_data_generator ConvertToProto(PropertyDataGenerator vm) // Clone.tt Line: 236
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_property_data_generator m = new Proto.Config.proto_property_data_generator(); // Clone.tt Line: 239
+            m.DataType = (Proto.Config.proto_enum_property_data_type)vm.DataType; // Clone.tt Line: 274
+            m.Address = (Proto.Config.proto_enum_address_data_type)vm.Address; // Clone.tt Line: 274
+            m.Commerce = (Proto.Config.proto_enum_commerce_data_type)vm.Commerce; // Clone.tt Line: 274
+            m.Company = (Proto.Config.proto_enum_company_data_type)vm.Company; // Clone.tt Line: 274
+            m.Date = (Proto.Config.proto_enum_date_data_type)vm.Date; // Clone.tt Line: 274
+            m.Database = (Proto.Config.proto_enum_database_data_type)vm.Database; // Clone.tt Line: 274
+            m.Finance = (Proto.Config.proto_enum_finance_data_type)vm.Finance; // Clone.tt Line: 274
+            m.Hacker = (Proto.Config.proto_enum_hacker_data_type)vm.Hacker; // Clone.tt Line: 274
+            m.Image = (Proto.Config.proto_enum_image_data_type)vm.Image; // Clone.tt Line: 274
+            m.Internet = (Proto.Config.proto_enum_internet_data_type)vm.Internet; // Clone.tt Line: 274
+            m.Lorem = (Proto.Config.proto_enum_lorem_data_type)vm.Lorem; // Clone.tt Line: 274
+            m.Name = (Proto.Config.proto_enum_name_data_type)vm.Name; // Clone.tt Line: 274
+            m.Phone = (Proto.Config.proto_enum_phone_data_type)vm.Phone; // Clone.tt Line: 274
+            m.Rant = (Proto.Config.proto_enum_rant_data_type)vm.Rant; // Clone.tt Line: 274
+            m.System = (Proto.Config.proto_enum_system_data_type)vm.System; // Clone.tt Line: 274
+            m.Vehicle = (Proto.Config.proto_enum_vehicle_data_type)vm.Vehicle; // Clone.tt Line: 274
+            m.Random = (Proto.Config.proto_enum_random_data_type)vm.Random; // Clone.tt Line: 274
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [PropertyOrderAttribute(3)]
+        [DisplayName("Group")]
+        [Description("Data generator type")]
+        public EnumPropertyDataType DataType // Property.tt Line: 55
+        { 
+            get { return this._DataType; }
+            set
+            {
+                if (this._DataType != value)
+                {
+                    this.OnDataTypeChanging(ref value);
+                    this._DataType = value;
+                    this.OnDataTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumPropertyDataType _DataType;
+        partial void OnDataTypeChanging(ref EnumPropertyDataType to); // Property.tt Line: 79
+        partial void OnDataTypeChanged();
+        
+        public EnumAddressDataType Address // Property.tt Line: 55
+        { 
+            get { return this._Address; }
+            set
+            {
+                if (this._Address != value)
+                {
+                    this.OnAddressChanging(ref value);
+                    this._Address = value;
+                    this.OnAddressChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumAddressDataType _Address;
+        partial void OnAddressChanging(ref EnumAddressDataType to); // Property.tt Line: 79
+        partial void OnAddressChanged();
+        
+        public EnumCommerceDataType Commerce // Property.tt Line: 55
+        { 
+            get { return this._Commerce; }
+            set
+            {
+                if (this._Commerce != value)
+                {
+                    this.OnCommerceChanging(ref value);
+                    this._Commerce = value;
+                    this.OnCommerceChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumCommerceDataType _Commerce;
+        partial void OnCommerceChanging(ref EnumCommerceDataType to); // Property.tt Line: 79
+        partial void OnCommerceChanged();
+        
+        public EnumCompanyDataType Company // Property.tt Line: 55
+        { 
+            get { return this._Company; }
+            set
+            {
+                if (this._Company != value)
+                {
+                    this.OnCompanyChanging(ref value);
+                    this._Company = value;
+                    this.OnCompanyChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumCompanyDataType _Company;
+        partial void OnCompanyChanging(ref EnumCompanyDataType to); // Property.tt Line: 79
+        partial void OnCompanyChanged();
+        
+        public EnumDateDataType Date // Property.tt Line: 55
+        { 
+            get { return this._Date; }
+            set
+            {
+                if (this._Date != value)
+                {
+                    this.OnDateChanging(ref value);
+                    this._Date = value;
+                    this.OnDateChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumDateDataType _Date;
+        partial void OnDateChanging(ref EnumDateDataType to); // Property.tt Line: 79
+        partial void OnDateChanged();
+        
+        public EnumDatabaseDataType Database // Property.tt Line: 55
+        { 
+            get { return this._Database; }
+            set
+            {
+                if (this._Database != value)
+                {
+                    this.OnDatabaseChanging(ref value);
+                    this._Database = value;
+                    this.OnDatabaseChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumDatabaseDataType _Database;
+        partial void OnDatabaseChanging(ref EnumDatabaseDataType to); // Property.tt Line: 79
+        partial void OnDatabaseChanged();
+        
+        public EnumFinanceDataType Finance // Property.tt Line: 55
+        { 
+            get { return this._Finance; }
+            set
+            {
+                if (this._Finance != value)
+                {
+                    this.OnFinanceChanging(ref value);
+                    this._Finance = value;
+                    this.OnFinanceChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumFinanceDataType _Finance;
+        partial void OnFinanceChanging(ref EnumFinanceDataType to); // Property.tt Line: 79
+        partial void OnFinanceChanged();
+        
+        public EnumHackerDataType Hacker // Property.tt Line: 55
+        { 
+            get { return this._Hacker; }
+            set
+            {
+                if (this._Hacker != value)
+                {
+                    this.OnHackerChanging(ref value);
+                    this._Hacker = value;
+                    this.OnHackerChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumHackerDataType _Hacker;
+        partial void OnHackerChanging(ref EnumHackerDataType to); // Property.tt Line: 79
+        partial void OnHackerChanged();
+        
+        public EnumImageDataType Image // Property.tt Line: 55
+        { 
+            get { return this._Image; }
+            set
+            {
+                if (this._Image != value)
+                {
+                    this.OnImageChanging(ref value);
+                    this._Image = value;
+                    this.OnImageChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumImageDataType _Image;
+        partial void OnImageChanging(ref EnumImageDataType to); // Property.tt Line: 79
+        partial void OnImageChanged();
+        
+        public EnumInternetDataType Internet // Property.tt Line: 55
+        { 
+            get { return this._Internet; }
+            set
+            {
+                if (this._Internet != value)
+                {
+                    this.OnInternetChanging(ref value);
+                    this._Internet = value;
+                    this.OnInternetChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumInternetDataType _Internet;
+        partial void OnInternetChanging(ref EnumInternetDataType to); // Property.tt Line: 79
+        partial void OnInternetChanged();
+        
+        public EnumLoremDataType Lorem // Property.tt Line: 55
+        { 
+            get { return this._Lorem; }
+            set
+            {
+                if (this._Lorem != value)
+                {
+                    this.OnLoremChanging(ref value);
+                    this._Lorem = value;
+                    this.OnLoremChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumLoremDataType _Lorem;
+        partial void OnLoremChanging(ref EnumLoremDataType to); // Property.tt Line: 79
+        partial void OnLoremChanged();
+        
+        public EnumNameDataType Name // Property.tt Line: 55
+        { 
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumNameDataType _Name;
+        partial void OnNameChanging(ref EnumNameDataType to); // Property.tt Line: 79
+        partial void OnNameChanged();
+        
+        public EnumPhoneDataType Phone // Property.tt Line: 55
+        { 
+            get { return this._Phone; }
+            set
+            {
+                if (this._Phone != value)
+                {
+                    this.OnPhoneChanging(ref value);
+                    this._Phone = value;
+                    this.OnPhoneChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumPhoneDataType _Phone;
+        partial void OnPhoneChanging(ref EnumPhoneDataType to); // Property.tt Line: 79
+        partial void OnPhoneChanged();
+        
+        public EnumRantDataType Rant // Property.tt Line: 55
+        { 
+            get { return this._Rant; }
+            set
+            {
+                if (this._Rant != value)
+                {
+                    this.OnRantChanging(ref value);
+                    this._Rant = value;
+                    this.OnRantChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumRantDataType _Rant;
+        partial void OnRantChanging(ref EnumRantDataType to); // Property.tt Line: 79
+        partial void OnRantChanged();
+        
+        public EnumSystemDataType System // Property.tt Line: 55
+        { 
+            get { return this._System; }
+            set
+            {
+                if (this._System != value)
+                {
+                    this.OnSystemChanging(ref value);
+                    this._System = value;
+                    this.OnSystemChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumSystemDataType _System;
+        partial void OnSystemChanging(ref EnumSystemDataType to); // Property.tt Line: 79
+        partial void OnSystemChanged();
+        
+        public EnumVehicleDataType Vehicle // Property.tt Line: 55
+        { 
+            get { return this._Vehicle; }
+            set
+            {
+                if (this._Vehicle != value)
+                {
+                    this.OnVehicleChanging(ref value);
+                    this._Vehicle = value;
+                    this.OnVehicleChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumVehicleDataType _Vehicle;
+        partial void OnVehicleChanging(ref EnumVehicleDataType to); // Property.tt Line: 79
+        partial void OnVehicleChanged();
+        
+        public EnumRandomDataType Random // Property.tt Line: 55
+        { 
+            get { return this._Random; }
+            set
+            {
+                if (this._Random != value)
+                {
+                    this.OnRandomChanging(ref value);
+                    this._Random = value;
+                    this.OnRandomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumRandomDataType _Random;
+        partial void OnRandomChanging(ref EnumRandomDataType to); // Property.tt Line: 79
+        partial void OnRandomChanged();
+    /*
+        [Browsable(false)]
+        public override bool IsChanged // Class.tt Line: 110
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
+        */
+        //partial void OnIsChangedChanged(); // Class.tt Line: 132
+        #endregion Properties
+    }
+    // Class.tt Line: 6
+    //       IsWithParent: True 
     //      IsDefaultBase: True 
     // IsConfigObjectBase: True 
     //      IsGenSettings: True 
@@ -12145,6 +12674,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsValidate = false;
             this.OnCreating();
             this._DataType = new DataType(this); // Class.tt Line: 40
+            this._DataGenerator = new PropertyDataGenerator(this); // Class.tt Line: 40
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -12189,6 +12719,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.TabName = from.TabName; // Clone.tt Line: 67
             vm.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 67
             vm.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 67
+            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=False
+                vm.DataGenerator = vSharpStudio.vm.ViewModels.PropertyDataGenerator.Clone(vm, from.DataGenerator, isDeep);
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
             vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
             vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
@@ -12227,6 +12759,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.TabName = from.TabName; // Clone.tt Line: 143
             to.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 143
             to.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 143
+            if (isDeep) // Clone.tt Line: 140
+                vSharpStudio.vm.ViewModels.PropertyDataGenerator.Update((PropertyDataGenerator)to.DataGenerator, from.DataGenerator, isDeep);
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
             to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
             to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
@@ -12318,6 +12852,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.TabName = m.TabName; // Clone.tt Line: 221
             vm.IsStartNewTabControl = m.IsStartNewTabControl; // Clone.tt Line: 221
             vm.IsStopTabControl = m.IsStopTabControl; // Clone.tt Line: 221
+            if (vm.DataGenerator == null) // Clone.tt Line: 213
+                vm.DataGenerator = new PropertyDataGenerator(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.PropertyDataGenerator.ConvertToVM(m.DataGenerator, (PropertyDataGenerator)vm.DataGenerator); // Clone.tt Line: 219
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
             vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
             vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
@@ -12360,6 +12897,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.TabName = vm.TabName; // Clone.tt Line: 276
             m.IsStartNewTabControl = vm.IsStartNewTabControl; // Clone.tt Line: 276
             m.IsStopTabControl = vm.IsStopTabControl; // Clone.tt Line: 276
+            m.DataGenerator = vSharpStudio.vm.ViewModels.PropertyDataGenerator.ConvertToProto((PropertyDataGenerator)vm.DataGenerator); // Clone.tt Line: 270
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
@@ -12378,6 +12916,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             visitor.Visit(this);
             this.DataType.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.DataGenerator.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
@@ -12851,6 +13391,32 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsStopTabControl;
         partial void OnIsStopTabControlChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsStopTabControlChanged();
+        
+        [PropertyOrderAttribute(31)]
+        [ExpandableObjectAttribute()]
+        [DisplayName("Data Generator")]
+        [Browsable(false)]
+        public PropertyDataGenerator DataGenerator // Property.tt Line: 55
+        { 
+            get { return this._DataGenerator; }
+            set
+            {
+                if (this._DataGenerator != value)
+                {
+                    this.OnDataGeneratorChanging(ref value);
+                    this._DataGenerator = value;
+                    this.OnDataGeneratorChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private PropertyDataGenerator _DataGenerator;
+        IPropertyDataGenerator IProperty.DataGenerator { get { return (this as Property).DataGenerator; } } // Property.tt Line: 77
+        partial void OnDataGeneratorChanging(ref PropertyDataGenerator to); // Property.tt Line: 79
+        partial void OnDataGeneratorChanged();
+        //IPropertyDataGenerator IProperty.DataGenerator { get { return this._DataGenerator; } }
         
         [Category("Auto Layout")]
         [DisplayName("Sortable")]
@@ -29409,6 +29975,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_group_list_details p);
         void Visit(Proto.Config.proto_detail p);
         void Visit(Proto.Config.proto_group_list_properties p);
+        void Visit(Proto.Config.proto_property_data_generator p);
         void Visit(Proto.Config.proto_property p);
         void Visit(Proto.Config.proto_group_constant_groups p);
         void Visit(Proto.Config.proto_group_list_constants p);
@@ -29694,10 +30261,19 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
+        protected override void OnVisit(PropertyDataGenerator p) // ValidationVisitor.tt Line: 15
+        {
+            this.OnVisit((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisitEnd(PropertyDataGenerator p) // ValidationVisitor.tt Line: 47
+        {
+            this.OnVisitEnd((IValidatableWithSeverity)p);
+        }
         protected override void OnVisit(Property p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
             ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 30
+            ValidateSubAndCollectErrors(p, p.DataGenerator); // ValidationVisitor.tt Line: 30
         }
         protected override void OnVisitEnd(Property p) // ValidationVisitor.tt Line: 47
         {
@@ -30262,6 +30838,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(GroupListProperties p) { }
         protected virtual void OnVisitEnd(GroupListProperties p) { }
+        public void Visit(PropertyDataGenerator p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(PropertyDataGenerator p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(PropertyDataGenerator p) { }
+        protected virtual void OnVisitEnd(PropertyDataGenerator p) { }
         public void Visit(Property p)
         {
             this.OnVisit(p);

@@ -11,8 +11,8 @@ namespace vSharpStudio.common
     {
         IGroupListDocuments ParentGroupListDocumentsI { get; }
         IReadOnlyList<IProperty> GetAllProperties(bool isSupportVersion);
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion);
-        IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isSupportVersion);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false);
+        IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
         IReadOnlyList<IProperty> GetIncludedSharedProperties(string guidAppPrjGen);
         void GetSpecialProperties(List<IProperty> res, bool isSupportVersion);

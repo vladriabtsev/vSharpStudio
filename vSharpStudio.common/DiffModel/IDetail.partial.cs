@@ -9,7 +9,7 @@ namespace vSharpStudio.common
 {
     public partial interface IDetail : ITreeConfigNodeSortable, IGetNodeSetting, IDbTable, ILayoutParameters
     {
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false);
         //IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
         void GetSpecialProperties(List<IProperty> res, bool isSupportVersion);

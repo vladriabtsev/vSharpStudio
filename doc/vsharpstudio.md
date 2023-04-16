@@ -61,6 +61,7 @@
     - [proto_plugin_generator_settings](#proto_config.proto_plugin_generator_settings)
     - [proto_plugin_generator_solution_settings](#proto_config.proto_plugin_generator_solution_settings)
     - [proto_property](#proto_config.proto_property)
+    - [proto_property_data_generator](#proto_config.proto_property_data_generator)
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
     - [proto_settings_config](#proto_config.proto_settings_config)
@@ -68,15 +69,32 @@
     - [proto_user_settings_opened_config](#proto_config.proto_user_settings_opened_config)
   
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
+    - [proto_enum_address_data_type](#proto_config.proto_enum_address_data_type)
     - [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope)
     - [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon)
     - [proto_enum_code_type](#proto_config.proto_enum_code_type)
+    - [proto_enum_commerce_data_type](#proto_config.proto_enum_commerce_data_type)
+    - [proto_enum_company_data_type](#proto_config.proto_enum_company_data_type)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
+    - [proto_enum_database_data_type](#proto_config.proto_enum_database_data_type)
+    - [proto_enum_date_data_type](#proto_config.proto_enum_date_data_type)
     - [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope)
+    - [proto_enum_finance_data_type](#proto_config.proto_enum_finance_data_type)
+    - [proto_enum_hacker_data_type](#proto_config.proto_enum_hacker_data_type)
     - [proto_enum_hidden_type](#proto_config.proto_enum_hidden_type)
+    - [proto_enum_image_data_type](#proto_config.proto_enum_image_data_type)
+    - [proto_enum_internet_data_type](#proto_config.proto_enum_internet_data_type)
+    - [proto_enum_lorem_data_type](#proto_config.proto_enum_lorem_data_type)
+    - [proto_enum_name_data_type](#proto_config.proto_enum_name_data_type)
+    - [proto_enum_phone_data_type](#proto_config.proto_enum_phone_data_type)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
+    - [proto_enum_property_data_type](#proto_config.proto_enum_property_data_type)
+    - [proto_enum_random_data_type](#proto_config.proto_enum_random_data_type)
+    - [proto_enum_rant_data_type](#proto_config.proto_enum_rant_data_type)
+    - [proto_enum_system_data_type](#proto_config.proto_enum_system_data_type)
     - [proto_enum_time_accuracy_type](#proto_config.proto_enum_time_accuracy_type)
     - [proto_enum_use_type](#proto_config.proto_enum_use_type)
+    - [proto_enum_vehicle_data_type](#proto_config.proto_enum_vehicle_data_type)
     - [proto_enum_version_field_type](#proto_config.proto_enum_version_field_type)
     - [proto_form_orientation](#proto_config.proto_form_orientation)
     - [proto_form_type](#proto_config.proto_form_type)
@@ -1581,11 +1599,43 @@ Configuration model
 | tab_name | [string](#string) |  | @attr [PropertyOrderAttribute(26)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Tab Name&#34;)] @attr [Description(&#34;If not empty, then start new tab in tab control. If empty, then continue adding fields in current control&#34;)] |
 | is_start_new_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(25)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(27)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
+| data_generator | [proto_property_data_generator](#proto_config.proto_property_data_generator) |  | @attr [PropertyOrderAttribute(31)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Data Generator&#34;)] @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | position | [uint32](#uint32) |  | Protobuf field position Reserved positions: 1 - primary key @attr [ReadOnly(true)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_property_data_generator"></a>
+
+### proto_property_data_generator
+@base BaseSettings
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| data_type | [proto_enum_property_data_type](#proto_config.proto_enum_property_data_type) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Group&#34;)] @attr [Description(&#34;Data generator type&#34;)] |
+| address | [proto_enum_address_data_type](#proto_config.proto_enum_address_data_type) |  |  |
+| commerce | [proto_enum_commerce_data_type](#proto_config.proto_enum_commerce_data_type) |  |  |
+| company | [proto_enum_company_data_type](#proto_config.proto_enum_company_data_type) |  |  |
+| date | [proto_enum_date_data_type](#proto_config.proto_enum_date_data_type) |  |  |
+| database | [proto_enum_database_data_type](#proto_config.proto_enum_database_data_type) |  |  |
+| finance | [proto_enum_finance_data_type](#proto_config.proto_enum_finance_data_type) |  |  |
+| hacker | [proto_enum_hacker_data_type](#proto_config.proto_enum_hacker_data_type) |  |  |
+| image | [proto_enum_image_data_type](#proto_config.proto_enum_image_data_type) |  |  |
+| internet | [proto_enum_internet_data_type](#proto_config.proto_enum_internet_data_type) |  |  |
+| lorem | [proto_enum_lorem_data_type](#proto_config.proto_enum_lorem_data_type) |  |  |
+| name | [proto_enum_name_data_type](#proto_config.proto_enum_name_data_type) |  |  |
+| phone | [proto_enum_phone_data_type](#proto_config.proto_enum_phone_data_type) |  |  |
+| rant | [proto_enum_rant_data_type](#proto_config.proto_enum_rant_data_type) |  |  |
+| system | [proto_enum_system_data_type](#proto_config.proto_enum_system_data_type) |  |  |
+| vehicle | [proto_enum_vehicle_data_type](#proto_config.proto_enum_vehicle_data_type) |  |  |
+| random | [proto_enum_random_data_type](#proto_config.proto_enum_random_data_type) |  |  |
 
 
 
@@ -1706,6 +1756,37 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 
 
+<a name="proto_config.proto_enum_address_data_type"></a>
+
+### proto_enum_address_data_type
+https://github.com/bchavez/Bogus
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| A_NONE | 0 |  |
+| A_COUNTRY | 1 |  |
+| A_COUNTRY_CODE | 2 |  |
+| A_COUNTY | 3 |  |
+| A_STATE | 4 |  |
+| A_STATE_ABBR | 5 |  |
+| A_ZIP_CODE | 6 |  |
+| A_CITY_PREFIX | 7 |  |
+| A_CITY | 8 |  |
+| A_CITY_SUFFIX | 9 |  |
+| A_STREET_ADDRESS | 10 |  |
+| A_STREET_NAME | 11 |  |
+| A_STREET_SUFFIX | 12 |  |
+| A_BUILDING_NUMBER | 13 |  |
+| A_SECONDARY_ADDRESS | 14 |  |
+| A_FULL_ADDRESS | 15 |  |
+| A_LATITUDE | 16 |  |
+| A_LONGITUDE | 17 |  |
+| A_DIRECTION | 18 |  |
+| A_CARDINAL_DIRECTION | 19 |  |
+| A_ORDINAL_DIRECTION | 20 |  |
+
+
+
 <a name="proto_config.proto_enum_catalog_code_unique_scope"></a>
 
 ### proto_enum_catalog_code_unique_scope
@@ -1747,6 +1828,42 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 
 
+<a name="proto_config.proto_enum_commerce_data_type"></a>
+
+### proto_enum_commerce_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| C_NONE | 0 |  |
+| C_DEPARTMENT | 1 |  |
+| C_CATEGORIES | 2 |  |
+| C_PRODUCT_NAME | 3 |  |
+| C_PRODUCT | 4 |  |
+| C_PRODUCT_ADJECTIVE | 5 |  |
+| C_PRODUCT_MATERIAL | 6 |  |
+| C_COLOR | 7 |  |
+| C_PRICE | 8 |  |
+| C_EAN8 | 9 |  |
+| C_EAN13 | 10 |  |
+
+
+
+<a name="proto_config.proto_enum_company_data_type"></a>
+
+### proto_enum_company_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| P_NONE | 0 |  |
+| P_COMPANY_NAME | 1 |  |
+| P_COMPANY_SUFFIX | 2 |  |
+| P_CATCH_PHRASE | 3 |  |
+| P_BS | 4 |  |
+
+
+
 <a name="proto_config.proto_enum_data_type"></a>
 
 ### proto_enum_data_type
@@ -1771,6 +1888,45 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 
 
+<a name="proto_config.proto_enum_database_data_type"></a>
+
+### proto_enum_database_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DB_NONE | 0 |  |
+| DB_COLUMN | 1 |  |
+| DB_TYPE | 2 |  |
+| DB_COLLATION | 3 |  |
+| DB_ENGINE | 4 |  |
+
+
+
+<a name="proto_config.proto_enum_date_data_type"></a>
+
+### proto_enum_date_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| D_NONE | 0 |  |
+| D_PAST_OFFSET | 1 |  |
+| D_RECENT_OFFSET | 2 |  |
+| D_BETWEEN_OFFSET | 3 |  |
+| D_SOON_OFFSET | 4 |  |
+| D_FUTURE_OFFSET | 5 |  |
+| D_PAST | 6 |  |
+| D_RECENT | 7 |  |
+| D_BETWEEN | 8 |  |
+| D_SOON | 9 |  |
+| D_FUTURE | 10 |  |
+| D_TIMESPAN | 11 |  |
+| D_MONTH | 12 |  |
+| D_WEEKDAY | 13 |  |
+
+
+
 <a name="proto_config.proto_enum_document_code_unique_scope"></a>
 
 ### proto_enum_document_code_unique_scope
@@ -1782,6 +1938,45 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | Year | 1 |  |
 | Quater | 2 |  |
 | Month | 3 |  |
+
+
+
+<a name="proto_config.proto_enum_finance_data_type"></a>
+
+### proto_enum_finance_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| F_NONE | 0 |  |
+| F_ACCOUNT | 1 |  |
+| F_ACCOUNT_NAME | 2 |  |
+| F_TRANSACTION_TYPE | 3 |  |
+| F_CURRENCY | 4 |  |
+| F_CREDIT_CARD_NUMBER | 5 |  |
+| F_CREDIT_CARD_CVV | 6 |  |
+| F_BITCOIN_ADDRESS | 7 |  |
+| F_ETHEREUM_ADDRESS | 8 |  |
+| F_ROUTING_NUMBER | 9 |  |
+| F_BIC | 10 |  |
+| F_IBAN | 11 |  |
+
+
+
+<a name="proto_config.proto_enum_hacker_data_type"></a>
+
+### proto_enum_hacker_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| H_NONE | 0 |  |
+| H_ABBREVIATION | 1 |  |
+| H_ADJECTIVE | 2 |  |
+| H_NOUN | 3 |  |
+| H_VERB | 4 |  |
+| H_INGVERB | 5 |  |
+| H_PHRASE | 6 |  |
 
 
 
@@ -1801,6 +1996,123 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 
 
+<a name="proto_config.proto_enum_image_data_type"></a>
+
+### proto_enum_image_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| I_NONE | 0 |  |
+| I_DATAURI | 1 |  |
+| I_PICSUM | 2 |  |
+| I_PLACEHOLDER | 3 |  |
+| I_LOREMFLICKR | 4 |  |
+| I_LOREMPIXEL_ABSTRACT | 5 |  |
+| I_LOREMPIXEL_ANIMALS | 6 |  |
+| I_LOREMPIXEL_BUSINESS | 7 |  |
+| I_LOREMPIXEL_CATS | 8 |  |
+| I_LOREMPIXEL_CITY | 9 |  |
+| I_LOREMPIXEL_FOOD | 10 |  |
+| I_LOREMPIXEL_NIGHTLIFE | 11 |  |
+| I_LOREMPIXEL_FASHION | 12 |  |
+| I_LOREMPIXEL_PEOPLE | 13 |  |
+| I_LOREMPIXEL_NATURE | 14 |  |
+| I_LOREMPIXEL_SPORTS | 15 |  |
+| I_LOREMPIXEL_TECHNICS | 16 |  |
+| I_LOREMPIXEL_TRANSPORT | 17 |  |
+
+
+
+<a name="proto_config.proto_enum_internet_data_type"></a>
+
+### proto_enum_internet_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| N_NONE | 0 |  |
+| N_AVATAR | 1 |  |
+| N_EMAIL | 2 |  |
+| N_EMAIL_EXAMPLE | 3 |  |
+| N_USER_NAME | 4 |  |
+| N_USER_NAME_UNICODE | 5 |  |
+| N_DOMAIN_NAME | 6 |  |
+| N_DOMAIN_WORD | 7 |  |
+| N_DOMAIN_SUFFIX | 8 |  |
+| N_IP | 9 |  |
+| N_PORT | 10 |  |
+| N_IP_ADDRESS | 11 |  |
+| N_IP_END_POINT | 12 |  |
+| N_IPV6 | 13 |  |
+| N_IPV6_ADDRESS | 14 |  |
+| N_IPV6_END_POINT | 15 |  |
+| N_USER_AGENT | 16 |  |
+| N_MAC | 17 |  |
+| N_PASSWORD | 18 |  |
+| N_COLOR | 19 |  |
+| N_PROTOCOL | 20 |  |
+| N_URL | 21 |  |
+| N_URL_WITH_PATH | 22 |  |
+| N_URL_ROOTED_PATH | 23 |  |
+
+
+
+<a name="proto_config.proto_enum_lorem_data_type"></a>
+
+### proto_enum_lorem_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| L_NONE | 0 |  |
+| L_WORD | 1 |  |
+| L_WORDS | 2 |  |
+| L_LETTER | 3 |  |
+| L_SENTENCE | 4 |  |
+| L_SENTENCES | 5 |  |
+| L_PARAGRAPH | 6 |  |
+| L_PARAGRAPHS | 7 |  |
+| L_TEXT | 8 |  |
+| L_LINES | 9 |  |
+| L_SLUG | 10 |  |
+
+
+
+<a name="proto_config.proto_enum_name_data_type"></a>
+
+### proto_enum_name_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| M_NONE | 0 |  |
+| M_FIRST_NAME | 1 |  |
+| M_LAST_NAME | 2 |  |
+| M_FULL_NAME | 3 |  |
+| M_PREFIX | 4 |  |
+| M_SUFFIX | 5 |  |
+| M_FIND_NAME | 6 |  |
+| M_JOB_TITLE | 7 |  |
+| M_JOB_DESCRIPTOR | 8 |  |
+| M_JOB_AREA | 9 |  |
+| M_JOB_TYPE | 10 |  |
+
+
+
+<a name="proto_config.proto_enum_phone_data_type"></a>
+
+### proto_enum_phone_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PH_NONE | 0 |  |
+| PH_PHONE_NUMBER | 1 |  |
+| PH_PHONE_NUMBER_FORMAT | 2 |  |
+
+
+
 <a name="proto_config.proto_enum_primary_key_type"></a>
 
 ### proto_enum_primary_key_type
@@ -1810,6 +2122,89 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | ---- | ------ | ----------- |
 | INT | 0 |  |
 | LONG | 1 |  |
+
+
+
+<a name="proto_config.proto_enum_property_data_type"></a>
+
+### proto_enum_property_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PT_NONE | 0 |  |
+| PT_ADDRESS | 1 |  |
+| PT_COMMERCE | 2 |  |
+| PT_COMPANY | 3 |  |
+| PT_DATE | 4 |  |
+| PT_DATABASE | 5 |  |
+| PT_FINANCE | 6 |  |
+| PT_HACKER | 7 |  |
+| PT_IMAGE | 8 |  |
+| PT_INTERNET | 9 |  |
+| PT_LOREM | 10 |  |
+| PT_NAME | 11 |  |
+| PT_PHONE | 12 |  |
+| PT_RANT | 13 |  |
+| PT_SYSTEM | 14 |  |
+| PT_VEHICLE | 15 |  |
+| PT_RANDOM | 16 |  |
+
+
+
+<a name="proto_config.proto_enum_random_data_type"></a>
+
+### proto_enum_random_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RN_NONE | 0 |  |
+| RN_NUMBER | 1 |  |
+| RN_STRING | 2 |  |
+| RN_STRING2 | 3 |  |
+| RN_HASH | 4 |  |
+| RN_ALPHANUMERIC | 5 |  |
+| RN_HEXADECIMAL | 6 |  |
+
+
+
+<a name="proto_config.proto_enum_rant_data_type"></a>
+
+### proto_enum_rant_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| R_NONE | 0 |  |
+| R_REVIEW | 1 |  |
+| R_REVIEWS | 2 |  |
+
+
+
+<a name="proto_config.proto_enum_system_data_type"></a>
+
+### proto_enum_system_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| S_NONE | 0 |  |
+| S_FILE_NAME | 1 |  |
+| S_DIRECTORY_PATH | 2 |  |
+| S_FILE_PATH | 3 |  |
+| S_COMMON_FILE_NAME | 4 |  |
+| S_MIME_TYPE | 5 |  |
+| S_COMMON_FILE_TYPE | 6 |  |
+| S_COMMON_FILE_EXT | 7 |  |
+| S_FILE_TYPE | 8 |  |
+| S_FILE_EXT | 9 |  |
+| S_SEMVER | 10 |  |
+| S_VERSION | 11 |  |
+| S_EXCEPTION | 12 |  |
+| S_ANDROID_ID | 13 |  |
+| S_APPLE_PUSH_TOKEN | 14 |  |
+| S_BLACKBERRY_PIN | 15 |  |
 
 
 
@@ -1838,6 +2233,22 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 | Default | 0 |  |
 | Yes | 1 |  |
 | No | 2 |  |
+
+
+
+<a name="proto_config.proto_enum_vehicle_data_type"></a>
+
+### proto_enum_vehicle_data_type
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| V_NONE | 0 |  |
+| V_VIN | 1 |  |
+| V_MANUFACTURER | 2 |  |
+| V_MODEL | 3 |  |
+| V_TYPE | 4 |  |
+| V_FUEL | 5 |  |
 
 
 

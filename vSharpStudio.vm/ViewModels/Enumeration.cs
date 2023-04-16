@@ -105,6 +105,31 @@ namespace vSharpStudio.vm.ViewModels
             // }
             return res;
         }
+        public string GetClrValueType()
+        {
+            string res = "";
+            if (this.DataTypeEnum == EnumEnumerationType.BYTE_VALUE)
+            {
+                res = "byte";
+            }
+            else if (this.DataTypeEnum == EnumEnumerationType.INTEGER_VALUE)
+            {
+                res = "int";
+            }
+            else if (this.DataTypeEnum == EnumEnumerationType.SHORT_VALUE)
+            {
+                res = "short";
+            }
+            else if (this.DataTypeEnum == EnumEnumerationType.STRING_VALUE)
+            {
+                res = "string";
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+            return res;
+        }
         public string GetClrBase()
         {
             string res = "";

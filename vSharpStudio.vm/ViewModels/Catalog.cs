@@ -440,10 +440,11 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst.ToArray();
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
-            this.GetSpecialProperties(res, isSupportVersion);
+            if (!isExcludeSpecial)
+                this.GetSpecialProperties(res, isSupportVersion);
             var model = this.ParentGroupListCatalogs.ParentModel;
             this.GetCodeProperty(res);
             this.GetNameProperty(res);
@@ -457,10 +458,11 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion)
+        public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
-            this.Folder.GetSpecialProperties(res, isSupportVersion);
+            if (!isExcludeSpecial)
+                this.Folder.GetSpecialProperties(res, isSupportVersion);
             this.GetCodeProperty(res);
             this.GetNameProperty(res);
             this.GetDescriptionProperty(res);

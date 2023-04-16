@@ -11,6 +11,7 @@ namespace vSharpStudio.common
     {
         IGroupListEnumerations ParentGroupListEnumerationsI { get; }
         string GetClrBase();
+        string GetClrValueType();
         string DefaultValue { get; }
     }
 }

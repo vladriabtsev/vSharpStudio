@@ -220,14 +220,15 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         /// <param name="guidAppPrjGen"></param>
         /// <returns></returns>
-        public IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isSupportVersion)
+        public IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
             var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
             //var cfg = this.GetConfig();
             //var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             //res.Add(prp);
-            GetSpecialProperties(res, isSupportVersion);
+            if (!isExcludeSpecial)
+                GetSpecialProperties(res, isSupportVersion);
             foreach (var t in grd.GroupSharedProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -245,10 +246,11 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, isSupportVersion);
+            if (!isExcludeSpecial)
+                GetSpecialProperties(res, isSupportVersion);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))

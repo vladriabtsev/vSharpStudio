@@ -42,6 +42,248 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         MS = 3,
         MAX = 5,
     }
+    public enum EnumPropertyDataType // ModelInterfaces.tt Line: 15
+    {
+        PT_NONE = 0,
+        PT_ADDRESS = 1,
+        PT_COMMERCE = 2,
+        PT_COMPANY = 3,
+        PT_DATE = 4,
+        PT_DATABASE = 5,
+        PT_FINANCE = 6,
+        PT_HACKER = 7,
+        PT_IMAGE = 8,
+        PT_INTERNET = 9,
+        PT_LOREM = 10,
+        PT_NAME = 11,
+        PT_PHONE = 12,
+        PT_RANT = 13,
+        PT_SYSTEM = 14,
+        PT_VEHICLE = 15,
+        PT_RANDOM = 16,
+    }
+    public enum EnumAddressDataType // ModelInterfaces.tt Line: 15
+    {
+        A_NONE = 0,
+        A_COUNTRY = 1,
+        A_COUNTRY_CODE = 2,
+        A_COUNTY = 3,
+        A_STATE = 4,
+        A_STATE_ABBR = 5,
+        A_ZIP_CODE = 6,
+        A_CITY_PREFIX = 7,
+        A_CITY = 8,
+        A_CITY_SUFFIX = 9,
+        A_STREET_ADDRESS = 10,
+        A_STREET_NAME = 11,
+        A_STREET_SUFFIX = 12,
+        A_BUILDING_NUMBER = 13,
+        A_SECONDARY_ADDRESS = 14,
+        A_FULL_ADDRESS = 15,
+        A_LATITUDE = 16,
+        A_LONGITUDE = 17,
+        A_DIRECTION = 18,
+        A_CARDINAL_DIRECTION = 19,
+        A_ORDINAL_DIRECTION = 20,
+    }
+    public enum EnumCommerceDataType // ModelInterfaces.tt Line: 15
+    {
+        C_NONE = 0,
+        C_DEPARTMENT = 1,
+        C_CATEGORIES = 2,
+        C_PRODUCT_NAME = 3,
+        C_PRODUCT = 4,
+        C_PRODUCT_ADJECTIVE = 5,
+        C_PRODUCT_MATERIAL = 6,
+        C_COLOR = 7,
+        C_PRICE = 8,
+        C_EAN8 = 9,
+        C_EAN13 = 10,
+    }
+    public enum EnumCompanyDataType // ModelInterfaces.tt Line: 15
+    {
+        P_NONE = 0,
+        P_COMPANY_NAME = 1,
+        P_COMPANY_SUFFIX = 2,
+        P_CATCH_PHRASE = 3,
+        P_BS = 4,
+    }
+    public enum EnumDateDataType // ModelInterfaces.tt Line: 15
+    {
+        D_NONE = 0,
+        D_PAST_OFFSET = 1,
+        D_RECENT_OFFSET = 2,
+        D_BETWEEN_OFFSET = 3,
+        D_SOON_OFFSET = 4,
+        D_FUTURE_OFFSET = 5,
+        D_PAST = 6,
+        D_RECENT = 7,
+        D_BETWEEN = 8,
+        D_SOON = 9,
+        D_FUTURE = 10,
+        D_TIMESPAN = 11,
+        D_MONTH = 12,
+        D_WEEKDAY = 13,
+    }
+    public enum EnumDatabaseDataType // ModelInterfaces.tt Line: 15
+    {
+        DB_NONE = 0,
+        DB_COLUMN = 1,
+        DB_TYPE = 2,
+        DB_COLLATION = 3,
+        DB_ENGINE = 4,
+    }
+    public enum EnumFinanceDataType // ModelInterfaces.tt Line: 15
+    {
+        F_NONE = 0,
+        F_ACCOUNT = 1,
+        F_ACCOUNT_NAME = 2,
+        F_TRANSACTION_TYPE = 3,
+        F_CURRENCY = 4,
+        F_CREDIT_CARD_NUMBER = 5,
+        F_CREDIT_CARD_CVV = 6,
+        F_BITCOIN_ADDRESS = 7,
+        F_ETHEREUM_ADDRESS = 8,
+        F_ROUTING_NUMBER = 9,
+        F_BIC = 10,
+        F_IBAN = 11,
+    }
+    public enum EnumHackerDataType // ModelInterfaces.tt Line: 15
+    {
+        H_NONE = 0,
+        H_ABBREVIATION = 1,
+        H_ADJECTIVE = 2,
+        H_NOUN = 3,
+        H_VERB = 4,
+        H_INGVERB = 5,
+        H_PHRASE = 6,
+    }
+    public enum EnumImageDataType // ModelInterfaces.tt Line: 15
+    {
+        I_NONE = 0,
+        I_DATAURI = 1,
+        I_PICSUM = 2,
+        I_PLACEHOLDER = 3,
+        I_LOREMFLICKR = 4,
+        I_LOREMPIXEL_ABSTRACT = 5,
+        I_LOREMPIXEL_ANIMALS = 6,
+        I_LOREMPIXEL_BUSINESS = 7,
+        I_LOREMPIXEL_CATS = 8,
+        I_LOREMPIXEL_CITY = 9,
+        I_LOREMPIXEL_FOOD = 10,
+        I_LOREMPIXEL_NIGHTLIFE = 11,
+        I_LOREMPIXEL_FASHION = 12,
+        I_LOREMPIXEL_PEOPLE = 13,
+        I_LOREMPIXEL_NATURE = 14,
+        I_LOREMPIXEL_SPORTS = 15,
+        I_LOREMPIXEL_TECHNICS = 16,
+        I_LOREMPIXEL_TRANSPORT = 17,
+    }
+    public enum EnumInternetDataType // ModelInterfaces.tt Line: 15
+    {
+        N_NONE = 0,
+        N_AVATAR = 1,
+        N_EMAIL = 2,
+        N_EMAIL_EXAMPLE = 3,
+        N_USER_NAME = 4,
+        N_USER_NAME_UNICODE = 5,
+        N_DOMAIN_NAME = 6,
+        N_DOMAIN_WORD = 7,
+        N_DOMAIN_SUFFIX = 8,
+        N_IP = 9,
+        N_PORT = 10,
+        N_IP_ADDRESS = 11,
+        N_IP_END_POINT = 12,
+        N_IPV6 = 13,
+        N_IPV6_ADDRESS = 14,
+        N_IPV6_END_POINT = 15,
+        N_USER_AGENT = 16,
+        N_MAC = 17,
+        N_PASSWORD = 18,
+        N_COLOR = 19,
+        N_PROTOCOL = 20,
+        N_URL = 21,
+        N_URL_WITH_PATH = 22,
+        N_URL_ROOTED_PATH = 23,
+    }
+    public enum EnumLoremDataType // ModelInterfaces.tt Line: 15
+    {
+        L_NONE = 0,
+        L_WORD = 1,
+        L_WORDS = 2,
+        L_LETTER = 3,
+        L_SENTENCE = 4,
+        L_SENTENCES = 5,
+        L_PARAGRAPH = 6,
+        L_PARAGRAPHS = 7,
+        L_TEXT = 8,
+        L_LINES = 9,
+        L_SLUG = 10,
+    }
+    public enum EnumNameDataType // ModelInterfaces.tt Line: 15
+    {
+        M_NONE = 0,
+        M_FIRST_NAME = 1,
+        M_LAST_NAME = 2,
+        M_FULL_NAME = 3,
+        M_PREFIX = 4,
+        M_SUFFIX = 5,
+        M_FIND_NAME = 6,
+        M_JOB_TITLE = 7,
+        M_JOB_DESCRIPTOR = 8,
+        M_JOB_AREA = 9,
+        M_JOB_TYPE = 10,
+    }
+    public enum EnumPhoneDataType // ModelInterfaces.tt Line: 15
+    {
+        PH_NONE = 0,
+        PH_PHONE_NUMBER = 1,
+        PH_PHONE_NUMBER_FORMAT = 2,
+    }
+    public enum EnumRantDataType // ModelInterfaces.tt Line: 15
+    {
+        R_NONE = 0,
+        R_REVIEW = 1,
+        R_REVIEWS = 2,
+    }
+    public enum EnumSystemDataType // ModelInterfaces.tt Line: 15
+    {
+        S_NONE = 0,
+        S_FILE_NAME = 1,
+        S_DIRECTORY_PATH = 2,
+        S_FILE_PATH = 3,
+        S_COMMON_FILE_NAME = 4,
+        S_MIME_TYPE = 5,
+        S_COMMON_FILE_TYPE = 6,
+        S_COMMON_FILE_EXT = 7,
+        S_FILE_TYPE = 8,
+        S_FILE_EXT = 9,
+        S_SEMVER = 10,
+        S_VERSION = 11,
+        S_EXCEPTION = 12,
+        S_ANDROID_ID = 13,
+        S_APPLE_PUSH_TOKEN = 14,
+        S_BLACKBERRY_PIN = 15,
+    }
+    public enum EnumVehicleDataType // ModelInterfaces.tt Line: 15
+    {
+        V_NONE = 0,
+        V_VIN = 1,
+        V_MANUFACTURER = 2,
+        V_MODEL = 3,
+        V_TYPE = 4,
+        V_FUEL = 5,
+    }
+    public enum EnumRandomDataType // ModelInterfaces.tt Line: 15
+    {
+        RN_NONE = 0,
+        RN_NUMBER = 1,
+        RN_STRING = 2,
+        RN_STRING2 = 3,
+        RN_HASH = 4,
+        RN_ALPHANUMERIC = 5,
+        RN_HEXADECIMAL = 6,
+    }
     public enum EnumEnumerationType // ModelInterfaces.tt Line: 15
     {
         INTEGER_VALUE = 0,
@@ -570,6 +812,27 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
+    public partial interface IPropertyDataGenerator // ModelInterfaces.tt Line: 29
+    {
+    	EnumPropertyDataType DataType { get; } // ModelInterfaces.tt Line: 51
+    	EnumAddressDataType Address { get; } // ModelInterfaces.tt Line: 51
+    	EnumCommerceDataType Commerce { get; } // ModelInterfaces.tt Line: 51
+    	EnumCompanyDataType Company { get; } // ModelInterfaces.tt Line: 51
+    	EnumDateDataType Date { get; } // ModelInterfaces.tt Line: 51
+    	EnumDatabaseDataType Database { get; } // ModelInterfaces.tt Line: 51
+    	EnumFinanceDataType Finance { get; } // ModelInterfaces.tt Line: 51
+    	EnumHackerDataType Hacker { get; } // ModelInterfaces.tt Line: 51
+    	EnumImageDataType Image { get; } // ModelInterfaces.tt Line: 51
+    	EnumInternetDataType Internet { get; } // ModelInterfaces.tt Line: 51
+    	EnumLoremDataType Lorem { get; } // ModelInterfaces.tt Line: 51
+    	EnumNameDataType Name { get; } // ModelInterfaces.tt Line: 51
+    	EnumPhoneDataType Phone { get; } // ModelInterfaces.tt Line: 51
+    	EnumRantDataType Rant { get; } // ModelInterfaces.tt Line: 51
+    	EnumSystemDataType System { get; } // ModelInterfaces.tt Line: 51
+    	EnumVehicleDataType Vehicle { get; } // ModelInterfaces.tt Line: 51
+    	EnumRandomDataType Random { get; } // ModelInterfaces.tt Line: 51
+    }
+    
     public partial interface IProperty : IGuid, IName // ModelInterfaces.tt Line: 29
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 32
@@ -590,6 +853,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string TabName { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
     	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
+    	IPropertyDataGenerator DataGenerator { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51

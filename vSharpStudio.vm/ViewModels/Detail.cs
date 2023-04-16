@@ -266,10 +266,11 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(this.GetForm(FormType.ListWide, guidAppPrjGen));
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
-            this.GetSpecialProperties(res, isSupportVersion);
+            if (!isExcludeSpecial)
+                this.GetSpecialProperties(res, isSupportVersion);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))

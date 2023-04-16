@@ -791,7 +791,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var lst = new List<IEnumerationPair>();
             var cfg = this.ParentConfig;
-            var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
+            //var g = cfg.DicActiveAppProjectGenerators[guidAppPrjGen];
             foreach (var tt in node.ListEnumerationPairs)
             {
                 if (tt.IsIncluded(guidAppPrjGen))
