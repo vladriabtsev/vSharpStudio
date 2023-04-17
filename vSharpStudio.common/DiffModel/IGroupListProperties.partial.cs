@@ -9,5 +9,6 @@ namespace vSharpStudio.common
     public partial interface IGroupListProperties : ITreeConfigNodeSortable
     {
         uint GetNextPosition();
+        EnumPropertyAccess GetRolePropertyAccess(string roleGuid);
     }
 }

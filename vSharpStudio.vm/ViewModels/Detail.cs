@@ -433,5 +433,112 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListDetails.GetUseDescriptionProperty();
         }
+        internal Dictionary<string, EnumCatalogDetailAccess> dicDetailAccess = new Dictionary<string, EnumCatalogDetailAccess>();
+        public void InitRoles()
+        {
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                bool found = false;
+                foreach (var tt in this.ListRoleCatalogAccessSettings)
+                {
+                    if (tt.Guid == t.Guid)
+                    {
+                        this.dicDetailAccess[t.Guid] = tt.EditAccess;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    this.dicDetailAccess[t.Guid] = EnumCatalogDetailAccess.C_BY_PARENT;
+                }
+            }
+        }
+        public void InitRoleAdd(Role role)
+        {
+            var rca = new RoleCatalogAccess() { Guid = role.Guid };
+            this.ListRoleCatalogAccessSettings.Add(rca);
+            this.dicDetailAccess[rca.Guid] = rca.EditAccess;
+        }
+        public void InitRoleRemove(Role role)
+        {
+            for (int i = 0; i < this.ListRoleCatalogAccessSettings.Count; i++)
+            {
+                if (this.ListRoleCatalogAccessSettings[i].Guid == role.Guid)
+                {
+                    this.ListRoleCatalogAccessSettings.RemoveAt(i);
+                    break;
+                }
+            }
+            this.dicDetailAccess.Remove(role.Guid);
+        }
+        public EnumPropertyAccess GetRolePropertyAccess(string roleGuid)
+        {
+            EnumCatalogDetailAccess r = EnumCatalogDetailAccess.C_BY_PARENT;
+            if (!this.dicDetailAccess.TryGetValue(roleGuid, out r) || r == EnumCatalogDetailAccess.C_BY_PARENT)
+            {
+                r = this.ParentGroupListDetails.GetRoleDetailAccess(roleGuid);
+            }
+            Debug.Assert(r != EnumCatalogDetailAccess.C_BY_PARENT);
+            switch (r)
+            {
+                case EnumCatalogDetailAccess.C_HIDE:
+                    return EnumPropertyAccess.P_HIDE;
+                case EnumCatalogDetailAccess.C_VIEW:
+                    return EnumPropertyAccess.P_VIEW;
+                case EnumCatalogDetailAccess.C_EDIT:
+                case EnumCatalogDetailAccess.C_MARK_DEL:
+                    return EnumPropertyAccess.P_EDIT;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+        public EnumCatalogDetailAccess GetRoleDetailAccess(string roleGuid)
+        {
+            if (this.dicDetailAccess.TryGetValue(roleGuid, out var r) && r != EnumCatalogDetailAccess.C_BY_PARENT)
+                return r;
+            if (this.Parent is Detail dd)
+                return dd.GetRoleDetailAccess(roleGuid);
+            else if (this.Parent is GroupListDetails gd)
+                return gd.GetRoleDetailAccess(roleGuid);
+            else if (this.Parent is Catalog c)
+                return c.GetRoleCatalogAccess(roleGuid);
+            else if (this.Parent is Document d)
+            {
+                var ra = d.GetRoleDocumentAccess(roleGuid);
+                switch(ra)
+                {
+                    case EnumDocumentAccess.D_BY_PARENT:
+                        throw new NotImplementedException();
+                    case EnumDocumentAccess.D_HIDE:
+                        return EnumCatalogDetailAccess.C_HIDE;
+                    case EnumDocumentAccess.D_VIEW:
+                        return EnumCatalogDetailAccess.C_VIEW;
+                    case EnumDocumentAccess.D_EDIT:
+                        return EnumCatalogDetailAccess.C_EDIT;
+                    case EnumDocumentAccess.D_MARK_DEL:
+                        return EnumCatalogDetailAccess.C_MARK_DEL;
+                    case EnumDocumentAccess.D_POST:
+                    case EnumDocumentAccess.D_UNPOST:
+                        return EnumCatalogDetailAccess.C_EDIT;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+            else if (this.Parent is CatalogFolder cf)
+                return cf.ParentCatalog.GetRoleCatalogAccess(roleGuid);
+            else
+                throw new NotImplementedException();
+        }
+        public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
+        {
+            var roles = new List<string>();
+            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (GetRoleDetailAccess(role.Guid) == access)
+                    roles.Add(role.Name);
+            }
+            return roles;
+        }
     }
 }

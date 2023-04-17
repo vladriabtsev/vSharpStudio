@@ -166,5 +166,52 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
 
+        #region Roles
+        internal Dictionary<string, EnumCatalogDetailAccess> dicCatalogAccess = new Dictionary<string, EnumCatalogDetailAccess>();
+        public void InitRoles()
+        {
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                bool found = false;
+                foreach (var tt in this.ListRoleCatalogAccessSettings)
+                {
+                    if (tt.Guid == t.Guid)
+                    {
+                        this.dicCatalogAccess[t.Guid] = tt.EditAccess;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    this.dicCatalogAccess[t.Guid] = EnumCatalogDetailAccess.C_BY_PARENT;
+                }
+            }
+        }
+        public void InitRoleAdd(Role role)
+        {
+            var rca = new RoleCatalogAccess() { Guid = role.Guid };
+            this.ListRoleCatalogAccessSettings.Add(rca);
+            this.dicCatalogAccess[rca.Guid] = rca.EditAccess;
+        }
+        public void InitRoleRemove(Role role)
+        {
+            for (int i = 0; i < this.ListRoleCatalogAccessSettings.Count; i++)
+            {
+                if (this.ListRoleCatalogAccessSettings[i].Guid == role.Guid)
+                {
+                    this.ListRoleCatalogAccessSettings.RemoveAt(i);
+                    break;
+                }
+            }
+            this.dicCatalogAccess.Remove(role.Guid);
+        }
+        public EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid)
+        {
+            if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r != EnumCatalogDetailAccess.C_BY_PARENT)
+                return r;
+            return this.ParentModel.GetRoleCatalogAccess(roleGuid);
+        }
+        #endregion Roles
     }
 }

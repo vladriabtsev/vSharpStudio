@@ -42,6 +42,44 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
         MS = 3,
         MAX = 5,
     }
+    public enum EnumPrintAccess // ModelInterfaces.tt Line: 15
+    {
+        PR_BY_PARENT = 0,
+        PR_NO_PRINT = 1,
+        PR_PRINT = 2,
+    }
+    public enum EnumConstantAccess // ModelInterfaces.tt Line: 15
+    {
+        CN_BY_PARENT = 0,
+        CN_HIDE = 1,
+        CN_VIEW = 2,
+        CN_EDIT = 3,
+    }
+    public enum EnumPropertyAccess // ModelInterfaces.tt Line: 15
+    {
+        P_BY_PARENT = 0,
+        P_HIDE = 1,
+        P_VIEW = 2,
+        P_EDIT = 3,
+    }
+    public enum EnumCatalogDetailAccess // ModelInterfaces.tt Line: 15
+    {
+        C_BY_PARENT = 0,
+        C_HIDE = 1,
+        C_VIEW = 2,
+        C_EDIT = 3,
+        C_MARK_DEL = 4,
+    }
+    public enum EnumDocumentAccess // ModelInterfaces.tt Line: 15
+    {
+        D_BY_PARENT = 0,
+        D_HIDE = 1,
+        D_VIEW = 2,
+        D_EDIT = 3,
+        D_POST = 4,
+        D_UNPOST = 5,
+        D_MARK_DEL = 6,
+    }
     public enum EnumPropertyDataType // ModelInterfaces.tt Line: 15
     {
         PT_NONE = 0,
@@ -633,6 +671,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupDocuments GroupDocuments { get; } // ModelInterfaces.tt Line: 55
     	IGroupListJournals GroupJournals { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
     public partial interface IDataType // ModelInterfaces.tt Line: 29
@@ -688,6 +729,41 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
+    }
+    
+    public partial interface IRoleConstantAccess // ModelInterfaces.tt Line: 29
+    {
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	EnumConstantAccess EditAccess { get; } // ModelInterfaces.tt Line: 51
+    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 51
+    }
+    
+    public partial interface IRolePropertyAccess // ModelInterfaces.tt Line: 29
+    {
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	EnumPropertyAccess EditAccess { get; } // ModelInterfaces.tt Line: 51
+    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 51
+    }
+    
+    public partial interface IRoleCatalogAccess // ModelInterfaces.tt Line: 29
+    {
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	EnumCatalogDetailAccess EditAccess { get; } // ModelInterfaces.tt Line: 51
+    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 51
+    }
+    
+    public partial interface IRoleDetailAccess // ModelInterfaces.tt Line: 29
+    {
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	EnumCatalogDetailAccess EditAccess { get; } // ModelInterfaces.tt Line: 51
+    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 51
+    }
+    
+    public partial interface IRoleDocumentAccess // ModelInterfaces.tt Line: 29
+    {
+    	string Guid { get; } // ModelInterfaces.tt Line: 51
+    	EnumDocumentAccess EditAccess { get; } // ModelInterfaces.tt Line: 51
+    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 51
     }
     
     public partial interface IGroupListRoles : IGuid, IName // ModelInterfaces.tt Line: 29
@@ -790,6 +866,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -809,6 +886,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IRolePropertyAccess> ListRolePropertyAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -854,6 +932,71 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
     	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
     	IPropertyDataGenerator DataGenerator { get; } // ModelInterfaces.tt Line: 55
+    	
+    	///////////////////////////////////////////////////
+    	/// 
+    	/// // @attr [PropertyOrderAttribute(28)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("Start Grid")]
+    	/// // @attr [Description("Start new container of 12 columns grid system")]
+    	/// bool is_start_12_col_grid_system = 28;
+    	/// // @attr [PropertyOrderAttribute(29)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("Stop Grid")]
+    	/// // @attr [Description("Stop current container of 12 columns grid system")]
+    	/// bool is_stop_12_col_grid_system = 29;
+    	/// // @attr [PropertyOrderAttribute(30)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("Start Column")]
+    	/// // @attr [Description("Start new column of 12 columns grid system")]
+    	/// bool is_start_new_column_12_col_grid_system = 30;
+    	/// // @attr [PropertyOrderAttribute(32)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("Start Row")]
+    	/// // @attr [Description("Start new row of 12 columns grid system")]
+    	/// bool is_start_new_row_12_col_grid_system = 31;
+    	/// // @attr [PropertyOrderAttribute(31)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("Column Name")]
+    	/// // @attr [Description("Column Name of 12 columns grid system")]
+    	/// string column_name_12_col_grid_system = 32;
+    	/// // @attr [PropertyOrderAttribute(33)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("When Hide")]
+    	/// // @attr [Description("Condition of hiding base on screen size")]
+    	/// proto_enum_hidden_type hide_type = 33;
+    	/// // @attr [PropertyOrderAttribute(34)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("XS")]
+    	/// // @attr [Description("Extra small. Small to large phone. Range: < 600px")]
+    	/// google.protobuf.UInt32Value width_xs = 34;
+    	/// // @attr [PropertyOrderAttribute(35)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("SM")]
+    	/// // @attr [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
+    	/// google.protobuf.UInt32Value width_sm = 35;
+    	/// // @attr [PropertyOrderAttribute(36)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("MD")]
+    	/// // @attr [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
+    	/// google.protobuf.UInt32Value width_md = 36;
+    	/// // @attr [PropertyOrderAttribute(37)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("LG")]
+    	/// // @attr [Description("Large. Desktop. Range: 1280px > < 1920px")]
+    	/// google.protobuf.UInt32Value width_lg = 37;
+    	/// // @attr [PropertyOrderAttribute(38)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("XL")]
+    	/// // @attr [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
+    	/// google.protobuf.UInt32Value width_xl = 38;
+    	/// // @attr [PropertyOrderAttribute(39)]
+    	/// // @attr [Category("12 Column Grid System")]
+    	/// // @attr [DisplayName("XX")]
+    	/// // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
+    	/// google.protobuf.UInt32Value width_xx = 39;
+    	///////////////////////////////////////////////////
+    	IReadOnlyList<IRolePropertyAccess> ListRolePropertyAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
@@ -873,6 +1016,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string Description { get; } // ModelInterfaces.tt Line: 51
     	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 51
     	IReadOnlyList<IGroupListConstants> ListConstantGroups { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -888,6 +1032,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	bool IsNew { get; } // ModelInterfaces.tt Line: 51
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 51
     	int ShortId { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -912,6 +1057,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	string TabName { get; } // ModelInterfaces.tt Line: 51
     	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 51
     	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -989,6 +1135,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -1037,6 +1184,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -1059,6 +1207,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -1075,6 +1224,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -1109,6 +1259,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
+    	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     
@@ -1121,6 +1272,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 44
     	IDocument this[int index] { get; }
     	int Count();
+    	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

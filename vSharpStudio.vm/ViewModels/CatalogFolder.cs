@@ -345,5 +345,84 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentCatalog.IsGridSortableCustomGet();
         }
+
+        #region Roles
+        internal Dictionary<string, EnumCatalogDetailAccess> dicCatalogAccess = new Dictionary<string, EnumCatalogDetailAccess>();
+        public void InitRoles()
+        {
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                bool found = false;
+                foreach (var tt in this.ListRoleCatalogAccessSettings)
+                {
+                    if (tt.Guid == t.Guid)
+                    {
+                        this.dicCatalogAccess[t.Guid] = tt.EditAccess;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    this.dicCatalogAccess[t.Guid] = EnumCatalogDetailAccess.C_BY_PARENT;
+                }
+            }
+        }
+        public void InitRoleAdd(Role role)
+        {
+            var rca = new RoleCatalogAccess() { Guid = role.Guid };
+            this.ListRoleCatalogAccessSettings.Add(rca);
+            this.dicCatalogAccess[rca.Guid] = rca.EditAccess;
+        }
+        public void InitRoleRemove(Role role)
+        {
+            for (int i = 0; i < this.ListRoleCatalogAccessSettings.Count; i++)
+            {
+                if (this.ListRoleCatalogAccessSettings[i].Guid == role.Guid)
+                {
+                    this.ListRoleCatalogAccessSettings.RemoveAt(i);
+                    break;
+                }
+            }
+            this.dicCatalogAccess.Remove(role.Guid);
+        }
+        public EnumPropertyAccess GetRolePropertyAccess(string roleGuid)
+        {
+            EnumCatalogDetailAccess r = EnumCatalogDetailAccess.C_BY_PARENT;
+            if (!this.dicCatalogAccess.TryGetValue(roleGuid, out r) || r == EnumCatalogDetailAccess.C_BY_PARENT)
+            {
+                r = this.ParentCatalog.GetRoleCatalogAccess(roleGuid);
+            }
+            Debug.Assert(r != EnumCatalogDetailAccess.C_BY_PARENT);
+            switch (r)
+            {
+                case EnumCatalogDetailAccess.C_HIDE:
+                    return EnumPropertyAccess.P_HIDE;
+                case EnumCatalogDetailAccess.C_VIEW:
+                    return EnumPropertyAccess.P_VIEW;
+                case EnumCatalogDetailAccess.C_EDIT:
+                case EnumCatalogDetailAccess.C_MARK_DEL:
+                    return EnumPropertyAccess.P_EDIT;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+        public EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid)
+        {
+            if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r != EnumCatalogDetailAccess.C_BY_PARENT)
+                return r;
+            return this.ParentCatalog.GetRoleCatalogAccess(roleGuid);
+        }
+        public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
+        {
+            var roles = new List<string>();
+            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (GetRoleCatalogAccess(role.Guid) == access)
+                    roles.Add(role.Name);
+            }
+            return roles;
+        }
+        #endregion Roles
     }
 }

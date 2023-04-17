@@ -174,6 +174,39 @@
           ]
         },
         {
+          "name": "proto_enum_catalog_detail_access",
+          "longName": "proto_enum_catalog_detail_access",
+          "fullName": "proto_config.proto_enum_catalog_detail_access",
+          "description": "",
+          "values": [
+            {
+              "name": "C_BY_PARENT",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "C_HIDE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "C_VIEW",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "C_EDIT",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "C_MARK_DEL",
+              "number": "4",
+              "description": ""
+            }
+          ]
+        },
+        {
           "name": "proto_enum_catalog_tree_icon",
           "longName": "proto_enum_catalog_tree_icon",
           "fullName": "proto_config.proto_enum_catalog_tree_icon",
@@ -322,6 +355,34 @@
               "name": "P_BS",
               "number": "4",
               "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_constant_access",
+          "longName": "proto_enum_constant_access",
+          "fullName": "proto_config.proto_enum_constant_access",
+          "description": "",
+          "values": [
+            {
+              "name": "CN_BY_PARENT",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "CN_HIDE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "CN_VIEW",
+              "number": "2",
+              "description": "with history"
+            },
+            {
+              "name": "CN_EDIT",
+              "number": "3",
+              "description": "with history"
             }
           ]
         },
@@ -510,6 +571,49 @@
             {
               "name": "D_WEEKDAY",
               "number": "13",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_document_access",
+          "longName": "proto_enum_document_access",
+          "fullName": "proto_config.proto_enum_document_access",
+          "description": "",
+          "values": [
+            {
+              "name": "D_BY_PARENT",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "D_HIDE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "D_VIEW",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "D_EDIT",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "D_POST",
+              "number": "4",
+              "description": ""
+            },
+            {
+              "name": "D_UNPOST",
+              "number": "5",
+              "description": ""
+            },
+            {
+              "name": "D_MARK_DEL",
+              "number": "6",
               "description": ""
             }
           ]
@@ -1081,6 +1185,57 @@
               "name": "LONG",
               "number": "1",
               "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_print_access",
+          "longName": "proto_enum_print_access",
+          "fullName": "proto_config.proto_enum_print_access",
+          "description": "",
+          "values": [
+            {
+              "name": "PR_BY_PARENT",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "PR_NO_PRINT",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "PR_PRINT",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enum_property_access",
+          "longName": "proto_enum_property_access",
+          "fullName": "proto_config.proto_enum_property_access",
+          "description": "",
+          "values": [
+            {
+              "name": "P_BY_PARENT",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "P_HIDE",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "P_VIEW",
+              "number": "2",
+              "description": "with history"
+            },
+            {
+              "name": "P_EDIT",
+              "number": "3",
+              "description": "with history"
             }
           ]
         },
@@ -2492,6 +2647,16 @@
               "defaultValue": ""
             },
             {
+              "name": "list_role_catalog_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_catalog_access",
+              "longType": "proto_role_catalog_access",
+              "fullType": "proto_config.proto_role_catalog_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -2850,6 +3015,16 @@
               "type": "proto_group_list_reports",
               "longType": "proto_group_list_reports",
               "fullType": "proto_config.proto_group_list_reports",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_catalog_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_catalog_access",
+              "longType": "proto_role_catalog_access",
+              "fullType": "proto_config.proto_role_catalog_access",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3213,6 +3388,16 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_constant_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_constant_access",
+              "longType": "proto_role_constant_access",
+              "fullType": "proto_config.proto_role_constant_access",
               "ismap": false,
               "defaultValue": ""
             },
@@ -3659,6 +3844,16 @@
               "defaultValue": ""
             },
             {
+              "name": "list_role_catalog_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_catalog_access",
+              "longType": "proto_role_catalog_access",
+              "fullType": "proto_config.proto_role_catalog_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -3896,6 +4091,16 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_document_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_document_access",
+              "longType": "proto_role_document_access",
+              "fullType": "proto_config.proto_role_document_access",
               "ismap": false,
               "defaultValue": ""
             },
@@ -5655,6 +5860,16 @@
               "defaultValue": ""
             },
             {
+              "name": "list_role_constant_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_constant_access",
+              "longType": "proto_role_constant_access",
+              "fullType": "proto_config.proto_role_constant_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -5802,6 +6017,16 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_document_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_document_access",
+              "longType": "proto_role_document_access",
+              "fullType": "proto_config.proto_role_document_access",
               "ismap": false,
               "defaultValue": ""
             },
@@ -6129,6 +6354,16 @@
               "defaultValue": ""
             },
             {
+              "name": "list_role_catalog_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_catalog_access",
+              "longType": "proto_role_catalog_access",
+              "fullType": "proto_config.proto_role_catalog_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -6337,6 +6572,16 @@
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_constant_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_constant_access",
+              "longType": "proto_role_constant_access",
+              "fullType": "proto_config.proto_role_constant_access",
               "ismap": false,
               "defaultValue": ""
             },
@@ -6569,6 +6814,16 @@
               "type": "uint64",
               "longType": "uint64",
               "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_document_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_document_access",
+              "longType": "proto_role_document_access",
+              "fullType": "proto_config.proto_role_document_access",
               "ismap": false,
               "defaultValue": ""
             },
@@ -7095,6 +7350,16 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_property_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_property_access",
+              "longType": "proto_role_property_access",
+              "fullType": "proto_config.proto_role_property_access",
               "ismap": false,
               "defaultValue": ""
             },
@@ -7912,6 +8177,36 @@
               "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
+            },
+            {
+              "name": "list_role_catalog_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_catalog_access",
+              "longType": "proto_role_catalog_access",
+              "fullType": "proto_config.proto_role_catalog_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_document_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_document_access",
+              "longType": "proto_role_document_access",
+              "fullType": "proto_config.proto_role_document_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_role_constant_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_constant_access",
+              "longType": "proto_role_constant_access",
+              "fullType": "proto_config.proto_role_constant_access",
+              "ismap": false,
+              "defaultValue": ""
             }
           ]
         },
@@ -8533,6 +8828,16 @@
               "defaultValue": ""
             },
             {
+              "name": "list_role_property_access_settings",
+              "description": "@attr [Browsable(false)]\n\n// @attr [PropertyOrderAttribute(28)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"Start Grid\")]\n// @attr [Description(\"Start new container of 12 columns grid system\")]\nbool is_start_12_col_grid_system = 28;\n// @attr [PropertyOrderAttribute(29)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"Stop Grid\")]\n// @attr [Description(\"Stop current container of 12 columns grid system\")]\nbool is_stop_12_col_grid_system = 29;\n// @attr [PropertyOrderAttribute(30)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"Start Column\")]\n// @attr [Description(\"Start new column of 12 columns grid system\")]\nbool is_start_new_column_12_col_grid_system = 30;\n// @attr [PropertyOrderAttribute(32)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"Start Row\")]\n// @attr [Description(\"Start new row of 12 columns grid system\")]\nbool is_start_new_row_12_col_grid_system = 31;\n// @attr [PropertyOrderAttribute(31)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"Column Name\")]\n// @attr [Description(\"Column Name of 12 columns grid system\")]\nstring column_name_12_col_grid_system = 32;\n// @attr [PropertyOrderAttribute(33)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"When Hide\")]\n// @attr [Description(\"Condition of hiding base on screen size\")]\nproto_enum_hidden_type hide_type = 33;\n// @attr [PropertyOrderAttribute(34)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"XS\")]\n// @attr [Description(\"Extra small. Small to large phone. Range: \u003c 600px\")]\ngoogle.protobuf.UInt32Value width_xs = 34;\n// @attr [PropertyOrderAttribute(35)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"SM\")]\n// @attr [Description(\"Small. Small to medium tablet. Range: 600px \u003e \u003c 960px\")]\ngoogle.protobuf.UInt32Value width_sm = 35;\n// @attr [PropertyOrderAttribute(36)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"MD\")]\n// @attr [Description(\"Medium. Large tablet to laptop. Range: 960px \u003e \u003c 1280px\")]\ngoogle.protobuf.UInt32Value width_md = 36;\n// @attr [PropertyOrderAttribute(37)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"LG\")]\n// @attr [Description(\"Large. Desktop. Range: 1280px \u003e \u003c 1920px\")]\ngoogle.protobuf.UInt32Value width_lg = 37;\n// @attr [PropertyOrderAttribute(38)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"XL\")]\n// @attr [Description(\"Extra Large. HD and 4k. Range: 1920px \u003e \u003c 2560px\")]\ngoogle.protobuf.UInt32Value width_xl = 38;\n// @attr [PropertyOrderAttribute(39)]\n// @attr [Category(\"12 Column Grid System\")]\n// @attr [DisplayName(\"XX\")]\n// @attr [Description(\"Extra Extra Large. 4k+ and ultra-wide. Range: \u003e= 2560px\")]\ngoogle.protobuf.UInt32Value width_xx = 39;",
+              "label": "repeated",
+              "type": "proto_role_property_access",
+              "longType": "proto_role_property_access",
+              "fullType": "proto_config.proto_role_property_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_grid_sortable",
               "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
@@ -8942,6 +9247,211 @@
               "type": "proto_plugin_generator_node_settings",
               "longType": "proto_plugin_generator_node_settings",
               "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_catalog_access",
+          "longName": "proto_role_catalog_access",
+          "fullName": "proto_config.proto_role_catalog_access",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "edit_access",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_catalog_detail_access",
+              "longType": "proto_enum_catalog_detail_access",
+              "fullType": "proto_config.proto_enum_catalog_detail_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "print_access",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_print_access",
+              "longType": "proto_enum_print_access",
+              "fullType": "proto_config.proto_enum_print_access",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_constant_access",
+          "longName": "proto_role_constant_access",
+          "fullName": "proto_config.proto_role_constant_access",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "edit_access",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_constant_access",
+              "longType": "proto_enum_constant_access",
+              "fullType": "proto_config.proto_enum_constant_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "print_access",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_print_access",
+              "longType": "proto_enum_print_access",
+              "fullType": "proto_config.proto_enum_print_access",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_detail_access",
+          "longName": "proto_role_detail_access",
+          "fullName": "proto_config.proto_role_detail_access",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "edit_access",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_catalog_detail_access",
+              "longType": "proto_enum_catalog_detail_access",
+              "fullType": "proto_config.proto_enum_catalog_detail_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "print_access",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_print_access",
+              "longType": "proto_enum_print_access",
+              "fullType": "proto_config.proto_enum_print_access",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_document_access",
+          "longName": "proto_role_document_access",
+          "fullName": "proto_config.proto_role_document_access",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "edit_access",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_document_access",
+              "longType": "proto_enum_document_access",
+              "fullType": "proto_config.proto_enum_document_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "print_access",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_print_access",
+              "longType": "proto_enum_print_access",
+              "fullType": "proto_config.proto_enum_print_access",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_role_property_access",
+          "longName": "proto_role_property_access",
+          "fullName": "proto_config.proto_role_property_access",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "edit_access",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_property_access",
+              "longType": "proto_enum_property_access",
+              "fullType": "proto_config.proto_enum_property_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "print_access",
+              "description": "",
+              "label": "",
+              "type": "proto_enum_print_access",
+              "longType": "proto_enum_print_access",
+              "fullType": "proto_config.proto_enum_print_access",
               "ismap": false,
               "defaultValue": ""
             }

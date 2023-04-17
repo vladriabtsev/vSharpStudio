@@ -96,5 +96,11 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }
+        public Role AddRole(string name)
+        {
+            var node = new Role(this) { Name = name };
+            this.NodeAddNewSubNode(node);
+            return node;
+        }
     }
 }

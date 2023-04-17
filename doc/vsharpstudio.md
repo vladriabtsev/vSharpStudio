@@ -64,6 +64,11 @@
     - [proto_property_data_generator](#proto_config.proto_property_data_generator)
     - [proto_report](#proto_config.proto_report)
     - [proto_role](#proto_config.proto_role)
+    - [proto_role_catalog_access](#proto_config.proto_role_catalog_access)
+    - [proto_role_constant_access](#proto_config.proto_role_constant_access)
+    - [proto_role_detail_access](#proto_config.proto_role_detail_access)
+    - [proto_role_document_access](#proto_config.proto_role_document_access)
+    - [proto_role_property_access](#proto_config.proto_role_property_access)
     - [proto_settings_config](#proto_config.proto_settings_config)
     - [proto_user_settings](#proto_config.proto_user_settings)
     - [proto_user_settings_opened_config](#proto_config.proto_user_settings_opened_config)
@@ -71,13 +76,16 @@
     - [enum_enumeration_type](#proto_config.enum_enumeration_type)
     - [proto_enum_address_data_type](#proto_config.proto_enum_address_data_type)
     - [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope)
+    - [proto_enum_catalog_detail_access](#proto_config.proto_enum_catalog_detail_access)
     - [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon)
     - [proto_enum_code_type](#proto_config.proto_enum_code_type)
     - [proto_enum_commerce_data_type](#proto_config.proto_enum_commerce_data_type)
     - [proto_enum_company_data_type](#proto_config.proto_enum_company_data_type)
+    - [proto_enum_constant_access](#proto_config.proto_enum_constant_access)
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
     - [proto_enum_database_data_type](#proto_config.proto_enum_database_data_type)
     - [proto_enum_date_data_type](#proto_config.proto_enum_date_data_type)
+    - [proto_enum_document_access](#proto_config.proto_enum_document_access)
     - [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope)
     - [proto_enum_finance_data_type](#proto_config.proto_enum_finance_data_type)
     - [proto_enum_hacker_data_type](#proto_config.proto_enum_hacker_data_type)
@@ -88,6 +96,8 @@
     - [proto_enum_name_data_type](#proto_config.proto_enum_name_data_type)
     - [proto_enum_phone_data_type](#proto_config.proto_enum_phone_data_type)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
+    - [proto_enum_print_access](#proto_config.proto_enum_print_access)
+    - [proto_enum_property_access](#proto_config.proto_enum_property_access)
     - [proto_enum_property_data_type](#proto_config.proto_enum_property_data_type)
     - [proto_enum_random_data_type](#proto_config.proto_enum_random_data_type)
     - [proto_enum_rant_data_type](#proto_config.proto_enum_rant_data_type)
@@ -296,6 +306,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | group_details | [proto_group_list_details](#proto_config.proto_group_list_details) |  | @attr [Browsable(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [Browsable(false)] |
+| list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config.proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -358,6 +369,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | group_details | [proto_group_list_details](#proto_config.proto_group_list_details) |  | @attr [Browsable(false)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [Browsable(false)] |
+| list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config.proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -436,6 +448,7 @@ Constant application wise value
 | tab_name | [string](#string) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Tab Name&#34;)] @attr [Description(&#34;If not empty, then start new tab in tab control. If empty, then continue adding fields in current control&#34;)] |
 | is_start_new_tab_control | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;New Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
+| list_role_constant_access_settings | [proto_role_constant_access](#proto_config.proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -507,6 +520,7 @@ Constant application wise value
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [Browsable(false)] |
+| list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config.proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -545,6 +559,7 @@ Constant application wise value
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
+| list_role_document_access_settings | [proto_role_document_access](#proto_config.proto_role_document_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -943,6 +958,7 @@ No Children
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;Description constants group name&#34;)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for constants db table names. Used if set to use in config model&#34;)] |
 | list_constant_groups | [proto_group_list_constants](#proto_config.proto_group_list_constants) | repeated | @attr [Browsable(false)] |
+| list_role_constant_access_settings | [proto_role_constant_access](#proto_config.proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -971,6 +987,7 @@ No Children
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
+| list_role_document_access_settings | [proto_role_document_access](#proto_config.proto_role_document_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1042,6 +1059,7 @@ No Children
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
+| list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config.proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1090,6 +1108,7 @@ Common parameters section
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
 | short_id | [int32](#int32) |  | @attr [Browsable(false)] |
+| list_role_constant_access_settings | [proto_role_constant_access](#proto_config.proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1139,6 +1158,7 @@ Common parameters section
 | short_id_type_for_cache_key | [string](#string) |  | @attr [PropertyOrderAttribute(6)] @attr [DisplayName(&#34;Short ID&#34;)] @attr [Description(&#34;Short document type ID for cache key generator&#34;)] |
 | list_documents | [proto_document](#proto_config.proto_document) | repeated | @attr [Browsable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| list_role_document_access_settings | [proto_role_document_access](#proto_config.proto_role_document_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1269,6 +1289,7 @@ main view forms hierarchy node with children
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
+| list_role_property_access_settings | [proto_role_property_access](#proto_config.proto_role_property_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1418,6 +1439,9 @@ Configuration model
 | group_documents | [proto_group_documents](#proto_config.proto_group_documents) |  | @attr [Browsable(false)] |
 | group_journals | [proto_group_list_journals](#proto_config.proto_group_list_journals) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+| list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config.proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
+| list_role_document_access_settings | [proto_role_document_access](#proto_config.proto_role_document_access) | repeated | @attr [Browsable(false)] |
+| list_role_constant_access_settings | [proto_role_constant_access](#proto_config.proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 
 
 
@@ -1600,6 +1624,9 @@ Configuration model
 | is_start_new_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(25)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Start Tab Control&#34;)] @attr [Description(&#34;Start new tab control as current control&#34;)] |
 | is_stop_tab_control | [bool](#bool) |  | @attr [PropertyOrderAttribute(27)] @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Stop Tab Control&#34;)] @attr [Description(&#34;Stop using tab control for layout&#34;)] |
 | data_generator | [proto_property_data_generator](#proto_config.proto_property_data_generator) |  | @attr [PropertyOrderAttribute(31)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Data Generator&#34;)] @attr [Browsable(false)] |
+| list_role_property_access_settings | [proto_role_property_access](#proto_config.proto_role_property_access) | repeated | @attr [Browsable(false)]
+
+// @attr [PropertyOrderAttribute(28)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;Start Grid&#34;)] // @attr [Description(&#34;Start new container of 12 columns grid system&#34;)] bool is_start_12_col_grid_system = 28; // @attr [PropertyOrderAttribute(29)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;Stop Grid&#34;)] // @attr [Description(&#34;Stop current container of 12 columns grid system&#34;)] bool is_stop_12_col_grid_system = 29; // @attr [PropertyOrderAttribute(30)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;Start Column&#34;)] // @attr [Description(&#34;Start new column of 12 columns grid system&#34;)] bool is_start_new_column_12_col_grid_system = 30; // @attr [PropertyOrderAttribute(32)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;Start Row&#34;)] // @attr [Description(&#34;Start new row of 12 columns grid system&#34;)] bool is_start_new_row_12_col_grid_system = 31; // @attr [PropertyOrderAttribute(31)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;Column Name&#34;)] // @attr [Description(&#34;Column Name of 12 columns grid system&#34;)] string column_name_12_col_grid_system = 32; // @attr [PropertyOrderAttribute(33)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;When Hide&#34;)] // @attr [Description(&#34;Condition of hiding base on screen size&#34;)] proto_enum_hidden_type hide_type = 33; // @attr [PropertyOrderAttribute(34)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;XS&#34;)] // @attr [Description(&#34;Extra small. Small to large phone. Range: &lt; 600px&#34;)] google.protobuf.UInt32Value width_xs = 34; // @attr [PropertyOrderAttribute(35)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;SM&#34;)] // @attr [Description(&#34;Small. Small to medium tablet. Range: 600px &gt; &lt; 960px&#34;)] google.protobuf.UInt32Value width_sm = 35; // @attr [PropertyOrderAttribute(36)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;MD&#34;)] // @attr [Description(&#34;Medium. Large tablet to laptop. Range: 960px &gt; &lt; 1280px&#34;)] google.protobuf.UInt32Value width_md = 36; // @attr [PropertyOrderAttribute(37)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;LG&#34;)] // @attr [Description(&#34;Large. Desktop. Range: 1280px &gt; &lt; 1920px&#34;)] google.protobuf.UInt32Value width_lg = 37; // @attr [PropertyOrderAttribute(38)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;XL&#34;)] // @attr [Description(&#34;Extra Large. HD and 4k. Range: 1920px &gt; &lt; 2560px&#34;)] google.protobuf.UInt32Value width_xl = 38; // @attr [PropertyOrderAttribute(39)] // @attr [Category(&#34;12 Column Grid System&#34;)] // @attr [DisplayName(&#34;XX&#34;)] // @attr [Description(&#34;Extra Extra Large. 4k&#43; and ultra-wide. Range: &gt;= 2560px&#34;)] google.protobuf.UInt32Value width_xx = 39; |
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
@@ -1683,6 +1710,91 @@ User&#39;s role
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_role_catalog_access"></a>
+
+### proto_role_catalog_access
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Browsable(false)] |
+| edit_access | [proto_enum_catalog_detail_access](#proto_config.proto_enum_catalog_detail_access) |  |  |
+| print_access | [proto_enum_print_access](#proto_config.proto_enum_print_access) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_role_constant_access"></a>
+
+### proto_role_constant_access
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Browsable(false)] |
+| edit_access | [proto_enum_constant_access](#proto_config.proto_enum_constant_access) |  |  |
+| print_access | [proto_enum_print_access](#proto_config.proto_enum_print_access) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_role_detail_access"></a>
+
+### proto_role_detail_access
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Browsable(false)] |
+| edit_access | [proto_enum_catalog_detail_access](#proto_config.proto_enum_catalog_detail_access) |  |  |
+| print_access | [proto_enum_print_access](#proto_config.proto_enum_print_access) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_role_document_access"></a>
+
+### proto_role_document_access
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Browsable(false)] |
+| edit_access | [proto_enum_document_access](#proto_config.proto_enum_document_access) |  |  |
+| print_access | [proto_enum_print_access](#proto_config.proto_enum_print_access) |  |  |
+
+
+
+
+
+
+<a name="proto_config.proto_role_property_access"></a>
+
+### proto_role_property_access
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Browsable(false)] |
+| edit_access | [proto_enum_property_access](#proto_config.proto_enum_property_access) |  |  |
+| print_access | [proto_enum_print_access](#proto_config.proto_enum_print_access) |  |  |
 
 
 
@@ -1800,6 +1912,21 @@ https://github.com/bchavez/Bogus
 
 
 
+<a name="proto_config.proto_enum_catalog_detail_access"></a>
+
+### proto_enum_catalog_detail_access
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| C_BY_PARENT | 0 |  |
+| C_HIDE | 1 |  |
+| C_VIEW | 2 |  |
+| C_EDIT | 3 |  |
+| C_MARK_DEL | 4 |  |
+
+
+
 <a name="proto_config.proto_enum_catalog_tree_icon"></a>
 
 ### proto_enum_catalog_tree_icon
@@ -1864,6 +1991,20 @@ https://github.com/bchavez/Bogus
 
 
 
+<a name="proto_config.proto_enum_constant_access"></a>
+
+### proto_enum_constant_access
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CN_BY_PARENT | 0 |  |
+| CN_HIDE | 1 |  |
+| CN_VIEW | 2 | with history |
+| CN_EDIT | 3 | with history |
+
+
+
 <a name="proto_config.proto_enum_data_type"></a>
 
 ### proto_enum_data_type
@@ -1924,6 +2065,23 @@ https://github.com/bchavez/Bogus
 | D_TIMESPAN | 11 |  |
 | D_MONTH | 12 |  |
 | D_WEEKDAY | 13 |  |
+
+
+
+<a name="proto_config.proto_enum_document_access"></a>
+
+### proto_enum_document_access
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| D_BY_PARENT | 0 |  |
+| D_HIDE | 1 |  |
+| D_VIEW | 2 |  |
+| D_EDIT | 3 |  |
+| D_POST | 4 |  |
+| D_UNPOST | 5 |  |
+| D_MARK_DEL | 6 |  |
 
 
 
@@ -2122,6 +2280,33 @@ https://github.com/bchavez/Bogus
 | ---- | ------ | ----------- |
 | INT | 0 |  |
 | LONG | 1 |  |
+
+
+
+<a name="proto_config.proto_enum_print_access"></a>
+
+### proto_enum_print_access
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PR_BY_PARENT | 0 |  |
+| PR_NO_PRINT | 1 |  |
+| PR_PRINT | 2 |  |
+
+
+
+<a name="proto_config.proto_enum_property_access"></a>
+
+### proto_enum_property_access
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| P_BY_PARENT | 0 |  |
+| P_HIDE | 1 |  |
+| P_VIEW | 2 | with history |
+| P_EDIT | 3 | with history |
 
 
 

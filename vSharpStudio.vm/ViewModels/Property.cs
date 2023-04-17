@@ -559,5 +559,63 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListProperties.GetIsGridSortableCustom();
         }
+
+        #region Roles
+        internal Dictionary<string, EnumPropertyAccess> dicPropertyAccess = new Dictionary<string, EnumPropertyAccess>();
+        public void InitRoles()
+        {
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                bool found = false;
+                foreach (var tt in this.ListRolePropertyAccessSettings)
+                {
+                    if (tt.Guid == t.Guid)
+                    {
+                        this.dicPropertyAccess[t.Guid] = tt.EditAccess;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    this.dicPropertyAccess[t.Guid] = EnumPropertyAccess.P_BY_PARENT;
+                }
+            }
+        }
+        public void InitRoleAdd(Role role)
+        {
+            var rca = new RolePropertyAccess() { Guid = role.Guid };
+            this.ListRolePropertyAccessSettings.Add(rca);
+            this.dicPropertyAccess[rca.Guid] = rca.EditAccess;
+        }
+        public void InitRoleRemove(Role role)
+        {
+            for (int i = 0; i < this.ListRolePropertyAccessSettings.Count; i++)
+            {
+                if (this.ListRolePropertyAccessSettings[i].Guid == role.Guid)
+                {
+                    this.ListRolePropertyAccessSettings.RemoveAt(i);
+                    break;
+                }
+            }
+            this.dicPropertyAccess.Remove(role.Guid);
+        }
+        public EnumPropertyAccess GetRolePropertyAccess(string roleGuid)
+        {
+            if (this.dicPropertyAccess.TryGetValue(roleGuid, out var r) && r != EnumPropertyAccess.P_BY_PARENT)
+                return r;
+            return this.ParentGroupListProperties.GetRolePropertyAccess(roleGuid);
+        }
+        public IReadOnlyList<string> GetRolesByAccess(EnumPropertyAccess access)
+        {
+            var roles = new List<string>();
+            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (GetRolePropertyAccess(role.Guid) == access)
+                    roles.Add(role.Name);
+            }
+            return roles;
+        }
+        #endregion Roles
     }
 }

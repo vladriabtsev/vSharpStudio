@@ -108,5 +108,53 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }
+
+        #region Roles
+        internal Dictionary<string, EnumDocumentAccess> dicDocumentAccess = new Dictionary<string, EnumDocumentAccess>();
+        public void InitRoles()
+        {
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                bool found = false;
+                foreach (var tt in this.ListRoleDocumentAccessSettings)
+                {
+                    if (tt.Guid == t.Guid)
+                    {
+                        this.dicDocumentAccess[t.Guid] = tt.EditAccess;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    this.dicDocumentAccess[t.Guid] = EnumDocumentAccess.D_BY_PARENT;
+                }
+            }
+        }
+        public void InitRoleAdd(Role role)
+        {
+            var rca = new RoleDocumentAccess() { Guid = role.Guid };
+            this.ListRoleDocumentAccessSettings.Add(rca);
+            this.dicDocumentAccess[rca.Guid] = rca.EditAccess;
+        }
+        public void InitRoleRemove(Role role)
+        {
+            for (int i = 0; i < this.ListRoleDocumentAccessSettings.Count; i++)
+            {
+                if (this.ListRoleDocumentAccessSettings[i].Guid == role.Guid)
+                {
+                    this.ListRoleDocumentAccessSettings.RemoveAt(i);
+                    break;
+                }
+            }
+            this.dicDocumentAccess.Remove(role.Guid);
+        }
+        public EnumDocumentAccess GetRoleDocumentAccess(string roleGuid)
+        {
+            if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r) && r != EnumDocumentAccess.D_BY_PARENT)
+                return r;
+            return this.ParentGroupDocuments.GetRoleDocumentAccess(roleGuid);
+        }
+        #endregion Roles
     }
 }

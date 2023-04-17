@@ -973,6 +973,126 @@ namespace vSharpStudio.vm.ViewModels
             lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }
+
+        #region Roles
+        internal Dictionary<string, EnumConstantAccess> dicConstantAccess = new Dictionary<string, EnumConstantAccess>();
+        internal Dictionary<string, EnumCatalogDetailAccess> dicCatalogAccess = new Dictionary<string, EnumCatalogDetailAccess>();
+        internal Dictionary<string, EnumDocumentAccess> dicDocumentAccess = new Dictionary<string, EnumDocumentAccess>();
+        private void InitRoles()
+        {
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                bool found = false;
+                foreach (var tt in this.ListRoleConstantAccessSettings)
+                {
+                    if (tt.Guid == t.Guid)
+                    {
+                        this.dicConstantAccess[t.Guid] = tt.EditAccess;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    this.dicConstantAccess[t.Guid] = EnumConstantAccess.CN_EDIT;
+                }
+                found = false;
+                foreach (var tt in this.ListRoleCatalogAccessSettings)
+                {
+                    if (tt.Guid == t.Guid)
+                    {
+                        this.dicCatalogAccess[t.Guid] = tt.EditAccess;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    this.dicCatalogAccess[t.Guid] = EnumCatalogDetailAccess.C_EDIT;
+                }
+                found = false;
+                foreach (var tt in this.ListRoleDocumentAccessSettings)
+                {
+                    if (tt.Guid == t.Guid)
+                    {
+                        this.dicDocumentAccess[t.Guid] = tt.EditAccess;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    this.dicDocumentAccess[t.Guid] = EnumDocumentAccess.D_EDIT;
+                }
+            }
+        }
+        public void InitRoleAdd(Role role)
+        {
+            var rca = new RoleConstantAccess() { Guid = role.Guid };
+            this.ListRoleConstantAccessSettings.Add(rca);
+            this.dicConstantAccess[rca.Guid] = rca.EditAccess;
+            var rca2 = new RoleCatalogAccess() { Guid = role.Guid };
+            this.ListRoleCatalogAccessSettings.Add(rca2);
+            this.dicCatalogAccess[rca.Guid] = rca2.EditAccess;
+            var rca3 = new RoleDocumentAccess() { Guid = role.Guid };
+            this.ListRoleDocumentAccessSettings.Add(rca3);
+            this.dicDocumentAccess[rca.Guid] = rca3.EditAccess;
+        }
+        public void InitRoleRemove(Role role)
+        {
+            for (int i = 0; i < this.ListRoleConstantAccessSettings.Count; i++)
+            {
+                if (this.ListRoleConstantAccessSettings[i].Guid == role.Guid)
+                {
+                    this.ListRoleConstantAccessSettings.RemoveAt(i);
+                    break;
+                }
+            }
+            this.dicConstantAccess.Remove(role.Guid);
+            for (int i = 0; i < this.ListRoleCatalogAccessSettings.Count; i++)
+            {
+                if (this.ListRoleCatalogAccessSettings[i].Guid == role.Guid)
+                {
+                    this.ListRoleCatalogAccessSettings.RemoveAt(i);
+                    break;
+                }
+            }
+            this.dicCatalogAccess.Remove(role.Guid);
+            for (int i = 0; i < this.ListRoleDocumentAccessSettings.Count; i++)
+            {
+                if (this.ListRoleDocumentAccessSettings[i].Guid == role.Guid)
+                {
+                    this.ListRoleDocumentAccessSettings.RemoveAt(i);
+                    break;
+                }
+            }
+            this.dicDocumentAccess.Remove(role.Guid);
+        }
+        public EnumConstantAccess GetRoleConstantAccess(string roleGuid)
+        {
+            EnumConstantAccess r = EnumConstantAccess.CN_BY_PARENT;
+            this.dicConstantAccess.TryGetValue(roleGuid, out r);
+            if (r == EnumConstantAccess.CN_BY_PARENT)
+                return EnumConstantAccess.CN_VIEW;
+            return r;
+        }
+        public EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid)
+        {
+            EnumCatalogDetailAccess r = EnumCatalogDetailAccess.C_BY_PARENT;
+            this.dicCatalogAccess.TryGetValue(roleGuid, out r);
+            if (r == EnumCatalogDetailAccess.C_BY_PARENT)
+                return EnumCatalogDetailAccess.C_VIEW;
+            return r;
+        }
+        public EnumDocumentAccess GetRoleDocumentAccess(string roleGuid)
+        {
+            EnumDocumentAccess r = EnumDocumentAccess.D_BY_PARENT;
+            this.dicDocumentAccess.TryGetValue(roleGuid, out r);
+            if (r == EnumDocumentAccess.D_BY_PARENT)
+                return EnumDocumentAccess.D_VIEW;
+            return r;
+        }
+        #endregion Roles
     }
     // https://stackoverflow.com/questions/3862226/how-to-dynamically-create-a-class
     //public class DynamicClass : System.Dynamic.DynamicObject

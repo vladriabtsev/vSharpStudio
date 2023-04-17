@@ -1828,5 +1828,22 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(v.IsHasErrors);
             #endregion int requirements validation
         }
+        [TestMethod]
+        public void Main101_RolesTests()
+        {
+            var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
+            vm.BtnNewConfig.Execute(@".\kuku.vcfg");
+            var m = vm.Config.Model;
+            var gc = m.GroupCatalogs;
+            var c = gc.AddCatalog("Simple");
+
+            Assert.IsTrue(c.dicCatalogAccess.Count == 0);
+            var role = m.GroupCommon.GroupRoles.AddRole("role1");
+            Assert.IsTrue(c.dicCatalogAccess.Count == 1);
+            var p = c.GroupProperties.AddPropertyChar("char_notnullable");
+            Assert.IsTrue(p.dicPropertyAccess.Count == 1);
+
+            Assert.IsTrue(p.GetRolePropertyAccess(role.Guid) == EnumPropertyAccess.P_EDIT);
+        }
     }
 }
