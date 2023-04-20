@@ -11,5 +11,6 @@ namespace vSharpStudio.common
         IGroupConstantGroups ParentGroupConstantGroupsI { get; }
         IReadOnlyList<IConstant> GetIncludedConstants(string guidAppPrjGen);
         EnumConstantAccess GetRoleConstantAccess(string roleGuid);
+        EnumPrintAccess GetRoleConstantPrint(string roleGuid);
     }
 }

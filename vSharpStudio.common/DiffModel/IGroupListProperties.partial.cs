@@ -10,5 +10,6 @@ namespace vSharpStudio.common
     {
         uint GetNextPosition();
         EnumPropertyAccess GetRolePropertyAccess(string roleGuid);
+        EnumPrintAccess GetRolePropertyPrint(string roleGuid);
     }
 }

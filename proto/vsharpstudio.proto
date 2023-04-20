@@ -1251,7 +1251,7 @@ message proto_detail {
     proto_group_list_forms group_forms = 84;
 
     // @attr [Browsable(false)]
-    repeated proto_role_catalog_access list_role_catalog_access_settings = 101;
+    repeated proto_role_detail_access list_role_detail_access_settings = 101;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

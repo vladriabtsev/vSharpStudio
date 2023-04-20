@@ -167,32 +167,19 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
-        internal Dictionary<string, EnumCatalogDetailAccess> dicCatalogAccess = new Dictionary<string, EnumCatalogDetailAccess>();
+        internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
         public void InitRoles()
         {
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            foreach (var tt in this.ListRoleCatalogAccessSettings)
             {
-                bool found = false;
-                foreach (var tt in this.ListRoleCatalogAccessSettings)
-                {
-                    if (tt.Guid == t.Guid)
-                    {
-                        this.dicCatalogAccess[t.Guid] = tt.EditAccess;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found)
-                {
-                    this.dicCatalogAccess[t.Guid] = EnumCatalogDetailAccess.C_BY_PARENT;
-                }
+                this.dicCatalogAccess[tt.Guid] = tt;
             }
         }
         public void InitRoleAdd(Role role)
         {
             var rca = new RoleCatalogAccess() { Guid = role.Guid };
             this.ListRoleCatalogAccessSettings.Add(rca);
-            this.dicCatalogAccess[rca.Guid] = rca.EditAccess;
+            this.dicCatalogAccess[rca.Guid] = rca;
         }
         public void InitRoleRemove(Role role)
         {
@@ -208,9 +195,15 @@ namespace vSharpStudio.vm.ViewModels
         }
         public EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid)
         {
-            if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r != EnumCatalogDetailAccess.C_BY_PARENT)
-                return r;
+            if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
+                return r.EditAccess;
             return this.ParentModel.GetRoleCatalogAccess(roleGuid);
+        }
+        public EnumPrintAccess GetRoleCatalogPrint(string roleGuid)
+        {
+            if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
+                return r.PrintAccess;
+            return this.ParentModel.GetRoleCatalogPrint(roleGuid);
         }
         #endregion Roles
     }

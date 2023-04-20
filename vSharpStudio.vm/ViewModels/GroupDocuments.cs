@@ -182,32 +182,19 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
-        internal Dictionary<string, EnumDocumentAccess> dicDocumentAccess = new Dictionary<string, EnumDocumentAccess>();
+        internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new Dictionary<string, RoleDocumentAccess>();
         public void InitRoles()
         {
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            foreach (var tt in this.ListRoleDocumentAccessSettings)
             {
-                bool found = false;
-                foreach (var tt in this.ListRoleDocumentAccessSettings)
-                {
-                    if (tt.Guid == t.Guid)
-                    {
-                        this.dicDocumentAccess[t.Guid] = tt.EditAccess;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found)
-                {
-                    this.dicDocumentAccess[t.Guid] = EnumDocumentAccess.D_BY_PARENT;
-                }
+                this.dicDocumentAccess[tt.Guid] = tt;
             }
         }
         public void InitRoleAdd(Role role)
         {
             var rca = new RoleDocumentAccess() { Guid = role.Guid };
             this.ListRoleDocumentAccessSettings.Add(rca);
-            this.dicDocumentAccess[rca.Guid] = rca.EditAccess;
+            this.dicDocumentAccess[rca.Guid] = rca;
         }
         public void InitRoleRemove(Role role)
         {
@@ -223,9 +210,15 @@ namespace vSharpStudio.vm.ViewModels
         }
         public EnumDocumentAccess GetRoleDocumentAccess(string roleGuid)
         {
-            if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r) && r != EnumDocumentAccess.D_BY_PARENT)
-                return r;
+            if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumDocumentAccess.D_BY_PARENT)
+                return r.EditAccess;
             return this.ParentModel.GetRoleDocumentAccess(roleGuid);
+        }
+        public EnumPrintAccess GetRoleDocumentPrint(string roleGuid)
+        {
+            if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
+                return r.PrintAccess;
+            return this.ParentModel.GetRoleDocumentPrint(roleGuid);
         }
         #endregion Roles
     }

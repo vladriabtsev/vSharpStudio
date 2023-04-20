@@ -11,5 +11,6 @@ namespace vSharpStudio.common
         IModel ParentModelI { get; }
         int IndexOf(ICatalog cat);
         EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid);
+        EnumPrintAccess GetRoleCatalogPrint(string roleGuid);
     }
 }

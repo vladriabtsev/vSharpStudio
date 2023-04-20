@@ -3844,12 +3844,12 @@
               "defaultValue": ""
             },
             {
-              "name": "list_role_catalog_access_settings",
+              "name": "list_role_detail_access_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
-              "type": "proto_role_catalog_access",
-              "longType": "proto_role_catalog_access",
-              "fullType": "proto_config.proto_role_catalog_access",
+              "type": "proto_role_detail_access",
+              "longType": "proto_role_detail_access",
+              "fullType": "proto_config.proto_role_detail_access",
               "ismap": false,
               "defaultValue": ""
             },

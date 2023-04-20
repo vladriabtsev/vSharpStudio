@@ -334,7 +334,7 @@ namespace vSharpStudio.vm.ViewModels
             return objectType;
         }
 
-        internal static TypeBuilder GetTypeBuilder()
+        public static TypeBuilder GetTypeBuilder()
         {
             var typeSignature = "SettingsDynamicType";
             var an = new AssemblyName(typeSignature);
@@ -364,7 +364,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(minfo != null);
             tb.DefineMethodOverride(mthdBldr, minfo);
         }
-        internal static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType, string? propertyNameUI = null, string? propertyDescription = null, string? appRojectGeneratorGuid = null)
+        public static void CreateProperty(TypeBuilder tb, string propertyName, Type propertyType, string? propertyNameUI = null, string? propertyDescription = null, string? appRojectGeneratorGuid = null)
         {
             //propertyName = propertyName.Replace('.', '_');
             //if (propertyName.Contains('.'))

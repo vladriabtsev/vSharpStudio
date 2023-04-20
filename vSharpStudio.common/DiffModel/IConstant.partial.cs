@@ -14,6 +14,8 @@ namespace vSharpStudio.common
         object? Tag { get; set; }
         //static IConfig Config { get; set; }
         EnumConstantAccess GetRoleConstantAccess(string roleGuid);
+        EnumPrintAccess GetRoleConstantPrint(string roleGuid);
         IReadOnlyList<string> GetRolesByAccess(EnumConstantAccess access);
+        IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
     }
 }

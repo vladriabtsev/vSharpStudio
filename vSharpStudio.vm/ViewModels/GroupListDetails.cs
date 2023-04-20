@@ -222,11 +222,11 @@ namespace vSharpStudio.vm.ViewModels
                 return cf.GetUseDescriptionProperty();
             throw new NotImplementedException();
         }
-        internal Dictionary<string, EnumCatalogDetailAccess> dicDetailAccess = new Dictionary<string, EnumCatalogDetailAccess>();
+        internal Dictionary<string, RoleDetailAccess> dicDetailAccess = new Dictionary<string, RoleDetailAccess>();
         public EnumCatalogDetailAccess GetRoleDetailAccess(string roleGuid)
         {
-            if (this.dicDetailAccess.TryGetValue(roleGuid, out var r) && r != EnumCatalogDetailAccess.C_BY_PARENT)
-                return r;
+            if (this.dicDetailAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
+                return r.EditAccess;
             if (this.Parent is Detail dd)
                 return dd.GetRoleDetailAccess(roleGuid);
             else if (this.Parent is Catalog c)
@@ -255,6 +255,21 @@ namespace vSharpStudio.vm.ViewModels
             }
             else if (this.Parent is CatalogFolder cf)
                 return cf.ParentCatalog.GetRoleCatalogAccess(roleGuid);
+            else
+                throw new NotImplementedException();
+        }
+        public EnumPrintAccess GetRoleDetailPrint(string roleGuid)
+        {
+            if (this.dicDetailAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
+                return r.PrintAccess;
+            if (this.Parent is Detail dd)
+                return dd.GetRoleDetailPrint(roleGuid);
+            else if (this.Parent is Catalog c)
+                return c.GetRoleCatalogPrint(roleGuid);
+            else if (this.Parent is Document d)
+                return d.GetRoleDocumentPrint(roleGuid);
+            else if (this.Parent is CatalogFolder cf)
+                return cf.ParentCatalog.GetRoleCatalogPrint(roleGuid);
             else
                 throw new NotImplementedException();
         }

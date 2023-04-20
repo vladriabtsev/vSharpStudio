@@ -866,7 +866,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 11
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 51
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 51
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 44
+    	IReadOnlyList<IRoleDetailAccess> ListRoleDetailAccessSettings { get; } // ModelInterfaces.tt Line: 44
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 44
     }
     

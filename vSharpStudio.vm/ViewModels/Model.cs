@@ -975,68 +975,35 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
-        internal Dictionary<string, EnumConstantAccess> dicConstantAccess = new Dictionary<string, EnumConstantAccess>();
-        internal Dictionary<string, EnumCatalogDetailAccess> dicCatalogAccess = new Dictionary<string, EnumCatalogDetailAccess>();
-        internal Dictionary<string, EnumDocumentAccess> dicDocumentAccess = new Dictionary<string, EnumDocumentAccess>();
+        internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new Dictionary<string, RoleConstantAccess>();
+        internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
+        internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new Dictionary<string, RoleDocumentAccess>();
         private void InitRoles()
         {
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            foreach (var tt in this.ListRoleConstantAccessSettings)
             {
-                bool found = false;
-                foreach (var tt in this.ListRoleConstantAccessSettings)
-                {
-                    if (tt.Guid == t.Guid)
-                    {
-                        this.dicConstantAccess[t.Guid] = tt.EditAccess;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found)
-                {
-                    this.dicConstantAccess[t.Guid] = EnumConstantAccess.CN_EDIT;
-                }
-                found = false;
-                foreach (var tt in this.ListRoleCatalogAccessSettings)
-                {
-                    if (tt.Guid == t.Guid)
-                    {
-                        this.dicCatalogAccess[t.Guid] = tt.EditAccess;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found)
-                {
-                    this.dicCatalogAccess[t.Guid] = EnumCatalogDetailAccess.C_EDIT;
-                }
-                found = false;
-                foreach (var tt in this.ListRoleDocumentAccessSettings)
-                {
-                    if (tt.Guid == t.Guid)
-                    {
-                        this.dicDocumentAccess[t.Guid] = tt.EditAccess;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found)
-                {
-                    this.dicDocumentAccess[t.Guid] = EnumDocumentAccess.D_EDIT;
-                }
+                this.dicConstantAccess[tt.Guid] = tt;
+            }
+            foreach (var tt in this.ListRoleCatalogAccessSettings)
+            {
+                this.dicCatalogAccess[tt.Guid] = tt;
+            }
+            foreach (var tt in this.ListRoleDocumentAccessSettings)
+            {
+                this.dicDocumentAccess[tt.Guid] = tt;
             }
         }
         public void InitRoleAdd(Role role)
         {
             var rca = new RoleConstantAccess() { Guid = role.Guid };
             this.ListRoleConstantAccessSettings.Add(rca);
-            this.dicConstantAccess[rca.Guid] = rca.EditAccess;
+            this.dicConstantAccess[rca.Guid] = rca;
             var rca2 = new RoleCatalogAccess() { Guid = role.Guid };
             this.ListRoleCatalogAccessSettings.Add(rca2);
-            this.dicCatalogAccess[rca.Guid] = rca2.EditAccess;
+            this.dicCatalogAccess[rca2.Guid] = rca2;
             var rca3 = new RoleDocumentAccess() { Guid = role.Guid };
             this.ListRoleDocumentAccessSettings.Add(rca3);
-            this.dicDocumentAccess[rca.Guid] = rca3.EditAccess;
+            this.dicDocumentAccess[rca3.Guid] = rca3;
         }
         public void InitRoleRemove(Role role)
         {
@@ -1070,27 +1037,45 @@ namespace vSharpStudio.vm.ViewModels
         }
         public EnumConstantAccess GetRoleConstantAccess(string roleGuid)
         {
-            EnumConstantAccess r = EnumConstantAccess.CN_BY_PARENT;
-            this.dicConstantAccess.TryGetValue(roleGuid, out r);
-            if (r == EnumConstantAccess.CN_BY_PARENT)
+            this.dicConstantAccess.TryGetValue(roleGuid, out var r);
+            if (r.EditAccess == EnumConstantAccess.CN_BY_PARENT)
                 return EnumConstantAccess.CN_VIEW;
-            return r;
+            return r.EditAccess;
+        }
+        public EnumPrintAccess GetRoleConstantPrint(string roleGuid)
+        {
+            this.dicConstantAccess.TryGetValue(roleGuid, out var r);
+            if (r.PrintAccess == EnumPrintAccess.PR_BY_PARENT)
+                return EnumPrintAccess.PR_PRINT;
+            return r.PrintAccess;
         }
         public EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid)
         {
-            EnumCatalogDetailAccess r = EnumCatalogDetailAccess.C_BY_PARENT;
-            this.dicCatalogAccess.TryGetValue(roleGuid, out r);
-            if (r == EnumCatalogDetailAccess.C_BY_PARENT)
+            this.dicCatalogAccess.TryGetValue(roleGuid, out var r);
+            if (r.EditAccess == EnumCatalogDetailAccess.C_BY_PARENT)
                 return EnumCatalogDetailAccess.C_VIEW;
-            return r;
+            return r.EditAccess;
+        }
+        public EnumPrintAccess GetRoleCatalogPrint(string roleGuid)
+        {
+            this.dicCatalogAccess.TryGetValue(roleGuid, out var r);
+            if (r.PrintAccess == EnumPrintAccess.PR_BY_PARENT)
+                return EnumPrintAccess.PR_PRINT;
+            return r.PrintAccess;
         }
         public EnumDocumentAccess GetRoleDocumentAccess(string roleGuid)
         {
-            EnumDocumentAccess r = EnumDocumentAccess.D_BY_PARENT;
-            this.dicDocumentAccess.TryGetValue(roleGuid, out r);
-            if (r == EnumDocumentAccess.D_BY_PARENT)
+            this.dicDocumentAccess.TryGetValue(roleGuid, out var r);
+            if (r.EditAccess == EnumDocumentAccess.D_BY_PARENT)
                 return EnumDocumentAccess.D_VIEW;
-            return r;
+            return r.EditAccess;
+        }
+        public EnumPrintAccess GetRoleDocumentPrint(string roleGuid)
+        {
+            this.dicDocumentAccess.TryGetValue(roleGuid, out var r);
+            if (r.PrintAccess == EnumPrintAccess.PR_BY_PARENT)
+                return EnumPrintAccess.PR_PRINT;
+            return r.PrintAccess;
         }
         #endregion Roles
     }
