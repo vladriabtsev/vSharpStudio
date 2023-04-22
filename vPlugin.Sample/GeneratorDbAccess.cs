@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Proto.Plugin;
-using vPlugin.Shared;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 

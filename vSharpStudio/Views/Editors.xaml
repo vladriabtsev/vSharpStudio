@@ -29,7 +29,6 @@
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type bvm:GroupListRoles}">
                     <local:EditorRoles />
-                    <!--DataContext="{Binding Config.SelectedNode}"-->
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type bvm:Catalog}">
                     <!--<local:EditorCatalog />-->

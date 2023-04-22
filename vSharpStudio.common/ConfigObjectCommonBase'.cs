@@ -2,6 +2,7 @@
 {
     using System;
     using System.CodeDom;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
@@ -330,6 +331,7 @@
             return Path.Combine(this.Cfg.CurrentCfgFolderPath, relative_path);
         }
         private IConfig? _cfg;
+        [Browsable(false)]
         public IConfig Cfg
         {
             get
@@ -1196,10 +1198,10 @@
         }
         #endregion ITree
         #region ITreeModel
-        public IEnumerable<object> GetChildren(object parent)
+        public IEnumerable GetChildren(object parent)
         {
             var p = (ITreeConfigNode)parent;
-            return (IEnumerable<object>)p.GetListChildren();
+            return p.GetListChildren();
         }
         public bool HasChildren(object parent)
         {

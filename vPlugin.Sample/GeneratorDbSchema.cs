@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using Proto.Plugin;
-using vPlugin.Shared;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
 

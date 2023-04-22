@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using FluentValidation.Results;
 using Google.Protobuf;
 using Proto.Plugin;
-using vPlugin.Shared;
 using vSharpStudio.common;
 
 namespace vPlugin.Sample

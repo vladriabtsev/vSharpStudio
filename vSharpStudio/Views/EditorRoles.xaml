@@ -3,36 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Converters="clr-namespace:vSharpStudio.wpf.Converters;assembly=vSharpStudio.wpf" 
              xmlns:ctrls="clr-namespace:vSharpStudio.wpf.Controls;assembly=vSharpStudio.wpf"
              xmlns:local="clr-namespace:vSharpStudio.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" DataContextChanged="UserControl_DataContextChanged">
+    <UserControl.Resources>
+        <Converters:ConverterIconNameToResource x:Key="ConverterIconNameToResource"/>
+    </UserControl.Resources>
     <!--<Border BorderBrush="Black" BorderThickness="1">-->
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBlock Text="Roles Editor" HorizontalAlignment="Center" />
-            <ctrls:TreeList Name="_tree" Grid.Row="1">
-                <ctrls:TreeList.View>
-                    <GridView>
-                        <GridView.Columns>
-                            <GridViewColumn Width="400" Header="Name">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <ctrls:RowExpander/>
-                                            <Image Source="{Binding Converter={StaticResource RegImageConverter}}"  Margin="0, 0, 5, 0"/>
-                                            <TextBlock Text="{Binding Name}"></TextBlock>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView.Columns>
-                    </GridView>
-                </ctrls:TreeList.View>
-            </ctrls:TreeList>
-        </Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Roles Editor" HorizontalAlignment="Center" />
+        <ctrls:TreeList Name="_tree" Grid.Row="1">
+            <ctrls:TreeList.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Width="200" Header="Name">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ctrls:RowExpander/>
+                                        <ContentControl Template="{Binding Node.IconName, Converter={StaticResource ConverterIconNameToResource}, Mode=OneWay}" />
+                                        <!--<Image Source="{Binding Converter={StaticResource RegImageConverter}}"  Margin="0, 0, 5, 0"/>-->
+                                        <TextBlock Text="{Binding Node.Name}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ctrls:TreeList.View>
+        </ctrls:TreeList>
+    </Grid>
     <!--</Border>-->
 </UserControl>
