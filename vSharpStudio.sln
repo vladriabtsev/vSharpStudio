@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31825.309
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio", "vSharpStudio\vSharpStudio.csproj", "{D591315D-E1AF-417C-A224-CBAA5238A862}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.xUnit", "vSharpStudio.xUnit\vSharpStudio.xUnit.csproj", "{4691301C-7E12-4D46-A549-5667A189AF1D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proto", "proto", "{373A132D-A5B7-4D32-988D-DC59E038958F}"
 	ProjectSection(SolutionItems) = preProject
 		proto\attr.proto = proto\attr.proto
@@ -62,8 +60,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ext", "ext", "{2308E25C-68C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UndoFramework", "ext\UndoFramework\UndoFramework.csproj", "{211753FC-8C4D-4F05-AB4B-130FABECF30E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudioCmd", "vSharpStudioCmd\vSharpStudioCmd.csproj", "{7C80A07E-2B90-4382-BD2B-FD30B6F9E93D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vSharpStudio.common", "vSharpStudio.common\vSharpStudio.common.csproj", "{788D7499-BC1E-40F7-9FAA-E05ACC86E227}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xceed.Wpf.Toolkit", "submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj", "{83B37A5C-2FEC-4488-AC57-0CDCE58DB9DF}"
@@ -101,12 +97,6 @@ Global
 		{D591315D-E1AF-417C-A224-CBAA5238A862}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{D591315D-E1AF-417C-A224-CBAA5238A862}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D591315D-E1AF-417C-A224-CBAA5238A862}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4691301C-7E12-4D46-A549-5667A189AF1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4691301C-7E12-4D46-A549-5667A189AF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4691301C-7E12-4D46-A549-5667A189AF1D}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
-		{4691301C-7E12-4D46-A549-5667A189AF1D}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
-		{4691301C-7E12-4D46-A549-5667A189AF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4691301C-7E12-4D46-A549-5667A189AF1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5B8D66-BBC5-4183-8381-1D6B6181734E}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
@@ -173,12 +163,6 @@ Global
 		{211753FC-8C4D-4F05-AB4B-130FABECF30E}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
 		{211753FC-8C4D-4F05-AB4B-130FABECF30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{211753FC-8C4D-4F05-AB4B-130FABECF30E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C80A07E-2B90-4382-BD2B-FD30B6F9E93D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C80A07E-2B90-4382-BD2B-FD30B6F9E93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C80A07E-2B90-4382-BD2B-FD30B6F9E93D}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C80A07E-2B90-4382-BD2B-FD30B6F9E93D}.DebugTest|Any CPU.Build.0 = Debug|Any CPU
-		{7C80A07E-2B90-4382-BD2B-FD30B6F9E93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C80A07E-2B90-4382-BD2B-FD30B6F9E93D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{788D7499-BC1E-40F7-9FAA-E05ACC86E227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{788D7499-BC1E-40F7-9FAA-E05ACC86E227}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{788D7499-BC1E-40F7-9FAA-E05ACC86E227}.DebugTest|Any CPU.ActiveCfg = Debug|Any CPU
