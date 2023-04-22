@@ -576,19 +576,6 @@ namespace vSharpStudio.ViewModels
                     this.BtnConfigValidateAsync.Command.NotifyCanExecuteChanged();
                     this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
                     this.BtnConfigCreateStableVersionAsync.Command.NotifyCanExecuteChanged();
-                    //                    if (this._Config.SelectedNode != null)
-                    //                    {
-                    ////#if Async
-                    ////                        Task.Run(() =>
-                    ////                        {
-                    ////                            this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
-                    ////                        });
-                    ////                        //}).ConfigureAwait(false); // not keeping context because doing nothing after await
-                    ////                        //this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode).SafeFireAndForget(onException: ex => Console.WriteLine(ex));
-                    ////#else
-                    ////                        this._Config.ValidateSubTreeFromNode(this._Config.SelectedNode);
-                    ////#endif
-                    //                    }
                 };
             }
         }

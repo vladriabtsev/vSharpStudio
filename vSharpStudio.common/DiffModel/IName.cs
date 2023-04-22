@@ -10,6 +10,6 @@ namespace vSharpStudio.common
     {
         string Name { get; set; }
 
-        string FullName { get; }
+        //string FullName { get; }
     }
 }

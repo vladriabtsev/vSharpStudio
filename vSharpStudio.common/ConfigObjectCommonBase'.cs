@@ -253,24 +253,24 @@
         }
         private string _ModelPath = String.Empty;
 #if DEBUG
-        [ReadOnly(true)]
-        [Category("")]
-        [PropertyOrderAttribute(0)]
-        [DisplayName("Full Name ???")]
+        //[ReadOnly(true)]
+        //[Category("")]
+        //[PropertyOrderAttribute(0)]
+        //[DisplayName("Full Name ???")]
 #else
-        [Browsable(false)]
+        //[Browsable(false)]
 #endif
-        public string FullName
-        {
-            get
-            {
-                if (this.Parent == null)
-                {
-                    return "MainConfig." + this._Name;
-                }
-                return this.Cfg.Name + "." + this._Name;
-            }
-        }
+        //public string FullName
+        //{
+        //    get
+        //    {
+        //        if (this.Parent == null)
+        //        {
+        //            return "MainConfig." + this._Name;
+        //        }
+        //        return this.Cfg.Name + "." + this._Name;
+        //    }
+        //}
         [Browsable(false)]
         public System.Windows.TextDecorationCollection? NodeNameDecorations
         {
