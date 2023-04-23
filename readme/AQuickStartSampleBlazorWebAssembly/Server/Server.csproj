@@ -7,12 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.3" />
-        <PackageReference Include="Grpc.AspNetCore" Version="2.51.0" />
-        <PackageReference Include="Grpc.AspNetCore.Web" Version="2.51.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.5" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.52.0" />
+        <PackageReference Include="Grpc.AspNetCore.Web" Version="2.52.0" />
 
-        <PackageReference Include="Google.Protobuf" Version="3.22.0" />
-        <PackageReference Include="Grpc.Tools" Version="2.51.0" PrivateAssets="All" />
+        <PackageReference Include="Google.Protobuf" Version="3.22.3" />
+        <PackageReference Include="Grpc.Tools" Version="2.54.0" PrivateAssets="All" />
         
         <Protobuf Include="./Generated/custom_types.proto" GrpcServices="Server" Link="Protos\custom_types.proto" ProtoRoot="Generated" />
         <Protobuf Include="./Generated/postgre_sql.proto" GrpcServices="Server" Link="Protos\postgre_sql.proto" ProtoRoot="Generated" />
