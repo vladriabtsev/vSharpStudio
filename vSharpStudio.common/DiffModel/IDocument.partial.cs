@@ -28,5 +28,6 @@ namespace vSharpStudio.common
         EnumPrintAccess GetRoleDocumentPrint(string roleGuid);
         IReadOnlyList<string> GetRolesByAccess(EnumDocumentAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
+        string FullName { get; } // name with config name
     }
 }
