@@ -16092,9 +16092,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 64 IsDefaultBase=False
                 vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
             vm.IsNullable = from.IsNullable; // Clone.tt Line: 67
+            vm.DefaultValue = from.DefaultValue; // Clone.tt Line: 67
             vm.IsNew = from.IsNew; // Clone.tt Line: 67
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 67
             vm.ShortId = from.ShortId; // Clone.tt Line: 67
+            vm.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 67
+            vm.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 67
+            vm.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 67
+            vm.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 67
             vm.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 67
             vm.LinesOnScreen = from.LinesOnScreen; // Clone.tt Line: 67
             vm.IsStartNewRow = from.IsStartNewRow; // Clone.tt Line: 67
@@ -16125,9 +16130,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 140
                 vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
             to.IsNullable = from.IsNullable; // Clone.tt Line: 143
+            to.DefaultValue = from.DefaultValue; // Clone.tt Line: 143
             to.IsNew = from.IsNew; // Clone.tt Line: 143
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 143
             to.ShortId = from.ShortId; // Clone.tt Line: 143
+            to.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 143
+            to.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 143
+            to.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 143
+            to.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 143
             to.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 143
             to.LinesOnScreen = from.LinesOnScreen; // Clone.tt Line: 143
             to.IsStartNewRow = from.IsStartNewRow; // Clone.tt Line: 143
@@ -16244,9 +16254,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.DataType = new DataType(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
             vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
+            vm.DefaultValue = m.DefaultValue; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
             vm.ShortId = m.ShortId; // Clone.tt Line: 221
+            vm.RangeValuesRequirementStr = m.RangeValuesRequirementStr; // Clone.tt Line: 221
+            vm.MinLengthRequirement = m.MinLengthRequirement; // Clone.tt Line: 221
+            vm.MaxLengthRequirement = m.MaxLengthRequirement; // Clone.tt Line: 221
+            vm.AccuracyForTime = (EnumTimeAccuracyType)m.AccuracyForTime; // Clone.tt Line: 221
             vm.IsTryAttach = m.IsTryAttach; // Clone.tt Line: 221
             vm.LinesOnScreen = m.LinesOnScreen; // Clone.tt Line: 221
             vm.IsStartNewRow = m.IsStartNewRow; // Clone.tt Line: 221
@@ -16284,9 +16299,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
             m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
+            m.DefaultValue = vm.DefaultValue; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
             m.ShortId = vm.ShortId; // Clone.tt Line: 276
+            m.RangeValuesRequirementStr = vm.RangeValuesRequirementStr; // Clone.tt Line: 276
+            m.MinLengthRequirement = vm.MinLengthRequirement; // Clone.tt Line: 276
+            m.MaxLengthRequirement = vm.MaxLengthRequirement; // Clone.tt Line: 276
+            m.AccuracyForTime = (Proto.Config.proto_enum_time_accuracy_type)vm.AccuracyForTime; // Clone.tt Line: 274
             m.IsTryAttach = vm.IsTryAttach; // Clone.tt Line: 276
             m.LinesOnScreen = vm.LinesOnScreen; // Clone.tt Line: 276
             m.IsStartNewRow = vm.IsStartNewRow; // Clone.tt Line: 276
@@ -16433,10 +16453,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        [Category("")]
-        [PropertyOrderAttribute(4)]
-        [ExpandableObjectAttribute()]
-        [DisplayName("Type")]
+        [Browsable(false)]
         public DataType DataType // Property.tt Line: 55
         { 
             get { return this._DataType; }
@@ -16482,6 +16499,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsNullable;
         partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsNullableChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(8)]
+        [DisplayName("Default")]
+        [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
+        public string DefaultValue // Property.tt Line: 55
+        { 
+            get { return this._DefaultValue; }
+            set
+            {
+                if (this._DefaultValue != value)
+                {
+                    this.OnDefaultValueChanging(ref value);
+                    this._DefaultValue = value;
+                    this.OnDefaultValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _DefaultValue = string.Empty;
+        partial void OnDefaultValueChanging(ref string to); // Property.tt Line: 79
+        partial void OnDefaultValueChanged();
         
         [Browsable(false)]
         public bool IsNew // Property.tt Line: 55
@@ -16545,6 +16586,102 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private int _ShortId;
         partial void OnShortIdChanging(ref int to); // Property.tt Line: 79
         partial void OnShortIdChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(32)]
+        [DisplayName("Expected")]
+        [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
+        public string RangeValuesRequirementStr // Property.tt Line: 55
+        { 
+            get { return this._RangeValuesRequirementStr; }
+            set
+            {
+                if (this._RangeValuesRequirementStr != value)
+                {
+                    this.OnRangeValuesRequirementStrChanging(ref value);
+                    this._RangeValuesRequirementStr = value;
+                    this.OnRangeValuesRequirementStrChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _RangeValuesRequirementStr = string.Empty;
+        partial void OnRangeValuesRequirementStrChanging(ref string to); // Property.tt Line: 79
+        partial void OnRangeValuesRequirementStrChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(34)]
+        [DisplayName("Min Length")]
+        [Description("Minimum length of string")]
+        public string MinLengthRequirement // Property.tt Line: 55
+        { 
+            get { return this._MinLengthRequirement; }
+            set
+            {
+                if (this._MinLengthRequirement != value)
+                {
+                    this.OnMinLengthRequirementChanging(ref value);
+                    this._MinLengthRequirement = value;
+                    this.OnMinLengthRequirementChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _MinLengthRequirement = string.Empty;
+        partial void OnMinLengthRequirementChanging(ref string to); // Property.tt Line: 79
+        partial void OnMinLengthRequirementChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(35)]
+        [DisplayName("Max Length")]
+        [Description("Maximum length of string")]
+        public string MaxLengthRequirement // Property.tt Line: 55
+        { 
+            get { return this._MaxLengthRequirement; }
+            set
+            {
+                if (this._MaxLengthRequirement != value)
+                {
+                    this.OnMaxLengthRequirementChanging(ref value);
+                    this._MaxLengthRequirement = value;
+                    this.OnMaxLengthRequirementChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _MaxLengthRequirement = string.Empty;
+        partial void OnMaxLengthRequirementChanging(ref string to); // Property.tt Line: 79
+        partial void OnMaxLengthRequirementChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(36)]
+        [DisplayName("Time accuracy")]
+        [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
+        public EnumTimeAccuracyType AccuracyForTime // Property.tt Line: 55
+        { 
+            get { return this._AccuracyForTime; }
+            set
+            {
+                if (this._AccuracyForTime != value)
+                {
+                    this.OnAccuracyForTimeChanging(ref value);
+                    this._AccuracyForTime = value;
+                    this.OnAccuracyForTimeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumTimeAccuracyType _AccuracyForTime;
+        partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // Property.tt Line: 79
+        partial void OnAccuracyForTimeChanged();
         
         [Category("Auto Layout")]
         [DisplayName("UI attach")]

@@ -1588,6 +1588,7 @@ message proto_property {
     // @attr [Browsable(false)]
     bool is_marked_for_deletion = 11;
 
+
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(32)]
     // @attr [DisplayName("Expected")]
@@ -1833,15 +1834,18 @@ message proto_constant {
     // @attr [PropertyOrderAttribute(3)]
     // @attr [Description("Description of constant")]
     string description = 5;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [ExpandableObjectAttribute()][DisplayName("Type")]
+    // @attr [Browsable(false)]
     proto_data_type data_type = 6;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(20)]
     // @attr [DisplayName("Can be NULL")]
     // @attr [Description("If unchecked always expected data")]
     bool is_nullable = 7;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("Default")]
+    // @attr [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
+    string default_value = 8; 
     // @attr [Browsable(false)]
     bool is_new = 10;
     // @attr [Browsable(false)]
@@ -1849,6 +1853,27 @@ message proto_constant {
 
     // @attr [Browsable(false)]
     int32 short_id = 19;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(32)]
+    // @attr [DisplayName("Expected")]
+    // @attr [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
+    string range_values_requirement_str = 16;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(34)]
+    // @attr [DisplayName("Min Length")]
+    // @attr [Description("Minimum length of string")]
+    string min_length_requirement = 18;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(35)]
+    // @attr [DisplayName("Max Length")]
+    // @attr [Description("Maximum length of string")]
+    string max_length_requirement = 15;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(36)]
+    // @attr [DisplayName("Time accuracy")]
+    // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
+    proto_enum_time_accuracy_type accuracy_for_time = 20;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("UI attach")]

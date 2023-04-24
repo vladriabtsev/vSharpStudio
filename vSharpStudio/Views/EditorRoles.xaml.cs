@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using Microsoft.Win32;
 using vSharpStudio.common;
 using vSharpStudio.vm.ViewModels;
@@ -59,12 +61,13 @@ namespace vSharpStudio.Views
     //}
     public class ModelNodeRoles : ITreeModel
     {
-        Model model;
-        public ITreeConfigNode? Node { get; private set; }
+        Model? model;
+        public ITreeConfigNode Node { get; private set; }
         public object? Kuku { get; private set; }
         public ModelNodeRoles(Model model)
         {
             this.model = model;
+            this.Node = model;
         }
         public ModelNodeRoles(ITreeConfigNode node)
         {
@@ -72,20 +75,21 @@ namespace vSharpStudio.Views
         }
         public IEnumerable GetChildren(object parent)
         {
-            ITreeConfigNode node = parent == null ? this.model : (ITreeConfigNode)parent;
+            ITreeConfigNode node = parent == null ? this.Node : ((ModelNodeRoles)parent).Node;
             var res = new List<object>();
             foreach (var t in node.GetListChildren())
             {
-                if (parent == null && (t as ITreeConfigNode).Name == "Common")
+                var tt = (ITreeConfigNode)t;
+                if (parent == null && (tt.Name == "Common" || tt.Name == "Enumerations"))
                     continue;
-                res.Add(new ModelNodeRoles((ITreeConfigNode)t));
+                res.Add(new ModelNodeRoles(tt));
             }
             return res;
         }
         public bool HasChildren(object parent)
         {
-            ITreeConfigNode node = (ITreeConfigNode)parent;
-            return node.GetListChildren().Count > 0;
+            var p = (ModelNodeRoles)parent;
+            return p.Node.GetListChildren().Count > 0;
         }
     }
 }

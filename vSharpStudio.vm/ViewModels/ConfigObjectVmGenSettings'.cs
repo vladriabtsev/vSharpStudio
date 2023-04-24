@@ -502,7 +502,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         [Category("")]
-        [PropertyOrderAttribute(11)]
+        [PropertyOrderAttribute(111)]
         [ExpandableObjectAttribute()]
         [ReadOnly(true)]
         [DisplayName("Node Settings")]

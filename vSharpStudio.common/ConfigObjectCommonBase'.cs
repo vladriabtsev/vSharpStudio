@@ -257,7 +257,7 @@
         [ReadOnly(true)]
         [Category("")]
         [PropertyOrderAttribute(0)]
-        [DisplayName("Full Name with config")]
+        [DisplayName("Config.Object Name")]
 #else
         [Browsable(false)]
 #endif

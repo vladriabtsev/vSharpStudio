@@ -18,5 +18,9 @@ namespace vSharpStudio.common
         IReadOnlyList<string> GetRolesByAccess(EnumConstantAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         string FullName { get; } // name with config name
+        string? ComplexObjectName { get; set; }
+        string PropValueValue { get; }
+        IPropertyRangeValuesRequirements? RangeValuesRequirementsI { get; }
+        string ComplexObjectNameWithDot();
     }
 }
