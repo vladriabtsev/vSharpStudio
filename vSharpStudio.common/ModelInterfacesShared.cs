@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
-using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
+using vSharpStudio.common.ViewModels;
 
 namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 {

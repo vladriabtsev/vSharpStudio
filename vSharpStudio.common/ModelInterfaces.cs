@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
-using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
+using vSharpStudio.common.ViewModels;
 
 namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 {
@@ -486,9 +486,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface IUserSettingsOpenedConfig // ModelInterfaces.tt Line: 33
     {
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
-    	Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn { get; set; } // ModelInterfaces.tt Line: 55
-    	string ConfigPath { get; set; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn { get; } // ModelInterfaces.tt Line: 55
+    	string ConfigPath { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IGroupListPlugins // ModelInterfaces.tt Line: 33
@@ -500,38 +500,38 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface IPlugin // ModelInterfaces.tt Line: 33
     {
-    	string Version { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string Version { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGenerator> ListGenerators { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface IPluginGenerator // ModelInterfaces.tt Line: 33
     {
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface ISettingsConfig // ModelInterfaces.tt Line: 33
     {
-    	string Name { get; set; } // ModelInterfaces.tt Line: 55
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string Name { get; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	// current migration version, increased by one on each deployment
-    	int VersionMigrationCurrent { get; set; } // ModelInterfaces.tt Line: 55
+    	int VersionMigrationCurrent { get; } // ModelInterfaces.tt Line: 55
     	// min version supported by current version for migration
-    	int VersionMigrationSupportFromMin { get; set; } // ModelInterfaces.tt Line: 55
+    	int VersionMigrationSupportFromMin { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IConfigShortHistory // ModelInterfaces.tt Line: 33
     {
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
-    	string Name { get; set; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	string Name { get; } // ModelInterfaces.tt Line: 55
     	IConfig CurrentConfig { get; } // ModelInterfaces.tt Line: 59
     	IConfig PrevStableConfig { get; } // ModelInterfaces.tt Line: 59
     }
     
     public partial interface IGroupListBaseConfigLinks // ModelInterfaces.tt Line: 33
     {
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IBaseConfigLink> ListBaseConfigLinks { get; } // ModelInterfaces.tt Line: 48
     	IBaseConfigLink this[int index] { get; }
     	int Count();
@@ -540,10 +540,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface IBaseConfigLink // ModelInterfaces.tt Line: 33
     {
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	string RelativeConfigFilePath { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string RelativeConfigFilePath { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     // Configuration config
@@ -551,11 +551,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IConfig : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	int Version { get; set; } // ModelInterfaces.tt Line: 55
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNeedCurrentUpdate { get; set; } // ModelInterfaces.tt Line: 55
+    	int Version { get; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNeedCurrentUpdate { get; } // ModelInterfaces.tt Line: 55
     	IGroupListBaseConfigLinks GroupConfigLinks { get; } // ModelInterfaces.tt Line: 59
     	IModel Model { get; } // ModelInterfaces.tt Line: 59
     	IGroupListPlugins GroupPlugins { get; } // ModelInterfaces.tt Line: 59
@@ -564,32 +564,32 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface IAppDbSettings // ModelInterfaces.tt Line: 33
     {
-    	string PluginGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PluginName { get; set; } // ModelInterfaces.tt Line: 55
-    	string Version { get; set; } // ModelInterfaces.tt Line: 55
-    	string PluginGenGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PluginGenName { get; set; } // ModelInterfaces.tt Line: 55
-    	string ConnGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string ConnName { get; set; } // ModelInterfaces.tt Line: 55
+    	string PluginGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PluginName { get; } // ModelInterfaces.tt Line: 55
+    	string Version { get; } // ModelInterfaces.tt Line: 55
+    	string PluginGenGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PluginGenName { get; } // ModelInterfaces.tt Line: 55
+    	string ConnGuid { get; } // ModelInterfaces.tt Line: 55
+    	string ConnName { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IPluginGeneratorSolutionSettings // ModelInterfaces.tt Line: 33
     {
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
     	// string app_generator_guid = 2;
-    	string Settings { get; set; } // ModelInterfaces.tt Line: 55
+    	string Settings { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IPluginGeneratorProjectSettings // ModelInterfaces.tt Line: 33
     {
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
     	// string app_generator_guid = 2;
-    	string Settings { get; set; } // ModelInterfaces.tt Line: 55
+    	string Settings { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IGroupListAppSolutions // ModelInterfaces.tt Line: 33
     {
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	// List NET solutions
     	IReadOnlyList<IAppSolution> ListAppSolutions { get; } // ModelInterfaces.tt Line: 48
     	IAppSolution this[int index] { get; }
@@ -598,12 +598,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface IAppSolution // ModelInterfaces.tt Line: 33
     {
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	string ShortIdForCacheKey { get; set; } // ModelInterfaces.tt Line: 55
-    	string RelativeAppSolutionPath { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string ShortIdForCacheKey { get; } // ModelInterfaces.tt Line: 55
+    	string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IAppProject> ListAppProjects { get; } // ModelInterfaces.tt Line: 48
     	// 
     	// repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
@@ -612,11 +612,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface IAppProject // ModelInterfaces.tt Line: 33
     {
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	string RelativeAppProjectPath { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 48
     	// 
     	// repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
@@ -626,87 +626,87 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IPluginGeneratorNodeSettings // ModelInterfaces.tt Line: 33
     {
     	// Guid of solution-project-generator node
-    	string AppProjectGeneratorGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
+    	string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
     	// string node_settings_vm_guid = 6;
-    	string Settings { get; set; } // ModelInterfaces.tt Line: 55
+    	string Settings { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IPluginGeneratorSettings // ModelInterfaces.tt Line: 33
     {
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
-    	string Name { get; set; } // ModelInterfaces.tt Line: 55
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	string Name { get; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
     	// Guid of solution-project-generator node
-    	string AppProjectGeneratorGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string Settings { get; set; } // ModelInterfaces.tt Line: 55
+    	string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 55
+    	string Settings { get; } // ModelInterfaces.tt Line: 55
     }
     // Application project generator
     
     public partial interface IAppProjectGenerator // ModelInterfaces.tt Line: 33
     {
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	string PluginGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string DescriptionPlugin { get; set; } // ModelInterfaces.tt Line: 55
-    	string PluginGeneratorGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string DescriptionGenerator { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string PluginGuid { get; } // ModelInterfaces.tt Line: 55
+    	string DescriptionPlugin { get; } // ModelInterfaces.tt Line: 55
+    	string PluginGeneratorGuid { get; } // ModelInterfaces.tt Line: 55
+    	string DescriptionGenerator { get; } // ModelInterfaces.tt Line: 55
     	// Relative folder path to project file
-    	string RelativePathToGenFolder { get; set; } // ModelInterfaces.tt Line: 55
+    	string RelativePathToGenFolder { get; } // ModelInterfaces.tt Line: 55
     	// Generator output file name
-    	string GenFileName { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
-    	string GeneratorSettings { get; set; } // ModelInterfaces.tt Line: 55
+    	string GenFileName { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	string GeneratorSettings { get; } // ModelInterfaces.tt Line: 55
     	IPluginGeneratorSettings GeneratorSettingsVm { get; } // ModelInterfaces.tt Line: 59
-    	string ConnStr { get; set; } // ModelInterfaces.tt Line: 55
-    	string ConnStrToPrevStable { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsGenerateSqlSqriptToUpdatePrevStable { get; set; } // ModelInterfaces.tt Line: 55
+    	string ConnStr { get; } // ModelInterfaces.tt Line: 55
+    	string ConnStrToPrevStable { get; } // ModelInterfaces.tt Line: 55
+    	bool IsGenerateSqlSqriptToUpdatePrevStable { get; } // ModelInterfaces.tt Line: 55
     	// Generator output file name
-    	string GenScriptFileName { get; set; } // ModelInterfaces.tt Line: 55
+    	string GenScriptFileName { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IPluginGeneratorNodeDefaultSettings // ModelInterfaces.tt Line: 33
     {
     	// Guid of solution-project-generator node
-    	string NodeSettingsVmGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string Settings { get; set; } // ModelInterfaces.tt Line: 55
+    	string NodeSettingsVmGuid { get; } // ModelInterfaces.tt Line: 55
+    	string Settings { get; } // ModelInterfaces.tt Line: 55
     }
     // Configuration model
     
     public partial interface IModel : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	int Version { get; set; } // ModelInterfaces.tt Line: 55
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	uint CompositeNameMaxLength { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsUseCompositeNames { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsUseGroupPrefix { get; set; } // ModelInterfaces.tt Line: 55
-    	string PKeyGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PKeyName { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumPrimaryKeyType PKeyType { get; set; } // ModelInterfaces.tt Line: 55
-    	string RecordVersionFieldGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string RecordVersionFieldName { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumVersionFieldType RecordVersionFieldType { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyCodeName { get; set; } // ModelInterfaces.tt Line: 55
-    	bool UseCodeProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyNameName { get; set; } // ModelInterfaces.tt Line: 55
-    	bool UseNameProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyDescriptionName { get; set; } // ModelInterfaces.tt Line: 55
-    	bool UseDescriptionProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyIsFolderName { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyDocDateName { get; set; } // ModelInterfaces.tt Line: 55
-    	bool UseDocDateProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyDocCodeName { get; set; } // ModelInterfaces.tt Line: 55
-    	bool UseDocCodeProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	int LastConstantGroupShortId { get; set; } // ModelInterfaces.tt Line: 55
-    	int LastCatalogShortId { get; set; } // ModelInterfaces.tt Line: 55
-    	int LastDocumentShortId { get; set; } // ModelInterfaces.tt Line: 55
-    	int LastDetailShortId { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	int Version { get; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	uint CompositeNameMaxLength { get; } // ModelInterfaces.tt Line: 55
+    	bool IsUseCompositeNames { get; } // ModelInterfaces.tt Line: 55
+    	bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 55
+    	string PKeyGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PKeyName { get; } // ModelInterfaces.tt Line: 55
+    	EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 55
+    	string RecordVersionFieldGuid { get; } // ModelInterfaces.tt Line: 55
+    	string RecordVersionFieldName { get; } // ModelInterfaces.tt Line: 55
+    	EnumVersionFieldType RecordVersionFieldType { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyCodeName { get; } // ModelInterfaces.tt Line: 55
+    	bool UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyNameName { get; } // ModelInterfaces.tt Line: 55
+    	bool UseNameProperty { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyDescriptionName { get; } // ModelInterfaces.tt Line: 55
+    	bool UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyIsFolderName { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyDocDateName { get; } // ModelInterfaces.tt Line: 55
+    	bool UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyDocCodeName { get; } // ModelInterfaces.tt Line: 55
+    	bool UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 55
+    	int LastConstantGroupShortId { get; } // ModelInterfaces.tt Line: 55
+    	int LastCatalogShortId { get; } // ModelInterfaces.tt Line: 55
+    	int LastDocumentShortId { get; } // ModelInterfaces.tt Line: 55
+    	int LastDetailShortId { get; } // ModelInterfaces.tt Line: 55
+    	bool IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	bool IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	bool IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 59
     	IGroupConstantGroups GroupConstantGroups { get; } // ModelInterfaces.tt Line: 59
     	IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 59
@@ -721,31 +721,31 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface IDataType // ModelInterfaces.tt Line: 33
     {
-    	EnumDataType DataTypeEnum { get; set; } // ModelInterfaces.tt Line: 55
-    	uint Length { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsPositive { get; set; } // ModelInterfaces.tt Line: 55
-    	uint Accuracy { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumDataType DataTypeEnum { get; } // ModelInterfaces.tt Line: 55
+    	uint Length { get; } // ModelInterfaces.tt Line: 55
+    	bool IsPositive { get; } // ModelInterfaces.tt Line: 55
+    	uint Accuracy { get; } // ModelInterfaces.tt Line: 55
     	// <summary>
     	// / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
     	// / Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
     	// / If Guid of group types is assigned, then any type of such group of types is acceptable as type
     	// / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
     	// / </summary>
-    	string ObjectGuid { get; set; } // ModelInterfaces.tt Line: 55
+    	string ObjectGuid { get; } // ModelInterfaces.tt Line: 55
     	// <summary>
     	// / Guids of selected complex types, that are acceptable as types
     	// / </summary>
     	IReadOnlyList<string> ListObjectGuids { get; } // ModelInterfaces.tt Line: 46
-    	bool IsPKey { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsRefParent { get; set; } // ModelInterfaces.tt Line: 55
+    	bool IsPKey { get; } // ModelInterfaces.tt Line: 55
+    	bool IsRefParent { get; } // ModelInterfaces.tt Line: 55
     }
     // Common parameters section
     
     public partial interface IGroupListCommon : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IGroupListRoles GroupRoles { get; } // ModelInterfaces.tt Line: 59
     	IGroupListMainViewForms GroupViewForms { get; } // ModelInterfaces.tt Line: 59
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
@@ -755,53 +755,53 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IRole : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface IRoleConstantAccess // ModelInterfaces.tt Line: 33
     {
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumConstantAccess EditAccess { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess PrintAccess { get; set; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	EnumConstantAccess EditAccess { get; } // ModelInterfaces.tt Line: 55
+    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IRolePropertyAccess // ModelInterfaces.tt Line: 33
     {
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumPropertyAccess EditAccess { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess PrintAccess { get; set; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	EnumPropertyAccess EditAccess { get; } // ModelInterfaces.tt Line: 55
+    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IRoleCatalogAccess // ModelInterfaces.tt Line: 33
     {
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogDetailAccess EditAccess { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess PrintAccess { get; set; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	EnumCatalogDetailAccess EditAccess { get; } // ModelInterfaces.tt Line: 55
+    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IRoleDetailAccess // ModelInterfaces.tt Line: 33
     {
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogDetailAccess EditAccess { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess PrintAccess { get; set; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	EnumCatalogDetailAccess EditAccess { get; } // ModelInterfaces.tt Line: 55
+    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IRoleDocumentAccess // ModelInterfaces.tt Line: 33
     {
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumDocumentAccess EditAccess { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess PrintAccess { get; set; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	EnumDocumentAccess EditAccess { get; } // ModelInterfaces.tt Line: 55
+    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IGroupListRoles : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IRole> ListRoles { get; } // ModelInterfaces.tt Line: 48
     	IRole this[int index] { get; }
     	int Count();
@@ -812,11 +812,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IMainViewForm : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IGroupListMainViewForms GroupListViewForms { get; } // ModelInterfaces.tt Line: 59
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     // main view forms hierarchy node with children
@@ -824,8 +824,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IGroupListMainViewForms : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IMainViewForm> ListMainViewForms { get; } // ModelInterfaces.tt Line: 48
     	IMainViewForm this[int index] { get; }
     	int Count();
@@ -835,55 +835,55 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IGroupListDetails : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IDetail> ListDetails { get; } // ModelInterfaces.tt Line: 48
     	IDetail this[int index] { get; }
     	int Count();
-    	EnumUseType UseCodeProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseNameProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface IDetail : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	// Create Index for foreign key navigation property
-    	bool IsIndexFk { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 59
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 59
     	// Protobuf field position
     	// Reserved positions: 1 - primary key
-    	uint Position { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseCodeProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseNameProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	int ShortId { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsTryAttach { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewRow { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewTab { get; set; } // ModelInterfaces.tt Line: 55
-    	string TabName { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewTabControl { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsStopTabControl { get; set; } // ModelInterfaces.tt Line: 55
-    	string ViewListWideGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string ViewListNarrowGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyIdGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyCodeGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyNameGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyDescriptionGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyRefParentGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyVersionGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	uint Position { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
+    	int ShortId { get; } // ModelInterfaces.tt Line: 55
+    	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStartNewTab { get; } // ModelInterfaces.tt Line: 55
+    	string TabName { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 59
     	IReadOnlyList<IRoleDetailAccess> ListRoleDetailAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
@@ -892,61 +892,61 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IGroupListProperties : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IProperty> ListProperties { get; } // ModelInterfaces.tt Line: 48
     	IProperty this[int index] { get; }
     	int Count();
     	// Last generated Protobuf field position
-    	uint LastGenPosition { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	uint LastGenPosition { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IRolePropertyAccess> ListRolePropertyAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface IPropertyDataGenerator // ModelInterfaces.tt Line: 33
     {
-    	EnumPropertyDataType DataType { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumAddressDataType Address { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumCommerceDataType Commerce { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumCompanyDataType Company { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumDateDataType Date { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumDatabaseDataType Database { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumFinanceDataType Finance { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumHackerDataType Hacker { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumImageDataType Image { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumInternetDataType Internet { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumLoremDataType Lorem { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumNameDataType Name { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumPhoneDataType Phone { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumRantDataType Rant { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumSystemDataType System { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumVehicleDataType Vehicle { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumRandomDataType Random { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumPropertyDataType DataType { get; } // ModelInterfaces.tt Line: 55
+    	EnumAddressDataType Address { get; } // ModelInterfaces.tt Line: 55
+    	EnumCommerceDataType Commerce { get; } // ModelInterfaces.tt Line: 55
+    	EnumCompanyDataType Company { get; } // ModelInterfaces.tt Line: 55
+    	EnumDateDataType Date { get; } // ModelInterfaces.tt Line: 55
+    	EnumDatabaseDataType Database { get; } // ModelInterfaces.tt Line: 55
+    	EnumFinanceDataType Finance { get; } // ModelInterfaces.tt Line: 55
+    	EnumHackerDataType Hacker { get; } // ModelInterfaces.tt Line: 55
+    	EnumImageDataType Image { get; } // ModelInterfaces.tt Line: 55
+    	EnumInternetDataType Internet { get; } // ModelInterfaces.tt Line: 55
+    	EnumLoremDataType Lorem { get; } // ModelInterfaces.tt Line: 55
+    	EnumNameDataType Name { get; } // ModelInterfaces.tt Line: 55
+    	EnumPhoneDataType Phone { get; } // ModelInterfaces.tt Line: 55
+    	EnumRantDataType Rant { get; } // ModelInterfaces.tt Line: 55
+    	EnumSystemDataType System { get; } // ModelInterfaces.tt Line: 55
+    	EnumVehicleDataType Vehicle { get; } // ModelInterfaces.tt Line: 55
+    	EnumRandomDataType Random { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IProperty : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IDataType DataType { get; } // ModelInterfaces.tt Line: 59
-    	bool IsNullable { get; set; } // ModelInterfaces.tt Line: 55
-    	string DefaultValue { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
-    	string RangeValuesRequirementStr { get; set; } // ModelInterfaces.tt Line: 55
-    	string MinLengthRequirement { get; set; } // ModelInterfaces.tt Line: 55
-    	string MaxLengthRequirement { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumTimeAccuracyType AccuracyForTime { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsTryAttach { get; set; } // ModelInterfaces.tt Line: 55
-    	int LinesOnScreen { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewRow { get; set; } // ModelInterfaces.tt Line: 55
-    	string TabName { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewTabControl { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsStopTabControl { get; set; } // ModelInterfaces.tt Line: 55
+    	bool IsNullable { get; } // ModelInterfaces.tt Line: 55
+    	string DefaultValue { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	string RangeValuesRequirementStr { get; } // ModelInterfaces.tt Line: 55
+    	string MinLengthRequirement { get; } // ModelInterfaces.tt Line: 55
+    	string MaxLengthRequirement { get; } // ModelInterfaces.tt Line: 55
+    	EnumTimeAccuracyType AccuracyForTime { get; } // ModelInterfaces.tt Line: 55
+    	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 55
+    	int LinesOnScreen { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 55
+    	string TabName { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 55
     	IPropertyDataGenerator DataGenerator { get; } // ModelInterfaces.tt Line: 59
     	// 
     	// // @attr [PropertyOrderAttribute(28)]
@@ -1010,21 +1010,21 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	// // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
     	// google.protobuf.UInt32Value width_xx = 39;
     	IReadOnlyList<IRolePropertyAccess> ListRolePropertyAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	// Protobuf field position
     	// Reserved positions: 1 - primary key
-    	uint Position { get; set; } // ModelInterfaces.tt Line: 55
+    	uint Position { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface IGroupConstantGroups : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	string PrefixForDbTables { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IGroupListConstants> ListConstantGroups { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
@@ -1033,15 +1033,15 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IGroupListConstants : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IConstant> ListConstants { get; } // ModelInterfaces.tt Line: 48
     	IConstant this[int index] { get; }
     	int Count();
-    	string ShortIdTypeForCacheKey { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
-    	int ShortId { get; set; } // ModelInterfaces.tt Line: 55
+    	string ShortIdTypeForCacheKey { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	int ShortId { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
@@ -1051,24 +1051,24 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IConstant : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IDataType DataType { get; } // ModelInterfaces.tt Line: 59
-    	bool IsNullable { get; set; } // ModelInterfaces.tt Line: 55
-    	string DefaultValue { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
-    	int ShortId { get; set; } // ModelInterfaces.tt Line: 55
-    	string RangeValuesRequirementStr { get; set; } // ModelInterfaces.tt Line: 55
-    	string MinLengthRequirement { get; set; } // ModelInterfaces.tt Line: 55
-    	string MaxLengthRequirement { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumTimeAccuracyType AccuracyForTime { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsTryAttach { get; set; } // ModelInterfaces.tt Line: 55
-    	int LinesOnScreen { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewRow { get; set; } // ModelInterfaces.tt Line: 55
-    	string TabName { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewTabControl { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsStopTabControl { get; set; } // ModelInterfaces.tt Line: 55
+    	bool IsNullable { get; } // ModelInterfaces.tt Line: 55
+    	string DefaultValue { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	int ShortId { get; } // ModelInterfaces.tt Line: 55
+    	string RangeValuesRequirementStr { get; } // ModelInterfaces.tt Line: 55
+    	string MinLengthRequirement { get; } // ModelInterfaces.tt Line: 55
+    	string MaxLengthRequirement { get; } // ModelInterfaces.tt Line: 55
+    	EnumTimeAccuracyType AccuracyForTime { get; } // ModelInterfaces.tt Line: 55
+    	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 55
+    	int LinesOnScreen { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 55
+    	string TabName { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
@@ -1076,8 +1076,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IGroupListEnumerations : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IEnumeration> ListEnumerations { get; } // ModelInterfaces.tt Line: 48
     	IEnumeration this[int index] { get; }
     	int Count();
@@ -1087,56 +1087,56 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IEnumeration : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	// Enumeration element type
-    	EnumEnumerationType DataTypeEnum { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumEnumerationType DataTypeEnum { get; } // ModelInterfaces.tt Line: 55
     	// Length of string if 'STRING' is selected as enumeration element type
-    	int DataTypeLength { get; set; } // ModelInterfaces.tt Line: 55
+    	int DataTypeLength { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IEnumerationPair> ListEnumerationPairs { get; } // ModelInterfaces.tt Line: 48
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface IEnumerationPair : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	string Value { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsDefault { get; set; } // ModelInterfaces.tt Line: 55
-    	int NumericValue { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string Value { get; } // ModelInterfaces.tt Line: 55
+    	bool IsDefault { get; } // ModelInterfaces.tt Line: 55
+    	int NumericValue { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface ICatalogFolder : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyIdGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseCodeProperty { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 59
-    	string PropertyCodeGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyVersionGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseNameProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	uint MaxNameLength { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyNameGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	uint MaxDescriptionLength { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyDescriptionGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string ViewListWideGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string ViewListNarrowGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyIsFolderGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyRefSelfGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
+    	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
+    	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 59
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 59
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 59
@@ -1147,44 +1147,44 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface ICatalogCodePropertySettings // ModelInterfaces.tt Line: 33
     {
-    	EnumCodeType Type { get; set; } // ModelInterfaces.tt Line: 55
-    	uint Length { get; set; } // ModelInterfaces.tt Line: 55
-    	string SequenceGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogCodeUniqueScope UniqueScope { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumCodeType Type { get; } // ModelInterfaces.tt Line: 55
+    	uint Length { get; } // ModelInterfaces.tt Line: 55
+    	string SequenceGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumCatalogCodeUniqueScope UniqueScope { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface ICatalog : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
-    	int ShortId { get; set; } // ModelInterfaces.tt Line: 55
-    	bool UseTree { get; set; } // ModelInterfaces.tt Line: 55
-    	bool UseSeparateTreeForFolders { get; set; } // ModelInterfaces.tt Line: 55
-    	uint MaxTreeLevels { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseCodeProperty { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	int ShortId { get; } // ModelInterfaces.tt Line: 55
+    	bool UseTree { get; } // ModelInterfaces.tt Line: 55
+    	bool UseSeparateTreeForFolders { get; } // ModelInterfaces.tt Line: 55
+    	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 59
-    	EnumUseType UseNameProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	uint MaxNameLength { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	uint MaxDescriptionLength { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogTreeIcon ItemIconType { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogTreeIcon GroupIconType { get; set; } // ModelInterfaces.tt Line: 55
-    	string ViewListWideGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string ViewListNarrowGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyIdGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyCodeGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyNameGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyDescriptionGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyIsFolderGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyRefSelfGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyRefFolderGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyVersionGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
+    	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
+    	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 55
+    	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 55
+    	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyRefFolderGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	ICatalogFolder Folder { get; } // ModelInterfaces.tt Line: 59
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 59
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 59
@@ -1197,22 +1197,22 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IGroupListCatalogs : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	string PrefixForDbTables { get; set; } // ModelInterfaces.tt Line: 55
-    	string ShortIdTypeForCacheKey { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 55
+    	string ShortIdTypeForCacheKey { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 48
     	ICatalog this[int index] { get; }
     	int Count();
-    	EnumUseType UseCodeProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseNameProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	bool UseCodePropertyInSeparateTree { get; set; } // ModelInterfaces.tt Line: 55
-    	bool UseNamePropertyInSeparateTree { get; set; } // ModelInterfaces.tt Line: 55
-    	bool UseDescriptionPropertyInSeparateTree { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
+    	bool UseCodePropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 55
+    	bool UseNamePropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 55
+    	bool UseDescriptionPropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
@@ -1220,51 +1220,51 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IGroupDocuments : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	string PrefixForDbTables { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 55
     	IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 59
     	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 59
-    	EnumUseType UseDocCodeProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDocDateProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface IDocumentCodePropertySettings // ModelInterfaces.tt Line: 33
     {
-    	EnumCodeType Type { get; set; } // ModelInterfaces.tt Line: 55
-    	uint Length { get; set; } // ModelInterfaces.tt Line: 55
-    	string SequenceGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumDocumentCodeUniqueScope UniqueScope { get; set; } // ModelInterfaces.tt Line: 55
-    	string ScopePeriodStart { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumCodeType Type { get; } // ModelInterfaces.tt Line: 55
+    	uint Length { get; } // ModelInterfaces.tt Line: 55
+    	string SequenceGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumDocumentCodeUniqueScope UniqueScope { get; } // ModelInterfaces.tt Line: 55
+    	string ScopePeriodStart { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IDocument : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 59
     	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 59
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 59
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 59
-    	int ShortId { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDocCodeProperty { get; set; } // ModelInterfaces.tt Line: 55
+    	int ShortId { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 55
     	IDocumentCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 59
-    	EnumUseType UseDocDateProperty { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyIdGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyDocCodeGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyDocDateGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	string PropertyVersionGuid { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyDocCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyDocDateGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
@@ -1272,9 +1272,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IGroupListDocuments : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	string ShortIdTypeForCacheKey { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string ShortIdTypeForCacheKey { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 48
     	IDocument this[int index] { get; }
     	int Count();
@@ -1285,38 +1285,38 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IGroupListJournals : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	// repeated proto_property list_shared_properties = 6;
     	IReadOnlyList<IJournal> ListJournals { get; } // ModelInterfaces.tt Line: 48
     	IJournal this[int index] { get; }
     	int Count();
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface IJournal : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	// repeated proto_group_properties list_properties = 6;
     	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 48
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; set; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface IGroupListForms : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	// repeated proto_property list_shared_properties = 6;
     	IReadOnlyList<IForm> ListForms { get; } // ModelInterfaces.tt Line: 48
     	IForm this[int index] { get; }
@@ -1329,19 +1329,19 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IForm : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseCode { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseName { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseDesc { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseFolderCode { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseFolderName { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseFolderDesc { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseDocDate { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsDummy { get; set; } // ModelInterfaces.tt Line: 55
-    	FormType EnumFormType { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsUseCode { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsUseName { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsUseDesc { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsUseFolderCode { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsUseFolderName { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsUseFolderDesc { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsUseDocDate { get; } // ModelInterfaces.tt Line: 55
+    	bool IsDummy { get; } // ModelInterfaces.tt Line: 55
+    	FormType EnumFormType { get; } // ModelInterfaces.tt Line: 55
     	IFormGridSystem GridSystem { get; } // ModelInterfaces.tt Line: 59
     	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 46
     	IReadOnlyList<string> ListGuidViewFolderProperties { get; } // ModelInterfaces.tt Line: 46
@@ -1352,10 +1352,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IFormGridSystem : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IFormGridSystemRow> ListRows { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
@@ -1365,10 +1365,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IFormGridSystemRow : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IFormGridSystemColumn> ListColumns { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
@@ -1377,17 +1377,17 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IFormGridSystemColumn : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	EnumHiddenType HideType { get; set; } // ModelInterfaces.tt Line: 55
-    	uint? WidthXs { get; set; } // ModelInterfaces.tt Line: 55
-    	uint? WidthSm { get; set; } // ModelInterfaces.tt Line: 55
-    	uint? WidthMd { get; set; } // ModelInterfaces.tt Line: 55
-    	uint? WidthLg { get; set; } // ModelInterfaces.tt Line: 55
-    	uint? WidthXl { get; set; } // ModelInterfaces.tt Line: 55
-    	uint? WidthXx { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	EnumHiddenType HideType { get; } // ModelInterfaces.tt Line: 55
+    	uint? WidthXs { get; } // ModelInterfaces.tt Line: 55
+    	uint? WidthSm { get; } // ModelInterfaces.tt Line: 55
+    	uint? WidthMd { get; } // ModelInterfaces.tt Line: 55
+    	uint? WidthLg { get; } // ModelInterfaces.tt Line: 55
+    	uint? WidthXl { get; } // ModelInterfaces.tt Line: 55
+    	uint? WidthXx { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IFormAutoLayoutBlock FormBlock { get; } // ModelInterfaces.tt Line: 59
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
@@ -1401,10 +1401,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IFormAutoLayoutBlock : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IFormAutoLayoutSubBlock> ListFormAutoLayoutSubBlock { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
@@ -1413,10 +1413,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IFormAutoLayoutSubBlock : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IFormTabControl TabControl { get; } // ModelInterfaces.tt Line: 59
     	IFormDataGrid DataGridControl { get; } // ModelInterfaces.tt Line: 59
     	IFormAutoLayoutBlock AutoLayoutBlockControl { get; } // ModelInterfaces.tt Line: 59
@@ -1429,10 +1429,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IFormField : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     // Children are collection of Auto Layout Block children
@@ -1440,10 +1440,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IFormTabControlTab : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
     	IFormAutoLayoutBlock FormBlock { get; } // ModelInterfaces.tt Line: 59
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
@@ -1453,10 +1453,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IFormTabControl : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IFormTabControlTab> ListTabs { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
@@ -1466,10 +1466,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IFormDataGrid : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
@@ -1478,10 +1478,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IFormTree : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
@@ -1489,8 +1489,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IGroupListReports : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
     	// repeated proto_property list_shared_properties = 6;
     	IReadOnlyList<IReport> ListReports { get; } // ModelInterfaces.tt Line: 48
     	IReport this[int index] { get; }
@@ -1501,10 +1501,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     public partial interface IReport : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; set; } // ModelInterfaces.tt Line: 55
-    	string Description { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; set; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	// repeated proto_group_properties list_properties = 6;
     	// repeated proto_document list_documents = 7;
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
@@ -1512,9 +1512,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface IModelRow // ModelInterfaces.tt Line: 33
     {
-    	string GroupName { get; set; } // ModelInterfaces.tt Line: 55
-    	string Name { get; set; } // ModelInterfaces.tt Line: 55
-    	string Guid { get; set; } // ModelInterfaces.tt Line: 55
-    	bool IsIncluded { get; set; } // ModelInterfaces.tt Line: 55
+    	string GroupName { get; } // ModelInterfaces.tt Line: 55
+    	string Name { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	bool IsIncluded { get; } // ModelInterfaces.tt Line: 55
     }
 }

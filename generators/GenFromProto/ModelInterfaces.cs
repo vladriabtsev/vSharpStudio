@@ -29,8 +29,8 @@ namespace GenFromProto
         public virtual string TransformText()
         {
             this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing System.ComponentModel;\r\nu" +
-                    "sing Google.Protobuf.WellKnownTypes;\r\nusing ViewModelBase;\r\nusing Xceed.Wpf.Tool" +
-                    "kit.PropertyGrid.Editors;\r\n\r\nnamespace ");
+                    "sing Google.Protobuf.WellKnownTypes;\r\nusing ViewModelBase;\r\nusing vSharpStudio.c" +
+                    "ommon.ViewModels;\r\n\r\nnamespace ");
             
             #line 13 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
