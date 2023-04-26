@@ -13,27 +13,27 @@
           "name": "enum_enumeration_type",
           "longName": "enum_enumeration_type",
           "fullName": "proto_config.enum_enumeration_type",
-          "description": "Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss",
+          "description": "Enumeration member type\n@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "INTEGER_VALUE",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"INT\")]"
             },
             {
               "name": "SHORT_VALUE",
               "number": "1",
-              "description": ""
+              "description": "@attr [Description(\"SHORT\")]"
             },
             {
               "name": "BYTE_VALUE",
               "number": "2",
-              "description": ""
+              "description": "@attr [Description(\"BYTE\")]"
             },
             {
               "name": "STRING_VALUE",
               "number": "3",
-              "description": ""
+              "description": "@attr [Description(\"STRING\")]"
             }
           ]
         },
@@ -41,7 +41,7 @@
           "name": "proto_enum_address_data_type",
           "longName": "proto_enum_address_data_type",
           "fullName": "proto_config.proto_enum_address_data_type",
-          "description": "https://github.com/bchavez/Bogus",
+          "description": "https://github.com/bchavez/Bogus\n@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "A_NONE",
@@ -154,7 +154,7 @@
           "name": "proto_enum_catalog_code_unique_scope",
           "longName": "proto_enum_catalog_code_unique_scope",
           "fullName": "proto_config.proto_enum_catalog_code_unique_scope",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "NoScope",
@@ -177,32 +177,32 @@
           "name": "proto_enum_catalog_detail_access",
           "longName": "proto_enum_catalog_detail_access",
           "fullName": "proto_config.proto_enum_catalog_detail_access",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "C_BY_PARENT",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"By Parent\")]"
             },
             {
               "name": "C_HIDE",
               "number": "1",
-              "description": ""
+              "description": "@attr [Description(\"Hide\")]"
             },
             {
               "name": "C_VIEW",
               "number": "2",
-              "description": ""
+              "description": "@attr [Description(\"View\")]"
             },
             {
               "name": "C_EDIT",
               "number": "3",
-              "description": ""
+              "description": "@attr [Description(\"Edit\")]"
             },
             {
               "name": "C_MARK_DEL",
               "number": "4",
-              "description": ""
+              "description": "@attr [Description(\"Del\")]"
             }
           ]
         },
@@ -210,7 +210,7 @@
           "name": "proto_enum_catalog_tree_icon",
           "longName": "proto_enum_catalog_tree_icon",
           "fullName": "proto_config.proto_enum_catalog_tree_icon",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "None",
@@ -238,7 +238,7 @@
           "name": "proto_enum_code_type",
           "longName": "proto_enum_code_type",
           "fullName": "proto_config.proto_enum_code_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "Number",
@@ -266,7 +266,7 @@
           "name": "proto_enum_commerce_data_type",
           "longName": "proto_enum_commerce_data_type",
           "fullName": "proto_config.proto_enum_commerce_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "C_NONE",
@@ -329,7 +329,7 @@
           "name": "proto_enum_company_data_type",
           "longName": "proto_enum_company_data_type",
           "fullName": "proto_config.proto_enum_company_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "P_NONE",
@@ -362,27 +362,27 @@
           "name": "proto_enum_constant_access",
           "longName": "proto_enum_constant_access",
           "fullName": "proto_config.proto_enum_constant_access",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "CN_BY_PARENT",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"By Parent\")]"
             },
             {
               "name": "CN_HIDE",
               "number": "1",
-              "description": ""
+              "description": "@attr [Description(\"Hide\")]"
             },
             {
               "name": "CN_VIEW",
               "number": "2",
-              "description": "with history"
+              "description": "@attr [Description(\"View\")]\n\nwith history"
             },
             {
               "name": "CN_EDIT",
               "number": "3",
-              "description": "with history"
+              "description": "@attr [Description(\"Edit\")]\n\nwith history"
             }
           ]
         },
@@ -390,77 +390,77 @@
           "name": "proto_enum_data_type",
           "longName": "proto_enum_data_type",
           "fullName": "proto_config.proto_enum_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "CHAR",
               "number": "0",
-              "description": "@attr [DisplayName(\"Char\")]\n@attr [Description(\"Char type\")]"
+              "description": ""
             },
             {
               "name": "STRING",
               "number": "1",
-              "description": "@attr [DisplayName(\"String\")]\n@attr [Description(\"String type. If length is zero, unlimited string length\")]"
+              "description": ""
             },
             {
               "name": "NUMERICAL",
               "number": "2",
-              "description": "@attr [DisplayName(\"Numeric\")]\n@attr [Description(\"Numerical data type. Type depend on length and accuracy\")]"
+              "description": ""
             },
             {
               "name": "BOOL",
               "number": "3",
-              "description": "@attr [DisplayName(\"Boolean\")]\n@attr [Description(\"Boolean type\")]"
+              "description": ""
             },
             {
               "name": "TIME",
               "number": "4",
-              "description": "@attr [DisplayName(\"Time\")]\n@attr [Description(\"Time without time zone. DB value stored with accuracy 1 second\")]"
+              "description": ""
             },
             {
               "name": "DATE",
               "number": "5",
-              "description": "@attr [DisplayName(\"Date\")]\n@attr [Description(\"Date without time zone\")]"
+              "description": ""
             },
             {
               "name": "DATETIMELOCAL",
               "number": "6",
-              "description": "@attr [DisplayName(\"DateTime Local\")]\n@attr [Description(\"Local Date and time. Kind always expected equal DateTimeKind.Local\")]"
+              "description": ""
             },
             {
               "name": "DATETIMEUTC",
               "number": "7",
-              "description": "@attr [DisplayName(\"DateTime UTC\")]\n@attr [Description(\"UTC Date and time. Kind always expected equal DateTimeKind.Utc\")]"
+              "description": ""
             },
             {
               "name": "ENUMERATION",
               "number": "10",
-              "description": "@attr [DisplayName(\"Enumeration\")]\n@attr [Description(\"Enumeration type\")]"
+              "description": ""
             },
             {
               "name": "CATALOG",
               "number": "11",
-              "description": "@attr [DisplayName(\"Catalog\")]\n@attr [Description(\"Catalog type\")]"
+              "description": ""
             },
             {
               "name": "CATALOGS",
               "number": "12",
-              "description": "@attr [DisplayName(\"Catalogs\")]\n@attr [Description(\"List of catalogs\")]"
+              "description": ""
             },
             {
               "name": "DOCUMENT",
               "number": "13",
-              "description": "@attr [DisplayName(\"Document\")]\n@attr [Description(\"Document type\")]"
+              "description": ""
             },
             {
               "name": "DOCUMENTS",
               "number": "14",
-              "description": "@attr [DisplayName(\"Documents\")]\n@attr [Description(\"List of documents\")]"
+              "description": ""
             },
             {
               "name": "ANY",
               "number": "15",
-              "description": "@attr [DisplayName(\"Any type\")]\n@attr [Description(\"Any data type\")]"
+              "description": ""
             }
           ]
         },
@@ -468,7 +468,7 @@
           "name": "proto_enum_database_data_type",
           "longName": "proto_enum_database_data_type",
           "fullName": "proto_config.proto_enum_database_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "DB_NONE",
@@ -501,7 +501,7 @@
           "name": "proto_enum_date_data_type",
           "longName": "proto_enum_date_data_type",
           "fullName": "proto_config.proto_enum_date_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "D_NONE",
@@ -579,42 +579,42 @@
           "name": "proto_enum_document_access",
           "longName": "proto_enum_document_access",
           "fullName": "proto_config.proto_enum_document_access",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "D_BY_PARENT",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"By Parent\")]"
             },
             {
               "name": "D_HIDE",
               "number": "1",
-              "description": ""
+              "description": "@attr [Description(\"Hide\")]"
             },
             {
               "name": "D_VIEW",
               "number": "2",
-              "description": ""
+              "description": "@attr [Description(\"View\")]"
             },
             {
               "name": "D_EDIT",
               "number": "3",
-              "description": ""
+              "description": "@attr [Description(\"Edit\")]"
             },
             {
               "name": "D_POST",
               "number": "4",
-              "description": ""
+              "description": "@attr [Description(\"Post\")]"
             },
             {
               "name": "D_UNPOST",
               "number": "5",
-              "description": ""
+              "description": "@attr [Description(\"Unpost\")]"
             },
             {
               "name": "D_MARK_DEL",
               "number": "6",
-              "description": ""
+              "description": "@attr [Description(\"Del\")]"
             }
           ]
         },
@@ -622,7 +622,7 @@
           "name": "proto_enum_document_code_unique_scope",
           "longName": "proto_enum_document_code_unique_scope",
           "fullName": "proto_config.proto_enum_document_code_unique_scope",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "Forever",
@@ -650,7 +650,7 @@
           "name": "proto_enum_finance_data_type",
           "longName": "proto_enum_finance_data_type",
           "fullName": "proto_config.proto_enum_finance_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "F_NONE",
@@ -718,7 +718,7 @@
           "name": "proto_enum_hacker_data_type",
           "longName": "proto_enum_hacker_data_type",
           "fullName": "proto_config.proto_enum_hacker_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "H_NONE",
@@ -761,37 +761,37 @@
           "name": "proto_enum_hidden_type",
           "longName": "proto_enum_hidden_type",
           "fullName": "proto_config.proto_enum_hidden_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "NeverHide",
               "number": "0",
-              "description": "@attr [DisplayName(\"Never Hide\")]\n@attr [Description(\"Never Hide\")]"
+              "description": "@attr [Description(\"Never Hide\")]"
             },
             {
               "name": "Xs",
               "number": "1",
-              "description": "@attr [DisplayName(\"Xs\")]\n@attr [Description(\"Hide on Extra small screen\")]"
+              "description": "@attr [Description(\"Hide on Extra small screen\")]"
             },
             {
               "name": "SmAndDown",
               "number": "2",
-              "description": "@attr [DisplayName(\"SmAndDown\")]\n@attr [Description(\"Hide on Small screen and smaller\")]"
+              "description": "@attr [Description(\"Hide on Small screen and smaller\")]"
             },
             {
               "name": "MdAndDown",
               "number": "3",
-              "description": "@attr [DisplayName(\"MdAndDown\")]\n@attr [Description(\"Hide on Medium screen and smaller\")]"
+              "description": "@attr [Description(\"Hide on Medium screen and smaller\")]"
             },
             {
               "name": "LgAndDown",
               "number": "4",
-              "description": "@attr [DisplayName(\"LgAndDown\")]\n@attr [Description(\"Hide on Large screen and smaller\")]"
+              "description": "@attr [Description(\"Hide on Large screen and smaller\")]"
             },
             {
               "name": "XlAndDown",
               "number": "5",
-              "description": "@attr [DisplayName(\"XlAndDown\")]\n@attr [Description(\"Hide on Extra Large screen and smaller\")]"
+              "description": "@attr [Description(\"Hide on Extra Large screen and smaller\")]"
             }
           ]
         },
@@ -799,7 +799,7 @@
           "name": "proto_enum_image_data_type",
           "longName": "proto_enum_image_data_type",
           "fullName": "proto_config.proto_enum_image_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "I_NONE",
@@ -897,7 +897,7 @@
           "name": "proto_enum_internet_data_type",
           "longName": "proto_enum_internet_data_type",
           "fullName": "proto_config.proto_enum_internet_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "N_NONE",
@@ -1025,7 +1025,7 @@
           "name": "proto_enum_lorem_data_type",
           "longName": "proto_enum_lorem_data_type",
           "fullName": "proto_config.proto_enum_lorem_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "L_NONE",
@@ -1088,7 +1088,7 @@
           "name": "proto_enum_name_data_type",
           "longName": "proto_enum_name_data_type",
           "fullName": "proto_config.proto_enum_name_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "M_NONE",
@@ -1151,7 +1151,7 @@
           "name": "proto_enum_phone_data_type",
           "longName": "proto_enum_phone_data_type",
           "fullName": "proto_config.proto_enum_phone_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "PH_NONE",
@@ -1174,7 +1174,7 @@
           "name": "proto_enum_primary_key_type",
           "longName": "proto_enum_primary_key_type",
           "fullName": "proto_config.proto_enum_primary_key_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "INT",
@@ -1192,22 +1192,22 @@
           "name": "proto_enum_print_access",
           "longName": "proto_enum_print_access",
           "fullName": "proto_config.proto_enum_print_access",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "PR_BY_PARENT",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"By Parent\")]"
             },
             {
               "name": "PR_NO_PRINT",
               "number": "1",
-              "description": ""
+              "description": "@attr [Description(\"No print\")]"
             },
             {
               "name": "PR_PRINT",
               "number": "2",
-              "description": ""
+              "description": "@attr [Description(\"Print\")]"
             }
           ]
         },
@@ -1215,27 +1215,27 @@
           "name": "proto_enum_property_access",
           "longName": "proto_enum_property_access",
           "fullName": "proto_config.proto_enum_property_access",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "P_BY_PARENT",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"By Parent\")]"
             },
             {
               "name": "P_HIDE",
               "number": "1",
-              "description": ""
+              "description": "@attr [Description(\"Hide\")]"
             },
             {
               "name": "P_VIEW",
               "number": "2",
-              "description": "with history"
+              "description": "@attr [Description(\"View\")]\n\nwith history"
             },
             {
               "name": "P_EDIT",
               "number": "3",
-              "description": "with history"
+              "description": "@attr [Description(\"Edit\")]\n\nwith history"
             }
           ]
         },
@@ -1243,7 +1243,7 @@
           "name": "proto_enum_property_data_type",
           "longName": "proto_enum_property_data_type",
           "fullName": "proto_config.proto_enum_property_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "PT_NONE",
@@ -1336,7 +1336,7 @@
           "name": "proto_enum_random_data_type",
           "longName": "proto_enum_random_data_type",
           "fullName": "proto_config.proto_enum_random_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "RN_NONE",
@@ -1379,7 +1379,7 @@
           "name": "proto_enum_rant_data_type",
           "longName": "proto_enum_rant_data_type",
           "fullName": "proto_config.proto_enum_rant_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "R_NONE",
@@ -1402,7 +1402,7 @@
           "name": "proto_enum_system_data_type",
           "longName": "proto_enum_system_data_type",
           "fullName": "proto_config.proto_enum_system_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "S_NONE",
@@ -1490,32 +1490,32 @@
           "name": "proto_enum_time_accuracy_type",
           "longName": "proto_enum_time_accuracy_type",
           "fullName": "proto_config.proto_enum_time_accuracy_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "SECOND",
               "number": "0",
-              "description": "@attr [DisplayName(\"Second\")]\n@attr [Description(\"One second accuracy\")]"
+              "description": "@attr [Description(\"Second\")]"
             },
             {
               "name": "MINUTE",
               "number": "1",
-              "description": "@attr [DisplayName(\"Minute\")]\n@attr [Description(\"One minute accuracy\")]"
+              "description": "@attr [Description(\"Minute\")]"
             },
             {
               "name": "HOUR",
               "number": "2",
-              "description": "@attr [DisplayName(\"Hour\")]\n@attr [Description(\"One hour accuracy\")]"
+              "description": "@attr [Description(\"Hour\")]"
             },
             {
               "name": "MS",
               "number": "3",
-              "description": "@attr [DisplayName(\"Millisecond\")]\n@attr [Description(\"One millisecond accuracy\")]"
+              "description": "@attr [Description(\"Millisecond\")]"
             },
             {
               "name": "MAX",
               "number": "5",
-              "description": "@attr [DisplayName(\"Max\")]\n@attr [Description(\"Max (100 nanoseconds) accuracy\")]"
+              "description": "@attr [Description(\"100 nanoseconds\")]"
             }
           ]
         },
@@ -1523,7 +1523,7 @@
           "name": "proto_enum_use_type",
           "longName": "proto_enum_use_type",
           "fullName": "proto_config.proto_enum_use_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "Default",
@@ -1546,7 +1546,7 @@
           "name": "proto_enum_vehicle_data_type",
           "longName": "proto_enum_vehicle_data_type",
           "fullName": "proto_config.proto_enum_vehicle_data_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "V_NONE",
@@ -1584,27 +1584,27 @@
           "name": "proto_enum_version_field_type",
           "longName": "proto_enum_version_field_type",
           "fullName": "proto_config.proto_enum_version_field_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "VER_BYTE",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"BYTE\")]"
             },
             {
               "name": "VER_SHORT",
               "number": "1",
-              "description": ""
+              "description": "@attr [Description(\"SHORT\")]"
             },
             {
               "name": "VER_INT",
               "number": "2",
-              "description": ""
+              "description": "@attr [Description(\"INT\")]"
             },
             {
               "name": "VER_LONG",
               "number": "3",
-              "description": ""
+              "description": "@attr [Description(\"LONG\")]"
             }
           ]
         },
@@ -1612,7 +1612,7 @@
           "name": "proto_form_orientation",
           "longName": "proto_form_orientation",
           "fullName": "proto_config.proto_form_orientation",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "Vertical",
@@ -1630,32 +1630,32 @@
           "name": "proto_form_type",
           "longName": "proto_form_type",
           "fullName": "proto_config.proto_form_type",
-          "description": "",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
               "name": "FormTypeNotSelected",
               "number": "0",
-              "description": "@attr [DisplayName(\"Not selected\")]"
+              "description": "@attr [Description(\"Not selected\")]"
             },
             {
               "name": "ListWide",
               "number": "1",
-              "description": "@attr [DisplayName(\"Wide list view form\")]"
+              "description": "@attr [Description(\"Wide list view form\")]"
             },
             {
               "name": "ItemEditForm",
               "number": "2",
-              "description": "@attr [DisplayName(\"Item edit form\")]"
+              "description": "@attr [Description(\"Item edit form\")]"
             },
             {
               "name": "FolderEditForm",
               "number": "3",
-              "description": "@attr [DisplayName(\"Folder edit form\")]"
+              "description": "@attr [Description(\"Folder edit form\")]"
             },
             {
               "name": "ListNarrow",
               "number": "4",
-              "description": "@attr [DisplayName(\"Narrow list view form\")]"
+              "description": "@attr [Description(\"Narrow list view form\")]"
             }
           ]
         }

@@ -580,14 +580,20 @@ message proto_plugin_generator_node_default_settings {
  * ####################################### M O D E L ##########################################
  */
  
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_primary_key_type {
     INT = 0;
     LONG = 1;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_version_field_type {
+    // @attr [Description("BYTE")]
     VER_BYTE = 0;
+    // @attr [Description("SHORT")]
     VER_SHORT = 1;
+    // @attr [Description("INT")]
     VER_INT = 2;
+    // @attr [Description("LONG")]
     VER_LONG = 3;
 }
 // Configuration model
@@ -766,74 +772,39 @@ message proto_model {
  * @exclude
  * ####################################### D A T A  T Y P E ##########################################
  */
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_data_type {
-    // @attr [DisplayName("Char")]
-    // @attr [Description("Char type")]
     CHAR = 0;
-    // @attr [DisplayName("String")]
-    // @attr [Description("String type. If length is zero, unlimited string length")]
     STRING = 1;
-    // @attr [DisplayName("Numeric")]
-    // @attr [Description("Numerical data type. Type depend on length and accuracy")]
     NUMERICAL = 2;
-    // @attr [DisplayName("Boolean")]
-    // @attr [Description("Boolean type")]
     BOOL = 3;
-    // @attr [DisplayName("Time")]
-    // @attr [Description("Time without time zone. DB value stored with accuracy 1 second")]
     TIME = 4;
-    // @attr [DisplayName("Date")]
-    // @attr [Description("Date without time zone")]
     DATE = 5;
-    // @attr [DisplayName("DateTime Local")]
-    // @attr [Description("Local Date and time. Kind always expected equal DateTimeKind.Local")]
     DATETIMELOCAL = 6;
-    // @attr [DisplayName("DateTime UTC")]
-    // @attr [Description("UTC Date and time. Kind always expected equal DateTimeKind.Utc")]
     DATETIMEUTC = 7;
-
-    // @attr [DisplayName("Enumeration")]
-    // @attr [Description("Enumeration type")]
     ENUMERATION = 10;
-    // @attr [DisplayName("Catalog")]
-    // @attr [Description("Catalog type")]
     CATALOG = 11;
-    // @attr [DisplayName("Catalogs")]
-    // @attr [Description("List of catalogs")]
     CATALOGS = 12;
-    // @attr [DisplayName("Document")]
-    // @attr [Description("Document type")]
     DOCUMENT = 13;
-    // @attr [DisplayName("Documents")]
-    // @attr [Description("List of documents")]
     DOCUMENTS = 14;
-    // @attr [DisplayName("Any type")]
-    // @attr [Description("Any data type")]
     ANY = 15;
 
-    // @attr [DisplayName("DateTime Z, Experimental")]
-    // @attr [Description("Date and time with time zone. Not working yet with PostgreSQL")]
     //DATETIMEZ = 7;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_time_accuracy_type {
-    // @attr [DisplayName("Second")]
-    // @attr [Description("One second accuracy")]
+    // @attr [Description("Second")]
     SECOND = 0;
-    // @attr [DisplayName("Minute")]
-    // @attr [Description("One minute accuracy")]
+    // @attr [Description("Minute")]
     MINUTE = 1;
-    // @attr [DisplayName("Hour")]
-    // @attr [Description("One hour accuracy")]
+    // @attr [Description("Hour")]
     HOUR = 2;
-    // @attr [DisplayName("Millisecond")]
-    // @attr [Description("One millisecond accuracy")]
+    // @attr [Description("Millisecond")]
     MS = 3;
-    // @attr [DisplayName("Max")]
-    // @attr [Description("Max (100 nanoseconds) accuracy")]
+    // @attr [Description("100 nanoseconds")]
     MAX = 5;
 
     // @attr [DisplayName("Microsecond")]
-    // @attr [Description("One microsecond accuracy")]
     //MKS = 4;
 }
 // @base BaseSettings
@@ -931,37 +902,65 @@ message proto_role {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_print_access {
+    // @attr [Description("By Parent")]
     PR_BY_PARENT = 0;
+    // @attr [Description("No print")]
     PR_NO_PRINT = 1;
+    // @attr [Description("Print")]
     PR_PRINT = 2;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_constant_access {
+    // @attr [Description("By Parent")]
     CN_BY_PARENT = 0;
+    // @attr [Description("Hide")]
     CN_HIDE = 1;
+    // @attr [Description("View")]
     CN_VIEW = 2; // with history
+    // @attr [Description("Edit")]
     CN_EDIT = 3; // with history
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_property_access {
+    // @attr [Description("By Parent")]
     P_BY_PARENT = 0;
+    // @attr [Description("Hide")]
     P_HIDE = 1;
+    // @attr [Description("View")]
     P_VIEW = 2; // with history
+    // @attr [Description("Edit")]
     P_EDIT = 3; // with history
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_catalog_detail_access {
+    // @attr [Description("By Parent")]
     C_BY_PARENT = 0;
+    // @attr [Description("Hide")]
     C_HIDE = 1;
+    // @attr [Description("View")]
     C_VIEW = 2;
+    // @attr [Description("Edit")]
     C_EDIT = 3;
+    // @attr [Description("Del")]
     C_MARK_DEL = 4;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_document_access {
+    // @attr [Description("By Parent")]
     D_BY_PARENT = 0;
+    // @attr [Description("Hide")]
     D_HIDE = 1;
+    // @attr [Description("View")]
     D_VIEW = 2;
+    // @attr [Description("Edit")]
     D_EDIT = 3;
+    // @attr [Description("Post")]
     D_POST = 4;
+    // @attr [Description("Unpost")]
     D_UNPOST = 5;
+    // @attr [Description("Del")]
     D_MARK_DEL = 6;
 }
 // @base VmValidatableWithSeverity
@@ -1297,6 +1296,7 @@ message proto_group_list_properties {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_property_data_type {
     PT_NONE = 0;
     PT_ADDRESS = 1;
@@ -1317,6 +1317,7 @@ enum proto_enum_property_data_type {
     PT_RANDOM = 16;
 }
 // https://github.com/bchavez/Bogus
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_address_data_type {
     A_NONE = 0;
     A_COUNTRY = 1;
@@ -1340,6 +1341,7 @@ enum proto_enum_address_data_type {
     A_CARDINAL_DIRECTION = 19;
     A_ORDINAL_DIRECTION = 20;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_commerce_data_type {
     C_NONE = 0;
     C_DEPARTMENT = 1;
@@ -1353,6 +1355,7 @@ enum proto_enum_commerce_data_type {
     C_EAN8 = 9;
     C_EAN13 = 10;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_company_data_type {
     P_NONE = 0;
     P_COMPANY_NAME = 1;
@@ -1360,6 +1363,7 @@ enum proto_enum_company_data_type {
     P_CATCH_PHRASE = 3;
     P_BS = 4;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_date_data_type {
     D_NONE = 0;
     D_PAST_OFFSET = 1;
@@ -1376,6 +1380,7 @@ enum proto_enum_date_data_type {
     D_MONTH = 12;
     D_WEEKDAY = 13;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_database_data_type {
     DB_NONE = 0;
     DB_COLUMN = 1;
@@ -1383,6 +1388,7 @@ enum proto_enum_database_data_type {
     DB_COLLATION = 3;
     DB_ENGINE = 4;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_finance_data_type {
     F_NONE = 0;
     F_ACCOUNT = 1;
@@ -1397,6 +1403,7 @@ enum proto_enum_finance_data_type {
     F_BIC = 10;
     F_IBAN = 11;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_hacker_data_type {
     H_NONE = 0;
     H_ABBREVIATION = 1;
@@ -1406,6 +1413,7 @@ enum proto_enum_hacker_data_type {
     H_INGVERB = 5;
     H_PHRASE = 6;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_image_data_type {
     I_NONE = 0;
     I_DATAURI = 1;
@@ -1426,6 +1434,7 @@ enum proto_enum_image_data_type {
     I_LOREMPIXEL_TECHNICS = 16;
     I_LOREMPIXEL_TRANSPORT = 17;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_internet_data_type {
     N_NONE = 0;
     N_AVATAR = 1;
@@ -1452,6 +1461,7 @@ enum proto_enum_internet_data_type {
     N_URL_WITH_PATH = 22;
     N_URL_ROOTED_PATH = 23;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_lorem_data_type {
     L_NONE = 0;
     L_WORD = 1;
@@ -1465,6 +1475,7 @@ enum proto_enum_lorem_data_type {
     L_LINES = 9;
     L_SLUG = 10;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_name_data_type {
     M_NONE = 0;
     M_FIRST_NAME = 1;
@@ -1478,16 +1489,19 @@ enum proto_enum_name_data_type {
     M_JOB_AREA = 9;
     M_JOB_TYPE = 10;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_phone_data_type {
     PH_NONE = 0;
     PH_PHONE_NUMBER = 1;
     PH_PHONE_NUMBER_FORMAT = 2;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_rant_data_type {
     R_NONE = 0;
     R_REVIEW = 1;
     R_REVIEWS = 2;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_system_data_type {
     S_NONE = 0;
     S_FILE_NAME = 1;
@@ -1506,6 +1520,7 @@ enum proto_enum_system_data_type {
     S_APPLE_PUSH_TOKEN = 14;
     S_BLACKBERRY_PIN = 15;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_vehicle_data_type {
     V_NONE = 0;
     V_VIN = 1;
@@ -1514,6 +1529,7 @@ enum proto_enum_vehicle_data_type {
     V_TYPE = 4;
     V_FUEL = 5;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_random_data_type {
     RN_NONE = 0;
     RN_NUMBER = 1;
@@ -1932,11 +1948,16 @@ message proto_group_list_enumerations {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-// Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss
+// Enumeration member type
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum enum_enumeration_type {
+    // @attr [Description("INT")]
     INTEGER_VALUE = 0;
+    // @attr [Description("SHORT")]
     SHORT_VALUE = 1;
+    // @attr [Description("BYTE")]
     BYTE_VALUE = 2;
+    // @attr [Description("STRING")]
     STRING_VALUE = 3;
 }
 // @interface ICanAddNode
@@ -2126,17 +2147,20 @@ message proto_catalog_folder {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_catalog_tree_icon {
     None = 0;
     Item = 1;
     Folder = 2;
     Custom = 3;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_catalog_code_unique_scope {
     NoScope = 0;
     Group = 1;
     Catalog = 2;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_code_type {
     Number = 0;
     Text = 1;
@@ -2162,6 +2186,7 @@ message proto_catalog_code_property_settings {
     // @attr [Description("Code has to be unique in selected scope")]
     proto_enum_catalog_code_unique_scope unique_scope = 7;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_use_type {
     Default = 0;
     Yes = 1;
@@ -2438,6 +2463,7 @@ message proto_group_documents {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_document_code_unique_scope {
     Forever = 0;
     Year = 1;
@@ -2688,20 +2714,22 @@ message proto_group_list_forms {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_form_orientation {
     Vertical = 0;
     Horizontal = 1;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_form_type {
-    // @attr [DisplayName("Not selected")]
+    // @attr [Description("Not selected")]
     FormTypeNotSelected = 0;
-    // @attr [DisplayName("Wide list view form")]
+    // @attr [Description("Wide list view form")]
     ListWide = 1;
-    // @attr [DisplayName("Item edit form")]
+    // @attr [Description("Item edit form")]
     ItemEditForm = 2;
-    // @attr [DisplayName("Folder edit form")]
+    // @attr [Description("Folder edit form")]
     FolderEditForm = 3;
-    // @attr [DisplayName("Narrow list view form")]
+    // @attr [Description("Narrow list view form")]
     ListNarrow = 4;
 }
 // Children collection can contain:
@@ -2872,23 +2900,18 @@ message proto_form_grid_system_row {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
+// @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_hidden_type {
-    // @attr [DisplayName("Never Hide")]
     // @attr [Description("Never Hide")]
     NeverHide = 0;
-    // @attr [DisplayName("Xs")]
     // @attr [Description("Hide on Extra small screen")]
     Xs = 1;
-    // @attr [DisplayName("SmAndDown")]
     // @attr [Description("Hide on Small screen and smaller")]
     SmAndDown = 2;
-    // @attr [DisplayName("MdAndDown")]
     // @attr [Description("Hide on Medium screen and smaller")]
     MdAndDown = 3;
-    // @attr [DisplayName("LgAndDown")]
     // @attr [Description("Hide on Large screen and smaller")]
     LgAndDown = 4;
-    // @attr [DisplayName("XlAndDown")]
     // @attr [Description("Hide on Extra Large screen and smaller")]
     XlAndDown = 5;
 }

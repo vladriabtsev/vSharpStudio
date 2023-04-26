@@ -1862,14 +1862,15 @@ User&#39;s role
 <a name="proto_config.enum_enumeration_type"></a>
 
 ### enum_enumeration_type
-Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss
+Enumeration member type
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| INTEGER_VALUE | 0 |  |
-| SHORT_VALUE | 1 |  |
-| BYTE_VALUE | 2 |  |
-| STRING_VALUE | 3 |  |
+| INTEGER_VALUE | 0 | @attr [Description(&#34;INT&#34;)] |
+| SHORT_VALUE | 1 | @attr [Description(&#34;SHORT&#34;)] |
+| BYTE_VALUE | 2 | @attr [Description(&#34;BYTE&#34;)] |
+| STRING_VALUE | 3 | @attr [Description(&#34;STRING&#34;)] |
 
 
 
@@ -1877,6 +1878,7 @@ Enumeration member value for numerical type is representing accuracy. Used to es
 
 ### proto_enum_address_data_type
 https://github.com/bchavez/Bogus
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -1907,7 +1909,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_catalog_code_unique_scope"></a>
 
 ### proto_enum_catalog_code_unique_scope
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -1920,22 +1922,22 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_catalog_detail_access"></a>
 
 ### proto_enum_catalog_detail_access
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| C_BY_PARENT | 0 |  |
-| C_HIDE | 1 |  |
-| C_VIEW | 2 |  |
-| C_EDIT | 3 |  |
-| C_MARK_DEL | 4 |  |
+| C_BY_PARENT | 0 | @attr [Description(&#34;By Parent&#34;)] |
+| C_HIDE | 1 | @attr [Description(&#34;Hide&#34;)] |
+| C_VIEW | 2 | @attr [Description(&#34;View&#34;)] |
+| C_EDIT | 3 | @attr [Description(&#34;Edit&#34;)] |
+| C_MARK_DEL | 4 | @attr [Description(&#34;Del&#34;)] |
 
 
 
 <a name="proto_config.proto_enum_catalog_tree_icon"></a>
 
 ### proto_enum_catalog_tree_icon
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -1949,7 +1951,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_code_type"></a>
 
 ### proto_enum_code_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -1963,7 +1965,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_commerce_data_type"></a>
 
 ### proto_enum_commerce_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -1984,7 +1986,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_company_data_type"></a>
 
 ### proto_enum_company_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -1999,45 +2001,49 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_constant_access"></a>
 
 ### proto_enum_constant_access
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CN_BY_PARENT | 0 |  |
-| CN_HIDE | 1 |  |
-| CN_VIEW | 2 | with history |
-| CN_EDIT | 3 | with history |
+| CN_BY_PARENT | 0 | @attr [Description(&#34;By Parent&#34;)] |
+| CN_HIDE | 1 | @attr [Description(&#34;Hide&#34;)] |
+| CN_VIEW | 2 | @attr [Description(&#34;View&#34;)]
+
+with history |
+| CN_EDIT | 3 | @attr [Description(&#34;Edit&#34;)]
+
+with history |
 
 
 
 <a name="proto_config.proto_enum_data_type"></a>
 
 ### proto_enum_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CHAR | 0 | @attr [DisplayName(&#34;Char&#34;)] @attr [Description(&#34;Char type&#34;)] |
-| STRING | 1 | @attr [DisplayName(&#34;String&#34;)] @attr [Description(&#34;String type. If length is zero, unlimited string length&#34;)] |
-| NUMERICAL | 2 | @attr [DisplayName(&#34;Numeric&#34;)] @attr [Description(&#34;Numerical data type. Type depend on length and accuracy&#34;)] |
-| BOOL | 3 | @attr [DisplayName(&#34;Boolean&#34;)] @attr [Description(&#34;Boolean type&#34;)] |
-| TIME | 4 | @attr [DisplayName(&#34;Time&#34;)] @attr [Description(&#34;Time without time zone. DB value stored with accuracy 1 second&#34;)] |
-| DATE | 5 | @attr [DisplayName(&#34;Date&#34;)] @attr [Description(&#34;Date without time zone&#34;)] |
-| DATETIMELOCAL | 6 | @attr [DisplayName(&#34;DateTime Local&#34;)] @attr [Description(&#34;Local Date and time. Kind always expected equal DateTimeKind.Local&#34;)] |
-| DATETIMEUTC | 7 | @attr [DisplayName(&#34;DateTime UTC&#34;)] @attr [Description(&#34;UTC Date and time. Kind always expected equal DateTimeKind.Utc&#34;)] |
-| ENUMERATION | 10 | @attr [DisplayName(&#34;Enumeration&#34;)] @attr [Description(&#34;Enumeration type&#34;)] |
-| CATALOG | 11 | @attr [DisplayName(&#34;Catalog&#34;)] @attr [Description(&#34;Catalog type&#34;)] |
-| CATALOGS | 12 | @attr [DisplayName(&#34;Catalogs&#34;)] @attr [Description(&#34;List of catalogs&#34;)] |
-| DOCUMENT | 13 | @attr [DisplayName(&#34;Document&#34;)] @attr [Description(&#34;Document type&#34;)] |
-| DOCUMENTS | 14 | @attr [DisplayName(&#34;Documents&#34;)] @attr [Description(&#34;List of documents&#34;)] |
-| ANY | 15 | @attr [DisplayName(&#34;Any type&#34;)] @attr [Description(&#34;Any data type&#34;)] |
+| CHAR | 0 |  |
+| STRING | 1 |  |
+| NUMERICAL | 2 |  |
+| BOOL | 3 |  |
+| TIME | 4 |  |
+| DATE | 5 |  |
+| DATETIMELOCAL | 6 |  |
+| DATETIMEUTC | 7 |  |
+| ENUMERATION | 10 |  |
+| CATALOG | 11 |  |
+| CATALOGS | 12 |  |
+| DOCUMENT | 13 |  |
+| DOCUMENTS | 14 |  |
+| ANY | 15 |  |
 
 
 
 <a name="proto_config.proto_enum_database_data_type"></a>
 
 ### proto_enum_database_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2052,7 +2058,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_date_data_type"></a>
 
 ### proto_enum_date_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2076,24 +2082,24 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_document_access"></a>
 
 ### proto_enum_document_access
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| D_BY_PARENT | 0 |  |
-| D_HIDE | 1 |  |
-| D_VIEW | 2 |  |
-| D_EDIT | 3 |  |
-| D_POST | 4 |  |
-| D_UNPOST | 5 |  |
-| D_MARK_DEL | 6 |  |
+| D_BY_PARENT | 0 | @attr [Description(&#34;By Parent&#34;)] |
+| D_HIDE | 1 | @attr [Description(&#34;Hide&#34;)] |
+| D_VIEW | 2 | @attr [Description(&#34;View&#34;)] |
+| D_EDIT | 3 | @attr [Description(&#34;Edit&#34;)] |
+| D_POST | 4 | @attr [Description(&#34;Post&#34;)] |
+| D_UNPOST | 5 | @attr [Description(&#34;Unpost&#34;)] |
+| D_MARK_DEL | 6 | @attr [Description(&#34;Del&#34;)] |
 
 
 
 <a name="proto_config.proto_enum_document_code_unique_scope"></a>
 
 ### proto_enum_document_code_unique_scope
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2107,7 +2113,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_finance_data_type"></a>
 
 ### proto_enum_finance_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2129,7 +2135,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_hacker_data_type"></a>
 
 ### proto_enum_hacker_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2146,23 +2152,23 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_hidden_type"></a>
 
 ### proto_enum_hidden_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NeverHide | 0 | @attr [DisplayName(&#34;Never Hide&#34;)] @attr [Description(&#34;Never Hide&#34;)] |
-| Xs | 1 | @attr [DisplayName(&#34;Xs&#34;)] @attr [Description(&#34;Hide on Extra small screen&#34;)] |
-| SmAndDown | 2 | @attr [DisplayName(&#34;SmAndDown&#34;)] @attr [Description(&#34;Hide on Small screen and smaller&#34;)] |
-| MdAndDown | 3 | @attr [DisplayName(&#34;MdAndDown&#34;)] @attr [Description(&#34;Hide on Medium screen and smaller&#34;)] |
-| LgAndDown | 4 | @attr [DisplayName(&#34;LgAndDown&#34;)] @attr [Description(&#34;Hide on Large screen and smaller&#34;)] |
-| XlAndDown | 5 | @attr [DisplayName(&#34;XlAndDown&#34;)] @attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)] |
+| NeverHide | 0 | @attr [Description(&#34;Never Hide&#34;)] |
+| Xs | 1 | @attr [Description(&#34;Hide on Extra small screen&#34;)] |
+| SmAndDown | 2 | @attr [Description(&#34;Hide on Small screen and smaller&#34;)] |
+| MdAndDown | 3 | @attr [Description(&#34;Hide on Medium screen and smaller&#34;)] |
+| LgAndDown | 4 | @attr [Description(&#34;Hide on Large screen and smaller&#34;)] |
+| XlAndDown | 5 | @attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)] |
 
 
 
 <a name="proto_config.proto_enum_image_data_type"></a>
 
 ### proto_enum_image_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2190,7 +2196,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_internet_data_type"></a>
 
 ### proto_enum_internet_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2224,7 +2230,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_lorem_data_type"></a>
 
 ### proto_enum_lorem_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2245,7 +2251,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_name_data_type"></a>
 
 ### proto_enum_name_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2266,7 +2272,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_phone_data_type"></a>
 
 ### proto_enum_phone_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2279,7 +2285,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_primary_key_type"></a>
 
 ### proto_enum_primary_key_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2291,34 +2297,38 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_print_access"></a>
 
 ### proto_enum_print_access
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| PR_BY_PARENT | 0 |  |
-| PR_NO_PRINT | 1 |  |
-| PR_PRINT | 2 |  |
+| PR_BY_PARENT | 0 | @attr [Description(&#34;By Parent&#34;)] |
+| PR_NO_PRINT | 1 | @attr [Description(&#34;No print&#34;)] |
+| PR_PRINT | 2 | @attr [Description(&#34;Print&#34;)] |
 
 
 
 <a name="proto_config.proto_enum_property_access"></a>
 
 ### proto_enum_property_access
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| P_BY_PARENT | 0 |  |
-| P_HIDE | 1 |  |
-| P_VIEW | 2 | with history |
-| P_EDIT | 3 | with history |
+| P_BY_PARENT | 0 | @attr [Description(&#34;By Parent&#34;)] |
+| P_HIDE | 1 | @attr [Description(&#34;Hide&#34;)] |
+| P_VIEW | 2 | @attr [Description(&#34;View&#34;)]
+
+with history |
+| P_EDIT | 3 | @attr [Description(&#34;Edit&#34;)]
+
+with history |
 
 
 
 <a name="proto_config.proto_enum_property_data_type"></a>
 
 ### proto_enum_property_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2345,7 +2355,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_random_data_type"></a>
 
 ### proto_enum_random_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2362,7 +2372,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_rant_data_type"></a>
 
 ### proto_enum_rant_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2375,7 +2385,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_system_data_type"></a>
 
 ### proto_enum_system_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2401,22 +2411,22 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_time_accuracy_type"></a>
 
 ### proto_enum_time_accuracy_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| SECOND | 0 | @attr [DisplayName(&#34;Second&#34;)] @attr [Description(&#34;One second accuracy&#34;)] |
-| MINUTE | 1 | @attr [DisplayName(&#34;Minute&#34;)] @attr [Description(&#34;One minute accuracy&#34;)] |
-| HOUR | 2 | @attr [DisplayName(&#34;Hour&#34;)] @attr [Description(&#34;One hour accuracy&#34;)] |
-| MS | 3 | @attr [DisplayName(&#34;Millisecond&#34;)] @attr [Description(&#34;One millisecond accuracy&#34;)] |
-| MAX | 5 | @attr [DisplayName(&#34;Max&#34;)] @attr [Description(&#34;Max (100 nanoseconds) accuracy&#34;)] |
+| SECOND | 0 | @attr [Description(&#34;Second&#34;)] |
+| MINUTE | 1 | @attr [Description(&#34;Minute&#34;)] |
+| HOUR | 2 | @attr [Description(&#34;Hour&#34;)] |
+| MS | 3 | @attr [Description(&#34;Millisecond&#34;)] |
+| MAX | 5 | @attr [Description(&#34;100 nanoseconds&#34;)] |
 
 
 
 <a name="proto_config.proto_enum_use_type"></a>
 
 ### proto_enum_use_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2429,7 +2439,7 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_vehicle_data_type"></a>
 
 ### proto_enum_vehicle_data_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2445,21 +2455,21 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_enum_version_field_type"></a>
 
 ### proto_enum_version_field_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| VER_BYTE | 0 |  |
-| VER_SHORT | 1 |  |
-| VER_INT | 2 |  |
-| VER_LONG | 3 |  |
+| VER_BYTE | 0 | @attr [Description(&#34;BYTE&#34;)] |
+| VER_SHORT | 1 | @attr [Description(&#34;SHORT&#34;)] |
+| VER_INT | 2 | @attr [Description(&#34;INT&#34;)] |
+| VER_LONG | 3 | @attr [Description(&#34;LONG&#34;)] |
 
 
 
 <a name="proto_config.proto_form_orientation"></a>
 
 ### proto_form_orientation
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2471,15 +2481,15 @@ https://github.com/bchavez/Bogus
 <a name="proto_config.proto_form_type"></a>
 
 ### proto_form_type
-
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| FormTypeNotSelected | 0 | @attr [DisplayName(&#34;Not selected&#34;)] |
-| ListWide | 1 | @attr [DisplayName(&#34;Wide list view form&#34;)] |
-| ItemEditForm | 2 | @attr [DisplayName(&#34;Item edit form&#34;)] |
-| FolderEditForm | 3 | @attr [DisplayName(&#34;Folder edit form&#34;)] |
-| ListNarrow | 4 | @attr [DisplayName(&#34;Narrow list view form&#34;)] |
+| FormTypeNotSelected | 0 | @attr [Description(&#34;Not selected&#34;)] |
+| ListWide | 1 | @attr [Description(&#34;Wide list view form&#34;)] |
+| ItemEditForm | 2 | @attr [Description(&#34;Item edit form&#34;)] |
+| FolderEditForm | 3 | @attr [Description(&#34;Folder edit form&#34;)] |
+| ListNarrow | 4 | @attr [Description(&#34;Narrow list view form&#34;)] |
 
 
  

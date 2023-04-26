@@ -5,18 +5,22 @@
 <#@ import namespace="System.Collections.Generic" #>
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
+using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace <#= nameSpace #> // <#=Helper.FilePos() #>
 {
-<# foreach (var t in root.EnumTypes) { 
-     this.PushIndent("    "); #>
-public enum <#= t.Name.ToNameCs() #> // <#=Helper.FilePos() #>
+<# foreach (var t in JsonDoc.Files[root.Name].Enums) { 
+     this.PushIndent("\t"); #>
+<#= t.Value.Comments #><#= t.Value.Attributes #>public enum <#= t.Key.ToNameCs() #> // <#=Helper.FilePos() #>
 {
-<#   foreach (var tt in t.Values) { #>
-    <#= tt.Name #> = <#= tt.Number #>,
+<#   this.PushIndent("\t"); #>
+<#   foreach (var tt in t.Value.Values) { #>
+<#= tt.Value.Comments #><#= tt.Value.Attributes #><#= tt.Value.value.Name #> = <#= tt.Value.value.Number #>,
 <#   } #>
+<#   this.PopIndent(); #>
 }
 <#   this.PopIndent(); #>
 <# }

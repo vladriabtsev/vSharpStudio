@@ -2,7 +2,8 @@
   "profiles": {
     "GenFromProto": {
       "commandName": "Project",
-      "commandLineArgs": "-m -p vsharpstudio -o ..\\..\\..\\..\\..\\vSharpStudio.vm\\ViewModels\\Generated\\ProtoViewModels.cs -n vSharpStudio.vm.ViewModels -d ..\\..\\..\\..\\..\\doc\\ -b ConfigObjectVmGenSettings"
+      "commandLineArgs": "-i -p vsharpstudio -o ..\\..\\..\\..\\..\\vSharpStudio.common\\ModelInterfaces.cs -n vSharpStudio.common -d ..\\..\\..\\..\\..\\doc\\",
+      "commandLineArgsBack": "-m -p vsharpstudio -o ..\\..\\..\\..\\..\\vSharpStudio.vm\\ViewModels\\Generated\\ProtoViewModels.cs -n vSharpStudio.vm.ViewModels -d ..\\..\\..\\..\\..\\doc\\ -b ConfigObjectVmGenSettings"
     }
   }
 }

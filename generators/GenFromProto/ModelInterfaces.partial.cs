@@ -29,6 +29,23 @@ namespace GenFromProto
             this.dicParents = dicParents;
             if (!Program.RunOptions.IsReadonly)
                 Setter = "set; ";
+            //var files = JsonDoc.Files;
+
+            //var dic = JsonDoc.Files[root.Name].Enums;
+
+            //foreach(var t in dic)
+            //{
+            //    foreach (var tt in t.Value.Values)
+            //    {
+            //        var s = tt.Value.value.Number;
+            //    }
+            //}
+
+            //foreach (var t in FieldDoc.en)
+            //foreach(var t in root.EnumTypes)
+            //{
+            //    t.
+            //}
         }
         bool IsSkip(FieldDescriptor field)
         {

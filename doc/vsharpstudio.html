@@ -7698,7 +7698,7 @@ repeated proto_document list_documents = 7;
 
       
         <h3 id="proto_config.enum_enumeration_type">enum_enumeration_type</h3>
-        <p>Enumeration member value for numerical type is representing accuracy. Used to estimate potential data loss</p>
+        <p>Enumeration member type</p><p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -7708,32 +7708,32 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>INTEGER_VALUE</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;INT&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>SHORT_VALUE</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;SHORT&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>BYTE_VALUE</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;BYTE&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>STRING_VALUE</td>
                 <td>3</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;STRING&#34;)]</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="proto_config.proto_enum_address_data_type">proto_enum_address_data_type</h3>
-        <p>https://github.com/bchavez/Bogus</p>
+        <p>https://github.com/bchavez/Bogus</p><p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -7870,7 +7870,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_catalog_code_unique_scope">proto_enum_catalog_code_unique_scope</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -7899,7 +7899,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_catalog_detail_access">proto_enum_catalog_detail_access</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -7909,38 +7909,38 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>C_BY_PARENT</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;By Parent&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>C_HIDE</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Hide&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>C_VIEW</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;View&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>C_EDIT</td>
                 <td>3</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Edit&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>C_MARK_DEL</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Del&#34;)]</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -7975,7 +7975,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_code_type">proto_enum_code_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8010,7 +8010,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_commerce_data_type">proto_enum_commerce_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8087,7 +8087,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_company_data_type">proto_enum_company_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8128,7 +8128,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_constant_access">proto_enum_constant_access</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8138,32 +8138,36 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>CN_BY_PARENT</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;By Parent&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>CN_HIDE</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Hide&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>CN_VIEW</td>
                 <td>2</td>
-                <td><p>with history</p></td>
+                <td><p>@attr [Description(&#34;View&#34;)]
+
+with history</p></td>
               </tr>
             
               <tr>
                 <td>CN_EDIT</td>
                 <td>3</td>
-                <td><p>with history</p></td>
+                <td><p>@attr [Description(&#34;Edit&#34;)]
+
+with history</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="proto_config.proto_enum_data_type">proto_enum_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8173,106 +8177,92 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>CHAR</td>
                 <td>0</td>
-                <td><p>@attr [DisplayName(&#34;Char&#34;)]
-@attr [Description(&#34;Char type&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>STRING</td>
                 <td>1</td>
-                <td><p>@attr [DisplayName(&#34;String&#34;)]
-@attr [Description(&#34;String type. If length is zero, unlimited string length&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>NUMERICAL</td>
                 <td>2</td>
-                <td><p>@attr [DisplayName(&#34;Numeric&#34;)]
-@attr [Description(&#34;Numerical data type. Type depend on length and accuracy&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>BOOL</td>
                 <td>3</td>
-                <td><p>@attr [DisplayName(&#34;Boolean&#34;)]
-@attr [Description(&#34;Boolean type&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>TIME</td>
                 <td>4</td>
-                <td><p>@attr [DisplayName(&#34;Time&#34;)]
-@attr [Description(&#34;Time without time zone. DB value stored with accuracy 1 second&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>DATE</td>
                 <td>5</td>
-                <td><p>@attr [DisplayName(&#34;Date&#34;)]
-@attr [Description(&#34;Date without time zone&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>DATETIMELOCAL</td>
                 <td>6</td>
-                <td><p>@attr [DisplayName(&#34;DateTime Local&#34;)]
-@attr [Description(&#34;Local Date and time. Kind always expected equal DateTimeKind.Local&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>DATETIMEUTC</td>
                 <td>7</td>
-                <td><p>@attr [DisplayName(&#34;DateTime UTC&#34;)]
-@attr [Description(&#34;UTC Date and time. Kind always expected equal DateTimeKind.Utc&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>ENUMERATION</td>
                 <td>10</td>
-                <td><p>@attr [DisplayName(&#34;Enumeration&#34;)]
-@attr [Description(&#34;Enumeration type&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>CATALOG</td>
                 <td>11</td>
-                <td><p>@attr [DisplayName(&#34;Catalog&#34;)]
-@attr [Description(&#34;Catalog type&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>CATALOGS</td>
                 <td>12</td>
-                <td><p>@attr [DisplayName(&#34;Catalogs&#34;)]
-@attr [Description(&#34;List of catalogs&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>DOCUMENT</td>
                 <td>13</td>
-                <td><p>@attr [DisplayName(&#34;Document&#34;)]
-@attr [Description(&#34;Document type&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>DOCUMENTS</td>
                 <td>14</td>
-                <td><p>@attr [DisplayName(&#34;Documents&#34;)]
-@attr [Description(&#34;List of documents&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
                 <td>ANY</td>
                 <td>15</td>
-                <td><p>@attr [DisplayName(&#34;Any type&#34;)]
-@attr [Description(&#34;Any data type&#34;)]</p></td>
+                <td><p></p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="proto_config.proto_enum_database_data_type">proto_enum_database_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8313,7 +8303,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_date_data_type">proto_enum_date_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8408,7 +8398,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_document_access">proto_enum_document_access</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8418,50 +8408,50 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>D_BY_PARENT</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;By Parent&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_HIDE</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Hide&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_VIEW</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;View&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_EDIT</td>
                 <td>3</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Edit&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_POST</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Post&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_UNPOST</td>
                 <td>5</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Unpost&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_MARK_DEL</td>
                 <td>6</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Del&#34;)]</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="proto_config.proto_enum_document_code_unique_scope">proto_enum_document_code_unique_scope</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8496,7 +8486,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_finance_data_type">proto_enum_finance_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8579,7 +8569,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_hacker_data_type">proto_enum_hacker_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8632,7 +8622,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_hidden_type">proto_enum_hidden_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8642,50 +8632,44 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>NeverHide</td>
                 <td>0</td>
-                <td><p>@attr [DisplayName(&#34;Never Hide&#34;)]
-@attr [Description(&#34;Never Hide&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Never Hide&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>Xs</td>
                 <td>1</td>
-                <td><p>@attr [DisplayName(&#34;Xs&#34;)]
-@attr [Description(&#34;Hide on Extra small screen&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Hide on Extra small screen&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>SmAndDown</td>
                 <td>2</td>
-                <td><p>@attr [DisplayName(&#34;SmAndDown&#34;)]
-@attr [Description(&#34;Hide on Small screen and smaller&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Hide on Small screen and smaller&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>MdAndDown</td>
                 <td>3</td>
-                <td><p>@attr [DisplayName(&#34;MdAndDown&#34;)]
-@attr [Description(&#34;Hide on Medium screen and smaller&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Hide on Medium screen and smaller&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>LgAndDown</td>
                 <td>4</td>
-                <td><p>@attr [DisplayName(&#34;LgAndDown&#34;)]
-@attr [Description(&#34;Hide on Large screen and smaller&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Hide on Large screen and smaller&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>XlAndDown</td>
                 <td>5</td>
-                <td><p>@attr [DisplayName(&#34;XlAndDown&#34;)]
-@attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)]</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="proto_config.proto_enum_image_data_type">proto_enum_image_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8804,7 +8788,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_internet_data_type">proto_enum_internet_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -8959,7 +8943,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_lorem_data_type">proto_enum_lorem_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9036,7 +9020,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_name_data_type">proto_enum_name_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9113,7 +9097,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_phone_data_type">proto_enum_phone_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9142,7 +9126,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_primary_key_type">proto_enum_primary_key_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9165,7 +9149,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_print_access">proto_enum_print_access</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9175,26 +9159,26 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>PR_BY_PARENT</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;By Parent&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>PR_NO_PRINT</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;No print&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>PR_PRINT</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Print&#34;)]</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="proto_config.proto_enum_property_access">proto_enum_property_access</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9204,32 +9188,36 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>P_BY_PARENT</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;By Parent&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>P_HIDE</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Hide&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>P_VIEW</td>
                 <td>2</td>
-                <td><p>with history</p></td>
+                <td><p>@attr [Description(&#34;View&#34;)]
+
+with history</p></td>
               </tr>
             
               <tr>
                 <td>P_EDIT</td>
                 <td>3</td>
-                <td><p>with history</p></td>
+                <td><p>@attr [Description(&#34;Edit&#34;)]
+
+with history</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="proto_config.proto_enum_property_data_type">proto_enum_property_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9342,7 +9330,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_random_data_type">proto_enum_random_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9395,7 +9383,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_rant_data_type">proto_enum_rant_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9424,7 +9412,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_system_data_type">proto_enum_system_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9531,7 +9519,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_time_accuracy_type">proto_enum_time_accuracy_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9541,43 +9529,38 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>SECOND</td>
                 <td>0</td>
-                <td><p>@attr [DisplayName(&#34;Second&#34;)]
-@attr [Description(&#34;One second accuracy&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Second&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>MINUTE</td>
                 <td>1</td>
-                <td><p>@attr [DisplayName(&#34;Minute&#34;)]
-@attr [Description(&#34;One minute accuracy&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Minute&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>HOUR</td>
                 <td>2</td>
-                <td><p>@attr [DisplayName(&#34;Hour&#34;)]
-@attr [Description(&#34;One hour accuracy&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Hour&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>MS</td>
                 <td>3</td>
-                <td><p>@attr [DisplayName(&#34;Millisecond&#34;)]
-@attr [Description(&#34;One millisecond accuracy&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Millisecond&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>MAX</td>
                 <td>5</td>
-                <td><p>@attr [DisplayName(&#34;Max&#34;)]
-@attr [Description(&#34;Max (100 nanoseconds) accuracy&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;100 nanoseconds&#34;)]</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="proto_config.proto_enum_use_type">proto_enum_use_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9606,7 +9589,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_vehicle_data_type">proto_enum_vehicle_data_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9653,7 +9636,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_enum_version_field_type">proto_enum_version_field_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9663,32 +9646,32 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>VER_BYTE</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;BYTE&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>VER_SHORT</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;SHORT&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>VER_INT</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;INT&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>VER_LONG</td>
                 <td>3</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;LONG&#34;)]</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="proto_config.proto_form_orientation">proto_form_orientation</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9711,7 +9694,7 @@ repeated proto_document list_documents = 7;
         </table>
       
         <h3 id="proto_config.proto_form_type">proto_form_type</h3>
-        <p></p>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -9721,31 +9704,31 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>FormTypeNotSelected</td>
                 <td>0</td>
-                <td><p>@attr [DisplayName(&#34;Not selected&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Not selected&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ListWide</td>
                 <td>1</td>
-                <td><p>@attr [DisplayName(&#34;Wide list view form&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Wide list view form&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ItemEditForm</td>
                 <td>2</td>
-                <td><p>@attr [DisplayName(&#34;Item edit form&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Item edit form&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>FolderEditForm</td>
                 <td>3</td>
-                <td><p>@attr [DisplayName(&#34;Folder edit form&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Folder edit form&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ListNarrow</td>
                 <td>4</td>
-                <td><p>@attr [DisplayName(&#34;Narrow list view form&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Narrow list view form&#34;)]</p></td>
               </tr>
             
           </tbody>

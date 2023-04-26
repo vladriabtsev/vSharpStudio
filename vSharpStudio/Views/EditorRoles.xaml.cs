@@ -17,9 +17,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using Microsoft.Win32;
+using Serilog.Parsing;
 using vSharpStudio.common;
+using vSharpStudio.vm.Migration;
 using vSharpStudio.vm.ViewModels;
 using vSharpStudio.wpf.Controls;
+using static System.Resources.ResXFileRef;
 
 namespace vSharpStudio.Views
 {
@@ -45,6 +48,15 @@ namespace vSharpStudio.Views
                 gvc.DisplayMemberBinding = new Binding("Kuku");
                 gvc.Header = t.Name;
                 gvc.Width = 100;
+
+                // databinding & converter
+                var frameworkElementFactory = new FrameworkElementFactory(typeof(TextBlock));
+                var dataTemplate = new DataTemplate();
+                dataTemplate.VisualTree = frameworkElementFactory;
+                gvc.CellTemplate = dataTemplate;
+                //var binding = new Binding(assignment.Id.ToString() + key);
+                //binding.Converter = converter;
+
                 gridView.Columns.Add(gvc);
             }
             _tree.Model = new ModelNodeRoles(roles.ParentGroupListCommon.ParentModel);

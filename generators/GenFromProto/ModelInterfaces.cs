@@ -28,80 +28,116 @@ namespace GenFromProto
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing Google.Protobuf.WellKnown" +
-                    "Types;\r\nusing ViewModelBase;\r\n\r\nnamespace ");
+            this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing System.ComponentModel;\r\nu" +
+                    "sing Google.Protobuf.WellKnownTypes;\r\nusing ViewModelBase;\r\nusing Xceed.Wpf.Tool" +
+                    "kit.PropertyGrid.Editors;\r\n\r\nnamespace ");
             
-            #line 11 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 13 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
             #line hidden
             this.Write(" // ");
             
-            #line 11 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 13 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n");
             
-            #line 13 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
- foreach (var t in root.EnumTypes) { 
-     this.PushIndent("    "); 
+            #line 15 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+ foreach (var t in JsonDoc.Files[root.Name].Enums) { 
+     this.PushIndent("\t"); 
+            
+            #line default
+            #line hidden
+            
+            #line 17 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Value.Comments));
+            
+            #line default
+            #line hidden
+            
+            #line 17 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Value.Attributes));
             
             #line default
             #line hidden
             this.Write("public enum ");
             
-            #line 15 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(t.Name.ToNameCs()));
+            #line 17 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t.Key.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" // ");
             
-            #line 15 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 17 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n");
             
-            #line 17 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-   foreach (var tt in t.Values) { 
+            #line 19 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+   this.PushIndent("\t"); 
             
             #line default
             #line hidden
-            this.Write("    ");
             
-            #line 18 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(tt.Name));
+            #line 20 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+   foreach (var tt in t.Value.Values) { 
+            
+            #line default
+            #line hidden
+            
+            #line 21 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(tt.Value.Comments));
+            
+            #line default
+            #line hidden
+            
+            #line 21 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(tt.Value.Attributes));
+            
+            #line default
+            #line hidden
+            
+            #line 21 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(tt.Value.value.Name));
             
             #line default
             #line hidden
             this.Write(" = ");
             
-            #line 18 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(tt.Number));
+            #line 21 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(tt.Value.value.Number));
             
             #line default
             #line hidden
             this.Write(",\r\n");
             
-            #line 19 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 22 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
    } 
+            
+            #line default
+            #line hidden
+            
+            #line 23 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+   this.PopIndent(); 
             
             #line default
             #line hidden
             this.Write("}\r\n");
             
-            #line 21 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 25 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
    this.PopIndent(); 
             
             #line default
             #line hidden
             
-            #line 22 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 26 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
  }
    foreach (var message in messages) { 
      if (message.Name.EndsWith("_nullable"))
@@ -112,41 +148,41 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 28 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 32 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.MessageDoc.Comments));
             
             #line default
             #line hidden
             this.Write("\r\npublic partial interface I");
             
-            #line 29 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 33 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(message.Name.ToNameCs()));
             
             #line default
             #line hidden
             
-            #line 29 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 33 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
  if (MessageDoc.IsDefaultBase) { 
             
             #line default
             #line hidden
             this.Write(" : IGuid, IName");
             
-            #line 29 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 33 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
  } 
             
             #line default
             #line hidden
             this.Write(" // ");
             
-            #line 29 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 33 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n");
             
-            #line 31 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 35 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
  if (MessageDoc.IsDefaultBase) { 
             
             #line default
@@ -154,20 +190,20 @@ namespace GenFromProto
             this.Write("    //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guid" +
                     "Settings); // ");
             
-            #line 32 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 36 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 33 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 37 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 34 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 38 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
     foreach (var field in message.Fields.InDeclarationOrder()) {
         if (IsSkip(field)) continue;
         this.FieldDoc = JsonDoc.Files[root.Name].Messages[message.Name].Fields[field.Name];  
@@ -176,80 +212,24 @@ namespace GenFromProto
             #line default
             #line hidden
             
-            #line 38 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 42 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.FieldDoc.Comments));
             
             #line default
             #line hidden
             
-            #line 38 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 42 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
  if (field.IsRepeated) { 
             
             #line default
             #line hidden
             
-            #line 39 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 43 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
  if (field.IsMap()) { 
             
             #line default
             #line hidden
             this.Write("IReadOnlyList<");
-            
-            #line 40 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write("> ");
-            
-            #line 40 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" { get; } // ");
-            
-            #line 40 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 41 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
- } else if (field.IsCsSimple()) { 
-            
-            #line default
-            #line hidden
-            this.Write("IReadOnlyList<");
-            
-            #line 42 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write("> ");
-            
-            #line 42 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" { get; } // ");
-            
-            #line 42 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 43 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
- } else { 
-            
-            #line default
-            #line hidden
-            this.Write("IReadOnlyList<I");
             
             #line 44 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
@@ -273,112 +253,113 @@ namespace GenFromProto
             this.Write("\r\n");
             
             #line 45 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+ } else if (field.IsCsSimple()) { 
+            
+            #line default
+            #line hidden
+            this.Write("IReadOnlyList<");
+            
+            #line 46 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write("> ");
+            
+            #line 46 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" { get; } // ");
+            
+            #line 46 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 47 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            this.Write("IReadOnlyList<I");
+            
+            #line 48 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write("> ");
+            
+            #line 48 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" { get; } // ");
+            
+            #line 48 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 49 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
    if (message.Name.EndsWith(field.Name)) { 
             
             #line default
             #line hidden
             this.Write("I");
             
-            #line 46 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 50 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.MessageType.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" this[int index] { get; }\r\nint Count();\r\n");
             
-            #line 48 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 52 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
    } 
             
             #line default
             #line hidden
             
-            #line 49 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 53 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 50 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 54 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
        } else if (field.IsCsSimple()) { 
             
             #line default
             #line hidden
             
-            #line 51 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 55 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 51 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 55 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
             
             #line default
             #line hidden
             this.Write(" { get; ");
             
-            #line 51 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 55 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(this.Setter));
             
             #line default
             #line hidden
             this.Write("} // ");
-            
-            #line 51 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 52 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-       } else if (field.IsAny() || field.IsNullable()) { 
-            
-            #line default
-            #line hidden
-            
-            #line 53 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 53 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" { get; } // ");
-            
-            #line 53 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
-            
-            #line default
-            #line hidden
-            this.Write("\r\n");
-            
-            #line 54 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-       } else { 
-            
-            #line default
-            #line hidden
-            this.Write("I");
-            
-            #line 55 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 55 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
-            
-            #line default
-            #line hidden
-            this.Write(" { get; } // ");
             
             #line 55 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
@@ -388,25 +369,80 @@ namespace GenFromProto
             this.Write("\r\n");
             
             #line 56 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
-       } 
+       } else if (field.IsAny() || field.IsNullable()) { 
             
             #line default
             #line hidden
             
             #line 57 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 57 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" { get; } // ");
+            
+            #line 57 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 58 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+       } else { 
+            
+            #line default
+            #line hidden
+            this.Write("I");
+            
+            #line 59 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToTypeCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" ");
+            
+            #line 59 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.Name.ToNameCs()));
+            
+            #line default
+            #line hidden
+            this.Write(" { get; } // ");
+            
+            #line 59 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 60 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+       } 
+            
+            #line default
+            #line hidden
+            
+            #line 61 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
        this.PopIndent(); 
             
             #line default
             #line hidden
             
-            #line 58 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 62 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
    } 
             
             #line default
             #line hidden
             this.Write("}\r\n");
             
-            #line 60 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
+            #line 64 "D:\dev\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt"
     
       this.PopIndent();
    } 

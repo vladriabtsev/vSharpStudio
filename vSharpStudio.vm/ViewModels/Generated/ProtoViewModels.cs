@@ -1381,10 +1381,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// current migration version, increased by one on each deployment
-        ///////////////////////////////////////////////////
+        // current migration version, increased by one on each deployment
         public int VersionMigrationCurrent // Property.tt Line: 55
         { 
             get { return this._VersionMigrationCurrent; }
@@ -1403,10 +1400,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnVersionMigrationCurrentChanging(ref int to); // Property.tt Line: 79
         partial void OnVersionMigrationCurrentChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// min version supported by current version for migration
-        ///////////////////////////////////////////////////
+        // min version supported by current version for migration
         public int VersionMigrationSupportFromMin // Property.tt Line: 55
         { 
             get { return this._VersionMigrationSupportFromMin; }
@@ -2409,10 +2403,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class ConfigValidator : ValidatorBase<Config, ConfigValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Configuration config
-    ///////////////////////////////////////////////////
+    // Configuration config
     public partial class Config : ConfigObjectVmGenSettings<Config, ConfigValidator>, IComparable<Config>, IConfigAcceptVisitor, IConfig // Class.tt Line: 16
     {
         #region CTOR
@@ -3278,10 +3269,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// string app_generator_guid = 2;
-        ///////////////////////////////////////////////////
+        // string app_generator_guid = 2;
         public string Settings // Property.tt Line: 55
         { 
             get { return this._Settings; }
@@ -3449,10 +3437,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// string app_generator_guid = 2;
-        ///////////////////////////////////////////////////
+        // string app_generator_guid = 2;
         public string Settings // Property.tt Line: 55
         { 
             get { return this._Settings; }
@@ -3752,10 +3737,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// List NET solutions
-        ///////////////////////////////////////////////////
+        // List NET solutions
         [Browsable(false)]
         public ConfigNodesCollection<AppSolution> ListAppSolutions // Property.tt Line: 8
         { 
@@ -4282,11 +4264,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListAppProjectsChanging(ObservableCollection<AppProject> to); // Property.tt Line: 27
         partial void OnListAppProjectsChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// 
-        /// repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
-        ///////////////////////////////////////////////////
+        // 
+        // repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
         [Browsable(false)]
         public ObservableCollectionWithActions<PluginGeneratorSolutionSettings> ListGeneratorsSolutionSettings // Property.tt Line: 8
         { 
@@ -4765,11 +4744,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnListAppProjectGeneratorsChanging(ObservableCollection<AppProjectGenerator> to); // Property.tt Line: 27
         partial void OnListAppProjectGeneratorsChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// 
-        /// repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
-        ///////////////////////////////////////////////////
+        // 
+        // repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
         [Browsable(false)]
         public ObservableCollectionWithActions<PluginGeneratorProjectSettings> ListGeneratorsProjectSettings // Property.tt Line: 8
         { 
@@ -4960,10 +4936,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnGuidChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// Guid of solution-project-generator node
-        ///////////////////////////////////////////////////
+        // Guid of solution-project-generator node
         public string AppProjectGeneratorGuid // Property.tt Line: 55
         { 
             get { return this._AppProjectGeneratorGuid; }
@@ -4984,10 +4957,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnAppProjectGeneratorGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnAppProjectGeneratorGuidChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// Name of solution-project-generator node
-        ///////////////////////////////////////////////////
+        // Name of solution-project-generator node
         public string Name // Property.tt Line: 55
         { 
             get { return this._Name; }
@@ -5046,10 +5016,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// string node_settings_vm_guid = 6;
-        ///////////////////////////////////////////////////
+        // string node_settings_vm_guid = 6;
         public string Settings // Property.tt Line: 55
         { 
             get { return this._Settings; }
@@ -5271,10 +5238,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
         partial void OnNameUiChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// Guid of solution-project-generator node
-        ///////////////////////////////////////////////////
+        // Guid of solution-project-generator node
         public string AppProjectGeneratorGuid // Property.tt Line: 55
         { 
             get { return this._AppProjectGeneratorGuid; }
@@ -5348,10 +5312,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class AppProjectGeneratorValidator : ValidatorBase<AppProjectGenerator, AppProjectGeneratorValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Application project generator
-    ///////////////////////////////////////////////////
+    // Application project generator
     public partial class AppProjectGenerator : ConfigObjectVmBase<AppProjectGenerator, AppProjectGeneratorValidator>, IComparable<AppProjectGenerator>, IConfigAcceptVisitor, IAppProjectGenerator // Class.tt Line: 16
     {
         #region CTOR
@@ -5725,10 +5686,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionGeneratorChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionGeneratorChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// Relative folder path to project file
-        ///////////////////////////////////////////////////
+        // Relative folder path to project file
         [PropertyOrderAttribute(8)]
         [DisplayName("Output Folder")]
         [Editor(typeof(EditorFolderPicker), typeof(ITypeEditor))]
@@ -5753,10 +5711,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnRelativePathToGenFolderChanging(ref string to); // Property.tt Line: 79
         partial void OnRelativePathToGenFolderChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// Generator output file name
-        ///////////////////////////////////////////////////
+        // Generator output file name
         [DisplayName("Output File")]
         [PropertyOrderAttribute(9)]
         [Description("Generator output file name")]
@@ -5935,10 +5890,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsGenerateSqlSqriptToUpdatePrevStableChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// Generator output file name
-        ///////////////////////////////////////////////////
+        // Generator output file name
         [DisplayName("SQL file")]
         [PropertyOrderAttribute(15)]
         [Description("SQL script output file name")]
@@ -6090,10 +6042,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         #endregion Procedures
         #region Properties
         
-        
-        ///////////////////////////////////////////////////
-        /// Guid of solution-project-generator node
-        ///////////////////////////////////////////////////
+        // Guid of solution-project-generator node
         public string NodeSettingsVmGuid // Property.tt Line: 55
         { 
             get { return this._NodeSettingsVmGuid; }
@@ -6167,10 +6116,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class ModelValidator : ValidatorBase<Model, ModelValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Configuration model
-    ///////////////////////////////////////////////////
+    // Configuration model
     [CategoryOrder("Db Names Generation", 5)]
     public partial class Model : ConfigObjectVmGenSettings<Model, ModelValidator>, IComparable<Model>, IConfigAcceptVisitor, IModel // Class.tt Line: 16
     {
@@ -7906,15 +7852,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnAccuracyChanging(ref uint to); // Property.tt Line: 79
         partial void OnAccuracyChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// <summary>
-        /// / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
-        /// / Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
-        /// / If Guid of group types is assigned, then any type of such group of types is acceptable as type
-        /// / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
-        /// / </summary>
-        ///////////////////////////////////////////////////
+        // <summary>
+        // / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
+        // / Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
+        // / If Guid of group types is assigned, then any type of such group of types is acceptable as type
+        // / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
+        // / </summary>
         [PropertyOrderAttribute(6)]
         [Editor(typeof(EditorDataTypeObjectName), typeof(EditorDataTypeObjectName))]
         public string ObjectGuid // Property.tt Line: 55
@@ -7937,12 +7880,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnObjectGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnObjectGuidChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// <summary>
-        /// / Guids of selected complex types, that are acceptable as types
-        /// / </summary>
-        ///////////////////////////////////////////////////
+        // <summary>
+        // / Guids of selected complex types, that are acceptable as types
+        // / </summary>
         [PropertyOrderAttribute(8)]
         public ObservableCollectionWithActions<string> ListObjectGuids // Property.tt Line: 8
         { 
@@ -8039,10 +7979,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupListCommonValidator : ValidatorBase<GroupListCommon, GroupListCommonValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Common parameters section
-    ///////////////////////////////////////////////////
+    // Common parameters section
     public partial class GroupListCommon : ConfigObjectVmGenSettings<GroupListCommon, GroupListCommonValidator>, IComparable<GroupListCommon>, IConfigAcceptVisitor, IGroupListCommon // Class.tt Line: 16
     {
         #region CTOR
@@ -8442,10 +8379,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class RoleValidator : ValidatorBase<Role, RoleValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// User's role
-    ///////////////////////////////////////////////////
+    // User's role
     public partial class Role : ConfigObjectVmGenSettings<Role, RoleValidator>, IComparable<Role>, IConfigAcceptVisitor, IRole // Class.tt Line: 16
     {
         #region CTOR
@@ -10112,10 +10046,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class MainViewFormValidator : ValidatorBase<MainViewForm, MainViewFormValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// main view forms hierarchy parent
-    ///////////////////////////////////////////////////
+    // main view forms hierarchy parent
     public partial class MainViewForm : ConfigObjectVmGenSettings<MainViewForm, MainViewFormValidator>, IComparable<MainViewForm>, IConfigAcceptVisitor, IMainViewForm // Class.tt Line: 16
     {
         #region CTOR
@@ -10532,10 +10463,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupListMainViewFormsValidator : ValidatorBase<GroupListMainViewForms, GroupListMainViewFormsValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// main view forms hierarchy node with children
-    ///////////////////////////////////////////////////
+    // main view forms hierarchy node with children
     public partial class GroupListMainViewForms : ConfigObjectVmGenSettings<GroupListMainViewForms, GroupListMainViewFormsValidator>, IComparable<GroupListMainViewForms>, IConfigAcceptVisitor, IGroupListMainViewForms // Class.tt Line: 16
     {
         #region CTOR
@@ -12025,10 +11953,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// Create Index for foreign key navigation property
-        ///////////////////////////////////////////////////
+        // Create Index for foreign key navigation property
         [PropertyOrderAttribute(5)]
         public bool IsIndexFk // Property.tt Line: 55
         { 
@@ -12138,11 +12063,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupDetailsChanged();
         //IGroupListDetails IDetail.GroupDetails { get { return this._GroupDetails; } }
         
-        
-        ///////////////////////////////////////////////////
-        /// Protobuf field position
-        /// Reserved positions: 1 - primary key
-        ///////////////////////////////////////////////////
+        // Protobuf field position
+        // Reserved positions: 1 - primary key
         [ReadOnly(true)]
         public uint Position // Property.tt Line: 55
         { 
@@ -13161,10 +13083,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             item.Parent = null;
         }
         
-        
-        ///////////////////////////////////////////////////
-        /// Last generated Protobuf field position
-        ///////////////////////////////////////////////////
+        // Last generated Protobuf field position
         [ReadOnly(true)]
         public uint LastGenPosition // Property.tt Line: 55
         { 
@@ -14685,70 +14604,67 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDataGeneratorChanged();
         //IPropertyDataGenerator IProperty.DataGenerator { get { return this._DataGenerator; } }
         
-        
-        ///////////////////////////////////////////////////
-        /// 
-        /// // @attr [PropertyOrderAttribute(28)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("Start Grid")]
-        /// // @attr [Description("Start new container of 12 columns grid system")]
-        /// bool is_start_12_col_grid_system = 28;
-        /// // @attr [PropertyOrderAttribute(29)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("Stop Grid")]
-        /// // @attr [Description("Stop current container of 12 columns grid system")]
-        /// bool is_stop_12_col_grid_system = 29;
-        /// // @attr [PropertyOrderAttribute(30)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("Start Column")]
-        /// // @attr [Description("Start new column of 12 columns grid system")]
-        /// bool is_start_new_column_12_col_grid_system = 30;
-        /// // @attr [PropertyOrderAttribute(32)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("Start Row")]
-        /// // @attr [Description("Start new row of 12 columns grid system")]
-        /// bool is_start_new_row_12_col_grid_system = 31;
-        /// // @attr [PropertyOrderAttribute(31)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("Column Name")]
-        /// // @attr [Description("Column Name of 12 columns grid system")]
-        /// string column_name_12_col_grid_system = 32;
-        /// // @attr [PropertyOrderAttribute(33)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("When Hide")]
-        /// // @attr [Description("Condition of hiding base on screen size")]
-        /// proto_enum_hidden_type hide_type = 33;
-        /// // @attr [PropertyOrderAttribute(34)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("XS")]
-        /// // @attr [Description("Extra small. Small to large phone. Range: < 600px")]
-        /// google.protobuf.UInt32Value width_xs = 34;
-        /// // @attr [PropertyOrderAttribute(35)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("SM")]
-        /// // @attr [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
-        /// google.protobuf.UInt32Value width_sm = 35;
-        /// // @attr [PropertyOrderAttribute(36)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("MD")]
-        /// // @attr [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
-        /// google.protobuf.UInt32Value width_md = 36;
-        /// // @attr [PropertyOrderAttribute(37)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("LG")]
-        /// // @attr [Description("Large. Desktop. Range: 1280px > < 1920px")]
-        /// google.protobuf.UInt32Value width_lg = 37;
-        /// // @attr [PropertyOrderAttribute(38)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("XL")]
-        /// // @attr [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
-        /// google.protobuf.UInt32Value width_xl = 38;
-        /// // @attr [PropertyOrderAttribute(39)]
-        /// // @attr [Category("12 Column Grid System")]
-        /// // @attr [DisplayName("XX")]
-        /// // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
-        /// google.protobuf.UInt32Value width_xx = 39;
-        ///////////////////////////////////////////////////
+        // 
+        // // @attr [PropertyOrderAttribute(28)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("Start Grid")]
+        // // @attr [Description("Start new container of 12 columns grid system")]
+        // bool is_start_12_col_grid_system = 28;
+        // // @attr [PropertyOrderAttribute(29)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("Stop Grid")]
+        // // @attr [Description("Stop current container of 12 columns grid system")]
+        // bool is_stop_12_col_grid_system = 29;
+        // // @attr [PropertyOrderAttribute(30)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("Start Column")]
+        // // @attr [Description("Start new column of 12 columns grid system")]
+        // bool is_start_new_column_12_col_grid_system = 30;
+        // // @attr [PropertyOrderAttribute(32)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("Start Row")]
+        // // @attr [Description("Start new row of 12 columns grid system")]
+        // bool is_start_new_row_12_col_grid_system = 31;
+        // // @attr [PropertyOrderAttribute(31)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("Column Name")]
+        // // @attr [Description("Column Name of 12 columns grid system")]
+        // string column_name_12_col_grid_system = 32;
+        // // @attr [PropertyOrderAttribute(33)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("When Hide")]
+        // // @attr [Description("Condition of hiding base on screen size")]
+        // proto_enum_hidden_type hide_type = 33;
+        // // @attr [PropertyOrderAttribute(34)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("XS")]
+        // // @attr [Description("Extra small. Small to large phone. Range: < 600px")]
+        // google.protobuf.UInt32Value width_xs = 34;
+        // // @attr [PropertyOrderAttribute(35)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("SM")]
+        // // @attr [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
+        // google.protobuf.UInt32Value width_sm = 35;
+        // // @attr [PropertyOrderAttribute(36)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("MD")]
+        // // @attr [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
+        // google.protobuf.UInt32Value width_md = 36;
+        // // @attr [PropertyOrderAttribute(37)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("LG")]
+        // // @attr [Description("Large. Desktop. Range: 1280px > < 1920px")]
+        // google.protobuf.UInt32Value width_lg = 37;
+        // // @attr [PropertyOrderAttribute(38)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("XL")]
+        // // @attr [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
+        // google.protobuf.UInt32Value width_xl = 38;
+        // // @attr [PropertyOrderAttribute(39)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("XX")]
+        // // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
+        // google.protobuf.UInt32Value width_xx = 39;
         [Browsable(false)]
         public ObservableCollectionWithActions<RolePropertyAccess> ListRolePropertyAccessSettings // Property.tt Line: 8
         { 
@@ -14839,11 +14755,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// Protobuf field position
-        /// Reserved positions: 1 - primary key
-        ///////////////////////////////////////////////////
+        // Protobuf field position
+        // Reserved positions: 1 - primary key
         [ReadOnly(true)]
         public uint Position // Property.tt Line: 55
         { 
@@ -16045,11 +15958,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Constant application wise value
-    /// 
-    ///////////////////////////////////////////////////
+    // Constant application wise value
+    // 
     public partial class Constant : ConfigObjectVmGenSettings<Constant, ConstantValidator>, IComparable<Constant>, IConfigAcceptVisitor, IConstant // Class.tt Line: 16
     {
         #region CTOR
@@ -17683,10 +17593,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// Enumeration element type
-        ///////////////////////////////////////////////////
+        // Enumeration element type
         [Category("")]
         [PropertyOrderAttribute(4)]
         [DisplayName("Type")]
@@ -17710,10 +17617,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDataTypeEnumChanging(ref EnumEnumerationType to); // Property.tt Line: 79
         partial void OnDataTypeEnumChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// Length of string if 'STRING' is selected as enumeration element type
-        ///////////////////////////////////////////////////
+        // Length of string if 'STRING' is selected as enumeration element type
         [Category("")]
         [PropertyOrderAttribute(5)]
         [DisplayName("Length")]
@@ -24350,10 +24254,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// repeated proto_property list_shared_properties = 6;
-        ///////////////////////////////////////////////////
+        // repeated proto_property list_shared_properties = 6;
         [Browsable(false)]
         public ConfigNodesCollection<Journal> ListJournals // Property.tt Line: 8
         { 
@@ -24895,10 +24796,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// repeated proto_group_properties list_properties = 6;
-        ///////////////////////////////////////////////////
+        // repeated proto_group_properties list_properties = 6;
         [Browsable(false)]
         public ConfigNodesCollection<Document> ListDocuments // Property.tt Line: 8
         { 
@@ -25401,10 +25299,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// repeated proto_property list_shared_properties = 6;
-        ///////////////////////////////////////////////////
+        // repeated proto_property list_shared_properties = 6;
         [Browsable(false)]
         public ConfigNodesCollection<Form> ListForms // Property.tt Line: 8
         { 
@@ -25523,11 +25418,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class FormValidator : ValidatorBase<Form, FormValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Children collection can contain:
-    ///   - Children of Grid System
-    ///////////////////////////////////////////////////
+    // Children collection can contain:
+    //   - Children of Grid System
     public partial class Form : ConfigObjectVmGenSettings<Form, FormValidator>, IComparable<Form>, IConfigAcceptVisitor, IForm // Class.tt Line: 16
     {
         #region CTOR
@@ -26270,10 +26162,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class FormGridSystemValidator : ValidatorBase<FormGridSystem, FormGridSystemValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Children are collection of Grid System Rows 
-    ///////////////////////////////////////////////////
+    // Children are collection of Grid System Rows 
     public partial class FormGridSystem : ConfigObjectVmGenSettings<FormGridSystem, FormGridSystemValidator>, IComparable<FormGridSystem>, IConfigAcceptVisitor, IFormGridSystem // Class.tt Line: 16
     {
         #region CTOR
@@ -26774,10 +26663,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class FormGridSystemRowValidator : ValidatorBase<FormGridSystemRow, FormGridSystemRowValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Children are collection of Grid System Columns 
-    ///////////////////////////////////////////////////
+    // Children are collection of Grid System Columns 
     public partial class FormGridSystemRow : ConfigObjectVmGenSettings<FormGridSystemRow, FormGridSystemRowValidator>, IComparable<FormGridSystemRow>, IConfigAcceptVisitor, IFormGridSystemRow // Class.tt Line: 16
     {
         #region CTOR
@@ -27242,10 +27128,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class FormGridSystemColumnValidator : ValidatorBase<FormGridSystemColumn, FormGridSystemColumnValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Children are collection of Auto Layout Block children
-    ///////////////////////////////////////////////////
+    // Children are collection of Auto Layout Block children
     public partial class FormGridSystemColumn : ConfigObjectVmGenSettings<FormGridSystemColumn, FormGridSystemColumnValidator>, IComparable<FormGridSystemColumn>, IConfigAcceptVisitor, IFormGridSystemColumn // Class.tt Line: 16
     {
         #region CTOR
@@ -27849,15 +27732,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class FormAutoLayoutBlockValidator : ValidatorBase<FormAutoLayoutBlock, FormAutoLayoutBlockValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Children collection can contain:
-    ///   - Fields
-    ///   - Data grids
-    ///   - Grid Systems
-    ///   - Tab Controls
-    ///   - Auto Layout Blocks
-    ///////////////////////////////////////////////////
+    // Children collection can contain:
+    //   - Fields
+    //   - Data grids
+    //   - Grid Systems
+    //   - Tab Controls
+    //   - Auto Layout Blocks
     public partial class FormAutoLayoutBlock : ConfigObjectVmGenSettings<FormAutoLayoutBlock, FormAutoLayoutBlockValidator>, IComparable<FormAutoLayoutBlock>, IConfigAcceptVisitor, IFormAutoLayoutBlock // Class.tt Line: 16
     {
         #region CTOR
@@ -28322,10 +28202,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class FormAutoLayoutSubBlockValidator : ValidatorBase<FormAutoLayoutSubBlock, FormAutoLayoutSubBlockValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
-    ///////////////////////////////////////////////////
+    // https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
     public partial class FormAutoLayoutSubBlock : ConfigObjectVmGenSettings<FormAutoLayoutSubBlock, FormAutoLayoutSubBlockValidator>, IComparable<FormAutoLayoutSubBlock>, IConfigAcceptVisitor, IFormAutoLayoutSubBlock // Class.tt Line: 16
     {
         #region CTOR
@@ -29298,10 +29175,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class FormTabControlTabValidator : ValidatorBase<FormTabControlTab, FormTabControlTabValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Children are collection of Auto Layout Block children
-    ///////////////////////////////////////////////////
+    // Children are collection of Auto Layout Block children
     public partial class FormTabControlTab : ConfigObjectVmGenSettings<FormTabControlTab, FormTabControlTabValidator>, IComparable<FormTabControlTab>, IConfigAcceptVisitor, IFormTabControlTab // Class.tt Line: 16
     {
         #region CTOR
@@ -29759,10 +29633,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class FormTabControlValidator : ValidatorBase<FormTabControl, FormTabControlValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// Children are collection of Tab Control Tabs
-    ///////////////////////////////////////////////////
+    // Children are collection of Tab Control Tabs
     public partial class FormTabControl : ConfigObjectVmGenSettings<FormTabControl, FormTabControlValidator>, IComparable<FormTabControl>, IConfigAcceptVisitor, IFormTabControl // Class.tt Line: 16
     {
         #region CTOR
@@ -30263,10 +30134,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class FormDataGridValidator : ValidatorBase<FormDataGrid, FormDataGridValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// No Children
-    ///////////////////////////////////////////////////
+    // No Children
     public partial class FormDataGrid : ConfigObjectVmGenSettings<FormDataGrid, FormDataGridValidator>, IComparable<FormDataGrid>, IConfigAcceptVisitor, IFormDataGrid // Class.tt Line: 16
     {
         #region CTOR
@@ -30690,10 +30558,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class FormTreeValidator : ValidatorBase<FormTree, FormTreeValidator> { } // Class.tt Line: 15
-    
-    ///////////////////////////////////////////////////
-    /// No Children
-    ///////////////////////////////////////////////////
+    // No Children
     public partial class FormTree : ConfigObjectVmGenSettings<FormTree, FormTreeValidator>, IComparable<FormTree>, IConfigAcceptVisitor, IFormTree // Class.tt Line: 16
     {
         #region CTOR
@@ -31431,10 +31296,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// repeated proto_property list_shared_properties = 6;
-        ///////////////////////////////////////////////////
+        // repeated proto_property list_shared_properties = 6;
         [Browsable(false)]
         public ConfigNodesCollection<Report> ListReports // Property.tt Line: 8
         { 
@@ -31881,11 +31743,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
         
-        
-        ///////////////////////////////////////////////////
-        /// repeated proto_group_properties list_properties = 6;
-        /// repeated proto_document list_documents = 7;
-        ///////////////////////////////////////////////////
+        // repeated proto_group_properties list_properties = 6;
+        // repeated proto_document list_documents = 7;
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 

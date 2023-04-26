@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Proto.Doc;
 
 namespace GenFromProto
 {
@@ -95,8 +96,12 @@ namespace GenFromProto
         public ValueDoc(Proto.Doc.value value)
         {
             this.value = value;
+            string base0, interfaces;
+            this.Comments = MessageDoc.GetComments(value.Name, value.Description, out this.Attributes, out base0, out interfaces);
         }
         public Proto.Doc.value value;
+        public string Attributes = null;
+        public string Comments = null;
     }
     public class MessageDoc
     {
@@ -258,19 +263,20 @@ namespace GenFromProto
                     }
                     else
                     {
-                        if (comments.Length == 0)
-                        {
-                            comments.AppendLine();
-                            comments.AppendLine("///////////////////////////////////////////////////");
-                        }
-                        comments.Append("/// ");
+                        //if (comments.Length == 0)
+                        //{
+                        //    comments.AppendLine();
+                        //    comments.AppendLine("///////////////////////////////////////////////////");
+                        //}
+                        //comments.Append("/// ");
+                        comments.Append("// ");
                         comments.AppendLine(t);
                     }
                 }
-                if (comments.Length > 0)
-                {
-                    comments.AppendLine("///////////////////////////////////////////////////");
-                }
+                //if (comments.Length > 0)
+                //{
+                //    comments.AppendLine("///////////////////////////////////////////////////");
+                //}
             }
             baseClass = base0;
             attributes = attrs.ToString();
