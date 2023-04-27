@@ -19,6 +19,7 @@ using System.Xml.Linq;
 using Microsoft.Win32;
 using Serilog.Parsing;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.vm.ViewModels;
 using vSharpStudio.wpf.Controls;
@@ -75,15 +76,28 @@ namespace vSharpStudio.Views
     {
         Model? model;
         public ITreeConfigNode Node { get; private set; }
-        public object? Kuku { get; private set; }
+        private ConfigNodesCollection<IRole> roles;
+        public List<object?> ListRoleAccess { get; private set; }
         public ModelNodeRoles(Model model)
         {
             this.model = model;
             this.Node = model;
         }
-        public ModelNodeRoles(ITreeConfigNode node)
+        public ModelNodeRoles(ITreeConfigNode node, ConfigNodesCollection<IRole> roles)
         {
             this.Node = node;
+            this.roles = roles;
+            this.ListRoleAccess = new List<object?>();
+            if (node is IRoleAccess ra)
+            {
+                foreach (var role in roles)
+                    this.ListRoleAccess.Add(ra.GetRoleAccess(role));
+            }
+            else
+            {
+                for (int i = 0; i < roles.Count; i++)
+                    this.ListRoleAccess.Add(null);
+            }
         }
         public IEnumerable GetChildren(object parent)
         {
@@ -94,7 +108,7 @@ namespace vSharpStudio.Views
                 var tt = (ITreeConfigNode)t;
                 if (parent == null && (tt.Name == "Common" || tt.Name == "Enumerations"))
                     continue;
-                res.Add(new ModelNodeRoles(tt));
+                res.Add(new ModelNodeRoles(tt, this.roles));
             }
             return res;
         }
