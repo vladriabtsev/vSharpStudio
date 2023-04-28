@@ -46,7 +46,7 @@ namespace vSharpStudio.Views
             foreach (var t in roles.ListRoles)
             {
                 var gvc = new GridViewColumn();
-                gvc.DisplayMemberBinding = new Binding("Kuku");
+                //gvc.DisplayMemberBinding = new Binding("Kuku");
                 gvc.Header = t.Name;
                 gvc.Width = 100;
 
@@ -60,7 +60,7 @@ namespace vSharpStudio.Views
 
                 gridView.Columns.Add(gvc);
             }
-            _tree.Model = new ModelNodeRoles(roles.ParentGroupListCommon.ParentModel);
+            _tree.Model = new ModelNodeRoles(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
         }
     }
     //public class ModelNodeForeRoles
@@ -76,26 +76,26 @@ namespace vSharpStudio.Views
     {
         Model? model;
         public ITreeConfigNode Node { get; private set; }
-        private ConfigNodesCollection<IRole> roles;
+        private static ConfigNodesCollection<Role> roles;
         public List<object?> ListRoleAccess { get; private set; }
-        public ModelNodeRoles(Model model)
+        public ModelNodeRoles(ConfigNodesCollection<Role> roles, Model model)
         {
             this.model = model;
-            this.Node = model;
+            this.Node = this.model;
+            ModelNodeRoles.roles = roles;
         }
-        public ModelNodeRoles(ITreeConfigNode node, ConfigNodesCollection<IRole> roles)
+        public ModelNodeRoles(ITreeConfigNode node)
         {
             this.Node = node;
-            this.roles = roles;
             this.ListRoleAccess = new List<object?>();
             if (node is IRoleAccess ra)
             {
-                foreach (var role in roles)
+                foreach (var role in ModelNodeRoles.roles)
                     this.ListRoleAccess.Add(ra.GetRoleAccess(role));
             }
             else
             {
-                for (int i = 0; i < roles.Count; i++)
+                for (int i = 0; i < ModelNodeRoles.roles.Count; i++)
                     this.ListRoleAccess.Add(null);
             }
         }
@@ -108,7 +108,7 @@ namespace vSharpStudio.Views
                 var tt = (ITreeConfigNode)t;
                 if (parent == null && (tt.Name == "Common" || tt.Name == "Enumerations"))
                     continue;
-                res.Add(new ModelNodeRoles(tt, this.roles));
+                res.Add(new ModelNodeRoles(tt));
             }
             return res;
         }

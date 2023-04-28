@@ -7,13 +7,14 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("GroupConstants:{Name,nq} Count:{ListConstants.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IEditableNode
+    public partial class GroupListConstants : ITreeModel, ICanAddSubNode, ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IEditableNode, IRoleAccess
     {
         [Browsable(false)]
         public GroupConstantGroups ParentGroupConstantGroups { get { Debug.Assert(this.Parent != null); return (GroupConstantGroups)this.Parent; } }
@@ -25,6 +26,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = true;
             this.ShortIdTypeForCacheKey = "t";
             Init();
+            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -244,6 +246,12 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
+        public object GetRoleAccess(IRole role)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicConstantAccess.ContainsKey(role.Guid));
+            return dicConstantAccess[role.Guid];
+        }
         internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new Dictionary<string, RoleConstantAccess>();
         public void InitRoles()
         {
@@ -252,13 +260,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.dicConstantAccess[tt.Guid] = tt;
             }
         }
-        public void InitRoleAdd(Role role)
+        public void InitRoleAdd(IRole role)
         {
             var rca = new RoleConstantAccess() { Guid = role.Guid };
             this.ListRoleConstantAccessSettings.Add(rca);
             this.dicConstantAccess[rca.Guid] = rca;
         }
-        public void InitRoleRemove(Role role)
+        public void InitRoleRemove(IRole role)
         {
             for (int i = 0; i < this.ListRoleConstantAccessSettings.Count; i++)
             {

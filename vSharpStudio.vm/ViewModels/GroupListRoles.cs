@@ -7,6 +7,7 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
@@ -50,20 +51,32 @@ namespace vSharpStudio.vm.ViewModels
             ////children.Add(this.GroupViewForms, 7);
             //VmBindable.IsNotifyingStatic = true;
 
-            //this.ListRoles.OnAddingAction = (t) =>
-            //{
-            //    t.IsNew = true;
-            //};
-            //this.ListRoles.OnAddedAction = (t) =>
-            //{
-            //    t.OnAdded();
-            //};
-            //this.ListRoles.OnRemovedAction = (t) => {
-            //    this.OnRemoveChild();
-            //};
-            //this.ListRoles.OnClearedAction = () => {
-            //    this.OnRemoveChild();
-            //};
+            this.ListRoles.OnAddingAction = (t) =>
+            {
+                t.IsNew = true;
+            };
+            this.ListRoles.OnAddedAction = (t) =>
+            {
+                var nvb = new ModelVisitorBase();
+                nvb.Run(this.Cfg, null, null, null, (p, n) =>
+                {
+                    if (n is IRoleAccess ra)
+                        ra.InitRoleAdd(t);
+                });
+            };
+            this.ListRoles.OnRemovedAction = (t) =>
+            {
+                var nvb = new ModelVisitorBase();
+                nvb.Run(this.Cfg, null, null, null, (p, n) =>
+                {
+                    if (n is IRoleAccess ra)
+                        ra.InitRoleRemove(t);
+                });
+            };
+            this.ListRoles.OnClearedAction = () =>
+            {
+                this.OnRemoveChild();
+            };
         }
 
         #region Tree operations

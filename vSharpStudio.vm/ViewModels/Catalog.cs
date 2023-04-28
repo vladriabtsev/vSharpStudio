@@ -10,13 +10,14 @@ using System.Windows.Documents;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        IDbTable, INodeWithProperties, IViewList, ITreeConfigNodeSortable
+        IDbTable, INodeWithProperties, IViewList, ITreeConfigNodeSortable, IRoleAccess
     {
         [Browsable(false)]
         public GroupListCatalogs ParentGroupListCatalogs { get { Debug.Assert(this.Parent != null); return (GroupListCatalogs)this.Parent; } }
@@ -73,6 +74,7 @@ namespace vSharpStudio.vm.ViewModels
             this.UseNameProperty = EnumUseType.Default;
             this.UseDescriptionProperty = EnumUseType.Default;
             Init();
+            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -762,6 +764,12 @@ namespace vSharpStudio.vm.ViewModels
         //}
 
         #region Roles
+        public object GetRoleAccess(IRole role)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
+            return dicCatalogAccess[role.Guid];
+        }
         internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
         public void InitRoles()
         {
@@ -770,13 +778,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.dicCatalogAccess[tt.Guid] = tt;
             }
         }
-        public void InitRoleAdd(Role role)
+        public void InitRoleAdd(IRole role)
         {
             var rca = new RoleCatalogAccess() { Guid = role.Guid };
             this.ListRoleCatalogAccessSettings.Add(rca);
             this.dicCatalogAccess[rca.Guid] = rca;
         }
-        public void InitRoleRemove(Role role)
+        public void InitRoleRemove(IRole role)
         {
             for (int i = 0; i < this.ListRoleCatalogAccessSettings.Count; i++)
             {

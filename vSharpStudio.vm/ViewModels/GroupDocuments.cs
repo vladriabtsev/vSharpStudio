@@ -6,13 +6,14 @@ using System.Diagnostics;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
+    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleAccess
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -41,6 +42,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
 
             Init();
+            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -182,6 +184,12 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
+        public object GetRoleAccess(IRole role)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
+            return dicDocumentAccess[role.Guid];
+        }
         internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new Dictionary<string, RoleDocumentAccess>();
         public void InitRoles()
         {
@@ -190,13 +198,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.dicDocumentAccess[tt.Guid] = tt;
             }
         }
-        public void InitRoleAdd(Role role)
+        public void InitRoleAdd(IRole role)
         {
             var rca = new RoleDocumentAccess() { Guid = role.Guid };
             this.ListRoleDocumentAccessSettings.Add(rca);
             this.dicDocumentAccess[rca.Guid] = rca;
         }
-        public void InitRoleRemove(Role role)
+        public void InitRoleRemove(IRole role)
         {
             for (int i = 0; i < this.ListRoleDocumentAccessSettings.Count; i++)
             {

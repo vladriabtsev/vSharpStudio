@@ -10,11 +10,12 @@ using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using vSharpStudio.common.DiffModel;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Grouping:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IDbTable, INodeWithProperties
+    public partial class CatalogFolder : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess
     {
         [Browsable(false)]
         public Catalog ParentCatalog { get { Debug.Assert(this.Parent != null); return (Catalog)this.Parent; } }
@@ -55,6 +56,7 @@ namespace vSharpStudio.vm.ViewModels
 
             //this.CodePropertySettings.Parent = this;
             Init();
+            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -347,6 +349,12 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
+        public object GetRoleAccess(IRole role)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
+            return dicCatalogAccess[role.Guid];
+        }
         internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
         public void InitRoles()
         {
@@ -355,13 +363,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.dicCatalogAccess[tt.Guid] = tt;
             }
         }
-        public void InitRoleAdd(Role role)
+        public void InitRoleAdd(IRole role)
         {
             var rca = new RoleCatalogAccess() { Guid = role.Guid };
             this.ListRoleCatalogAccessSettings.Add(rca);
             this.dicCatalogAccess[rca.Guid] = rca;
         }
-        public void InitRoleRemove(Role role)
+        public void InitRoleRemove(IRole role)
         {
             for (int i = 0; i < this.ListRoleCatalogAccessSettings.Count; i++)
             {

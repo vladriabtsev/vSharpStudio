@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Document:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
+    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess
     {
         [Browsable(false)]
         public GroupListDocuments ParentGroupListDocuments { get { Debug.Assert(this.Parent != null); return (GroupListDocuments)this.Parent; } }
@@ -42,6 +43,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             Init();
+            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -511,6 +513,12 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
+        public object GetRoleAccess(IRole role)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
+            return dicDocumentAccess[role.Guid];
+        }
         internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new Dictionary<string, RoleDocumentAccess>();
         public void InitRoles()
         {
@@ -519,13 +527,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.dicDocumentAccess[tt.Guid] = tt;
             }
         }
-        public void InitRoleAdd(Role role)
+        public void InitRoleAdd(IRole role)
         {
             var rca = new RoleDocumentAccess() { Guid = role.Guid };
             this.ListRoleDocumentAccessSettings.Add(rca);
             this.dicDocumentAccess[rca.Guid] = rca;
         }
-        public void InitRoleRemove(Role role)
+        public void InitRoleRemove(IRole role)
         {
             for (int i = 0; i < this.ListRoleDocumentAccessSettings.Count; i++)
             {

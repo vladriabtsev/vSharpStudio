@@ -8,13 +8,14 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
+    public partial class GroupListProperties : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleAccess
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -54,6 +55,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsEditable = false;
             Init();
+            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -363,6 +365,12 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
+        public object GetRoleAccess(IRole role)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicPropertyAccess.ContainsKey(role.Guid));
+            return dicPropertyAccess[role.Guid];
+        }
         internal Dictionary<string, RolePropertyAccess> dicPropertyAccess = new Dictionary<string, RolePropertyAccess>();
         public void InitRoles()
         {
@@ -371,13 +379,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.dicPropertyAccess[tt.Guid] = tt;
             }
         }
-        public void InitRoleAdd(Role role)
+        public void InitRoleAdd(IRole role)
         {
             var rca = new RolePropertyAccess() { Guid = role.Guid };
             this.ListRolePropertyAccessSettings.Add(rca);
             this.dicPropertyAccess[rca.Guid] = rca;
         }
-        public void InitRoleRemove(Role role)
+        public void InitRoleRemove(IRole role)
         {
             for (int i = 0; i < this.ListRolePropertyAccessSettings.Count; i++)
             {

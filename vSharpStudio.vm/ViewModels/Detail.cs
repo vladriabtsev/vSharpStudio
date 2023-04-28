@@ -8,12 +8,13 @@ using System.Text;
 using System.Windows.Controls;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} details:{GroupDetails.ListDetails.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties
+    public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess
     {
         [Browsable(false)]
         public GroupListDetails ParentGroupListDetails { get { Debug.Assert(this.Parent != null); return (GroupListDetails)this.Parent; } }
@@ -52,6 +53,7 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(glp != null);
             this.Position = glp.GroupProperties.GetNextPosition();
             Init();
+            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -434,6 +436,12 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListDetails.GetUseDescriptionProperty();
         }
+        public object GetRoleAccess(IRole role)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicDetailAccess.ContainsKey(role.Guid));
+            return dicDetailAccess[role.Guid];
+        }
         internal Dictionary<string, RoleDetailAccess> dicDetailAccess = new Dictionary<string, RoleDetailAccess>();
         public void InitRoles()
         {
@@ -442,13 +450,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.dicDetailAccess[tt.Guid] = tt;
             }
         }
-        public void InitRoleAdd(Role role)
+        public void InitRoleAdd(IRole role)
         {
             var rca = new RoleDetailAccess() { Guid = role.Guid };
             this.ListRoleDetailAccessSettings.Add(rca);
             this.dicDetailAccess[rca.Guid] = rca;
         }
-        public void InitRoleRemove(Role role)
+        public void InitRoleRemove(IRole role)
         {
             for (int i = 0; i < this.ListRoleDetailAccessSettings.Count; i++)
             {

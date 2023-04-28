@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -24,7 +25,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Model:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class Model : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup, INodeGenSettings
+    public partial class Model : ITreeModel, IMigration, ICanGoLeft, INodeGenDicSettings, IEditableNodeGroup, INodeGenSettings, IRoleAccess
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -86,6 +87,7 @@ namespace vSharpStudio.vm.ViewModels
             this.UseDocDateProperty = true;
 
             Init();
+            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -975,10 +977,17 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
+        public object GetRoleAccess(IRole role)
+        {
+            //Debug.Assert(role != null);
+            //Debug.Assert(dicConstantAccess.ContainsKey(role.Guid));
+            //return dicConstantAccess[role.Guid];
+            return null;
+        }
         internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new Dictionary<string, RoleConstantAccess>();
         internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
         internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new Dictionary<string, RoleDocumentAccess>();
-        private void InitRoles()
+        public void InitRoles()
         {
             foreach (var tt in this.ListRoleConstantAccessSettings)
             {
@@ -993,7 +1002,7 @@ namespace vSharpStudio.vm.ViewModels
                 this.dicDocumentAccess[tt.Guid] = tt;
             }
         }
-        public void InitRoleAdd(Role role)
+        public void InitRoleAdd(IRole role)
         {
             var rca = new RoleConstantAccess() { Guid = role.Guid };
             this.ListRoleConstantAccessSettings.Add(rca);
@@ -1005,7 +1014,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListRoleDocumentAccessSettings.Add(rca3);
             this.dicDocumentAccess[rca3.Guid] = rca3;
         }
-        public void InitRoleRemove(Role role)
+        public void InitRoleRemove(IRole role)
         {
             for (int i = 0; i < this.ListRoleConstantAccessSettings.Count; i++)
             {

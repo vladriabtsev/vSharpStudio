@@ -7,13 +7,14 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListCatalogs.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
+    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleAccess
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -74,6 +75,7 @@ namespace vSharpStudio.vm.ViewModels
 
             this.ShortIdTypeForCacheKey = "c";
             Init();
+            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -167,6 +169,12 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
+        public object GetRoleAccess(IRole role)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
+            return dicCatalogAccess[role.Guid];
+        }
         internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
         public void InitRoles()
         {
@@ -175,13 +183,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.dicCatalogAccess[tt.Guid] = tt;
             }
         }
-        public void InitRoleAdd(Role role)
+        public void InitRoleAdd(IRole role)
         {
             var rca = new RoleCatalogAccess() { Guid = role.Guid };
             this.ListRoleCatalogAccessSettings.Add(rca);
             this.dicCatalogAccess[rca.Guid] = rca;
         }
-        public void InitRoleRemove(Role role)
+        public void InitRoleRemove(IRole role)
         {
             for (int i = 0; i < this.ListRoleCatalogAccessSettings.Count; i++)
             {

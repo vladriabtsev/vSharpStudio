@@ -6,13 +6,14 @@ using System.Diagnostics;
 using System.Text;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("ConstantGroups:{Name,nq} Count:{ListConstantGroups.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup
+    public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup, IRoleAccess
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -68,6 +69,7 @@ namespace vSharpStudio.vm.ViewModels
             this.PrefixForDbTables = "Cnst";
             this.IsEditable = false;
             Init();
+            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -121,6 +123,12 @@ namespace vSharpStudio.vm.ViewModels
 
 
         #region Roles
+        public object GetRoleAccess(IRole role)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicConstantAccess.ContainsKey(role.Guid));
+            return dicConstantAccess[role.Guid];
+        }
         internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new Dictionary<string, RoleConstantAccess>();
         public void InitRoles()
         {
@@ -129,13 +137,13 @@ namespace vSharpStudio.vm.ViewModels
                 this.dicConstantAccess[tt.Guid] = tt;
             }
         }
-        public void InitRoleAdd(Role role)
+        public void InitRoleAdd(IRole role)
         {
             var rca = new RoleConstantAccess() { Guid = role.Guid };
             this.ListRoleConstantAccessSettings.Add(rca);
             this.dicConstantAccess[rca.Guid] = rca;
         }
-        public void InitRoleRemove(Role role)
+        public void InitRoleRemove(IRole role)
         {
             for (int i = 0; i < this.ListRoleConstantAccessSettings.Count; i++)
             {
