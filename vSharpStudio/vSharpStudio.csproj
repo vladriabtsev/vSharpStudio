@@ -1,14 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <!--https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained-->
     <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <!--<Nullable>enable</Nullable>-->
         <TargetFrameworks>net7.0-windows</TargetFrameworks>
+        <OutputType>WinExe</OutputType>
         <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-        <AssemblyTitle>vSharpStudio</AssemblyTitle>
-        <Product>vSharpStudio</Product>
-        <Copyright>Copyright ©  2019</Copyright>
         <AssemblyTitle>vSharpStudio</AssemblyTitle>
         <Product>vSharpStudio</Product>
         <Copyright>Copyright ©  2019</Copyright>
