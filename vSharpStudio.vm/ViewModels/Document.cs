@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Document:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess
+    public partial class Document : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess, IDocumentAccessRoles
     {
         [Browsable(false)]
         public GroupListDocuments ParentGroupListDocuments { get { Debug.Assert(this.Parent != null); return (GroupListDocuments)this.Parent; } }
@@ -43,7 +43,6 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
             Init();
-            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -519,12 +518,29 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
             return dicDocumentAccess[role.Guid];
         }
+        public void SetRoleAccess(IRole role, EnumDocumentAccess? edit, EnumPrintAccess? print)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
+            if (edit.HasValue)
+                dicDocumentAccess[role.Guid].EditAccess = edit.Value;
+            if (print.HasValue)
+                dicDocumentAccess[role.Guid].PrintAccess = print.Value;
+        }
         internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new Dictionary<string, RoleDocumentAccess>();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleDocumentAccessSettings)
             {
                 this.dicDocumentAccess[tt.Guid] = tt;
+            }
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (!this.dicDocumentAccess.ContainsKey(t.Guid))
+                {
+                    var rca = new RoleDocumentAccess() { Guid = t.Guid };
+                    this.dicDocumentAccess[t.Guid] = rca;
+                }
             }
         }
         public void InitRoleAdd(IRole role)

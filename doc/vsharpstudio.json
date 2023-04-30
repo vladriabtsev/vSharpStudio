@@ -6777,6 +6777,16 @@
               "defaultValue": ""
             },
             {
+              "name": "list_role_detail_access_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_role_detail_access",
+              "longType": "proto_role_detail_access",
+              "fullType": "proto_config.proto_role_detail_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",

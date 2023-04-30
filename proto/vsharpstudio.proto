@@ -1128,6 +1128,8 @@ message proto_group_list_details {
     proto_enum_use_type is_grid_filterable = 73;
 
     // @attr [Browsable(false)]
+    repeated proto_role_detail_access list_role_detail_access_settings = 101;
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode

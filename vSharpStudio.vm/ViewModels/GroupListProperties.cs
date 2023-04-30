@@ -55,7 +55,6 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsEditable = false;
             Init();
-            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -78,6 +77,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListProperties.OnAddedAction = (t) =>
             {
                 t.OnAdded();
+                t.InitRoles();
             };
             this.ListProperties.OnRemovedAction = (t) =>
             {
@@ -371,12 +371,29 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(dicPropertyAccess.ContainsKey(role.Guid));
             return dicPropertyAccess[role.Guid];
         }
+        public void SetRoleAccess(IRole role, EnumPropertyAccess? edit, EnumPrintAccess? print)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicPropertyAccess.ContainsKey(role.Guid));
+            if (edit.HasValue)
+                dicPropertyAccess[role.Guid].EditAccess = edit.Value;
+            if (print.HasValue)
+                dicPropertyAccess[role.Guid].PrintAccess = print.Value;
+        }
         internal Dictionary<string, RolePropertyAccess> dicPropertyAccess = new Dictionary<string, RolePropertyAccess>();
         public void InitRoles()
         {
             foreach (var tt in this.ListRolePropertyAccessSettings)
             {
                 this.dicPropertyAccess[tt.Guid] = tt;
+            }
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (!this.dicPropertyAccess.ContainsKey(t.Guid))
+                {
+                    var rca = new RolePropertyAccess() { Guid = t.Guid };
+                    this.dicPropertyAccess[t.Guid] = rca;
+                }
             }
         }
         public void InitRoleAdd(IRole role)
@@ -409,6 +426,8 @@ namespace vSharpStudio.vm.ViewModels
                 return d.GetRolePropertyAccess(roleGuid);
             else if (this.Parent is CatalogFolder cf)
                 return cf.GetRolePropertyAccess(roleGuid);
+            else if (this.Parent is GroupDocuments gd)
+                return gd.GetRolePropertyAccess(roleGuid);
             else
                 throw new NotImplementedException();
         }
@@ -424,6 +443,8 @@ namespace vSharpStudio.vm.ViewModels
                 return d.GetRolePropertyPrint(roleGuid);
             else if (this.Parent is CatalogFolder cf)
                 return cf.GetRolePropertyPrint(roleGuid);
+            else if (this.Parent is GroupDocuments gd)
+                return gd.GetRolePropertyPrint(roleGuid);
             else
                 throw new NotImplementedException();
         }

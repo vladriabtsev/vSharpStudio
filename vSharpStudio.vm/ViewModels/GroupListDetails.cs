@@ -8,6 +8,7 @@ using System.Text;
 using FluentValidation;
 using ViewModelBase;
 using vSharpStudio.common;
+using vSharpStudio.common.DiffModel;
 using vSharpStudio.wpf.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
@@ -15,7 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListDetails.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupListDetails : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup
+    public partial class GroupListDetails : ITreeModel, ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleAccess
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -66,6 +67,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListDetails.OnAddedAction = (t) =>
             {
                 t.OnAdded();
+                t.InitRoles();
             };
             this.ListDetails.OnRemovedAction = (t) => {
                 this.OnRemoveChild();
@@ -222,7 +224,48 @@ namespace vSharpStudio.vm.ViewModels
                 return cf.GetUseDescriptionProperty();
             throw new NotImplementedException();
         }
+
+        #region Roles
+        public object GetRoleAccess(IRole role)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicDetailAccess.ContainsKey(role.Guid));
+            return dicDetailAccess[role.Guid];
+        }
         internal Dictionary<string, RoleDetailAccess> dicDetailAccess = new Dictionary<string, RoleDetailAccess>();
+        public void InitRoles()
+        {
+            foreach (var tt in this.ListRoleDetailAccessSettings)
+            {
+                this.dicDetailAccess[tt.Guid] = tt;
+            }
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (!this.dicDetailAccess.ContainsKey(t.Guid))
+                {
+                    var rca = new RoleDetailAccess() { Guid = t.Guid };
+                    this.dicDetailAccess[t.Guid] = rca;
+                }
+            }
+        }
+        public void InitRoleAdd(IRole role)
+        {
+            var rca = new RoleDetailAccess() { Guid = role.Guid };
+            this.ListRoleDetailAccessSettings.Add(rca);
+            this.dicDetailAccess[rca.Guid] = rca;
+        }
+        public void InitRoleRemove(IRole role)
+        {
+            for (int i = 0; i < this.ListRoleDetailAccessSettings.Count; i++)
+            {
+                if (this.ListRoleDetailAccessSettings[i].Guid == role.Guid)
+                {
+                    this.ListRoleDetailAccessSettings.RemoveAt(i);
+                    break;
+                }
+            }
+            this.dicDetailAccess.Remove(role.Guid);
+        }
         public EnumCatalogDetailAccess GetRoleDetailAccess(string roleGuid)
         {
             if (this.dicDetailAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
@@ -273,5 +316,16 @@ namespace vSharpStudio.vm.ViewModels
             else
                 throw new NotImplementedException();
         }
+        //public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
+        //{
+        //    var roles = new List<string>();
+        //    foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+        //    {
+        //        if (GetRoleDetailAccess(role.Guid) == access)
+        //            roles.Add(role.Name);
+        //    }
+        //    return roles;
+        //}
+        #endregion Roles
     }
 }

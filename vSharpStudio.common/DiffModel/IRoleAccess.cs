@@ -14,4 +14,24 @@ namespace vSharpStudio.common.DiffModel
         void InitRoleRemove(IRole role);
         object GetRoleAccess(IRole role);
     }
+    public interface IConstantAccessRoles
+    {
+        IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
+        IReadOnlyList<string> GetRolesByAccess(EnumConstantAccess access);
+    }
+    public interface IPropertyAccessRoles
+    {
+        IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
+        IReadOnlyList<string> GetRolesByAccess(EnumPropertyAccess access);
+    }
+    public interface ICatalogDetailAccessRoles
+    {
+        IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
+        IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access);
+    }
+    public interface IDocumentAccessRoles
+    {
+        IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
+        IReadOnlyList<string> GetRolesByAccess(EnumDocumentAccess access);
+    }
 }

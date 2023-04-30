@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.DirectoryServices;
@@ -17,7 +18,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Property:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IRoleAccess
+    public partial class Property : IDataTypeObject, ICanAddNode, ICanGoLeft, INodeGenSettings, IEditableNode, IRoleAccess, IPropertyAccessRoles
     {
         /// <summary>
         /// Is hidden on UI
@@ -66,7 +67,6 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this.DataType.Parent = this;
             Init();
-            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -569,12 +569,29 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(dicPropertyAccess.ContainsKey(role.Guid));
             return dicPropertyAccess[role.Guid];
         }
+        public void SetRoleAccess(IRole role, EnumPropertyAccess? edit, EnumPrintAccess? print)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicPropertyAccess.ContainsKey(role.Guid));
+            if (edit.HasValue)
+                dicPropertyAccess[role.Guid].EditAccess = edit.Value;
+            if (print.HasValue)
+                dicPropertyAccess[role.Guid].PrintAccess = print.Value;
+        }
         internal Dictionary<string, RolePropertyAccess> dicPropertyAccess = new Dictionary<string, RolePropertyAccess>();
         public void InitRoles()
         {
             foreach (var tt in this.ListRolePropertyAccessSettings)
             {
                 this.dicPropertyAccess[tt.Guid] = tt;
+            }
+            foreach(var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (!this.dicPropertyAccess.ContainsKey(t.Guid))
+                {
+                    var rca = new RolePropertyAccess() { Guid = t.Guid };
+                    this.dicPropertyAccess[t.Guid] = rca;
+                }
             }
         }
         public void InitRoleAdd(IRole role)
@@ -601,12 +618,28 @@ namespace vSharpStudio.vm.ViewModels
                 return r.EditAccess;
             return this.ParentGroupListProperties.GetRolePropertyAccess(roleGuid);
         }
+        public EnumPrintAccess GetRolePropertyPrint(string roleGuid)
+        {
+            if (this.dicPropertyAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
+                return r.PrintAccess;
+            return this.ParentGroupListProperties.GetRolePropertyPrint(roleGuid);
+        }
         public IReadOnlyList<string> GetRolesByAccess(EnumPropertyAccess access)
         {
             var roles = new List<string>();
             foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
             {
                 if (GetRolePropertyAccess(role.Guid) == access)
+                    roles.Add(role.Name);
+            }
+            return roles;
+        }
+        public IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access)
+        {
+            var roles = new List<string>();
+            foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (GetRolePropertyPrint(role.Guid) == access)
                     roles.Add(role.Name);
             }
             return roles;

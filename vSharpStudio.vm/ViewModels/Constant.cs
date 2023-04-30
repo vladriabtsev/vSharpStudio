@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IRoleAccess
+    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IRoleAccess, IConstantAccessRoles
     {
         [Browsable(false)]
         public GroupListConstants ParentGroupListConstants { get { Debug.Assert(this.Parent != null); return (GroupListConstants)this.Parent; } }
@@ -52,7 +52,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.IsIncludableInModels = true;
             Init();
-            this.InitRoles();
+            //this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -523,12 +523,29 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(dicConstantAccess.ContainsKey(role.Guid));
             return dicConstantAccess[role.Guid];
         }
+        public void SetRoleAccess(IRole role, EnumConstantAccess? edit, EnumPrintAccess? print)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicConstantAccess.ContainsKey(role.Guid));
+            if (edit.HasValue)
+                dicConstantAccess[role.Guid].EditAccess = edit.Value;
+            if (print.HasValue)
+                dicConstantAccess[role.Guid].PrintAccess = print.Value;
+        }
         internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new Dictionary<string, RoleConstantAccess>();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleConstantAccessSettings)
             {
                 this.dicConstantAccess[tt.Guid] = tt;
+            }
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (!this.dicConstantAccess.ContainsKey(t.Guid))
+                {
+                    var rca = new RoleConstantAccess() { Guid = t.Guid };
+                    this.dicConstantAccess[t.Guid] = rca;
+                }
             }
         }
         public void InitRoleAdd(IRole role)

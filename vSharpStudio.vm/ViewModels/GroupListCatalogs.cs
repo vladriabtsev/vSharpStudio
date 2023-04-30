@@ -75,7 +75,6 @@ namespace vSharpStudio.vm.ViewModels
 
             this.ShortIdTypeForCacheKey = "c";
             Init();
-            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -95,6 +94,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListCatalogs.OnAddedAction = (t) =>
             {
                 t.OnAdded();
+                t.InitRoles();
             };
             this.ListCatalogs.OnRemovedAction = (t) =>
             {
@@ -175,12 +175,29 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
             return dicCatalogAccess[role.Guid];
         }
+        public void SetRoleAccess(IRole role, EnumCatalogDetailAccess? edit, EnumPrintAccess? print)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
+            if (edit.HasValue)
+                dicCatalogAccess[role.Guid].EditAccess = edit.Value;
+            if (print.HasValue)
+                dicCatalogAccess[role.Guid].PrintAccess = print.Value;
+        }
         internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleCatalogAccessSettings)
             {
                 this.dicCatalogAccess[tt.Guid] = tt;
+            }
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (!this.dicCatalogAccess.ContainsKey(t.Guid))
+                {
+                    var rca = new RoleCatalogAccess() { Guid = t.Guid };
+                    this.dicCatalogAccess[t.Guid] = rca;
+                }
             }
         }
         public void InitRoleAdd(IRole role)
@@ -200,18 +217,21 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             this.dicCatalogAccess.Remove(role.Guid);
+            this.dicCatalogAccess.Remove(role.Guid);
         }
         public EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid)
         {
             if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
                 return r.EditAccess;
-            return this.ParentModel.GetRoleCatalogAccess(roleGuid);
+            return EnumCatalogDetailAccess.C_MARK_DEL;
+            //return this.ParentModel.GetRoleCatalogAccess(roleGuid);
         }
         public EnumPrintAccess GetRoleCatalogPrint(string roleGuid)
         {
             if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
                 return r.PrintAccess;
-            return this.ParentModel.GetRoleCatalogPrint(roleGuid);
+            return EnumPrintAccess.PR_PRINT;
+            //return this.ParentModel.GetRoleCatalogPrint(roleGuid);
         }
         #endregion Roles
     }

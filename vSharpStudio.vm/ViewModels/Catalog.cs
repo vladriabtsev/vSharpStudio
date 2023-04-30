@@ -17,7 +17,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Catalog:{Name,nq} props:{GroupProperties.ListProperties.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class Catalog : ICanGoLeft, ICanGoRight, ICanAddNode, INodeGenSettings, IEditableNode, IEditableNodeGroup,
-        IDbTable, INodeWithProperties, IViewList, ITreeConfigNodeSortable, IRoleAccess
+        IDbTable, INodeWithProperties, IViewList, ITreeConfigNodeSortable, IRoleAccess, ICatalogDetailAccessRoles
     {
         [Browsable(false)]
         public GroupListCatalogs ParentGroupListCatalogs { get { Debug.Assert(this.Parent != null); return (GroupListCatalogs)this.Parent; } }
@@ -74,7 +74,6 @@ namespace vSharpStudio.vm.ViewModels
             this.UseNameProperty = EnumUseType.Default;
             this.UseDescriptionProperty = EnumUseType.Default;
             Init();
-            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -770,12 +769,29 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
             return dicCatalogAccess[role.Guid];
         }
+        public void SetRoleAccess(IRole role, EnumCatalogDetailAccess? edit, EnumPrintAccess? print)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
+            if (edit.HasValue)
+                dicCatalogAccess[role.Guid].EditAccess = edit.Value;
+            if (print.HasValue)
+                dicCatalogAccess[role.Guid].PrintAccess = print.Value;
+        }
         internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleCatalogAccessSettings)
             {
                 this.dicCatalogAccess[tt.Guid] = tt;
+            }
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (!this.dicCatalogAccess.ContainsKey(t.Guid))
+                {
+                    var rca = new RoleCatalogAccess() { Guid = t.Guid };
+                    this.dicCatalogAccess[t.Guid] = rca;
+                }
             }
         }
         public void InitRoleAdd(IRole role)
@@ -798,12 +814,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         public EnumPropertyAccess GetRolePropertyAccess(string roleGuid)
         {
-            EnumCatalogDetailAccess ra = EnumCatalogDetailAccess.C_BY_PARENT;
-            if (!this.dicCatalogAccess.TryGetValue(roleGuid, out var r) || r.EditAccess == EnumCatalogDetailAccess.C_BY_PARENT)
+            EnumCatalogDetailAccess ra = this.dicCatalogAccess[roleGuid].EditAccess;
+            if (ra == EnumCatalogDetailAccess.C_BY_PARENT)
             {
                 ra = this.ParentGroupListCatalogs.GetRoleCatalogAccess(roleGuid);
             }
-            Debug.Assert(ra != EnumCatalogDetailAccess.C_BY_PARENT);
             switch (ra)
             {
                 case EnumCatalogDetailAccess.C_HIDE:

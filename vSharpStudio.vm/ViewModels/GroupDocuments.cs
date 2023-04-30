@@ -42,7 +42,6 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
 
             Init();
-            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -190,12 +189,29 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
             return dicDocumentAccess[role.Guid];
         }
+        public void SetRoleAccess(IRole role, EnumDocumentAccess? edit, EnumPrintAccess? print)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
+            if (edit.HasValue)
+                dicDocumentAccess[role.Guid].EditAccess = edit.Value;
+            if (print.HasValue)
+                dicDocumentAccess[role.Guid].PrintAccess = print.Value;
+        }
         internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new Dictionary<string, RoleDocumentAccess>();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleDocumentAccessSettings)
             {
                 this.dicDocumentAccess[tt.Guid] = tt;
+            }
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (!this.dicDocumentAccess.ContainsKey(t.Guid))
+                {
+                    var rca = new RoleDocumentAccess() { Guid = t.Guid };
+                    this.dicDocumentAccess[t.Guid] = rca;
+                }
             }
         }
         public void InitRoleAdd(IRole role)
@@ -216,17 +232,44 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.dicDocumentAccess.Remove(role.Guid);
         }
+        public EnumPropertyAccess GetRolePropertyAccess(string roleGuid)
+        {
+            var pa = GetRoleDocumentAccess(roleGuid);
+            if (pa == EnumDocumentAccess.D_BY_PARENT)
+                return EnumPropertyAccess.P_EDIT;
+            switch (pa)
+            {
+                case EnumDocumentAccess.D_HIDE:
+                    return EnumPropertyAccess.P_HIDE;
+                case EnumDocumentAccess.D_VIEW:
+                    return EnumPropertyAccess.P_VIEW;
+                case EnumDocumentAccess.D_EDIT:
+                case EnumDocumentAccess.D_MARK_DEL:
+                case EnumDocumentAccess.D_POST:
+                case EnumDocumentAccess.D_UNPOST:
+                    return EnumPropertyAccess.P_EDIT;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+        public EnumPrintAccess GetRolePropertyPrint(string roleGuid)
+        {
+            var pa = GetRoleDocumentPrint(roleGuid);
+            if (pa == EnumPrintAccess.PR_BY_PARENT)
+                return EnumPrintAccess.PR_PRINT;
+            return pa;
+        }
         public EnumDocumentAccess GetRoleDocumentAccess(string roleGuid)
         {
             if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumDocumentAccess.D_BY_PARENT)
                 return r.EditAccess;
-            return this.ParentModel.GetRoleDocumentAccess(roleGuid);
+            return EnumDocumentAccess.D_MARK_DEL;
         }
         public EnumPrintAccess GetRoleDocumentPrint(string roleGuid)
         {
             if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
                 return r.PrintAccess;
-            return this.ParentModel.GetRoleDocumentPrint(roleGuid);
+            return EnumPrintAccess.PR_PRINT;
         }
         #endregion Roles
     }

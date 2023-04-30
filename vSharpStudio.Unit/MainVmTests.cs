@@ -283,7 +283,7 @@ namespace vSharpStudio.Unit
 
             vm = MainPageVM.Create(true, MainPageVM.GetvSharpStudioPluginsPath());
             Assert.IsFalse(vm.Config.IsChanged);
-            Assert.IsFalse(vm.Config.IsHasChanged); 
+            Assert.IsFalse(vm.Config.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstantGroups.IsHasChanged);
             Assert.IsFalse(vm.Config.Model.GroupConstantGroups.ListConstantGroups[0].IsChanged);
@@ -1828,22 +1828,713 @@ namespace vSharpStudio.Unit
             Assert.IsFalse(v.IsHasErrors);
             #endregion int requirements validation
         }
+
+        #region Roles
         [TestMethod]
         public void Main101_RolesTests()
         {
             var vm = MainPageVM.Create(false, MainPageVM.GetvSharpStudioPluginsPath());
             vm.BtnNewConfig.Execute(@".\kuku.vcfg");
             var m = vm.Config.Model;
+
+            // Catalog
             var gc = m.GroupCatalogs;
             var c = gc.AddCatalog("Simple");
-
             Assert.IsTrue(c.dicCatalogAccess.Count == 0);
+            var det = c.AddDetails("det1");
+            var pdet = det.AddPropertyString("pdet", 5);
             var role = m.GroupCommon.GroupRoles.AddRole("role1");
             Assert.IsTrue(c.dicCatalogAccess.Count == 1);
+            Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, c.GetRoleCatalogAccess(role.Guid));
+            Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, gc.GetRoleCatalogAccess(role.Guid));
             var p = c.GroupProperties.AddPropertyChar("char_notnullable");
+            var pf = c.Folder.GroupProperties.AddPropertyChar("pfolder");
             Assert.IsTrue(p.dicPropertyAccess.Count == 1);
+            Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, c.GetRoleCatalogAccess(role.Guid));
+            Assert.AreEqual(EnumPrintAccess.PR_PRINT, c.GetRoleCatalogPrint(role.Guid));
+            Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role.Guid));
 
-            Assert.IsTrue(p.GetRolePropertyAccess(role.Guid) == EnumPropertyAccess.P_EDIT);
+            // Constant
+            var gtg = m.GroupConstantGroups;
+            var ctg = gtg.AddGroupConstants("settings1");
+            var ct = ctg.AddConstantString("const1");
+            Assert.IsTrue(ct.dicConstantAccess.Count == 1);
+            Assert.IsTrue(ctg.dicConstantAccess.Count == 1);
+            Assert.IsTrue(gtg.dicConstantAccess.Count == 1);
+            Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role.Guid));
+            Assert.AreEqual(EnumPrintAccess.PR_PRINT, ct.GetRoleConstantPrint(role.Guid));
+
+            // Document
+            var gd = m.GroupDocuments;
+            var pds = gd.AddSharedPropertyString("shared", 5);
+            var d = gd.AddDocument("Doc1");
+            var gld = d.ParentGroupListDocuments;
+            Assert.IsTrue(d.dicDocumentAccess.Count == 1);
+            Assert.AreEqual(EnumDocumentAccess.D_MARK_DEL, d.GetRoleDocumentAccess(role.Guid));
+            Assert.AreEqual(EnumDocumentAccess.D_MARK_DEL, gd.GetRoleDocumentAccess(role.Guid));
+            var pd = d.GroupProperties.AddPropertyChar("char_notnullable");
+            Assert.IsTrue(pd.dicPropertyAccess.Count == 1);
+            Assert.AreEqual(EnumPropertyAccess.P_EDIT, pd.GetRolePropertyAccess(role.Guid));
+
+            // Constant
+            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            {
+                var enPrint = (EnumPrintAccess)tpr;
+                foreach (var tpa in Enum.GetValues(typeof(EnumConstantAccess)))
+                {
+                    var enConstAccess = (EnumConstantAccess)tpa;
+                    ct.SetRoleAccess(role, enConstAccess, enPrint);
+                    switch (enConstAccess)
+                    {
+                        case EnumConstantAccess.CN_BY_PARENT:
+                            // Group constants
+                            TestConstantsGroup(role, gtg, ctg, ct, enPrint);
+                            break;
+                        default:
+                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role.Guid));
+                            Assert.AreEqual(enConstAccess, ct.GetRoleConstantAccess(role.Guid));
+                            break;
+                    }
+                }
+            }
+
+            // Catalog property
+            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            {
+                var enPrint = (EnumPrintAccess)tpr;
+                foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
+                {
+                    var enPropAccess = (EnumPropertyAccess)tpa;
+                    p.SetRoleAccess(role, enPropAccess, enPrint);
+                    switch (enPropAccess)
+                    {
+                        case EnumPropertyAccess.P_BY_PARENT:
+                            // Catalog
+                            TestCatalog(role, c, p, enPrint);
+                            break;
+                        default:
+                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPropAccess, p.GetRolePropertyAccess(role.Guid));
+                            break;
+                    }
+                }
+            }
+
+            // Catalog detail property
+            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            {
+                var enPrint = (EnumPrintAccess)tpr;
+                foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
+                {
+                    var enPropAccess = (EnumPropertyAccess)tpa;
+                    pdet.SetRoleAccess(role, enPropAccess, enPrint);
+                    switch (enPropAccess)
+                    {
+                        case EnumPropertyAccess.P_BY_PARENT:
+                            // Catalog
+                            TestDetail(role, c, det, pdet, enPrint);
+                            break;
+                        default:
+                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                Assert.AreEqual(enPrint, pdet.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPropAccess, pdet.GetRolePropertyAccess(role.Guid));
+                            break;
+                    }
+                }
+            }
+
+            // Catalog folder property
+            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            {
+                var enPrint = (EnumPrintAccess)tpr;
+                foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
+                {
+                    var enPropAccess = (EnumPropertyAccess)tpa;
+                    pf.SetRoleAccess(role, enPropAccess, enPrint);
+                    switch (enPropAccess)
+                    {
+                        case EnumPropertyAccess.P_BY_PARENT:
+                            // Catalog
+                            TestGroupListProperties(role, c.Folder, pf, enPrint);
+                            break;
+                        default:
+                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                Assert.AreEqual(enPrint, pf.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPropAccess, pf.GetRolePropertyAccess(role.Guid));
+                            break;
+                    }
+                }
+            }
+
+            // Document property
+            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            {
+                var enPrint = (EnumPrintAccess)tpr;
+                foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
+                {
+                    var enPropAccess = (EnumPropertyAccess)tpa;
+                    pd.SetRoleAccess(role, enPropAccess, enPrint);
+                    switch (enPropAccess)
+                    {
+                        case EnumPropertyAccess.P_BY_PARENT:
+                            // Catalog
+                            TestDocument(role, gd, gld, d, pd, enPrint);
+                            break;
+                        default:
+                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                Assert.AreEqual(enPrint, pd.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPropAccess, pd.GetRolePropertyAccess(role.Guid));
+                            break;
+                    }
+                }
+            }
+
+            // Document shared property
+            foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
+            {
+                var enPrint = (EnumPrintAccess)tpr;
+                foreach (var tpa in Enum.GetValues(typeof(EnumPropertyAccess)))
+                {
+                    var enPropAccess = (EnumPropertyAccess)tpa;
+                    pds.SetRoleAccess(role, enPropAccess, enPrint);
+                    switch (enPropAccess)
+                    {
+                        case EnumPropertyAccess.P_BY_PARENT:
+                            // List properties
+                            TestGroupListProperties(role, gd, pds, enPrint);
+                            break;
+                        default:
+                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                Assert.AreEqual(enPrint, pds.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPropAccess, pds.GetRolePropertyAccess(role.Guid));
+                            break;
+                    }
+                }
+            }
         }
+        private static void TestConstantsGroup(Role role, GroupConstantGroups gctg, GroupListConstants ctg, Constant ct, EnumPrintAccess enPrint)
+        {
+            foreach (var tca in Enum.GetValues(typeof(EnumConstantAccess)))
+            {
+                var enCnstAccess = (EnumConstantAccess)tca;
+                ctg.SetRoleAccess(role, enCnstAccess, enPrint);
+                switch (enCnstAccess)
+                {
+                    case EnumConstantAccess.CN_BY_PARENT:
+                        // Group of constants groups
+                        TestGroupConstantsGroup(role, gctg, ctg, ct, enPrint);
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role.Guid));
+                        Assert.AreEqual(enCnstAccess, ctg.GetRoleConstantAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role.Guid));
+                        switch (enCnstAccess)
+                        {
+                            case EnumConstantAccess.CN_BY_PARENT:
+                                foreach (var tca_gc in Enum.GetValues(typeof(EnumConstantAccess)))
+                                {
+                                    var enGCnstAccess = (EnumConstantAccess)tca_gc;
+                                    ctg.SetRoleAccess(role, enGCnstAccess, enPrint);
+                                    switch (enGCnstAccess)
+                                    {
+                                        case EnumConstantAccess.CN_BY_PARENT:
+                                            //Assert.AreNotEqual(EnumCatalogDetailAccess.C_BY_PARENT, enGCnstAccess, "Default value is not set");
+                                            break;
+                                        default:
+                                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                                Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role.Guid));
+                                            Assert.AreEqual(enGCnstAccess, ctg.GetRoleConstantAccess(role.Guid));
+                                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                                Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role.Guid));
+                                            switch (enGCnstAccess)
+                                            {
+                                                case EnumConstantAccess.CN_BY_PARENT:
+                                                    Assert.AreNotEqual(EnumConstantAccess.CN_BY_PARENT, enGCnstAccess, "Default value is not set");
+                                                    break;
+                                                case EnumConstantAccess.CN_HIDE:
+                                                    Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role.Guid));
+                                                    break;
+                                                case EnumConstantAccess.CN_VIEW:
+                                                    Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role.Guid));
+                                                    break;
+                                                case EnumConstantAccess.CN_EDIT:
+                                                    Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role.Guid));
+                                                    break;
+                                                default:
+                                                    throw new NotImplementedException();
+                                            }
+                                            break;
+                                    }
+                                }
+                                break;
+                            case EnumConstantAccess.CN_HIDE:
+                                Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role.Guid));
+                                break;
+                            case EnumConstantAccess.CN_VIEW:
+                                Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role.Guid));
+                                break;
+                            case EnumConstantAccess.CN_EDIT:
+                                Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role.Guid));
+                                break;
+                            default:
+                                throw new NotImplementedException();
+                        }
+                        break;
+                }
+            }
+        }
+        private static void TestGroupConstantsGroup(Role role, GroupConstantGroups gctg, GroupListConstants ctg, Constant ct, EnumPrintAccess enPrint)
+        {
+            foreach (var tca in Enum.GetValues(typeof(EnumConstantAccess)))
+            {
+                var enCnstAccess = (EnumConstantAccess)tca;
+                gctg.SetRoleAccess(role, enCnstAccess, enPrint);
+                switch (enCnstAccess)
+                {
+                    case EnumConstantAccess.CN_BY_PARENT:
+                        // Group of constants groups
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, gctg.GetRoleConstantPrint(role.Guid));
+                        Assert.AreEqual(enCnstAccess, gctg.GetRoleConstantAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role.Guid));
+                        Assert.AreEqual(enCnstAccess, ctg.GetRoleConstantAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role.Guid));
+                        switch (enCnstAccess)
+                        {
+                            //case EnumConstantAccess.CN_BY_PARENT:
+                            //    foreach (var tca_gc in Enum.GetValues(typeof(EnumConstantAccess)))
+                            //    {
+                            //        var enGCnstAccess = (EnumConstantAccess)tca_gc;
+                            //        ctg.SetRoleAccess(role, enGCnstAccess, enPrint);
+                            //        switch (enGCnstAccess)
+                            //        {
+                            //            case EnumConstantAccess.CN_BY_PARENT:
+                            //                //Assert.AreNotEqual(EnumCatalogDetailAccess.C_BY_PARENT, enGCnstAccess, "Default value is not set");
+                            //                break;
+                            //            default:
+                            //                if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            //                    Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role.Guid));
+                            //                Assert.AreEqual(enGCnstAccess, ctg.GetRoleConstantAccess(role.Guid));
+                            //                if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            //                    Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role.Guid));
+                            //                switch (enGCnstAccess)
+                            //                {
+                            //                    case EnumConstantAccess.CN_BY_PARENT:
+                            //                        Assert.AreNotEqual(EnumConstantAccess.CN_BY_PARENT, enGCnstAccess, "Default value is not set");
+                            //                        break;
+                            //                    case EnumConstantAccess.CN_HIDE:
+                            //                        Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role.Guid));
+                            //                        break;
+                            //                    case EnumConstantAccess.CN_VIEW:
+                            //                        Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role.Guid));
+                            //                        break;
+                            //                    case EnumConstantAccess.CN_EDIT:
+                            //                        Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role.Guid));
+                            //                        break;
+                            //                    default:
+                            //                        throw new NotImplementedException();
+                            //                }
+                            //                break;
+                            //        }
+                            //    }
+                            //    break;
+                            case EnumConstantAccess.CN_HIDE:
+                                Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role.Guid));
+                                break;
+                            case EnumConstantAccess.CN_VIEW:
+                                Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role.Guid));
+                                break;
+                            case EnumConstantAccess.CN_EDIT:
+                                Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role.Guid));
+                                break;
+                            default:
+                                throw new NotImplementedException();
+                        }
+                        break;
+                }
+            }
+        }
+        private static void TestProperty(Role role, Property p, EnumPropertyAccess enPropAccess, EnumPrintAccess enPrint)
+        {
+            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+            switch (enPropAccess)
+            {
+                case EnumPropertyAccess.P_HIDE:
+                    Assert.AreEqual(EnumPropertyAccess.P_HIDE, p.GetRolePropertyAccess(role.Guid));
+                    break;
+                case EnumPropertyAccess.P_VIEW:
+                    Assert.AreEqual(EnumPropertyAccess.P_VIEW, p.GetRolePropertyAccess(role.Guid));
+                    break;
+                case EnumPropertyAccess.P_EDIT:
+                    Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role.Guid));
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+        private static void TestGroupListProperties(Role role, GroupDocuments gd, Property p, EnumPrintAccess enPrint)
+        {
+            var glp = p.ParentGroupListProperties;
+            foreach (var tca in Enum.GetValues(typeof(EnumPropertyAccess)))
+            {
+                var enPropAccess = (EnumPropertyAccess)tca;
+                glp.SetRoleAccess(role, enPropAccess, enPrint);
+                switch (enPropAccess)
+                {
+                    case EnumPropertyAccess.P_BY_PARENT:
+                        TestGroupDocumentsShared(role, gd, glp, p, enPrint);
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, glp.GetRolePropertyPrint(role.Guid));
+                        Assert.AreEqual(enPropAccess, glp.GetRolePropertyAccess(role.Guid));
+                        TestProperty(role, p, enPropAccess, enPrint);
+                        break;
+                }
+            }
+        }
+        private static void TestGroupListProperties(Role role, CatalogFolder cf, Property p, EnumPrintAccess enPrint)
+        {
+            var glp = p.ParentGroupListProperties;
+            foreach (var tca in Enum.GetValues(typeof(EnumPropertyAccess)))
+            {
+                var enPropAccess = (EnumPropertyAccess)tca;
+                glp.SetRoleAccess(role, enPropAccess, enPrint);
+                switch (enPropAccess)
+                {
+                    case EnumPropertyAccess.P_BY_PARENT:
+                        TestCatalogFolder(role, cf, p, enPrint);
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, glp.GetRolePropertyPrint(role.Guid));
+                        Assert.AreEqual(enPropAccess, glp.GetRolePropertyAccess(role.Guid));
+                        TestProperty(role, p, enPropAccess, enPrint);
+                        break;
+                }
+            }
+        }
+        private static void TestCatalogFolder(Role role, CatalogFolder cf, Property p, EnumPrintAccess enPrint)
+        {
+            var c = cf.ParentCatalog;
+            var gc = c.ParentGroupListCatalogs;
+            foreach (var tca in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+            {
+                var enCatAccess = (EnumCatalogDetailAccess)tca;
+                c.SetRoleAccess(role, enCatAccess, enPrint);
+                switch (enCatAccess)
+                {
+                    case EnumCatalogDetailAccess.C_BY_PARENT:
+                        TestGroupCatalog(role, gc, c, p, enPrint);
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role.Guid));
+                        Assert.AreEqual(enCatAccess, c.GetRoleCatalogAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                        switch (enCatAccess)
+                        {
+                            case EnumCatalogDetailAccess.C_BY_PARENT:
+                                foreach (var tca_gc in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+                                {
+                                    var enGCatAccess = (EnumCatalogDetailAccess)tca_gc;
+                                    gc.SetRoleAccess(role, enGCatAccess, enPrint);
+                                    switch (enGCatAccess)
+                                    {
+                                        case EnumCatalogDetailAccess.C_BY_PARENT:
+                                            Assert.AreNotEqual(EnumCatalogDetailAccess.C_BY_PARENT, enGCatAccess, "Default value is not set");
+                                            break;
+                                        default:
+                                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role.Guid));
+                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role.Guid));
+                                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                                            TestProperty(role, p, enGCatAccess);
+                                            break;
+                                    }
+                                }
+                                break;
+                            default:
+                                TestProperty(role, p, enCatAccess);
+                                break;
+                        }
+                        break;
+                }
+            }
+        }
+        private static void TestCatalog(Role role, Catalog c, Property p, EnumPrintAccess enPrint)
+        {
+            var gc = c.ParentGroupListCatalogs;
+            foreach (var tca in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+            {
+                var enCatAccess = (EnumCatalogDetailAccess)tca;
+                c.SetRoleAccess(role, enCatAccess, enPrint);
+                switch (enCatAccess)
+                {
+                    case EnumCatalogDetailAccess.C_BY_PARENT:
+                        TestGroupCatalog(role, gc, c, p, enPrint);
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role.Guid));
+                        Assert.AreEqual(enCatAccess, c.GetRoleCatalogAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                        switch (enCatAccess)
+                        {
+                            case EnumCatalogDetailAccess.C_BY_PARENT:
+                                foreach (var tca_gc in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+                                {
+                                    var enGCatAccess = (EnumCatalogDetailAccess)tca_gc;
+                                    gc.SetRoleAccess(role, enGCatAccess, enPrint);
+                                    switch (enGCatAccess)
+                                    {
+                                        case EnumCatalogDetailAccess.C_BY_PARENT:
+                                            Assert.AreNotEqual(EnumCatalogDetailAccess.C_BY_PARENT, enGCatAccess, "Default value is not set");
+                                            break;
+                                        default:
+                                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role.Guid));
+                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role.Guid));
+                                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                                            TestProperty(role, p, enGCatAccess);
+                                            break;
+                                    }
+                                }
+                                break;
+                            default:
+                                TestProperty(role, p, enCatAccess);
+                                break;
+                        }
+                        break;
+                }
+            }
+        }
+        private static void TestDetail(Role role, Catalog c, Detail dt, Property p, EnumPrintAccess enPrint)
+        {
+            var gc = c.ParentGroupListCatalogs;
+            foreach (var tca in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+            {
+                var enCatAccess = (EnumCatalogDetailAccess)tca;
+                dt.SetRoleAccess(role, enCatAccess, enPrint);
+                switch (enCatAccess)
+                {
+                    case EnumCatalogDetailAccess.C_BY_PARENT:
+                        TestCatalog(role, c, p, enPrint);
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, dt.GetRoleDetailPrint(role.Guid));
+                        Assert.AreEqual(enCatAccess, dt.GetRoleDetailAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                        switch (enCatAccess)
+                        {
+                            case EnumCatalogDetailAccess.C_BY_PARENT:
+                                foreach (var tca_gc in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+                                {
+                                    var enGCatAccess = (EnumCatalogDetailAccess)tca_gc;
+                                    gc.SetRoleAccess(role, enGCatAccess, enPrint);
+                                    switch (enGCatAccess)
+                                    {
+                                        case EnumCatalogDetailAccess.C_BY_PARENT:
+                                            Assert.AreNotEqual(EnumCatalogDetailAccess.C_BY_PARENT, enGCatAccess, "Default value is not set");
+                                            break;
+                                        default:
+                                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role.Guid));
+                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role.Guid));
+                                            if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                                            TestProperty(role, p, enGCatAccess);
+                                            break;
+                                    }
+                                }
+                                break;
+                            default:
+                                TestProperty(role, p, enCatAccess);
+                                break;
+                        }
+                        break;
+                }
+            }
+        }
+
+        private static void TestProperty(Role role, Property p, EnumCatalogDetailAccess enGCatAccess)
+        {
+            switch (enGCatAccess)
+            {
+                case EnumCatalogDetailAccess.C_BY_PARENT:
+                    Assert.AreNotEqual(EnumCatalogDetailAccess.C_BY_PARENT, enGCatAccess, "Default value is not set");
+                    break;
+                case EnumCatalogDetailAccess.C_HIDE:
+                    Assert.AreEqual(EnumPropertyAccess.P_HIDE, p.GetRolePropertyAccess(role.Guid));
+                    break;
+                case EnumCatalogDetailAccess.C_VIEW:
+                    Assert.AreEqual(EnumPropertyAccess.P_VIEW, p.GetRolePropertyAccess(role.Guid));
+                    break;
+                case EnumCatalogDetailAccess.C_EDIT:
+                case EnumCatalogDetailAccess.C_MARK_DEL:
+                    Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role.Guid));
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        private static void TestGroupCatalog(Role role, GroupListCatalogs gc, Catalog c, Property p, EnumPrintAccess enPrint)
+        {
+            foreach (var tca in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
+            {
+                var enGrCatAccess = (EnumCatalogDetailAccess)tca;
+                gc.SetRoleAccess(role, enGrCatAccess, enPrint);
+                switch (enGrCatAccess)
+                {
+                    case EnumCatalogDetailAccess.C_BY_PARENT:
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role.Guid));
+                        Assert.AreEqual(enGrCatAccess, gc.GetRoleCatalogAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role.Guid));
+                        Assert.AreEqual(enGrCatAccess, c.GetRoleCatalogAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                        TestProperty(role, p, enGrCatAccess);
+                        break;
+                }
+            }
+        }
+        private static void TestDocument(Role role, GroupDocuments gd, GroupListDocuments gld, Document d, Property p, EnumPrintAccess enPrint)
+        {
+            foreach (var tca in Enum.GetValues(typeof(EnumDocumentAccess)))
+            {
+                var enDocAccess = (EnumDocumentAccess)tca;
+                d.SetRoleAccess(role, enDocAccess, enPrint);
+                switch (enDocAccess)
+                {
+                    case EnumDocumentAccess.D_BY_PARENT:
+                        TestGroupListDocuments(role, gd, gld, d, p, enPrint);
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, d.GetRoleDocumentPrint(role.Guid));
+                        Assert.AreEqual(enDocAccess, d.GetRoleDocumentAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                        TestProperty(role, p, enDocAccess);
+                        break;
+                }
+            }
+        }
+        private static void TestGroupListDocuments(Role role, GroupDocuments gd, GroupListDocuments gld, Document d, Property p, EnumPrintAccess enPrint)
+        {
+            foreach (var tca in Enum.GetValues(typeof(EnumDocumentAccess)))
+            {
+                var enGrDocAccess = (EnumDocumentAccess)tca;
+                gld.SetRoleAccess(role, enGrDocAccess, enPrint);
+                switch (enGrDocAccess)
+                {
+                    case EnumDocumentAccess.D_BY_PARENT:
+                        TestGroupDocuments(role, gd, gld, d, p, enPrint);
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, gld.GetRoleDocumentPrint(role.Guid));
+                        Assert.AreEqual(enGrDocAccess, gld.GetRoleDocumentAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, d.GetRoleDocumentPrint(role.Guid));
+                        Assert.AreEqual(enGrDocAccess, d.GetRoleDocumentAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                        TestProperty(role, p, enGrDocAccess);
+                        break;
+                }
+            }
+        }
+
+        private static void TestProperty(Role role, Property p, EnumDocumentAccess enGrDocAccess)
+        {
+            switch (enGrDocAccess)
+            {
+                case EnumDocumentAccess.D_HIDE:
+                    Assert.AreEqual(EnumPropertyAccess.P_HIDE, p.GetRolePropertyAccess(role.Guid));
+                    break;
+                case EnumDocumentAccess.D_VIEW:
+                    Assert.AreEqual(EnumPropertyAccess.P_VIEW, p.GetRolePropertyAccess(role.Guid));
+                    break;
+                case EnumDocumentAccess.D_EDIT:
+                case EnumDocumentAccess.D_POST:
+                case EnumDocumentAccess.D_UNPOST:
+                case EnumDocumentAccess.D_MARK_DEL:
+                    Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role.Guid));
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        private static void TestGroupDocuments(Role role, GroupDocuments gd, GroupListDocuments gld, Document d, Property p, EnumPrintAccess enPrint)
+        {
+            foreach (var tca in Enum.GetValues(typeof(EnumDocumentAccess)))
+            {
+                var enGrDocAccess = (EnumDocumentAccess)tca;
+                gd.SetRoleAccess(role, enGrDocAccess, enPrint);
+                switch (enGrDocAccess)
+                {
+                    case EnumDocumentAccess.D_BY_PARENT:
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, gd.GetRoleDocumentPrint(role.Guid));
+                        Assert.AreEqual(enGrDocAccess, gd.GetRoleDocumentAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, gld.GetRoleDocumentPrint(role.Guid));
+                        Assert.AreEqual(enGrDocAccess, gld.GetRoleDocumentAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, d.GetRoleDocumentPrint(role.Guid));
+                        Assert.AreEqual(enGrDocAccess, d.GetRoleDocumentAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                        TestProperty(role, p, enGrDocAccess);
+                        break;
+                }
+            }
+        }
+        private static void TestGroupDocumentsShared(Role role, GroupDocuments gd, GroupListProperties glp, Property p, EnumPrintAccess enPrint)
+        {
+            foreach (var tca in Enum.GetValues(typeof(EnumPropertyAccess)))
+            {
+                var enPropAccess = (EnumDocumentAccess)tca;
+                gd.SetRoleAccess(role, enPropAccess, enPrint);
+                switch (enPropAccess)
+                {
+                    case EnumDocumentAccess.D_BY_PARENT:
+                        break;
+                    default:
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, gd.GetRoleDocumentPrint(role.Guid));
+                        Assert.AreEqual(enPropAccess, gd.GetRoleDocumentAccess(role.Guid));
+                        if (enPrint != EnumPrintAccess.PR_BY_PARENT)
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                        TestProperty(role, p, enPropAccess);
+                        break;
+                }
+            }
+        }
+        #endregion Roles
     }
 }

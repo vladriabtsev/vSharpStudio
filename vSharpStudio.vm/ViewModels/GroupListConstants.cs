@@ -26,7 +26,6 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = true;
             this.ShortIdTypeForCacheKey = "t";
             Init();
-            this.InitRoles();
         }
         protected override void OnInitFromDto()
         {
@@ -41,6 +40,7 @@ namespace vSharpStudio.vm.ViewModels
             this.ListConstants.OnAddedAction = (t) =>
             {
                 t.OnAdded();
+                t.InitRoles();
             };
             this.ListConstants.OnRemovedAction = (t) =>
             {
@@ -252,12 +252,29 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(dicConstantAccess.ContainsKey(role.Guid));
             return dicConstantAccess[role.Guid];
         }
+        public void SetRoleAccess(IRole role, EnumConstantAccess? edit, EnumPrintAccess? print)
+        {
+            Debug.Assert(role != null);
+            Debug.Assert(dicConstantAccess.ContainsKey(role.Guid));
+            if (edit.HasValue)
+                dicConstantAccess[role.Guid].EditAccess = edit.Value;
+            if (print.HasValue)
+                dicConstantAccess[role.Guid].PrintAccess = print.Value;
+        }
         internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new Dictionary<string, RoleConstantAccess>();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleConstantAccessSettings)
             {
                 this.dicConstantAccess[tt.Guid] = tt;
+            }
+            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
+            {
+                if (!this.dicConstantAccess.ContainsKey(t.Guid))
+                {
+                    var rca = new RoleConstantAccess() { Guid = t.Guid };
+                    this.dicConstantAccess[t.Guid] = rca;
+                }
             }
         }
         public void InitRoleAdd(IRole role)
