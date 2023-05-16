@@ -10,7 +10,7 @@ namespace vSharpStudio.common
     {
         IGroupDocuments ParentGroupDocumentsI { get; }
         int IndexOf(IDocument doc);
-        EnumDocumentAccess GetRoleDocumentAccess(string roleGuid);
-        EnumPrintAccess GetRoleDocumentPrint(string roleGuid);
+        EnumDocumentAccess GetRoleDocumentAccess(IRole role);
+        EnumPrintAccess GetRoleDocumentPrint(IRole role);
     }
 }

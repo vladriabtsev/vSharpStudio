@@ -13,7 +13,7 @@ namespace vSharpStudio.common
         bool GetUseCodeProperty();
         bool GetUseNameProperty();
         bool GetUseDescriptionProperty();
-        EnumCatalogDetailAccess GetRoleDetailAccess(string roleGuid);
-        EnumPrintAccess GetRoleDetailPrint(string roleGuid);
+        EnumCatalogDetailAccess GetRoleDetailAccess(IRole role);
+        EnumPrintAccess GetRoleDetailPrint(IRole role);
     }
 }

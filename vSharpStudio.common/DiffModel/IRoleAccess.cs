@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace vSharpStudio.common.DiffModel
 {
+    public interface IRoleGlobalSetting
+    {
+    }
     public interface IRoleAccess
     {
         void InitRoles();

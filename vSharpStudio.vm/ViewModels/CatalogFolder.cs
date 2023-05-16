@@ -350,8 +350,12 @@ namespace vSharpStudio.vm.ViewModels
         #region Roles
         public object GetRoleAccess(IRole role)
         {
-            Debug.Assert(role != null);
-            Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
+            if (!this.dicCatalogAccess.ContainsKey(role.Guid))
+            {
+                var rca = new RoleCatalogAccess() { Guid = role.Guid };
+                this.ListRoleCatalogAccessSettings.Add(rca);
+                this.dicCatalogAccess[role.Guid] = rca;
+            }
             return dicCatalogAccess[role.Guid];
         }
         public void SetRoleAccess(IRole role, EnumCatalogDetailAccess? edit, EnumPrintAccess? print)
@@ -397,12 +401,12 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.dicCatalogAccess.Remove(role.Guid);
         }
-        public EnumPropertyAccess GetRolePropertyAccess(string roleGuid)
+        public EnumPropertyAccess GetRolePropertyAccess(IRole role)
         {
             EnumCatalogDetailAccess r = EnumCatalogDetailAccess.C_BY_PARENT;
-            if (!this.dicCatalogAccess.TryGetValue(roleGuid, out var rr) || rr.EditAccess == EnumCatalogDetailAccess.C_BY_PARENT)
+            if (!this.dicCatalogAccess.TryGetValue(role.Guid, out var rr) || rr.EditAccess == EnumCatalogDetailAccess.C_BY_PARENT)
             {
-                r = this.ParentCatalog.GetRoleCatalogAccess(roleGuid);
+                r = this.ParentCatalog.GetRoleCatalogAccess(role);
             }
             Debug.Assert(r != EnumCatalogDetailAccess.C_BY_PARENT);
             switch (r)
@@ -418,34 +422,34 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotImplementedException();
             }
         }
-        public EnumPrintAccess GetRolePropertyPrint(string roleGuid)
+        public EnumPrintAccess GetRolePropertyPrint(IRole role)
         {
             EnumPrintAccess r = EnumPrintAccess.PR_BY_PARENT;
-            if (!this.dicCatalogAccess.TryGetValue(roleGuid, out var rr) || rr.PrintAccess == EnumPrintAccess.PR_BY_PARENT)
+            if (!this.dicCatalogAccess.TryGetValue(role.Guid, out var rr) || rr.PrintAccess == EnumPrintAccess.PR_BY_PARENT)
             {
-                r = this.ParentCatalog.GetRoleCatalogPrint(roleGuid);
+                r = this.ParentCatalog.GetRoleCatalogPrint(role);
             }
             Debug.Assert(r != EnumPrintAccess.PR_BY_PARENT);
             return r;
         }
-        public EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid)
+        public EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role)
         {
-            if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
+            if (this.dicCatalogAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
                 return r.EditAccess;
-            return this.ParentCatalog.GetRoleCatalogAccess(roleGuid);
+            return this.ParentCatalog.GetRoleCatalogAccess(role);
         }
-        public EnumPrintAccess GetRoleCatalogPrint(string roleGuid)
+        public EnumPrintAccess GetRoleCatalogPrint(IRole role)
         {
-            if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
+            if (this.dicCatalogAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
                 return r.PrintAccess;
-            return this.ParentCatalog.GetRoleCatalogPrint(roleGuid);
+            return this.ParentCatalog.GetRoleCatalogPrint(role);
         }
         public IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access)
         {
             var roles = new List<string>();
             foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
             {
-                if (GetRoleCatalogAccess(role.Guid) == access)
+                if (GetRoleCatalogAccess(role) == access)
                     roles.Add(role.Name);
             }
             return roles;
@@ -455,7 +459,7 @@ namespace vSharpStudio.vm.ViewModels
             var roles = new List<string>();
             foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
             {
-                if (GetRoleCatalogPrint(role.Guid) == access)
+                if (GetRoleCatalogPrint(role) == access)
                     roles.Add(role.Name);
             }
             return roles;

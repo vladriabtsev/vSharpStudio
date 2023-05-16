@@ -20,6 +20,7 @@ using Microsoft.Win32;
 using Serilog.Parsing;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
+using vSharpStudio.ViewModels;
 using vSharpStudio.vm.Migration;
 using vSharpStudio.vm.ViewModels;
 using vSharpStudio.wpf.Controls;
@@ -50,17 +51,29 @@ namespace vSharpStudio.Views
                 gvc.Header = t.Name;
                 gvc.Width = 100;
 
-                // databinding & converter
-                var frameworkElementFactory = new FrameworkElementFactory(typeof(TextBlock));
+                var editorRoleCell = new FrameworkElementFactory(typeof(EditorRoleCell));
+                //txtBlock.SetBinding(TextBlock.TextProperty, new Binding("Street1"));
                 var dataTemplate = new DataTemplate();
-                dataTemplate.VisualTree = frameworkElementFactory;
+                dataTemplate.VisualTree = editorRoleCell;
                 gvc.CellTemplate = dataTemplate;
+
+
+                //var txtBlock = new FrameworkElementFactory(typeof(TextBlock));
+                //txtBlock.SetBinding(TextBlock.TextProperty, new Binding("Street1"));
+                //template.VisualTree.AppendChild(txtBlock);
+
+                // databinding & converter
+                //var frameworkElementFactory = new FrameworkElementFactory(typeof(TextBlock));
+                //var dataTemplate = new DataTemplate();
+                //dataTemplate.VisualTree = frameworkElementFactory;
+                //gvc.CellTemplate = dataTemplate;
                 //var binding = new Binding(assignment.Id.ToString() + key);
                 //binding.Converter = converter;
 
-                gridView.Columns.Add(gvc);
+                //gridView.Columns.Add(gvc);
             }
-            _tree.Model = new ModelNodeRoles(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
+            _tree.Model = new EditorRolesVm(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
+            //_tree.Model = new ModelNodeRoles(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
         }
     }
     //public class ModelNodeForeRoles
@@ -72,50 +85,4 @@ namespace vSharpStudio.Views
     //    public ITreeConfigNode Node { get; private set; }
     //    public object? Kuku { get; private set; }
     //}
-    public class ModelNodeRoles : ITreeModel
-    {
-        Model? model;
-        public ITreeConfigNode Node { get; private set; }
-        private static ConfigNodesCollection<Role> roles;
-        public List<object?> ListRoleAccess { get; private set; }
-        public ModelNodeRoles(ConfigNodesCollection<Role> roles, Model model)
-        {
-            this.model = model;
-            this.Node = this.model;
-            ModelNodeRoles.roles = roles;
-        }
-        public ModelNodeRoles(ITreeConfigNode node)
-        {
-            this.Node = node;
-            this.ListRoleAccess = new List<object?>();
-            if (node is IRoleAccess ra)
-            {
-                foreach (var role in ModelNodeRoles.roles)
-                    this.ListRoleAccess.Add(ra.GetRoleAccess(role));
-            }
-            else
-            {
-                for (int i = 0; i < ModelNodeRoles.roles.Count; i++)
-                    this.ListRoleAccess.Add(null);
-            }
-        }
-        public IEnumerable GetChildren(object parent)
-        {
-            ITreeConfigNode node = parent == null ? this.Node : ((ModelNodeRoles)parent).Node;
-            var res = new List<object>();
-            foreach (var t in node.GetListChildren())
-            {
-                var tt = (ITreeConfigNode)t;
-                if (parent == null && (tt.Name == "Common" || tt.Name == "Enumerations"))
-                    continue;
-                res.Add(new ModelNodeRoles(tt));
-            }
-            return res;
-        }
-        public bool HasChildren(object parent)
-        {
-            var p = (ModelNodeRoles)parent;
-            return p.Node.GetListChildren().Count > 0;
-        }
-    }
 }

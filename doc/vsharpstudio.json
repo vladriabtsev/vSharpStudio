@@ -5910,16 +5910,6 @@
               "defaultValue": ""
             },
             {
-              "name": "list_role_constant_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_constant_access",
-              "longType": "proto_role_constant_access",
-              "fullType": "proto_config.proto_role_constant_access",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "list_node_generators_settings",
               "description": "@attr [Browsable(false)]",
               "label": "repeated",
@@ -6067,16 +6057,6 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_document_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_document_access",
-              "longType": "proto_role_document_access",
-              "fullType": "proto_config.proto_role_document_access",
               "ismap": false,
               "defaultValue": ""
             },
@@ -6400,16 +6380,6 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_catalog_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_catalog_access",
-              "longType": "proto_role_catalog_access",
-              "fullType": "proto_config.proto_role_catalog_access",
               "ismap": false,
               "defaultValue": ""
             },
@@ -8237,36 +8207,6 @@
               "fullType": "proto_config.proto_plugin_generator_node_settings",
               "ismap": false,
               "defaultValue": ""
-            },
-            {
-              "name": "list_role_catalog_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_catalog_access",
-              "longType": "proto_role_catalog_access",
-              "fullType": "proto_config.proto_role_catalog_access",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_document_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_document_access",
-              "longType": "proto_role_document_access",
-              "fullType": "proto_config.proto_role_document_access",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_role_constant_access_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_role_constant_access",
-              "longType": "proto_role_constant_access",
-              "fullType": "proto_config.proto_role_constant_access",
-              "ismap": false,
-              "defaultValue": ""
             }
           ]
         },
@@ -9297,6 +9237,66 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "default_constant_print_access_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Print Constants\")]\n@attr [Description(\"Default constant-print access for role\")]",
+              "label": "",
+              "type": "proto_enum_print_access",
+              "longType": "proto_enum_print_access",
+              "fullType": "proto_config.proto_enum_print_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "default_constant_edit_access_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Edit Constants\")]\n@attr [Description(\"Default constant-edit access for role\")]",
+              "label": "",
+              "type": "proto_enum_constant_access",
+              "longType": "proto_enum_constant_access",
+              "fullType": "proto_config.proto_enum_constant_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "default_catalog_print_access_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Print Catalog\")]\n@attr [Description(\"Default catalog-print access for role\")]",
+              "label": "",
+              "type": "proto_enum_print_access",
+              "longType": "proto_enum_print_access",
+              "fullType": "proto_config.proto_enum_print_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "default_catalog_edit_access_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(14)]\n@attr [DisplayName(\"Edit Catalog\")]\n@attr [Description(\"Default catalog-edit access for role\")]",
+              "label": "",
+              "type": "proto_enum_catalog_detail_access",
+              "longType": "proto_enum_catalog_detail_access",
+              "fullType": "proto_config.proto_enum_catalog_detail_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "default_document_print_access_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Print Document\")]\n@attr [Description(\"Default document-print access for role\")]",
+              "label": "",
+              "type": "proto_enum_print_access",
+              "longType": "proto_enum_print_access",
+              "fullType": "proto_config.proto_enum_print_access",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "default_document_edit_access_settings",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(16)]\n@attr [DisplayName(\"Edit Document\")]\n@attr [Description(\"Default document-edit access for role\")]",
+              "label": "",
+              "type": "proto_enum_document_access",
+              "longType": "proto_enum_document_access",
+              "fullType": "proto_config.proto_enum_document_access",
               "ismap": false,
               "defaultValue": ""
             },

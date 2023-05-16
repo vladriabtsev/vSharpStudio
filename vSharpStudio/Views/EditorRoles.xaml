@@ -23,7 +23,7 @@
             <ctrls:TreeList.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Width="200" Header="Name">
+                        <GridViewColumn Width="150" Header="Name">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -35,12 +35,11 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Width="200" Header="Role1">
+                        <GridViewColumn Width="150" Header="Role1">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <ComboBox ItemsSource="{Binding ListRoleAccess[0].EditAccess}" Visibility="{Binding ListRoleAccess[0], Converter={StaticResource ConverterObjectToVisible}, Mode=OneWay}"/>
-                                        <ComboBox ItemsSource="{Binding ListRoleAccess[0].PrintAccess}" Visibility="{Binding ListRoleAccess[0], Converter={StaticResource ConverterObjectToVisible}, Mode=OneWay}"/>
+                                        <local:EditorRoleCell DataContext="{Binding ListRoleAccess[0]}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

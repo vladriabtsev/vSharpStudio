@@ -4312,13 +4312,6 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>list_role_constant_access_settings</td>
-                  <td><a href="#proto_config.proto_role_constant_access">proto_role_constant_access</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>list_node_generators_settings</td>
                   <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
                   <td>repeated</td>
@@ -4451,13 +4444,6 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [Category(&#34;Auto Layout&#34;)]
 @attr [DisplayName(&#34;Filterable&#34;)]
 @attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_role_document_access_settings</td>
-                  <td><a href="#proto_config.proto_role_document_access">proto_role_document_access</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -4752,13 +4738,6 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [Category(&#34;Auto Layout&#34;)]
 @attr [DisplayName(&#34;Filterable&#34;)]
 @attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_role_catalog_access_settings</td>
-                  <td><a href="#proto_config.proto_role_catalog_access">proto_role_catalog_access</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -6381,27 +6360,6 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
-                <tr>
-                  <td>list_role_catalog_access_settings</td>
-                  <td><a href="#proto_config.proto_role_catalog_access">proto_role_catalog_access</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_role_document_access_settings</td>
-                  <td><a href="#proto_config.proto_role_document_access">proto_role_document_access</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_role_constant_access_settings</td>
-                  <td><a href="#proto_config.proto_role_constant_access">proto_role_constant_access</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
             </tbody>
           </table>
 
@@ -7380,6 +7338,66 @@ repeated proto_document list_documents = 7;
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>default_constant_print_access_settings</td>
+                  <td><a href="#proto_config.proto_enum_print_access">proto_enum_print_access</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(11)]
+@attr [DisplayName(&#34;Print Constants&#34;)]
+@attr [Description(&#34;Default constant-print access for role&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>default_constant_edit_access_settings</td>
+                  <td><a href="#proto_config.proto_enum_constant_access">proto_enum_constant_access</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;Edit Constants&#34;)]
+@attr [Description(&#34;Default constant-edit access for role&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>default_catalog_print_access_settings</td>
+                  <td><a href="#proto_config.proto_enum_print_access">proto_enum_print_access</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(13)]
+@attr [DisplayName(&#34;Print Catalog&#34;)]
+@attr [Description(&#34;Default catalog-print access for role&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>default_catalog_edit_access_settings</td>
+                  <td><a href="#proto_config.proto_enum_catalog_detail_access">proto_enum_catalog_detail_access</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(14)]
+@attr [DisplayName(&#34;Edit Catalog&#34;)]
+@attr [Description(&#34;Default catalog-edit access for role&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>default_document_print_access_settings</td>
+                  <td><a href="#proto_config.proto_enum_print_access">proto_enum_print_access</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Print Document&#34;)]
+@attr [Description(&#34;Default document-print access for role&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>default_document_edit_access_settings</td>
+                  <td><a href="#proto_config.proto_enum_document_access">proto_enum_document_access</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(16)]
+@attr [DisplayName(&#34;Edit Document&#34;)]
+@attr [Description(&#34;Default document-edit access for role&#34;)] </p></td>
                 </tr>
               
                 <tr>

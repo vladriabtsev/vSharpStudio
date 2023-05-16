@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("ConstantGroups:{Name,nq} Count:{ListConstantGroups.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup, IRoleAccess
+    public partial class GroupConstantGroups : ITreeModel, ICanGoRight, ICanGoLeft, ICanAddSubNode, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -121,70 +121,14 @@ namespace vSharpStudio.vm.ViewModels
             return lst.ToArray();
         }
 
-
         #region Roles
-        public object GetRoleAccess(IRole role)
+        public EnumConstantAccess GetRoleConstantAccess(IRole role)
         {
-            Debug.Assert(role != null);
-            Debug.Assert(dicConstantAccess.ContainsKey(role.Guid));
-            return dicConstantAccess[role.Guid];
+            return role.DefaultConstantEditAccessSettings;
         }
-        public void SetRoleAccess(IRole role, EnumConstantAccess? edit, EnumPrintAccess? print)
+        public EnumPrintAccess GetRoleConstantPrint(IRole role)
         {
-            Debug.Assert(role != null);
-            Debug.Assert(dicConstantAccess.ContainsKey(role.Guid));
-            if (edit.HasValue)
-                dicConstantAccess[role.Guid].EditAccess = edit.Value;
-            if (print.HasValue)
-                dicConstantAccess[role.Guid].PrintAccess = print.Value;
-        }
-        internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new Dictionary<string, RoleConstantAccess>();
-        public void InitRoles()
-        {
-            foreach (var tt in this.ListRoleConstantAccessSettings)
-            {
-                this.dicConstantAccess[tt.Guid] = tt;
-            }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (!this.dicConstantAccess.ContainsKey(t.Guid))
-                {
-                    var rca = new RoleConstantAccess() { Guid = t.Guid };
-                    this.dicConstantAccess[t.Guid] = rca;
-                }
-            }
-        }
-        public void InitRoleAdd(IRole role)
-        {
-            var rca = new RoleConstantAccess() { Guid = role.Guid };
-            this.ListRoleConstantAccessSettings.Add(rca);
-            this.dicConstantAccess[rca.Guid] = rca;
-        }
-        public void InitRoleRemove(IRole role)
-        {
-            for (int i = 0; i < this.ListRoleConstantAccessSettings.Count; i++)
-            {
-                if (this.ListRoleConstantAccessSettings[i].Guid == role.Guid)
-                {
-                    this.ListRoleConstantAccessSettings.RemoveAt(i);
-                    break;
-                }
-            }
-            this.dicConstantAccess.Remove(role.Guid);
-        }
-        public EnumConstantAccess GetRoleConstantAccess(string roleGuid)
-        {
-            if (this.dicConstantAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumConstantAccess.CN_BY_PARENT)
-                return r.EditAccess;
-            return EnumConstantAccess.CN_EDIT;
-            //return this.ParentModel.GetRoleConstantAccess(roleGuid);
-        }
-        public EnumPrintAccess GetRoleConstantPrint(string roleGuid)
-        {
-            if (this.dicConstantAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                return r.PrintAccess;
-            return EnumPrintAccess.PR_PRINT;
-            //return this.ParentModel.GetRoleConstantPrint(roleGuid);
+            return role.DefaultConstantPrintAccessSettings;
         }
         #endregion Roles
     }

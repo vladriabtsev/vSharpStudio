@@ -6134,9 +6134,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this._GroupDocuments = new GroupDocuments(this); // Class.tt Line: 40
             this._GroupJournals = new GroupListJournals(this); // Class.tt Line: 40
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
-            this._ListRoleCatalogAccessSettings = new ObservableCollectionWithActions<RoleCatalogAccess>(); // Class.tt Line: 35
-            this._ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); // Class.tt Line: 35
-            this._ListRoleConstantAccessSettings = new ObservableCollectionWithActions<RoleConstantAccess>(); // Class.tt Line: 35
             this.OnCreated();
             this.IsValidate = true;
             this.IsNotifying = true;
@@ -6207,15 +6204,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
-            vm.ListRoleCatalogAccessSettings = new ObservableCollectionWithActions<RoleCatalogAccess>(); // Clone.tt Line: 51
-            foreach (var t in from.ListRoleCatalogAccessSettings) // Clone.tt Line: 52
-                vm.ListRoleCatalogAccessSettings.Add(RoleCatalogAccess.Clone((RoleCatalogAccess)t, isDeep));
-            vm.ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); // Clone.tt Line: 51
-            foreach (var t in from.ListRoleDocumentAccessSettings) // Clone.tt Line: 52
-                vm.ListRoleDocumentAccessSettings.Add(RoleDocumentAccess.Clone((RoleDocumentAccess)t, isDeep));
-            vm.ListRoleConstantAccessSettings = new ObservableCollectionWithActions<RoleConstantAccess>(); // Clone.tt Line: 51
-            foreach (var t in from.ListRoleConstantAccessSettings) // Clone.tt Line: 52
-                vm.ListRoleConstantAccessSettings.Add(RoleConstantAccess.Clone((RoleConstantAccess)t, isDeep));
             if (isNewGuid) // Clone.tt Line: 72
                 vm.SetNewGuid();
             vm.IsNotifying = true;
@@ -6307,114 +6295,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                     }
                 }
             }
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListRoleCatalogAccessSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListRoleCatalogAccessSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            RoleCatalogAccess.Update((RoleCatalogAccess)t, (RoleCatalogAccess)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListRoleCatalogAccessSettings.Remove(t);
-                }
-                foreach (var tt in from.ListRoleCatalogAccessSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListRoleCatalogAccessSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new RoleCatalogAccess(); // Clone.tt Line: 121
-                        RoleCatalogAccess.Update(p, (RoleCatalogAccess)tt, isDeep);
-                        to.ListRoleCatalogAccessSettings.Add(p);
-                    }
-                }
-            }
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListRoleDocumentAccessSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListRoleDocumentAccessSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            RoleDocumentAccess.Update((RoleDocumentAccess)t, (RoleDocumentAccess)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListRoleDocumentAccessSettings.Remove(t);
-                }
-                foreach (var tt in from.ListRoleDocumentAccessSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListRoleDocumentAccessSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new RoleDocumentAccess(); // Clone.tt Line: 121
-                        RoleDocumentAccess.Update(p, (RoleDocumentAccess)tt, isDeep);
-                        to.ListRoleDocumentAccessSettings.Add(p);
-                    }
-                }
-            }
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListRoleConstantAccessSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListRoleConstantAccessSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            RoleConstantAccess.Update((RoleConstantAccess)t, (RoleConstantAccess)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListRoleConstantAccessSettings.Remove(t);
-                }
-                foreach (var tt in from.ListRoleConstantAccessSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListRoleConstantAccessSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new RoleConstantAccess(); // Clone.tt Line: 121
-                        RoleConstantAccess.Update(p, (RoleConstantAccess)tt, isDeep);
-                        to.ListRoleConstantAccessSettings.Add(p);
-                    }
-                }
-            }
         }
         // Clone.tt Line: 149
         #region IEditable
@@ -6501,24 +6381,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 200
                 vm.ListNodeGeneratorsSettings.Add(tvm);
             }
-            vm.ListRoleCatalogAccessSettings = new ObservableCollectionWithActions<RoleCatalogAccess>(); // Clone.tt Line: 204
-            foreach (var t in m.ListRoleCatalogAccessSettings) // Clone.tt Line: 205
-            {
-                var tvm = RoleCatalogAccess.ConvertToVM(t, new RoleCatalogAccess()); // Clone.tt Line: 207
-                vm.ListRoleCatalogAccessSettings.Add(tvm);
-            }
-            vm.ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); // Clone.tt Line: 204
-            foreach (var t in m.ListRoleDocumentAccessSettings) // Clone.tt Line: 205
-            {
-                var tvm = RoleDocumentAccess.ConvertToVM(t, new RoleDocumentAccess()); // Clone.tt Line: 207
-                vm.ListRoleDocumentAccessSettings.Add(tvm);
-            }
-            vm.ListRoleConstantAccessSettings = new ObservableCollectionWithActions<RoleConstantAccess>(); // Clone.tt Line: 204
-            foreach (var t in m.ListRoleConstantAccessSettings) // Clone.tt Line: 205
-            {
-                var tvm = RoleConstantAccess.ConvertToVM(t, new RoleConstantAccess()); // Clone.tt Line: 207
-                vm.ListRoleConstantAccessSettings.Add(tvm);
-            }
             vm.OnInitFromDto(); // Clone.tt Line: 227
             vm.IsChanged = false;
             vm.IsHasChanged = false;
@@ -6572,12 +6434,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupJournals = vSharpStudio.vm.ViewModels.GroupListJournals.ConvertToProto((GroupListJournals)vm.GroupJournals); // Clone.tt Line: 270
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
-            foreach (var t in vm.ListRoleCatalogAccessSettings) // Clone.tt Line: 242
-                m.ListRoleCatalogAccessSettings.Add(RoleCatalogAccess.ConvertToProto((RoleCatalogAccess)t)); // Clone.tt Line: 246
-            foreach (var t in vm.ListRoleDocumentAccessSettings) // Clone.tt Line: 242
-                m.ListRoleDocumentAccessSettings.Add(RoleDocumentAccess.ConvertToProto((RoleDocumentAccess)t)); // Clone.tt Line: 246
-            foreach (var t in vm.ListRoleConstantAccessSettings) // Clone.tt Line: 242
-                m.ListRoleConstantAccessSettings.Add(RoleConstantAccess.ConvertToProto((RoleConstantAccess)t)); // Clone.tt Line: 246
             return m;
         }
         
@@ -6602,18 +6458,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.GroupJournals.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListNodeGeneratorsSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListRoleCatalogAccessSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListRoleDocumentAccessSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListRoleConstantAccessSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
@@ -7536,69 +7380,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IReadOnlyList<IPluginGeneratorNodeSettings> IModel.ListNodeGeneratorsSettings { get { return (this as Model).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
-        
-        [Browsable(false)]
-        public ObservableCollectionWithActions<RoleCatalogAccess> ListRoleCatalogAccessSettings // Property.tt Line: 8
-        { 
-            get { return this._ListRoleCatalogAccessSettings; }
-            set
-            {
-                if (this._ListRoleCatalogAccessSettings != value)
-                {
-                    this.OnListRoleCatalogAccessSettingsChanging(value);
-                    _ListRoleCatalogAccessSettings = value;
-                    this.OnListRoleCatalogAccessSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollectionWithActions<RoleCatalogAccess> _ListRoleCatalogAccessSettings;
-        IReadOnlyList<IRoleCatalogAccess> IModel.ListRoleCatalogAccessSettings { get { return (this as Model).ListRoleCatalogAccessSettings; } } // Property.tt Line: 26
-        partial void OnListRoleCatalogAccessSettingsChanging(ObservableCollection<RoleCatalogAccess> to); // Property.tt Line: 27
-        partial void OnListRoleCatalogAccessSettingsChanged();
-        
-        [Browsable(false)]
-        public ObservableCollectionWithActions<RoleDocumentAccess> ListRoleDocumentAccessSettings // Property.tt Line: 8
-        { 
-            get { return this._ListRoleDocumentAccessSettings; }
-            set
-            {
-                if (this._ListRoleDocumentAccessSettings != value)
-                {
-                    this.OnListRoleDocumentAccessSettingsChanging(value);
-                    _ListRoleDocumentAccessSettings = value;
-                    this.OnListRoleDocumentAccessSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollectionWithActions<RoleDocumentAccess> _ListRoleDocumentAccessSettings;
-        IReadOnlyList<IRoleDocumentAccess> IModel.ListRoleDocumentAccessSettings { get { return (this as Model).ListRoleDocumentAccessSettings; } } // Property.tt Line: 26
-        partial void OnListRoleDocumentAccessSettingsChanging(ObservableCollection<RoleDocumentAccess> to); // Property.tt Line: 27
-        partial void OnListRoleDocumentAccessSettingsChanged();
-        
-        [Browsable(false)]
-        public ObservableCollectionWithActions<RoleConstantAccess> ListRoleConstantAccessSettings // Property.tt Line: 8
-        { 
-            get { return this._ListRoleConstantAccessSettings; }
-            set
-            {
-                if (this._ListRoleConstantAccessSettings != value)
-                {
-                    this.OnListRoleConstantAccessSettingsChanging(value);
-                    _ListRoleConstantAccessSettings = value;
-                    this.OnListRoleConstantAccessSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollectionWithActions<RoleConstantAccess> _ListRoleConstantAccessSettings;
-        IReadOnlyList<IRoleConstantAccess> IModel.ListRoleConstantAccessSettings { get { return (this as Model).ListRoleConstantAccessSettings; } } // Property.tt Line: 26
-        partial void OnListRoleConstantAccessSettingsChanging(ObservableCollection<RoleConstantAccess> to); // Property.tt Line: 27
-        partial void OnListRoleConstantAccessSettingsChanged();
     /*
         [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
@@ -8419,6 +8200,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = from.Description; // Clone.tt Line: 67
             vm.IsNew = from.IsNew; // Clone.tt Line: 67
             vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 67
+            vm.DefaultConstantPrintAccessSettings = from.DefaultConstantPrintAccessSettings; // Clone.tt Line: 67
+            vm.DefaultConstantEditAccessSettings = from.DefaultConstantEditAccessSettings; // Clone.tt Line: 67
+            vm.DefaultCatalogPrintAccessSettings = from.DefaultCatalogPrintAccessSettings; // Clone.tt Line: 67
+            vm.DefaultCatalogEditAccessSettings = from.DefaultCatalogEditAccessSettings; // Clone.tt Line: 67
+            vm.DefaultDocumentPrintAccessSettings = from.DefaultDocumentPrintAccessSettings; // Clone.tt Line: 67
+            vm.DefaultDocumentEditAccessSettings = from.DefaultDocumentEditAccessSettings; // Clone.tt Line: 67
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -8439,6 +8226,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Description = from.Description; // Clone.tt Line: 143
             to.IsNew = from.IsNew; // Clone.tt Line: 143
             to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 143
+            to.DefaultConstantPrintAccessSettings = from.DefaultConstantPrintAccessSettings; // Clone.tt Line: 143
+            to.DefaultConstantEditAccessSettings = from.DefaultConstantEditAccessSettings; // Clone.tt Line: 143
+            to.DefaultCatalogPrintAccessSettings = from.DefaultCatalogPrintAccessSettings; // Clone.tt Line: 143
+            to.DefaultCatalogEditAccessSettings = from.DefaultCatalogEditAccessSettings; // Clone.tt Line: 143
+            to.DefaultDocumentPrintAccessSettings = from.DefaultDocumentPrintAccessSettings; // Clone.tt Line: 143
+            to.DefaultDocumentEditAccessSettings = from.DefaultDocumentEditAccessSettings; // Clone.tt Line: 143
             if (isDeep) // Clone.tt Line: 88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -8511,6 +8304,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Description = m.Description; // Clone.tt Line: 221
             vm.IsNew = m.IsNew; // Clone.tt Line: 221
             vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.DefaultConstantPrintAccessSettings = (EnumPrintAccess)m.DefaultConstantPrintAccessSettings; // Clone.tt Line: 221
+            vm.DefaultConstantEditAccessSettings = (EnumConstantAccess)m.DefaultConstantEditAccessSettings; // Clone.tt Line: 221
+            vm.DefaultCatalogPrintAccessSettings = (EnumPrintAccess)m.DefaultCatalogPrintAccessSettings; // Clone.tt Line: 221
+            vm.DefaultCatalogEditAccessSettings = (EnumCatalogDetailAccess)m.DefaultCatalogEditAccessSettings; // Clone.tt Line: 221
+            vm.DefaultDocumentPrintAccessSettings = (EnumPrintAccess)m.DefaultDocumentPrintAccessSettings; // Clone.tt Line: 221
+            vm.DefaultDocumentEditAccessSettings = (EnumDocumentAccess)m.DefaultDocumentEditAccessSettings; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -8536,6 +8335,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Description = vm.Description; // Clone.tt Line: 276
             m.IsNew = vm.IsNew; // Clone.tt Line: 276
             m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            m.DefaultConstantPrintAccessSettings = (Proto.Config.proto_enum_print_access)vm.DefaultConstantPrintAccessSettings; // Clone.tt Line: 274
+            m.DefaultConstantEditAccessSettings = (Proto.Config.proto_enum_constant_access)vm.DefaultConstantEditAccessSettings; // Clone.tt Line: 274
+            m.DefaultCatalogPrintAccessSettings = (Proto.Config.proto_enum_print_access)vm.DefaultCatalogPrintAccessSettings; // Clone.tt Line: 274
+            m.DefaultCatalogEditAccessSettings = (Proto.Config.proto_enum_catalog_detail_access)vm.DefaultCatalogEditAccessSettings; // Clone.tt Line: 274
+            m.DefaultDocumentPrintAccessSettings = (Proto.Config.proto_enum_print_access)vm.DefaultDocumentPrintAccessSettings; // Clone.tt Line: 274
+            m.DefaultDocumentEditAccessSettings = (Proto.Config.proto_enum_document_access)vm.DefaultDocumentEditAccessSettings; // Clone.tt Line: 274
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -8707,6 +8512,150 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private bool _IsMarkedForDeletion;
         partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
         partial void OnIsMarkedForDeletionChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(11)]
+        [DisplayName("Print Constants")]
+        [Description("Default constant-print access for role")]
+        public EnumPrintAccess DefaultConstantPrintAccessSettings // Property.tt Line: 55
+        { 
+            get { return this._DefaultConstantPrintAccessSettings; }
+            set
+            {
+                if (this._DefaultConstantPrintAccessSettings != value)
+                {
+                    this.OnDefaultConstantPrintAccessSettingsChanging(ref value);
+                    this._DefaultConstantPrintAccessSettings = value;
+                    this.OnDefaultConstantPrintAccessSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumPrintAccess _DefaultConstantPrintAccessSettings;
+        partial void OnDefaultConstantPrintAccessSettingsChanging(ref EnumPrintAccess to); // Property.tt Line: 79
+        partial void OnDefaultConstantPrintAccessSettingsChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(12)]
+        [DisplayName("Edit Constants")]
+        [Description("Default constant-edit access for role")]
+        public EnumConstantAccess DefaultConstantEditAccessSettings // Property.tt Line: 55
+        { 
+            get { return this._DefaultConstantEditAccessSettings; }
+            set
+            {
+                if (this._DefaultConstantEditAccessSettings != value)
+                {
+                    this.OnDefaultConstantEditAccessSettingsChanging(ref value);
+                    this._DefaultConstantEditAccessSettings = value;
+                    this.OnDefaultConstantEditAccessSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumConstantAccess _DefaultConstantEditAccessSettings;
+        partial void OnDefaultConstantEditAccessSettingsChanging(ref EnumConstantAccess to); // Property.tt Line: 79
+        partial void OnDefaultConstantEditAccessSettingsChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(13)]
+        [DisplayName("Print Catalog")]
+        [Description("Default catalog-print access for role")]
+        public EnumPrintAccess DefaultCatalogPrintAccessSettings // Property.tt Line: 55
+        { 
+            get { return this._DefaultCatalogPrintAccessSettings; }
+            set
+            {
+                if (this._DefaultCatalogPrintAccessSettings != value)
+                {
+                    this.OnDefaultCatalogPrintAccessSettingsChanging(ref value);
+                    this._DefaultCatalogPrintAccessSettings = value;
+                    this.OnDefaultCatalogPrintAccessSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumPrintAccess _DefaultCatalogPrintAccessSettings;
+        partial void OnDefaultCatalogPrintAccessSettingsChanging(ref EnumPrintAccess to); // Property.tt Line: 79
+        partial void OnDefaultCatalogPrintAccessSettingsChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(14)]
+        [DisplayName("Edit Catalog")]
+        [Description("Default catalog-edit access for role")]
+        public EnumCatalogDetailAccess DefaultCatalogEditAccessSettings // Property.tt Line: 55
+        { 
+            get { return this._DefaultCatalogEditAccessSettings; }
+            set
+            {
+                if (this._DefaultCatalogEditAccessSettings != value)
+                {
+                    this.OnDefaultCatalogEditAccessSettingsChanging(ref value);
+                    this._DefaultCatalogEditAccessSettings = value;
+                    this.OnDefaultCatalogEditAccessSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumCatalogDetailAccess _DefaultCatalogEditAccessSettings;
+        partial void OnDefaultCatalogEditAccessSettingsChanging(ref EnumCatalogDetailAccess to); // Property.tt Line: 79
+        partial void OnDefaultCatalogEditAccessSettingsChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(15)]
+        [DisplayName("Print Document")]
+        [Description("Default document-print access for role")]
+        public EnumPrintAccess DefaultDocumentPrintAccessSettings // Property.tt Line: 55
+        { 
+            get { return this._DefaultDocumentPrintAccessSettings; }
+            set
+            {
+                if (this._DefaultDocumentPrintAccessSettings != value)
+                {
+                    this.OnDefaultDocumentPrintAccessSettingsChanging(ref value);
+                    this._DefaultDocumentPrintAccessSettings = value;
+                    this.OnDefaultDocumentPrintAccessSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumPrintAccess _DefaultDocumentPrintAccessSettings;
+        partial void OnDefaultDocumentPrintAccessSettingsChanging(ref EnumPrintAccess to); // Property.tt Line: 79
+        partial void OnDefaultDocumentPrintAccessSettingsChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(16)]
+        [DisplayName("Edit Document")]
+        [Description("Default document-edit access for role")]
+        public EnumDocumentAccess DefaultDocumentEditAccessSettings // Property.tt Line: 55
+        { 
+            get { return this._DefaultDocumentEditAccessSettings; }
+            set
+            {
+                if (this._DefaultDocumentEditAccessSettings != value)
+                {
+                    this.OnDefaultDocumentEditAccessSettingsChanging(ref value);
+                    this._DefaultDocumentEditAccessSettings = value;
+                    this.OnDefaultDocumentEditAccessSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumDocumentAccess _DefaultDocumentEditAccessSettings;
+        partial void OnDefaultDocumentEditAccessSettingsChanging(ref EnumDocumentAccess to); // Property.tt Line: 79
+        partial void OnDefaultDocumentEditAccessSettingsChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -14917,7 +14866,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsValidate = false;
             this.OnCreating();
             this._ListConstantGroups = new ConfigNodesCollection<GroupListConstants>(this); // Class.tt Line: 37
-            this._ListRoleConstantAccessSettings = new ObservableCollectionWithActions<RoleConstantAccess>(); // Class.tt Line: 35
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -14954,9 +14902,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.ListConstantGroups = new ConfigNodesCollection<GroupListConstants>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListConstantGroups) // Clone.tt Line: 56
                 vm.ListConstantGroups.Add(GroupListConstants.Clone(vm, (GroupListConstants)t, isDeep));
-            vm.ListRoleConstantAccessSettings = new ObservableCollectionWithActions<RoleConstantAccess>(); // Clone.tt Line: 51
-            foreach (var t in from.ListRoleConstantAccessSettings) // Clone.tt Line: 52
-                vm.ListRoleConstantAccessSettings.Add(RoleConstantAccess.Clone((RoleConstantAccess)t, isDeep));
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -15009,42 +14954,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                         var p = new GroupListConstants(to); // Clone.tt Line: 119
                         GroupListConstants.Update(p, (GroupListConstants)tt, isDeep);
                         to.ListConstantGroups.Add(p);
-                    }
-                }
-            }
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListRoleConstantAccessSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListRoleConstantAccessSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            RoleConstantAccess.Update((RoleConstantAccess)t, (RoleConstantAccess)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListRoleConstantAccessSettings.Remove(t);
-                }
-                foreach (var tt in from.ListRoleConstantAccessSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListRoleConstantAccessSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new RoleConstantAccess(); // Clone.tt Line: 121
-                        RoleConstantAccess.Update(p, (RoleConstantAccess)tt, isDeep);
-                        to.ListRoleConstantAccessSettings.Add(p);
                     }
                 }
             }
@@ -15125,12 +15034,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 var tvm = GroupListConstants.ConvertToVM(t, new GroupListConstants(vm)); // Clone.tt Line: 200
                 vm.ListConstantGroups.Add(tvm);
             }
-            vm.ListRoleConstantAccessSettings = new ObservableCollectionWithActions<RoleConstantAccess>(); // Clone.tt Line: 204
-            foreach (var t in m.ListRoleConstantAccessSettings) // Clone.tt Line: 205
-            {
-                var tvm = RoleConstantAccess.ConvertToVM(t, new RoleConstantAccess()); // Clone.tt Line: 207
-                vm.ListRoleConstantAccessSettings.Add(tvm);
-            }
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -15157,8 +15060,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.PrefixForDbTables = vm.PrefixForDbTables; // Clone.tt Line: 276
             foreach (var t in vm.ListConstantGroups) // Clone.tt Line: 242
                 m.ListConstantGroups.Add(GroupListConstants.ConvertToProto((GroupListConstants)t)); // Clone.tt Line: 246
-            foreach (var t in vm.ListRoleConstantAccessSettings) // Clone.tt Line: 242
-                m.ListRoleConstantAccessSettings.Add(RoleConstantAccess.ConvertToProto((RoleConstantAccess)t)); // Clone.tt Line: 246
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -15173,10 +15074,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             visitor.Visit(this);
             foreach (var t in this.ListConstantGroups)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListRoleConstantAccessSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
@@ -15345,27 +15242,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         IReadOnlyList<IGroupListConstants> IGroupConstantGroups.ListConstantGroups { get { return (this as GroupConstantGroups).ListConstantGroups; } } // Property.tt Line: 26
         partial void OnListConstantGroupsChanging(ObservableCollection<GroupListConstants> to); // Property.tt Line: 27
         partial void OnListConstantGroupsChanged();
-        
-        [Browsable(false)]
-        public ObservableCollectionWithActions<RoleConstantAccess> ListRoleConstantAccessSettings // Property.tt Line: 8
-        { 
-            get { return this._ListRoleConstantAccessSettings; }
-            set
-            {
-                if (this._ListRoleConstantAccessSettings != value)
-                {
-                    this.OnListRoleConstantAccessSettingsChanging(value);
-                    _ListRoleConstantAccessSettings = value;
-                    this.OnListRoleConstantAccessSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollectionWithActions<RoleConstantAccess> _ListRoleConstantAccessSettings;
-        IReadOnlyList<IRoleConstantAccess> IGroupConstantGroups.ListRoleConstantAccessSettings { get { return (this as GroupConstantGroups).ListRoleConstantAccessSettings; } } // Property.tt Line: 26
-        partial void OnListRoleConstantAccessSettingsChanging(ObservableCollection<RoleConstantAccess> to); // Property.tt Line: 27
-        partial void OnListRoleConstantAccessSettingsChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -20898,7 +20774,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.IsValidate = false;
             this.OnCreating();
             this._ListCatalogs = new ConfigNodesCollection<Catalog>(this); // Class.tt Line: 37
-            this._ListRoleCatalogAccessSettings = new ObservableCollectionWithActions<RoleCatalogAccess>(); // Class.tt Line: 35
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -20945,9 +20820,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
             vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
             vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
-            vm.ListRoleCatalogAccessSettings = new ObservableCollectionWithActions<RoleCatalogAccess>(); // Clone.tt Line: 51
-            foreach (var t in from.ListRoleCatalogAccessSettings) // Clone.tt Line: 52
-                vm.ListRoleCatalogAccessSettings.Add(RoleCatalogAccess.Clone((RoleCatalogAccess)t, isDeep));
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -21013,42 +20885,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
             to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
             to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListRoleCatalogAccessSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListRoleCatalogAccessSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            RoleCatalogAccess.Update((RoleCatalogAccess)t, (RoleCatalogAccess)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListRoleCatalogAccessSettings.Remove(t);
-                }
-                foreach (var tt in from.ListRoleCatalogAccessSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListRoleCatalogAccessSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new RoleCatalogAccess(); // Clone.tt Line: 121
-                        RoleCatalogAccess.Update(p, (RoleCatalogAccess)tt, isDeep);
-                        to.ListRoleCatalogAccessSettings.Add(p);
-                    }
-                }
-            }
             if (isDeep) // Clone.tt Line: 88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -21136,12 +20972,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
             vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
             vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
-            vm.ListRoleCatalogAccessSettings = new ObservableCollectionWithActions<RoleCatalogAccess>(); // Clone.tt Line: 204
-            foreach (var t in m.ListRoleCatalogAccessSettings) // Clone.tt Line: 205
-            {
-                var tvm = RoleCatalogAccess.ConvertToVM(t, new RoleCatalogAccess()); // Clone.tt Line: 207
-                vm.ListRoleCatalogAccessSettings.Add(tvm);
-            }
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -21178,8 +21008,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
-            foreach (var t in vm.ListRoleCatalogAccessSettings) // Clone.tt Line: 242
-                m.ListRoleCatalogAccessSettings.Add(RoleCatalogAccess.ConvertToProto((RoleCatalogAccess)t)); // Clone.tt Line: 246
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -21194,10 +21022,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
             visitor.Visit(this);
             foreach (var t in this.ListCatalogs)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListRoleCatalogAccessSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
@@ -21616,27 +21440,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsGridFilterableChanged();
         
         [Browsable(false)]
-        public ObservableCollectionWithActions<RoleCatalogAccess> ListRoleCatalogAccessSettings // Property.tt Line: 8
-        { 
-            get { return this._ListRoleCatalogAccessSettings; }
-            set
-            {
-                if (this._ListRoleCatalogAccessSettings != value)
-                {
-                    this.OnListRoleCatalogAccessSettingsChanging(value);
-                    _ListRoleCatalogAccessSettings = value;
-                    this.OnListRoleCatalogAccessSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollectionWithActions<RoleCatalogAccess> _ListRoleCatalogAccessSettings;
-        IReadOnlyList<IRoleCatalogAccess> IGroupListCatalogs.ListRoleCatalogAccessSettings { get { return (this as GroupListCatalogs).ListRoleCatalogAccessSettings; } } // Property.tt Line: 26
-        partial void OnListRoleCatalogAccessSettingsChanging(ObservableCollection<RoleCatalogAccess> to); // Property.tt Line: 27
-        partial void OnListRoleCatalogAccessSettingsChanged();
-        
-        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -21701,7 +21504,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.OnCreating();
             this._GroupSharedProperties = new GroupListProperties(this); // Class.tt Line: 40
             this._GroupListDocuments = new GroupListDocuments(this); // Class.tt Line: 40
-            this._ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); // Class.tt Line: 35
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -21740,9 +21542,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
             vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
             vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
-            vm.ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); // Clone.tt Line: 51
-            foreach (var t in from.ListRoleDocumentAccessSettings) // Clone.tt Line: 52
-                vm.ListRoleDocumentAccessSettings.Add(RoleDocumentAccess.Clone((RoleDocumentAccess)t, isDeep));
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -21771,42 +21570,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
             to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
             to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListRoleDocumentAccessSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListRoleDocumentAccessSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            RoleDocumentAccess.Update((RoleDocumentAccess)t, (RoleDocumentAccess)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListRoleDocumentAccessSettings.Remove(t);
-                }
-                foreach (var tt in from.ListRoleDocumentAccessSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListRoleDocumentAccessSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new RoleDocumentAccess(); // Clone.tt Line: 121
-                        RoleDocumentAccess.Update(p, (RoleDocumentAccess)tt, isDeep);
-                        to.ListRoleDocumentAccessSettings.Add(p);
-                    }
-                }
-            }
             if (isDeep) // Clone.tt Line: 88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -21889,12 +21652,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
             vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
             vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
-            vm.ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); // Clone.tt Line: 204
-            foreach (var t in m.ListRoleDocumentAccessSettings) // Clone.tt Line: 205
-            {
-                var tvm = RoleDocumentAccess.ConvertToVM(t, new RoleDocumentAccess()); // Clone.tt Line: 207
-                vm.ListRoleDocumentAccessSettings.Add(tvm);
-            }
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -21926,8 +21683,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
-            foreach (var t in vm.ListRoleDocumentAccessSettings) // Clone.tt Line: 242
-                m.ListRoleDocumentAccessSettings.Add(RoleDocumentAccess.ConvertToProto((RoleDocumentAccess)t)); // Clone.tt Line: 246
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -21945,10 +21700,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
             this.GroupListDocuments.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            foreach (var t in this.ListRoleDocumentAccessSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
                 t.AcceptConfigNodeVisitor(visitor);
@@ -22250,27 +22001,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumUseType _IsGridFilterable;
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
-        
-        [Browsable(false)]
-        public ObservableCollectionWithActions<RoleDocumentAccess> ListRoleDocumentAccessSettings // Property.tt Line: 8
-        { 
-            get { return this._ListRoleDocumentAccessSettings; }
-            set
-            {
-                if (this._ListRoleDocumentAccessSettings != value)
-                {
-                    this.OnListRoleDocumentAccessSettingsChanging(value);
-                    _ListRoleDocumentAccessSettings = value;
-                    this.OnListRoleDocumentAccessSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollectionWithActions<RoleDocumentAccess> _ListRoleDocumentAccessSettings;
-        IReadOnlyList<IRoleDocumentAccess> IGroupDocuments.ListRoleDocumentAccessSettings { get { return (this as GroupDocuments).ListRoleDocumentAccessSettings; } } // Property.tt Line: 26
-        partial void OnListRoleDocumentAccessSettingsChanging(ObservableCollection<RoleDocumentAccess> to); // Property.tt Line: 27
-        partial void OnListRoleDocumentAccessSettingsChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -32267,12 +31997,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         protected override void OnVisit(Model p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRoleCatalogAccessSettings) // ValidationVisitor.tt Line: 27
-                ValidateSubAndCollectErrors(p, t);
-            foreach (var t in p.ListRoleDocumentAccessSettings) // ValidationVisitor.tt Line: 27
-                ValidateSubAndCollectErrors(p, t);
-            foreach (var t in p.ListRoleConstantAccessSettings) // ValidationVisitor.tt Line: 27
-                ValidateSubAndCollectErrors(p, t);
         }
         protected override void OnVisitEnd(Model p) // ValidationVisitor.tt Line: 47
         {
@@ -32419,8 +32143,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         protected override void OnVisit(GroupConstantGroups p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRoleConstantAccessSettings) // ValidationVisitor.tt Line: 27
-                ValidateSubAndCollectErrors(p, t);
         }
         protected override void OnVisitEnd(GroupConstantGroups p) // ValidationVisitor.tt Line: 47
         {
@@ -32504,8 +32226,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         protected override void OnVisit(GroupListCatalogs p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRoleCatalogAccessSettings) // ValidationVisitor.tt Line: 27
-                ValidateSubAndCollectErrors(p, t);
         }
         protected override void OnVisitEnd(GroupListCatalogs p) // ValidationVisitor.tt Line: 47
         {
@@ -32514,8 +32234,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         protected override void OnVisit(GroupDocuments p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRoleDocumentAccessSettings) // ValidationVisitor.tt Line: 27
-                ValidateSubAndCollectErrors(p, t);
         }
         protected override void OnVisitEnd(GroupDocuments p) // ValidationVisitor.tt Line: 47
         {

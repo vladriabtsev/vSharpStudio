@@ -13,8 +13,8 @@ namespace vSharpStudio.common
         //string DefaultValue { get; }
         object? Tag { get; set; }
         //static IConfig Config { get; set; }
-        EnumConstantAccess GetRoleConstantAccess(string roleGuid);
-        EnumPrintAccess GetRoleConstantPrint(string roleGuid);
+        EnumConstantAccess GetRoleConstantAccess(IRole role);
+        EnumPrintAccess GetRoleConstantPrint(IRole role);
         IReadOnlyList<string> GetRolesByAccess(EnumConstantAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         string FullName { get; } // name with config name

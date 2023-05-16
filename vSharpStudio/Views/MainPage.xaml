@@ -194,6 +194,9 @@
                     <xctk:ChildWindow x:Name="_modalNodeSettingsWindow">
                         <local:GenSettings x:Name="_GenSettings" />
                     </xctk:ChildWindow>
+                    <xctk:ChildWindow x:Name="_modalRoleEditWindow">
+                        <local:GenSettings x:Name="_roleEdit" />
+                    </xctk:ChildWindow>
                 </xctk:WindowContainer>
             </Grid>
         </ContentControl>

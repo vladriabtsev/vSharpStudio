@@ -155,6 +155,8 @@ namespace ViewModelBase
         //    this.IconControlTemplate = this.GetIconControlTemplate(iconExecute);
         //}
         [ObservableProperty]
+        private string text;
+        [ObservableProperty]
         private string isBusy;
         [ObservableProperty]
         private string toolTipText;

@@ -236,13 +236,15 @@ namespace vSharpStudio.common
                 outFile = $"{outFolder}\\{fileName}";
             if (!File.Exists(outFile))
             {
-                byte[] bytes = Encoding.UTF8.GetBytes(code);
+                var encod = new UTF8Encoding(true);
+                byte[] bytes = encod.GetBytes(code);
                 CommonUtils.WritesAllBytesWithRetry(outFile, bytes);
             }
         }
         public static void WriteToFile(string code, string path, string fileRelativePath, string fileName)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(code);
+            var encod = new UTF8Encoding(true);
+            byte[] bytes = encod.GetBytes(code);
             string outFolder = Path.Combine(path, fileRelativePath);
             string outFile;
             if (Path.EndsInDirectorySeparator(outFolder))

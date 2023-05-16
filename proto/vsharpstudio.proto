@@ -761,12 +761,6 @@ message proto_model {
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
-    // @attr [Browsable(false)]
-    repeated proto_role_catalog_access list_role_catalog_access_settings = 112;
-    // @attr [Browsable(false)]
-    repeated proto_role_document_access list_role_document_access_settings = 113;
-    // @attr [Browsable(false)]
-    repeated proto_role_constant_access list_role_constant_access_settings = 114;
 }
 /** 
  * @exclude
@@ -898,6 +892,38 @@ message proto_role {
     bool is_new = 9;
     // @attr [Browsable(false)]
     bool is_marked_for_deletion = 10;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [DisplayName("Print Constants")]
+    // @attr [Description("Default constant-print access for role")]
+    proto_enum_print_access default_constant_print_access_settings = 11;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(12)]
+    // @attr [DisplayName("Edit Constants")]
+    // @attr [Description("Default constant-edit access for role")]
+    proto_enum_constant_access default_constant_edit_access_settings = 12;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(13)]
+    // @attr [DisplayName("Print Catalog")]
+    // @attr [Description("Default catalog-print access for role")]
+    proto_enum_print_access default_catalog_print_access_settings = 13;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(14)]
+    // @attr [DisplayName("Edit Catalog")]
+    // @attr [Description("Default catalog-edit access for role")]
+    proto_enum_catalog_detail_access default_catalog_edit_access_settings = 14;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(15)]
+    // @attr [DisplayName("Print Document")]
+    // @attr [Description("Default document-print access for role")]
+    proto_enum_print_access default_document_print_access_settings = 15;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(16)]
+    // @attr [DisplayName("Edit Document")]
+    // @attr [Description("Default document-edit access for role")]
+    proto_enum_document_access default_document_edit_access_settings = 16;
+
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -1786,8 +1812,6 @@ message proto_group_constant_groups {
     // @attr [Browsable(false)]
     repeated proto_group_list_constants list_constant_groups = 8;
     // @attr [Browsable(false)]
-    repeated proto_role_constant_access list_role_constant_access_settings = 101;
-    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @interface ICanAddNode
@@ -2401,8 +2425,6 @@ message proto_group_list_catalogs {
     proto_enum_use_type is_grid_filterable = 73;
 
     // @attr [Browsable(false)]
-    repeated proto_role_catalog_access list_role_catalog_access_settings = 101;
-    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** 
@@ -2460,8 +2482,6 @@ message proto_group_documents {
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
 
-    // @attr [Browsable(false)]
-    repeated proto_role_document_access list_role_document_access_settings = 101;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }

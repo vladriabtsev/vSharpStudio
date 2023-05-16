@@ -963,7 +963,6 @@ No Children
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] @attr [Description(&#34;Description constants group name&#34;)] |
 | prefix_for_db_tables | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for constants db table names. Used if set to use in config model&#34;)] |
 | list_constant_groups | [proto_group_list_constants](#proto_config.proto_group_list_constants) | repeated | @attr [Browsable(false)] |
-| list_role_constant_access_settings | [proto_role_constant_access](#proto_config.proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -992,7 +991,6 @@ No Children
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| list_role_document_access_settings | [proto_role_document_access](#proto_config.proto_role_document_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1064,7 +1062,6 @@ No Children
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config.proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1445,9 +1442,6 @@ Configuration model
 | group_documents | [proto_group_documents](#proto_config.proto_group_documents) |  | @attr [Browsable(false)] |
 | group_journals | [proto_group_list_journals](#proto_config.proto_group_list_journals) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
-| list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config.proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
-| list_role_document_access_settings | [proto_role_document_access](#proto_config.proto_role_document_access) | repeated | @attr [Browsable(false)] |
-| list_role_constant_access_settings | [proto_role_constant_access](#proto_config.proto_role_constant_access) | repeated | @attr [Browsable(false)] |
 
 
 
@@ -1715,6 +1709,12 @@ User&#39;s role
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| default_constant_print_access_settings | [proto_enum_print_access](#proto_config.proto_enum_print_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Print Constants&#34;)] @attr [Description(&#34;Default constant-print access for role&#34;)] |
+| default_constant_edit_access_settings | [proto_enum_constant_access](#proto_config.proto_enum_constant_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Edit Constants&#34;)] @attr [Description(&#34;Default constant-edit access for role&#34;)] |
+| default_catalog_print_access_settings | [proto_enum_print_access](#proto_config.proto_enum_print_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Print Catalog&#34;)] @attr [Description(&#34;Default catalog-print access for role&#34;)] |
+| default_catalog_edit_access_settings | [proto_enum_catalog_detail_access](#proto_config.proto_enum_catalog_detail_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(14)] @attr [DisplayName(&#34;Edit Catalog&#34;)] @attr [Description(&#34;Default catalog-edit access for role&#34;)] |
+| default_document_print_access_settings | [proto_enum_print_access](#proto_config.proto_enum_print_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Print Document&#34;)] @attr [Description(&#34;Default document-print access for role&#34;)] |
+| default_document_edit_access_settings | [proto_enum_document_access](#proto_config.proto_enum_document_access) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(16)] @attr [DisplayName(&#34;Edit Document&#34;)] @attr [Description(&#34;Default document-edit access for role&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 

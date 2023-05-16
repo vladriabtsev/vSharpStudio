@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design.Serialization;
 using System.Globalization;
 using System.Reflection;
 using System.Windows.Data;
@@ -13,13 +15,13 @@ namespace vSharpStudio.common.ViewModels
             : base(type)
         {
         }
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext? context, System.Globalization.CultureInfo? culture, object? value, Type destinationType)
         {
             if (destinationType == typeof(string))
             {
                 if (value != null)
                 {
-                    FieldInfo fi = value.GetType().GetField(value.ToString());
+                    FieldInfo? fi = EnumType.GetField(value.ToString());
                     if (fi != null)
                     {
                         var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);

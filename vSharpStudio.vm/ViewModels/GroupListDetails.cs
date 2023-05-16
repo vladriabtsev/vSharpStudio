@@ -228,9 +228,22 @@ namespace vSharpStudio.vm.ViewModels
         #region Roles
         public object GetRoleAccess(IRole role)
         {
+            if (!this.dicDetailAccess.ContainsKey(role.Guid))
+            {
+                var rca = new RoleDetailAccess() { Guid = role.Guid };
+                this.ListRoleDetailAccessSettings.Add(rca);
+                this.dicDetailAccess[role.Guid] = rca;
+            }
+            return dicDetailAccess[role.Guid];
+        }
+        public void SetRoleAccess(IRole role, EnumCatalogDetailAccess? edit, EnumPrintAccess? print)
+        {
             Debug.Assert(role != null);
             Debug.Assert(dicDetailAccess.ContainsKey(role.Guid));
-            return dicDetailAccess[role.Guid];
+            if (edit.HasValue)
+                dicDetailAccess[role.Guid].EditAccess = edit.Value;
+            if (print.HasValue)
+                dicDetailAccess[role.Guid].PrintAccess = print.Value;
         }
         internal Dictionary<string, RoleDetailAccess> dicDetailAccess = new Dictionary<string, RoleDetailAccess>();
         public void InitRoles()
@@ -266,17 +279,17 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.dicDetailAccess.Remove(role.Guid);
         }
-        public EnumCatalogDetailAccess GetRoleDetailAccess(string roleGuid)
+        public EnumCatalogDetailAccess GetRoleDetailAccess(IRole role)
         {
-            if (this.dicDetailAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
+            if (this.dicDetailAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
                 return r.EditAccess;
             if (this.Parent is Detail dd)
-                return dd.GetRoleDetailAccess(roleGuid);
+                return dd.GetRoleDetailAccess(role);
             else if (this.Parent is Catalog c)
-                return c.GetRoleCatalogAccess(roleGuid);
+                return c.GetRoleCatalogAccess(role);
             else if (this.Parent is Document d)
             {
-                var ra = d.GetRoleDocumentAccess(roleGuid);
+                var ra = d.GetRoleDocumentAccess(role);
                 switch (ra)
                 {
                     case EnumDocumentAccess.D_BY_PARENT:
@@ -297,22 +310,22 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
             else if (this.Parent is CatalogFolder cf)
-                return cf.ParentCatalog.GetRoleCatalogAccess(roleGuid);
+                return cf.ParentCatalog.GetRoleCatalogAccess(role);
             else
                 throw new NotImplementedException();
         }
-        public EnumPrintAccess GetRoleDetailPrint(string roleGuid)
+        public EnumPrintAccess GetRoleDetailPrint(IRole role)
         {
-            if (this.dicDetailAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
+            if (this.dicDetailAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
                 return r.PrintAccess;
             if (this.Parent is Detail dd)
-                return dd.GetRoleDetailPrint(roleGuid);
+                return dd.GetRoleDetailPrint(role);
             else if (this.Parent is Catalog c)
-                return c.GetRoleCatalogPrint(roleGuid);
+                return c.GetRoleCatalogPrint(role);
             else if (this.Parent is Document d)
-                return d.GetRoleDocumentPrint(roleGuid);
+                return d.GetRoleDocumentPrint(role);
             else if (this.Parent is CatalogFolder cf)
-                return cf.ParentCatalog.GetRoleCatalogPrint(roleGuid);
+                return cf.ParentCatalog.GetRoleCatalogPrint(role);
             else
                 throw new NotImplementedException();
         }

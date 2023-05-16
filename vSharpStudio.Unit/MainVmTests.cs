@@ -1843,16 +1843,23 @@ namespace vSharpStudio.Unit
             Assert.IsTrue(c.dicCatalogAccess.Count == 0);
             var det = c.AddDetails("det1");
             var pdet = det.AddPropertyString("pdet", 5);
+            Assert.IsTrue(pdet.dicPropertyAccess.Count == 0);
+            Assert.IsTrue(det.GroupProperties.dicPropertyAccess.Count == 0);
+            Assert.IsTrue(det.dicDetailAccess.Count == 0);
             var role = m.GroupCommon.GroupRoles.AddRole("role1");
+            Assert.IsTrue(pdet.dicPropertyAccess.Count == 1);
+            Assert.IsTrue(det.GroupProperties.dicPropertyAccess.Count == 1);
+            Assert.IsTrue(det.dicDetailAccess.Count == 1);
+
             Assert.IsTrue(c.dicCatalogAccess.Count == 1);
-            Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, c.GetRoleCatalogAccess(role.Guid));
-            Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, gc.GetRoleCatalogAccess(role.Guid));
+            Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, c.GetRoleCatalogAccess(role));
+            Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, gc.GetRoleCatalogAccess(role));
             var p = c.GroupProperties.AddPropertyChar("char_notnullable");
             var pf = c.Folder.GroupProperties.AddPropertyChar("pfolder");
             Assert.IsTrue(p.dicPropertyAccess.Count == 1);
-            Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, c.GetRoleCatalogAccess(role.Guid));
-            Assert.AreEqual(EnumPrintAccess.PR_PRINT, c.GetRoleCatalogPrint(role.Guid));
-            Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role.Guid));
+            Assert.AreEqual(EnumCatalogDetailAccess.C_MARK_DEL, c.GetRoleCatalogAccess(role));
+            Assert.AreEqual(EnumPrintAccess.PR_PRINT, c.GetRoleCatalogPrint(role));
+            Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role));
 
             // Constant
             var gtg = m.GroupConstantGroups;
@@ -1860,9 +1867,8 @@ namespace vSharpStudio.Unit
             var ct = ctg.AddConstantString("const1");
             Assert.IsTrue(ct.dicConstantAccess.Count == 1);
             Assert.IsTrue(ctg.dicConstantAccess.Count == 1);
-            Assert.IsTrue(gtg.dicConstantAccess.Count == 1);
-            Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role.Guid));
-            Assert.AreEqual(EnumPrintAccess.PR_PRINT, ct.GetRoleConstantPrint(role.Guid));
+            Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role));
+            Assert.AreEqual(EnumPrintAccess.PR_PRINT, ct.GetRoleConstantPrint(role));
 
             // Document
             var gd = m.GroupDocuments;
@@ -1870,11 +1876,11 @@ namespace vSharpStudio.Unit
             var d = gd.AddDocument("Doc1");
             var gld = d.ParentGroupListDocuments;
             Assert.IsTrue(d.dicDocumentAccess.Count == 1);
-            Assert.AreEqual(EnumDocumentAccess.D_MARK_DEL, d.GetRoleDocumentAccess(role.Guid));
-            Assert.AreEqual(EnumDocumentAccess.D_MARK_DEL, gd.GetRoleDocumentAccess(role.Guid));
+            Assert.AreEqual(EnumDocumentAccess.D_UNPOST, d.GetRoleDocumentAccess(role));
+            Assert.AreEqual(EnumDocumentAccess.D_UNPOST, gd.GetRoleDocumentAccess(role));
             var pd = d.GroupProperties.AddPropertyChar("char_notnullable");
             Assert.IsTrue(pd.dicPropertyAccess.Count == 1);
-            Assert.AreEqual(EnumPropertyAccess.P_EDIT, pd.GetRolePropertyAccess(role.Guid));
+            Assert.AreEqual(EnumPropertyAccess.P_EDIT, pd.GetRolePropertyAccess(role));
 
             // Constant
             foreach (var tpr in Enum.GetValues(typeof(EnumPrintAccess)))
@@ -1892,8 +1898,8 @@ namespace vSharpStudio.Unit
                             break;
                         default:
                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role.Guid));
-                            Assert.AreEqual(enConstAccess, ct.GetRoleConstantAccess(role.Guid));
+                                Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role));
+                            Assert.AreEqual(enConstAccess, ct.GetRoleConstantAccess(role));
                             break;
                     }
                 }
@@ -1915,8 +1921,8 @@ namespace vSharpStudio.Unit
                             break;
                         default:
                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
-                            Assert.AreEqual(enPropAccess, p.GetRolePropertyAccess(role.Guid));
+                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
+                            Assert.AreEqual(enPropAccess, p.GetRolePropertyAccess(role));
                             break;
                     }
                 }
@@ -1938,8 +1944,8 @@ namespace vSharpStudio.Unit
                             break;
                         default:
                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                Assert.AreEqual(enPrint, pdet.GetRolePropertyPrint(role.Guid));
-                            Assert.AreEqual(enPropAccess, pdet.GetRolePropertyAccess(role.Guid));
+                                Assert.AreEqual(enPrint, pdet.GetRolePropertyPrint(role));
+                            Assert.AreEqual(enPropAccess, pdet.GetRolePropertyAccess(role));
                             break;
                     }
                 }
@@ -1961,8 +1967,8 @@ namespace vSharpStudio.Unit
                             break;
                         default:
                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                Assert.AreEqual(enPrint, pf.GetRolePropertyPrint(role.Guid));
-                            Assert.AreEqual(enPropAccess, pf.GetRolePropertyAccess(role.Guid));
+                                Assert.AreEqual(enPrint, pf.GetRolePropertyPrint(role));
+                            Assert.AreEqual(enPropAccess, pf.GetRolePropertyAccess(role));
                             break;
                     }
                 }
@@ -1984,8 +1990,8 @@ namespace vSharpStudio.Unit
                             break;
                         default:
                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                Assert.AreEqual(enPrint, pd.GetRolePropertyPrint(role.Guid));
-                            Assert.AreEqual(enPropAccess, pd.GetRolePropertyAccess(role.Guid));
+                                Assert.AreEqual(enPrint, pd.GetRolePropertyPrint(role));
+                            Assert.AreEqual(enPropAccess, pd.GetRolePropertyAccess(role));
                             break;
                     }
                 }
@@ -2007,8 +2013,8 @@ namespace vSharpStudio.Unit
                             break;
                         default:
                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                Assert.AreEqual(enPrint, pds.GetRolePropertyPrint(role.Guid));
-                            Assert.AreEqual(enPropAccess, pds.GetRolePropertyAccess(role.Guid));
+                                Assert.AreEqual(enPrint, pds.GetRolePropertyPrint(role));
+                            Assert.AreEqual(enPropAccess, pds.GetRolePropertyAccess(role));
                             break;
                     }
                 }
@@ -2028,10 +2034,10 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role.Guid));
-                        Assert.AreEqual(enCnstAccess, ctg.GetRoleConstantAccess(role.Guid));
+                            Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role));
+                        Assert.AreEqual(enCnstAccess, ctg.GetRoleConstantAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role.Guid));
+                            Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role));
                         switch (enCnstAccess)
                         {
                             case EnumConstantAccess.CN_BY_PARENT:
@@ -2046,23 +2052,23 @@ namespace vSharpStudio.Unit
                                             break;
                                         default:
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role.Guid));
-                                            Assert.AreEqual(enGCnstAccess, ctg.GetRoleConstantAccess(role.Guid));
+                                                Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role));
+                                            Assert.AreEqual(enGCnstAccess, ctg.GetRoleConstantAccess(role));
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role.Guid));
+                                                Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role));
                                             switch (enGCnstAccess)
                                             {
                                                 case EnumConstantAccess.CN_BY_PARENT:
                                                     Assert.AreNotEqual(EnumConstantAccess.CN_BY_PARENT, enGCnstAccess, "Default value is not set");
                                                     break;
                                                 case EnumConstantAccess.CN_HIDE:
-                                                    Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role.Guid));
+                                                    Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role));
                                                     break;
                                                 case EnumConstantAccess.CN_VIEW:
-                                                    Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role.Guid));
+                                                    Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role));
                                                     break;
                                                 case EnumConstantAccess.CN_EDIT:
-                                                    Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role.Guid));
+                                                    Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role));
                                                     break;
                                                 default:
                                                     throw new NotImplementedException();
@@ -2072,13 +2078,13 @@ namespace vSharpStudio.Unit
                                 }
                                 break;
                             case EnumConstantAccess.CN_HIDE:
-                                Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role.Guid));
+                                Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role));
                                 break;
                             case EnumConstantAccess.CN_VIEW:
-                                Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role.Guid));
+                                Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role));
                                 break;
                             case EnumConstantAccess.CN_EDIT:
-                                Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role.Guid));
+                                Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role));
                                 break;
                             default:
                                 throw new NotImplementedException();
@@ -2092,7 +2098,8 @@ namespace vSharpStudio.Unit
             foreach (var tca in Enum.GetValues(typeof(EnumConstantAccess)))
             {
                 var enCnstAccess = (EnumConstantAccess)tca;
-                gctg.SetRoleAccess(role, enCnstAccess, enPrint);
+                role.DefaultConstantEditAccessSettings = enCnstAccess;
+                role.DefaultConstantPrintAccessSettings = enPrint;
                 switch (enCnstAccess)
                 {
                     case EnumConstantAccess.CN_BY_PARENT:
@@ -2100,13 +2107,13 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, gctg.GetRoleConstantPrint(role.Guid));
-                        Assert.AreEqual(enCnstAccess, gctg.GetRoleConstantAccess(role.Guid));
+                            Assert.AreEqual(enPrint, gctg.GetRoleConstantPrint(role));
+                        Assert.AreEqual(enCnstAccess, gctg.GetRoleConstantAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role.Guid));
-                        Assert.AreEqual(enCnstAccess, ctg.GetRoleConstantAccess(role.Guid));
+                            Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role));
+                        Assert.AreEqual(enCnstAccess, ctg.GetRoleConstantAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role.Guid));
+                            Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role));
                         switch (enCnstAccess)
                         {
                             //case EnumConstantAccess.CN_BY_PARENT:
@@ -2121,23 +2128,23 @@ namespace vSharpStudio.Unit
                             //                break;
                             //            default:
                             //                if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            //                    Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role.Guid));
-                            //                Assert.AreEqual(enGCnstAccess, ctg.GetRoleConstantAccess(role.Guid));
+                            //                    Assert.AreEqual(enPrint, ctg.GetRoleConstantPrint(role));
+                            //                Assert.AreEqual(enGCnstAccess, ctg.GetRoleConstantAccess(role));
                             //                if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            //                    Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role.Guid));
+                            //                    Assert.AreEqual(enPrint, ct.GetRoleConstantPrint(role));
                             //                switch (enGCnstAccess)
                             //                {
                             //                    case EnumConstantAccess.CN_BY_PARENT:
                             //                        Assert.AreNotEqual(EnumConstantAccess.CN_BY_PARENT, enGCnstAccess, "Default value is not set");
                             //                        break;
                             //                    case EnumConstantAccess.CN_HIDE:
-                            //                        Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role.Guid));
+                            //                        Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role));
                             //                        break;
                             //                    case EnumConstantAccess.CN_VIEW:
-                            //                        Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role.Guid));
+                            //                        Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role));
                             //                        break;
                             //                    case EnumConstantAccess.CN_EDIT:
-                            //                        Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role.Guid));
+                            //                        Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role));
                             //                        break;
                             //                    default:
                             //                        throw new NotImplementedException();
@@ -2147,13 +2154,13 @@ namespace vSharpStudio.Unit
                             //    }
                             //    break;
                             case EnumConstantAccess.CN_HIDE:
-                                Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role.Guid));
+                                Assert.AreEqual(EnumConstantAccess.CN_HIDE, ct.GetRoleConstantAccess(role));
                                 break;
                             case EnumConstantAccess.CN_VIEW:
-                                Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role.Guid));
+                                Assert.AreEqual(EnumConstantAccess.CN_VIEW, ct.GetRoleConstantAccess(role));
                                 break;
                             case EnumConstantAccess.CN_EDIT:
-                                Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role.Guid));
+                                Assert.AreEqual(EnumConstantAccess.CN_EDIT, ct.GetRoleConstantAccess(role));
                                 break;
                             default:
                                 throw new NotImplementedException();
@@ -2165,17 +2172,17 @@ namespace vSharpStudio.Unit
         private static void TestProperty(Role role, Property p, EnumPropertyAccess enPropAccess, EnumPrintAccess enPrint)
         {
             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
             switch (enPropAccess)
             {
                 case EnumPropertyAccess.P_HIDE:
-                    Assert.AreEqual(EnumPropertyAccess.P_HIDE, p.GetRolePropertyAccess(role.Guid));
+                    Assert.AreEqual(EnumPropertyAccess.P_HIDE, p.GetRolePropertyAccess(role));
                     break;
                 case EnumPropertyAccess.P_VIEW:
-                    Assert.AreEqual(EnumPropertyAccess.P_VIEW, p.GetRolePropertyAccess(role.Guid));
+                    Assert.AreEqual(EnumPropertyAccess.P_VIEW, p.GetRolePropertyAccess(role));
                     break;
                 case EnumPropertyAccess.P_EDIT:
-                    Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role.Guid));
+                    Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role));
                     break;
                 default:
                     throw new NotImplementedException();
@@ -2195,8 +2202,8 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, glp.GetRolePropertyPrint(role.Guid));
-                        Assert.AreEqual(enPropAccess, glp.GetRolePropertyAccess(role.Guid));
+                            Assert.AreEqual(enPrint, glp.GetRolePropertyPrint(role));
+                        Assert.AreEqual(enPropAccess, glp.GetRolePropertyAccess(role));
                         TestProperty(role, p, enPropAccess, enPrint);
                         break;
                 }
@@ -2216,8 +2223,8 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, glp.GetRolePropertyPrint(role.Guid));
-                        Assert.AreEqual(enPropAccess, glp.GetRolePropertyAccess(role.Guid));
+                            Assert.AreEqual(enPrint, glp.GetRolePropertyPrint(role));
+                        Assert.AreEqual(enPropAccess, glp.GetRolePropertyAccess(role));
                         TestProperty(role, p, enPropAccess, enPrint);
                         break;
                 }
@@ -2238,17 +2245,18 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role.Guid));
-                        Assert.AreEqual(enCatAccess, c.GetRoleCatalogAccess(role.Guid));
+                            Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role));
+                        Assert.AreEqual(enCatAccess, c.GetRoleCatalogAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                         switch (enCatAccess)
                         {
                             case EnumCatalogDetailAccess.C_BY_PARENT:
                                 foreach (var tca_gc in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
                                 {
                                     var enGCatAccess = (EnumCatalogDetailAccess)tca_gc;
-                                    gc.SetRoleAccess(role, enGCatAccess, enPrint);
+                                    role.DefaultCatalogEditAccessSettings = enGCatAccess;
+                                    role.DefaultCatalogPrintAccessSettings = enPrint;
                                     switch (enGCatAccess)
                                     {
                                         case EnumCatalogDetailAccess.C_BY_PARENT:
@@ -2256,10 +2264,10 @@ namespace vSharpStudio.Unit
                                             break;
                                         default:
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role.Guid));
-                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role.Guid));
+                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
+                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role));
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                                             TestProperty(role, p, enGCatAccess);
                                             break;
                                     }
@@ -2287,17 +2295,18 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role.Guid));
-                        Assert.AreEqual(enCatAccess, c.GetRoleCatalogAccess(role.Guid));
+                            Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role));
+                        Assert.AreEqual(enCatAccess, c.GetRoleCatalogAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                         switch (enCatAccess)
                         {
                             case EnumCatalogDetailAccess.C_BY_PARENT:
                                 foreach (var tca_gc in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
                                 {
                                     var enGCatAccess = (EnumCatalogDetailAccess)tca_gc;
-                                    gc.SetRoleAccess(role, enGCatAccess, enPrint);
+                                    role.DefaultCatalogEditAccessSettings = enGCatAccess;
+                                    role.DefaultCatalogPrintAccessSettings = enPrint;
                                     switch (enGCatAccess)
                                     {
                                         case EnumCatalogDetailAccess.C_BY_PARENT:
@@ -2305,10 +2314,10 @@ namespace vSharpStudio.Unit
                                             break;
                                         default:
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role.Guid));
-                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role.Guid));
+                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
+                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role));
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                                             TestProperty(role, p, enGCatAccess);
                                             break;
                                     }
@@ -2336,17 +2345,18 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, dt.GetRoleDetailPrint(role.Guid));
-                        Assert.AreEqual(enCatAccess, dt.GetRoleDetailAccess(role.Guid));
+                            Assert.AreEqual(enPrint, dt.GetRoleDetailPrint(role));
+                        Assert.AreEqual(enCatAccess, dt.GetRoleDetailAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                         switch (enCatAccess)
                         {
                             case EnumCatalogDetailAccess.C_BY_PARENT:
                                 foreach (var tca_gc in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
                                 {
                                     var enGCatAccess = (EnumCatalogDetailAccess)tca_gc;
-                                    gc.SetRoleAccess(role, enGCatAccess, enPrint);
+                                    role.DefaultCatalogEditAccessSettings = enGCatAccess;
+                                    role.DefaultCatalogPrintAccessSettings = enPrint;
                                     switch (enGCatAccess)
                                     {
                                         case EnumCatalogDetailAccess.C_BY_PARENT:
@@ -2354,10 +2364,10 @@ namespace vSharpStudio.Unit
                                             break;
                                         default:
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role.Guid));
-                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role.Guid));
+                                                Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
+                                            Assert.AreEqual(enGCatAccess, gc.GetRoleCatalogAccess(role));
                                             if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                                                Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                                             TestProperty(role, p, enGCatAccess);
                                             break;
                                     }
@@ -2371,7 +2381,6 @@ namespace vSharpStudio.Unit
                 }
             }
         }
-
         private static void TestProperty(Role role, Property p, EnumCatalogDetailAccess enGCatAccess)
         {
             switch (enGCatAccess)
@@ -2380,39 +2389,39 @@ namespace vSharpStudio.Unit
                     Assert.AreNotEqual(EnumCatalogDetailAccess.C_BY_PARENT, enGCatAccess, "Default value is not set");
                     break;
                 case EnumCatalogDetailAccess.C_HIDE:
-                    Assert.AreEqual(EnumPropertyAccess.P_HIDE, p.GetRolePropertyAccess(role.Guid));
+                    Assert.AreEqual(EnumPropertyAccess.P_HIDE, p.GetRolePropertyAccess(role));
                     break;
                 case EnumCatalogDetailAccess.C_VIEW:
-                    Assert.AreEqual(EnumPropertyAccess.P_VIEW, p.GetRolePropertyAccess(role.Guid));
+                    Assert.AreEqual(EnumPropertyAccess.P_VIEW, p.GetRolePropertyAccess(role));
                     break;
                 case EnumCatalogDetailAccess.C_EDIT:
                 case EnumCatalogDetailAccess.C_MARK_DEL:
-                    Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role.Guid));
+                    Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role));
                     break;
                 default:
                     throw new NotImplementedException();
             }
         }
-
         private static void TestGroupCatalog(Role role, GroupListCatalogs gc, Catalog c, Property p, EnumPrintAccess enPrint)
         {
             foreach (var tca in Enum.GetValues(typeof(EnumCatalogDetailAccess)))
             {
                 var enGrCatAccess = (EnumCatalogDetailAccess)tca;
-                gc.SetRoleAccess(role, enGrCatAccess, enPrint);
+                role.DefaultCatalogEditAccessSettings = enGrCatAccess;
+                role.DefaultCatalogPrintAccessSettings = enPrint;
                 switch (enGrCatAccess)
                 {
                     case EnumCatalogDetailAccess.C_BY_PARENT:
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role.Guid));
-                        Assert.AreEqual(enGrCatAccess, gc.GetRoleCatalogAccess(role.Guid));
+                            Assert.AreEqual(enPrint, gc.GetRoleCatalogPrint(role));
+                        Assert.AreEqual(enGrCatAccess, gc.GetRoleCatalogAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role.Guid));
-                        Assert.AreEqual(enGrCatAccess, c.GetRoleCatalogAccess(role.Guid));
+                            Assert.AreEqual(enPrint, c.GetRoleCatalogPrint(role));
+                        Assert.AreEqual(enGrCatAccess, c.GetRoleCatalogAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                         TestProperty(role, p, enGrCatAccess);
                         break;
                 }
@@ -2431,10 +2440,10 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, d.GetRoleDocumentPrint(role.Guid));
-                        Assert.AreEqual(enDocAccess, d.GetRoleDocumentAccess(role.Guid));
+                            Assert.AreEqual(enPrint, d.GetRoleDocumentPrint(role));
+                        Assert.AreEqual(enDocAccess, d.GetRoleDocumentAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                         TestProperty(role, p, enDocAccess);
                         break;
                 }
@@ -2453,62 +2462,61 @@ namespace vSharpStudio.Unit
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, gld.GetRoleDocumentPrint(role.Guid));
-                        Assert.AreEqual(enGrDocAccess, gld.GetRoleDocumentAccess(role.Guid));
+                            Assert.AreEqual(enPrint, gld.GetRoleDocumentPrint(role));
+                        Assert.AreEqual(enGrDocAccess, gld.GetRoleDocumentAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, d.GetRoleDocumentPrint(role.Guid));
-                        Assert.AreEqual(enGrDocAccess, d.GetRoleDocumentAccess(role.Guid));
+                            Assert.AreEqual(enPrint, d.GetRoleDocumentPrint(role));
+                        Assert.AreEqual(enGrDocAccess, d.GetRoleDocumentAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                         TestProperty(role, p, enGrDocAccess);
                         break;
                 }
             }
         }
-
         private static void TestProperty(Role role, Property p, EnumDocumentAccess enGrDocAccess)
         {
             switch (enGrDocAccess)
             {
                 case EnumDocumentAccess.D_HIDE:
-                    Assert.AreEqual(EnumPropertyAccess.P_HIDE, p.GetRolePropertyAccess(role.Guid));
+                    Assert.AreEqual(EnumPropertyAccess.P_HIDE, p.GetRolePropertyAccess(role));
                     break;
                 case EnumDocumentAccess.D_VIEW:
-                    Assert.AreEqual(EnumPropertyAccess.P_VIEW, p.GetRolePropertyAccess(role.Guid));
+                    Assert.AreEqual(EnumPropertyAccess.P_VIEW, p.GetRolePropertyAccess(role));
                     break;
                 case EnumDocumentAccess.D_EDIT:
                 case EnumDocumentAccess.D_POST:
                 case EnumDocumentAccess.D_UNPOST:
                 case EnumDocumentAccess.D_MARK_DEL:
-                    Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role.Guid));
+                    Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role));
                     break;
                 default:
                     throw new NotImplementedException();
             }
         }
-
         private static void TestGroupDocuments(Role role, GroupDocuments gd, GroupListDocuments gld, Document d, Property p, EnumPrintAccess enPrint)
         {
             foreach (var tca in Enum.GetValues(typeof(EnumDocumentAccess)))
             {
                 var enGrDocAccess = (EnumDocumentAccess)tca;
-                gd.SetRoleAccess(role, enGrDocAccess, enPrint);
+                role.DefaultDocumentEditAccessSettings = enGrDocAccess;
+                role.DefaultDocumentPrintAccessSettings = enPrint;
                 switch (enGrDocAccess)
                 {
                     case EnumDocumentAccess.D_BY_PARENT:
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, gd.GetRoleDocumentPrint(role.Guid));
-                        Assert.AreEqual(enGrDocAccess, gd.GetRoleDocumentAccess(role.Guid));
+                            Assert.AreEqual(enPrint, gd.GetRoleDocumentPrint(role));
+                        Assert.AreEqual(enGrDocAccess, gd.GetRoleDocumentAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, gld.GetRoleDocumentPrint(role.Guid));
-                        Assert.AreEqual(enGrDocAccess, gld.GetRoleDocumentAccess(role.Guid));
+                            Assert.AreEqual(enPrint, gld.GetRoleDocumentPrint(role));
+                        Assert.AreEqual(enGrDocAccess, gld.GetRoleDocumentAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, d.GetRoleDocumentPrint(role.Guid));
-                        Assert.AreEqual(enGrDocAccess, d.GetRoleDocumentAccess(role.Guid));
+                            Assert.AreEqual(enPrint, d.GetRoleDocumentPrint(role));
+                        Assert.AreEqual(enGrDocAccess, d.GetRoleDocumentAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                         TestProperty(role, p, enGrDocAccess);
                         break;
                 }
@@ -2519,17 +2527,18 @@ namespace vSharpStudio.Unit
             foreach (var tca in Enum.GetValues(typeof(EnumPropertyAccess)))
             {
                 var enPropAccess = (EnumDocumentAccess)tca;
-                gd.SetRoleAccess(role, enPropAccess, enPrint);
+                role.DefaultDocumentEditAccessSettings = enPropAccess;
+                role.DefaultDocumentPrintAccessSettings = enPrint;
                 switch (enPropAccess)
                 {
                     case EnumDocumentAccess.D_BY_PARENT:
                         break;
                     default:
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, gd.GetRoleDocumentPrint(role.Guid));
-                        Assert.AreEqual(enPropAccess, gd.GetRoleDocumentAccess(role.Guid));
+                            Assert.AreEqual(enPrint, gd.GetRoleDocumentPrint(role));
+                        Assert.AreEqual(enPropAccess, gd.GetRoleDocumentAccess(role));
                         if (enPrint != EnumPrintAccess.PR_BY_PARENT)
-                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role.Guid));
+                            Assert.AreEqual(enPrint, p.GetRolePropertyPrint(role));
                         TestProperty(role, p, enPropAccess);
                         break;
                 }

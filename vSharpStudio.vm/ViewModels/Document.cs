@@ -514,8 +514,12 @@ namespace vSharpStudio.vm.ViewModels
         #region Roles
         public object GetRoleAccess(IRole role)
         {
-            Debug.Assert(role != null);
-            Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
+            if (!this.dicDocumentAccess.ContainsKey(role.Guid))
+            {
+                var rca = new RoleDocumentAccess() { Guid = role.Guid };
+                this.ListRoleDocumentAccessSettings.Add(rca);
+                this.dicDocumentAccess[role.Guid] = rca;
+            }
             return dicDocumentAccess[role.Guid];
         }
         public void SetRoleAccess(IRole role, EnumDocumentAccess? edit, EnumPrintAccess? print)
@@ -561,13 +565,13 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.dicDocumentAccess.Remove(role.Guid);
         }
-        public EnumPropertyAccess GetRolePropertyAccess(string roleGuid)
+        public EnumPropertyAccess GetRolePropertyAccess(IRole role)
         {
             var ra = EnumDocumentAccess.D_BY_PARENT;
-            if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r))
+            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r))
                 ra = r.EditAccess;
             if (ra == EnumDocumentAccess.D_BY_PARENT)
-                ra = this.ParentGroupListDocuments.GetRoleDocumentAccess(roleGuid);
+                ra = this.ParentGroupListDocuments.GetRoleDocumentAccess(role);
             Debug.Assert(ra != EnumDocumentAccess.D_BY_PARENT);
             switch (ra)
             {
@@ -584,34 +588,34 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotImplementedException();
             }
         }
-        public EnumPrintAccess GetRolePropertyPrint(string roleGuid)
+        public EnumPrintAccess GetRolePropertyPrint(IRole role)
         {
             var ra = EnumPrintAccess.PR_BY_PARENT;
-            if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r))
+            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r))
                 ra = r.PrintAccess;
             if (ra == EnumPrintAccess.PR_BY_PARENT)
-                ra = this.ParentGroupListDocuments.GetRoleDocumentPrint(roleGuid);
+                ra = this.ParentGroupListDocuments.GetRoleDocumentPrint(role);
             Debug.Assert(ra != EnumPrintAccess.PR_BY_PARENT);
             return ra;
         }
-        public EnumDocumentAccess GetRoleDocumentAccess(string roleGuid)
+        public EnumDocumentAccess GetRoleDocumentAccess(IRole role)
         {
-            if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumDocumentAccess.D_BY_PARENT)
+            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumDocumentAccess.D_BY_PARENT)
                 return r.EditAccess;
-            return this.ParentGroupListDocuments.GetRoleDocumentAccess(roleGuid);
+            return this.ParentGroupListDocuments.GetRoleDocumentAccess(role);
         }
-        public EnumPrintAccess GetRoleDocumentPrint(string roleGuid)
+        public EnumPrintAccess GetRoleDocumentPrint(IRole role)
         {
-            if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
+            if (this.dicDocumentAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
                 return r.PrintAccess;
-            return this.ParentGroupListDocuments.GetRoleDocumentPrint(roleGuid);
+            return this.ParentGroupListDocuments.GetRoleDocumentPrint(role);
         }
         public IReadOnlyList<string> GetRolesByAccess(EnumDocumentAccess access)
         {
             var roles = new List<string>();
             foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
             {
-                if (GetRoleDocumentAccess(role.Guid) == access)
+                if (GetRoleDocumentAccess(role) == access)
                     roles.Add(role.Name);
             }
             return roles;
@@ -621,7 +625,7 @@ namespace vSharpStudio.vm.ViewModels
             var roles = new List<string>();
             foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
             {
-                if (GetRoleDocumentPrint(role.Guid) == access)
+                if (GetRoleDocumentPrint(role) == access)
                     roles.Add(role.Name);
             }
             return roles;

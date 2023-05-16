@@ -714,9 +714,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IGroupDocuments GroupDocuments { get; } // ModelInterfaces.tt Line: 59
     	IGroupListJournals GroupJournals { get; } // ModelInterfaces.tt Line: 59
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
     public partial interface IDataType // ModelInterfaces.tt Line: 33
@@ -759,6 +756,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	string Description { get; } // ModelInterfaces.tt Line: 55
     	bool IsNew { get; } // ModelInterfaces.tt Line: 55
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	EnumPrintAccess DefaultConstantPrintAccessSettings { get; } // ModelInterfaces.tt Line: 55
+    	EnumConstantAccess DefaultConstantEditAccessSettings { get; } // ModelInterfaces.tt Line: 55
+    	EnumPrintAccess DefaultCatalogPrintAccessSettings { get; } // ModelInterfaces.tt Line: 55
+    	EnumCatalogDetailAccess DefaultCatalogEditAccessSettings { get; } // ModelInterfaces.tt Line: 55
+    	EnumPrintAccess DefaultDocumentPrintAccessSettings { get; } // ModelInterfaces.tt Line: 55
+    	EnumDocumentAccess DefaultDocumentEditAccessSettings { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
@@ -1027,7 +1030,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	string Description { get; } // ModelInterfaces.tt Line: 55
     	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IGroupListConstants> ListConstantGroups { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
@@ -1214,7 +1216,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
@@ -1231,7 +1232,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     

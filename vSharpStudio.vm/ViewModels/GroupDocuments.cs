@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleAccess
+    public partial class GroupDocuments : ITreeModel, ICanGoRight, ICanGoLeft, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -183,60 +183,9 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
-        public object GetRoleAccess(IRole role)
+        public EnumPropertyAccess GetRolePropertyAccess(IRole role)
         {
-            Debug.Assert(role != null);
-            Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
-            return dicDocumentAccess[role.Guid];
-        }
-        public void SetRoleAccess(IRole role, EnumDocumentAccess? edit, EnumPrintAccess? print)
-        {
-            Debug.Assert(role != null);
-            Debug.Assert(dicDocumentAccess.ContainsKey(role.Guid));
-            if (edit.HasValue)
-                dicDocumentAccess[role.Guid].EditAccess = edit.Value;
-            if (print.HasValue)
-                dicDocumentAccess[role.Guid].PrintAccess = print.Value;
-        }
-        internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new Dictionary<string, RoleDocumentAccess>();
-        public void InitRoles()
-        {
-            foreach (var tt in this.ListRoleDocumentAccessSettings)
-            {
-                this.dicDocumentAccess[tt.Guid] = tt;
-            }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (!this.dicDocumentAccess.ContainsKey(t.Guid))
-                {
-                    var rca = new RoleDocumentAccess() { Guid = t.Guid };
-                    this.dicDocumentAccess[t.Guid] = rca;
-                }
-            }
-        }
-        public void InitRoleAdd(IRole role)
-        {
-            var rca = new RoleDocumentAccess() { Guid = role.Guid };
-            this.ListRoleDocumentAccessSettings.Add(rca);
-            this.dicDocumentAccess[rca.Guid] = rca;
-        }
-        public void InitRoleRemove(IRole role)
-        {
-            for (int i = 0; i < this.ListRoleDocumentAccessSettings.Count; i++)
-            {
-                if (this.ListRoleDocumentAccessSettings[i].Guid == role.Guid)
-                {
-                    this.ListRoleDocumentAccessSettings.RemoveAt(i);
-                    break;
-                }
-            }
-            this.dicDocumentAccess.Remove(role.Guid);
-        }
-        public EnumPropertyAccess GetRolePropertyAccess(string roleGuid)
-        {
-            var pa = GetRoleDocumentAccess(roleGuid);
-            if (pa == EnumDocumentAccess.D_BY_PARENT)
-                return EnumPropertyAccess.P_EDIT;
+            var pa = role.DefaultDocumentEditAccessSettings;
             switch (pa)
             {
                 case EnumDocumentAccess.D_HIDE:
@@ -252,24 +201,20 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotImplementedException();
             }
         }
-        public EnumPrintAccess GetRolePropertyPrint(string roleGuid)
+        public EnumPrintAccess GetRolePropertyPrint(IRole role)
         {
-            var pa = GetRoleDocumentPrint(roleGuid);
+            var pa = role.DefaultDocumentPrintAccessSettings;
             if (pa == EnumPrintAccess.PR_BY_PARENT)
                 return EnumPrintAccess.PR_PRINT;
             return pa;
         }
-        public EnumDocumentAccess GetRoleDocumentAccess(string roleGuid)
+        public EnumDocumentAccess GetRoleDocumentAccess(IRole role)
         {
-            if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumDocumentAccess.D_BY_PARENT)
-                return r.EditAccess;
-            return EnumDocumentAccess.D_MARK_DEL;
+            return role.DefaultDocumentEditAccessSettings;
         }
-        public EnumPrintAccess GetRoleDocumentPrint(string roleGuid)
+        public EnumPrintAccess GetRoleDocumentPrint(IRole role)
         {
-            if (this.dicDocumentAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                return r.PrintAccess;
-            return EnumPrintAccess.PR_PRINT;
+            return role.DefaultDocumentPrintAccessSettings;
         }
         #endregion Roles
     }

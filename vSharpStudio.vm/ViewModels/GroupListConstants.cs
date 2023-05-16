@@ -248,8 +248,12 @@ namespace vSharpStudio.vm.ViewModels
         #region Roles
         public object GetRoleAccess(IRole role)
         {
-            Debug.Assert(role != null);
-            Debug.Assert(dicConstantAccess.ContainsKey(role.Guid));
+            if (!this.dicConstantAccess.ContainsKey(role.Guid))
+            {
+                var rca = new RoleConstantAccess() { Guid = role.Guid };
+                this.ListRoleConstantAccessSettings.Add(rca);
+                this.dicConstantAccess[role.Guid] = rca;
+            }
             return dicConstantAccess[role.Guid];
         }
         public void SetRoleAccess(IRole role, EnumConstantAccess? edit, EnumPrintAccess? print)
@@ -295,24 +299,24 @@ namespace vSharpStudio.vm.ViewModels
             }
             this.dicConstantAccess.Remove(role.Guid);
         }
-        public EnumConstantAccess GetRoleConstantAccess(string roleGuid)
+        public EnumConstantAccess GetRoleConstantAccess(IRole role)
         {
-            if (this.dicConstantAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumConstantAccess.CN_BY_PARENT)
+            if (this.dicConstantAccess.TryGetValue(role.Guid, out var r) && r.EditAccess != EnumConstantAccess.CN_BY_PARENT)
                 return r.EditAccess;
-            return this.ParentGroupConstantGroups.GetRoleConstantAccess(roleGuid);
+            return this.ParentGroupConstantGroups.GetRoleConstantAccess(role);
         }
-        public EnumPrintAccess GetRoleConstantPrint(string roleGuid)
+        public EnumPrintAccess GetRoleConstantPrint(IRole role)
         {
-            if (this.dicConstantAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
+            if (this.dicConstantAccess.TryGetValue(role.Guid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
                 return r.PrintAccess;
-            return this.ParentGroupConstantGroups.GetRoleConstantPrint(roleGuid);
+            return this.ParentGroupConstantGroups.GetRoleConstantPrint(role);
         }
         public IReadOnlyList<string> GetRolesByAccess(EnumConstantAccess access)
         {
             var roles = new List<string>();
             foreach (var role in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
             {
-                if (GetRoleConstantAccess(role.Guid) == access)
+                if (GetRoleConstantAccess(role) == access)
                     roles.Add(role.Name);
             }
             return roles;

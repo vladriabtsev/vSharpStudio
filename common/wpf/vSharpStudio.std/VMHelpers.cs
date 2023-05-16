@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
+using System.Windows.Markup;
 
 namespace ViewModelBase
 {
@@ -130,17 +131,59 @@ namespace ViewModelBase
 			}
 			return null;
 		}
+    }
+    public class EnumBindingSourceExtension : MarkupExtension
+    {
+        private Type _enumType;
+        public Type EnumType
+        {
+            get { return this._enumType; }
+            set
+            {
+                if (value != this._enumType)
+                {
+                    if (null != value)
+                    {
+                        Type enumType = Nullable.GetUnderlyingType(value) ?? value;
 
-	}
+                        if (!enumType.IsEnum)
+                            throw new ArgumentException("Type must be for an Enum.");
+                    }
 
-	/// <summary>
-	/// Class to provide assistance for separation of concern
-	/// over contents of combo box where the
-	/// displayed value does not match the ToString 
-	/// support.
-	/// </summary>
-	/// <typeparam name="T">The type of the value the combo box supports</typeparam>
-	[DebuggerDisplay("ComboBoxLoader {Display} {Value.ToString()}")]
+                    this._enumType = value;
+                }
+            }
+        }
+        public EnumBindingSourceExtension() { }
+        public EnumBindingSourceExtension(Type enumType)
+        {
+            this.EnumType = enumType;
+        }
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            if (null == this._enumType)
+                throw new InvalidOperationException("The EnumType must be specified.");
+
+            Type actualEnumType = Nullable.GetUnderlyingType(this._enumType) ?? this._enumType;
+            Array enumValues = Enum.GetValues(actualEnumType);
+
+            if (actualEnumType == this._enumType)
+                return enumValues;
+
+            Array tempArray = Array.CreateInstance(actualEnumType, enumValues.Length + 1);
+            enumValues.CopyTo(tempArray, 1);
+            return tempArray;
+        }
+    }
+
+    /// <summary>
+    /// Class to provide assistance for separation of concern
+    /// over contents of combo box where the
+    /// displayed value does not match the ToString 
+    /// support.
+    /// </summary>
+    /// <typeparam name="T">The type of the value the combo box supports</typeparam>
+    [DebuggerDisplay("ComboBoxLoader {Display} {Value.ToString()}")]
 	public class ComboBoxLoader<T>
 	{
 		/// <summary>

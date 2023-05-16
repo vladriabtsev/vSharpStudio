@@ -30,10 +30,10 @@ namespace vSharpStudio.common
         bool GetUseNamePropertySeparateFolder();
         bool GetUseDescriptionProperty();
         bool GetUseDescriptionPropertSeparateFoldery();
-        EnumPropertyAccess GetRolePropertyAccess(string roleGuid);
-        EnumPrintAccess GetRolePropertyPrint(string roleGuid);
-        EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid);
-        EnumPrintAccess GetRoleCatalogPrint(string roleGuid);
+        EnumPropertyAccess GetRolePropertyAccess(IRole role);
+        EnumPrintAccess GetRolePropertyPrint(IRole role);
+        EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role);
+        EnumPrintAccess GetRoleCatalogPrint(IRole role);
         IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         string FullName { get; } // name with config name

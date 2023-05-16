@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListCatalogs.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleAccess
+    public partial class GroupListCatalogs : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup, IRoleGlobalSetting //, IRoleAccess
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -169,69 +169,13 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Roles
-        public object GetRoleAccess(IRole role)
+        public EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role)
         {
-            Debug.Assert(role != null);
-            Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
-            return dicCatalogAccess[role.Guid];
+            return role.DefaultCatalogEditAccessSettings;
         }
-        public void SetRoleAccess(IRole role, EnumCatalogDetailAccess? edit, EnumPrintAccess? print)
+        public EnumPrintAccess GetRoleCatalogPrint(IRole role)
         {
-            Debug.Assert(role != null);
-            Debug.Assert(dicCatalogAccess.ContainsKey(role.Guid));
-            if (edit.HasValue)
-                dicCatalogAccess[role.Guid].EditAccess = edit.Value;
-            if (print.HasValue)
-                dicCatalogAccess[role.Guid].PrintAccess = print.Value;
-        }
-        internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
-        public void InitRoles()
-        {
-            foreach (var tt in this.ListRoleCatalogAccessSettings)
-            {
-                this.dicCatalogAccess[tt.Guid] = tt;
-            }
-            foreach (var t in this.Cfg.Model.GroupCommon.GroupRoles.ListRoles)
-            {
-                if (!this.dicCatalogAccess.ContainsKey(t.Guid))
-                {
-                    var rca = new RoleCatalogAccess() { Guid = t.Guid };
-                    this.dicCatalogAccess[t.Guid] = rca;
-                }
-            }
-        }
-        public void InitRoleAdd(IRole role)
-        {
-            var rca = new RoleCatalogAccess() { Guid = role.Guid };
-            this.ListRoleCatalogAccessSettings.Add(rca);
-            this.dicCatalogAccess[rca.Guid] = rca;
-        }
-        public void InitRoleRemove(IRole role)
-        {
-            for (int i = 0; i < this.ListRoleCatalogAccessSettings.Count; i++)
-            {
-                if (this.ListRoleCatalogAccessSettings[i].Guid == role.Guid)
-                {
-                    this.ListRoleCatalogAccessSettings.RemoveAt(i);
-                    break;
-                }
-            }
-            this.dicCatalogAccess.Remove(role.Guid);
-            this.dicCatalogAccess.Remove(role.Guid);
-        }
-        public EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid)
-        {
-            if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
-                return r.EditAccess;
-            return EnumCatalogDetailAccess.C_MARK_DEL;
-            //return this.ParentModel.GetRoleCatalogAccess(roleGuid);
-        }
-        public EnumPrintAccess GetRoleCatalogPrint(string roleGuid)
-        {
-            if (this.dicCatalogAccess.TryGetValue(roleGuid, out var r) && r.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                return r.PrintAccess;
-            return EnumPrintAccess.PR_PRINT;
-            //return this.ParentModel.GetRoleCatalogPrint(roleGuid);
+            return role.DefaultCatalogPrintAccessSettings;
         }
         #endregion Roles
     }

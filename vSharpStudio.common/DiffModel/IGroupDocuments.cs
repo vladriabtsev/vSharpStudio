@@ -11,7 +11,7 @@ namespace vSharpStudio.common
         bool IsGridSortableGet();
         bool IsGridFilterableGet();
         bool IsGridSortableCustomGet();
-        EnumDocumentAccess GetRoleDocumentAccess(string roleGuid);
-        EnumPrintAccess GetRoleDocumentPrint(string roleGuid);
+        EnumDocumentAccess GetRoleDocumentAccess(IRole role);
+        EnumPrintAccess GetRoleDocumentPrint(IRole role);
     }
 }
