@@ -10,7 +10,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:vSharpStudio.Views" 
              xmlns:viewmodels="clr-namespace:vSharpStudio.ViewModels" 
-             d:DataContext="{d:DesignInstance Type=viewmodels:EditorRoleVm}"
+             d:DataContext="{d:DesignInstance Type=viewmodels:EditorRoleColumnVm}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -27,7 +27,18 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <ContentControl Grid.Column="0" Template="{Binding EditAccessIcon}" />
+            <ContentControl Grid.Column="0">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Template" Value="{StaticResource iconRedirectedRequest}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsCustomEditAccess}" Value="True">
+                                <Setter Property="Template" Value="{StaticResource iconCustomActionEditor}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
             <xctk:DropDownButton Name="ddbEdit" Grid.Column="1" Width="17">
                 <xctk:DropDownButton.DropDownContent>
                     <ComboBox MinWidth="150" ItemsSource="{Binding ListEditAccess}" SelectedValue="{Binding SelectedEditAccess}" SelectedValuePath="Value">
@@ -40,15 +51,6 @@
                 </xctk:DropDownButton.DropDownContent>
             </xctk:DropDownButton>
             <TextBlock Grid.Column="2" Text="{Binding EditAccessStr}" />
-            <!--<ContentControl Grid.Column="1" Template="{Binding BtnEditAccess.IconControlTemplate}" />-->
-            <!--<Label ContentTemplate="{Binding BtnEditAccess.IconControlTemplate}" />-->
-            <!--<Label.Content>
-                    <ContentControl Template="{Binding BtnEditAccess.IconControlTemplate}" />
-                </Label.Content>
-            </Label>-->
-            <!--</Viewbox>-->
-            <!--<ComboBox Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150"
-                  ItemsSource="{Binding Source={std:EnumBindingSource {x:Type common:EnumPropertyAccess}}}"/>-->
         </Grid>
         <Grid Grid.Column="1" MouseEnter="Grid_MouseEnterPrint" MouseLeave="Grid_MouseLeavePrint">
             <Grid.ColumnDefinitions>
@@ -56,7 +58,18 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <ContentControl Grid.Column="0" Template="{Binding PrintAccessIcon}" />
+            <ContentControl Grid.Column="0">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Template" Value="{StaticResource iconRedirectedRequest}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsCustomPrintAccess}" Value="True">
+                                <Setter Property="Template" Value="{StaticResource iconCustomActionEditor}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
             <xctk:DropDownButton Name="ddbPrint" Grid.Column="1" Width="17">
                 <xctk:DropDownButton.DropDownContent>
                     <ComboBox MinWidth="150" ItemsSource="{Binding ListPrintAccess}" SelectedValue="{Binding SelectedPrintAccess}" SelectedValuePath="Value">
@@ -69,22 +82,6 @@
                 </xctk:DropDownButton.DropDownContent>
             </xctk:DropDownButton>
             <TextBlock Grid.Column="2" Text="{Binding PrintAccessStr}" />
-            <!--<ContentControl Grid.Column="1" Template="{Binding BtnEditAccess.IconControlTemplate}" />-->
-            <!--<Label ContentTemplate="{Binding BtnEditAccess.IconControlTemplate}" />-->
-            <!--<Label.Content>
-                    <ContentControl Template="{Binding BtnEditAccess.IconControlTemplate}" />
-                </Label.Content>
-            </Label>-->
-            <!--</Viewbox>-->
-            <!--<ComboBox Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150"
-                  ItemsSource="{Binding Source={std:EnumBindingSource {x:Type common:EnumPropertyAccess}}}"/>-->
         </Grid>
-
-        <!--<vc:vButton Grid.Column="0" IconControlTemplate="{Binding IconControlTemplate}" DataContext="{Binding BtnEditAccess}" 
-                    ToolTip="{Binding ToolTipText}" Height="16" Text="{Binding Text}"/>
-        <vc:vButton Grid.Column="1" IconControlTemplate="{Binding IconControlTemplate}" DataContext="{Binding BtnPrintAccess}" 
-                    ToolTip="{Binding ToolTipText}" Height="16" Text="{Binding Text}"/>
-        <TextBlock Grid.Column="1" Text="{Binding EditAccessStr}" />
-        <TextBlock Grid.Column="3" Text="{Binding PrintAccessStr}" />-->
     </Grid>
 </UserControl>

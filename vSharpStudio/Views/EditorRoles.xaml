@@ -39,7 +39,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <local:EditorRoleCell DataContext="{Binding ListRoleAccess[0]}" />
+                                        <local:EditorRoleCell DataContext="{Binding ListRoleColumns[0]}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

@@ -72,7 +72,7 @@ namespace vSharpStudio.Views
 
                 //gridView.Columns.Add(gvc);
             }
-            _tree.Model = new EditorRolesVm(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
+            _tree.Model = new EditorRoleTreeVm(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
             //_tree.Model = new ModelNodeRoles(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
         }
     }

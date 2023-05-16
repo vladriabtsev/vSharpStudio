@@ -21,15 +21,19 @@ using System.DirectoryServices;
 namespace vSharpStudio.ViewModels
 {
     // https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/observableobject
-    public class EditorRoleBaseVm : ObservableObject
+    public class EditorRoleColumnVm : ObservableObject
     {
         ITreeConfigNode node;
         Role role;
-        internal EditorRoleBaseVm(ITreeConfigNode node, Role role)
+        Action<Role> updateChildren;
+        public string RoleGuid { get; private set; }
+        internal EditorRoleColumnVm(ITreeConfigNode node, Role role, Action<Role> updateChildren)
         {
             this.node = node;
             this.role = role;
-            this.Update(node, role);
+            this.RoleGuid = role.Guid;
+            this.updateChildren = updateChildren;
+            this.Update();
         }
         private string GetEnumValueDesc<TEnum>(TEnum val, int? v, bool isObjectUnderRole = false)
         {
@@ -42,54 +46,32 @@ namespace vSharpStudio.ViewModels
             var s = attribute.Description;
             return s == null ? string.Empty : s;
         }
-        public void Update(ITreeConfigNode node, Role role)
+        public void Update()
         {
             if (node is IRoleAccess ra)
             {
                 this.ListPrintAccess = VMHelpers.GetEnumComboBox<EnumPrintAccess>();
-                string? s = null;
                 switch (node)
                 {
                     case Property p:
                         var pa = (RolePropertyAccess)ra.GetRoleAccess(role);
-                        var pa2 = p.GetRolePropertyAccess(role);
-                        this.EditAccessStr = this.GetEnumValueDesc(pa2, null, true);
+                        this.EditAccessStr = this.GetEnumValueDesc(p.GetRolePropertyAccess(role), null, true);
                         this.PrintAccessStr = this.GetEnumValueDesc(p.GetRolePropertyPrint(role), null, true);
                         this.ListEditAccess = VMHelpers.GetEnumComboBox<EnumPropertyAccess>();
                         this._SelectedEditAccess = pa.EditAccess;
                         this._SelectedPrintAccess = pa.PrintAccess;
-                        if (pa.EditAccess != EnumPropertyAccess.P_BY_PARENT)
-                            this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.EditAccessIcon = new ControlTemplate();
-                        //this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        if (pa.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                            this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.PrintAccessIcon = new ControlTemplate();
-                        //this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        //this.EditAccessIcon = Application.Current.FindResource("iconCustomActionEditor");
-                        //"iconDownload" iconRedirectedRequest 
+                        this.IsCustomEditAccess = pa.EditAccess != EnumPropertyAccess.P_BY_PARENT;
+                        this.IsCustomPrintAccess = pa.PrintAccess != EnumPrintAccess.PR_BY_PARENT;
                         break;
                     case GroupListProperties gp:
                         pa = (RolePropertyAccess)ra.GetRoleAccess(role);
                         this.EditAccessStr = this.GetEnumValueDesc(gp.GetRolePropertyAccess(role), null, true);
                         this.PrintAccessStr = this.GetEnumValueDesc(gp.GetRolePropertyPrint(role), null, true);
-                        //this.EditAccessStr = this.GetEnumValueDesc(pa.EditAccess, (int)pa.EditAccess);
-                        //this.PrintAccessStr = this.GetEnumValueDesc(pa.PrintAccess, (int)pa.PrintAccess);
                         this.ListEditAccess = VMHelpers.GetEnumComboBox<EnumPropertyAccess>();
                         this._SelectedEditAccess = pa.EditAccess;
                         this._SelectedPrintAccess = pa.PrintAccess;
-                        if (pa.EditAccess != EnumPropertyAccess.P_BY_PARENT)
-                            this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.EditAccessIcon = new ControlTemplate();
-                        //this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        if (pa.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                            this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.PrintAccessIcon = new ControlTemplate();
-                        //this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
+                        this.IsCustomEditAccess = pa.EditAccess != EnumPropertyAccess.P_BY_PARENT;
+                        this.IsCustomPrintAccess = pa.PrintAccess != EnumPrintAccess.PR_BY_PARENT;
                         break;
                     case Constant cnst:
                         var cnsta = (RoleConstantAccess)ra.GetRoleAccess(role);
@@ -98,36 +80,18 @@ namespace vSharpStudio.ViewModels
                         this.ListEditAccess = VMHelpers.GetEnumComboBox<EnumConstantAccess>();
                         this._SelectedEditAccess = cnsta.EditAccess;
                         this._SelectedPrintAccess = cnsta.PrintAccess;
-                        if (cnsta.EditAccess != EnumConstantAccess.CN_BY_PARENT)
-                            this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.EditAccessIcon = new ControlTemplate();
-                        //this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        if (cnsta.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                            this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.PrintAccessIcon = new ControlTemplate();
-                        //this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
+                        this.IsCustomEditAccess = cnsta.EditAccess != EnumConstantAccess.CN_BY_PARENT;
+                        this.IsCustomPrintAccess = cnsta.PrintAccess != EnumPrintAccess.PR_BY_PARENT;
                         break;
                     case GroupListConstants gcnst:
                         cnsta = (RoleConstantAccess)ra.GetRoleAccess(role);
                         this.EditAccessStr = this.GetEnumValueDesc(gcnst.GetRoleConstantAccess(role), null, true);
                         this.PrintAccessStr = this.GetEnumValueDesc(gcnst.GetRoleConstantPrint(role), null, true);
-                        //this.EditAccessStr = this.GetEnumValueDesc(cnsta.EditAccess, (int)cnsta.EditAccess);
-                        //this.PrintAccessStr = this.GetEnumValueDesc(cnsta.PrintAccess, (int)cnsta.PrintAccess);
                         this.ListEditAccess = VMHelpers.GetEnumComboBox<EnumConstantAccess>();
                         this._SelectedEditAccess = cnsta.EditAccess;
                         this._SelectedPrintAccess = cnsta.PrintAccess;
-                        if (cnsta.EditAccess != EnumConstantAccess.CN_BY_PARENT)
-                            this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.EditAccessIcon = new ControlTemplate();
-                        //this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        if (cnsta.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                            this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.PrintAccessIcon = new ControlTemplate();
-                        //this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
+                        this.IsCustomEditAccess = cnsta.EditAccess != EnumConstantAccess.CN_BY_PARENT;
+                        this.IsCustomPrintAccess = cnsta.PrintAccess != EnumPrintAccess.PR_BY_PARENT;
                         break;
                     case Catalog c:
                         var ca = (RoleCatalogAccess)ra.GetRoleAccess(role);
@@ -136,40 +100,18 @@ namespace vSharpStudio.ViewModels
                         this.ListEditAccess = VMHelpers.GetEnumComboBox<EnumCatalogDetailAccess>();
                         this._SelectedEditAccess = ca.EditAccess;
                         this._SelectedPrintAccess = ca.PrintAccess;
-                        if (ca.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
-                            this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.EditAccessIcon = new ControlTemplate();
-                        //this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        if (ca.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                            this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.PrintAccessIcon = new ControlTemplate();
-                        //this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
+                        this.IsCustomEditAccess = ca.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT;
+                        this.IsCustomPrintAccess = ca.PrintAccess != EnumPrintAccess.PR_BY_PARENT;
                         break;
                     case CatalogFolder cf:
                         ca = (RoleCatalogAccess)ra.GetRoleAccess(role);
                         this.EditAccessStr = this.GetEnumValueDesc(cf.GetRoleCatalogAccess(role), null, true);
                         this.PrintAccessStr = this.GetEnumValueDesc(cf.GetRoleCatalogPrint(role), null, true);
-                        //this.EditAccessStr = this.GetEnumValueDesc(cf.GetRoleCatalogAccess(role), (int)ca.EditAccess, true);
-                        //this.PrintAccessStr = this.GetEnumValueDesc(cf.GetRoleCatalogPrint(role), (int)ca.PrintAccess, true);
                         this.ListEditAccess = VMHelpers.GetEnumComboBox<EnumCatalogDetailAccess>();
                         this._SelectedEditAccess = ca.EditAccess;
                         this._SelectedPrintAccess = ca.PrintAccess;
-                        //if (ca.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
-                        //    this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        //if (ca.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                        //    this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        if (ca.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
-                            this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.EditAccessIcon = new ControlTemplate();
-                        //this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        if (ca.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                            this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.PrintAccessIcon = new ControlTemplate();
-                        //this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
+                        this.IsCustomEditAccess = ca.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT;
+                        this.IsCustomPrintAccess = ca.PrintAccess != EnumPrintAccess.PR_BY_PARENT;
                         break;
                     case Detail dt:
                         var det = (RoleDetailAccess)ra.GetRoleAccess(role);
@@ -178,36 +120,18 @@ namespace vSharpStudio.ViewModels
                         this.ListEditAccess = VMHelpers.GetEnumComboBox<EnumCatalogDetailAccess>();
                         this._SelectedEditAccess = det.EditAccess;
                         this._SelectedPrintAccess = det.PrintAccess;
-                        if (det.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
-                            this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.EditAccessIcon = new ControlTemplate();
-                        //this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        if (det.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                            this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.PrintAccessIcon = new ControlTemplate();
-                        //this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
+                        this.IsCustomEditAccess = det.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT;
+                        this.IsCustomPrintAccess = det.PrintAccess != EnumPrintAccess.PR_BY_PARENT;
                         break;
                     case GroupListDetails gdt:
                         det = (RoleDetailAccess)ra.GetRoleAccess(role);
                         this.EditAccessStr = this.GetEnumValueDesc(gdt.GetRoleDetailAccess(role), null, true);
                         this.PrintAccessStr = this.GetEnumValueDesc(gdt.GetRoleDetailPrint(role), null, true);
-                        //this.EditAccessStr = this.GetEnumValueDesc(det.EditAccess, (int)det.EditAccess);
-                        //this.PrintAccessStr = this.GetEnumValueDesc(det.PrintAccess, (int)det.PrintAccess);
                         this.ListEditAccess = VMHelpers.GetEnumComboBox<EnumCatalogDetailAccess>();
                         this._SelectedEditAccess = det.EditAccess;
                         this._SelectedPrintAccess = det.PrintAccess;
-                        if (det.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT)
-                            this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.EditAccessIcon = new ControlTemplate();
-                        //this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        if (det.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                            this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.PrintAccessIcon = new ControlTemplate();
-                        //this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
+                        this.IsCustomEditAccess = det.EditAccess != EnumCatalogDetailAccess.C_BY_PARENT;
+                        this.IsCustomPrintAccess = det.PrintAccess != EnumPrintAccess.PR_BY_PARENT;
                         break;
                     case Document d:
                         var da = (RoleDocumentAccess)ra.GetRoleAccess(role);
@@ -216,36 +140,18 @@ namespace vSharpStudio.ViewModels
                         this.ListEditAccess = VMHelpers.GetEnumComboBox<EnumDocumentAccess>();
                         this._SelectedEditAccess = da.EditAccess;
                         this._SelectedPrintAccess = da.PrintAccess;
-                        if (da.EditAccess != EnumDocumentAccess.D_BY_PARENT)
-                            this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.EditAccessIcon = new ControlTemplate();
-                        //this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        if (da.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                            this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.PrintAccessIcon = new ControlTemplate();
-                        //this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
+                        this.IsCustomEditAccess = da.EditAccess != EnumDocumentAccess.D_BY_PARENT;
+                        this.IsCustomPrintAccess = da.PrintAccess != EnumPrintAccess.PR_BY_PARENT;
                         break;
                     case GroupListDocuments gd:
                         da = (RoleDocumentAccess)ra.GetRoleAccess(role);
                         this.EditAccessStr = this.GetEnumValueDesc(gd.GetRoleDocumentAccess(role), null, true);
                         this.PrintAccessStr = this.GetEnumValueDesc(gd.GetRoleDocumentPrint(role), null, true);
-                        //this.EditAccessStr = this.GetEnumValueDesc(da.EditAccess, (int)da.EditAccess);
-                        //this.PrintAccessStr = this.GetEnumValueDesc(da.PrintAccess, (int)da.PrintAccess);
                         this.ListEditAccess = VMHelpers.GetEnumComboBox<EnumDocumentAccess>();
                         this._SelectedEditAccess = da.EditAccess;
                         this._SelectedPrintAccess = da.PrintAccess;
-                        if (da.EditAccess != EnumDocumentAccess.D_BY_PARENT)
-                            this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.EditAccessIcon = new ControlTemplate();
-                        //this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
-                        if (da.PrintAccess != EnumPrintAccess.PR_BY_PARENT)
-                            this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                        else
-                            this.PrintAccessIcon = new ControlTemplate();
-                        //this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconRedirectedRequest");
+                        this.IsCustomEditAccess = da.EditAccess != EnumDocumentAccess.D_BY_PARENT;
+                        this.IsCustomPrintAccess = da.PrintAccess != EnumPrintAccess.PR_BY_PARENT;
                         break;
                     default:
                         throw new NotImplementedException();
@@ -254,9 +160,6 @@ namespace vSharpStudio.ViewModels
             else if (node is IRoleGlobalSetting gra)
             {
                 this.ListPrintAccess = VMHelpers.GetEnumComboBox<EnumPrintAccess>();
-                this.EditAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                this.PrintAccessIcon = (ControlTemplate)Application.Current.FindResource("iconCustomActionEditor");
-                string? s = null;
                 switch (node)
                 {
                     case GroupConstantGroups:
@@ -295,6 +198,8 @@ namespace vSharpStudio.ViewModels
                     default:
                         throw new NotImplementedException();
                 }
+                this.IsCustomEditAccess = true;
+                this.IsCustomPrintAccess = true;
             }
         }
         // https://en.wikipedia.org/wiki/List_of_Unicode_characters#Arrows
@@ -308,23 +213,24 @@ namespace vSharpStudio.ViewModels
             {
                 if (_SelectedEditAccess != value)
                 {
+                    SetProperty(ref _SelectedEditAccess, value);
                     switch (node)
                     {
                         case Property p:
                             p.SetRoleAccess(this.role, (EnumPropertyAccess)value, null);
-                            this.EditAccessStr = this.GetEnumValueDesc((EnumPropertyAccess)value, null, true);
+                            this.EditAccessStr = this.GetEnumValueDesc(p.GetRolePropertyAccess(role), null, true);
                             break;
                         case GroupListProperties gp:
                             gp.SetRoleAccess(this.role, (EnumPropertyAccess)value, null);
-                            this.EditAccessStr = this.GetEnumValueDesc((EnumPropertyAccess)value, (int)value);
+                            this.EditAccessStr = this.GetEnumValueDesc(gp.GetRolePropertyAccess(role), null, true);
                             break;
                         case Constant cnst:
                             cnst.SetRoleAccess(this.role, (EnumConstantAccess)value, null);
-                            this.EditAccessStr = this.GetEnumValueDesc((EnumConstantAccess)value, null, true);
+                            this.EditAccessStr = this.GetEnumValueDesc(cnst.GetRoleConstantAccess(role), null, true);
                             break;
                         case GroupListConstants gcnst:
                             gcnst.SetRoleAccess(this.role, (EnumConstantAccess)value, null);
-                            this.EditAccessStr = this.GetEnumValueDesc((EnumConstantAccess)value, (int)value);
+                            this.EditAccessStr = this.GetEnumValueDesc(gcnst.GetRoleConstantAccess(role), null, true);
                             break;
                         case GroupConstantGroups gcnstg:
                             this.role.DefaultConstantEditAccessSettings = (EnumConstantAccess)value;
@@ -332,19 +238,19 @@ namespace vSharpStudio.ViewModels
                             break;
                         case Catalog c:
                             c.SetRoleAccess(this.role, (EnumCatalogDetailAccess)value, null);
-                            this.EditAccessStr = this.GetEnumValueDesc((EnumCatalogDetailAccess)value, null, true);
+                            this.EditAccessStr = this.GetEnumValueDesc(c.GetRoleCatalogAccess(role), null, true);
                             break;
                         case CatalogFolder cf:
                             cf.SetRoleAccess(this.role, (EnumCatalogDetailAccess)value, null);
-                            this.EditAccessStr = this.GetEnumValueDesc((EnumCatalogDetailAccess)value, (int)value);
+                            this.EditAccessStr = this.GetEnumValueDesc(cf.GetRoleCatalogAccess(role), null, true);
                             break;
                         case Detail dt:
                             dt.SetRoleAccess(this.role, (EnumCatalogDetailAccess)value, null);
-                            this.EditAccessStr = this.GetEnumValueDesc((EnumCatalogDetailAccess)value, (int)value);
+                            this.EditAccessStr = this.GetEnumValueDesc(dt.GetRoleDetailAccess(role), null, true);
                             break;
                         case GroupListDetails gdt:
                             gdt.SetRoleAccess(this.role, (EnumCatalogDetailAccess)value, null);
-                            this.EditAccessStr = this.GetEnumValueDesc((EnumCatalogDetailAccess)value, (int)value);
+                            this.EditAccessStr = this.GetEnumValueDesc(gdt.GetRoleDetailAccess(role), null, true);
                             break;
                         case GroupListCatalogs gc:
                             this.role.DefaultCatalogEditAccessSettings = (EnumCatalogDetailAccess)value;
@@ -352,11 +258,11 @@ namespace vSharpStudio.ViewModels
                             break;
                         case Document d:
                             d.SetRoleAccess(this.role, (EnumDocumentAccess)value, null);
-                            this.EditAccessStr = this.GetEnumValueDesc((EnumDocumentAccess)value, (int)value);
+                            this.EditAccessStr = this.GetEnumValueDesc(d.GetRoleDocumentAccess(role), null, true);
                             break;
                         case GroupListDocuments gd:
                             gd.SetRoleAccess(this.role, (EnumDocumentAccess)value, null);
-                            this.EditAccessStr = this.GetEnumValueDesc((EnumDocumentAccess)value, (int)value);
+                            this.EditAccessStr = this.GetEnumValueDesc(gd.GetRoleDocumentAccess(role), null, true);
                             break;
                         case GroupDocuments:
                             this.role.DefaultDocumentEditAccessSettings = (EnumDocumentAccess)value;
@@ -365,15 +271,19 @@ namespace vSharpStudio.ViewModels
                         default:
                             break;
                     }
-                    SetProperty(ref _SelectedEditAccess, value);
+                    this.updateChildren(this.role);
+                    if ((int)value > 0)
+                        this.IsCustomEditAccess = true;
+                    else
+                        this.IsCustomEditAccess = false;
                 }
             }
         }
         private object _SelectedEditAccess;
+        public bool IsCustomEditAccess { get => _IsCustomEditAccess; set => SetProperty(ref _IsCustomEditAccess, value); }
+        private bool _IsCustomEditAccess = false;
         public string EditAccessStr { get => _EditAccessStr; set => SetProperty(ref _EditAccessStr, value); }
         private string _EditAccessStr = string.Empty;
-        public ControlTemplate EditAccessIcon { get => _EditAccessIcon; set => SetProperty(ref _EditAccessIcon, value); }
-        private ControlTemplate _EditAccessIcon = new ControlTemplate();
 
         public IEnumerable ListPrintAccess { get => _ListPrintAccess; set => SetProperty(ref _ListPrintAccess, value); }
         private IEnumerable _ListPrintAccess;
@@ -384,106 +294,76 @@ namespace vSharpStudio.ViewModels
             {
                 if (_SelectedPrintAccess != value)
                 {
-                    this.PrintAccessStr = this.GetEnumValueDesc((EnumPrintAccess)value, (int)value);
+                    SetProperty(ref _SelectedPrintAccess, value);
                     switch (node)
                     {
                         case Property p:
-                            p.SetRoleAccess(this.role, null, (EnumPrintAccess)value);
+                            p.SetRoleAccess(this.role, null, value);
+                            this.PrintAccessStr = this.GetEnumValueDesc(p.GetRolePropertyPrint(role), null, true);
                             break;
                         case GroupListProperties gp:
-                            gp.SetRoleAccess(this.role, null, (EnumPrintAccess)value);
+                            gp.SetRoleAccess(this.role, null, value);
+                            this.PrintAccessStr = this.GetEnumValueDesc(gp.GetRolePropertyPrint(role), null, true);
                             break;
                         case Constant cnst:
-                            cnst.SetRoleAccess(this.role, null, (EnumPrintAccess)value);
+                            cnst.SetRoleAccess(this.role, null, value);
+                            this.PrintAccessStr = this.GetEnumValueDesc(cnst.GetRoleConstantPrint(role), null, true);
                             break;
                         case GroupListConstants gcnst:
-                            gcnst.SetRoleAccess(this.role, null, (EnumPrintAccess)value);
+                            gcnst.SetRoleAccess(this.role, null, value);
+                            this.PrintAccessStr = this.GetEnumValueDesc(gcnst.GetRoleConstantPrint(role), null, true);
                             break;
                         case GroupConstantGroups gcnstg:
-                            this.role.DefaultConstantEditAccessSettings = (EnumConstantAccess)value;
+                            this.role.DefaultConstantPrintAccessSettings = value;
+                            this.PrintAccessStr = this.GetEnumValueDesc(role.DefaultConstantPrintAccessSettings, (int)this._SelectedPrintAccess);
                             break;
                         case Catalog c:
-                            c.SetRoleAccess(this.role, null, (EnumPrintAccess)value);
+                            c.SetRoleAccess(this.role, null, value);
+                            this.PrintAccessStr = this.GetEnumValueDesc(c.GetRoleCatalogPrint(role), null, true);
                             break;
                         case CatalogFolder cf:
-                            cf.SetRoleAccess(this.role, null, (EnumPrintAccess)value);
+                            cf.SetRoleAccess(this.role, null, value);
+                            this.PrintAccessStr = this.GetEnumValueDesc(cf.GetRoleCatalogPrint(role), null, true);
                             break;
                         case Detail dt:
-                            dt.SetRoleAccess(this.role, null, (EnumPrintAccess)value);
+                            dt.SetRoleAccess(this.role, null, value);
+                            this.PrintAccessStr = this.GetEnumValueDesc(dt.GetRoleDetailPrint(role), null, true);
                             break;
                         case GroupListDetails gdt:
-                            gdt.SetRoleAccess(this.role, null, (EnumPrintAccess)value);
+                            gdt.SetRoleAccess(this.role, null, value);
+                            this.PrintAccessStr = this.GetEnumValueDesc(gdt.GetRoleDetailPrint(role), null, true);
                             break;
                         case GroupListCatalogs gc:
-                            this.role.DefaultCatalogEditAccessSettings = (EnumCatalogDetailAccess)value;
+                            this.role.DefaultCatalogPrintAccessSettings = value;
+                            this.PrintAccessStr = this.GetEnumValueDesc(role.DefaultCatalogPrintAccessSettings, (int)this._SelectedPrintAccess);
                             break;
                         case Document d:
-                            d.SetRoleAccess(this.role, null, (EnumPrintAccess)value);
+                            d.SetRoleAccess(this.role, null, value);
+                            this.PrintAccessStr = this.GetEnumValueDesc(d.GetRoleDocumentPrint(role), null, true);
                             break;
                         case GroupListDocuments gd:
-                            gd.SetRoleAccess(this.role, null, (EnumPrintAccess)value);
+                            gd.SetRoleAccess(this.role, null, value);
+                            this.PrintAccessStr = this.GetEnumValueDesc(gd.GetRoleDocumentPrint(role), null, true);
                             break;
                         case GroupDocuments:
-                            this.role.DefaultDocumentEditAccessSettings = (EnumDocumentAccess)value;
+                            this.role.DefaultDocumentPrintAccessSettings = value;
+                            this.PrintAccessStr = this.GetEnumValueDesc(role.DefaultDocumentPrintAccessSettings, (int)this._SelectedPrintAccess);
                             break;
                         default:
                             break;
                     }
+                    this.updateChildren(this.role);
+                    if ((int)value > 0)
+                        this.IsCustomPrintAccess = true;
+                    else
+                        this.IsCustomPrintAccess = false;
                 }
-                SetProperty(ref _SelectedPrintAccess, value);
             }
         }
         private EnumPrintAccess _SelectedPrintAccess;
+        public bool IsCustomPrintAccess { get => _IsCustomPrintAccess; set => SetProperty(ref _IsCustomPrintAccess, value); }
+        private bool _IsCustomPrintAccess = false;
         public string PrintAccessStr { get => _PrintAccessStr; set => SetProperty(ref _PrintAccessStr, value); }
         private string _PrintAccessStr = string.Empty;
-        public ControlTemplate PrintAccessIcon { get => _PrintAccessIcon; set => SetProperty(ref _PrintAccessIcon, value); }
-        private ControlTemplate _PrintAccessIcon = new ControlTemplate();
     }
-    //public class ModelNodeRoles : ITreeModel
-    //{
-    //    Model? model;
-    //    public ITreeConfigNode Node { get; private set; }
-    //    private static ConfigNodesCollection<Role> roles;
-    //    public List<object?> ListRoleAccess { get; private set; }
-    //    public ModelNodeRoles(ConfigNodesCollection<Role> roles, Model model)
-    //    {
-    //        this.model = model;
-    //        this.Node = this.model;
-    //        ModelNodeRoles.roles = roles;
-    //        this.ListRoleAccess = new List<object?>();
-    //    }
-    //    public ModelNodeRoles(ITreeConfigNode node)
-    //    {
-    //        this.Node = node;
-    //        this.ListRoleAccess = new List<object?>();
-    //        if (node is IRoleAccess ra)
-    //        {
-    //            foreach (var role in ModelNodeRoles.roles)
-    //                this.ListRoleAccess.Add(ra.GetRoleAccess(role));
-    //        }
-    //        else
-    //        {
-    //            for (int i = 0; i < ModelNodeRoles.roles.Count; i++)
-    //                this.ListRoleAccess.Add(null);
-    //        }
-    //    }
-    //    public IEnumerable GetChildren(object parent)
-    //    {
-    //        ITreeConfigNode node = parent == null ? this.Node : ((ModelNodeRoles)parent).Node;
-    //        var res = new List<object>();
-    //        foreach (var t in node.GetListChildren())
-    //        {
-    //            var tt = (ITreeConfigNode)t;
-    //            if (parent == null && (tt.Name == "Common" || tt.Name == "Enumerations"))
-    //                continue;
-    //            res.Add(new ModelNodeRoles(tt));
-    //        }
-    //        return res;
-    //    }
-    //    public bool HasChildren(object parent)
-    //    {
-    //        var p = (ModelNodeRoles)parent;
-    //        return p.Node.GetListChildren().Count > 0;
-    //    }
-    //}
 }

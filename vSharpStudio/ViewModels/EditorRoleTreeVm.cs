@@ -20,42 +20,60 @@ using System.Xml.Linq;
 namespace vSharpStudio.ViewModels
 {
     // https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/observableobject
-    public class EditorRolesVm : ObservableObject, ITreeModel
+    public class EditorRoleTreeVm : ObservableObject, ITreeModel
     {
         Model? model;
         public ITreeConfigNode Node { get; private set; }
         private static ConfigNodesCollection<Role> roles;
-        public List<EditorRoleBaseVm> ListRoleAccess { get; private set; }
-        public EditorRolesVm(ConfigNodesCollection<Role> roles, Model model)
+        public List<EditorRoleColumnVm> ListRoleColumns { get; private set; }
+        public EditorRoleTreeVm(ConfigNodesCollection<Role> roles, Model model)
         {
             this.model = model;
             this.Node = this.model;
-            EditorRolesVm.roles = roles;
-            this.ListRoleAccess = new List<EditorRoleBaseVm>();
+            EditorRoleTreeVm.roles = roles;
+            this.ListRoleColumns = new List<EditorRoleColumnVm>();
         }
-        public EditorRolesVm(ITreeConfigNode node)
+        public EditorRoleTreeVm(ITreeConfigNode node)
         {
             this.Node = node;
-            this.ListRoleAccess = new List<EditorRoleBaseVm>();
-            foreach (var role in EditorRolesVm.roles)
-                this.ListRoleAccess.Add(new EditorRoleBaseVm(node, role));
+            this.ListRoleColumns = new List<EditorRoleColumnVm>();
+            foreach (var role in EditorRoleTreeVm.roles)
+                this.ListRoleColumns.Add(new EditorRoleColumnVm(node, role, UpdateChildren));
         }
+        private void UpdateChildren(Role role)
+        {
+            foreach (var t in children)
+            {
+                foreach (var tt in t.ListRoleColumns)
+                {
+                    if (tt.RoleGuid != role.Guid)
+                        continue;
+                    tt.Update();
+                }
+                t.UpdateChildren(role);
+            }
+        }
+        private List<EditorRoleTreeVm> children = new List<EditorRoleTreeVm>();
         public IEnumerable GetChildren(object parent)
         {
-            ITreeConfigNode node = parent == null ? this.Node : ((EditorRolesVm)parent).Node;
+            ITreeConfigNode node = parent == null ? this.Node : ((EditorRoleTreeVm)parent).Node;
             var res = new List<object>();
             foreach (var t in node.GetListChildren())
             {
                 var tt = (ITreeConfigNode)t;
-                if (parent == null && (tt.Name == "Common" || tt.Name == "Enumerations"))
+                if (parent == null && (tt.Name == "Common" || tt.Name == "Enumerations"|| tt.Name == "Journals"))
                     continue;
-                res.Add(new EditorRolesVm(tt));
+                else if (tt.Name == "Forms" || tt.Name == "Reports")
+                    continue;
+                var nd = new EditorRoleTreeVm(tt);
+                res.Add(nd);
+                this.children.Add(nd);
             }
             return res;
         }
         public bool HasChildren(object parent)
         {
-            var p = (EditorRolesVm)parent;
+            var p = (EditorRoleTreeVm)parent;
             return p.Node.GetListChildren().Count > 0;
         }
     }
