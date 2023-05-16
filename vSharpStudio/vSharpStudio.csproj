@@ -73,7 +73,7 @@
         <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.5.0" />
         <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.5.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
-        <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.5.22">
+        <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.6.40">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
@@ -89,7 +89,7 @@
         <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="4.5.0" />
         <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.5.0" />
         <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.5.0" />
-        <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
     </ItemGroup>
     <ItemGroup>
         <Resource Include="icons\SettingsFile_16x.png" />
