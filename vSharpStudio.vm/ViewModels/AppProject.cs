@@ -172,7 +172,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeUp()
         {
-            var prev = (AppProject)this.ParentAppSolution.ListAppProjects.GetPrev(this);
+            var prev = (AppProject?)this.ParentAppSolution.ListAppProjects.GetPrev(this);
             if (prev != null)
                 this.SetSelected(prev);
         }
@@ -192,7 +192,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeDown()
         {
-            var next = (AppProject)this.ParentAppSolution.ListAppProjects.GetNext(this);
+            var next = (AppProject?)this.ParentAppSolution.ListAppProjects.GetNext(this);
             if (next != null)
                 this.SetSelected(next);
         }

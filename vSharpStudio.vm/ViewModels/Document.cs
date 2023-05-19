@@ -99,12 +99,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Document)this.ParentGroupListDocuments.ListDocuments.GetPrev(this);
+            var prev = (Document?)this.ParentGroupListDocuments.ListDocuments.GetPrev(this);
             if (prev == null)
-            {
                 return;
-            }
-
             this.SetSelected(prev);
         }
 
@@ -128,12 +125,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Document)this.ParentGroupListDocuments.ListDocuments.GetNext(this);
+            var next = (Document?)this.ParentGroupListDocuments.ListDocuments.GetNext(this);
             if (next == null)
-            {
                 return;
-            }
-
             this.SetSelected(next);
         }
 
@@ -384,7 +378,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             ViewListData? viewListData = null;
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-            Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
+            Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
             var pId = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             viewListData = new ViewListData(pId);
             var lst = SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);

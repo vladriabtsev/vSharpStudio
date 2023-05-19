@@ -17,12 +17,13 @@ namespace ViewModelBase
         where TValidator : AbstractValidator<T>
         where T : VmValidatableWithSeverity<T, TValidator>//, IComparable<T>
     {
-        public VmValidatableWithSeverity(TValidator validator)
+        public VmValidatableWithSeverity(TValidator? validator)
         {
+            Debug.Assert(validator != null);
             this.IsValidate = true;
             this._validator = validator;
-            this.ValidationCollection = new SortedObservableCollection<ValidationMessage>();
-            this.ValidationCollection.SortDirection = SortDirection.Descending;
+            this._ValidationCollection = new SortedObservableCollection<ValidationMessage>();
+            this._ValidationCollection.SortDirection = SortDirection.Descending;
         }
         protected TValidator _validator { get; private set; }
         protected void SetValidator(TValidator validator) { this._validator = validator; }
@@ -125,7 +126,7 @@ namespace ViewModelBase
             {
                 foreach (var t in res.Errors)
                 {
-                    ValidationMessage msg = null;
+                    ValidationMessage? msg = null;
                     switch (t.Severity)
                     {
                         case Severity.Error:
@@ -149,10 +150,11 @@ namespace ViewModelBase
                     }
                     UIDispatcher.Invoke(() =>
                     {
+                        Debug.Assert(msg != null);
                         ValidationCollection.Add(msg);
                     });
                 }
-                Dictionary<string, string> dic = new Dictionary<string, string>();
+                Dictionary<string, string?> dic = new Dictionary<string, string?>();
                 foreach (var t in _errors)
                     dic[t.Key] = null;
                 foreach (var t in _warnings)
@@ -170,7 +172,7 @@ namespace ViewModelBase
         }
         protected virtual void OnValidated(ValidationResult val_res) { }
         protected virtual Task[] OnValidatedAsync(ValidationResult val_res) { var tsks = new Task[0]; return tsks; }
-        protected ValidationResult ValidationResult { get; private set; }
+        protected ValidationResult? ValidationResult { get; private set; }
         public bool Validate()
         {
             if (!this.IsValidate)
@@ -206,8 +208,9 @@ namespace ViewModelBase
             var propertyName = this.GetPropertyName<T>(property);
             ValidateProperty(propertyName);
         }
-        protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
+            Debug.Assert(propertyName != null);
             if (!VmBindable.IsValidateAll)
                 return true;
             if (!this.IsValidate)
@@ -287,8 +290,9 @@ namespace ViewModelBase
             NotifyPropertyChanged(nameof(this.HasWarnings));
             NotifyPropertyChanged(nameof(this.HasInfos));
         }
-        protected void ClearErrors([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        protected void ClearErrors([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
+            Debug.Assert(propertyName != null);
             if (_errors.ContainsKey(propertyName))
                 _errors.Remove(propertyName);
             if (_warnings.ContainsKey(propertyName))
@@ -303,7 +307,7 @@ namespace ViewModelBase
         }
         protected void ClearAllErrors()
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
+            Dictionary<string, string?> dic = new Dictionary<string, string?>();
             foreach (var t in _errors)
                 dic[t.Key] = null;
             foreach (var t in _warnings)
@@ -320,32 +324,33 @@ namespace ViewModelBase
         }
         public void RaiseErrorsChanged(string propertyName)
         {
-            ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
+            if (this.ErrorsChanged != null)
+                this.ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
         }
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged = delegate { };
-        public IEnumerable GetErrors(string propertyName)
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+        public IEnumerable GetErrors(string? propertyName)
         {
             if (string.IsNullOrEmpty(propertyName))
-                return null;
+                return new object[0];
             return _errors.ContainsKey(propertyName)
                 ? _errors[propertyName]
-                : null;
+                : new object[0];
         }
-        public IEnumerable GetWarnings(string propertyName)
+        public IEnumerable GetWarnings(string? propertyName)
         {
             if (string.IsNullOrEmpty(propertyName))
-                return null;
+                return new object[0];
             return _warnings.ContainsKey(propertyName)
                 ? _warnings[propertyName]
-                : null;
+                : new object[0];
         }
-        public IEnumerable GetInfos(string propertyName)
+        public IEnumerable GetInfos(string? propertyName)
         {
             if (string.IsNullOrEmpty(propertyName))
-                return null;
+                return new object[0];
             return _infos.ContainsKey(propertyName)
                 ? _infos[propertyName]
-                : null;
+                : new object[0];
         }
         /// <summary>
         /// Has errors in this node (without children)

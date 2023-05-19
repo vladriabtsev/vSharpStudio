@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} properties:{GroupProperties.ListProperties.Count,nq} details:{GroupDetails.ListDetails.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles
+    public partial class Detail : ICanAddSubNode, ICanGoRight, ICanGoLeft, INodeGenSettings, ICanAddNode, IEditableNode, IEditableNodeGroup, IDbTable, INodeWithProperties, IRoleAccess, ICatalogDetailAccessRoles, ILayoutParameters
     {
         [Browsable(false)]
         public GroupListDetails ParentGroupListDetails { get { Debug.Assert(this.Parent != null); return (GroupListDetails)this.Parent; } }
@@ -106,12 +106,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeUp()
         {
-            var prev = (Detail)this.ParentGroupListDetails.ListDetails.GetPrev(this);
+            var prev = (Detail?)this.ParentGroupListDetails.ListDetails.GetPrev(this);
             if (prev == null)
-            {
                 return;
-            }
-
             this.SetSelected(prev);
         }
         public override void NodeMoveUp()
@@ -132,12 +129,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeDown()
         {
-            var next = (Detail)this.ParentGroupListDetails.ListDetails.GetNext(this);
+            var next = (Detail?)this.ParentGroupListDetails.ListDetails.GetNext(this);
             if (next == null)
-            {
                 return;
-            }
-
             this.SetSelected(next);
         }
         public override void NodeMoveDown()
@@ -316,7 +310,6 @@ namespace vSharpStudio.vm.ViewModels
         public void GetNormalProperties(List<IProperty> res)
         {
             var model = this.Cfg.Model;
-            IProperty prp = null!;
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 res.Add(t);
@@ -337,7 +330,7 @@ namespace vSharpStudio.vm.ViewModels
         public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)
         {
             ViewListData? viewListData = null;
-            Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
+            Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
             var pId = this.Cfg.Model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             viewListData = new ViewListData(pId);
             var lst = this.SelectViewProperties(formType, this.GroupProperties.ListProperties, form.ListGuidViewProperties, guidAppPrjGen);

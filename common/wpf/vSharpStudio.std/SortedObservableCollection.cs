@@ -28,8 +28,8 @@ namespace ViewModelBase
         bool CanDown(object current);
         object MoveUp(object current);
         object MoveDown(object current);
-        object GetPrev(object current);
-        object GetNext(object current);
+        object? GetPrev(object current);
+        object? GetNext(object current);
     }
     public interface IObservableCollectionWithActions<T>
     {
@@ -38,12 +38,12 @@ namespace ViewModelBase
         bool Remove(T item);
         void RemoveAt(int indx);
         void AddRange(IEnumerable<T> collection);
-        Action OnClearingAction { get; set; }
-        Action OnClearedAction { get; set; }
-        Action<T> OnRemovedAction { get; set; }
-        Action<T> OnAddedAction { get; set; }
-        Action<T> OnRemovingAction { get; set; }
-        Action<T> OnAddingAction { get; set; }
+        Action? OnClearingAction { get; set; }
+        Action? OnClearedAction { get; set; }
+        Action<T>? OnRemovedAction { get; set; }
+        Action<T>? OnAddedAction { get; set; }
+        Action<T>? OnRemovingAction { get; set; }
+        Action<T>? OnAddingAction { get; set; }
     }
     public class ObservableCollectionWithActions<T> : ObservableCollection<T>
     {
@@ -125,12 +125,12 @@ namespace ViewModelBase
                 }
             }
         }
-        public Action OnClearingAction { get; set; }
-        public Action OnClearedAction { get; set; }
-        public Action<T> OnRemovedAction { get; set; }
-        public Action<T> OnAddedAction { get; set; }
-        public Action<T> OnRemovingAction { get; set; }
-        public Action<T> OnAddingAction { get; set; }
+        public Action? OnClearingAction { get; set; }
+        public Action? OnClearedAction { get; set; }
+        public Action<T>? OnRemovedAction { get; set; }
+        public Action<T>? OnAddedAction { get; set; }
+        public Action<T>? OnRemovingAction { get; set; }
+        public Action<T>? OnAddingAction { get; set; }
     }
     public interface ISortedObservableCollection<T> : IObservableCollectionWithActions<T>, IMoveUpDown
     {
@@ -211,7 +211,7 @@ namespace ViewModelBase
             return current;
         }
 
-        public object GetPrev(object current)
+        public object? GetPrev(object current)
         {
             T p = (T)current;
             int i = this.IndexOf(p);
@@ -220,7 +220,7 @@ namespace ViewModelBase
             return this[i - 1];
         }
 
-        public object GetNext(object current)
+        public object? GetNext(object current)
         {
             T p = (T)current;
             int i = this.IndexOf(p);
@@ -274,7 +274,7 @@ namespace ViewModelBase
             }
             InternalSort();
         }
-        public Action<int, int> OnSortMovedAction { get; set; }
+        public Action<int, int>? OnSortMovedAction { get; set; }
         #region Sort
         /// <summary>
         /// Sorts the items of the collection in descending order according to a key.

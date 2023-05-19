@@ -18,7 +18,7 @@ namespace vSharpStudio.common
     {
         public static bool IsSorting { get; set; }
         bool AutoGenerateProperties { get; }
-        public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions { get; }
+        public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection? PropertyDefinitions { get; }
         string ModelPath { get; }
         bool IsSelected { get; set; }
         bool IsExpanded { get; set; }

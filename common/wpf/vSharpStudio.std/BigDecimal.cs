@@ -258,7 +258,7 @@ namespace System.Numerics
             return (T)((IConvertible)this).ToType(typeof(T), null);
         }
 
-        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        object IConvertible.ToType(Type conversionType, IFormatProvider? provider)
         {
             var scaleDivisor = BigInteger.Pow(new BigInteger(10), this._scale);
             var remainder = BigInteger.Remainder(this._unscaledValue, scaleDivisor);
@@ -274,7 +274,7 @@ namespace System.Numerics
             return Convert.ChangeType(value, conversionType);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return ((obj is BigDecimal) && Equals((BigDecimal)obj));
         }
@@ -291,86 +291,86 @@ namespace System.Numerics
             return TypeCode.Object;
         }
 
-        bool IConvertible.ToBoolean(IFormatProvider provider)
+        bool IConvertible.ToBoolean(IFormatProvider? provider)
         {
-            return Convert.ToBoolean(this);
+            return Convert.ToBoolean(this, provider);
         }
 
-        byte IConvertible.ToByte(IFormatProvider provider)
+        byte IConvertible.ToByte(IFormatProvider? provider)
         {
             return Convert.ToByte(this);
         }
 
-        char IConvertible.ToChar(IFormatProvider provider)
+        char IConvertible.ToChar(IFormatProvider? provider)
         {
             throw new InvalidCastException("Cannot cast BigDecimal to Char");
         }
 
-        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        DateTime IConvertible.ToDateTime(IFormatProvider? provider)
         {
             throw new InvalidCastException("Cannot cast BigDecimal to DateTime");
         }
 
-        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        decimal IConvertible.ToDecimal(IFormatProvider? provider)
         {
-            return Convert.ToDecimal(this);
+            return Convert.ToDecimal(this, provider);
         }
 
-        double IConvertible.ToDouble(IFormatProvider provider)
+        double IConvertible.ToDouble(IFormatProvider? provider)
         {
-            return Convert.ToDouble(this);
+            return Convert.ToDouble(this, provider);
         }
 
-        short IConvertible.ToInt16(IFormatProvider provider)
+        short IConvertible.ToInt16(IFormatProvider? provider)
         {
-            return Convert.ToInt16(this);
+            return Convert.ToInt16(this, provider);
         }
 
-        int IConvertible.ToInt32(IFormatProvider provider)
+        int IConvertible.ToInt32(IFormatProvider? provider)
         {
-            return Convert.ToInt32(this);
+            return Convert.ToInt32(this, provider);
         }
 
-        long IConvertible.ToInt64(IFormatProvider provider)
+        long IConvertible.ToInt64(IFormatProvider? provider)
         {
-            return Convert.ToInt64(this);
+            return Convert.ToInt64(this, provider);
         }
 
-        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        sbyte IConvertible.ToSByte(IFormatProvider? provider)
         {
-            return Convert.ToSByte(this);
+            return Convert.ToSByte(this, provider);
         }
 
-        float IConvertible.ToSingle(IFormatProvider provider)
+        float IConvertible.ToSingle(IFormatProvider? provider)
         {
-            return Convert.ToSingle(this);
+            return Convert.ToSingle(this, provider);
         }
 
-        string IConvertible.ToString(IFormatProvider provider)
+        string? IConvertible.ToString(IFormatProvider? provider)
         {
-            return Convert.ToString(this);
+            return Convert.ToString(this, provider);
         }
 
-        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        ushort IConvertible.ToUInt16(IFormatProvider? provider)
         {
-            return Convert.ToUInt16(this);
+            return Convert.ToUInt16(this, provider);
         }
 
-        uint IConvertible.ToUInt32(IFormatProvider provider)
+        uint IConvertible.ToUInt32(IFormatProvider? provider)
         {
-            return Convert.ToUInt32(this);
+            return Convert.ToUInt32(this, provider);
         }
 
-        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        ulong IConvertible.ToUInt64(IFormatProvider? provider)
         {
-            return Convert.ToUInt64(this);
+            return Convert.ToUInt64(this, provider);
         }
 
         #endregion
 
         #region IFormattable Members
 
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string? ToString(string? format, IFormatProvider? formatProvider)
         {
             throw new NotImplementedException();
         }
@@ -379,7 +379,7 @@ namespace System.Numerics
 
         #region IComparable Members
 
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
             if (obj == null)
                 return 1;

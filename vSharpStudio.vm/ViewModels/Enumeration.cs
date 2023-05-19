@@ -195,12 +195,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Enumeration)this.ParentGroupListEnumerations.ListEnumerations.GetPrev(this);
+            var prev = (Enumeration?)this.ParentGroupListEnumerations.ListEnumerations.GetPrev(this);
             if (prev == null)
-            {
                 return;
-            }
-
             this.SetSelected(prev);
         }
 
@@ -224,12 +221,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Enumeration)this.ParentGroupListEnumerations.ListEnumerations.GetNext(this);
+            var next = (Enumeration?)this.ParentGroupListEnumerations.ListEnumerations.GetNext(this);
             if (next == null)
-            {
                 return;
-            }
-
             this.SetSelected(next);
         }
 

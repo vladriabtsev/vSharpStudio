@@ -24,14 +24,14 @@ namespace ViewModelBase
         where TValidator : AbstractValidator<T>
         where T : VmValidatableWithSeverityAndAttributes<T, TValidator>
     {
-        public VmValidatableWithSeverityAndAttributes(TValidator validator) : base(validator)
+        public VmValidatableWithSeverityAndAttributes(TValidator? validator) : base(validator)
         {
         }
         [Browsable(false)]
         public bool AutoGenerateProperties { get { return this._AutoGenerateProperties; } set { SetProperty(ref _AutoGenerateProperties, value); } }
         private bool _AutoGenerateProperties = true;
         [Browsable(false)]
-        public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection PropertyDefinitions
+        public Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection? PropertyDefinitions
         {
             get
             {
@@ -42,14 +42,14 @@ namespace ViewModelBase
             }
             set { SetProperty(ref _PropertyDefinitions, value); }
         }
-        private Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection _PropertyDefinitions = null;
-        protected virtual string[] OnGetWhatHideOnPropertyGrid()
+        private Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection? _PropertyDefinitions = null;
+        protected virtual string[]? OnGetWhatHideOnPropertyGrid()
         {
             return null;
         }
         private Xceed.Wpf.Toolkit.PropertyGrid.PropertyDefinitionCollection GetUpdatedPropertyDefinitions()
         {
-            string[] lstExclude = this.OnGetWhatHideOnPropertyGrid();
+            string[]? lstExclude = this.OnGetWhatHideOnPropertyGrid();
             //if (lstExclude.Count() > 0)
             //{
             this.AutoGenerateProperties = false;
@@ -58,7 +58,7 @@ namespace ViewModelBase
             //{
             //    this.AutoGenerateProperties = true;
             //}
-            var dic = new Dictionary<string, string>();
+            var dic = new Dictionary<string, string?>();
             if (lstExclude != null)
             {
                 foreach (var t in lstExclude)
@@ -79,31 +79,16 @@ namespace ViewModelBase
                     bool is_skip = false;
                     foreach (var tt in t.Attributes)
                     {
-                        var attrName = tt.GetType().Name;
-                        switch (attrName)
-                        {
-                            case "BrowsableAttribute":
-                                if (!(tt as BrowsableAttribute).Browsable)
-                                    is_skip = true;
-                                break;
-                            case "CategoryAttribute":
-                                pd.Category = (tt as CategoryAttribute).Category;
-                                break;
-                            case "DescriptionAttribute":
-                                pd.Description = (tt as DescriptionAttribute).Description;
-                                break;
-                            case "DisplayNameAttribute":
-                                pd.DisplayName = (tt as DisplayNameAttribute).DisplayName;
-                                break;
-                            case "PropertyOrderAttribute":
-                                pd.DisplayOrder = (tt as PropertyOrderAttribute).Order;
-                                break;
-                            case "ExpandableObjectAttribute":
-                                pd.IsExpandable = true;
-                                break;
-                            default:
-                                break;
-                        }
+                        if (tt is BrowsableAttribute ttBrowsable && !ttBrowsable.Browsable)
+                            is_skip = true;
+                        if (tt is CategoryAttribute ttCategory)
+                            pd.Category = ttCategory.Category;
+                        if (tt is DescriptionAttribute ttDescription)
+                            pd.Description = ttDescription.Description;
+                        if (tt is PropertyOrderAttribute ttPropertyOrder)
+                            pd.DisplayOrder = ttPropertyOrder.Order;
+                        if (tt is ExpandableObjectAttribute)
+                            pd.IsExpandable = true;
                         if (is_skip)
                             continue;
                     }
@@ -118,7 +103,9 @@ namespace ViewModelBase
             {
                 Debug.Assert(t.TargetProperties.Count == 1);
                 Debug.Assert(t.TargetProperties[0] is string);
-                string nam = (string)t.TargetProperties[0];
+                string nam = string.Empty;
+                if (t.TargetProperties[0] is string nnam)
+                    nam = nnam;
 #if _TRACE_
                 Trace.Write("   ***>");
                 Trace.Write(t.DependencyObjectType.Name);

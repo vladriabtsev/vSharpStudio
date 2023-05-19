@@ -40,7 +40,7 @@ namespace ViewModelBase
         public object Model { get; set; }
         public string PropertyName { get; private set; }
         public FluentValidation.Severity Severity { get; private set; }
-        public string SeverityName { get { return Enum.GetName(typeof(FluentValidation.Severity), (int)Severity); } }
+        public string? SeverityName { get { return Enum.GetName(typeof(FluentValidation.Severity), (int)Severity); } }
         public string IconName
         {
             get
@@ -95,8 +95,10 @@ namespace ViewModelBase
                 throw new ArgumentException("parameter 'shiftLevel' expected to be less or equal " + n);
             SortingValue += (ulong)(ValidationMessage._lenSeverityWeight * ValidationMessage._lenSeverity * shiftLevel);
         }
-        public int CompareTo(ValidationMessage other)
+        public int CompareTo(ValidationMessage? other)
         {
+            if (other == null)
+                return -1;
             return this.SortingValue.CompareTo(other.SortingValue);
         }
     }

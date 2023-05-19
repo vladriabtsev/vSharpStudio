@@ -113,7 +113,7 @@ namespace vSharpStudio.Controls
         {
             get
             {
-                return this._BtnUp ?? (this._BtnUp = new vButtonVM(
+                return this._BtnUp ??= new vButtonVM(
                     () =>
                     {
                         var sel = this.SelectedTo;
@@ -127,7 +127,7 @@ namespace vSharpStudio.Controls
                         if (this.SelectedTo == null)
                             return false;
                         return this.ListSelected.CanUp(this.SelectedTo);
-                    }));
+                    });
             }
         }
         private vButtonVM? _BtnUp;
@@ -135,7 +135,7 @@ namespace vSharpStudio.Controls
         {
             get
             {
-                return this._BtnDown ?? (this._BtnDown = new vButtonVM(
+                return this._BtnDown ??= new vButtonVM(
                     () =>
                     {
                         var sel = this.SelectedTo;
@@ -149,7 +149,7 @@ namespace vSharpStudio.Controls
                         if (this.SelectedTo == null)
                             return false;
                         return this.ListSelected.CanDown(this.SelectedTo);
-                    }));
+                    });
             }
         }
         private vButtonVM? _BtnDown;
@@ -157,7 +157,7 @@ namespace vSharpStudio.Controls
         {
             get
             {
-                return this._BtnLeftAll ?? (this._BtnLeftAll = new vButtonVM(
+                return this._BtnLeftAll ??= new vButtonVM(
                     () =>
                     {
                         this.listSelectedTo.Clear();
@@ -171,7 +171,7 @@ namespace vSharpStudio.Controls
                     () =>
                     {
                         return this.ListSelected.Count > 0;
-                    }));
+                    });
             }
         }
         private vButtonVM? _BtnLeftAll;
@@ -179,7 +179,7 @@ namespace vSharpStudio.Controls
         {
             get
             {
-                return this._BtnLeft ?? (this._BtnLeft = new vButtonVM(
+                return this._BtnLeft ??= new vButtonVM(
                     () =>
                     {
                         foreach (var item in this.listSelectedTo.ToList())
@@ -193,7 +193,7 @@ namespace vSharpStudio.Controls
                     () =>
                     {
                         return this.listSelectedTo.Count > 0;
-                    }));
+                    });
             }
         }
         private vButtonVM? _BtnLeft;
@@ -201,7 +201,7 @@ namespace vSharpStudio.Controls
         {
             get
             {
-                return this._BtnRight ?? (this._BtnRight = new vButtonVM(
+                return this._BtnRight ??= new vButtonVM(
                     () =>
                     {
                         foreach (var item in this.listSelectedFrom.ToList())
@@ -215,7 +215,7 @@ namespace vSharpStudio.Controls
                     () =>
                     {
                         return this.listSelectedFrom.Count > 0;
-                    }));
+                    });
             }
         }
         private vButtonVM? _BtnRight;
@@ -223,7 +223,7 @@ namespace vSharpStudio.Controls
         {
             get
             {
-                return this._BtnRightAll ?? (this._BtnRightAll = new vButtonVM(
+                return this._BtnRightAll ??= new vButtonVM(
                     () =>
                     {
                         this.listSelectedFrom.Clear();
@@ -237,7 +237,7 @@ namespace vSharpStudio.Controls
                     () =>
                     {
                         return this.ListAll.Count > 0;
-                    }));
+                    });
             }
         }
         private vButtonVM? _BtnRightAll;

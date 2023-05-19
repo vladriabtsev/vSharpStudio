@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,7 +30,7 @@ namespace ViewModelBase
         public virtual T Backup() { throw new NotImplementedException("Please override Backup method"); }
 
         #region IEditableObject
-        private T _dtoBackupTmp;
+        private T? _dtoBackupTmp;
         [Browsable(false)]
         public bool IsReadonly
         {
@@ -96,7 +97,8 @@ namespace ViewModelBase
             if (!IsInEdit)
                 //return;
                 throw new Exception("Already not in EDIT mode");
-            this.Restore(_dtoBackupTmp);
+            Debug.Assert(this._dtoBackupTmp != null);
+            this.Restore(this._dtoBackupTmp);
             IsInEdit = false;
         }
         public void EndEdit()

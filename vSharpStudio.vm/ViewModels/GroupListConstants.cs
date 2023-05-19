@@ -100,12 +100,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (GroupListConstants)this.ParentGroupConstantGroups.ListConstantGroups.GetPrev(this);
+            var prev = (GroupListConstants?)this.ParentGroupConstantGroups.ListConstantGroups.GetPrev(this);
             if (prev == null)
-            {
                 return;
-            }
-
             this.SetSelected(prev);
         }
 
@@ -129,12 +126,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (GroupListConstants)this.ParentGroupConstantGroups.ListConstantGroups.GetNext(this);
+            var next = (GroupListConstants?)this.ParentGroupConstantGroups.ListConstantGroups.GetNext(this);
             if (next == null)
-            {
                 return;
-            }
-
             this.SetSelected(next);
         }
 

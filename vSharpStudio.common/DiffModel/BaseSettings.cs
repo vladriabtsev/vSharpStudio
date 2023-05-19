@@ -17,7 +17,7 @@ namespace vSharpStudio.common
     {
         [Browsable(false)]
         public ITreeConfigNode? Parent { get; set; }
-        public BaseSettings(ITreeConfigNode? parent, TValidator validator) : base(validator)
+        public BaseSettings(ITreeConfigNode? parent, TValidator? validator) : base(validator)
         {
             this.Parent = parent;
         }

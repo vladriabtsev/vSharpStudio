@@ -118,12 +118,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Form)this.ParentGroupListForms.ListForms.GetPrev(this);
+            var prev = (Form?)this.ParentGroupListForms.ListForms.GetPrev(this);
             if (prev == null)
-            {
                 return;
-            }
-
             this.SetSelected(prev);
         }
 
@@ -147,12 +144,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Form)this.ParentGroupListForms.ListForms.GetNext(this);
+            var next = (Form?)this.ParentGroupListForms.ListForms.GetNext(this);
             if (next == null)
-            {
                 return;
-            }
-
             this.SetSelected(next);
         }
 

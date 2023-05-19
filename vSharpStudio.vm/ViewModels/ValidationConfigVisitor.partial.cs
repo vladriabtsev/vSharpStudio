@@ -125,7 +125,10 @@ namespace vSharpStudio.vm.ViewModels
                 if (pp == null)
                 {
                     if (p is IParent ip)
+                    {
+                        Debug.Assert(ip.Parent != null);
                         pp = ip.Parent;
+                    }
                     else
                         Debug.Assert(false);
                 }

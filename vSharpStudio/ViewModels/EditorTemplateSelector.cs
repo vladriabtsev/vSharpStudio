@@ -20,7 +20,7 @@ namespace vSharpStudio.ViewModels
 
         public string? PropertyValueToHighlight { get; set; }
 
-        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        public override DataTemplate? SelectTemplate(object? item, DependencyObject? container)
         {
             // Product product = (Product)item;
             //// Use reflection to get the property to check.

@@ -109,7 +109,7 @@ namespace ViewModelBase
             await this.execute(o);
             this.IsEnabled = this.canExecute(o);
         };
-        private Predicate<T> canExecuteInternal => (o) =>
+        private Predicate<T?> canExecuteInternal => (o) =>
         {
             this.IsEnabled = this.canExecute(o);
             return this.IsEnabled;
@@ -155,13 +155,13 @@ namespace ViewModelBase
         //    this.IconControlTemplate = this.GetIconControlTemplate(iconExecute);
         //}
         [ObservableProperty]
-        private string text;
+        private string? text;
         [ObservableProperty]
-        private string isBusy;
+        private string? isBusy;
         [ObservableProperty]
-        private string toolTipText;
+        private string? toolTipText;
         [ObservableProperty]
-        private ControlTemplate iconControlTemplate;
+        private ControlTemplate? iconControlTemplate;
         public bool IsEnabled
         {
             get => isEnabled;
@@ -187,7 +187,7 @@ namespace ViewModelBase
             }
         }
         private bool isEnabled;
-        private ControlTemplate GetIconControlTemplate(string iconResourceKey)
+        private ControlTemplate? GetIconControlTemplate(string iconResourceKey)
         {
 #if DEBUG
             if (Application.Current==null)

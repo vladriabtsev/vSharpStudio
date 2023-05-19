@@ -28,7 +28,7 @@
         where T : ConfigObjectCommonBase<T, TValidator>, IComparable<T>, IEquatable<T>//, ISortingValue //, IGuid // , ITreeConfigNode
     {
         protected static ILogger? _logger;
-        public ConfigObjectCommonBase(ITreeConfigNode? parent, TValidator validator)
+        public ConfigObjectCommonBase(ITreeConfigNode? parent, TValidator? validator)
             : base(validator)
         {
             if (_logger == null)

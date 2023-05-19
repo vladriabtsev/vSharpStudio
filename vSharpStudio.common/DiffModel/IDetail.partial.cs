@@ -7,7 +7,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface IDetail : ITreeConfigNodeSortable, IGetNodeSetting, IDbTable, ILayoutParameters
+    public partial interface IDetail : ITreeConfigNodeSortable, IGetNodeSetting, IDbTable
     {
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false);
         //IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);

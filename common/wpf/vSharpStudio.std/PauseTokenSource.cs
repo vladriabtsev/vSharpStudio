@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,8 +14,8 @@ namespace ViewModelBase
         bool _paused = false;
         bool _pauseRequested = false;
 
-        TaskCompletionSource<bool> _resumeRequestTcs;
-        TaskCompletionSource<bool> _pauseConfirmationTcs;
+        TaskCompletionSource<bool>? _resumeRequestTcs;
+        TaskCompletionSource<bool>? _pauseConfirmationTcs;
 
         readonly SemaphoreSlim _stateAsyncLock = new SemaphoreSlim(1);
         readonly SemaphoreSlim _pauseRequestAsyncLock = new SemaphoreSlim(1);
@@ -45,6 +46,7 @@ namespace ViewModelBase
                 }
 
                 await _pauseRequestAsyncLock.WaitAsync(token);
+                Debug.Assert(_resumeRequestTcs != null);
                 try
                 {
                     var resumeRequestTcs = _resumeRequestTcs;
@@ -75,7 +77,7 @@ namespace ViewModelBase
                     return;
                 }
 
-                Task pauseConfirmationTask = null;
+                Task? pauseConfirmationTask = null;
 
                 await _pauseRequestAsyncLock.WaitAsync(token);
                 try
@@ -102,6 +104,7 @@ namespace ViewModelBase
 
         private async Task WaitForResumeRequestAsync(CancellationToken token)
         {
+            Debug.Assert(_resumeRequestTcs != null);
             using (token.Register(() => _resumeRequestTcs.TrySetCanceled(), useSynchronizationContext: false))
             {
                 await _resumeRequestTcs.Task;
@@ -110,6 +113,7 @@ namespace ViewModelBase
 
         private async Task WaitForPauseConfirmationAsync(CancellationToken token)
         {
+            Debug.Assert(_pauseConfirmationTcs != null);
             using (token.Register(() => _pauseConfirmationTcs.TrySetCanceled(), useSynchronizationContext: false))
             {
                 await _pauseConfirmationTcs.Task;
@@ -118,9 +122,10 @@ namespace ViewModelBase
 
         internal async Task PauseIfRequestedAsync(CancellationToken token = default(CancellationToken))
         {
-            Task resumeRequestTask = null;
+            Task? resumeRequestTask = null;
 
             await _pauseRequestAsyncLock.WaitAsync(token);
+            Debug.Assert(_pauseConfirmationTcs != null);
             try
             {
                 if (!_pauseRequested)

@@ -4,6 +4,7 @@
         <RootNamespace>ViewModelBase</RootNamespace>
         <LangVersion>default</LangVersion>
         <UseWPF>true</UseWPF>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <DebugType>full</DebugType>

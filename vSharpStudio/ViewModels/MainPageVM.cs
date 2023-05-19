@@ -57,7 +57,7 @@ namespace vSharpStudio.ViewModels
             VmBindable.IsNotifyingStatic = true;
             return vm;
         }
-        private ILogger? _logger;
+        private readonly ILogger? _logger;
         public Xceed.Wpf.Toolkit.PropertyGrid.PropertyGrid? propertyGrid;
         public ValidationListForSelectedNode? validationListForSelectedNode;
         public MainPageVM() : base(MainPageVMValidator.Validator)
@@ -87,8 +87,8 @@ namespace vSharpStudio.ViewModels
         //{
         //    _logger = logger;
         //}
-        bool isLoadConfig;
-        string? configFile;
+        private readonly bool isLoadConfig;
+        private readonly string? configFile;
         //public MainPageVM(bool isLoadConfig, Action<MainPageVM, IEnumerable<Lazy<IvPlugin, IDictionary<string, object>>>> onImportsSatisfied = null, string configFile = null)
         internal static MainPage? _mainPage = null;
         public MainPageVM(bool isLoadConfig, string? configFile = null, MainPage? mainPage = null) : this()
@@ -129,6 +129,7 @@ namespace vSharpStudio.ViewModels
         }
         public void OnFormLoaded()
         {
+            Debug.Assert(this.ProgressVM != null);
             this.ProgressVM.ProgressStart("Configuration Loading");
             _logger?.LogDebug("*** Application is starting. ***".CallerInfo());
             if (File.Exists(USER_SETTINGS_FILE_PATH))
@@ -174,7 +175,7 @@ namespace vSharpStudio.ViewModels
                 }
                 else if (!string.IsNullOrEmpty(this.CurrentCfgFilePath) && File.Exists(this.CurrentCfgFilePath))
                 {
-                    _logger?.LogDebug("Load Configuration from standard file {ConfigFile}".CallerInfo(), CurrentCfgFilePath);
+                    _logger?.LogDebug("Load Configuration from standard file {ConfigFile}".CallerInfo(), this.CurrentCfgFilePath);
                     this.LoadConfig(this.CurrentCfgFilePath, string.Empty, true);
                 }
                 else
@@ -188,12 +189,13 @@ namespace vSharpStudio.ViewModels
             }
             this.ProgressVM.ProgressClose();
         }
+        private const string emptyStr = "";
         private Config? LoadConfig(string file_path, string indent, bool isRoot = false)
         {
             if (!File.Exists(file_path) || Path.GetExtension(file_path) != ".vcfg")
             {
                 var ex = new ArgumentException("Configuration data are not found in the file: " + file_path);
-                _logger?.LogCritical(ex, "".CallerInfo());
+                _logger?.LogCritical(ex, emptyStr.CallerInfo());
                 return null;
             }
             var protoarr = File.ReadAllBytes(file_path);
@@ -285,8 +287,7 @@ namespace vSharpStudio.ViewModels
         {
             Debug.Assert(this._plugins != null);
             _logger?.LogDebug("Loaded {Count} plugins".CallerInfo(), this._plugins.Count());
-            if (this.onPluginsLoaded != null)
-                this.onPluginsLoaded();
+            this.onPluginsLoaded?.Invoke();
         }
         public void InitConfig(Config? cfg)
         {
@@ -392,10 +393,7 @@ namespace vSharpStudio.ViewModels
                     }
                     dic[gt] = lst;
                 }
-                if (cfg.DicPluginLists != null)
-                {
-                    cfg.DicPluginLists.Clear();
-                }
+                cfg.DicPluginLists?.Clear();
                 cfg.DicPluginLists = dic;
                 //foreach (var t in lstGens)
                 //{
@@ -437,7 +435,7 @@ namespace vSharpStudio.ViewModels
             }
             catch (Exception ex)
             {
-                _logger?.LogCritical(ex, "".CallerInfo());
+                _logger?.LogCritical(ex, emptyStr.CallerInfo());
                 throw;
             }
         }
@@ -490,7 +488,7 @@ namespace vSharpStudio.ViewModels
             var dirs = Directory.GetDirectories(dir);
             if (isPluginsFolder)
             {
-                if (dirs.Count() == 0)
+                if (dirs.Length == 0)
                 {
 #if DEBUG
                     if (!VmBindable.isUnitTests)
@@ -503,7 +501,7 @@ namespace vSharpStudio.ViewModels
                 try
                 {
                     DirectoryCatalog dirCatalog = new DirectoryCatalog(t, search);
-                    if (dirCatalog.Parts.Count() > 0)
+                    if (dirCatalog.Parts.Any())
                     {
                         catalog.Catalogs.Add(dirCatalog);
                     }
@@ -518,12 +516,12 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        private Action? onPluginsLoaded = null;
+        private readonly Action? onPluginsLoaded = null;
         internal void Compose(string? pluginsFolderPath = null)
         {
             try
             {
-                string folder = (pluginsFolderPath == null ? Directory.GetCurrentDirectory() : pluginsFolderPath) + "\\Plugins";
+                string folder = (pluginsFolderPath ?? Directory.GetCurrentDirectory()) + "\\Plugins";
                 _logger?.LogDebug("Loading plugins from folder: {folder}".CallerInfo(), folder);
                 AggregateCatalog catalog = new AggregateCatalog();
                 this.AgregateCatalogs(folder, "vPlugin*.dll", catalog, true);
@@ -542,7 +540,7 @@ namespace vSharpStudio.ViewModels
             }
             catch (Exception ex)
             {
-                _logger?.LogCritical(ex, "".CallerInfo());
+                _logger?.LogCritical(ex, emptyStr.CallerInfo());
                 throw;
             }
         }
@@ -588,7 +586,7 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnNewConfig ?? (this._BtnNewConfig = new vButtonVM<string>(
+                return this._BtnNewConfig ??= new vButtonVM<string>(
                     (o) =>
                     {
                         this.SaveAs(o, true);
@@ -596,7 +594,7 @@ namespace vSharpStudio.ViewModels
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
                         this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
                     },
-                    (o) => { return this.Config == null || !string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath); }));
+                    (o) => { return this.Config == null || !string.IsNullOrEmpty(this.Config.CurrentCfgFolderPath); });
             }
         }
         private vButtonVM<string>? _BtnNewConfig;
@@ -624,7 +622,7 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnOpenConfig ?? (this._BtnOpenConfig = new vButtonVM<string>(
+                return this._BtnOpenConfig ??= new vButtonVM<string>(
                     (o) =>
                     {
                         this.OpenConfig();
@@ -632,7 +630,7 @@ namespace vSharpStudio.ViewModels
                         this.BtnConfigSaveAs.Command.NotifyCanExecuteChanged();
                         this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
                     },
-                    (o) => { return true; }));
+                    (o) => { return true; });
             }
         }
         private vButtonVM<string>? _BtnOpenConfig;
@@ -651,10 +649,12 @@ namespace vSharpStudio.ViewModels
                 }
 #endif
             }
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.FileName = ""; // Default file name
-            dlg.DefaultExt = ".vcfg"; // Default file extension
-            dlg.Filter = "Any file (.vcfg)|*.vcfg"; // Filter files by extension
+            var dlg = new Microsoft.Win32.OpenFileDialog
+            {
+                FileName = emptyStr, // Default file name
+                DefaultExt = ".vcfg", // Default file extension
+                Filter = "Any file (.vcfg)|*.vcfg" // Filter files by extension
+            };
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
@@ -666,9 +666,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnConfigSave ?? (this._BtnConfigSave = new vButtonVM(
+                return this._BtnConfigSave ??= new vButtonVM(
                     () => { this.Save(); },
-                    () => { return this.Config != null && this.CurrentCfgFilePath != null; }));
+                    () => { return this.Config != null && this.CurrentCfgFilePath != null; });
             }
         }
         private vButtonVM? _BtnConfigSave;
@@ -677,10 +677,7 @@ namespace vSharpStudio.ViewModels
             this.Config.PluginSettingsToModel();
             this.Config.SetLastUpdated(DateTime.UtcNow);
             var proto = Config.ConvertToProto(this._Config);
-            if (this.pconfig_history == null)
-            {
-                this.pconfig_history = new Proto.Config.proto_config_short_history();
-            }
+            this.pconfig_history ??= new Proto.Config.proto_config_short_history();
 
             this.pconfig_history.CurrentConfig = proto;
         }
@@ -712,18 +709,20 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnConfigSaveAs ?? (this._BtnConfigSaveAs = new vButtonVM<string>(
+                return this._BtnConfigSaveAs ??= new vButtonVM<string>(
                     (o) => { this.SaveAs(o); },
-                    (o) => { return this.Config != null; }));
+                    (o) => { return this.Config != null; });
             }
         }
         private vButtonVM<string>? _BtnConfigSaveAs;
         internal void SaveAs(string? filePath = null, bool isCreateNewConfig = false)
         {
-            SaveFileDialog openFileDialog = new SaveFileDialog();
-            openFileDialog.Filter = "vConfig files (*.vcfg)|*.vcfg|All files (*.*)|*.*";
-            openFileDialog.CheckFileExists = false;
-            openFileDialog.CheckPathExists = true;
+            var openFileDialog = new SaveFileDialog
+            {
+                Filter = "vConfig files (*.vcfg)|*.vcfg|All files (*.*)|*.*",
+                CheckFileExists = false,
+                CheckPathExists = true
+            };
             if (!string.IsNullOrEmpty(this._FilePathSaveAs))
             {
                 openFileDialog.InitialDirectory = Path.GetDirectoryName(this._FilePathSaveAs);
@@ -867,8 +866,7 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                if (_ProgressVM == null)
-                    _ProgressVM = new ProgressVM();
+                _ProgressVM ??= new ProgressVM();
                 return _ProgressVM;
             }
         }
@@ -878,9 +876,7 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                if (this._BtnConfigValidateAsync == null)
-                {
-                    this._BtnConfigValidateAsync = new vButtonVmAsync<TestTransformation?>(
+                this._BtnConfigValidateAsync ??= new vButtonVmAsync<TestTransformation?>(
                         async (o) =>
                         {
                             Debug.Assert(this.ProgressVM != null);
@@ -933,13 +929,12 @@ namespace vSharpStudio.ViewModels
                             return true;
                         }
                     );
-                }
                 return this._BtnConfigValidateAsync;
             }
         }
         private vButtonVmAsync<TestTransformation?>? _BtnConfigValidateAsync;
         private CancellationTokenSource? cancellationSourceForValidatingSubTreeFromNode = null;
-        async public Task ValidateSelectedNodeAsync()
+        public async Task ValidateSelectedNodeAsync()
         {
             if (this.Config.SelectedNode != null)
             {
@@ -960,13 +955,10 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                if (this._BtnConfigCurrentUpdate == null)
-                {
-                    this._BtnConfigCurrentUpdate = new vButtonVmAsync<TestTransformation?>(
+                this._BtnConfigCurrentUpdate ??= new vButtonVmAsync<TestTransformation?>(
                         async (o) =>
                         {
                             Debug.Assert(this.ProgressVM != null);
-                            bool isException = false;
                             try
                             {
                                 await this.BtnConfigValidateAsync.ExecuteAsync(o);
@@ -992,7 +984,7 @@ namespace vSharpStudio.ViewModels
                                             if (t.Severity == FluentValidation.Severity.Error)
                                                 sb.AppendLine(t.Message);
                                         }
-                                        throw new Exception($"There are {this._Config.CountErrors} config errors.{sb.ToString()}");
+                                        throw new Exception($"There are {this._Config.CountErrors} config errors.{sb}");
                                     }
 #endif
                                 }
@@ -1016,7 +1008,7 @@ namespace vSharpStudio.ViewModels
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 CancellationToken cancellationToken = this.cancellationTokenSource.Token;
 
-                                this.ProgressVM.ProgressStart("Updating Code/DB to Current Version of Configuration", 0, "", 0, cancellationToken);
+                                this.ProgressVM.ProgressStart("Updating Code/DB to Current Version of Configuration", 0, emptyStr, 0, cancellationToken);
                                 if (VmBindable.isUnitTests)
                                     await this.UpdateCurrentVersionAsync(cancellationToken, o);
                                 else
@@ -1028,11 +1020,9 @@ namespace vSharpStudio.ViewModels
                             }
                             catch (CancellationException)
                             {
-                                isException = true;
                             }
                             catch (Exception ex)
                             {
-                                isException = true;
                                 this.ProgressVM.Exception = ex;
 #if DEBUG
                                 if (VmBindable.isUnitTests)
@@ -1072,7 +1062,6 @@ namespace vSharpStudio.ViewModels
                             return true;
                         }
                     );
-                }
                 return this._BtnConfigCurrentUpdate;
             }
         }
@@ -1143,7 +1132,7 @@ namespace vSharpStudio.ViewModels
                                     switch (tg.Generator.PluginGeneratorType)
                                     {
                                         case vPluginLayerTypeEnum.DbDesign:
-                                            if (!(tg.Generator is IvPluginDbGenerator))
+                                            if (tg.Generator is not IvPluginDbGenerator)
                                                 throw new Exception("Generator type vPluginLayerTypeEnum.DbDesign has to have interface: " + typeof(IvPluginDbGenerator).Name);
                                             Debug.Assert(this.Config.CurrentCfgFolderPath != null);
                                             string outFileConn = CommonUtils.GetOuputFilePath(this.Config.CurrentCfgFolderPath, ts, tp, tpg, tpg.GenFileName);
@@ -1206,7 +1195,7 @@ namespace vSharpStudio.ViewModels
 #else
                                                 continue;
 #endif
-                                            if (!(tg.Generator is IvPluginGenerator))
+                                            if (tg.Generator is not IvPluginGenerator)
                                                 throw new Exception("Default generator has to have interface: " + typeof(IvPluginGenerator).Name);
                                             Debug.Assert(tpg.DynamicGeneratorSettings != null);
                                             code = tpg.DynamicGeneratorSettings.GenerateCode(this.Config, ts, tp, tpg);
@@ -1234,7 +1223,7 @@ namespace vSharpStudio.ViewModels
                         foreach (var t in dicAppSettings)
                         {
                             var sb = t.Value;
-                            sb.AppendLine("");
+                            sb.AppendLine(emptyStr);
                             sb.AppendLine("\t}");
                             sb.AppendLine("}");
                             byte[] bytes = Encoding.UTF8.GetBytes(sb.ToString());
@@ -1247,7 +1236,6 @@ namespace vSharpStudio.ViewModels
         // https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming
         private async Task UpdateCurrentVersionAsync(CancellationToken cancellationToken, object? parm = null, bool askWarning = true)
         {
-            Exception? resEx = null;
             TestTransformation? tst = parm as TestTransformation;
             try
             {
@@ -1305,7 +1293,7 @@ namespace vSharpStudio.ViewModels
                                     throw new CancellationException();
                                 Debug.Assert(this._Config.DicGenerators != null);
                                 var gg = this._Config.DicGenerators[tg.PluginGeneratorGuid];
-                                if (!(gg is IvPluginCodeGenerator))
+                                if (gg is not IvPluginCodeGenerator)
                                     continue;
                                 var generator = (IvPluginCodeGenerator)gg;
                                 List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
@@ -1377,7 +1365,7 @@ namespace vSharpStudio.ViewModels
                                     throw new CancellationException();
                                 Debug.Assert(this._Config.DicGenerators != null);
                                 var gg = this._Config.DicGenerators[tg.PluginGeneratorGuid];
-                                if (!(gg is IvPluginCodeGenerator))
+                                if (gg is not IvPluginCodeGenerator)
                                     continue;
                                 var generator = (IvPluginCodeGenerator)gg;
                                 List<PreRenameData> lstRenames = generator.GetListPreRename(this.Config, dicRenamed);
@@ -1456,7 +1444,7 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnConfigCreateStableVersionAsync ?? (this._BtnConfigCreateStableVersionAsync = new vButtonVmAsync<TestTransformation?>(
+                return this._BtnConfigCreateStableVersionAsync ??= new vButtonVmAsync<TestTransformation?>(
                     (t) =>
                     {
                         this.ProgressVM?.ProgressStart("Creating Version for Deployment");
@@ -1470,7 +1458,7 @@ namespace vSharpStudio.ViewModels
                         }
                         return Task.CompletedTask;
                     },
-                    (t) => { return this.Config != null; }));
+                    (t) => { return this.Config != null; });
             }
         }
         private vButtonVmAsync<TestTransformation?>? _BtnConfigCreateStableVersionAsync;
@@ -1503,7 +1491,7 @@ namespace vSharpStudio.ViewModels
             if (this.pconfig_history == null)
             {
                 var ex = new NotSupportedException();
-                _logger?.LogCritical(ex, "".CallerInfo());
+                _logger?.LogCritical(ex, emptyStr.CallerInfo());
                 throw ex;
             }
             if (this.Config.IsHasChanged)
@@ -1619,9 +1607,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnAddNew ?? (this._BtnAddNew = new vButtonVM(
+                return this._BtnAddNew ??= new vButtonVM(
                 () => { Utils.TryCall(() => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddNew(); }, "Add new node command"); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNew(); }));
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNew(); });
             }
         }
         private vButtonVM? _BtnAddNew;
@@ -1629,9 +1617,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnAddNewChild ?? (this._BtnAddNewChild = new vButtonVM(
+                return this._BtnAddNewChild ??= new vButtonVM(
                 () => { Utils.TryCall(() => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddNewSubNode(); }, "Add new sub node command"); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNewSubNode(); }));
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddNewSubNode(); });
             }
         }
         private vButtonVM? _BtnAddNewChild;
@@ -1639,9 +1627,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnAddClone ?? (this._BtnAddClone = new vButtonVM(
+                return this._BtnAddClone ??= new vButtonVM(
                 () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeAddClone(); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddClone(); }));
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanAddClone(); });
             }
         }
         private vButtonVM? _BtnAddClone;
@@ -1649,9 +1637,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnMoveDown ?? (this._BtnMoveDown = new vButtonVM(
+                return this._BtnMoveDown ??= new vButtonVM(
                 () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveDown(); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); }));
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveDown(); });
             }
         }
         private vButtonVM? _BtnMoveDown;
@@ -1659,9 +1647,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnMoveUp ?? (this._BtnMoveUp = new vButtonVM(
+                return this._BtnMoveUp ??= new vButtonVM(
                 () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMoveUp(); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); }));
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMoveUp(); });
             }
         }
         private vButtonVM? _BtnMoveUp;
@@ -1669,9 +1657,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnDelete ?? (this._BtnDelete = new vButtonVM(
+                return this._BtnDelete ??= new vButtonVM(
                 () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeMarkForDeletion(); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMarkForDeletion(); }));
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanMarkForDeletion(); });
             }
         }
         private vButtonVM? _BtnDelete;
@@ -1679,9 +1667,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnSelectionLeft ?? (this._BtnSelectionLeft = new vButtonVM(
+                return this._BtnSelectionLeft ??= new vButtonVM(
                 () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeLeft(); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanLeft(); }));
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanLeft(); });
             }
         }
         private vButtonVM? _BtnSelectionLeft;
@@ -1689,9 +1677,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnSelectionRight ?? (this._BtnSelectionRight = new vButtonVM(
+                return this._BtnSelectionRight ??= new vButtonVM(
                 () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeRight(); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRight(); }));
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanRight(); });
             }
         }
         private vButtonVM? _BtnSelectionRight;
@@ -1699,9 +1687,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnSelectionDown ?? (this._BtnSelectionDown = new vButtonVM(
+                return this._BtnSelectionDown ??= new vButtonVM(
                 () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeDown(); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanDown(); }));
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanDown(); });
             }
         }
         private vButtonVM? _BtnSelectionDown;
@@ -1709,9 +1697,9 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._BtnSelectionUp ?? (this._BtnSelectionUp = new vButtonVM(
+                return this._BtnSelectionUp ??= new vButtonVM(
                 () => { Debug.Assert(this.Config.SelectedNode != null); this.Config.SelectedNode.NodeUp(); },
-                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanUp(); }));
+                () => { return this.Config != null && this.Config.SelectedNode != null && this.Config.SelectedNode.NodeCanUp(); });
             }
         }
         private vButtonVM? _BtnSelectionUp;
@@ -1721,7 +1709,7 @@ namespace vSharpStudio.ViewModels
         {
             get
             {
-                return this._CommandFromErrorToSelection ?? (this._CommandFromErrorToSelection = vCommand.Create(
+                return this._CommandFromErrorToSelection ??= vCommand.Create(
                 (o) =>
                 {
                     if (o == null)
@@ -1730,7 +1718,7 @@ namespace vSharpStudio.ViewModels
                     }
                     this.Config.SelectedNode = (ITreeConfigNode)((ValidationMessage)o).Model;
                 },
-                (o) => { return this.Config != null; }));
+                (o) => { return this.Config != null; });
             }
         }
         private vCommand? _CommandFromErrorToSelection;
@@ -1917,13 +1905,11 @@ namespace vSharpStudio.ViewModels
         #region Utils
         public static string GetvSharpStudioPluginsPath()
         {
-            string? path = null;
             var currPath = Directory.GetCurrentDirectory();
-            var bin = currPath.Substring(currPath.IndexOf(@"\bin"));
+            var bin = currPath[currPath.IndexOf(@"\bin")..];
             var s = @"\vSharpStudio";
-            var vss = currPath.Substring(0, currPath.IndexOf(s));
-            path = vss + s + s + bin;
-            return path;
+            var vss = currPath[..currPath.IndexOf(s)];
+            return vss + s + s + bin;
         }
         #endregion Utils
     }

@@ -23,9 +23,9 @@ namespace vSharpStudio.ViewModels
     // https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/observableobject
     public class EditorRoleColumnVm : ObservableObject
     {
-        ITreeConfigNode node;
-        Role role;
-        Action<Role> updateChildren;
+        private readonly ITreeConfigNode node;
+        private readonly Role role;
+        private readonly Action<Role> updateChildren;
         public string RoleGuid { get; private set; }
         internal EditorRoleColumnVm(ITreeConfigNode node, Role role, Action<Role> updateChildren)
         {
@@ -39,9 +39,14 @@ namespace vSharpStudio.ViewModels
         {
             //if (v.HasValue && v.Value == 0 && !isObjectUnderRole)
             //    return string.Empty;
-            MemberInfo? memberInfo = typeof(TEnum).GetMember(val.ToString()).FirstOrDefault();
+            var nam = val.ToString();
+            Debug.Assert(nam != null);
+            MemberInfo? memberInfo = typeof(TEnum).GetMember(nam).FirstOrDefault();
             Debug.Assert(memberInfo != null);
-            DescriptionAttribute? attribute = (DescriptionAttribute)memberInfo.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault();
+            var attributeObject = memberInfo.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault();
+            if (attributeObject == null)
+                return string.Empty;
+            var attribute = (DescriptionAttribute)attributeObject;
             Debug.Assert(attribute != null);
             var s = attribute.Description;
             return s == null ? string.Empty : s;
@@ -204,9 +209,9 @@ namespace vSharpStudio.ViewModels
         }
         // https://en.wikipedia.org/wiki/List_of_Unicode_characters#Arrows
 
-        public IEnumerable ListEditAccess { get => _ListEditAccess; set => SetProperty(ref _ListEditAccess, value); }
-        private IEnumerable _ListEditAccess;
-        public object SelectedEditAccess
+        public IEnumerable? ListEditAccess { get => _ListEditAccess; set => SetProperty(ref _ListEditAccess, value); }
+        private IEnumerable? _ListEditAccess;
+        public object? SelectedEditAccess
         {
             get => _SelectedEditAccess;
             set
@@ -214,6 +219,7 @@ namespace vSharpStudio.ViewModels
                 if (_SelectedEditAccess != value)
                 {
                     SetProperty(ref _SelectedEditAccess, value);
+                    Debug.Assert(value != null);
                     switch (node)
                     {
                         case Property p:
@@ -279,15 +285,15 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        private object _SelectedEditAccess;
+        private object? _SelectedEditAccess;
         public bool IsCustomEditAccess { get => _IsCustomEditAccess; set => SetProperty(ref _IsCustomEditAccess, value); }
         private bool _IsCustomEditAccess = false;
         public string EditAccessStr { get => _EditAccessStr; set => SetProperty(ref _EditAccessStr, value); }
         private string _EditAccessStr = string.Empty;
 
-        public IEnumerable ListPrintAccess { get => _ListPrintAccess; set => SetProperty(ref _ListPrintAccess, value); }
-        private IEnumerable _ListPrintAccess;
-        public EnumPrintAccess SelectedPrintAccess
+        public IEnumerable? ListPrintAccess { get => _ListPrintAccess; set => SetProperty(ref _ListPrintAccess, value); }
+        private IEnumerable? _ListPrintAccess;
+        public EnumPrintAccess? SelectedPrintAccess
         {
             get => _SelectedPrintAccess;
             set
@@ -295,6 +301,8 @@ namespace vSharpStudio.ViewModels
                 if (_SelectedPrintAccess != value)
                 {
                     SetProperty(ref _SelectedPrintAccess, value);
+                    Debug.Assert(value != null);
+                    Debug.Assert(this._SelectedPrintAccess != null);
                     switch (node)
                     {
                         case Property p:
@@ -314,7 +322,7 @@ namespace vSharpStudio.ViewModels
                             this.PrintAccessStr = this.GetEnumValueDesc(gcnst.GetRoleConstantPrint(role), null, true);
                             break;
                         case GroupConstantGroups gcnstg:
-                            this.role.DefaultConstantPrintAccessSettings = value;
+                            this.role.DefaultConstantPrintAccessSettings = value.Value;
                             this.PrintAccessStr = this.GetEnumValueDesc(role.DefaultConstantPrintAccessSettings, (int)this._SelectedPrintAccess);
                             break;
                         case Catalog c:
@@ -334,8 +342,8 @@ namespace vSharpStudio.ViewModels
                             this.PrintAccessStr = this.GetEnumValueDesc(gdt.GetRoleDetailPrint(role), null, true);
                             break;
                         case GroupListCatalogs gc:
-                            this.role.DefaultCatalogPrintAccessSettings = value;
-                            this.PrintAccessStr = this.GetEnumValueDesc(role.DefaultCatalogPrintAccessSettings, (int)this._SelectedPrintAccess);
+                            this.role.DefaultCatalogPrintAccessSettings = value.Value;
+                            this.PrintAccessStr = this.GetEnumValueDesc(role.DefaultCatalogPrintAccessSettings, (int)this._SelectedPrintAccess.Value);
                             break;
                         case Document d:
                             d.SetRoleAccess(this.role, null, value);
@@ -346,8 +354,8 @@ namespace vSharpStudio.ViewModels
                             this.PrintAccessStr = this.GetEnumValueDesc(gd.GetRoleDocumentPrint(role), null, true);
                             break;
                         case GroupDocuments:
-                            this.role.DefaultDocumentPrintAccessSettings = value;
-                            this.PrintAccessStr = this.GetEnumValueDesc(role.DefaultDocumentPrintAccessSettings, (int)this._SelectedPrintAccess);
+                            this.role.DefaultDocumentPrintAccessSettings = value.Value;
+                            this.PrintAccessStr = this.GetEnumValueDesc(role.DefaultDocumentPrintAccessSettings, (int)this._SelectedPrintAccess.Value);
                             break;
                         default:
                             break;
@@ -360,7 +368,7 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        private EnumPrintAccess _SelectedPrintAccess;
+        private EnumPrintAccess? _SelectedPrintAccess;
         public bool IsCustomPrintAccess { get => _IsCustomPrintAccess; set => SetProperty(ref _IsCustomPrintAccess, value); }
         private bool _IsCustomPrintAccess = false;
         public string PrintAccessStr { get => _PrintAccessStr; set => SetProperty(ref _PrintAccessStr, value); }

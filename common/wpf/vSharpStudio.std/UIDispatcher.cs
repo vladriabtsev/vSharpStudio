@@ -12,7 +12,7 @@ namespace ViewModelBase
     /// </summary>
     public sealed class UIDispatcher //: IDispatcher
     {
-        private static volatile UIDispatcher _dispatcher;
+        private static volatile UIDispatcher? _dispatcher;
         private static readonly object SyncRoot = new Object();
         private readonly Dispatcher _windowsDispatcher;
 

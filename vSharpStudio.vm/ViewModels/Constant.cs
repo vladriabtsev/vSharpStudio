@@ -13,7 +13,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Constant:{Name,nq} Type:{DataType.GetTypeDesc(this.DataType),nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IRoleAccess, IConstantAccessRoles
+    public partial class Constant : IDataTypeObject, ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode, IRoleAccess, IConstantAccessRoles, ILayoutFieldParameters
     {
         [Browsable(false)]
         public GroupListConstants ParentGroupListConstants { get { Debug.Assert(this.Parent != null); return (GroupListConstants)this.Parent; } }
@@ -443,12 +443,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Constant)this.ParentGroupListConstants.ListConstants.GetPrev(this);
+            var prev = (Constant?)this.ParentGroupListConstants.ListConstants.GetPrev(this);
             if (prev == null)
-            {
                 return;
-            }
-
             this.SetSelected(prev);
         }
 
@@ -472,12 +469,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Constant)this.ParentGroupListConstants.ListConstants.GetNext(this);
+            var next = (Constant?)this.ParentGroupListConstants.ListConstants.GetNext(this);
             if (next == null)
-            {
                 return;
-            }
-
             this.SetSelected(next);
         }
 

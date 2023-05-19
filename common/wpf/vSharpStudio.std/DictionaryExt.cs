@@ -9,7 +9,7 @@ namespace ViewModelBase
     {
         private bool isReturnDefaultWhenNotInDictionary;
         public DictionaryExt(int initialSize = 100, bool isReturnDefaultWhenNotInDictionary = false, bool isActivateActions = false, 
-            Action<TKey, TValue> onAddValue = null, Action<TKey, TValue> onRemoveValue = null, Action onClear = null) : base(initialSize)
+            Action<TKey, TValue>? onAddValue = null, Action<TKey, TValue>? onRemoveValue = null, Action? onClear = null) : base(initialSize)
         {
             this.IsActivateActions = isActivateActions;
             this.OnAddValue = onAddValue;
@@ -18,9 +18,9 @@ namespace ViewModelBase
             this.isReturnDefaultWhenNotInDictionary = isReturnDefaultWhenNotInDictionary;
         }
         public bool IsActivateActions { get; set; }
-        public Action<TKey, TValue> OnAddValue { get; set; }
-        public Action<TKey, TValue> OnRemoveValue { get; set; }
-        public Action OnClear { get; set; }
+        public Action<TKey, TValue>? OnAddValue { get; set; }
+        public Action<TKey, TValue>? OnRemoveValue { get; set; }
+        public Action? OnClear { get; set; }
         public new TValue this[TKey key]
         {
             get

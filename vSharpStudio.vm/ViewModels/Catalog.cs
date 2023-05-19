@@ -198,12 +198,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Catalog)this.ParentGroupListCatalogs.ListCatalogs.GetPrev(this);
+            var prev = (Catalog?)this.ParentGroupListCatalogs.ListCatalogs.GetPrev(this);
             if (prev == null)
-            {
                 return;
-            }
-
             this.SetSelected(prev);
         }
 
@@ -227,12 +224,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Catalog)this.ParentGroupListCatalogs.ListCatalogs.GetNext(this);
+            var next = (Catalog?)this.ParentGroupListCatalogs.ListCatalogs.GetNext(this);
             if (next == null)
-            {
                 return;
-            }
-
             this.SetSelected(next);
         }
 
@@ -321,7 +315,6 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void GetNormalProperties(List<IProperty> res)
         {
-            IProperty prp = null!;
             this.GetCodeProperty(res);
             this.GetNameProperty(res);
             this.GetDescriptionProperty(res);
@@ -550,7 +543,7 @@ namespace vSharpStudio.vm.ViewModels
             ViewTreeData? viewTreeData = null;
             ViewListData? viewListData = null;
             var model = this.ParentGroupListCatalogs.ParentModel;
-            Form? form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();
+            Form form = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).Single();
             IProperty pId = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             IProperty? pRefTreeParent = null;
             IProperty? pRefParent = null;

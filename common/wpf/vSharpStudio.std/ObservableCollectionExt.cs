@@ -7,17 +7,18 @@ using System.Collections.Specialized;
 using System.Threading;
 using System.ComponentModel;
 using static ViewModelBase.MessageBusProxy;
+using System.Diagnostics;
 
 namespace ViewModelBase
 {
     public class ObservableCollectionExt<T> : ObservableCollection<T>
     {
 
-        public new event NotifyCollectionChangedEventHandler CollectionChanged;
-        public new event PropertyChangedEventHandler PropertyChanged;
+        public new event NotifyCollectionChangedEventHandler? CollectionChanged;
+        public new event PropertyChangedEventHandler? PropertyChanged;
         //    public event NotifyCollectionChangedEventHandler CollectionChangedNoThrottling;
 
-        Action onCountChange = null;
+        private readonly Action? onCountChange = null;
 
         public ObservableCollectionExt()
         {
@@ -32,26 +33,24 @@ namespace ViewModelBase
             this.onCountChange = onCountChange;
         }
 
-        public ObservableCollectionExt(IEnumerable<T> collection, Action onCountChange = null)
+        public ObservableCollectionExt(IEnumerable<T> collection, Action? onCountChange = null)
           : this()
         {
             this.onCountChange = onCountChange;
             this.AddRange(collection);
-            if (this.onCountChange != null)
-                this.onCountChange();
+            this.onCountChange?.Invoke();
         }
 
-        public ObservableCollectionExt(List<T> collection, Action onCountChange = null)
+        public ObservableCollectionExt(List<T> collection, Action? onCountChange = null)
           : this()
         {
             this.onCountChange = onCountChange;
             this.AddRange(collection);
-            if (this.onCountChange != null)
-                this.onCountChange();
+            this.onCountChange?.Invoke();
         }
 
         // implement auto throttling
-        private bool throttleNotification = false;
+        private readonly bool throttleNotification = false;
         //public bool TrotlteNotification
         //{
         //  get { return trottlteNotification; }
@@ -65,8 +64,9 @@ namespace ViewModelBase
         //  }
         //}
 
-        void ObservableCollectionExt_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        void ObservableCollectionExt_PropertyChanged(object? sender, PropertyChangedEventArgs? e)
         {
+            Debug.Assert(e != null);
             lock (_lock)
             {
                 if (PropertyChanged != null)
@@ -79,8 +79,9 @@ namespace ViewModelBase
             }
         }
 
-        void ObservableCollectionExt_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        void ObservableCollectionExt_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs? e)
         {
+            Debug.Assert(e != null);
             lock (_lock)
             {
                 //        if (CollectionChangedNoThrottling != null)
@@ -114,10 +115,10 @@ namespace ViewModelBase
             }
         }
 
-        private Timer _timer;
+        private readonly Timer _timer;
         //    private NotifyCollectionChangedEventArgs eLast;
         // this is connected to the DispatherTimer
-        private void TimerCallback(object state)
+        private void TimerCallback(object? state)
         {
             lock (_lock)
             {
@@ -130,8 +131,7 @@ namespace ViewModelBase
                 {
                     base.OnCollectionChanged(new System.Collections.Specialized.NotifyCollectionChangedEventArgs(System.Collections.Specialized.NotifyCollectionChangedAction.Reset));
                 });
-                if (this.onCountChange != null)
-                    this.onCountChange();
+                this.onCountChange?.Invoke();
             }
         }
 
@@ -161,7 +161,7 @@ namespace ViewModelBase
         //  }
         //}
 
-        private object _lock = new object();
+        private readonly object _lock = new();
 
         public new void Add(T item)
         {
@@ -187,7 +187,7 @@ namespace ViewModelBase
             }
         }
 
-        private int _trottleInterval = 500;
+        private readonly int _trottleInterval = 500;
 
         //private bool _firstNotification = true;
         //private DateTime _lastChanges;
@@ -222,8 +222,7 @@ namespace ViewModelBase
           logger.Debug("direct call");
 #endif
                     base.OnCollectionChanged(e);
-                    if (this.onCountChange != null)
-                        this.onCountChange();
+                    this.onCountChange?.Invoke();
                 }
             }
         }
@@ -232,7 +231,7 @@ namespace ViewModelBase
         public void AddRange(IEnumerable<T> collection)
         {
             //      deferNotification = true;
-            int index = this.Count;
+            //int index = this.Count;
             try
             {
                 foreach (T itm in collection)

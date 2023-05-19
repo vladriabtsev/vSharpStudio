@@ -24,7 +24,7 @@ namespace vSharpStudio.ViewModels
     {
         Model? model;
         public ITreeConfigNode Node { get; private set; }
-        private static ConfigNodesCollection<Role> roles;
+        private static ConfigNodesCollection<Role>? roles;
         public List<EditorRoleColumnVm> ListRoleColumns { get; private set; }
         public EditorRoleTreeVm(ConfigNodesCollection<Role> roles, Model model)
         {
@@ -37,6 +37,7 @@ namespace vSharpStudio.ViewModels
         {
             this.Node = node;
             this.ListRoleColumns = new List<EditorRoleColumnVm>();
+            Debug.Assert(EditorRoleTreeVm.roles != null);
             foreach (var role in EditorRoleTreeVm.roles)
                 this.ListRoleColumns.Add(new EditorRoleColumnVm(node, role, UpdateChildren));
         }
@@ -61,7 +62,7 @@ namespace vSharpStudio.ViewModels
             foreach (var t in node.GetListChildren())
             {
                 var tt = (ITreeConfigNode)t;
-                if (parent == null && (tt.Name == "Common" || tt.Name == "Enumerations"|| tt.Name == "Journals"))
+                if (parent == null && (tt.Name == "Common" || tt.Name == "Enumerations" || tt.Name == "Journals"))
                     continue;
                 else if (tt.Name == "Forms" || tt.Name == "Reports")
                     continue;

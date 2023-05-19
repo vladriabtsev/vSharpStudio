@@ -335,7 +335,7 @@ namespace ViewModelBase
                 });
         }
 
-        public Exception Exception
+        public Exception? Exception
         {
             get { return _Exception; }
             set
@@ -347,7 +347,7 @@ namespace ViewModelBase
                 }
             }
         }
-        public Exception _Exception;
+        public Exception? _Exception;
         public bool IsBusy
         {
             get { return _IsBusy; }

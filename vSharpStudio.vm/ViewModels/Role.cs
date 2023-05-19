@@ -90,12 +90,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Role)this.ParentGroupListRoles.ListRoles.GetPrev(this);
+            var prev = (Role?)this.ParentGroupListRoles.ListRoles.GetPrev(this);
             if (prev == null)
-            {
                 return;
-            }
-
             this.SetSelected(prev);
         }
 
@@ -119,12 +116,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Role)this.ParentGroupListRoles.ListRoles.GetNext(this);
+            var next = (Role?)this.ParentGroupListRoles.ListRoles.GetNext(this);
             if (next == null)
-            {
                 return;
-            }
-
             this.SetSelected(next);
         }
 

@@ -635,7 +635,7 @@ namespace vSharpStudio.vm.ViewModels
             res.DataType.IsPKey = true;
             return res;
         }
-        public IDataType GetIdDataType(ITreeConfigNode parent)
+        public IDataType GetIdDataType(ITreeConfigNode? parent)
         {
             IDataType dt;
             switch (this.PKeyType)
@@ -651,21 +651,17 @@ namespace vSharpStudio.vm.ViewModels
             }
             return dt;
         }
-        public IDataType GetIdRefDataType(ITreeConfigNode parent)
+        public IDataType GetIdRefDataType(ITreeConfigNode? parent)
         {
-            IDataType dt = default(IDataType)!;
             switch (this.PKeyType)
             {
                 case EnumPrimaryKeyType.INT:
-                    dt = this.GetDataTypeFromMaxValue(parent, int.MaxValue, false);
-                    break;
+                    return this.GetDataTypeFromMaxValue(parent, int.MaxValue, false);
                 case EnumPrimaryKeyType.LONG:
-                    dt = this.GetDataTypeFromMaxValue(parent, long.MaxValue, false);
-                    break;
+                    return this.GetDataTypeFromMaxValue(parent, long.MaxValue, false);
                 default:
                     throw new ArgumentException();
             }
-            return dt;
         }
         public IProperty GetPropertyId(ITreeConfigNode parent, string idGuid)
         {

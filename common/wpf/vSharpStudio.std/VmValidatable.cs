@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,8 +50,9 @@ namespace ViewModelBase
             NotifyPropertyChanged(nameof(this.HasErrors));
             return isValid;
         }
-        protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        protected bool ValidateProperty([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
+            Debug.Assert(propertyName != null);
 #if DEBUG
             if (isNotValidateForUnitTests)
                 return true;
@@ -108,15 +110,17 @@ namespace ViewModelBase
         //}
         #region INotifyDataErrorInfo methods and helpers
         private readonly Dictionary<string, List<string>> _errors = new Dictionary<string, List<string>>();
-        public void SetError(string errorMessage, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        public void SetError(string errorMessage, [System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
+            Debug.Assert(propertyName != null);
             if (!_errors.ContainsKey(propertyName))
                 _errors.Add(propertyName, new List<string> { errorMessage });
             RaiseErrorsChanged(propertyName);
             NotifyPropertyChanged(nameof(this.HasErrors));
         }
-        public void SetOneError(string errorMessage, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        public void SetOneError(string errorMessage, [System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
+            Debug.Assert(propertyName != null);
             ClearError(propertyName);
             SetError(errorMessage, propertyName);
         }
@@ -128,8 +132,9 @@ namespace ViewModelBase
 
             NotifyPropertyChanged(nameof(this.HasErrors));
         }
-        protected void ClearErrors([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        protected void ClearErrors([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
+            Debug.Assert(propertyName != null);
             if (_errors.ContainsKey(propertyName))
                 _errors.Remove(propertyName);
             RaiseErrorsChanged(propertyName);
@@ -144,16 +149,17 @@ namespace ViewModelBase
         }
         public void RaiseErrorsChanged(string propertyName)
         {
-            ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
+            if (this.ErrorsChanged != null)
+                this.ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
         }
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged = delegate { };
-        public IEnumerable GetErrors(string propertyName)
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+        public IEnumerable GetErrors(string? propertyName)
         {
             if (string.IsNullOrEmpty(propertyName))
-                return null;
+                return new object[0];
             return _errors.ContainsKey(propertyName)
                 ? _errors[propertyName]
-                : null;
+                : new object[0];
         }
         public bool HasErrors
         {

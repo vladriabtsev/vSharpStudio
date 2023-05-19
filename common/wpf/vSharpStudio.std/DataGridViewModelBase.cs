@@ -26,12 +26,12 @@ namespace ViewModelBase
         }
         private ObservableCollectionExt<T> _collection = new ObservableCollectionExt<T>();
 
-        public T Selected
+        public T? Selected
         {
             get { return _selected; }
-            set { if (SetProperty<T>(ref _selected, value)) { this.SelectedRowChanged(); } }
+            set { if (SetProperty<T?>(ref _selected, value)) { this.SelectedRowChanged(); } }
         }
-        private T _selected;
+        private T? _selected;
         protected virtual void SelectedRowChanged() { }
     }
 }

@@ -227,7 +227,7 @@ namespace ViewModelBase
         /// <summary>
         /// Multicast event for property change notifications.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         #endregion
 
@@ -245,8 +245,9 @@ namespace ViewModelBase
         /// support CallerMemberName.</param>
         /// <returns>True if the value was changed, false if the existing value matched the
         /// desired value.</returns>
-        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string? propertyName = null)
         {
+            Debug.Assert(propertyName != null);
             if (System.Collections.Generic.EqualityComparer<T>.Default.Equals(storage, value))
             {
                 return false;
@@ -278,8 +279,9 @@ namespace ViewModelBase
         /// <param name="propertyName">Optional name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
-        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void NotifyPropertyChanged([CallerMemberName] string? propertyName = null)
         {
+            Debug.Assert(propertyName != null);
             if (!VmBindable.IsNotifyingStatic)
                 return;
             if (!IsNotifying)
@@ -338,13 +340,13 @@ namespace ViewModelBase
         /// <typeparam name="T">Type of the property in the expression.</typeparam>
         /// <param name="property">Expression to retrieve the property. Example: () => this.FirstName</param>
         /// <returns>PropertyInfo object of the expression property else null if not found.</returns>
-        protected internal PropertyInfo GetPropertyInfo<T>(Expression<Func<T>> property)
+        protected internal PropertyInfo? GetPropertyInfo<T>(Expression<Func<T>> property)
         {
             if (property != null && property.Body is MemberExpression)
             {
                 var mex = (MemberExpression)property.Body;
-                if (mex != null && mex.Member is PropertyInfo)
-                    return mex.Member as PropertyInfo;
+                if (mex != null && mex.Member is PropertyInfo pi)
+                    return pi;
             }
             return null;
         }
@@ -362,7 +364,7 @@ namespace ViewModelBase
 
         #endregion
 
-        public void CopyDiffToObject(object destination, string[] exclProps = null, Type interfaceSourceType = null)
+        public void CopyDiffToObject(object destination, string[]? exclProps = null, Type? interfaceSourceType = null)
         {
             PropertyInfo[] pdlst;
             pdlst = destination.GetType().GetProperties();
@@ -398,9 +400,11 @@ namespace ViewModelBase
                 if (!ddic.ContainsKey(p.Name))
                     throw new Exception("Destination object doesn't have property with name: " + p.Name);
                 var dp = ddic[p.Name];
-                object to = dp.GetValue(destination, null);
+                object? to = dp.GetValue(destination, null);
+                Debug.Assert(to != null);
                 var toType = dp.PropertyType;
-                object from = p.GetValue(this, null);
+                object? from = p.GetValue(this, null);
+                Debug.Assert(from != null);
                 var fromType = p.PropertyType;
                 switch (fromType.Name)
                 {

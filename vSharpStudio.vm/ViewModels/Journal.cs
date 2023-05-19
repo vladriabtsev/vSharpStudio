@@ -81,12 +81,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeUp()
         {
-            var prev = (Journal)this.ParentGroupListJournals.ListJournals.GetPrev(this);
+            var prev = (Journal?)this.ParentGroupListJournals.ListJournals.GetPrev(this);
             if (prev == null)
-            {
                 return;
-            }
-
             this.SetSelected(prev);
         }
         public override void NodeMoveUp()
@@ -107,12 +104,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeDown()
         {
-            var next = (Journal)this.ParentGroupListJournals.ListJournals.GetNext(this);
+            var next = (Journal?)this.ParentGroupListJournals.ListJournals.GetNext(this);
             if (next == null)
-            {
                 return;
-            }
-
             this.SetSelected(next);
         }
         public override void NodeMoveDown()

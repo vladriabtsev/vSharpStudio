@@ -12,11 +12,11 @@ namespace ViewModelBase
 {
     public class vCommand : VmBindable, ICommand
     {
-        public static vCommand Create(Action<object> execute, Predicate<object> canExecute)
+        public static vCommand Create(Action<object?> execute, Predicate<object?> canExecute)
         {
             return new vCommand((o) => { execute(o); }, (o) => { return canExecute(o); });
         }
-        public static vCommand CreateAsync(Action<object> execute, Predicate<object> canExecute)
+        public static vCommand CreateAsync(Action<object?> execute, Predicate<object?> canExecute)
         {
             return new vCommand((o) => { Task.Run(() => { execute(o); }); }, (o) => { return canExecute(o); });
         }
@@ -35,15 +35,15 @@ namespace ViewModelBase
         //}
         //private Visibility _Visibility = Visibility.Visible;
 
-        private readonly Predicate<object> _canExecute;
-        private readonly Action<object> _execute;
+        private readonly Predicate<object?>? _canExecute;
+        private readonly Action<object?> _execute;
         //private readonly Func<object, Task> _executeAsync;
-        public vCommand(Action<object> execute)
+        public vCommand(Action<object?> execute)
            : this(execute, null)
         {
             _execute = execute;
         }
-        public vCommand(Action<object> execute, Predicate<object> canExecute)
+        public vCommand(Action<object?> execute, Predicate<object?>? canExecute)
         {
             _execute = execute;
             _canExecute = canExecute;
@@ -53,7 +53,7 @@ namespace ViewModelBase
         //    _executeAsync = executeAsync;
         //    _canExecute = canExecute;
         //}
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
             //if (this.Dispatcher == null) // to made visible all controls binded to visibility
             //    return true;
@@ -71,10 +71,11 @@ namespace ViewModelBase
             //this.IsEnabled = false;
             return false;
         }
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             _isexecuted = true;
-            CanExecuteChangedInternal.Raise(this);
+            if (this.CanExecuteChangedInternal != null)
+                this.CanExecuteChangedInternal.Raise(this);
             try
             {
                 //if (_execute != null)
@@ -89,13 +90,15 @@ namespace ViewModelBase
             finally
             {
                 _isexecuted = false;
-                CanExecuteChangedInternal.Raise(this);
+                if (this.CanExecuteChangedInternal != null)
+                    this.CanExecuteChangedInternal.Raise(this);
             }
         }
-        async public Task ExecuteAsync(object parameter)
+        async public Task ExecuteAsync(object? parameter)
         {
             _isexecuted = true;
-            CanExecuteChangedInternal.Raise(this);
+            if (this.CanExecuteChangedInternal != null)
+                this.CanExecuteChangedInternal.Raise(this);
             try
             {
                 await Task.Run(() =>
@@ -107,12 +110,13 @@ namespace ViewModelBase
             finally
             {
                 _isexecuted = false;
-                CanExecuteChangedInternal.Raise(this);
+                if (this.CanExecuteChangedInternal != null)
+                    this.CanExecuteChangedInternal.Raise(this);
             }
         }
         // Ensures WPF commanding infrastructure asks all RelayCommand objects whether their
         // associated views should be enabled whenever a command is invoked 
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add
             {
@@ -125,7 +129,7 @@ namespace ViewModelBase
                 CanExecuteChangedInternal -= value;
             }
         }
-        private event EventHandler CanExecuteChangedInternal;
+        private event EventHandler? CanExecuteChangedInternal;
         public void RaiseCanExecuteChanged()
         {
             if (this.CanExecuteChangedInternal != null) // to exclude errors in Design mode
@@ -149,11 +153,11 @@ namespace ViewModelBase
         //    set { SetProperty<Visibility>(ref this._Visibility, value); }
         //}
         //private Visibility _Visibility;
-        public string ToolTipText
+        public string? ToolTipText
         {
             get { return this._ToolTipText; }
-            set { SetProperty<string>(ref this._ToolTipText, value); }
+            set { SetProperty<string?>(ref this._ToolTipText, value); }
         }
-        private string _ToolTipText;
+        private string? _ToolTipText;
     }
 }

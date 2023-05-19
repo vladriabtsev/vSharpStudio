@@ -11,7 +11,7 @@ namespace ViewModelBase
 {
     public class IconContentTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate IconTemplate { get; set; }
+        public DataTemplate? IconTemplate { get; set; }
         public override DataTemplate SelectTemplate(object value, DependencyObject container)
         {
             Guard.IsAssignableToType<string>(value);

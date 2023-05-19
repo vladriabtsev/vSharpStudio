@@ -77,12 +77,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (Report)this.ParentGroupListReports.ListReports.GetPrev(this);
+            var prev = (Report?)this.ParentGroupListReports.ListReports.GetPrev(this);
             if (prev == null)
-            {
                 return;
-            }
-
             this.SetSelected(prev);
         }
 
@@ -106,12 +103,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (Report)this.ParentGroupListReports.ListReports.GetNext(this);
+            var next = (Report?)this.ParentGroupListReports.ListReports.GetNext(this);
             if (next == null)
-            {
                 return;
-            }
-
             this.SetSelected(next);
         }
 
