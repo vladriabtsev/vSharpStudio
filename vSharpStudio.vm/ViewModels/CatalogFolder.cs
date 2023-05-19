@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        new public string IconName { get { return "iconFolder"; } }
+        public new string IconName { get { return "iconFolder"; } }
         partial void OnCreated()
         {
             this._Name = "Folder";
@@ -192,9 +192,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
         {
-            var res = new List<IForm>();
-            res.Add(this.GetForm(FormType.ListNarrow, guidAppPrjGen));
-            res.Add(this.GetForm(FormType.ListWide, guidAppPrjGen));
+            var res = new List<IForm>
+            {
+                this.GetForm(FormType.ListNarrow, guidAppPrjGen),
+                this.GetForm(FormType.ListWide, guidAppPrjGen)
+            };
             return res;
         }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion)
@@ -317,9 +319,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
         public bool IsGridSortableGet()
@@ -367,7 +371,7 @@ namespace vSharpStudio.vm.ViewModels
             if (print.HasValue)
                 dicCatalogAccess[role.Guid].PrintAccess = print.Value;
         }
-        internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
+        internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleCatalogAccessSettings)

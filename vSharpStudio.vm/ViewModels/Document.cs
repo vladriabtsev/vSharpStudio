@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        new public string IconName { get { return "iconDiagnosticesFile"; } }
+        public new string IconName { get { return "iconDiagnosticesFile"; } }
         //protected override string GetNodeIconName() { return "iconDiagnosticesFile"; }
         partial void OnCreated()
         {
@@ -416,9 +416,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
         {
-            var res = new List<IForm>();
-            res.Add(this.GetForm(FormType.ListNarrow, guidAppPrjGen));
-            res.Add(this.GetForm(FormType.ListWide, guidAppPrjGen));
+            var res = new List<IForm>
+            {
+                this.GetForm(FormType.ListNarrow, guidAppPrjGen),
+                this.GetForm(FormType.ListWide, guidAppPrjGen)
+            };
             return res;
         }
         private List<IProperty> SelectViewProperties(FormType formType, ConfigNodesCollection<Property> fromPropertiesList, ObservableCollection<string> viewPropertiesGuids, string guidAppPrjGen)
@@ -459,9 +461,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
         public bool IsGridSortableGet()
@@ -525,7 +529,7 @@ namespace vSharpStudio.vm.ViewModels
             if (print.HasValue)
                 dicDocumentAccess[role.Guid].PrintAccess = print.Value;
         }
-        internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new Dictionary<string, RoleDocumentAccess>();
+        internal Dictionary<string, RoleDocumentAccess> dicDocumentAccess = new();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleDocumentAccessSettings)

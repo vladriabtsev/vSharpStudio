@@ -42,10 +42,10 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        new public ConfigNodesCollection<AppProjectGenerator> Children { get { return this.ListAppProjectGenerators; } }
+        public new ConfigNodesCollection<AppProjectGenerator> Children { get { return this.ListAppProjectGenerators; } }
 
         [Browsable(false)]
-        new public string IconName { get { return "iconApplication"; } }
+        public new string IconName { get { return "iconApplication"; } }
 
         //protected override string GetNodeIconName() { return "iconApplication"; }
         partial void OnCreated()
@@ -85,9 +85,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             Debug.Assert(parent != null);
             this.Name = name;
-#pragma warning disable CA1062 // Validate arguments of public methods
             this.ParentAppSolution.ListAppProjects.Add(this);
-#pragma warning restore CA1062 // Validate arguments of public methods
             this.RelativeAppProjectPath = projectPath;
         }
         public string GetProjectPath()
@@ -101,7 +99,7 @@ namespace vSharpStudio.vm.ViewModels
         public string GetProjectFolderPath()
         {
             var path = this.GetProjectPath();
-            path = path.Substring(0, path.LastIndexOf(@"\") + 1);
+            path = path[..(path.LastIndexOf(@"\") + 1)];
             return path;
         }
         partial void OnRelativeAppProjectPathChanging(ref string to)
@@ -178,7 +176,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override void NodeMoveUp()
         {
-            var prev = this.ParentAppSolution.ListAppProjects.MoveUp(this);
+            this.ParentAppSolution.ListAppProjects.MoveUp(this);
             this.SetSelected(this);
         }
         public override bool NodeCanDown()
@@ -221,7 +219,7 @@ namespace vSharpStudio.vm.ViewModels
             var node = AppProject.Clone(this.ParentAppSolution, this, true, true);
             node.Parent = this.Parent;
             this.ParentAppSolution.ListAppProjects.Add(node);
-            this._Name = this._Name + "2";
+            this._Name += "2";
             this.SetSelected(node);
             return node;
         }
@@ -235,7 +233,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            AppProjectGenerator node = null!;
+            AppProjectGenerator node;
             if (node_impl == null)
             {
                 node = new AppProjectGenerator(this);
@@ -290,11 +288,8 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
-                if (dicPluginsGroupSettings == null)
-                {
-                    dicPluginsGroupSettings = new DictionaryExt<string, IvPluginGroupSettings?>(5, false, true,
+                dicPluginsGroupSettings ??= new DictionaryExt<string, IvPluginGroupSettings?>(5, false, true,
                         (ki, v) => { }, (kr, v) => { }, () => { });
-                }
                 return dicPluginsGroupSettings;
             }
         }
@@ -307,8 +302,10 @@ namespace vSharpStudio.vm.ViewModels
             this.ListGeneratorsProjectSettings.Clear();
             foreach (var t in this.DicPluginsGroupSettings)
             {
-                var set = new PluginGeneratorProjectSettings(this);
-                set.Guid = t.Key;
+                var set = new PluginGeneratorProjectSettings(this)
+                {
+                    Guid = t.Key
+                };
                 if (t.Value == null)
                     set.Settings = String.Empty;
                 else
@@ -327,8 +324,7 @@ namespace vSharpStudio.vm.ViewModels
                     foreach (var tt in this.ListAppProjectGenerators)
                     {
                         IvPluginGenerator? gn = tt.PluginDbGenerator;
-                        if (gn == null)
-                            gn = tt.PluginGenerator;
+                        gn ??= tt.PluginGenerator;
                         if (gn == null)
                             continue;
                         if (gn.ProjectParametersGuid == t.Guid)
@@ -382,8 +378,10 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Group Generator Project Settings
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent)
+            };
             //lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }

@@ -51,7 +51,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        new public string IconName { get { return "iconWindowsForm"; } }
+        public new string IconName { get { return "iconWindowsForm"; } }
         //protected override string GetNodeIconName() { return "iconWindowsForm"; }
         //partial void OnCreate()
         //{

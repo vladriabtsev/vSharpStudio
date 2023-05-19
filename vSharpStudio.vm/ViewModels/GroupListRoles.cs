@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
             return this.ParentGroupListCommon.Children;
         }
         #endregion ITree
-        new public ConfigNodesCollection<Role> Children { get { return this.ListRoles; } }
+        public new ConfigNodesCollection<Role> Children { get { return this.ListRoles; } }
         partial void OnCreated()
         {
             this._Name = "Roles";
@@ -110,9 +110,11 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
         public Role AddRole(string name)

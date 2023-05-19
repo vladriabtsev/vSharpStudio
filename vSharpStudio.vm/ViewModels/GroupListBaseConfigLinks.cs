@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<BaseConfigLink> Children { get { return this.ListBaseConfigLinks; } }
+        public new ConfigNodesCollection<BaseConfigLink> Children { get { return this.ListBaseConfigLinks; } }
 
         // [BrowsableAttribute(false)]
         // public SortedObservableCollection<ITreeConfigNode> Children { get; private set; }
@@ -110,12 +110,14 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Description));
-            lst.Add(this.GetPropertyName(() => this.Guid));
-            //lst.Add(this.GetPropertyName(() => this.NameUi));
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Description),
+                this.GetPropertyName(() => this.Guid),
+                //lst.Add(this.GetPropertyName(() => this.NameUi));
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
     }

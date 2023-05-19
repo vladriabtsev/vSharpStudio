@@ -52,7 +52,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public static readonly string DefaultName = "Property";
         [Browsable(false)]
-        new public string IconName { get { return "iconProperty"; } }
+        public new string IconName { get { return "iconProperty"; } }
         //protected override string GetNodeIconName() { return "iconProperty"; }
         [Browsable(false)]
         public string? ComplexObjectName { get; set; }
@@ -576,7 +576,7 @@ namespace vSharpStudio.vm.ViewModels
             if (print.HasValue)
                 dicPropertyAccess[role.Guid].PrintAccess = print.Value;
         }
-        internal Dictionary<string, RolePropertyAccess> dicPropertyAccess = new Dictionary<string, RolePropertyAccess>();
+        internal Dictionary<string, RolePropertyAccess> dicPropertyAccess = new();
         public void InitRoles()
         {
             foreach (var tt in this.ListRolePropertyAccessSettings)

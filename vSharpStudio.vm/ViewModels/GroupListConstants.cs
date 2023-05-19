@@ -78,7 +78,7 @@ namespace vSharpStudio.vm.ViewModels
             return this.ParentGroupConstantGroups.Children;
         }
         [Browsable(false)]
-        new public ConfigNodesCollection<Constant> Children { get { return this.ListConstants; } }
+        public new ConfigNodesCollection<Constant> Children { get { return this.ListConstants; } }
         #endregion ITree
 
         #region Tree operations
@@ -230,12 +230,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            //lst.Add(this.GetPropertyName(() => this.Description));
-            lst.Add(this.GetPropertyName(() => this.Guid));
-            //lst.Add(this.GetPropertyName(() => this.NameUi));
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                //lst.Add(this.GetPropertyName(() => this.Description));
+                this.GetPropertyName(() => this.Guid),
+                //lst.Add(this.GetPropertyName(() => this.NameUi));
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
 
@@ -259,7 +261,7 @@ namespace vSharpStudio.vm.ViewModels
             if (print.HasValue)
                 dicConstantAccess[role.Guid].PrintAccess = print.Value;
         }
-        internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new Dictionary<string, RoleConstantAccess>();
+        internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleConstantAccessSettings)

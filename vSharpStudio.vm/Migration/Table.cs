@@ -31,9 +31,9 @@ namespace vSharpStudio.vm.Migration
 
     public class Table
     {
-        public List<Column> Columns => new List<Column>();
-        public List<Key> InnerKeys => new List<Key>();
-        public List<Key> OuterKeys => new List<Key>();
+        public List<Column> Columns => new();
+        public List<Key> InnerKeys => new();
+        public List<Key> OuterKeys => new();
         public string? Name { get; set; }
         public string? Schema { get; set; }
         public bool IsView { get; set; }

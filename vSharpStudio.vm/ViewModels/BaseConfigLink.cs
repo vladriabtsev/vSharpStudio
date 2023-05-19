@@ -37,7 +37,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        new public string IconName { get { return "icon3DScene"; } }
+        public new string IconName { get { return "icon3DScene"; } }
         //protected override string GetNodeIconName() { return "icon3DScene"; }
         partial void OnCreated()
         {
@@ -83,8 +83,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent)
+            };
             return lst.ToArray();
         }
     }

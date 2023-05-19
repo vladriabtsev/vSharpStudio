@@ -12,7 +12,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public class EditorPluginSelection : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
-        public static ObservableCollectionExt<PluginGenerator> ListGenerators = new ObservableCollectionExt<PluginGenerator>();
+        public static ObservableCollectionExt<PluginGenerator> ListGenerators = new();
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);

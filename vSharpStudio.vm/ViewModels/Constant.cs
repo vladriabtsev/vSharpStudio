@@ -46,7 +46,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        new public string IconName { get { return "iconConstant"; } }
+        public new string IconName { get { return "iconConstant"; } }
         //protected override string GetNodeIconName() { return "iconConstant"; }
         partial void OnCreated()
         {
@@ -530,7 +530,7 @@ namespace vSharpStudio.vm.ViewModels
             if (print.HasValue)
                 dicConstantAccess[role.Guid].PrintAccess = print.Value;
         }
-        internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new Dictionary<string, RoleConstantAccess>();
+        internal Dictionary<string, RoleConstantAccess> dicConstantAccess = new();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleConstantAccessSettings)

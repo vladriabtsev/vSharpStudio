@@ -53,11 +53,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             BigInteger maxValue = maxNumericalValue;
             uint length = 0;
-            maxValue = maxValue / 10;
+            maxValue /= 10;
             while (maxValue > 0)
             {
                 length++;
-                maxValue = maxValue / 10;
+                maxValue /= 10;
             }
             this.DataTypeEnum = EnumDataType.NUMERICAL;
             this.Length = length;
@@ -356,13 +356,13 @@ namespace vSharpStudio.vm.ViewModels
             }
         }
         private BigInteger? _MaxNumericalValue = null;
-        static public uint GetLengthFromMaxValue(BigInteger maxValue)
+        public static uint GetLengthFromMaxValue(BigInteger maxValue)
         {
             uint length = 0;
             BigInteger m = maxValue;
             while (m > 10)
             {
-                m = m / 10;
+                m /= 10;
                 length++;
             }
             return length;
@@ -377,73 +377,41 @@ namespace vSharpStudio.vm.ViewModels
         }
         private Type GetClrType()
         {
-            switch (this.ClrTypeName)
+            return this.ClrTypeName switch
             {
-                case "DateTime":
-                    return typeof(DateTime);
-                case "DateTime?":
-                    return typeof(DateTime?);
-                case "bool":
-                    return typeof(bool);
-                case "bool?":
-                    return typeof(bool?);
-                case "string":
-                    return typeof(string);
-                case "byte":
-                    return typeof(byte);
-                case "byte?":
-                    return typeof(byte?);
-                case "ushort":
-                    return typeof(ushort);
-                case "ushort?":
-                    return typeof(ushort?);
-                case "uint":
-                    return typeof(uint);
-                case "uint?":
-                    return typeof(uint?);
-                case "ulong":
-                    return typeof(ulong);
-                case "ulong?":
-                    return typeof(ulong?);
-                case "BigInteger":
-                    return typeof(BigInteger);
-                case "BigInteger?":
-                    return typeof(BigInteger?);
-                case "sbyte":
-                    return typeof(sbyte);
-                case "sbyte?":
-                    return typeof(sbyte?);
-                case "short":
-                    return typeof(short);
-                case "short?":
-                    return typeof(short?);
-                case "int":
-                    return typeof(int);
-                case "int?":
-                    return typeof(int?);
-                case "long":
-                    return typeof(long);
-                case "long?":
-                    return typeof(long?);
-                case "BigDecimal":
-                    return typeof(BigDecimal);
-                case "BigDecimal?":
-                    return typeof(BigDecimal?);
-                case "float":
-                    return typeof(float);
-                case "float?":
-                    return typeof(float?);
-                case "double":
-                    return typeof(double);
-                case "double?":
-                    return typeof(double?);
-                case "decimal":
-                    return typeof(decimal);
-                case "decimal?":
-                    return typeof(decimal?);
-                default:
-                    throw new Exception("Not supported operation");
-            }
+                "DateTime" => typeof(DateTime),
+                "DateTime?" => typeof(DateTime?),
+                "bool" => typeof(bool),
+                "bool?" => typeof(bool?),
+                "string" => typeof(string),
+                "byte" => typeof(byte),
+                "byte?" => typeof(byte?),
+                "ushort" => typeof(ushort),
+                "ushort?" => typeof(ushort?),
+                "uint" => typeof(uint),
+                "uint?" => typeof(uint?),
+                "ulong" => typeof(ulong),
+                "ulong?" => typeof(ulong?),
+                "BigInteger" => typeof(BigInteger),
+                "BigInteger?" => typeof(BigInteger?),
+                "sbyte" => typeof(sbyte),
+                "sbyte?" => typeof(sbyte?),
+                "short" => typeof(short),
+                "short?" => typeof(short?),
+                "int" => typeof(int),
+                "int?" => typeof(int?),
+                "long" => typeof(long),
+                "long?" => typeof(long?),
+                "BigDecimal" => typeof(BigDecimal),
+                "BigDecimal?" => typeof(BigDecimal?),
+                "float" => typeof(float),
+                "float?" => typeof(float?),
+                "double" => typeof(double),
+                "double?" => typeof(double?),
+                "decimal" => typeof(decimal),
+                "decimal?" => typeof(decimal?),
+                _ => throw new Exception("Not supported operation"),
+            };
         }
         [PropertyOrderAttribute(11)]
         public string ClrTypeName

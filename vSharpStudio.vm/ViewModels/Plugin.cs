@@ -19,7 +19,7 @@ namespace vSharpStudio.vm.ViewModels
         public GroupListPlugins ParentGroupListPlugins { get { Debug.Assert(this.Parent != null); return (GroupListPlugins)this.Parent; } }
         [Browsable(false)]
         public IGroupListPlugins ParentGroupListPluginsI { get { Debug.Assert(this.Parent != null); return (IGroupListPlugins)this.Parent; } }
-        new public ConfigNodesCollection<PluginGenerator> Children { get { return this.ListGenerators; } }
+        public new ConfigNodesCollection<PluginGenerator> Children { get { return this.ListGenerators; } }
         public Plugin(ITreeConfigNode parent, IvPlugin plugin)
             : this(parent)
         {
@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         [Browsable(false)]
-        new public string IconName { get { return "iconFolder"; } }
+        public new string IconName { get { return "iconFolder"; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
@@ -79,9 +79,11 @@ namespace vSharpStudio.vm.ViewModels
         #endregion IConfigObject
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
     }

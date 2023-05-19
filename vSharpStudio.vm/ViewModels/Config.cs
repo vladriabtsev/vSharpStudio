@@ -63,11 +63,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public DictionaryExt<string, ITreeConfigNode> _DicNodes = new DictionaryExt<string, ITreeConfigNode>(1000, true, true,
+        public DictionaryExt<string, ITreeConfigNode> _DicNodes = new(1000, true, true,
                 (ki, v) => { }, (kr, v) => { }, () => { });
         public IReadOnlyDictionary<string, ITreeConfigNode> DicNodes { get { return (IReadOnlyDictionary<string, ITreeConfigNode>)_DicNodes; } }
         // Only active Plugin generators (generator selected in AppProjectGenerator) Guid  AppProjectGenerator node
-        public DictionaryExt<string, IvPluginGenerator> _DicActiveAppProjectGenerators = new DictionaryExt<string, IvPluginGenerator>(100, false, true,
+        public DictionaryExt<string, IvPluginGenerator> _DicActiveAppProjectGenerators = new(100, false, true,
                         (ki, v) => { }, (kr, v) => { }, () => { });
         public IReadOnlyDictionary<string, IvPluginGenerator> DicActiveAppProjectGenerators { get { return (IReadOnlyDictionary<string, IvPluginGenerator>)_DicActiveAppProjectGenerators; } }
         protected IMigration? _migration { get; set; }
@@ -78,7 +78,7 @@ namespace vSharpStudio.vm.ViewModels
             _logger?.Trace();
         }
         [Browsable(false)]
-        new public string IconName { get { return "icon3DScene"; } }
+        public new string IconName { get { return "icon3DScene"; } }
         //protected override string GetNodeIconName() { return "icon3DScene"; }
         partial void OnCreated()
         {
@@ -153,7 +153,7 @@ namespace vSharpStudio.vm.ViewModels
         //    this.ValidateSubTreeFromNode(this, logger);
         //}
         public bool IsValidatingSubTreeFromNode = false;
-        async public Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node, ProgressVM? progressVM, CancellationToken cancellationToken, ILogger? logger = null)
+        public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node, ProgressVM? progressVM, CancellationToken cancellationToken, ILogger? logger = null)
         {
             try
             {
@@ -358,8 +358,10 @@ namespace vSharpStudio.vm.ViewModels
         public IReadOnlyList<IConfig> GetListConfigs()
         {
             var lst = new List<IConfig>();
-            var dic = new Dictionary<string, IConfig>();
-            dic[this.Guid] = this;
+            var dic = new Dictionary<string, IConfig>
+            {
+                [this.Guid] = this
+            };
             GetSubConfigs(this);
             foreach (var t in dic)
             {
@@ -559,7 +561,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public Dictionary<TKey, TValue> Dic1ButNotInDic2 { get; private set; }
         public Dictionary<TKey, TValue> Dic2ButNotInDic1 { get; private set; }
-        static public DicDiffResult<TK, TV> DicDiff<TK, TV>(IReadOnlyDictionary<TK, TV> dic1, IReadOnlyDictionary<TK, TV> dic2) where TK : notnull
+        public static DicDiffResult<TK, TV> DicDiff<TK, TV>(IReadOnlyDictionary<TK, TV> dic1, IReadOnlyDictionary<TK, TV> dic2) where TK : notnull
         {
             var res = new DicDiffResult<TK, TV>();
             foreach (var t in dic1)

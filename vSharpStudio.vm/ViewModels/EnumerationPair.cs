@@ -35,7 +35,7 @@ namespace vSharpStudio.vm.ViewModels
 
 
         [Browsable(false)]
-        new public string IconName { get { return "iconEnumItem"; } }
+        public new string IconName { get { return "iconEnumItem"; } }
         //protected override string GetNodeIconName() { return "iconEnumItem"; }
         partial void OnCreated()
         {
@@ -89,8 +89,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent)
+            };
             return lst.ToArray();
         }
     }

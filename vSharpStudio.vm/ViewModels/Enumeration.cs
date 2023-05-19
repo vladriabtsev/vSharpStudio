@@ -30,11 +30,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             return this.ParentGroupListEnumerations.Children;
         }
-        new public ConfigNodesCollection<EnumerationPair> Children { get { return this.ListEnumerationPairs; } }
+        public new ConfigNodesCollection<EnumerationPair> Children { get { return this.ListEnumerationPairs; } }
         #endregion ITree
 
         [Browsable(false)]
-        new public string IconName { get { return "iconEnumerator"; } }
+        public new string IconName { get { return "iconEnumerator"; } }
         //protected override string GetNodeIconName() { return "iconEnumerator"; }
         partial void OnCreated()
         {
@@ -268,9 +268,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             if (this.DataTypeEnum != EnumEnumerationType.STRING_VALUE)
             {
                 lst.Add(this.GetPropertyName(() => this.DataTypeLength));

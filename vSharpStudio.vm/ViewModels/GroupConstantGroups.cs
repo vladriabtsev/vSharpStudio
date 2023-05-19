@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
             return this.ParentModel.Children;
         }
         #endregion ITree
-        new public ConfigNodesCollection<GroupListConstants> Children { get { return this.ListConstantGroups; } }
+        public new ConfigNodesCollection<GroupListConstants> Children { get { return this.ListConstantGroups; } }
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
@@ -115,9 +115,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
 

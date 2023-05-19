@@ -29,7 +29,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             return this.ParentConfig.Children;
         }
-        new public ConfigNodesCollection<Plugin> Children { get { return this.ListPlugins; } }
+        public new ConfigNodesCollection<Plugin> Children { get { return this.ListPlugins; } }
         #endregion ITree
 
         partial void OnCreated()
@@ -76,12 +76,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            //lst.Add(this.GetPropertyName(() => this.Description));
-            lst.Add(this.GetPropertyName(() => this.Guid));
-            //lst.Add(this.GetPropertyName(() => this.NameUi));
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                //lst.Add(this.GetPropertyName(() => this.Description));
+                this.GetPropertyName(() => this.Guid),
+                //lst.Add(this.GetPropertyName(() => this.NameUi));
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
     }

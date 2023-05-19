@@ -41,9 +41,9 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        new public ConfigNodesCollection<AppProject> Children { get { return this.ListAppProjects; } }
+        public new ConfigNodesCollection<AppProject> Children { get { return this.ListAppProjects; } }
         [Browsable(false)]
-        new public string IconName { get { return "iconApplicationGroup"; } }
+        public new string IconName { get { return "iconApplicationGroup"; } }
         //protected override string GetNodeIconName() { return "iconApplicationGroup"; }
 
         partial void OnCreated()
@@ -409,8 +409,10 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent)
+            };
             //lst.Add(this.GetPropertyName(() => this.Children));
             return lst.ToArray();
         }

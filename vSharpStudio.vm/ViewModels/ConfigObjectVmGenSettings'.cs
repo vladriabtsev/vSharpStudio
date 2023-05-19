@@ -212,7 +212,7 @@ namespace vSharpStudio.vm.ViewModels
         // AppProjectGenerator guid, Settings quid, IvPluginGeneratorNodeSettings
         public IReadOnlyDictionary<string, IvPluginGeneratorNodeSettings?> DicGenNodeSettings { get { return _DicGenNodeSettings; } }
         internal DictionaryExt<string, IvPluginGeneratorNodeSettings?> _DicGenNodeSettings =
-            new DictionaryExt<string, IvPluginGeneratorNodeSettings?>(20, false, true,
+            new(20, false, true,
                         (ki, v) => { }, (kr, v) => { }, () => { });
         /// <summary>
         /// Check if this node is included for generation for selected generator
@@ -434,7 +434,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 p = p.Parent;
             }
-            return default(T2);
+            return default;
         }
         public TValue? GetSettingsValue<T2, TValue>(string guidAppPrjGen, Action<ITreeConfigNode, T2, Result<TValue>> found)
         {
@@ -457,7 +457,7 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 p = p.Parent;
             }
-            return default(TValue);
+            return default;
         }
         /// <summary>
         /// Getting VM of generator settings for node with capability analyze tree

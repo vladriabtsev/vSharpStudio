@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        new public string IconName { get { return "iconCatalogProperty"; } }
+        public new string IconName { get { return "iconCatalogProperty"; } }
         //protected override string GetNodeIconName() { return "iconCatalogProperty"; }
         partial void OnCreated()
         {
@@ -533,9 +533,11 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
         {
-            var res = new List<IForm>();
-            res.Add(this.GetForm(FormType.ListNarrow, guidAppPrjGen));
-            res.Add(this.GetForm(FormType.ListWide, guidAppPrjGen));
+            var res = new List<IForm>
+            {
+                this.GetForm(FormType.ListNarrow, guidAppPrjGen),
+                this.GetForm(FormType.ListWide, guidAppPrjGen)
+            };
             return res;
         }
         public ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen)
@@ -775,7 +777,7 @@ namespace vSharpStudio.vm.ViewModels
             if (print.HasValue)
                 dicCatalogAccess[role.Guid].PrintAccess = print.Value;
         }
-        internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new Dictionary<string, RoleCatalogAccess>();
+        internal Dictionary<string, RoleCatalogAccess> dicCatalogAccess = new();
         public void InitRoles()
         {
             foreach (var tt in this.ListRoleCatalogAccessSettings)

@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<Form> Children { get { return this.ListForms; } }
+        public new ConfigNodesCollection<Form> Children { get { return this.ListForms; } }
         partial void OnCreated()
         {
             this._Name = "Forms";
@@ -159,12 +159,14 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Description));
-            lst.Add(this.GetPropertyName(() => this.Guid));
-            lst.Add(this.GetPropertyName(() => this.NameUi));
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Description),
+                this.GetPropertyName(() => this.Guid),
+                this.GetPropertyName(() => this.NameUi),
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
     }

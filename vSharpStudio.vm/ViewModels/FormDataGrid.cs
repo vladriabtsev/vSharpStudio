@@ -36,7 +36,7 @@ namespace vSharpStudio.vm.ViewModels
         #endregion ITree
 
         [Browsable(false)]
-        new public string IconName { get { return "iconFolder"; } }
+        public new string IconName { get { return "iconFolder"; } }
         partial void OnCreated()
         {
             this._Name = "DataGrid";

@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<MainViewForm> Children { get { return this.ListMainViewForms; } }
+        public new ConfigNodesCollection<MainViewForm> Children { get { return this.ListMainViewForms; } }
         partial void OnCreated()
         {
             this._Name = Defaults.ConstantsGroupName;
@@ -87,9 +87,11 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
     }

@@ -50,7 +50,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        new public ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
+        public new ConfigNodesCollection<Property> Children { get { return this.ListProperties; } }
         partial void OnCreated()
         {
             this.IsEditable = false;
@@ -298,12 +298,14 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Description));
-            lst.Add(this.GetPropertyName(() => this.Guid));
-            lst.Add(this.GetPropertyName(() => this.NameUi));
-            lst.Add(this.GetPropertyName(() => this.Parent));
-            lst.Add(this.GetPropertyName(() => this.Children));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Description),
+                this.GetPropertyName(() => this.Guid),
+                this.GetPropertyName(() => this.NameUi),
+                this.GetPropertyName(() => this.Parent),
+                this.GetPropertyName(() => this.Children)
+            };
             return lst.ToArray();
         }
         public bool GetIsGridSortable()
@@ -384,7 +386,7 @@ namespace vSharpStudio.vm.ViewModels
             if (print.HasValue)
                 dicPropertyAccess[role.Guid].PrintAccess = print.Value;
         }
-        internal Dictionary<string, RolePropertyAccess> dicPropertyAccess = new Dictionary<string, RolePropertyAccess>();
+        internal Dictionary<string, RolePropertyAccess> dicPropertyAccess = new();
         public void InitRoles()
         {
             foreach (var tt in this.ListRolePropertyAccessSettings)

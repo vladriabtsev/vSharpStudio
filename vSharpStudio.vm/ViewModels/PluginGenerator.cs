@@ -31,7 +31,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsEditable = false;
         }
         [Browsable(false)]
-        new public string IconName { get { return "iconFolder"; } }
+        public new string IconName { get { return "iconFolder"; } }
         //protected override string GetNodeIconName() { return "iconFolder"; }
         partial void OnCreated()
         {
@@ -95,8 +95,10 @@ namespace vSharpStudio.vm.ViewModels
         #endregion Tree operations
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
-            var lst = new List<string>();
-            lst.Add(this.GetPropertyName(() => this.Parent));
+            var lst = new List<string>
+            {
+                this.GetPropertyName(() => this.Parent)
+            };
             return lst.ToArray();
         }
     }

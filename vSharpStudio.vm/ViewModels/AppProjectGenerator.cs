@@ -101,7 +101,7 @@ namespace vSharpStudio.vm.ViewModels
             //};
         }
         [Browsable(false)]
-        new public string? IconName
+        public new string? IconName
         {
             get
             {
