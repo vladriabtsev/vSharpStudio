@@ -18,7 +18,7 @@ namespace vPlugin.Sample2 // ModelInterfaces.tt Line: 13
     	bool IsAccessParam1 { get; set; } // ModelInterfaces.tt Line: 55
     	bool? IsAccessParam2 { get; set; } // ModelInterfaces.tt Line: 55
     	string AccessParam3 { get; set; } // ModelInterfaces.tt Line: 55
-    	string AccessParam4 { get; set; } // ModelInterfaces.tt Line: 55
+    	string? AccessParam4 { get; set; } // ModelInterfaces.tt Line: 55
     	bool IsGenerateNotValidCode { get; set; } // ModelInterfaces.tt Line: 55
     }
 }

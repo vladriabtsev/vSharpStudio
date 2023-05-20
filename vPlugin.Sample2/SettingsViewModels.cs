@@ -341,7 +341,7 @@ namespace vPlugin.Sample2 // NameSpace.tt Line: 23
         partial void OnAccessParam3Changing(ref string to); // Property.tt Line: 79
         partial void OnAccessParam3Changed();
         
-        public string AccessParam4 // Property.tt Line: 55
+        public string? AccessParam4 // Property.tt Line: 55
         { 
             get { return this._AccessParam4; }
             set
@@ -357,8 +357,8 @@ namespace vPlugin.Sample2 // NameSpace.tt Line: 23
                 }
             }
         }
-        private string _AccessParam4;
-        partial void OnAccessParam4Changing(ref string to); // Property.tt Line: 79
+        private string? _AccessParam4;
+        partial void OnAccessParam4Changing(ref string? to); // Property.tt Line: 79
         partial void OnAccessParam4Changed();
         
         public bool IsGenerateNotValidCode // Property.tt Line: 55

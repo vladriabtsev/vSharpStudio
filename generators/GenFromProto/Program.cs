@@ -337,7 +337,7 @@ namespace GenFromProto
                         return "long?";
                     case "string_nullable":
                     case "StringValue":
-                        return "string";
+                        return "string?";
                     case "Any":
                         return "Google.Protobuf.WellKnownTypes.Any";
                     case "Duration":
@@ -357,6 +357,77 @@ namespace GenFromProto
                 return from.EnumType.Name.ToNameCs();
             }
             return FieldTypeSimpleToTypeCs(from.FieldType);
+        }
+        public static string ToSetDefaultCs(this Google.Protobuf.Reflection.FieldDescriptor from)
+        {
+            // https://developers.google.com/protocol-buffers/docs/reference/google.protobuf
+            if (from.FieldType == Google.Protobuf.Reflection.FieldType.Message)
+            {
+                switch (from.MessageType.Name)
+                {
+                    case "bool_nullable":
+                    case "BoolValue":
+                    case "double_nullable":
+                    case "DoubleValue":
+                    case "uint_nullable":
+                    case "UInt32Value":
+                    case "ulong_nullable":
+                    case "UInt64Value":
+                    case "float_nullable":
+                    case "FloatValue":
+                    case "int_nullable":
+                    case "Int32Value":
+                    case "long_nullable":
+                    case "Int64Value":
+                    case "string_nullable":
+                    case "StringValue":
+                        return "";
+                    case "string":
+                        return " = string.Empty";
+                    case "Any":
+                        return "Google.Protobuf.WellKnownTypes.Any";
+                    case "Duration":
+                        return "Google.Protobuf.WellKnownTypes.Duration";
+                    case "Timestamp":
+                        return " = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.MinValue.AddDays(1).ToUniversalTime())";
+                    default:
+                        if (from.MessageType.Name.EndsWith("_nullable"))
+                            return from.MessageType.Name.Replace("_nullable", "").ToNameCs() + "?";
+                        if (from.MessageType.Name.EndsWith("_nullable_enum"))
+                            return from.MessageType.Name.Replace("_nullable_enum", "").ToNameCs() + "?";
+                        return ""; // from.MessageType.Name.ToNameCs();
+                }
+            }
+            else if (from.FieldType == Google.Protobuf.Reflection.FieldType.Enum)
+            {
+                return "";
+                //return from.EnumType.Name.ToNameCs();
+            }
+            switch (from.FieldType)
+            {
+                case Google.Protobuf.Reflection.FieldType.Bool:
+                case Google.Protobuf.Reflection.FieldType.Double:
+                case Google.Protobuf.Reflection.FieldType.Enum:
+                case Google.Protobuf.Reflection.FieldType.Fixed32:
+                case Google.Protobuf.Reflection.FieldType.Fixed64:
+                case Google.Protobuf.Reflection.FieldType.Float:
+                case Google.Protobuf.Reflection.FieldType.Int32:
+                case Google.Protobuf.Reflection.FieldType.Int64:
+                case Google.Protobuf.Reflection.FieldType.SFixed32:
+                case Google.Protobuf.Reflection.FieldType.SFixed64:
+                case Google.Protobuf.Reflection.FieldType.SInt32:
+                case Google.Protobuf.Reflection.FieldType.SInt64:
+                case Google.Protobuf.Reflection.FieldType.UInt32:
+                case Google.Protobuf.Reflection.FieldType.UInt64:
+                    return "";
+                case Google.Protobuf.Reflection.FieldType.String:
+                    return " = string.Empty";
+                case Google.Protobuf.Reflection.FieldType.Bytes:
+                    return " = new byte[0]";
+                default:
+                    throw new NotSupportedException();
+            }
+
         }
         public static string ConvertToVm(this Google.Protobuf.Reflection.FieldDescriptor field, string from_proto)
         {

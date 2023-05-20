@@ -31,7 +31,7 @@ namespace vSharpStudio.ViewModels
             //https://gist.github.com/DustinCampbell/32cd69d04ea1c08a16ae5c4cd21dd3a3
             //using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {
-                _logger.LogInformation("Compiling solution {0}".FilePos(), solutionPath);
+                _logger?.LogInformation("Compiling solution {0}".FilePos(), solutionPath);
                 Microsoft.CodeAnalysis.Solution solution = await workspace.OpenSolutionAsync(solutionPath);
                 if (workspace.Diagnostics.Count > 0)
                 {
@@ -52,7 +52,7 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        public async static Task RenameAsync(ILogger? _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public async static Task RenameAsync(ILogger _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
             using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {

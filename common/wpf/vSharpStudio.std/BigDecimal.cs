@@ -346,9 +346,9 @@ namespace System.Numerics
             return Convert.ToSingle(this, provider);
         }
 
-        string? IConvertible.ToString(IFormatProvider? provider)
+        string IConvertible.ToString(IFormatProvider? provider)
         {
-            return Convert.ToString(this, provider);
+            return Convert.ToString(this, provider) ?? string.Empty;
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider? provider)
@@ -370,7 +370,7 @@ namespace System.Numerics
 
         #region IFormattable Members
 
-        public string? ToString(string? format, IFormatProvider? formatProvider)
+        public string ToString(string? format, IFormatProvider? formatProvider)
         {
             throw new NotImplementedException();
         }

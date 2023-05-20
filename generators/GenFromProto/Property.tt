@@ -71,7 +71,7 @@ public <#= field.ToTypeCs() #> <#=FieldName#> // <#=Helper.FilePos() #>
     }
 }
 <# if (IsNotSkip) { #>
-private <#= field.ToTypeCs() #> _<#=FieldName#><# if (field.ToTypeCs() == "string" && field.FieldType == Google.Protobuf.Reflection.FieldType.String) { #> = string.Empty<# } #>;
+private <#= field.ToTypeCs() #> _<#=FieldName#><#=field.ToSetDefaultCs()#>;
 <# } #>
 <# if (IsMessage) { #>
 I<#=FieldType#> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=Helper.FilePos() #>

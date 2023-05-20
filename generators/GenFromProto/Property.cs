@@ -454,14 +454,7 @@ if (!IsSimple) {
             #line hidden
             
             #line 74 "D:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- if (field.ToTypeCs() == "string" && field.FieldType == Google.Protobuf.Reflection.FieldType.String) { 
-            
-            #line default
-            #line hidden
-            this.Write(" = string.Empty");
-            
-            #line 74 "D:\dev\vSharpStudio\generators\GenFromProto\Property.tt"
- } 
+            this.Write(this.ToStringHelper.ToStringWithCulture(field.ToSetDefaultCs()));
             
             #line default
             #line hidden
@@ -640,7 +633,7 @@ if (!IsSimple) {
         /// <summary>
         /// The string builder that generation-time code is using to assemble generated output
         /// </summary>
-        protected System.Text.StringBuilder GenerationEnvironment
+        public System.Text.StringBuilder GenerationEnvironment
         {
             get
             {

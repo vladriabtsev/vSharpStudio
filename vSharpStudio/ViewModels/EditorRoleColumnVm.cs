@@ -39,6 +39,8 @@ namespace vSharpStudio.ViewModels
         {
             //if (v.HasValue && v.Value == 0 && !isObjectUnderRole)
             //    return string.Empty;
+
+            Debug.Assert(val != null);
             var nam = val.ToString();
             Debug.Assert(nam != null);
             MemberInfo? memberInfo = typeof(TEnum).GetMember(nam).FirstOrDefault();

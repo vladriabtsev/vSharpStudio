@@ -105,7 +105,6 @@ namespace vSharpStudio.vm.ViewModels
             {
                 this.node = p;
             }
-
             sub.Validate();
             foreach (var t in sub.ValidationCollection)
             {

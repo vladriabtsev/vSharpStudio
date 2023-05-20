@@ -373,6 +373,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 foreach (var t in cfg.GroupConfigLinks.ListBaseConfigLinks)
                 {
+                    Debug.Assert(t.ConfigBase != null);
                     dic[t.ConfigBase.Guid] = t.ConfigBase;
                     GetSubConfigs(t.ConfigBase);
                 }

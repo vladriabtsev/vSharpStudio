@@ -340,7 +340,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private Google.Protobuf.WellKnownTypes.Timestamp _OpenedLastTimeOn;
+        private Google.Protobuf.WellKnownTypes.Timestamp _OpenedLastTimeOn = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.MinValue.AddDays(1).ToUniversalTime());
         partial void OnOpenedLastTimeOnChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 79
         partial void OnOpenedLastTimeOnChanged();
         //IGoogle.Protobuf.WellKnownTypes.Timestamp IUserSettingsOpenedConfig.OpenedLastTimeOn { get { return this._OpenedLastTimeOn; } }
@@ -2702,7 +2702,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private Google.Protobuf.WellKnownTypes.Timestamp _LastUpdated;
+        private Google.Protobuf.WellKnownTypes.Timestamp _LastUpdated = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.MinValue.AddDays(1).ToUniversalTime());
         partial void OnLastUpdatedChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 79
         partial void OnLastUpdatedChanged();
         //IGoogle.Protobuf.WellKnownTypes.Timestamp IConfig.LastUpdated { get { return this._LastUpdated; } }

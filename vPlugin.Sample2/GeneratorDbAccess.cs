@@ -10,7 +10,7 @@ namespace vPlugin.Sample2
 {
     public class GeneratorDbAccess : IvPluginGenerator
     {
-        public ITreeConfigNode Parent { get; set; }
+        public ITreeConfigNode? Parent { get; set; }
         public IvPluginGenerator CreateNew(IAppProjectGenerator appProjectGenerator) { return new GeneratorDbAccess(appProjectGenerator); }
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public GeneratorDbAccess() { }

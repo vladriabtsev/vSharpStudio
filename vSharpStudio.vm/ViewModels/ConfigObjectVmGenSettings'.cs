@@ -134,8 +134,11 @@ namespace vSharpStudio.vm.ViewModels
                     if (t.Value == null)
                         continue;
                     var vr = t.Value.ValidateSettings();
-                    this.CheckMaxSeverity(vr);
-                    res.Errors.AddRange(vr.Errors);
+                    if (vr != null)
+                    {
+                        this.CheckMaxSeverity(vr);
+                        res.Errors.AddRange(vr.Errors);
+                    }
                 }
             }
         }

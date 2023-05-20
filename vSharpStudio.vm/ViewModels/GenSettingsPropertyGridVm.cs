@@ -28,7 +28,7 @@ namespace vSharpStudio.vm.ViewModels
                 return new GridLength(250, GridUnitType.Pixel);
             }
         }
-        public ITreeConfigNode Node { get; set; }
+        public ITreeConfigNode? Node { get; set; }
         public string NodeName
         {
             get

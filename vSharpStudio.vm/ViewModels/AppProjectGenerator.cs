@@ -16,7 +16,7 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("AppPrjGen:{Name,nq} Conn:{ConnStr,nq} File:{GenFileName,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class AppProjectGenerator : ICanRemoveNode, ICanAddNode, IEditableNode, IEditableNodeGroup, INodeDeletable
     {
-        private Config cfg;
+        private Config? cfg;
         [Browsable(false)]
         public AppProject ParentAppProject { get { Debug.Assert(this.Parent != null); return (AppProject)this.Parent; } }
         [Browsable(false)]
@@ -48,6 +48,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (string.IsNullOrWhiteSpace(this.PluginGeneratorGuid))
                     return null;
+                Debug.Assert(cfg != null);
                 Debug.Assert(cfg.DicGenerators != null);
                 if (!cfg.DicGenerators.ContainsKey(this.PluginGeneratorGuid))
                     return null;
@@ -133,6 +134,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
+                Debug.Assert(cfg != null);
                 if (_DynamicMainConnStrSettings == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 {
                     if (this.PluginGenerator is IvPluginDbGenerator)
@@ -179,6 +181,7 @@ namespace vSharpStudio.vm.ViewModels
         private void _DynamicMainConnStrSettings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             Debug.Assert(this._DynamicMainConnStrSettings != null);
+            Debug.Assert(cfg != null);
             this._ConnStr = this._DynamicMainConnStrSettings.GenerateCode(this.cfg, this.ParentAppProject.ParentAppSolution, this.ParentAppProject, this);
             this.NotifyPropertyChanged(() => this.ConnStr);
         }
@@ -193,6 +196,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             get
             {
+                Debug.Assert(cfg != null);
                 if (_DynamicGeneratorSettings == null && cfg.DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 {
                     Debug.Assert(this.PluginGenerator != null);
@@ -223,6 +227,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 if (_DynamicModelNodeSettings == null)
                 {
+                    Debug.Assert(cfg != null);
                     this._DynamicModelNodeSettings = this.cfg.Model.GetSettings(this.Guid);
                     //var nd = new NodeSettings();
                     //this._DynamicModelNodeSettings = nd.Run(this);
@@ -249,6 +254,7 @@ namespace vSharpStudio.vm.ViewModels
         //}
         public IvPluginGeneratorNodeSettings? GetDefaultNodeSettings()
         {
+            Debug.Assert(cfg != null);
             return this.cfg.Model.GetSettings(this.Guid);
         }
         private string prevRelativePathToGenFolder = string.Empty;
@@ -300,6 +306,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnPluginGuidChanging(ref string to)
         {
+            Debug.Assert(cfg != null);
             cfg._DicActiveAppProjectGenerators.TryRemove(this.Guid);
             if (!string.IsNullOrEmpty(this.PluginGuid))
             {
@@ -320,6 +327,7 @@ namespace vSharpStudio.vm.ViewModels
             }
             else
             {
+                Debug.Assert(cfg != null);
                 Debug.Assert(cfg.DicPlugins != null);
                 this.plugin = cfg.DicPlugins[this.PluginGuid];
             }
@@ -365,6 +373,7 @@ namespace vSharpStudio.vm.ViewModels
             //{
             if (!this.IsNotifying)
                 return;
+            Debug.Assert(cfg != null);
             if (cfg._DicActiveAppProjectGenerators.ContainsKey(this.Guid))
                 cfg._DicActiveAppProjectGenerators.Remove(this.Guid);
             var nv = new ModelVisitorNodeGenSettings();
@@ -390,6 +399,7 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             var nv = new ModelVisitorNodeGenSettings();
             Debug.Assert(this.PluginGenerator != null);
+            Debug.Assert(cfg != null);
             cfg._DicActiveAppProjectGenerators[this.Guid] = this.PluginGenerator;
             this.RestoreSettings();
             (this.ParentAppProject as AppProject).RestoreGroupSettings(this.PluginGenerator);
@@ -520,6 +530,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public void UpdateListGenerators()
         {
+            Debug.Assert(cfg != null);
             if (cfg.IsInitialized && !string.IsNullOrWhiteSpace(this.PluginGuid))
             {
                 var plg = (Plugin)cfg.DicNodes[this.PluginGuid];
@@ -623,6 +634,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetGenerationFolderPath()
         {
+            Debug.Assert(cfg != null);
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 return "";
             var path = this.ParentAppProject.GetProjectFolderPath();
@@ -640,6 +652,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (!this.IsNotifying)
                 return;
+            Debug.Assert(cfg != null);
             if (string.IsNullOrEmpty(cfg.CurrentCfgFolderPath))
                 throw new Exception("Config is not saved yet");
             var prj = this.ParentAppProject;

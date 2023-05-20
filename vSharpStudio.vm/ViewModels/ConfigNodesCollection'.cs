@@ -12,7 +12,7 @@ namespace vSharpStudio.vm.ViewModels
     public class ConfigNodesCollection<T> : SortedObservableCollection<T>, IChildrenCollection
       where T : ITreeConfigNode, ISortingValue
     {
-        private Config cfg;
+        private Config? cfg;
         private ITreeConfigNode? parent;
         private bool isUseDicNodes = false;
 
@@ -29,6 +29,7 @@ namespace vSharpStudio.vm.ViewModels
         public new void AddRange(IEnumerable<T> collection, ulong sortingWeight = 0)
         {
             Debug.Assert(collection != null);
+            Debug.Assert(this.cfg != null);
             foreach (T item in collection)
             {
                 item.Parent = this.parent;
@@ -44,6 +45,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public new void Add(T item)
         {
+            Debug.Assert(this.cfg != null);
             if (isUseDicNodes && this.cfg.IsInitialized)
                 this.cfg._DicNodes[item.Guid] = item;
             base.Add(item, 0);
@@ -52,6 +54,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public new void Add(T item, ulong sortingWeight)
         {
+            Debug.Assert(this.cfg != null);
             item.Parent = this.parent;
             if (isUseDicNodes && this.cfg.IsInitialized)
                 this.cfg._DicNodes[item.Guid] = item;
@@ -60,6 +63,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public new bool Remove(T item)
         {
+            Debug.Assert(this.cfg != null);
             if (isUseDicNodes)
             {
                 this.cfg._DicNodes.Remove(item.Guid);

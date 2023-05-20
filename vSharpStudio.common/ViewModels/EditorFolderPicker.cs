@@ -12,7 +12,7 @@ namespace vSharpStudio.common.ViewModels
     public class EditorFolderPicker : Xceed.Wpf.Toolkit.PropertyGrid.Editors.ITypeEditor
     {
         PropertyGridEditorTextBox textBox = null!;
-        Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propItem;
+        Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem? propItem;
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
             Debug.Assert(propertyItem != null);
@@ -53,6 +53,7 @@ namespace vSharpStudio.common.ViewModels
             var result = dlg.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK)
             {
+                Debug.Assert(this.propItem != null);
                 this.propItem.Value = dlg.SelectedPath;
                 //textBox.Text = dlg.SelectedPath;
             }

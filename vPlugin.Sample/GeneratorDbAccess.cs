@@ -10,7 +10,7 @@ namespace vPlugin.Sample
 {
     public class GeneratorDbAccess : IvPluginGenerator
     {
-        public ITreeConfigNode Parent { get; set; }
+        public ITreeConfigNode? Parent { get; set; }
         public IvPluginGenerator CreateNew(IAppProjectGenerator appProjectGenerator) { return new GeneratorDbAccess(appProjectGenerator); }
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public GeneratorDbAccess() { }
@@ -26,7 +26,7 @@ namespace vPlugin.Sample
         public string Description => "Description Db Access Layer";
         public vPluginLayerTypeEnum PluginGeneratorType => vPluginLayerTypeEnum.DbAccess;
         public void Init() { }
-        public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string? settings)
+        public IvPluginGeneratorSettings? GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string? settings)
         {
             var vm = new GeneratorDbAccessSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
@@ -36,7 +36,7 @@ namespace vPlugin.Sample
             }
             return vm;
         }
-        public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings)
+        public IvPluginGeneratorNodeSettings? GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings)
         {
             if (parent is IModel || parent is IConstant || parent is IGroupConstantGroups || parent is IForm ||
                 parent is IGroupListEnumerations || parent is IEnumeration ||

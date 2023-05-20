@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
+using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using System.Windows.Data;
@@ -21,18 +22,22 @@ namespace vSharpStudio.common.ViewModels
             {
                 if (value != null)
                 {
-                    FieldInfo? fi = EnumType.GetField(value.ToString());
+                    var nam = value.ToString();
+                    Debug.Assert(nam != null);
+                    FieldInfo? fi = EnumType.GetField(nam);
                     if (fi != null)
                     {
                         var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
                         if (attributes.Length > 0 && !String.IsNullOrEmpty(attributes[0].Description))
                             return attributes[0].Description;
-                        return value.ToString();
+                        return nam;
                     }
                 }
                 return string.Empty;
             }
-            return base.ConvertTo(context, culture, value, destinationType);
+            var res = base.ConvertTo(context, culture, value, destinationType);
+            Debug.Assert(res != null);
+            return res;
         }
     }
 }

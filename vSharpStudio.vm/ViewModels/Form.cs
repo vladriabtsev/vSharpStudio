@@ -461,7 +461,7 @@ namespace vSharpStudio.vm.ViewModels
         private SortedObservableCollection<IProperty>? listSelectedNotSpecialProperties;
         private void Res_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            Debug.Assert(this.listSeparateTreeSelectedNotSpecialProperties != null);
+            Debug.Assert(this.listSelectedNotSpecialProperties != null);
             this.ListGuidViewProperties.Clear();
             foreach (var t in this.listSelectedNotSpecialProperties)
             {

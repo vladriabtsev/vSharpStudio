@@ -23,7 +23,7 @@ namespace vSharpStudio
     public partial class App : Application
     {
         public static IServiceCollection? ServiceCollection;
-        private Microsoft.Extensions.Logging.ILogger? logger;
+        //private Microsoft.Extensions.Logging.ILogger? logger;
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {

@@ -219,7 +219,7 @@ namespace vSharpStudio.ViewModels
             {
                 _logger?.LogDebug("Load Base Config {Name} from {Path}".CallerInfo(), t.Name, t.RelativeConfigFilePath);
                 t.ConfigBase = this.LoadConfig(Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
-                t.Name = t.ConfigBase?.Name;
+                t.Name = t.ConfigBase.Name;
             }
             config.IsInitialized = false;
 
