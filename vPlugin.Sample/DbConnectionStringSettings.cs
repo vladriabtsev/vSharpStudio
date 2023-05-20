@@ -13,7 +13,14 @@ namespace vPlugin.Sample
     public partial class DbConnectionStringSettings : IvPluginGeneratorSettings
     {
         [Browsable(false)]
-        public IAppProjectGenerator ParentAppProjectGenerator { get { Debug.Assert(this.Parent != null); return (IAppProjectGenerator)this.Parent; } }
+        public IAppProjectGenerator ParentAppProjectGenerator
+        {
+            get
+            {
+                Debug.Assert(this.Parent != null);
+                return (IAppProjectGenerator)this.Parent;
+            }
+        }
         public DbConnectionStringSettings(ITreeConfigNode parent, string connectionString) : this(parent)
         {
             this.StringSettings = connectionString;
@@ -32,12 +39,12 @@ namespace vPlugin.Sample
             return this.StringSettings;
         }
         public IvPluginGenerator? Generator { get; set; }
-        public ValidationResult ValidateSettings()
+        public ValidationResult? ValidateSettings()
         {
             this.Validate();
             return this.ValidationResult;
         }
-        public async Task<ValidationResult> ValidateSettingsAsync()
+        public async Task<ValidationResult?> ValidateSettingsAsync()
         {
             await this.ValidateAsync();
             return this.ValidationResult;

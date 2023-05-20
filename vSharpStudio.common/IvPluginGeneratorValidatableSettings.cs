@@ -10,7 +10,7 @@ namespace vSharpStudio.common
 {
     public interface IvPluginGeneratorValidatableSettings
     {
-        ValidationResult ValidateSettings();
-        Task<ValidationResult> ValidateSettingsAsync();
+        ValidationResult? ValidateSettings();
+        Task<ValidationResult?> ValidateSettingsAsync();
     }
 }

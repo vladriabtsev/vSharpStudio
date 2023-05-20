@@ -56,7 +56,7 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public IvPluginGeneratorSettings? GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string? settings)
+        public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string? settings)
         {
             var vm = new GeneratorDbSchemaSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
@@ -67,7 +67,7 @@ namespace vPlugin.Sample
             vm.Parent = parent;
             return vm;
         }
-        public IvPluginGeneratorNodeSettings? GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings)
+        public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings)
         {
             if (parent is IModel || parent is ICatalog)
             {
@@ -100,7 +100,7 @@ namespace vPlugin.Sample
 
         public string PKeyStoreTypeStr => throw new NotImplementedException();
 
-        public IvPluginGeneratorSettings? GetNodeGenerationSettingsVmFromJson(string fullTypeName, string settings)
+        public IvPluginGeneratorSettings GetNodeGenerationSettingsVmFromJson(string fullTypeName, string? settings)
         {
             return null;
         }
@@ -132,7 +132,7 @@ namespace vPlugin.Sample
         {
             return new List<ValidationPluginMessage>();
         }
-        public IvPluginGroupSettings? GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string? settings)
+        public IvPluginGroupSettings GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string? settings)
         {
             var res = new PluginsGroupSolutionSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
@@ -143,7 +143,7 @@ namespace vPlugin.Sample
             res.Parent = parent;
             return res;
         }
-        public IvPluginGroupSettings? GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string? settings)
+        public IvPluginGroupSettings GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string? settings)
         {
             var res = new PluginsGroupProjectSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))

@@ -13,7 +13,14 @@ namespace vPlugin.Sample
     public partial class GeneratorDbAccessSettings : IvPluginGeneratorSettings
     {
         [Browsable(false)]
-        public IAppProjectGenerator ParentAppProjectGenerator { get { Debug.Assert(this.Parent != null); return (IAppProjectGenerator)this.Parent; } }
+        public IAppProjectGenerator ParentAppProjectGenerator
+        {
+            get
+            {
+                Debug.Assert(this.Parent != null);
+                return (IAppProjectGenerator)this.Parent;
+            }
+        }
         [Browsable(false)]
         public string SettingsAsJson
         {
@@ -34,12 +41,12 @@ namespace vPlugin.Sample
             return visitor.Result;
         }
         public IvPluginGenerator? Generator { get; set; }
-        public ValidationResult ValidateSettings()
+        public ValidationResult? ValidateSettings()
         {
             this.Validate();
             return this.ValidationResult;
         }
-        public async Task<ValidationResult> ValidateSettingsAsync()
+        public async Task<ValidationResult?> ValidateSettingsAsync()
         {
             await this.ValidateAsync();
             return this.ValidationResult;

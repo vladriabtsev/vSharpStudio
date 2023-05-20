@@ -17,9 +17,9 @@ namespace vSharpStudio.common
     {
         ITreeConfigNode? Parent { get; set; }
         string Guid { get; }
-        string Name { get; }
-        string Version { get; }
-        string Description { get; }
+        string? Name { get; }
+        string? Version { get; }
+        string? Description { get; }
         /// <summary>
         /// Get s Settings VM from JSON string
         /// </summary>

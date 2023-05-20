@@ -351,18 +351,19 @@ namespace vSharpStudio.vm.ViewModels
         }
         protected override void OnValidated(ValidationResult res)
         {
-            //Severity? curSeverity = null;
             foreach (var t in this.DicPluginsGroupSettings)
             {
                 if (t.Value == null)
                     continue;
                 var res2 = t.Value.ValidateSettings();
-                //curSeverity=CheckMaxSeverity(res2, curSeverity);
-                foreach (var tt in res2.Errors)
+                if (res2 != null)
                 {
-                    tt.PropertyName = nameof(this.DynamicPluginGroupSettings);
+                    foreach (var tt in res2.Errors)
+                    {
+                        tt.PropertyName = nameof(this.DynamicPluginGroupSettings);
+                    }
+                    res.Errors.AddRange(res2.Errors);
                 }
-                res.Errors.AddRange(res2.Errors);
             }
         }
         public override List<IEditableObjectExt> GetEditableNodeSettings()

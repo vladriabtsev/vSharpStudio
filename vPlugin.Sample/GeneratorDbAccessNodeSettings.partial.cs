@@ -15,7 +15,7 @@ namespace vPlugin.Sample
     public partial class GeneratorDbAccessNodeSettings : IvPluginGeneratorNodeSettings, IvPluginGeneratorNodeIncludable
     {
         [BrowsableAttribute(false)]
-        public string AppProjectGeneratorGuid { get; set; }
+        public string AppProjectGeneratorGuid { get; set; } = string.Empty;
         partial void OnCreated()
         {
             this.DicNodeExcludedProperties = new Dictionary<string, string?>();
@@ -64,12 +64,12 @@ namespace vPlugin.Sample
         {
             throw new NotImplementedException();
         }
-        public ValidationResult ValidateSettings()
+        public ValidationResult? ValidateSettings()
         {
             this.Validate();
             return this.ValidationResult;
         }
-        public async Task<ValidationResult> ValidateSettingsAsync()
+        public async Task<ValidationResult?> ValidateSettingsAsync()
         {
             await this.ValidateAsync();
             return this.ValidationResult;

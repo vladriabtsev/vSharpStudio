@@ -436,11 +436,14 @@ namespace vSharpStudio.vm.ViewModels
             if (this.PluginGeneratorSettings == null)
                 return;
             var res2 = this.PluginGeneratorSettings.ValidateSettings();
-            foreach (var tt in res2.Errors)
+            if (res2 != null)
             {
-                tt.PropertyName = nameof(this.DynamicGeneratorSettings);
+                foreach (var tt in res2.Errors)
+                {
+                    tt.PropertyName = nameof(this.DynamicGeneratorSettings);
+                }
+                res.Errors.AddRange(res2.Errors);
             }
-            res.Errors.AddRange(res2.Errors);
         }
         IvPluginGeneratorSettings? PluginGeneratorSettings { get; set; }
         public void RestoreSettings()

@@ -26,7 +26,7 @@ namespace vPlugin.Sample
         public string Description => "Description Db Access Layer";
         public vPluginLayerTypeEnum PluginGeneratorType => vPluginLayerTypeEnum.DbAccess;
         public void Init() { }
-        public IvPluginGeneratorSettings? GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string? settings)
+        public IvPluginGeneratorSettings GetAppGenerationSettingsVmFromJson(IAppProjectGenerator parent, string? settings)
         {
             var vm = new GeneratorDbAccessSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
@@ -36,7 +36,7 @@ namespace vPlugin.Sample
             }
             return vm;
         }
-        public IvPluginGeneratorNodeSettings? GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings)
+        public IvPluginGeneratorNodeSettings GetGenerationNodeSettingsVmFromJson(ITreeConfigNode parent, string? settings)
         {
             if (parent is IModel || parent is IConstant || parent is IGroupConstantGroups || parent is IForm ||
                 parent is IGroupListEnumerations || parent is IEnumeration ||
@@ -98,7 +98,7 @@ namespace vPlugin.Sample
             }
             return res;
         }
-        public IvPluginGroupSettings? GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string? settings)
+        public IvPluginGroupSettings GetPluginGroupSolutionSettingsVmFromJson(IAppSolution parent, string? settings)
         {
             var res = new PluginsGroupSolutionSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))
@@ -108,7 +108,7 @@ namespace vPlugin.Sample
             }
             return res;
         }
-        public IvPluginGroupSettings? GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string? settings)
+        public IvPluginGroupSettings GetPluginGroupProjectSettingsVmFromJson(IAppProject parent, string? settings)
         {
             var res = new PluginsGroupProjectSettings(parent);
             if (!string.IsNullOrWhiteSpace(settings))

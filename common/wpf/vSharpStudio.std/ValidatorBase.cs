@@ -9,7 +9,7 @@ namespace ViewModelBase
       where TValidator : ValidatorBase<T, TValidator>, new()
     {
         private static TValidator? _validator = default(TValidator);
-        public static TValidator? Validator
+        public static TValidator Validator
         {
             get
             {

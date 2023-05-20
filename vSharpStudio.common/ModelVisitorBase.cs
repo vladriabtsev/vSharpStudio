@@ -30,7 +30,7 @@ namespace vSharpStudio.common
         protected virtual void EndVisit(IEnumerable<IMainViewForm> lst) { }
         protected virtual void BeginVisit(IMainViewForm p) { }
         protected virtual void EndVisit(IMainViewForm p) { }
-        protected virtual void BeginVisit(IConfig c, IAppSolution? sln, IAppProject? prj) { }
+        protected virtual void BeginVisit(IConfig c, IAppSolution sln, IAppProject prj) { }
         protected virtual void EndVisit(IConfig c) { }
         protected virtual void BeginVisit(IModel m) { }
         protected virtual void EndVisit(IModel m) { }
@@ -365,7 +365,7 @@ namespace vSharpStudio.common
         /// <param name="curr">Current config or clone</param>
         /// <param name="act"></param>
         /// <returns></returns>
-        public void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, IAppProjectGenerator? prjGen, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
+        public void Run(IConfig curr, IAppSolution sln, IAppProject prj, IAppProjectGenerator prjGen, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currCfg = curr;

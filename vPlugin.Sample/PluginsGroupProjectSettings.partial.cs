@@ -48,12 +48,12 @@ namespace vPlugin.Sample
             var proto = CommonUtils.ParseJson<proto_plugins_group_project_settings>(settings, true);
             return PluginsGroupProjectSettings.ConvertToVM(proto, new PluginsGroupProjectSettings(parent));
         }
-        public ValidationResult ValidateSettings()
+        public ValidationResult? ValidateSettings()
         {
             this.Validate();
             return this.ValidationResult;
         }
-        public async Task<ValidationResult> ValidateSettingsAsync()
+        public async Task<ValidationResult?> ValidateSettingsAsync()
         {
             await this.ValidateAsync();
             return this.ValidationResult;

@@ -185,7 +185,7 @@ namespace vSharpStudio.common
         /// <param name="curr">Current config or clone</param>
         /// <param name="act"></param>
         /// <returns></returns>
-        public new void Run(IConfig curr, IAppSolution? sln, IAppProject? prj, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
+        public new void Run(IConfig curr, IAppSolution sln, IAppProject prj, Action<ModelVisitorBase, ITreeConfigNode>? act = null)
         {
             this._act = act;
             this.currCfg = curr;

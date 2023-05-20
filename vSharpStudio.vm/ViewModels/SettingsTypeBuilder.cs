@@ -197,8 +197,9 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in node.DicPluginsGroupSettings)
             {
                 Debug.Assert(t.Value != null);
-                string groupName = t.Value.Name;
-                SettingsTypeBuilder.CreateProperty(tbSettings, t.Value.Name, typeof(Object), t.Value.Name, t.Value.Description);
+                string? groupName = t.Value.Name;
+                Debug.Assert(groupName != null);
+                SettingsTypeBuilder.CreateProperty(tbSettings, groupName, typeof(Object), groupName, t.Value.Description);
                 dic_groups[groupName] = t.Value;
             }
             if (dic_groups.Count == 0)
@@ -221,8 +222,9 @@ namespace vSharpStudio.vm.ViewModels
             foreach (var t in node.DicPluginsGroupSettings)
             {
                 Debug.Assert(t.Value != null);
-                string groupName = t.Value.Name;
-                SettingsTypeBuilder.CreateProperty(tbSettings, t.Value.Name, typeof(Object), t.Value.Name, t.Value.Description);
+                string? groupName = t.Value.Name;
+                Debug.Assert(groupName != null);
+                SettingsTypeBuilder.CreateProperty(tbSettings, groupName, typeof(Object), groupName, t.Value.Description);
                 dic_groups[groupName] = t.Value;
             }
             if (dic_groups.Count == 0)
