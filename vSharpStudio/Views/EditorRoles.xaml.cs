@@ -44,45 +44,22 @@ namespace vSharpStudio.Views
                 return;
             var gridView = (GridView)_tree.View;
             var roles = (GroupListRoles)this.DataContext;
+            int i = 0;
             foreach (var t in roles.ListRoles)
             {
                 var gvc = new GridViewColumn();
-                //gvc.DisplayMemberBinding = new Binding("Kuku");
                 gvc.Header = t.Name;
-                gvc.Width = 100;
-
+                gvc.Width = 110;
                 var editorRoleCell = new FrameworkElementFactory(typeof(EditorRoleCell));
-                //txtBlock.SetBinding(TextBlock.TextProperty, new Binding("Street1"));
+                var bindProp = $"ListRoleColumns[{i}]";
+                editorRoleCell.SetBinding(EditorRoleCell.DataContextProperty, new Binding(bindProp));
                 var dataTemplate = new DataTemplate();
                 dataTemplate.VisualTree = editorRoleCell;
                 gvc.CellTemplate = dataTemplate;
-
-
-                //var txtBlock = new FrameworkElementFactory(typeof(TextBlock));
-                //txtBlock.SetBinding(TextBlock.TextProperty, new Binding("Street1"));
-                //template.VisualTree.AppendChild(txtBlock);
-
-                // databinding & converter
-                //var frameworkElementFactory = new FrameworkElementFactory(typeof(TextBlock));
-                //var dataTemplate = new DataTemplate();
-                //dataTemplate.VisualTree = frameworkElementFactory;
-                //gvc.CellTemplate = dataTemplate;
-                //var binding = new Binding(assignment.Id.ToString() + key);
-                //binding.Converter = converter;
-
-                //gridView.Columns.Add(gvc);
+                gridView.Columns.Add(gvc);
+                i++;
             }
             _tree.Model = new EditorRoleTreeVm(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
-            //_tree.Model = new ModelNodeRoles(roles.ListRoles, roles.ParentGroupListCommon.ParentModel);
         }
     }
-    //public class ModelNodeForeRoles
-    //{
-    //    public ModelNodeForeRoles(ITreeConfigNode node)
-    //    {
-    //        this.Node = node;
-    //    }
-    //    public ITreeConfigNode Node { get; private set; }
-    //    public object? Kuku { get; private set; }
-    //}
 }
