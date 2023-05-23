@@ -5982,7 +5982,7 @@
             },
             {
               "name": "prefix_for_db_tables",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Db prefix\")]\n@attr [Description(\"Prefix for document db table names. Used if set to use in config model\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Db prefix\")]\n@attr [Description(\"Prefix for document db table names. Used if set to use in config model\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -6012,7 +6012,7 @@
             },
             {
               "name": "use_doc_code_property",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for document by default\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for document by default\")]",
               "label": "",
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
@@ -6022,11 +6022,21 @@
             },
             {
               "name": "use_doc_date_property",
-              "description": "@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Date\")]\n@attr [Description(\"Use Date property for document by default\")]",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(24)]\n@attr [DisplayName(\"Use Date\")]\n@attr [Description(\"Use Date property for document by default\")]",
               "label": "",
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_use_general_journal_for_all_documents",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"General Journal\")]\n@attr [Description(\"Use general journal for all documents\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
               "ismap": false,
               "defaultValue": ""
             },
@@ -6057,6 +6067,26 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "view_journal_wide_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "view_journal_narrow_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -7101,6 +7131,16 @@
               "defaultValue": ""
             },
             {
+              "name": "is_use_general_journal_for_all_documents",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"General Journal\")]\n@attr [Description(\"Use general journal for all documents\")]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "is_grid_sortable",
               "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
@@ -7127,6 +7167,26 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "view_list_wide_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "view_list_narrow_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -7683,6 +7743,26 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "view_list_wide_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "view_list_narrow_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },

@@ -1229,9 +1229,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 59
     	EnumUseType UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
+    	bool IsUseGeneralJournalForAllDocuments { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
+    	string ViewJournalWideGuid { get; } // ModelInterfaces.tt Line: 55
+    	string ViewJournalNarrowGuid { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
@@ -1292,9 +1295,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IReadOnlyList<IJournal> ListJournals { get; } // ModelInterfaces.tt Line: 48
     	IJournal this[int index] { get; }
     	int Count();
+    	bool IsUseGeneralJournalForAllDocuments { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
@@ -1310,6 +1316,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     

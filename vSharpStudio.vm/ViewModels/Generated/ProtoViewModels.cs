@@ -21539,9 +21539,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.Clone(vm, from.GroupListDocuments, isDeep);
             vm.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 67
             vm.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 67
+            vm.IsUseGeneralJournalForAllDocuments = from.IsUseGeneralJournalForAllDocuments; // Clone.tt Line: 67
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
             vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
             vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
+            vm.ViewJournalWideGuid = from.ViewJournalWideGuid; // Clone.tt Line: 67
+            vm.ViewJournalNarrowGuid = from.ViewJournalNarrowGuid; // Clone.tt Line: 67
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -21567,9 +21570,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.GroupListDocuments.Update((GroupListDocuments)to.GroupListDocuments, from.GroupListDocuments, isDeep);
             to.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 143
             to.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 143
+            to.IsUseGeneralJournalForAllDocuments = from.IsUseGeneralJournalForAllDocuments; // Clone.tt Line: 143
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
             to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
             to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
+            to.ViewJournalWideGuid = from.ViewJournalWideGuid; // Clone.tt Line: 143
+            to.ViewJournalNarrowGuid = from.ViewJournalNarrowGuid; // Clone.tt Line: 143
             if (isDeep) // Clone.tt Line: 88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -21649,9 +21655,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToVM(m.GroupListDocuments, (GroupListDocuments)vm.GroupListDocuments); // Clone.tt Line: 219
             vm.UseDocCodeProperty = (EnumUseType)m.UseDocCodeProperty; // Clone.tt Line: 221
             vm.UseDocDateProperty = (EnumUseType)m.UseDocDateProperty; // Clone.tt Line: 221
+            vm.IsUseGeneralJournalForAllDocuments = m.IsUseGeneralJournalForAllDocuments; // Clone.tt Line: 221
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
             vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
             vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
+            vm.ViewJournalWideGuid = m.ViewJournalWideGuid; // Clone.tt Line: 221
+            vm.ViewJournalNarrowGuid = m.ViewJournalNarrowGuid; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -21680,9 +21689,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToProto((GroupListDocuments)vm.GroupListDocuments); // Clone.tt Line: 270
             m.UseDocCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseDocCodeProperty; // Clone.tt Line: 274
             m.UseDocDateProperty = (Proto.Config.proto_enum_use_type)vm.UseDocDateProperty; // Clone.tt Line: 274
+            m.IsUseGeneralJournalForAllDocuments = vm.IsUseGeneralJournalForAllDocuments; // Clone.tt Line: 276
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
+            m.ViewJournalWideGuid = vm.ViewJournalWideGuid; // Clone.tt Line: 276
+            m.ViewJournalNarrowGuid = vm.ViewJournalNarrowGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -21817,6 +21829,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
         partial void OnDescriptionChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(4)]
         [DisplayName("Db prefix")]
         [Description("Prefix for document db table names. Used if set to use in config model")]
@@ -21887,6 +21900,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupListDocumentsChanged();
         //IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return this._GroupListDocuments; } }
         
+        [Category("")]
         [PropertyOrderAttribute(22)]
         [DisplayName("Use Code")]
         [Description("Use Code property for document by default")]
@@ -21910,6 +21924,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseDocCodePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseDocCodePropertyChanged();
         
+        [Category("")]
         [PropertyOrderAttribute(24)]
         [DisplayName("Use Date")]
         [Description("Use Date property for document by default")]
@@ -21932,6 +21947,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumUseType _UseDocDateProperty;
         partial void OnUseDocDatePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnUseDocDatePropertyChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(25)]
+        [DisplayName("General Journal")]
+        [Description("Use general journal for all documents")]
+        public bool IsUseGeneralJournalForAllDocuments // Property.tt Line: 55
+        { 
+            get { return this._IsUseGeneralJournalForAllDocuments; }
+            set
+            {
+                if (this._IsUseGeneralJournalForAllDocuments != value)
+                {
+                    this.OnIsUseGeneralJournalForAllDocumentsChanging(ref value);
+                    this._IsUseGeneralJournalForAllDocuments = value;
+                    this.OnIsUseGeneralJournalForAllDocumentsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsUseGeneralJournalForAllDocuments;
+        partial void OnIsUseGeneralJournalForAllDocumentsChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsUseGeneralJournalForAllDocumentsChanged();
         
         [Category("Auto Layout")]
         [DisplayName("Sortable")]
@@ -22001,6 +22040,48 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumUseType _IsGridFilterable;
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
+        
+        [Browsable(false)]
+        public string ViewJournalWideGuid // Property.tt Line: 55
+        { 
+            get { return this._ViewJournalWideGuid; }
+            set
+            {
+                if (this._ViewJournalWideGuid != value)
+                {
+                    this.OnViewJournalWideGuidChanging(ref value);
+                    this._ViewJournalWideGuid = value;
+                    this.OnViewJournalWideGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ViewJournalWideGuid = string.Empty;
+        partial void OnViewJournalWideGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnViewJournalWideGuidChanged();
+        
+        [Browsable(false)]
+        public string ViewJournalNarrowGuid // Property.tt Line: 55
+        { 
+            get { return this._ViewJournalNarrowGuid; }
+            set
+            {
+                if (this._ViewJournalNarrowGuid != value)
+                {
+                    this.OnViewJournalNarrowGuidChanging(ref value);
+                    this._ViewJournalNarrowGuid = value;
+                    this.OnViewJournalNarrowGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ViewJournalNarrowGuid = string.Empty;
+        partial void OnViewJournalNarrowGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnViewJournalNarrowGuidChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -23776,9 +23857,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             foreach (var t in from.ListJournals) // Clone.tt Line: 56
                 vm.ListJournals.Add(Journal.Clone(vm, (Journal)t, isDeep));
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
+            vm.IsUseGeneralJournalForAllDocuments = from.IsUseGeneralJournalForAllDocuments; // Clone.tt Line: 67
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
             vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
             vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
+            vm.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 67
+            vm.ViewListNarrowGuid = from.ViewListNarrowGuid; // Clone.tt Line: 67
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -23833,9 +23917,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
             to.SortingValue = from.SortingValue; // Clone.tt Line: 143
+            to.IsUseGeneralJournalForAllDocuments = from.IsUseGeneralJournalForAllDocuments; // Clone.tt Line: 143
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
             to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
             to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
+            to.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 143
+            to.ViewListNarrowGuid = from.ViewListNarrowGuid; // Clone.tt Line: 143
             if (isDeep) // Clone.tt Line: 88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -23912,9 +23999,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.ListJournals.Add(tvm);
             }
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
+            vm.IsUseGeneralJournalForAllDocuments = m.IsUseGeneralJournalForAllDocuments; // Clone.tt Line: 221
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
             vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
             vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
+            vm.ViewListWideGuid = m.ViewListWideGuid; // Clone.tt Line: 221
+            vm.ViewListNarrowGuid = m.ViewListNarrowGuid; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -23940,9 +24030,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             foreach (var t in vm.ListJournals) // Clone.tt Line: 242
                 m.ListJournals.Add(Journal.ConvertToProto((Journal)t)); // Clone.tt Line: 246
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
+            m.IsUseGeneralJournalForAllDocuments = vm.IsUseGeneralJournalForAllDocuments; // Clone.tt Line: 276
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
+            m.ViewListWideGuid = vm.ViewListWideGuid; // Clone.tt Line: 276
+            m.ViewListNarrowGuid = vm.ViewListNarrowGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -24122,6 +24215,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
         partial void OnSortingValueChanged();
         
+        [Category("")]
+        [PropertyOrderAttribute(11)]
+        [DisplayName("General Journal")]
+        [Description("Use general journal for all documents")]
+        public bool IsUseGeneralJournalForAllDocuments // Property.tt Line: 55
+        { 
+            get { return this._IsUseGeneralJournalForAllDocuments; }
+            set
+            {
+                if (this._IsUseGeneralJournalForAllDocuments != value)
+                {
+                    this.OnIsUseGeneralJournalForAllDocumentsChanging(ref value);
+                    this._IsUseGeneralJournalForAllDocuments = value;
+                    this.OnIsUseGeneralJournalForAllDocumentsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsUseGeneralJournalForAllDocuments;
+        partial void OnIsUseGeneralJournalForAllDocumentsChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsUseGeneralJournalForAllDocumentsChanged();
+        
         [Category("Auto Layout")]
         [DisplayName("Sortable")]
         [Description("Sortable in data grid")]
@@ -24190,6 +24307,48 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumUseType _IsGridFilterable;
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
+        
+        [Browsable(false)]
+        public string ViewListWideGuid // Property.tt Line: 55
+        { 
+            get { return this._ViewListWideGuid; }
+            set
+            {
+                if (this._ViewListWideGuid != value)
+                {
+                    this.OnViewListWideGuidChanging(ref value);
+                    this._ViewListWideGuid = value;
+                    this.OnViewListWideGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ViewListWideGuid = string.Empty;
+        partial void OnViewListWideGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnViewListWideGuidChanged();
+        
+        [Browsable(false)]
+        public string ViewListNarrowGuid // Property.tt Line: 55
+        { 
+            get { return this._ViewListNarrowGuid; }
+            set
+            {
+                if (this._ViewListNarrowGuid != value)
+                {
+                    this.OnViewListNarrowGuidChanging(ref value);
+                    this._ViewListNarrowGuid = value;
+                    this.OnViewListNarrowGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ViewListNarrowGuid = string.Empty;
+        partial void OnViewListNarrowGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnViewListNarrowGuidChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -24295,6 +24454,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
             vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
             vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
+            vm.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 67
+            vm.ViewListNarrowGuid = from.ViewListNarrowGuid; // Clone.tt Line: 67
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -24354,6 +24515,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
             to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
             to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
+            to.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 143
+            to.ViewListNarrowGuid = from.ViewListNarrowGuid; // Clone.tt Line: 143
             if (isDeep) // Clone.tt Line: 88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -24435,6 +24598,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
             vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
             vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
+            vm.ViewListWideGuid = m.ViewListWideGuid; // Clone.tt Line: 221
+            vm.ViewListNarrowGuid = m.ViewListNarrowGuid; // Clone.tt Line: 221
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -24465,6 +24630,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
             m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
             m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
+            m.ViewListWideGuid = vm.ViewListWideGuid; // Clone.tt Line: 276
+            m.ViewListNarrowGuid = vm.ViewListNarrowGuid; // Clone.tt Line: 276
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -24731,6 +24898,48 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private EnumUseType _IsGridFilterable;
         partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
         partial void OnIsGridFilterableChanged();
+        
+        [Browsable(false)]
+        public string ViewListWideGuid // Property.tt Line: 55
+        { 
+            get { return this._ViewListWideGuid; }
+            set
+            {
+                if (this._ViewListWideGuid != value)
+                {
+                    this.OnViewListWideGuidChanging(ref value);
+                    this._ViewListWideGuid = value;
+                    this.OnViewListWideGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ViewListWideGuid = string.Empty;
+        partial void OnViewListWideGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnViewListWideGuidChanged();
+        
+        [Browsable(false)]
+        public string ViewListNarrowGuid // Property.tt Line: 55
+        { 
+            get { return this._ViewListNarrowGuid; }
+            set
+            {
+                if (this._ViewListNarrowGuid != value)
+                {
+                    this.OnViewListNarrowGuidChanging(ref value);
+                    this._ViewListNarrowGuid = value;
+                    this.OnViewListNarrowGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _ViewListNarrowGuid = string.Empty;
+        partial void OnViewListNarrowGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnViewListNarrowGuidChanged();
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8

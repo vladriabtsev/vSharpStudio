@@ -36,6 +36,9 @@ namespace vSharpStudio.vm.ViewModels
         {
             this._Name = "Journals";
             this.IsEditable = false;
+            this.ViewListWideGuid = System.Guid.NewGuid().ToString();
+            this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
+            this.IsUseGeneralJournalForAllDocuments = true;
             Init();
         }
         protected override void OnInitFromDto()

@@ -35,6 +35,8 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
+            this.ViewListWideGuid = System.Guid.NewGuid().ToString();
+            this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
             //    Init();
         }
         //protected override void OnInitFromDto()

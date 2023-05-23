@@ -42,6 +42,7 @@ namespace vSharpStudio.vm.ViewModels
                 if (p.Parent == null)
                     return;
                 var pg = p.ParentGroupListProperties;
+                GroupListProperties? pgs = null;
                 var model = pg.Cfg.Model;
                 if (pg.Parent is Catalog c)
                 {
@@ -116,6 +117,7 @@ namespace vSharpStudio.vm.ViewModels
                 else if (pg.Parent is Document d)
                 {
                     ValidateSpecialProperties(name, cntx, p, d);
+                    pgs = d.ParentGroupListDocuments.ParentGroupDocuments.GroupSharedProperties;
                 }
                 else if (pg.Parent is GroupDocuments gd)
                 {
@@ -125,6 +127,19 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     Debug.Assert(false);
                     throw new NotImplementedException();
+                }
+                if (pgs != null)
+                {
+                    foreach (var t in pgs.ListProperties.ToList())
+                    {
+                        if ((p.Guid != t.Guid) && (name == t.Name))
+                        {
+                            var vf = new ValidationFailure(nameof(p.Name),
+                                $"Not unique property name '{name}'. Same as shared property");
+                            vf.Severity = Severity.Error;
+                            cntx.AddFailure(vf);
+                        }
+                    }
                 }
                 foreach (var t in pg.ListProperties.ToList())
                 {

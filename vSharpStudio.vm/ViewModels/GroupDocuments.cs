@@ -40,6 +40,9 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = Defaults.DocumentsGroupName;
             this.PrefixForDbTables = "Doc";
             this.IsEditable = false;
+            this.ViewJournalWideGuid = System.Guid.NewGuid().ToString();
+            this.ViewJournalNarrowGuid = System.Guid.NewGuid().ToString();
+            this.IsUseGeneralJournalForAllDocuments = true;
 
             Init();
         }

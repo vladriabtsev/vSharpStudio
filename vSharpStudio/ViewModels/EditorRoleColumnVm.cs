@@ -220,8 +220,37 @@ namespace vSharpStudio.ViewModels
             {
                 if (_SelectedEditAccess != value)
                 {
-                    SetProperty(ref _SelectedEditAccess, value);
                     Debug.Assert(value != null);
+                    switch (node)
+                    {
+                        case GroupConstantGroups gcnstg:
+                            var cnsta = (EnumConstantAccess)value;
+                            if (cnsta == EnumConstantAccess.CN_BY_PARENT)
+                            {
+                                Xceed.Wpf.Toolkit.MessageBox.Show("Role access for this node can't inherit from parent!", "Error", MessageBoxButton.OK);
+                                return;
+                            }
+                            break;
+                        case GroupListCatalogs gc:
+                            var gca = (EnumCatalogDetailAccess)value;
+                            if (gca == EnumCatalogDetailAccess.C_BY_PARENT)
+                            {
+                                Xceed.Wpf.Toolkit.MessageBox.Show("Role access for this node can't inherit from parent!", "Error", MessageBoxButton.OK);
+                                return;
+                            }
+                            break;
+                        case GroupDocuments:
+                            var da = (EnumDocumentAccess)value;
+                            if (da == EnumDocumentAccess.D_BY_PARENT)
+                            {
+                                Xceed.Wpf.Toolkit.MessageBox.Show("Role access for this node can't inherit from parent!", "Error", MessageBoxButton.OK);
+                                return;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    SetProperty(ref _SelectedEditAccess, value);
                     switch (node)
                     {
                         case Property p:
