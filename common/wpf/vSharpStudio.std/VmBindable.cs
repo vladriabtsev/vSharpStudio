@@ -401,27 +401,25 @@ namespace ViewModelBase
                     throw new Exception("Destination object doesn't have property with name: " + p.Name);
                 var dp = ddic[p.Name];
                 object? to = dp.GetValue(destination, null);
-                Debug.Assert(to != null);
                 var toType = dp.PropertyType;
                 object? from = p.GetValue(this, null);
-                Debug.Assert(from != null);
                 var fromType = p.PropertyType;
                 switch (fromType.Name)
                 {
                     case "String":
-                        if ((string)from != (string)to)
+                        if ((string?)from != (string?)to)
                             dp.SetValue(destination, from);
                         break;
                     case "Int32":
-                        if ((int)from != (int)to)
+                        if ((int?)from != (int?)to)
                             dp.SetValue(destination, from);
                         break;
                     case "UInt32":
-                        if ((uint)from != (uint)to)
+                        if ((uint?)from != (uint?)to)
                             dp.SetValue(destination, from);
                         break;
                     case "Boolean":
-                        if ((bool)from != (bool)to)
+                        if ((bool?)from != (bool?)to)
                             dp.SetValue(destination, from);
                         break;
                     case "Nullable`1":

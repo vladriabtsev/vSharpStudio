@@ -934,7 +934,7 @@ namespace vSharpStudio.vm.ViewModels
         private Config? cfg = null;
         public IDataType? PrevStableVersion()
         {
-            Debug.Assert(this.Parent != null);
+            //Debug.Assert(this.Parent != null);
             //Debug.Assert(this.Cfg == null || this.Parent != null);
             IDataType? res = null;
             if (this.Cfg != null && this.Cfg.PrevStableConfig != null && this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
@@ -945,7 +945,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         public IDataType? PrevCurrentVersion()
         {
-            Debug.Assert(this.Parent != null);
+            //Debug.Assert(this.Parent != null);
             //Debug.Assert(this.Cfg == null || this.Parent != null);
             IDataType? res = null;
             if (this.Cfg != null && this.Cfg.PrevCurrentConfig != null && this.Cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.Parent.Guid))
