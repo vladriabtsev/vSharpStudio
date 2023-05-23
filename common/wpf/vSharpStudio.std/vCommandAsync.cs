@@ -42,11 +42,11 @@ namespace ViewModelBase
     {
         Task ExecuteAsync(object parameter, bool isCatchException = false);
     }
-    abstract public class AsyncCommandBase : IAsyncCommand
+    public abstract class AsyncCommandBase : IAsyncCommand
     {
-        abstract public bool CanExecute(object? parameter);
-        abstract public Task ExecuteAsync(object? parameter, bool isCatchException = false);
-        async public void Execute(object? parameter)
+        public abstract bool CanExecute(object? parameter);
+        public abstract Task ExecuteAsync(object? parameter, bool isCatchException = false);
+        public async void Execute(object? parameter)
         {
             await ExecuteAsync(parameter);
         }
@@ -66,14 +66,14 @@ namespace ViewModelBase
     }
     public class vCommandAsync : AsyncCommandBase
     {
-        async static public Task ExecuteActionAsync(Action action)
+        public static async Task ExecuteActionAsync(Action action)
         {
             await System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
                 action();
             });
         }
-        async static public Task ExecuteActionAsync(IBusy model, Action action)
+        public static async Task ExecuteActionAsync(IBusy model, Action action)
         {
             model.IsBusy = true;
             await System.Threading.Tasks.Task.Factory.StartNew(() =>
@@ -82,7 +82,7 @@ namespace ViewModelBase
             });
             model.IsBusy = false;
         }
-        async static public Task ExecuteActionAsync(CancellationToken token, ProgressVM progress, Action<CancellationToken, ProgressVM, Action> action)
+        public static async Task ExecuteActionAsync(CancellationToken token, ProgressVM progress, Action<CancellationToken, ProgressVM, Action> action)
         {
             var prgrs = new ProgressVM();
             prgrs.From(progress);
@@ -91,7 +91,7 @@ namespace ViewModelBase
                 action(token, prgrs, () => { progress.From(prgrs); });
             });
         }
-        async static public Task ExecuteActionAsync(ProgressVM progress, Action<ProgressVM, Action> action)
+        public static async Task ExecuteActionAsync(ProgressVM progress, Action<ProgressVM, Action> action)
         {
             var prgrs = new ProgressVM();
             prgrs.From(progress);
@@ -100,7 +100,7 @@ namespace ViewModelBase
                 action(prgrs, () => { progress.From(prgrs); });
             });
         }
-        static public vCommandAsync Create(Action command, Predicate<object?> canExecute)
+        public static vCommandAsync Create(Action command, Predicate<object?> canExecute)
         {
             var asyncCommand = new vCommandAsync((cmd) =>
             {
@@ -112,7 +112,7 @@ namespace ViewModelBase
             }, canExecute);
             return asyncCommand;
         }
-        static public vCommandAsync Create(IBusy model, Action command, Predicate<object?> canExecute)
+        public static vCommandAsync Create(IBusy model, Action command, Predicate<object?> canExecute)
         {
             var asyncCommand = new vCommandAsync((cmd) =>
             {
@@ -126,7 +126,7 @@ namespace ViewModelBase
             }, canExecute);
             return asyncCommand;
         }
-        static public vCommandAsync Create(Action<CancellationToken> command, Predicate<object?> canExecute, CancellationTokenSource? cts = null)
+        public static vCommandAsync Create(Action<CancellationToken> command, Predicate<object?> canExecute, CancellationTokenSource? cts = null)
         {
             if (cts == null)
                 cts = new CancellationTokenSource();
@@ -140,7 +140,7 @@ namespace ViewModelBase
             }, canExecute, cts);
             return asyncCommand;
         }
-        static public vCommandAsync Create(ProgressVM progress, Action<CancellationToken, ProgressVM, Action> command, Predicate<object?> canExecute, CancellationTokenSource? cts = null)
+        public static vCommandAsync Create(ProgressVM progress, Action<CancellationToken, ProgressVM, Action> command, Predicate<object?> canExecute, CancellationTokenSource? cts = null)
         {
             if (cts == null)
                 cts = new CancellationTokenSource();
@@ -172,12 +172,12 @@ namespace ViewModelBase
             _cts = cts;
             _cancelCommand = new CancelAsyncCommand(_cts);
         }
-        override public bool CanExecute(object? parameter)
+        public override bool CanExecute(object? parameter)
         {
             Debug.Assert(_canExecute != null);
             return (Execution == null || Execution.IsCompleted) && _canExecute(parameter);
         }
-        override async public Task ExecuteAsync(object? parameter, bool isCatchException = false)
+        public override async Task ExecuteAsync(object? parameter, bool isCatchException = false)
         {
             Debug.Assert(_cancelCommand != null);
             _cancelCommand.NotifyCommandStarting();

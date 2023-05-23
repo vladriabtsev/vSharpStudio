@@ -219,6 +219,7 @@ namespace vSharpStudio.ViewModels
             {
                 _logger?.LogDebug("Load Base Config {Name} from {Path}".CallerInfo(), t.Name, t.RelativeConfigFilePath);
                 t.ConfigBase = this.LoadConfig(Path.Combine(config.CurrentCfgFolderPath, t.RelativeConfigFilePath), ind2);
+                Debug.Assert(t.ConfigBase != null);
                 t.Name = t.ConfigBase.Name;
             }
             config.IsInitialized = false;
@@ -1243,8 +1244,8 @@ namespace vSharpStudio.ViewModels
                 int iProgressStep = 1;
                 GuiLabs.Undo.ActionManager am = new GuiLabs.Undo.ActionManager();
                 var dicRenamed = new Dictionary<string, string?>();
-                var mvr = new ModelVisitorNodeReferencesBase();
-                mvr.Run(this.Config, null, null, (m, n) =>
+                var mvr = new ModelVisitorBase();
+                mvr.Run(this.Config, null, null, null, (m, n) =>
                 {
                     if (!dicRenamed.ContainsKey(n.Guid) && n.IsRenamed(false))
                     {
@@ -1716,7 +1717,7 @@ namespace vSharpStudio.ViewModels
                     {
                         return;
                     }
-                    this.Config.SelectedNode = (ITreeConfigNode)((ValidationMessage)o).Model;
+                    this.Config.SelectedNode = (ITreeConfigNode?)((ValidationMessage?)o)?.Model;
                 },
                 (o) => { return this.Config != null; });
             }

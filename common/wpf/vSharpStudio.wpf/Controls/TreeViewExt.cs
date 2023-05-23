@@ -51,7 +51,7 @@ namespace vSharpStudio.wpf.Controls
             get { return this.GetValue(TreeViewEx.SelectedItemProperty); }
             set { this.SetValue(TreeViewEx.SelectedItemProperty, value); }
         }
-        public new static readonly DependencyProperty SelectedItemProperty =
+        public static new readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(object), typeof(TreeViewEx),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, SelectedItemProperty_Changed));
         static void SelectedItemProperty_Changed(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)

@@ -6,11 +6,11 @@ namespace vSharpStudio.common
 {
     public class DebugList<T> : List<T>
     {
-        new public void Add(T item)
+        public new void Add(T item)
         {
             base.Add(item);
         }
-        new public void AddRange(IEnumerable<T> collection)
+        public new void AddRange(IEnumerable<T> collection)
         {
             base.AddRange(collection);
         }

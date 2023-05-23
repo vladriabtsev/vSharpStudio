@@ -14,7 +14,7 @@ namespace Renamer
 {
     public class CodeAnalysisVisualBasic
     {
-        public async static Task RenameAsync(Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public static async Task RenameAsync(Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
             var syntaxNode = await document.GetSyntaxRootAsync();
             Debug.Assert(syntaxNode != null);

@@ -14,7 +14,7 @@ namespace vSharpStudio.ViewModels
 {
     public class CompileUtils
     {
-        public async static Task CompileAsync(ILogger? _logger, string solutionPath, CancellationToken cancellationToken)
+        public static async Task CompileAsync(ILogger? _logger, string solutionPath, CancellationToken cancellationToken)
         {
             //var lstBuilds = Microsoft.Build.Locator.MSBuildLocator.QueryVisualStudioInstances().ToList();
             //var build = lstBuilds[0];
@@ -52,7 +52,7 @@ namespace vSharpStudio.ViewModels
                 }
             }
         }
-        public async static Task RenameAsync(ILogger _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public static async Task RenameAsync(ILogger _logger, string solutionPath, string projectPath, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
             using (Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create())
             {

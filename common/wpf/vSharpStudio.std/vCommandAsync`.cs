@@ -35,7 +35,7 @@ namespace ViewModelBase
 {
     public class vCommandAsync<TResult> : vCommandAsync
     {
-        async static public Task<TResult> ExecuteFuncAsync(Func<TResult> func)
+        public static async Task<TResult> ExecuteFuncAsync(Func<TResult> func)
         {
             var tsk = await System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
             {
@@ -43,17 +43,7 @@ namespace ViewModelBase
             });
             return tsk;
         }
-        async static public Task<TResult> ExecuteFuncAsync(IBusy model, Func<TResult> func)
-        {
-            model.IsBusy = true;
-            var tsk = await System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
-            {
-                return func();
-            });
-            model.IsBusy = false;
-            return tsk;
-        }
-        async static public Task<TResult> ExecuteFuncAsync(Func<TResult> func, IBusy model)
+        public static async Task<TResult> ExecuteFuncAsync(IBusy model, Func<TResult> func)
         {
             model.IsBusy = true;
             var tsk = await System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
@@ -63,7 +53,17 @@ namespace ViewModelBase
             model.IsBusy = false;
             return tsk;
         }
-        async static public Task<TResult> ExecuteFuncAsync(ProgressVM progress, Func<ProgressVM, Action, TResult> func)
+        public static async Task<TResult> ExecuteFuncAsync(Func<TResult> func, IBusy model)
+        {
+            model.IsBusy = true;
+            var tsk = await System.Threading.Tasks.Task<TResult>.Factory.StartNew(() =>
+            {
+                return func();
+            });
+            model.IsBusy = false;
+            return tsk;
+        }
+        public static async Task<TResult> ExecuteFuncAsync(ProgressVM progress, Func<ProgressVM, Action, TResult> func)
         {
             var prgrs = new ProgressVM();
             prgrs.From(progress);
@@ -73,7 +73,7 @@ namespace ViewModelBase
             });
             return tsk;
         }
-        async static public Task<TResult> ExecuteFuncAsync(CancellationToken token, ProgressVM progress, Func<CancellationToken, ProgressVM, Action, TResult> func)
+        public static async Task<TResult> ExecuteFuncAsync(CancellationToken token, ProgressVM progress, Func<CancellationToken, ProgressVM, Action, TResult> func)
         {
             var prgrs = new ProgressVM();
             prgrs.From(progress);
@@ -83,7 +83,7 @@ namespace ViewModelBase
             });
             return tsk;
         }
-        static public vCommandAsync<TResult> Create(Func<TResult> command, Predicate<object?> canExecute)
+        public static vCommandAsync<TResult> Create(Func<TResult> command, Predicate<object?> canExecute)
         {
             var asyncCommand = new vCommandAsync<TResult>(async (cmd) =>
             {
@@ -95,7 +95,7 @@ namespace ViewModelBase
             }, canExecute);
             return asyncCommand;
         }
-        static public vCommandAsync<TResult> Create(IBusy model, Func<TResult> command, Predicate<object?> canExecute)
+        public static vCommandAsync<TResult> Create(IBusy model, Func<TResult> command, Predicate<object?> canExecute)
         {
             var asyncCommand = new vCommandAsync<TResult>(async (cmd) =>
             {
@@ -109,7 +109,7 @@ namespace ViewModelBase
             }, canExecute);
             return asyncCommand;
         }
-        static public vCommandAsync<TResult> Create(Func<CancellationToken, TResult> command, Predicate<object?> canExecute, CancellationTokenSource? cts = null)
+        public static vCommandAsync<TResult> Create(Func<CancellationToken, TResult> command, Predicate<object?> canExecute, CancellationTokenSource? cts = null)
         {
             if (cts == null)
                 cts = new CancellationTokenSource();
@@ -123,7 +123,7 @@ namespace ViewModelBase
             }, canExecute, cts);
             return asyncCommand;
         }
-        static public vCommandAsync<TResult> Create(ProgressVM progress, Func<CancellationToken, ProgressVM, Action, TResult> command, Predicate<object?> canExecute, CancellationTokenSource? cts = null)
+        public static vCommandAsync<TResult> Create(ProgressVM progress, Func<CancellationToken, ProgressVM, Action, TResult> command, Predicate<object?> canExecute, CancellationTokenSource? cts = null)
         {
             if (cts == null)
                 cts = new CancellationTokenSource();
@@ -147,7 +147,7 @@ namespace ViewModelBase
             _cts = cancellationTokenSource;
             _cancelCommand = new CancelAsyncCommand(_cts);
         }
-        override async public Task ExecuteAsync(object? parameter, bool isCatchException = false)
+        public override async Task ExecuteAsync(object? parameter, bool isCatchException = false)
         {
             Debug.Assert(_cancelCommand != null);
             _cancelCommand.NotifyCommandStarting();
@@ -169,8 +169,8 @@ namespace ViewModelBase
             _cancelCommand.NotifyCommandFinished();
             RaiseCanExecuteChanged();
         }
-        new public NotifyTaskCompletion<TResult>? Execution { get; private set; }
-        new public bool IsCanceled
+        public new NotifyTaskCompletion<TResult>? Execution { get; private set; }
+        public new bool IsCanceled
         {
             get
             {
@@ -180,7 +180,7 @@ namespace ViewModelBase
                 return _cancelCommand.Token.Value.IsCancellationRequested || this.Execution.IsCanceled;
             }
         }
-        new public bool IsFaulted
+        public new bool IsFaulted
         {
             get
             {
@@ -189,21 +189,21 @@ namespace ViewModelBase
                 return this.Execution.IsFaulted;
             }
         }
-        new public AggregateException? Exception
+        public new AggregateException? Exception
         {
             get
             {
                 return this.Execution?.Exception;
             }
         }
-        new public Exception? InnerException
+        public new Exception? InnerException
         {
             get
             {
                 return this.Execution?.InnerException;
             }
         }
-        new public string? ErrorMessage
+        public new string? ErrorMessage
         {
             get
             {

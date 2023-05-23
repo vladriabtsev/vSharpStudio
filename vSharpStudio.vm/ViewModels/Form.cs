@@ -426,7 +426,7 @@ namespace vSharpStudio.vm.ViewModels
                 return this.listAllNotSpecialProperties;
             }
         }
-        private ObservableCollection<IProperty> listAllNotSpecialProperties;
+        private ObservableCollection<IProperty>? listAllNotSpecialProperties;
         [Browsable(false)]
         public SortedObservableCollection<IProperty> ListSelectedNotSpecialProperties
         {

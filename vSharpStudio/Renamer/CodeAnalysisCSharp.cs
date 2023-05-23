@@ -16,7 +16,7 @@ namespace Renamer
 {
     public class CodeAnalysisCSharp
     {
-        public async static Task RenameAsync(ILogger _logger, Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
+        public static async Task RenameAsync(ILogger _logger, Solution solution, Document document, List<PreRenameData> lstRenames, CancellationToken cancellationToken)
         {
             _logger.LogInformation("List renames:".FilePos());
             foreach (var tr in lstRenames)

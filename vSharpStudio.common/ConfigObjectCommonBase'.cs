@@ -120,7 +120,16 @@
             throw new Exception($"Validation message with severity '{Enum.GetName(typeof(Severity), severity)}' is not found");
         }
         [Browsable(false)]
-        public IChildrenCollection Children { get; protected set; }
+        public IChildrenCollection Children
+        {
+            get
+            {
+                Debug.Assert(this._Children != null);
+                return _Children;
+            }
+            protected set { _Children = value; }
+        }
+        private IChildrenCollection? _Children;
         [Browsable(false)]
         public string IconStatus
         {
@@ -787,7 +796,7 @@
             }
             return false;
         }
-        virtual public bool IsNewNode()
+        public virtual bool IsNewNode()
         {
             if (this is ICanAddNode tt)
             {

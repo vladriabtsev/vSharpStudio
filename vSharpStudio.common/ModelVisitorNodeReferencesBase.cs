@@ -107,6 +107,7 @@ namespace vSharpStudio.common
                 var md = new ModelNode(t);
                 this.DicNodesWithReferences[t.Guid] = md;
                 ScanProperties(md, currModel.GroupDocuments.GroupSharedProperties.ListProperties);
+                ScanProperties(md, t.GroupProperties.ListProperties);
                 ScanDetails(md, t.GroupDetails);
             }
 

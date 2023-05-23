@@ -94,7 +94,7 @@ namespace ViewModelBase
                     this.CanExecuteChangedInternal.Raise(this);
             }
         }
-        async public Task ExecuteAsync(object? parameter)
+        public async Task ExecuteAsync(object? parameter)
         {
             _isexecuted = true;
             if (this.CanExecuteChangedInternal != null)
