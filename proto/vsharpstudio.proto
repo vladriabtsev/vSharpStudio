@@ -2471,11 +2471,6 @@ message proto_group_documents {
     // @attr [DisplayName("Use Date")]
     // @attr [Description("Use Date property for document by default")]
     proto_enum_use_type use_doc_date_property = 24;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(25)]
-    // @attr [DisplayName("General Journal")]
-    // @attr [Description("Use general journal for all documents")]
-    bool is_use_general_journal_for_all_documents =25;
 
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
@@ -2489,11 +2484,6 @@ message proto_group_documents {
     // @attr [DisplayName("Filterable")]
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
-
-    // @attr [Browsable(false)]
-    string view_journal_wide_guid = 81;
-    // @attr [Browsable(false)]
-    string view_journal_narrow_guid = 82;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2660,12 +2650,6 @@ message proto_group_list_journals {
     // @attr [Browsable(false)]
     uint64 sorting_value = 8;
 
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(11)]
-    // @attr [DisplayName("General Journal")]
-    // @attr [Description("Use general journal for all documents")]
-    bool is_use_general_journal_for_all_documents = 11;
-
     // @attr [Category("Auto Layout")]
     // @attr [DisplayName("Sortable")]
     // @attr [Description("Sortable in data grid")]
@@ -2678,11 +2662,6 @@ message proto_group_list_journals {
     // @attr [DisplayName("Filterable")]
     // @attr [Description("Filterable in data grid")]
     proto_enum_use_type is_grid_filterable = 73;
-
-    // @attr [Browsable(false)]
-    string view_list_wide_guid = 81;
-    // @attr [Browsable(false)]
-    string view_list_narrow_guid = 82;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -2730,12 +2709,14 @@ message proto_journal {
     proto_enum_use_type is_grid_filterable = 73;
 
     // @attr [Browsable(false)]
-    string view_list_wide_guid = 81;
-    // @attr [Browsable(false)]
-    string view_list_narrow_guid = 82;
-
+    repeated proto_doc_in_journal list_selected_docs_with_properties = 101;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+// @base VmValidatableWithSeverity
+message proto_doc_in_journal {
+    string guid = 1;
+    repeated string list_property_guids = 2;
 }
 /** 
  * @exclude

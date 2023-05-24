@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using ViewModelBase;
 using vSharpStudio.common;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
@@ -35,8 +36,6 @@ namespace vSharpStudio.vm.ViewModels
         partial void OnCreated()
         {
             this.IsIncludableInModels = true;
-            this.ViewListWideGuid = System.Guid.NewGuid().ToString();
-            this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
             //    Init();
         }
         //protected override void OnInitFromDto()
@@ -170,5 +169,168 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListJournals.GetIsGridSortableCustom();
         }
+
+        #region Editor
+
+        #region Documents
+
+        [Browsable(false)]
+        public ObservableCollection<ISortingValue> ListNotIncludedDocuments
+        {
+            get
+            {
+                if (this.listNotIncludedDocuments == null)
+                {
+                    var hashDoc = new HashSet<string>();
+                    foreach (var tt in this.ListSelectedDocsWithProperties)
+                    {
+                        hashDoc.Add(tt.Guid);
+                    }
+                    this.listNotIncludedDocuments = new ObservableCollection<ISortingValue>();
+                    foreach (var t in this.ParentGroupListJournals.ParentModel.GroupDocuments.GroupListDocuments.ListDocuments)
+                    {
+                        if (hashDoc.Contains(t.Guid))
+                            continue;
+                        this.listNotIncludedDocuments.Add(t);
+                    }
+                }
+                return this.listNotIncludedDocuments;
+            }
+        }
+        private ObservableCollection<ISortingValue>? listNotIncludedDocuments;
+        [Browsable(false)]
+        public ObservableCollection<ISortingValue> ListIncludedDocuments
+        {
+            get
+            {
+                if (this.listIncludedDocuments == null)
+                {
+                    var hashDoc = new HashSet<string>();
+                    foreach (var tt in this.ListSelectedDocsWithProperties)
+                    {
+                        hashDoc.Add(tt.Guid);
+                    }
+                    this.listIncludedDocuments = new ObservableCollection<ISortingValue>();
+                    foreach (var t in this.ParentGroupListJournals.ParentModel.GroupDocuments.GroupListDocuments.ListDocuments)
+                    {
+                        if (!hashDoc.Contains(t.Guid))
+                            continue;
+                        this.listIncludedDocuments.Add(t);
+                    }
+                }
+                return this.listIncludedDocuments;
+            }
+        }
+        private ObservableCollection<ISortingValue>? listIncludedDocuments;
+        [Browsable(false)]
+        public IDocument? SelectedIncludedDocument
+        {
+            get { return selectedIncludedDocument; }
+            set
+            {
+                selectedIncludedDocument = value;
+                this.NotifyPropertyChanged();
+                this.NotifyPropertyChanged(() => this.ListNotIncludedProperties);
+                this.NotifyPropertyChanged(() => this.ListIncludedProperties);
+            }
+        }
+        private IDocument? selectedIncludedDocument;
+
+        #endregion Documents
+
+        #region Properties
+
+        [Browsable(false)]
+        public ObservableCollection<ISortingValue> ListNotIncludedProperties
+        {
+            get
+            {
+                this.GetNotIncludedProperties();
+                Debug.Assert(this.listNotIncludedProperties != null);
+                return this.listNotIncludedProperties;
+            }
+        }
+        private ObservableCollection<ISortingValue>? listNotIncludedProperties;
+        private void GetNotIncludedProperties()
+        {
+            if (this.SelectedIncludedDocument != null)
+            {
+                foreach (var t in this.ListSelectedDocsWithProperties)
+                {
+                    if (t.Guid == this.SelectedIncludedDocument.Guid)
+                    {
+                        var hashProps = new HashSet<string>();
+                        foreach (var tt in t.ListPropertyGuids)
+                        {
+                            hashProps.Add(tt);
+                        }
+                        this.listNotIncludedProperties = new ObservableCollection<ISortingValue>();
+                        foreach (var tt in ((Document)this.Cfg.DicNodes[t.Guid]).GetPropertiesWithShared(false, true))
+                        {
+                            if (hashProps.Contains(tt.Guid))
+                                continue;
+                            this.listNotIncludedProperties.Add(tt);
+                        }
+                        break;
+                    }
+                }
+            }
+            else
+                this.listNotIncludedProperties = new ObservableCollection<ISortingValue>();
+        }
+        [Browsable(false)]
+        public ObservableCollection<ISortingValue> ListIncludedProperties
+        {
+            get
+            {
+                this.GetIncludedProperties();
+                Debug.Assert(this.listIncludedProperties != null);
+                return this.listIncludedProperties;
+            }
+        }
+        private ObservableCollection<ISortingValue>? listIncludedProperties;
+        private void GetIncludedProperties()
+        {
+            if (this.SelectedIncludedDocument != null)
+            {
+                foreach (var t in this.ListSelectedDocsWithProperties)
+                {
+                    if (t.Guid == this.SelectedIncludedDocument.Guid)
+                    {
+                        var hashProps = new HashSet<string>();
+                        foreach (var tt in t.ListPropertyGuids)
+                        {
+                            hashProps.Add(tt);
+                        }
+                        this.listIncludedProperties = new ObservableCollection<ISortingValue>();
+                        foreach (var tt in ((Document)this.Cfg.DicNodes[t.Guid]).GetPropertiesWithShared(false, true))
+                        {
+                            if (!hashProps.Contains(tt.Guid))
+                                continue;
+                            this.listIncludedProperties.Add(tt);
+                        }
+                        break;
+                    }
+                }
+            }
+            else
+                this.listIncludedProperties = new ObservableCollection<ISortingValue>();
+        }
+        [Browsable(false)]
+        public IProperty? SelectedNotIncludedProperty
+        {
+            get { return selectedNotIncludedProperty; }
+            set
+            {
+                selectedNotIncludedProperty = value;
+                this.NotifyPropertyChanged();
+                this.SelectedIncludedDocument = null;
+            }
+        }
+        private IProperty? selectedNotIncludedProperty;
+
+        #endregion Properties
+
+        #endregion Editor
     }
 }

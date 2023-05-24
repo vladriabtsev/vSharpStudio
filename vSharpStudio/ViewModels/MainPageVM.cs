@@ -863,7 +863,7 @@ namespace vSharpStudio.ViewModels
         }
         private const string _saveBaseToolTip = "Ctrl-S - save config";
         private string _SaveToolTip = _saveBaseToolTip;
-        public ProgressVM? ProgressVM
+        public ProgressVM ProgressVM
         {
             get
             {
@@ -885,7 +885,7 @@ namespace vSharpStudio.ViewModels
                             {
                                 this.cancellationTokenSource = new CancellationTokenSource();
                                 var cancellationToken = this.cancellationTokenSource.Token;
-                                this.ProgressVM.ProgressStart("Configuration Validation", 0, null, null, cancellationToken);
+                                this.ProgressVM.ProgressStart("Configuration Validation", 0, null, 0, cancellationToken);
                                 // https://learn.microsoft.com/en-us/archive/msdn-magazine/2014/april/mvvm-multithreading-and-dispatching-in-mvvm-applications
                                 // https://softwareengineering.stackexchange.com/questions/347970/multithreaded-c-mvvm-application-architecture
                                 if (VmBindable.isUnitTests)

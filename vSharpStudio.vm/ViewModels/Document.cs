@@ -242,6 +242,27 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        /// <summary>
+        /// All properties (shared and normal)
+        /// Shared included first
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyList<IProperty> GetPropertiesWithShared(bool isSupportVersion, bool isExcludeSpecial = false)
+        {
+            var res = new List<IProperty>();
+            var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
+            if (!isExcludeSpecial)
+                GetSpecialProperties(res, isSupportVersion);
+            foreach (var t in grd.GroupSharedProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                res.Add(t);
+            }
+            return res;
+        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
@@ -408,7 +429,10 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 var lstp = new List<IProperty>();
-                lstp.AddRange(f.ListAllNotSpecialProperties);
+                foreach (var t in f.ListAllNotSpecialProperties)
+                {
+                    lstp.Add((IProperty)t);
+                }
                 this.GetSpecialProperties(lstp, false);
                 f = new Form(this.GroupForms, ftype, lstp);
             }

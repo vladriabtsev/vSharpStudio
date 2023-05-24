@@ -17,6 +17,7 @@
     - [proto_constant](#proto_config.proto_constant)
     - [proto_data_type](#proto_config.proto_data_type)
     - [proto_detail](#proto_config.proto_detail)
+    - [proto_doc_in_journal](#proto_config.proto_doc_in_journal)
     - [proto_document](#proto_config.proto_document)
     - [proto_document_code_property_settings](#proto_config.proto_document_code_property_settings)
     - [proto_enumeration](#proto_config.proto_enumeration)
@@ -533,6 +534,22 @@ Constant application wise value
 
 
 
+<a name="proto_config.proto_doc_in_journal"></a>
+
+### proto_doc_in_journal
+@base VmValidatableWithSeverity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  |  |
+| list_property_guids | [string](#string) | repeated |  |
+
+
+
+
+
+
 <a name="proto_config.proto_document"></a>
 
 ### proto_document
@@ -988,12 +1005,9 @@ No Children
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [Browsable(false)] |
 | use_doc_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document by default&#34;)] |
 | use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document by default&#34;)] |
-| is_use_general_journal_for_all_documents | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;General Journal&#34;)] @attr [Description(&#34;Use general journal for all documents&#34;)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| view_journal_wide_guid | [string](#string) |  | @attr [Browsable(false)] |
-| view_journal_narrow_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1228,12 +1242,9 @@ Common parameters section
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_journals | [proto_journal](#proto_config.proto_journal) | repeated | repeated proto_property list_shared_properties = 6; @attr [Browsable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| is_use_general_journal_for_all_documents | [bool](#bool) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;General Journal&#34;)] @attr [Description(&#34;Use general journal for all documents&#34;)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| view_list_wide_guid | [string](#string) |  | @attr [Browsable(false)] |
-| view_list_narrow_guid | [string](#string) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1368,8 +1379,7 @@ main view forms hierarchy node with children
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
 | is_grid_sortable_custom | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Custom Sortable&#34;)] @attr [Description(&#34;Custom sortable in data grid by using custom function&#34;)] |
 | is_grid_filterable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Filterable&#34;)] @attr [Description(&#34;Filterable in data grid&#34;)] |
-| view_list_wide_guid | [string](#string) |  | @attr [Browsable(false)] |
-| view_list_narrow_guid | [string](#string) |  | @attr [Browsable(false)] |
+| list_selected_docs_with_properties | [proto_doc_in_journal](#proto_config.proto_doc_in_journal) | repeated | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 

@@ -15,12 +15,9 @@ using System.Windows.Shapes;
 
 namespace vSharpStudio.Views
 {
-    /// <summary>
-    /// Interaction logic for EditorFormCatalogList.xaml
-    /// </summary>
-    public partial class EditorFormCatalogList : UserControl
+    public partial class EditorJournal : UserControl
     {
-        public EditorFormCatalogList()
+        public EditorJournal()
         {
             InitializeComponent();
         }

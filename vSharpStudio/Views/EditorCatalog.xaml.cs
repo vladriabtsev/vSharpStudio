@@ -15,20 +15,11 @@ using System.Windows.Shapes;
 
 namespace vSharpStudio.Views
 {
-    /// <summary>
-    /// Interaction logic for EditorCatalog.xaml
-    /// </summary>
     public partial class EditorCatalog : UserControl
     {
         public EditorCatalog()
         {
             InitializeComponent();
         }
-
-        //private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        //{
-        //    this.colFolder.DataContext = this.DataContext;
-        //    this.colItem.DataContext = this.DataContext;
-        //}
     }
 }

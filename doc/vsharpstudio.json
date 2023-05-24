@@ -3916,6 +3916,37 @@
           ]
         },
         {
+          "name": "proto_doc_in_journal",
+          "longName": "proto_doc_in_journal",
+          "fullName": "proto_config.proto_doc_in_journal",
+          "description": "@base VmValidatableWithSeverity",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_property_guids",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_document",
           "longName": "proto_document",
           "fullName": "proto_config.proto_document",
@@ -6031,16 +6062,6 @@
               "defaultValue": ""
             },
             {
-              "name": "is_use_general_journal_for_all_documents",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(25)]\n@attr [DisplayName(\"General Journal\")]\n@attr [Description(\"Use general journal for all documents\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "is_grid_sortable",
               "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
@@ -6067,26 +6088,6 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "view_journal_wide_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "view_journal_narrow_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -7131,16 +7132,6 @@
               "defaultValue": ""
             },
             {
-              "name": "is_use_general_journal_for_all_documents",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"General Journal\")]\n@attr [Description(\"Use general journal for all documents\")]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "is_grid_sortable",
               "description": "@attr [Category(\"Auto Layout\")]\n@attr [DisplayName(\"Sortable\")]\n@attr [Description(\"Sortable in data grid\")]",
               "label": "",
@@ -7167,26 +7158,6 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "view_list_wide_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "view_list_narrow_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -7747,22 +7718,12 @@
               "defaultValue": ""
             },
             {
-              "name": "view_list_wide_guid",
+              "name": "list_selected_docs_with_properties",
               "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "view_list_narrow_guid",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "label": "repeated",
+              "type": "proto_doc_in_journal",
+              "longType": "proto_doc_in_journal",
+              "fullType": "proto_config.proto_doc_in_journal",
               "ismap": false,
               "defaultValue": ""
             },

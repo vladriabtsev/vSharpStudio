@@ -20,25 +20,25 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{Binding Settings[0], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[0], Converter={StaticResource ConverterObjectToMinWidth}}" />
+                <ColumnDefinition Width="{Binding Settings[0], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[0], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" />
                 <ColumnDefinition Width="{Binding Settings[0], Converter={StaticResource ConverterNotNullToGridLength}, ConverterParameter=3}" />
-                <ColumnDefinition Width="{Binding Settings[1], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[1], Converter={StaticResource ConverterObjectToMinWidth}}" />
+                <ColumnDefinition Width="{Binding Settings[1], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[1], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" />
                 <ColumnDefinition Width="{Binding Settings[1], Converter={StaticResource ConverterNotNullToGridLength}, ConverterParameter=3}" />
-                <ColumnDefinition Width="{Binding Settings[2], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[2], Converter={StaticResource ConverterObjectToMinWidth}}" />
+                <ColumnDefinition Width="{Binding Settings[2], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[2], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" />
                 <ColumnDefinition Width="{Binding Settings[2], Converter={StaticResource ConverterNotNullToGridLength}, ConverterParameter=3}" />
-                <ColumnDefinition Width="{Binding Settings[3], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[3], Converter={StaticResource ConverterObjectToMinWidth}}" />
+                <ColumnDefinition Width="{Binding Settings[3], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[3], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" />
                 <ColumnDefinition Width="{Binding Settings[3], Converter={StaticResource ConverterNotNullToGridLength}, ConverterParameter=3}" />
-                <ColumnDefinition Width="{Binding Settings[4], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[4], Converter={StaticResource ConverterObjectToMinWidth}}" />
+                <ColumnDefinition Width="{Binding Settings[4], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[4], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" />
                 <ColumnDefinition Width="{Binding Settings[4], Converter={StaticResource ConverterNotNullToGridLength}, ConverterParameter=3}" />
-                <ColumnDefinition Width="{Binding Settings[5], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[5], Converter={StaticResource ConverterObjectToMinWidth}}" />
+                <ColumnDefinition Width="{Binding Settings[5], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[5], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" />
                 <ColumnDefinition Width="{Binding Settings[5], Converter={StaticResource ConverterNotNullToGridLength}, ConverterParameter=3}" />
-                <ColumnDefinition Width="{Binding Settings[6], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[6], Converter={StaticResource ConverterObjectToMinWidth}}" />
+                <ColumnDefinition Width="{Binding Settings[6], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[6], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" />
                 <ColumnDefinition Width="{Binding Settings[6], Converter={StaticResource ConverterNotNullToGridLength}, ConverterParameter=3}" />
-                <ColumnDefinition Width="{Binding Settings[7], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[7], Converter={StaticResource ConverterObjectToMinWidth}}" />
+                <ColumnDefinition Width="{Binding Settings[7], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[7], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" />
                 <ColumnDefinition Width="{Binding Settings[7], Converter={StaticResource ConverterNotNullToGridLength}, ConverterParameter=3}" />
-                <ColumnDefinition Width="{Binding Settings[8], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[8], Converter={StaticResource ConverterObjectToMinWidth}}" />
+                <ColumnDefinition Width="{Binding Settings[8], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[8], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" />
                 <ColumnDefinition Width="{Binding Settings[8], Converter={StaticResource ConverterNotNullToGridLength}, ConverterParameter=3}" />
-                <ColumnDefinition Width="{Binding Settings[9], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[9], Converter={StaticResource ConverterObjectToMinWidth}}" />
+                <ColumnDefinition Width="{Binding Settings[9], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" MinWidth="{Binding Settings[9], Converter={StaticResource ConverterForPropertyGridWidthGenSettings}}" />
             </Grid.ColumnDefinitions>
             <local:GenSettingsPropertyGrid Grid.Column="0" DataContext="{Binding Settings[0]}" />
             <GridSplitter Grid.Column="1" ResizeDirection="Columns" Width="5" HorizontalAlignment="Center" Opacity="0.5" />

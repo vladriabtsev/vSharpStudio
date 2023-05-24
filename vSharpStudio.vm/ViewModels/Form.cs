@@ -27,7 +27,7 @@ namespace vSharpStudio.vm.ViewModels
         public Form(ITreeConfigNode? parent, FormType ftype, List<IProperty> lst) : this(parent)
         {
             this._ListProperties = lst;
-            switch(ftype)
+            switch (ftype)
             {
                 case FormType.ListWide:
                 case FormType.ListNarrow:
@@ -319,13 +319,13 @@ namespace vSharpStudio.vm.ViewModels
         #region Editor
 
         [Browsable(false)]
-        public SortedObservableCollection<IProperty> ListSeparateTreeSelectedNotSpecialProperties
+        public SortedObservableCollection<ISortingValue> ListSeparateTreeSelectedNotSpecialProperties
         {
             get
             {
                 if (this.listSeparateTreeSelectedNotSpecialProperties == null)
                 {
-                    this.listSeparateTreeSelectedNotSpecialProperties = new SortedObservableCollection<IProperty>();
+                    this.listSeparateTreeSelectedNotSpecialProperties = new SortedObservableCollection<ISortingValue>();
                     if (this.ParentGroupListForms.Parent is Catalog c)
                     {
                         if (c.UseTree && c.UseSeparateTreeForFolders)
@@ -349,15 +349,15 @@ namespace vSharpStudio.vm.ViewModels
                 return this.listSeparateTreeSelectedNotSpecialProperties;
             }
         }
-        private SortedObservableCollection<IProperty>? listSeparateTreeSelectedNotSpecialProperties;
+        private SortedObservableCollection<ISortingValue>? listSeparateTreeSelectedNotSpecialProperties;
         [Browsable(false)]
-        public ObservableCollection<IProperty> ListSeparateTreeAllNotSpecialProperties
+        public ObservableCollection<ISortingValue> ListSeparateTreeAllNotSpecialProperties
         {
             get
             {
                 if (this.listSeparateTreeAllNotSpecialProperties == null)
                 {
-                    this.listSeparateTreeAllNotSpecialProperties = new ObservableCollection<IProperty>();
+                    this.listSeparateTreeAllNotSpecialProperties = new ObservableCollection<ISortingValue>();
                     if (this.ParentGroupListForms.Parent is Catalog c)
                     {
                         if (c.UseTree && c.UseSeparateTreeForFolders)
@@ -385,24 +385,24 @@ namespace vSharpStudio.vm.ViewModels
                 return this.listSeparateTreeAllNotSpecialProperties;
             }
         }
-        private ObservableCollection<IProperty>? listSeparateTreeAllNotSpecialProperties = null;
+        private ObservableCollection<ISortingValue>? listSeparateTreeAllNotSpecialProperties = null;
         private void ResFolder_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             Debug.Assert(this.listSeparateTreeSelectedNotSpecialProperties != null);
             this.ListGuidViewFolderProperties.Clear();
             foreach (var t in this.listSeparateTreeSelectedNotSpecialProperties)
             {
-                this.ListGuidViewFolderProperties.Add(t.Guid);
+                this.ListGuidViewFolderProperties.Add(((IProperty)t).Guid);
             }
         }
         [Browsable(false)]
-        public ObservableCollection<IProperty> ListAllNotSpecialProperties
+        public ObservableCollection<ISortingValue> ListAllNotSpecialProperties
         {
             get
             {
                 if (this.listAllNotSpecialProperties == null)
                 {
-                    this.listAllNotSpecialProperties = new ObservableCollection<IProperty>();
+                    this.listAllNotSpecialProperties = new ObservableCollection<ISortingValue>();
                     if (this.ParentGroupListForms.Parent is Catalog c)
                     {
                         var res = new List<IProperty>();
@@ -426,20 +426,20 @@ namespace vSharpStudio.vm.ViewModels
                 return this.listAllNotSpecialProperties;
             }
         }
-        private ObservableCollection<IProperty>? listAllNotSpecialProperties;
+        private ObservableCollection<ISortingValue>? listAllNotSpecialProperties;
         [Browsable(false)]
-        public SortedObservableCollection<IProperty> ListSelectedNotSpecialProperties
+        public SortedObservableCollection<ISortingValue> ListSelectedNotSpecialProperties
         {
             get
             {
                 if (this.listSelectedNotSpecialProperties == null)
                 {
-                    this.listSelectedNotSpecialProperties = new SortedObservableCollection<IProperty>();
+                    this.listSelectedNotSpecialProperties = new SortedObservableCollection<ISortingValue>();
                     if (this.ParentGroupListForms.Parent is Catalog c)
                     {
                         var res = new List<IProperty>();
                         c.GetNormalProperties(res);
-                        var lst = new List<IProperty>();
+                        var lst = new List<ISortingValue>();
                         foreach (var t in res)
                         {
                             foreach (var tt in this.ListGuidViewProperties)
@@ -458,14 +458,14 @@ namespace vSharpStudio.vm.ViewModels
                 return this.listSelectedNotSpecialProperties;
             }
         }
-        private SortedObservableCollection<IProperty>? listSelectedNotSpecialProperties;
+        private SortedObservableCollection<ISortingValue>? listSelectedNotSpecialProperties;
         private void Res_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             Debug.Assert(this.listSelectedNotSpecialProperties != null);
             this.ListGuidViewProperties.Clear();
             foreach (var t in this.listSelectedNotSpecialProperties)
             {
-                this.ListGuidViewProperties.Add(t.Guid);
+                this.ListGuidViewProperties.Add(((IProperty)t).Guid);
             }
         }
 
@@ -520,52 +520,6 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             }
         }
-        //public bool UseCodePropertySeparateFolder
-        //{
-        //    get
-        //    {
-        //        if (this.ParentGroupListForms.Parent is Catalog c)
-        //        {
-        //            return c.GetUseCodePropertySeparateFolder();
-        //        }
-        //        return false;
-        //    }
-        //}
-        //public bool UseDescriptionPropertySeparateFolder
-        //{
-        //    get
-        //    {
-        //        if (this.ParentGroupListForms.Parent is Catalog c)
-        //        {
-        //            return c.GetUseDescriptionPropertSeparateFoldery();
-        //        }
-        //        return false;
-        //    }
-        //}
-        //public string CodePropertyName { get { return this.Cfg.Model.PropertyCodeName; } }
-        //public bool UseCodeProperty
-        //{
-        //    get
-        //    {
-        //        if (this.ParentGroupListForms.Parent is Catalog c)
-        //        {
-        //            return c.GetUseCodeProperty();
-        //        }
-        //        return false;
-        //    }
-        //}
-        //public string DescriptionPropertyName { get { return this.Cfg.Model.PropertyDescriptionName; } }
-        //public bool UseDescriptionProperty
-        //{
-        //    get
-        //    {
-        //        if (this.ParentGroupListForms.Parent is Catalog c)
-        //        {
-        //            return c.GetUseDescriptionProperty();
-        //        }
-        //        return false;
-        //    }
-        //}
         [Browsable(false)]
         public string IsFolderPropertyName { get { return this.Cfg.Model.PropertyIsFolderName; } }
         [Browsable(false)]

@@ -9,7 +9,6 @@
              xmlns:Converters="clr-namespace:vSharpStudio.wpf.Converters;assembly=vSharpStudio.wpf"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type={x:Type vm:Form}}"
-             DataContextChanged="UserControl_DataContextChanged"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Converters:ConverterBoolToGridLength x:Key="ConverterBoolToGridLength"/>
@@ -30,8 +29,8 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="Separate folder tree view properties" FontWeight="Bold" HorizontalAlignment="Center" />
                     <controls:CollectionFromCollection Grid.Row="1"
-                    ListAll="{Binding ListSeparateTreeAllNotSpecialProperties}"
-                    ListSelected="{Binding ListSeparateTreeSelectedNotSpecialProperties}">
+                        ListAll="{Binding ListSeparateTreeAllNotSpecialProperties}"
+                        ListSelected="{Binding ListSeparateTreeSelectedNotSpecialProperties}">
                         <controls:CollectionFromCollection.UpperRightContent>
                             <Border BorderThickness="0,0,0,1" BorderBrush="#FFABADB3">
                                 <StackPanel Margin="7,0,0,0">
@@ -39,8 +38,8 @@
                                     <TextBlock Text="RefParent"/>
                                     <!--<TextBlock Text="{Binding CodePropertyName}" Visibility="{Binding UseCodePropertySeparateFolder, Converter={StaticResource ConverterBoolToVisible}}"/>
                                     <TextBlock Text="{Binding DescriptionPropertyName}" Visibility="{Binding UseDescriptionPropertySeparateFolder, Converter={StaticResource ConverterBoolToVisible}}"/>-->
-                                    <TextBlock Text="{Binding IsOpenPropertyName}"/>
-                                    <TextBlock Text="{Binding IsFolderPropertyName}" Visibility="{Binding UseFolderTypeExplicitlyForSeparateTree, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                    <!--<TextBlock Text="{Binding IsOpenPropertyName}"/>-->
+                                    <!--<TextBlock Text="{Binding IsFolderPropertyName}" Visibility="{Binding UseFolderTypeExplicitlyForSeparateTree, Converter={StaticResource ConverterBoolToVisible}}"/>-->
                                 </StackPanel>
                             </Border>
                         </controls:CollectionFromCollection.UpperRightContent>
@@ -55,8 +54,8 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="View properties" FontWeight="Bold" HorizontalAlignment="Center" />
                     <controls:CollectionFromCollection Grid.Row="1"
-                    ListAll="{Binding ListAllNotSpecialProperties}"
-                    ListSelected="{Binding ListSelectedNotSpecialProperties}">
+                        ListAll="{Binding ListAllNotSpecialProperties}"
+                        ListSelected="{Binding ListSelectedNotSpecialProperties}">
                         <controls:CollectionFromCollection.UpperRightContent>
                             <Border BorderThickness="0,0,0,1" BorderBrush="#FFABADB3">
                                 <StackPanel Margin="7,0,0,0">
@@ -65,8 +64,8 @@
                                     <TextBlock Text="RefParent" Visibility="{Binding UseSelfTreeForFolders, Converter={StaticResource ConverterBoolToVisible}}"/>
                                     <!--<TextBlock Text="{Binding CodePropertyName}" Visibility="{Binding UseCodeProperty, Converter={StaticResource ConverterBoolToVisible}}"/>
                                     <TextBlock Text="{Binding DescriptionPropertyName}" Visibility="{Binding UseDescriptionProperty, Converter={StaticResource ConverterBoolToVisible}}"/>-->
-                                    <TextBlock Text="{Binding IsOpenPropertyName}" Visibility="{Binding UseSelfTreeForFolders, Converter={StaticResource ConverterBoolToVisible}}"/>
-                                    <TextBlock Text="{Binding IsFolderPropertyName}" Visibility="{Binding UseFolderTypeExplicitly, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                    <!--<TextBlock Text="{Binding IsOpenPropertyName}" Visibility="{Binding UseSelfTreeForFolders, Converter={StaticResource ConverterBoolToVisible}}"/>-->
+                                    <!--<TextBlock Text="{Binding IsFolderPropertyName}" Visibility="{Binding UseFolderTypeExplicitly, Converter={StaticResource ConverterBoolToVisible}}"/>-->
                                 </StackPanel>
                             </Border>
                         </controls:CollectionFromCollection.UpperRightContent>

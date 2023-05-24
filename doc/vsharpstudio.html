@@ -231,6 +231,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_doc_in_journal"><span class="badge">M</span>proto_doc_in_journal</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_document"><span class="badge">M</span>proto_document</a>
                 </li>
               
@@ -2555,6 +2559,37 @@ Reserved positions: 1 - primary key
 
         
       
+        <h3 id="proto_config.proto_doc_in_journal">proto_doc_in_journal</h3>
+        <p>@base VmValidatableWithSeverity</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_property_guids</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_document">proto_document</h3>
         <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
 
@@ -4423,16 +4458,6 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>is_use_general_journal_for_all_documents</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(25)]
-@attr [DisplayName(&#34;General Journal&#34;)]
-@attr [Description(&#34;Use general journal for all documents&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>is_grid_sortable</td>
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
@@ -4457,20 +4482,6 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [Category(&#34;Auto Layout&#34;)]
 @attr [DisplayName(&#34;Filterable&#34;)]
 @attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>view_journal_wide_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>view_journal_narrow_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -5402,16 +5413,6 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>is_use_general_journal_for_all_documents</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(11)]
-@attr [DisplayName(&#34;General Journal&#34;)]
-@attr [Description(&#34;Use general journal for all documents&#34;)] </p></td>
-                </tr>
-              
-                <tr>
                   <td>is_grid_sortable</td>
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
@@ -5436,20 +5437,6 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [Category(&#34;Auto Layout&#34;)]
 @attr [DisplayName(&#34;Filterable&#34;)]
 @attr [Description(&#34;Filterable in data grid&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>view_list_wide_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>view_list_narrow_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -5954,16 +5941,9 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>view_list_wide_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>view_list_narrow_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>list_selected_docs_with_properties</td>
+                  <td><a href="#proto_config.proto_doc_in_journal">proto_doc_in_journal</a></td>
+                  <td>repeated</td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               

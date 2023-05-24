@@ -525,7 +525,10 @@ namespace vSharpStudio.vm.ViewModels
             else
             {
                 var lstp = new List<IProperty>();
-                lstp.AddRange(f.ListAllNotSpecialProperties);
+                foreach (var t in f.ListAllNotSpecialProperties)
+                {
+                    lstp.Add((IProperty)t);
+                }
                 this.GetSpecialProperties(lstp, false);
                 f = new Form(this.GroupForms, ftype, lstp);
             }

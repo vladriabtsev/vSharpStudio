@@ -148,7 +148,7 @@ namespace ViewModelBase
         /// Progress in percent. Range from 0 to 100. If null progress bar will be collapsed
         /// To indicate progress use methods ProgressStart, ProgressUpdate, ProgressUpdateSubTask, ProgressClose
         /// </summary>
-        public int? Progress
+        public int Progress
         {
             get { return _Progress; }
             set
@@ -157,10 +157,10 @@ namespace ViewModelBase
                 {
                     UIDispatcher.Invoke(() =>
                     {
-                        Debug.Assert(value == null || (value.Value >= 0 && value.Value <= 100));
+                        Debug.Assert(value >= 0 && value <= 100);
                         _Progress = value;
                         this.NotifyPropertyChanged();
-                        if (_Progress == null)
+                        if (_Progress == 0)
                             ProgressVisibility = Visibility.Collapsed;
                         else
                             ProgressVisibility = Visibility.Visible;
@@ -168,7 +168,7 @@ namespace ViewModelBase
                 }
             }
         }
-        private int? _Progress;
+        private int _Progress;
         public Visibility ProgressVisibility
         {
             get { return _ProgressVisibility; }
@@ -228,7 +228,7 @@ namespace ViewModelBase
         /// Sub task percent of progress
         /// To indicate progress use methods ProgressStart, ProgressUpdate, ProgressUpdateSubTask, ProgressClose
         /// </summary>
-        public int? SubProgress
+        public int SubProgress
         {
             get { return _SubProgress; }
             set
@@ -237,10 +237,10 @@ namespace ViewModelBase
                 {
                     UIDispatcher.Invoke(() =>
                     {
-                        Debug.Assert(value == null || (value.Value >= 0 && value.Value <= 100));
+                        Debug.Assert(value >= 0 && value <= 100);
                         _SubProgress = value;
                         this.NotifyPropertyChanged();
-                        if (_SubProgress == null)
+                        if (_SubProgress == 0)
                             SubProgressVisibility = Visibility.Collapsed;
                         else
                             SubProgressVisibility = Visibility.Visible;
@@ -248,7 +248,7 @@ namespace ViewModelBase
                 }
             }
         }
-        private int? _SubProgress;
+        private int _SubProgress;
         public Visibility SubProgressVisibility
         {
             get { return _SubProgressVisibility; }
@@ -271,7 +271,7 @@ namespace ViewModelBase
         /// <param name="subprogress">Percent of initial sub task progress. Sub task progress bar is hidden if null</param>
         /// <param name="cancellationToken">Cancellation token. If provided then 'Cancel' button will be visible</param>
         /// <param name="pauseToken">Pause token. If provided then 'Pause' button will be visible</param>
-        public void ProgressStart(string taskName, int? progress = null, string? subname = null, int? subprogress = null, CancellationToken? cancellationToken = null, PauseToken? pauseToken = null)
+        public void ProgressStart(string taskName, int progress = 0, string? subname = null, int subprogress = 0, CancellationToken? cancellationToken = null, PauseToken? pauseToken = null)
         {
             this.Title = taskName;
             this.Progress = progress;
@@ -293,7 +293,7 @@ namespace ViewModelBase
         /// Update progress
         /// </summary>
         /// <param name="progress">Percent of progress. Progress bar is hidden if null</param>
-        public void ProgressUpdate(int? progress)
+        public void ProgressUpdate(int progress)
         {
             this.Progress = progress;
         }
@@ -301,7 +301,7 @@ namespace ViewModelBase
         /// Update progress
         /// </summary>
         /// <param name="progress">Percent of progress. Progress bar is hidden if null</param>
-        public void ProgressUpdate(string? stepName, int? progress)
+        public void ProgressUpdate(string? stepName, int progress)
         {
             this.Name = stepName;
             this.Progress = progress;
@@ -310,7 +310,7 @@ namespace ViewModelBase
         /// Update progress of sub task
         /// </summary>
         /// <param name="subProgress">Percent of sub task progress. Sub task progress bar is hidden if null</param>
-        public void ProgressUpdateSubTask(int? subProgress)
+        public void ProgressUpdateSubTask(int subProgress)
         {
             this.SubProgress = subProgress;
         }
@@ -319,7 +319,7 @@ namespace ViewModelBase
         /// </summary>
         /// <param name="subTaskName">Name of sub task progress bar. Name is hidden if null</param>
         /// <param name="subProgress">Percent of sub task progress. Sub task progress bar is hidden if null</param>
-        public void ProgressUpdateSubTask(string? subTaskName, int? subProgress)
+        public void ProgressUpdateSubTask(string? subTaskName, int subProgress)
         {
             this.SubName = subTaskName;
             this.SubProgress = subProgress;

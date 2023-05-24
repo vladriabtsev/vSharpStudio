@@ -28,16 +28,12 @@ using static System.Resources.ResXFileRef;
 
 namespace vSharpStudio.Views
 {
-    /// <summary>
-    /// Interaction logic for EditorRoles.xaml
-    /// </summary>
     public partial class EditorRoles : UserControl
     {
         public EditorRoles()
         {
             InitializeComponent();
         }
-
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (this.DataContext == null)

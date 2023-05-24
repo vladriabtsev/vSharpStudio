@@ -15,19 +15,11 @@ using System.Windows.Shapes;
 
 namespace vSharpStudio.Views
 {
-    /// <summary>
-    /// Interaction logic for EditorForm.xaml
-    /// </summary>
     public partial class EditorForm : UserControl
     {
         public EditorForm()
         {
             InitializeComponent();
-        }
-        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            //this.colFolder.DataContext = this.DataContext;
-            //this.colItem.DataContext = this.DataContext;
         }
     }
 }

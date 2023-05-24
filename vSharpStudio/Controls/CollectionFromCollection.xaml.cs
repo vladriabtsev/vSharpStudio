@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,79 +35,82 @@ namespace vSharpStudio.Controls
         }
         public static readonly DependencyProperty UpperRightContentProperty =
             DependencyProperty.Register("UpperRightContent", typeof(object), typeof(CollectionFromCollection), new PropertyMetadata(null));
-
-
-
-
-        public ObservableCollection<IProperty> ListAll
+        public ObservableCollection<ISortingValue>? ListAll
         {
-            get { return (ObservableCollection<IProperty>)GetValue(ListAllProperty); }
+            get { return (ObservableCollection<ISortingValue>?)GetValue(ListAllProperty); }
             set { SetValue(ListAllProperty, value); }
         }
         public static readonly DependencyProperty ListAllProperty =
-            DependencyProperty.Register("ListAll", typeof(ObservableCollection<IProperty>), typeof(CollectionFromCollection), new PropertyMetadata(null));
-        //public bool IsEnableFrom
-        //{
-        //    get { return (bool)GetValue(IsEnableFromProperty); }
-        //    set { SetValue(IsEnableFromProperty, value); }
-        //}
-        //public static readonly DependencyProperty IsEnableFromProperty =
-        //    DependencyProperty.Register("IsEnableFrom", typeof(bool), typeof(CollectionFromCollection), new PropertyMetadata(false));
-
-        public IProperty SelectedFrom
+            DependencyProperty.Register("ListAll", typeof(ObservableCollection<ISortingValue>), typeof(CollectionFromCollection), new PropertyMetadata(null));
+        public ISortingValue? SelectedFrom
         {
-            get { return (IProperty)GetValue(SelectedFromProperty); }
+            get { return (ISortingValue?)GetValue(SelectedFromProperty); }
             set { SetValue(SelectedFromProperty, value); }
         }
         public static readonly DependencyProperty SelectedFromProperty =
-            DependencyProperty.Register("SelectedFrom", typeof(IProperty), typeof(CollectionFromCollection), new PropertyMetadata(null));
-        public IProperty SelectedTo
+            DependencyProperty.Register("SelectedFrom", typeof(ISortingValue), typeof(CollectionFromCollection), new PropertyMetadata(null));
+        public ISortingValue? SelectedTo
         {
-            get { return (IProperty)GetValue(SelectedToProperty); }
+            get { return (ISortingValue?)GetValue(SelectedToProperty); }
             set { SetValue(SelectedToProperty, value); }
         }
         public static readonly DependencyProperty SelectedToProperty =
-            DependencyProperty.Register("SelectedTo", typeof(IProperty), typeof(CollectionFromCollection), new PropertyMetadata(null));
-
-        public SortedObservableCollection<IProperty> ListSelected
+            DependencyProperty.Register("SelectedTo", typeof(ISortingValue), typeof(CollectionFromCollection), new PropertyMetadata(null));
+        public SortedObservableCollection<ISortingValue>? ListSelected
         {
-            get { return (SortedObservableCollection<IProperty>)GetValue(ListSelectedProperty); }
+            get { return (SortedObservableCollection<ISortingValue>?)GetValue(ListSelectedProperty); }
             set { SetValue(ListSelectedProperty, value); }
         }
         public static readonly DependencyProperty ListSelectedProperty =
-            DependencyProperty.Register("ListSelected", typeof(SortedObservableCollection<IProperty>), typeof(CollectionFromCollection), new PropertyMetadata(null));
-        public List<IProperty> ListSelectedFrom
+            DependencyProperty.Register("ListSelected", typeof(SortedObservableCollection<ISortingValue>), typeof(CollectionFromCollection), new PropertyMetadata(null));
+        /// <summary>
+        /// Multi selection support
+        /// </summary>
+        public List<ISortingValue> ListSelectedFrom
         {
             get { return listSelectedFrom; }
         }
-        private readonly List<IProperty> listSelectedFrom = new List<IProperty>();
-        public List<IProperty> ListSelectedTo
+        private readonly List<ISortingValue> listSelectedFrom = new List<ISortingValue>();
+        /// <summary>
+        /// Multi selection support
+        /// </summary>
+        public List<ISortingValue> ListSelectedTo
         {
             get { return listSelectedTo; }
         }
-        private readonly List<IProperty> listSelectedTo = new List<IProperty>();
+        private readonly List<ISortingValue> listSelectedTo = new List<ISortingValue>();
         private void ListBoxFrom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (var t in e.RemovedItems)
             {
-                this.listSelectedFrom.Remove((IProperty)t);
+                this.listSelectedFrom.Remove((ISortingValue)t);
             }
             foreach (var t in e.AddedItems)
             {
-                this.listSelectedFrom.Add((IProperty)t);
+                this.listSelectedFrom.Add((ISortingValue)t);
             }
+            if (this.listSelectedFrom.Count == 1)
+                this.SelectedFrom = this.listSelectedFrom[0];
+            else
+                this.SelectedFrom = null;
+            this.listSelectedTo.Clear();
             this.UpdateCommandStatuses();
         }
         private void ListBoxTo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (var t in e.RemovedItems)
             {
-                this.listSelectedTo.Remove((IProperty)t);
+                this.listSelectedTo.Remove((ISortingValue)t);
             }
             foreach (var t in e.AddedItems)
             {
-                this.listSelectedTo.Add((IProperty)t);
+                this.listSelectedTo.Add((ISortingValue)t);
             }
+            if (this.listSelectedTo.Count == 1)
+                this.SelectedTo = this.listSelectedTo[0];
+            else
+                this.SelectedTo = null;
+            this.listSelectedFrom.Clear();
             this.UpdateCommandStatuses();
         }
         public vButtonVM BtnUp
@@ -116,6 +120,7 @@ namespace vSharpStudio.Controls
                 return this._BtnUp ??= new vButtonVM(
                     () =>
                     {
+                        Debug.Assert(this.ListSelected != null);
                         var sel = this.SelectedTo;
                         this.ListSelected.MoveUp(sel);
                         this.ListSelected.Sort();
@@ -126,6 +131,7 @@ namespace vSharpStudio.Controls
                     {
                         if (this.SelectedTo == null)
                             return false;
+                        Debug.Assert(this.ListSelected != null);
                         return this.ListSelected.CanUp(this.SelectedTo);
                     });
             }
@@ -138,6 +144,7 @@ namespace vSharpStudio.Controls
                 return this._BtnDown ??= new vButtonVM(
                     () =>
                     {
+                        Debug.Assert(this.ListSelected != null);
                         var sel = this.SelectedTo;
                         this.ListSelected.MoveDown(sel);
                         this.ListSelected.Sort();
@@ -148,6 +155,7 @@ namespace vSharpStudio.Controls
                     {
                         if (this.SelectedTo == null)
                             return false;
+                        Debug.Assert(this.ListSelected != null);
                         return this.ListSelected.CanDown(this.SelectedTo);
                     });
             }
@@ -160,9 +168,12 @@ namespace vSharpStudio.Controls
                 return this._BtnLeftAll ??= new vButtonVM(
                     () =>
                     {
+                        Debug.Assert(this.ListSelected != null);
+                        Debug.Assert(this.listSelectedTo != null);
                         this.listSelectedTo.Clear();
                         foreach (var item in this.ListSelected)
                         {
+                            Debug.Assert(this.ListAll != null);
                             this.ListAll.Add(item);
                         }
                         this.ListSelected.Clear();
@@ -170,6 +181,8 @@ namespace vSharpStudio.Controls
                     },
                     () =>
                     {
+                        if (this.ListSelected == null)
+                            return false;
                         return this.ListSelected.Count > 0;
                     });
             }
@@ -182,8 +195,12 @@ namespace vSharpStudio.Controls
                 return this._BtnLeft ??= new vButtonVM(
                     () =>
                     {
+                        Debug.Assert(this.listSelectedTo != null);
+                        Debug.Assert(this.listSelectedFrom != null);
                         foreach (var item in this.listSelectedTo.ToList())
                         {
+                            Debug.Assert(this.ListAll != null);
+                            Debug.Assert(this.ListSelected != null);
                             this.ListAll.Add(item);
                             this.ListSelected.Remove(item);
                         }
@@ -204,8 +221,12 @@ namespace vSharpStudio.Controls
                 return this._BtnRight ??= new vButtonVM(
                     () =>
                     {
+                        Debug.Assert(this.listSelectedFrom != null);
+                        Debug.Assert(this.listSelectedTo != null);
                         foreach (var item in this.listSelectedFrom.ToList())
                         {
+                            Debug.Assert(this.ListSelected != null);
+                            Debug.Assert(this.ListAll != null);
                             this.ListSelected.Add(item);
                             this.ListAll.Remove(item);
                         }
@@ -226,9 +247,12 @@ namespace vSharpStudio.Controls
                 return this._BtnRightAll ??= new vButtonVM(
                     () =>
                     {
+                        Debug.Assert(this.listSelectedFrom != null);
+                        Debug.Assert(this.ListAll != null);
                         this.listSelectedFrom.Clear();
                         foreach (var item in this.ListAll)
                         {
+                            Debug.Assert(this.ListSelected != null);
                             this.ListSelected.Add(item);
                         }
                         this.ListAll.Clear();
@@ -236,6 +260,8 @@ namespace vSharpStudio.Controls
                     },
                     () =>
                     {
+                        if (this.ListAll == null)
+                            return false;
                         return this.ListAll.Count > 0;
                     });
             }
