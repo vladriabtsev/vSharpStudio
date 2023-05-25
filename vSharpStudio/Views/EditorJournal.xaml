@@ -10,7 +10,7 @@
              x:Class="vSharpStudio.Views.EditorJournal"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance IsDesignTimeCreatable=False, Type={x:Type vm:Catalog}}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" DataContextChanged="UserControl_DataContextChanged">
     <UserControl.Resources>
         <Converters:ConverterBoolToGridLength x:Key="ConverterBoolToGridLength"/>
         <Converters:ConverterBoolToCollapsed x:Key="ConverterBoolToCollapsed"/>
@@ -24,42 +24,33 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Documents for journal" FontWeight="Bold" />
-                        <controls:CollectionFromCollection Grid.Row="1"
-                                                           SelectedTo="{Binding SelectedIncludedDocument}"
-                                                           ListAll="{Binding ListNotIncludedDocuments}"
-                                                           ListSelected="{Binding ListIncludedDocuments}" />
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Properties of selected document" FontWeight="Bold" />
-                        <controls:CollectionFromCollection Grid.Row="1"
-                                                           ListAll="{Binding ListNotIncludedProperties}"
-                                                           ListSelected="{Binding ListIncludedProperties}">
-                            <controls:CollectionFromCollection.UpperRightContent>
-                                <Grid>
+                    <controls:CollectionFromCollection Grid.Row="0"
+                            TitleLeft="Documents to include in journal:"
+                            ListLeft="{Binding ListNotIncludedDocuments}"
+                            TitleRight="Included in journal:"
+                            SelectedRight="{Binding SelectedIncludedDocument, Mode=OneWayToSource}"
+                            ListRight="{Binding ListIncludedDocuments}" 
+                            CollectionChangedRight="DocumentCollectionChanged"/>
+                    <controls:CollectionFromCollection Grid.Row="1"
+                            TitleLeft="{Binding SelectedDocumentTitle}"
+                            ListLeft="{Binding ListNotIncludedProperties}"
+                            TitleRight="Included properties:"
+                            ListRight="{Binding ListIncludedProperties}" 
+                            CollectionChangedRight="PropertyCollectionChanged">
+                        <controls:CollectionFromCollection.UpperRightContent>
+                            <Grid>
+                                <StackPanel>
                                     <StackPanel>
-                                        <TextBlock Text="Special:" FontWeight="Bold" />
-                                        <StackPanel Margin="8,0,0,0">
-                                            <TextBlock Text="Id"/>
-                                            <TextBlock Text="RefTreeParent" Visibility="{Binding IsShowRefSelfTree, Converter={StaticResource ConverterBoolToVisible}}"/>
+                                        <TextBlock Text="Id"/>
+                                        <!--<TextBlock Text="RefTreeParent" Visibility="{Binding IsShowRefSelfTree, Converter={StaticResource ConverterBoolToVisible}}"/>
                                             <TextBlock Text="RefParent" Visibility="{Binding UseSeparateTreeForFolders, Converter={StaticResource ConverterBoolToVisible}}"/>
                                             <TextBlock Text="{Binding Parent.PropertyIsOpenName}" Visibility="{Binding IsShowRefSelfTree, Converter={StaticResource ConverterBoolToVisible}}"/>
-                                            <TextBlock Text="{Binding Parent.PropertyIsFolderName}" Visibility="{Binding IsShowIsFolder, Converter={StaticResource ConverterBoolToVisible}}"/>
-                                        </StackPanel>
+                                            <TextBlock Text="{Binding Parent.PropertyIsFolderName}" Visibility="{Binding IsShowIsFolder, Converter={StaticResource ConverterBoolToVisible}}"/>-->
                                     </StackPanel>
-                                </Grid>
-                            </controls:CollectionFromCollection.UpperRightContent>
-                        </controls:CollectionFromCollection>
-                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </controls:CollectionFromCollection.UpperRightContent>
+                    </controls:CollectionFromCollection>
                 </Grid>
             </TabItem>
         </TabControl>

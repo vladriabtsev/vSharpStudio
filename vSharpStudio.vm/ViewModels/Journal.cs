@@ -177,51 +177,25 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public ObservableCollection<ISortingValue> ListNotIncludedDocuments
         {
-            get
+            get { return this.listNotIncludedDocuments; }
+            set
             {
-                if (this.listNotIncludedDocuments == null)
-                {
-                    var hashDoc = new HashSet<string>();
-                    foreach (var tt in this.ListSelectedDocsWithProperties)
-                    {
-                        hashDoc.Add(tt.Guid);
-                    }
-                    this.listNotIncludedDocuments = new ObservableCollection<ISortingValue>();
-                    foreach (var t in this.ParentGroupListJournals.ParentModel.GroupDocuments.GroupListDocuments.ListDocuments)
-                    {
-                        if (hashDoc.Contains(t.Guid))
-                            continue;
-                        this.listNotIncludedDocuments.Add(t);
-                    }
-                }
-                return this.listNotIncludedDocuments;
+                this.listNotIncludedDocuments = value;
+                this.NotifyPropertyChanged();
             }
         }
-        private ObservableCollection<ISortingValue>? listNotIncludedDocuments;
+        private ObservableCollection<ISortingValue> listNotIncludedDocuments = new ObservableCollection<ISortingValue>();
         [Browsable(false)]
-        public ObservableCollection<ISortingValue> ListIncludedDocuments
+        public SortedObservableCollection<ISortingValue> ListIncludedDocuments
         {
-            get
+            get { return this.listIncludedDocuments; }
+            set
             {
-                if (this.listIncludedDocuments == null)
-                {
-                    var hashDoc = new HashSet<string>();
-                    foreach (var tt in this.ListSelectedDocsWithProperties)
-                    {
-                        hashDoc.Add(tt.Guid);
-                    }
-                    this.listIncludedDocuments = new ObservableCollection<ISortingValue>();
-                    foreach (var t in this.ParentGroupListJournals.ParentModel.GroupDocuments.GroupListDocuments.ListDocuments)
-                    {
-                        if (!hashDoc.Contains(t.Guid))
-                            continue;
-                        this.listIncludedDocuments.Add(t);
-                    }
-                }
-                return this.listIncludedDocuments;
+                this.listIncludedDocuments = value;
+                this.NotifyPropertyChanged();
             }
         }
-        private ObservableCollection<ISortingValue>? listIncludedDocuments;
+        private SortedObservableCollection<ISortingValue> listIncludedDocuments = new SortedObservableCollection<ISortingValue>();
         [Browsable(false)]
         public IDocument? SelectedIncludedDocument
         {
@@ -230,11 +204,30 @@ namespace vSharpStudio.vm.ViewModels
             {
                 selectedIncludedDocument = value;
                 this.NotifyPropertyChanged();
-                this.NotifyPropertyChanged(() => this.ListNotIncludedProperties);
-                this.NotifyPropertyChanged(() => this.ListIncludedProperties);
+                this.GetNotIncludedProperties();
+                this.GetIncludedProperties();
+                if (value == null)
+                {
+                    this.SelectedDocumentTitle = "Included document is not selected...";
+                }
+                else
+                {
+                    this.SelectedDocumentTitle = $"'{value.Name}' properties to include:";
+                }
             }
         }
         private IDocument? selectedIncludedDocument;
+        [Browsable(false)]
+        public string? SelectedDocumentTitle
+        {
+            get { return selectedDocumentTitle; }
+            set
+            {
+                selectedDocumentTitle = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+        private string? selectedDocumentTitle;
 
         #endregion Documents
 
@@ -243,54 +236,54 @@ namespace vSharpStudio.vm.ViewModels
         [Browsable(false)]
         public ObservableCollection<ISortingValue> ListNotIncludedProperties
         {
-            get
+            get { return this.listNotIncludedProperties; }
+            set
             {
-                this.GetNotIncludedProperties();
-                Debug.Assert(this.listNotIncludedProperties != null);
-                return this.listNotIncludedProperties;
+                this.listNotIncludedProperties = value;
+                this.NotifyPropertyChanged();
             }
         }
-        private ObservableCollection<ISortingValue>? listNotIncludedProperties;
+        private ObservableCollection<ISortingValue> listNotIncludedProperties = new ObservableCollection<ISortingValue>();
         private void GetNotIncludedProperties()
         {
+            var listNotIncludedProperties = new ObservableCollection<ISortingValue>();
             if (this.SelectedIncludedDocument != null)
             {
+                var hashProps = new HashSet<string>();
                 foreach (var t in this.ListSelectedDocsWithProperties)
                 {
                     if (t.Guid == this.SelectedIncludedDocument.Guid)
                     {
-                        var hashProps = new HashSet<string>();
                         foreach (var tt in t.ListPropertyGuids)
                         {
                             hashProps.Add(tt);
-                        }
-                        this.listNotIncludedProperties = new ObservableCollection<ISortingValue>();
-                        foreach (var tt in ((Document)this.Cfg.DicNodes[t.Guid]).GetPropertiesWithShared(false, true))
-                        {
-                            if (hashProps.Contains(tt.Guid))
-                                continue;
-                            this.listNotIncludedProperties.Add(tt);
                         }
                         break;
                     }
                 }
+                foreach (var tt in ((Document)this.Cfg.DicNodes[this.SelectedIncludedDocument.Guid]).GetPropertiesWithShared(false, true))
+                {
+                    if (hashProps.Contains(tt.Guid))
+                        continue;
+                    listNotIncludedProperties.Add(tt);
+                }
             }
-            else
-                this.listNotIncludedProperties = new ObservableCollection<ISortingValue>();
+            this.ListNotIncludedProperties = listNotIncludedProperties;
         }
         [Browsable(false)]
-        public ObservableCollection<ISortingValue> ListIncludedProperties
+        public SortedObservableCollection<ISortingValue> ListIncludedProperties
         {
-            get
+            get { return this.listIncludedProperties; }
+            set
             {
-                this.GetIncludedProperties();
-                Debug.Assert(this.listIncludedProperties != null);
-                return this.listIncludedProperties;
+                this.listIncludedProperties = value;
+                this.NotifyPropertyChanged();
             }
         }
-        private ObservableCollection<ISortingValue>? listIncludedProperties;
+        private SortedObservableCollection<ISortingValue> listIncludedProperties = new SortedObservableCollection<ISortingValue>();
         private void GetIncludedProperties()
         {
+            var listIncludedProperties = new SortedObservableCollection<ISortingValue>();
             if (this.SelectedIncludedDocument != null)
             {
                 foreach (var t in this.ListSelectedDocsWithProperties)
@@ -302,19 +295,17 @@ namespace vSharpStudio.vm.ViewModels
                         {
                             hashProps.Add(tt);
                         }
-                        this.listIncludedProperties = new ObservableCollection<ISortingValue>();
                         foreach (var tt in ((Document)this.Cfg.DicNodes[t.Guid]).GetPropertiesWithShared(false, true))
                         {
                             if (!hashProps.Contains(tt.Guid))
                                 continue;
-                            this.listIncludedProperties.Add(tt);
+                            listIncludedProperties.Add(tt);
                         }
                         break;
                     }
                 }
             }
-            else
-                this.listIncludedProperties = new ObservableCollection<ISortingValue>();
+            this.ListIncludedProperties = listIncludedProperties;
         }
         [Browsable(false)]
         public IProperty? SelectedNotIncludedProperty

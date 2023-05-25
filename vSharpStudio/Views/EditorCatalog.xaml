@@ -32,8 +32,8 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Separate tree folder" FontWeight="Bold" />
                         <controls:CollectionFromCollection Grid.Row="1"
-                                                           ListAll="{Binding ListAllFolderNotSpecialProperties}"
-                                                           ListSelected="{Binding ListViewFolderNotSpecialProperties}">
+                                                           ListLeft="{Binding ListAllFolderNotSpecialProperties}"
+                                                           ListRight="{Binding ListViewFolderNotSpecialProperties}">
                             <controls:CollectionFromCollection.UpperRightContent>
                                 <Grid>
                                     <StackPanel>
@@ -56,8 +56,8 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="View properties for item" FontWeight="Bold" />
                         <controls:CollectionFromCollection Grid.Row="1"
-                                                           ListAll="{Binding ListAllNotSpecialProperties}"
-                                                           ListSelected="{Binding ListViewNotSpecialProperties}">
+                                                           ListLeft="{Binding ListAllNotSpecialProperties}"
+                                                           ListRight="{Binding ListViewNotSpecialProperties}">
                             <controls:CollectionFromCollection.UpperRightContent>
                                 <Grid>
                                     <StackPanel>
@@ -90,8 +90,8 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="View properties for separate folder" FontWeight="Bold" />
                         <controls:CollectionFromCollection Grid.Row="1"
-                                                           ListAll="{Binding ListAllFolderNotSpecialProperties}"
-                                                           ListSelected="{Binding ListViewFolderNotSpecialProperties}">
+                                                           ListLeft="{Binding ListAllFolderNotSpecialProperties}"
+                                                           ListRight="{Binding ListViewFolderNotSpecialProperties}">
                             <controls:CollectionFromCollection.UpperRightContent>
                                 <Grid>
                                     <StackPanel>
@@ -114,8 +114,8 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="View properties for item" FontWeight="Bold" />
                         <controls:CollectionFromCollection Grid.Row="1"
-                                                           ListAll="{Binding ListAllNotSpecialProperties}"
-                                                           ListSelected="{Binding ListViewNotSpecialProperties}">
+                                                           ListLeft="{Binding ListAllNotSpecialProperties}"
+                                                           ListRight="{Binding ListViewNotSpecialProperties}">
                             <controls:CollectionFromCollection.UpperRightContent>
                                 <Grid>
                                     <StackPanel>

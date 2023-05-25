@@ -29,8 +29,8 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="Separate folder tree view properties" FontWeight="Bold" HorizontalAlignment="Center" />
                     <controls:CollectionFromCollection Grid.Row="1"
-                        ListAll="{Binding ListSeparateTreeAllNotSpecialProperties}"
-                        ListSelected="{Binding ListSeparateTreeSelectedNotSpecialProperties}">
+                        ListLeft="{Binding ListSeparateTreeAllNotSpecialProperties}"
+                        ListRight="{Binding ListSeparateTreeSelectedNotSpecialProperties}">
                         <controls:CollectionFromCollection.UpperRightContent>
                             <Border BorderThickness="0,0,0,1" BorderBrush="#FFABADB3">
                                 <StackPanel Margin="7,0,0,0">
@@ -54,8 +54,8 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="View properties" FontWeight="Bold" HorizontalAlignment="Center" />
                     <controls:CollectionFromCollection Grid.Row="1"
-                        ListAll="{Binding ListAllNotSpecialProperties}"
-                        ListSelected="{Binding ListSelectedNotSpecialProperties}">
+                        ListLeft="{Binding ListAllNotSpecialProperties}"
+                        ListRight="{Binding ListSelectedNotSpecialProperties}">
                         <controls:CollectionFromCollection.UpperRightContent>
                             <Border BorderThickness="0,0,0,1" BorderBrush="#FFABADB3">
                                 <StackPanel Margin="7,0,0,0">
