@@ -68,6 +68,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vPlugin.Sample2", "vPlugin.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{EFD4B2B2-67A3-4230-A967-C49A6695ACB1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AQuickStartSample", "AQuickStartSample", "{86E9BE4E-D361-4175-A46F-A1E4A2EC64C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AQuickStartSample", "readme\AQuickStartSample\AQuickStartSample\AQuickStartSample.csproj", "{F1D4AD1F-FC67-490E-9899-52F34A397FB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbLayer", "readme\AQuickStartSample\DbLayer\DbLayer.csproj", "{DB002B96-13DD-416E-8B0C-5DAEF05BE3AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AQuickStartSampleBlazorWebAssembly", "AQuickStartSampleBlazorWebAssembly", "{6E09AB54-4BDE-4EF5-B3B3-32A28686A96A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "readme\AQuickStartSampleBlazorWebAssembly\Client\Client.csproj", "{08EA7102-37F2-4514-B5F5-4B89CAD45A21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbRepository", "readme\AQuickStartSampleBlazorWebAssembly\DbRepository\DbRepository.csproj", "{5E34AB98-B54A-418A-A7AC-A734ED272B76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorClassLibrary", "readme\AQuickStartSampleBlazorWebAssembly\RazorClassLibrary\RazorClassLibrary.csproj", "{C3C6D9A3-A422-4E67-B673-4649EF926DE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "readme\AQuickStartSampleBlazorWebAssembly\Server\Server.csproj", "{C0033316-7778-4B67-AD6A-074E81AE9F24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
