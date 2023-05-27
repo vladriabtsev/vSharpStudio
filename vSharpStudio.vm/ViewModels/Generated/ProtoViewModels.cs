@@ -8160,7 +8160,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class RoleValidator : ValidatorBase<Role, RoleValidator> { } // Class.tt Line: 15
-    // User's role
     public partial class Role : ConfigObjectVmGenSettings<Role, RoleValidator>, IComparable<Role>, IConfigAcceptVisitor, IRole // Class.tt Line: 16
     {
         #region CTOR
@@ -9995,7 +9994,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
     public partial class MainViewFormValidator : ValidatorBase<MainViewForm, MainViewFormValidator> { } // Class.tt Line: 15
-    // main view forms hierarchy parent
     public partial class MainViewForm : ConfigObjectVmGenSettings<MainViewForm, MainViewFormValidator>, IComparable<MainViewForm>, IConfigAcceptVisitor, IMainViewForm // Class.tt Line: 16
     {
         #region CTOR
@@ -10833,6 +10831,1657 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
         */
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 130
+        #endregion Properties
+    }
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: False 
+    public partial class GroupListPropertiesValidator : ValidatorBase<GroupListProperties, GroupListPropertiesValidator> { } // Class.tt Line: 15
+    // P R O P E R T Y
+    // @exclude
+    // ####################################### P R O P E R T Y ##########################################
+    public partial class GroupListProperties : ConfigObjectVmGenSettings<GroupListProperties, GroupListPropertiesValidator>, IComparable<GroupListProperties>, IConfigAcceptVisitor, IGroupListProperties // Class.tt Line: 16
+    {
+        #region CTOR
+        public GroupListProperties(ITreeConfigNode? parent) // Class.tt Line: 26
+            : base(parent, GroupListPropertiesValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this._ListProperties = new ConfigNodesCollection<Property>(this); // Class.tt Line: 37
+            this._ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Class.tt Line: 35
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // Clone.tt Line: 8
+        {
+            if (type == typeof(Property)) // Clone.tt Line: 15
+            {
+                this.ListProperties.Sort();
+            }
+            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static GroupListProperties Clone(ITreeConfigNode? parent, IGroupListProperties from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        {
+            Debug.Assert(from != null);
+            GroupListProperties vm = new GroupListProperties(parent); // Clone.tt Line: 35
+            vm.IsNotifying = false; // Clone.tt Line: 39
+            vm.IsValidate = false;
+            vm.Guid = from.Guid; // Clone.tt Line: 67
+            vm.Name = from.Name; // Clone.tt Line: 67
+            vm.NameUi = from.NameUi; // Clone.tt Line: 67
+            vm.Description = from.Description; // Clone.tt Line: 67
+            vm.ListProperties = new ConfigNodesCollection<Property>(vm); // Clone.tt Line: 55
+            foreach (var t in from.ListProperties) // Clone.tt Line: 56
+                vm.ListProperties.Add(Property.Clone(vm, (Property)t, isDeep));
+            vm.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 67
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
+            vm.ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Clone.tt Line: 51
+            foreach (var t in from.ListRolePropertyAccessSettings) // Clone.tt Line: 52
+                vm.ListRolePropertyAccessSettings.Add(RolePropertyAccess.Clone((RolePropertyAccess)t, isDeep));
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
+            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 72
+                vm.SetNewGuid();
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(GroupListProperties to, IGroupListProperties from, bool isDeep = true) // Clone.tt Line: 79
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to.Guid = from.Guid; // Clone.tt Line: 143
+            to.Name = from.Name; // Clone.tt Line: 143
+            to.NameUi = from.NameUi; // Clone.tt Line: 143
+            to.Description = from.Description; // Clone.tt Line: 143
+            if (isDeep) // Clone.tt Line: 88
+            {
+                foreach (var t in to.ListProperties.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListProperties)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            Property.Update((Property)t, (Property)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListProperties.Remove(t);
+                }
+                foreach (var tt in from.ListProperties)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListProperties.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new Property(to); // Clone.tt Line: 119
+                        Property.Update(p, (Property)tt, isDeep);
+                        to.ListProperties.Add(p);
+                    }
+                }
+            }
+            to.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 143
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 143
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
+            if (isDeep) // Clone.tt Line: 88
+            {
+                foreach (var t in to.ListRolePropertyAccessSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListRolePropertyAccessSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            RolePropertyAccess.Update((RolePropertyAccess)t, (RolePropertyAccess)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListRolePropertyAccessSettings.Remove(t);
+                }
+                foreach (var tt in from.ListRolePropertyAccessSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListRolePropertyAccessSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new RolePropertyAccess(); // Clone.tt Line: 121
+                        RolePropertyAccess.Update(p, (RolePropertyAccess)tt, isDeep);
+                        to.ListRolePropertyAccessSettings.Add(p);
+                    }
+                }
+            }
+            if (isDeep) // Clone.tt Line: 88
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 119
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
+        }
+        // Clone.tt Line: 149
+        #region IEditable
+        public override GroupListProperties Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return GroupListProperties.Clone(this.Parent, this); // Clone.tt Line: 157
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(GroupListProperties from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            GroupListProperties.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_group_list_properties' to 'GroupListProperties'
+        public static GroupListProperties ConvertToVM(Proto.Config.proto_group_list_properties m, GroupListProperties vm) // Clone.tt Line: 173
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.Name = m.Name; // Clone.tt Line: 221
+            vm.NameUi = m.NameUi; // Clone.tt Line: 221
+            vm.Description = m.Description; // Clone.tt Line: 221
+            vm.ListProperties = new ConfigNodesCollection<Property>(vm); // Clone.tt Line: 194
+            foreach (var t in m.ListProperties) // Clone.tt Line: 198
+            {
+                var tvm = Property.ConvertToVM(t, new Property(vm)); // Clone.tt Line: 200
+                vm.ListProperties.Add(tvm);
+            }
+            vm.LastGenPosition = m.LastGenPosition; // Clone.tt Line: 221
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
+            vm.ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Clone.tt Line: 204
+            foreach (var t in m.ListRolePropertyAccessSettings) // Clone.tt Line: 205
+            {
+                var tvm = RolePropertyAccess.ConvertToVM(t, new RolePropertyAccess()); // Clone.tt Line: 207
+                vm.ListRolePropertyAccessSettings.Add(tvm);
+            }
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
+            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 200
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'GroupListProperties' to 'proto_group_list_properties'
+        public static Proto.Config.proto_group_list_properties ConvertToProto(GroupListProperties vm) // Clone.tt Line: 236
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_group_list_properties m = new Proto.Config.proto_group_list_properties(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.Name = vm.Name; // Clone.tt Line: 276
+            m.NameUi = vm.NameUi; // Clone.tt Line: 276
+            m.Description = vm.Description; // Clone.tt Line: 276
+            foreach (var t in vm.ListProperties) // Clone.tt Line: 242
+                m.ListProperties.Add(Property.ConvertToProto((Property)t)); // Clone.tt Line: 246
+            m.LastGenPosition = vm.LastGenPosition; // Clone.tt Line: 276
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
+            foreach (var t in vm.ListRolePropertyAccessSettings) // Clone.tt Line: 242
+                m.ListRolePropertyAccessSettings.Add(RolePropertyAccess.ConvertToProto((RolePropertyAccess)t)); // Clone.tt Line: 246
+            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            foreach (var t in this.ListProperties)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            foreach (var t in this.ListRolePropertyAccessSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
+        { 
+            get { return this._Guid; }
+            set
+            {
+                if (this._Guid != value)
+                {
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(1)]
+        public string Name // Property.tt Line: 55
+        { 
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
+        public string NameUi // Property.tt Line: 55
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                if (this._NameUi != value)
+                {
+                    this.OnNameUiChanging(ref value);
+                    this._NameUi = value;
+                    this.OnNameUiChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        public string Description // Property.tt Line: 55
+        { 
+            get { return this._Description; }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
+        partial void OnDescriptionChanged();
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<Property> ListProperties // Property.tt Line: 8
+        { 
+            get { return this._ListProperties; }
+            set
+            {
+                if (this._ListProperties != value)
+                {
+                    this.OnListPropertiesChanging(value);
+                    _ListProperties = value;
+                    this.OnListPropertiesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<Property> _ListProperties;
+        IReadOnlyList<IProperty> IGroupListProperties.ListProperties { get { return (this as GroupListProperties).ListProperties; } } // Property.tt Line: 26
+        partial void OnListPropertiesChanging(ObservableCollection<Property> to); // Property.tt Line: 27
+        partial void OnListPropertiesChanged();
+        public Property this[int index] { get { return (Property)this.ListProperties[index]; } }
+        IProperty IGroupListProperties.this[int index] { get { return (Property)this.ListProperties[index]; } }
+        public void Add(Property item) // Property.tt Line: 32
+        { 
+            Debug.Assert(item != null);
+            this.ListProperties.Add(item); 
+            item.Parent = this;
+        }
+        public void AddRange(IEnumerable<Property> items) 
+        { 
+            Debug.Assert(items != null);
+            this.ListProperties.AddRange(items); 
+            foreach (var t in items)
+                t.Parent = this;
+        }
+        public int Count() { return this.ListProperties.Count; }
+        int IGroupListProperties.Count() { return this.Count(); }
+        public void Remove(Property item) 
+        {
+            Debug.Assert(item != null);
+            this.ListProperties.Remove(item); 
+            item.Parent = null;
+        }
+        
+        // Last generated Protobuf field position
+        [ReadOnly(true)]
+        public uint LastGenPosition // Property.tt Line: 55
+        { 
+            get { return this._LastGenPosition; }
+            set
+            {
+                if (this._LastGenPosition != value)
+                {
+                    this.OnLastGenPositionChanging(ref value);
+                    this._LastGenPosition = value;
+                    this.OnLastGenPositionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _LastGenPosition;
+        partial void OnLastGenPositionChanging(ref uint to); // Property.tt Line: 79
+        partial void OnLastGenPositionChanged();
+        
+        [Browsable(false)]
+        public ulong SortingValue // Property.tt Line: 55
+        { 
+            get { return this._SortingValue; }
+            set
+            {
+                if (this._SortingValue != value)
+                {
+                    this.OnSortingValueChanging(ref value);
+                    this._SortingValue = value;
+                    this.OnSortingValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
+        partial void OnSortingValueChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
+        
+        [Browsable(false)]
+        public ObservableCollectionWithActions<RolePropertyAccess> ListRolePropertyAccessSettings // Property.tt Line: 8
+        { 
+            get { return this._ListRolePropertyAccessSettings; }
+            set
+            {
+                if (this._ListRolePropertyAccessSettings != value)
+                {
+                    this.OnListRolePropertyAccessSettingsChanging(value);
+                    _ListRolePropertyAccessSettings = value;
+                    this.OnListRolePropertyAccessSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollectionWithActions<RolePropertyAccess> _ListRolePropertyAccessSettings;
+        IReadOnlyList<IRolePropertyAccess> IGroupListProperties.ListRolePropertyAccessSettings { get { return (this as GroupListProperties).ListRolePropertyAccessSettings; } } // Property.tt Line: 26
+        partial void OnListRolePropertyAccessSettingsChanging(ObservableCollection<RolePropertyAccess> to); // Property.tt Line: 27
+        partial void OnListRolePropertyAccessSettingsChanged();
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    _ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListProperties.ListNodeGeneratorsSettings { get { return (this as GroupListProperties).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
+        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
+        partial void OnListNodeGeneratorsSettingsChanged();
+    /*
+        [Browsable(false)]
+        public override bool IsChanged // Class.tt Line: 110
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
+        */
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 130
+        #endregion Properties
+    }
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: True 
+    public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { } // Class.tt Line: 15
+    public partial class Property : ConfigObjectVmGenSettings<Property, PropertyValidator>, IComparable<Property>, IConfigAcceptVisitor, IProperty // Class.tt Line: 16
+    {
+        #region CTOR
+        public Property(ITreeConfigNode? parent) // Class.tt Line: 26
+            : base(parent, PropertyValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this._DataType = new DataType(this); // Class.tt Line: 40
+            this._DataGenerator = new PropertyDataGenerator(this); // Class.tt Line: 40
+            this._ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Class.tt Line: 35
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // Clone.tt Line: 8
+        {
+            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static Property Clone(ITreeConfigNode? parent, IProperty from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        {
+            Debug.Assert(from != null);
+            Property vm = new Property(parent); // Clone.tt Line: 35
+            vm.IsNotifying = false; // Clone.tt Line: 39
+            vm.IsValidate = false;
+            vm.Guid = from.Guid; // Clone.tt Line: 67
+            vm.Name = from.Name; // Clone.tt Line: 67
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
+            vm.NameUi = from.NameUi; // Clone.tt Line: 67
+            vm.Description = from.Description; // Clone.tt Line: 67
+            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=False
+                vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
+            vm.IsNullable = from.IsNullable; // Clone.tt Line: 67
+            vm.DefaultValue = from.DefaultValue; // Clone.tt Line: 67
+            vm.IsNew = from.IsNew; // Clone.tt Line: 67
+            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 67
+            vm.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 67
+            vm.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 67
+            vm.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 67
+            vm.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 67
+            vm.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 67
+            vm.LinesOnScreen = from.LinesOnScreen; // Clone.tt Line: 67
+            vm.IsStartNewRow = from.IsStartNewRow; // Clone.tt Line: 67
+            vm.TabName = from.TabName; // Clone.tt Line: 67
+            vm.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 67
+            vm.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 67
+            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=False
+                vm.DataGenerator = vSharpStudio.vm.ViewModels.PropertyDataGenerator.Clone(vm, from.DataGenerator, isDeep);
+            vm.ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Clone.tt Line: 51
+            foreach (var t in from.ListRolePropertyAccessSettings) // Clone.tt Line: 52
+                vm.ListRolePropertyAccessSettings.Add(RolePropertyAccess.Clone((RolePropertyAccess)t, isDeep));
+            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
+            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
+            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
+            vm.Position = from.Position; // Clone.tt Line: 67
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
+            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 72
+                vm.SetNewGuid();
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(Property to, IProperty from, bool isDeep = true) // Clone.tt Line: 79
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to.Guid = from.Guid; // Clone.tt Line: 143
+            to.Name = from.Name; // Clone.tt Line: 143
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 143
+            to.NameUi = from.NameUi; // Clone.tt Line: 143
+            to.Description = from.Description; // Clone.tt Line: 143
+            if (isDeep) // Clone.tt Line: 140
+                vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
+            to.IsNullable = from.IsNullable; // Clone.tt Line: 143
+            to.DefaultValue = from.DefaultValue; // Clone.tt Line: 143
+            to.IsNew = from.IsNew; // Clone.tt Line: 143
+            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 143
+            to.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 143
+            to.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 143
+            to.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 143
+            to.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 143
+            to.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 143
+            to.LinesOnScreen = from.LinesOnScreen; // Clone.tt Line: 143
+            to.IsStartNewRow = from.IsStartNewRow; // Clone.tt Line: 143
+            to.TabName = from.TabName; // Clone.tt Line: 143
+            to.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 143
+            to.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 143
+            if (isDeep) // Clone.tt Line: 140
+                vSharpStudio.vm.ViewModels.PropertyDataGenerator.Update((PropertyDataGenerator)to.DataGenerator, from.DataGenerator, isDeep);
+            if (isDeep) // Clone.tt Line: 88
+            {
+                foreach (var t in to.ListRolePropertyAccessSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListRolePropertyAccessSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            RolePropertyAccess.Update((RolePropertyAccess)t, (RolePropertyAccess)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListRolePropertyAccessSettings.Remove(t);
+                }
+                foreach (var tt in from.ListRolePropertyAccessSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListRolePropertyAccessSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new RolePropertyAccess(); // Clone.tt Line: 121
+                        RolePropertyAccess.Update(p, (RolePropertyAccess)tt, isDeep);
+                        to.ListRolePropertyAccessSettings.Add(p);
+                    }
+                }
+            }
+            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
+            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
+            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
+            to.Position = from.Position; // Clone.tt Line: 143
+            if (isDeep) // Clone.tt Line: 88
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 119
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
+        }
+        // Clone.tt Line: 149
+        #region IEditable
+        public override Property Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return Property.Clone(this.Parent, this); // Clone.tt Line: 157
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(Property from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            Property.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_property' to 'Property'
+        public static Property ConvertToVM(Proto.Config.proto_property m, Property vm) // Clone.tt Line: 173
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.Name = m.Name; // Clone.tt Line: 221
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
+            vm.NameUi = m.NameUi; // Clone.tt Line: 221
+            vm.Description = m.Description; // Clone.tt Line: 221
+            if (vm.DataType == null) // Clone.tt Line: 213
+                vm.DataType = new DataType(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
+            vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
+            vm.DefaultValue = m.DefaultValue; // Clone.tt Line: 221
+            vm.IsNew = m.IsNew; // Clone.tt Line: 221
+            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.RangeValuesRequirementStr = m.RangeValuesRequirementStr; // Clone.tt Line: 221
+            vm.MinLengthRequirement = m.MinLengthRequirement; // Clone.tt Line: 221
+            vm.MaxLengthRequirement = m.MaxLengthRequirement; // Clone.tt Line: 221
+            vm.AccuracyForTime = (EnumTimeAccuracyType)m.AccuracyForTime; // Clone.tt Line: 221
+            vm.IsTryAttach = m.IsTryAttach; // Clone.tt Line: 221
+            vm.LinesOnScreen = m.LinesOnScreen; // Clone.tt Line: 221
+            vm.IsStartNewRow = m.IsStartNewRow; // Clone.tt Line: 221
+            vm.TabName = m.TabName; // Clone.tt Line: 221
+            vm.IsStartNewTabControl = m.IsStartNewTabControl; // Clone.tt Line: 221
+            vm.IsStopTabControl = m.IsStopTabControl; // Clone.tt Line: 221
+            if (vm.DataGenerator == null) // Clone.tt Line: 213
+                vm.DataGenerator = new PropertyDataGenerator(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.PropertyDataGenerator.ConvertToVM(m.DataGenerator, (PropertyDataGenerator)vm.DataGenerator); // Clone.tt Line: 219
+            vm.ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Clone.tt Line: 204
+            foreach (var t in m.ListRolePropertyAccessSettings) // Clone.tt Line: 205
+            {
+                var tvm = RolePropertyAccess.ConvertToVM(t, new RolePropertyAccess()); // Clone.tt Line: 207
+                vm.ListRolePropertyAccessSettings.Add(tvm);
+            }
+            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
+            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
+            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
+            vm.Position = m.Position; // Clone.tt Line: 221
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
+            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 200
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'Property' to 'proto_property'
+        public static Proto.Config.proto_property ConvertToProto(Property vm) // Clone.tt Line: 236
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_property m = new Proto.Config.proto_property(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.Name = vm.Name; // Clone.tt Line: 276
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
+            m.NameUi = vm.NameUi; // Clone.tt Line: 276
+            m.Description = vm.Description; // Clone.tt Line: 276
+            m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
+            m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
+            m.DefaultValue = vm.DefaultValue; // Clone.tt Line: 276
+            m.IsNew = vm.IsNew; // Clone.tt Line: 276
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            m.RangeValuesRequirementStr = vm.RangeValuesRequirementStr; // Clone.tt Line: 276
+            m.MinLengthRequirement = vm.MinLengthRequirement; // Clone.tt Line: 276
+            m.MaxLengthRequirement = vm.MaxLengthRequirement; // Clone.tt Line: 276
+            m.AccuracyForTime = (Proto.Config.proto_enum_time_accuracy_type)vm.AccuracyForTime; // Clone.tt Line: 274
+            m.IsTryAttach = vm.IsTryAttach; // Clone.tt Line: 276
+            m.LinesOnScreen = vm.LinesOnScreen; // Clone.tt Line: 276
+            m.IsStartNewRow = vm.IsStartNewRow; // Clone.tt Line: 276
+            m.TabName = vm.TabName; // Clone.tt Line: 276
+            m.IsStartNewTabControl = vm.IsStartNewTabControl; // Clone.tt Line: 276
+            m.IsStopTabControl = vm.IsStopTabControl; // Clone.tt Line: 276
+            m.DataGenerator = vSharpStudio.vm.ViewModels.PropertyDataGenerator.ConvertToProto((PropertyDataGenerator)vm.DataGenerator); // Clone.tt Line: 270
+            foreach (var t in vm.ListRolePropertyAccessSettings) // Clone.tt Line: 242
+                m.ListRolePropertyAccessSettings.Add(RolePropertyAccess.ConvertToProto((RolePropertyAccess)t)); // Clone.tt Line: 246
+            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
+            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
+            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
+            m.Position = vm.Position; // Clone.tt Line: 276
+            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            this.DataType.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.DataGenerator.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            foreach (var t in this.ListRolePropertyAccessSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
+        { 
+            get { return this._Guid; }
+            set
+            {
+                if (this._Guid != value)
+                {
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(1)]
+        [Description("Property name")]
+        public string Name // Property.tt Line: 55
+        { 
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameChanged();
+        
+        [Browsable(false)]
+        public ulong SortingValue // Property.tt Line: 55
+        { 
+            get { return this._SortingValue; }
+            set
+            {
+                if (this._SortingValue != value)
+                {
+                    this.OnSortingValueChanging(ref value);
+                    this._SortingValue = value;
+                    this.OnSortingValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
+        partial void OnSortingValueChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("UI name")]
+        [Description("Typically used as UI field label")]
+        public string NameUi // Property.tt Line: 55
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                if (this._NameUi != value)
+                {
+                    this.OnNameUiChanging(ref value);
+                    this._NameUi = value;
+                    this.OnNameUiChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        [DisplayName("Description")]
+        [Description("Description of property")]
+        public string Description // Property.tt Line: 55
+        { 
+            get { return this._Description; }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
+        partial void OnDescriptionChanged();
+        
+        [Browsable(false)]
+        public DataType DataType // Property.tt Line: 55
+        { 
+            get { return this._DataType; }
+            set
+            {
+                if (this._DataType != value)
+                {
+                    this.OnDataTypeChanging(ref value);
+                    this._DataType = value;
+                    this.OnDataTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private DataType _DataType;
+        IDataType IProperty.DataType { get { return (this as Property).DataType; } } // Property.tt Line: 77
+        partial void OnDataTypeChanging(ref DataType to); // Property.tt Line: 79
+        partial void OnDataTypeChanged();
+        //IDataType IProperty.DataType { get { return this._DataType; } }
+        
+        [Category("")]
+        [PropertyOrderAttribute(20)]
+        [DisplayName("Can be NULL")]
+        [Description("If unchecked always expected data")]
+        public bool IsNullable // Property.tt Line: 55
+        { 
+            get { return this._IsNullable; }
+            set
+            {
+                if (this._IsNullable != value)
+                {
+                    this.OnIsNullableChanging(ref value);
+                    this._IsNullable = value;
+                    this.OnIsNullableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNullable;
+        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsNullableChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(8)]
+        [DisplayName("Default")]
+        [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
+        public string DefaultValue // Property.tt Line: 55
+        { 
+            get { return this._DefaultValue; }
+            set
+            {
+                if (this._DefaultValue != value)
+                {
+                    this.OnDefaultValueChanging(ref value);
+                    this._DefaultValue = value;
+                    this.OnDefaultValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _DefaultValue = string.Empty;
+        partial void OnDefaultValueChanging(ref string to); // Property.tt Line: 79
+        partial void OnDefaultValueChanged();
+        
+        [Browsable(false)]
+        public bool IsNew // Property.tt Line: 55
+        { 
+            get { return this._IsNew; }
+            set
+            {
+                if (this._IsNew != value)
+                {
+                    this.OnIsNewChanging(ref value);
+                    this._IsNew = value;
+                    this.OnIsNewChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNew;
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsNewChanged();
+        
+        [Browsable(false)]
+        public bool IsMarkedForDeletion // Property.tt Line: 55
+        { 
+            get { return this._IsMarkedForDeletion; }
+            set
+            {
+                if (this._IsMarkedForDeletion != value)
+                {
+                    this.OnIsMarkedForDeletionChanging(ref value);
+                    this._IsMarkedForDeletion = value;
+                    this.OnIsMarkedForDeletionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsMarkedForDeletion;
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsMarkedForDeletionChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(32)]
+        [DisplayName("Expected")]
+        [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
+        public string RangeValuesRequirementStr // Property.tt Line: 55
+        { 
+            get { return this._RangeValuesRequirementStr; }
+            set
+            {
+                if (this._RangeValuesRequirementStr != value)
+                {
+                    this.OnRangeValuesRequirementStrChanging(ref value);
+                    this._RangeValuesRequirementStr = value;
+                    this.OnRangeValuesRequirementStrChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _RangeValuesRequirementStr = string.Empty;
+        partial void OnRangeValuesRequirementStrChanging(ref string to); // Property.tt Line: 79
+        partial void OnRangeValuesRequirementStrChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(34)]
+        [DisplayName("Min Length")]
+        [Description("Minimum length of string")]
+        public string MinLengthRequirement // Property.tt Line: 55
+        { 
+            get { return this._MinLengthRequirement; }
+            set
+            {
+                if (this._MinLengthRequirement != value)
+                {
+                    this.OnMinLengthRequirementChanging(ref value);
+                    this._MinLengthRequirement = value;
+                    this.OnMinLengthRequirementChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _MinLengthRequirement = string.Empty;
+        partial void OnMinLengthRequirementChanging(ref string to); // Property.tt Line: 79
+        partial void OnMinLengthRequirementChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(35)]
+        [DisplayName("Max Length")]
+        [Description("Maximum length of string")]
+        public string MaxLengthRequirement // Property.tt Line: 55
+        { 
+            get { return this._MaxLengthRequirement; }
+            set
+            {
+                if (this._MaxLengthRequirement != value)
+                {
+                    this.OnMaxLengthRequirementChanging(ref value);
+                    this._MaxLengthRequirement = value;
+                    this.OnMaxLengthRequirementChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _MaxLengthRequirement = string.Empty;
+        partial void OnMaxLengthRequirementChanging(ref string to); // Property.tt Line: 79
+        partial void OnMaxLengthRequirementChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(36)]
+        [DisplayName("Time accuracy")]
+        [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
+        public EnumTimeAccuracyType AccuracyForTime // Property.tt Line: 55
+        { 
+            get { return this._AccuracyForTime; }
+            set
+            {
+                if (this._AccuracyForTime != value)
+                {
+                    this.OnAccuracyForTimeChanging(ref value);
+                    this._AccuracyForTime = value;
+                    this.OnAccuracyForTimeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumTimeAccuracyType _AccuracyForTime;
+        partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // Property.tt Line: 79
+        partial void OnAccuracyForTimeChanged();
+        
+        [PropertyOrderAttribute(23)]
+        [Category("Auto Layout")]
+        [DisplayName("UI attach")]
+        [Description("UI engine will try put this field on same line as previous field")]
+        public bool IsTryAttach // Property.tt Line: 55
+        { 
+            get { return this._IsTryAttach; }
+            set
+            {
+                if (this._IsTryAttach != value)
+                {
+                    this.OnIsTryAttachChanging(ref value);
+                    this._IsTryAttach = value;
+                    this.OnIsTryAttachChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsTryAttach;
+        partial void OnIsTryAttachChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsTryAttachChanged();
+        
+        [PropertyOrderAttribute(22)]
+        [Category("Auto Layout")]
+        [DisplayName("UI lines")]
+        [Description("Lines on screen for edit box")]
+        public int LinesOnScreen // Property.tt Line: 55
+        { 
+            get { return this._LinesOnScreen; }
+            set
+            {
+                if (this._LinesOnScreen != value)
+                {
+                    this.OnLinesOnScreenChanging(ref value);
+                    this._LinesOnScreen = value;
+                    this.OnLinesOnScreenChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private int _LinesOnScreen;
+        partial void OnLinesOnScreenChanging(ref int to); // Property.tt Line: 79
+        partial void OnLinesOnScreenChanged();
+        
+        [PropertyOrderAttribute(24)]
+        [Category("Auto Layout")]
+        [DisplayName("Start UI row")]
+        [Description("Start new UI row for this property")]
+        public bool IsStartNewRow // Property.tt Line: 55
+        { 
+            get { return this._IsStartNewRow; }
+            set
+            {
+                if (this._IsStartNewRow != value)
+                {
+                    this.OnIsStartNewRowChanging(ref value);
+                    this._IsStartNewRow = value;
+                    this.OnIsStartNewRowChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsStartNewRow;
+        partial void OnIsStartNewRowChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsStartNewRowChanged();
+        
+        [PropertyOrderAttribute(26)]
+        [Category("Auto Layout")]
+        [DisplayName("Tab Name")]
+        [Description("If not empty, then start new tab in tab control. If empty, then continue adding fields in current control")]
+        public string TabName // Property.tt Line: 55
+        { 
+            get { return this._TabName; }
+            set
+            {
+                if (this._TabName != value)
+                {
+                    this.OnTabNameChanging(ref value);
+                    this._TabName = value;
+                    this.OnTabNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _TabName = string.Empty;
+        partial void OnTabNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnTabNameChanged();
+        
+        [PropertyOrderAttribute(25)]
+        [Category("Auto Layout")]
+        [DisplayName("Start Tab Control")]
+        [Description("Start new tab control as current control")]
+        public bool IsStartNewTabControl // Property.tt Line: 55
+        { 
+            get { return this._IsStartNewTabControl; }
+            set
+            {
+                if (this._IsStartNewTabControl != value)
+                {
+                    this.OnIsStartNewTabControlChanging(ref value);
+                    this._IsStartNewTabControl = value;
+                    this.OnIsStartNewTabControlChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsStartNewTabControl;
+        partial void OnIsStartNewTabControlChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsStartNewTabControlChanged();
+        
+        [PropertyOrderAttribute(27)]
+        [Category("Auto Layout")]
+        [DisplayName("Stop Tab Control")]
+        [Description("Stop using tab control for layout")]
+        public bool IsStopTabControl // Property.tt Line: 55
+        { 
+            get { return this._IsStopTabControl; }
+            set
+            {
+                if (this._IsStopTabControl != value)
+                {
+                    this.OnIsStopTabControlChanging(ref value);
+                    this._IsStopTabControl = value;
+                    this.OnIsStopTabControlChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsStopTabControl;
+        partial void OnIsStopTabControlChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsStopTabControlChanged();
+        
+        [PropertyOrderAttribute(31)]
+        [ExpandableObjectAttribute()]
+        [DisplayName("Data Generator")]
+        [Browsable(false)]
+        public PropertyDataGenerator DataGenerator // Property.tt Line: 55
+        { 
+            get { return this._DataGenerator; }
+            set
+            {
+                if (this._DataGenerator != value)
+                {
+                    this.OnDataGeneratorChanging(ref value);
+                    this._DataGenerator = value;
+                    this.OnDataGeneratorChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private PropertyDataGenerator _DataGenerator;
+        IPropertyDataGenerator IProperty.DataGenerator { get { return (this as Property).DataGenerator; } } // Property.tt Line: 77
+        partial void OnDataGeneratorChanging(ref PropertyDataGenerator to); // Property.tt Line: 79
+        partial void OnDataGeneratorChanged();
+        //IPropertyDataGenerator IProperty.DataGenerator { get { return this._DataGenerator; } }
+        
+        // 
+        // // @attr [PropertyOrderAttribute(28)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("Start Grid")]
+        // // @attr [Description("Start new container of 12 columns grid system")]
+        // bool is_start_12_col_grid_system = 28;
+        // // @attr [PropertyOrderAttribute(29)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("Stop Grid")]
+        // // @attr [Description("Stop current container of 12 columns grid system")]
+        // bool is_stop_12_col_grid_system = 29;
+        // // @attr [PropertyOrderAttribute(30)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("Start Column")]
+        // // @attr [Description("Start new column of 12 columns grid system")]
+        // bool is_start_new_column_12_col_grid_system = 30;
+        // // @attr [PropertyOrderAttribute(32)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("Start Row")]
+        // // @attr [Description("Start new row of 12 columns grid system")]
+        // bool is_start_new_row_12_col_grid_system = 31;
+        // // @attr [PropertyOrderAttribute(31)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("Column Name")]
+        // // @attr [Description("Column Name of 12 columns grid system")]
+        // string column_name_12_col_grid_system = 32;
+        // // @attr [PropertyOrderAttribute(33)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("When Hide")]
+        // // @attr [Description("Condition of hiding base on screen size")]
+        // proto_enum_hidden_type hide_type = 33;
+        // // @attr [PropertyOrderAttribute(34)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("XS")]
+        // // @attr [Description("Extra small. Small to large phone. Range: < 600px")]
+        // google.protobuf.UInt32Value width_xs = 34;
+        // // @attr [PropertyOrderAttribute(35)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("SM")]
+        // // @attr [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
+        // google.protobuf.UInt32Value width_sm = 35;
+        // // @attr [PropertyOrderAttribute(36)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("MD")]
+        // // @attr [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
+        // google.protobuf.UInt32Value width_md = 36;
+        // // @attr [PropertyOrderAttribute(37)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("LG")]
+        // // @attr [Description("Large. Desktop. Range: 1280px > < 1920px")]
+        // google.protobuf.UInt32Value width_lg = 37;
+        // // @attr [PropertyOrderAttribute(38)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("XL")]
+        // // @attr [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
+        // google.protobuf.UInt32Value width_xl = 38;
+        // // @attr [PropertyOrderAttribute(39)]
+        // // @attr [Category("12 Column Grid System")]
+        // // @attr [DisplayName("XX")]
+        // // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
+        // google.protobuf.UInt32Value width_xx = 39;
+        [Browsable(false)]
+        public ObservableCollectionWithActions<RolePropertyAccess> ListRolePropertyAccessSettings // Property.tt Line: 8
+        { 
+            get { return this._ListRolePropertyAccessSettings; }
+            set
+            {
+                if (this._ListRolePropertyAccessSettings != value)
+                {
+                    this.OnListRolePropertyAccessSettingsChanging(value);
+                    _ListRolePropertyAccessSettings = value;
+                    this.OnListRolePropertyAccessSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ObservableCollectionWithActions<RolePropertyAccess> _ListRolePropertyAccessSettings;
+        IReadOnlyList<IRolePropertyAccess> IProperty.ListRolePropertyAccessSettings { get { return (this as Property).ListRolePropertyAccessSettings; } } // Property.tt Line: 26
+        partial void OnListRolePropertyAccessSettingsChanging(ObservableCollection<RolePropertyAccess> to); // Property.tt Line: 27
+        partial void OnListRolePropertyAccessSettingsChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Sortable")]
+        [Description("Sortable in data grid")]
+        public EnumUseType IsGridSortable // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortable; }
+            set
+            {
+                if (this._IsGridSortable != value)
+                {
+                    this.OnIsGridSortableChanging(ref value);
+                    this._IsGridSortable = value;
+                    this.OnIsGridSortableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortable;
+        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Custom Sortable")]
+        [Description("Custom sortable in data grid by using custom function")]
+        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
+        { 
+            get { return this._IsGridSortableCustom; }
+            set
+            {
+                if (this._IsGridSortableCustom != value)
+                {
+                    this.OnIsGridSortableCustomChanging(ref value);
+                    this._IsGridSortableCustom = value;
+                    this.OnIsGridSortableCustomChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridSortableCustom;
+        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridSortableCustomChanged();
+        
+        [Category("Auto Layout")]
+        [DisplayName("Filterable")]
+        [Description("Filterable in data grid")]
+        public EnumUseType IsGridFilterable // Property.tt Line: 55
+        { 
+            get { return this._IsGridFilterable; }
+            set
+            {
+                if (this._IsGridFilterable != value)
+                {
+                    this.OnIsGridFilterableChanging(ref value);
+                    this._IsGridFilterable = value;
+                    this.OnIsGridFilterableChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumUseType _IsGridFilterable;
+        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnIsGridFilterableChanged();
+        
+        // Protobuf field position
+        // Reserved positions: 1 - primary key
+        [ReadOnly(true)]
+        public uint Position // Property.tt Line: 55
+        { 
+            get { return this._Position; }
+            set
+            {
+                if (this._Position != value)
+                {
+                    this.OnPositionChanging(ref value);
+                    this._Position = value;
+                    this.OnPositionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _Position;
+        partial void OnPositionChanging(ref uint to); // Property.tt Line: 79
+        partial void OnPositionChanged();
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    _ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        IReadOnlyList<IPluginGeneratorNodeSettings> IProperty.ListNodeGeneratorsSettings { get { return (this as Property).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
+        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
+        partial void OnListNodeGeneratorsSettingsChanged();
+    /*
+        [Browsable(false)]
+        public override bool IsChanged // Class.tt Line: 110
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
+        */
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 130
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 135 proto_property
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
     // Class.tt Line: 6
@@ -12671,618 +14320,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     }
     // Class.tt Line: 6
     //       IsWithParent: True 
-    //      IsDefaultBase: True 
-    // IsConfigObjectBase: True 
-    //      IsGenSettings: True 
-    //     IsBindableBase: True 
-    //     IsEditableBase: True 
-    //  IsValidatableBase: True 
-    //    IsISortingValue: False 
-    public partial class GroupListPropertiesValidator : ValidatorBase<GroupListProperties, GroupListPropertiesValidator> { } // Class.tt Line: 15
-    public partial class GroupListProperties : ConfigObjectVmGenSettings<GroupListProperties, GroupListPropertiesValidator>, IComparable<GroupListProperties>, IConfigAcceptVisitor, IGroupListProperties // Class.tt Line: 16
-    {
-        #region CTOR
-        public GroupListProperties(ITreeConfigNode? parent) // Class.tt Line: 26
-            : base(parent, GroupListPropertiesValidator.Validator)
-        {
-            this.IsNotifying = false;
-            this.IsValidate = false;
-            this.OnCreating();
-            this._ListProperties = new ConfigNodesCollection<Property>(this); // Class.tt Line: 37
-            this._ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Class.tt Line: 35
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
-            this.OnCreated();
-            this.IsValidate = true;
-            this.IsNotifying = true;
-        }
-        partial void OnCreating();
-        partial void OnCreated();
-        #endregion CTOR
-        #region Procedures
-        
-        public override void Sort(Type type) // Clone.tt Line: 8
-        {
-            if (type == typeof(Property)) // Clone.tt Line: 15
-            {
-                this.ListProperties.Sort();
-            }
-            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
-            {
-                this.ListNodeGeneratorsSettings.Sort();
-            }
-        }
-        public static GroupListProperties Clone(ITreeConfigNode? parent, IGroupListProperties from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
-        {
-            Debug.Assert(from != null);
-            GroupListProperties vm = new GroupListProperties(parent); // Clone.tt Line: 35
-            vm.IsNotifying = false; // Clone.tt Line: 39
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 67
-            vm.Name = from.Name; // Clone.tt Line: 67
-            vm.NameUi = from.NameUi; // Clone.tt Line: 67
-            vm.Description = from.Description; // Clone.tt Line: 67
-            vm.ListProperties = new ConfigNodesCollection<Property>(vm); // Clone.tt Line: 55
-            foreach (var t in from.ListProperties) // Clone.tt Line: 56
-                vm.ListProperties.Add(Property.Clone(vm, (Property)t, isDeep));
-            vm.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 67
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
-            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
-            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
-            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
-            vm.ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Clone.tt Line: 51
-            foreach (var t in from.ListRolePropertyAccessSettings) // Clone.tt Line: 52
-                vm.ListRolePropertyAccessSettings.Add(RolePropertyAccess.Clone((RolePropertyAccess)t, isDeep));
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
-            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
-                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 72
-                vm.SetNewGuid();
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(GroupListProperties to, IGroupListProperties from, bool isDeep = true) // Clone.tt Line: 79
-        {
-            Debug.Assert(to != null);
-            Debug.Assert(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 143
-            to.Name = from.Name; // Clone.tt Line: 143
-            to.NameUi = from.NameUi; // Clone.tt Line: 143
-            to.Description = from.Description; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListProperties.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListProperties)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            Property.Update((Property)t, (Property)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListProperties.Remove(t);
-                }
-                foreach (var tt in from.ListProperties)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListProperties.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new Property(to); // Clone.tt Line: 119
-                        Property.Update(p, (Property)tt, isDeep);
-                        to.ListProperties.Add(p);
-                    }
-                }
-            }
-            to.LastGenPosition = from.LastGenPosition; // Clone.tt Line: 143
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 143
-            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
-            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
-            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListRolePropertyAccessSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListRolePropertyAccessSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            RolePropertyAccess.Update((RolePropertyAccess)t, (RolePropertyAccess)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListRolePropertyAccessSettings.Remove(t);
-                }
-                foreach (var tt in from.ListRolePropertyAccessSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListRolePropertyAccessSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new RolePropertyAccess(); // Clone.tt Line: 121
-                        RolePropertyAccess.Update(p, (RolePropertyAccess)tt, isDeep);
-                        to.ListRolePropertyAccessSettings.Add(p);
-                    }
-                }
-            }
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListNodeGeneratorsSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListNodeGeneratorsSettings.Remove(t);
-                }
-                foreach (var tt in from.ListNodeGeneratorsSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 119
-                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
-                        to.ListNodeGeneratorsSettings.Add(p);
-                    }
-                }
-            }
-        }
-        // Clone.tt Line: 149
-        #region IEditable
-        public override GroupListProperties Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            Debug.Assert(this is IConfig || this.Parent != null);
-            return GroupListProperties.Clone(this.Parent, this); // Clone.tt Line: 157
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(GroupListProperties from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            GroupListProperties.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_group_list_properties' to 'GroupListProperties'
-        public static GroupListProperties ConvertToVM(Proto.Config.proto_group_list_properties m, GroupListProperties vm) // Clone.tt Line: 173
-        {
-            Debug.Assert(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            vm.Name = m.Name; // Clone.tt Line: 221
-            vm.NameUi = m.NameUi; // Clone.tt Line: 221
-            vm.Description = m.Description; // Clone.tt Line: 221
-            vm.ListProperties = new ConfigNodesCollection<Property>(vm); // Clone.tt Line: 194
-            foreach (var t in m.ListProperties) // Clone.tt Line: 198
-            {
-                var tvm = Property.ConvertToVM(t, new Property(vm)); // Clone.tt Line: 200
-                vm.ListProperties.Add(tvm);
-            }
-            vm.LastGenPosition = m.LastGenPosition; // Clone.tt Line: 221
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
-            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
-            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
-            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
-            vm.ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Clone.tt Line: 204
-            foreach (var t in m.ListRolePropertyAccessSettings) // Clone.tt Line: 205
-            {
-                var tvm = RolePropertyAccess.ConvertToVM(t, new RolePropertyAccess()); // Clone.tt Line: 207
-                vm.ListRolePropertyAccessSettings.Add(tvm);
-            }
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
-            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
-            {
-                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 200
-                vm.ListNodeGeneratorsSettings.Add(tvm);
-            }
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'GroupListProperties' to 'proto_group_list_properties'
-        public static Proto.Config.proto_group_list_properties ConvertToProto(GroupListProperties vm) // Clone.tt Line: 236
-        {
-            Debug.Assert(vm != null);
-            Proto.Config.proto_group_list_properties m = new Proto.Config.proto_group_list_properties(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            m.Name = vm.Name; // Clone.tt Line: 276
-            m.NameUi = vm.NameUi; // Clone.tt Line: 276
-            m.Description = vm.Description; // Clone.tt Line: 276
-            foreach (var t in vm.ListProperties) // Clone.tt Line: 242
-                m.ListProperties.Add(Property.ConvertToProto((Property)t)); // Clone.tt Line: 246
-            m.LastGenPosition = vm.LastGenPosition; // Clone.tt Line: 276
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
-            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
-            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
-            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
-            foreach (var t in vm.ListRolePropertyAccessSettings) // Clone.tt Line: 242
-                m.ListRolePropertyAccessSettings.Add(RolePropertyAccess.ConvertToProto((RolePropertyAccess)t)); // Clone.tt Line: 246
-            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
-                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Debug.Assert(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            foreach (var t in this.ListProperties)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListRolePropertyAccessSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListNodeGeneratorsSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [Category("")]
-        [PropertyOrderAttribute(-2)]
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 55
-        { 
-            get { return this._Name; }
-            set
-            {
-                if (this._Name != value)
-                {
-                    this.OnNameChanging(ref value);
-                    this._Name = value;
-                    this.OnNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(2)]
-        [DisplayName("UI name")]
-        [Description("Used as label/name for UI")]
-        public string NameUi // Property.tt Line: 55
-        { 
-            get { return this._NameUi; }
-            set
-            {
-                if (this._NameUi != value)
-                {
-                    this.OnNameUiChanging(ref value);
-                    this._NameUi = value;
-                    this.OnNameUiChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameUiChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 55
-        { 
-            get { return this._Description; }
-            set
-            {
-                if (this._Description != value)
-                {
-                    this.OnDescriptionChanging(ref value);
-                    this._Description = value;
-                    this.OnDescriptionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
-        partial void OnDescriptionChanged();
-        
-        [Browsable(false)]
-        public ConfigNodesCollection<Property> ListProperties // Property.tt Line: 8
-        { 
-            get { return this._ListProperties; }
-            set
-            {
-                if (this._ListProperties != value)
-                {
-                    this.OnListPropertiesChanging(value);
-                    _ListProperties = value;
-                    this.OnListPropertiesChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ConfigNodesCollection<Property> _ListProperties;
-        IReadOnlyList<IProperty> IGroupListProperties.ListProperties { get { return (this as GroupListProperties).ListProperties; } } // Property.tt Line: 26
-        partial void OnListPropertiesChanging(ObservableCollection<Property> to); // Property.tt Line: 27
-        partial void OnListPropertiesChanged();
-        public Property this[int index] { get { return (Property)this.ListProperties[index]; } }
-        IProperty IGroupListProperties.this[int index] { get { return (Property)this.ListProperties[index]; } }
-        public void Add(Property item) // Property.tt Line: 32
-        { 
-            Debug.Assert(item != null);
-            this.ListProperties.Add(item); 
-            item.Parent = this;
-        }
-        public void AddRange(IEnumerable<Property> items) 
-        { 
-            Debug.Assert(items != null);
-            this.ListProperties.AddRange(items); 
-            foreach (var t in items)
-                t.Parent = this;
-        }
-        public int Count() { return this.ListProperties.Count; }
-        int IGroupListProperties.Count() { return this.Count(); }
-        public void Remove(Property item) 
-        {
-            Debug.Assert(item != null);
-            this.ListProperties.Remove(item); 
-            item.Parent = null;
-        }
-        
-        // Last generated Protobuf field position
-        [ReadOnly(true)]
-        public uint LastGenPosition // Property.tt Line: 55
-        { 
-            get { return this._LastGenPosition; }
-            set
-            {
-                if (this._LastGenPosition != value)
-                {
-                    this.OnLastGenPositionChanging(ref value);
-                    this._LastGenPosition = value;
-                    this.OnLastGenPositionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint _LastGenPosition;
-        partial void OnLastGenPositionChanging(ref uint to); // Property.tt Line: 79
-        partial void OnLastGenPositionChanged();
-        
-        [Browsable(false)]
-        public ulong SortingValue // Property.tt Line: 55
-        { 
-            get { return this._SortingValue; }
-            set
-            {
-                if (this._SortingValue != value)
-                {
-                    this.OnSortingValueChanging(ref value);
-                    this._SortingValue = value;
-                    this.OnSortingValueChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
-        partial void OnSortingValueChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Sortable")]
-        [Description("Sortable in data grid")]
-        public EnumUseType IsGridSortable // Property.tt Line: 55
-        { 
-            get { return this._IsGridSortable; }
-            set
-            {
-                if (this._IsGridSortable != value)
-                {
-                    this.OnIsGridSortableChanging(ref value);
-                    this._IsGridSortable = value;
-                    this.OnIsGridSortableChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
-        partial void OnIsGridSortableChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Custom Sortable")]
-        [Description("Custom sortable in data grid by using custom function")]
-        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
-        { 
-            get { return this._IsGridSortableCustom; }
-            set
-            {
-                if (this._IsGridSortableCustom != value)
-                {
-                    this.OnIsGridSortableCustomChanging(ref value);
-                    this._IsGridSortableCustom = value;
-                    this.OnIsGridSortableCustomChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
-        partial void OnIsGridSortableCustomChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Filterable")]
-        [Description("Filterable in data grid")]
-        public EnumUseType IsGridFilterable // Property.tt Line: 55
-        { 
-            get { return this._IsGridFilterable; }
-            set
-            {
-                if (this._IsGridFilterable != value)
-                {
-                    this.OnIsGridFilterableChanging(ref value);
-                    this._IsGridFilterable = value;
-                    this.OnIsGridFilterableChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
-        partial void OnIsGridFilterableChanged();
-        
-        [Browsable(false)]
-        public ObservableCollectionWithActions<RolePropertyAccess> ListRolePropertyAccessSettings // Property.tt Line: 8
-        { 
-            get { return this._ListRolePropertyAccessSettings; }
-            set
-            {
-                if (this._ListRolePropertyAccessSettings != value)
-                {
-                    this.OnListRolePropertyAccessSettingsChanging(value);
-                    _ListRolePropertyAccessSettings = value;
-                    this.OnListRolePropertyAccessSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollectionWithActions<RolePropertyAccess> _ListRolePropertyAccessSettings;
-        IReadOnlyList<IRolePropertyAccess> IGroupListProperties.ListRolePropertyAccessSettings { get { return (this as GroupListProperties).ListRolePropertyAccessSettings; } } // Property.tt Line: 26
-        partial void OnListRolePropertyAccessSettingsChanging(ObservableCollection<RolePropertyAccess> to); // Property.tt Line: 27
-        partial void OnListRolePropertyAccessSettingsChanged();
-        
-        [Browsable(false)]
-        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
-        { 
-            get { return this._ListNodeGeneratorsSettings; }
-            set
-            {
-                if (this._ListNodeGeneratorsSettings != value)
-                {
-                    this.OnListNodeGeneratorsSettingsChanging(value);
-                    _ListNodeGeneratorsSettings = value;
-                    this.OnListNodeGeneratorsSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListProperties.ListNodeGeneratorsSettings { get { return (this as GroupListProperties).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
-        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
-        partial void OnListNodeGeneratorsSettingsChanged();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // Class.tt Line: 110
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
-        */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 130
-        #endregion Properties
-    }
-    // Class.tt Line: 6
-    //       IsWithParent: True 
     //      IsDefaultBase: False 
     // IsConfigObjectBase: False 
     //      IsGenSettings: False 
@@ -13818,1044 +14855,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    //    IsISortingValue: True 
-    public partial class PropertyValidator : ValidatorBase<Property, PropertyValidator> { } // Class.tt Line: 15
-    public partial class Property : ConfigObjectVmGenSettings<Property, PropertyValidator>, IComparable<Property>, IConfigAcceptVisitor, IProperty // Class.tt Line: 16
-    {
-        #region CTOR
-        public Property(ITreeConfigNode? parent) // Class.tt Line: 26
-            : base(parent, PropertyValidator.Validator)
-        {
-            this.IsNotifying = false;
-            this.IsValidate = false;
-            this.OnCreating();
-            this._DataType = new DataType(this); // Class.tt Line: 40
-            this._DataGenerator = new PropertyDataGenerator(this); // Class.tt Line: 40
-            this._ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Class.tt Line: 35
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
-            this.OnCreated();
-            this.IsValidate = true;
-            this.IsNotifying = true;
-        }
-        partial void OnCreating();
-        partial void OnCreated();
-        #endregion CTOR
-        #region Procedures
-        
-        public override void Sort(Type type) // Clone.tt Line: 8
-        {
-            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
-            {
-                this.ListNodeGeneratorsSettings.Sort();
-            }
-        }
-        public static Property Clone(ITreeConfigNode? parent, IProperty from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
-        {
-            Debug.Assert(from != null);
-            Property vm = new Property(parent); // Clone.tt Line: 35
-            vm.IsNotifying = false; // Clone.tt Line: 39
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 67
-            vm.Name = from.Name; // Clone.tt Line: 67
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
-            vm.NameUi = from.NameUi; // Clone.tt Line: 67
-            vm.Description = from.Description; // Clone.tt Line: 67
-            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=False
-                vm.DataType = vSharpStudio.vm.ViewModels.DataType.Clone(vm, from.DataType, isDeep);
-            vm.IsNullable = from.IsNullable; // Clone.tt Line: 67
-            vm.DefaultValue = from.DefaultValue; // Clone.tt Line: 67
-            vm.IsNew = from.IsNew; // Clone.tt Line: 67
-            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 67
-            vm.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 67
-            vm.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 67
-            vm.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 67
-            vm.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 67
-            vm.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 67
-            vm.LinesOnScreen = from.LinesOnScreen; // Clone.tt Line: 67
-            vm.IsStartNewRow = from.IsStartNewRow; // Clone.tt Line: 67
-            vm.TabName = from.TabName; // Clone.tt Line: 67
-            vm.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 67
-            vm.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 67
-            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=False
-                vm.DataGenerator = vSharpStudio.vm.ViewModels.PropertyDataGenerator.Clone(vm, from.DataGenerator, isDeep);
-            vm.ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Clone.tt Line: 51
-            foreach (var t in from.ListRolePropertyAccessSettings) // Clone.tt Line: 52
-                vm.ListRolePropertyAccessSettings.Add(RolePropertyAccess.Clone((RolePropertyAccess)t, isDeep));
-            vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
-            vm.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 67
-            vm.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 67
-            vm.Position = from.Position; // Clone.tt Line: 67
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
-            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
-                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 72
-                vm.SetNewGuid();
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(Property to, IProperty from, bool isDeep = true) // Clone.tt Line: 79
-        {
-            Debug.Assert(to != null);
-            Debug.Assert(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 143
-            to.Name = from.Name; // Clone.tt Line: 143
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 143
-            to.NameUi = from.NameUi; // Clone.tt Line: 143
-            to.Description = from.Description; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 140
-                vSharpStudio.vm.ViewModels.DataType.Update((DataType)to.DataType, from.DataType, isDeep);
-            to.IsNullable = from.IsNullable; // Clone.tt Line: 143
-            to.DefaultValue = from.DefaultValue; // Clone.tt Line: 143
-            to.IsNew = from.IsNew; // Clone.tt Line: 143
-            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 143
-            to.RangeValuesRequirementStr = from.RangeValuesRequirementStr; // Clone.tt Line: 143
-            to.MinLengthRequirement = from.MinLengthRequirement; // Clone.tt Line: 143
-            to.MaxLengthRequirement = from.MaxLengthRequirement; // Clone.tt Line: 143
-            to.AccuracyForTime = from.AccuracyForTime; // Clone.tt Line: 143
-            to.IsTryAttach = from.IsTryAttach; // Clone.tt Line: 143
-            to.LinesOnScreen = from.LinesOnScreen; // Clone.tt Line: 143
-            to.IsStartNewRow = from.IsStartNewRow; // Clone.tt Line: 143
-            to.TabName = from.TabName; // Clone.tt Line: 143
-            to.IsStartNewTabControl = from.IsStartNewTabControl; // Clone.tt Line: 143
-            to.IsStopTabControl = from.IsStopTabControl; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 140
-                vSharpStudio.vm.ViewModels.PropertyDataGenerator.Update((PropertyDataGenerator)to.DataGenerator, from.DataGenerator, isDeep);
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListRolePropertyAccessSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListRolePropertyAccessSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            RolePropertyAccess.Update((RolePropertyAccess)t, (RolePropertyAccess)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListRolePropertyAccessSettings.Remove(t);
-                }
-                foreach (var tt in from.ListRolePropertyAccessSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListRolePropertyAccessSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new RolePropertyAccess(); // Clone.tt Line: 121
-                        RolePropertyAccess.Update(p, (RolePropertyAccess)tt, isDeep);
-                        to.ListRolePropertyAccessSettings.Add(p);
-                    }
-                }
-            }
-            to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
-            to.IsGridSortableCustom = from.IsGridSortableCustom; // Clone.tt Line: 143
-            to.IsGridFilterable = from.IsGridFilterable; // Clone.tt Line: 143
-            to.Position = from.Position; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListNodeGeneratorsSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListNodeGeneratorsSettings.Remove(t);
-                }
-                foreach (var tt in from.ListNodeGeneratorsSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 119
-                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
-                        to.ListNodeGeneratorsSettings.Add(p);
-                    }
-                }
-            }
-        }
-        // Clone.tt Line: 149
-        #region IEditable
-        public override Property Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            Debug.Assert(this is IConfig || this.Parent != null);
-            return Property.Clone(this.Parent, this); // Clone.tt Line: 157
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(Property from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            Property.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_property' to 'Property'
-        public static Property ConvertToVM(Proto.Config.proto_property m, Property vm) // Clone.tt Line: 173
-        {
-            Debug.Assert(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            vm.Name = m.Name; // Clone.tt Line: 221
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
-            vm.NameUi = m.NameUi; // Clone.tt Line: 221
-            vm.Description = m.Description; // Clone.tt Line: 221
-            if (vm.DataType == null) // Clone.tt Line: 213
-                vm.DataType = new DataType(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.DataType.ConvertToVM(m.DataType, (DataType)vm.DataType); // Clone.tt Line: 219
-            vm.IsNullable = m.IsNullable; // Clone.tt Line: 221
-            vm.DefaultValue = m.DefaultValue; // Clone.tt Line: 221
-            vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.RangeValuesRequirementStr = m.RangeValuesRequirementStr; // Clone.tt Line: 221
-            vm.MinLengthRequirement = m.MinLengthRequirement; // Clone.tt Line: 221
-            vm.MaxLengthRequirement = m.MaxLengthRequirement; // Clone.tt Line: 221
-            vm.AccuracyForTime = (EnumTimeAccuracyType)m.AccuracyForTime; // Clone.tt Line: 221
-            vm.IsTryAttach = m.IsTryAttach; // Clone.tt Line: 221
-            vm.LinesOnScreen = m.LinesOnScreen; // Clone.tt Line: 221
-            vm.IsStartNewRow = m.IsStartNewRow; // Clone.tt Line: 221
-            vm.TabName = m.TabName; // Clone.tt Line: 221
-            vm.IsStartNewTabControl = m.IsStartNewTabControl; // Clone.tt Line: 221
-            vm.IsStopTabControl = m.IsStopTabControl; // Clone.tt Line: 221
-            if (vm.DataGenerator == null) // Clone.tt Line: 213
-                vm.DataGenerator = new PropertyDataGenerator(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.PropertyDataGenerator.ConvertToVM(m.DataGenerator, (PropertyDataGenerator)vm.DataGenerator); // Clone.tt Line: 219
-            vm.ListRolePropertyAccessSettings = new ObservableCollectionWithActions<RolePropertyAccess>(); // Clone.tt Line: 204
-            foreach (var t in m.ListRolePropertyAccessSettings) // Clone.tt Line: 205
-            {
-                var tvm = RolePropertyAccess.ConvertToVM(t, new RolePropertyAccess()); // Clone.tt Line: 207
-                vm.ListRolePropertyAccessSettings.Add(tvm);
-            }
-            vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
-            vm.IsGridSortableCustom = (EnumUseType)m.IsGridSortableCustom; // Clone.tt Line: 221
-            vm.IsGridFilterable = (EnumUseType)m.IsGridFilterable; // Clone.tt Line: 221
-            vm.Position = m.Position; // Clone.tt Line: 221
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
-            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
-            {
-                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 200
-                vm.ListNodeGeneratorsSettings.Add(tvm);
-            }
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'Property' to 'proto_property'
-        public static Proto.Config.proto_property ConvertToProto(Property vm) // Clone.tt Line: 236
-        {
-            Debug.Assert(vm != null);
-            Proto.Config.proto_property m = new Proto.Config.proto_property(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            m.Name = vm.Name; // Clone.tt Line: 276
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
-            m.NameUi = vm.NameUi; // Clone.tt Line: 276
-            m.Description = vm.Description; // Clone.tt Line: 276
-            m.DataType = vSharpStudio.vm.ViewModels.DataType.ConvertToProto((DataType)vm.DataType); // Clone.tt Line: 270
-            m.IsNullable = vm.IsNullable; // Clone.tt Line: 276
-            m.DefaultValue = vm.DefaultValue; // Clone.tt Line: 276
-            m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.RangeValuesRequirementStr = vm.RangeValuesRequirementStr; // Clone.tt Line: 276
-            m.MinLengthRequirement = vm.MinLengthRequirement; // Clone.tt Line: 276
-            m.MaxLengthRequirement = vm.MaxLengthRequirement; // Clone.tt Line: 276
-            m.AccuracyForTime = (Proto.Config.proto_enum_time_accuracy_type)vm.AccuracyForTime; // Clone.tt Line: 274
-            m.IsTryAttach = vm.IsTryAttach; // Clone.tt Line: 276
-            m.LinesOnScreen = vm.LinesOnScreen; // Clone.tt Line: 276
-            m.IsStartNewRow = vm.IsStartNewRow; // Clone.tt Line: 276
-            m.TabName = vm.TabName; // Clone.tt Line: 276
-            m.IsStartNewTabControl = vm.IsStartNewTabControl; // Clone.tt Line: 276
-            m.IsStopTabControl = vm.IsStopTabControl; // Clone.tt Line: 276
-            m.DataGenerator = vSharpStudio.vm.ViewModels.PropertyDataGenerator.ConvertToProto((PropertyDataGenerator)vm.DataGenerator); // Clone.tt Line: 270
-            foreach (var t in vm.ListRolePropertyAccessSettings) // Clone.tt Line: 242
-                m.ListRolePropertyAccessSettings.Add(RolePropertyAccess.ConvertToProto((RolePropertyAccess)t)); // Clone.tt Line: 246
-            m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
-            m.IsGridSortableCustom = (Proto.Config.proto_enum_use_type)vm.IsGridSortableCustom; // Clone.tt Line: 274
-            m.IsGridFilterable = (Proto.Config.proto_enum_use_type)vm.IsGridFilterable; // Clone.tt Line: 274
-            m.Position = vm.Position; // Clone.tt Line: 276
-            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
-                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Debug.Assert(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            this.DataType.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
-            this.DataGenerator.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
-            foreach (var t in this.ListRolePropertyAccessSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListNodeGeneratorsSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [Category("")]
-        [PropertyOrderAttribute(-2)]
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(1)]
-        [Description("Property name")]
-        public string Name // Property.tt Line: 55
-        { 
-            get { return this._Name; }
-            set
-            {
-                if (this._Name != value)
-                {
-                    this.OnNameChanging(ref value);
-                    this._Name = value;
-                    this.OnNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameChanged();
-        
-        [Browsable(false)]
-        public ulong SortingValue // Property.tt Line: 55
-        { 
-            get { return this._SortingValue; }
-            set
-            {
-                if (this._SortingValue != value)
-                {
-                    this.OnSortingValueChanging(ref value);
-                    this._SortingValue = value;
-                    this.OnSortingValueChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
-        partial void OnSortingValueChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(2)]
-        [DisplayName("UI name")]
-        [Description("Typically used as UI field label")]
-        public string NameUi // Property.tt Line: 55
-        { 
-            get { return this._NameUi; }
-            set
-            {
-                if (this._NameUi != value)
-                {
-                    this.OnNameUiChanging(ref value);
-                    this._NameUi = value;
-                    this.OnNameUiChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameUiChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(3)]
-        [DisplayName("Description")]
-        [Description("Description of property")]
-        public string Description // Property.tt Line: 55
-        { 
-            get { return this._Description; }
-            set
-            {
-                if (this._Description != value)
-                {
-                    this.OnDescriptionChanging(ref value);
-                    this._Description = value;
-                    this.OnDescriptionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
-        partial void OnDescriptionChanged();
-        
-        [Browsable(false)]
-        public DataType DataType // Property.tt Line: 55
-        { 
-            get { return this._DataType; }
-            set
-            {
-                if (this._DataType != value)
-                {
-                    this.OnDataTypeChanging(ref value);
-                    this._DataType = value;
-                    this.OnDataTypeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private DataType _DataType;
-        IDataType IProperty.DataType { get { return (this as Property).DataType; } } // Property.tt Line: 77
-        partial void OnDataTypeChanging(ref DataType to); // Property.tt Line: 79
-        partial void OnDataTypeChanged();
-        //IDataType IProperty.DataType { get { return this._DataType; } }
-        
-        [Category("")]
-        [PropertyOrderAttribute(20)]
-        [DisplayName("Can be NULL")]
-        [Description("If unchecked always expected data")]
-        public bool IsNullable // Property.tt Line: 55
-        { 
-            get { return this._IsNullable; }
-            set
-            {
-                if (this._IsNullable != value)
-                {
-                    this.OnIsNullableChanging(ref value);
-                    this._IsNullable = value;
-                    this.OnIsNullableChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsNullable;
-        partial void OnIsNullableChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsNullableChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(8)]
-        [DisplayName("Default")]
-        [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
-        public string DefaultValue // Property.tt Line: 55
-        { 
-            get { return this._DefaultValue; }
-            set
-            {
-                if (this._DefaultValue != value)
-                {
-                    this.OnDefaultValueChanging(ref value);
-                    this._DefaultValue = value;
-                    this.OnDefaultValueChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _DefaultValue = string.Empty;
-        partial void OnDefaultValueChanging(ref string to); // Property.tt Line: 79
-        partial void OnDefaultValueChanged();
-        
-        [Browsable(false)]
-        public bool IsNew // Property.tt Line: 55
-        { 
-            get { return this._IsNew; }
-            set
-            {
-                if (this._IsNew != value)
-                {
-                    this.OnIsNewChanging(ref value);
-                    this._IsNew = value;
-                    this.OnIsNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsNewChanged();
-        
-        [Browsable(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsMarkedForDeletion; }
-            set
-            {
-                if (this._IsMarkedForDeletion != value)
-                {
-                    this.OnIsMarkedForDeletionChanging(ref value);
-                    this._IsMarkedForDeletion = value;
-                    this.OnIsMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsMarkedForDeletionChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(32)]
-        [DisplayName("Expected")]
-        [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
-        public string RangeValuesRequirementStr // Property.tt Line: 55
-        { 
-            get { return this._RangeValuesRequirementStr; }
-            set
-            {
-                if (this._RangeValuesRequirementStr != value)
-                {
-                    this.OnRangeValuesRequirementStrChanging(ref value);
-                    this._RangeValuesRequirementStr = value;
-                    this.OnRangeValuesRequirementStrChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _RangeValuesRequirementStr = string.Empty;
-        partial void OnRangeValuesRequirementStrChanging(ref string to); // Property.tt Line: 79
-        partial void OnRangeValuesRequirementStrChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(34)]
-        [DisplayName("Min Length")]
-        [Description("Minimum length of string")]
-        public string MinLengthRequirement // Property.tt Line: 55
-        { 
-            get { return this._MinLengthRequirement; }
-            set
-            {
-                if (this._MinLengthRequirement != value)
-                {
-                    this.OnMinLengthRequirementChanging(ref value);
-                    this._MinLengthRequirement = value;
-                    this.OnMinLengthRequirementChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _MinLengthRequirement = string.Empty;
-        partial void OnMinLengthRequirementChanging(ref string to); // Property.tt Line: 79
-        partial void OnMinLengthRequirementChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(35)]
-        [DisplayName("Max Length")]
-        [Description("Maximum length of string")]
-        public string MaxLengthRequirement // Property.tt Line: 55
-        { 
-            get { return this._MaxLengthRequirement; }
-            set
-            {
-                if (this._MaxLengthRequirement != value)
-                {
-                    this.OnMaxLengthRequirementChanging(ref value);
-                    this._MaxLengthRequirement = value;
-                    this.OnMaxLengthRequirementChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _MaxLengthRequirement = string.Empty;
-        partial void OnMaxLengthRequirementChanging(ref string to); // Property.tt Line: 79
-        partial void OnMaxLengthRequirementChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(36)]
-        [DisplayName("Time accuracy")]
-        [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
-        public EnumTimeAccuracyType AccuracyForTime // Property.tt Line: 55
-        { 
-            get { return this._AccuracyForTime; }
-            set
-            {
-                if (this._AccuracyForTime != value)
-                {
-                    this.OnAccuracyForTimeChanging(ref value);
-                    this._AccuracyForTime = value;
-                    this.OnAccuracyForTimeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumTimeAccuracyType _AccuracyForTime;
-        partial void OnAccuracyForTimeChanging(ref EnumTimeAccuracyType to); // Property.tt Line: 79
-        partial void OnAccuracyForTimeChanged();
-        
-        [PropertyOrderAttribute(23)]
-        [Category("Auto Layout")]
-        [DisplayName("UI attach")]
-        [Description("UI engine will try put this field on same line as previous field")]
-        public bool IsTryAttach // Property.tt Line: 55
-        { 
-            get { return this._IsTryAttach; }
-            set
-            {
-                if (this._IsTryAttach != value)
-                {
-                    this.OnIsTryAttachChanging(ref value);
-                    this._IsTryAttach = value;
-                    this.OnIsTryAttachChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsTryAttach;
-        partial void OnIsTryAttachChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsTryAttachChanged();
-        
-        [PropertyOrderAttribute(22)]
-        [Category("Auto Layout")]
-        [DisplayName("UI lines")]
-        [Description("Lines on screen for edit box")]
-        public int LinesOnScreen // Property.tt Line: 55
-        { 
-            get { return this._LinesOnScreen; }
-            set
-            {
-                if (this._LinesOnScreen != value)
-                {
-                    this.OnLinesOnScreenChanging(ref value);
-                    this._LinesOnScreen = value;
-                    this.OnLinesOnScreenChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private int _LinesOnScreen;
-        partial void OnLinesOnScreenChanging(ref int to); // Property.tt Line: 79
-        partial void OnLinesOnScreenChanged();
-        
-        [PropertyOrderAttribute(24)]
-        [Category("Auto Layout")]
-        [DisplayName("Start UI row")]
-        [Description("Start new UI row for this property")]
-        public bool IsStartNewRow // Property.tt Line: 55
-        { 
-            get { return this._IsStartNewRow; }
-            set
-            {
-                if (this._IsStartNewRow != value)
-                {
-                    this.OnIsStartNewRowChanging(ref value);
-                    this._IsStartNewRow = value;
-                    this.OnIsStartNewRowChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsStartNewRow;
-        partial void OnIsStartNewRowChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsStartNewRowChanged();
-        
-        [PropertyOrderAttribute(26)]
-        [Category("Auto Layout")]
-        [DisplayName("Tab Name")]
-        [Description("If not empty, then start new tab in tab control. If empty, then continue adding fields in current control")]
-        public string TabName // Property.tt Line: 55
-        { 
-            get { return this._TabName; }
-            set
-            {
-                if (this._TabName != value)
-                {
-                    this.OnTabNameChanging(ref value);
-                    this._TabName = value;
-                    this.OnTabNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _TabName = string.Empty;
-        partial void OnTabNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnTabNameChanged();
-        
-        [PropertyOrderAttribute(25)]
-        [Category("Auto Layout")]
-        [DisplayName("Start Tab Control")]
-        [Description("Start new tab control as current control")]
-        public bool IsStartNewTabControl // Property.tt Line: 55
-        { 
-            get { return this._IsStartNewTabControl; }
-            set
-            {
-                if (this._IsStartNewTabControl != value)
-                {
-                    this.OnIsStartNewTabControlChanging(ref value);
-                    this._IsStartNewTabControl = value;
-                    this.OnIsStartNewTabControlChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsStartNewTabControl;
-        partial void OnIsStartNewTabControlChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsStartNewTabControlChanged();
-        
-        [PropertyOrderAttribute(27)]
-        [Category("Auto Layout")]
-        [DisplayName("Stop Tab Control")]
-        [Description("Stop using tab control for layout")]
-        public bool IsStopTabControl // Property.tt Line: 55
-        { 
-            get { return this._IsStopTabControl; }
-            set
-            {
-                if (this._IsStopTabControl != value)
-                {
-                    this.OnIsStopTabControlChanging(ref value);
-                    this._IsStopTabControl = value;
-                    this.OnIsStopTabControlChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsStopTabControl;
-        partial void OnIsStopTabControlChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsStopTabControlChanged();
-        
-        [PropertyOrderAttribute(31)]
-        [ExpandableObjectAttribute()]
-        [DisplayName("Data Generator")]
-        [Browsable(false)]
-        public PropertyDataGenerator DataGenerator // Property.tt Line: 55
-        { 
-            get { return this._DataGenerator; }
-            set
-            {
-                if (this._DataGenerator != value)
-                {
-                    this.OnDataGeneratorChanging(ref value);
-                    this._DataGenerator = value;
-                    this.OnDataGeneratorChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private PropertyDataGenerator _DataGenerator;
-        IPropertyDataGenerator IProperty.DataGenerator { get { return (this as Property).DataGenerator; } } // Property.tt Line: 77
-        partial void OnDataGeneratorChanging(ref PropertyDataGenerator to); // Property.tt Line: 79
-        partial void OnDataGeneratorChanged();
-        //IPropertyDataGenerator IProperty.DataGenerator { get { return this._DataGenerator; } }
-        
-        // 
-        // // @attr [PropertyOrderAttribute(28)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("Start Grid")]
-        // // @attr [Description("Start new container of 12 columns grid system")]
-        // bool is_start_12_col_grid_system = 28;
-        // // @attr [PropertyOrderAttribute(29)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("Stop Grid")]
-        // // @attr [Description("Stop current container of 12 columns grid system")]
-        // bool is_stop_12_col_grid_system = 29;
-        // // @attr [PropertyOrderAttribute(30)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("Start Column")]
-        // // @attr [Description("Start new column of 12 columns grid system")]
-        // bool is_start_new_column_12_col_grid_system = 30;
-        // // @attr [PropertyOrderAttribute(32)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("Start Row")]
-        // // @attr [Description("Start new row of 12 columns grid system")]
-        // bool is_start_new_row_12_col_grid_system = 31;
-        // // @attr [PropertyOrderAttribute(31)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("Column Name")]
-        // // @attr [Description("Column Name of 12 columns grid system")]
-        // string column_name_12_col_grid_system = 32;
-        // // @attr [PropertyOrderAttribute(33)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("When Hide")]
-        // // @attr [Description("Condition of hiding base on screen size")]
-        // proto_enum_hidden_type hide_type = 33;
-        // // @attr [PropertyOrderAttribute(34)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("XS")]
-        // // @attr [Description("Extra small. Small to large phone. Range: < 600px")]
-        // google.protobuf.UInt32Value width_xs = 34;
-        // // @attr [PropertyOrderAttribute(35)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("SM")]
-        // // @attr [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
-        // google.protobuf.UInt32Value width_sm = 35;
-        // // @attr [PropertyOrderAttribute(36)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("MD")]
-        // // @attr [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
-        // google.protobuf.UInt32Value width_md = 36;
-        // // @attr [PropertyOrderAttribute(37)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("LG")]
-        // // @attr [Description("Large. Desktop. Range: 1280px > < 1920px")]
-        // google.protobuf.UInt32Value width_lg = 37;
-        // // @attr [PropertyOrderAttribute(38)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("XL")]
-        // // @attr [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
-        // google.protobuf.UInt32Value width_xl = 38;
-        // // @attr [PropertyOrderAttribute(39)]
-        // // @attr [Category("12 Column Grid System")]
-        // // @attr [DisplayName("XX")]
-        // // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
-        // google.protobuf.UInt32Value width_xx = 39;
-        [Browsable(false)]
-        public ObservableCollectionWithActions<RolePropertyAccess> ListRolePropertyAccessSettings // Property.tt Line: 8
-        { 
-            get { return this._ListRolePropertyAccessSettings; }
-            set
-            {
-                if (this._ListRolePropertyAccessSettings != value)
-                {
-                    this.OnListRolePropertyAccessSettingsChanging(value);
-                    _ListRolePropertyAccessSettings = value;
-                    this.OnListRolePropertyAccessSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ObservableCollectionWithActions<RolePropertyAccess> _ListRolePropertyAccessSettings;
-        IReadOnlyList<IRolePropertyAccess> IProperty.ListRolePropertyAccessSettings { get { return (this as Property).ListRolePropertyAccessSettings; } } // Property.tt Line: 26
-        partial void OnListRolePropertyAccessSettingsChanging(ObservableCollection<RolePropertyAccess> to); // Property.tt Line: 27
-        partial void OnListRolePropertyAccessSettingsChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Sortable")]
-        [Description("Sortable in data grid")]
-        public EnumUseType IsGridSortable // Property.tt Line: 55
-        { 
-            get { return this._IsGridSortable; }
-            set
-            {
-                if (this._IsGridSortable != value)
-                {
-                    this.OnIsGridSortableChanging(ref value);
-                    this._IsGridSortable = value;
-                    this.OnIsGridSortableChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumUseType _IsGridSortable;
-        partial void OnIsGridSortableChanging(ref EnumUseType to); // Property.tt Line: 79
-        partial void OnIsGridSortableChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Custom Sortable")]
-        [Description("Custom sortable in data grid by using custom function")]
-        public EnumUseType IsGridSortableCustom // Property.tt Line: 55
-        { 
-            get { return this._IsGridSortableCustom; }
-            set
-            {
-                if (this._IsGridSortableCustom != value)
-                {
-                    this.OnIsGridSortableCustomChanging(ref value);
-                    this._IsGridSortableCustom = value;
-                    this.OnIsGridSortableCustomChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumUseType _IsGridSortableCustom;
-        partial void OnIsGridSortableCustomChanging(ref EnumUseType to); // Property.tt Line: 79
-        partial void OnIsGridSortableCustomChanged();
-        
-        [Category("Auto Layout")]
-        [DisplayName("Filterable")]
-        [Description("Filterable in data grid")]
-        public EnumUseType IsGridFilterable // Property.tt Line: 55
-        { 
-            get { return this._IsGridFilterable; }
-            set
-            {
-                if (this._IsGridFilterable != value)
-                {
-                    this.OnIsGridFilterableChanging(ref value);
-                    this._IsGridFilterable = value;
-                    this.OnIsGridFilterableChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumUseType _IsGridFilterable;
-        partial void OnIsGridFilterableChanging(ref EnumUseType to); // Property.tt Line: 79
-        partial void OnIsGridFilterableChanged();
-        
-        // Protobuf field position
-        // Reserved positions: 1 - primary key
-        [ReadOnly(true)]
-        public uint Position // Property.tt Line: 55
-        { 
-            get { return this._Position; }
-            set
-            {
-                if (this._Position != value)
-                {
-                    this.OnPositionChanging(ref value);
-                    this._Position = value;
-                    this.OnPositionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint _Position;
-        partial void OnPositionChanging(ref uint to); // Property.tt Line: 79
-        partial void OnPositionChanged();
-        
-        [Browsable(false)]
-        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
-        { 
-            get { return this._ListNodeGeneratorsSettings; }
-            set
-            {
-                if (this._ListNodeGeneratorsSettings != value)
-                {
-                    this.OnListNodeGeneratorsSettingsChanging(value);
-                    _ListNodeGeneratorsSettings = value;
-                    this.OnListNodeGeneratorsSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        IReadOnlyList<IPluginGeneratorNodeSettings> IProperty.ListNodeGeneratorsSettings { get { return (this as Property).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
-        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
-        partial void OnListNodeGeneratorsSettingsChanged();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // Class.tt Line: 110
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
-        */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 130
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 135 proto_property
-        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        #endregion Properties
-    }
-    // Class.tt Line: 6
-    //       IsWithParent: True 
-    //      IsDefaultBase: True 
-    // IsConfigObjectBase: True 
-    //      IsGenSettings: True 
-    //     IsBindableBase: True 
-    //     IsEditableBase: True 
-    //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupConstantGroupsValidator : ValidatorBase<GroupConstantGroups, GroupConstantGroupsValidator> { } // Class.tt Line: 15
+    // C O N S T A N T
+    // @exclude
+    // ####################################### C O N S T A N T ##########################################
     public partial class GroupConstantGroups : ConfigObjectVmGenSettings<GroupConstantGroups, GroupConstantGroupsValidator>, IComparable<GroupConstantGroups>, IConfigAcceptVisitor, IGroupConstantGroups // Class.tt Line: 16
     {
         #region CTOR
@@ -15908,7 +15912,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //    IsISortingValue: True 
     public partial class ConstantValidator : ValidatorBase<Constant, ConstantValidator> { } // Class.tt Line: 15
     // Constant application wise value
-    // 
     public partial class Constant : ConfigObjectVmGenSettings<Constant, ConstantValidator>, IComparable<Constant>, IConfigAcceptVisitor, IConstant // Class.tt Line: 16
     {
         #region CTOR
@@ -16757,6 +16760,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupListEnumerationsValidator : ValidatorBase<GroupListEnumerations, GroupListEnumerationsValidator> { } // Class.tt Line: 15
+    // E N U M E R A T I O N
+    // @exclude
+    // ####################################### E N U M E R A T I O N ##########################################
     public partial class GroupListEnumerations : ConfigObjectVmGenSettings<GroupListEnumerations, GroupListEnumerationsValidator>, IComparable<GroupListEnumerations>, IConfigAcceptVisitor, IGroupListEnumerations // Class.tt Line: 16
     {
         #region CTOR
@@ -18177,6 +18183,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class CatalogFolderValidator : ValidatorBase<CatalogFolder, CatalogFolderValidator> { } // Class.tt Line: 15
+    // C A T A L O G
+    // @exclude
+    // ####################################### C A T A L O G ##########################################
     public partial class CatalogFolder : ConfigObjectVmGenSettings<CatalogFolder, CatalogFolderValidator>, IComparable<CatalogFolder>, IConfigAcceptVisitor, ICatalogFolder // Class.tt Line: 16
     {
         #region CTOR
@@ -21493,6 +21502,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupDocumentsValidator : ValidatorBase<GroupDocuments, GroupDocumentsValidator> { } // Class.tt Line: 15
+    // D O C U M E N T
+    // @exclude
+    // ####################################### D O C U M E N T ##########################################
     public partial class GroupDocuments : ConfigObjectVmGenSettings<GroupDocuments, GroupDocumentsValidator>, IComparable<GroupDocuments>, IConfigAcceptVisitor, IGroupDocuments // Class.tt Line: 16
     {
         #region CTOR
@@ -23734,6 +23746,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupListJournalsValidator : ValidatorBase<GroupListJournals, GroupListJournalsValidator> { } // Class.tt Line: 15
+    // J O U R N A L
+    // @exclude
+    // ####################################### J O U R N A L ##########################################
     public partial class GroupListJournals : ConfigObjectVmGenSettings<GroupListJournals, GroupListJournalsValidator>, IComparable<GroupListJournals>, IConfigAcceptVisitor, IGroupListJournals // Class.tt Line: 16
     {
         #region CTOR
@@ -25020,6 +25035,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupListFormsValidator : ValidatorBase<GroupListForms, GroupListFormsValidator> { } // Class.tt Line: 15
+    // F O R M S
+    // @exclude
+    // ####################################### F O R M S ##########################################
     public partial class GroupListForms : ConfigObjectVmGenSettings<GroupListForms, GroupListFormsValidator>, IComparable<GroupListForms>, IConfigAcceptVisitor, IGroupListForms // Class.tt Line: 16
     {
         #region CTOR
@@ -31017,6 +31035,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupListReportsValidator : ValidatorBase<GroupListReports, GroupListReportsValidator> { } // Class.tt Line: 15
+    // R E P O R T S
+    // @exclude
+    // ####################################### R E P O R T S ##########################################
     public partial class GroupListReports : ConfigObjectVmGenSettings<GroupListReports, GroupListReportsValidator>, IComparable<GroupListReports>, IConfigAcceptVisitor, IGroupListReports // Class.tt Line: 16
     {
         #region CTOR
@@ -32017,11 +32038,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_group_list_roles p);
         void Visit(Proto.Config.proto_main_view_form p);
         void Visit(Proto.Config.proto_group_list_main_view_forms p);
+        void Visit(Proto.Config.proto_group_list_properties p);
+        void Visit(Proto.Config.proto_property p);
         void Visit(Proto.Config.proto_group_list_details p);
         void Visit(Proto.Config.proto_detail p);
-        void Visit(Proto.Config.proto_group_list_properties p);
         void Visit(Proto.Config.proto_property_data_generator p);
-        void Visit(Proto.Config.proto_property p);
         void Visit(Proto.Config.proto_group_constant_groups p);
         void Visit(Proto.Config.proto_group_list_constants p);
         void Visit(Proto.Config.proto_constant p);
@@ -32323,6 +32344,28 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
+        protected override void OnVisit(GroupListProperties p) // ValidationVisitor.tt Line: 15
+        {
+            this.OnVisit((IValidatableWithSeverity)p);
+            foreach (var t in p.ListRolePropertyAccessSettings) // ValidationVisitor.tt Line: 27
+                ValidateSubAndCollectErrors(p, t);
+        }
+        protected override void OnVisitEnd(GroupListProperties p) // ValidationVisitor.tt Line: 47
+        {
+            this.OnVisitEnd((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisit(Property p) // ValidationVisitor.tt Line: 15
+        {
+            this.OnVisit((IValidatableWithSeverity)p);
+            ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 30
+            ValidateSubAndCollectErrors(p, p.DataGenerator); // ValidationVisitor.tt Line: 30
+            foreach (var t in p.ListRolePropertyAccessSettings) // ValidationVisitor.tt Line: 27
+                ValidateSubAndCollectErrors(p, t);
+        }
+        protected override void OnVisitEnd(Property p) // ValidationVisitor.tt Line: 47
+        {
+            this.OnVisitEnd((IValidatableWithSeverity)p);
+        }
         protected override void OnVisit(GroupListDetails p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
@@ -32343,33 +32386,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListProperties p) // ValidationVisitor.tt Line: 15
-        {
-            this.OnVisit((IValidatableWithSeverity)p);
-            foreach (var t in p.ListRolePropertyAccessSettings) // ValidationVisitor.tt Line: 27
-                ValidateSubAndCollectErrors(p, t);
-        }
-        protected override void OnVisitEnd(GroupListProperties p) // ValidationVisitor.tt Line: 47
-        {
-            this.OnVisitEnd((IValidatableWithSeverity)p);
-        }
         protected override void OnVisit(PropertyDataGenerator p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
         protected override void OnVisitEnd(PropertyDataGenerator p) // ValidationVisitor.tt Line: 47
-        {
-            this.OnVisitEnd((IValidatableWithSeverity)p);
-        }
-        protected override void OnVisit(Property p) // ValidationVisitor.tt Line: 15
-        {
-            this.OnVisit((IValidatableWithSeverity)p);
-            ValidateSubAndCollectErrors(p, p.DataType); // ValidationVisitor.tt Line: 30
-            ValidateSubAndCollectErrors(p, p.DataGenerator); // ValidationVisitor.tt Line: 30
-            foreach (var t in p.ListRolePropertyAccessSettings) // ValidationVisitor.tt Line: 27
-                ValidateSubAndCollectErrors(p, t);
-        }
-        protected override void OnVisitEnd(Property p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -32974,6 +32995,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(GroupListMainViewForms p) { }
         protected virtual void OnVisitEnd(GroupListMainViewForms p) { }
+        public void Visit(GroupListProperties p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(GroupListProperties p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(GroupListProperties p) { }
+        protected virtual void OnVisitEnd(GroupListProperties p) { }
+        public void Visit(Property p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(Property p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(Property p) { }
+        protected virtual void OnVisitEnd(Property p) { }
         public void Visit(GroupListDetails p)
         {
             this.OnVisit(p);
@@ -32994,16 +33035,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(Detail p) { }
         protected virtual void OnVisitEnd(Detail p) { }
-        public void Visit(GroupListProperties p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(GroupListProperties p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(GroupListProperties p) { }
-        protected virtual void OnVisitEnd(GroupListProperties p) { }
         public void Visit(PropertyDataGenerator p)
         {
             this.OnVisit(p);
@@ -33014,16 +33045,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(PropertyDataGenerator p) { }
         protected virtual void OnVisitEnd(PropertyDataGenerator p) { }
-        public void Visit(Property p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(Property p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(Property p) { }
-        protected virtual void OnVisitEnd(Property p) { }
         public void Visit(GroupConstantGroups p)
         {
             this.OnVisit(p);
@@ -33363,14 +33384,14 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void VisitEnd(MainViewForm p);
         void Visit(GroupListMainViewForms p);
         void VisitEnd(GroupListMainViewForms p);
-        void Visit(GroupListDetails p);
-        void VisitEnd(GroupListDetails p);
-        void Visit(Detail p);
-        void VisitEnd(Detail p);
         void Visit(GroupListProperties p);
         void VisitEnd(GroupListProperties p);
         void Visit(Property p);
         void VisitEnd(Property p);
+        void Visit(GroupListDetails p);
+        void VisitEnd(GroupListDetails p);
+        void Visit(Detail p);
+        void VisitEnd(Detail p);
         void Visit(GroupConstantGroups p);
         void VisitEnd(GroupConstantGroups p);
         void Visit(GroupListConstants p);

@@ -26,7 +26,7 @@ message timestamp_nullable {
     google.protobuf.Timestamp value = 2;
 }
 */
-/** 
+/** U S E R   S E T T I N G S
  * @exclude
  *    ##### IMPORTANT #####
  * use 'proto_' prefix for all messages !!!
@@ -47,7 +47,7 @@ message proto_user_settings_opened_config {
     // @attr [Browsable(false)]
     string config_path = 3;
 }
-/** 
+/** P L U G I N S
  * @exclude
  * ####################################### P L U G I N S ##################################
  */
@@ -121,7 +121,7 @@ message proto_settings_config {
     // min version supported by current version for migration
     int32 version_migration_support_from_min = 8;
 }
-/** 
+/** C O N F I G
  * @exclude
  * ####################################### C O N F I G ##########################################
  */
@@ -226,7 +226,7 @@ message proto_config {
     // @attr [Browsable(false)]
     proto_group_list_app_solutions  group_app_solutions = 105;
 }
-/** 
+/** A P P S
  * @exclude
  * ####################################### A P P S ##########################################
  */
@@ -271,14 +271,6 @@ message proto_plugin_generator_project_settings {
     //string app_generator_guid = 2;
     string settings = 3; 
 }
-// @base BaseSettings
-/*message proto_plugin_group_generators_default_settings {
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // Guid of group generators
-    string app_group_generators_guid = 2;
-    string settings = 3; 
-}*/
 // @base ConfigObjectVmBase
 message proto_group_list_app_solutions {
     // @attr [Category("")]
@@ -307,43 +299,6 @@ message proto_group_list_app_solutions {
     // @attr [DisplayName("Default DB")]
     //proto_app_db_settings default_db = 6;
 }
-/*
-message proto_plugins_group {
-    // @attr [PropertyOrderAttribute(1)]
-    // @attr [DisplayName("Group")]
-    // @attr [Description("Group compatible plugins of one vendor")]
-    // @attr [Editor(typeof(EditorPluginsGroupSelection), typeof(EditorPluginsGroupSelection))]
-    string plugins_group_guid = 1;
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("Info")]
-    // @attr [Description("Plugin short information")]
-    // @attr [ReadOnly(true)]
-    string plugins_group_info = 2;
-    // @attr [PropertyOrderAttribute(3)]
-    // @attr [DisplayName("Settings")]
-    // @attr [Description("Global settings for plugin generators")]
-    // @attr [ExpandableObjectAttribute()]
-    string plugins_global_settins = 3;
-}
-*/
-// @interface ISortingValue
-// @base ConfigObjectCommonBase
-/*
-message proto_plugin_group_generators_settings {
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // @attr [ReadOnly(true)]
-    string name = 2;
-    string app_group_generators_guid = 3;
-    string settings = 4; 
-    // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
-    // @attr [Browsable(false)]
-    bool is_new = 9;
-    // @attr [Browsable(false)]
-    bool is_marked_for_deletion = 11;
-}*/
-
 // @interface ICanAddNode
 // @interface ISortingValue
 // @base ConfigObjectVmBase
@@ -464,7 +419,6 @@ message proto_app_project {
     // @attr [DisplayName("Default DB")]
     // @attr [Description("Database connection. If empty, solution settings are used")]
     //proto_app_db_settings default_db = 8;
-
 }
 // @interface ISortingValue
 // @base ConfigObjectCommonBase
@@ -575,11 +529,10 @@ message proto_plugin_generator_node_default_settings {
     string node_settings_vm_guid = 2;
     string settings = 3; 
 }
-/** 
+/** M O D E L
  * @exclude
  * ####################################### M O D E L ##########################################
  */
- 
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_primary_key_type {
     INT = 0;
@@ -762,7 +715,7 @@ message proto_model {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-/** 
+/** D A T A  T Y P E
  * @exclude
  * ####################################### D A T A  T Y P E ##########################################
  */
@@ -837,7 +790,7 @@ message proto_data_type {
     // @attr [Browsable(false)]
     bool is_ref_parent = 22;
 }
-/** 
+/** C O M M O N
  * @exclude
  * ####################################### C O M M O N ##########################################
  */
@@ -867,7 +820,10 @@ message proto_group_list_common {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-// User's role
+/** C O M M O N   R O L E S
+ * @exclude
+ * ####################################### C O M M O N   R O L E S ##############################
+ */
 // @interface ICanAddNode
 // @interface ISortingValue
 message proto_role {
@@ -1024,7 +980,6 @@ message proto_role_document_access {
     proto_enum_document_access edit_access = 3;
     proto_enum_print_access print_access = 4;
 }
-
 message proto_group_list_roles {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -1048,7 +1003,10 @@ message proto_group_list_roles {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-// main view forms hierarchy parent
+/** C O M M O N   F O R M S
+ * @exclude
+ * ####################################### C O M M O N   F O R M S ##############################
+ */
 // @interface ISortingValue
 message proto_main_view_form {
     // @attr [Category("")]
@@ -1102,10 +1060,244 @@ message proto_group_list_main_view_forms {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-/** 
+/** P R O P E R T Y
  * @exclude
  * ####################################### P R O P E R T Y ##########################################
  */
+message proto_group_list_properties {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [Browsable(false)]
+    repeated proto_property list_properties = 6;
+    // Last generated Protobuf field position
+    // @attr [ReadOnly(true)]
+    uint32 last_gen_position = 7;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 8;
+
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Sortable")]
+    // @attr [Description("Sortable in data grid")]
+    proto_enum_use_type is_grid_sortable = 71;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Custom Sortable")]
+    // @attr [Description("Custom sortable in data grid by using custom function")]
+    proto_enum_use_type is_grid_sortable_custom = 72;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Filterable")]
+    // @attr [Description("Filterable in data grid")]
+    proto_enum_use_type is_grid_filterable = 73;
+
+    // @attr [Browsable(false)]
+    repeated proto_role_property_access list_role_property_access_settings = 101;
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+// @interface ICanAddNode
+// @interface ISortingValue
+message proto_property {
+    reserved 21; // bool
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    // @attr [Description("Property name")]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Typically used as UI field label")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    // @attr [DisplayName("Description")]
+    // @attr [Description("Description of property")]
+    string description = 5;
+    // @attr [Browsable(false)]
+    proto_data_type data_type = 6;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(20)]
+    // @attr [DisplayName("Can be NULL")]
+    // @attr [Description("If unchecked always expected data")]
+    bool is_nullable = 7;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(8)]
+    // @attr [DisplayName("Default")]
+    // @attr [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
+    string default_value = 8; 
+    // @attr [Browsable(false)]
+    bool is_new = 9;
+    // @attr [Browsable(false)]
+    bool is_marked_for_deletion = 11;
+
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(32)]
+    // @attr [DisplayName("Expected")]
+    // @attr [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
+    string range_values_requirement_str = 16;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(34)]
+    // @attr [DisplayName("Min Length")]
+    // @attr [Description("Minimum length of string")]
+    string min_length_requirement = 18;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(35)]
+    // @attr [DisplayName("Max Length")]
+    // @attr [Description("Maximum length of string")]
+    string max_length_requirement = 19;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(36)]
+    // @attr [DisplayName("Time accuracy")]
+    // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
+    proto_enum_time_accuracy_type accuracy_for_time = 20;
+
+
+    // @attr [PropertyOrderAttribute(23)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("UI attach")]
+    // @attr [Description("UI engine will try put this field on same line as previous field")]
+    bool is_try_attach = 22;
+    // @attr [PropertyOrderAttribute(22)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("UI lines")]
+    // @attr [Description("Lines on screen for edit box")]
+    int32 lines_on_screen = 23;
+    // @attr [PropertyOrderAttribute(24)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Start UI row")]
+    // @attr [Description("Start new UI row for this property")]
+    bool is_start_new_row = 24;
+    // @attr [PropertyOrderAttribute(26)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Tab Name")]
+    // @attr [Description("If not empty, then start new tab in tab control. If empty, then continue adding fields in current control")]
+    string tab_name = 25;
+    // @attr [PropertyOrderAttribute(25)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Start Tab Control")]
+    // @attr [Description("Start new tab control as current control")]
+    bool is_start_new_tab_control = 26;
+    // @attr [PropertyOrderAttribute(27)]
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Stop Tab Control")]
+    // @attr [Description("Stop using tab control for layout")]
+    bool is_stop_tab_control = 27;
+
+
+    // @attr [PropertyOrderAttribute(31)]
+    // @attr [ExpandableObjectAttribute()]
+    // @attr [DisplayName("Data Generator")]
+    // @attr [Browsable(false)]
+    proto_property_data_generator data_generator = 31; 
+
+    // @attr [Browsable(false)]
+    repeated proto_role_property_access list_role_property_access_settings = 101;
+/*
+    // @attr [PropertyOrderAttribute(28)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("Start Grid")]
+    // @attr [Description("Start new container of 12 columns grid system")]
+    bool is_start_12_col_grid_system = 28;
+    // @attr [PropertyOrderAttribute(29)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("Stop Grid")]
+    // @attr [Description("Stop current container of 12 columns grid system")]
+    bool is_stop_12_col_grid_system = 29;
+    // @attr [PropertyOrderAttribute(30)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("Start Column")]
+    // @attr [Description("Start new column of 12 columns grid system")]
+    bool is_start_new_column_12_col_grid_system = 30;
+    // @attr [PropertyOrderAttribute(32)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("Start Row")]
+    // @attr [Description("Start new row of 12 columns grid system")]
+    bool is_start_new_row_12_col_grid_system = 31;
+    // @attr [PropertyOrderAttribute(31)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("Column Name")]
+    // @attr [Description("Column Name of 12 columns grid system")]
+    string column_name_12_col_grid_system = 32;
+    // @attr [PropertyOrderAttribute(33)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("When Hide")]
+    // @attr [Description("Condition of hiding base on screen size")]
+    proto_enum_hidden_type hide_type = 33;
+    // @attr [PropertyOrderAttribute(34)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("XS")]
+    // @attr [Description("Extra small. Small to large phone. Range: < 600px")]
+    google.protobuf.UInt32Value width_xs = 34;
+    // @attr [PropertyOrderAttribute(35)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("SM")]
+    // @attr [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
+    google.protobuf.UInt32Value width_sm = 35;
+    // @attr [PropertyOrderAttribute(36)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("MD")]
+    // @attr [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
+    google.protobuf.UInt32Value width_md = 36;
+    // @attr [PropertyOrderAttribute(37)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("LG")]
+    // @attr [Description("Large. Desktop. Range: 1280px > < 1920px")]
+    google.protobuf.UInt32Value width_lg = 37;
+    // @attr [PropertyOrderAttribute(38)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("XL")]
+    // @attr [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
+    google.protobuf.UInt32Value width_xl = 38;
+    // @attr [PropertyOrderAttribute(39)]
+    // @attr [Category("12 Column Grid System")]
+    // @attr [DisplayName("XX")]
+    // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
+    google.protobuf.UInt32Value width_xx = 39;
+*/
+
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Sortable")]
+    // @attr [Description("Sortable in data grid")]
+    proto_enum_use_type is_grid_sortable = 71;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Custom Sortable")]
+    // @attr [Description("Custom sortable in data grid by using custom function")]
+    proto_enum_use_type is_grid_sortable_custom = 72;
+    // @attr [Category("Auto Layout")]
+    // @attr [DisplayName("Filterable")]
+    // @attr [Description("Filterable in data grid")]
+    proto_enum_use_type is_grid_filterable = 73;
+
+    // Protobuf field position
+    // Reserved positions: 1 - primary key
+    // @attr [ReadOnly(true)]
+    uint32 position = 110;
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+/** D E T A I L S
+ * @exclude
+ * ####################################### D E T A I L S ########################################
+ */
+
 message proto_group_list_details {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -1282,48 +1474,10 @@ message proto_detail {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-message proto_group_list_properties {
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(-2)]
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(1)]
-    string name = 2;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("UI name")]
-    // @attr [Description("Used as label/name for UI")]
-    string name_ui = 4;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(3)]
-    string description = 5;
-    // @attr [Browsable(false)]
-    repeated proto_property list_properties = 6;
-    // Last generated Protobuf field position
-    // @attr [ReadOnly(true)]
-    uint32 last_gen_position = 7;
-    // @attr [Browsable(false)]
-    uint64 sorting_value = 8;
-
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Sortable")]
-    // @attr [Description("Sortable in data grid")]
-    proto_enum_use_type is_grid_sortable = 71;
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Custom Sortable")]
-    // @attr [Description("Custom sortable in data grid by using custom function")]
-    proto_enum_use_type is_grid_sortable_custom = 72;
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Filterable")]
-    // @attr [Description("Filterable in data grid")]
-    proto_enum_use_type is_grid_filterable = 73;
-
-    // @attr [Browsable(false)]
-    repeated proto_role_property_access list_role_property_access_settings = 101;
-    // @attr [Browsable(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
-}
+/** B O G U S   D A T A   T Y P E S
+ * @exclude
+ * ################################ B O G U S   D A T A   T Y P E S #############################
+ */
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_property_data_type {
     PT_NONE = 0;
@@ -1589,196 +1743,8 @@ message proto_property_data_generator {
     proto_enum_system_data_type system = 17;
     proto_enum_vehicle_data_type vehicle = 18;
     proto_enum_random_data_type random = 19;
-
 }
-// @interface ICanAddNode
-// @interface ISortingValue
-message proto_property {
-    reserved 21; // bool
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(-2)]
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(1)]
-    // @attr [Description("Property name")]
-    string name = 2;
-    // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("UI name")]
-    // @attr [Description("Typically used as UI field label")]
-    string name_ui = 4;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(3)]
-    // @attr [DisplayName("Description")]
-    // @attr [Description("Description of property")]
-    string description = 5;
-    // @attr [Browsable(false)]
-    proto_data_type data_type = 6;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(20)]
-    // @attr [DisplayName("Can be NULL")]
-    // @attr [Description("If unchecked always expected data")]
-    bool is_nullable = 7;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(8)]
-    // @attr [DisplayName("Default")]
-    // @attr [Description("Chunk of code to calculate Default value (can be inserted in generated code by generator if supported)")]
-    string default_value = 8; 
-    // @attr [Browsable(false)]
-    bool is_new = 9;
-    // @attr [Browsable(false)]
-    bool is_marked_for_deletion = 11;
-
-
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(32)]
-    // @attr [DisplayName("Expected")]
-    // @attr [Description("Expected values or ranges of values. Use '#' to create range, and ';' to separate values or ranges")]
-    string range_values_requirement_str = 16;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(34)]
-    // @attr [DisplayName("Min Length")]
-    // @attr [Description("Minimum length of string")]
-    string min_length_requirement = 18;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(35)]
-    // @attr [DisplayName("Max Length")]
-    // @attr [Description("Maximum length of string")]
-    string max_length_requirement = 19;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(36)]
-    // @attr [DisplayName("Time accuracy")]
-    // @attr [Description("Time accuracy for TimeOnly type. Business model is expecting selected accuracy")]
-    proto_enum_time_accuracy_type accuracy_for_time = 20;
-
-
-    // @attr [PropertyOrderAttribute(23)]
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("UI attach")]
-    // @attr [Description("UI engine will try put this field on same line as previous field")]
-    bool is_try_attach = 22;
-    // @attr [PropertyOrderAttribute(22)]
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("UI lines")]
-    // @attr [Description("Lines on screen for edit box")]
-    int32 lines_on_screen = 23;
-    // @attr [PropertyOrderAttribute(24)]
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Start UI row")]
-    // @attr [Description("Start new UI row for this property")]
-    bool is_start_new_row = 24;
-    // @attr [PropertyOrderAttribute(26)]
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Tab Name")]
-    // @attr [Description("If not empty, then start new tab in tab control. If empty, then continue adding fields in current control")]
-    string tab_name = 25;
-    // @attr [PropertyOrderAttribute(25)]
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Start Tab Control")]
-    // @attr [Description("Start new tab control as current control")]
-    bool is_start_new_tab_control = 26;
-    // @attr [PropertyOrderAttribute(27)]
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Stop Tab Control")]
-    // @attr [Description("Stop using tab control for layout")]
-    bool is_stop_tab_control = 27;
-
-
-    // @attr [PropertyOrderAttribute(31)]
-    // @attr [ExpandableObjectAttribute()]
-    // @attr [DisplayName("Data Generator")]
-    // @attr [Browsable(false)]
-    proto_property_data_generator data_generator = 31; 
-
-    // @attr [Browsable(false)]
-    repeated proto_role_property_access list_role_property_access_settings = 101;
-/*
-    // @attr [PropertyOrderAttribute(28)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("Start Grid")]
-    // @attr [Description("Start new container of 12 columns grid system")]
-    bool is_start_12_col_grid_system = 28;
-    // @attr [PropertyOrderAttribute(29)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("Stop Grid")]
-    // @attr [Description("Stop current container of 12 columns grid system")]
-    bool is_stop_12_col_grid_system = 29;
-    // @attr [PropertyOrderAttribute(30)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("Start Column")]
-    // @attr [Description("Start new column of 12 columns grid system")]
-    bool is_start_new_column_12_col_grid_system = 30;
-    // @attr [PropertyOrderAttribute(32)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("Start Row")]
-    // @attr [Description("Start new row of 12 columns grid system")]
-    bool is_start_new_row_12_col_grid_system = 31;
-    // @attr [PropertyOrderAttribute(31)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("Column Name")]
-    // @attr [Description("Column Name of 12 columns grid system")]
-    string column_name_12_col_grid_system = 32;
-    // @attr [PropertyOrderAttribute(33)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("When Hide")]
-    // @attr [Description("Condition of hiding base on screen size")]
-    proto_enum_hidden_type hide_type = 33;
-    // @attr [PropertyOrderAttribute(34)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("XS")]
-    // @attr [Description("Extra small. Small to large phone. Range: < 600px")]
-    google.protobuf.UInt32Value width_xs = 34;
-    // @attr [PropertyOrderAttribute(35)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("SM")]
-    // @attr [Description("Small. Small to medium tablet. Range: 600px > < 960px")]
-    google.protobuf.UInt32Value width_sm = 35;
-    // @attr [PropertyOrderAttribute(36)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("MD")]
-    // @attr [Description("Medium. Large tablet to laptop. Range: 960px > < 1280px")]
-    google.protobuf.UInt32Value width_md = 36;
-    // @attr [PropertyOrderAttribute(37)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("LG")]
-    // @attr [Description("Large. Desktop. Range: 1280px > < 1920px")]
-    google.protobuf.UInt32Value width_lg = 37;
-    // @attr [PropertyOrderAttribute(38)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("XL")]
-    // @attr [Description("Extra Large. HD and 4k. Range: 1920px > < 2560px")]
-    google.protobuf.UInt32Value width_xl = 38;
-    // @attr [PropertyOrderAttribute(39)]
-    // @attr [Category("12 Column Grid System")]
-    // @attr [DisplayName("XX")]
-    // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
-    google.protobuf.UInt32Value width_xx = 39;
-*/
-
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Sortable")]
-    // @attr [Description("Sortable in data grid")]
-    proto_enum_use_type is_grid_sortable = 71;
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Custom Sortable")]
-    // @attr [Description("Custom sortable in data grid by using custom function")]
-    proto_enum_use_type is_grid_sortable_custom = 72;
-    // @attr [Category("Auto Layout")]
-    // @attr [DisplayName("Filterable")]
-    // @attr [Description("Filterable in data grid")]
-    proto_enum_use_type is_grid_filterable = 73;
-
-    // Protobuf field position
-    // Reserved positions: 1 - primary key
-    // @attr [ReadOnly(true)]
-    uint32 position = 110;
-    // @attr [Browsable(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
-}
-/** 
+/** C O N S T A N T
  * @exclude
  * ####################################### C O N S T A N T ##########################################
  */
@@ -1852,9 +1818,7 @@ message proto_group_list_constants {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-//
 // Constant application wise value
-//
 // @interface ICanAddNode
 // @interface ISortingValue
 message proto_constant {
@@ -1947,7 +1911,7 @@ message proto_constant {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-/** 
+/** E N U M E R A T I O N
  * @exclude
  * ####################################### E N U M E R A T I O N ##########################################
  */
@@ -2072,7 +2036,7 @@ message proto_enumeration_pair {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-/** 
+/** C A T A L O G
  * @exclude
  * ####################################### C A T A L O G ##########################################
  */
@@ -2427,7 +2391,7 @@ message proto_group_list_catalogs {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-/** 
+/** D O C U M E N T
  * @exclude
  * ####################################### D O C U M E N T ##########################################
  */
@@ -2624,7 +2588,7 @@ message proto_group_list_documents {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-/** 
+/** J O U R N A L
  * @exclude
  * ####################################### J O U R N A L ##########################################
  */
@@ -2718,7 +2682,7 @@ message proto_doc_in_journal {
     string guid = 1;
     repeated string list_property_guids = 2;
 }
-/** 
+/** F O R M S
  * @exclude
  * ####################################### F O R M S ##########################################
  */
@@ -2850,11 +2814,6 @@ message proto_form {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-
-
-
-
-
 // Children are collection of Grid System Rows 
 // @interface ICanAddNode
 // @interface ISortingValue
@@ -3273,12 +3232,7 @@ message proto_form_tree {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-
-
-
-
-
-/** 
+/** R E P O R T S
  * @exclude
  * ####################################### R E P O R T S ##########################################
  */
@@ -3335,7 +3289,7 @@ message proto_report {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-/** 
+/** U T I L S
  * @exclude
  * ####################################### U T I L S ##########################################
  */

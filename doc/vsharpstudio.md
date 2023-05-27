@@ -336,7 +336,9 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 <a name="proto_config.proto_catalog_folder"></a>
 
 ### proto_catalog_folder
-
+C A T A L O G
+@exclude
+####################################### C A T A L O G ##########################################
 
 
 | Field | Type | Label | Description |
@@ -426,7 +428,6 @@ Configuration config
 
 ### proto_constant
 Constant application wise value
-
 @interface ICanAddNode
 @interface ISortingValue
 
@@ -968,7 +969,9 @@ No Children
 <a name="proto_config.proto_group_constant_groups"></a>
 
 ### proto_group_constant_groups
-
+C O N S T A N T
+@exclude
+####################################### C O N S T A N T ##########################################
 
 
 | Field | Type | Label | Description |
@@ -990,7 +993,9 @@ No Children
 <a name="proto_config.proto_group_documents"></a>
 
 ### proto_group_documents
-
+D O C U M E N T
+@exclude
+####################################### D O C U M E N T ##########################################
 
 
 | Field | Type | Label | Description |
@@ -1189,7 +1194,9 @@ Common parameters section
 <a name="proto_config.proto_group_list_enumerations"></a>
 
 ### proto_group_list_enumerations
-
+E N U M E R A T I O N
+@exclude
+####################################### E N U M E R A T I O N ##########################################
 
 
 | Field | Type | Label | Description |
@@ -1210,7 +1217,9 @@ Common parameters section
 <a name="proto_config.proto_group_list_forms"></a>
 
 ### proto_group_list_forms
-
+F O R M S
+@exclude
+####################################### F O R M S ##########################################
 
 
 | Field | Type | Label | Description |
@@ -1231,7 +1240,9 @@ Common parameters section
 <a name="proto_config.proto_group_list_journals"></a>
 
 ### proto_group_list_journals
-
+J O U R N A L
+@exclude
+####################################### J O U R N A L ##########################################
 
 
 | Field | Type | Label | Description |
@@ -1294,7 +1305,9 @@ main view forms hierarchy node with children
 <a name="proto_config.proto_group_list_properties"></a>
 
 ### proto_group_list_properties
-
+P R O P E R T Y
+@exclude
+####################################### P R O P E R T Y ##########################################
 
 
 | Field | Type | Label | Description |
@@ -1320,7 +1333,9 @@ main view forms hierarchy node with children
 <a name="proto_config.proto_group_list_reports"></a>
 
 ### proto_group_list_reports
-
+R E P O R T S
+@exclude
+####################################### R E P O R T S ##########################################
 
 
 | Field | Type | Label | Description |
@@ -1390,7 +1405,6 @@ main view forms hierarchy node with children
 <a name="proto_config.proto_main_view_form"></a>
 
 ### proto_main_view_form
-main view forms hierarchy parent
 @interface ISortingValue
 
 
@@ -1713,7 +1727,6 @@ Configuration model
 <a name="proto_config.proto_role"></a>
 
 ### proto_role
-User&#39;s role
 @interface ICanAddNode
 @interface ISortingValue
 

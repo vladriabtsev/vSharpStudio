@@ -747,7 +747,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IGroupListMainViewForms GroupViewForms { get; } // ModelInterfaces.tt Line: 59
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
-    // User's role
     
     public partial interface IRole : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -810,7 +809,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	int Count();
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
-    // main view forms hierarchy parent
     
     public partial interface IMainViewForm : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -834,64 +832,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	int Count();
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
-    
-    public partial interface IGroupListDetails : IGuid, IName // ModelInterfaces.tt Line: 33
-    {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IDetail> ListDetails { get; } // ModelInterfaces.tt Line: 48
-    	IDetail this[int index] { get; }
-    	int Count();
-    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IRoleDetailAccess> ListRoleDetailAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
-    }
-    
-    public partial interface IDetail : IGuid, IName // ModelInterfaces.tt Line: 33
-    {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	// Create Index for foreign key navigation property
-    	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 59
-    	// Protobuf field position
-    	// Reserved positions: 1 - primary key
-    	uint Position { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
-    	int ShortId { get; } // ModelInterfaces.tt Line: 55
-    	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewTab { get; } // ModelInterfaces.tt Line: 55
-    	string TabName { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 55
-    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
-    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 59
-    	IReadOnlyList<IRoleDetailAccess> ListRoleDetailAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
-    }
+    // P R O P E R T Y
+    // @exclude
+    // ####################################### P R O P E R T Y ##########################################
     
     public partial interface IGroupListProperties : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -908,27 +851,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IRolePropertyAccess> ListRolePropertyAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
-    }
-    
-    public partial interface IPropertyDataGenerator // ModelInterfaces.tt Line: 33
-    {
-    	EnumPropertyDataType DataType { get; } // ModelInterfaces.tt Line: 55
-    	EnumAddressDataType Address { get; } // ModelInterfaces.tt Line: 55
-    	EnumCommerceDataType Commerce { get; } // ModelInterfaces.tt Line: 55
-    	EnumCompanyDataType Company { get; } // ModelInterfaces.tt Line: 55
-    	EnumDateDataType Date { get; } // ModelInterfaces.tt Line: 55
-    	EnumDatabaseDataType Database { get; } // ModelInterfaces.tt Line: 55
-    	EnumFinanceDataType Finance { get; } // ModelInterfaces.tt Line: 55
-    	EnumHackerDataType Hacker { get; } // ModelInterfaces.tt Line: 55
-    	EnumImageDataType Image { get; } // ModelInterfaces.tt Line: 55
-    	EnumInternetDataType Internet { get; } // ModelInterfaces.tt Line: 55
-    	EnumLoremDataType Lorem { get; } // ModelInterfaces.tt Line: 55
-    	EnumNameDataType Name { get; } // ModelInterfaces.tt Line: 55
-    	EnumPhoneDataType Phone { get; } // ModelInterfaces.tt Line: 55
-    	EnumRantDataType Rant { get; } // ModelInterfaces.tt Line: 55
-    	EnumSystemDataType System { get; } // ModelInterfaces.tt Line: 55
-    	EnumVehicleDataType Vehicle { get; } // ModelInterfaces.tt Line: 55
-    	EnumRandomDataType Random { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IProperty : IGuid, IName // ModelInterfaces.tt Line: 33
@@ -1023,6 +945,88 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
+    public partial interface IGroupListDetails : IGuid, IName // ModelInterfaces.tt Line: 33
+    {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IDetail> ListDetails { get; } // ModelInterfaces.tt Line: 48
+    	IDetail this[int index] { get; }
+    	int Count();
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IRoleDetailAccess> ListRoleDetailAccessSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    }
+    
+    public partial interface IDetail : IGuid, IName // ModelInterfaces.tt Line: 33
+    {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	// Create Index for foreign key navigation property
+    	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 59
+    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 59
+    	// Protobuf field position
+    	// Reserved positions: 1 - primary key
+    	uint Position { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
+    	int ShortId { get; } // ModelInterfaces.tt Line: 55
+    	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStartNewTab { get; } // ModelInterfaces.tt Line: 55
+    	string TabName { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 55
+    	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
+    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
+    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
+    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 59
+    	IReadOnlyList<IRoleDetailAccess> ListRoleDetailAccessSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    }
+    
+    public partial interface IPropertyDataGenerator // ModelInterfaces.tt Line: 33
+    {
+    	EnumPropertyDataType DataType { get; } // ModelInterfaces.tt Line: 55
+    	EnumAddressDataType Address { get; } // ModelInterfaces.tt Line: 55
+    	EnumCommerceDataType Commerce { get; } // ModelInterfaces.tt Line: 55
+    	EnumCompanyDataType Company { get; } // ModelInterfaces.tt Line: 55
+    	EnumDateDataType Date { get; } // ModelInterfaces.tt Line: 55
+    	EnumDatabaseDataType Database { get; } // ModelInterfaces.tt Line: 55
+    	EnumFinanceDataType Finance { get; } // ModelInterfaces.tt Line: 55
+    	EnumHackerDataType Hacker { get; } // ModelInterfaces.tt Line: 55
+    	EnumImageDataType Image { get; } // ModelInterfaces.tt Line: 55
+    	EnumInternetDataType Internet { get; } // ModelInterfaces.tt Line: 55
+    	EnumLoremDataType Lorem { get; } // ModelInterfaces.tt Line: 55
+    	EnumNameDataType Name { get; } // ModelInterfaces.tt Line: 55
+    	EnumPhoneDataType Phone { get; } // ModelInterfaces.tt Line: 55
+    	EnumRantDataType Rant { get; } // ModelInterfaces.tt Line: 55
+    	EnumSystemDataType System { get; } // ModelInterfaces.tt Line: 55
+    	EnumVehicleDataType Vehicle { get; } // ModelInterfaces.tt Line: 55
+    	EnumRandomDataType Random { get; } // ModelInterfaces.tt Line: 55
+    }
+    // C O N S T A N T
+    // @exclude
+    // ####################################### C O N S T A N T ##########################################
+    
     public partial interface IGroupConstantGroups : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
@@ -1049,7 +1053,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     // Constant application wise value
-    // 
     
     public partial interface IConstant : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -1075,6 +1078,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
+    // E N U M E R A T I O N
+    // @exclude
+    // ####################################### E N U M E R A T I O N ##########################################
     
     public partial interface IGroupListEnumerations : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -1114,6 +1120,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
+    // C A T A L O G
+    // @exclude
+    // ####################################### C A T A L O G ##########################################
     
     public partial interface ICatalogFolder : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -1218,6 +1227,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
+    // D O C U M E N T
+    // @exclude
+    // ####################################### D O C U M E N T ##########################################
     
     public partial interface IGroupDocuments : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -1282,6 +1294,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 48
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
+    // J O U R N A L
+    // @exclude
+    // ####################################### J O U R N A L ##########################################
     
     public partial interface IGroupListJournals : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -1319,6 +1334,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	string Guid { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<string> ListPropertyGuids { get; } // ModelInterfaces.tt Line: 46
     }
+    // F O R M S
+    // @exclude
+    // ####################################### F O R M S ##########################################
     
     public partial interface IGroupListForms : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -1493,6 +1511,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
+    // R E P O R T S
+    // @exclude
+    // ####################################### R E P O R T S ##########################################
     
     public partial interface IGroupListReports : IGuid, IName // ModelInterfaces.tt Line: 33
     {
