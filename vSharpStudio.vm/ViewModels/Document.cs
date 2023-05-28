@@ -48,7 +48,7 @@ namespace vSharpStudio.vm.ViewModels
             this.CodePropertySettings.MaxSequenceLength = 9;
             this.CodePropertySettings.Prefix = "";
             this.CodePropertySettings.SequenceGuid = "";
-            this.CodePropertySettings.UniqueScope = common.EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR;
+            this.CodePropertySettings.ScopeOfUnique = common.EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR;
             this.CodePropertySettings.ScopePeriodStart = Timestamp.FromDateTime(new DateTime(DateTime.Now.Year, 1, 1));
 
             Init();

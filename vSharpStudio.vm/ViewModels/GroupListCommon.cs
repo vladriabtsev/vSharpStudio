@@ -48,6 +48,7 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             VmBindable.IsNotifyingStatic = false;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
+            children.Add(this.GroupListSequences, 1);
             children.Add(this.GroupRoles, 6);
             //children.Add(this.GroupViewForms, 7);
             VmBindable.IsNotifyingStatic = true;

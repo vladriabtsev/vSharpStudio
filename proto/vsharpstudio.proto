@@ -845,6 +845,88 @@ message proto_group_list_common {
     // @attr [Browsable(false)]
     proto_group_list_main_view_forms group_view_forms = 8;
     // @attr [Browsable(false)]
+    proto_group_list_sequences group_list_sequences = 9;
+
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+/** C O M M O N   S E Q U E N C E S
+ * @exclude
+ * ####################################### C O M M O N    E Q U E N C E S #######################
+ */
+// @interface ICanAddNode
+// @interface ISortingValue
+message proto_code_sequence {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+    // @attr [Browsable(false)]
+    bool is_new = 9;
+    // @attr [Browsable(false)]
+    bool is_marked_for_deletion = 10;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(11)]
+    // @attr [DisplayName("Sequence type")]
+    // @attr [Description("Sequence type for code")]
+    proto_enum_code_type sequence_type = 11;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(12)]
+    // @attr [DisplayName("Max Sequence")]
+    // @attr [Description("Maximum number of character places for generated sequence numbers")]
+    uint32 max_sequence_length = 12;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(13)]
+    // @attr [DisplayName("Prefix")]
+    // @attr [Description("Prefix for text code sequence")]
+    string prefix = 13;
+
+    // @attr [Browsable(false)]
+    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
+}
+message proto_group_list_sequences {
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(-2)]
+    // @attr [ReadOnly(true)]
+    string guid = 1;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(1)]
+    string name = 2;
+    // @attr [Browsable(false)]
+    uint64 sorting_value = 3;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(2)]
+    // @attr [DisplayName("UI name")]
+    // @attr [Description("Used as label/name for UI")]
+    string name_ui = 4;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(3)]
+    string description = 5;
+
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(4)]
+    // @attr [DisplayName("Db prefix")]
+    // @attr [Description("Prefix for document db table names. Used if set to use in config model")]
+    //string prefix_for_db_tables = 6;
+
+
+    // @attr [Browsable(false)]
+    // @attr [Description("Document number sequences")]
+    repeated proto_code_sequence list_sequences = 21;
+    // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 /** C O M M O N   R O L E S
@@ -2428,87 +2510,6 @@ enum proto_enum_document_code_unique_scope {
     // @attr [Description("Month")]
     DOC_UNIQUE_MONTH = 31;
 }
-// @interface ICanAddNode
-// @interface ISortingValue
-message proto_doc_number_code_sequence {
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(-2)]
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(1)]
-    string name = 2;
-    // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("UI name")]
-    // @attr [Description("Used as label/name for UI")]
-    string name_ui = 4;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(3)]
-    string description = 5;
-    // @attr [Browsable(false)]
-    bool is_new = 9;
-    // @attr [Browsable(false)]
-    bool is_marked_for_deletion = 10;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(11)]
-    // @attr [DisplayName("Sequence type")]
-    // @attr [Description("Sequence type for code")]
-    proto_enum_code_type sequence_type = 11;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(12)]
-    // @attr [DisplayName("Max Sequence")]
-    // @attr [Description("Maximum number of character places for generated sequence numbers")]
-    uint32 max_sequence_length = 12;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(13)]
-    // @attr [DisplayName("Prefix")]
-    // @attr [Description("Prefix for text code sequence")]
-    string prefix = 13;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(15)]
-    // @attr [DisplayName("Unique")]
-    // @attr [Description("Scope of unique document number sequence")]
-    proto_enum_document_code_unique_scope scope_of_unique = 15;
-
-
-    // @attr [Browsable(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
-}
-message proto_group_doc_number_list_sequences {
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(-2)]
-    // @attr [ReadOnly(true)]
-    string guid = 1;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(1)]
-    string name = 2;
-    // @attr [Browsable(false)]
-    uint64 sorting_value = 3;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(2)]
-    // @attr [DisplayName("UI name")]
-    // @attr [Description("Used as label/name for UI")]
-    string name_ui = 4;
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(3)]
-    string description = 5;
-
-    // @attr [Category("")]
-    // @attr [PropertyOrderAttribute(4)]
-    // @attr [DisplayName("Db prefix")]
-    // @attr [Description("Prefix for document db table names. Used if set to use in config model")]
-    //string prefix_for_db_tables = 6;
-
-
-    // @attr [Browsable(false)]
-    // @attr [Description("Document number sequences")]
-    repeated proto_doc_number_code_sequence list_sequences = 21;
-    // @attr [Browsable(false)]
-    repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
-}
 message proto_group_documents {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
@@ -2538,8 +2539,6 @@ message proto_group_documents {
     proto_group_list_properties group_shared_properties = 7;
     // @attr [Browsable(false)]
     proto_group_list_documents group_list_documents = 8;
-    // @attr [Browsable(false)]
-    proto_group_doc_number_list_sequences group_list_sequences = 9;
 
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(22)]
@@ -2589,7 +2588,7 @@ message proto_document_code_property_settings {
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Unique Scope")]
     // @attr [Description("Code has to be unique in selected scope")]
-    proto_enum_document_code_unique_scope unique_scope = 7;
+    proto_enum_document_code_unique_scope scope_of_unique = 7;
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Date")]
     // @attr [Description("Start date of scope period")]

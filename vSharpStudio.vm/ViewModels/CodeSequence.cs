@@ -11,12 +11,12 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Sequence:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class DocNumberCodeSequence : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
+    public partial class CodeSequence : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
         [Browsable(false)]
-        public GroupDocNumberListSequences ParentGroupListSequences { get { Debug.Assert(this.Parent != null); return (GroupDocNumberListSequences)this.Parent; } }
+        public GroupListSequences ParentGroupListSequences { get { Debug.Assert(this.Parent != null); return (GroupListSequences)this.Parent; } }
         [Browsable(false)]
-        public IGroupDocNumberListSequences ParentGroupListSequencesI { get { Debug.Assert(this.Parent != null); return (IGroupDocNumberListSequences)this.Parent; } }
+        public IGroupListSequences ParentGroupListSequencesI { get { Debug.Assert(this.Parent != null); return (IGroupListSequences)this.Parent; } }
         public static readonly string DefaultName = "Sequence";
 
         #region ITree
@@ -84,7 +84,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (DocNumberCodeSequence?)this.ParentGroupListSequences.ListSequences.GetPrev(this);
+            var prev = (CodeSequence?)this.ParentGroupListSequences.ListSequences.GetPrev(this);
             if (prev == null)
                 return;
             this.SetSelected(prev);
@@ -110,7 +110,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (DocNumberCodeSequence?)this.ParentGroupListSequences.ListSequences.GetNext(this);
+            var next = (CodeSequence?)this.ParentGroupListSequences.ListSequences.GetNext(this);
             if (next == null)
                 return;
             this.SetSelected(next);
@@ -124,7 +124,7 @@ namespace vSharpStudio.vm.ViewModels
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);
-            var node = DocNumberCodeSequence.Clone(this.Parent, this, true, true);
+            var node = CodeSequence.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListSequences.Add(node);
             this._Name = this._Name + "2";
@@ -134,9 +134,9 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new DocNumberCodeSequence(this.Parent);
+            var node = new CodeSequence(this.Parent);
             this.ParentGroupListSequences.Add(node);
-            this.GetUniqueName(DocNumberCodeSequence.DefaultName, node, this.ParentGroupListSequences.ListSequences);
+            this.GetUniqueName(CodeSequence.DefaultName, node, this.ParentGroupListSequences.ListSequences);
             this.SetSelected(node);
             return node;
         }

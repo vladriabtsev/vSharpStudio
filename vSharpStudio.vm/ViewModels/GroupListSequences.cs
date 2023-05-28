@@ -14,14 +14,14 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListDocuments.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupDocNumberListSequences : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
+    public partial class GroupListSequences : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
         [Browsable(false)]
-        public GroupDocuments ParentGroupDocuments { get { Debug.Assert(this.Parent != null); return (GroupDocuments)this.Parent; } }
+        public GroupListCommon ParentGroupListCommon { get { Debug.Assert(this.Parent != null); return (GroupListCommon)this.Parent; } }
         [Browsable(false)]
-        public IGroupDocuments ParentGroupDocumentsI { get { Debug.Assert(this.Parent != null); return (IGroupDocuments)this.Parent; } }
+        public IGroupListCommon ParentGroupListCommonI { get { Debug.Assert(this.Parent != null); return (IGroupListCommon)this.Parent; } }
         #region ITree
         public override IChildrenCollection GetListChildren()
         {
@@ -29,12 +29,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public override IChildrenCollection GetListSiblings()
         {
-            return this.ParentGroupDocuments.Children;
+            return this.ParentGroupListCommon.Children;
         }
         #endregion ITree
 
-        public new ConfigNodesCollection<DocNumberCodeSequence> Children { get { return this.ListSequences; } }
-        public IGroupDocuments IParent { get { return this.ParentGroupDocuments; } }
+        public new ConfigNodesCollection<CodeSequence> Children { get { return this.ListSequences; } }
+        public IGroupListCommon IParent { get { return this.ParentGroupListCommonI; } }
 
         partial void OnCreated()
         {
@@ -71,22 +71,22 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public int IndexOf(IDocNumberCodeSequence docSequence)
+        public int IndexOf(ICodeSequence docSequence)
         {
-            return this.ListSequences.IndexOf((docSequence as DocNumberCodeSequence)!);
+            return this.ListSequences.IndexOf((docSequence as CodeSequence)!);
         }
         #region Tree operations
         public bool CanAddSubNode() { return true; }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            DocNumberCodeSequence node = null!;
+            CodeSequence node = null!;
             if (node_impl == null)
             {
-                node = new DocNumberCodeSequence(this);
+                node = new CodeSequence(this);
             }
             else
             {
-                node = (DocNumberCodeSequence)node_impl;
+                node = (CodeSequence)node_impl;
             }
             this.Add(node);
             if (node_impl == null)

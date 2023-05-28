@@ -7772,6 +7772,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.OnCreating();
             this._GroupRoles = new GroupListRoles(this); // Class.tt Line: 40
             this._GroupViewForms = new GroupListMainViewForms(this); // Class.tt Line: 40
+            this._GroupListSequences = new GroupListSequences(this); // Class.tt Line: 40
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -7804,6 +7805,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupRoles = vSharpStudio.vm.ViewModels.GroupListRoles.Clone(vm, from.GroupRoles, isDeep);
             if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
                 vm.GroupViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.Clone(vm, from.GroupViewForms, isDeep);
+            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
+                vm.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListSequences.Clone(vm, from.GroupListSequences, isDeep);
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -7826,6 +7829,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.GroupListRoles.Update((GroupListRoles)to.GroupRoles, from.GroupRoles, isDeep);
             if (isDeep) // Clone.tt Line: 140
                 vSharpStudio.vm.ViewModels.GroupListMainViewForms.Update((GroupListMainViewForms)to.GroupViewForms, from.GroupViewForms, isDeep);
+            if (isDeep) // Clone.tt Line: 140
+                vSharpStudio.vm.ViewModels.GroupListSequences.Update((GroupListSequences)to.GroupListSequences, from.GroupListSequences, isDeep);
             if (isDeep) // Clone.tt Line: 88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -7902,6 +7907,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupViewForms == null) // Clone.tt Line: 213
                 vm.GroupViewForms = new GroupListMainViewForms(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToVM(m.GroupViewForms, (GroupListMainViewForms)vm.GroupViewForms); // Clone.tt Line: 219
+            if (vm.GroupListSequences == null) // Clone.tt Line: 213
+                vm.GroupListSequences = new GroupListSequences(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.GroupListSequences.ConvertToVM(m.GroupListSequences, (GroupListSequences)vm.GroupListSequences); // Clone.tt Line: 219
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -7927,6 +7935,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.GroupRoles = vSharpStudio.vm.ViewModels.GroupListRoles.ConvertToProto((GroupListRoles)vm.GroupRoles); // Clone.tt Line: 270
             m.GroupViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToProto((GroupListMainViewForms)vm.GroupViewForms); // Clone.tt Line: 270
+            m.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListSequences.ConvertToProto((GroupListSequences)vm.GroupListSequences); // Clone.tt Line: 270
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -7943,6 +7952,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.GroupRoles.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupViewForms.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+        
+            this.GroupListSequences.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
@@ -8107,6 +8118,29 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         //IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return this._GroupViewForms; } }
         
         [Browsable(false)]
+        public GroupListSequences GroupListSequences // Property.tt Line: 55
+        { 
+            get { return this._GroupListSequences; }
+            set
+            {
+                if (this._GroupListSequences != value)
+                {
+                    this.OnGroupListSequencesChanging(ref value);
+                    this._GroupListSequences = value;
+                    this.OnGroupListSequencesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private GroupListSequences _GroupListSequences;
+        IGroupListSequences IGroupListCommon.GroupListSequences { get { return (this as GroupListCommon).GroupListSequences; } } // Property.tt Line: 77
+        partial void OnGroupListSequencesChanging(ref GroupListSequences to); // Property.tt Line: 79
+        partial void OnGroupListSequencesChanged();
+        //IGroupListSequences IGroupListCommon.GroupListSequences { get { return this._GroupListSequences; } }
+        
+        [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
         { 
             get { return this._ListNodeGeneratorsSettings; }
@@ -8124,6 +8158,907 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
         IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListCommon.ListNodeGeneratorsSettings { get { return (this as GroupListCommon).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
+        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
+        partial void OnListNodeGeneratorsSettingsChanged();
+    /*
+        [Browsable(false)]
+        public override bool IsChanged // Class.tt Line: 110
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
+        */
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 130
+        #endregion Properties
+    }
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: True 
+    public partial class CodeSequenceValidator : ValidatorBase<CodeSequence, CodeSequenceValidator> { } // Class.tt Line: 15
+    public partial class CodeSequence : ConfigObjectVmGenSettings<CodeSequence, CodeSequenceValidator>, IComparable<CodeSequence>, IConfigAcceptVisitor, ICodeSequence // Class.tt Line: 16
+    {
+        #region CTOR
+        public CodeSequence(ITreeConfigNode? parent) // Class.tt Line: 26
+            : base(parent, CodeSequenceValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // Clone.tt Line: 8
+        {
+            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static CodeSequence Clone(ITreeConfigNode? parent, ICodeSequence from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        {
+            Debug.Assert(from != null);
+            CodeSequence vm = new CodeSequence(parent); // Clone.tt Line: 35
+            vm.IsNotifying = false; // Clone.tt Line: 39
+            vm.IsValidate = false;
+            vm.Guid = from.Guid; // Clone.tt Line: 67
+            vm.Name = from.Name; // Clone.tt Line: 67
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
+            vm.NameUi = from.NameUi; // Clone.tt Line: 67
+            vm.Description = from.Description; // Clone.tt Line: 67
+            vm.IsNew = from.IsNew; // Clone.tt Line: 67
+            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 67
+            vm.SequenceType = from.SequenceType; // Clone.tt Line: 67
+            vm.MaxSequenceLength = from.MaxSequenceLength; // Clone.tt Line: 67
+            vm.Prefix = from.Prefix; // Clone.tt Line: 67
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
+            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 72
+                vm.SetNewGuid();
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(CodeSequence to, ICodeSequence from, bool isDeep = true) // Clone.tt Line: 79
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to.Guid = from.Guid; // Clone.tt Line: 143
+            to.Name = from.Name; // Clone.tt Line: 143
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 143
+            to.NameUi = from.NameUi; // Clone.tt Line: 143
+            to.Description = from.Description; // Clone.tt Line: 143
+            to.IsNew = from.IsNew; // Clone.tt Line: 143
+            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 143
+            to.SequenceType = from.SequenceType; // Clone.tt Line: 143
+            to.MaxSequenceLength = from.MaxSequenceLength; // Clone.tt Line: 143
+            to.Prefix = from.Prefix; // Clone.tt Line: 143
+            if (isDeep) // Clone.tt Line: 88
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 119
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
+        }
+        // Clone.tt Line: 149
+        #region IEditable
+        public override CodeSequence Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return CodeSequence.Clone(this.Parent, this); // Clone.tt Line: 157
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(CodeSequence from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            CodeSequence.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_code_sequence' to 'CodeSequence'
+        public static CodeSequence ConvertToVM(Proto.Config.proto_code_sequence m, CodeSequence vm) // Clone.tt Line: 173
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.Name = m.Name; // Clone.tt Line: 221
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
+            vm.NameUi = m.NameUi; // Clone.tt Line: 221
+            vm.Description = m.Description; // Clone.tt Line: 221
+            vm.IsNew = m.IsNew; // Clone.tt Line: 221
+            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
+            vm.SequenceType = (EnumCodeType)m.SequenceType; // Clone.tt Line: 221
+            vm.MaxSequenceLength = m.MaxSequenceLength; // Clone.tt Line: 221
+            vm.Prefix = m.Prefix; // Clone.tt Line: 221
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
+            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 200
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'CodeSequence' to 'proto_code_sequence'
+        public static Proto.Config.proto_code_sequence ConvertToProto(CodeSequence vm) // Clone.tt Line: 236
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_code_sequence m = new Proto.Config.proto_code_sequence(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.Name = vm.Name; // Clone.tt Line: 276
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
+            m.NameUi = vm.NameUi; // Clone.tt Line: 276
+            m.Description = vm.Description; // Clone.tt Line: 276
+            m.IsNew = vm.IsNew; // Clone.tt Line: 276
+            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
+            m.SequenceType = (Proto.Config.proto_enum_code_type)vm.SequenceType; // Clone.tt Line: 274
+            m.MaxSequenceLength = vm.MaxSequenceLength; // Clone.tt Line: 276
+            m.Prefix = vm.Prefix; // Clone.tt Line: 276
+            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
+        { 
+            get { return this._Guid; }
+            set
+            {
+                if (this._Guid != value)
+                {
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(1)]
+        public string Name // Property.tt Line: 55
+        { 
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameChanged();
+        
+        [Browsable(false)]
+        public ulong SortingValue // Property.tt Line: 55
+        { 
+            get { return this._SortingValue; }
+            set
+            {
+                if (this._SortingValue != value)
+                {
+                    this.OnSortingValueChanging(ref value);
+                    this._SortingValue = value;
+                    this.OnSortingValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
+        partial void OnSortingValueChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
+        public string NameUi // Property.tt Line: 55
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                if (this._NameUi != value)
+                {
+                    this.OnNameUiChanging(ref value);
+                    this._NameUi = value;
+                    this.OnNameUiChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        public string Description // Property.tt Line: 55
+        { 
+            get { return this._Description; }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
+        partial void OnDescriptionChanged();
+        
+        [Browsable(false)]
+        public bool IsNew // Property.tt Line: 55
+        { 
+            get { return this._IsNew; }
+            set
+            {
+                if (this._IsNew != value)
+                {
+                    this.OnIsNewChanging(ref value);
+                    this._IsNew = value;
+                    this.OnIsNewChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsNew;
+        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsNewChanged();
+        
+        [Browsable(false)]
+        public bool IsMarkedForDeletion // Property.tt Line: 55
+        { 
+            get { return this._IsMarkedForDeletion; }
+            set
+            {
+                if (this._IsMarkedForDeletion != value)
+                {
+                    this.OnIsMarkedForDeletionChanging(ref value);
+                    this._IsMarkedForDeletion = value;
+                    this.OnIsMarkedForDeletionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private bool _IsMarkedForDeletion;
+        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
+        partial void OnIsMarkedForDeletionChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(11)]
+        [DisplayName("Sequence type")]
+        [Description("Sequence type for code")]
+        public EnumCodeType SequenceType // Property.tt Line: 55
+        { 
+            get { return this._SequenceType; }
+            set
+            {
+                if (this._SequenceType != value)
+                {
+                    this.OnSequenceTypeChanging(ref value);
+                    this._SequenceType = value;
+                    this.OnSequenceTypeChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private EnumCodeType _SequenceType;
+        partial void OnSequenceTypeChanging(ref EnumCodeType to); // Property.tt Line: 79
+        partial void OnSequenceTypeChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(12)]
+        [DisplayName("Max Sequence")]
+        [Description("Maximum number of character places for generated sequence numbers")]
+        public uint MaxSequenceLength // Property.tt Line: 55
+        { 
+            get { return this._MaxSequenceLength; }
+            set
+            {
+                if (this._MaxSequenceLength != value)
+                {
+                    this.OnMaxSequenceLengthChanging(ref value);
+                    this._MaxSequenceLength = value;
+                    this.OnMaxSequenceLengthChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _MaxSequenceLength;
+        partial void OnMaxSequenceLengthChanging(ref uint to); // Property.tt Line: 79
+        partial void OnMaxSequenceLengthChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(13)]
+        [DisplayName("Prefix")]
+        [Description("Prefix for text code sequence")]
+        public string Prefix // Property.tt Line: 55
+        { 
+            get { return this._Prefix; }
+            set
+            {
+                if (this._Prefix != value)
+                {
+                    this.OnPrefixChanging(ref value);
+                    this._Prefix = value;
+                    this.OnPrefixChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Prefix = string.Empty;
+        partial void OnPrefixChanging(ref string to); // Property.tt Line: 79
+        partial void OnPrefixChanged();
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    _ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        IReadOnlyList<IPluginGeneratorNodeSettings> ICodeSequence.ListNodeGeneratorsSettings { get { return (this as CodeSequence).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
+        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
+        partial void OnListNodeGeneratorsSettingsChanged();
+    /*
+        [Browsable(false)]
+        public override bool IsChanged // Class.tt Line: 110
+        { 
+            get { return this._IsChanged; }
+            set
+            {
+                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
+                {
+                    if (this._IsChanged != value)
+                    {
+                        this.OnIsChangedChanging(ref value);
+                        this._IsChanged = value;
+                        this.OnIsChangedChanged();
+                        this.NotifyPropertyChanged();
+                    }
+                }
+            }
+        }
+        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
+        */
+        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 130
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 135 proto_code_sequence
+        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
+        #endregion Properties
+    }
+    // Class.tt Line: 6
+    //       IsWithParent: True 
+    //      IsDefaultBase: True 
+    // IsConfigObjectBase: True 
+    //      IsGenSettings: True 
+    //     IsBindableBase: True 
+    //     IsEditableBase: True 
+    //  IsValidatableBase: True 
+    //    IsISortingValue: False 
+    public partial class GroupListSequencesValidator : ValidatorBase<GroupListSequences, GroupListSequencesValidator> { } // Class.tt Line: 15
+    public partial class GroupListSequences : ConfigObjectVmGenSettings<GroupListSequences, GroupListSequencesValidator>, IComparable<GroupListSequences>, IConfigAcceptVisitor, IGroupListSequences // Class.tt Line: 16
+    {
+        #region CTOR
+        public GroupListSequences(ITreeConfigNode? parent) // Class.tt Line: 26
+            : base(parent, GroupListSequencesValidator.Validator)
+        {
+            this.IsNotifying = false;
+            this.IsValidate = false;
+            this.OnCreating();
+            this._ListSequences = new ConfigNodesCollection<CodeSequence>(this); // Class.tt Line: 37
+            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
+            this.OnCreated();
+            this.IsValidate = true;
+            this.IsNotifying = true;
+        }
+        partial void OnCreating();
+        partial void OnCreated();
+        #endregion CTOR
+        #region Procedures
+        
+        public override void Sort(Type type) // Clone.tt Line: 8
+        {
+            if (type == typeof(CodeSequence)) // Clone.tt Line: 15
+            {
+                this.ListSequences.Sort();
+            }
+            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
+            {
+                this.ListNodeGeneratorsSettings.Sort();
+            }
+        }
+        public static GroupListSequences Clone(ITreeConfigNode? parent, IGroupListSequences from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        {
+            Debug.Assert(from != null);
+            GroupListSequences vm = new GroupListSequences(parent); // Clone.tt Line: 35
+            vm.IsNotifying = false; // Clone.tt Line: 39
+            vm.IsValidate = false;
+            vm.Guid = from.Guid; // Clone.tt Line: 67
+            vm.Name = from.Name; // Clone.tt Line: 67
+            vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
+            vm.NameUi = from.NameUi; // Clone.tt Line: 67
+            vm.Description = from.Description; // Clone.tt Line: 67
+            vm.ListSequences = new ConfigNodesCollection<CodeSequence>(vm); // Clone.tt Line: 55
+            foreach (var t in from.ListSequences) // Clone.tt Line: 56
+                vm.ListSequences.Add(CodeSequence.Clone(vm, (CodeSequence)t, isDeep));
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
+            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
+                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
+            if (isNewGuid) // Clone.tt Line: 72
+                vm.SetNewGuid();
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        public static void Update(GroupListSequences to, IGroupListSequences from, bool isDeep = true) // Clone.tt Line: 79
+        {
+            Debug.Assert(to != null);
+            Debug.Assert(from != null);
+            to.Guid = from.Guid; // Clone.tt Line: 143
+            to.Name = from.Name; // Clone.tt Line: 143
+            to.SortingValue = from.SortingValue; // Clone.tt Line: 143
+            to.NameUi = from.NameUi; // Clone.tt Line: 143
+            to.Description = from.Description; // Clone.tt Line: 143
+            if (isDeep) // Clone.tt Line: 88
+            {
+                foreach (var t in to.ListSequences.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListSequences)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            CodeSequence.Update((CodeSequence)t, (CodeSequence)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListSequences.Remove(t);
+                }
+                foreach (var tt in from.ListSequences)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListSequences.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new CodeSequence(to); // Clone.tt Line: 119
+                        CodeSequence.Update(p, (CodeSequence)tt, isDeep);
+                        to.ListSequences.Add(p);
+                    }
+                }
+            }
+            if (isDeep) // Clone.tt Line: 88
+            {
+                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                {
+                    bool isfound = false;
+                    foreach (var tt in from.ListNodeGeneratorsSettings)
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                        to.ListNodeGeneratorsSettings.Remove(t);
+                }
+                foreach (var tt in from.ListNodeGeneratorsSettings)
+                {
+                    bool isfound = false;
+                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
+                    {
+                        if (t.Guid == tt.Guid)
+                        {
+                            isfound = true;
+                            break;
+                        }
+                    }
+                    if (!isfound)
+                    {
+                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 119
+                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
+                        to.ListNodeGeneratorsSettings.Add(p);
+                    }
+                }
+            }
+        }
+        // Clone.tt Line: 149
+        #region IEditable
+        public override GroupListSequences Backup()
+        {
+            bool isDeep = true;
+            this.OnBackupObjectStarting(ref isDeep);
+            Debug.Assert(this is IConfig || this.Parent != null);
+            return GroupListSequences.Clone(this.Parent, this); // Clone.tt Line: 157
+        }
+        partial void OnBackupObjectStarting(ref bool isDeep);
+        public override void Restore(GroupListSequences from)
+        {
+            bool isDeep = true;
+            this.OnRestoreObjectStarting(ref isDeep);
+            GroupListSequences.Update(this, from, isDeep);
+        }
+        partial void OnRestoreObjectStarting(ref bool isDeep);
+        #endregion IEditable
+        // Conversion from 'proto_group_list_sequences' to 'GroupListSequences'
+        public static GroupListSequences ConvertToVM(Proto.Config.proto_group_list_sequences m, GroupListSequences vm) // Clone.tt Line: 173
+        {
+            Debug.Assert(vm != null);
+            if (m == null)
+            {
+                return vm;
+            }
+            vm.IsNotifying = false;
+            vm.IsValidate = false;
+            vm.Guid = m.Guid; // Clone.tt Line: 221
+            vm.Name = m.Name; // Clone.tt Line: 221
+            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
+            vm.NameUi = m.NameUi; // Clone.tt Line: 221
+            vm.Description = m.Description; // Clone.tt Line: 221
+            vm.ListSequences = new ConfigNodesCollection<CodeSequence>(vm); // Clone.tt Line: 194
+            foreach (var t in m.ListSequences) // Clone.tt Line: 198
+            {
+                var tvm = CodeSequence.ConvertToVM(t, new CodeSequence(vm)); // Clone.tt Line: 200
+                vm.ListSequences.Add(tvm);
+            }
+            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
+            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
+            {
+                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 200
+                vm.ListNodeGeneratorsSettings.Add(tvm);
+            }
+            vm.OnInitFromDto(); // Clone.tt Line: 227
+            vm.IsChanged = false;
+            vm.IsHasChanged = false;
+            vm.IsNotifying = true;
+            vm.IsValidate = true;
+            return vm;
+        }
+        // Conversion from 'GroupListSequences' to 'proto_group_list_sequences'
+        public static Proto.Config.proto_group_list_sequences ConvertToProto(GroupListSequences vm) // Clone.tt Line: 236
+        {
+            Debug.Assert(vm != null);
+            Proto.Config.proto_group_list_sequences m = new Proto.Config.proto_group_list_sequences(); // Clone.tt Line: 239
+            m.Guid = vm.Guid; // Clone.tt Line: 276
+            m.Name = vm.Name; // Clone.tt Line: 276
+            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
+            m.NameUi = vm.NameUi; // Clone.tt Line: 276
+            m.Description = vm.Description; // Clone.tt Line: 276
+            foreach (var t in vm.ListSequences) // Clone.tt Line: 242
+                m.ListSequences.Add(CodeSequence.ConvertToProto((CodeSequence)t)); // Clone.tt Line: 246
+            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
+                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
+            return m;
+        }
+        
+        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
+        {
+            Debug.Assert(visitor != null);
+            if (visitor.Token.IsCancellationRequested)
+            {
+                return;
+            }
+            visitor.Visit(this);
+            foreach (var t in this.ListSequences)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            foreach (var t in this.ListNodeGeneratorsSettings)
+            {
+                t.AcceptConfigNodeVisitor(visitor);
+            }
+            visitor.VisitEnd(this);
+        }
+        #endregion Procedures
+        #region Properties
+        
+        [Category("")]
+        [PropertyOrderAttribute(-2)]
+        [ReadOnly(true)]
+        public string Guid // Property.tt Line: 55
+        { 
+            get { return this._Guid; }
+            set
+            {
+                if (this._Guid != value)
+                {
+                    this.OnGuidChanging(ref value);
+                    this._Guid = value;
+                    this.OnGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnGuidChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(1)]
+        public string Name // Property.tt Line: 55
+        { 
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this.OnNameChanging(ref value);
+                    this._Name = value;
+                    this.OnNameChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameChanged();
+        
+        [Browsable(false)]
+        public ulong SortingValue // Property.tt Line: 55
+        { 
+            get { return this._SortingValue; }
+            set
+            {
+                if (this._SortingValue != value)
+                {
+                    this.OnSortingValueChanging(ref value);
+                    this._SortingValue = value;
+                    this.OnSortingValueChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
+        partial void OnSortingValueChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(2)]
+        [DisplayName("UI name")]
+        [Description("Used as label/name for UI")]
+        public string NameUi // Property.tt Line: 55
+        { 
+            get { return this._NameUi; }
+            set
+            {
+                if (this._NameUi != value)
+                {
+                    this.OnNameUiChanging(ref value);
+                    this._NameUi = value;
+                    this.OnNameUiChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
+        partial void OnNameUiChanged();
+        
+        [Category("")]
+        [PropertyOrderAttribute(3)]
+        public string Description // Property.tt Line: 55
+        { 
+            get { return this._Description; }
+            set
+            {
+                if (this._Description != value)
+                {
+                    this.OnDescriptionChanging(ref value);
+                    this._Description = value;
+                    this.OnDescriptionChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _Description = string.Empty;
+        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
+        partial void OnDescriptionChanged();
+        
+        [Browsable(false)]
+        [Description("Document number sequences")]
+        public ConfigNodesCollection<CodeSequence> ListSequences // Property.tt Line: 8
+        { 
+            get { return this._ListSequences; }
+            set
+            {
+                if (this._ListSequences != value)
+                {
+                    this.OnListSequencesChanging(value);
+                    _ListSequences = value;
+                    this.OnListSequencesChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<CodeSequence> _ListSequences;
+        IReadOnlyList<ICodeSequence> IGroupListSequences.ListSequences { get { return (this as GroupListSequences).ListSequences; } } // Property.tt Line: 26
+        partial void OnListSequencesChanging(ObservableCollection<CodeSequence> to); // Property.tt Line: 27
+        partial void OnListSequencesChanged();
+        public CodeSequence this[int index] { get { return (CodeSequence)this.ListSequences[index]; } }
+        ICodeSequence IGroupListSequences.this[int index] { get { return (CodeSequence)this.ListSequences[index]; } }
+        public void Add(CodeSequence item) // Property.tt Line: 32
+        { 
+            Debug.Assert(item != null);
+            this.ListSequences.Add(item); 
+            item.Parent = this;
+        }
+        public void AddRange(IEnumerable<CodeSequence> items) 
+        { 
+            Debug.Assert(items != null);
+            this.ListSequences.AddRange(items); 
+            foreach (var t in items)
+                t.Parent = this;
+        }
+        public int Count() { return this.ListSequences.Count; }
+        int IGroupListSequences.Count() { return this.Count(); }
+        public void Remove(CodeSequence item) 
+        {
+            Debug.Assert(item != null);
+            this.ListSequences.Remove(item); 
+            item.Parent = null;
+        }
+        
+        [Browsable(false)]
+        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
+        { 
+            get { return this._ListNodeGeneratorsSettings; }
+            set
+            {
+                if (this._ListNodeGeneratorsSettings != value)
+                {
+                    this.OnListNodeGeneratorsSettingsChanging(value);
+                    _ListNodeGeneratorsSettings = value;
+                    this.OnListNodeGeneratorsSettingsChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                }
+            }
+        }
+        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
+        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListSequences.ListNodeGeneratorsSettings { get { return (this as GroupListSequences).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
@@ -21503,935 +22438,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //     IsBindableBase: True 
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
-    //    IsISortingValue: True 
-    public partial class DocNumberCodeSequenceValidator : ValidatorBase<DocNumberCodeSequence, DocNumberCodeSequenceValidator> { } // Class.tt Line: 15
-    public partial class DocNumberCodeSequence : ConfigObjectVmGenSettings<DocNumberCodeSequence, DocNumberCodeSequenceValidator>, IComparable<DocNumberCodeSequence>, IConfigAcceptVisitor, IDocNumberCodeSequence // Class.tt Line: 16
-    {
-        #region CTOR
-        public DocNumberCodeSequence(ITreeConfigNode? parent) // Class.tt Line: 26
-            : base(parent, DocNumberCodeSequenceValidator.Validator)
-        {
-            this.IsNotifying = false;
-            this.IsValidate = false;
-            this.OnCreating();
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
-            this.OnCreated();
-            this.IsValidate = true;
-            this.IsNotifying = true;
-        }
-        partial void OnCreating();
-        partial void OnCreated();
-        #endregion CTOR
-        #region Procedures
-        
-        public override void Sort(Type type) // Clone.tt Line: 8
-        {
-            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
-            {
-                this.ListNodeGeneratorsSettings.Sort();
-            }
-        }
-        public static DocNumberCodeSequence Clone(ITreeConfigNode? parent, IDocNumberCodeSequence from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
-        {
-            Debug.Assert(from != null);
-            DocNumberCodeSequence vm = new DocNumberCodeSequence(parent); // Clone.tt Line: 35
-            vm.IsNotifying = false; // Clone.tt Line: 39
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 67
-            vm.Name = from.Name; // Clone.tt Line: 67
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
-            vm.NameUi = from.NameUi; // Clone.tt Line: 67
-            vm.Description = from.Description; // Clone.tt Line: 67
-            vm.IsNew = from.IsNew; // Clone.tt Line: 67
-            vm.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 67
-            vm.SequenceType = from.SequenceType; // Clone.tt Line: 67
-            vm.MaxSequenceLength = from.MaxSequenceLength; // Clone.tt Line: 67
-            vm.Prefix = from.Prefix; // Clone.tt Line: 67
-            vm.ScopeOfUnique = from.ScopeOfUnique; // Clone.tt Line: 67
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
-            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
-                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 72
-                vm.SetNewGuid();
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(DocNumberCodeSequence to, IDocNumberCodeSequence from, bool isDeep = true) // Clone.tt Line: 79
-        {
-            Debug.Assert(to != null);
-            Debug.Assert(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 143
-            to.Name = from.Name; // Clone.tt Line: 143
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 143
-            to.NameUi = from.NameUi; // Clone.tt Line: 143
-            to.Description = from.Description; // Clone.tt Line: 143
-            to.IsNew = from.IsNew; // Clone.tt Line: 143
-            to.IsMarkedForDeletion = from.IsMarkedForDeletion; // Clone.tt Line: 143
-            to.SequenceType = from.SequenceType; // Clone.tt Line: 143
-            to.MaxSequenceLength = from.MaxSequenceLength; // Clone.tt Line: 143
-            to.Prefix = from.Prefix; // Clone.tt Line: 143
-            to.ScopeOfUnique = from.ScopeOfUnique; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListNodeGeneratorsSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListNodeGeneratorsSettings.Remove(t);
-                }
-                foreach (var tt in from.ListNodeGeneratorsSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 119
-                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
-                        to.ListNodeGeneratorsSettings.Add(p);
-                    }
-                }
-            }
-        }
-        // Clone.tt Line: 149
-        #region IEditable
-        public override DocNumberCodeSequence Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            Debug.Assert(this is IConfig || this.Parent != null);
-            return DocNumberCodeSequence.Clone(this.Parent, this); // Clone.tt Line: 157
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(DocNumberCodeSequence from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            DocNumberCodeSequence.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_doc_number_code_sequence' to 'DocNumberCodeSequence'
-        public static DocNumberCodeSequence ConvertToVM(Proto.Config.proto_doc_number_code_sequence m, DocNumberCodeSequence vm) // Clone.tt Line: 173
-        {
-            Debug.Assert(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            vm.Name = m.Name; // Clone.tt Line: 221
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
-            vm.NameUi = m.NameUi; // Clone.tt Line: 221
-            vm.Description = m.Description; // Clone.tt Line: 221
-            vm.IsNew = m.IsNew; // Clone.tt Line: 221
-            vm.IsMarkedForDeletion = m.IsMarkedForDeletion; // Clone.tt Line: 221
-            vm.SequenceType = (EnumCodeType)m.SequenceType; // Clone.tt Line: 221
-            vm.MaxSequenceLength = m.MaxSequenceLength; // Clone.tt Line: 221
-            vm.Prefix = m.Prefix; // Clone.tt Line: 221
-            vm.ScopeOfUnique = (EnumDocumentCodeUniqueScope)m.ScopeOfUnique; // Clone.tt Line: 221
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
-            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
-            {
-                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 200
-                vm.ListNodeGeneratorsSettings.Add(tvm);
-            }
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'DocNumberCodeSequence' to 'proto_doc_number_code_sequence'
-        public static Proto.Config.proto_doc_number_code_sequence ConvertToProto(DocNumberCodeSequence vm) // Clone.tt Line: 236
-        {
-            Debug.Assert(vm != null);
-            Proto.Config.proto_doc_number_code_sequence m = new Proto.Config.proto_doc_number_code_sequence(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            m.Name = vm.Name; // Clone.tt Line: 276
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
-            m.NameUi = vm.NameUi; // Clone.tt Line: 276
-            m.Description = vm.Description; // Clone.tt Line: 276
-            m.IsNew = vm.IsNew; // Clone.tt Line: 276
-            m.IsMarkedForDeletion = vm.IsMarkedForDeletion; // Clone.tt Line: 276
-            m.SequenceType = (Proto.Config.proto_enum_code_type)vm.SequenceType; // Clone.tt Line: 274
-            m.MaxSequenceLength = vm.MaxSequenceLength; // Clone.tt Line: 276
-            m.Prefix = vm.Prefix; // Clone.tt Line: 276
-            m.ScopeOfUnique = (Proto.Config.proto_enum_document_code_unique_scope)vm.ScopeOfUnique; // Clone.tt Line: 274
-            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
-                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Debug.Assert(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            foreach (var t in this.ListNodeGeneratorsSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [Category("")]
-        [PropertyOrderAttribute(-2)]
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 55
-        { 
-            get { return this._Name; }
-            set
-            {
-                if (this._Name != value)
-                {
-                    this.OnNameChanging(ref value);
-                    this._Name = value;
-                    this.OnNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameChanged();
-        
-        [Browsable(false)]
-        public ulong SortingValue // Property.tt Line: 55
-        { 
-            get { return this._SortingValue; }
-            set
-            {
-                if (this._SortingValue != value)
-                {
-                    this.OnSortingValueChanging(ref value);
-                    this._SortingValue = value;
-                    this.OnSortingValueChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
-        partial void OnSortingValueChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(2)]
-        [DisplayName("UI name")]
-        [Description("Used as label/name for UI")]
-        public string NameUi // Property.tt Line: 55
-        { 
-            get { return this._NameUi; }
-            set
-            {
-                if (this._NameUi != value)
-                {
-                    this.OnNameUiChanging(ref value);
-                    this._NameUi = value;
-                    this.OnNameUiChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameUiChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 55
-        { 
-            get { return this._Description; }
-            set
-            {
-                if (this._Description != value)
-                {
-                    this.OnDescriptionChanging(ref value);
-                    this._Description = value;
-                    this.OnDescriptionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
-        partial void OnDescriptionChanged();
-        
-        [Browsable(false)]
-        public bool IsNew // Property.tt Line: 55
-        { 
-            get { return this._IsNew; }
-            set
-            {
-                if (this._IsNew != value)
-                {
-                    this.OnIsNewChanging(ref value);
-                    this._IsNew = value;
-                    this.OnIsNewChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsNew;
-        partial void OnIsNewChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsNewChanged();
-        
-        [Browsable(false)]
-        public bool IsMarkedForDeletion // Property.tt Line: 55
-        { 
-            get { return this._IsMarkedForDeletion; }
-            set
-            {
-                if (this._IsMarkedForDeletion != value)
-                {
-                    this.OnIsMarkedForDeletionChanging(ref value);
-                    this._IsMarkedForDeletion = value;
-                    this.OnIsMarkedForDeletionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private bool _IsMarkedForDeletion;
-        partial void OnIsMarkedForDeletionChanging(ref bool to); // Property.tt Line: 79
-        partial void OnIsMarkedForDeletionChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(11)]
-        [DisplayName("Sequence type")]
-        [Description("Sequence type for code")]
-        public EnumCodeType SequenceType // Property.tt Line: 55
-        { 
-            get { return this._SequenceType; }
-            set
-            {
-                if (this._SequenceType != value)
-                {
-                    this.OnSequenceTypeChanging(ref value);
-                    this._SequenceType = value;
-                    this.OnSequenceTypeChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumCodeType _SequenceType;
-        partial void OnSequenceTypeChanging(ref EnumCodeType to); // Property.tt Line: 79
-        partial void OnSequenceTypeChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(12)]
-        [DisplayName("Max Sequence")]
-        [Description("Maximum number of character places for generated sequence numbers")]
-        public uint MaxSequenceLength // Property.tt Line: 55
-        { 
-            get { return this._MaxSequenceLength; }
-            set
-            {
-                if (this._MaxSequenceLength != value)
-                {
-                    this.OnMaxSequenceLengthChanging(ref value);
-                    this._MaxSequenceLength = value;
-                    this.OnMaxSequenceLengthChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private uint _MaxSequenceLength;
-        partial void OnMaxSequenceLengthChanging(ref uint to); // Property.tt Line: 79
-        partial void OnMaxSequenceLengthChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(13)]
-        [DisplayName("Prefix")]
-        [Description("Prefix for text code sequence")]
-        public string Prefix // Property.tt Line: 55
-        { 
-            get { return this._Prefix; }
-            set
-            {
-                if (this._Prefix != value)
-                {
-                    this.OnPrefixChanging(ref value);
-                    this._Prefix = value;
-                    this.OnPrefixChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Prefix = string.Empty;
-        partial void OnPrefixChanging(ref string to); // Property.tt Line: 79
-        partial void OnPrefixChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(15)]
-        [DisplayName("Unique")]
-        [Description("Scope of unique document number sequence")]
-        public EnumDocumentCodeUniqueScope ScopeOfUnique // Property.tt Line: 55
-        { 
-            get { return this._ScopeOfUnique; }
-            set
-            {
-                if (this._ScopeOfUnique != value)
-                {
-                    this.OnScopeOfUniqueChanging(ref value);
-                    this._ScopeOfUnique = value;
-                    this.OnScopeOfUniqueChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private EnumDocumentCodeUniqueScope _ScopeOfUnique;
-        partial void OnScopeOfUniqueChanging(ref EnumDocumentCodeUniqueScope to); // Property.tt Line: 79
-        partial void OnScopeOfUniqueChanged();
-        
-        [Browsable(false)]
-        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
-        { 
-            get { return this._ListNodeGeneratorsSettings; }
-            set
-            {
-                if (this._ListNodeGeneratorsSettings != value)
-                {
-                    this.OnListNodeGeneratorsSettingsChanging(value);
-                    _ListNodeGeneratorsSettings = value;
-                    this.OnListNodeGeneratorsSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        IReadOnlyList<IPluginGeneratorNodeSettings> IDocNumberCodeSequence.ListNodeGeneratorsSettings { get { return (this as DocNumberCodeSequence).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
-        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
-        partial void OnListNodeGeneratorsSettingsChanged();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // Class.tt Line: 110
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
-        */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 130
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 135 proto_doc_number_code_sequence
-        partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
-        #endregion Properties
-    }
-    // Class.tt Line: 6
-    //       IsWithParent: True 
-    //      IsDefaultBase: True 
-    // IsConfigObjectBase: True 
-    //      IsGenSettings: True 
-    //     IsBindableBase: True 
-    //     IsEditableBase: True 
-    //  IsValidatableBase: True 
-    //    IsISortingValue: False 
-    public partial class GroupDocNumberListSequencesValidator : ValidatorBase<GroupDocNumberListSequences, GroupDocNumberListSequencesValidator> { } // Class.tt Line: 15
-    public partial class GroupDocNumberListSequences : ConfigObjectVmGenSettings<GroupDocNumberListSequences, GroupDocNumberListSequencesValidator>, IComparable<GroupDocNumberListSequences>, IConfigAcceptVisitor, IGroupDocNumberListSequences // Class.tt Line: 16
-    {
-        #region CTOR
-        public GroupDocNumberListSequences(ITreeConfigNode? parent) // Class.tt Line: 26
-            : base(parent, GroupDocNumberListSequencesValidator.Validator)
-        {
-            this.IsNotifying = false;
-            this.IsValidate = false;
-            this.OnCreating();
-            this._ListSequences = new ConfigNodesCollection<DocNumberCodeSequence>(this); // Class.tt Line: 37
-            this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
-            this.OnCreated();
-            this.IsValidate = true;
-            this.IsNotifying = true;
-        }
-        partial void OnCreating();
-        partial void OnCreated();
-        #endregion CTOR
-        #region Procedures
-        
-        public override void Sort(Type type) // Clone.tt Line: 8
-        {
-            if (type == typeof(DocNumberCodeSequence)) // Clone.tt Line: 15
-            {
-                this.ListSequences.Sort();
-            }
-            if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
-            {
-                this.ListNodeGeneratorsSettings.Sort();
-            }
-        }
-        public static GroupDocNumberListSequences Clone(ITreeConfigNode? parent, IGroupDocNumberListSequences from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
-        {
-            Debug.Assert(from != null);
-            GroupDocNumberListSequences vm = new GroupDocNumberListSequences(parent); // Clone.tt Line: 35
-            vm.IsNotifying = false; // Clone.tt Line: 39
-            vm.IsValidate = false;
-            vm.Guid = from.Guid; // Clone.tt Line: 67
-            vm.Name = from.Name; // Clone.tt Line: 67
-            vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
-            vm.NameUi = from.NameUi; // Clone.tt Line: 67
-            vm.Description = from.Description; // Clone.tt Line: 67
-            vm.ListSequences = new ConfigNodesCollection<DocNumberCodeSequence>(vm); // Clone.tt Line: 55
-            foreach (var t in from.ListSequences) // Clone.tt Line: 56
-                vm.ListSequences.Add(DocNumberCodeSequence.Clone(vm, (DocNumberCodeSequence)t, isDeep));
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
-            foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
-                vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
-            if (isNewGuid) // Clone.tt Line: 72
-                vm.SetNewGuid();
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        public static void Update(GroupDocNumberListSequences to, IGroupDocNumberListSequences from, bool isDeep = true) // Clone.tt Line: 79
-        {
-            Debug.Assert(to != null);
-            Debug.Assert(from != null);
-            to.Guid = from.Guid; // Clone.tt Line: 143
-            to.Name = from.Name; // Clone.tt Line: 143
-            to.SortingValue = from.SortingValue; // Clone.tt Line: 143
-            to.NameUi = from.NameUi; // Clone.tt Line: 143
-            to.Description = from.Description; // Clone.tt Line: 143
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListSequences.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListSequences)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            DocNumberCodeSequence.Update((DocNumberCodeSequence)t, (DocNumberCodeSequence)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListSequences.Remove(t);
-                }
-                foreach (var tt in from.ListSequences)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListSequences.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new DocNumberCodeSequence(to); // Clone.tt Line: 119
-                        DocNumberCodeSequence.Update(p, (DocNumberCodeSequence)tt, isDeep);
-                        to.ListSequences.Add(p);
-                    }
-                }
-            }
-            if (isDeep) // Clone.tt Line: 88
-            {
-                foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                {
-                    bool isfound = false;
-                    foreach (var tt in from.ListNodeGeneratorsSettings)
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            PluginGeneratorNodeSettings.Update((PluginGeneratorNodeSettings)t, (PluginGeneratorNodeSettings)tt, isDeep);
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                        to.ListNodeGeneratorsSettings.Remove(t);
-                }
-                foreach (var tt in from.ListNodeGeneratorsSettings)
-                {
-                    bool isfound = false;
-                    foreach (var t in to.ListNodeGeneratorsSettings.ToList())
-                    {
-                        if (t.Guid == tt.Guid)
-                        {
-                            isfound = true;
-                            break;
-                        }
-                    }
-                    if (!isfound)
-                    {
-                        var p = new PluginGeneratorNodeSettings(to); // Clone.tt Line: 119
-                        PluginGeneratorNodeSettings.Update(p, (PluginGeneratorNodeSettings)tt, isDeep);
-                        to.ListNodeGeneratorsSettings.Add(p);
-                    }
-                }
-            }
-        }
-        // Clone.tt Line: 149
-        #region IEditable
-        public override GroupDocNumberListSequences Backup()
-        {
-            bool isDeep = true;
-            this.OnBackupObjectStarting(ref isDeep);
-            Debug.Assert(this is IConfig || this.Parent != null);
-            return GroupDocNumberListSequences.Clone(this.Parent, this); // Clone.tt Line: 157
-        }
-        partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(GroupDocNumberListSequences from)
-        {
-            bool isDeep = true;
-            this.OnRestoreObjectStarting(ref isDeep);
-            GroupDocNumberListSequences.Update(this, from, isDeep);
-        }
-        partial void OnRestoreObjectStarting(ref bool isDeep);
-        #endregion IEditable
-        // Conversion from 'proto_group_doc_number_list_sequences' to 'GroupDocNumberListSequences'
-        public static GroupDocNumberListSequences ConvertToVM(Proto.Config.proto_group_doc_number_list_sequences m, GroupDocNumberListSequences vm) // Clone.tt Line: 173
-        {
-            Debug.Assert(vm != null);
-            if (m == null)
-            {
-                return vm;
-            }
-            vm.IsNotifying = false;
-            vm.IsValidate = false;
-            vm.Guid = m.Guid; // Clone.tt Line: 221
-            vm.Name = m.Name; // Clone.tt Line: 221
-            vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
-            vm.NameUi = m.NameUi; // Clone.tt Line: 221
-            vm.Description = m.Description; // Clone.tt Line: 221
-            vm.ListSequences = new ConfigNodesCollection<DocNumberCodeSequence>(vm); // Clone.tt Line: 194
-            foreach (var t in m.ListSequences) // Clone.tt Line: 198
-            {
-                var tvm = DocNumberCodeSequence.ConvertToVM(t, new DocNumberCodeSequence(vm)); // Clone.tt Line: 200
-                vm.ListSequences.Add(tvm);
-            }
-            vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
-            foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
-            {
-                var tvm = PluginGeneratorNodeSettings.ConvertToVM(t, new PluginGeneratorNodeSettings(vm)); // Clone.tt Line: 200
-                vm.ListNodeGeneratorsSettings.Add(tvm);
-            }
-            vm.OnInitFromDto(); // Clone.tt Line: 227
-            vm.IsChanged = false;
-            vm.IsHasChanged = false;
-            vm.IsNotifying = true;
-            vm.IsValidate = true;
-            return vm;
-        }
-        // Conversion from 'GroupDocNumberListSequences' to 'proto_group_doc_number_list_sequences'
-        public static Proto.Config.proto_group_doc_number_list_sequences ConvertToProto(GroupDocNumberListSequences vm) // Clone.tt Line: 236
-        {
-            Debug.Assert(vm != null);
-            Proto.Config.proto_group_doc_number_list_sequences m = new Proto.Config.proto_group_doc_number_list_sequences(); // Clone.tt Line: 239
-            m.Guid = vm.Guid; // Clone.tt Line: 276
-            m.Name = vm.Name; // Clone.tt Line: 276
-            m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
-            m.NameUi = vm.NameUi; // Clone.tt Line: 276
-            m.Description = vm.Description; // Clone.tt Line: 276
-            foreach (var t in vm.ListSequences) // Clone.tt Line: 242
-                m.ListSequences.Add(DocNumberCodeSequence.ConvertToProto((DocNumberCodeSequence)t)); // Clone.tt Line: 246
-            foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
-                m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
-            return m;
-        }
-        
-        public void AcceptConfigNodeVisitor(ConfigVisitor visitor) // AcceptNodeVisitor.tt Line: 8
-        {
-            Debug.Assert(visitor != null);
-            if (visitor.Token.IsCancellationRequested)
-            {
-                return;
-            }
-            visitor.Visit(this);
-            foreach (var t in this.ListSequences)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            foreach (var t in this.ListNodeGeneratorsSettings)
-            {
-                t.AcceptConfigNodeVisitor(visitor);
-            }
-            visitor.VisitEnd(this);
-        }
-        #endregion Procedures
-        #region Properties
-        
-        [Category("")]
-        [PropertyOrderAttribute(-2)]
-        [ReadOnly(true)]
-        public string Guid // Property.tt Line: 55
-        { 
-            get { return this._Guid; }
-            set
-            {
-                if (this._Guid != value)
-                {
-                    this.OnGuidChanging(ref value);
-                    this._Guid = value;
-                    this.OnGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnGuidChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(1)]
-        public string Name // Property.tt Line: 55
-        { 
-            get { return this._Name; }
-            set
-            {
-                if (this._Name != value)
-                {
-                    this.OnNameChanging(ref value);
-                    this._Name = value;
-                    this.OnNameChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnNameChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameChanged();
-        
-        [Browsable(false)]
-        public ulong SortingValue // Property.tt Line: 55
-        { 
-            get { return this._SortingValue; }
-            set
-            {
-                if (this._SortingValue != value)
-                {
-                    this.OnSortingValueChanging(ref value);
-                    this._SortingValue = value;
-                    this.OnSortingValueChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnSortingValueChanging(ref ulong to); // Property.tt Line: 79
-        partial void OnSortingValueChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(2)]
-        [DisplayName("UI name")]
-        [Description("Used as label/name for UI")]
-        public string NameUi // Property.tt Line: 55
-        { 
-            get { return this._NameUi; }
-            set
-            {
-                if (this._NameUi != value)
-                {
-                    this.OnNameUiChanging(ref value);
-                    this._NameUi = value;
-                    this.OnNameUiChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        partial void OnNameUiChanging(ref string to); // Property.tt Line: 79
-        partial void OnNameUiChanged();
-        
-        [Category("")]
-        [PropertyOrderAttribute(3)]
-        public string Description // Property.tt Line: 55
-        { 
-            get { return this._Description; }
-            set
-            {
-                if (this._Description != value)
-                {
-                    this.OnDescriptionChanging(ref value);
-                    this._Description = value;
-                    this.OnDescriptionChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _Description = string.Empty;
-        partial void OnDescriptionChanging(ref string to); // Property.tt Line: 79
-        partial void OnDescriptionChanged();
-        
-        [Browsable(false)]
-        [Description("Document number sequences")]
-        public ConfigNodesCollection<DocNumberCodeSequence> ListSequences // Property.tt Line: 8
-        { 
-            get { return this._ListSequences; }
-            set
-            {
-                if (this._ListSequences != value)
-                {
-                    this.OnListSequencesChanging(value);
-                    _ListSequences = value;
-                    this.OnListSequencesChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ConfigNodesCollection<DocNumberCodeSequence> _ListSequences;
-        IReadOnlyList<IDocNumberCodeSequence> IGroupDocNumberListSequences.ListSequences { get { return (this as GroupDocNumberListSequences).ListSequences; } } // Property.tt Line: 26
-        partial void OnListSequencesChanging(ObservableCollection<DocNumberCodeSequence> to); // Property.tt Line: 27
-        partial void OnListSequencesChanged();
-        public DocNumberCodeSequence this[int index] { get { return (DocNumberCodeSequence)this.ListSequences[index]; } }
-        IDocNumberCodeSequence IGroupDocNumberListSequences.this[int index] { get { return (DocNumberCodeSequence)this.ListSequences[index]; } }
-        public void Add(DocNumberCodeSequence item) // Property.tt Line: 32
-        { 
-            Debug.Assert(item != null);
-            this.ListSequences.Add(item); 
-            item.Parent = this;
-        }
-        public void AddRange(IEnumerable<DocNumberCodeSequence> items) 
-        { 
-            Debug.Assert(items != null);
-            this.ListSequences.AddRange(items); 
-            foreach (var t in items)
-                t.Parent = this;
-        }
-        public int Count() { return this.ListSequences.Count; }
-        int IGroupDocNumberListSequences.Count() { return this.Count(); }
-        public void Remove(DocNumberCodeSequence item) 
-        {
-            Debug.Assert(item != null);
-            this.ListSequences.Remove(item); 
-            item.Parent = null;
-        }
-        
-        [Browsable(false)]
-        public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
-        { 
-            get { return this._ListNodeGeneratorsSettings; }
-            set
-            {
-                if (this._ListNodeGeneratorsSettings != value)
-                {
-                    this.OnListNodeGeneratorsSettingsChanging(value);
-                    _ListNodeGeneratorsSettings = value;
-                    this.OnListNodeGeneratorsSettingsChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                }
-            }
-        }
-        private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupDocNumberListSequences.ListNodeGeneratorsSettings { get { return (this as GroupDocNumberListSequences).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
-        partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
-        partial void OnListNodeGeneratorsSettingsChanged();
-    /*
-        [Browsable(false)]
-        public override bool IsChanged // Class.tt Line: 110
-        { 
-            get { return this._IsChanged; }
-            set
-            {
-                if (VmBindable.IsNotifyingStatic && this.IsNotifying)
-                {
-                    if (this._IsChanged != value)
-                    {
-                        this.OnIsChangedChanging(ref value);
-                        this._IsChanged = value;
-                        this.OnIsChangedChanged();
-                        this.NotifyPropertyChanged();
-                    }
-                }
-            }
-        }
-        partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
-        */
-        protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 130
-        #endregion Properties
-    }
-    // Class.tt Line: 6
-    //       IsWithParent: True 
-    //      IsDefaultBase: True 
-    // IsConfigObjectBase: True 
-    //      IsGenSettings: True 
-    //     IsBindableBase: True 
-    //     IsEditableBase: True 
-    //  IsValidatableBase: True 
     //    IsISortingValue: False 
     public partial class GroupDocumentsValidator : ValidatorBase<GroupDocuments, GroupDocumentsValidator> { } // Class.tt Line: 15
     public partial class GroupDocuments : ConfigObjectVmGenSettings<GroupDocuments, GroupDocumentsValidator>, IComparable<GroupDocuments>, IConfigAcceptVisitor, IGroupDocuments // Class.tt Line: 16
@@ -22445,7 +22451,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.OnCreating();
             this._GroupSharedProperties = new GroupListProperties(this); // Class.tt Line: 40
             this._GroupListDocuments = new GroupListDocuments(this); // Class.tt Line: 40
-            this._GroupListSequences = new GroupDocNumberListSequences(this); // Class.tt Line: 40
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -22479,8 +22484,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupSharedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.Clone(vm, from.GroupSharedProperties, isDeep);
             if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
                 vm.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.Clone(vm, from.GroupListDocuments, isDeep);
-            if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
-                vm.GroupListSequences = vSharpStudio.vm.ViewModels.GroupDocNumberListSequences.Clone(vm, from.GroupListSequences, isDeep);
             vm.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 67
             vm.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 67
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
@@ -22509,8 +22512,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.GroupListProperties.Update((GroupListProperties)to.GroupSharedProperties, from.GroupSharedProperties, isDeep);
             if (isDeep) // Clone.tt Line: 140
                 vSharpStudio.vm.ViewModels.GroupListDocuments.Update((GroupListDocuments)to.GroupListDocuments, from.GroupListDocuments, isDeep);
-            if (isDeep) // Clone.tt Line: 140
-                vSharpStudio.vm.ViewModels.GroupDocNumberListSequences.Update((GroupDocNumberListSequences)to.GroupListSequences, from.GroupListSequences, isDeep);
             to.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 143
             to.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 143
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
@@ -22593,9 +22594,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (vm.GroupListDocuments == null) // Clone.tt Line: 213
                 vm.GroupListDocuments = new GroupListDocuments(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToVM(m.GroupListDocuments, (GroupListDocuments)vm.GroupListDocuments); // Clone.tt Line: 219
-            if (vm.GroupListSequences == null) // Clone.tt Line: 213
-                vm.GroupListSequences = new GroupDocNumberListSequences(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.GroupDocNumberListSequences.ConvertToVM(m.GroupListSequences, (GroupDocNumberListSequences)vm.GroupListSequences); // Clone.tt Line: 219
             vm.UseDocCodeProperty = (EnumUseType)m.UseDocCodeProperty; // Clone.tt Line: 221
             vm.UseDocDateProperty = (EnumUseType)m.UseDocDateProperty; // Clone.tt Line: 221
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
@@ -22627,7 +22625,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.PrefixForDbTables = vm.PrefixForDbTables; // Clone.tt Line: 276
             m.GroupSharedProperties = vSharpStudio.vm.ViewModels.GroupListProperties.ConvertToProto((GroupListProperties)vm.GroupSharedProperties); // Clone.tt Line: 270
             m.GroupListDocuments = vSharpStudio.vm.ViewModels.GroupListDocuments.ConvertToProto((GroupListDocuments)vm.GroupListDocuments); // Clone.tt Line: 270
-            m.GroupListSequences = vSharpStudio.vm.ViewModels.GroupDocNumberListSequences.ConvertToProto((GroupDocNumberListSequences)vm.GroupListSequences); // Clone.tt Line: 270
             m.UseDocCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseDocCodeProperty; // Clone.tt Line: 274
             m.UseDocDateProperty = (Proto.Config.proto_enum_use_type)vm.UseDocDateProperty; // Clone.tt Line: 274
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
@@ -22649,8 +22646,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.GroupSharedProperties.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             this.GroupListDocuments.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
-        
-            this.GroupListSequences.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListNodeGeneratorsSettings)
             {
@@ -22839,29 +22834,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnGroupListDocumentsChanging(ref GroupListDocuments to); // Property.tt Line: 79
         partial void OnGroupListDocumentsChanged();
         //IGroupListDocuments IGroupDocuments.GroupListDocuments { get { return this._GroupListDocuments; } }
-        
-        [Browsable(false)]
-        public GroupDocNumberListSequences GroupListSequences // Property.tt Line: 55
-        { 
-            get { return this._GroupListSequences; }
-            set
-            {
-                if (this._GroupListSequences != value)
-                {
-                    this.OnGroupListSequencesChanging(ref value);
-                    this._GroupListSequences = value;
-                    this.OnGroupListSequencesChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private GroupDocNumberListSequences _GroupListSequences;
-        IGroupDocNumberListSequences IGroupDocuments.GroupListSequences { get { return (this as GroupDocuments).GroupListSequences; } } // Property.tt Line: 77
-        partial void OnGroupListSequencesChanging(ref GroupDocNumberListSequences to); // Property.tt Line: 79
-        partial void OnGroupListSequencesChanged();
-        //IGroupDocNumberListSequences IGroupDocuments.GroupListSequences { get { return this._GroupListSequences; } }
         
         [Category("")]
         [PropertyOrderAttribute(22)]
@@ -23061,7 +23033,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MaxSequenceLength = from.MaxSequenceLength; // Clone.tt Line: 67
             vm.Prefix = from.Prefix; // Clone.tt Line: 67
             vm.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 67
-            vm.UniqueScope = from.UniqueScope; // Clone.tt Line: 67
+            vm.ScopeOfUnique = from.ScopeOfUnique; // Clone.tt Line: 67
             vm.ScopePeriodStart = from.ScopePeriodStart; // Clone.tt Line: 67
             vm.IsNotifying = true;
             vm.IsValidate = true;
@@ -23075,7 +23047,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.MaxSequenceLength = from.MaxSequenceLength; // Clone.tt Line: 143
             to.Prefix = from.Prefix; // Clone.tt Line: 143
             to.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 143
-            to.UniqueScope = from.UniqueScope; // Clone.tt Line: 143
+            to.ScopeOfUnique = from.ScopeOfUnique; // Clone.tt Line: 143
             to.ScopePeriodStart = from.ScopePeriodStart; // Clone.tt Line: 143
         }
         // Clone.tt Line: 149
@@ -23110,7 +23082,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MaxSequenceLength = m.MaxSequenceLength; // Clone.tt Line: 221
             vm.Prefix = m.Prefix; // Clone.tt Line: 221
             vm.SequenceGuid = m.SequenceGuid; // Clone.tt Line: 221
-            vm.UniqueScope = (EnumDocumentCodeUniqueScope)m.UniqueScope; // Clone.tt Line: 221
+            vm.ScopeOfUnique = (EnumDocumentCodeUniqueScope)m.ScopeOfUnique; // Clone.tt Line: 221
             vm.ScopePeriodStart = m.ScopePeriodStart; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
@@ -23125,7 +23097,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.MaxSequenceLength = vm.MaxSequenceLength; // Clone.tt Line: 276
             m.Prefix = vm.Prefix; // Clone.tt Line: 276
             m.SequenceGuid = vm.SequenceGuid; // Clone.tt Line: 276
-            m.UniqueScope = (Proto.Config.proto_enum_document_code_unique_scope)vm.UniqueScope; // Clone.tt Line: 274
+            m.ScopeOfUnique = (Proto.Config.proto_enum_document_code_unique_scope)vm.ScopeOfUnique; // Clone.tt Line: 274
             m.ScopePeriodStart = vm.ScopePeriodStart; // Clone.tt Line: 276
             return m;
         }
@@ -23238,25 +23210,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(7)]
         [DisplayName("Unique Scope")]
         [Description("Code has to be unique in selected scope")]
-        public EnumDocumentCodeUniqueScope UniqueScope // Property.tt Line: 55
+        public EnumDocumentCodeUniqueScope ScopeOfUnique // Property.tt Line: 55
         { 
-            get { return this._UniqueScope; }
+            get { return this._ScopeOfUnique; }
             set
             {
-                if (this._UniqueScope != value)
+                if (this._ScopeOfUnique != value)
                 {
-                    this.OnUniqueScopeChanging(ref value);
-                    this._UniqueScope = value;
-                    this.OnUniqueScopeChanged();
+                    this.OnScopeOfUniqueChanging(ref value);
+                    this._ScopeOfUnique = value;
+                    this.OnScopeOfUniqueChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private EnumDocumentCodeUniqueScope _UniqueScope;
-        partial void OnUniqueScopeChanging(ref EnumDocumentCodeUniqueScope to); // Property.tt Line: 79
-        partial void OnUniqueScopeChanged();
+        private EnumDocumentCodeUniqueScope _ScopeOfUnique;
+        partial void OnScopeOfUniqueChanging(ref EnumDocumentCodeUniqueScope to); // Property.tt Line: 79
+        partial void OnScopeOfUniqueChanged();
         
         [PropertyOrderAttribute(8)]
         [DisplayName("Date")]
@@ -33020,6 +32992,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_model p);
         void Visit(Proto.Config.proto_data_type p);
         void Visit(Proto.Config.proto_group_list_common p);
+        void Visit(Proto.Config.proto_code_sequence p);
+        void Visit(Proto.Config.proto_group_list_sequences p);
         void Visit(Proto.Config.proto_role p);
         void Visit(Proto.Config.proto_role_constant_access p);
         void Visit(Proto.Config.proto_role_property_access p);
@@ -33044,8 +33018,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_catalog_code_property_settings p);
         void Visit(Proto.Config.proto_catalog p);
         void Visit(Proto.Config.proto_group_list_catalogs p);
-        void Visit(Proto.Config.proto_doc_number_code_sequence p);
-        void Visit(Proto.Config.proto_group_doc_number_list_sequences p);
         void Visit(Proto.Config.proto_group_documents p);
         void Visit(Proto.Config.proto_document_code_property_settings p);
         void Visit(Proto.Config.proto_document p);
@@ -33265,6 +33237,22 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
+        protected override void OnVisit(CodeSequence p) // ValidationVisitor.tt Line: 15
+        {
+            this.OnVisit((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisitEnd(CodeSequence p) // ValidationVisitor.tt Line: 47
+        {
+            this.OnVisitEnd((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisit(GroupListSequences p) // ValidationVisitor.tt Line: 15
+        {
+            this.OnVisit((IValidatableWithSeverity)p);
+        }
+        protected override void OnVisitEnd(GroupListSequences p) // ValidationVisitor.tt Line: 47
+        {
+            this.OnVisitEnd((IValidatableWithSeverity)p);
+        }
         protected override void OnVisit(Role p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
@@ -33475,22 +33463,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.OnVisit((IValidatableWithSeverity)p);
         }
         protected override void OnVisitEnd(GroupListCatalogs p) // ValidationVisitor.tt Line: 47
-        {
-            this.OnVisitEnd((IValidatableWithSeverity)p);
-        }
-        protected override void OnVisit(DocNumberCodeSequence p) // ValidationVisitor.tt Line: 15
-        {
-            this.OnVisit((IValidatableWithSeverity)p);
-        }
-        protected override void OnVisitEnd(DocNumberCodeSequence p) // ValidationVisitor.tt Line: 47
-        {
-            this.OnVisitEnd((IValidatableWithSeverity)p);
-        }
-        protected override void OnVisit(GroupDocNumberListSequences p) // ValidationVisitor.tt Line: 15
-        {
-            this.OnVisit((IValidatableWithSeverity)p);
-        }
-        protected override void OnVisitEnd(GroupDocNumberListSequences p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -33914,6 +33886,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(GroupListCommon p) { }
         protected virtual void OnVisitEnd(GroupListCommon p) { }
+        public void Visit(CodeSequence p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(CodeSequence p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(CodeSequence p) { }
+        protected virtual void OnVisitEnd(CodeSequence p) { }
+        public void Visit(GroupListSequences p)
+        {
+            this.OnVisit(p);
+        }
+        public void VisitEnd(GroupListSequences p)
+        {
+            this.OnVisitEnd(p);
+        }
+        protected virtual void OnVisit(GroupListSequences p) { }
+        protected virtual void OnVisitEnd(GroupListSequences p) { }
         public void Visit(Role p)
         {
             this.OnVisit(p);
@@ -34154,26 +34146,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(GroupListCatalogs p) { }
         protected virtual void OnVisitEnd(GroupListCatalogs p) { }
-        public void Visit(DocNumberCodeSequence p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(DocNumberCodeSequence p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(DocNumberCodeSequence p) { }
-        protected virtual void OnVisitEnd(DocNumberCodeSequence p) { }
-        public void Visit(GroupDocNumberListSequences p)
-        {
-            this.OnVisit(p);
-        }
-        public void VisitEnd(GroupDocNumberListSequences p)
-        {
-            this.OnVisitEnd(p);
-        }
-        protected virtual void OnVisit(GroupDocNumberListSequences p) { }
-        protected virtual void OnVisitEnd(GroupDocNumberListSequences p) { }
         public void Visit(GroupDocuments p)
         {
             this.OnVisit(p);
@@ -34405,6 +34377,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void VisitEnd(Model p);
         void Visit(GroupListCommon p);
         void VisitEnd(GroupListCommon p);
+        void Visit(CodeSequence p);
+        void VisitEnd(CodeSequence p);
+        void Visit(GroupListSequences p);
+        void VisitEnd(GroupListSequences p);
         void Visit(Role p);
         void VisitEnd(Role p);
         void Visit(GroupListRoles p);
@@ -34439,10 +34415,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void VisitEnd(Catalog p);
         void Visit(GroupListCatalogs p);
         void VisitEnd(GroupListCatalogs p);
-        void Visit(DocNumberCodeSequence p);
-        void VisitEnd(DocNumberCodeSequence p);
-        void Visit(GroupDocNumberListSequences p);
-        void VisitEnd(GroupDocNumberListSequences p);
         void Visit(GroupDocuments p);
         void VisitEnd(GroupDocuments p);
         void Visit(Document p);
