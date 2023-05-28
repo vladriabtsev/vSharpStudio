@@ -18,22 +18,22 @@
             {
               "name": "INTEGER_VALUE",
               "number": "0",
-              "description": "@attr [Description(\"INT\")]"
+              "description": "@attr [Description(\"Int\")]"
             },
             {
               "name": "SHORT_VALUE",
-              "number": "1",
-              "description": "@attr [Description(\"SHORT\")]"
+              "number": "11",
+              "description": "@attr [Description(\"Short\")]"
             },
             {
               "name": "BYTE_VALUE",
-              "number": "2",
-              "description": "@attr [Description(\"BYTE\")]"
+              "number": "21",
+              "description": "@attr [Description(\"Byte\")]"
             },
             {
               "name": "STRING_VALUE",
-              "number": "3",
-              "description": "@attr [Description(\"STRING\")]"
+              "number": "31",
+              "description": "@attr [Description(\"String\")]"
             }
           ]
         },
@@ -157,19 +157,14 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "NoScope",
+              "name": "code_unique_in_whole_catalog",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"Unique in whole catalog\")]"
             },
             {
-              "name": "Group",
-              "number": "1",
-              "description": ""
-            },
-            {
-              "name": "Catalog",
-              "number": "2",
-              "description": ""
+              "name": "code_uniqueness_by_folder_settings",
+              "number": "11",
+              "description": "@attr [Description(\"Unique in each folder\")]"
             }
           ]
         },
@@ -186,22 +181,27 @@
             },
             {
               "name": "C_HIDE",
-              "number": "1",
+              "number": "11",
               "description": "@attr [Description(\"Hide\")]"
             },
             {
               "name": "C_VIEW",
-              "number": "2",
+              "number": "21",
               "description": "@attr [Description(\"View\")]"
             },
             {
-              "name": "C_EDIT",
-              "number": "3",
-              "description": "@attr [Description(\"Edit\")]"
+              "name": "C_EDIT_ITEMS",
+              "number": "31",
+              "description": "@attr [Description(\"Edit Items\")]"
+            },
+            {
+              "name": "C_EDIT_FOLDERS",
+              "number": "41",
+              "description": "@attr [Description(\"Edit Folders\")]"
             },
             {
               "name": "C_MARK_DEL",
-              "number": "4",
+              "number": "51",
               "description": "@attr [Description(\"Del\")]"
             }
           ]
@@ -219,17 +219,17 @@
             },
             {
               "name": "Item",
-              "number": "1",
+              "number": "11",
               "description": ""
             },
             {
               "name": "Folder",
-              "number": "2",
+              "number": "21",
               "description": ""
             },
             {
               "name": "Custom",
-              "number": "3",
+              "number": "31",
               "description": ""
             }
           ]
@@ -243,22 +243,22 @@
             {
               "name": "Number",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"Number\")]"
             },
             {
               "name": "Text",
               "number": "1",
-              "description": ""
+              "description": "@attr [Description(\"Text\")]"
             },
             {
               "name": "AutoNumber",
               "number": "2",
-              "description": ""
+              "description": "@attr [Description(\"Auto Number\")]"
             },
             {
               "name": "AutoText",
               "number": "3",
-              "description": ""
+              "description": "@attr [Description(\"Auto Text\")]"
             }
           ]
         },
@@ -371,17 +371,17 @@
             },
             {
               "name": "CN_HIDE",
-              "number": "1",
+              "number": "11",
               "description": "@attr [Description(\"Hide\")]"
             },
             {
               "name": "CN_VIEW",
-              "number": "2",
+              "number": "21",
               "description": "@attr [Description(\"View\")]\n\nwith history"
             },
             {
               "name": "CN_EDIT",
-              "number": "3",
+              "number": "31",
               "description": "@attr [Description(\"Edit\")]\n\nwith history"
             }
           ]
@@ -395,72 +395,72 @@
             {
               "name": "CHAR",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"Char\")]"
             },
             {
               "name": "STRING",
-              "number": "1",
-              "description": ""
+              "number": "11",
+              "description": "@attr [Description(\"String\")]"
             },
             {
               "name": "NUMERICAL",
-              "number": "2",
-              "description": ""
+              "number": "21",
+              "description": "@attr [Description(\"Numerical\")]"
             },
             {
               "name": "BOOL",
-              "number": "3",
-              "description": ""
+              "number": "31",
+              "description": "@attr [Description(\"Boolean\")]"
             },
             {
               "name": "TIME",
-              "number": "4",
-              "description": ""
+              "number": "41",
+              "description": "@attr [Description(\"Time\")]"
             },
             {
               "name": "DATE",
-              "number": "5",
-              "description": ""
+              "number": "51",
+              "description": "@attr [Description(\"Date\")]"
             },
             {
               "name": "DATETIMELOCAL",
-              "number": "6",
-              "description": ""
+              "number": "61",
+              "description": "@attr [Description(\"DateTime Local\")]"
             },
             {
               "name": "DATETIMEUTC",
-              "number": "7",
-              "description": ""
+              "number": "71",
+              "description": "@attr [Description(\"DateTime UTC\")]"
             },
             {
               "name": "ENUMERATION",
-              "number": "10",
-              "description": ""
+              "number": "81",
+              "description": "@attr [Description(\"Enumeration\")]"
             },
             {
               "name": "CATALOG",
-              "number": "11",
-              "description": ""
+              "number": "91",
+              "description": "@attr [Description(\"Catalog\")]"
             },
             {
               "name": "CATALOGS",
-              "number": "12",
-              "description": ""
+              "number": "101",
+              "description": "@attr [Description(\"Catalogs\")]"
             },
             {
               "name": "DOCUMENT",
-              "number": "13",
-              "description": ""
+              "number": "111",
+              "description": "@attr [Description(\"Document\")]"
             },
             {
               "name": "DOCUMENTS",
-              "number": "14",
-              "description": ""
+              "number": "121",
+              "description": "@attr [Description(\"Documents\")]"
             },
             {
               "name": "ANY",
-              "number": "15",
-              "description": ""
+              "number": "131",
+              "description": "@attr [Description(\"Any\")]"
             }
           ]
         },
@@ -588,32 +588,32 @@
             },
             {
               "name": "D_HIDE",
-              "number": "1",
+              "number": "11",
               "description": "@attr [Description(\"Hide\")]"
             },
             {
               "name": "D_VIEW",
-              "number": "2",
+              "number": "21",
               "description": "@attr [Description(\"View\")]"
             },
             {
               "name": "D_EDIT",
-              "number": "3",
+              "number": "31",
               "description": "@attr [Description(\"Edit\")]"
             },
             {
               "name": "D_POST",
-              "number": "4",
+              "number": "41",
               "description": "@attr [Description(\"Post\")]"
             },
             {
               "name": "D_UNPOST",
-              "number": "5",
+              "number": "51",
               "description": "@attr [Description(\"Unpost\")]"
             },
             {
               "name": "D_MARK_DEL",
-              "number": "6",
+              "number": "61",
               "description": "@attr [Description(\"Del\")]"
             }
           ]
@@ -625,24 +625,24 @@
           "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
           "values": [
             {
-              "name": "Forever",
+              "name": "DOC_UNIQUE_FOREVER",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"Allways\")]"
             },
             {
-              "name": "Year",
-              "number": "1",
-              "description": ""
+              "name": "DOC_UNIQUE_YEAR",
+              "number": "11",
+              "description": "@attr [Description(\"Year\")]"
             },
             {
-              "name": "Quater",
-              "number": "2",
-              "description": ""
+              "name": "DOC_UNIQUE_QUATER",
+              "number": "21",
+              "description": "@attr [Description(\"Quater\")]"
             },
             {
-              "name": "Month",
-              "number": "3",
-              "description": ""
+              "name": "DOC_UNIQUE_MONTH",
+              "number": "31",
+              "description": "@attr [Description(\"Month\")]"
             }
           ]
         },
@@ -770,27 +770,27 @@
             },
             {
               "name": "Xs",
-              "number": "1",
+              "number": "11",
               "description": "@attr [Description(\"Hide on Extra small screen\")]"
             },
             {
               "name": "SmAndDown",
-              "number": "2",
+              "number": "21",
               "description": "@attr [Description(\"Hide on Small screen and smaller\")]"
             },
             {
               "name": "MdAndDown",
-              "number": "3",
+              "number": "31",
               "description": "@attr [Description(\"Hide on Medium screen and smaller\")]"
             },
             {
               "name": "LgAndDown",
-              "number": "4",
+              "number": "41",
               "description": "@attr [Description(\"Hide on Large screen and smaller\")]"
             },
             {
               "name": "XlAndDown",
-              "number": "5",
+              "number": "51",
               "description": "@attr [Description(\"Hide on Extra Large screen and smaller\")]"
             }
           ]
@@ -1179,12 +1179,12 @@
             {
               "name": "INT",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"Int\")]"
             },
             {
               "name": "LONG",
-              "number": "1",
-              "description": ""
+              "number": "11",
+              "description": "@attr [Description(\"Long\")]"
             }
           ]
         },
@@ -1201,12 +1201,12 @@
             },
             {
               "name": "PR_NO_PRINT",
-              "number": "1",
+              "number": "11",
               "description": "@attr [Description(\"No print\")]"
             },
             {
               "name": "PR_PRINT",
-              "number": "2",
+              "number": "21",
               "description": "@attr [Description(\"Print\")]"
             }
           ]
@@ -1224,17 +1224,17 @@
             },
             {
               "name": "P_HIDE",
-              "number": "1",
+              "number": "11",
               "description": "@attr [Description(\"Hide\")]"
             },
             {
               "name": "P_VIEW",
-              "number": "2",
+              "number": "21",
               "description": "@attr [Description(\"View\")]\n\nwith history"
             },
             {
               "name": "P_EDIT",
-              "number": "3",
+              "number": "31",
               "description": "@attr [Description(\"Edit\")]\n\nwith history"
             }
           ]
@@ -1532,12 +1532,12 @@
             },
             {
               "name": "Yes",
-              "number": "1",
+              "number": "11",
               "description": ""
             },
             {
               "name": "No",
-              "number": "2",
+              "number": "21",
               "description": ""
             }
           ]
@@ -1589,22 +1589,22 @@
             {
               "name": "VER_BYTE",
               "number": "0",
-              "description": "@attr [Description(\"BYTE\")]"
+              "description": "@attr [Description(\"Byte\")]"
             },
             {
               "name": "VER_SHORT",
-              "number": "1",
-              "description": "@attr [Description(\"SHORT\")]"
+              "number": "11",
+              "description": "@attr [Description(\"Short\")]"
             },
             {
               "name": "VER_INT",
-              "number": "2",
-              "description": "@attr [Description(\"INT\")]"
+              "number": "21",
+              "description": "@attr [Description(\"Int\")]"
             },
             {
               "name": "VER_LONG",
-              "number": "3",
-              "description": "@attr [Description(\"LONG\")]"
+              "number": "31",
+              "description": "@attr [Description(\"Long\")]"
             }
           ]
         },
@@ -1621,7 +1621,7 @@
             },
             {
               "name": "Horizontal",
-              "number": "1",
+              "number": "11",
               "description": ""
             }
           ]
@@ -1639,22 +1639,22 @@
             },
             {
               "name": "ListWide",
-              "number": "1",
+              "number": "11",
               "description": "@attr [Description(\"Wide list view form\")]"
             },
             {
               "name": "ItemEditForm",
-              "number": "2",
+              "number": "21",
               "description": "@attr [Description(\"Item edit form\")]"
             },
             {
               "name": "FolderEditForm",
-              "number": "3",
+              "number": "31",
               "description": "@attr [Description(\"Folder edit form\")]"
             },
             {
               "name": "ListNarrow",
-              "number": "4",
+              "number": "41",
               "description": "@attr [Description(\"Narrow list view form\")]"
             }
           ]
@@ -2678,8 +2678,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "type",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Type\")]\n@attr [Description(\"Code type\")]",
+              "name": "sequence_type",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Sequence type\")]\n@attr [Description(\"Sequence type general settings\")]",
               "label": "",
               "type": "proto_enum_code_type",
               "longType": "proto_enum_code_type",
@@ -2688,8 +2688,8 @@
               "defaultValue": ""
             },
             {
-              "name": "length",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Length\")]\n@attr [Description(\"Length is number of decimal digits for numbers, string length for text\")]",
+              "name": "max_sequence_length",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -2698,8 +2698,8 @@
               "defaultValue": ""
             },
             {
-              "name": "sequence_guid",
-              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Sequence\")]\n@attr [Description(\"Sequence for auto code generation\")]",
+              "name": "prefix",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Prefix\")]\n@attr [Description(\"Prefix for text code sequence\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3947,6 +3947,137 @@
           ]
         },
         {
+          "name": "proto_doc_number_code_sequence",
+          "longName": "proto_doc_number_code_sequence",
+          "fullName": "proto_config.proto_doc_number_code_sequence",
+          "description": "@interface ICanAddNode\n@interface ISortingValue",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sequence_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Sequence type\")]\n@attr [Description(\"Sequence type for code\")]",
+              "label": "",
+              "type": "proto_enum_code_type",
+              "longType": "proto_enum_code_type",
+              "fullType": "proto_config.proto_enum_code_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_sequence_length",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "prefix",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Prefix\")]\n@attr [Description(\"Prefix for text code sequence\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "scope_of_unique",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(15)]\n@attr [DisplayName(\"Unique\")]\n@attr [Description(\"Scope of unique document number sequence\")]",
+              "label": "",
+              "type": "proto_enum_document_code_unique_scope",
+              "longType": "proto_enum_document_code_unique_scope",
+              "fullType": "proto_config.proto_enum_document_code_unique_scope",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_document",
           "longName": "proto_document",
           "fullName": "proto_config.proto_document",
@@ -4207,8 +4338,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "type",
-              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Type\")]\n@attr [Description(\"Code type\")]",
+              "name": "sequence_type",
+              "description": "@attr [PropertyOrderAttribute(1)]\n@attr [DisplayName(\"Sequence type\")]\n@attr [Description(\"Sequence type general settings\")]",
               "label": "",
               "type": "proto_enum_code_type",
               "longType": "proto_enum_code_type",
@@ -4217,8 +4348,8 @@
               "defaultValue": ""
             },
             {
-              "name": "length",
-              "description": "@attr [PropertyOrderAttribute(4)]\n@attr [DisplayName(\"Length\")]\n@attr [Description(\"Length is number of decimal digits for numbers, string length for text\")]",
+              "name": "max_sequence_length",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -4227,8 +4358,18 @@
               "defaultValue": ""
             },
             {
+              "name": "prefix",
+              "description": "@attr [PropertyOrderAttribute(3)]\n@attr [DisplayName(\"Prefix\")]\n@attr [Description(\"Prefix for text code sequence\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "sequence_guid",
-              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Sequence\")]\n@attr [Description(\"Sequence for auto code generation\")]",
+              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Shared Sequence\")]\n@attr [Description(\"Shared Sequence for auto code generation. Same sequence can be used for different documents\")]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4250,9 +4391,9 @@
               "name": "scope_period_start",
               "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Date\")]\n@attr [Description(\"Start date of scope period\")]",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
               "ismap": false,
               "defaultValue": ""
             }
@@ -5953,10 +6094,91 @@
           ]
         },
         {
+          "name": "proto_group_doc_number_list_sequences",
+          "longName": "proto_group_doc_number_list_sequences",
+          "fullName": "proto_config.proto_group_doc_number_list_sequences",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_sequences",
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Document number sequences\")]",
+              "label": "repeated",
+              "type": "proto_doc_number_code_sequence",
+              "longType": "proto_doc_number_code_sequence",
+              "fullType": "proto_config.proto_doc_number_code_sequence",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "proto_group_documents",
           "longName": "proto_group_documents",
           "fullName": "proto_config.proto_group_documents",
-          "description": "D O C U M E N T\n@exclude\n####################################### D O C U M E N T ##########################################",
+          "description": "",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],
@@ -6038,6 +6260,16 @@
               "type": "proto_group_list_documents",
               "longType": "proto_group_list_documents",
               "fullType": "proto_config.proto_group_list_documents",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "group_list_sequences",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "proto_group_doc_number_list_sequences",
+              "longType": "proto_group_doc_number_list_sequences",
+              "fullType": "proto_config.proto_group_doc_number_list_sequences",
               "ismap": false,
               "defaultValue": ""
             },
@@ -6652,7 +6884,7 @@
           "name": "proto_group_list_details",
           "longName": "proto_group_list_details",
           "fullName": "proto_config.proto_group_list_details",
-          "description": "",
+          "description": "D E T A I L S\n@exclude\n####################################### D E T A I L S ########################################",
           "hasExtensions": false,
           "hasFields": true,
           "extensions": [],

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using Google.Protobuf.WellKnownTypes;
 using vSharpStudio.common;
 
 namespace vSharpStudio.vm.ViewModels
@@ -10,9 +11,6 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnCreated()
         {
-            this.UniqueScope = common.EnumDocumentCodeUniqueScope.Year;
-            this.Type = common.EnumCodeType.Number;
-            this.Length = 5;
             //Init();
         }
         //protected override void OnInitFromDto()
@@ -29,17 +27,19 @@ namespace vSharpStudio.vm.ViewModels
         //    {
         //        t.OnAdded();
         //    };
-        //    this.ListRoles.OnRemovedAction = (t) => {
+        //    this.ListRoles.OnRemovedAction = (t) =>
+        //    {
         //        this.OnRemoveChild();
         //    };
-        //    this.ListRoles.OnClearedAction = () => {
+        //    this.ListRoles.OnClearedAction = () =>
+        //    {
         //        this.OnRemoveChild();
         //    };
         //}
-        protected override void OnIsChangedChanged()
-        {
-            if (this.Parent != null && this.IsChanged)
-                this.Parent.IsChanged = true;
-        }
+        //protected override void OnIsChangedChanged()
+        //{
+        //    if (this.Parent != null && this.IsChanged)
+        //        this.Parent.IsChanged = true;
+        //}
     }
 }

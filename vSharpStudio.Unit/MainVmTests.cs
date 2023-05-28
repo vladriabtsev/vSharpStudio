@@ -2394,7 +2394,7 @@ namespace vSharpStudio.Unit
                 case EnumCatalogDetailAccess.C_VIEW:
                     Assert.AreEqual(EnumPropertyAccess.P_VIEW, p.GetRolePropertyAccess(role));
                     break;
-                case EnumCatalogDetailAccess.C_EDIT:
+                case EnumCatalogDetailAccess.C_EDIT_ITEMS:
                 case EnumCatalogDetailAccess.C_MARK_DEL:
                     Assert.AreEqual(EnumPropertyAccess.P_EDIT, p.GetRolePropertyAccess(role));
                     break;

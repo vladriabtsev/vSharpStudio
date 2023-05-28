@@ -10,9 +10,10 @@ namespace vSharpStudio.vm.ViewModels
     {
         partial void OnCreated()
         {
-            this.UniqueScope = common.EnumCatalogCodeUniqueScope.Catalog;
-            this.Type = common.EnumCodeType.Number;
-            this.Length = 5;
+            this.SequenceType = common.EnumCodeType.AutoText;
+            this.MaxSequenceLength = 5;
+            this.Prefix = "";
+            this.UniqueScope = common.EnumCatalogCodeUniqueScope.code_unique_in_whole_catalog;
             //Init();
         }
         //protected override void OnInitFromDto()

@@ -503,7 +503,8 @@ namespace vSharpStudio.vm.ViewModels
                     return EnumPropertyAccess.P_HIDE;
                 case EnumCatalogDetailAccess.C_VIEW:
                     return EnumPropertyAccess.P_VIEW;
-                case EnumCatalogDetailAccess.C_EDIT:
+                case EnumCatalogDetailAccess.C_EDIT_ITEMS:
+                case EnumCatalogDetailAccess.C_EDIT_FOLDERS:
                 case EnumCatalogDetailAccess.C_MARK_DEL:
                     return EnumPropertyAccess.P_EDIT;
                 default:
@@ -555,12 +556,12 @@ namespace vSharpStudio.vm.ViewModels
                     case EnumDocumentAccess.D_VIEW:
                         return EnumCatalogDetailAccess.C_VIEW;
                     case EnumDocumentAccess.D_EDIT:
-                        return EnumCatalogDetailAccess.C_EDIT;
+                        return EnumCatalogDetailAccess.C_EDIT_ITEMS;
                     case EnumDocumentAccess.D_MARK_DEL:
                         return EnumCatalogDetailAccess.C_MARK_DEL;
                     case EnumDocumentAccess.D_POST:
                     case EnumDocumentAccess.D_UNPOST:
-                        return EnumCatalogDetailAccess.C_EDIT;
+                        return EnumCatalogDetailAccess.C_EDIT_ITEMS;
                     default:
                         throw new NotImplementedException();
                 }

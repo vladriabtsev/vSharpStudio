@@ -301,12 +301,12 @@ namespace vSharpStudio.vm.ViewModels
                     case EnumDocumentAccess.D_VIEW:
                         return EnumCatalogDetailAccess.C_VIEW;
                     case EnumDocumentAccess.D_EDIT:
-                        return EnumCatalogDetailAccess.C_EDIT;
+                        return EnumCatalogDetailAccess.C_EDIT_ITEMS;
                     case EnumDocumentAccess.D_MARK_DEL:
                         return EnumCatalogDetailAccess.C_MARK_DEL;
                     case EnumDocumentAccess.D_POST:
                     case EnumDocumentAccess.D_UNPOST:
-                        return EnumCatalogDetailAccess.C_EDIT;
+                        return EnumCatalogDetailAccess.C_EDIT_ITEMS;
                     default:
                         throw new NotImplementedException();
                 }

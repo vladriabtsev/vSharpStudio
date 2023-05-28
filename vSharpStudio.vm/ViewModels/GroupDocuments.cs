@@ -21,6 +21,7 @@ namespace vSharpStudio.vm.ViewModels
         public Model ParentModel { get { Debug.Assert(this.Parent != null); return (Model)this.Parent; } }
         [Browsable(false)]
         public IModel ParentModelI { get { Debug.Assert(this.Parent != null); return (IModel)this.Parent; } }
+
         #region ITree
         public override IChildrenCollection GetListChildren()
         {
@@ -53,8 +54,9 @@ namespace vSharpStudio.vm.ViewModels
                 return;
             VmBindable.IsNotifyingStatic = false;
             var children = (ConfigNodesCollection<ITreeConfigNodeSortable>)this.Children;
-            children.Add(this.GroupSharedProperties, 1);
-            children.Add(this.GroupListDocuments, 2);
+            children.Add(this.GroupListSequences, 1);
+            children.Add(this.GroupSharedProperties, 2);
+            children.Add(this.GroupListDocuments, 3);
             VmBindable.IsNotifyingStatic = true;
 
             //this.ListRoles.OnAddingAction = (t) =>

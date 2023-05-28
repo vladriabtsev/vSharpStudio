@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -42,6 +43,14 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDocCodeGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
+
+            this.CodePropertySettings.SequenceType = EnumCodeType.AutoText;
+            this.CodePropertySettings.MaxSequenceLength = 9;
+            this.CodePropertySettings.Prefix = "";
+            this.CodePropertySettings.SequenceGuid = "";
+            this.CodePropertySettings.UniqueScope = common.EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR;
+            this.CodePropertySettings.ScopePeriodStart = Timestamp.FromDateTime(new DateTime(DateTime.Now.Year, 1, 1));
+
             Init();
         }
         protected override void OnInitFromDto()
@@ -305,17 +314,23 @@ namespace vSharpStudio.vm.ViewModels
             }
             if (this.GetUseDocCodeProperty())
             {
-                switch (this.CodePropertySettings.Type)
+                switch (this.CodePropertySettings.SequenceType)
                 {
                     case EnumCodeType.AutoNumber:
-                        throw new NotImplementedException();
+                        prp = model.GetPropertyDocumentCodeInt(this.GroupProperties, this.PropertyDocCodeGuid, 
+                            this.CodePropertySettings.MaxSequenceLength);
+                        break;
                     case EnumCodeType.AutoText:
-                        throw new NotImplementedException();
+                        prp = model.GetPropertyDocumentCodeString(this.GroupProperties, this.PropertyDocCodeGuid,
+                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length);
+                        break;
                     case EnumCodeType.Number:
-                        prp = model.GetPropertyDocumentCodeInt(this.GroupProperties, this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
+                        prp = model.GetPropertyDocumentCodeInt(this.GroupProperties, this.PropertyDocCodeGuid, 
+                            this.CodePropertySettings.MaxSequenceLength);
                         break;
                     case EnumCodeType.Text:
-                        prp = model.GetPropertyDocumentCodeString(this.GroupProperties, this.PropertyDocCodeGuid, this.CodePropertySettings.Length);
+                        prp = model.GetPropertyDocumentCodeString(this.GroupProperties, this.PropertyDocCodeGuid, 
+                            this.CodePropertySettings.MaxSequenceLength);
                         break;
                 }
                 res.Add(prp);

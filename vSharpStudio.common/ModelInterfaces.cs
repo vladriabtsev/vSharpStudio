@@ -11,14 +11,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumEnumerationType // ModelInterfaces.tt Line: 17
 	{
-		[Description("INT")]
+		[Description("Int")]
 		INTEGER_VALUE = 0,
-		[Description("SHORT")]
-		SHORT_VALUE = 1,
-		[Description("BYTE")]
-		BYTE_VALUE = 2,
-		[Description("STRING")]
-		STRING_VALUE = 3,
+		[Description("Short")]
+		SHORT_VALUE = 11,
+		[Description("Byte")]
+		BYTE_VALUE = 21,
+		[Description("String")]
+		STRING_VALUE = 31,
 	}
 	// https://github.com/bchavez/Bogus
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
@@ -49,9 +49,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumCatalogCodeUniqueScope // ModelInterfaces.tt Line: 17
 	{
-		NoScope = 0,
-		Group = 1,
-		Catalog = 2,
+		[Description("Unique in whole catalog")]
+		code_unique_in_whole_catalog = 0,
+		[Description("Unique in each folder")]
+		code_uniqueness_by_folder_settings = 11,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumCatalogDetailAccess // ModelInterfaces.tt Line: 17
@@ -59,28 +60,34 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		[Description("By Parent")]
 		C_BY_PARENT = 0,
 		[Description("Hide")]
-		C_HIDE = 1,
+		C_HIDE = 11,
 		[Description("View")]
-		C_VIEW = 2,
-		[Description("Edit")]
-		C_EDIT = 3,
+		C_VIEW = 21,
+		[Description("Edit Items")]
+		C_EDIT_ITEMS = 31,
+		[Description("Edit Folders")]
+		C_EDIT_FOLDERS = 41,
 		[Description("Del")]
-		C_MARK_DEL = 4,
+		C_MARK_DEL = 51,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumCatalogTreeIcon // ModelInterfaces.tt Line: 17
 	{
 		None = 0,
-		Item = 1,
-		Folder = 2,
-		Custom = 3,
+		Item = 11,
+		Folder = 21,
+		Custom = 31,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumCodeType // ModelInterfaces.tt Line: 17
 	{
+		[Description("Number")]
 		Number = 0,
+		[Description("Text")]
 		Text = 1,
+		[Description("Auto Number")]
 		AutoNumber = 2,
+		[Description("Auto Text")]
 		AutoText = 3,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
@@ -113,33 +120,47 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		[Description("By Parent")]
 		CN_BY_PARENT = 0,
 		[Description("Hide")]
-		CN_HIDE = 1,
+		CN_HIDE = 11,
 		// 
 		// with history
 		[Description("View")]
-		CN_VIEW = 2,
+		CN_VIEW = 21,
 		// 
 		// with history
 		[Description("Edit")]
-		CN_EDIT = 3,
+		CN_EDIT = 31,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDataType // ModelInterfaces.tt Line: 17
 	{
+		[Description("Char")]
 		CHAR = 0,
-		STRING = 1,
-		NUMERICAL = 2,
-		BOOL = 3,
-		TIME = 4,
-		DATE = 5,
-		DATETIMELOCAL = 6,
-		DATETIMEUTC = 7,
-		ENUMERATION = 10,
-		CATALOG = 11,
-		CATALOGS = 12,
-		DOCUMENT = 13,
-		DOCUMENTS = 14,
-		ANY = 15,
+		[Description("String")]
+		STRING = 11,
+		[Description("Numerical")]
+		NUMERICAL = 21,
+		[Description("Boolean")]
+		BOOL = 31,
+		[Description("Time")]
+		TIME = 41,
+		[Description("Date")]
+		DATE = 51,
+		[Description("DateTime Local")]
+		DATETIMELOCAL = 61,
+		[Description("DateTime UTC")]
+		DATETIMEUTC = 71,
+		[Description("Enumeration")]
+		ENUMERATION = 81,
+		[Description("Catalog")]
+		CATALOG = 91,
+		[Description("Catalogs")]
+		CATALOGS = 101,
+		[Description("Document")]
+		DOCUMENT = 111,
+		[Description("Documents")]
+		DOCUMENTS = 121,
+		[Description("Any")]
+		ANY = 131,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDatabaseDataType // ModelInterfaces.tt Line: 17
@@ -174,25 +195,29 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		[Description("By Parent")]
 		D_BY_PARENT = 0,
 		[Description("Hide")]
-		D_HIDE = 1,
+		D_HIDE = 11,
 		[Description("View")]
-		D_VIEW = 2,
+		D_VIEW = 21,
 		[Description("Edit")]
-		D_EDIT = 3,
+		D_EDIT = 31,
 		[Description("Post")]
-		D_POST = 4,
+		D_POST = 41,
 		[Description("Unpost")]
-		D_UNPOST = 5,
+		D_UNPOST = 51,
 		[Description("Del")]
-		D_MARK_DEL = 6,
+		D_MARK_DEL = 61,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDocumentCodeUniqueScope // ModelInterfaces.tt Line: 17
 	{
-		Forever = 0,
-		Year = 1,
-		Quater = 2,
-		Month = 3,
+		[Description("Allways")]
+		DOC_UNIQUE_FOREVER = 0,
+		[Description("Year")]
+		DOC_UNIQUE_YEAR = 11,
+		[Description("Quater")]
+		DOC_UNIQUE_QUATER = 21,
+		[Description("Month")]
+		DOC_UNIQUE_MONTH = 31,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumFinanceDataType // ModelInterfaces.tt Line: 17
@@ -227,15 +252,15 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		[Description("Never Hide")]
 		NeverHide = 0,
 		[Description("Hide on Extra small screen")]
-		Xs = 1,
+		Xs = 11,
 		[Description("Hide on Small screen and smaller")]
-		SmAndDown = 2,
+		SmAndDown = 21,
 		[Description("Hide on Medium screen and smaller")]
-		MdAndDown = 3,
+		MdAndDown = 31,
 		[Description("Hide on Large screen and smaller")]
-		LgAndDown = 4,
+		LgAndDown = 41,
 		[Description("Hide on Extra Large screen and smaller")]
-		XlAndDown = 5,
+		XlAndDown = 51,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumImageDataType // ModelInterfaces.tt Line: 17
@@ -327,8 +352,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumPrimaryKeyType // ModelInterfaces.tt Line: 17
 	{
+		[Description("Int")]
 		INT = 0,
-		LONG = 1,
+		[Description("Long")]
+		LONG = 11,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumPrintAccess // ModelInterfaces.tt Line: 17
@@ -336,9 +363,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		[Description("By Parent")]
 		PR_BY_PARENT = 0,
 		[Description("No print")]
-		PR_NO_PRINT = 1,
+		PR_NO_PRINT = 11,
 		[Description("Print")]
-		PR_PRINT = 2,
+		PR_PRINT = 21,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumPropertyAccess // ModelInterfaces.tt Line: 17
@@ -346,15 +373,15 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		[Description("By Parent")]
 		P_BY_PARENT = 0,
 		[Description("Hide")]
-		P_HIDE = 1,
+		P_HIDE = 11,
 		// 
 		// with history
 		[Description("View")]
-		P_VIEW = 2,
+		P_VIEW = 21,
 		// 
 		// with history
 		[Description("Edit")]
-		P_EDIT = 3,
+		P_EDIT = 31,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumPropertyDataType // ModelInterfaces.tt Line: 17
@@ -433,8 +460,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 	public enum EnumUseType // ModelInterfaces.tt Line: 17
 	{
 		Default = 0,
-		Yes = 1,
-		No = 2,
+		Yes = 11,
+		No = 21,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumVehicleDataType // ModelInterfaces.tt Line: 17
@@ -449,20 +476,20 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumVersionFieldType // ModelInterfaces.tt Line: 17
 	{
-		[Description("BYTE")]
+		[Description("Byte")]
 		VER_BYTE = 0,
-		[Description("SHORT")]
-		VER_SHORT = 1,
-		[Description("INT")]
-		VER_INT = 2,
-		[Description("LONG")]
-		VER_LONG = 3,
+		[Description("Short")]
+		VER_SHORT = 11,
+		[Description("Int")]
+		VER_INT = 21,
+		[Description("Long")]
+		VER_LONG = 31,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum FormOrientation // ModelInterfaces.tt Line: 17
 	{
 		Vertical = 0,
-		Horizontal = 1,
+		Horizontal = 11,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum FormType // ModelInterfaces.tt Line: 17
@@ -470,13 +497,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		[Description("Not selected")]
 		FormTypeNotSelected = 0,
 		[Description("Wide list view form")]
-		ListWide = 1,
+		ListWide = 11,
 		[Description("Item edit form")]
-		ItemEditForm = 2,
+		ItemEditForm = 21,
 		[Description("Folder edit form")]
-		FolderEditForm = 3,
+		FolderEditForm = 31,
 		[Description("Narrow list view form")]
-		ListNarrow = 4,
+		ListNarrow = 41,
 	}
     
     public partial interface IUserSettings // ModelInterfaces.tt Line: 33
@@ -944,6 +971,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	uint Position { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
+    // D E T A I L S
+    // @exclude
+    // ####################################### D E T A I L S ########################################
     
     public partial interface IGroupListDetails : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -1159,9 +1189,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface ICatalogCodePropertySettings // ModelInterfaces.tt Line: 33
     {
-    	EnumCodeType Type { get; } // ModelInterfaces.tt Line: 55
-    	uint Length { get; } // ModelInterfaces.tt Line: 55
-    	string SequenceGuid { get; } // ModelInterfaces.tt Line: 55
+    	EnumCodeType SequenceType { get; } // ModelInterfaces.tt Line: 55
+    	uint MaxSequenceLength { get; } // ModelInterfaces.tt Line: 55
+    	string Prefix { get; } // ModelInterfaces.tt Line: 55
     	EnumCatalogCodeUniqueScope UniqueScope { get; } // ModelInterfaces.tt Line: 55
     }
     
@@ -1227,9 +1257,31 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
-    // D O C U M E N T
-    // @exclude
-    // ####################################### D O C U M E N T ##########################################
+    
+    public partial interface IDocNumberCodeSequence : IGuid, IName // ModelInterfaces.tt Line: 33
+    {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
+    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+    	EnumCodeType SequenceType { get; } // ModelInterfaces.tt Line: 55
+    	uint MaxSequenceLength { get; } // ModelInterfaces.tt Line: 55
+    	string Prefix { get; } // ModelInterfaces.tt Line: 55
+    	EnumDocumentCodeUniqueScope ScopeOfUnique { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    }
+    
+    public partial interface IGroupDocNumberListSequences : IGuid, IName // ModelInterfaces.tt Line: 33
+    {
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
+    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IDocNumberCodeSequence> ListSequences { get; } // ModelInterfaces.tt Line: 48
+    	IDocNumberCodeSequence this[int index] { get; }
+    	int Count();
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    }
     
     public partial interface IGroupDocuments : IGuid, IName // ModelInterfaces.tt Line: 33
     {
@@ -1239,6 +1291,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 55
     	IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 59
     	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 59
+    	IGroupDocNumberListSequences GroupListSequences { get; } // ModelInterfaces.tt Line: 59
     	EnumUseType UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
@@ -1249,11 +1302,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     
     public partial interface IDocumentCodePropertySettings // ModelInterfaces.tt Line: 33
     {
-    	EnumCodeType Type { get; } // ModelInterfaces.tt Line: 55
-    	uint Length { get; } // ModelInterfaces.tt Line: 55
+    	EnumCodeType SequenceType { get; } // ModelInterfaces.tt Line: 55
+    	uint MaxSequenceLength { get; } // ModelInterfaces.tt Line: 55
+    	string Prefix { get; } // ModelInterfaces.tt Line: 55
     	string SequenceGuid { get; } // ModelInterfaces.tt Line: 55
     	EnumDocumentCodeUniqueScope UniqueScope { get; } // ModelInterfaces.tt Line: 55
-    	string ScopePeriodStart { get; } // ModelInterfaces.tt Line: 55
+    	Google.Protobuf.WellKnownTypes.Timestamp ScopePeriodStart { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IDocument : IGuid, IName // ModelInterfaces.tt Line: 33

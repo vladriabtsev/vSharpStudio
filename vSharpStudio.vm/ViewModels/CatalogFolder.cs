@@ -272,17 +272,23 @@ namespace vSharpStudio.vm.ViewModels
         private IProperty GetCodeProperty(IConfig cfg)
         {
             IProperty prp = null!;
-            switch (this.CodePropertySettings.Type)
+            switch (this.CodePropertySettings.SequenceType)
             {
-                case EnumCodeType.AutoNumber:
-                    throw new NotImplementedException();
-                case EnumCodeType.AutoText:
-                    throw new NotImplementedException();
                 case EnumCodeType.Number:
-                    prp = cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                    prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid,
+                        this.CodePropertySettings.MaxSequenceLength);
                     break;
                 case EnumCodeType.Text:
-                    prp = cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid, this.CodePropertySettings.Length);
+                    prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
+                        this.CodePropertySettings.MaxSequenceLength);
+                    break;
+                case EnumCodeType.AutoNumber:
+                    prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid,
+                        this.CodePropertySettings.MaxSequenceLength);
+                    break;
+                case EnumCodeType.AutoText:
+                    prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
+                        this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length);
                     break;
             }
             return prp;
@@ -422,7 +428,8 @@ namespace vSharpStudio.vm.ViewModels
                     return EnumPropertyAccess.P_HIDE;
                 case EnumCatalogDetailAccess.C_VIEW:
                     return EnumPropertyAccess.P_VIEW;
-                case EnumCatalogDetailAccess.C_EDIT:
+                case EnumCatalogDetailAccess.C_EDIT_ITEMS:
+                case EnumCatalogDetailAccess.C_EDIT_FOLDERS:
                 case EnumCatalogDetailAccess.C_MARK_DEL:
                     return EnumPropertyAccess.P_EDIT;
                 default:

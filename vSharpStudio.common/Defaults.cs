@@ -21,6 +21,7 @@
         //public const string Folder = "Folder";
         public const string DocumentName = "Document";
         public const string DetailName = "Detail";
+        public const string SequenceName = "Sequence";
 
         public const string PropertiesGroupName = "Properties";
         public const string PropertiesSharedGroupName = "Shared";

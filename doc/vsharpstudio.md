@@ -18,6 +18,7 @@
     - [proto_data_type](#proto_config.proto_data_type)
     - [proto_detail](#proto_config.proto_detail)
     - [proto_doc_in_journal](#proto_config.proto_doc_in_journal)
+    - [proto_doc_number_code_sequence](#proto_config.proto_doc_number_code_sequence)
     - [proto_document](#proto_config.proto_document)
     - [proto_document_code_property_settings](#proto_config.proto_document_code_property_settings)
     - [proto_enumeration](#proto_config.proto_enumeration)
@@ -34,6 +35,7 @@
     - [proto_form_tab_control_tab](#proto_config.proto_form_tab_control_tab)
     - [proto_form_tree](#proto_config.proto_form_tree)
     - [proto_group_constant_groups](#proto_config.proto_group_constant_groups)
+    - [proto_group_doc_number_list_sequences](#proto_config.proto_group_doc_number_list_sequences)
     - [proto_group_documents](#proto_config.proto_group_documents)
     - [proto_group_list_app_solutions](#proto_config.proto_group_list_app_solutions)
     - [proto_group_list_base_config_links](#proto_config.proto_group_list_base_config_links)
@@ -323,9 +325,9 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Type&#34;)] @attr [Description(&#34;Code type&#34;)] |
-| length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Length is number of decimal digits for numbers, string length for text&#34;)] |
-| sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Sequence&#34;)] @attr [Description(&#34;Sequence for auto code generation&#34;)] |
+| sequence_type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type general settings&#34;)] |
+| max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
+| prefix | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
 | unique_scope | [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
 
 
@@ -551,6 +553,33 @@ Constant application wise value
 
 
 
+<a name="proto_config.proto_doc_number_code_sequence"></a>
+
+### proto_doc_number_code_sequence
+@interface ICanAddNode
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| sequence_type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type for code&#34;)] |
+| max_sequence_length | [uint32](#uint32) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
+| prefix | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
+| scope_of_unique | [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(15)] @attr [DisplayName(&#34;Unique&#34;)] @attr [Description(&#34;Scope of unique document number sequence&#34;)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_document"></a>
 
 ### proto_document
@@ -598,11 +627,12 @@ Constant application wise value
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Type&#34;)] @attr [Description(&#34;Code type&#34;)] |
-| length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Length&#34;)] @attr [Description(&#34;Length is number of decimal digits for numbers, string length for text&#34;)] |
-| sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Sequence&#34;)] @attr [Description(&#34;Sequence for auto code generation&#34;)] |
+| sequence_type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type general settings&#34;)] |
+| max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
+| prefix | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
+| sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(5)] @attr [DisplayName(&#34;Shared Sequence&#34;)] @attr [Description(&#34;Shared Sequence for auto code generation. Same sequence can be used for different documents&#34;)] |
 | unique_scope | [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
-| scope_period_start | [string](#string) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Date&#34;)] @attr [Description(&#34;Start date of scope period&#34;)] |
+| scope_period_start | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Date&#34;)] @attr [Description(&#34;Start date of scope period&#34;)] |
 
 
 
@@ -990,12 +1020,31 @@ C O N S T A N T
 
 
 
+<a name="proto_config.proto_group_doc_number_list_sequences"></a>
+
+### proto_group_doc_number_list_sequences
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| list_sequences | [proto_doc_number_code_sequence](#proto_config.proto_doc_number_code_sequence) | repeated | @attr [Browsable(false)] @attr [Description(&#34;Document number sequences&#34;)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
 <a name="proto_config.proto_group_documents"></a>
 
 ### proto_group_documents
-D O C U M E N T
-@exclude
-####################################### D O C U M E N T ##########################################
+
 
 
 | Field | Type | Label | Description |
@@ -1008,6 +1057,7 @@ D O C U M E N T
 | prefix_for_db_tables | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(4)] @attr [DisplayName(&#34;Db prefix&#34;)] @attr [Description(&#34;Prefix for document db table names. Used if set to use in config model&#34;)] |
 | group_shared_properties | [proto_group_list_properties](#proto_config.proto_group_list_properties) |  | @attr [Browsable(false)] @attr [Description(&#34;Properties for all documents&#34;)] |
 | group_list_documents | [proto_group_list_documents](#proto_config.proto_group_list_documents) |  | @attr [Browsable(false)] |
+| group_list_sequences | [proto_group_doc_number_list_sequences](#proto_config.proto_group_doc_number_list_sequences) |  | @attr [Browsable(false)] |
 | use_doc_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document by default&#34;)] |
 | use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document by default&#34;)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
@@ -1143,7 +1193,9 @@ Common parameters section
 <a name="proto_config.proto_group_list_details"></a>
 
 ### proto_group_list_details
-
+D E T A I L S
+@exclude
+####################################### D E T A I L S ########################################
 
 
 | Field | Type | Label | Description |
@@ -1899,10 +1951,10 @@ Enumeration member type
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| INTEGER_VALUE | 0 | @attr [Description(&#34;INT&#34;)] |
-| SHORT_VALUE | 1 | @attr [Description(&#34;SHORT&#34;)] |
-| BYTE_VALUE | 2 | @attr [Description(&#34;BYTE&#34;)] |
-| STRING_VALUE | 3 | @attr [Description(&#34;STRING&#34;)] |
+| INTEGER_VALUE | 0 | @attr [Description(&#34;Int&#34;)] |
+| SHORT_VALUE | 11 | @attr [Description(&#34;Short&#34;)] |
+| BYTE_VALUE | 21 | @attr [Description(&#34;Byte&#34;)] |
+| STRING_VALUE | 31 | @attr [Description(&#34;String&#34;)] |
 
 
 
@@ -1945,9 +1997,8 @@ https://github.com/bchavez/Bogus
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NoScope | 0 |  |
-| Group | 1 |  |
-| Catalog | 2 |  |
+| code_unique_in_whole_catalog | 0 | @attr [Description(&#34;Unique in whole catalog&#34;)] |
+| code_uniqueness_by_folder_settings | 11 | @attr [Description(&#34;Unique in each folder&#34;)] |
 
 
 
@@ -1959,10 +2010,11 @@ https://github.com/bchavez/Bogus
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | C_BY_PARENT | 0 | @attr [Description(&#34;By Parent&#34;)] |
-| C_HIDE | 1 | @attr [Description(&#34;Hide&#34;)] |
-| C_VIEW | 2 | @attr [Description(&#34;View&#34;)] |
-| C_EDIT | 3 | @attr [Description(&#34;Edit&#34;)] |
-| C_MARK_DEL | 4 | @attr [Description(&#34;Del&#34;)] |
+| C_HIDE | 11 | @attr [Description(&#34;Hide&#34;)] |
+| C_VIEW | 21 | @attr [Description(&#34;View&#34;)] |
+| C_EDIT_ITEMS | 31 | @attr [Description(&#34;Edit Items&#34;)] |
+| C_EDIT_FOLDERS | 41 | @attr [Description(&#34;Edit Folders&#34;)] |
+| C_MARK_DEL | 51 | @attr [Description(&#34;Del&#34;)] |
 
 
 
@@ -1974,9 +2026,9 @@ https://github.com/bchavez/Bogus
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | None | 0 |  |
-| Item | 1 |  |
-| Folder | 2 |  |
-| Custom | 3 |  |
+| Item | 11 |  |
+| Folder | 21 |  |
+| Custom | 31 |  |
 
 
 
@@ -1987,10 +2039,10 @@ https://github.com/bchavez/Bogus
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| Number | 0 |  |
-| Text | 1 |  |
-| AutoNumber | 2 |  |
-| AutoText | 3 |  |
+| Number | 0 | @attr [Description(&#34;Number&#34;)] |
+| Text | 1 | @attr [Description(&#34;Text&#34;)] |
+| AutoNumber | 2 | @attr [Description(&#34;Auto Number&#34;)] |
+| AutoText | 3 | @attr [Description(&#34;Auto Text&#34;)] |
 
 
 
@@ -2038,11 +2090,11 @@ https://github.com/bchavez/Bogus
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | CN_BY_PARENT | 0 | @attr [Description(&#34;By Parent&#34;)] |
-| CN_HIDE | 1 | @attr [Description(&#34;Hide&#34;)] |
-| CN_VIEW | 2 | @attr [Description(&#34;View&#34;)]
+| CN_HIDE | 11 | @attr [Description(&#34;Hide&#34;)] |
+| CN_VIEW | 21 | @attr [Description(&#34;View&#34;)]
 
 with history |
-| CN_EDIT | 3 | @attr [Description(&#34;Edit&#34;)]
+| CN_EDIT | 31 | @attr [Description(&#34;Edit&#34;)]
 
 with history |
 
@@ -2055,20 +2107,20 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CHAR | 0 |  |
-| STRING | 1 |  |
-| NUMERICAL | 2 |  |
-| BOOL | 3 |  |
-| TIME | 4 |  |
-| DATE | 5 |  |
-| DATETIMELOCAL | 6 |  |
-| DATETIMEUTC | 7 |  |
-| ENUMERATION | 10 |  |
-| CATALOG | 11 |  |
-| CATALOGS | 12 |  |
-| DOCUMENT | 13 |  |
-| DOCUMENTS | 14 |  |
-| ANY | 15 |  |
+| CHAR | 0 | @attr [Description(&#34;Char&#34;)] |
+| STRING | 11 | @attr [Description(&#34;String&#34;)] |
+| NUMERICAL | 21 | @attr [Description(&#34;Numerical&#34;)] |
+| BOOL | 31 | @attr [Description(&#34;Boolean&#34;)] |
+| TIME | 41 | @attr [Description(&#34;Time&#34;)] |
+| DATE | 51 | @attr [Description(&#34;Date&#34;)] |
+| DATETIMELOCAL | 61 | @attr [Description(&#34;DateTime Local&#34;)] |
+| DATETIMEUTC | 71 | @attr [Description(&#34;DateTime UTC&#34;)] |
+| ENUMERATION | 81 | @attr [Description(&#34;Enumeration&#34;)] |
+| CATALOG | 91 | @attr [Description(&#34;Catalog&#34;)] |
+| CATALOGS | 101 | @attr [Description(&#34;Catalogs&#34;)] |
+| DOCUMENT | 111 | @attr [Description(&#34;Document&#34;)] |
+| DOCUMENTS | 121 | @attr [Description(&#34;Documents&#34;)] |
+| ANY | 131 | @attr [Description(&#34;Any&#34;)] |
 
 
 
@@ -2119,12 +2171,12 @@ with history |
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | D_BY_PARENT | 0 | @attr [Description(&#34;By Parent&#34;)] |
-| D_HIDE | 1 | @attr [Description(&#34;Hide&#34;)] |
-| D_VIEW | 2 | @attr [Description(&#34;View&#34;)] |
-| D_EDIT | 3 | @attr [Description(&#34;Edit&#34;)] |
-| D_POST | 4 | @attr [Description(&#34;Post&#34;)] |
-| D_UNPOST | 5 | @attr [Description(&#34;Unpost&#34;)] |
-| D_MARK_DEL | 6 | @attr [Description(&#34;Del&#34;)] |
+| D_HIDE | 11 | @attr [Description(&#34;Hide&#34;)] |
+| D_VIEW | 21 | @attr [Description(&#34;View&#34;)] |
+| D_EDIT | 31 | @attr [Description(&#34;Edit&#34;)] |
+| D_POST | 41 | @attr [Description(&#34;Post&#34;)] |
+| D_UNPOST | 51 | @attr [Description(&#34;Unpost&#34;)] |
+| D_MARK_DEL | 61 | @attr [Description(&#34;Del&#34;)] |
 
 
 
@@ -2135,10 +2187,10 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| Forever | 0 |  |
-| Year | 1 |  |
-| Quater | 2 |  |
-| Month | 3 |  |
+| DOC_UNIQUE_FOREVER | 0 | @attr [Description(&#34;Allways&#34;)] |
+| DOC_UNIQUE_YEAR | 11 | @attr [Description(&#34;Year&#34;)] |
+| DOC_UNIQUE_QUATER | 21 | @attr [Description(&#34;Quater&#34;)] |
+| DOC_UNIQUE_MONTH | 31 | @attr [Description(&#34;Month&#34;)] |
 
 
 
@@ -2189,11 +2241,11 @@ with history |
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | NeverHide | 0 | @attr [Description(&#34;Never Hide&#34;)] |
-| Xs | 1 | @attr [Description(&#34;Hide on Extra small screen&#34;)] |
-| SmAndDown | 2 | @attr [Description(&#34;Hide on Small screen and smaller&#34;)] |
-| MdAndDown | 3 | @attr [Description(&#34;Hide on Medium screen and smaller&#34;)] |
-| LgAndDown | 4 | @attr [Description(&#34;Hide on Large screen and smaller&#34;)] |
-| XlAndDown | 5 | @attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)] |
+| Xs | 11 | @attr [Description(&#34;Hide on Extra small screen&#34;)] |
+| SmAndDown | 21 | @attr [Description(&#34;Hide on Small screen and smaller&#34;)] |
+| MdAndDown | 31 | @attr [Description(&#34;Hide on Medium screen and smaller&#34;)] |
+| LgAndDown | 41 | @attr [Description(&#34;Hide on Large screen and smaller&#34;)] |
+| XlAndDown | 51 | @attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)] |
 
 
 
@@ -2321,8 +2373,8 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| INT | 0 |  |
-| LONG | 1 |  |
+| INT | 0 | @attr [Description(&#34;Int&#34;)] |
+| LONG | 11 | @attr [Description(&#34;Long&#34;)] |
 
 
 
@@ -2334,8 +2386,8 @@ with history |
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | PR_BY_PARENT | 0 | @attr [Description(&#34;By Parent&#34;)] |
-| PR_NO_PRINT | 1 | @attr [Description(&#34;No print&#34;)] |
-| PR_PRINT | 2 | @attr [Description(&#34;Print&#34;)] |
+| PR_NO_PRINT | 11 | @attr [Description(&#34;No print&#34;)] |
+| PR_PRINT | 21 | @attr [Description(&#34;Print&#34;)] |
 
 
 
@@ -2347,11 +2399,11 @@ with history |
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | P_BY_PARENT | 0 | @attr [Description(&#34;By Parent&#34;)] |
-| P_HIDE | 1 | @attr [Description(&#34;Hide&#34;)] |
-| P_VIEW | 2 | @attr [Description(&#34;View&#34;)]
+| P_HIDE | 11 | @attr [Description(&#34;Hide&#34;)] |
+| P_VIEW | 21 | @attr [Description(&#34;View&#34;)]
 
 with history |
-| P_EDIT | 3 | @attr [Description(&#34;Edit&#34;)]
+| P_EDIT | 31 | @attr [Description(&#34;Edit&#34;)]
 
 with history |
 
@@ -2463,8 +2515,8 @@ with history |
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | Default | 0 |  |
-| Yes | 1 |  |
-| No | 2 |  |
+| Yes | 11 |  |
+| No | 21 |  |
 
 
 
@@ -2491,10 +2543,10 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| VER_BYTE | 0 | @attr [Description(&#34;BYTE&#34;)] |
-| VER_SHORT | 1 | @attr [Description(&#34;SHORT&#34;)] |
-| VER_INT | 2 | @attr [Description(&#34;INT&#34;)] |
-| VER_LONG | 3 | @attr [Description(&#34;LONG&#34;)] |
+| VER_BYTE | 0 | @attr [Description(&#34;Byte&#34;)] |
+| VER_SHORT | 11 | @attr [Description(&#34;Short&#34;)] |
+| VER_INT | 21 | @attr [Description(&#34;Int&#34;)] |
+| VER_LONG | 31 | @attr [Description(&#34;Long&#34;)] |
 
 
 
@@ -2506,7 +2558,7 @@ with history |
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | Vertical | 0 |  |
-| Horizontal | 1 |  |
+| Horizontal | 11 |  |
 
 
 
@@ -2518,10 +2570,10 @@ with history |
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | FormTypeNotSelected | 0 | @attr [Description(&#34;Not selected&#34;)] |
-| ListWide | 1 | @attr [Description(&#34;Wide list view form&#34;)] |
-| ItemEditForm | 2 | @attr [Description(&#34;Item edit form&#34;)] |
-| FolderEditForm | 3 | @attr [Description(&#34;Folder edit form&#34;)] |
-| ListNarrow | 4 | @attr [Description(&#34;Narrow list view form&#34;)] |
+| ListWide | 11 | @attr [Description(&#34;Wide list view form&#34;)] |
+| ItemEditForm | 21 | @attr [Description(&#34;Item edit form&#34;)] |
+| FolderEditForm | 31 | @attr [Description(&#34;Folder edit form&#34;)] |
+| ListNarrow | 41 | @attr [Description(&#34;Narrow list view form&#34;)] |
 
 
  

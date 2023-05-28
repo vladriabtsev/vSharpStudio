@@ -235,6 +235,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_doc_number_code_sequence"><span class="badge">M</span>proto_doc_number_code_sequence</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_document"><span class="badge">M</span>proto_document</a>
                 </li>
               
@@ -296,6 +300,10 @@
               
                 <li>
                   <a href="#proto_config.proto_group_constant_groups"><span class="badge">M</span>proto_group_constant_groups</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_group_doc_number_list_sequences"><span class="badge">M</span>proto_group_doc_number_list_sequences</a>
                 </li>
               
                 <li>
@@ -1492,30 +1500,30 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
             <tbody>
               
                 <tr>
-                  <td>type</td>
+                  <td>sequence_type</td>
                   <td><a href="#proto_config.proto_enum_code_type">proto_enum_code_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;Type&#34;)]
-@attr [Description(&#34;Code type&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Sequence type&#34;)]
+@attr [Description(&#34;Sequence type general settings&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>length</td>
+                  <td>max_sequence_length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;Length&#34;)]
-@attr [Description(&#34;Length is number of decimal digits for numbers, string length for text&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Max Sequence&#34;)]
+@attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>sequence_guid</td>
+                  <td>prefix</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(5)]
-@attr [DisplayName(&#34;Sequence&#34;)]
-@attr [Description(&#34;Sequence for auto code generation&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Prefix&#34;)]
+@attr [Description(&#34;Prefix for text code sequence&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2590,6 +2598,126 @@ Reserved positions: 1 - primary key
 
         
       
+        <h3 id="proto_config.proto_doc_number_code_sequence">proto_doc_number_code_sequence</h3>
+        <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sequence_type</td>
+                  <td><a href="#proto_config.proto_enum_code_type">proto_enum_code_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(11)]
+@attr [DisplayName(&#34;Sequence type&#34;)]
+@attr [Description(&#34;Sequence type for code&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_sequence_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;Max Sequence&#34;)]
+@attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prefix</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(13)]
+@attr [DisplayName(&#34;Prefix&#34;)]
+@attr [Description(&#34;Prefix for text code sequence&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_of_unique</td>
+                  <td><a href="#proto_config.proto_enum_document_code_unique_scope">proto_enum_document_code_unique_scope</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(15)]
+@attr [DisplayName(&#34;Unique&#34;)]
+@attr [Description(&#34;Scope of unique document number sequence&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_document">proto_document</h3>
         <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
 
@@ -2806,21 +2934,30 @@ Reserved positions: 1 - primary key
             <tbody>
               
                 <tr>
-                  <td>type</td>
+                  <td>sequence_type</td>
                   <td><a href="#proto_config.proto_enum_code_type">proto_enum_code_type</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(3)]
-@attr [DisplayName(&#34;Type&#34;)]
-@attr [Description(&#34;Code type&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(1)]
+@attr [DisplayName(&#34;Sequence type&#34;)]
+@attr [Description(&#34;Sequence type general settings&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>length</td>
+                  <td>max_sequence_length</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(4)]
-@attr [DisplayName(&#34;Length&#34;)]
-@attr [Description(&#34;Length is number of decimal digits for numbers, string length for text&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;Max Sequence&#34;)]
+@attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prefix</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(3)]
+@attr [DisplayName(&#34;Prefix&#34;)]
+@attr [Description(&#34;Prefix for text code sequence&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2828,8 +2965,8 @@ Reserved positions: 1 - primary key
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(5)]
-@attr [DisplayName(&#34;Sequence&#34;)]
-@attr [Description(&#34;Sequence for auto code generation&#34;)] </p></td>
+@attr [DisplayName(&#34;Shared Sequence&#34;)]
+@attr [Description(&#34;Shared Sequence for auto code generation. Same sequence can be used for different documents&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -2843,7 +2980,7 @@ Reserved positions: 1 - primary key
               
                 <tr>
                   <td>scope_period_start</td>
-                  <td><a href="#string">string</a></td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(8)]
 @attr [DisplayName(&#34;Date&#34;)]
@@ -4360,8 +4497,82 @@ Reserved positions: 1 - primary key
 
         
       
+        <h3 id="proto_config.proto_group_doc_number_list_sequences">proto_group_doc_number_list_sequences</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_sequences</td>
+                  <td><a href="#proto_config.proto_doc_number_code_sequence">proto_doc_number_code_sequence</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;Document number sequences&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="proto_config.proto_group_documents">proto_group_documents</h3>
-        <p>D O C U M E N T</p><p>@exclude</p><p>####################################### D O C U M E N T ##########################################</p>
+        <p></p>
 
         
           <table class="field-table">
@@ -4433,6 +4644,13 @@ Reserved positions: 1 - primary key
                 <tr>
                   <td>group_list_documents</td>
                   <td><a href="#proto_config.proto_group_list_documents">proto_group_list_documents</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>group_list_sequences</td>
+                  <td><a href="#proto_config.proto_group_doc_number_list_sequences">proto_group_doc_number_list_sequences</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -4983,7 +5201,7 @@ Reserved positions: 1 - primary key
         
       
         <h3 id="proto_config.proto_group_list_details">proto_group_list_details</h3>
-        <p></p>
+        <p>D E T A I L S</p><p>@exclude</p><p>####################################### D E T A I L S ########################################</p>
 
         
           <table class="field-table">
@@ -7778,25 +7996,25 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>INTEGER_VALUE</td>
                 <td>0</td>
-                <td><p>@attr [Description(&#34;INT&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Int&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>SHORT_VALUE</td>
-                <td>1</td>
-                <td><p>@attr [Description(&#34;SHORT&#34;)]</p></td>
+                <td>11</td>
+                <td><p>@attr [Description(&#34;Short&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>BYTE_VALUE</td>
-                <td>2</td>
-                <td><p>@attr [Description(&#34;BYTE&#34;)]</p></td>
+                <td>21</td>
+                <td><p>@attr [Description(&#34;Byte&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>STRING_VALUE</td>
-                <td>3</td>
-                <td><p>@attr [Description(&#34;STRING&#34;)]</p></td>
+                <td>31</td>
+                <td><p>@attr [Description(&#34;String&#34;)]</p></td>
               </tr>
             
           </tbody>
@@ -7948,21 +8166,15 @@ repeated proto_document list_documents = 7;
           <tbody>
             
               <tr>
-                <td>NoScope</td>
+                <td>code_unique_in_whole_catalog</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Unique in whole catalog&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>Group</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>Catalog</td>
-                <td>2</td>
-                <td><p></p></td>
+                <td>code_uniqueness_by_folder_settings</td>
+                <td>11</td>
+                <td><p>@attr [Description(&#34;Unique in each folder&#34;)]</p></td>
               </tr>
             
           </tbody>
@@ -7984,25 +8196,31 @@ repeated proto_document list_documents = 7;
             
               <tr>
                 <td>C_HIDE</td>
-                <td>1</td>
+                <td>11</td>
                 <td><p>@attr [Description(&#34;Hide&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>C_VIEW</td>
-                <td>2</td>
+                <td>21</td>
                 <td><p>@attr [Description(&#34;View&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>C_EDIT</td>
-                <td>3</td>
-                <td><p>@attr [Description(&#34;Edit&#34;)]</p></td>
+                <td>C_EDIT_ITEMS</td>
+                <td>31</td>
+                <td><p>@attr [Description(&#34;Edit Items&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>C_EDIT_FOLDERS</td>
+                <td>41</td>
+                <td><p>@attr [Description(&#34;Edit Folders&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>C_MARK_DEL</td>
-                <td>4</td>
+                <td>51</td>
                 <td><p>@attr [Description(&#34;Del&#34;)]</p></td>
               </tr>
             
@@ -8025,19 +8243,19 @@ repeated proto_document list_documents = 7;
             
               <tr>
                 <td>Item</td>
-                <td>1</td>
+                <td>11</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>Folder</td>
-                <td>2</td>
+                <td>21</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>Custom</td>
-                <td>3</td>
+                <td>31</td>
                 <td><p></p></td>
               </tr>
             
@@ -8055,25 +8273,25 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>Number</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Number&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>Text</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Text&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>AutoNumber</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Auto Number&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>AutoText</td>
                 <td>3</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Auto Text&#34;)]</p></td>
               </tr>
             
           </tbody>
@@ -8213,13 +8431,13 @@ repeated proto_document list_documents = 7;
             
               <tr>
                 <td>CN_HIDE</td>
-                <td>1</td>
+                <td>11</td>
                 <td><p>@attr [Description(&#34;Hide&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>CN_VIEW</td>
-                <td>2</td>
+                <td>21</td>
                 <td><p>@attr [Description(&#34;View&#34;)]
 
 with history</p></td>
@@ -8227,7 +8445,7 @@ with history</p></td>
             
               <tr>
                 <td>CN_EDIT</td>
-                <td>3</td>
+                <td>31</td>
                 <td><p>@attr [Description(&#34;Edit&#34;)]
 
 with history</p></td>
@@ -8247,85 +8465,85 @@ with history</p></td>
               <tr>
                 <td>CHAR</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Char&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>STRING</td>
-                <td>1</td>
-                <td><p></p></td>
+                <td>11</td>
+                <td><p>@attr [Description(&#34;String&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>NUMERICAL</td>
-                <td>2</td>
-                <td><p></p></td>
+                <td>21</td>
+                <td><p>@attr [Description(&#34;Numerical&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>BOOL</td>
-                <td>3</td>
-                <td><p></p></td>
+                <td>31</td>
+                <td><p>@attr [Description(&#34;Boolean&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>TIME</td>
-                <td>4</td>
-                <td><p></p></td>
+                <td>41</td>
+                <td><p>@attr [Description(&#34;Time&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DATE</td>
-                <td>5</td>
-                <td><p></p></td>
+                <td>51</td>
+                <td><p>@attr [Description(&#34;Date&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DATETIMELOCAL</td>
-                <td>6</td>
-                <td><p></p></td>
+                <td>61</td>
+                <td><p>@attr [Description(&#34;DateTime Local&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DATETIMEUTC</td>
-                <td>7</td>
-                <td><p></p></td>
+                <td>71</td>
+                <td><p>@attr [Description(&#34;DateTime UTC&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ENUMERATION</td>
-                <td>10</td>
-                <td><p></p></td>
+                <td>81</td>
+                <td><p>@attr [Description(&#34;Enumeration&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>CATALOG</td>
-                <td>11</td>
-                <td><p></p></td>
+                <td>91</td>
+                <td><p>@attr [Description(&#34;Catalog&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>CATALOGS</td>
-                <td>12</td>
-                <td><p></p></td>
+                <td>101</td>
+                <td><p>@attr [Description(&#34;Catalogs&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DOCUMENT</td>
-                <td>13</td>
-                <td><p></p></td>
+                <td>111</td>
+                <td><p>@attr [Description(&#34;Document&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>DOCUMENTS</td>
-                <td>14</td>
-                <td><p></p></td>
+                <td>121</td>
+                <td><p>@attr [Description(&#34;Documents&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ANY</td>
-                <td>15</td>
-                <td><p></p></td>
+                <td>131</td>
+                <td><p>@attr [Description(&#34;Any&#34;)]</p></td>
               </tr>
             
           </tbody>
@@ -8483,37 +8701,37 @@ with history</p></td>
             
               <tr>
                 <td>D_HIDE</td>
-                <td>1</td>
+                <td>11</td>
                 <td><p>@attr [Description(&#34;Hide&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_VIEW</td>
-                <td>2</td>
+                <td>21</td>
                 <td><p>@attr [Description(&#34;View&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_EDIT</td>
-                <td>3</td>
+                <td>31</td>
                 <td><p>@attr [Description(&#34;Edit&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_POST</td>
-                <td>4</td>
+                <td>41</td>
                 <td><p>@attr [Description(&#34;Post&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_UNPOST</td>
-                <td>5</td>
+                <td>51</td>
                 <td><p>@attr [Description(&#34;Unpost&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>D_MARK_DEL</td>
-                <td>6</td>
+                <td>61</td>
                 <td><p>@attr [Description(&#34;Del&#34;)]</p></td>
               </tr>
             
@@ -8529,27 +8747,27 @@ with history</p></td>
           <tbody>
             
               <tr>
-                <td>Forever</td>
+                <td>DOC_UNIQUE_FOREVER</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Allways&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>Year</td>
-                <td>1</td>
-                <td><p></p></td>
+                <td>DOC_UNIQUE_YEAR</td>
+                <td>11</td>
+                <td><p>@attr [Description(&#34;Year&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>Quater</td>
-                <td>2</td>
-                <td><p></p></td>
+                <td>DOC_UNIQUE_QUATER</td>
+                <td>21</td>
+                <td><p>@attr [Description(&#34;Quater&#34;)]</p></td>
               </tr>
             
               <tr>
-                <td>Month</td>
-                <td>3</td>
-                <td><p></p></td>
+                <td>DOC_UNIQUE_MONTH</td>
+                <td>31</td>
+                <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
               </tr>
             
           </tbody>
@@ -8707,31 +8925,31 @@ with history</p></td>
             
               <tr>
                 <td>Xs</td>
-                <td>1</td>
+                <td>11</td>
                 <td><p>@attr [Description(&#34;Hide on Extra small screen&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>SmAndDown</td>
-                <td>2</td>
+                <td>21</td>
                 <td><p>@attr [Description(&#34;Hide on Small screen and smaller&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>MdAndDown</td>
-                <td>3</td>
+                <td>31</td>
                 <td><p>@attr [Description(&#34;Hide on Medium screen and smaller&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>LgAndDown</td>
-                <td>4</td>
+                <td>41</td>
                 <td><p>@attr [Description(&#34;Hide on Large screen and smaller&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>XlAndDown</td>
-                <td>5</td>
+                <td>51</td>
                 <td><p>@attr [Description(&#34;Hide on Extra Large screen and smaller&#34;)]</p></td>
               </tr>
             
@@ -9206,13 +9424,13 @@ with history</p></td>
               <tr>
                 <td>INT</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>@attr [Description(&#34;Int&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>LONG</td>
-                <td>1</td>
-                <td><p></p></td>
+                <td>11</td>
+                <td><p>@attr [Description(&#34;Long&#34;)]</p></td>
               </tr>
             
           </tbody>
@@ -9234,13 +9452,13 @@ with history</p></td>
             
               <tr>
                 <td>PR_NO_PRINT</td>
-                <td>1</td>
+                <td>11</td>
                 <td><p>@attr [Description(&#34;No print&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>PR_PRINT</td>
-                <td>2</td>
+                <td>21</td>
                 <td><p>@attr [Description(&#34;Print&#34;)]</p></td>
               </tr>
             
@@ -9263,13 +9481,13 @@ with history</p></td>
             
               <tr>
                 <td>P_HIDE</td>
-                <td>1</td>
+                <td>11</td>
                 <td><p>@attr [Description(&#34;Hide&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>P_VIEW</td>
-                <td>2</td>
+                <td>21</td>
                 <td><p>@attr [Description(&#34;View&#34;)]
 
 with history</p></td>
@@ -9277,7 +9495,7 @@ with history</p></td>
             
               <tr>
                 <td>P_EDIT</td>
-                <td>3</td>
+                <td>31</td>
                 <td><p>@attr [Description(&#34;Edit&#34;)]
 
 with history</p></td>
@@ -9645,13 +9863,13 @@ with history</p></td>
             
               <tr>
                 <td>Yes</td>
-                <td>1</td>
+                <td>11</td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>No</td>
-                <td>2</td>
+                <td>21</td>
                 <td><p></p></td>
               </tr>
             
@@ -9716,25 +9934,25 @@ with history</p></td>
               <tr>
                 <td>VER_BYTE</td>
                 <td>0</td>
-                <td><p>@attr [Description(&#34;BYTE&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Byte&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>VER_SHORT</td>
-                <td>1</td>
-                <td><p>@attr [Description(&#34;SHORT&#34;)]</p></td>
+                <td>11</td>
+                <td><p>@attr [Description(&#34;Short&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>VER_INT</td>
-                <td>2</td>
-                <td><p>@attr [Description(&#34;INT&#34;)]</p></td>
+                <td>21</td>
+                <td><p>@attr [Description(&#34;Int&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>VER_LONG</td>
-                <td>3</td>
-                <td><p>@attr [Description(&#34;LONG&#34;)]</p></td>
+                <td>31</td>
+                <td><p>@attr [Description(&#34;Long&#34;)]</p></td>
               </tr>
             
           </tbody>
@@ -9756,7 +9974,7 @@ with history</p></td>
             
               <tr>
                 <td>Horizontal</td>
-                <td>1</td>
+                <td>11</td>
                 <td><p></p></td>
               </tr>
             
@@ -9779,25 +9997,25 @@ with history</p></td>
             
               <tr>
                 <td>ListWide</td>
-                <td>1</td>
+                <td>11</td>
                 <td><p>@attr [Description(&#34;Wide list view form&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ItemEditForm</td>
-                <td>2</td>
+                <td>21</td>
                 <td><p>@attr [Description(&#34;Item edit form&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>FolderEditForm</td>
-                <td>3</td>
+                <td>31</td>
                 <td><p>@attr [Description(&#34;Folder edit form&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>ListNarrow</td>
-                <td>4</td>
+                <td>41</td>
                 <td><p>@attr [Description(&#34;Narrow list view form&#34;)]</p></td>
               </tr>
             
