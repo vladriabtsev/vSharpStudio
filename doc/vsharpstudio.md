@@ -284,7 +284,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | use_separate_tree_for_folders | [bool](#bool) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Separate Tree&#34;)] @attr [Description(&#34;Separate tree object for folders&#34;)] |
 | max_tree_levels | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Max Tree Levels&#34;)] @attr [Description(&#34;Maximum amount levels in catalog item groups. If zero, than unlimited&#34;)] |
 | use_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(25)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
-| code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(26)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
+| code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(26)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
 | use_name_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(27)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(28)] @attr [DisplayName(&#34;Name Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | use_description_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
@@ -355,7 +355,7 @@ C A T A L O G
 | is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] @attr [DisplayName(&#34;For deletion&#34;)] @attr [Description(&#34;Mark for deletion. Will be deleted if new object, or will be trated as deprecated if exists in previous version&#34;)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for catalog item&#34;)] |
-| code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog item&#34;)] |
+| code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog folder&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
 | property_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_name_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
@@ -602,7 +602,7 @@ Constant application wise value
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [Browsable(false)] |
 | short_id | [int32](#int32) |  | @attr [Browsable(false)] |
 | use_doc_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document&#34;)] |
-| code_property_settings | [proto_document_code_property_settings](#proto_config.proto_document_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [ExpandableObjectAttribute()] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for Document&#34;)] |
+| code_property_settings | [proto_document_code_property_settings](#proto_config.proto_document_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for Document&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
 | use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document&#34;)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_code_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -1997,8 +1997,9 @@ https://github.com/bchavez/Bogus
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| code_unique_in_whole_catalog | 0 | @attr [Description(&#34;Unique in whole catalog&#34;)] |
-| code_uniqueness_by_folder_settings | 11 | @attr [Description(&#34;Unique in each folder&#34;)] |
+| code_unique_in_whole_catalog | 0 | @attr [Description(&#34;Whole Catalog&#34;)] |
+| code_uniqueness_by_folder_settings | 11 | @attr [Description(&#34;Catalog Folder&#34;)] |
+| code_not_unique_settings | 41 | @attr [Description(&#34;Not Unique&#34;)] |
 
 
 
@@ -2191,6 +2192,7 @@ with history |
 | DOC_UNIQUE_YEAR | 11 | @attr [Description(&#34;Year&#34;)] |
 | DOC_UNIQUE_QUATER | 21 | @attr [Description(&#34;Quater&#34;)] |
 | DOC_UNIQUE_MONTH | 31 | @attr [Description(&#34;Month&#34;)] |
+| DOC_UNIQUE_NOT_REQUIRED | 41 | @attr [Description(&#34;Not Required&#34;)] |
 
 
 

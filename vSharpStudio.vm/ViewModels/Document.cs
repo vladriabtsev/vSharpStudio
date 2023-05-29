@@ -498,6 +498,12 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
+        [Browsable(false)]
+        public string CodePropertySettingsText { get { return this.CodePropertySettings.ToString(); } }
+        public void NotifyCodePropertySettingsChanged()
+        {
+            this.NotifyPropertyChanged(() => this.CodePropertySettingsText);
+        }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>

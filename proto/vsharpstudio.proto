@@ -2182,9 +2182,9 @@ message proto_catalog_folder {
     // @attr [Description("Use Code property for catalog item")]
     proto_enum_use_type use_code_property = 21;
     // @attr [PropertyOrderAttribute(22)]
-    // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Code")]
-    // @attr [Description("Code property settings for catalog item")]
+    // @attr [Description("Code property settings for catalog folder")]
+    // @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
     proto_catalog_code_property_settings code_property_settings = 22;
     // @attr [Browsable(false)]
     string property_code_guid = 23;
@@ -2260,6 +2260,8 @@ enum proto_enum_catalog_code_unique_scope {
     code_unique_in_whole_catalog = 0;
     // @attr [Description("Catalog Folder")]
     code_uniqueness_by_folder_settings = 11;
+    // @attr [Description("Not Unique")]
+    code_not_unique_settings = 41;
 }
 // @base BaseSettings
 message proto_catalog_code_property_settings {
@@ -2336,9 +2338,9 @@ message proto_catalog {
     // @attr [Description("Use Code property for catalog item")]
     proto_enum_use_type use_code_property = 25;
     // @attr [PropertyOrderAttribute(26)]
-    // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Code")]
     // @attr [Description("Code property settings for catalog item")]
+    // @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
     proto_catalog_code_property_settings code_property_settings = 26;
     // @attr [PropertyOrderAttribute(27)]
     // @attr [DisplayName("Use Name")]
@@ -2514,6 +2516,8 @@ enum proto_enum_document_code_unique_scope {
     DOC_UNIQUE_QUATER = 21;
     // @attr [Description("Month")]
     DOC_UNIQUE_MONTH = 31;
+    // @attr [Description("Not Required")]
+    DOC_UNIQUE_NOT_REQUIRED = 41;
 }
 message proto_group_documents {
     // @attr [Category("")]
@@ -2641,9 +2645,9 @@ message proto_document {
     // @attr [Description("Use Code property for document")]
     proto_enum_use_type use_doc_code_property = 21;
     // @attr [PropertyOrderAttribute(22)]
-    // @attr [ExpandableObjectAttribute()]
     // @attr [DisplayName("Code")]
     // @attr [Description("Code property settings for Document")]
+    // @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
     proto_document_code_property_settings code_property_settings = 22;
     // @attr [PropertyOrderAttribute(24)]
     // @attr [DisplayName("Use Date")]

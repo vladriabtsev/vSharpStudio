@@ -19674,9 +19674,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseCodePropertyChanged();
         
         [PropertyOrderAttribute(22)]
-        [ExpandableObjectAttribute()]
         [DisplayName("Code")]
-        [Description("Code property settings for catalog item")]
+        [Description("Code property settings for catalog folder")]
+        [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
         public CatalogCodePropertySettings CodePropertySettings // Property.tt Line: 55
         { 
             get { return this._CodePropertySettings; }
@@ -21105,9 +21105,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseCodePropertyChanged();
         
         [PropertyOrderAttribute(26)]
-        [ExpandableObjectAttribute()]
         [DisplayName("Code")]
         [Description("Code property settings for catalog item")]
+        [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
         public CatalogCodePropertySettings CodePropertySettings // Property.tt Line: 55
         { 
             get { return this._CodePropertySettings; }
@@ -23928,9 +23928,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnUseDocCodePropertyChanged();
         
         [PropertyOrderAttribute(22)]
-        [ExpandableObjectAttribute()]
         [DisplayName("Code")]
         [Description("Code property settings for Document")]
+        [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
         public DocumentCodePropertySettings CodePropertySettings // Property.tt Line: 55
         { 
             get { return this._CodePropertySettings; }

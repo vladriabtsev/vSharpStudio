@@ -159,12 +159,17 @@
             {
               "name": "code_unique_in_whole_catalog",
               "number": "0",
-              "description": "@attr [Description(\"Unique in whole catalog\")]"
+              "description": "@attr [Description(\"Whole Catalog\")]"
             },
             {
               "name": "code_uniqueness_by_folder_settings",
               "number": "11",
-              "description": "@attr [Description(\"Unique in each folder\")]"
+              "description": "@attr [Description(\"Catalog Folder\")]"
+            },
+            {
+              "name": "code_not_unique_settings",
+              "number": "41",
+              "description": "@attr [Description(\"Not Unique\")]"
             }
           ]
         },
@@ -643,6 +648,11 @@
               "name": "DOC_UNIQUE_MONTH",
               "number": "31",
               "description": "@attr [Description(\"Month\")]"
+            },
+            {
+              "name": "DOC_UNIQUE_NOT_REQUIRED",
+              "number": "41",
+              "description": "@attr [Description(\"Not Required\")]"
             }
           ]
         },
@@ -2398,7 +2408,7 @@
             },
             {
               "name": "code_property_settings",
-              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for catalog item\")]",
+              "description": "@attr [PropertyOrderAttribute(26)]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for catalog item\")]\n@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]",
               "label": "",
               "type": "proto_catalog_code_property_settings",
               "longType": "proto_catalog_code_property_settings",
@@ -2830,7 +2840,7 @@
             },
             {
               "name": "code_property_settings",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for catalog item\")]",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for catalog folder\")]\n@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]",
               "label": "",
               "type": "proto_catalog_code_property_settings",
               "longType": "proto_catalog_code_property_settings",
@@ -4218,7 +4228,7 @@
             },
             {
               "name": "code_property_settings",
-              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [ExpandableObjectAttribute()]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for Document\")]",
+              "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for Document\")]\n@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]",
               "label": "",
               "type": "proto_document_code_property_settings",
               "longType": "proto_document_code_property_settings",

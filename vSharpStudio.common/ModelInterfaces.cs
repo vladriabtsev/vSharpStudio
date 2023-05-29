@@ -49,10 +49,12 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumCatalogCodeUniqueScope // ModelInterfaces.tt Line: 17
 	{
-		[Description("Unique in whole catalog")]
+		[Description("Whole Catalog")]
 		code_unique_in_whole_catalog = 0,
-		[Description("Unique in each folder")]
+		[Description("Catalog Folder")]
 		code_uniqueness_by_folder_settings = 11,
+		[Description("Not Unique")]
+		code_not_unique_settings = 41,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumCatalogDetailAccess // ModelInterfaces.tt Line: 17
@@ -218,6 +220,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		DOC_UNIQUE_QUATER = 21,
 		[Description("Month")]
 		DOC_UNIQUE_MONTH = 31,
+		[Description("Not Required")]
+		DOC_UNIQUE_NOT_REQUIRED = 41,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumFinanceDataType // ModelInterfaces.tt Line: 17

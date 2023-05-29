@@ -18,8 +18,9 @@
                            IsPropertyBrowsable="PropertyGrid_IsPropertyBrowsable" SelectedObjectChanged="propertyGrid_SelectedObjectChanged"
                            AutoGenerateProperties="{Binding Config.SelectedNode.AutoGenerateProperties}" PropertyDefinitions="{Binding Config.SelectedNode.PropertyDefinitions}" ShowDescriptionByTooltip="True" ShowSearchBox="True" SelectedPropertyItemChanged="propertyGrid_SelectedPropertyItemChanged">-->
             <xctk:PropertyGrid Name="propertyGrid" SelectedObject="{Binding Config.SelectedNode}" NameColumnWidth="120" 
-                           SelectedObjectChanged="propertyGrid_SelectedObjectChanged"
-                           AutoGenerateProperties="{Binding Config.SelectedNode.AutoGenerateProperties}" PropertyDefinitions="{Binding Config.SelectedNode.PropertyDefinitions}" 
+                               SelectedObjectChanged="propertyGrid_SelectedObjectChanged"
+                               AutoGenerateProperties="{Binding Config.SelectedNode.AutoGenerateProperties}" 
+                               PropertyDefinitions="{Binding Config.SelectedNode.PropertyDefinitions}" 
                                ShowDescriptionByTooltip="True" ShowSearchBox="True" 
                                SelectedPropertyItemChanged="propertyGrid_SelectedPropertyItemChanged">
                 <!--SelectedObjectChanged="propertyGrid_SelectedObjectChanged" Initialized="propertyGrid_Initialized"-->

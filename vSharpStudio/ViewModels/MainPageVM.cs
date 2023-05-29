@@ -80,6 +80,20 @@ namespace vSharpStudio.ViewModels
                 MainPageVM._mainPage._GenSettings.ViewVm = vm;
                 MainPageVM._mainPage._modalNodeSettingsWindow.WindowState = WindowState.Open;
             };
+            EditorPropertyGridDialog.PropertyGridDialogAction = (val) =>
+            {
+                Debug.Assert(MainPageVM._mainPage != null);
+                var maxMargin = 10;
+                var ctnr = MainPageVM._mainPage._windowContainer;
+                MainPageVM._mainPage._modalBaseSettingsEditWindow.Top = maxMargin;
+                MainPageVM._mainPage._modalBaseSettingsEditWindow.Height = ctnr.ActualHeight - 2 * maxMargin;
+                MainPageVM._mainPage._modalBaseSettingsEditWindow.Width = Math.Min(ctnr.ActualWidth - 2 * maxMargin, 400);
+                MainPageVM._mainPage._modalBaseSettingsEditWindow.Left = (ctnr.ActualWidth - MainPageVM._mainPage._modalBaseSettingsEditWindow.Width) / 2;
+                //MainPageVM._mainPage._modalNodeSettingsWindow.Caption = $"Node settings for '{node.Name}' by generator '{this.Config.DicNodes[guid].Name}'";
+                //MainPageVM._mainPage._modalBaseSettingsEditWindow.Caption = $"Settings";
+                MainPageVM._mainPage._modalBaseSettingsEditWindow.DataContext = val;
+                MainPageVM._mainPage._modalBaseSettingsEditWindow.WindowState = WindowState.Open;
+            };
 
             //_Config = new Config();
         }

@@ -1277,9 +1277,9 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td><a href="#proto_config.proto_catalog_code_property_settings">proto_catalog_code_property_settings</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(26)]
-@attr [ExpandableObjectAttribute()]
 @attr [DisplayName(&#34;Code&#34;)]
-@attr [Description(&#34;Code property settings for catalog item&#34;)] </p></td>
+@attr [Description(&#34;Code property settings for catalog item&#34;)]
+@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] </p></td>
                 </tr>
               
                 <tr>
@@ -1641,9 +1641,9 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td><a href="#proto_config.proto_catalog_code_property_settings">proto_catalog_code_property_settings</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(22)]
-@attr [ExpandableObjectAttribute()]
 @attr [DisplayName(&#34;Code&#34;)]
-@attr [Description(&#34;Code property settings for catalog item&#34;)] </p></td>
+@attr [Description(&#34;Code property settings for catalog folder&#34;)]
+@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] </p></td>
                 </tr>
               
                 <tr>
@@ -2833,9 +2833,9 @@ Reserved positions: 1 - primary key
                   <td><a href="#proto_config.proto_document_code_property_settings">proto_document_code_property_settings</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(22)]
-@attr [ExpandableObjectAttribute()]
 @attr [DisplayName(&#34;Code&#34;)]
-@attr [Description(&#34;Code property settings for Document&#34;)] </p></td>
+@attr [Description(&#34;Code property settings for Document&#34;)]
+@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] </p></td>
                 </tr>
               
                 <tr>
@@ -8169,13 +8169,19 @@ repeated proto_document list_documents = 7;
               <tr>
                 <td>code_unique_in_whole_catalog</td>
                 <td>0</td>
-                <td><p>@attr [Description(&#34;Unique in whole catalog&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Whole Catalog&#34;)]</p></td>
               </tr>
             
               <tr>
                 <td>code_uniqueness_by_folder_settings</td>
                 <td>11</td>
-                <td><p>@attr [Description(&#34;Unique in each folder&#34;)]</p></td>
+                <td><p>@attr [Description(&#34;Catalog Folder&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>code_not_unique_settings</td>
+                <td>41</td>
+                <td><p>@attr [Description(&#34;Not Unique&#34;)]</p></td>
               </tr>
             
           </tbody>
@@ -8769,6 +8775,12 @@ with history</p></td>
                 <td>DOC_UNIQUE_MONTH</td>
                 <td>31</td>
                 <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_NOT_REQUIRED</td>
+                <td>41</td>
+                <td><p>@attr [Description(&#34;Not Required&#34;)]</p></td>
               </tr>
             
           </tbody>

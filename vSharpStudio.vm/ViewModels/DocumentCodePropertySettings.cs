@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using Google.Protobuf.WellKnownTypes;
 using vSharpStudio.common;
@@ -9,6 +10,49 @@ namespace vSharpStudio.vm.ViewModels
 {
     public partial class DocumentCodePropertySettings : IParent
     {
+        public override string ToString()
+        {
+            string unique = "";
+            switch (this.ScopeOfUnique)
+            {
+                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_FOREVER:
+                    unique = "Unique";
+                    break;
+                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR:
+                    unique = $"Year: {this.ScopePeriodStart.ToDateTime().ToString("MMM d")}";
+                    break;
+                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_QUATER:
+                    unique = $"Quater: {this.ScopePeriodStart.ToDateTime().ToString("MMM d")}";
+                    break;
+                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_MONTH:
+                    unique = "Month";
+                    break;
+                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_NOT_REQUIRED:
+                    unique = "Not Unique";
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            if (string.IsNullOrWhiteSpace(this.SequenceGuid))
+            {
+                switch (this.SequenceType)
+                {
+                    case EnumCodeType.Number:
+                        return $"Number{this.Prefix}{this.MaxSequenceLength}-{unique}";
+                    case EnumCodeType.AutoNumber:
+                        return $"AutoNumber{this.Prefix}{this.MaxSequenceLength}-{unique}";
+                    case EnumCodeType.Text:
+                        return $"Text{this.Prefix}{this.MaxSequenceLength}-{unique}";
+                    case EnumCodeType.AutoText:
+                        return $"AutoText{this.Prefix}{this.MaxSequenceLength}-{unique}";
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+            return $"{this.ParentDocument.Cfg.DicNodes[this.SequenceGuid].Name}-{unique}";
+        }
+        [Browsable(false)]
+        public Document ParentDocument { get { Debug.Assert(this.Parent != null); return (Document)this.Parent; } }
         partial void OnCreated()
         {
             //Init();
@@ -41,5 +85,50 @@ namespace vSharpStudio.vm.ViewModels
         //    if (this.Parent != null && this.IsChanged)
         //        this.Parent.IsChanged = true;
         //}
+        partial void OnMaxSequenceLengthChanged()
+        {
+            this.ParentDocument.NotifyCodePropertySettingsChanged();
+        }
+        partial void OnPrefixChanged()
+        {
+            this.ParentDocument.NotifyCodePropertySettingsChanged();
+        }
+        partial void OnSequenceTypeChanged()
+        {
+            this.ParentDocument.NotifyCodePropertySettingsChanged();
+        }
+        partial void OnScopeOfUniqueChanged()
+        {
+            this.ParentDocument.NotifyCodePropertySettingsChanged();
+        }
+        partial void OnScopePeriodStartChanged()
+        {
+            this.ParentDocument.NotifyCodePropertySettingsChanged();
+        }
+        partial void OnSequenceGuidChanged()
+        {
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+            this.ParentDocument.NotifyCodePropertySettingsChanged();
+        }
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>();
+            if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
+            {
+                lst.Add(this.GetPropertyName(() => this.SequenceType));
+                lst.Add(this.GetPropertyName(() => this.MaxSequenceLength));
+                lst.Add(this.GetPropertyName(() => this.Prefix));
+            }
+            switch (this.ScopeOfUnique)
+            {
+                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_QUATER:
+                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR:
+                    break;
+                default:
+                    lst.Add(this.GetPropertyName(() => this.ScopePeriodStart));
+                    break;
+            }
+            return lst.ToArray();
+        }
     }
 }

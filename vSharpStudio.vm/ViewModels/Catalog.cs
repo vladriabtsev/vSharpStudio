@@ -406,6 +406,12 @@ namespace vSharpStudio.vm.ViewModels
         public bool IsShowRefSelfTree { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
         [Browsable(false)]
         public bool IsShowIsFolder { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
+        [Browsable(false)]
+        public string CodePropertySettingsText { get { return this.CodePropertySettings.ToString(); } }
+        public void NotifyCodePropertySettingsChanged()
+        {
+            this.NotifyPropertyChanged(() => this.CodePropertySettingsText);
+        }
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();

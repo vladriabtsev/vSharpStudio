@@ -195,6 +195,19 @@
                     <xctk:ChildWindow x:Name="_modalRoleEditWindow">
                         <local:GenSettings x:Name="_roleEdit" />
                     </xctk:ChildWindow>
+                    <xctk:ChildWindow x:Name="_modalBaseSettingsEditWindow" Caption="{Binding Caption}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <!--<TextBlock Text="{Binding Caption}" />-->
+                            <xctk:PropertyGrid Grid.Row="1" SelectedObject="{Binding Value}"
+                                AutoGenerateProperties="{Binding Value.AutoGenerateProperties}" 
+                                PropertyDefinitions="{Binding Value.PropertyDefinitions}" 
+                                ShowDescriptionByTooltip="True" ShowSearchBox="True" NameColumnWidth="120" />
+                        </Grid>
+                    </xctk:ChildWindow>
                 </xctk:WindowContainer>
             </Grid>
         </ContentControl>

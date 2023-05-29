@@ -1,36 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net7.0-windows</TargetFrameworks>
-        <AssemblyTitle>vSharpStudio.common</AssemblyTitle>
-        <Product>vSharpStudio.common</Product>
-        <Copyright>Copyright ©  2019</Copyright>
-        <AssemblyTitle>vSharpStudio.common</AssemblyTitle>
-        <Product>vSharpStudio.common</Product>
-        <Copyright>Copyright ©  2019</Copyright>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <OutputPath>bin\$(Configuration)\</OutputPath>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <DebugType>full</DebugType>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <DebugType>none</DebugType>
-        <Optimize>true</Optimize>
-    </PropertyGroup>
-    <ItemGroup>
-        <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
-    </ItemGroup>
-    <!--<ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0-windows</TargetFrameworks>
+    <AssemblyTitle>vSharpStudio.common</AssemblyTitle>
+    <Product>vSharpStudio.common</Product>
+    <Copyright>Copyright ©  2019</Copyright>
+    <AssemblyTitle>vSharpStudio.common</AssemblyTitle>
+    <Product>vSharpStudio.common</Product>
+    <Copyright>Copyright ©  2019</Copyright>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\vSharpStudio\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+  </ItemGroup>
+  <!--<ItemGroup Condition="'$(TargetFramework)' == 'net472'">
     <PackageReference Include="System.Runtime.Extensions" Version="4.2.2.0" />
   </ItemGroup>-->
-    <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
-        <PackageReference Include="FluentValidation" Version="11.5.2" />
-        <PackageReference Include="Google.Protobuf" Version="3.23.1" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-        <PackageReference Include="Polly" Version="7.2.3" />
-        <!--<PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0" />
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="Google.Protobuf" Version="3.23.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Polly" Version="7.2.3" />
+    <!--<PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.2.0" />
@@ -41,18 +41,18 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.2.0" />-->
-        <PackageReference Include="Remotion.Linq" Version="2.2.0" />
-        <PackageReference Include="Serilog" Version="2.12.0" />
-        <PackageReference Include="System.Buffers" Version="4.5.1" />
-        <PackageReference Include="System.Collections.Immutable" Version="7.0.0" />
-        <PackageReference Include="System.ComponentModel.Composition" Version="7.0.0" />
-        <PackageReference Include="System.Interactive.Async" Version="6.0.1" />
-        <PackageReference Include="System.Memory" Version="4.5.5" />
-        <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
-        <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
-    </ItemGroup>
+    <PackageReference Include="Remotion.Linq" Version="2.2.0" />
+    <PackageReference Include="Serilog" Version="2.12.0" />
+    <PackageReference Include="System.Buffers" Version="4.5.1" />
+    <PackageReference Include="System.Collections.Immutable" Version="7.0.0" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="7.0.0" />
+    <PackageReference Include="System.Interactive.Async" Version="6.0.1" />
+    <PackageReference Include="System.Memory" Version="4.5.5" />
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\common\wpf\vSharpStudio.std\vSharpStudio.std.csproj" />
+    <ProjectReference Include="..\submodules\wpftoolkit\ExtendedWPFToolkitSolution\Src\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj" />
+  </ItemGroup>
 </Project>
