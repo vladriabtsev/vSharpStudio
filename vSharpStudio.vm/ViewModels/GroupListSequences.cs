@@ -38,7 +38,7 @@ namespace vSharpStudio.vm.ViewModels
 
         partial void OnCreated()
         {
-            this._Name = "Sequences";
+            this._Name = "Code Sequences";
             this.IsEditable = false;
             Init();
         }

@@ -2256,9 +2256,9 @@ enum proto_enum_catalog_tree_icon {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_catalog_code_unique_scope {
-    // @attr [Description("Unique in whole catalog")]
+    // @attr [Description("Whole Catalog")]
     code_unique_in_whole_catalog = 0;
-    // @attr [Description("Unique in each folder")]
+    // @attr [Description("Catalog Folder")]
     code_uniqueness_by_folder_settings = 11;
 }
 // @base BaseSettings
@@ -2275,6 +2275,11 @@ message proto_catalog_code_property_settings {
     // @attr [DisplayName("Prefix")]
     // @attr [Description("Prefix for text code sequence")]
     string prefix = 3;
+    // @attr [PropertyOrderAttribute(0)]
+    // @attr [DisplayName("Code Sequence")]
+    // @attr [Description("Code Sequence for auto code generation. Same sequence can be used for different catalogs")]
+    // @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
+    string sequence_guid = 5;
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Unique Scope")]
     // @attr [Description("Code has to be unique in selected scope")]
@@ -2581,9 +2586,10 @@ message proto_document_code_property_settings {
     // @attr [DisplayName("Prefix")]
     // @attr [Description("Prefix for text code sequence")]
     string prefix = 3;
-    // @attr [PropertyOrderAttribute(5)]
-    // @attr [DisplayName("Shared Sequence")]
-    // @attr [Description("Shared Sequence for auto code generation. Same sequence can be used for different documents")]
+    // @attr [PropertyOrderAttribute(0)]
+    // @attr [DisplayName("Code Sequence")]
+    // @attr [Description("Code Sequence for auto code generation. Same sequence can be used for different documents")]
+    // @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
     string sequence_guid = 5;
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Unique Scope")]

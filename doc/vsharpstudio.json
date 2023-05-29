@@ -2708,6 +2708,16 @@
               "defaultValue": ""
             },
             {
+              "name": "sequence_guid",
+              "description": "@attr [PropertyOrderAttribute(0)]\n@attr [DisplayName(\"Code Sequence\")]\n@attr [Description(\"Code Sequence for auto code generation. Same sequence can be used for different catalogs\")]\n@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "unique_scope",
               "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Unique Scope\")]\n@attr [Description(\"Code has to be unique in selected scope\")]",
               "label": "",
@@ -4359,7 +4369,7 @@
             },
             {
               "name": "sequence_guid",
-              "description": "@attr [PropertyOrderAttribute(5)]\n@attr [DisplayName(\"Shared Sequence\")]\n@attr [Description(\"Shared Sequence for auto code generation. Same sequence can be used for different documents\")]",
+              "description": "@attr [PropertyOrderAttribute(0)]\n@attr [DisplayName(\"Code Sequence\")]\n@attr [Description(\"Code Sequence for auto code generation. Same sequence can be used for different documents\")]\n@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]",
               "label": "",
               "type": "string",
               "longType": "string",

@@ -20221,6 +20221,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SequenceType = from.SequenceType; // Clone.tt Line: 67
             vm.MaxSequenceLength = from.MaxSequenceLength; // Clone.tt Line: 67
             vm.Prefix = from.Prefix; // Clone.tt Line: 67
+            vm.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 67
             vm.UniqueScope = from.UniqueScope; // Clone.tt Line: 67
             vm.IsNotifying = true;
             vm.IsValidate = true;
@@ -20233,6 +20234,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SequenceType = from.SequenceType; // Clone.tt Line: 143
             to.MaxSequenceLength = from.MaxSequenceLength; // Clone.tt Line: 143
             to.Prefix = from.Prefix; // Clone.tt Line: 143
+            to.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 143
             to.UniqueScope = from.UniqueScope; // Clone.tt Line: 143
         }
         // Clone.tt Line: 149
@@ -20266,6 +20268,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SequenceType = (EnumCodeType)m.SequenceType; // Clone.tt Line: 221
             vm.MaxSequenceLength = m.MaxSequenceLength; // Clone.tt Line: 221
             vm.Prefix = m.Prefix; // Clone.tt Line: 221
+            vm.SequenceGuid = m.SequenceGuid; // Clone.tt Line: 221
             vm.UniqueScope = (EnumCatalogCodeUniqueScope)m.UniqueScope; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
@@ -20279,6 +20282,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SequenceType = (Proto.Config.proto_enum_code_type)vm.SequenceType; // Clone.tt Line: 274
             m.MaxSequenceLength = vm.MaxSequenceLength; // Clone.tt Line: 276
             m.Prefix = vm.Prefix; // Clone.tt Line: 276
+            m.SequenceGuid = vm.SequenceGuid; // Clone.tt Line: 276
             m.UniqueScope = (Proto.Config.proto_enum_catalog_code_unique_scope)vm.UniqueScope; // Clone.tt Line: 274
             return m;
         }
@@ -20364,6 +20368,30 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _Prefix = string.Empty;
         partial void OnPrefixChanging(ref string to); // Property.tt Line: 79
         partial void OnPrefixChanged();
+        
+        [PropertyOrderAttribute(0)]
+        [DisplayName("Code Sequence")]
+        [Description("Code Sequence for auto code generation. Same sequence can be used for different catalogs")]
+        [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
+        public string SequenceGuid // Property.tt Line: 55
+        { 
+            get { return this._SequenceGuid; }
+            set
+            {
+                if (this._SequenceGuid != value)
+                {
+                    this.OnSequenceGuidChanging(ref value);
+                    this._SequenceGuid = value;
+                    this.OnSequenceGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _SequenceGuid = string.Empty;
+        partial void OnSequenceGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnSequenceGuidChanged();
         
         [PropertyOrderAttribute(7)]
         [DisplayName("Unique Scope")]
@@ -23184,9 +23212,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPrefixChanging(ref string to); // Property.tt Line: 79
         partial void OnPrefixChanged();
         
-        [PropertyOrderAttribute(5)]
-        [DisplayName("Shared Sequence")]
-        [Description("Shared Sequence for auto code generation. Same sequence can be used for different documents")]
+        [PropertyOrderAttribute(0)]
+        [DisplayName("Code Sequence")]
+        [Description("Code Sequence for auto code generation. Same sequence can be used for different documents")]
+        [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
         public string SequenceGuid // Property.tt Line: 55
         { 
             get { return this._SequenceGuid; }

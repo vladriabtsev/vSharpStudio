@@ -5,7 +5,7 @@ using ViewModelBase;
 
 namespace vSharpStudio.common
 {
-    public partial interface ICodeSequence : ITreeConfigNodeSortable
+    public partial interface ICodeSequence : ITreeConfigNodeSortable, ITextValue
     {
         IGroupListSequences ParentGroupListSequencesI { get; }
     }

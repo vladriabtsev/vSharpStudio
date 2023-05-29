@@ -13,6 +13,8 @@ namespace vSharpStudio.vm.ViewModels
     [DebuggerDisplay("Sequence:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
     public partial class CodeSequence : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
+        public string Text { get { return this.Name; } }
+        public string Value { get { return this.Guid; } }
         [Browsable(false)]
         public GroupListSequences ParentGroupListSequences { get { Debug.Assert(this.Parent != null); return (GroupListSequences)this.Parent; } }
         [Browsable(false)]

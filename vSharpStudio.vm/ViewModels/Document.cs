@@ -49,7 +49,7 @@ namespace vSharpStudio.vm.ViewModels
             this.CodePropertySettings.Prefix = "";
             this.CodePropertySettings.SequenceGuid = "";
             this.CodePropertySettings.ScopeOfUnique = common.EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR;
-            this.CodePropertySettings.ScopePeriodStart = Timestamp.FromDateTime(new DateTime(DateTime.Now.Year, 1, 1));
+            this.CodePropertySettings.ScopePeriodStart = Timestamp.FromDateTime(new DateTime(DateTime.Now.Year, 1, 1).ToUniversalTime());
 
             Init();
         }

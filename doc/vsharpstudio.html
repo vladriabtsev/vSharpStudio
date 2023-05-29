@@ -1527,6 +1527,16 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                 </tr>
               
                 <tr>
+                  <td>sequence_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(0)]
+@attr [DisplayName(&#34;Code Sequence&#34;)]
+@attr [Description(&#34;Code Sequence for auto code generation. Same sequence can be used for different catalogs&#34;)]
+@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] </p></td>
+                </tr>
+              
+                <tr>
                   <td>unique_scope</td>
                   <td><a href="#proto_config.proto_enum_catalog_code_unique_scope">proto_enum_catalog_code_unique_scope</a></td>
                   <td></td>
@@ -2954,9 +2964,10 @@ Reserved positions: 1 - primary key
                   <td>sequence_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(5)]
-@attr [DisplayName(&#34;Shared Sequence&#34;)]
-@attr [Description(&#34;Shared Sequence for auto code generation. Same sequence can be used for different documents&#34;)] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(0)]
+@attr [DisplayName(&#34;Code Sequence&#34;)]
+@attr [Description(&#34;Code Sequence for auto code generation. Same sequence can be used for different documents&#34;)]
+@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] </p></td>
                 </tr>
               
                 <tr>

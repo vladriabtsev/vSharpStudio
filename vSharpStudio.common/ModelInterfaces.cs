@@ -1217,6 +1217,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	EnumCodeType SequenceType { get; } // ModelInterfaces.tt Line: 55
     	uint MaxSequenceLength { get; } // ModelInterfaces.tt Line: 55
     	string Prefix { get; } // ModelInterfaces.tt Line: 55
+    	string SequenceGuid { get; } // ModelInterfaces.tt Line: 55
     	EnumCatalogCodeUniqueScope UniqueScope { get; } // ModelInterfaces.tt Line: 55
     }
     
