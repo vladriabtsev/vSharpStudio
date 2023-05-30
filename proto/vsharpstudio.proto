@@ -2602,6 +2602,7 @@ message proto_document_code_property_settings {
     // @attr [PropertyOrderAttribute(8)]
     // @attr [DisplayName("Date")]
     // @attr [Description("Start date of scope period")]
+    // @attr [Editor(typeof(EditorDateMonthDay), typeof(EditorDateMonthDay))]
     google.protobuf.Timestamp scope_period_start = 8;
 }
 // @interface ICanAddNode

@@ -4399,7 +4399,7 @@
             },
             {
               "name": "scope_period_start",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Date\")]\n@attr [Description(\"Start date of scope period\")]",
+              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Date\")]\n@attr [Description(\"Start date of scope period\")]\n@attr [Editor(typeof(EditorDateMonthDay), typeof(EditorDateMonthDay))]",
               "label": "",
               "type": "Timestamp",
               "longType": "google.protobuf.Timestamp",

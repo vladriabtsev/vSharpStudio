@@ -23262,6 +23262,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(8)]
         [DisplayName("Date")]
         [Description("Start date of scope period")]
+        [Editor(typeof(EditorDateMonthDay), typeof(EditorDateMonthDay))]
         public Google.Protobuf.WellKnownTypes.Timestamp ScopePeriodStart // Property.tt Line: 55
         { 
             get { return this._ScopePeriodStart; }
