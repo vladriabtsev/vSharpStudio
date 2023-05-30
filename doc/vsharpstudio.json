@@ -1095,6 +1095,79 @@
           ]
         },
         {
+          "name": "proto_enum_months",
+          "longName": "proto_enum_months",
+          "fullName": "proto_config.proto_enum_months",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "MONTH_NOT_SELECTED",
+              "number": "0",
+              "description": "@attr [Description(\"Not Selected\")]"
+            },
+            {
+              "name": "MONTH_JANUARY",
+              "number": "1",
+              "description": "@attr [Description(\"January\")]"
+            },
+            {
+              "name": "MONTH_FEBRUARY",
+              "number": "2",
+              "description": "@attr [Description(\"February\")]"
+            },
+            {
+              "name": "MONTH_MARCH",
+              "number": "3",
+              "description": "@attr [Description(\"March\")]"
+            },
+            {
+              "name": "MONTH_APRIL",
+              "number": "4",
+              "description": "@attr [Description(\"April\")]"
+            },
+            {
+              "name": "MONTH_MAY",
+              "number": "5",
+              "description": "@attr [Description(\"May\")]"
+            },
+            {
+              "name": "MONTH_JUNE",
+              "number": "6",
+              "description": "@attr [Description(\"June\")]"
+            },
+            {
+              "name": "MONTH_JULY",
+              "number": "7",
+              "description": "@attr [Description(\"July\")]"
+            },
+            {
+              "name": "MONTH_AUGUST",
+              "number": "8",
+              "description": "@attr [Description(\"August\")]"
+            },
+            {
+              "name": "MONTH_SEPTEMBER",
+              "number": "9",
+              "description": "@attr [Description(\"September\")]"
+            },
+            {
+              "name": "MONTH_OCTOBER",
+              "number": "10",
+              "description": "@attr [Description(\"October\")]"
+            },
+            {
+              "name": "MONTH_NOVEMBER",
+              "number": "11",
+              "description": "@attr [Description(\"November\")]"
+            },
+            {
+              "name": "MONTH_DECEMBER",
+              "number": "12",
+              "description": "@attr [Description(\"December\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_name_data_type",
           "longName": "proto_enum_name_data_type",
           "fullName": "proto_config.proto_enum_name_data_type",
@@ -4398,12 +4471,22 @@
               "defaultValue": ""
             },
             {
-              "name": "scope_period_start",
-              "description": "@attr [PropertyOrderAttribute(8)]\n@attr [DisplayName(\"Date\")]\n@attr [Description(\"Start date of scope period\")]\n@attr [Editor(typeof(EditorDateMonthDay), typeof(EditorDateMonthDay))]",
+              "name": "scope_period_start_month",
+              "description": "@attr [PropertyOrderAttribute(9)]\n@attr [DisplayName(\"Start Month\")]\n@attr [Description(\"Start month of scope period\")]",
               "label": "",
-              "type": "Timestamp",
-              "longType": "google.protobuf.Timestamp",
-              "fullType": "google.protobuf.Timestamp",
+              "type": "proto_enum_months",
+              "longType": "proto_enum_months",
+              "fullType": "proto_config.proto_enum_months",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "scope_period_start_month_day",
+              "description": "@attr [PropertyOrderAttribute(10)]\n@attr [DisplayName(\"Start Day\")]\n@attr [Description(\"Start month day of scope period\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
               "ismap": false,
               "defaultValue": ""
             }

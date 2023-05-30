@@ -332,6 +332,36 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		L_SLUG = 10,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum EnumMonths // ModelInterfaces.tt Line: 17
+	{
+		[Description("Not Selected")]
+		MONTH_NOT_SELECTED = 0,
+		[Description("January")]
+		MONTH_JANUARY = 1,
+		[Description("February")]
+		MONTH_FEBRUARY = 2,
+		[Description("March")]
+		MONTH_MARCH = 3,
+		[Description("April")]
+		MONTH_APRIL = 4,
+		[Description("May")]
+		MONTH_MAY = 5,
+		[Description("June")]
+		MONTH_JUNE = 6,
+		[Description("July")]
+		MONTH_JULY = 7,
+		[Description("August")]
+		MONTH_AUGUST = 8,
+		[Description("September")]
+		MONTH_SEPTEMBER = 9,
+		[Description("October")]
+		MONTH_OCTOBER = 10,
+		[Description("November")]
+		MONTH_NOVEMBER = 11,
+		[Description("December")]
+		MONTH_DECEMBER = 12,
+	}
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumNameDataType // ModelInterfaces.tt Line: 17
 	{
 		M_NONE = 0,
@@ -1311,7 +1341,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	string Prefix { get; } // ModelInterfaces.tt Line: 55
     	string SequenceGuid { get; } // ModelInterfaces.tt Line: 55
     	EnumDocumentCodeUniqueScope ScopeOfUnique { get; } // ModelInterfaces.tt Line: 55
-    	Google.Protobuf.WellKnownTypes.Timestamp ScopePeriodStart { get; } // ModelInterfaces.tt Line: 55
+    	EnumMonths ScopePeriodStartMonth { get; } // ModelInterfaces.tt Line: 55
+    	uint ScopePeriodStartMonthDay { get; } // ModelInterfaces.tt Line: 55
     }
     
     public partial interface IDocument : IGuid, IName // ModelInterfaces.tt Line: 33

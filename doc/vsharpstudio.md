@@ -96,6 +96,7 @@
     - [proto_enum_image_data_type](#proto_config.proto_enum_image_data_type)
     - [proto_enum_internet_data_type](#proto_config.proto_enum_internet_data_type)
     - [proto_enum_lorem_data_type](#proto_config.proto_enum_lorem_data_type)
+    - [proto_enum_months](#proto_config.proto_enum_months)
     - [proto_enum_name_data_type](#proto_config.proto_enum_name_data_type)
     - [proto_enum_phone_data_type](#proto_config.proto_enum_phone_data_type)
     - [proto_enum_primary_key_type](#proto_config.proto_enum_primary_key_type)
@@ -632,7 +633,8 @@ Constant application wise value
 | prefix | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
 | sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(0)] @attr [DisplayName(&#34;Code Sequence&#34;)] @attr [Description(&#34;Code Sequence for auto code generation. Same sequence can be used for different documents&#34;)] @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] |
 | scope_of_unique | [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
-| scope_period_start | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Date&#34;)] @attr [Description(&#34;Start date of scope period&#34;)] @attr [Editor(typeof(EditorDateMonthDay), typeof(EditorDateMonthDay))] |
+| scope_period_start_month | [proto_enum_months](#proto_config.proto_enum_months) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Start Month&#34;)] @attr [Description(&#34;Start month of scope period&#34;)] |
+| scope_period_start_month_day | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Start Day&#34;)] @attr [Description(&#34;Start month day of scope period&#34;)] |
 
 
 
@@ -2331,6 +2333,29 @@ with history |
 | L_TEXT | 8 |  |
 | L_LINES | 9 |  |
 | L_SLUG | 10 |  |
+
+
+
+<a name="proto_config.proto_enum_months"></a>
+
+### proto_enum_months
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| MONTH_NOT_SELECTED | 0 | @attr [Description(&#34;Not Selected&#34;)] |
+| MONTH_JANUARY | 1 | @attr [Description(&#34;January&#34;)] |
+| MONTH_FEBRUARY | 2 | @attr [Description(&#34;February&#34;)] |
+| MONTH_MARCH | 3 | @attr [Description(&#34;March&#34;)] |
+| MONTH_APRIL | 4 | @attr [Description(&#34;April&#34;)] |
+| MONTH_MAY | 5 | @attr [Description(&#34;May&#34;)] |
+| MONTH_JUNE | 6 | @attr [Description(&#34;June&#34;)] |
+| MONTH_JULY | 7 | @attr [Description(&#34;July&#34;)] |
+| MONTH_AUGUST | 8 | @attr [Description(&#34;August&#34;)] |
+| MONTH_SEPTEMBER | 9 | @attr [Description(&#34;September&#34;)] |
+| MONTH_OCTOBER | 10 | @attr [Description(&#34;October&#34;)] |
+| MONTH_NOVEMBER | 11 | @attr [Description(&#34;November&#34;)] |
+| MONTH_DECEMBER | 12 | @attr [Description(&#34;December&#34;)] |
 
 
 

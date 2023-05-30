@@ -15,6 +15,7 @@ namespace vSharpStudio.vm.ViewModels
     {
         public FrameworkElement ResolveEditor(Xceed.Wpf.Toolkit.PropertyGrid.PropertyItem propertyItem)
         {
+            Debug.Assert(false, "Need converter Timestamp-Datetime");
             Debug.Assert(propertyItem != null);
             var ctrl = new DateTimePicker();
             ctrl.Format = DateTimeFormat.MonthDay;

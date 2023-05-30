@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using Google.Protobuf.WellKnownTypes;
 using vSharpStudio.common;
+using vSharpStudio.common.ViewModels;
 
 namespace vSharpStudio.vm.ViewModels
 {
@@ -13,16 +14,17 @@ namespace vSharpStudio.vm.ViewModels
         public override string ToString()
         {
             string unique = "";
+            var conv = new EnumDescriptionTypeConverter(typeof(EnumMonths));
             switch (this.ScopeOfUnique)
             {
                 case EnumDocumentCodeUniqueScope.DOC_UNIQUE_FOREVER:
                     unique = "Unique";
                     break;
                 case EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR:
-                    unique = $"Year: {this.ScopePeriodStart.ToDateTime().ToString("MMM d")}";
+                    unique = $"Year: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} {this.ScopePeriodStartMonthDay}";
                     break;
                 case EnumDocumentCodeUniqueScope.DOC_UNIQUE_QUATER:
-                    unique = $"Quater: {this.ScopePeriodStart.ToDateTime().ToString("MMM d")}";
+                    unique = $"Quater: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} {this.ScopePeriodStartMonthDay}";
                     break;
                 case EnumDocumentCodeUniqueScope.DOC_UNIQUE_MONTH:
                     unique = "Month";
@@ -55,6 +57,8 @@ namespace vSharpStudio.vm.ViewModels
         public Document ParentDocument { get { Debug.Assert(this.Parent != null); return (Document)this.Parent; } }
         partial void OnCreated()
         {
+            this.ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
+            this.ScopePeriodStartMonthDay = 1;
             //Init();
         }
         //protected override void OnInitFromDto()
@@ -101,7 +105,11 @@ namespace vSharpStudio.vm.ViewModels
         {
             this.ParentDocument.NotifyCodePropertySettingsChanged();
         }
-        partial void OnScopePeriodStartChanged()
+        partial void OnScopePeriodStartMonthChanged()
+        {
+            this.ParentDocument.NotifyCodePropertySettingsChanged();
+        }
+        partial void OnScopePeriodStartMonthDayChanged()
         {
             this.ParentDocument.NotifyCodePropertySettingsChanged();
         }
@@ -125,7 +133,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR:
                     break;
                 default:
-                    lst.Add(this.GetPropertyName(() => this.ScopePeriodStart));
+                    lst.Add(this.GetPropertyName(() => this.ScopePeriodStartMonth));
+                    lst.Add(this.GetPropertyName(() => this.ScopePeriodStartMonthDay));
                     break;
             }
             return lst.ToArray();

@@ -544,6 +544,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_enum_months"><span class="badge">E</span>proto_enum_months</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_enum_name_data_type"><span class="badge">E</span>proto_enum_name_data_type</a>
                 </li>
               
@@ -2980,13 +2984,21 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>scope_period_start</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td>scope_period_start_month</td>
+                  <td><a href="#proto_config.proto_enum_months">proto_enum_months</a></td>
                   <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(8)]
-@attr [DisplayName(&#34;Date&#34;)]
-@attr [Description(&#34;Start date of scope period&#34;)]
-@attr [Editor(typeof(EditorDateMonthDay), typeof(EditorDateMonthDay))] </p></td>
+                  <td><p>@attr [PropertyOrderAttribute(9)]
+@attr [DisplayName(&#34;Start Month&#34;)]
+@attr [Description(&#34;Start month of scope period&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>scope_period_start_month_day</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [PropertyOrderAttribute(10)]
+@attr [DisplayName(&#34;Start Day&#34;)]
+@attr [Description(&#34;Start month day of scope period&#34;)] </p></td>
                 </tr>
               
             </tbody>
@@ -9316,6 +9328,95 @@ with history</p></td>
                 <td>L_SLUG</td>
                 <td>10</td>
                 <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="proto_config.proto_enum_months">proto_enum_months</h3>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>MONTH_NOT_SELECTED</td>
+                <td>0</td>
+                <td><p>@attr [Description(&#34;Not Selected&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_JANUARY</td>
+                <td>1</td>
+                <td><p>@attr [Description(&#34;January&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_FEBRUARY</td>
+                <td>2</td>
+                <td><p>@attr [Description(&#34;February&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_MARCH</td>
+                <td>3</td>
+                <td><p>@attr [Description(&#34;March&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_APRIL</td>
+                <td>4</td>
+                <td><p>@attr [Description(&#34;April&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_MAY</td>
+                <td>5</td>
+                <td><p>@attr [Description(&#34;May&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_JUNE</td>
+                <td>6</td>
+                <td><p>@attr [Description(&#34;June&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_JULY</td>
+                <td>7</td>
+                <td><p>@attr [Description(&#34;July&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_AUGUST</td>
+                <td>8</td>
+                <td><p>@attr [Description(&#34;August&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_SEPTEMBER</td>
+                <td>9</td>
+                <td><p>@attr [Description(&#34;September&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_OCTOBER</td>
+                <td>10</td>
+                <td><p>@attr [Description(&#34;October&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_NOVEMBER</td>
+                <td>11</td>
+                <td><p>@attr [Description(&#34;November&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>MONTH_DECEMBER</td>
+                <td>12</td>
+                <td><p>@attr [Description(&#34;December&#34;)]</p></td>
               </tr>
             
           </tbody>

@@ -23062,7 +23062,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Prefix = from.Prefix; // Clone.tt Line: 67
             vm.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 67
             vm.ScopeOfUnique = from.ScopeOfUnique; // Clone.tt Line: 67
-            vm.ScopePeriodStart = from.ScopePeriodStart; // Clone.tt Line: 67
+            vm.ScopePeriodStartMonth = from.ScopePeriodStartMonth; // Clone.tt Line: 67
+            vm.ScopePeriodStartMonthDay = from.ScopePeriodStartMonthDay; // Clone.tt Line: 67
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -23076,7 +23077,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Prefix = from.Prefix; // Clone.tt Line: 143
             to.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 143
             to.ScopeOfUnique = from.ScopeOfUnique; // Clone.tt Line: 143
-            to.ScopePeriodStart = from.ScopePeriodStart; // Clone.tt Line: 143
+            to.ScopePeriodStartMonth = from.ScopePeriodStartMonth; // Clone.tt Line: 143
+            to.ScopePeriodStartMonthDay = from.ScopePeriodStartMonthDay; // Clone.tt Line: 143
         }
         // Clone.tt Line: 149
         #region IEditable
@@ -23111,7 +23113,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.Prefix = m.Prefix; // Clone.tt Line: 221
             vm.SequenceGuid = m.SequenceGuid; // Clone.tt Line: 221
             vm.ScopeOfUnique = (EnumDocumentCodeUniqueScope)m.ScopeOfUnique; // Clone.tt Line: 221
-            vm.ScopePeriodStart = m.ScopePeriodStart; // Clone.tt Line: 221
+            vm.ScopePeriodStartMonth = (EnumMonths)m.ScopePeriodStartMonth; // Clone.tt Line: 221
+            vm.ScopePeriodStartMonthDay = m.ScopePeriodStartMonthDay; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
@@ -23126,7 +23129,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.Prefix = vm.Prefix; // Clone.tt Line: 276
             m.SequenceGuid = vm.SequenceGuid; // Clone.tt Line: 276
             m.ScopeOfUnique = (Proto.Config.proto_enum_document_code_unique_scope)vm.ScopeOfUnique; // Clone.tt Line: 274
-            m.ScopePeriodStart = vm.ScopePeriodStart; // Clone.tt Line: 276
+            m.ScopePeriodStartMonth = (Proto.Config.proto_enum_months)vm.ScopePeriodStartMonth; // Clone.tt Line: 274
+            m.ScopePeriodStartMonthDay = vm.ScopePeriodStartMonthDay; // Clone.tt Line: 276
             return m;
         }
         
@@ -23259,30 +23263,51 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnScopeOfUniqueChanging(ref EnumDocumentCodeUniqueScope to); // Property.tt Line: 79
         partial void OnScopeOfUniqueChanged();
         
-        [PropertyOrderAttribute(8)]
-        [DisplayName("Date")]
-        [Description("Start date of scope period")]
-        [Editor(typeof(EditorDateMonthDay), typeof(EditorDateMonthDay))]
-        public Google.Protobuf.WellKnownTypes.Timestamp ScopePeriodStart // Property.tt Line: 55
+        [PropertyOrderAttribute(9)]
+        [DisplayName("Start Month")]
+        [Description("Start month of scope period")]
+        public EnumMonths ScopePeriodStartMonth // Property.tt Line: 55
         { 
-            get { return this._ScopePeriodStart; }
+            get { return this._ScopePeriodStartMonth; }
             set
             {
-                if (this._ScopePeriodStart != value)
+                if (this._ScopePeriodStartMonth != value)
                 {
-                    this.OnScopePeriodStartChanging(ref value);
-                    this._ScopePeriodStart = value;
-                    this.OnScopePeriodStartChanged();
+                    this.OnScopePeriodStartMonthChanging(ref value);
+                    this._ScopePeriodStartMonth = value;
+                    this.OnScopePeriodStartMonthChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private Google.Protobuf.WellKnownTypes.Timestamp _ScopePeriodStart = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.MinValue.AddDays(1).ToUniversalTime());
-        partial void OnScopePeriodStartChanging(ref Google.Protobuf.WellKnownTypes.Timestamp to); // Property.tt Line: 79
-        partial void OnScopePeriodStartChanged();
-        //IGoogle.Protobuf.WellKnownTypes.Timestamp IDocumentCodePropertySettings.ScopePeriodStart { get { return this._ScopePeriodStart; } }
+        private EnumMonths _ScopePeriodStartMonth;
+        partial void OnScopePeriodStartMonthChanging(ref EnumMonths to); // Property.tt Line: 79
+        partial void OnScopePeriodStartMonthChanged();
+        
+        [PropertyOrderAttribute(10)]
+        [DisplayName("Start Day")]
+        [Description("Start month day of scope period")]
+        public uint ScopePeriodStartMonthDay // Property.tt Line: 55
+        { 
+            get { return this._ScopePeriodStartMonthDay; }
+            set
+            {
+                if (this._ScopePeriodStartMonthDay != value)
+                {
+                    this.OnScopePeriodStartMonthDayChanging(ref value);
+                    this._ScopePeriodStartMonthDay = value;
+                    this.OnScopePeriodStartMonthDayChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private uint _ScopePeriodStartMonthDay;
+        partial void OnScopePeriodStartMonthDayChanging(ref uint to); // Property.tt Line: 79
+        partial void OnScopePeriodStartMonthDayChanged();
     /*
         [Browsable(false)]
         public override bool IsChanged // Class.tt Line: 110
