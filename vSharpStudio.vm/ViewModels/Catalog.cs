@@ -64,6 +64,10 @@ namespace vSharpStudio.vm.ViewModels
             this.ViewListWideGuid = System.Guid.NewGuid().ToString();
             this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
 
+            this.IndexCodeGuid = System.Guid.NewGuid().ToString();
+            this.IndexRefFolderCodeGuid = System.Guid.NewGuid().ToString();
+            this.IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
+
             this.MaxNameLength = 20;
             this.MaxDescriptionLength = 100;
             this.UseTree = false;
@@ -273,6 +277,124 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
+        [Browsable(false)]
+        public bool IsShowRefSelfTree { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
+        [Browsable(false)]
+        public bool IsShowIsFolder { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
+        [Browsable(false)]
+        public string CodePropertySettingsText { get { return this.CodePropertySettings.ToString(); } }
+        public void NotifyCodePropertySettingsChanged()
+        {
+            this.NotifyPropertyChanged(() => this.CodePropertySettingsText);
+        }
+        protected override string[]? OnGetWhatHideOnPropertyGrid()
+        {
+            var lst = new List<string>();
+            if (!this.UseTree)
+            {
+                lst.Add(this.GetPropertyName(() => this.GroupIconType));
+                lst.Add(this.GetPropertyName(() => this.MaxTreeLevels));
+                lst.Add(this.GetPropertyName(() => this.UseSeparateTreeForFolders));
+            }
+            //else
+            //{
+            //    if (this.UseSeparateTreeForFolders)
+            //    {
+            //        lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
+            //    }
+            //}
+            if (!this.GetUseCodeProperty())
+            {
+                lst.Add(this.GetPropertyName(() => this.CodePropertySettings));
+            }
+            if (!this.GetUseNameProperty())
+            {
+                lst.Add(this.GetPropertyName(() => this.MaxNameLength));
+            }
+            if (!this.GetUseDescriptionProperty())
+            {
+                lst.Add(this.GetPropertyName(() => this.MaxDescriptionLength));
+            }
+            if (lst.Count == 0)
+            {
+                this.AutoGenerateProperties = true;
+            }
+            return lst.ToArray();
+        }
+
+        #region Get Properties and Details
+
+        #region OnChanged
+        partial void OnUseCodePropertyChanged()
+        {
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+        }
+        partial void OnUseNamePropertyChanged()
+        {
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+        }
+        partial void OnUseDescriptionPropertyChanged()
+        {
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+        }
+        partial void OnUseSeparateTreeForFoldersChanged()
+        {
+            this.RefillChildren();
+            this.NotifyPropertyChanged(() => this.Children);
+            this.NotifyPropertyChanged(() => this.IsShowRefSelfTree);
+            this.NotifyPropertyChanged(() => this.IsShowIsFolder);
+        }
+        partial void OnUseTreeChanged()
+        {
+            if (!this.UseTree)
+            {
+                this.UseSeparateTreeForFolders = false;
+            }
+            this.RefillChildren();
+            this.NotifyPropertyChanged(() => this.Children);
+            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+            this.NotifyPropertyChanged(() => this.IsShowRefSelfTree);
+            this.NotifyPropertyChanged(() => this.IsShowIsFolder);
+        }
+        #endregion OnChanged
+
+        public bool GetUseCodeProperty()
+        {
+            if (this.UseCodeProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseCodeProperty == EnumUseType.No)
+                return false;
+            if (this.ParentGroupListCatalogs.UseCodeProperty == EnumUseType.Yes)
+                return true;
+            if (this.ParentGroupListCatalogs.UseCodeProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.ParentModel.UseCodeProperty;
+        }
+        public bool GetUseNameProperty()
+        {
+            if (this.UseNameProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseNameProperty == EnumUseType.No)
+                return false;
+            if (this.ParentGroupListCatalogs.UseNameProperty == EnumUseType.Yes)
+                return true;
+            if (this.ParentGroupListCatalogs.UseNameProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.ParentModel.UseNameProperty;
+        }
+        public bool GetUseDescriptionProperty()
+        {
+            if (this.UseDescriptionProperty == EnumUseType.Yes)
+                return true;
+            if (this.UseDescriptionProperty == EnumUseType.No)
+                return false;
+            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.Yes)
+                return true;
+            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.No)
+                return false;
+            return this.ParentGroupListCatalogs.ParentModel.UseDescriptionProperty;
+        }
+
         public IReadOnlyList<IProperty> GetAllProperties(bool isUseRecordVersionField)
         {
             var res = new List<IProperty>();
@@ -371,108 +493,16 @@ namespace vSharpStudio.vm.ViewModels
             }
             return prp;
         }
-        partial void OnUseCodePropertyChanged()
-        {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
-        }
-        partial void OnUseNamePropertyChanged()
-        {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
-        }
-        partial void OnUseDescriptionPropertyChanged()
-        {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
-        }
-        partial void OnUseSeparateTreeForFoldersChanged()
-        {
-            this.RefillChildren();
-            this.NotifyPropertyChanged(() => this.Children);
-            this.NotifyPropertyChanged(() => this.IsShowRefSelfTree);
-            this.NotifyPropertyChanged(() => this.IsShowIsFolder);
-        }
-        partial void OnUseTreeChanged()
-        {
-            if (!this.UseTree)
-            {
-                this.UseSeparateTreeForFolders = false;
-            }
-            this.RefillChildren();
-            this.NotifyPropertyChanged(() => this.Children);
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
-            this.NotifyPropertyChanged(() => this.IsShowRefSelfTree);
-            this.NotifyPropertyChanged(() => this.IsShowIsFolder);
-        }
-        [Browsable(false)]
-        public bool IsShowRefSelfTree { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
-        [Browsable(false)]
-        public bool IsShowIsFolder { get { if (this.UseTree && !this.UseSeparateTreeForFolders) return true; return false; } }
-        [Browsable(false)]
-        public string CodePropertySettingsText { get { return this.CodePropertySettings.ToString(); } }
-        public void NotifyCodePropertySettingsChanged()
-        {
-            this.NotifyPropertyChanged(() => this.CodePropertySettingsText);
-        }
-        protected override string[]? OnGetWhatHideOnPropertyGrid()
-        {
-            var lst = new List<string>();
-            if (!this.UseTree)
-            {
-                lst.Add(this.GetPropertyName(() => this.GroupIconType));
-                lst.Add(this.GetPropertyName(() => this.MaxTreeLevels));
-                lst.Add(this.GetPropertyName(() => this.UseSeparateTreeForFolders));
-            }
-            //else
-            //{
-            //    if (this.UseSeparateTreeForFolders)
-            //    {
-            //        lst.Add(this.GetPropertyName(() => this.UseFolderTypeExplicitly));
-            //    }
-            //}
-            if (!this.GetUseCodeProperty())
-            {
-                lst.Add(this.GetPropertyName(() => this.CodePropertySettings));
-            }
-            if (!this.GetUseNameProperty())
-            {
-                lst.Add(this.GetPropertyName(() => this.MaxNameLength));
-            }
-            if (!this.GetUseDescriptionProperty())
-            {
-                lst.Add(this.GetPropertyName(() => this.MaxDescriptionLength));
-            }
-            if (lst.Count == 0)
-            {
-                this.AutoGenerateProperties = true;
-            }
-            return lst.ToArray();
-        }
         public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
             if (!isExcludeSpecial)
                 this.GetSpecialProperties(res, isSupportVersion);
-            var model = this.ParentGroupListCatalogs.ParentModel;
+            //var model = this.ParentGroupListCatalogs.ParentModel;
             this.GetCodeProperty(res);
             this.GetNameProperty(res);
             this.GetDescriptionProperty(res);
             foreach (var t in this.GroupProperties.ListProperties)
-            {
-                if (t.IsIncluded(guidAppPrjDbGen))
-                {
-                    res.Add(t);
-                }
-            }
-            return res;
-        }
-        public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false)
-        {
-            var res = new List<IProperty>();
-            if (!isExcludeSpecial)
-                this.Folder.GetSpecialProperties(res, isSupportVersion);
-            this.GetCodeProperty(res);
-            this.GetNameProperty(res);
-            this.GetDescriptionProperty(res);
-            foreach (var t in this.Folder.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjDbGen))
                 {
@@ -493,18 +523,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IDetail> GetIncludedFolderDetails(string guidAppPrjDbGen)
-        {
-            var res = new List<IDetail>();
-            foreach (var t in this.Folder.GroupDetails.ListDetails)
-            {
-                if (t.IsIncluded(guidAppPrjDbGen))
-                {
-                    res.Add(t);
-                }
-            }
-            return res;
-        }
+        #endregion Get Properties and Details
+
         public IForm GetForm(FormType ftype, string guidAppPrjGen)
         {
             var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
@@ -649,70 +669,63 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListCatalogs.GetIsGridSortableCustom();
         }
-        public bool GetUseCodeProperty()
-        {
-            if (this.UseCodeProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseCodeProperty == EnumUseType.No)
-                return false;
-            if (this.ParentGroupListCatalogs.UseCodeProperty == EnumUseType.Yes)
-                return true;
-            if (this.ParentGroupListCatalogs.UseCodeProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListCatalogs.ParentModel.UseCodeProperty;
-        }
-        public bool GetUseCodePropertySeparateFolder()
-        {
-            if (this.Folder.UseCodeProperty == EnumUseType.Yes)
-                return true;
-            if (this.Folder.UseCodeProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListCatalogs.UseCodePropertyInSeparateTree;
-        }
-        public bool GetUseNameProperty()
-        {
-            if (this.UseNameProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseNameProperty == EnumUseType.No)
-                return false;
-            if (this.ParentGroupListCatalogs.UseNameProperty == EnumUseType.Yes)
-                return true;
-            if (this.ParentGroupListCatalogs.UseNameProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListCatalogs.ParentModel.UseNameProperty;
-        }
-        public bool GetUseNamePropertySeparateFolder()
-        {
-            if (this.Folder.UseNameProperty == EnumUseType.Yes)
-                return true;
-            if (this.Folder.UseNameProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListCatalogs.UseNamePropertyInSeparateTree;
-        }
-        public bool GetUseDescriptionProperty()
-        {
-            if (this.UseDescriptionProperty == EnumUseType.Yes)
-                return true;
-            if (this.UseDescriptionProperty == EnumUseType.No)
-                return false;
-            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.Yes)
-                return true;
-            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListCatalogs.ParentModel.UseDescriptionProperty;
-        }
-        public bool GetUseDescriptionPropertSeparateFoldery()
-        {
-            if (this.Folder.UseDescriptionProperty == EnumUseType.Yes)
-                return true;
-            if (this.Folder.UseDescriptionProperty == EnumUseType.No)
-                return false;
-            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.Yes)
-                return true;
-            if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.No)
-                return false;
-            return this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
-        }
+        //public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false)
+        //{
+        //    var res = new List<IProperty>();
+        //    if (!isExcludeSpecial)
+        //        this.Folder.GetSpecialProperties(res, isSupportVersion);
+        //    this.GetCodeProperty(res);
+        //    this.GetNameProperty(res);
+        //    this.GetDescriptionProperty(res);
+        //    foreach (var t in this.Folder.GroupProperties.ListProperties)
+        //    {
+        //        if (t.IsIncluded(guidAppPrjDbGen))
+        //        {
+        //            res.Add(t);
+        //        }
+        //    }
+        //    return res;
+        //}
+        //public IReadOnlyList<IDetail> GetIncludedFolderDetails(string guidAppPrjDbGen)
+        //{
+        //    var res = new List<IDetail>();
+        //    foreach (var t in this.Folder.GroupDetails.ListDetails)
+        //    {
+        //        if (t.IsIncluded(guidAppPrjDbGen))
+        //        {
+        //            res.Add(t);
+        //        }
+        //    }
+        //    return res;
+        //}
+        //public bool GetUseCodePropertySeparateFolder()
+        //{
+        //    if (this.Folder.UseCodeProperty == EnumUseType.Yes)
+        //        return true;
+        //    if (this.Folder.UseCodeProperty == EnumUseType.No)
+        //        return false;
+        //    return this.ParentGroupListCatalogs.UseCodePropertyInSeparateTree;
+        //}
+        //public bool GetUseNamePropertySeparateFolder()
+        //{
+        //    if (this.Folder.UseNameProperty == EnumUseType.Yes)
+        //        return true;
+        //    if (this.Folder.UseNameProperty == EnumUseType.No)
+        //        return false;
+        //    return this.ParentGroupListCatalogs.UseNamePropertyInSeparateTree;
+        //}
+        //public bool GetUseDescriptionPropertSeparateFoldery()
+        //{
+        //    if (this.Folder.UseDescriptionProperty == EnumUseType.Yes)
+        //        return true;
+        //    if (this.Folder.UseDescriptionProperty == EnumUseType.No)
+        //        return false;
+        //    if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.Yes)
+        //        return true;
+        //    if (this.ParentGroupListCatalogs.UseDescriptionProperty == EnumUseType.No)
+        //        return false;
+        //    return this.ParentGroupListCatalogs.UseDescriptionPropertyInSeparateTree;
+        //}
         //public IForm GetForm(FormType formType)
         //{
         //    var res = (from p in this.GroupForms.ListForms where p.EnumFormType == formType select p).SingleOrDefault();

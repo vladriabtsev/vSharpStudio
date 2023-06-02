@@ -51,6 +51,9 @@ namespace vSharpStudio.vm.ViewModels
             this.ViewListWideGuid = System.Guid.NewGuid().ToString();
             this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
 
+            this.IndexCodeGuid = System.Guid.NewGuid().ToString();
+            this.IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
+
             this.MaxNameLength = 20;
             this.MaxDescriptionLength = 100;
 
@@ -161,70 +164,39 @@ namespace vSharpStudio.vm.ViewModels
                 return GetCompositeName();
             }
         }
-        public IForm GetForm(FormType ftype, string guidAppPrjGen)
+
+        #region Get Properties and Details
+        public bool GetUseCodeProperty()
         {
-            var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
-            if (f == null)
-            {
-                var lstp = new List<IProperty>();
-                int i = 0;
-                foreach (var t in this.GroupProperties.ListProperties)
-                {
-                    if (t.IsIncluded(guidAppPrjGen))
-                    {
-                        i++;
-                        if (i > 1)
-                            break;
-                        lstp.Add(t);
-                    }
-                }
-                this.GetSpecialProperties(lstp, false);
-                f = new Form(this.GroupForms, ftype, lstp);
-            }
+            bool res = false;
+            if (this.UseCodeProperty == EnumUseType.Default)
+                res = this.ParentCatalog.GetUseCodeProperty();
+            else if (this.UseCodeProperty == EnumUseType.Yes)
+                res = true;
             else
-            {
-                var lstp = new List<IProperty>();
-                foreach (var t in f.ListAllNotSpecialProperties)
-                {
-                    lstp.Add((IProperty)t);
-                }
-                this.GetSpecialProperties(lstp, false);
-                f = new Form(this.GroupForms, ftype, lstp);
-            }
-            return f;
-        }
-        public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
-        {
-            var res = new List<IForm>
-            {
-                this.GetForm(FormType.ListNarrow, guidAppPrjGen),
-                this.GetForm(FormType.ListWide, guidAppPrjGen)
-            };
+                res = false;
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion)
+        public bool GetUseNameProperty()
         {
-            var res = new List<IProperty>();
-            this.GetSpecialProperties(res, isSupportVersion);
-            foreach (var t in this.GroupProperties.ListProperties)
-            {
-                if (t.IsIncluded(guidAppPrjGen))
-                {
-                    res.Add(t);
-                }
-            }
+            bool res = false;
+            if (this.UseNameProperty == EnumUseType.Default)
+                res = this.ParentCatalog.GetUseNameProperty();
+            else if (this.UseNameProperty == EnumUseType.Yes)
+                res = true;
+            else
+                res = false;
             return res;
         }
-        public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
+        public bool GetUseDescriptionProperty()
         {
-            var res = new List<IDetail>();
-            foreach (var t in this.GroupDetails.ListDetails)
-            {
-                if (t.IsIncluded(guidAppPrjGen))
-                {
-                    res.Add(t);
-                }
-            }
+            bool res = false;
+            if (this.UseDescriptionProperty == EnumUseType.Default)
+                res = this.ParentCatalog.GetUseDescriptionProperty();
+            else if (this.UseDescriptionProperty == EnumUseType.Yes)
+                res = true;
+            else
+                res = false;
             return res;
         }
         public void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
@@ -269,6 +241,131 @@ namespace vSharpStudio.vm.ViewModels
                 res.Add(t);
             }
         }
+        private IProperty GetCodeProperty(List<IProperty> lst)
+        {
+            IProperty prp = null!;
+            if (this.GetUseCodeProperty())
+            {
+                switch (this.CodePropertySettings.SequenceType)
+                {
+                    case EnumCodeType.Number:
+                        prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid,
+                            this.CodePropertySettings.MaxSequenceLength);
+                        break;
+                    case EnumCodeType.Text:
+                        prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
+                            this.CodePropertySettings.MaxSequenceLength);
+                        break;
+                    case EnumCodeType.AutoNumber:
+                        prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid,
+                            this.CodePropertySettings.MaxSequenceLength);
+                        break;
+                    case EnumCodeType.AutoText:
+                        prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
+                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length);
+                        break;
+                }
+                lst.Add(prp);
+            }
+            return prp;
+        }
+        private IProperty GetNameProperty(List<IProperty> lst)
+        {
+            IProperty prp = null!;
+            if (this.GetUseNameProperty())
+            {
+                prp = this.Cfg.Model.GetPropertyCatalogName(this.GroupProperties, this.PropertyNameGuid, this.MaxNameLength);
+                lst.Add(prp);
+            }
+            return prp;
+        }
+        private IProperty GetDescriptionProperty(List<IProperty> lst)
+        {
+            IProperty prp = null!;
+            if (this.GetUseDescriptionProperty())
+            {
+                prp = this.Cfg.Model.GetPropertyCatalogDescription(this.GroupProperties, this.PropertyDescriptionGuid, this.MaxDescriptionLength);
+                lst.Add(prp);
+            }
+            return prp;
+        }
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false)
+        {
+            var res = new List<IProperty>();
+            if (!isExcludeSpecial)
+                this.GetSpecialProperties(res, isSupportVersion);
+            //var model = this.ParentGroupListCatalogs.ParentModel;
+            this.GetCodeProperty(res);
+            this.GetNameProperty(res);
+            this.GetDescriptionProperty(res);
+            foreach (var t in this.GroupProperties.ListProperties)
+            {
+                if (t.IsIncluded(guidAppPrjDbGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+
+
+
+        public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
+        {
+            var res = new List<IDetail>();
+            foreach (var t in this.GroupDetails.ListDetails)
+            {
+                if (t.IsIncluded(guidAppPrjGen))
+                {
+                    res.Add(t);
+                }
+            }
+            return res;
+        }
+        #endregion Get Properties and Details
+
+        public IForm GetForm(FormType ftype, string guidAppPrjGen)
+        {
+            var f = (from tf in this.GroupForms.ListForms where tf.EnumFormType == ftype select tf).SingleOrDefault();
+            if (f == null)
+            {
+                var lstp = new List<IProperty>();
+                int i = 0;
+                foreach (var t in this.GroupProperties.ListProperties)
+                {
+                    if (t.IsIncluded(guidAppPrjGen))
+                    {
+                        i++;
+                        if (i > 1)
+                            break;
+                        lstp.Add(t);
+                    }
+                }
+                this.GetSpecialProperties(lstp, false);
+                f = new Form(this.GroupForms, ftype, lstp);
+            }
+            else
+            {
+                var lstp = new List<IProperty>();
+                foreach (var t in f.ListAllNotSpecialProperties)
+                {
+                    lstp.Add((IProperty)t);
+                }
+                this.GetSpecialProperties(lstp, false);
+                f = new Form(this.GroupForms, ftype, lstp);
+            }
+            return f;
+        }
+        public IReadOnlyList<IForm> GetListForms(string guidAppPrjGen)
+        {
+            var res = new List<IForm>
+            {
+                this.GetForm(FormType.ListNarrow, guidAppPrjGen),
+                this.GetForm(FormType.ListWide, guidAppPrjGen)
+            };
+            return res;
+        }
+
         private IProperty GetCodeProperty(IConfig cfg)
         {
             IProperty prp = null!;
@@ -292,39 +389,6 @@ namespace vSharpStudio.vm.ViewModels
                     break;
             }
             return prp;
-        }
-        public bool GetUseCodeProperty()
-        {
-            bool res = false;
-            if (this.UseCodeProperty == EnumUseType.Default)
-                res = this.ParentCatalog.GetUseCodeProperty();
-            else if (this.UseCodeProperty == EnumUseType.Yes)
-                res = true;
-            else
-                res = false;
-            return res;
-        }
-        public bool GetUseNameProperty()
-        {
-            bool res = false;
-            if (this.UseNameProperty == EnumUseType.Default)
-                res = this.ParentCatalog.GetUseNameProperty();
-            else if (this.UseNameProperty == EnumUseType.Yes)
-                res = true;
-            else
-                res = false;
-            return res;
-        }
-        public bool GetUseDescriptionProperty()
-        {
-            bool res = false;
-            if (this.UseDescriptionProperty == EnumUseType.Default)
-                res = this.ParentCatalog.GetUseDescriptionProperty();
-            else if (this.UseDescriptionProperty == EnumUseType.Yes)
-                res = true;
-            else
-                res = false;
-            return res;
         }
         [Browsable(false)]
         public string CodePropertySettingsText { get { return this.CodePropertySettings.ToString(); } }

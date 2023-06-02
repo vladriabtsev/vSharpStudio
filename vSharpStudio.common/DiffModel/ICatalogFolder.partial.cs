@@ -9,7 +9,7 @@ namespace vSharpStudio.common
     public partial interface ICatalogFolder : ITreeConfigNodeSortable, IGetNodeSetting, IDbTable
     {
         ICatalog ParentCatalogI { get; }
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen);
         void GetSpecialProperties(List<IProperty> res, bool isSupportVersion);
         IForm GetForm(FormType ftype, string guidAppPrjGen);

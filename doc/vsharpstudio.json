@@ -650,6 +650,16 @@
               "description": "@attr [Description(\"Month\")]"
             },
             {
+              "name": "DOC_UNIQUE_WEEK",
+              "number": "34",
+              "description": "@attr [Description(\"Week\")]"
+            },
+            {
+              "name": "DOC_UNIQUE_DAY",
+              "number": "37",
+              "description": "@attr [Description(\"Day\")]"
+            },
+            {
               "name": "DOC_UNIQUE_NOT_REQUIRED",
               "number": "41",
               "description": "@attr [Description(\"Not Required\")]"
@@ -2530,6 +2540,36 @@
               "defaultValue": ""
             },
             {
+              "name": "index_code_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_ref_folder_code_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_ref_tree_parent_code_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
               "name": "item_icon_type",
               "description": "@attr [PropertyOrderAttribute(41)]\n@attr [DisplayName(\"Item Icon\")]\n@attr [Description(\"Catalog item icon type\")]",
               "label": "",
@@ -2933,6 +2973,26 @@
             },
             {
               "name": "property_version_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_code_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_ref_tree_parent_code_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -4316,6 +4376,56 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_year_doc_number_guid",
+              "description": "unique index of special field YEAR and DocNumber\nYEAR = DocDate.Year\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_quater_doc_number_guid",
+              "description": "unique index of special field QUATER and DocNumber\nQUATER = DocDate.Year * 4 + DocDate.Month / 3\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_month_doc_number_guid",
+              "description": "unique index of special field MONTH and DocNumber\nMONTH = DocDate.Year * 12 + DocDate.Month\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_week_doc_number_guid",
+              "description": "unique index of special field WEEK and DocNumber\nWEEK = DocDate.Year * (365???) + DocDate.Month / 3\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_day_doc_number_guid",
+              "description": "unique index of special field Day and DocNumber\nDAY = DocDate.Year * 365?? + DocDate.Day\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -6282,6 +6392,16 @@
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
               "fullType": "proto_config.proto_enum_use_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "monday_before_first_doc_date",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(23)]\n@attr [DisplayName(\"Monday Date\")]\n@attr [Description(\"Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions \")]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "Timestamp",
+              "longType": "google.protobuf.Timestamp",
+              "fullType": "google.protobuf.Timestamp",
               "ismap": false,
               "defaultValue": ""
             },

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
+using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
 using vSharpStudio.common;
 using vSharpStudio.common.DiffModel;
@@ -41,7 +42,7 @@ namespace vSharpStudio.vm.ViewModels
             this._Name = Defaults.DocumentsGroupName;
             this.PrefixForDbTables = "Doc";
             this.IsEditable = false;
-
+            this.MondayBeforeFirstDocDate=Timestamp.FromDateTime(new DateTime(1000, 1, 6, 0, 0, 0, DateTimeKind.Utc));
             Init();
         }
         protected override void OnInitFromDto()

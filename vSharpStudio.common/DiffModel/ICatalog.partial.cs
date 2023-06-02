@@ -10,12 +10,8 @@ namespace vSharpStudio.common
     public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IDbTable
     {
         IGroupListCatalogs ParentGroupListCatalogsI { get; }
-        //IReadOnlyList<IProperty> GetIncludedViewProperties(string guidAppPrjDbGen);
-        //IReadOnlyList<IProperty> GetIncludedFolderViewProperties(string guidAppPrjDbGen);
         IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false);
-        IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen);
-        IReadOnlyList<IDetail> GetIncludedFolderDetails(string guidAppPrjDbGen);
         void GetSpecialProperties(List<IProperty> res, bool isSupportVersion);
         ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
         IForm GetForm(FormType ftype, string guidAppPrjGen);
@@ -25,11 +21,8 @@ namespace vSharpStudio.common
         bool IsGridSortableCustomGet();
 
         bool GetUseCodeProperty();
-        bool GetUseCodePropertySeparateFolder();
         bool GetUseNameProperty();
-        bool GetUseNamePropertySeparateFolder();
         bool GetUseDescriptionProperty();
-        bool GetUseDescriptionPropertSeparateFoldery();
         EnumPropertyAccess GetRolePropertyAccess(IRole role);
         EnumPrintAccess GetRolePropertyPrint(IRole role);
         EnumCatalogDetailAccess GetRoleCatalogAccess(IRole role);

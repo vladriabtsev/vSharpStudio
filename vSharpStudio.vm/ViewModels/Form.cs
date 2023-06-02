@@ -229,11 +229,11 @@ namespace vSharpStudio.vm.ViewModels
                 }
                 else
                 {
-                    if (!c.GetUseCodePropertySeparateFolder())
+                    if (!c.Folder.GetUseCodeProperty())
                         lst.Add(this.GetPropertyName(() => this.IsUseFolderCode));
-                    if (!c.GetUseNamePropertySeparateFolder())
+                    if (!c.Folder.GetUseNameProperty())
                         lst.Add(this.GetPropertyName(() => this.IsUseFolderName));
-                    if (!c.GetUseDescriptionPropertSeparateFoldery())
+                    if (!c.Folder.GetUseDescriptionProperty())
                         lst.Add(this.GetPropertyName(() => this.IsUseFolderDesc));
                 }
                 lst.Add(this.GetPropertyName(() => this.IsUseDocDate));

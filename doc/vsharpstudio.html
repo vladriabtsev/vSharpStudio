@@ -1323,6 +1323,27 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                 </tr>
               
                 <tr>
+                  <td>index_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_ref_folder_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_ref_tree_parent_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
                   <td>item_icon_type</td>
                   <td><a href="#proto_config.proto_enum_catalog_tree_icon">proto_enum_catalog_tree_icon</a></td>
                   <td></td>
@@ -1659,6 +1680,20 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
               
                 <tr>
                   <td>property_version_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_ref_tree_parent_code_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -2849,6 +2884,51 @@ Reserved positions: 1 - primary key
                   <td><p>@attr [PropertyOrderAttribute(24)]
 @attr [DisplayName(&#34;Use Date&#34;)]
 @attr [Description(&#34;Use Date property for document&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_year_doc_number_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>unique index of special field YEAR and DocNumber
+YEAR = DocDate.Year
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_quater_doc_number_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>unique index of special field QUATER and DocNumber
+QUATER = DocDate.Year * 4 &#43; DocDate.Month / 3
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_month_doc_number_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>unique index of special field MONTH and DocNumber
+MONTH = DocDate.Year * 12 &#43; DocDate.Month
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_week_doc_number_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>unique index of special field WEEK and DocNumber
+WEEK = DocDate.Year * (365???) &#43; DocDate.Month / 3
+@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_day_doc_number_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>unique index of special field Day and DocNumber
+DAY = DocDate.Year * 365?? &#43; DocDate.Day
+@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>
@@ -4596,6 +4676,17 @@ Reserved positions: 1 - primary key
 @attr [PropertyOrderAttribute(22)]
 @attr [DisplayName(&#34;Use Code&#34;)]
 @attr [Description(&#34;Use Code property for document by default&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>monday_before_first_doc_date</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(23)]
+@attr [DisplayName(&#34;Monday Date&#34;)]
+@attr [Description(&#34;Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions &#34;)]
+@attr [ReadOnly(true)] </p></td>
                 </tr>
               
                 <tr>
@@ -8788,6 +8879,18 @@ with history</p></td>
                 <td>DOC_UNIQUE_MONTH</td>
                 <td>31</td>
                 <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_WEEK</td>
+                <td>34</td>
+                <td><p>@attr [Description(&#34;Week&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_DAY</td>
+                <td>37</td>
+                <td><p>@attr [Description(&#34;Day&#34;)]</p></td>
               </tr>
             
               <tr>

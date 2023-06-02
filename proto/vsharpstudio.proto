@@ -2219,6 +2219,10 @@ message proto_catalog_folder {
     string property_code_guid = 23;
     // @attr [Browsable(false)]
     string property_version_guid = 24;
+    // @attr [Browsable(false)]
+    string index_code_guid = 25;
+    // @attr [Browsable(false)]
+    string index_ref_tree_parent_code_guid = 26;
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item")]
@@ -2361,7 +2365,6 @@ message proto_catalog {
     // @attr [DisplayName("Max Tree Levels")]
     // @attr [Description("Maximum amount levels in catalog item groups. If zero, than unlimited")]
     uint32 max_tree_levels = 23;
-
     // @attr [PropertyOrderAttribute(25)]
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for catalog item")]
@@ -2387,6 +2390,13 @@ message proto_catalog {
     // @attr [DisplayName("Desc Length")]
     // @attr [Description("Maximum catalog item description length. If zero, than unlimited length")]
     uint32 max_description_length = 30;
+
+    // @attr [Browsable(false)]
+    string index_code_guid = 31;
+    // @attr [Browsable(false)]
+    string index_ref_folder_code_guid = 32;
+    // @attr [Browsable(false)]
+    string index_ref_tree_parent_code_guid = 33;
 
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Item Icon")]
@@ -2545,6 +2555,10 @@ enum proto_enum_document_code_unique_scope {
     DOC_UNIQUE_QUATER = 21;
     // @attr [Description("Month")]
     DOC_UNIQUE_MONTH = 31;
+    // @attr [Description("Week")]
+    DOC_UNIQUE_WEEK = 34;
+    // @attr [Description("Day")]
+    DOC_UNIQUE_DAY = 37;
     // @attr [Description("Not Required")]
     DOC_UNIQUE_NOT_REQUIRED = 41;
 }
@@ -2583,6 +2597,12 @@ message proto_group_documents {
     // @attr [DisplayName("Use Code")]
     // @attr [Description("Use Code property for document by default")]
     proto_enum_use_type use_doc_code_property = 22;
+    // @attr [Category("")]
+    // @attr [PropertyOrderAttribute(23)]
+    // @attr [DisplayName("Monday Date")]
+    // @attr [Description("Initial date of Monday for calculation of relative current day, week, month, year. Can be used for DocNumber uniqueness restrictions ")]
+    // @attr [ReadOnly(true)]
+    google.protobuf.Timestamp monday_before_first_doc_date = 23;
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(24)]
     // @attr [DisplayName("Use Date")]
@@ -2686,6 +2706,27 @@ message proto_document {
     // @attr [DisplayName("Use Date")]
     // @attr [Description("Use Date property for document")]
     proto_enum_use_type use_doc_date_property = 24;
+
+    // unique index of special field YEAR and DocNumber
+    // YEAR = DocDate.Year
+    // @attr [Browsable(false)]
+    string index_year_doc_number_guid = 31;
+    // unique index of special field QUATER and DocNumber
+    // QUATER = DocDate.Year * 4 + DocDate.Month / 3
+    // @attr [Browsable(false)]
+    string index_quater_doc_number_guid = 32;
+    // unique index of special field MONTH and DocNumber
+    // MONTH = DocDate.Year * 12 + DocDate.Month
+    // @attr [Browsable(false)]
+    string index_month_doc_number_guid = 34;
+    // unique index of special field WEEK and DocNumber
+    // WEEK = DocDate.Year * (365???) + DocDate.Month / 3
+    // @attr [Browsable(false)]
+    string index_week_doc_number_guid = 35;
+    // unique index of special field Day and DocNumber
+    // DAY = DocDate.Year * 365?? + DocDate.Day
+    // @attr [Browsable(false)]
+    string index_day_doc_number_guid = 36;
 
     // @attr [Browsable(false)]
     string property_id_guid = 61;

@@ -17,6 +17,13 @@ namespace vSharpStudio.vm.ViewModels
                     return false;
                 return true;
             }).WithMessage("Prefix can't be empty if prefix usage is chosen for DB table names in the model");
+            this.RuleFor(x => x.MondayBeforeFirstDocDate).Must((o, monday) =>
+            {
+                var dt = monday.ToDateTime();
+                if (dt.DayOfWeek ==  DayOfWeek.Monday)
+                    return true;
+                return false;
+            }).WithMessage("Selected day has to be Monday");
         }
     }
 }

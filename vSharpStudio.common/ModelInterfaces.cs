@@ -220,6 +220,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		DOC_UNIQUE_QUATER = 21,
 		[Description("Month")]
 		DOC_UNIQUE_MONTH = 31,
+		[Description("Week")]
+		DOC_UNIQUE_WEEK = 34,
+		[Description("Day")]
+		DOC_UNIQUE_DAY = 37,
 		[Description("Not Required")]
 		DOC_UNIQUE_NOT_REQUIRED = 41,
 	}
@@ -1225,6 +1229,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 59
     	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexRefTreeParentCodeGuid { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
     	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 55
     	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 55
@@ -1272,6 +1278,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
     	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 55
+    	string IndexCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexRefFolderCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexRefTreeParentCodeGuid { get; } // ModelInterfaces.tt Line: 55
     	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 55
     	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 55
     	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
@@ -1327,6 +1336,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 59
     	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 59
     	EnumUseType UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 55
+    	Google.Protobuf.WellKnownTypes.Timestamp MondayBeforeFirstDocDate { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
@@ -1360,6 +1370,21 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	EnumUseType UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 55
     	IDocumentCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 59
     	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
+    	// unique index of special field YEAR and DocNumber
+    	// YEAR = DocDate.Year
+    	string IndexYearDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
+    	// unique index of special field QUATER and DocNumber
+    	// QUATER = DocDate.Year * 4 + DocDate.Month / 3
+    	string IndexQuaterDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
+    	// unique index of special field MONTH and DocNumber
+    	// MONTH = DocDate.Year * 12 + DocDate.Month
+    	string IndexMonthDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
+    	// unique index of special field WEEK and DocNumber
+    	// WEEK = DocDate.Year * (365???) + DocDate.Month / 3
+    	string IndexWeekDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
+    	// unique index of special field Day and DocNumber
+    	// DAY = DocDate.Year * 365?? + DocDate.Day
+    	string IndexDayDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyDocCodeGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyDocDateGuid { get; } // ModelInterfaces.tt Line: 55

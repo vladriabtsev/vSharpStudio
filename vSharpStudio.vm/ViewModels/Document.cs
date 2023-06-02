@@ -44,6 +44,12 @@ namespace vSharpStudio.vm.ViewModels
             this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
 
+            this.IndexYearDocNumberGuid = System.Guid.NewGuid().ToString();
+            this.IndexQuaterDocNumberGuid = System.Guid.NewGuid().ToString();
+            this.IndexMonthDocNumberGuid = System.Guid.NewGuid().ToString();
+            this.IndexWeekDocNumberGuid = System.Guid.NewGuid().ToString();
+            this.IndexDayDocNumberGuid = System.Guid.NewGuid().ToString();
+
             this.CodePropertySettings.SequenceType = EnumCodeType.AutoText;
             this.CodePropertySettings.MaxSequenceLength = 9;
             this.CodePropertySettings.Prefix = "";

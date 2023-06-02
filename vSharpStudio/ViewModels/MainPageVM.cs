@@ -1921,10 +1921,18 @@ namespace vSharpStudio.ViewModels
         public static string GetvSharpStudioPluginsPath()
         {
             var currPath = Directory.GetCurrentDirectory();
+            var vspro = currPath[..currPath.IndexOf(@"\bin")];
             var bin = currPath[currPath.IndexOf(@"\bin")..];
-            var s = @"\vSharpStudio";
-            var vss = currPath[..currPath.IndexOf(s)];
-            return vss + s + s + bin;
+            var s = @"\vSharpStudio.pro";
+            var indxPro = currPath.IndexOf(s);
+            string dir = "";
+            if (indxPro > 0)
+            {
+                dir = currPath[..currPath.IndexOf(s)];
+                dir = dir + s;
+            }
+            var res= $"{dir}\\submodules\\vSharpStudio\\vSharpStudio{bin}";
+            return res;
         }
         #endregion Utils
     }

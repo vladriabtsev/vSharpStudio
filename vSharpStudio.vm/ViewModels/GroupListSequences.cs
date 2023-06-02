@@ -65,9 +65,9 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
-        public Document AddDocument(string name)
+        public CodeSequence AddSequence(string name)
         {
-            var node = new Document(this) { Name = name };
+            var node = new CodeSequence(this) { Name = name };
             this.NodeAddNewSubNode(node);
             return node;
         }

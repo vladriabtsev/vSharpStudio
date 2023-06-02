@@ -235,7 +235,7 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     if (m.DicGenNodeSettings.ContainsKey(guidAppPrjGen))
                     {
-                        var settings = (IvPluginGeneratorNodeIncludable?)(m.DicGenNodeSettings[guidAppPrjGen]);
+                        var settings = m.DicGenNodeSettings[guidAppPrjGen] as IvPluginGeneratorNodeIncludable;
                         if (settings != null)
                         {
                             if (!settings.IsIncluded.HasValue || settings.IsIncluded.Value)
@@ -255,7 +255,7 @@ namespace vSharpStudio.vm.ViewModels
                     {
                         //if (!ngs.DicGenNodeSettings.ContainsKey(guid))
                         //    return true;
-                        var nodeSettings = (IvPluginGeneratorNodeIncludable?)ngs.DicGenNodeSettings[guidAppPrjGen];
+                        var nodeSettings = ngs.DicGenNodeSettings[guidAppPrjGen] as IvPluginGeneratorNodeIncludable;
                         if (nodeSettings != null && nodeSettings.IsIncluded.HasValue)
                         {
                             return nodeSettings.IsIncluded.Value;
