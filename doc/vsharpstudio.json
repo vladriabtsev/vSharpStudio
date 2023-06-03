@@ -581,6 +581,49 @@
           ]
         },
         {
+          "name": "proto_enum_doc_number_unique_scope",
+          "longName": "proto_enum_doc_number_unique_scope",
+          "fullName": "proto_config.proto_enum_doc_number_unique_scope",
+          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
+          "values": [
+            {
+              "name": "DOC_UNIQUE_FOREVER",
+              "number": "0",
+              "description": "@attr [Description(\"Allways\")]"
+            },
+            {
+              "name": "DOC_UNIQUE_YEAR",
+              "number": "11",
+              "description": "@attr [Description(\"Year\")]"
+            },
+            {
+              "name": "DOC_UNIQUE_QUATER",
+              "number": "21",
+              "description": "@attr [Description(\"Quater\")]"
+            },
+            {
+              "name": "DOC_UNIQUE_MONTH",
+              "number": "31",
+              "description": "@attr [Description(\"Month\")]"
+            },
+            {
+              "name": "DOC_UNIQUE_WEEK",
+              "number": "34",
+              "description": "@attr [Description(\"Week\")]"
+            },
+            {
+              "name": "DOC_UNIQUE_DAY",
+              "number": "37",
+              "description": "@attr [Description(\"Day\")]"
+            },
+            {
+              "name": "DOC_UNIQUE_NOT_REQUIRED",
+              "number": "41",
+              "description": "@attr [Description(\"Not Required\")]"
+            }
+          ]
+        },
+        {
           "name": "proto_enum_document_access",
           "longName": "proto_enum_document_access",
           "fullName": "proto_config.proto_enum_document_access",
@@ -620,49 +663,6 @@
               "name": "D_MARK_DEL",
               "number": "61",
               "description": "@attr [Description(\"Del\")]"
-            }
-          ]
-        },
-        {
-          "name": "proto_enum_document_code_unique_scope",
-          "longName": "proto_enum_document_code_unique_scope",
-          "fullName": "proto_config.proto_enum_document_code_unique_scope",
-          "description": "@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]",
-          "values": [
-            {
-              "name": "DOC_UNIQUE_FOREVER",
-              "number": "0",
-              "description": "@attr [Description(\"Allways\")]"
-            },
-            {
-              "name": "DOC_UNIQUE_YEAR",
-              "number": "11",
-              "description": "@attr [Description(\"Year\")]"
-            },
-            {
-              "name": "DOC_UNIQUE_QUATER",
-              "number": "21",
-              "description": "@attr [Description(\"Quater\")]"
-            },
-            {
-              "name": "DOC_UNIQUE_MONTH",
-              "number": "31",
-              "description": "@attr [Description(\"Month\")]"
-            },
-            {
-              "name": "DOC_UNIQUE_WEEK",
-              "number": "34",
-              "description": "@attr [Description(\"Week\")]"
-            },
-            {
-              "name": "DOC_UNIQUE_DAY",
-              "number": "37",
-              "description": "@attr [Description(\"Day\")]"
-            },
-            {
-              "name": "DOC_UNIQUE_NOT_REQUIRED",
-              "number": "41",
-              "description": "@attr [Description(\"Not Required\")]"
             }
           ]
         },
@@ -4350,8 +4350,8 @@
               "defaultValue": ""
             },
             {
-              "name": "use_doc_code_property",
-              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Code\")]\n@attr [Description(\"Use Code property for document\")]",
+              "name": "use_doc_number_property",
+              "description": "@attr [PropertyOrderAttribute(21)]\n@attr [DisplayName(\"Use Number\")]\n@attr [Description(\"Use DocNumber property for document\")]",
               "label": "",
               "type": "proto_enum_use_type",
               "longType": "proto_enum_use_type",
@@ -4360,12 +4360,12 @@
               "defaultValue": ""
             },
             {
-              "name": "code_property_settings",
+              "name": "doc_number_property_settings",
               "description": "@attr [PropertyOrderAttribute(22)]\n@attr [DisplayName(\"Code\")]\n@attr [Description(\"Code property settings for Document\")]\n@attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]",
               "label": "",
-              "type": "proto_document_code_property_settings",
-              "longType": "proto_document_code_property_settings",
-              "fullType": "proto_config.proto_document_code_property_settings",
+              "type": "proto_document_number_property_settings",
+              "longType": "proto_document_number_property_settings",
+              "fullType": "proto_config.proto_document_number_property_settings",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4440,7 +4440,7 @@
               "defaultValue": ""
             },
             {
-              "name": "property_doc_code_guid",
+              "name": "property_doc_number_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -4522,9 +4522,9 @@
           ]
         },
         {
-          "name": "proto_document_code_property_settings",
-          "longName": "proto_document_code_property_settings",
-          "fullName": "proto_config.proto_document_code_property_settings",
+          "name": "proto_document_number_property_settings",
+          "longName": "proto_document_number_property_settings",
+          "fullName": "proto_config.proto_document_number_property_settings",
           "description": "@base BaseSettings",
           "hasExtensions": false,
           "hasFields": true,
@@ -4574,9 +4574,9 @@
               "name": "scope_of_unique",
               "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Unique Scope\")]\n@attr [Description(\"Code has to be unique in selected scope\")]",
               "label": "",
-              "type": "proto_enum_document_code_unique_scope",
-              "longType": "proto_enum_document_code_unique_scope",
-              "fullType": "proto_config.proto_enum_document_code_unique_scope",
+              "type": "proto_enum_doc_number_unique_scope",
+              "longType": "proto_enum_doc_number_unique_scope",
+              "fullType": "proto_config.proto_enum_doc_number_unique_scope",
               "ismap": false,
               "defaultValue": ""
             },

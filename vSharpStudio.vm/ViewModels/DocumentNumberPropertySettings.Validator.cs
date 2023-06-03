@@ -6,15 +6,15 @@ using FluentValidation.Results;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class DocumentCodePropertySettingsValidator
+    public partial class DocumentNumberPropertySettingsValidator
     {
-        public DocumentCodePropertySettingsValidator()
+        public DocumentNumberPropertySettingsValidator()
         {
             this.RuleFor(x => x.MaxSequenceLength).GreaterThan(0u);
             this.RuleFor(x => x.MaxSequenceLength).LessThan(15u);
             this.RuleFor(x => x.Prefix).Custom((prefix, cntx) =>
             {
-                var p = (DocumentCodePropertySettings)cntx.InstanceToValidate;
+                var p = (DocumentNumberPropertySettings)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
                 if (string.IsNullOrWhiteSpace(p.SequenceGuid))
@@ -32,7 +32,7 @@ namespace vSharpStudio.vm.ViewModels
             });
             this.RuleFor(x => x.ScopePeriodStartMonthDay).Custom((day, cntx) =>
             {
-                var p = (DocumentCodePropertySettings)cntx.InstanceToValidate;
+                var p = (DocumentNumberPropertySettings)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
                 if (p.ScopePeriodStartMonth == common.EnumMonths.MONTH_NOT_SELECTED)

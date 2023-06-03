@@ -192,6 +192,24 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		D_WEEKDAY = 13,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum EnumDocNumberUniqueScope // ModelInterfaces.tt Line: 17
+	{
+		[Description("Allways")]
+		DOC_UNIQUE_FOREVER = 0,
+		[Description("Year")]
+		DOC_UNIQUE_YEAR = 11,
+		[Description("Quater")]
+		DOC_UNIQUE_QUATER = 21,
+		[Description("Month")]
+		DOC_UNIQUE_MONTH = 31,
+		[Description("Week")]
+		DOC_UNIQUE_WEEK = 34,
+		[Description("Day")]
+		DOC_UNIQUE_DAY = 37,
+		[Description("Not Required")]
+		DOC_UNIQUE_NOT_REQUIRED = 41,
+	}
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumDocumentAccess // ModelInterfaces.tt Line: 17
 	{
 		[Description("By Parent")]
@@ -208,24 +226,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		D_UNPOST = 51,
 		[Description("Del")]
 		D_MARK_DEL = 61,
-	}
-	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumDocumentCodeUniqueScope // ModelInterfaces.tt Line: 17
-	{
-		[Description("Allways")]
-		DOC_UNIQUE_FOREVER = 0,
-		[Description("Year")]
-		DOC_UNIQUE_YEAR = 11,
-		[Description("Quater")]
-		DOC_UNIQUE_QUATER = 21,
-		[Description("Month")]
-		DOC_UNIQUE_MONTH = 31,
-		[Description("Week")]
-		DOC_UNIQUE_WEEK = 34,
-		[Description("Day")]
-		DOC_UNIQUE_DAY = 37,
-		[Description("Not Required")]
-		DOC_UNIQUE_NOT_REQUIRED = 41,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumFinanceDataType // ModelInterfaces.tt Line: 17
@@ -1344,13 +1344,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
-    public partial interface IDocumentCodePropertySettings // ModelInterfaces.tt Line: 33
+    public partial interface IDocumentNumberPropertySettings // ModelInterfaces.tt Line: 33
     {
     	EnumCodeType SequenceType { get; } // ModelInterfaces.tt Line: 55
     	uint MaxSequenceLength { get; } // ModelInterfaces.tt Line: 55
     	string Prefix { get; } // ModelInterfaces.tt Line: 55
     	string SequenceGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumDocumentCodeUniqueScope ScopeOfUnique { get; } // ModelInterfaces.tt Line: 55
+    	EnumDocNumberUniqueScope ScopeOfUnique { get; } // ModelInterfaces.tt Line: 55
     	EnumMonths ScopePeriodStartMonth { get; } // ModelInterfaces.tt Line: 55
     	uint ScopePeriodStartMonthDay { get; } // ModelInterfaces.tt Line: 55
     }
@@ -1367,8 +1367,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 59
     	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 59
     	int ShortId { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	IDocumentCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 59
+    	EnumUseType UseDocNumberProperty { get; } // ModelInterfaces.tt Line: 55
+    	IDocumentNumberPropertySettings DocNumberPropertySettings { get; } // ModelInterfaces.tt Line: 59
     	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
     	// unique index of special field YEAR and DocNumber
     	// YEAR = DocDate.Year
@@ -1386,7 +1386,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	// DAY = DocDate.Year * 365?? + DocDate.Day
     	string IndexDayDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyDocCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string PropertyDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyDocDateGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55

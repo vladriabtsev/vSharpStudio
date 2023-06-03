@@ -20,7 +20,7 @@
     - [proto_detail](#proto_config.proto_detail)
     - [proto_doc_in_journal](#proto_config.proto_doc_in_journal)
     - [proto_document](#proto_config.proto_document)
-    - [proto_document_code_property_settings](#proto_config.proto_document_code_property_settings)
+    - [proto_document_number_property_settings](#proto_config.proto_document_number_property_settings)
     - [proto_enumeration](#proto_config.proto_enumeration)
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
     - [proto_form](#proto_config.proto_form)
@@ -88,8 +88,8 @@
     - [proto_enum_data_type](#proto_config.proto_enum_data_type)
     - [proto_enum_database_data_type](#proto_config.proto_enum_database_data_type)
     - [proto_enum_date_data_type](#proto_config.proto_enum_date_data_type)
+    - [proto_enum_doc_number_unique_scope](#proto_config.proto_enum_doc_number_unique_scope)
     - [proto_enum_document_access](#proto_config.proto_enum_document_access)
-    - [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope)
     - [proto_enum_finance_data_type](#proto_config.proto_enum_finance_data_type)
     - [proto_enum_hacker_data_type](#proto_config.proto_enum_hacker_data_type)
     - [proto_enum_hidden_type](#proto_config.proto_enum_hidden_type)
@@ -607,8 +607,8 @@ Constant application wise value
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [Browsable(false)] |
 | short_id | [int32](#int32) |  | @attr [Browsable(false)] |
-| use_doc_code_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Code&#34;)] @attr [Description(&#34;Use Code property for document&#34;)] |
-| code_property_settings | [proto_document_code_property_settings](#proto_config.proto_document_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for Document&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
+| use_doc_number_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(21)] @attr [DisplayName(&#34;Use Number&#34;)] @attr [Description(&#34;Use DocNumber property for document&#34;)] |
+| doc_number_property_settings | [proto_document_number_property_settings](#proto_config.proto_document_number_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for Document&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
 | use_doc_date_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(24)] @attr [DisplayName(&#34;Use Date&#34;)] @attr [Description(&#34;Use Date property for document&#34;)] |
 | index_year_doc_number_guid | [string](#string) |  | unique index of special field YEAR and DocNumber YEAR = DocDate.Year @attr [Browsable(false)] |
 | index_quater_doc_number_guid | [string](#string) |  | unique index of special field QUATER and DocNumber QUATER = DocDate.Year * 4 &#43; DocDate.Month / 3 @attr [Browsable(false)] |
@@ -616,7 +616,7 @@ Constant application wise value
 | index_week_doc_number_guid | [string](#string) |  | unique index of special field WEEK and DocNumber WEEK = DocDate.Year * (365???) &#43; DocDate.Month / 3 @attr [Browsable(false)] |
 | index_day_doc_number_guid | [string](#string) |  | unique index of special field Day and DocNumber DAY = DocDate.Year * 365?? &#43; DocDate.Day @attr [Browsable(false)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
-| property_doc_code_guid | [string](#string) |  | @attr [Browsable(false)] |
+| property_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_date_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
 | is_grid_sortable | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [Category(&#34;Auto Layout&#34;)] @attr [DisplayName(&#34;Sortable&#34;)] @attr [Description(&#34;Sortable in data grid&#34;)] |
@@ -630,9 +630,9 @@ Constant application wise value
 
 
 
-<a name="proto_config.proto_document_code_property_settings"></a>
+<a name="proto_config.proto_document_number_property_settings"></a>
 
-### proto_document_code_property_settings
+### proto_document_number_property_settings
 @base BaseSettings
 
 
@@ -642,7 +642,7 @@ Constant application wise value
 | max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
 | prefix | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
 | sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(0)] @attr [DisplayName(&#34;Code Sequence&#34;)] @attr [Description(&#34;Code Sequence for auto code generation. Same sequence can be used for different documents&#34;)] @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] |
-| scope_of_unique | [proto_enum_document_code_unique_scope](#proto_config.proto_enum_document_code_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
+| scope_of_unique | [proto_enum_doc_number_unique_scope](#proto_config.proto_enum_doc_number_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
 | scope_period_start_month | [proto_enum_months](#proto_config.proto_enum_months) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Start Month&#34;)] @attr [Description(&#34;Start month of scope period&#34;)] |
 | scope_period_start_month_day | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Start Day&#34;)] @attr [Description(&#34;Start month day of scope period&#34;)] |
 
@@ -2177,6 +2177,23 @@ with history |
 
 
 
+<a name="proto_config.proto_enum_doc_number_unique_scope"></a>
+
+### proto_enum_doc_number_unique_scope
+@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DOC_UNIQUE_FOREVER | 0 | @attr [Description(&#34;Allways&#34;)] |
+| DOC_UNIQUE_YEAR | 11 | @attr [Description(&#34;Year&#34;)] |
+| DOC_UNIQUE_QUATER | 21 | @attr [Description(&#34;Quater&#34;)] |
+| DOC_UNIQUE_MONTH | 31 | @attr [Description(&#34;Month&#34;)] |
+| DOC_UNIQUE_WEEK | 34 | @attr [Description(&#34;Week&#34;)] |
+| DOC_UNIQUE_DAY | 37 | @attr [Description(&#34;Day&#34;)] |
+| DOC_UNIQUE_NOT_REQUIRED | 41 | @attr [Description(&#34;Not Required&#34;)] |
+
+
+
 <a name="proto_config.proto_enum_document_access"></a>
 
 ### proto_enum_document_access
@@ -2191,23 +2208,6 @@ with history |
 | D_POST | 41 | @attr [Description(&#34;Post&#34;)] |
 | D_UNPOST | 51 | @attr [Description(&#34;Unpost&#34;)] |
 | D_MARK_DEL | 61 | @attr [Description(&#34;Del&#34;)] |
-
-
-
-<a name="proto_config.proto_enum_document_code_unique_scope"></a>
-
-### proto_enum_document_code_unique_scope
-@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| DOC_UNIQUE_FOREVER | 0 | @attr [Description(&#34;Allways&#34;)] |
-| DOC_UNIQUE_YEAR | 11 | @attr [Description(&#34;Year&#34;)] |
-| DOC_UNIQUE_QUATER | 21 | @attr [Description(&#34;Quater&#34;)] |
-| DOC_UNIQUE_MONTH | 31 | @attr [Description(&#34;Month&#34;)] |
-| DOC_UNIQUE_WEEK | 34 | @attr [Description(&#34;Week&#34;)] |
-| DOC_UNIQUE_DAY | 37 | @attr [Description(&#34;Day&#34;)] |
-| DOC_UNIQUE_NOT_REQUIRED | 41 | @attr [Description(&#34;Not Required&#34;)] |
 
 
 

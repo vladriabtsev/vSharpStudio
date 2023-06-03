@@ -736,18 +736,26 @@ namespace vSharpStudio.vm.ViewModels
             res.Position = 8;
             return res;
         }
-        public IProperty GetPropertyDocumentCodeString(ITreeConfigNode parent, string guid, uint length)
+        public IProperty GetPropertyDocNumberString(ITreeConfigNode parent, string guid, uint length)
         {
             var res = new Property(parent, guid, this.PropertyDocCodeName, true);
             res.DataType = (DataType)this.GetDataTypeString(res, length);
             res.Position = 9;
             return res;
         }
-        public IProperty GetPropertyDocumentCodeInt(ITreeConfigNode parent, string guid, uint length)
+        public IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length)
         {
             var res = new Property(parent, guid, this.PropertyDocCodeName, true);
             res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false);
             res.Position = 9;
+            return res;
+        }
+        public IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid)
+        {
+            var res = new Property(parent, guid, this.PropertyDocCodeName+"UniqueScopeHelper", true);
+            res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false);
+            res.Position = 10;
+            res.IsNullable = true;
             return res;
         }
         //public IProperty GetPropertyString(string guid, uint length, string name)

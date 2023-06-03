@@ -9,7 +9,7 @@ using vSharpStudio.common.ViewModels;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class DocumentCodePropertySettings : IParent
+    public partial class DocumentNumberPropertySettings : IParent
     {
         public override string ToString()
         {
@@ -17,19 +17,25 @@ namespace vSharpStudio.vm.ViewModels
             var conv = new EnumDescriptionTypeConverter(typeof(EnumMonths));
             switch (this.ScopeOfUnique)
             {
-                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_FOREVER:
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
                     unique = "Unique";
                     break;
-                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR:
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
                     unique = $"Year: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} {this.ScopePeriodStartMonthDay}";
                     break;
-                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_QUATER:
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
                     unique = $"Quater: {conv.ConvertTo(null, null, this.ScopePeriodStartMonth, typeof(string))} {this.ScopePeriodStartMonthDay}";
                     break;
-                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_MONTH:
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
                     unique = "Month";
                     break;
-                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_NOT_REQUIRED:
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
+                    unique = "Month";
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
+                    unique = "Month";
+                    break;
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_NOT_REQUIRED:
                     unique = "Not Unique";
                     break;
                 default:
@@ -129,8 +135,8 @@ namespace vSharpStudio.vm.ViewModels
             }
             switch (this.ScopeOfUnique)
             {
-                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_QUATER:
-                case EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR:
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
+                case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
                     break;
                 default:
                     lst.Add(this.GetPropertyName(() => this.ScopePeriodStartMonth));

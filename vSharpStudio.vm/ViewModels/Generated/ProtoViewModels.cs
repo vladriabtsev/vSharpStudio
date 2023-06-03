@@ -23188,12 +23188,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
-    public partial class DocumentCodePropertySettingsValidator : ValidatorBase<DocumentCodePropertySettings, DocumentCodePropertySettingsValidator> { } // Class.tt Line: 15
-    public partial class DocumentCodePropertySettings : BaseSettings<DocumentCodePropertySettings, DocumentCodePropertySettingsValidator>, IDocumentCodePropertySettings // Class.tt Line: 16
+    public partial class DocumentNumberPropertySettingsValidator : ValidatorBase<DocumentNumberPropertySettings, DocumentNumberPropertySettingsValidator> { } // Class.tt Line: 15
+    public partial class DocumentNumberPropertySettings : BaseSettings<DocumentNumberPropertySettings, DocumentNumberPropertySettingsValidator>, IDocumentNumberPropertySettings // Class.tt Line: 16
     {
         #region CTOR
-        public DocumentCodePropertySettings(ITreeConfigNode? parent) // Class.tt Line: 26
-            : base(parent, DocumentCodePropertySettingsValidator.Validator)
+        public DocumentNumberPropertySettings(ITreeConfigNode? parent) // Class.tt Line: 26
+            : base(parent, DocumentNumberPropertySettingsValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
@@ -23206,10 +23206,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnCreated();
         #endregion CTOR
         #region Procedures
-        public static DocumentCodePropertySettings Clone(ITreeConfigNode? parent, IDocumentCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 28
+        public static DocumentNumberPropertySettings Clone(ITreeConfigNode? parent, IDocumentNumberPropertySettings from, bool isDeep = true) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
-            DocumentCodePropertySettings vm = new DocumentCodePropertySettings(parent); // Clone.tt Line: 35
+            DocumentNumberPropertySettings vm = new DocumentNumberPropertySettings(parent); // Clone.tt Line: 35
             vm.IsNotifying = false; // Clone.tt Line: 39
             vm.IsValidate = false;
             vm.SequenceType = from.SequenceType; // Clone.tt Line: 67
@@ -23223,7 +23223,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(DocumentCodePropertySettings to, IDocumentCodePropertySettings from, bool isDeep = true) // Clone.tt Line: 79
+        public static void Update(DocumentNumberPropertySettings to, IDocumentNumberPropertySettings from, bool isDeep = true) // Clone.tt Line: 79
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
@@ -23237,24 +23237,24 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         // Clone.tt Line: 149
         #region IEditable
-        public override DocumentCodePropertySettings Backup()
+        public override DocumentNumberPropertySettings Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
             Debug.Assert(this is IConfig || this.Parent != null);
-            return DocumentCodePropertySettings.Clone(this.Parent, this); // Clone.tt Line: 157
+            return DocumentNumberPropertySettings.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(DocumentCodePropertySettings from)
+        public override void Restore(DocumentNumberPropertySettings from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            DocumentCodePropertySettings.Update(this, from, isDeep);
+            DocumentNumberPropertySettings.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_document_code_property_settings' to 'DocumentCodePropertySettings'
-        public static DocumentCodePropertySettings ConvertToVM(Proto.Config.proto_document_code_property_settings m, DocumentCodePropertySettings vm) // Clone.tt Line: 173
+        // Conversion from 'proto_document_number_property_settings' to 'DocumentNumberPropertySettings'
+        public static DocumentNumberPropertySettings ConvertToVM(Proto.Config.proto_document_number_property_settings m, DocumentNumberPropertySettings vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -23267,23 +23267,23 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MaxSequenceLength = m.MaxSequenceLength; // Clone.tt Line: 221
             vm.Prefix = m.Prefix; // Clone.tt Line: 221
             vm.SequenceGuid = m.SequenceGuid; // Clone.tt Line: 221
-            vm.ScopeOfUnique = (EnumDocumentCodeUniqueScope)m.ScopeOfUnique; // Clone.tt Line: 221
+            vm.ScopeOfUnique = (EnumDocNumberUniqueScope)m.ScopeOfUnique; // Clone.tt Line: 221
             vm.ScopePeriodStartMonth = (EnumMonths)m.ScopePeriodStartMonth; // Clone.tt Line: 221
             vm.ScopePeriodStartMonthDay = m.ScopePeriodStartMonthDay; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'DocumentCodePropertySettings' to 'proto_document_code_property_settings'
-        public static Proto.Config.proto_document_code_property_settings ConvertToProto(DocumentCodePropertySettings vm) // Clone.tt Line: 236
+        // Conversion from 'DocumentNumberPropertySettings' to 'proto_document_number_property_settings'
+        public static Proto.Config.proto_document_number_property_settings ConvertToProto(DocumentNumberPropertySettings vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Config.proto_document_code_property_settings m = new Proto.Config.proto_document_code_property_settings(); // Clone.tt Line: 239
+            Proto.Config.proto_document_number_property_settings m = new Proto.Config.proto_document_number_property_settings(); // Clone.tt Line: 239
             m.SequenceType = (Proto.Config.proto_enum_code_type)vm.SequenceType; // Clone.tt Line: 274
             m.MaxSequenceLength = vm.MaxSequenceLength; // Clone.tt Line: 276
             m.Prefix = vm.Prefix; // Clone.tt Line: 276
             m.SequenceGuid = vm.SequenceGuid; // Clone.tt Line: 276
-            m.ScopeOfUnique = (Proto.Config.proto_enum_document_code_unique_scope)vm.ScopeOfUnique; // Clone.tt Line: 274
+            m.ScopeOfUnique = (Proto.Config.proto_enum_doc_number_unique_scope)vm.ScopeOfUnique; // Clone.tt Line: 274
             m.ScopePeriodStartMonth = (Proto.Config.proto_enum_months)vm.ScopePeriodStartMonth; // Clone.tt Line: 274
             m.ScopePeriodStartMonthDay = vm.ScopePeriodStartMonthDay; // Clone.tt Line: 276
             return m;
@@ -23398,7 +23398,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         [PropertyOrderAttribute(7)]
         [DisplayName("Unique Scope")]
         [Description("Code has to be unique in selected scope")]
-        public EnumDocumentCodeUniqueScope ScopeOfUnique // Property.tt Line: 55
+        public EnumDocNumberUniqueScope ScopeOfUnique // Property.tt Line: 55
         { 
             get { return this._ScopeOfUnique; }
             set
@@ -23414,8 +23414,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private EnumDocumentCodeUniqueScope _ScopeOfUnique;
-        partial void OnScopeOfUniqueChanging(ref EnumDocumentCodeUniqueScope to); // Property.tt Line: 79
+        private EnumDocNumberUniqueScope _ScopeOfUnique;
+        partial void OnScopeOfUniqueChanging(ref EnumDocNumberUniqueScope to); // Property.tt Line: 79
         partial void OnScopeOfUniqueChanged();
         
         [PropertyOrderAttribute(9)]
@@ -23510,7 +23510,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this._GroupDetails = new GroupListDetails(this); // Class.tt Line: 40
             this._GroupForms = new GroupListForms(this); // Class.tt Line: 40
             this._GroupReports = new GroupListReports(this); // Class.tt Line: 40
-            this._CodePropertySettings = new DocumentCodePropertySettings(this); // Class.tt Line: 40
+            this._DocNumberPropertySettings = new DocumentNumberPropertySettings(this); // Class.tt Line: 40
             this._ListRoleDocumentAccessSettings = new ObservableCollectionWithActions<RoleDocumentAccess>(); // Class.tt Line: 35
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
@@ -23551,9 +23551,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
                 vm.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.Clone(vm, from.GroupReports, isDeep);
             vm.ShortId = from.ShortId; // Clone.tt Line: 67
-            vm.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 67
+            vm.UseDocNumberProperty = from.UseDocNumberProperty; // Clone.tt Line: 67
             if (isDeep) // Clone.tt Line: 64 IsDefaultBase=False
-                vm.CodePropertySettings = vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.Clone(vm, from.CodePropertySettings, isDeep);
+                vm.DocNumberPropertySettings = vSharpStudio.vm.ViewModels.DocumentNumberPropertySettings.Clone(vm, from.DocNumberPropertySettings, isDeep);
             vm.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 67
             vm.IndexYearDocNumberGuid = from.IndexYearDocNumberGuid; // Clone.tt Line: 67
             vm.IndexQuaterDocNumberGuid = from.IndexQuaterDocNumberGuid; // Clone.tt Line: 67
@@ -23561,7 +23561,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IndexWeekDocNumberGuid = from.IndexWeekDocNumberGuid; // Clone.tt Line: 67
             vm.IndexDayDocNumberGuid = from.IndexDayDocNumberGuid; // Clone.tt Line: 67
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 67
-            vm.PropertyDocCodeGuid = from.PropertyDocCodeGuid; // Clone.tt Line: 67
+            vm.PropertyDocNumberGuid = from.PropertyDocNumberGuid; // Clone.tt Line: 67
             vm.PropertyDocDateGuid = from.PropertyDocDateGuid; // Clone.tt Line: 67
             vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 67
             vm.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 67
@@ -23599,9 +23599,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 140
                 vSharpStudio.vm.ViewModels.GroupListReports.Update((GroupListReports)to.GroupReports, from.GroupReports, isDeep);
             to.ShortId = from.ShortId; // Clone.tt Line: 143
-            to.UseDocCodeProperty = from.UseDocCodeProperty; // Clone.tt Line: 143
+            to.UseDocNumberProperty = from.UseDocNumberProperty; // Clone.tt Line: 143
             if (isDeep) // Clone.tt Line: 140
-                vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.Update((DocumentCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
+                vSharpStudio.vm.ViewModels.DocumentNumberPropertySettings.Update((DocumentNumberPropertySettings)to.DocNumberPropertySettings, from.DocNumberPropertySettings, isDeep);
             to.UseDocDateProperty = from.UseDocDateProperty; // Clone.tt Line: 143
             to.IndexYearDocNumberGuid = from.IndexYearDocNumberGuid; // Clone.tt Line: 143
             to.IndexQuaterDocNumberGuid = from.IndexQuaterDocNumberGuid; // Clone.tt Line: 143
@@ -23609,7 +23609,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.IndexWeekDocNumberGuid = from.IndexWeekDocNumberGuid; // Clone.tt Line: 143
             to.IndexDayDocNumberGuid = from.IndexDayDocNumberGuid; // Clone.tt Line: 143
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 143
-            to.PropertyDocCodeGuid = from.PropertyDocCodeGuid; // Clone.tt Line: 143
+            to.PropertyDocNumberGuid = from.PropertyDocNumberGuid; // Clone.tt Line: 143
             to.PropertyDocDateGuid = from.PropertyDocDateGuid; // Clone.tt Line: 143
             to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 143
             to.IsGridSortable = from.IsGridSortable; // Clone.tt Line: 143
@@ -23736,10 +23736,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupReports = new GroupListReports(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListReports.ConvertToVM(m.GroupReports, (GroupListReports)vm.GroupReports); // Clone.tt Line: 219
             vm.ShortId = m.ShortId; // Clone.tt Line: 221
-            vm.UseDocCodeProperty = (EnumUseType)m.UseDocCodeProperty; // Clone.tt Line: 221
-            if (vm.CodePropertySettings == null) // Clone.tt Line: 213
-                vm.CodePropertySettings = new DocumentCodePropertySettings(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.ConvertToVM(m.CodePropertySettings, (DocumentCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
+            vm.UseDocNumberProperty = (EnumUseType)m.UseDocNumberProperty; // Clone.tt Line: 221
+            if (vm.DocNumberPropertySettings == null) // Clone.tt Line: 213
+                vm.DocNumberPropertySettings = new DocumentNumberPropertySettings(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.DocumentNumberPropertySettings.ConvertToVM(m.DocNumberPropertySettings, (DocumentNumberPropertySettings)vm.DocNumberPropertySettings); // Clone.tt Line: 219
             vm.UseDocDateProperty = (EnumUseType)m.UseDocDateProperty; // Clone.tt Line: 221
             vm.IndexYearDocNumberGuid = m.IndexYearDocNumberGuid; // Clone.tt Line: 221
             vm.IndexQuaterDocNumberGuid = m.IndexQuaterDocNumberGuid; // Clone.tt Line: 221
@@ -23747,7 +23747,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IndexWeekDocNumberGuid = m.IndexWeekDocNumberGuid; // Clone.tt Line: 221
             vm.IndexDayDocNumberGuid = m.IndexDayDocNumberGuid; // Clone.tt Line: 221
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
-            vm.PropertyDocCodeGuid = m.PropertyDocCodeGuid; // Clone.tt Line: 221
+            vm.PropertyDocNumberGuid = m.PropertyDocNumberGuid; // Clone.tt Line: 221
             vm.PropertyDocDateGuid = m.PropertyDocDateGuid; // Clone.tt Line: 221
             vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
             vm.IsGridSortable = (EnumUseType)m.IsGridSortable; // Clone.tt Line: 221
@@ -23789,8 +23789,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.GroupForms = vSharpStudio.vm.ViewModels.GroupListForms.ConvertToProto((GroupListForms)vm.GroupForms); // Clone.tt Line: 270
             m.GroupReports = vSharpStudio.vm.ViewModels.GroupListReports.ConvertToProto((GroupListReports)vm.GroupReports); // Clone.tt Line: 270
             m.ShortId = vm.ShortId; // Clone.tt Line: 276
-            m.UseDocCodeProperty = (Proto.Config.proto_enum_use_type)vm.UseDocCodeProperty; // Clone.tt Line: 274
-            m.CodePropertySettings = vSharpStudio.vm.ViewModels.DocumentCodePropertySettings.ConvertToProto((DocumentCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
+            m.UseDocNumberProperty = (Proto.Config.proto_enum_use_type)vm.UseDocNumberProperty; // Clone.tt Line: 274
+            m.DocNumberPropertySettings = vSharpStudio.vm.ViewModels.DocumentNumberPropertySettings.ConvertToProto((DocumentNumberPropertySettings)vm.DocNumberPropertySettings); // Clone.tt Line: 270
             m.UseDocDateProperty = (Proto.Config.proto_enum_use_type)vm.UseDocDateProperty; // Clone.tt Line: 274
             m.IndexYearDocNumberGuid = vm.IndexYearDocNumberGuid; // Clone.tt Line: 276
             m.IndexQuaterDocNumberGuid = vm.IndexQuaterDocNumberGuid; // Clone.tt Line: 276
@@ -23798,7 +23798,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IndexWeekDocNumberGuid = vm.IndexWeekDocNumberGuid; // Clone.tt Line: 276
             m.IndexDayDocNumberGuid = vm.IndexDayDocNumberGuid; // Clone.tt Line: 276
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
-            m.PropertyDocCodeGuid = vm.PropertyDocCodeGuid; // Clone.tt Line: 276
+            m.PropertyDocNumberGuid = vm.PropertyDocNumberGuid; // Clone.tt Line: 276
             m.PropertyDocDateGuid = vm.PropertyDocDateGuid; // Clone.tt Line: 276
             m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
             m.IsGridSortable = (Proto.Config.proto_enum_use_type)vm.IsGridSortable; // Clone.tt Line: 274
@@ -23827,7 +23827,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
             this.GroupReports.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
-            this.CodePropertySettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
+            this.DocNumberPropertySettings.AcceptConfigNodeVisitor(visitor); // AcceptNodeVisitor.tt Line: 30
         
             foreach (var t in this.ListRoleDocumentAccessSettings)
             {
@@ -24106,53 +24106,53 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnShortIdChanged();
         
         [PropertyOrderAttribute(21)]
-        [DisplayName("Use Code")]
-        [Description("Use Code property for document")]
-        public EnumUseType UseDocCodeProperty // Property.tt Line: 55
+        [DisplayName("Use Number")]
+        [Description("Use DocNumber property for document")]
+        public EnumUseType UseDocNumberProperty // Property.tt Line: 55
         { 
-            get { return this._UseDocCodeProperty; }
+            get { return this._UseDocNumberProperty; }
             set
             {
-                if (this._UseDocCodeProperty != value)
+                if (this._UseDocNumberProperty != value)
                 {
-                    this.OnUseDocCodePropertyChanging(ref value);
-                    this._UseDocCodeProperty = value;
-                    this.OnUseDocCodePropertyChanged();
+                    this.OnUseDocNumberPropertyChanging(ref value);
+                    this._UseDocNumberProperty = value;
+                    this.OnUseDocNumberPropertyChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private EnumUseType _UseDocCodeProperty;
-        partial void OnUseDocCodePropertyChanging(ref EnumUseType to); // Property.tt Line: 79
-        partial void OnUseDocCodePropertyChanged();
+        private EnumUseType _UseDocNumberProperty;
+        partial void OnUseDocNumberPropertyChanging(ref EnumUseType to); // Property.tt Line: 79
+        partial void OnUseDocNumberPropertyChanged();
         
         [PropertyOrderAttribute(22)]
         [DisplayName("Code")]
         [Description("Code property settings for Document")]
         [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
-        public DocumentCodePropertySettings CodePropertySettings // Property.tt Line: 55
+        public DocumentNumberPropertySettings DocNumberPropertySettings // Property.tt Line: 55
         { 
-            get { return this._CodePropertySettings; }
+            get { return this._DocNumberPropertySettings; }
             set
             {
-                if (this._CodePropertySettings != value)
+                if (this._DocNumberPropertySettings != value)
                 {
-                    this.OnCodePropertySettingsChanging(ref value);
-                    this._CodePropertySettings = value;
-                    this.OnCodePropertySettingsChanged();
+                    this.OnDocNumberPropertySettingsChanging(ref value);
+                    this._DocNumberPropertySettings = value;
+                    this.OnDocNumberPropertySettingsChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private DocumentCodePropertySettings _CodePropertySettings;
-        IDocumentCodePropertySettings IDocument.CodePropertySettings { get { return (this as Document).CodePropertySettings; } } // Property.tt Line: 77
-        partial void OnCodePropertySettingsChanging(ref DocumentCodePropertySettings to); // Property.tt Line: 79
-        partial void OnCodePropertySettingsChanged();
-        //IDocumentCodePropertySettings IDocument.CodePropertySettings { get { return this._CodePropertySettings; } }
+        private DocumentNumberPropertySettings _DocNumberPropertySettings;
+        IDocumentNumberPropertySettings IDocument.DocNumberPropertySettings { get { return (this as Document).DocNumberPropertySettings; } } // Property.tt Line: 77
+        partial void OnDocNumberPropertySettingsChanging(ref DocumentNumberPropertySettings to); // Property.tt Line: 79
+        partial void OnDocNumberPropertySettingsChanged();
+        //IDocumentNumberPropertySettings IDocument.DocNumberPropertySettings { get { return this._DocNumberPropertySettings; } }
         
         [PropertyOrderAttribute(24)]
         [DisplayName("Use Date")]
@@ -24314,25 +24314,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyIdGuidChanged();
         
         [Browsable(false)]
-        public string PropertyDocCodeGuid // Property.tt Line: 55
+        public string PropertyDocNumberGuid // Property.tt Line: 55
         { 
-            get { return this._PropertyDocCodeGuid; }
+            get { return this._PropertyDocNumberGuid; }
             set
             {
-                if (this._PropertyDocCodeGuid != value)
+                if (this._PropertyDocNumberGuid != value)
                 {
-                    this.OnPropertyDocCodeGuidChanging(ref value);
-                    this._PropertyDocCodeGuid = value;
-                    this.OnPropertyDocCodeGuidChanged();
+                    this.OnPropertyDocNumberGuidChanging(ref value);
+                    this._PropertyDocNumberGuid = value;
+                    this.OnPropertyDocNumberGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _PropertyDocCodeGuid = string.Empty;
-        partial void OnPropertyDocCodeGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnPropertyDocCodeGuidChanged();
+        private string _PropertyDocNumberGuid = string.Empty;
+        partial void OnPropertyDocNumberGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnPropertyDocNumberGuidChanged();
         
         [Browsable(false)]
         public string PropertyDocDateGuid // Property.tt Line: 55
@@ -33364,7 +33364,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_catalog p);
         void Visit(Proto.Config.proto_group_list_catalogs p);
         void Visit(Proto.Config.proto_group_documents p);
-        void Visit(Proto.Config.proto_document_code_property_settings p);
+        void Visit(Proto.Config.proto_document_number_property_settings p);
         void Visit(Proto.Config.proto_document p);
         void Visit(Proto.Config.proto_group_list_documents p);
         void Visit(Proto.Config.proto_group_list_journals p);
@@ -33819,18 +33819,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(DocumentCodePropertySettings p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(DocumentNumberPropertySettings p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(DocumentCodePropertySettings p) // ValidationVisitor.tt Line: 47
+        protected override void OnVisitEnd(DocumentNumberPropertySettings p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
         protected override void OnVisit(Document p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
-            ValidateSubAndCollectErrors(p, p.CodePropertySettings); // ValidationVisitor.tt Line: 30
+            ValidateSubAndCollectErrors(p, p.DocNumberPropertySettings); // ValidationVisitor.tt Line: 30
             foreach (var t in p.ListRoleDocumentAccessSettings) // ValidationVisitor.tt Line: 27
                 ValidateSubAndCollectErrors(p, t);
         }
@@ -34501,16 +34501,16 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(GroupDocuments p) { }
         protected virtual void OnVisitEnd(GroupDocuments p) { }
-        public void Visit(DocumentCodePropertySettings p)
+        public void Visit(DocumentNumberPropertySettings p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(DocumentCodePropertySettings p)
+        public void VisitEnd(DocumentNumberPropertySettings p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(DocumentCodePropertySettings p) { }
-        protected virtual void OnVisitEnd(DocumentCodePropertySettings p) { }
+        protected virtual void OnVisit(DocumentNumberPropertySettings p) { }
+        protected virtual void OnVisitEnd(DocumentNumberPropertySettings p) { }
         public void Visit(Document p)
         {
             this.OnVisit(p);

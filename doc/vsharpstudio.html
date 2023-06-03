@@ -243,7 +243,7 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_document_code_property_settings"><span class="badge">M</span>proto_document_code_property_settings</a>
+                  <a href="#proto_config.proto_document_number_property_settings"><span class="badge">M</span>proto_document_number_property_settings</a>
                 </li>
               
                 <li>
@@ -512,11 +512,11 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_enum_document_access"><span class="badge">E</span>proto_enum_document_access</a>
+                  <a href="#proto_config.proto_enum_doc_number_unique_scope"><span class="badge">E</span>proto_enum_doc_number_unique_scope</a>
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_enum_document_code_unique_scope"><span class="badge">E</span>proto_enum_document_code_unique_scope</a>
+                  <a href="#proto_config.proto_enum_document_access"><span class="badge">E</span>proto_enum_document_access</a>
                 </li>
               
                 <li>
@@ -2859,17 +2859,17 @@ Reserved positions: 1 - primary key
                 </tr>
               
                 <tr>
-                  <td>use_doc_code_property</td>
+                  <td>use_doc_number_property</td>
                   <td><a href="#proto_config.proto_enum_use_type">proto_enum_use_type</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(21)]
-@attr [DisplayName(&#34;Use Code&#34;)]
-@attr [Description(&#34;Use Code property for document&#34;)] </p></td>
+@attr [DisplayName(&#34;Use Number&#34;)]
+@attr [Description(&#34;Use DocNumber property for document&#34;)] </p></td>
                 </tr>
               
                 <tr>
-                  <td>code_property_settings</td>
-                  <td><a href="#proto_config.proto_document_code_property_settings">proto_document_code_property_settings</a></td>
+                  <td>doc_number_property_settings</td>
+                  <td><a href="#proto_config.proto_document_number_property_settings">proto_document_number_property_settings</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(22)]
 @attr [DisplayName(&#34;Code&#34;)]
@@ -2939,7 +2939,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                 </tr>
               
                 <tr>
-                  <td>property_doc_code_guid</td>
+                  <td>property_doc_number_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -3007,7 +3007,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
 
         
       
-        <h3 id="proto_config.proto_document_code_property_settings">proto_document_code_property_settings</h3>
+        <h3 id="proto_config.proto_document_number_property_settings">proto_document_number_property_settings</h3>
         <p>@base BaseSettings</p>
 
         
@@ -3056,7 +3056,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>scope_of_unique</td>
-                  <td><a href="#proto_config.proto_enum_document_code_unique_scope">proto_enum_document_code_unique_scope</a></td>
+                  <td><a href="#proto_config.proto_enum_doc_number_unique_scope">proto_enum_doc_number_unique_scope</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(7)]
 @attr [DisplayName(&#34;Unique Scope&#34;)]
@@ -8796,6 +8796,59 @@ with history</p></td>
           </tbody>
         </table>
       
+        <h3 id="proto_config.proto_enum_doc_number_unique_scope">proto_enum_doc_number_unique_scope</h3>
+        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DOC_UNIQUE_FOREVER</td>
+                <td>0</td>
+                <td><p>@attr [Description(&#34;Allways&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_YEAR</td>
+                <td>11</td>
+                <td><p>@attr [Description(&#34;Year&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_QUATER</td>
+                <td>21</td>
+                <td><p>@attr [Description(&#34;Quater&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_MONTH</td>
+                <td>31</td>
+                <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_WEEK</td>
+                <td>34</td>
+                <td><p>@attr [Description(&#34;Week&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_DAY</td>
+                <td>37</td>
+                <td><p>@attr [Description(&#34;Day&#34;)]</p></td>
+              </tr>
+            
+              <tr>
+                <td>DOC_UNIQUE_NOT_REQUIRED</td>
+                <td>41</td>
+                <td><p>@attr [Description(&#34;Not Required&#34;)]</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
         <h3 id="proto_config.proto_enum_document_access">proto_enum_document_access</h3>
         <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
         <table class="enum-table">
@@ -8844,59 +8897,6 @@ with history</p></td>
                 <td>D_MARK_DEL</td>
                 <td>61</td>
                 <td><p>@attr [Description(&#34;Del&#34;)]</p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
-        <h3 id="proto_config.proto_enum_document_code_unique_scope">proto_enum_document_code_unique_scope</h3>
-        <p>@attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>DOC_UNIQUE_FOREVER</td>
-                <td>0</td>
-                <td><p>@attr [Description(&#34;Allways&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DOC_UNIQUE_YEAR</td>
-                <td>11</td>
-                <td><p>@attr [Description(&#34;Year&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DOC_UNIQUE_QUATER</td>
-                <td>21</td>
-                <td><p>@attr [Description(&#34;Quater&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DOC_UNIQUE_MONTH</td>
-                <td>31</td>
-                <td><p>@attr [Description(&#34;Month&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DOC_UNIQUE_WEEK</td>
-                <td>34</td>
-                <td><p>@attr [Description(&#34;Week&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DOC_UNIQUE_DAY</td>
-                <td>37</td>
-                <td><p>@attr [Description(&#34;Day&#34;)]</p></td>
-              </tr>
-            
-              <tr>
-                <td>DOC_UNIQUE_NOT_REQUIRED</td>
-                <td>41</td>
-                <td><p>@attr [Description(&#34;Not Required&#34;)]</p></td>
               </tr>
             
           </tbody>

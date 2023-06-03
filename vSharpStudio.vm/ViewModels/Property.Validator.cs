@@ -893,7 +893,7 @@ namespace vSharpStudio.vm.ViewModels
         private static void ValidateSpecialProperties(string name, ValidationContext<Property> cntx, Property p, Document d)
         {
             var model = d.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
-            if (d.GetUseDocCodeProperty())
+            if (d.GetUseDocNumberProperty())
             {
                 if (model.PropertyDocCodeName == name)
                 {

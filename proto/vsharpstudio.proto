@@ -2546,7 +2546,7 @@ message proto_group_list_catalogs {
  * ####################################### D O C U M E N T ##########################################
  */
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
-enum proto_enum_document_code_unique_scope {
+enum proto_enum_doc_number_unique_scope {
     // @attr [Description("Allways")]
     DOC_UNIQUE_FOREVER = 0;
     // @attr [Description("Year")]
@@ -2626,7 +2626,7 @@ message proto_group_documents {
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
 // @base BaseSettings
-message proto_document_code_property_settings {
+message proto_document_number_property_settings {
     // @attr [PropertyOrderAttribute(1)]
     // @attr [DisplayName("Sequence type")]
     // @attr [Description("Sequence type general settings")]
@@ -2647,7 +2647,7 @@ message proto_document_code_property_settings {
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Unique Scope")]
     // @attr [Description("Code has to be unique in selected scope")]
-    proto_enum_document_code_unique_scope scope_of_unique = 7;
+    proto_enum_doc_number_unique_scope scope_of_unique = 7;
     // @attr [PropertyOrderAttribute(9)]
     // @attr [DisplayName("Start Month")]
     // @attr [Description("Start month of scope period")]
@@ -2694,14 +2694,14 @@ message proto_document {
     // @attr [Browsable(false)]
     int32 short_id = 19;
     // @attr [PropertyOrderAttribute(21)]
-    // @attr [DisplayName("Use Code")]
-    // @attr [Description("Use Code property for document")]
-    proto_enum_use_type use_doc_code_property = 21;
+    // @attr [DisplayName("Use Number")]
+    // @attr [Description("Use DocNumber property for document")]
+    proto_enum_use_type use_doc_number_property = 21;
     // @attr [PropertyOrderAttribute(22)]
     // @attr [DisplayName("Code")]
     // @attr [Description("Code property settings for Document")]
     // @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))]
-    proto_document_code_property_settings code_property_settings = 22;
+    proto_document_number_property_settings doc_number_property_settings = 22;
     // @attr [PropertyOrderAttribute(24)]
     // @attr [DisplayName("Use Date")]
     // @attr [Description("Use Date property for document")]
@@ -2731,7 +2731,7 @@ message proto_document {
     // @attr [Browsable(false)]
     string property_id_guid = 61;
     // @attr [Browsable(false)]
-    string property_doc_code_guid = 62;
+    string property_doc_number_guid = 62;
     // @attr [Browsable(false)]
     string property_doc_date_guid = 63;
     // @attr [Browsable(false)]

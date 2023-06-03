@@ -40,7 +40,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IsIncludableInModels = true;
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
             this.PropertyIdGuid = System.Guid.NewGuid().ToString();
-            this.PropertyDocCodeGuid = System.Guid.NewGuid().ToString();
+            this.PropertyDocNumberGuid = System.Guid.NewGuid().ToString();
             this.PropertyDocDateGuid = System.Guid.NewGuid().ToString();
             this.PropertyVersionGuid = System.Guid.NewGuid().ToString();
 
@@ -50,13 +50,13 @@ namespace vSharpStudio.vm.ViewModels
             this.IndexWeekDocNumberGuid = System.Guid.NewGuid().ToString();
             this.IndexDayDocNumberGuid = System.Guid.NewGuid().ToString();
 
-            this.CodePropertySettings.SequenceType = EnumCodeType.AutoText;
-            this.CodePropertySettings.MaxSequenceLength = 9;
-            this.CodePropertySettings.Prefix = "";
-            this.CodePropertySettings.SequenceGuid = "";
-            this.CodePropertySettings.ScopeOfUnique = common.EnumDocumentCodeUniqueScope.DOC_UNIQUE_YEAR;
-            this.CodePropertySettings.ScopePeriodStartMonth= EnumMonths.MONTH_JANUARY;
-            this.CodePropertySettings.ScopePeriodStartMonthDay = 1;
+            this.DocNumberPropertySettings.SequenceType = EnumCodeType.AutoText;
+            this.DocNumberPropertySettings.MaxSequenceLength = 9;
+            this.DocNumberPropertySettings.Prefix = "";
+            this.DocNumberPropertySettings.SequenceGuid = "";
+            this.DocNumberPropertySettings.ScopeOfUnique = common.EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR;
+            this.DocNumberPropertySettings.ScopePeriodStartMonth = EnumMonths.MONTH_JANUARY;
+            this.DocNumberPropertySettings.ScopePeriodStartMonthDay = 1;
 
             Init();
         }
@@ -319,28 +319,56 @@ namespace vSharpStudio.vm.ViewModels
                 prp = model.GetPropertyDocumentDate(this.GroupProperties, this.PropertyDocDateGuid);
                 res.Add(prp);
             }
-            if (this.GetUseDocCodeProperty())
+            if (this.GetUseDocNumberProperty())
             {
-                switch (this.CodePropertySettings.SequenceType)
+                switch (this.DocNumberPropertySettings.SequenceType)
                 {
                     case EnumCodeType.AutoNumber:
-                        prp = model.GetPropertyDocumentCodeInt(this.GroupProperties, this.PropertyDocCodeGuid, 
-                            this.CodePropertySettings.MaxSequenceLength);
+                        prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.PropertyDocNumberGuid,
+                            this.DocNumberPropertySettings.MaxSequenceLength);
                         break;
                     case EnumCodeType.AutoText:
-                        prp = model.GetPropertyDocumentCodeString(this.GroupProperties, this.PropertyDocCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length);
+                        prp = model.GetPropertyDocNumberString(this.GroupProperties, this.PropertyDocNumberGuid,
+                            this.DocNumberPropertySettings.MaxSequenceLength + (uint)this.DocNumberPropertySettings.Prefix.Length);
                         break;
                     case EnumCodeType.Number:
-                        prp = model.GetPropertyDocumentCodeInt(this.GroupProperties, this.PropertyDocCodeGuid, 
-                            this.CodePropertySettings.MaxSequenceLength);
+                        prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.PropertyDocNumberGuid,
+                            this.DocNumberPropertySettings.MaxSequenceLength);
                         break;
                     case EnumCodeType.Text:
-                        prp = model.GetPropertyDocumentCodeString(this.GroupProperties, this.PropertyDocCodeGuid, 
-                            this.CodePropertySettings.MaxSequenceLength);
+                        prp = model.GetPropertyDocNumberString(this.GroupProperties, this.PropertyDocNumberGuid,
+                            this.DocNumberPropertySettings.MaxSequenceLength);
                         break;
                 }
                 res.Add(prp);
+                switch (this.DocNumberPropertySettings.ScopeOfUnique)
+                {
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_YEAR:
+                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexYearDocNumberGuid);
+                        res.Add(prp);
+                        break;
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_QUATER:
+                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexQuaterDocNumberGuid);
+                        res.Add(prp);
+                        break;
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_MONTH:
+                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexMonthDocNumberGuid);
+                        res.Add(prp);
+                        break;
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_WEEK:
+                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexWeekDocNumberGuid);
+                        res.Add(prp);
+                        break;
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_DAY:
+                        prp = model.GetPropertyDocNumberUniqueScopeHelper(this.GroupProperties, this.IndexDayDocNumberGuid);
+                        res.Add(prp);
+                        break;
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_FOREVER:
+                    case EnumDocNumberUniqueScope.DOC_UNIQUE_NOT_REQUIRED:
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
         }
         public IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjGen)
@@ -506,7 +534,7 @@ namespace vSharpStudio.vm.ViewModels
             return res;
         }
         [Browsable(false)]
-        public string CodePropertySettingsText { get { return this.CodePropertySettings.ToString(); } }
+        public string CodePropertySettingsText { get { return this.DocNumberPropertySettings.ToString(); } }
         public void NotifyCodePropertySettingsChanged()
         {
             this.NotifyPropertyChanged(() => this.CodePropertySettingsText);
@@ -544,11 +572,11 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListDocuments.ParentGroupDocuments.IsGridSortableCustomGet();
         }
-        public bool GetUseDocCodeProperty()
+        public bool GetUseDocNumberProperty()
         {
-            if (this.UseDocCodeProperty == EnumUseType.Yes)
+            if (this.UseDocNumberProperty == EnumUseType.Yes)
                 return true;
-            if (this.UseDocCodeProperty == EnumUseType.No)
+            if (this.UseDocNumberProperty == EnumUseType.No)
                 return false;
             return this.ParentGroupListDocuments.ParentGroupDocuments.GetUseDocCodeProperty();
         }

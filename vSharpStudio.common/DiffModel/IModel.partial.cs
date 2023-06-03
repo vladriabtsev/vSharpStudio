@@ -45,8 +45,9 @@ namespace vSharpStudio.common
         IProperty GetPropertyIsFolder(ITreeConfigNode parent, string guid);
         IProperty GetPropertyVersion(ITreeConfigNode parent, string guid);
         IProperty GetPropertyDocumentDate(ITreeConfigNode parent, string guid);
-        IProperty GetPropertyDocumentCodeString(ITreeConfigNode parent, string guid, uint length);
-        IProperty GetPropertyDocumentCodeInt(ITreeConfigNode parent, string guid, uint length);
+        IProperty GetPropertyDocNumberString(ITreeConfigNode parent, string guid, uint length);
+        IProperty GetPropertyDocNumberInt(ITreeConfigNode parent, string guid, uint length);
+        IProperty GetPropertyDocNumberUniqueScopeHelper(ITreeConfigNode parent, string guid);
 
         //IProperty GetPropertyBool(string guid, string name, bool isNullable);
         //IProperty GetPropertyInt(string guid, uint length, string name);
