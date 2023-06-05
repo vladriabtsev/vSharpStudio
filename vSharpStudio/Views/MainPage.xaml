@@ -135,11 +135,11 @@
                 </Grid>
                 <Grid Grid.Row="1" Visibility="{Binding VisibilityConfig}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" MinWidth="20" />
+                        <ColumnDefinition Width="264" MinWidth="20" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="5*" MinWidth="20" />
+                        <ColumnDefinition Width="*" MinWidth="20" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="3*" MinWidth="20" />
+                        <ColumnDefinition Width="300" MinWidth="20" />
                     </Grid.ColumnDefinitions>
                     <!--Config Tree-->
                     <Grid Grid.Column="0">

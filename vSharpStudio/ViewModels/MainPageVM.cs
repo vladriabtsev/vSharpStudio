@@ -51,7 +51,7 @@ namespace vSharpStudio.ViewModels
         public static MainPageVM Create(bool isLoadConfig, string? pluginsFolderPath = null, string? configFile = null)
         {
             VmBindable.IsNotifyingStatic = false;
-            MainPageVM vm = new MainPageVM(isLoadConfig);
+            MainPageVM vm = new MainPageVM(isLoadConfig, configFile);
             vm.Compose(pluginsFolderPath);
             vm.OnFormLoaded();
             VmBindable.IsNotifyingStatic = true;

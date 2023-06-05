@@ -120,11 +120,10 @@
             throw new Exception($"Validation message with severity '{Enum.GetName(typeof(Severity), severity)}' is not found");
         }
         [Browsable(false)]
-        public IChildrenCollection Children
+        public IChildrenCollection? Children
         {
             get
             {
-                Debug.Assert(this._Children != null);
                 return _Children;
             }
             protected set { _Children = value; }
