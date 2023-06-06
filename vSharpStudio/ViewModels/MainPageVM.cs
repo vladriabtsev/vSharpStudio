@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Xml.Linq;
 using AsyncAwaitBestPractices;
 using Google.Protobuf;
@@ -709,7 +710,8 @@ namespace vSharpStudio.ViewModels
                 Directory.CreateDirectory(folder);
                 File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
                 //var json = JsonFormatter.Default.Format(this.pconfig_history);
-                var json = JsonFormatter.ToDiagnosticString(this.pconfig_history);
+                JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
+                var json = formatter.Format(this.pconfig_history);                
                 File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
                 UpdateUserSettingsSaveConfigs();
                 ResetIsChangedBeforeSave();
@@ -767,7 +769,8 @@ namespace vSharpStudio.ViewModels
                         Directory.CreateDirectory(folder);
                         File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
                         //var json = JsonFormatter.Default.Format(this.pconfig_history);
-                        var json = JsonFormatter.ToDiagnosticString(this.pconfig_history);
+                        JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
+                        var json = formatter.Format(this.pconfig_history);
                         File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
                         UpdateUserSettingsSaveConfigs();
                         ResetIsChangedBeforeSave();
