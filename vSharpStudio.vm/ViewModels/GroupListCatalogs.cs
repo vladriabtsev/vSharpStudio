@@ -163,11 +163,13 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Catalog AddCatalog(string name, string? guid = null)
+        public Catalog AddCatalog(string name, string? guid = null, string? guidFolder = null)
         {
             var node = new Catalog(this) { Name = name };
             if (guid != null)
                 node.Guid = guid;
+            if (guidFolder != null)
+                node.Folder.Guid = guidFolder;
             this.NodeAddNewSubNode(node);
             return node;
         }
