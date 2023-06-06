@@ -156,8 +156,14 @@ namespace vSharpStudio.vm.ViewModels
         public EnumerationPair AddEnumerationPair(string name, string val, bool isDefault = false, string? guid = null)
         {
             EnumerationPair node = new EnumerationPair(this) { Name = name, Value = val, IsDefault = isDefault };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.NodeAddNewSubNode(node);
             return node;
         }

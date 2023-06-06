@@ -166,10 +166,16 @@ namespace vSharpStudio.vm.ViewModels
         public Catalog AddCatalog(string name, string? guid = null, string? guidFolder = null)
         {
             var node = new Catalog(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
             if (guidFolder != null)
                 node.Folder.Guid = guidFolder;
+#endif
             this.NodeAddNewSubNode(node);
             return node;
         }

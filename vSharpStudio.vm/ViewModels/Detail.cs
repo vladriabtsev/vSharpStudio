@@ -166,8 +166,14 @@ namespace vSharpStudio.vm.ViewModels
         public Detail AddDetails(string name, string? guid = null)
         {
             var node = new Detail(this.GroupDetails) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.GroupDetails.NodeAddNewSubNode(node);
             var glp = (this.ParentGroupListDetails.Parent as INodeWithProperties);
             Debug.Assert(glp != null);
@@ -177,24 +183,42 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddProperty(string name, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddProperty(string name, DataType type, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name, DataType = type };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
@@ -202,8 +226,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyString(string name, uint length, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
@@ -211,8 +241,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyNumerical(string name, uint length, uint accuracy, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;

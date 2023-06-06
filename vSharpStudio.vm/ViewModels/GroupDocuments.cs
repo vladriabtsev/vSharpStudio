@@ -79,32 +79,56 @@ namespace vSharpStudio.vm.ViewModels
         public Document AddDocument(string name, string? guid = null)
         {
             var node = new Document(this.GroupListDocuments) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.GroupListDocuments.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddSharedProperty(string name, string? guid = null)
         {
             var node = new Property(this.GroupSharedProperties) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddSharedProperty(string name, DataType type, string? guid = null)
         {
             var node = new Property(this.GroupSharedProperties) { Name = name, DataType = type };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddSharedProperty(string name, EnumDataType type, uint length, uint accuracy, string? guid = null)
         {
             var node = new Property(this.GroupSharedProperties) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;
@@ -112,8 +136,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddSharedPropertyString(string name, uint length, string? guid = null)
         {
             var node = new Property(this.GroupSharedProperties) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;
@@ -121,8 +151,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddSharedPropertyNumerical(string name, uint length, uint accuracy, string? guid = null)
         {
             var node = new Property(this.GroupSharedProperties) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
             this.GroupSharedProperties.NodeAddNewSubNode(node);
             return node;

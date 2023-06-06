@@ -106,16 +106,28 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddProperty(string name, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.NodeAddNewSubNode(node);
             return node;
         }
         public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
             this.NodeAddNewSubNode(node);
             return node;
@@ -123,8 +135,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyBool(string name, bool isNullable = false, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.BOOL };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
@@ -133,8 +151,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyChar(string name, bool isNullable = false, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.CHAR };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
@@ -143,8 +167,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyString(string name, uint length, bool isNullable = false, uint? min_length = null, uint? max_length = null, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             node.IsNullable = isNullable;
             if (min_length != null)
@@ -157,8 +187,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyNumerical(string name, uint length, uint accuracy, bool isNullable = false, bool isPositive = false, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy, IsPositive = isPositive };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
@@ -167,8 +203,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyTime(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.TIME };
             node.IsNullable = isNullable;
             node.AccuracyForTime = accuracy;
@@ -185,8 +227,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyDate(string name, bool isNullable = false, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
-                node.Guid = guid;
+#if DEBUG
+                if (guid != null) // for test model generation
+                {
+                    if (this.Cfg.DicNodes.ContainsKey(guid))
+                        return node;
+                    node.Guid = guid;
+                }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATE };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);
@@ -195,8 +243,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyDateTimeUtc(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
-                node.Guid = guid;
+#if DEBUG
+                if (guid != null) // for test model generation
+                {
+                    if (this.Cfg.DicNodes.ContainsKey(guid))
+                        return node;
+                    node.Guid = guid;
+                }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMEUTC };
             node.IsNullable = isNullable;
             node.AccuracyForTime = accuracy;
@@ -206,8 +260,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyDateTimeLocal(string name, bool isNullable = false, EnumTimeAccuracyType accuracy = EnumTimeAccuracyType.SECOND, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.DATETIMELOCAL };
             node.IsNullable = isNullable;
             node.AccuracyForTime = accuracy;
@@ -240,8 +300,14 @@ namespace vSharpStudio.vm.ViewModels
         public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable, string? guid = null)
         {
             var node = new Property(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node);
             node.DataType.ObjectGuid = en.Guid;
             node.DataType.DataTypeEnum = EnumDataType.ENUMERATION;

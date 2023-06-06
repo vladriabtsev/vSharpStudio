@@ -158,8 +158,14 @@ namespace vSharpStudio.vm.ViewModels
         public Constant AddConstant(string name, string? guid = null)
         {
             Constant node = new Constant(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node);
             this.NodeAddNewSubNode(node);
             return node;
@@ -173,8 +179,14 @@ namespace vSharpStudio.vm.ViewModels
         public Constant AddConstantString(string name, string? guid = null)
         {
             Constant node = new Constant(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node);
             this.NodeAddNewSubNode(node);
             return node;
@@ -182,8 +194,14 @@ namespace vSharpStudio.vm.ViewModels
         public Constant AddConstantEnumeration(string name, Enumeration en, string? guid = null)
         {
             var node = new Constant(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node);
             node.DataType.ObjectGuid = en.Guid;
             node.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
@@ -193,8 +211,14 @@ namespace vSharpStudio.vm.ViewModels
         public Constant AddConstantCatalog(string name, Catalog cat, string? guid = null)
         {
             var node = new Constant(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             node.DataType = new DataType(node);
             node.DataType.ObjectGuid = cat.Guid;
             node.DataType.DataTypeEnum = EnumDataType.CATALOG;

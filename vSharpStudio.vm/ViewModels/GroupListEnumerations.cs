@@ -68,8 +68,14 @@ namespace vSharpStudio.vm.ViewModels
         public Enumeration AddEnumeration(string name, string? guid = null)
         {
             Enumeration node = new Enumeration(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.NodeAddNewSubNode(node);
             return node;
         }
@@ -77,8 +83,14 @@ namespace vSharpStudio.vm.ViewModels
         public Enumeration AddEnumeration(string name, EnumEnumerationType type, string? guid = null)
         {
             Enumeration node = new Enumeration(this) { Name = name, DataTypeEnum = type };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.NodeAddNewSubNode(node);
             return node;
         }

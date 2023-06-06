@@ -709,10 +709,12 @@ namespace vSharpStudio.ViewModels
                 Debug.Assert(folder != null);
                 Directory.CreateDirectory(folder);
                 File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+#if DEBUG
                 //var json = JsonFormatter.Default.Format(this.pconfig_history);
                 JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
-                var json = formatter.Format(this.pconfig_history);                
+                var json = formatter.Format(this.pconfig_history);
                 File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+#endif
                 UpdateUserSettingsSaveConfigs();
                 ResetIsChangedBeforeSave();
                 File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
@@ -768,10 +770,12 @@ namespace vSharpStudio.ViewModels
                         Debug.Assert(folder != null);
                         Directory.CreateDirectory(folder);
                         File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+#if DEBUG
                         //var json = JsonFormatter.Default.Format(this.pconfig_history);
                         JsonFormatter formatter = new JsonFormatter(JsonFormatter.Settings.Default.WithIndentation());
                         var json = formatter.Format(this.pconfig_history);
                         File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+#endif
                         UpdateUserSettingsSaveConfigs();
                         ResetIsChangedBeforeSave();
                         File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());

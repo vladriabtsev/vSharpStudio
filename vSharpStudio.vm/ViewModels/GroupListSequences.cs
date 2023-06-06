@@ -68,8 +68,14 @@ namespace vSharpStudio.vm.ViewModels
         public CodeSequence AddSequence(string name, string? guid = null)
         {
             var node = new CodeSequence(this) { Name = name };
-            if (guid != null)
+#if DEBUG
+            if (guid != null) // for test model generation
+            {
+                if (this.Cfg.DicNodes.ContainsKey(guid))
+                    return node;
                 node.Guid = guid;
+            }
+#endif
             this.NodeAddNewSubNode(node);
             return node;
         }
