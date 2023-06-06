@@ -153,9 +153,11 @@ namespace vSharpStudio.vm.ViewModels
         }
 
         #region Tree operations
-        public EnumerationPair AddEnumerationPair(string name, string val, bool isDefault = false)
+        public EnumerationPair AddEnumerationPair(string name, string val, bool isDefault = false, string? guid = null)
         {
             EnumerationPair node = new EnumerationPair(this) { Name = name, Value = val, IsDefault = isDefault };
+            if (guid != null)
+                node.Guid = guid;
             this.NodeAddNewSubNode(node);
             return node;
         }

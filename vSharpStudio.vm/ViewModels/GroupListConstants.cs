@@ -155,9 +155,11 @@ namespace vSharpStudio.vm.ViewModels
             return node;
         }
         public bool CanAddSubNode() { return true; }
-        public Constant AddConstant(string name)
+        public Constant AddConstant(string name, string? guid = null)
         {
             Constant node = new Constant(this) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             node.DataType = new DataType(node);
             this.NodeAddNewSubNode(node);
             return node;
@@ -168,25 +170,31 @@ namespace vSharpStudio.vm.ViewModels
         //    this.NodeAddNewSubNode(node);
         //    return node;
         //}
-        public Constant AddConstantString(string name)
+        public Constant AddConstantString(string name, string? guid = null)
         {
             Constant node = new Constant(this) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             node.DataType = new DataType(node);
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Constant AddConstantEnumeration(string name, Enumeration en)
+        public Constant AddConstantEnumeration(string name, Enumeration en, string? guid = null)
         {
             var node = new Constant(this) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             node.DataType = new DataType(node);
             node.DataType.ObjectGuid = en.Guid;
             node.DataType.DataTypeEnum = EnumDataType.ENUMERATION;
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public Constant AddConstantCatalog(string name, Catalog cat)
+        public Constant AddConstantCatalog(string name, Catalog cat, string? guid = null)
         {
             var node = new Constant(this) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             node.DataType = new DataType(node);
             node.DataType.ObjectGuid = cat.Guid;
             node.DataType.DataTypeEnum = EnumDataType.CATALOG;

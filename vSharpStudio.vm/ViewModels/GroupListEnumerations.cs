@@ -65,16 +65,20 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Tree operations
         public bool CanAddSubNode() { return true; }
-        public Enumeration AddEnumeration(string name)
+        public Enumeration AddEnumeration(string name, string? guid = null)
         {
             Enumeration node = new Enumeration(this) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             this.NodeAddNewSubNode(node);
             return node;
         }
 
-        public Enumeration AddEnumeration(string name, EnumEnumerationType type)
+        public Enumeration AddEnumeration(string name, EnumEnumerationType type, string? guid = null)
         {
             Enumeration node = new Enumeration(this) { Name = name, DataTypeEnum = type };
+            if (guid != null)
+                node.Guid = guid;
             this.NodeAddNewSubNode(node);
             return node;
         }

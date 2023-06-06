@@ -99,48 +99,62 @@ namespace vSharpStudio.vm.ViewModels
                 this.GroupProperties.ListProperties.Add(t);
             }
         }
-        public Detail AddPropertiesTab(string name)
+        public Detail AddPropertiesTab(string name, string? guid = null)
         {
             var node = new Detail(this.GroupDetails) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             this.GroupDetails.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddProperty(string name)
+        public Property AddProperty(string name, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddProperty(string name, DataType type)
+        public Property AddProperty(string name, DataType type, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name, DataType = type };
+            if (guid != null)
+                node.Guid = guid;
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy)
+        public Property AddProperty(string name, EnumDataType type, uint length, uint accuracy, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             node.DataType = new DataType(node) { DataTypeEnum = type, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyString(string name, uint length)
+        public Property AddPropertyString(string name, uint length, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.STRING, Length = length };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyNumerical(string name, uint length, uint accuracy)
+        public Property AddPropertyNumerical(string name, uint length, uint accuracy, string? guid = null)
         {
             var node = new Property(this.GroupProperties) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.NUMERICAL, Length = length, Accuracy = accuracy };
             this.GroupProperties.NodeAddNewSubNode(node);
             return node;
         }
-        public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable)
+        public Property AddPropertyEnumeration(string name, Enumeration en, bool isNullable, string? guid = null)
         {
             var node = new Property(this) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             node.DataType = new DataType(node) { DataTypeEnum = EnumDataType.ENUMERATION, ObjectGuid = en.Guid };
             node.IsNullable = isNullable;
             this.NodeAddNewSubNode(node);

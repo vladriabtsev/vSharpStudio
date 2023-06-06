@@ -65,9 +65,11 @@ namespace vSharpStudio.vm.ViewModels
                 this.OnRemoveChild();
             };
         }
-        public CodeSequence AddSequence(string name)
+        public CodeSequence AddSequence(string name, string? guid = null)
         {
             var node = new CodeSequence(this) { Name = name };
+            if (guid != null)
+                node.Guid = guid;
             this.NodeAddNewSubNode(node);
             return node;
         }
