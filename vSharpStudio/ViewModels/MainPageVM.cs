@@ -708,17 +708,19 @@ namespace vSharpStudio.ViewModels
                 Debug.Assert(folder != null);
                 Directory.CreateDirectory(folder);
                 File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                var json = JsonFormatter.Default.Format(this.pconfig_history);
+                File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
                 UpdateUserSettingsSaveConfigs();
                 ResetIsChangedBeforeSave();
                 File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
+#if DEBUG
+                //var json = JsonFormatter.Default.Format(this.pconfig_history);
+                //File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
+                //CompareSaved(json);
+#endif
             }, "Can't save configuration. File path: '" + CurrentCfgFilePath + "'");
             //TODO restore private ConnStr
             this.ConnectionStringSettingsSave();
-#if DEBUG
-            //var json = JsonFormatter.Default.Format(this.pconfig_history);
-            //File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
-            //CompareSaved(json);
-#endif
         }
         public vButtonVM<string> BtnConfigSaveAs
         {
@@ -763,17 +765,18 @@ namespace vSharpStudio.ViewModels
                         Debug.Assert(folder != null);
                         Directory.CreateDirectory(folder);
                         File.WriteAllBytes(this.CurrentCfgFilePath, this.pconfig_history.ToByteArray());
+                        var json = JsonFormatter.Default.Format(this.pconfig_history);
+                        File.WriteAllText(this.CurrentCfgFilePath + ".json", json);
                         UpdateUserSettingsSaveConfigs();
                         ResetIsChangedBeforeSave();
                         File.WriteAllBytes(USER_SETTINGS_FILE_PATH, UserSettings.ConvertToProto(this.UserSettings).ToByteArray());
                         this.VisibilityAndMessageInstructions();
-                    }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
-
-                // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
-                // File.WriteAllText(FilePathSaveAs, json);
+                        // var json = JsonFormatter.Default.Format(Config.ConvertToProto(_Model));
+                        // File.WriteAllText(FilePathSaveAs, json);
 #if DEBUG
-                // CompareSaved(json);
+                        // CompareSaved(json);
 #endif
+                    }, "Can't save configuration. File path: '" + this.FilePathSaveAs + "'");
             }
             this.BtnConfigCurrentUpdateAsync.Command.NotifyCanExecuteChanged();
         }
@@ -1931,7 +1934,7 @@ namespace vSharpStudio.ViewModels
                 dir = currPath[..currPath.IndexOf(s)];
                 dir = dir + s;
             }
-            var res= $"{dir}\\submodules\\vSharpStudio\\vSharpStudio{bin}";
+            var res = $"{dir}\\submodules\\vSharpStudio\\vSharpStudio{bin}";
             return res;
         }
         #endregion Utils
