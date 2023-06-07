@@ -1229,8 +1229,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 59
     	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
-    	string IndexCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexUniqueCodeGuid { get; } // ModelInterfaces.tt Line: 55
     	string IndexRefTreeParentCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexNotUniqueCodeGuid { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
     	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 55
     	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 55
@@ -1278,9 +1279,10 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 55
     	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
     	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 55
-    	string IndexCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexUniqueCodeGuid { get; } // ModelInterfaces.tt Line: 55
     	string IndexRefFolderCodeGuid { get; } // ModelInterfaces.tt Line: 55
     	string IndexRefTreeParentCodeGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexNotUniqueCodeGuid { get; } // ModelInterfaces.tt Line: 55
     	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 55
     	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 55
     	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
@@ -1385,6 +1387,8 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	// unique index of special field Day and DocNumber
     	// DAY = DocDate.Year * 365?? + DocDate.Day
     	string IndexDayDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexUniqueDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexNotUniqueDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
     	string PropertyDocDateGuid { get; } // ModelInterfaces.tt Line: 55

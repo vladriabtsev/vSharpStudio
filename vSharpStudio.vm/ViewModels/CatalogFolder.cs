@@ -51,8 +51,9 @@ namespace vSharpStudio.vm.ViewModels
             this.ViewListWideGuid = System.Guid.NewGuid().ToString();
             this.ViewListNarrowGuid = System.Guid.NewGuid().ToString();
 
-            this.IndexCodeGuid = System.Guid.NewGuid().ToString();
+            this.IndexUniqueCodeGuid = System.Guid.NewGuid().ToString();
             this.IndexRefTreeParentCodeGuid = System.Guid.NewGuid().ToString();
+            this.IndexNotUniqueCodeGuid = System.Guid.NewGuid().ToString();
 
             this.MaxNameLength = 20;
             this.MaxDescriptionLength = 100;

@@ -1323,7 +1323,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                 </tr>
               
                 <tr>
-                  <td>index_code_guid</td>
+                  <td>index_unique_code_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -1338,6 +1338,13 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
               
                 <tr>
                   <td>index_ref_tree_parent_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_not_unique_code_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -1686,7 +1693,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                 </tr>
               
                 <tr>
-                  <td>index_code_guid</td>
+                  <td>index_unique_code_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -1694,6 +1701,13 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
               
                 <tr>
                   <td>index_ref_tree_parent_code_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_not_unique_code_guid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
@@ -2929,6 +2943,20 @@ WEEK = DocDate.Year * (365???) &#43; DocDate.Month / 3
                   <td><p>unique index of special field Day and DocNumber
 DAY = DocDate.Year * 365?? &#43; DocDate.Day
 @attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_unique_doc_number_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index_not_unique_doc_number_guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
               
                 <tr>

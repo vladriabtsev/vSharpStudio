@@ -2540,7 +2540,7 @@
               "defaultValue": ""
             },
             {
-              "name": "index_code_guid",
+              "name": "index_unique_code_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -2561,6 +2561,16 @@
             },
             {
               "name": "index_ref_tree_parent_code_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_not_unique_code_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -2982,7 +2992,7 @@
               "defaultValue": ""
             },
             {
-              "name": "index_code_guid",
+              "name": "index_unique_code_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -2993,6 +3003,16 @@
             },
             {
               "name": "index_ref_tree_parent_code_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_not_unique_code_guid",
               "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
@@ -4422,6 +4442,26 @@
             {
               "name": "index_day_doc_number_guid",
               "description": "unique index of special field Day and DocNumber\nDAY = DocDate.Year * 365?? + DocDate.Day\n@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_unique_doc_number_guid",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "index_not_unique_doc_number_guid",
+              "description": "@attr [Browsable(false)]",
               "label": "",
               "type": "string",
               "longType": "string",

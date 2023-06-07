@@ -19175,8 +19175,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Clone(vm, from.CodePropertySettings, isDeep);
             vm.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 67
             vm.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 67
-            vm.IndexCodeGuid = from.IndexCodeGuid; // Clone.tt Line: 67
+            vm.IndexUniqueCodeGuid = from.IndexUniqueCodeGuid; // Clone.tt Line: 67
             vm.IndexRefTreeParentCodeGuid = from.IndexRefTreeParentCodeGuid; // Clone.tt Line: 67
+            vm.IndexNotUniqueCodeGuid = from.IndexNotUniqueCodeGuid; // Clone.tt Line: 67
             vm.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 67
             vm.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 67
             vm.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 67
@@ -19227,8 +19228,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.Update((CatalogCodePropertySettings)to.CodePropertySettings, from.CodePropertySettings, isDeep);
             to.PropertyCodeGuid = from.PropertyCodeGuid; // Clone.tt Line: 143
             to.PropertyVersionGuid = from.PropertyVersionGuid; // Clone.tt Line: 143
-            to.IndexCodeGuid = from.IndexCodeGuid; // Clone.tt Line: 143
+            to.IndexUniqueCodeGuid = from.IndexUniqueCodeGuid; // Clone.tt Line: 143
             to.IndexRefTreeParentCodeGuid = from.IndexRefTreeParentCodeGuid; // Clone.tt Line: 143
+            to.IndexNotUniqueCodeGuid = from.IndexNotUniqueCodeGuid; // Clone.tt Line: 143
             to.UseNameProperty = from.UseNameProperty; // Clone.tt Line: 143
             to.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 143
             to.PropertyNameGuid = from.PropertyNameGuid; // Clone.tt Line: 143
@@ -19365,8 +19367,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToVM(m.CodePropertySettings, (CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 219
             vm.PropertyCodeGuid = m.PropertyCodeGuid; // Clone.tt Line: 221
             vm.PropertyVersionGuid = m.PropertyVersionGuid; // Clone.tt Line: 221
-            vm.IndexCodeGuid = m.IndexCodeGuid; // Clone.tt Line: 221
+            vm.IndexUniqueCodeGuid = m.IndexUniqueCodeGuid; // Clone.tt Line: 221
             vm.IndexRefTreeParentCodeGuid = m.IndexRefTreeParentCodeGuid; // Clone.tt Line: 221
+            vm.IndexNotUniqueCodeGuid = m.IndexNotUniqueCodeGuid; // Clone.tt Line: 221
             vm.UseNameProperty = (EnumUseType)m.UseNameProperty; // Clone.tt Line: 221
             vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
             vm.PropertyNameGuid = m.PropertyNameGuid; // Clone.tt Line: 221
@@ -19428,8 +19431,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.CodePropertySettings = vSharpStudio.vm.ViewModels.CatalogCodePropertySettings.ConvertToProto((CatalogCodePropertySettings)vm.CodePropertySettings); // Clone.tt Line: 270
             m.PropertyCodeGuid = vm.PropertyCodeGuid; // Clone.tt Line: 276
             m.PropertyVersionGuid = vm.PropertyVersionGuid; // Clone.tt Line: 276
-            m.IndexCodeGuid = vm.IndexCodeGuid; // Clone.tt Line: 276
+            m.IndexUniqueCodeGuid = vm.IndexUniqueCodeGuid; // Clone.tt Line: 276
             m.IndexRefTreeParentCodeGuid = vm.IndexRefTreeParentCodeGuid; // Clone.tt Line: 276
+            m.IndexNotUniqueCodeGuid = vm.IndexNotUniqueCodeGuid; // Clone.tt Line: 276
             m.UseNameProperty = (Proto.Config.proto_enum_use_type)vm.UseNameProperty; // Clone.tt Line: 274
             m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
             m.PropertyNameGuid = vm.PropertyNameGuid; // Clone.tt Line: 276
@@ -19750,25 +19754,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPropertyVersionGuidChanged();
         
         [Browsable(false)]
-        public string IndexCodeGuid // Property.tt Line: 55
+        public string IndexUniqueCodeGuid // Property.tt Line: 55
         { 
-            get { return this._IndexCodeGuid; }
+            get { return this._IndexUniqueCodeGuid; }
             set
             {
-                if (this._IndexCodeGuid != value)
+                if (this._IndexUniqueCodeGuid != value)
                 {
-                    this.OnIndexCodeGuidChanging(ref value);
-                    this._IndexCodeGuid = value;
-                    this.OnIndexCodeGuidChanged();
+                    this.OnIndexUniqueCodeGuidChanging(ref value);
+                    this._IndexUniqueCodeGuid = value;
+                    this.OnIndexUniqueCodeGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _IndexCodeGuid = string.Empty;
-        partial void OnIndexCodeGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnIndexCodeGuidChanged();
+        private string _IndexUniqueCodeGuid = string.Empty;
+        partial void OnIndexUniqueCodeGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnIndexUniqueCodeGuidChanged();
         
         [Browsable(false)]
         public string IndexRefTreeParentCodeGuid // Property.tt Line: 55
@@ -19790,6 +19794,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _IndexRefTreeParentCodeGuid = string.Empty;
         partial void OnIndexRefTreeParentCodeGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnIndexRefTreeParentCodeGuidChanged();
+        
+        [Browsable(false)]
+        public string IndexNotUniqueCodeGuid // Property.tt Line: 55
+        { 
+            get { return this._IndexNotUniqueCodeGuid; }
+            set
+            {
+                if (this._IndexNotUniqueCodeGuid != value)
+                {
+                    this.OnIndexNotUniqueCodeGuidChanging(ref value);
+                    this._IndexNotUniqueCodeGuid = value;
+                    this.OnIndexNotUniqueCodeGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _IndexNotUniqueCodeGuid = string.Empty;
+        partial void OnIndexNotUniqueCodeGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnIndexNotUniqueCodeGuidChanged();
         
         [PropertyOrderAttribute(41)]
         [DisplayName("Use Name")]
@@ -20556,9 +20581,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 67
             vm.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 67
             vm.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 67
-            vm.IndexCodeGuid = from.IndexCodeGuid; // Clone.tt Line: 67
+            vm.IndexUniqueCodeGuid = from.IndexUniqueCodeGuid; // Clone.tt Line: 67
             vm.IndexRefFolderCodeGuid = from.IndexRefFolderCodeGuid; // Clone.tt Line: 67
             vm.IndexRefTreeParentCodeGuid = from.IndexRefTreeParentCodeGuid; // Clone.tt Line: 67
+            vm.IndexNotUniqueCodeGuid = from.IndexNotUniqueCodeGuid; // Clone.tt Line: 67
             vm.ItemIconType = from.ItemIconType; // Clone.tt Line: 67
             vm.GroupIconType = from.GroupIconType; // Clone.tt Line: 67
             vm.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 67
@@ -20618,9 +20644,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.MaxNameLength = from.MaxNameLength; // Clone.tt Line: 143
             to.UseDescriptionProperty = from.UseDescriptionProperty; // Clone.tt Line: 143
             to.MaxDescriptionLength = from.MaxDescriptionLength; // Clone.tt Line: 143
-            to.IndexCodeGuid = from.IndexCodeGuid; // Clone.tt Line: 143
+            to.IndexUniqueCodeGuid = from.IndexUniqueCodeGuid; // Clone.tt Line: 143
             to.IndexRefFolderCodeGuid = from.IndexRefFolderCodeGuid; // Clone.tt Line: 143
             to.IndexRefTreeParentCodeGuid = from.IndexRefTreeParentCodeGuid; // Clone.tt Line: 143
+            to.IndexNotUniqueCodeGuid = from.IndexNotUniqueCodeGuid; // Clone.tt Line: 143
             to.ItemIconType = from.ItemIconType; // Clone.tt Line: 143
             to.GroupIconType = from.GroupIconType; // Clone.tt Line: 143
             to.ViewListWideGuid = from.ViewListWideGuid; // Clone.tt Line: 143
@@ -20766,9 +20793,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.MaxNameLength = m.MaxNameLength; // Clone.tt Line: 221
             vm.UseDescriptionProperty = (EnumUseType)m.UseDescriptionProperty; // Clone.tt Line: 221
             vm.MaxDescriptionLength = m.MaxDescriptionLength; // Clone.tt Line: 221
-            vm.IndexCodeGuid = m.IndexCodeGuid; // Clone.tt Line: 221
+            vm.IndexUniqueCodeGuid = m.IndexUniqueCodeGuid; // Clone.tt Line: 221
             vm.IndexRefFolderCodeGuid = m.IndexRefFolderCodeGuid; // Clone.tt Line: 221
             vm.IndexRefTreeParentCodeGuid = m.IndexRefTreeParentCodeGuid; // Clone.tt Line: 221
+            vm.IndexNotUniqueCodeGuid = m.IndexNotUniqueCodeGuid; // Clone.tt Line: 221
             vm.ItemIconType = (EnumCatalogTreeIcon)m.ItemIconType; // Clone.tt Line: 221
             vm.GroupIconType = (EnumCatalogTreeIcon)m.GroupIconType; // Clone.tt Line: 221
             vm.ViewListWideGuid = m.ViewListWideGuid; // Clone.tt Line: 221
@@ -20840,9 +20868,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.MaxNameLength = vm.MaxNameLength; // Clone.tt Line: 276
             m.UseDescriptionProperty = (Proto.Config.proto_enum_use_type)vm.UseDescriptionProperty; // Clone.tt Line: 274
             m.MaxDescriptionLength = vm.MaxDescriptionLength; // Clone.tt Line: 276
-            m.IndexCodeGuid = vm.IndexCodeGuid; // Clone.tt Line: 276
+            m.IndexUniqueCodeGuid = vm.IndexUniqueCodeGuid; // Clone.tt Line: 276
             m.IndexRefFolderCodeGuid = vm.IndexRefFolderCodeGuid; // Clone.tt Line: 276
             m.IndexRefTreeParentCodeGuid = vm.IndexRefTreeParentCodeGuid; // Clone.tt Line: 276
+            m.IndexNotUniqueCodeGuid = vm.IndexNotUniqueCodeGuid; // Clone.tt Line: 276
             m.ItemIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.ItemIconType; // Clone.tt Line: 274
             m.GroupIconType = (Proto.Config.proto_enum_catalog_tree_icon)vm.GroupIconType; // Clone.tt Line: 274
             m.ViewListWideGuid = vm.ViewListWideGuid; // Clone.tt Line: 276
@@ -21285,25 +21314,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnMaxDescriptionLengthChanged();
         
         [Browsable(false)]
-        public string IndexCodeGuid // Property.tt Line: 55
+        public string IndexUniqueCodeGuid // Property.tt Line: 55
         { 
-            get { return this._IndexCodeGuid; }
+            get { return this._IndexUniqueCodeGuid; }
             set
             {
-                if (this._IndexCodeGuid != value)
+                if (this._IndexUniqueCodeGuid != value)
                 {
-                    this.OnIndexCodeGuidChanging(ref value);
-                    this._IndexCodeGuid = value;
-                    this.OnIndexCodeGuidChanged();
+                    this.OnIndexUniqueCodeGuidChanging(ref value);
+                    this._IndexUniqueCodeGuid = value;
+                    this.OnIndexUniqueCodeGuidChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                     this.IsChanged = true;
                 }
             }
         }
-        private string _IndexCodeGuid = string.Empty;
-        partial void OnIndexCodeGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnIndexCodeGuidChanged();
+        private string _IndexUniqueCodeGuid = string.Empty;
+        partial void OnIndexUniqueCodeGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnIndexUniqueCodeGuidChanged();
         
         [Browsable(false)]
         public string IndexRefFolderCodeGuid // Property.tt Line: 55
@@ -21346,6 +21375,27 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _IndexRefTreeParentCodeGuid = string.Empty;
         partial void OnIndexRefTreeParentCodeGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnIndexRefTreeParentCodeGuidChanged();
+        
+        [Browsable(false)]
+        public string IndexNotUniqueCodeGuid // Property.tt Line: 55
+        { 
+            get { return this._IndexNotUniqueCodeGuid; }
+            set
+            {
+                if (this._IndexNotUniqueCodeGuid != value)
+                {
+                    this.OnIndexNotUniqueCodeGuidChanging(ref value);
+                    this._IndexNotUniqueCodeGuid = value;
+                    this.OnIndexNotUniqueCodeGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _IndexNotUniqueCodeGuid = string.Empty;
+        partial void OnIndexNotUniqueCodeGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnIndexNotUniqueCodeGuidChanged();
         
         [PropertyOrderAttribute(41)]
         [DisplayName("Item Icon")]
@@ -23560,6 +23610,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IndexMonthDocNumberGuid = from.IndexMonthDocNumberGuid; // Clone.tt Line: 67
             vm.IndexWeekDocNumberGuid = from.IndexWeekDocNumberGuid; // Clone.tt Line: 67
             vm.IndexDayDocNumberGuid = from.IndexDayDocNumberGuid; // Clone.tt Line: 67
+            vm.IndexUniqueDocNumberGuid = from.IndexUniqueDocNumberGuid; // Clone.tt Line: 67
+            vm.IndexNotUniqueDocNumberGuid = from.IndexNotUniqueDocNumberGuid; // Clone.tt Line: 67
             vm.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 67
             vm.PropertyDocNumberGuid = from.PropertyDocNumberGuid; // Clone.tt Line: 67
             vm.PropertyDocDateGuid = from.PropertyDocDateGuid; // Clone.tt Line: 67
@@ -23608,6 +23660,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.IndexMonthDocNumberGuid = from.IndexMonthDocNumberGuid; // Clone.tt Line: 143
             to.IndexWeekDocNumberGuid = from.IndexWeekDocNumberGuid; // Clone.tt Line: 143
             to.IndexDayDocNumberGuid = from.IndexDayDocNumberGuid; // Clone.tt Line: 143
+            to.IndexUniqueDocNumberGuid = from.IndexUniqueDocNumberGuid; // Clone.tt Line: 143
+            to.IndexNotUniqueDocNumberGuid = from.IndexNotUniqueDocNumberGuid; // Clone.tt Line: 143
             to.PropertyIdGuid = from.PropertyIdGuid; // Clone.tt Line: 143
             to.PropertyDocNumberGuid = from.PropertyDocNumberGuid; // Clone.tt Line: 143
             to.PropertyDocDateGuid = from.PropertyDocDateGuid; // Clone.tt Line: 143
@@ -23746,6 +23800,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IndexMonthDocNumberGuid = m.IndexMonthDocNumberGuid; // Clone.tt Line: 221
             vm.IndexWeekDocNumberGuid = m.IndexWeekDocNumberGuid; // Clone.tt Line: 221
             vm.IndexDayDocNumberGuid = m.IndexDayDocNumberGuid; // Clone.tt Line: 221
+            vm.IndexUniqueDocNumberGuid = m.IndexUniqueDocNumberGuid; // Clone.tt Line: 221
+            vm.IndexNotUniqueDocNumberGuid = m.IndexNotUniqueDocNumberGuid; // Clone.tt Line: 221
             vm.PropertyIdGuid = m.PropertyIdGuid; // Clone.tt Line: 221
             vm.PropertyDocNumberGuid = m.PropertyDocNumberGuid; // Clone.tt Line: 221
             vm.PropertyDocDateGuid = m.PropertyDocDateGuid; // Clone.tt Line: 221
@@ -23797,6 +23853,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.IndexMonthDocNumberGuid = vm.IndexMonthDocNumberGuid; // Clone.tt Line: 276
             m.IndexWeekDocNumberGuid = vm.IndexWeekDocNumberGuid; // Clone.tt Line: 276
             m.IndexDayDocNumberGuid = vm.IndexDayDocNumberGuid; // Clone.tt Line: 276
+            m.IndexUniqueDocNumberGuid = vm.IndexUniqueDocNumberGuid; // Clone.tt Line: 276
+            m.IndexNotUniqueDocNumberGuid = vm.IndexNotUniqueDocNumberGuid; // Clone.tt Line: 276
             m.PropertyIdGuid = vm.PropertyIdGuid; // Clone.tt Line: 276
             m.PropertyDocNumberGuid = vm.PropertyDocNumberGuid; // Clone.tt Line: 276
             m.PropertyDocDateGuid = vm.PropertyDocDateGuid; // Clone.tt Line: 276
@@ -24291,6 +24349,48 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _IndexDayDocNumberGuid = string.Empty;
         partial void OnIndexDayDocNumberGuidChanging(ref string to); // Property.tt Line: 79
         partial void OnIndexDayDocNumberGuidChanged();
+        
+        [Browsable(false)]
+        public string IndexUniqueDocNumberGuid // Property.tt Line: 55
+        { 
+            get { return this._IndexUniqueDocNumberGuid; }
+            set
+            {
+                if (this._IndexUniqueDocNumberGuid != value)
+                {
+                    this.OnIndexUniqueDocNumberGuidChanging(ref value);
+                    this._IndexUniqueDocNumberGuid = value;
+                    this.OnIndexUniqueDocNumberGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _IndexUniqueDocNumberGuid = string.Empty;
+        partial void OnIndexUniqueDocNumberGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnIndexUniqueDocNumberGuidChanged();
+        
+        [Browsable(false)]
+        public string IndexNotUniqueDocNumberGuid // Property.tt Line: 55
+        { 
+            get { return this._IndexNotUniqueDocNumberGuid; }
+            set
+            {
+                if (this._IndexNotUniqueDocNumberGuid != value)
+                {
+                    this.OnIndexNotUniqueDocNumberGuidChanging(ref value);
+                    this._IndexNotUniqueDocNumberGuid = value;
+                    this.OnIndexNotUniqueDocNumberGuidChanged();
+                    this.NotifyPropertyChanged();
+                    this.ValidateProperty();
+                    this.IsChanged = true;
+                }
+            }
+        }
+        private string _IndexNotUniqueDocNumberGuid = string.Empty;
+        partial void OnIndexNotUniqueDocNumberGuidChanging(ref string to); // Property.tt Line: 79
+        partial void OnIndexNotUniqueDocNumberGuidChanged();
         
         [Browsable(false)]
         public string PropertyIdGuid // Property.tt Line: 55

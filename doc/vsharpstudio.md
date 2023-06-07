@@ -290,9 +290,10 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(28)] @attr [DisplayName(&#34;Name Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | use_description_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(29)] @attr [DisplayName(&#34;Use Description&#34;)] @attr [Description(&#34;Use Description property for catalog item&#34;)] |
 | max_description_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(30)] @attr [DisplayName(&#34;Desc Length&#34;)] @attr [Description(&#34;Maximum catalog item description length. If zero, than unlimited length&#34;)] |
-| index_code_guid | [string](#string) |  | @attr [Browsable(false)] |
+| index_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_ref_folder_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_ref_tree_parent_code_guid | [string](#string) |  | @attr [Browsable(false)] |
+| index_not_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | item_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Item Icon&#34;)] @attr [Description(&#34;Catalog item icon type&#34;)] |
 | group_icon_type | [proto_enum_catalog_tree_icon](#proto_config.proto_enum_catalog_tree_icon) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Group Icon&#34;)] @attr [Description(&#34;Catalog group icon type&#34;)] |
 | view_list_wide_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -362,8 +363,9 @@ C A T A L O G
 | code_property_settings | [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings) |  | @attr [PropertyOrderAttribute(22)] @attr [DisplayName(&#34;Code&#34;)] @attr [Description(&#34;Code property settings for catalog folder&#34;)] @attr [Editor(typeof(EditorPropertyGridDialog), typeof(EditorPropertyGridDialog))] |
 | property_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_version_guid | [string](#string) |  | @attr [Browsable(false)] |
-| index_code_guid | [string](#string) |  | @attr [Browsable(false)] |
+| index_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | index_ref_tree_parent_code_guid | [string](#string) |  | @attr [Browsable(false)] |
+| index_not_unique_code_guid | [string](#string) |  | @attr [Browsable(false)] |
 | use_name_property | [proto_enum_use_type](#proto_config.proto_enum_use_type) |  | @attr [PropertyOrderAttribute(41)] @attr [DisplayName(&#34;Use Name&#34;)] @attr [Description(&#34;Use Name property for catalog item&#34;)] |
 | max_name_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(42)] @attr [DisplayName(&#34;Max Length&#34;)] @attr [Description(&#34;Maximum catalog item name length. If zero, than unlimited length&#34;)] |
 | property_name_guid | [string](#string) |  | @attr [Browsable(false)] |
@@ -615,6 +617,8 @@ Constant application wise value
 | index_month_doc_number_guid | [string](#string) |  | unique index of special field MONTH and DocNumber MONTH = DocDate.Year * 12 &#43; DocDate.Month @attr [Browsable(false)] |
 | index_week_doc_number_guid | [string](#string) |  | unique index of special field WEEK and DocNumber WEEK = DocDate.Year * (365???) &#43; DocDate.Month / 3 @attr [Browsable(false)] |
 | index_day_doc_number_guid | [string](#string) |  | unique index of special field Day and DocNumber DAY = DocDate.Year * 365?? &#43; DocDate.Day @attr [Browsable(false)] |
+| index_unique_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
+| index_not_unique_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_id_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_number_guid | [string](#string) |  | @attr [Browsable(false)] |
 | property_doc_date_guid | [string](#string) |  | @attr [Browsable(false)] |

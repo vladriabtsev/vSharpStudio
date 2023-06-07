@@ -2219,10 +2219,14 @@ message proto_catalog_folder {
     string property_code_guid = 23;
     // @attr [Browsable(false)]
     string property_version_guid = 24;
+
     // @attr [Browsable(false)]
-    string index_code_guid = 25;
+    string index_unique_code_guid = 25;
     // @attr [Browsable(false)]
     string index_ref_tree_parent_code_guid = 26;
+    // @attr [Browsable(false)]
+    string index_not_unique_code_guid = 27;
+
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Use Name")]
     // @attr [Description("Use Name property for catalog item")]
@@ -2392,11 +2396,13 @@ message proto_catalog {
     uint32 max_description_length = 30;
 
     // @attr [Browsable(false)]
-    string index_code_guid = 31;
+    string index_unique_code_guid = 31;
     // @attr [Browsable(false)]
     string index_ref_folder_code_guid = 32;
     // @attr [Browsable(false)]
     string index_ref_tree_parent_code_guid = 33;
+    // @attr [Browsable(false)]
+    string index_not_unique_code_guid = 34;
 
     // @attr [PropertyOrderAttribute(41)]
     // @attr [DisplayName("Item Icon")]
@@ -2727,6 +2733,10 @@ message proto_document {
     // DAY = DocDate.Year * 365?? + DocDate.Day
     // @attr [Browsable(false)]
     string index_day_doc_number_guid = 36;
+    // @attr [Browsable(false)]
+    string index_unique_doc_number_guid = 37;
+    // @attr [Browsable(false)]
+    string index_not_unique_doc_number_guid = 38;
 
     // @attr [Browsable(false)]
     string property_id_guid = 61;
