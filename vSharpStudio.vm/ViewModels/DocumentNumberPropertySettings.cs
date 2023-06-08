@@ -145,5 +145,35 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst.ToArray();
         }
+        public string GetDocNumberClrTypeName()
+        {
+            IConfig cfg = this.ParentDocument.Cfg;
+            string propertyDocNumberGuid = this.ParentDocument.PropertyDocNumberGuid;
+            GroupListProperties groupListProperties = this.ParentDocument.GroupProperties;
+            IProperty? prp = null;
+            switch (this.SequenceType)
+            {
+                case EnumCodeType.Number:
+                    prp = cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyDocNumberGuid,
+                        this.MaxSequenceLength);
+                    break;
+                case EnumCodeType.Text:
+                    prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyDocNumberGuid,
+                        this.MaxSequenceLength);
+                    break;
+                case EnumCodeType.AutoNumber:
+                    prp = cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyDocNumberGuid,
+                        this.MaxSequenceLength);
+                    break;
+                case EnumCodeType.AutoText:
+                    prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyDocNumberGuid,
+                        this.MaxSequenceLength + (uint)this.Prefix.Length);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            Debug.Assert(prp != null);
+            return prp.DataType.ClrTypeName;
+        }
     }
 }

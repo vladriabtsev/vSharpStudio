@@ -145,5 +145,50 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst.ToArray();
         }
+        public string GetCodeClrTypeName()
+        {
+            IConfig? cfg = null;
+            string? propertyCodeGuid = null;
+            GroupListProperties? groupListProperties = null;
+            if (this.ParentCatalog!= null)
+            {
+                cfg = this.ParentCatalog.Cfg;
+                propertyCodeGuid = this.ParentCatalog.PropertyCodeGuid;
+                groupListProperties = this.ParentCatalog.GroupProperties;
+            }
+            else
+            {
+                cfg = this.ParentCatalogFolder?.Cfg;
+                propertyCodeGuid = this.ParentCatalogFolder?.PropertyCodeGuid;
+                groupListProperties = this.ParentCatalogFolder?.GroupProperties;
+            }
+            Debug.Assert(cfg != null);
+            Debug.Assert(propertyCodeGuid != null);
+            Debug.Assert(groupListProperties != null);
+            IProperty? prp = null;
+            switch (this.SequenceType)
+            {
+                case EnumCodeType.Number:
+                    prp = cfg.Model.GetPropertyCatalogCodeInt(groupListProperties, propertyCodeGuid,
+                        this.MaxSequenceLength);
+                    break;
+                case EnumCodeType.Text:
+                    prp = cfg.Model.GetPropertyCatalogCode(groupListProperties, propertyCodeGuid,
+                        this.MaxSequenceLength);
+                    break;
+                case EnumCodeType.AutoNumber:
+                    prp = cfg.Model.GetPropertyCatalogCodeInt(groupListProperties, propertyCodeGuid,
+                        this.MaxSequenceLength);
+                    break;
+                case EnumCodeType.AutoText:
+                    prp = cfg.Model.GetPropertyCatalogCode(groupListProperties, propertyCodeGuid,
+                        this.MaxSequenceLength + (uint)this.Prefix.Length);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            Debug.Assert(prp != null);
+            return prp.DataType.ClrTypeName;
+        }
     }
 }
