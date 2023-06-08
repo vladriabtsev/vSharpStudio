@@ -27,7 +27,7 @@ namespace vSharpStudio.Views
     {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public static MainPageVM MainPageVM { get; set; }
-        private MainPageVM _model;
+        private readonly MainPageVM _model;
 
         public MainPage()
         {

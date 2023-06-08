@@ -297,9 +297,9 @@ namespace vSharpStudio.common
             return sb.ToString();
         }
         // https://docs.microsoft.com/en-us/dotnet/csharp/codedoc
-        private static string commentBegSummary = "/// <summary>";
-        private static string commentEndSummary = "/// </summary>";
-        private static string comment = "/// ";
+        private static readonly string commentBegSummary = "/// <summary>";
+        private static readonly string commentEndSummary = "/// </summary>";
+        private static readonly string comment = "/// ";
         public static string Comment(IGroupListConstants t, string indent = "")
         {
             var sb = new StringBuilder();

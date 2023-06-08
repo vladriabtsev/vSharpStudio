@@ -13,9 +13,9 @@ namespace vSharpStudio.wpf.Command
     public class AsyncCommand<TResult> : AsyncCommandBase, INotifyPropertyChanged
     {
         private readonly Func<Task<TResult>> _command;
-        private Predicate<object> _canExecute;
+        private readonly Predicate<object> _canExecute;
         private readonly CancelAsyncCommand _cancelCommand;
-        private NotifyTaskCompletion<TResult> _execution;
+        private readonly NotifyTaskCompletion<TResult> _execution;
 
         //var propertyChanged = PropertyChanged;
         //    if (propertyChanged == null)

@@ -10,7 +10,7 @@ namespace vSharpStudio.wpf.Converters
 {
     public class ConverterCountToWidth : IValueConverter
     {
-        private static int _step_width = 2;
+        private static readonly int _step_width = 2;
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value != null && value is int)

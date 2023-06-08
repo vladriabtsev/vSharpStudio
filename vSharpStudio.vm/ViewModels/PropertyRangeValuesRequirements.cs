@@ -369,12 +369,12 @@ namespace vSharpStudio.vm.ViewModels
         }
         public bool IsHasRequirements { get { return _ListBoundaries.Count > 0 || _ListValues.Count > 0; } }
         public IReadOnlyList<IValidationBoundary> ListBoundaries { get { return _ListBoundaries; } }
-        private List<ValidationBoundary> _ListBoundaries;
+        private readonly List<ValidationBoundary> _ListBoundaries;
         public IReadOnlyList<string> ListValues { get { return _ListValues; } }
-        private List<string> _ListValues;
+        private readonly List<string> _ListValues;
         public bool IsHasErrors { get { return _ListErrors.Count > 0; } }
         public IReadOnlyList<string> ListErrors { get { return _ListErrors; } }
-        private List<string> _ListErrors;
+        private readonly List<string> _ListErrors;
         public void AddBoundary(ValidationBoundary boundary)
         {
             _ListBoundaries.Add(boundary);

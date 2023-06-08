@@ -214,7 +214,7 @@ namespace ViewModelBase
             {
                 _cts = cts;
             }
-            private CancellationTokenSource? _cts;
+            private readonly CancellationTokenSource? _cts;
             private bool _commandExecuting;
             public CancellationToken? Token { get { return _cts?.Token; } }
             public void NotifyCommandStarting()

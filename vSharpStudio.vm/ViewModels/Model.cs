@@ -127,7 +127,7 @@ namespace vSharpStudio.vm.ViewModels
 
         #region Validation
 
-        private CancellationTokenSource? cancellationSourceForValidatingFullConfig = null;
+        private readonly CancellationTokenSource? cancellationSourceForValidatingFullConfig = null;
         //public async Task ValidateSubTreeFromNodeAsync(ITreeConfigNode node)
         //{
         //    // https://msdn.microsoft.com/en-us/magazine/jj991977.aspx

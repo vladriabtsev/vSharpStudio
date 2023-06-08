@@ -10,7 +10,7 @@ namespace vSharpStudio.wpf.Command
     public class AsyncCommand : AsyncCommandBase
     {
         private readonly Func<Task> _command;
-        private Predicate<object> _canExecute;
+        private readonly Predicate<object> _canExecute;
         public AsyncCommand(Func<Task> command)
         {
             _command = command;

@@ -10,9 +10,9 @@ namespace GenFromProto
 {
     public partial class IVisitorProto
     {
-        FileDescriptor root;
-        string nameSpace;
-        string protoNameSpace;
+        readonly FileDescriptor root;
+        readonly string nameSpace;
+        readonly string protoNameSpace;
 
         public IVisitorProto(FileDescriptor root, string destNS, string protoNS)
         {

@@ -10,8 +10,8 @@ namespace GenFromProto
 {
     public partial class IVisitorConfigNode
     {
-        FileDescriptor root;
-        List<MessageDescriptor> messages = new List<MessageDescriptor>();
+        readonly FileDescriptor root;
+        readonly List<MessageDescriptor> messages = new List<MessageDescriptor>();
         public IVisitorConfigNode(FileDescriptor root)
         {
             this.root = root;

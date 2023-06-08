@@ -10,11 +10,11 @@ namespace GenFromProto
 {
     public partial class Clone
     {
-        string nameSpace;
-        string protoNameSpace;
-        FileDescriptor root;
-        MessageDescriptor message;
-        MessageDoc Doc;
+        readonly string nameSpace;
+        readonly string protoNameSpace;
+        readonly FileDescriptor root;
+        readonly MessageDescriptor message;
+        readonly MessageDoc Doc;
         public Clone(FileDescriptor root, MessageDescriptor message, string destNS, string protoNS)
         {
             this.root = root;

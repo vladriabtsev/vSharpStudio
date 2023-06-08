@@ -11,13 +11,13 @@ namespace GenFromProto
 {
     public partial class Class
     {
-        FileDescriptor root;
-        MessageDescriptor message;
-        MessageDoc Doc;
-        string nameSpace;
-        string protoNameSpace;
+        readonly FileDescriptor root;
+        readonly MessageDescriptor message;
+        readonly MessageDoc Doc;
+        readonly string nameSpace;
+        readonly string protoNameSpace;
 
-        Dictionary<string, List<MessageDescriptor>> dicParents;
+        readonly Dictionary<string, List<MessageDescriptor>> dicParents;
         public Class(FileDescriptor root, MessageDescriptor message, Dictionary<string, List<MessageDescriptor>> dicParents,
             string destNS, string protoNS, string defaultBaseClass)
         {

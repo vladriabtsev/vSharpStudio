@@ -11,12 +11,12 @@ namespace GenFromProto
     {
         MessageDoc MessageDoc;
         FieldDoc FieldDoc;
-        FileDescriptor root;
-        string nameSpace;
-        string protoNameSpace;
-        List<MessageDescriptor> messages = new List<MessageDescriptor>();
-        Dictionary<string, List<MessageDescriptor>> dicParents;
-        string Setter = "";
+        readonly FileDescriptor root;
+        readonly string nameSpace;
+        readonly string protoNameSpace;
+        readonly List<MessageDescriptor> messages = new List<MessageDescriptor>();
+        readonly Dictionary<string, List<MessageDescriptor>> dicParents;
+        readonly string Setter = "";
 
         public ModelInterfaces(FileDescriptor root, List<MessageDescriptor> messages,
             Dictionary<string, List<MessageDescriptor>> dicParents,

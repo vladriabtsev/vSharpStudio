@@ -100,7 +100,7 @@ namespace vSharpStudio.Views
                 }
             }
         }
-        private Dictionary<string, string?> dic = new Dictionary<string, string?>();
+        private readonly Dictionary<string, string?> dic = new Dictionary<string, string?>();
         private void propertyGrid_SelectedPropertyItemChanged(object sender, RoutedPropertyChangedEventArgs<PropertyItemBase> e)
         {
             //var prop = e.NewValue as PropertyItem;

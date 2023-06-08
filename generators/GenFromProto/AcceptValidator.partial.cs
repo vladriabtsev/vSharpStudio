@@ -10,9 +10,9 @@ namespace GenFromProto
 {
     public partial class AcceptValidator
     {
-        FileDescriptor root;
-        MessageDescriptor message;
-        MessageDoc Doc;
+        readonly FileDescriptor root;
+        readonly MessageDescriptor message;
+        readonly MessageDoc Doc;
         public AcceptValidator(FileDescriptor root, MessageDescriptor message)
         {
             this.root = root;

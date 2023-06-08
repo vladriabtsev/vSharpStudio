@@ -10,8 +10,8 @@ namespace GenFromProto
 {
     public partial class ValidationVisitor
     {
-        FileDescriptor root;
-        List<MessageDescriptor> messages = new List<MessageDescriptor>();
+        readonly FileDescriptor root;
+        readonly List<MessageDescriptor> messages = new List<MessageDescriptor>();
         public ValidationVisitor(FileDescriptor root)
         {
             this.root = root;

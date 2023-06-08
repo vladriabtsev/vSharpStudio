@@ -21,7 +21,7 @@ namespace vSharpStudio.Views
     /// </summary>
     public partial class ValidationListForSelectedNode : UserControl
     {
-        private MainPageVM? vm = null;
+        private readonly MainPageVM? vm = null;
 
         public ValidationListForSelectedNode()
         {

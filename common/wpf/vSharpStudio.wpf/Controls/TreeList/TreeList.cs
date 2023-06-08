@@ -46,7 +46,7 @@ namespace vSharpStudio.wpf.Controls
                 }
             }
         }
-        private TreeNode _root;
+        private readonly TreeNode _root;
         internal TreeNode Root
         {
             get { return _root; }

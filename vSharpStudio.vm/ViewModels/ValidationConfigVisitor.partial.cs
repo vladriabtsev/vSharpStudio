@@ -16,11 +16,11 @@ namespace vSharpStudio.vm.ViewModels
         public SortedObservableCollection<ValidationMessage> Result { get; private set; }
         public int CountTotalValidatableNodes;
         public int CountCurrentValidatableNode { get; set; }
-        private ProgressVM? progressVM;
+        private readonly ProgressVM? progressVM;
         public bool IsCountOnly { get; set; } = true;
 
         private int _level = -1;
-        private ILogger? _logger = null;
+        private readonly ILogger? _logger = null;
 
         public ValidationConfigVisitor(CancellationToken cancellationToken, ProgressVM? progressVM, ILogger? logger = null)
         {

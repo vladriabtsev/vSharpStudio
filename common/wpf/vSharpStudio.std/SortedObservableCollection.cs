@@ -47,7 +47,7 @@ namespace ViewModelBase
     }
     public class ObservableCollectionWithActions<T> : ObservableCollection<T>
     {
-        private object _lock = new object();
+        private readonly object _lock = new object();
         public ObservableCollectionWithActions()
         {
         }
@@ -139,7 +139,7 @@ namespace ViewModelBase
     public class SortedObservableCollection<T> : ObservableCollectionWithActions<T>, ISortedObservableCollection<T>
       where T : ISortingValue //, IComparable<T> //IEquatable<T>
     {
-        private object _lock = new object();
+        private readonly object _lock = new object();
         public SortDirection SortDirection = SortDirection.Ascending;
         //Action<NotifyCollectionChangedEventArgs> onCollectionChanged = null;
         //bool isSort;

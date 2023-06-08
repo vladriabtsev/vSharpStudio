@@ -10,14 +10,14 @@ namespace GenFromProto
 {
     public partial class Property
     {
-        FileDescriptor root;
-        MessageDescriptor message;
-        FieldDescriptor field;
-        FieldDoc Doc;
-        MessageDoc DocMes;
-        string ClassName;
-        string FieldName;
-        string FieldType;
+        readonly FileDescriptor root;
+        readonly MessageDescriptor message;
+        readonly FieldDescriptor field;
+        readonly FieldDoc Doc;
+        readonly MessageDoc DocMes;
+        readonly string ClassName;
+        readonly string FieldName;
+        readonly string FieldType;
         //bool isSpecial = false;
         public Property(FileDescriptor root, MessageDescriptor message, FieldDescriptor field)
         {

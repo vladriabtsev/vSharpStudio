@@ -10,7 +10,7 @@ namespace vSharpStudio.vm.ViewModels
 {
     public class ConnStringVM : VmValidatableWithSeverity<ConnStringVM, ConnStringVMValidator>
     {
-        private ILogger? logger;
+        private readonly ILogger? logger;
 
         public ConnStringVM()
             : base(ConnStringVMValidator.Validator)

@@ -22,8 +22,8 @@ namespace ViewModelBase
     [DebuggerDisplay("{SeverityName,nq}, {SeverityWeightName,nq}, {SortingValue,nq}: {Message,nq}")]
     public class ValidationMessage : ISortingValue, IComparable<ValidationMessage>
     {
-        private static int _lenSeverity = Enum.GetNames(typeof(FluentValidation.Severity)).Length;
-        private static int _lenSeverityWeight = Enum.GetNames(typeof(SeverityWeight)).Length;
+        private static readonly int _lenSeverity = Enum.GetNames(typeof(FluentValidation.Severity)).Length;
+        private static readonly int _lenSeverityWeight = Enum.GetNames(typeof(SeverityWeight)).Length;
         // than higher weight than higher importance of the message
         public ValidationMessage(object model, string propertyName, FluentValidation.Severity severity, SeverityWeight weight, string message)
         {

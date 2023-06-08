@@ -11,8 +11,8 @@ namespace vSharpStudio.Migration
 {
     internal class SchemaReader
     {
-        private string? projectPathWithDbConnectionString;
-        private string? connectionStringName;
+        private readonly string? projectPathWithDbConnectionString;
+        private readonly string? connectionStringName;
 
         internal SchemaReader(string? projectPathWithDbConnectionString, string? connectionStringName = null)
         {
@@ -80,7 +80,7 @@ namespace vSharpStudio.Migration
         };
 
 #pragma warning disable SA1500 // Elements should be separated by blank line
-        private static string[] cs_keywords = { "abstract", "event", "new", "struct", "as", "explicit", "null",
+        private static readonly string[] cs_keywords = { "abstract", "event", "new", "struct", "as", "explicit", "null",
             "switch", "base", "extern", "object", "this", "bool", "false", "operator", "throw",
             "break", "finally", "out", "true", "byte", "fixed", "override", "try", "case", "float",
             "params", "typeof", "catch", "for", "private", "uint", "char", "foreach", "protected",
@@ -91,6 +91,6 @@ namespace vSharpStudio.Migration
             "stackalloc", "else", "long", "static", "enum", "namespace", "string", };
 
 #pragma warning restore SA1500 // Elements should be separated by blank line
-        private static Regex rxCleanUp = new Regex(@"[^\w\d_]", RegexOptions.Compiled);
+        private static readonly Regex rxCleanUp = new Regex(@"[^\w\d_]", RegexOptions.Compiled);
     }
 }

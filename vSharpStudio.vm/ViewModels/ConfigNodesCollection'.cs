@@ -12,9 +12,9 @@ namespace vSharpStudio.vm.ViewModels
     public class ConfigNodesCollection<T> : SortedObservableCollection<T>, IChildrenCollection
       where T : ITreeConfigNode, ISortingValue
     {
-        private Config? cfg;
-        private ITreeConfigNode? parent;
-        private bool isUseDicNodes = false;
+        private readonly Config? cfg;
+        private readonly ITreeConfigNode? parent;
+        private readonly bool isUseDicNodes = false;
 
         public ConfigNodesCollection(ITreeConfigNode? parent)
         {

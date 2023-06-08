@@ -13,7 +13,7 @@ namespace vSharpStudio.wpf.Controls
 		#region NodeCollection
 		private class NodeCollection : Collection<TreeNode>
 		{
-			private TreeNode _owner;
+			private readonly TreeNode _owner;
 			public NodeCollection(TreeNode owner)
 			{
 				_owner = owner;
@@ -70,7 +70,7 @@ namespace vSharpStudio.wpf.Controls
 
 		#region Properties
 
-		private TreeList _tree;
+		private readonly TreeList _tree;
 		internal TreeList Tree
 		{
 			get { return _tree; }
@@ -258,17 +258,17 @@ namespace vSharpStudio.wpf.Controls
 				}
 			}
 		}
-		private object _tag;
+		private readonly object _tag;
 		public object Tag
 		{
 			get { return _tag; }
 		}
-		private Collection<TreeNode> _children;
+		private readonly Collection<TreeNode> _children;
 		internal Collection<TreeNode> Children
 		{
 			get { return _children; }
 		}
-		private ReadOnlyCollection<TreeNode> _nodes;
+		private readonly ReadOnlyCollection<TreeNode> _nodes;
 		public ReadOnlyCollection<TreeNode> Nodes
 		{
 			get { return _nodes; }

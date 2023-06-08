@@ -22,7 +22,7 @@ namespace vSharpStudio.ViewModels
     // https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/observableobject
     public class EditorRoleTreeVm : ObservableObject, ITreeModel
     {
-        Model? model;
+        readonly Model? model;
         public ITreeConfigNode Node { get; private set; }
         private static ConfigNodesCollection<Role>? roles;
         public List<EditorRoleColumnVm> ListRoleColumns { get; private set; }
@@ -54,7 +54,7 @@ namespace vSharpStudio.ViewModels
                 t.UpdateChildren(role);
             }
         }
-        private List<EditorRoleTreeVm> children = new List<EditorRoleTreeVm>();
+        private readonly List<EditorRoleTreeVm> children = new List<EditorRoleTreeVm>();
         public IEnumerable GetChildren(object parent)
         {
             ITreeConfigNode node = parent == null ? this.Node : ((EditorRoleTreeVm)parent).Node;

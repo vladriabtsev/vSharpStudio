@@ -164,7 +164,7 @@ namespace GuiLabs.Undo
             return Transaction.Create(this, delayed);
         }
 
-        private Stack<Transaction> mTransactionStack = new Stack<Transaction>();
+        private readonly Stack<Transaction> mTransactionStack = new Stack<Transaction>();
         public Stack<Transaction> TransactionStack
         {
             get

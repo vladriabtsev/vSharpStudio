@@ -10,8 +10,8 @@ namespace GenFromProto
 {
     public partial class NodeVisitor
     {
-        FileDescriptor root;
-        List<MessageDescriptor> messages = new List<MessageDescriptor>();
+        readonly FileDescriptor root;
+        readonly List<MessageDescriptor> messages = new List<MessageDescriptor>();
         public NodeVisitor(FileDescriptor root)
         {
             this.root = root;

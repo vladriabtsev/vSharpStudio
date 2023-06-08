@@ -11,12 +11,12 @@ namespace GenFromProto
 {
     public partial class NameSpace
     {
-        FileDescriptor root;
-        string nameSpace;
-        string defaultBaseClass = "ConfigObjectVmGenSettings";
-        string protoNameSpace;
-        List<MessageDescriptor> messages = new List<MessageDescriptor>();
-        Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
+        readonly FileDescriptor root;
+        readonly string nameSpace;
+        readonly string defaultBaseClass = "ConfigObjectVmGenSettings";
+        readonly string protoNameSpace;
+        readonly List<MessageDescriptor> messages = new List<MessageDescriptor>();
+        readonly Dictionary<string, List<MessageDescriptor>> dicParents = new Dictionary<string, List<MessageDescriptor>>();
 
         public NameSpace(FileDescriptor root, List<MessageDescriptor> messages,
             Dictionary<string, List<MessageDescriptor>> dicParents,

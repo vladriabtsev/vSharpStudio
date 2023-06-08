@@ -17,8 +17,8 @@ namespace ViewModelBase
 {
     public partial class vButtonVM : vButtonVmBase
     {
-        private Action execute;
-        private Func<bool> canExecute;
+        private readonly Action execute;
+        private readonly Func<bool> canExecute;
         private Action executeInternal => () =>
         {
             this.IsEnabled = false;
@@ -59,8 +59,8 @@ namespace ViewModelBase
     }
     public partial class vButtonVM<T> : vButtonVmBase
     {
-        private Action<T?> execute;
-        private Predicate<T?> canExecute;
+        private readonly Action<T?> execute;
+        private readonly Predicate<T?> canExecute;
         private Action<T?> executeInternal => (o) =>
         {
             this.IsEnabled = false;
@@ -101,8 +101,8 @@ namespace ViewModelBase
     }
     public partial class vButtonVmAsync<T> : vButtonVmBase
     {
-        private Func<T?, Task> execute;
-        private Predicate<T?> canExecute;
+        private readonly Func<T?, Task> execute;
+        private readonly Predicate<T?> canExecute;
         private Func<T?, Task> executeInternal => async (o) =>
         {
             this.IsEnabled = false;
@@ -143,7 +143,7 @@ namespace ViewModelBase
     }
     public partial class vButtonVmBase : ObservableObject
     {
-        private SolidColorBrush backGround = new SolidColorBrush(Color.FromArgb(0xFF, 0x22, 0x22, 0x22));
+        private readonly SolidColorBrush backGround = new SolidColorBrush(Color.FromArgb(0xFF, 0x22, 0x22, 0x22));
         [ObservableProperty]
         private SolidColorBrush? backGroundDisabled;
         //private string iconExecute = "iconNewFile";
