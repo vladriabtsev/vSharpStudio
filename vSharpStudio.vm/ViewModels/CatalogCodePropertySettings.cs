@@ -190,5 +190,98 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(prp != null);
             return prp.DataType.ClrTypeName;
         }
+        public string GetNextCodeProc()
+        {
+            var sb = new StringBuilder();
+            sb.Append(this.GetCodeClrTypeName());
+            sb.Append(" res = ");
+            sb.Append(this.GetCodeStartStr());
+            sb.AppendLine(";");
+            sb.AppendLine("if (code != null)");
+            sb.AppendLine("{");
+            switch (this.SequenceType)
+            {
+                case EnumCodeType.Number:
+                case EnumCodeType.AutoNumber:
+                    sb.AppendLine("\tres = code.Value + 1;");
+                    sb.Append("\tif (res > ");
+                    sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    sb.AppendLine(")");
+                    sb.AppendLine("\t\tres = 1;");
+                    break;
+                case EnumCodeType.AutoText:
+                case EnumCodeType.Text:
+                    sb.AppendLine("\tvar i = ulong.Parse(code) + 1;");
+                    sb.Append("\tif (i > ");
+                    sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    sb.AppendLine(")");
+                    sb.Append("\t\tres = ");
+                    sb.Append(this.GetCodeStartStr());
+                    sb.AppendLine(";");
+                    sb.AppendLine("\telse");
+                    sb.Append("\t\tres = i.ToString(\"D");
+                    sb.Append(this.MaxSequenceLength);
+                    sb.AppendLine("\");");
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            sb.Append("}");
+            return sb.ToString();
+        }
+        public string GetCodeCheckProc()
+        {
+            var sb = new StringBuilder();
+            switch (this.SequenceType)
+            {
+                case EnumCodeType.Number:
+                case EnumCodeType.AutoNumber:
+                    sb.Append("if (code < 1 || code > ");
+                    sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    sb.AppendLine(")");
+                    sb.AppendLine("\tthrow new BusinessException(EnumExceptionType.CatalogCodeOutsideAllowedRange);");
+                    break;
+                case EnumCodeType.AutoText:
+                case EnumCodeType.Text:
+                    sb.AppendLine("\tvar i = ulong.Parse(code);");
+                    sb.Append("if (i < 1 || i > ");
+                    sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    sb.AppendLine(")");
+                    sb.AppendLine("\tthrow new BusinessException(EnumExceptionType.CatalogCodeOutsideAllowedRange);");
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+            return sb.ToString();
+        }
+        public string GetCodeStartStr()
+        {
+            switch (this.SequenceType)
+            {
+                case EnumCodeType.Number:
+                case EnumCodeType.AutoNumber:
+                    return "1";
+                case EnumCodeType.AutoText:
+                case EnumCodeType.Text:
+                    string fmt = "D" + this.MaxSequenceLength;
+                    return $"\"{1.ToString(fmt)}\"";
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+        public string GetCodeEndStr()
+        {
+            switch (this.SequenceType)
+            {
+                case EnumCodeType.Number:
+                case EnumCodeType.AutoNumber:
+                    return new string('9', (int)this.MaxSequenceLength);
+                case EnumCodeType.AutoText:
+                case EnumCodeType.Text:
+                    return $"\"{new string('9', (int)this.MaxSequenceLength)}\"";
+                default:
+                    throw new NotImplementedException();
+            }
+        }
     }
 }

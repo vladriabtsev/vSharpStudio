@@ -9,5 +9,7 @@ namespace vSharpStudio.common
     public partial interface ICatalogCodePropertySettings
     {
         string GetCodeClrTypeName();
+        string GetNextCodeProc();
+        string GetCodeCheckProc();
     }
 }

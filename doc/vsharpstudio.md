@@ -331,7 +331,7 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sequence_type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type general settings&#34;)] |
-| max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
+| max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number &#39;9&#39; is limited by this parameter&#34;)] |
 | prefix | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
 | sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(0)] @attr [DisplayName(&#34;Code Sequence&#34;)] @attr [Description(&#34;Code Sequence for auto code generation. Same sequence can be used for different catalogs&#34;)] @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] |
 | unique_scope | [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
@@ -643,7 +643,7 @@ Constant application wise value
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sequence_type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type general settings&#34;)] |
-| max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
+| max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number &#39;9&#39; is limited by this parameter&#34;)] |
 | prefix | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
 | sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(0)] @attr [DisplayName(&#34;Code Sequence&#34;)] @attr [Description(&#34;Code Sequence for auto code generation. Same sequence can be used for different documents&#34;)] @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] |
 | scope_of_unique | [proto_enum_doc_number_unique_scope](#proto_config.proto_enum_doc_number_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |

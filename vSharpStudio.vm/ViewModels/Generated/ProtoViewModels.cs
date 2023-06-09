@@ -20400,7 +20400,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [PropertyOrderAttribute(2)]
         [DisplayName("Max Sequence")]
-        [Description("Maximum number of character places for generated sequence numbers")]
+        [Description("Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number '9' is limited by this parameter")]
         public uint MaxSequenceLength // Property.tt Line: 55
         { 
             get { return this._MaxSequenceLength; }
@@ -23377,7 +23377,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [PropertyOrderAttribute(2)]
         [DisplayName("Max Sequence")]
-        [Description("Maximum number of character places for generated sequence numbers")]
+        [Description("Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number '9' is limited by this parameter")]
         public uint MaxSequenceLength // Property.tt Line: 55
         { 
             get { return this._MaxSequenceLength; }

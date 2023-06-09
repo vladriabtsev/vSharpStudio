@@ -9,5 +9,7 @@ namespace vSharpStudio.common
     public partial interface IDocumentNumberPropertySettings
     {
         string GetDocNumberClrTypeName();
+        string GetNextCodeProc();
+        string GetCodeCheckProc();
     }
 }

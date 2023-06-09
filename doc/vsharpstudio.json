@@ -2822,7 +2822,7 @@
             },
             {
               "name": "max_sequence_length",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number '9' is limited by this parameter\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",
@@ -4582,7 +4582,7 @@
             },
             {
               "name": "max_sequence_length",
-              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers\")]",
+              "description": "@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number '9' is limited by this parameter\")]",
               "label": "",
               "type": "uint32",
               "longType": "uint32",

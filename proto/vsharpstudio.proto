@@ -2308,7 +2308,7 @@ message proto_catalog_code_property_settings {
     proto_enum_code_type sequence_type = 1;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("Max Sequence")]
-    // @attr [Description("Maximum number of character places for generated sequence numbers")]
+    // @attr [Description("Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number '9' is limited by this parameter")]
     uint32 max_sequence_length = 2;
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("Prefix")]
@@ -2639,7 +2639,7 @@ message proto_document_number_property_settings {
     proto_enum_code_type sequence_type = 1;
     // @attr [PropertyOrderAttribute(2)]
     // @attr [DisplayName("Max Sequence")]
-    // @attr [Description("Maximum number of character places for generated sequence numbers")]
+    // @attr [Description("Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number '9' is limited by this parameter")]
     uint32 max_sequence_length = 2;
     // @attr [PropertyOrderAttribute(3)]
     // @attr [DisplayName("Prefix")]
