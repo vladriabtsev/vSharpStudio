@@ -150,7 +150,7 @@ namespace vSharpStudio.vm.ViewModels
             IConfig? cfg = null;
             string? propertyCodeGuid = null;
             GroupListProperties? groupListProperties = null;
-            if (this.ParentCatalog!= null)
+            if (this.ParentCatalog != null)
             {
                 cfg = this.ParentCatalog.Cfg;
                 propertyCodeGuid = this.ParentCatalog.PropertyCodeGuid;
@@ -237,17 +237,26 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumCodeType.Number:
                 case EnumCodeType.AutoNumber:
                     sb.Append("if (code < 1 || code > ");
-                    sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    var rmax = new string('9', (int)this.MaxSequenceLength);
+                    sb.Append(rmax);
                     sb.AppendLine(")");
-                    sb.AppendLine("\tthrow new BusinessException(EnumExceptionType.CatalogCodeOutsideAllowedRange);");
+                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, \"Expected range from 1 to ");
+                    sb.Append(rmax);
+                    sb.AppendLine("\");");
                     break;
                 case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
                     sb.AppendLine("\tvar i = ulong.Parse(code);");
                     sb.Append("if (i < 1 || i > ");
-                    sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    var rmax2 = new string('9', (int)this.MaxSequenceLength);
+                    sb.Append(rmax2);
                     sb.AppendLine(")");
-                    sb.AppendLine("\tthrow new BusinessException(EnumExceptionType.CatalogCodeOutsideAllowedRange);");
+                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, \"Expected range from '");
+                    var rmin2 = new string('0', (int)this.MaxSequenceLength - 1) + "1";
+                    sb.Append(rmin2);
+                    sb.Append("' to '");
+                    sb.Append(rmax2);
+                    sb.AppendLine("'\");");
                     break;
                 default:
                     throw new NotImplementedException();
