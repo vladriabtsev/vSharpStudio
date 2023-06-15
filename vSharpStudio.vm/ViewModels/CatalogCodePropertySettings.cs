@@ -231,6 +231,9 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetCodeCheckProc()
         {
+            Debug.Assert(this.Parent!=null);
+            var cfg = this.Parent.Cfg;
+            var pname = cfg.Model.PropertyCodeName;
             var sb = new StringBuilder();
             switch (this.SequenceType)
             {
@@ -240,7 +243,9 @@ namespace vSharpStudio.vm.ViewModels
                     var rmax = new string('9', (int)this.MaxSequenceLength);
                     sb.Append(rmax);
                     sb.AppendLine(")");
-                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, \"Expected range from 1 to ");
+                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
+                    sb.Append(pname);
+                    sb.Append("'={code}. It is outside expected range from 1 to ");
                     sb.Append(rmax);
                     sb.AppendLine("\");");
                     break;
@@ -251,7 +256,9 @@ namespace vSharpStudio.vm.ViewModels
                     var rmax2 = new string('9', (int)this.MaxSequenceLength);
                     sb.Append(rmax2);
                     sb.AppendLine(")");
-                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, \"Expected range from '");
+                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
+                    sb.Append(pname);
+                    sb.Append("'={code}. It is outside expected range from ");
                     var rmin2 = new string('0', (int)this.MaxSequenceLength - 1) + "1";
                     sb.Append(rmin2);
                     sb.Append("' to '");

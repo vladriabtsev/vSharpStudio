@@ -676,6 +676,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             var res = new Property(parent, guid, this.RecordVersionFieldName, true);
             res.DataType = (DataType)this.GetDataTypeFromMaxValue(res, int.MaxValue, false);
+            //res.IsRecordVersion = true;
             res.IsHidden = true;
             res.IsNullable = false;
             res.Position = 7;

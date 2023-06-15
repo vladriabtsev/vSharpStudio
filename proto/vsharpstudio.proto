@@ -2326,8 +2326,11 @@ message proto_catalog_code_property_settings {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_enum_use_type {
+    // @attr [Description("Inherited")]
     Default = 0;
+    // @attr [Description("Yes")]
     Yes = 11;
+    // @attr [Description("No")]
     No = 21;
 }
 // @interface ICanAddNode
@@ -2918,7 +2921,9 @@ message proto_group_list_forms {
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
 enum proto_form_orientation {
+    // @attr [Description("Vertical")]
     Vertical = 0;
+    // @attr [Description("Horizontal")]
     Horizontal = 11;
 }
 // @attr [TypeConverter(typeof(EnumDescriptionTypeConverter))]
