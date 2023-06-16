@@ -227,6 +227,7 @@ namespace vSharpStudio.vm.ViewModels
             {
                 case EnumCodeType.Number:
                 case EnumCodeType.AutoNumber:
+                    sb.AppendLine("if (isMinAllowedInsert && code < 1) return true;");
                     sb.Append("if (code < 1 || code > ");
                     var rmax = new string('9', (int)this.MaxSequenceLength);
                     sb.Append(rmax);
@@ -238,6 +239,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
                     sb.AppendLine("\tvar i = ulong.Parse(code);");
+                    sb.AppendLine("if (isMinAllowedInsert && i < 1) return true;");
                     sb.Append("if (i < 1 || i > ");
                     var rmax2 = new string('9', (int)this.MaxSequenceLength);
                     sb.Append(rmax2);
@@ -252,6 +254,7 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new NotImplementedException();
             }
+            sb.Append("return true;");
             return sb.ToString();
         }
         public string GetCodeStartStr()
