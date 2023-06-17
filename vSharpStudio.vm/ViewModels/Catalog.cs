@@ -458,7 +458,42 @@ namespace vSharpStudio.vm.ViewModels
             this.Folder.GetNormalProperties(res);
             return res;
         }
-        public void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
+        public string GetDebuggerDisplay(bool isOptimistic)
+        {
+            var sb = new StringBuilder();
+            sb.Append("CAT ");
+            sb.Append(this.Name);
+            sb.Append(", ");
+            sb.Append(this.ParentGroupListCatalogs.ParentModel.PKeyName);
+            sb.Append(":{");
+            sb.Append(this.ParentGroupListCatalogs.ParentModel.PKeyName);
+            sb.Append(",nq}");
+            if (this.UseTree)
+            {
+                if (this.UseSeparateTreeForFolders)
+                {
+                    sb.Append(" Ref");
+                    sb.Append(this.Folder.CompositeName);
+                    sb.Append(":{Ref");
+                    sb.Append(this.Folder.CompositeName);
+                    sb.Append(",nq}");
+                }
+                else
+                {
+                    sb.Append(" RefTreeParent:{RefTreeParent,nq}");
+                    //prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
+                    //res.Add(prp);
+                }
+            }
+            if (isOptimistic)
+            {
+                sb.Append(" RecVer:{");
+                sb.Append(this.ParentGroupListCatalogs.ParentModel.RecordVersionFieldName);
+                sb.Append(",nq}");
+            }
+            return sb.ToString();
+        }
+        public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             var model = this.ParentGroupListCatalogs.ParentModel;
             var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
@@ -478,7 +513,7 @@ namespace vSharpStudio.vm.ViewModels
                     res.Add(prp);
                 }
             }
-            if (isSupportVersion)
+            if (isOptimistic)
             {
                 prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
                 res.Add(prp);
@@ -507,16 +542,10 @@ namespace vSharpStudio.vm.ViewModels
                         break;
                     case EnumCodeType.Text:
                         prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength);
-                        break;
-                    case EnumCodeType.AutoNumber:
-                        prp = this.Cfg.Model.GetPropertyCatalogCodeInt(this.GroupProperties, this.PropertyCodeGuid,
-                            this.CodePropertySettings.MaxSequenceLength);
-                        break;
-                    case EnumCodeType.AutoText:
-                        prp = this.Cfg.Model.GetPropertyCatalogCode(this.GroupProperties, this.PropertyCodeGuid,
                             this.CodePropertySettings.MaxSequenceLength + (uint)this.CodePropertySettings.Prefix.Length);
                         break;
+                    default:
+                        throw new NotImplementedException();
                 }
                 lst.Add(prp);
             }
@@ -542,11 +571,11 @@ namespace vSharpStudio.vm.ViewModels
             }
             return prp;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
             if (!isExcludeSpecial)
-                this.GetSpecialProperties(res, isSupportVersion);
+                this.GetSpecialProperties(res, isOptimistic);
             //var model = this.ParentGroupListCatalogs.ParentModel;
             this.GetCodeProperty(res);
             this.GetNameProperty(res);
@@ -718,11 +747,11 @@ namespace vSharpStudio.vm.ViewModels
                 return false;
             return this.ParentGroupListCatalogs.GetIsGridSortableCustom();
         }
-        //public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false)
+        //public IReadOnlyList<IProperty> GetIncludedFolderProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false)
         //{
         //    var res = new List<IProperty>();
         //    if (!isExcludeSpecial)
-        //        this.Folder.GetSpecialProperties(res, isSupportVersion);
+        //        this.Folder.GetSpecialProperties(res, isOptimistic);
         //    this.GetCodeProperty(res);
         //    this.GetNameProperty(res);
         //    this.GetDescriptionProperty(res);

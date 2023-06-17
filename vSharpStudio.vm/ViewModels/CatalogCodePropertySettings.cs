@@ -32,12 +32,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     case EnumCodeType.Number:
                         return $"Number{this.Prefix}{this.MaxSequenceLength}-{unique}";
-                    case EnumCodeType.AutoNumber:
-                        return $"AutoNumber{this.Prefix}{this.MaxSequenceLength}-{unique}";
                     case EnumCodeType.Text:
                         return $"Text{this.Prefix}{this.MaxSequenceLength}-{unique}";
-                    case EnumCodeType.AutoText:
-                        return $"AutoText{this.Prefix}{this.MaxSequenceLength}-{unique}";
                     default:
                         throw new NotImplementedException();
                 }
@@ -76,7 +72,7 @@ namespace vSharpStudio.vm.ViewModels
         public ICatalog ParentCatalogI { get { Debug.Assert(this.Parent != null); return (ICatalog)this.Parent; } }
         partial void OnCreated()
         {
-            this.SequenceType = common.EnumCodeType.AutoText;
+            this.SequenceType = common.EnumCodeType.Text;
             this.MaxSequenceLength = 5;
             this.Prefix = "";
             this.UniqueScope = common.EnumCatalogCodeUniqueScope.code_unique_in_whole_catalog;
@@ -174,14 +170,6 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumCodeType.Text:
                     prp = cfg.Model.GetPropertyCatalogCode(groupListProperties, propertyCodeGuid,
-                        this.MaxSequenceLength);
-                    break;
-                case EnumCodeType.AutoNumber:
-                    prp = cfg.Model.GetPropertyCatalogCodeInt(groupListProperties, propertyCodeGuid,
-                        this.MaxSequenceLength);
-                    break;
-                case EnumCodeType.AutoText:
-                    prp = cfg.Model.GetPropertyCatalogCode(groupListProperties, propertyCodeGuid,
                         this.MaxSequenceLength + (uint)this.Prefix.Length);
                     break;
                 default:
@@ -202,15 +190,20 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                case EnumCodeType.AutoNumber:
                     sb.AppendLine("\tres = code.Value + 1;");
                     sb.Append("\tif (res > ");
                     sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
                     sb.AppendLine(")");
                     sb.AppendLine("\t\tres = 1;");
                     break;
-                case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
+                    var pref = this.Prefix.Trim();
+                    if (!string.IsNullOrWhiteSpace(this.Prefix))
+                    {
+                        sb.Append("\tcode = code.Substring(");
+                        sb.Append(pref.Length);
+                        sb.AppendLine(");");
+                    }
                     sb.AppendLine("\tvar i = ulong.Parse(code) + 1;");
                     sb.Append("\tif (i > ");
                     sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
@@ -219,7 +212,9 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append(this.GetCodeStartStr());
                     sb.AppendLine(";");
                     sb.AppendLine("\telse");
-                    sb.Append("\t\tres = i.ToString(\"D");
+                    sb.Append("\t\tres = \"");
+                    sb.Append(pref);
+                    sb.Append("\" + i.ToString(\"D");
                     sb.Append(this.MaxSequenceLength);
                     sb.AppendLine("\");");
                     break;
@@ -231,14 +226,13 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetCodeCheckProc()
         {
-            Debug.Assert(this.Parent!=null);
+            Debug.Assert(this.Parent != null);
             var cfg = this.Parent.Cfg;
             var pname = cfg.Model.PropertyCodeName;
             var sb = new StringBuilder();
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                case EnumCodeType.AutoNumber:
                     sb.AppendLine("if (isMinAllowedInsert && code < 1) return true;");
                     sb.Append("if (code < 1 || code > ");
                     var rmax = new string('9', (int)this.MaxSequenceLength);
@@ -250,9 +244,39 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append(rmax);
                     sb.AppendLine("\");");
                     break;
-                case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
-                    sb.AppendLine("var i = ulong.Parse(code);");
+                    sb.AppendLine("if (isMinAllowedInsert && code.Length == 0) return true;");
+                    var pref = this.Prefix.Trim();
+                    if (pref.Length > 0)
+                    {
+                        sb.Append("if (!code.StartsWith(\"");
+                        sb.Append(pref);
+                        sb.AppendLine("\"))");
+                        sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
+                        sb.Append(pname);
+                        sb.Append("'=\\\"{code}\\\". There is no expected prefix \\\"");
+                        sb.Append(pref);
+                        sb.AppendLine("\\\"\");");
+                        sb.Append("code = code.Substring(");
+                        sb.Append(pref.Length);
+                        sb.AppendLine(");");
+                    }
+                    sb.Append("if (code.Length != ");
+                    sb.Append(this.MaxSequenceLength);
+                    sb.AppendLine(")");
+                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
+                    sb.Append(pname);
+                    sb.Append("'=\\\"");
+                    sb.Append(pref);
+                    sb.Append("{code}\\\". Length of sequence not equal ");
+                    sb.Append(this.MaxSequenceLength);
+                    sb.AppendLine("\");");
+                    sb.AppendLine("if (!ulong.TryParse(code, out var i))");
+                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
+                    sb.Append(pname);
+                    sb.Append("'=\\\"");
+                    sb.Append(pref);
+                    sb.AppendLine("{code}\\\". Can't parse sequence \\\"{code}\\\" to number\");");
                     sb.AppendLine("if (isMinAllowedInsert && i < 1) return true;");
                     sb.Append("if (i < 1 || i > ");
                     var rmax2 = new string('9', (int)this.MaxSequenceLength);
@@ -260,7 +284,7 @@ namespace vSharpStudio.vm.ViewModels
                     sb.AppendLine(")");
                     sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
                     sb.Append(pname);
-                    sb.Append("'={code}. It is outside expected range from ");
+                    sb.Append("'=\\\"{code}\\\". It is outside expected range from ");
                     var rmin2 = new string('0', (int)this.MaxSequenceLength - 1) + "1";
                     sb.Append(rmin2);
                     sb.Append("' to '");
@@ -278,12 +302,11 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                case EnumCodeType.AutoNumber:
                     return "1";
-                case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
+                    var pref = this.Prefix.Trim();
                     string fmt = "D" + this.MaxSequenceLength;
-                    return $"\"{1.ToString(fmt)}\"";
+                    return $"\"{pref}{1.ToString(fmt)}\"";
                 default:
                     throw new NotImplementedException();
             }
@@ -293,11 +316,10 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                case EnumCodeType.AutoNumber:
                     return new string('9', (int)this.MaxSequenceLength);
-                case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
-                    return $"\"{new string('9', (int)this.MaxSequenceLength)}\"";
+                    var pref = this.Prefix.Trim();
+                    return $"\"{pref}{new string('9', (int)this.MaxSequenceLength)}\"";
                 default:
                     throw new NotImplementedException();
             }

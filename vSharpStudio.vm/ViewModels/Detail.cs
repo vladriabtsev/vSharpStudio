@@ -315,11 +315,11 @@ namespace vSharpStudio.vm.ViewModels
             };
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
             if (!isExcludeSpecial)
-                this.GetSpecialProperties(res, isSupportVersion);
+                this.GetSpecialProperties(res, isOptimistic);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -329,7 +329,31 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
+        public string GetDebuggerDisplay(bool isOptimistic)
+        {
+            var sb = new StringBuilder();
+            sb.Append(this.Name);
+            sb.Append(", ");
+            sb.Append(this.Cfg.Model.PKeyName);
+            sb.Append(":{");
+            sb.Append(this.Cfg.Model.PKeyName);
+            sb.Append(",nq}");
+            if (isOptimistic)
+            {
+                sb.Append(" RecVer:{");
+                sb.Append(this.Cfg.Model.RecordVersionFieldName);
+                sb.Append(",nq}");
+            }
+            sb.Append(" Ref");
+            Debug.Assert(this.ParentGroupListDetails.Parent != null);
+            var compName = ((ICompositeName)this.ParentGroupListDetails.Parent).CompositeName;
+            sb.Append(compName);
+            sb.Append(":{Ref");
+            sb.Append(compName);
+            sb.Append(",nq}");
+            return sb.ToString();
+        }
+        public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
             string parentTable = "";
             if (this.ParentGroupListDetails.Parent is Detail dt)
@@ -354,7 +378,7 @@ namespace vSharpStudio.vm.ViewModels
             res.Add(prp);
             prp = this.Cfg.Model.GetPropertyRefParent(this.GroupProperties, this.PropertyRefParentGuid, "Ref" + parentTable);
             res.Add(prp);
-            if (isSupportVersion)
+            if (isOptimistic)
             {
                 prp = this.Cfg.Model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
                 res.Add(prp);

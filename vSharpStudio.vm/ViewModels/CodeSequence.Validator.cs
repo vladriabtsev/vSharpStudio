@@ -39,7 +39,7 @@ namespace vSharpStudio.vm.ViewModels
                     return;
                 if (string.IsNullOrWhiteSpace(p.Prefix))
                     p.Prefix = "";
-                if (p.Prefix.Length > 0 && (p.SequenceType == common.EnumCodeType.Number || p.SequenceType == common.EnumCodeType.AutoNumber))
+                if (p.Prefix.Length > 0 && (p.SequenceType == common.EnumCodeType.Number))
                 {
                     var vf = new ValidationFailure(nameof(p.Prefix),
                         $"Prefix for numbers is not used. Expected to be empty");

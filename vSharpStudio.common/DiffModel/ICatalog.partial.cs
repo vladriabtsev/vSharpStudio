@@ -10,9 +10,9 @@ namespace vSharpStudio.common
     public partial interface ICatalog : ITreeConfigNodeSortable, IGetNodeSetting, ISortingValue, IDbTable
     {
         IGroupListCatalogs ParentGroupListCatalogsI { get; }
-        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isSupportVersion, bool isExcludeSpecial = false);
+        IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjDbGen, bool isOptimistic, bool isExcludeSpecial = false);
         IReadOnlyList<IDetail> GetIncludedDetails(string guidAppPrjDbGen);
-        void GetSpecialProperties(List<IProperty> res, bool isSupportVersion);
+        void GetSpecialProperties(List<IProperty> res, bool isOptimistic);
         ViewFormData GetFormViewData(FormType formType, string guidAppPrjGen);
         IForm GetForm(FormType ftype, string guidAppPrjGen);
         IReadOnlyList<IForm> GetListForms(string guidAppPrjGen);
@@ -30,5 +30,6 @@ namespace vSharpStudio.common
         IReadOnlyList<string> GetRolesByAccess(EnumCatalogDetailAccess access);
         IReadOnlyList<string> GetRolesByAccess(EnumPrintAccess access);
         string FullName { get; } // name with config name
+        string GetDebuggerDisplay(bool isOptimistic);
     }
 }

@@ -864,23 +864,23 @@ namespace vSharpStudio.vm.ViewModels
             }
             return lst;
         }
-        public void VisitTabs(string appGenGuig, bool isSupportVersion, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action)
+        public void VisitTabs(string appGenGuig, bool isOptimistic, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action)
         {
             if (p is IDetail dt)
             {
-                this.VisitTabs(appGenGuig, isSupportVersion, dt, action, typeOp);
+                this.VisitTabs(appGenGuig, isOptimistic, dt, action, typeOp);
             }
             else if (p is ICatalog c)
             {
-                this.VisitTabs(appGenGuig, isSupportVersion, c, action, typeOp);
+                this.VisitTabs(appGenGuig, isOptimistic, c, action, typeOp);
             }
             else if (p is ICatalogFolder cf)
             {
-                this.VisitTabs(appGenGuig, isSupportVersion, cf, action, typeOp);
+                this.VisitTabs(appGenGuig, isOptimistic, cf, action, typeOp);
             }
             else if (p is IDocument d)
             {
-                this.VisitTabs(appGenGuig, isSupportVersion, d, action, typeOp);
+                this.VisitTabs(appGenGuig, isOptimistic, d, action, typeOp);
             }
             else if (p is IGroupListConstants)
             {
@@ -890,13 +890,13 @@ namespace vSharpStudio.vm.ViewModels
                 throw new ArgumentException();
             }
         }
-        private void TabsRecursive(string appGenGuig, bool isSupportVersion, IReadOnlyList<IDetail> lstt, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst)
+        private void TabsRecursive(string appGenGuig, bool isOptimistic, IReadOnlyList<IDetail> lstt, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo> lst)
         {
             foreach (var t in lstt)
             {
                 Debug.Assert(t.Parent != null);
                 Debug.Assert(t.Parent.Parent != null);
-                var ti = new TableInfo(t.Name, t.CompositeName, (t.Parent.Parent as ICompositeName)!.CompositeName, t, t.GetIncludedProperties(appGenGuig, isSupportVersion));
+                var ti = new TableInfo(t.Name, t.CompositeName, (t.Parent.Parent as ICompositeName)!.CompositeName, t, t.GetIncludedProperties(appGenGuig, isOptimistic));
                 if (typeOp == EnumVisitType.Load) // from current to top
                 {
                     lst.Add(ti);
@@ -908,7 +908,7 @@ namespace vSharpStudio.vm.ViewModels
                     if (lstReverse.Count > 0)
                         action(lstReverse);
                     var lstt2 = t.GetIncludedDetails(appGenGuig);
-                    TabsRecursive(appGenGuig, isSupportVersion, lstt2, action, typeOp, lst);
+                    TabsRecursive(appGenGuig, isOptimistic, lstt2, action, typeOp, lst);
                     lst.Remove(ti);
                 }
                 else if (typeOp == EnumVisitType.Remove)
@@ -920,7 +920,7 @@ namespace vSharpStudio.vm.ViewModels
                         lstReverse.Add(lst[i]);
                     }
                     var lstt2 = t.GetIncludedDetails(appGenGuig);
-                    TabsRecursive(appGenGuig, isSupportVersion, lstt2, action, typeOp, lst);
+                    TabsRecursive(appGenGuig, isOptimistic, lstt2, action, typeOp, lst);
                     if (lstReverse.Count > 0)
                         action(lstReverse);
                     lst.Remove(ti);
@@ -931,41 +931,41 @@ namespace vSharpStudio.vm.ViewModels
                 }
             }
         }
-        private void VisitTabs(string appGenGuig, bool isSupportVersion, ICatalog p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
+        private void VisitTabs(string appGenGuig, bool isOptimistic, ICatalog p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
         {
             if (lst == null)
                 lst = new List<TableInfo>();
             var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
-            TabsRecursive(appGenGuig, isSupportVersion, lstt, action, typeOp, lst);
+            TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
         }
-        private void VisitTabs(string appGenGuig, bool isSupportVersion, ICatalogFolder p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
+        private void VisitTabs(string appGenGuig, bool isOptimistic, ICatalogFolder p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
         {
             if (lst == null)
                 lst = new List<TableInfo>();
             var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
-            TabsRecursive(appGenGuig, isSupportVersion, lstt, action, typeOp, lst);
+            TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
         }
-        private void VisitTabs(string appGenGuig, bool isSupportVersion, IDocument p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
+        private void VisitTabs(string appGenGuig, bool isOptimistic, IDocument p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
         {
             if (lst == null)
                 lst = new List<TableInfo>();
             var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
-            TabsRecursive(appGenGuig, isSupportVersion, lstt, action, typeOp, lst);
+            TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
         }
-        private void VisitTabs(string appGenGuig, bool isSupportVersion, IDetail p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
+        private void VisitTabs(string appGenGuig, bool isOptimistic, IDetail p, Action<List<TableInfo>> action, EnumVisitType typeOp, List<TableInfo>? lst = null)
         {
             if (lst == null)
                 lst = new List<TableInfo>();
             var lstt = p.GetIncludedDetails(appGenGuig);
             if (lstt.Count == 0)
                 return;
-            TabsRecursive(appGenGuig, isSupportVersion, lstt, action, typeOp, lst);
+            TabsRecursive(appGenGuig, isOptimistic, lstt, action, typeOp, lst);
         }
         #endregion Utils
 

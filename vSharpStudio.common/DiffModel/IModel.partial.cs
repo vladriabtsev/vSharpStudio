@@ -69,7 +69,7 @@ namespace vSharpStudio.common
         IReadOnlyList<ICatalog> GetListCatalogs(string guidAppPrjGen);
         //IReadOnlyList<IDetail> GetListTabs(ITreeConfigNode node, string guidAppPrjGen);
         IReadOnlyList<IDocument> GetListDocuments(string guidAppPrjGen);
-        void VisitTabs(string appGenGuig, bool isSupportVersion, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action);
+        void VisitTabs(string appGenGuig, bool isOptimistic, EnumVisitType typeOp, ITreeConfigNode p, Action<IReadOnlyList<TableInfo>> action);
         //EnumConstantAccess GetRoleConstantAccess(string roleGuid);
         //EnumCatalogDetailAccess GetRoleCatalogAccess(string roleGuid);
         //EnumDocumentAccess GetRoleDocumentAccess(string roleGuid);

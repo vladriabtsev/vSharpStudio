@@ -2059,8 +2059,6 @@ https://github.com/bchavez/Bogus
 | ---- | ------ | ----------- |
 | Number | 0 | @attr [Description(&#34;Number&#34;)] |
 | Text | 1 | @attr [Description(&#34;Text&#34;)] |
-| AutoNumber | 2 | @attr [Description(&#34;Auto Number&#34;)] |
-| AutoText | 3 | @attr [Description(&#34;Auto Text&#34;)] |
 
 
 
@@ -2558,9 +2556,9 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| Default | 0 |  |
-| Yes | 11 |  |
-| No | 21 |  |
+| Default | 0 | @attr [Description(&#34;Inherited&#34;)] |
+| Yes | 11 | @attr [Description(&#34;Yes&#34;)] |
+| No | 21 | @attr [Description(&#34;No&#34;)] |
 
 
 
@@ -2601,8 +2599,8 @@ with history |
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| Vertical | 0 |  |
-| Horizontal | 11 |  |
+| Vertical | 0 | @attr [Description(&#34;Vertical&#34;)] |
+| Horizontal | 11 | @attr [Description(&#34;Horizontal&#34;)] |
 
 
 

@@ -87,10 +87,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		Number = 0,
 		[Description("Text")]
 		Text = 1,
-		[Description("Auto Number")]
-		AutoNumber = 2,
-		[Description("Auto Text")]
-		AutoText = 3,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumCommerceDataType // ModelInterfaces.tt Line: 17
@@ -497,8 +493,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum EnumUseType // ModelInterfaces.tt Line: 17
 	{
+		[Description("Inherited")]
 		Default = 0,
+		[Description("Yes")]
 		Yes = 11,
+		[Description("No")]
 		No = 21,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
@@ -526,7 +525,9 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
 	public enum FormOrientation // ModelInterfaces.tt Line: 17
 	{
+		[Description("Vertical")]
 		Vertical = 0,
+		[Description("Horizontal")]
 		Horizontal = 11,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]

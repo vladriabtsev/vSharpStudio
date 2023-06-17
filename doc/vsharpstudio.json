@@ -254,16 +254,6 @@
               "name": "Text",
               "number": "1",
               "description": "@attr [Description(\"Text\")]"
-            },
-            {
-              "name": "AutoNumber",
-              "number": "2",
-              "description": "@attr [Description(\"Auto Number\")]"
-            },
-            {
-              "name": "AutoText",
-              "number": "3",
-              "description": "@attr [Description(\"Auto Text\")]"
             }
           ]
         },
@@ -1621,17 +1611,17 @@
             {
               "name": "Default",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"Inherited\")]"
             },
             {
               "name": "Yes",
               "number": "11",
-              "description": ""
+              "description": "@attr [Description(\"Yes\")]"
             },
             {
               "name": "No",
               "number": "21",
-              "description": ""
+              "description": "@attr [Description(\"No\")]"
             }
           ]
         },
@@ -1710,12 +1700,12 @@
             {
               "name": "Vertical",
               "number": "0",
-              "description": ""
+              "description": "@attr [Description(\"Vertical\")]"
             },
             {
               "name": "Horizontal",
               "number": "11",
-              "description": ""
+              "description": "@attr [Description(\"Horizontal\")]"
             }
           ]
         },

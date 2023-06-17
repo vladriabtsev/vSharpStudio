@@ -47,12 +47,8 @@ namespace vSharpStudio.vm.ViewModels
                 {
                     case EnumCodeType.Number:
                         return $"Number{this.Prefix}{this.MaxSequenceLength}-{unique}";
-                    case EnumCodeType.AutoNumber:
-                        return $"AutoNumber{this.Prefix}{this.MaxSequenceLength}-{unique}";
                     case EnumCodeType.Text:
                         return $"Text{this.Prefix}{this.MaxSequenceLength}-{unique}";
-                    case EnumCodeType.AutoText:
-                        return $"AutoText{this.Prefix}{this.MaxSequenceLength}-{unique}";
                     default:
                         throw new NotImplementedException();
                 }
@@ -159,14 +155,6 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumCodeType.Text:
                     prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyDocNumberGuid,
-                        this.MaxSequenceLength);
-                    break;
-                case EnumCodeType.AutoNumber:
-                    prp = cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyDocNumberGuid,
-                        this.MaxSequenceLength);
-                    break;
-                case EnumCodeType.AutoText:
-                    prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyDocNumberGuid,
                         this.MaxSequenceLength + (uint)this.Prefix.Length);
                     break;
                 default:
@@ -187,10 +175,8 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                case EnumCodeType.AutoNumber:
                     sb.AppendLine("\tvar i = code + 1;");
                     break;
-                case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
                     sb.AppendLine("\tvar i = ulong.Parse(code) + 1;");
                     break;
@@ -205,10 +191,8 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                case EnumCodeType.AutoNumber:
                     sb.AppendLine("\tcode = i;");
                     break;
-                case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
                     sb.Append("\tcode = i.ToString(\"D");
                     sb.Append(this.MaxSequenceLength);
@@ -226,7 +210,6 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                case EnumCodeType.AutoNumber:
                     sb.AppendLine("if (isMinAllowedInsert && code < 1) return true;");
                     sb.Append("if (code < 1 || code > ");
                     var rmax = new string('9', (int)this.MaxSequenceLength);
@@ -236,9 +219,8 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append(rmax);
                     sb.AppendLine("\");");
                     break;
-                case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
-                    sb.AppendLine("\tvar i = ulong.Parse(code);");
+                    sb.AppendLine("var i = code != string.Empty ? ulong.Parse(code) : 0u;");
                     sb.AppendLine("if (isMinAllowedInsert && i < 1) return true;");
                     sb.Append("if (i < 1 || i > ");
                     var rmax2 = new string('9', (int)this.MaxSequenceLength);
@@ -262,9 +244,7 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                case EnumCodeType.AutoNumber:
                     return "1";
-                case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
                     string fmt = "D" + this.MaxSequenceLength;
                     return $"\"{1.ToString(fmt)}\"";
@@ -277,9 +257,7 @@ namespace vSharpStudio.vm.ViewModels
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                case EnumCodeType.AutoNumber:
                     return new string('9', (int)this.MaxSequenceLength);
-                case EnumCodeType.AutoText:
                 case EnumCodeType.Text:
                     return $"\"{new string('9', (int)this.MaxSequenceLength)}\"";
                 default:

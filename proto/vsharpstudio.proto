@@ -586,10 +586,6 @@ enum proto_enum_code_type {
     Number = 0;
     // @attr [Description("Text")]
     Text = 1;
-    // @attr [Description("Auto Number")]
-    AutoNumber = 2;
-    // @attr [Description("Auto Text")]
-    AutoText = 3;
 }
 // Configuration model
 // @attr [CategoryOrder("Db Names Generation", 5)]

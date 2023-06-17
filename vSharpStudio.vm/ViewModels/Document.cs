@@ -52,7 +52,7 @@ namespace vSharpStudio.vm.ViewModels
             this.IndexDayDocNumberGuid = System.Guid.NewGuid().ToString();
             this.IndexNotUniqueDocNumberGuid = System.Guid.NewGuid().ToString();
 
-            this.DocNumberPropertySettings.SequenceType = EnumCodeType.AutoText;
+            this.DocNumberPropertySettings.SequenceType = EnumCodeType.Text;
             this.DocNumberPropertySettings.MaxSequenceLength = 9;
             this.DocNumberPropertySettings.Prefix = "";
             this.DocNumberPropertySettings.SequenceGuid = "";
@@ -282,7 +282,7 @@ namespace vSharpStudio.vm.ViewModels
         /// </summary>
         /// <param name="guidAppPrjGen"></param>
         /// <returns></returns>
-        public IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false)
+        public IReadOnlyList<IProperty> GetIncludedPropertiesWithShared(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
             var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
@@ -290,7 +290,7 @@ namespace vSharpStudio.vm.ViewModels
             //var prp = cfg.Model.GetPropertyId(this.PropertyIdGuid);
             //res.Add(prp);
             if (!isExcludeSpecial)
-                GetSpecialProperties(res, isSupportVersion);
+                GetSpecialProperties(res, isOptimistic);
             foreach (var t in grd.GroupSharedProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -313,12 +313,12 @@ namespace vSharpStudio.vm.ViewModels
         /// Shared included first
         /// </summary>
         /// <returns></returns>
-        public IReadOnlyList<IProperty> GetPropertiesWithShared(bool isSupportVersion, bool isExcludeSpecial = false)
+        public IReadOnlyList<IProperty> GetPropertiesWithShared(bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
             var grd = this.ParentGroupListDocuments.ParentGroupDocuments;
             if (!isExcludeSpecial)
-                GetSpecialProperties(res, isSupportVersion);
+                GetSpecialProperties(res, isOptimistic);
             foreach (var t in grd.GroupSharedProperties.ListProperties)
             {
                 res.Add(t);
@@ -329,11 +329,11 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isSupportVersion, bool isExcludeSpecial = false)
+        public IReadOnlyList<IProperty> GetIncludedProperties(string guidAppPrjGen, bool isOptimistic, bool isExcludeSpecial = false)
         {
             var res = new List<IProperty>();
             if (!isExcludeSpecial)
-                GetSpecialProperties(res, isSupportVersion);
+                GetSpecialProperties(res, isOptimistic);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 if (t.IsIncluded(guidAppPrjGen))
@@ -343,23 +343,47 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        public IReadOnlyList<IProperty> GetAllProperties(bool isSupportVersion)
+        public IReadOnlyList<IProperty> GetAllProperties(bool isOptimistic)
         {
             var res = new List<IProperty>();
-            GetSpecialProperties(res, isSupportVersion);
+            GetSpecialProperties(res, isOptimistic);
             foreach (var t in this.GroupProperties.ListProperties)
             {
                 res.Add(t);
             }
             return res;
         }
-        public void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
+        public string GetDebuggerDisplay(bool isOptimistic)
+        {
+            var sb = new StringBuilder();
+            sb.Append("DOC ");
+            sb.Append(this.Name);
+            sb.Append(", ");
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PKeyName);
+            sb.Append(":{");
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PKeyName);
+            sb.Append(",nq}");
+            if (isOptimistic)
+            {
+                sb.Append(" RecVer:{");
+                sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.RecordVersionFieldName);
+                sb.Append(",nq}");
+            }
+            sb.Append(" Number:{");
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PropertyDocCodeName);
+            sb.Append(",nq}");
+            sb.Append(" Date:{");
+            sb.Append(this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel.PropertyDocDateName);
+            sb.Append(",nq}");
+            return sb.ToString();
+        }
+        public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         {
 
             var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
             var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
             res.Add(prp);
-            if (isSupportVersion)
+            if (isOptimistic)
             {
                 prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
                 res.Add(prp);
@@ -373,22 +397,16 @@ namespace vSharpStudio.vm.ViewModels
             {
                 switch (this.DocNumberPropertySettings.SequenceType)
                 {
-                    case EnumCodeType.AutoNumber:
-                        prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.PropertyDocNumberGuid,
-                            this.DocNumberPropertySettings.MaxSequenceLength);
-                        break;
-                    case EnumCodeType.AutoText:
-                        prp = model.GetPropertyDocNumberString(this.GroupProperties, this.PropertyDocNumberGuid,
-                            this.DocNumberPropertySettings.MaxSequenceLength + (uint)this.DocNumberPropertySettings.Prefix.Length);
-                        break;
                     case EnumCodeType.Number:
                         prp = model.GetPropertyDocNumberInt(this.GroupProperties, this.PropertyDocNumberGuid,
                             this.DocNumberPropertySettings.MaxSequenceLength);
                         break;
                     case EnumCodeType.Text:
                         prp = model.GetPropertyDocNumberString(this.GroupProperties, this.PropertyDocNumberGuid,
-                            this.DocNumberPropertySettings.MaxSequenceLength);
+                            this.DocNumberPropertySettings.MaxSequenceLength + (uint)this.DocNumberPropertySettings.Prefix.Length);
                         break;
+                    default:
+                        throw new NotImplementedException();
                 }
                 res.Add(prp);
                 switch (this.DocNumberPropertySettings.ScopeOfUnique)
@@ -452,12 +470,12 @@ namespace vSharpStudio.vm.ViewModels
             }
             return res;
         }
-        //public void GetSpecialProperties(List<IProperty> res, bool isSupportVersion)
+        //public void GetSpecialProperties(List<IProperty> res, bool isOptimistic)
         //{
         //    var model = this.ParentGroupListDocuments.ParentGroupDocuments.ParentModel;
         //    var prp = model.GetPropertyId(this.GroupProperties, this.PropertyIdGuid);
         //    res.Add(prp);
-        //    if (isSupportVersion)
+        //    if (isOptimistic)
         //    {
         //        prp = model.GetPropertyVersion(this.GroupProperties, this.PropertyVersionGuid);
         //        res.Add(prp);
@@ -474,7 +492,7 @@ namespace vSharpStudio.vm.ViewModels
         //    //    prp = model.GetPropertyIsFolder(this.GroupProperties, this.PropertyIsFolderGuid);
         //    //    res.Add(prp);
         //    //}
-        //    ////if (isSupportVersion)
+        //    ////if (isOptimistic)
         //    ////{
         //    ////    prp = model.GetPropertyVersion(this.GroupProperties, this.Folder.PropertyVersionGuid);
         //    ////    res.Add(prp);
