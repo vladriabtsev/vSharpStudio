@@ -192,7 +192,7 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumCodeType.Number:
                     sb.AppendLine("\tres = code.Value + 1;");
                     sb.Append("\tif (res > ");
-                    sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    sb.Append(System.Numerics.BigInteger.Parse(new string('9', (int)this.MaxSequenceLength)));
                     sb.AppendLine(")");
                     sb.AppendLine("\t\tres = 1;");
                     break;
@@ -204,9 +204,9 @@ namespace vSharpStudio.vm.ViewModels
                         sb.Append(pref.Length);
                         sb.AppendLine(");");
                     }
-                    sb.AppendLine("\tvar i = ulong.Parse(code) + 1;");
+                    sb.AppendLine("\tvar i = System.Numerics.BigInteger.Parse(code) + 1;");
                     sb.Append("\tif (i > ");
-                    sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    sb.Append(System.Numerics.BigInteger.Parse(new string('9', (int)this.MaxSequenceLength)));
                     sb.AppendLine(")");
                     sb.Append("\t\tres = ");
                     sb.Append(this.GetCodeStartStr());
@@ -271,7 +271,7 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append("{code}\\\". Length of sequence not equal ");
                     sb.Append(this.MaxSequenceLength);
                     sb.AppendLine("\");");
-                    sb.AppendLine("if (!ulong.TryParse(code, out var i))");
+                    sb.AppendLine("if (!System.Numerics.BigInteger.TryParse(code, out var i))");
                     sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
                     sb.Append(pname);
                     sb.Append("'=\\\"");
@@ -284,7 +284,7 @@ namespace vSharpStudio.vm.ViewModels
                     sb.AppendLine(")");
                     sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
                     sb.Append(pname);
-                    sb.Append("'=\\\"{code}\\\". It is outside expected range from ");
+                    sb.Append("'=\\\"{code}\\\". It is outside expected range from '");
                     var rmin2 = new string('0', (int)this.MaxSequenceLength - 1) + "1";
                     sb.Append(rmin2);
                     sb.Append("' to '");

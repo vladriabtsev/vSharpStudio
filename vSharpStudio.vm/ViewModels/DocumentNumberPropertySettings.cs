@@ -178,7 +178,7 @@ namespace vSharpStudio.vm.ViewModels
                     sb.AppendLine("\tvar i = code + 1;");
                     break;
                 case EnumCodeType.Text:
-                    sb.AppendLine("\tvar i = ulong.Parse(code) + 1;");
+                    sb.AppendLine("\tvar i = System.Numerics.BigInteger.Parse(code) + 1;");
                     break;
                 default:
                     throw new NotImplementedException();
@@ -220,7 +220,7 @@ namespace vSharpStudio.vm.ViewModels
                     sb.AppendLine("\");");
                     break;
                 case EnumCodeType.Text:
-                    sb.AppendLine("var i = code != string.Empty ? ulong.Parse(code) : 0u;");
+                    sb.AppendLine("var i = code != string.Empty ? System.Numerics.BigInteger.Parse(code) : 0u;");
                     sb.AppendLine("if (isMinAllowedInsert && i < 1) return true;");
                     sb.Append("if (i < 1 || i > ");
                     var rmax2 = new string('9', (int)this.MaxSequenceLength);

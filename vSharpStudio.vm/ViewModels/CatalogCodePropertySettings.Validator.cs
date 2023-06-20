@@ -11,7 +11,7 @@ namespace vSharpStudio.vm.ViewModels
         public CatalogCodePropertySettingsValidator()
         {
             this.RuleFor(x => x.MaxSequenceLength).GreaterThan(0u);
-            this.RuleFor(x => x.MaxSequenceLength).LessThan(15u);
+            this.RuleFor(x => x.MaxSequenceLength).LessThan(20u);
             this.RuleFor(x => x.Prefix).Custom((prefix, cntx) =>
             {
                 var p = (CatalogCodePropertySettings)cntx.InstanceToValidate;
