@@ -937,7 +937,6 @@ namespace vSharpStudio.vm.ViewModels
             //Debug.Assert(this.Parent != null);
             //Debug.Assert(this.Cfg == null || this.Parent != null);
             IDataType? res = null;
-            Debug.Assert(this.Parent != null);
             if (this.Cfg != null && this.Cfg.PrevStableConfig != null && this.Cfg.PrevStableConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
                 res = (this.Cfg.PrevStableConfig.DicNodes[this.Parent.Guid] as IDataTypeObject)!.IDataType;
@@ -949,7 +948,6 @@ namespace vSharpStudio.vm.ViewModels
             //Debug.Assert(this.Parent != null);
             //Debug.Assert(this.Cfg == null || this.Parent != null);
             IDataType? res = null;
-            Debug.Assert(this.Parent != null);
             if (this.Cfg != null && this.Cfg.PrevCurrentConfig != null && this.Cfg.PrevCurrentConfig.DicNodes.ContainsKey(this.Parent.Guid))
             {
                 res = (this.Cfg.PrevCurrentConfig.DicNodes[this.Parent.Guid] as IDataTypeObject)!.IDataType;
