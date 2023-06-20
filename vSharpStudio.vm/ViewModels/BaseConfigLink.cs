@@ -72,7 +72,14 @@ namespace vSharpStudio.vm.ViewModels
         //}
         [Browsable(false)]
         public Config? ConfigBase { get; set; }
-        IConfig IBaseConfigLink.ConfigBase { get { return this.ConfigBase; } }
+        IConfig IBaseConfigLink.ConfigBase
+        {
+            get
+            {
+                Debug.Assert(this.ConfigBase != null);
+                return this.ConfigBase;
+            }
+        }
         public IEnumerable<ITreeConfigNode> GetParentList()
         {
             return this.ParentGroupListBaseConfigLinks.ListBaseConfigLinks;

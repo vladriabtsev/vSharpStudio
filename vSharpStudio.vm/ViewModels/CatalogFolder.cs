@@ -25,10 +25,12 @@ namespace vSharpStudio.vm.ViewModels
         #region ITree
         public override IChildrenCollection GetListChildren()
         {
+            Debug.Assert(this.Children != null);
             return this.Children;
         }
         public override IChildrenCollection GetListSiblings()
         {
+            Debug.Assert(this.ParentCatalog.Children != null);
             return this.ParentCatalog.Children;
         }
         #endregion ITree

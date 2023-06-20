@@ -120,7 +120,7 @@
             throw new Exception($"Validation message with severity '{Enum.GetName(typeof(Severity), severity)}' is not found");
         }
         [Browsable(false)]
-        public IChildrenCollection? Children
+        public IChildrenCollection Children
         {
             get
             {
@@ -128,7 +128,7 @@
             }
             protected set { _Children = value; }
         }
-        private IChildrenCollection? _Children;
+        private IChildrenCollection _Children;
         [Browsable(false)]
         public string IconStatus
         {
