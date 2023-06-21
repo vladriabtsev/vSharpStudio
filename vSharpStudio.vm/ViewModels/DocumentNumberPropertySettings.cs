@@ -163,49 +163,86 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(prp != null);
             return prp.DataType.ClrTypeName;
         }
-        public string GetNextCodeProc()
+        public string GetCodeClrTypeName()
         {
-            var sb = new StringBuilder();
-            sb.AppendLine("if (code == null)");
-            sb.Append("\tcode = ");
-            sb.Append(this.GetCodeStartStr());
-            sb.AppendLine(";");
-            sb.AppendLine("else");
-            sb.AppendLine("{");
+            IConfig? cfg = null;
+            string? propertyCodeGuid = null;
+
+            GroupListProperties? groupListProperties = null;
+            cfg = this.ParentDocument.Cfg;
+            propertyCodeGuid = this.ParentDocument.PropertyDocNumberGuid;
+            groupListProperties = this.ParentDocument.GroupProperties;
+            Debug.Assert(cfg != null);
+            Debug.Assert(propertyCodeGuid != null);
+            Debug.Assert(groupListProperties != null);
+            IProperty? prp = null;
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                    sb.AppendLine("\tvar i = code + 1;");
+                    prp = cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyCodeGuid,
+                        this.MaxSequenceLength);
                     break;
                 case EnumCodeType.Text:
-                    sb.AppendLine("\tvar i = System.Numerics.BigInteger.Parse(code) + 1;");
+                    prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyCodeGuid,
+                        this.MaxSequenceLength + (uint)this.Prefix.Length);
                     break;
                 default:
                     throw new NotImplementedException();
             }
-            sb.Append("\tif (i > ");
-            sb.Append(ulong.Parse(new string('9', (int)this.MaxSequenceLength)));
-            sb.Append(") i = ");
+            Debug.Assert(prp != null);
+            return prp.DataType.ClrTypeName;
+        }
+        public string GetNextCodeProc()
+        {
+            var sb = new StringBuilder();
+            sb.Append(this.GetCodeClrTypeName());
+            sb.Append(" res = ");
             sb.Append(this.GetCodeStartStr());
             sb.AppendLine(";");
+            sb.AppendLine("if (code != null)");
+            sb.AppendLine("{");
             switch (this.SequenceType)
             {
                 case EnumCodeType.Number:
-                    sb.AppendLine("\tcode = i;");
+                    sb.AppendLine("\tres = code.Value + 1;");
+                    sb.Append("\tif (res > ");
+                    sb.Append(System.Numerics.BigInteger.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    sb.AppendLine(")");
+                    sb.AppendLine("\t\tres = 1;");
                     break;
                 case EnumCodeType.Text:
-                    sb.Append("\tcode = i.ToString(\"D");
+                    var pref = this.Prefix.Trim();
+                    if (!string.IsNullOrWhiteSpace(this.Prefix))
+                    {
+                        sb.Append("\tcode = code.Substring(");
+                        sb.Append(pref.Length);
+                        sb.AppendLine(");");
+                    }
+                    sb.AppendLine("\tvar i = System.Numerics.BigInteger.Parse(code) + 1;");
+                    sb.Append("\tif (i > ");
+                    sb.Append(System.Numerics.BigInteger.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    sb.AppendLine(")");
+                    sb.Append("\t\tres = ");
+                    sb.Append(this.GetCodeStartStr());
+                    sb.AppendLine(";");
+                    sb.AppendLine("\telse");
+                    sb.Append("\t\tres = \"");
+                    sb.Append(pref);
+                    sb.Append("\" + i.ToString(\"D");
                     sb.Append(this.MaxSequenceLength);
                     sb.AppendLine("\");");
                     break;
                 default:
                     throw new NotImplementedException();
             }
-            sb.AppendLine("}");
+            sb.Append("}");
             return sb.ToString();
         }
         public string GetCodeCheckProc()
         {
+            Debug.Assert(this.Parent != null);
+            var cfg = this.Parent.Cfg;
+            var pname = cfg.Model.PropertyCodeName;
             var sb = new StringBuilder();
             switch (this.SequenceType)
             {
@@ -215,18 +252,53 @@ namespace vSharpStudio.vm.ViewModels
                     var rmax = new string('9', (int)this.MaxSequenceLength);
                     sb.Append(rmax);
                     sb.AppendLine(")");
-                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"DocNumber={code}. It is outside expected range from 1 to ");
+                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
+                    sb.Append(pname);
+                    sb.Append("'={code}. It is outside expected range from 1 to ");
                     sb.Append(rmax);
                     sb.AppendLine("\");");
                     break;
                 case EnumCodeType.Text:
-                    sb.AppendLine("var i = code != string.Empty ? System.Numerics.BigInteger.Parse(code) : 0u;");
+                    sb.AppendLine("if (isMinAllowedInsert && code.Length == 0) return true;");
+                    var pref = this.Prefix.Trim();
+                    if (pref.Length > 0)
+                    {
+                        sb.Append("if (!code.StartsWith(\"");
+                        sb.Append(pref);
+                        sb.AppendLine("\"))");
+                        sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
+                        sb.Append(pname);
+                        sb.Append("'=\\\"{code}\\\". There is no expected prefix \\\"");
+                        sb.Append(pref);
+                        sb.AppendLine("\\\"\");");
+                        sb.Append("code = code.Substring(");
+                        sb.Append(pref.Length);
+                        sb.AppendLine(");");
+                    }
+                    sb.Append("if (code.Length != ");
+                    sb.Append(this.MaxSequenceLength);
+                    sb.AppendLine(")");
+                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
+                    sb.Append(pname);
+                    sb.Append("'=\\\"");
+                    sb.Append(pref);
+                    sb.Append("{code}\\\". Length of sequence not equal ");
+                    sb.Append(this.MaxSequenceLength);
+                    sb.AppendLine("\");");
+                    sb.AppendLine("if (!System.Numerics.BigInteger.TryParse(code, out var i))");
+                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
+                    sb.Append(pname);
+                    sb.Append("'=\\\"");
+                    sb.Append(pref);
+                    sb.AppendLine("{code}\\\". Can't parse sequence \\\"{code}\\\" to number\");");
                     sb.AppendLine("if (isMinAllowedInsert && i < 1) return true;");
                     sb.Append("if (i < 1 || i > ");
                     var rmax2 = new string('9', (int)this.MaxSequenceLength);
                     sb.Append(rmax2);
                     sb.AppendLine(")");
-                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"DocNumber='{code}'. It is outside expected range from '");
+                    sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
+                    sb.Append(pname);
+                    sb.Append("'=\\\"{code}\\\". It is outside expected range from '");
                     var rmin2 = new string('0', (int)this.MaxSequenceLength - 1) + "1";
                     sb.Append(rmin2);
                     sb.Append("' to '");
@@ -246,8 +318,9 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumCodeType.Number:
                     return "1";
                 case EnumCodeType.Text:
+                    var pref = this.Prefix.Trim();
                     string fmt = "D" + this.MaxSequenceLength;
-                    return $"\"{1.ToString(fmt)}\"";
+                    return $"\"{pref}{1.ToString(fmt)}\"";
                 default:
                     throw new NotImplementedException();
             }
@@ -259,7 +332,8 @@ namespace vSharpStudio.vm.ViewModels
                 case EnumCodeType.Number:
                     return new string('9', (int)this.MaxSequenceLength);
                 case EnumCodeType.Text:
-                    return $"\"{new string('9', (int)this.MaxSequenceLength)}\"";
+                    var pref = this.Prefix.Trim();
+                    return $"\"{pref}{new string('9', (int)this.MaxSequenceLength)}\"";
                 default:
                     throw new NotImplementedException();
             }
