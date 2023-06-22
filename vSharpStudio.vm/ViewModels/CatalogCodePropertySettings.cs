@@ -26,22 +26,22 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new NotImplementedException();
             }
-            if (string.IsNullOrWhiteSpace(this.SequenceGuid))
+            //if (string.IsNullOrWhiteSpace(this.SequenceGuid))
+            //{
+            switch (this.SequenceType)
             {
-                switch (this.SequenceType)
-                {
-                    case EnumCodeType.Number:
-                        return $"Number{this.Prefix}{this.MaxSequenceLength}-{unique}";
-                    case EnumCodeType.Text:
-                        return $"Text{this.Prefix}{this.MaxSequenceLength}-{unique}";
-                    default:
-                        throw new NotImplementedException();
-                }
+                case EnumCodeType.Number:
+                    return $"Number{this.Prefix}{this.MaxSequenceLength}-{unique}";
+                case EnumCodeType.Text:
+                    return $"Text{this.Prefix}{this.MaxSequenceLength}-{unique}";
+                default:
+                    throw new NotImplementedException();
             }
-            if (this.ParentCatalog != null)
-                return $"{this.ParentCatalog.Cfg.DicNodes[this.SequenceGuid].Name}-{unique}";
-            else if (this.ParentCatalogFolder != null)
-                return $"{this.ParentCatalogFolder.Cfg.DicNodes[this.SequenceGuid].Name}-{unique}";
+            //}
+            //if (this.ParentCatalog != null)
+            //    return $"{this.ParentCatalog.Cfg.DicNodes[this.SequenceGuid].Name}-{unique}";
+            //else if (this.ParentCatalogFolder != null)
+            //    return $"{this.ParentCatalogFolder.Cfg.DicNodes[this.SequenceGuid].Name}-{unique}";
             throw new NotImplementedException();
         }
         [Browsable(false)]
@@ -124,21 +124,21 @@ namespace vSharpStudio.vm.ViewModels
             this.ParentCatalog?.NotifyCodePropertySettingsChanged();
             this.ParentCatalogFolder?.NotifyCodePropertySettingsChanged();
         }
-        partial void OnSequenceGuidChanged()
-        {
-            this.NotifyPropertyChanged(() => this.PropertyDefinitions);
-            this.ParentCatalog?.NotifyCodePropertySettingsChanged();
-            this.ParentCatalogFolder?.NotifyCodePropertySettingsChanged();
-        }
+        //partial void OnSequenceGuidChanged()
+        //{
+        //    this.NotifyPropertyChanged(() => this.PropertyDefinitions);
+        //    this.ParentCatalog?.NotifyCodePropertySettingsChanged();
+        //    this.ParentCatalogFolder?.NotifyCodePropertySettingsChanged();
+        //}
         protected override string[]? OnGetWhatHideOnPropertyGrid()
         {
             var lst = new List<string>();
-            if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
-            {
-                lst.Add(this.GetPropertyName(() => this.SequenceType));
-                lst.Add(this.GetPropertyName(() => this.MaxSequenceLength));
-                lst.Add(this.GetPropertyName(() => this.Prefix));
-            }
+            //if (!string.IsNullOrWhiteSpace(this.SequenceGuid))
+            //{
+            //    lst.Add(this.GetPropertyName(() => this.SequenceType));
+            //    lst.Add(this.GetPropertyName(() => this.MaxSequenceLength));
+            //    lst.Add(this.GetPropertyName(() => this.Prefix));
+            //}
             return lst.ToArray();
         }
         public string GetCodeClrTypeName()

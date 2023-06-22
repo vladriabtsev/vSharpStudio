@@ -211,10 +211,6 @@
                 </li>
               
                 <li>
-                  <a href="#proto_config.proto_code_sequence"><span class="badge">M</span>proto_code_sequence</a>
-                </li>
-              
-                <li>
                   <a href="#proto_config.proto_config"><span class="badge">M</span>proto_config</a>
                 </li>
               
@@ -252,6 +248,10 @@
               
                 <li>
                   <a href="#proto_config.proto_enumeration_pair"><span class="badge">M</span>proto_enumeration_pair</a>
+                </li>
+              
+                <li>
+                  <a href="#proto_config.proto_enumerator_sequence"><span class="badge">M</span>proto_enumerator_sequence</a>
                 </li>
               
                 <li>
@@ -339,6 +339,10 @@
                 </li>
               
                 <li>
+                  <a href="#proto_config.proto_group_list_enumerator_sequences"><span class="badge">M</span>proto_group_list_enumerator_sequences</a>
+                </li>
+              
+                <li>
                   <a href="#proto_config.proto_group_list_forms"><span class="badge">M</span>proto_group_list_forms</a>
                 </li>
               
@@ -364,10 +368,6 @@
               
                 <li>
                   <a href="#proto_config.proto_group_list_roles"><span class="badge">M</span>proto_group_list_roles</a>
-                </li>
-              
-                <li>
-                  <a href="#proto_config.proto_group_list_sequences"><span class="badge">M</span>proto_group_list_sequences</a>
                 </li>
               
                 <li>
@@ -1559,16 +1559,6 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                 </tr>
               
                 <tr>
-                  <td>sequence_guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [PropertyOrderAttribute(0)]
-@attr [DisplayName(&#34;Code Sequence&#34;)]
-@attr [Description(&#34;Code Sequence for auto code generation. Same sequence can be used for different catalogs&#34;)]
-@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] </p></td>
-                </tr>
-              
-                <tr>
                   <td>unique_scope</td>
                   <td><a href="#proto_config.proto_enum_catalog_code_unique_scope">proto_enum_catalog_code_unique_scope</a></td>
                   <td></td>
@@ -1851,116 +1841,6 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
                   <td><a href="#proto_config.proto_role_catalog_access">proto_role_catalog_access</a></td>
                   <td>repeated</td>
                   <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_node_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_code_sequence">proto_code_sequence</h3>
-        <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(-2)]
-@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name_ui</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)]
-@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(3)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_new</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>is_marked_for_deletion</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sequence_type</td>
-                  <td><a href="#proto_config.proto_enum_code_type">proto_enum_code_type</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(11)]
-@attr [DisplayName(&#34;Sequence type&#34;)]
-@attr [Description(&#34;Sequence type for code&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>max_sequence_length</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(12)]
-@attr [DisplayName(&#34;Max Sequence&#34;)]
-@attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>prefix</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(13)]
-@attr [DisplayName(&#34;Prefix&#34;)]
-@attr [Description(&#34;Prefix for text code sequence&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -3077,8 +2957,8 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>@attr [PropertyOrderAttribute(0)]
-@attr [DisplayName(&#34;Code Sequence&#34;)]
-@attr [Description(&#34;Code Sequence for auto code generation. Same sequence can be used for different documents&#34;)]
+@attr [DisplayName(&#34;Shared Sequence&#34;)]
+@attr [Description(&#34;Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents&#34;)]
 @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] </p></td>
                 </tr>
               
@@ -3320,6 +3200,116 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#bool">bool</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_enumerator_sequence">proto_enumerator_sequence</h3>
+        <p>@interface ICanAddNode</p><p>@interface ISortingValue</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_new</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>is_marked_for_deletion</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sequence_type</td>
+                  <td><a href="#proto_config.proto_enum_code_type">proto_enum_code_type</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(11)]
+@attr [DisplayName(&#34;Sequence type&#34;)]
+@attr [Description(&#34;Sequence type for code&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>max_sequence_length</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(12)]
+@attr [DisplayName(&#34;Max Sequence&#34;)]
+@attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>prefix</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(13)]
+@attr [DisplayName(&#34;Prefix&#34;)]
+@attr [Description(&#34;Prefix for text code sequence&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -5129,7 +5119,7 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
               
                 <tr>
                   <td>group_list_sequences</td>
-                  <td><a href="#proto_config.proto_group_list_sequences">proto_group_list_sequences</a></td>
+                  <td><a href="#proto_config.proto_group_list_enumerator_sequences">proto_group_list_enumerator_sequences</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
                 </tr>
@@ -5539,6 +5529,80 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_node_generators_settings</td>
+                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="proto_config.proto_group_list_enumerator_sequences">proto_group_list_enumerator_sequences</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(-2)]
+@attr [ReadOnly(true)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(1)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sorting_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>@attr [Browsable(false)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>name_ui</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(2)]
+@attr [DisplayName(&#34;UI name&#34;)]
+@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>@attr [Category(&#34;&#34;)]
+@attr [PropertyOrderAttribute(3)] </p></td>
+                </tr>
+              
+                <tr>
+                  <td>list_enumerator_sequences</td>
+                  <td><a href="#proto_config.proto_enumerator_sequence">proto_enumerator_sequence</a></td>
+                  <td>repeated</td>
+                  <td><p>@attr [Browsable(false)]
+@attr [Description(&#34;Document number sequences&#34;)] </p></td>
                 </tr>
               
                 <tr>
@@ -6100,80 +6164,6 @@ DAY = DocDate.Year * 365?? &#43; DocDate.Day
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_node_generators_settings</td>
-                  <td><a href="#proto_config.proto_plugin_generator_node_settings">proto_plugin_generator_node_settings</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="proto_config.proto_group_list_sequences">proto_group_list_sequences</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>guid</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(-2)]
-@attr [ReadOnly(true)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(1)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>sorting_value</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>@attr [Browsable(false)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>name_ui</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(2)]
-@attr [DisplayName(&#34;UI name&#34;)]
-@attr [Description(&#34;Used as label/name for UI&#34;)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>@attr [Category(&#34;&#34;)]
-@attr [PropertyOrderAttribute(3)] </p></td>
-                </tr>
-              
-                <tr>
-                  <td>list_sequences</td>
-                  <td><a href="#proto_config.proto_code_sequence">proto_code_sequence</a></td>
-                  <td>repeated</td>
-                  <td><p>@attr [Browsable(false)]
-@attr [Description(&#34;Document number sequences&#34;)] </p></td>
                 </tr>
               
                 <tr>

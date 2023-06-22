@@ -25,7 +25,7 @@ namespace vSharpStudio.vm.ViewModels
             var _binding_lst = new Binding(); // bind to the Value property of the PropertyItem
             ObservableCollectionExt<ITextValue> listSequences = new();
             listSequences.Add(new TextValue() { Text="Local Sequence:" });
-            foreach (var t in instance.Cfg.Model.GroupCommon.GroupListSequences.ListSequences)
+            foreach (var t in instance.Cfg.Model.GroupCommon.GroupListSequences.ListEnumeratorSequences)
             {
                 listSequences.Add(t);
             }

@@ -2831,16 +2831,6 @@
               "defaultValue": ""
             },
             {
-              "name": "sequence_guid",
-              "description": "@attr [PropertyOrderAttribute(0)]\n@attr [DisplayName(\"Code Sequence\")]\n@attr [Description(\"Code Sequence for auto code generation. Same sequence can be used for different catalogs\")]\n@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
               "name": "unique_scope",
               "description": "@attr [PropertyOrderAttribute(7)]\n@attr [DisplayName(\"Unique Scope\")]\n@attr [Description(\"Code has to be unique in selected scope\")]",
               "label": "",
@@ -3188,127 +3178,6 @@
               "type": "proto_role_catalog_access",
               "longType": "proto_role_catalog_access",
               "fullType": "proto_config.proto_role_catalog_access",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_node_generators_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_plugin_generator_node_settings",
-              "longType": "proto_plugin_generator_node_settings",
-              "fullType": "proto_config.proto_plugin_generator_node_settings",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_code_sequence",
-          "longName": "proto_code_sequence",
-          "fullName": "proto_config.proto_code_sequence",
-          "description": "@interface ICanAddNode\n@interface ISortingValue",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_new",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "is_marked_for_deletion",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sequence_type",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Sequence type\")]\n@attr [Description(\"Sequence type for code\")]",
-              "label": "",
-              "type": "proto_enum_code_type",
-              "longType": "proto_enum_code_type",
-              "fullType": "proto_config.proto_enum_code_type",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "max_sequence_length",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers\")]",
-              "label": "",
-              "type": "uint32",
-              "longType": "uint32",
-              "fullType": "uint32",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "prefix",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Prefix\")]\n@attr [Description(\"Prefix for text code sequence\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -4592,7 +4461,7 @@
             },
             {
               "name": "sequence_guid",
-              "description": "@attr [PropertyOrderAttribute(0)]\n@attr [DisplayName(\"Code Sequence\")]\n@attr [Description(\"Code Sequence for auto code generation. Same sequence can be used for different documents\")]\n@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]",
+              "description": "@attr [PropertyOrderAttribute(0)]\n@attr [DisplayName(\"Shared Sequence\")]\n@attr [Description(\"Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents\")]\n@attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4859,6 +4728,127 @@
               "type": "bool",
               "longType": "bool",
               "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_enumerator_sequence",
+          "longName": "proto_enumerator_sequence",
+          "fullName": "proto_config.proto_enumerator_sequence",
+          "description": "@interface ICanAddNode\n@interface ISortingValue",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_new",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "is_marked_for_deletion",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sequence_type",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(11)]\n@attr [DisplayName(\"Sequence type\")]\n@attr [Description(\"Sequence type for code\")]",
+              "label": "",
+              "type": "proto_enum_code_type",
+              "longType": "proto_enum_code_type",
+              "fullType": "proto_config.proto_enum_code_type",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "max_sequence_length",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(12)]\n@attr [DisplayName(\"Max Sequence\")]\n@attr [Description(\"Maximum number of character places for generated sequence numbers\")]",
+              "label": "",
+              "type": "uint32",
+              "longType": "uint32",
+              "fullType": "uint32",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "prefix",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(13)]\n@attr [DisplayName(\"Prefix\")]\n@attr [Description(\"Prefix for text code sequence\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "defaultValue": ""
             },
@@ -6893,9 +6883,9 @@
               "name": "group_list_sequences",
               "description": "@attr [Browsable(false)]",
               "label": "",
-              "type": "proto_group_list_sequences",
-              "longType": "proto_group_list_sequences",
-              "fullType": "proto_config.proto_group_list_sequences",
+              "type": "proto_group_list_enumerator_sequences",
+              "longType": "proto_group_list_enumerator_sequences",
+              "fullType": "proto_config.proto_group_list_enumerator_sequences",
               "ismap": false,
               "defaultValue": ""
             },
@@ -7360,6 +7350,87 @@
               "type": "uint64",
               "longType": "uint64",
               "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_node_generators_settings",
+              "description": "@attr [Browsable(false)]",
+              "label": "repeated",
+              "type": "proto_plugin_generator_node_settings",
+              "longType": "proto_plugin_generator_node_settings",
+              "fullType": "proto_config.proto_plugin_generator_node_settings",
+              "ismap": false,
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "proto_group_list_enumerator_sequences",
+          "longName": "proto_group_list_enumerator_sequences",
+          "fullName": "proto_config.proto_group_list_enumerator_sequences",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "guid",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "sorting_value",
+              "description": "@attr [Browsable(false)]",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "name_ui",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "defaultValue": ""
+            },
+            {
+              "name": "list_enumerator_sequences",
+              "description": "@attr [Browsable(false)]\n@attr [Description(\"Document number sequences\")]",
+              "label": "repeated",
+              "type": "proto_enumerator_sequence",
+              "longType": "proto_enumerator_sequence",
+              "fullType": "proto_config.proto_enumerator_sequence",
               "ismap": false,
               "defaultValue": ""
             },
@@ -7977,87 +8048,6 @@
               "type": "uint64",
               "longType": "uint64",
               "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_node_generators_settings",
-              "description": "@attr [Browsable(false)]",
-              "label": "repeated",
-              "type": "proto_plugin_generator_node_settings",
-              "longType": "proto_plugin_generator_node_settings",
-              "fullType": "proto_config.proto_plugin_generator_node_settings",
-              "ismap": false,
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "proto_group_list_sequences",
-          "longName": "proto_group_list_sequences",
-          "fullName": "proto_config.proto_group_list_sequences",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "guid",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(-2)]\n@attr [ReadOnly(true)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(1)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "sorting_value",
-              "description": "@attr [Browsable(false)]",
-              "label": "",
-              "type": "uint64",
-              "longType": "uint64",
-              "fullType": "uint64",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "name_ui",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(2)]\n@attr [DisplayName(\"UI name\")]\n@attr [Description(\"Used as label/name for UI\")]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "description",
-              "description": "@attr [Category(\"\")]\n@attr [PropertyOrderAttribute(3)]",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "defaultValue": ""
-            },
-            {
-              "name": "list_sequences",
-              "description": "@attr [Browsable(false)]\n@attr [Description(\"Document number sequences\")]",
-              "label": "repeated",
-              "type": "proto_code_sequence",
-              "longType": "proto_code_sequence",
-              "fullType": "proto_config.proto_code_sequence",
               "ismap": false,
               "defaultValue": ""
             },

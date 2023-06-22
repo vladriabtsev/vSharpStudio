@@ -6,20 +6,20 @@ using FluentValidation.Results;
 
 namespace vSharpStudio.vm.ViewModels
 {
-    public partial class CodeSequenceValidator
+    public partial class EnumeratorSequenceValidator
     {
-        public CodeSequenceValidator()
+        public EnumeratorSequenceValidator()
         {
             this.RuleFor(x => x.Name).NotEmpty().WithMessage(Config.ValidationMessages.NAME_CANT_BE_EMPTY);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsStartNotWithDigit).WithMessage(Config.ValidationMessages.NAME_START_WITH_DIGIT);
             this.RuleFor(x => x.Name).Must(EnumerationValidator.IsNotContainsSpace).WithMessage(Config.ValidationMessages.NAME_CANT_CONTAINS_SPACE);
             this.RuleFor(x => x.Name).Custom((name, cntx) =>
             {
-                var p = (CodeSequence)cntx.InstanceToValidate;
+                var p = (EnumeratorSequence)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
-                var gs = (GroupListSequences)p.Parent;
-                foreach (var t in gs.ListSequences)
+                var gs = (GroupListEnumeratorSequences)p.Parent;
+                foreach (var t in gs.ListEnumeratorSequences)
                 {
                     if (t.Guid != p.Guid && name == t.Name)
                     {
@@ -34,7 +34,7 @@ namespace vSharpStudio.vm.ViewModels
             this.RuleFor(x => x.MaxSequenceLength).LessThan(20u);
             this.RuleFor(x => x.Prefix).Custom((prefix, cntx) =>
             {
-                var p = (CodeSequence)cntx.InstanceToValidate;
+                var p = (EnumeratorSequence)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
                 if (string.IsNullOrWhiteSpace(p.Prefix))

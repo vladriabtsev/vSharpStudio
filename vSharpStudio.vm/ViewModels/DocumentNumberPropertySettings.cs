@@ -176,18 +176,38 @@ namespace vSharpStudio.vm.ViewModels
             Debug.Assert(propertyCodeGuid != null);
             Debug.Assert(groupListProperties != null);
             IProperty? prp = null;
-            switch (this.SequenceType)
+            if (string.IsNullOrWhiteSpace(this.SequenceGuid))
             {
-                case EnumCodeType.Number:
-                    prp = cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyCodeGuid,
-                        this.MaxSequenceLength);
-                    break;
-                case EnumCodeType.Text:
-                    prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyCodeGuid,
-                        this.MaxSequenceLength + (uint)this.Prefix.Length);
-                    break;
-                default:
-                    throw new NotImplementedException();
+                switch (this.SequenceType)
+                {
+                    case EnumCodeType.Number:
+                        prp = cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyCodeGuid,
+                            this.MaxSequenceLength);
+                        break;
+                    case EnumCodeType.Text:
+                        prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyCodeGuid,
+                            this.MaxSequenceLength + (uint)this.Prefix.Length);
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+            else
+            {
+                var seq = (EnumeratorSequence)cfg.DicNodes[this.SequenceGuid];
+                switch (seq.SequenceType)
+                {
+                    case EnumCodeType.Number:
+                        prp = cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyCodeGuid,
+                            seq.MaxSequenceLength);
+                        break;
+                    case EnumCodeType.Text:
+                        prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyCodeGuid,
+                            seq.MaxSequenceLength + (uint)seq.Prefix.Length);
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
             Debug.Assert(prp != null);
             return prp.DataType.ClrTypeName;

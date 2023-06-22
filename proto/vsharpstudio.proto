@@ -870,7 +870,7 @@ message proto_group_list_common {
     // @attr [Browsable(false)]
     proto_group_list_main_view_forms group_view_forms = 8;
     // @attr [Browsable(false)]
-    proto_group_list_sequences group_list_sequences = 9;
+    proto_group_list_enumerator_sequences group_list_sequences = 9;
 
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
@@ -881,7 +881,7 @@ message proto_group_list_common {
  */
 // @interface ICanAddNode
 // @interface ISortingValue
-message proto_code_sequence {
+message proto_enumerator_sequence {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -922,7 +922,7 @@ message proto_code_sequence {
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
-message proto_group_list_sequences {
+message proto_group_list_enumerator_sequences {
     // @attr [Category("")]
     // @attr [PropertyOrderAttribute(-2)]
     // @attr [ReadOnly(true)]
@@ -950,7 +950,7 @@ message proto_group_list_sequences {
 
     // @attr [Browsable(false)]
     // @attr [Description("Document number sequences")]
-    repeated proto_code_sequence list_sequences = 21;
+    repeated proto_enumerator_sequence list_enumerator_sequences = 21;
     // @attr [Browsable(false)]
     repeated proto_plugin_generator_node_settings list_node_generators_settings = 111;
 }
@@ -2310,11 +2310,6 @@ message proto_catalog_code_property_settings {
     // @attr [DisplayName("Prefix")]
     // @attr [Description("Prefix for text code sequence")]
     string prefix = 3;
-    // @attr [PropertyOrderAttribute(0)]
-    // @attr [DisplayName("Code Sequence")]
-    // @attr [Description("Code Sequence for auto code generation. Same sequence can be used for different catalogs")]
-    // @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
-    string sequence_guid = 5;
     // @attr [PropertyOrderAttribute(7)]
     // @attr [DisplayName("Unique Scope")]
     // @attr [Description("Code has to be unique in selected scope")]
@@ -2645,8 +2640,8 @@ message proto_document_number_property_settings {
     // @attr [Description("Prefix for text code sequence")]
     string prefix = 3;
     // @attr [PropertyOrderAttribute(0)]
-    // @attr [DisplayName("Code Sequence")]
-    // @attr [Description("Code Sequence for auto code generation. Same sequence can be used for different documents")]
+    // @attr [DisplayName("Shared Sequence")]
+    // @attr [Description("Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents")]
     // @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
     string sequence_guid = 5;
     // @attr [PropertyOrderAttribute(7)]

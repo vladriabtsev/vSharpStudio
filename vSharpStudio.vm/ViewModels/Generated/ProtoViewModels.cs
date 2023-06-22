@@ -7772,7 +7772,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             this.OnCreating();
             this._GroupRoles = new GroupListRoles(this); // Class.tt Line: 40
             this._GroupViewForms = new GroupListMainViewForms(this); // Class.tt Line: 40
-            this._GroupListSequences = new GroupListSequences(this); // Class.tt Line: 40
+            this._GroupListSequences = new GroupListEnumeratorSequences(this); // Class.tt Line: 40
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -7806,7 +7806,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
                 vm.GroupViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.Clone(vm, from.GroupViewForms, isDeep);
             if (isDeep) // Clone.tt Line: 64 IsDefaultBase=True
-                vm.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListSequences.Clone(vm, from.GroupListSequences, isDeep);
+                vm.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.Clone(vm, from.GroupListSequences, isDeep);
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -7830,7 +7830,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             if (isDeep) // Clone.tt Line: 140
                 vSharpStudio.vm.ViewModels.GroupListMainViewForms.Update((GroupListMainViewForms)to.GroupViewForms, from.GroupViewForms, isDeep);
             if (isDeep) // Clone.tt Line: 140
-                vSharpStudio.vm.ViewModels.GroupListSequences.Update((GroupListSequences)to.GroupListSequences, from.GroupListSequences, isDeep);
+                vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.Update((GroupListEnumeratorSequences)to.GroupListSequences, from.GroupListSequences, isDeep);
             if (isDeep) // Clone.tt Line: 88
             {
                 foreach (var t in to.ListNodeGeneratorsSettings.ToList())
@@ -7908,8 +7908,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 vm.GroupViewForms = new GroupListMainViewForms(vm); // Clone.tt Line: 215
             vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToVM(m.GroupViewForms, (GroupListMainViewForms)vm.GroupViewForms); // Clone.tt Line: 219
             if (vm.GroupListSequences == null) // Clone.tt Line: 213
-                vm.GroupListSequences = new GroupListSequences(vm); // Clone.tt Line: 215
-            vSharpStudio.vm.ViewModels.GroupListSequences.ConvertToVM(m.GroupListSequences, (GroupListSequences)vm.GroupListSequences); // Clone.tt Line: 219
+                vm.GroupListSequences = new GroupListEnumeratorSequences(vm); // Clone.tt Line: 215
+            vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.ConvertToVM(m.GroupListSequences, (GroupListEnumeratorSequences)vm.GroupListSequences); // Clone.tt Line: 219
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
             {
@@ -7935,7 +7935,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.GroupRoles = vSharpStudio.vm.ViewModels.GroupListRoles.ConvertToProto((GroupListRoles)vm.GroupRoles); // Clone.tt Line: 270
             m.GroupViewForms = vSharpStudio.vm.ViewModels.GroupListMainViewForms.ConvertToProto((GroupListMainViewForms)vm.GroupViewForms); // Clone.tt Line: 270
-            m.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListSequences.ConvertToProto((GroupListSequences)vm.GroupListSequences); // Clone.tt Line: 270
+            m.GroupListSequences = vSharpStudio.vm.ViewModels.GroupListEnumeratorSequences.ConvertToProto((GroupListEnumeratorSequences)vm.GroupListSequences); // Clone.tt Line: 270
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -8118,7 +8118,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         //IGroupListMainViewForms IGroupListCommon.GroupViewForms { get { return this._GroupViewForms; } }
         
         [Browsable(false)]
-        public GroupListSequences GroupListSequences // Property.tt Line: 55
+        public GroupListEnumeratorSequences GroupListSequences // Property.tt Line: 55
         { 
             get { return this._GroupListSequences; }
             set
@@ -8134,11 +8134,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 }
             }
         }
-        private GroupListSequences _GroupListSequences;
-        IGroupListSequences IGroupListCommon.GroupListSequences { get { return (this as GroupListCommon).GroupListSequences; } } // Property.tt Line: 77
-        partial void OnGroupListSequencesChanging(ref GroupListSequences to); // Property.tt Line: 79
+        private GroupListEnumeratorSequences _GroupListSequences;
+        IGroupListEnumeratorSequences IGroupListCommon.GroupListSequences { get { return (this as GroupListCommon).GroupListSequences; } } // Property.tt Line: 77
+        partial void OnGroupListSequencesChanging(ref GroupListEnumeratorSequences to); // Property.tt Line: 79
         partial void OnGroupListSequencesChanged();
-        //IGroupListSequences IGroupListCommon.GroupListSequences { get { return this._GroupListSequences; } }
+        //IGroupListEnumeratorSequences IGroupListCommon.GroupListSequences { get { return this._GroupListSequences; } }
         
         [Browsable(false)]
         public ConfigNodesCollection<PluginGeneratorNodeSettings> ListNodeGeneratorsSettings // Property.tt Line: 8
@@ -8193,12 +8193,12 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: True 
-    public partial class CodeSequenceValidator : ValidatorBase<CodeSequence, CodeSequenceValidator> { } // Class.tt Line: 15
-    public partial class CodeSequence : ConfigObjectVmGenSettings<CodeSequence, CodeSequenceValidator>, IComparable<CodeSequence>, IConfigAcceptVisitor, ICodeSequence // Class.tt Line: 16
+    public partial class EnumeratorSequenceValidator : ValidatorBase<EnumeratorSequence, EnumeratorSequenceValidator> { } // Class.tt Line: 15
+    public partial class EnumeratorSequence : ConfigObjectVmGenSettings<EnumeratorSequence, EnumeratorSequenceValidator>, IComparable<EnumeratorSequence>, IConfigAcceptVisitor, IEnumeratorSequence // Class.tt Line: 16
     {
         #region CTOR
-        public CodeSequence(ITreeConfigNode? parent) // Class.tt Line: 26
-            : base(parent, CodeSequenceValidator.Validator)
+        public EnumeratorSequence(ITreeConfigNode? parent) // Class.tt Line: 26
+            : base(parent, EnumeratorSequenceValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
@@ -8220,10 +8220,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static CodeSequence Clone(ITreeConfigNode? parent, ICodeSequence from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static EnumeratorSequence Clone(ITreeConfigNode? parent, IEnumeratorSequence from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
-            CodeSequence vm = new CodeSequence(parent); // Clone.tt Line: 35
+            EnumeratorSequence vm = new EnumeratorSequence(parent); // Clone.tt Line: 35
             vm.IsNotifying = false; // Clone.tt Line: 39
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 67
@@ -8245,7 +8245,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(CodeSequence to, ICodeSequence from, bool isDeep = true) // Clone.tt Line: 79
+        public static void Update(EnumeratorSequence to, IEnumeratorSequence from, bool isDeep = true) // Clone.tt Line: 79
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
@@ -8298,24 +8298,24 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         // Clone.tt Line: 149
         #region IEditable
-        public override CodeSequence Backup()
+        public override EnumeratorSequence Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
             Debug.Assert(this is IConfig || this.Parent != null);
-            return CodeSequence.Clone(this.Parent, this); // Clone.tt Line: 157
+            return EnumeratorSequence.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(CodeSequence from)
+        public override void Restore(EnumeratorSequence from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            CodeSequence.Update(this, from, isDeep);
+            EnumeratorSequence.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_code_sequence' to 'CodeSequence'
-        public static CodeSequence ConvertToVM(Proto.Config.proto_code_sequence m, CodeSequence vm) // Clone.tt Line: 173
+        // Conversion from 'proto_enumerator_sequence' to 'EnumeratorSequence'
+        public static EnumeratorSequence ConvertToVM(Proto.Config.proto_enumerator_sequence m, EnumeratorSequence vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -8347,11 +8347,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'CodeSequence' to 'proto_code_sequence'
-        public static Proto.Config.proto_code_sequence ConvertToProto(CodeSequence vm) // Clone.tt Line: 236
+        // Conversion from 'EnumeratorSequence' to 'proto_enumerator_sequence'
+        public static Proto.Config.proto_enumerator_sequence ConvertToProto(EnumeratorSequence vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Config.proto_code_sequence m = new Proto.Config.proto_code_sequence(); // Clone.tt Line: 239
+            Proto.Config.proto_enumerator_sequence m = new Proto.Config.proto_enumerator_sequence(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
@@ -8623,7 +8623,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
         }
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        IReadOnlyList<IPluginGeneratorNodeSettings> ICodeSequence.ListNodeGeneratorsSettings { get { return (this as CodeSequence).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
+        IReadOnlyList<IPluginGeneratorNodeSettings> IEnumeratorSequence.ListNodeGeneratorsSettings { get { return (this as EnumeratorSequence).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
@@ -8648,7 +8648,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnIsChangedChanging(ref bool v); // Class.tt Line: 127
         */
         protected override void OnIsChangedChanged() { OnNodeIsChangedChanged(); } // Class.tt Line: 130
-        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 135 proto_code_sequence
+        partial void OnIsNewChanged() { OnNodeIsNewChanged(); } // Class.tt Line: 135 proto_enumerator_sequence
         partial void OnIsMarkedForDeletionChanged() { OnNodeIsMarkedForDeletionChanged(); }
         #endregion Properties
     }
@@ -8661,17 +8661,17 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
     //     IsEditableBase: True 
     //  IsValidatableBase: True 
     //    IsISortingValue: False 
-    public partial class GroupListSequencesValidator : ValidatorBase<GroupListSequences, GroupListSequencesValidator> { } // Class.tt Line: 15
-    public partial class GroupListSequences : ConfigObjectVmGenSettings<GroupListSequences, GroupListSequencesValidator>, IComparable<GroupListSequences>, IConfigAcceptVisitor, IGroupListSequences // Class.tt Line: 16
+    public partial class GroupListEnumeratorSequencesValidator : ValidatorBase<GroupListEnumeratorSequences, GroupListEnumeratorSequencesValidator> { } // Class.tt Line: 15
+    public partial class GroupListEnumeratorSequences : ConfigObjectVmGenSettings<GroupListEnumeratorSequences, GroupListEnumeratorSequencesValidator>, IComparable<GroupListEnumeratorSequences>, IConfigAcceptVisitor, IGroupListEnumeratorSequences // Class.tt Line: 16
     {
         #region CTOR
-        public GroupListSequences(ITreeConfigNode? parent) // Class.tt Line: 26
-            : base(parent, GroupListSequencesValidator.Validator)
+        public GroupListEnumeratorSequences(ITreeConfigNode? parent) // Class.tt Line: 26
+            : base(parent, GroupListEnumeratorSequencesValidator.Validator)
         {
             this.IsNotifying = false;
             this.IsValidate = false;
             this.OnCreating();
-            this._ListSequences = new ConfigNodesCollection<CodeSequence>(this); // Class.tt Line: 37
+            this._ListEnumeratorSequences = new ConfigNodesCollection<EnumeratorSequence>(this); // Class.tt Line: 37
             this._ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(this); // Class.tt Line: 37
             this.OnCreated();
             this.IsValidate = true;
@@ -8684,19 +8684,19 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         public override void Sort(Type type) // Clone.tt Line: 8
         {
-            if (type == typeof(CodeSequence)) // Clone.tt Line: 15
+            if (type == typeof(EnumeratorSequence)) // Clone.tt Line: 15
             {
-                this.ListSequences.Sort();
+                this.ListEnumeratorSequences.Sort();
             }
             if (type == typeof(PluginGeneratorNodeSettings)) // Clone.tt Line: 15
             {
                 this.ListNodeGeneratorsSettings.Sort();
             }
         }
-        public static GroupListSequences Clone(ITreeConfigNode? parent, IGroupListSequences from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
+        public static GroupListEnumeratorSequences Clone(ITreeConfigNode? parent, IGroupListEnumeratorSequences from, bool isDeep = true, bool isNewGuid = false) // Clone.tt Line: 28
         {
             Debug.Assert(from != null);
-            GroupListSequences vm = new GroupListSequences(parent); // Clone.tt Line: 35
+            GroupListEnumeratorSequences vm = new GroupListEnumeratorSequences(parent); // Clone.tt Line: 35
             vm.IsNotifying = false; // Clone.tt Line: 39
             vm.IsValidate = false;
             vm.Guid = from.Guid; // Clone.tt Line: 67
@@ -8704,9 +8704,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = from.SortingValue; // Clone.tt Line: 67
             vm.NameUi = from.NameUi; // Clone.tt Line: 67
             vm.Description = from.Description; // Clone.tt Line: 67
-            vm.ListSequences = new ConfigNodesCollection<CodeSequence>(vm); // Clone.tt Line: 55
-            foreach (var t in from.ListSequences) // Clone.tt Line: 56
-                vm.ListSequences.Add(CodeSequence.Clone(vm, (CodeSequence)t, isDeep));
+            vm.ListEnumeratorSequences = new ConfigNodesCollection<EnumeratorSequence>(vm); // Clone.tt Line: 55
+            foreach (var t in from.ListEnumeratorSequences) // Clone.tt Line: 56
+                vm.ListEnumeratorSequences.Add(EnumeratorSequence.Clone(vm, (EnumeratorSequence)t, isDeep));
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 55
             foreach (var t in from.ListNodeGeneratorsSettings) // Clone.tt Line: 56
                 vm.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.Clone(vm, (PluginGeneratorNodeSettings)t, isDeep));
@@ -8716,7 +8716,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsValidate = true;
             return vm;
         }
-        public static void Update(GroupListSequences to, IGroupListSequences from, bool isDeep = true) // Clone.tt Line: 79
+        public static void Update(GroupListEnumeratorSequences to, IGroupListEnumeratorSequences from, bool isDeep = true) // Clone.tt Line: 79
         {
             Debug.Assert(to != null);
             Debug.Assert(from != null);
@@ -8727,25 +8727,25 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.Description = from.Description; // Clone.tt Line: 143
             if (isDeep) // Clone.tt Line: 88
             {
-                foreach (var t in to.ListSequences.ToList())
+                foreach (var t in to.ListEnumeratorSequences.ToList())
                 {
                     bool isfound = false;
-                    foreach (var tt in from.ListSequences)
+                    foreach (var tt in from.ListEnumeratorSequences)
                     {
                         if (t.Guid == tt.Guid)
                         {
                             isfound = true;
-                            CodeSequence.Update((CodeSequence)t, (CodeSequence)tt, isDeep);
+                            EnumeratorSequence.Update((EnumeratorSequence)t, (EnumeratorSequence)tt, isDeep);
                             break;
                         }
                     }
                     if (!isfound)
-                        to.ListSequences.Remove(t);
+                        to.ListEnumeratorSequences.Remove(t);
                 }
-                foreach (var tt in from.ListSequences)
+                foreach (var tt in from.ListEnumeratorSequences)
                 {
                     bool isfound = false;
-                    foreach (var t in to.ListSequences.ToList())
+                    foreach (var t in to.ListEnumeratorSequences.ToList())
                     {
                         if (t.Guid == tt.Guid)
                         {
@@ -8755,9 +8755,9 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                     }
                     if (!isfound)
                     {
-                        var p = new CodeSequence(to); // Clone.tt Line: 119
-                        CodeSequence.Update(p, (CodeSequence)tt, isDeep);
-                        to.ListSequences.Add(p);
+                        var p = new EnumeratorSequence(to); // Clone.tt Line: 119
+                        EnumeratorSequence.Update(p, (EnumeratorSequence)tt, isDeep);
+                        to.ListEnumeratorSequences.Add(p);
                     }
                 }
             }
@@ -8800,24 +8800,24 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         // Clone.tt Line: 149
         #region IEditable
-        public override GroupListSequences Backup()
+        public override GroupListEnumeratorSequences Backup()
         {
             bool isDeep = true;
             this.OnBackupObjectStarting(ref isDeep);
             Debug.Assert(this is IConfig || this.Parent != null);
-            return GroupListSequences.Clone(this.Parent, this); // Clone.tt Line: 157
+            return GroupListEnumeratorSequences.Clone(this.Parent, this); // Clone.tt Line: 157
         }
         partial void OnBackupObjectStarting(ref bool isDeep);
-        public override void Restore(GroupListSequences from)
+        public override void Restore(GroupListEnumeratorSequences from)
         {
             bool isDeep = true;
             this.OnRestoreObjectStarting(ref isDeep);
-            GroupListSequences.Update(this, from, isDeep);
+            GroupListEnumeratorSequences.Update(this, from, isDeep);
         }
         partial void OnRestoreObjectStarting(ref bool isDeep);
         #endregion IEditable
-        // Conversion from 'proto_group_list_sequences' to 'GroupListSequences'
-        public static GroupListSequences ConvertToVM(Proto.Config.proto_group_list_sequences m, GroupListSequences vm) // Clone.tt Line: 173
+        // Conversion from 'proto_group_list_enumerator_sequences' to 'GroupListEnumeratorSequences'
+        public static GroupListEnumeratorSequences ConvertToVM(Proto.Config.proto_group_list_enumerator_sequences m, GroupListEnumeratorSequences vm) // Clone.tt Line: 173
         {
             Debug.Assert(vm != null);
             if (m == null)
@@ -8831,11 +8831,11 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SortingValue = m.SortingValue; // Clone.tt Line: 221
             vm.NameUi = m.NameUi; // Clone.tt Line: 221
             vm.Description = m.Description; // Clone.tt Line: 221
-            vm.ListSequences = new ConfigNodesCollection<CodeSequence>(vm); // Clone.tt Line: 194
-            foreach (var t in m.ListSequences) // Clone.tt Line: 198
+            vm.ListEnumeratorSequences = new ConfigNodesCollection<EnumeratorSequence>(vm); // Clone.tt Line: 194
+            foreach (var t in m.ListEnumeratorSequences) // Clone.tt Line: 198
             {
-                var tvm = CodeSequence.ConvertToVM(t, new CodeSequence(vm)); // Clone.tt Line: 200
-                vm.ListSequences.Add(tvm);
+                var tvm = EnumeratorSequence.ConvertToVM(t, new EnumeratorSequence(vm)); // Clone.tt Line: 200
+                vm.ListEnumeratorSequences.Add(tvm);
             }
             vm.ListNodeGeneratorsSettings = new ConfigNodesCollection<PluginGeneratorNodeSettings>(vm); // Clone.tt Line: 194
             foreach (var t in m.ListNodeGeneratorsSettings) // Clone.tt Line: 198
@@ -8850,18 +8850,18 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.IsValidate = true;
             return vm;
         }
-        // Conversion from 'GroupListSequences' to 'proto_group_list_sequences'
-        public static Proto.Config.proto_group_list_sequences ConvertToProto(GroupListSequences vm) // Clone.tt Line: 236
+        // Conversion from 'GroupListEnumeratorSequences' to 'proto_group_list_enumerator_sequences'
+        public static Proto.Config.proto_group_list_enumerator_sequences ConvertToProto(GroupListEnumeratorSequences vm) // Clone.tt Line: 236
         {
             Debug.Assert(vm != null);
-            Proto.Config.proto_group_list_sequences m = new Proto.Config.proto_group_list_sequences(); // Clone.tt Line: 239
+            Proto.Config.proto_group_list_enumerator_sequences m = new Proto.Config.proto_group_list_enumerator_sequences(); // Clone.tt Line: 239
             m.Guid = vm.Guid; // Clone.tt Line: 276
             m.Name = vm.Name; // Clone.tt Line: 276
             m.SortingValue = vm.SortingValue; // Clone.tt Line: 276
             m.NameUi = vm.NameUi; // Clone.tt Line: 276
             m.Description = vm.Description; // Clone.tt Line: 276
-            foreach (var t in vm.ListSequences) // Clone.tt Line: 242
-                m.ListSequences.Add(CodeSequence.ConvertToProto((CodeSequence)t)); // Clone.tt Line: 246
+            foreach (var t in vm.ListEnumeratorSequences) // Clone.tt Line: 242
+                m.ListEnumeratorSequences.Add(EnumeratorSequence.ConvertToProto((EnumeratorSequence)t)); // Clone.tt Line: 246
             foreach (var t in vm.ListNodeGeneratorsSettings) // Clone.tt Line: 242
                 m.ListNodeGeneratorsSettings.Add(PluginGeneratorNodeSettings.ConvertToProto((PluginGeneratorNodeSettings)t)); // Clone.tt Line: 246
             return m;
@@ -8875,7 +8875,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
                 return;
             }
             visitor.Visit(this);
-            foreach (var t in this.ListSequences)
+            foreach (var t in this.ListEnumeratorSequences)
             {
                 t.AcceptConfigNodeVisitor(visitor);
             }
@@ -8998,46 +8998,46 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         
         [Browsable(false)]
         [Description("Document number sequences")]
-        public ConfigNodesCollection<CodeSequence> ListSequences // Property.tt Line: 8
+        public ConfigNodesCollection<EnumeratorSequence> ListEnumeratorSequences // Property.tt Line: 8
         { 
-            get { return this._ListSequences; }
+            get { return this._ListEnumeratorSequences; }
             set
             {
-                if (this._ListSequences != value)
+                if (this._ListEnumeratorSequences != value)
                 {
-                    this.OnListSequencesChanging(value);
-                    _ListSequences = value;
-                    this.OnListSequencesChanged();
+                    this.OnListEnumeratorSequencesChanging(value);
+                    _ListEnumeratorSequences = value;
+                    this.OnListEnumeratorSequencesChanged();
                     this.NotifyPropertyChanged();
                     this.ValidateProperty();
                 }
             }
         }
-        private ConfigNodesCollection<CodeSequence> _ListSequences;
-        IReadOnlyList<ICodeSequence> IGroupListSequences.ListSequences { get { return (this as GroupListSequences).ListSequences; } } // Property.tt Line: 26
-        partial void OnListSequencesChanging(ObservableCollection<CodeSequence> to); // Property.tt Line: 27
-        partial void OnListSequencesChanged();
-        public CodeSequence this[int index] { get { return (CodeSequence)this.ListSequences[index]; } }
-        ICodeSequence IGroupListSequences.this[int index] { get { return (CodeSequence)this.ListSequences[index]; } }
-        public void Add(CodeSequence item) // Property.tt Line: 32
+        private ConfigNodesCollection<EnumeratorSequence> _ListEnumeratorSequences;
+        IReadOnlyList<IEnumeratorSequence> IGroupListEnumeratorSequences.ListEnumeratorSequences { get { return (this as GroupListEnumeratorSequences).ListEnumeratorSequences; } } // Property.tt Line: 26
+        partial void OnListEnumeratorSequencesChanging(ObservableCollection<EnumeratorSequence> to); // Property.tt Line: 27
+        partial void OnListEnumeratorSequencesChanged();
+        public EnumeratorSequence this[int index] { get { return (EnumeratorSequence)this.ListEnumeratorSequences[index]; } }
+        IEnumeratorSequence IGroupListEnumeratorSequences.this[int index] { get { return (EnumeratorSequence)this.ListEnumeratorSequences[index]; } }
+        public void Add(EnumeratorSequence item) // Property.tt Line: 32
         { 
             Debug.Assert(item != null);
-            this.ListSequences.Add(item); 
+            this.ListEnumeratorSequences.Add(item); 
             item.Parent = this;
         }
-        public void AddRange(IEnumerable<CodeSequence> items) 
+        public void AddRange(IEnumerable<EnumeratorSequence> items) 
         { 
             Debug.Assert(items != null);
-            this.ListSequences.AddRange(items); 
+            this.ListEnumeratorSequences.AddRange(items); 
             foreach (var t in items)
                 t.Parent = this;
         }
-        public int Count() { return this.ListSequences.Count; }
-        int IGroupListSequences.Count() { return this.Count(); }
-        public void Remove(CodeSequence item) 
+        public int Count() { return this.ListEnumeratorSequences.Count; }
+        int IGroupListEnumeratorSequences.Count() { return this.Count(); }
+        public void Remove(EnumeratorSequence item) 
         {
             Debug.Assert(item != null);
-            this.ListSequences.Remove(item); 
+            this.ListEnumeratorSequences.Remove(item); 
             item.Parent = null;
         }
         
@@ -9058,7 +9058,7 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             }
         }
         private ConfigNodesCollection<PluginGeneratorNodeSettings> _ListNodeGeneratorsSettings;
-        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListSequences.ListNodeGeneratorsSettings { get { return (this as GroupListSequences).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
+        IReadOnlyList<IPluginGeneratorNodeSettings> IGroupListEnumeratorSequences.ListNodeGeneratorsSettings { get { return (this as GroupListEnumeratorSequences).ListNodeGeneratorsSettings; } } // Property.tt Line: 26
         partial void OnListNodeGeneratorsSettingsChanging(ObservableCollection<PluginGeneratorNodeSettings> to); // Property.tt Line: 27
         partial void OnListNodeGeneratorsSettingsChanged();
     /*
@@ -20296,7 +20296,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SequenceType = from.SequenceType; // Clone.tt Line: 67
             vm.MaxSequenceLength = from.MaxSequenceLength; // Clone.tt Line: 67
             vm.Prefix = from.Prefix; // Clone.tt Line: 67
-            vm.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 67
             vm.UniqueScope = from.UniqueScope; // Clone.tt Line: 67
             vm.IsNotifying = true;
             vm.IsValidate = true;
@@ -20309,7 +20308,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             to.SequenceType = from.SequenceType; // Clone.tt Line: 143
             to.MaxSequenceLength = from.MaxSequenceLength; // Clone.tt Line: 143
             to.Prefix = from.Prefix; // Clone.tt Line: 143
-            to.SequenceGuid = from.SequenceGuid; // Clone.tt Line: 143
             to.UniqueScope = from.UniqueScope; // Clone.tt Line: 143
         }
         // Clone.tt Line: 149
@@ -20343,7 +20341,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             vm.SequenceType = (EnumCodeType)m.SequenceType; // Clone.tt Line: 221
             vm.MaxSequenceLength = m.MaxSequenceLength; // Clone.tt Line: 221
             vm.Prefix = m.Prefix; // Clone.tt Line: 221
-            vm.SequenceGuid = m.SequenceGuid; // Clone.tt Line: 221
             vm.UniqueScope = (EnumCatalogCodeUniqueScope)m.UniqueScope; // Clone.tt Line: 221
             vm.IsNotifying = true;
             vm.IsValidate = true;
@@ -20357,7 +20354,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
             m.SequenceType = (Proto.Config.proto_enum_code_type)vm.SequenceType; // Clone.tt Line: 274
             m.MaxSequenceLength = vm.MaxSequenceLength; // Clone.tt Line: 276
             m.Prefix = vm.Prefix; // Clone.tt Line: 276
-            m.SequenceGuid = vm.SequenceGuid; // Clone.tt Line: 276
             m.UniqueScope = (Proto.Config.proto_enum_catalog_code_unique_scope)vm.UniqueScope; // Clone.tt Line: 274
             return m;
         }
@@ -20443,30 +20439,6 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         private string _Prefix = string.Empty;
         partial void OnPrefixChanging(ref string to); // Property.tt Line: 79
         partial void OnPrefixChanged();
-        
-        [PropertyOrderAttribute(0)]
-        [DisplayName("Code Sequence")]
-        [Description("Code Sequence for auto code generation. Same sequence can be used for different catalogs")]
-        [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
-        public string SequenceGuid // Property.tt Line: 55
-        { 
-            get { return this._SequenceGuid; }
-            set
-            {
-                if (this._SequenceGuid != value)
-                {
-                    this.OnSequenceGuidChanging(ref value);
-                    this._SequenceGuid = value;
-                    this.OnSequenceGuidChanged();
-                    this.NotifyPropertyChanged();
-                    this.ValidateProperty();
-                    this.IsChanged = true;
-                }
-            }
-        }
-        private string _SequenceGuid = string.Empty;
-        partial void OnSequenceGuidChanging(ref string to); // Property.tt Line: 79
-        partial void OnSequenceGuidChanged();
         
         [PropertyOrderAttribute(7)]
         [DisplayName("Unique Scope")]
@@ -23422,8 +23394,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         partial void OnPrefixChanged();
         
         [PropertyOrderAttribute(0)]
-        [DisplayName("Code Sequence")]
-        [Description("Code Sequence for auto code generation. Same sequence can be used for different documents")]
+        [DisplayName("Shared Sequence")]
+        [Description("Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents")]
         [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))]
         public string SequenceGuid // Property.tt Line: 55
         { 
@@ -33437,8 +33409,8 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void Visit(Proto.Config.proto_model p);
         void Visit(Proto.Config.proto_data_type p);
         void Visit(Proto.Config.proto_group_list_common p);
-        void Visit(Proto.Config.proto_code_sequence p);
-        void Visit(Proto.Config.proto_group_list_sequences p);
+        void Visit(Proto.Config.proto_enumerator_sequence p);
+        void Visit(Proto.Config.proto_group_list_enumerator_sequences p);
         void Visit(Proto.Config.proto_role p);
         void Visit(Proto.Config.proto_role_constant_access p);
         void Visit(Proto.Config.proto_role_property_access p);
@@ -33682,19 +33654,19 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(CodeSequence p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(EnumeratorSequence p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(CodeSequence p) // ValidationVisitor.tt Line: 47
+        protected override void OnVisitEnd(EnumeratorSequence p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
-        protected override void OnVisit(GroupListSequences p) // ValidationVisitor.tt Line: 15
+        protected override void OnVisit(GroupListEnumeratorSequences p) // ValidationVisitor.tt Line: 15
         {
             this.OnVisit((IValidatableWithSeverity)p);
         }
-        protected override void OnVisitEnd(GroupListSequences p) // ValidationVisitor.tt Line: 47
+        protected override void OnVisitEnd(GroupListEnumeratorSequences p) // ValidationVisitor.tt Line: 47
         {
             this.OnVisitEnd((IValidatableWithSeverity)p);
         }
@@ -34331,26 +34303,26 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         }
         protected virtual void OnVisit(GroupListCommon p) { }
         protected virtual void OnVisitEnd(GroupListCommon p) { }
-        public void Visit(CodeSequence p)
+        public void Visit(EnumeratorSequence p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(CodeSequence p)
+        public void VisitEnd(EnumeratorSequence p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(CodeSequence p) { }
-        protected virtual void OnVisitEnd(CodeSequence p) { }
-        public void Visit(GroupListSequences p)
+        protected virtual void OnVisit(EnumeratorSequence p) { }
+        protected virtual void OnVisitEnd(EnumeratorSequence p) { }
+        public void Visit(GroupListEnumeratorSequences p)
         {
             this.OnVisit(p);
         }
-        public void VisitEnd(GroupListSequences p)
+        public void VisitEnd(GroupListEnumeratorSequences p)
         {
             this.OnVisitEnd(p);
         }
-        protected virtual void OnVisit(GroupListSequences p) { }
-        protected virtual void OnVisitEnd(GroupListSequences p) { }
+        protected virtual void OnVisit(GroupListEnumeratorSequences p) { }
+        protected virtual void OnVisitEnd(GroupListEnumeratorSequences p) { }
         public void Visit(Role p)
         {
             this.OnVisit(p);
@@ -34822,10 +34794,10 @@ namespace vSharpStudio.vm.ViewModels // NameSpace.tt Line: 23
         void VisitEnd(Model p);
         void Visit(GroupListCommon p);
         void VisitEnd(GroupListCommon p);
-        void Visit(CodeSequence p);
-        void VisitEnd(CodeSequence p);
-        void Visit(GroupListSequences p);
-        void VisitEnd(GroupListSequences p);
+        void Visit(EnumeratorSequence p);
+        void VisitEnd(EnumeratorSequence p);
+        void Visit(GroupListEnumeratorSequences p);
+        void VisitEnd(GroupListEnumeratorSequences p);
         void Visit(Role p);
         void VisitEnd(Role p);
         void Visit(GroupListRoles p);

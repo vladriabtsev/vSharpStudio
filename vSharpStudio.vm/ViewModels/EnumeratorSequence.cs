@@ -11,14 +11,14 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Sequence:{Name,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class CodeSequence : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
+    public partial class EnumeratorSequence : ICanGoLeft, ICanAddNode, INodeGenSettings, IEditableNode
     {
         public string Text { get { return this.Name; } }
         public string Value { get { return this.Guid; } }
         [Browsable(false)]
-        public GroupListSequences ParentGroupListSequences { get { Debug.Assert(this.Parent != null); return (GroupListSequences)this.Parent; } }
+        public GroupListEnumeratorSequences ParentGroupListSequences { get { Debug.Assert(this.Parent != null); return (GroupListEnumeratorSequences)this.Parent; } }
         [Browsable(false)]
-        public IGroupListSequences ParentGroupListSequencesI { get { Debug.Assert(this.Parent != null); return (IGroupListSequences)this.Parent; } }
+        public IGroupListEnumeratorSequences ParentGroupListSequencesI { get { Debug.Assert(this.Parent != null); return (IGroupListEnumeratorSequences)this.Parent; } }
         public static readonly string DefaultName = "Sequence";
 
         #region ITree
@@ -76,7 +76,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentGroupListSequences.ListSequences.CanUp(this))
+                if (this.ParentGroupListSequences.ListEnumeratorSequences.CanUp(this))
                 {
                     return true;
                 }
@@ -86,7 +86,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeUp()
         {
-            var prev = (CodeSequence?)this.ParentGroupListSequences.ListSequences.GetPrev(this);
+            var prev = (EnumeratorSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetPrev(this);
             if (prev == null)
                 return;
             this.SetSelected(prev);
@@ -94,7 +94,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveUp()
         {
-            this.ParentGroupListSequences.ListSequences.MoveUp(this);
+            this.ParentGroupListSequences.ListEnumeratorSequences.MoveUp(this);
             this.SetSelected(this);
         }
 
@@ -102,7 +102,7 @@ namespace vSharpStudio.vm.ViewModels
         {
             if (this.NodeCanAddClone())
             {
-                if (this.ParentGroupListSequences.ListSequences.CanDown(this))
+                if (this.ParentGroupListSequences.ListEnumeratorSequences.CanDown(this))
                 {
                     return true;
                 }
@@ -112,7 +112,7 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeDown()
         {
-            var next = (CodeSequence?)this.ParentGroupListSequences.ListSequences.GetNext(this);
+            var next = (EnumeratorSequence?)this.ParentGroupListSequences.ListEnumeratorSequences.GetNext(this);
             if (next == null)
                 return;
             this.SetSelected(next);
@@ -120,13 +120,13 @@ namespace vSharpStudio.vm.ViewModels
 
         public override void NodeMoveDown()
         {
-            this.ParentGroupListSequences.ListSequences.MoveDown(this);
+            this.ParentGroupListSequences.ListEnumeratorSequences.MoveDown(this);
             this.SetSelected(this);
         }
         public override ITreeConfigNode NodeAddClone()
         {
             Debug.Assert(this.Parent != null);
-            var node = CodeSequence.Clone(this.Parent, this, true, true);
+            var node = EnumeratorSequence.Clone(this.Parent, this, true, true);
             node.Parent = this.Parent;
             this.ParentGroupListSequences.Add(node);
             this._Name = this._Name + "2";
@@ -136,15 +136,15 @@ namespace vSharpStudio.vm.ViewModels
 
         public override ITreeConfigNode NodeAddNew()
         {
-            var node = new CodeSequence(this.Parent);
+            var node = new EnumeratorSequence(this.Parent);
             this.ParentGroupListSequences.Add(node);
-            this.GetUniqueName(CodeSequence.DefaultName, node, this.ParentGroupListSequences.ListSequences);
+            this.GetUniqueName(EnumeratorSequence.DefaultName, node, this.ParentGroupListSequences.ListEnumeratorSequences);
             this.SetSelected(node);
             return node;
         }
         public void Remove()
         {
-            this.ParentGroupListSequences.ListSequences.Remove(this);
+            this.ParentGroupListSequences.ListEnumeratorSequences.Remove(this);
         }
         #endregion Tree operations
         protected override string[]? OnGetWhatHideOnPropertyGrid()

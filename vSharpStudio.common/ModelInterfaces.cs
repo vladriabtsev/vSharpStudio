@@ -811,11 +811,11 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	string Description { get; } // ModelInterfaces.tt Line: 55
     	IGroupListRoles GroupRoles { get; } // ModelInterfaces.tt Line: 59
     	IGroupListMainViewForms GroupViewForms { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListSequences GroupListSequences { get; } // ModelInterfaces.tt Line: 59
+    	IGroupListEnumeratorSequences GroupListSequences { get; } // ModelInterfaces.tt Line: 59
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
-    public partial interface ICodeSequence : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IEnumeratorSequence : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
     	string NameUi { get; } // ModelInterfaces.tt Line: 55
@@ -828,13 +828,13 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
     
-    public partial interface IGroupListSequences : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListEnumeratorSequences : IGuid, IName // ModelInterfaces.tt Line: 33
     {
         //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
     	string NameUi { get; } // ModelInterfaces.tt Line: 55
     	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<ICodeSequence> ListSequences { get; } // ModelInterfaces.tt Line: 48
-    	ICodeSequence this[int index] { get; }
+    	IReadOnlyList<IEnumeratorSequence> ListEnumeratorSequences { get; } // ModelInterfaces.tt Line: 48
+    	IEnumeratorSequence this[int index] { get; }
     	int Count();
     	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
     }
@@ -1259,7 +1259,6 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	EnumCodeType SequenceType { get; } // ModelInterfaces.tt Line: 55
     	uint MaxSequenceLength { get; } // ModelInterfaces.tt Line: 55
     	string Prefix { get; } // ModelInterfaces.tt Line: 55
-    	string SequenceGuid { get; } // ModelInterfaces.tt Line: 55
     	EnumCatalogCodeUniqueScope UniqueScope { get; } // ModelInterfaces.tt Line: 55
     }
     

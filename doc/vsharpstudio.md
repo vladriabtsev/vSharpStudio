@@ -12,7 +12,6 @@
     - [proto_catalog](#proto_config.proto_catalog)
     - [proto_catalog_code_property_settings](#proto_config.proto_catalog_code_property_settings)
     - [proto_catalog_folder](#proto_config.proto_catalog_folder)
-    - [proto_code_sequence](#proto_config.proto_code_sequence)
     - [proto_config](#proto_config.proto_config)
     - [proto_config_short_history](#proto_config.proto_config_short_history)
     - [proto_constant](#proto_config.proto_constant)
@@ -23,6 +22,7 @@
     - [proto_document_number_property_settings](#proto_config.proto_document_number_property_settings)
     - [proto_enumeration](#proto_config.proto_enumeration)
     - [proto_enumeration_pair](#proto_config.proto_enumeration_pair)
+    - [proto_enumerator_sequence](#proto_config.proto_enumerator_sequence)
     - [proto_form](#proto_config.proto_form)
     - [proto_form_auto_layout_block](#proto_config.proto_form_auto_layout_block)
     - [proto_form_auto_layout_sub_block](#proto_config.proto_form_auto_layout_sub_block)
@@ -44,6 +44,7 @@
     - [proto_group_list_details](#proto_config.proto_group_list_details)
     - [proto_group_list_documents](#proto_config.proto_group_list_documents)
     - [proto_group_list_enumerations](#proto_config.proto_group_list_enumerations)
+    - [proto_group_list_enumerator_sequences](#proto_config.proto_group_list_enumerator_sequences)
     - [proto_group_list_forms](#proto_config.proto_group_list_forms)
     - [proto_group_list_journals](#proto_config.proto_group_list_journals)
     - [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms)
@@ -51,7 +52,6 @@
     - [proto_group_list_properties](#proto_config.proto_group_list_properties)
     - [proto_group_list_reports](#proto_config.proto_group_list_reports)
     - [proto_group_list_roles](#proto_config.proto_group_list_roles)
-    - [proto_group_list_sequences](#proto_config.proto_group_list_sequences)
     - [proto_journal](#proto_config.proto_journal)
     - [proto_main_view_form](#proto_config.proto_main_view_form)
     - [proto_model](#proto_config.proto_model)
@@ -333,7 +333,6 @@ repeated proto_plugin_group_generators_settings list_group_generators_settings =
 | sequence_type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type general settings&#34;)] |
 | max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number &#39;9&#39; is limited by this parameter&#34;)] |
 | prefix | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
-| sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(0)] @attr [DisplayName(&#34;Code Sequence&#34;)] @attr [Description(&#34;Code Sequence for auto code generation. Same sequence can be used for different catalogs&#34;)] @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] |
 | unique_scope | [proto_enum_catalog_code_unique_scope](#proto_config.proto_enum_catalog_code_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
 
 
@@ -384,32 +383,6 @@ C A T A L O G
 | group_forms | [proto_group_list_forms](#proto_config.proto_group_list_forms) |  | @attr [Browsable(false)] |
 | group_reports | [proto_group_list_reports](#proto_config.proto_group_list_reports) |  | @attr [Browsable(false)] |
 | list_role_catalog_access_settings | [proto_role_catalog_access](#proto_config.proto_role_catalog_access) | repeated | @attr [Browsable(false)] |
-| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
-
-
-
-
-
-
-<a name="proto_config.proto_code_sequence"></a>
-
-### proto_code_sequence
-@interface ICanAddNode
-@interface ISortingValue
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
-| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
-| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
-| sequence_type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type for code&#34;)] |
-| max_sequence_length | [uint32](#uint32) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
-| prefix | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -645,7 +618,7 @@ Constant application wise value
 | sequence_type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [PropertyOrderAttribute(1)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type general settings&#34;)] |
 | max_sequence_length | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers. Valid sequence numbers from 1 to 999, where number &#39;9&#39; is limited by this parameter&#34;)] |
 | prefix | [string](#string) |  | @attr [PropertyOrderAttribute(3)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
-| sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(0)] @attr [DisplayName(&#34;Code Sequence&#34;)] @attr [Description(&#34;Code Sequence for auto code generation. Same sequence can be used for different documents&#34;)] @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] |
+| sequence_guid | [string](#string) |  | @attr [PropertyOrderAttribute(0)] @attr [DisplayName(&#34;Shared Sequence&#34;)] @attr [Description(&#34;Shared DocNumber Sequence for auto generation. Same sequence can be used for different documents&#34;)] @attr [Editor(typeof(EditorCodeSequenceSelection), typeof(EditorCodeSequenceSelection))] |
 | scope_of_unique | [proto_enum_doc_number_unique_scope](#proto_config.proto_enum_doc_number_unique_scope) |  | @attr [PropertyOrderAttribute(7)] @attr [DisplayName(&#34;Unique Scope&#34;)] @attr [Description(&#34;Code has to be unique in selected scope&#34;)] |
 | scope_period_start_month | [proto_enum_months](#proto_config.proto_enum_months) |  | @attr [PropertyOrderAttribute(9)] @attr [DisplayName(&#34;Start Month&#34;)] @attr [Description(&#34;Start month of scope period&#34;)] |
 | scope_period_start_month_day | [uint32](#uint32) |  | @attr [PropertyOrderAttribute(10)] @attr [DisplayName(&#34;Start Day&#34;)] @attr [Description(&#34;Start month day of scope period&#34;)] |
@@ -700,6 +673,32 @@ Constant application wise value
 | numeric_value | [int32](#int32) |  | @attr [PropertyOrderAttribute(8)] @attr [DisplayName(&#34;Numeric Value&#34;)] @attr [Description(&#34;Enumeration element numeric value&#34;)] |
 | is_new | [bool](#bool) |  | @attr [Browsable(false)] |
 | is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_enumerator_sequence"></a>
+
+### proto_enumerator_sequence
+@interface ICanAddNode
+@interface ISortingValue
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| is_new | [bool](#bool) |  | @attr [Browsable(false)] |
+| is_marked_for_deletion | [bool](#bool) |  | @attr [Browsable(false)] |
+| sequence_type | [proto_enum_code_type](#proto_config.proto_enum_code_type) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(11)] @attr [DisplayName(&#34;Sequence type&#34;)] @attr [Description(&#34;Sequence type for code&#34;)] |
+| max_sequence_length | [uint32](#uint32) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(12)] @attr [DisplayName(&#34;Max Sequence&#34;)] @attr [Description(&#34;Maximum number of character places for generated sequence numbers&#34;)] |
+| prefix | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(13)] @attr [DisplayName(&#34;Prefix&#34;)] @attr [Description(&#34;Prefix for text code sequence&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1151,7 +1150,7 @@ Common parameters section
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
 | group_roles | [proto_group_list_roles](#proto_config.proto_group_list_roles) |  | @attr [Browsable(false)] |
 | group_view_forms | [proto_group_list_main_view_forms](#proto_config.proto_group_list_main_view_forms) |  | @attr [Browsable(false)] |
-| group_list_sequences | [proto_group_list_sequences](#proto_config.proto_group_list_sequences) |  | @attr [Browsable(false)] |
+| group_list_sequences | [proto_group_list_enumerator_sequences](#proto_config.proto_group_list_enumerator_sequences) |  | @attr [Browsable(false)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1255,6 +1254,27 @@ E N U M E R A T I O N
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_enumerations | [proto_enumeration](#proto_config.proto_enumeration) | repeated | @attr [Browsable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
+
+
+
+
+
+
+<a name="proto_config.proto_group_list_enumerator_sequences"></a>
+
+### proto_group_list_enumerator_sequences
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
+| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
+| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
+| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
+| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
+| list_enumerator_sequences | [proto_enumerator_sequence](#proto_config.proto_enumerator_sequence) | repeated | @attr [Browsable(false)] @attr [Description(&#34;Document number sequences&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 
@@ -1415,27 +1435,6 @@ R E P O R T S
 | description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
 | list_roles | [proto_role](#proto_config.proto_role) | repeated | @attr [Browsable(false)] |
 | sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
-
-
-
-
-
-
-<a name="proto_config.proto_group_list_sequences"></a>
-
-### proto_group_list_sequences
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| guid | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(-2)] @attr [ReadOnly(true)] |
-| name | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(1)] |
-| sorting_value | [uint64](#uint64) |  | @attr [Browsable(false)] |
-| name_ui | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(2)] @attr [DisplayName(&#34;UI name&#34;)] @attr [Description(&#34;Used as label/name for UI&#34;)] |
-| description | [string](#string) |  | @attr [Category(&#34;&#34;)] @attr [PropertyOrderAttribute(3)] |
-| list_sequences | [proto_code_sequence](#proto_config.proto_code_sequence) | repeated | @attr [Browsable(false)] @attr [Description(&#34;Document number sequences&#34;)] |
 | list_node_generators_settings | [proto_plugin_generator_node_settings](#proto_config.proto_plugin_generator_node_settings) | repeated | @attr [Browsable(false)] |
 
 

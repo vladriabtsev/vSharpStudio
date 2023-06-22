@@ -17,18 +17,18 @@ namespace vSharpStudio.vm.ViewModels
                 var p = (CatalogCodePropertySettings)cntx.InstanceToValidate;
                 if (p.Parent == null)
                     return;
-                if (string.IsNullOrWhiteSpace(p.SequenceGuid))
+                //if (string.IsNullOrWhiteSpace(p.SequenceGuid))
+                //{
+                if (string.IsNullOrWhiteSpace(p.Prefix))
+                    p.Prefix = "";
+                if (p.Prefix.Length > 0 && (p.SequenceType == common.EnumCodeType.Number))
                 {
-                    if (string.IsNullOrWhiteSpace(p.Prefix))
-                        p.Prefix = "";
-                    if (p.Prefix.Length > 0 && (p.SequenceType == common.EnumCodeType.Number))
-                    {
-                        var vf = new ValidationFailure(nameof(p.Prefix),
-                            $"Prefix for numbers is not used. Expected to be empty");
-                        vf.Severity = Severity.Error;
-                        cntx.AddFailure(vf);
-                    }
+                    var vf = new ValidationFailure(nameof(p.Prefix),
+                        $"Prefix for numbers is not used. Expected to be empty");
+                    vf.Severity = Severity.Error;
+                    cntx.AddFailure(vf);
                 }
+                //}
             });
         }
     }

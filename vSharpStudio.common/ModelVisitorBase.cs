@@ -51,7 +51,7 @@ namespace vSharpStudio.common
             this.EndVisit(currModel.GroupCommon.GroupViewForms);
             this.BeginVisit(currModel.GroupCommon.GroupListSequences);
             this._act?.Invoke(this, this.currModel.GroupCommon.GroupListSequences);
-            foreach (var tt in currModel.GroupCommon.GroupListSequences.ListSequences)
+            foreach (var tt in currModel.GroupCommon.GroupListSequences.ListEnumeratorSequences)
             {
                 this.BeginVisit(tt);
                 this._act?.Invoke(this, tt);
@@ -370,12 +370,12 @@ namespace vSharpStudio.common
         protected virtual void BeginVisit(IRole p) { }
         protected virtual void EndVisit(IRole p) { }
 
-        protected virtual void BeginVisit(IGroupListSequences cn) { }
-        protected virtual void EndVisit(IGroupListSequences cn) { }
+        protected virtual void BeginVisit(IGroupListEnumeratorSequences cn) { }
+        protected virtual void EndVisit(IGroupListEnumeratorSequences cn) { }
         //protected virtual void BeginVisit(IEnumerable<IRole> lst) { }
         //protected virtual void EndVisit(IEnumerable<IRole> lst) { }
-        protected virtual void BeginVisit(ICodeSequence p) { }
-        protected virtual void EndVisit(ICodeSequence p) { }
+        protected virtual void BeginVisit(IEnumeratorSequence p) { }
+        protected virtual void EndVisit(IEnumeratorSequence p) { }
 
         protected virtual void BeginVisit(IGroupListMainViewForms cn) { }
         protected virtual void EndVisit(IGroupListMainViewForms cn) { }

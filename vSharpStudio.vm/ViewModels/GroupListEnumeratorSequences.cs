@@ -14,7 +14,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace vSharpStudio.vm.ViewModels
 {
     [DebuggerDisplay("Group:{Name,nq} Count:{ListDocuments.Count,nq} HasChanged:{IsHasChanged} HasErrors:{CountErrors}-{HasErrors}")]
-    public partial class GroupListSequences : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
+    public partial class GroupListEnumeratorSequences : ITreeModel, ICanAddSubNode, ICanGoRight, INodeGenSettings, IEditableNodeGroup
     {
         [Browsable(false)]
         public bool IsNew { get { return false; } }
@@ -33,7 +33,7 @@ namespace vSharpStudio.vm.ViewModels
         }
         #endregion ITree
 
-        public new ConfigNodesCollection<CodeSequence> Children { get { return this.ListSequences; } }
+        public new ConfigNodesCollection<EnumeratorSequence> Children { get { return this.ListEnumeratorSequences; } }
         public IGroupListCommon IParent { get { return this.ParentGroupListCommonI; } }
 
         partial void OnCreated()
@@ -48,26 +48,26 @@ namespace vSharpStudio.vm.ViewModels
         }
         private void Init()
         {
-            this.ListSequences.OnAddingAction = (t) =>
+            this.ListEnumeratorSequences.OnAddingAction = (t) =>
             {
                 t.IsNew = true;
             };
-            this.ListSequences.OnAddedAction = (t) =>
+            this.ListEnumeratorSequences.OnAddedAction = (t) =>
             {
                 t.OnAdded();
             };
-            this.ListSequences.OnRemovedAction = (t) =>
+            this.ListEnumeratorSequences.OnRemovedAction = (t) =>
             {
                 this.OnRemoveChild();
             };
-            this.ListSequences.OnClearedAction = () =>
+            this.ListEnumeratorSequences.OnClearedAction = () =>
             {
                 this.OnRemoveChild();
             };
         }
-        public CodeSequence AddSequence(string name, string? guid = null)
+        public EnumeratorSequence AddSequence(string name, string? guid = null)
         {
-            var node = new CodeSequence(this) { Name = name };
+            var node = new EnumeratorSequence(this) { Name = name };
 #if DEBUG
             if (guid != null) // for test model generation
             {
@@ -79,27 +79,27 @@ namespace vSharpStudio.vm.ViewModels
             this.NodeAddNewSubNode(node);
             return node;
         }
-        public int IndexOf(ICodeSequence docSequence)
+        public int IndexOf(IEnumeratorSequence docSequence)
         {
-            return this.ListSequences.IndexOf((docSequence as CodeSequence)!);
+            return this.ListEnumeratorSequences.IndexOf((docSequence as EnumeratorSequence)!);
         }
         #region Tree operations
         public bool CanAddSubNode() { return true; }
         public override ITreeConfigNode NodeAddNewSubNode(ITreeConfigNode? node_impl = null)
         {
-            CodeSequence node = null!;
+            EnumeratorSequence node = null!;
             if (node_impl == null)
             {
-                node = new CodeSequence(this);
+                node = new EnumeratorSequence(this);
             }
             else
             {
-                node = (CodeSequence)node_impl;
+                node = (EnumeratorSequence)node_impl;
             }
             this.Add(node);
             if (node_impl == null)
             {
-                this.GetUniqueName(Defaults.SequenceName, node, this.ListSequences);
+                this.GetUniqueName(Defaults.SequenceName, node, this.ListEnumeratorSequences);
             }
             this.SetSelected(node);
             return node;
