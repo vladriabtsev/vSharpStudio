@@ -143,96 +143,54 @@ namespace vSharpStudio.vm.ViewModels
         }
         public string GetDocNumberClrTypeName()
         {
-            IConfig cfg = this.ParentDocument.Cfg;
-            string propertyDocNumberGuid = this.ParentDocument.PropertyDocNumberGuid;
-            GroupListProperties groupListProperties = this.ParentDocument.GroupProperties;
             IProperty? prp = null;
-            switch (this.SequenceType)
+            if (string.IsNullOrWhiteSpace(this.SequenceGuid))
+            {
+                prp=this.GetDocNumberProperty(this.ParentDocument, this.SequenceType, this.MaxSequenceLength, this.Prefix);
+            }
+            else
+            {
+                var seq = (EnumeratorSequence)this.ParentDocument.Cfg.DicNodes[this.SequenceGuid];
+                prp=this.GetDocNumberProperty(this.ParentDocument, seq.SequenceType, seq.MaxSequenceLength, seq.Prefix);
+            }
+            Debug.Assert(prp != null);
+            return prp.DataType.ClrTypeName;
+        }
+        private IProperty GetDocNumberProperty(Document doc, EnumCodeType sequenceType, uint maxSequenceLength, string prefix)
+        {
+            string propertyDocNumberGuid = doc.PropertyDocNumberGuid;
+            GroupListProperties groupListProperties = doc.GroupProperties;
+            IProperty? prp = null;
+            switch (sequenceType)
             {
                 case EnumCodeType.Number:
-                    prp = cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyDocNumberGuid,
-                        this.MaxSequenceLength);
+                    prp = doc.Cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyDocNumberGuid,
+                        maxSequenceLength);
                     break;
                 case EnumCodeType.Text:
-                    prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyDocNumberGuid,
-                        this.MaxSequenceLength + (uint)this.Prefix.Length);
+                    prp = doc.Cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyDocNumberGuid,
+                        maxSequenceLength + (uint)prefix.Length);
                     break;
                 default:
                     throw new NotImplementedException();
             }
             Debug.Assert(prp != null);
-            return prp.DataType.ClrTypeName;
+            return prp;
         }
-        public string GetCodeClrTypeName()
+        private void GetNextCodeProc(StringBuilder sb, EnumCodeType sequenceType, uint maxSequenceLength, string prefix)
         {
-            IConfig? cfg = null;
-            string? propertyCodeGuid = null;
-
-            GroupListProperties? groupListProperties = null;
-            cfg = this.ParentDocument.Cfg;
-            propertyCodeGuid = this.ParentDocument.PropertyDocNumberGuid;
-            groupListProperties = this.ParentDocument.GroupProperties;
-            Debug.Assert(cfg != null);
-            Debug.Assert(propertyCodeGuid != null);
-            Debug.Assert(groupListProperties != null);
-            IProperty? prp = null;
-            if (string.IsNullOrWhiteSpace(this.SequenceGuid))
-            {
-                switch (this.SequenceType)
-                {
-                    case EnumCodeType.Number:
-                        prp = cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyCodeGuid,
-                            this.MaxSequenceLength);
-                        break;
-                    case EnumCodeType.Text:
-                        prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyCodeGuid,
-                            this.MaxSequenceLength + (uint)this.Prefix.Length);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-            else
-            {
-                var seq = (EnumeratorSequence)cfg.DicNodes[this.SequenceGuid];
-                switch (seq.SequenceType)
-                {
-                    case EnumCodeType.Number:
-                        prp = cfg.Model.GetPropertyDocNumberInt(groupListProperties, propertyCodeGuid,
-                            seq.MaxSequenceLength);
-                        break;
-                    case EnumCodeType.Text:
-                        prp = cfg.Model.GetPropertyDocNumberString(groupListProperties, propertyCodeGuid,
-                            seq.MaxSequenceLength + (uint)seq.Prefix.Length);
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
-            Debug.Assert(prp != null);
-            return prp.DataType.ClrTypeName;
-        }
-        public string GetNextCodeProc()
-        {
-            var sb = new StringBuilder();
-            sb.Append(this.GetCodeClrTypeName());
-            sb.Append(" res = ");
-            sb.Append(this.GetCodeStartStr());
-            sb.AppendLine(";");
-            sb.AppendLine("if (code != null)");
-            sb.AppendLine("{");
-            switch (this.SequenceType)
+            switch (sequenceType)
             {
                 case EnumCodeType.Number:
                     sb.AppendLine("\tres = code.Value + 1;");
                     sb.Append("\tif (res > ");
-                    sb.Append(System.Numerics.BigInteger.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    sb.Append(System.Numerics.BigInteger.Parse(new string('9', (int)maxSequenceLength)));
                     sb.AppendLine(")");
                     sb.AppendLine("\t\tres = 1;");
                     break;
                 case EnumCodeType.Text:
-                    var pref = this.Prefix.Trim();
-                    if (!string.IsNullOrWhiteSpace(this.Prefix))
+                    var pref = prefix.Trim();
+                    if (!string.IsNullOrWhiteSpace(prefix))
                     {
                         sb.Append("\tcode = code.Substring(");
                         sb.Append(pref.Length);
@@ -240,7 +198,7 @@ namespace vSharpStudio.vm.ViewModels
                     }
                     sb.AppendLine("\tvar i = System.Numerics.BigInteger.Parse(code) + 1;");
                     sb.Append("\tif (i > ");
-                    sb.Append(System.Numerics.BigInteger.Parse(new string('9', (int)this.MaxSequenceLength)));
+                    sb.Append(System.Numerics.BigInteger.Parse(new string('9', (int)maxSequenceLength)));
                     sb.AppendLine(")");
                     sb.Append("\t\tres = ");
                     sb.Append(this.GetCodeStartStr());
@@ -249,27 +207,42 @@ namespace vSharpStudio.vm.ViewModels
                     sb.Append("\t\tres = \"");
                     sb.Append(pref);
                     sb.Append("\" + i.ToString(\"D");
-                    sb.Append(this.MaxSequenceLength);
+                    sb.Append(maxSequenceLength);
                     sb.AppendLine("\");");
                     break;
                 default:
                     throw new NotImplementedException();
             }
+        }
+        public string GetNextCodeProc()
+        {
+            var sb = new StringBuilder();
+            sb.Append(this.GetDocNumberClrTypeName());
+            sb.Append(" res = ");
+            sb.Append(this.GetCodeStartStr());
+            sb.AppendLine(";");
+            sb.AppendLine("if (code != null)");
+            sb.AppendLine("{");
+            if (string.IsNullOrWhiteSpace(this.SequenceGuid))
+            {
+                this.GetNextCodeProc(sb, this.SequenceType, this.MaxSequenceLength, this.Prefix);
+            }
+            else
+            {
+                var seq = (EnumeratorSequence)this.ParentDocument.Cfg.DicNodes[this.SequenceGuid];
+                this.GetNextCodeProc(sb, seq.SequenceType, seq.MaxSequenceLength, seq.Prefix);
+            }
             sb.Append("}");
             return sb.ToString();
         }
-        public string GetCodeCheckProc()
+        private void GetCodeCheckProc(StringBuilder sb, EnumCodeType sequenceType, uint maxSequenceLength, string prefix, string pname)
         {
-            Debug.Assert(this.Parent != null);
-            var cfg = this.Parent.Cfg;
-            var pname = cfg.Model.PropertyCodeName;
-            var sb = new StringBuilder();
-            switch (this.SequenceType)
+            switch (sequenceType)
             {
                 case EnumCodeType.Number:
                     sb.AppendLine("if (isMinAllowedInsert && code < 1) return true;");
                     sb.Append("if (code < 1 || code > ");
-                    var rmax = new string('9', (int)this.MaxSequenceLength);
+                    var rmax = new string('9', (int)maxSequenceLength);
                     sb.Append(rmax);
                     sb.AppendLine(")");
                     sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
@@ -280,7 +253,7 @@ namespace vSharpStudio.vm.ViewModels
                     break;
                 case EnumCodeType.Text:
                     sb.AppendLine("if (isMinAllowedInsert && code.Length == 0) return true;");
-                    var pref = this.Prefix.Trim();
+                    var pref = prefix.Trim();
                     if (pref.Length > 0)
                     {
                         sb.Append("if (!code.StartsWith(\"");
@@ -296,14 +269,14 @@ namespace vSharpStudio.vm.ViewModels
                         sb.AppendLine(");");
                     }
                     sb.Append("if (code.Length != ");
-                    sb.Append(this.MaxSequenceLength);
+                    sb.Append(maxSequenceLength);
                     sb.AppendLine(")");
                     sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
                     sb.Append(pname);
                     sb.Append("'=\\\"");
                     sb.Append(pref);
                     sb.Append("{code}\\\". Length of sequence not equal ");
-                    sb.Append(this.MaxSequenceLength);
+                    sb.Append(maxSequenceLength);
                     sb.AppendLine("\");");
                     sb.AppendLine("if (!System.Numerics.BigInteger.TryParse(code, out var i))");
                     sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
@@ -313,13 +286,13 @@ namespace vSharpStudio.vm.ViewModels
                     sb.AppendLine("{code}\\\". Can't parse sequence \\\"{code}\\\" to number\");");
                     sb.AppendLine("if (isMinAllowedInsert && i < 1) return true;");
                     sb.Append("if (i < 1 || i > ");
-                    var rmax2 = new string('9', (int)this.MaxSequenceLength);
+                    var rmax2 = new string('9', (int)maxSequenceLength);
                     sb.Append(rmax2);
                     sb.AppendLine(")");
                     sb.Append("\tthrow new BusinessException(EnumExceptionType.CodeOutsideAllowedRange, $\"Catalog property '");
                     sb.Append(pname);
                     sb.Append("'=\\\"{code}\\\". It is outside expected range from '");
-                    var rmin2 = new string('0', (int)this.MaxSequenceLength - 1) + "1";
+                    var rmin2 = new string('0', (int)maxSequenceLength - 1) + "1";
                     sb.Append(rmin2);
                     sb.Append("' to '");
                     sb.Append(rmax2);
@@ -328,34 +301,74 @@ namespace vSharpStudio.vm.ViewModels
                 default:
                     throw new NotImplementedException();
             }
+        }
+        public string GetCodeCheckProc()
+        {
+            Debug.Assert(this.Parent != null);
+            var cfg = this.Parent.Cfg;
+            var pname = cfg.Model.PropertyCodeName;
+            var sb = new StringBuilder();
+            if (string.IsNullOrWhiteSpace(this.SequenceGuid))
+            {
+                this.GetCodeCheckProc(sb, this.SequenceType, this.MaxSequenceLength, this.Prefix, pname);
+            }
+            else
+            {
+                var seq = (EnumeratorSequence)this.ParentDocument.Cfg.DicNodes[this.SequenceGuid];
+                this.GetCodeCheckProc(sb, seq.SequenceType, seq.MaxSequenceLength, seq.Prefix, pname);
+            }
             sb.Append("return true;");
             return sb.ToString();
         }
-        public string GetCodeStartStr()
+        private string GetCodeStartStr(EnumCodeType sequenceType, uint maxSequenceLength, string prefix)
         {
-            switch (this.SequenceType)
+            switch (sequenceType)
             {
                 case EnumCodeType.Number:
                     return "1";
                 case EnumCodeType.Text:
-                    var pref = this.Prefix.Trim();
-                    string fmt = "D" + this.MaxSequenceLength;
+                    var pref = prefix.Trim();
+                    string fmt = "D" + maxSequenceLength;
                     return $"\"{pref}{1.ToString(fmt)}\"";
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+        public string GetCodeStartStr()
+        {
+            if (string.IsNullOrWhiteSpace(this.SequenceGuid))
+            {
+                return this.GetCodeStartStr(this.SequenceType, this.MaxSequenceLength, this.Prefix);
+            }
+            else
+            {
+                var seq = (EnumeratorSequence)this.ParentDocument.Cfg.DicNodes[this.SequenceGuid];
+                return this.GetCodeStartStr(seq.SequenceType, seq.MaxSequenceLength, seq.Prefix);
+            }
+        }
+        private string GetCodeEndStr(EnumCodeType sequenceType, uint maxSequenceLength, string prefix)
+        {
+            switch (sequenceType)
+            {
+                case EnumCodeType.Number:
+                    return new string('9', (int)maxSequenceLength);
+                case EnumCodeType.Text:
+                    var pref = prefix.Trim();
+                    return $"\"{pref}{new string('9', (int)maxSequenceLength)}\"";
                 default:
                     throw new NotImplementedException();
             }
         }
         public string GetCodeEndStr()
         {
-            switch (this.SequenceType)
+            if (string.IsNullOrWhiteSpace(this.SequenceGuid))
             {
-                case EnumCodeType.Number:
-                    return new string('9', (int)this.MaxSequenceLength);
-                case EnumCodeType.Text:
-                    var pref = this.Prefix.Trim();
-                    return $"\"{pref}{new string('9', (int)this.MaxSequenceLength)}\"";
-                default:
-                    throw new NotImplementedException();
+                return this.GetCodeEndStr(this.SequenceType, this.MaxSequenceLength, this.Prefix);
+            }
+            else
+            {
+                var seq = (EnumeratorSequence)this.ParentDocument.Cfg.DicNodes[this.SequenceGuid];
+                return this.GetCodeEndStr(seq.SequenceType, seq.MaxSequenceLength, seq.Prefix);
             }
         }
     }
