@@ -313,12 +313,13 @@ namespace vSharpStudio.common
                 {
                     sb.Append(indent);
                     sb.Append(comment);
-                    sb.Append("UI name: ");
                     sb.Append(t.NameUi);
+                    sb.Append(": ");
+                    if (!string.IsNullOrWhiteSpace(t.Description))
+                        sb.Append(t.Description);
                     sb.AppendLine();
                 }
-
-                if (!string.IsNullOrWhiteSpace(t.Description))
+                else if (!string.IsNullOrWhiteSpace(t.Description))
                 {
                     sb.Append(indent);
                     sb.Append(comment);
@@ -346,12 +347,13 @@ namespace vSharpStudio.common
                 {
                     sb.Append(indent);
                     sb.Append(comment);
-                    sb.Append("UI name: ");
                     sb.Append(t.NameUi);
+                    sb.Append(": ");
+                    if (!string.IsNullOrWhiteSpace(t.Description))
+                        sb.Append(t.Description);
                     sb.AppendLine();
                 }
-
-                if (!string.IsNullOrWhiteSpace(t.Description))
+                else if (!string.IsNullOrWhiteSpace(t.Description))
                 {
                     sb.Append(indent);
                     sb.Append(comment);
@@ -379,12 +381,13 @@ namespace vSharpStudio.common
                 {
                     sb.Append(indent);
                     sb.Append(comment);
-                    sb.Append("UI name: ");
                     sb.Append(t.NameUi);
+                    sb.Append(": ");
+                    if (!string.IsNullOrWhiteSpace(t.Description))
+                        sb.Append(t.Description);
                     sb.AppendLine();
                 }
-
-                if (!string.IsNullOrWhiteSpace(t.Description))
+                else if (!string.IsNullOrWhiteSpace(t.Description))
                 {
                     sb.Append(indent);
                     sb.Append(comment);
@@ -412,12 +415,13 @@ namespace vSharpStudio.common
                 {
                     sb.Append(indent);
                     sb.Append(comment);
-                    sb.Append("UI name: ");
                     sb.Append(t.NameUi);
+                    sb.Append(": ");
+                    if (!string.IsNullOrWhiteSpace(t.Description))
+                        sb.Append(t.Description);
                     sb.AppendLine();
                 }
-
-                if (!string.IsNullOrWhiteSpace(t.Description))
+                else if (!string.IsNullOrWhiteSpace(t.Description))
                 {
                     sb.Append(indent);
                     sb.Append(comment);
@@ -445,12 +449,13 @@ namespace vSharpStudio.common
                 {
                     sb.Append(indent);
                     sb.Append(comment);
-                    sb.Append("UI name: ");
                     sb.Append(t.NameUi);
+                    sb.Append(": ");
+                    if (!string.IsNullOrWhiteSpace(t.Description))
+                        sb.Append(t.Description);
                     sb.AppendLine();
                 }
-
-                if (!string.IsNullOrWhiteSpace(t.Description))
+                else if (!string.IsNullOrWhiteSpace(t.Description))
                 {
                     sb.Append(indent);
                     sb.Append(comment);
@@ -478,12 +483,13 @@ namespace vSharpStudio.common
                 {
                     sb.Append(indent);
                     sb.Append(comment);
-                    sb.Append("UI name: ");
                     sb.Append(t.NameUi);
+                    sb.Append(": ");
+                    if (!string.IsNullOrWhiteSpace(t.Description))
+                        sb.Append(t.Description);
                     sb.AppendLine();
                 }
-
-                if (!string.IsNullOrWhiteSpace(t.Description))
+                else if (!string.IsNullOrWhiteSpace(t.Description))
                 {
                     sb.Append(indent);
                     sb.Append(comment);
@@ -511,12 +517,13 @@ namespace vSharpStudio.common
                 {
                     sb.Append(indent);
                     sb.Append(comment);
-                    sb.Append("UI name: ");
                     sb.Append(t.NameUi);
+                    sb.Append(": ");
+                    if (!string.IsNullOrWhiteSpace(t.Description))
+                        sb.Append(t.Description);
                     sb.AppendLine();
                 }
-
-                if (!string.IsNullOrWhiteSpace(t.Description))
+                else if (!string.IsNullOrWhiteSpace(t.Description))
                 {
                     sb.Append(indent);
                     sb.Append(comment);
@@ -544,12 +551,13 @@ namespace vSharpStudio.common
                 {
                     sb.Append(indent);
                     sb.Append(comment);
-                    sb.Append("UI name: ");
                     sb.Append(t.NameUi);
+                    sb.Append(": ");
+                    if (!string.IsNullOrWhiteSpace(t.Description))
+                        sb.Append(t.Description);
                     sb.AppendLine();
                 }
-
-                if (!string.IsNullOrWhiteSpace(t.Description))
+                else if (!string.IsNullOrWhiteSpace(t.Description))
                 {
                     sb.Append(indent);
                     sb.Append(comment);
