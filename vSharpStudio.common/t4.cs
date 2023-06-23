@@ -13,7 +13,16 @@ namespace vSharpStudio.common
                                 [CallerMemberName] string member = "",
                                 [CallerLineNumber] int line = 0)
         {
-            return text + Path.GetFileName(file) + " Line: " + line;
+            var indx = file.IndexOf("vPlugin");
+            if (indx > 0)
+            {
+                if (text != null)
+                    return $"{text} ...{file.Substring(indx)} Line:{line}";
+                return $"...{file.Substring(indx)} Line:{line}";
+            }
+            if (text != null)
+                return $"{text} {file} Line:{line}";
+            return $"{file} Line:{line}";
         }
     }
 }
