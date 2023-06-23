@@ -330,7 +330,7 @@ namespace vSharpStudio.common
 
                 sb.Append(indent);
                 sb.Append(commentEndSummary);
-                sb.AppendLine();
+                //sb.AppendLine();
             }
             return sb.ToString();
         }
@@ -364,7 +364,7 @@ namespace vSharpStudio.common
 
                 sb.Append(indent);
                 sb.Append(commentEndSummary);
-                sb.AppendLine();
+                //sb.AppendLine();
             }
             return sb.ToString();
         }
@@ -398,7 +398,7 @@ namespace vSharpStudio.common
 
                 sb.Append(indent);
                 sb.Append(commentEndSummary);
-                sb.AppendLine();
+                //sb.AppendLine();
             }
             return sb.ToString();
         }
@@ -432,7 +432,7 @@ namespace vSharpStudio.common
 
                 sb.Append(indent);
                 sb.Append(commentEndSummary);
-                sb.AppendLine();
+                //sb.AppendLine();
             }
             return sb.ToString();
         }
@@ -466,7 +466,7 @@ namespace vSharpStudio.common
 
                 sb.Append(indent);
                 sb.Append(commentEndSummary);
-                sb.AppendLine();
+                //sb.AppendLine();
             }
             return sb.ToString();
         }
@@ -500,7 +500,7 @@ namespace vSharpStudio.common
 
                 sb.Append(indent);
                 sb.Append(commentEndSummary);
-                sb.AppendLine();
+                //sb.AppendLine();
             }
             return sb.ToString();
         }
@@ -534,7 +534,7 @@ namespace vSharpStudio.common
 
                 sb.Append(indent);
                 sb.Append(commentEndSummary);
-                sb.AppendLine();
+                //sb.AppendLine();
             }
             return sb.ToString();
         }
@@ -568,7 +568,7 @@ namespace vSharpStudio.common
 
                 sb.Append(indent);
                 sb.Append(commentEndSummary);
-                sb.AppendLine();
+                //sb.AppendLine();
             }
             return sb.ToString();
         }
