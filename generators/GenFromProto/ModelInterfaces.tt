@@ -3,6 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="vSharpStudio.common" #>
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,11 +11,11 @@ using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
 using vSharpStudio.common.ViewModels;
 
-namespace <#= nameSpace #> // <#=Helper.FilePos() #>
+namespace <#= nameSpace #> // <#=t4.FilePos() #>
 {
 <# foreach (var t in JsonDoc.Files[root.Name].Enums) { 
      this.PushIndent("\t"); #>
-<#= t.Value.Comments #><#= t.Value.Attributes #>public enum <#= t.Key.ToNameCs() #> // <#=Helper.FilePos() #>
+<#= t.Value.Comments #><#= t.Value.Attributes #>public enum <#= t.Key.ToNameCs() #> // <#=t4.FilePos() #>
 {
 <#   this.PushIndent("\t"); #>
 <#   foreach (var tt in t.Value.Values) { #>
@@ -30,10 +31,10 @@ namespace <#= nameSpace #> // <#=Helper.FilePos() #>
      this.MessageDoc = JsonDoc.Files[root.Name].Messages[message.Name]; 
      this.PushIndent("    "); #>
 <#= this.MessageDoc.Comments #>
-public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefaultBase) { #> : IGuid, IName<# } #> // <#=Helper.FilePos() #>
+public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefaultBase) { #> : IGuid, IName<# } #> // <#=t4.FilePos() #>
 {
 <# if (MessageDoc.IsDefaultBase) { #>
-    //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // <#=Helper.FilePos() #>
+    //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // <#=t4.FilePos() #>
 <# } #>
 <#    foreach (var field in message.Fields.InDeclarationOrder()) {
         if (IsSkip(field)) continue;
@@ -41,22 +42,22 @@ public partial interface I<#= message.Name.ToNameCs() #><# if (MessageDoc.IsDefa
          this.PushIndent("\t"); #>
 <#= this.FieldDoc.Comments #><# if (field.IsRepeated) { #>
 <# if (field.IsMap()) { #>
-IReadOnlyList<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+IReadOnlyList<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
 <# } else if (field.IsCsSimple()) { #>
-IReadOnlyList<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+IReadOnlyList<<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
 <# } else { #>
-IReadOnlyList<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+IReadOnlyList<I<#= field.ToTypeCs() #>> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
 <#   if (message.Name.EndsWith(field.Name)) { #>
 I<#= field.MessageType.Name.ToNameCs() #> this[int index] { get; }
 int Count();
 <#   } #>
 <# } #>
 <#       } else if (field.IsCsSimple()) { #>
-<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; <#= this.Setter #>} // <#=Helper.FilePos() #>
+<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; <#= this.Setter #>} // <#=t4.FilePos() #>
 <#       } else if (field.IsAny() || field.IsNullable()) { #>
-<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
 <#       } else { #>
-I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=Helper.FilePos() #>
+I<#= field.ToTypeCs() #> <#= field.Name.ToNameCs() #> { get; } // <#=t4.FilePos() #>
 <#       } #>
 <#       this.PopIndent(); #>
 <#   } #>

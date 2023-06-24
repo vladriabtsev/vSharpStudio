@@ -11,13 +11,13 @@ namespace vSharpStudio.common.ModelGenerator
 {
     public class Helper
     {
-        public static string FilePos(string text = "",
-                                [CallerFilePath] string file = "",
-                                [CallerMemberName] string member = "",
-                                [CallerLineNumber] int line = 0)
-        {
-            return text + Path.GetFileName(file) + " Line: " + line;
-        }
+        //public static string FilePos(string text = "",
+        //                        [CallerFilePath] string file = "",
+        //                        [CallerMemberName] string member = "",
+        //                        [CallerLineNumber] int line = 0)
+        //{
+        //    return text + Path.GetFileName(file) + " Line: " + line;
+        //}
         // public ModelBuilder CreateConventionBuilder()
         // {
         //    var contextServices = CreateContextServices();

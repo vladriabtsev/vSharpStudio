@@ -3,8 +3,9 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="vSharpStudio.common" #>
 
-public interface IVisitorProto // <#=Helper.FilePos() #>
+public interface IVisitorProto // <#=t4.FilePos() #>
 {
 <# foreach (var message in root.MessageTypes) { 
      if (message.Name.EndsWith("_nullable"))

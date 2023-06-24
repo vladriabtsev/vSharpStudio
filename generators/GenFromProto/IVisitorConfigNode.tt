@@ -3,8 +3,9 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="vSharpStudio.common" #>
 
-public interface IVisitor<#= root.Package.ToNameCs() #>Node // <#=Helper.FilePos() #>
+public interface IVisitor<#= root.Package.ToNameCs() #>Node // <#=t4.FilePos() #>
 {
     System.Threading.CancellationToken Token { get; }
 <# foreach (var message in messages) { 

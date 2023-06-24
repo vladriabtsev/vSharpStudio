@@ -13,13 +13,14 @@ namespace GenFromProto
     using System.Text;
     using System.Collections.Generic;
     using Google.Protobuf.Reflection;
+    using vSharpStudio.common;
     using System;
     
     /// <summary>
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+    #line 1 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class NameSpace : NameSpaceBase
     {
@@ -47,15 +48,15 @@ using System.Diagnostics;
 
 namespace ");
             
-            #line 23 "D:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 24 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(nameSpace));
             
             #line default
             #line hidden
             this.Write(" // ");
             
-            #line 23 "D:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            #line 24 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
@@ -67,35 +68,35 @@ namespace ");
 
     public interface I");
             
-            #line 29 "D:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("AcceptVisitor // ");
             
-            #line 29 "D:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Helper.FilePos()));
+            #line 30 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(t4.FilePos()));
             
             #line default
             #line hidden
             this.Write("\r\n    {\r\n        void Accept");
             
-            #line 31 "D:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 32 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("NodeVisitor(");
             
-            #line 31 "D:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 32 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(root.Package.ToNameCs()));
             
             #line default
             #line hidden
             this.Write("Visitor visitor);\r\n    }\r\n");
             
-            #line 33 "D:\dev\vSharpStudio\generators\GenFromProto\NameSpace.tt"
+            #line 34 "D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\NameSpace.tt"
 
 	this.PushIndent("    ");
 	foreach (var t in root.MessageTypes)
@@ -149,7 +150,7 @@ namespace ");
         /// <summary>
         /// The string builder that generation-time code is using to assemble generated output
         /// </summary>
-        protected System.Text.StringBuilder GenerationEnvironment
+        public System.Text.StringBuilder GenerationEnvironment
         {
             get
             {

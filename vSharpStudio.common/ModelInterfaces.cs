@@ -5,11 +5,11 @@ using Google.Protobuf.WellKnownTypes;
 using ViewModelBase;
 using vSharpStudio.common.ViewModels;
 
-namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
+namespace vSharpStudio.common //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:14
 {
 	// Enumeration member type
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumEnumerationType // ModelInterfaces.tt Line: 17
+	public enum EnumEnumerationType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Int")]
 		INTEGER_VALUE = 0,
@@ -22,7 +22,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 	}
 	// https://github.com/bchavez/Bogus
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumAddressDataType // ModelInterfaces.tt Line: 17
+	public enum EnumAddressDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		A_NONE = 0,
 		A_COUNTRY = 1,
@@ -47,7 +47,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		A_ORDINAL_DIRECTION = 20,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumCatalogCodeUniqueScope // ModelInterfaces.tt Line: 17
+	public enum EnumCatalogCodeUniqueScope //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Whole Catalog")]
 		code_unique_in_whole_catalog = 0,
@@ -57,7 +57,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		code_not_unique_settings = 41,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumCatalogDetailAccess // ModelInterfaces.tt Line: 17
+	public enum EnumCatalogDetailAccess //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("By Parent")]
 		C_BY_PARENT = 0,
@@ -73,7 +73,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		C_MARK_DEL = 51,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumCatalogTreeIcon // ModelInterfaces.tt Line: 17
+	public enum EnumCatalogTreeIcon //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		None = 0,
 		Item = 11,
@@ -81,7 +81,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		Custom = 31,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumCodeType // ModelInterfaces.tt Line: 17
+	public enum EnumCodeType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Number")]
 		Number = 0,
@@ -89,7 +89,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		Text = 1,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumCommerceDataType // ModelInterfaces.tt Line: 17
+	public enum EnumCommerceDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		C_NONE = 0,
 		C_DEPARTMENT = 1,
@@ -104,7 +104,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		C_EAN13 = 10,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumCompanyDataType // ModelInterfaces.tt Line: 17
+	public enum EnumCompanyDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		P_NONE = 0,
 		P_COMPANY_NAME = 1,
@@ -113,7 +113,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		P_BS = 4,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumConstantAccess // ModelInterfaces.tt Line: 17
+	public enum EnumConstantAccess //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("By Parent")]
 		CN_BY_PARENT = 0,
@@ -129,7 +129,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		CN_EDIT = 31,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumDataType // ModelInterfaces.tt Line: 17
+	public enum EnumDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Char")]
 		CHAR = 0,
@@ -161,7 +161,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		ANY = 131,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumDatabaseDataType // ModelInterfaces.tt Line: 17
+	public enum EnumDatabaseDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		DB_NONE = 0,
 		DB_COLUMN = 1,
@@ -170,7 +170,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		DB_ENGINE = 4,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumDateDataType // ModelInterfaces.tt Line: 17
+	public enum EnumDateDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		D_NONE = 0,
 		D_PAST_OFFSET = 1,
@@ -188,7 +188,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		D_WEEKDAY = 13,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumDocNumberUniqueScope // ModelInterfaces.tt Line: 17
+	public enum EnumDocNumberUniqueScope //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Allways")]
 		DOC_UNIQUE_FOREVER = 0,
@@ -206,7 +206,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		DOC_UNIQUE_NOT_REQUIRED = 41,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumDocumentAccess // ModelInterfaces.tt Line: 17
+	public enum EnumDocumentAccess //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("By Parent")]
 		D_BY_PARENT = 0,
@@ -224,7 +224,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		D_MARK_DEL = 61,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumFinanceDataType // ModelInterfaces.tt Line: 17
+	public enum EnumFinanceDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		F_NONE = 0,
 		F_ACCOUNT = 1,
@@ -240,7 +240,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		F_IBAN = 11,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumHackerDataType // ModelInterfaces.tt Line: 17
+	public enum EnumHackerDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		H_NONE = 0,
 		H_ABBREVIATION = 1,
@@ -251,7 +251,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		H_PHRASE = 6,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumHiddenType // ModelInterfaces.tt Line: 17
+	public enum EnumHiddenType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Never Hide")]
 		NeverHide = 0,
@@ -267,7 +267,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		XlAndDown = 51,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumImageDataType // ModelInterfaces.tt Line: 17
+	public enum EnumImageDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		I_NONE = 0,
 		I_DATAURI = 1,
@@ -289,7 +289,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		I_LOREMPIXEL_TRANSPORT = 17,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumInternetDataType // ModelInterfaces.tt Line: 17
+	public enum EnumInternetDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		N_NONE = 0,
 		N_AVATAR = 1,
@@ -317,7 +317,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		N_URL_ROOTED_PATH = 23,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumLoremDataType // ModelInterfaces.tt Line: 17
+	public enum EnumLoremDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		L_NONE = 0,
 		L_WORD = 1,
@@ -332,7 +332,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		L_SLUG = 10,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumMonths // ModelInterfaces.tt Line: 17
+	public enum EnumMonths //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Not Selected")]
 		MONTH_NOT_SELECTED = 0,
@@ -362,7 +362,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		MONTH_DECEMBER = 12,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumNameDataType // ModelInterfaces.tt Line: 17
+	public enum EnumNameDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		M_NONE = 0,
 		M_FIRST_NAME = 1,
@@ -377,14 +377,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		M_JOB_TYPE = 10,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumPhoneDataType // ModelInterfaces.tt Line: 17
+	public enum EnumPhoneDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		PH_NONE = 0,
 		PH_PHONE_NUMBER = 1,
 		PH_PHONE_NUMBER_FORMAT = 2,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumPrimaryKeyType // ModelInterfaces.tt Line: 17
+	public enum EnumPrimaryKeyType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Int")]
 		INT = 0,
@@ -392,7 +392,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		LONG = 11,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumPrintAccess // ModelInterfaces.tt Line: 17
+	public enum EnumPrintAccess //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("By Parent")]
 		PR_BY_PARENT = 0,
@@ -402,7 +402,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		PR_PRINT = 21,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumPropertyAccess // ModelInterfaces.tt Line: 17
+	public enum EnumPropertyAccess //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("By Parent")]
 		P_BY_PARENT = 0,
@@ -418,7 +418,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		P_EDIT = 31,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumPropertyDataType // ModelInterfaces.tt Line: 17
+	public enum EnumPropertyDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		PT_NONE = 0,
 		PT_ADDRESS = 1,
@@ -439,7 +439,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		PT_RANDOM = 16,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumRandomDataType // ModelInterfaces.tt Line: 17
+	public enum EnumRandomDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		RN_NONE = 0,
 		RN_NUMBER = 1,
@@ -450,14 +450,14 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		RN_HEXADECIMAL = 6,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumRantDataType // ModelInterfaces.tt Line: 17
+	public enum EnumRantDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		R_NONE = 0,
 		R_REVIEW = 1,
 		R_REVIEWS = 2,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumSystemDataType // ModelInterfaces.tt Line: 17
+	public enum EnumSystemDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		S_NONE = 0,
 		S_FILE_NAME = 1,
@@ -477,7 +477,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		S_BLACKBERRY_PIN = 15,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumTimeAccuracyType // ModelInterfaces.tt Line: 17
+	public enum EnumTimeAccuracyType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Second")]
 		SECOND = 0,
@@ -491,7 +491,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		MAX = 5,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumUseType // ModelInterfaces.tt Line: 17
+	public enum EnumUseType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Inherited")]
 		Default = 0,
@@ -501,7 +501,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		No = 21,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumVehicleDataType // ModelInterfaces.tt Line: 17
+	public enum EnumVehicleDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		V_NONE = 0,
 		V_VIN = 1,
@@ -511,7 +511,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		V_FUEL = 5,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum EnumVersionFieldType // ModelInterfaces.tt Line: 17
+	public enum EnumVersionFieldType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Byte")]
 		VER_BYTE = 0,
@@ -523,7 +523,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		VER_LONG = 31,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum FormOrientation // ModelInterfaces.tt Line: 17
+	public enum FormOrientation //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Vertical")]
 		Vertical = 0,
@@ -531,7 +531,7 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		Horizontal = 11,
 	}
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum FormType // ModelInterfaces.tt Line: 17
+	public enum FormType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:18
 	{
 		[Description("Not selected")]
 		FormTypeNotSelected = 0,
@@ -545,426 +545,426 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
 		ListNarrow = 41,
 	}
     
-    public partial interface IUserSettings // ModelInterfaces.tt Line: 33
+    public partial interface IUserSettings //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	IReadOnlyList<IUserSettingsOpenedConfig> ListOpenConfigHistory { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IUserSettingsOpenedConfig> ListOpenConfigHistory { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IUserSettingsOpenedConfig // ModelInterfaces.tt Line: 33
+    public partial interface IUserSettingsOpenedConfig //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
-    	Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn { get; } // ModelInterfaces.tt Line: 55
-    	string ConfigPath { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	Google.Protobuf.WellKnownTypes.Timestamp OpenedLastTimeOn { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ConfigPath { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IGroupListPlugins // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListPlugins //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	IReadOnlyList<IPlugin> ListPlugins { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPlugin> ListPlugins { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IPlugin this[int index] { get; }
     	int Count();
     }
     
-    public partial interface IPlugin // ModelInterfaces.tt Line: 33
+    public partial interface IPlugin //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Version { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGenerator> ListGenerators { get; } // ModelInterfaces.tt Line: 48
+    	string Version { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGenerator> ListGenerators { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IPluginGenerator // ModelInterfaces.tt Line: 33
+    public partial interface IPluginGenerator //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface ISettingsConfig // ModelInterfaces.tt Line: 33
+    public partial interface ISettingsConfig //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Name { get; } // ModelInterfaces.tt Line: 55
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string Name { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// current migration version, increased by one on each deployment
-    	int VersionMigrationCurrent { get; } // ModelInterfaces.tt Line: 55
+    	int VersionMigrationCurrent { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// min version supported by current version for migration
-    	int VersionMigrationSupportFromMin { get; } // ModelInterfaces.tt Line: 55
+    	int VersionMigrationSupportFromMin { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IConfigShortHistory // ModelInterfaces.tt Line: 33
+    public partial interface IConfigShortHistory //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
-    	string Name { get; } // ModelInterfaces.tt Line: 55
-    	IConfig CurrentConfig { get; } // ModelInterfaces.tt Line: 59
-    	IConfig PrevStableConfig { get; } // ModelInterfaces.tt Line: 59
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Name { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IConfig CurrentConfig { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IConfig PrevStableConfig { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
     }
     
-    public partial interface IGroupListBaseConfigLinks // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListBaseConfigLinks //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IBaseConfigLink> ListBaseConfigLinks { get; } // ModelInterfaces.tt Line: 48
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IBaseConfigLink> ListBaseConfigLinks { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IBaseConfigLink this[int index] { get; }
     	int Count();
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IBaseConfigLink // ModelInterfaces.tt Line: 33
+    public partial interface IBaseConfigLink //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	string RelativeConfigFilePath { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string RelativeConfigFilePath { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // Configuration config
     
-    public partial interface IConfig : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IConfig : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	int Version { get; } // ModelInterfaces.tt Line: 55
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNeedCurrentUpdate { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListBaseConfigLinks GroupConfigLinks { get; } // ModelInterfaces.tt Line: 59
-    	IModel Model { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListPlugins GroupPlugins { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListAppSolutions GroupAppSolutions { get; } // ModelInterfaces.tt Line: 59
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	int Version { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	Google.Protobuf.WellKnownTypes.Timestamp LastUpdated { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNeedCurrentUpdate { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IGroupListBaseConfigLinks GroupConfigLinks { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IModel Model { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListPlugins GroupPlugins { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListAppSolutions GroupAppSolutions { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
     }
     
-    public partial interface IAppDbSettings // ModelInterfaces.tt Line: 33
+    public partial interface IAppDbSettings //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string PluginGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PluginName { get; } // ModelInterfaces.tt Line: 55
-    	string Version { get; } // ModelInterfaces.tt Line: 55
-    	string PluginGenGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PluginGenName { get; } // ModelInterfaces.tt Line: 55
-    	string ConnGuid { get; } // ModelInterfaces.tt Line: 55
-    	string ConnName { get; } // ModelInterfaces.tt Line: 55
+    	string PluginGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PluginName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Version { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PluginGenGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PluginGenName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ConnGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ConnName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IPluginGeneratorSolutionSettings // ModelInterfaces.tt Line: 33
+    public partial interface IPluginGeneratorSolutionSettings //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// string app_generator_guid = 2;
-    	string Settings { get; } // ModelInterfaces.tt Line: 55
+    	string Settings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IPluginGeneratorProjectSettings // ModelInterfaces.tt Line: 33
+    public partial interface IPluginGeneratorProjectSettings //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// string app_generator_guid = 2;
-    	string Settings { get; } // ModelInterfaces.tt Line: 55
+    	string Settings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IGroupListAppSolutions // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListAppSolutions //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Description { get; } // ModelInterfaces.tt Line: 55
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// List NET solutions
-    	IReadOnlyList<IAppSolution> ListAppSolutions { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IAppSolution> ListAppSolutions { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IAppSolution this[int index] { get; }
     	int Count();
     }
     
-    public partial interface IAppSolution // ModelInterfaces.tt Line: 33
+    public partial interface IAppSolution //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	string ShortIdForCacheKey { get; } // ModelInterfaces.tt Line: 55
-    	string RelativeAppSolutionPath { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IAppProject> ListAppProjects { get; } // ModelInterfaces.tt Line: 48
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ShortIdForCacheKey { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string RelativeAppSolutionPath { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IAppProject> ListAppProjects { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	// 
     	// repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
-    	IReadOnlyList<IPluginGeneratorSolutionSettings> ListGeneratorsSolutionSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorSolutionSettings> ListGeneratorsSolutionSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IAppProject // ModelInterfaces.tt Line: 33
+    public partial interface IAppProject //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	string RelativeAppProjectPath { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IAppProjectGenerator> ListAppProjectGenerators { get; } // ModelInterfaces.tt Line: 48
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string RelativeAppProjectPath { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IAppProjectGenerator> ListAppProjectGenerators { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	// 
     	// repeated proto_plugin_group_generators_settings list_group_generators_settings = 18;
-    	IReadOnlyList<IPluginGeneratorProjectSettings> ListGeneratorsProjectSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorProjectSettings> ListGeneratorsProjectSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IPluginGeneratorNodeSettings // ModelInterfaces.tt Line: 33
+    public partial interface IPluginGeneratorNodeSettings //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
     	// Guid of solution-project-generator node
-    	string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 55
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string AppProjectGeneratorGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// string node_settings_vm_guid = 6;
-    	string Settings { get; } // ModelInterfaces.tt Line: 55
+    	string Settings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IPluginGeneratorSettings // ModelInterfaces.tt Line: 33
+    public partial interface IPluginGeneratorSettings //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
-    	string Name { get; } // ModelInterfaces.tt Line: 55
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Name { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Guid of solution-project-generator node
-    	string AppProjectGeneratorGuid { get; } // ModelInterfaces.tt Line: 55
-    	string Settings { get; } // ModelInterfaces.tt Line: 55
+    	string AppProjectGeneratorGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Settings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     // Application project generator
     
-    public partial interface IAppProjectGenerator // ModelInterfaces.tt Line: 33
+    public partial interface IAppProjectGenerator //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	string PluginGuid { get; } // ModelInterfaces.tt Line: 55
-    	string DescriptionPlugin { get; } // ModelInterfaces.tt Line: 55
-    	string PluginGeneratorGuid { get; } // ModelInterfaces.tt Line: 55
-    	string DescriptionGenerator { get; } // ModelInterfaces.tt Line: 55
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PluginGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string DescriptionPlugin { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PluginGeneratorGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string DescriptionGenerator { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Relative folder path to project file
-    	string RelativePathToGenFolder { get; } // ModelInterfaces.tt Line: 55
+    	string RelativePathToGenFolder { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Generator output file name
-    	string GenFileName { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	string GeneratorSettings { get; } // ModelInterfaces.tt Line: 55
-    	IPluginGeneratorSettings GeneratorSettingsVm { get; } // ModelInterfaces.tt Line: 59
-    	string ConnStr { get; } // ModelInterfaces.tt Line: 55
-    	string ConnStrToPrevStable { get; } // ModelInterfaces.tt Line: 55
-    	bool IsGenerateSqlSqriptToUpdatePrevStable { get; } // ModelInterfaces.tt Line: 55
+    	string GenFileName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string GeneratorSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IPluginGeneratorSettings GeneratorSettingsVm { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	string ConnStr { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ConnStrToPrevStable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsGenerateSqlSqriptToUpdatePrevStable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Generator output file name
-    	string GenScriptFileName { get; } // ModelInterfaces.tt Line: 55
+    	string GenScriptFileName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IPluginGeneratorNodeDefaultSettings // ModelInterfaces.tt Line: 33
+    public partial interface IPluginGeneratorNodeDefaultSettings //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
     	// Guid of solution-project-generator node
-    	string NodeSettingsVmGuid { get; } // ModelInterfaces.tt Line: 55
-    	string Settings { get; } // ModelInterfaces.tt Line: 55
+    	string NodeSettingsVmGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Settings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     // Configuration model
     
-    public partial interface IModel : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IModel : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	int Version { get; } // ModelInterfaces.tt Line: 55
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	uint CompositeNameMaxLength { get; } // ModelInterfaces.tt Line: 55
-    	bool IsUseCompositeNames { get; } // ModelInterfaces.tt Line: 55
-    	bool IsUseGroupPrefix { get; } // ModelInterfaces.tt Line: 55
-    	string PKeyGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PKeyName { get; } // ModelInterfaces.tt Line: 55
-    	EnumPrimaryKeyType PKeyType { get; } // ModelInterfaces.tt Line: 55
-    	string RecordVersionFieldGuid { get; } // ModelInterfaces.tt Line: 55
-    	string RecordVersionFieldName { get; } // ModelInterfaces.tt Line: 55
-    	EnumVersionFieldType RecordVersionFieldType { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyCodeName { get; } // ModelInterfaces.tt Line: 55
-    	bool UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyNameName { get; } // ModelInterfaces.tt Line: 55
-    	bool UseNameProperty { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyDescriptionName { get; } // ModelInterfaces.tt Line: 55
-    	bool UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyIsFolderName { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyDocDateName { get; } // ModelInterfaces.tt Line: 55
-    	bool UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyDocCodeName { get; } // ModelInterfaces.tt Line: 55
-    	bool UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	int LastConstantGroupShortId { get; } // ModelInterfaces.tt Line: 55
-    	int LastCatalogShortId { get; } // ModelInterfaces.tt Line: 55
-    	int LastDocumentShortId { get; } // ModelInterfaces.tt Line: 55
-    	int LastDetailShortId { get; } // ModelInterfaces.tt Line: 55
-    	bool IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	bool IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	bool IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListCommon GroupCommon { get; } // ModelInterfaces.tt Line: 59
-    	IGroupConstantGroups GroupConstantGroups { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListEnumerations GroupEnumerations { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListCatalogs GroupCatalogs { get; } // ModelInterfaces.tt Line: 59
-    	IGroupDocuments GroupDocuments { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListJournals GroupJournals { get; } // ModelInterfaces.tt Line: 59
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	int Version { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint CompositeNameMaxLength { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsUseCompositeNames { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsUseGroupPrefix { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PKeyGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PKeyName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPrimaryKeyType PKeyType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string RecordVersionFieldGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string RecordVersionFieldName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumVersionFieldType RecordVersionFieldType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyCodeName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseCodeProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyNameName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseNameProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyDescriptionName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseDescriptionProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyIsFolderName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyDocDateName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseDocDateProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyDocCodeName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseDocCodeProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int LastConstantGroupShortId { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int LastCatalogShortId { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int LastDocumentShortId { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int LastDetailShortId { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IGroupListCommon GroupCommon { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupConstantGroups GroupConstantGroups { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListEnumerations GroupEnumerations { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListCatalogs GroupCatalogs { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupDocuments GroupDocuments { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListJournals GroupJournals { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IDataType // ModelInterfaces.tt Line: 33
+    public partial interface IDataType //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	EnumDataType DataTypeEnum { get; } // ModelInterfaces.tt Line: 55
-    	uint Length { get; } // ModelInterfaces.tt Line: 55
-    	bool IsPositive { get; } // ModelInterfaces.tt Line: 55
-    	uint Accuracy { get; } // ModelInterfaces.tt Line: 55
+    	EnumDataType DataTypeEnum { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint Length { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsPositive { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint Accuracy { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// <summary>
     	// / Guid of complex type. It can be Guid of Enumeration, Catalog, Document. 
     	// / Numerical, string, bool, date and similar are simple types. For simple types this property is empty.
     	// / If Guid of group types is assigned, then any type of such group of types is acceptable as type
     	// / If Guid is empty, but EnumDataType is Any, then any complex type is acceptable as type
     	// / </summary>
-    	string ObjectGuid { get; } // ModelInterfaces.tt Line: 55
+    	string ObjectGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// <summary>
     	// / Guids of selected complex types, that are acceptable as types
     	// / </summary>
-    	IReadOnlyList<string> ListObjectGuids { get; } // ModelInterfaces.tt Line: 46
-    	bool IsPKey { get; } // ModelInterfaces.tt Line: 55
-    	bool IsRefParent { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<string> ListObjectGuids { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
+    	bool IsPKey { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsRefParent { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     // Common parameters section
     
-    public partial interface IGroupListCommon : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListCommon : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListRoles GroupRoles { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListMainViewForms GroupViewForms { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListEnumeratorSequences GroupListSequences { get; } // ModelInterfaces.tt Line: 59
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IGroupListRoles GroupRoles { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListMainViewForms GroupViewForms { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListEnumeratorSequences GroupListSequences { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IEnumeratorSequence : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IEnumeratorSequence : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	EnumCodeType SequenceType { get; } // ModelInterfaces.tt Line: 55
-    	uint MaxSequenceLength { get; } // ModelInterfaces.tt Line: 55
-    	string Prefix { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumCodeType SequenceType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint MaxSequenceLength { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Prefix { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IGroupListEnumeratorSequences : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListEnumeratorSequences : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IEnumeratorSequence> ListEnumeratorSequences { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IEnumeratorSequence> ListEnumeratorSequences { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IEnumeratorSequence this[int index] { get; }
     	int Count();
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IRole : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IRole : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess DefaultConstantPrintAccessSettings { get; } // ModelInterfaces.tt Line: 55
-    	EnumConstantAccess DefaultConstantEditAccessSettings { get; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess DefaultCatalogPrintAccessSettings { get; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogDetailAccess DefaultCatalogEditAccessSettings { get; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess DefaultDocumentPrintAccessSettings { get; } // ModelInterfaces.tt Line: 55
-    	EnumDocumentAccess DefaultDocumentEditAccessSettings { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPrintAccess DefaultConstantPrintAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumConstantAccess DefaultConstantEditAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPrintAccess DefaultCatalogPrintAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumCatalogDetailAccess DefaultCatalogEditAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPrintAccess DefaultDocumentPrintAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumDocumentAccess DefaultDocumentEditAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IRoleConstantAccess // ModelInterfaces.tt Line: 33
+    public partial interface IRoleConstantAccess //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
-    	EnumConstantAccess EditAccess { get; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumConstantAccess EditAccess { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPrintAccess PrintAccess { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IRolePropertyAccess // ModelInterfaces.tt Line: 33
+    public partial interface IRolePropertyAccess //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
-    	EnumPropertyAccess EditAccess { get; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPropertyAccess EditAccess { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPrintAccess PrintAccess { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IRoleCatalogAccess // ModelInterfaces.tt Line: 33
+    public partial interface IRoleCatalogAccess //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogDetailAccess EditAccess { get; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumCatalogDetailAccess EditAccess { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPrintAccess PrintAccess { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IRoleDetailAccess // ModelInterfaces.tt Line: 33
+    public partial interface IRoleDetailAccess //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogDetailAccess EditAccess { get; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumCatalogDetailAccess EditAccess { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPrintAccess PrintAccess { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IRoleDocumentAccess // ModelInterfaces.tt Line: 33
+    public partial interface IRoleDocumentAccess //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
-    	EnumDocumentAccess EditAccess { get; } // ModelInterfaces.tt Line: 55
-    	EnumPrintAccess PrintAccess { get; } // ModelInterfaces.tt Line: 55
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumDocumentAccess EditAccess { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPrintAccess PrintAccess { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IGroupListRoles : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListRoles : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IRole> ListRoles { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IRole> ListRoles { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IRole this[int index] { get; }
     	int Count();
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IMainViewForm : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IMainViewForm : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListMainViewForms GroupListViewForms { get; } // ModelInterfaces.tt Line: 59
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IGroupListMainViewForms GroupListViewForms { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // main view forms hierarchy node with children
     
-    public partial interface IGroupListMainViewForms : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListMainViewForms : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IMainViewForm> ListMainViewForms { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IMainViewForm> ListMainViewForms { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IMainViewForm this[int index] { get; }
     	int Count();
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // P R O P E R T Y
     // @exclude
     // ####################################### P R O P E R T Y ##########################################
     
-    public partial interface IGroupListProperties : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListProperties : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IProperty> ListProperties { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IProperty> ListProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IProperty this[int index] { get; }
     	int Count();
     	// Last generated Protobuf field position
-    	uint LastGenPosition { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IRolePropertyAccess> ListRolePropertyAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	uint LastGenPosition { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IRolePropertyAccess> ListRolePropertyAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IProperty : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IProperty : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IDataType DataType { get; } // ModelInterfaces.tt Line: 59
-    	bool IsNullable { get; } // ModelInterfaces.tt Line: 55
-    	string DefaultValue { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	string RangeValuesRequirementStr { get; } // ModelInterfaces.tt Line: 55
-    	string MinLengthRequirement { get; } // ModelInterfaces.tt Line: 55
-    	string MaxLengthRequirement { get; } // ModelInterfaces.tt Line: 55
-    	EnumTimeAccuracyType AccuracyForTime { get; } // ModelInterfaces.tt Line: 55
-    	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 55
-    	int LinesOnScreen { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 55
-    	string TabName { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 55
-    	IPropertyDataGenerator DataGenerator { get; } // ModelInterfaces.tt Line: 59
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IDataType DataType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	bool IsNullable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string DefaultValue { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string RangeValuesRequirementStr { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string MinLengthRequirement { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string MaxLengthRequirement { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumTimeAccuracyType AccuracyForTime { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsTryAttach { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int LinesOnScreen { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsStartNewRow { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string TabName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsStartNewTabControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsStopTabControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IPropertyDataGenerator DataGenerator { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
     	// 
     	// // @attr [PropertyOrderAttribute(28)]
     	// // @attr [Category("12 Column Grid System")]
@@ -1026,514 +1026,514 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     	// // @attr [DisplayName("XX")]
     	// // @attr [Description("Extra Extra Large. 4k+ and ultra-wide. Range: >= 2560px")]
     	// google.protobuf.UInt32Value width_xx = 39;
-    	IReadOnlyList<IRolePropertyAccess> ListRolePropertyAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
+    	IReadOnlyList<IRolePropertyAccess> ListRolePropertyAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Protobuf field position
     	// Reserved positions: 1 - primary key
-    	uint Position { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	uint Position { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // D E T A I L S
     // @exclude
     // ####################################### D E T A I L S ########################################
     
-    public partial interface IGroupListDetails : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListDetails : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IDetail> ListDetails { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IDetail> ListDetails { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IDetail this[int index] { get; }
     	int Count();
-    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IRoleDetailAccess> ListRoleDetailAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	EnumUseType UseCodeProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseNameProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseDescriptionProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IRoleDetailAccess> ListRoleDetailAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IDetail : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IDetail : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Create Index for foreign key navigation property
-    	bool IsIndexFk { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 59
+    	bool IsIndexFk { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IGroupListProperties GroupProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListDetails GroupDetails { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
     	// Protobuf field position
     	// Reserved positions: 1 - primary key
-    	uint Position { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
-    	int ShortId { get; } // ModelInterfaces.tt Line: 55
-    	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewTab { get; } // ModelInterfaces.tt Line: 55
-    	string TabName { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 55
-    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
-    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyRefParentGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 59
-    	IReadOnlyList<IRoleDetailAccess> ListRoleDetailAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	uint Position { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseCodeProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseNameProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseDescriptionProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int ShortId { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsTryAttach { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsStartNewRow { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsStartNewTab { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string TabName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsStartNewTabControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsStopTabControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ViewListWideGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ViewListNarrowGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyIdGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyCodeGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyNameGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyDescriptionGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyRefParentGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyVersionGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IGroupListForms GroupForms { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IReadOnlyList<IRoleDetailAccess> ListRoleDetailAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IPropertyDataGenerator // ModelInterfaces.tt Line: 33
+    public partial interface IPropertyDataGenerator //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	EnumPropertyDataType DataType { get; } // ModelInterfaces.tt Line: 55
-    	EnumAddressDataType Address { get; } // ModelInterfaces.tt Line: 55
-    	EnumCommerceDataType Commerce { get; } // ModelInterfaces.tt Line: 55
-    	EnumCompanyDataType Company { get; } // ModelInterfaces.tt Line: 55
-    	EnumDateDataType Date { get; } // ModelInterfaces.tt Line: 55
-    	EnumDatabaseDataType Database { get; } // ModelInterfaces.tt Line: 55
-    	EnumFinanceDataType Finance { get; } // ModelInterfaces.tt Line: 55
-    	EnumHackerDataType Hacker { get; } // ModelInterfaces.tt Line: 55
-    	EnumImageDataType Image { get; } // ModelInterfaces.tt Line: 55
-    	EnumInternetDataType Internet { get; } // ModelInterfaces.tt Line: 55
-    	EnumLoremDataType Lorem { get; } // ModelInterfaces.tt Line: 55
-    	EnumNameDataType Name { get; } // ModelInterfaces.tt Line: 55
-    	EnumPhoneDataType Phone { get; } // ModelInterfaces.tt Line: 55
-    	EnumRantDataType Rant { get; } // ModelInterfaces.tt Line: 55
-    	EnumSystemDataType System { get; } // ModelInterfaces.tt Line: 55
-    	EnumVehicleDataType Vehicle { get; } // ModelInterfaces.tt Line: 55
-    	EnumRandomDataType Random { get; } // ModelInterfaces.tt Line: 55
+    	EnumPropertyDataType DataType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumAddressDataType Address { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumCommerceDataType Commerce { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumCompanyDataType Company { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumDateDataType Date { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumDatabaseDataType Database { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumFinanceDataType Finance { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumHackerDataType Hacker { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumImageDataType Image { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumInternetDataType Internet { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumLoremDataType Lorem { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumNameDataType Name { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumPhoneDataType Phone { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumRantDataType Rant { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumSystemDataType System { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumVehicleDataType Vehicle { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumRandomDataType Random { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     // C O N S T A N T
     // @exclude
     // ####################################### C O N S T A N T ##########################################
     
-    public partial interface IGroupConstantGroups : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupConstantGroups : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IGroupListConstants> ListConstantGroups { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PrefixForDbTables { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IGroupListConstants> ListConstantGroups { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IGroupListConstants : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListConstants : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IConstant> ListConstants { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IConstant> ListConstants { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IConstant this[int index] { get; }
     	int Count();
-    	string ShortIdTypeForCacheKey { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	int ShortId { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	string ShortIdTypeForCacheKey { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int ShortId { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // Constant application wise value
     
-    public partial interface IConstant : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IConstant : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IDataType DataType { get; } // ModelInterfaces.tt Line: 59
-    	bool IsNullable { get; } // ModelInterfaces.tt Line: 55
-    	string DefaultValue { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	int ShortId { get; } // ModelInterfaces.tt Line: 55
-    	string RangeValuesRequirementStr { get; } // ModelInterfaces.tt Line: 55
-    	string MinLengthRequirement { get; } // ModelInterfaces.tt Line: 55
-    	string MaxLengthRequirement { get; } // ModelInterfaces.tt Line: 55
-    	EnumTimeAccuracyType AccuracyForTime { get; } // ModelInterfaces.tt Line: 55
-    	bool IsTryAttach { get; } // ModelInterfaces.tt Line: 55
-    	int LinesOnScreen { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewRow { get; } // ModelInterfaces.tt Line: 55
-    	string TabName { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStartNewTabControl { get; } // ModelInterfaces.tt Line: 55
-    	bool IsStopTabControl { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IDataType DataType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	bool IsNullable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string DefaultValue { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int ShortId { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string RangeValuesRequirementStr { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string MinLengthRequirement { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string MaxLengthRequirement { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumTimeAccuracyType AccuracyForTime { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsTryAttach { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int LinesOnScreen { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsStartNewRow { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string TabName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsStartNewTabControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsStopTabControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IRoleConstantAccess> ListRoleConstantAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // E N U M E R A T I O N
     // @exclude
     // ####################################### E N U M E R A T I O N ##########################################
     
-    public partial interface IGroupListEnumerations : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListEnumerations : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IEnumeration> ListEnumerations { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IEnumeration> ListEnumerations { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IEnumeration this[int index] { get; }
     	int Count();
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IEnumeration : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IEnumeration : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Enumeration element type
-    	EnumEnumerationType DataTypeEnum { get; } // ModelInterfaces.tt Line: 55
+    	EnumEnumerationType DataTypeEnum { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// Length of string if 'STRING' is selected as enumeration element type
-    	int DataTypeLength { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IEnumerationPair> ListEnumerationPairs { get; } // ModelInterfaces.tt Line: 48
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	int DataTypeLength { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IEnumerationPair> ListEnumerationPairs { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IEnumerationPair : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IEnumerationPair : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	string Value { get; } // ModelInterfaces.tt Line: 55
-    	bool IsDefault { get; } // ModelInterfaces.tt Line: 55
-    	int NumericValue { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Value { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsDefault { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int NumericValue { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // C A T A L O G
     // @exclude
     // ####################################### C A T A L O G ##########################################
     
-    public partial interface ICatalogFolder : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface ICatalogFolder : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 59
-    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
-    	string IndexUniqueCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	string IndexRefTreeParentCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	string IndexNotUniqueCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
-    	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
-    	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 55
-    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
-    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 59
-    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyIdGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseCodeProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	ICatalogCodePropertySettings CodePropertySettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	string PropertyCodeGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyVersionGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string IndexUniqueCodeGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string IndexRefTreeParentCodeGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string IndexNotUniqueCodeGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseNameProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint MaxNameLength { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyNameGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseDescriptionProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint MaxDescriptionLength { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyDescriptionGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ViewListWideGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ViewListNarrowGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyIsFolderGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyRefSelfGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IGroupListProperties GroupProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListDetails GroupDetails { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListForms GroupForms { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListReports GroupReports { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface ICatalogCodePropertySettings // ModelInterfaces.tt Line: 33
+    public partial interface ICatalogCodePropertySettings //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	EnumCodeType SequenceType { get; } // ModelInterfaces.tt Line: 55
-    	uint MaxSequenceLength { get; } // ModelInterfaces.tt Line: 55
-    	string Prefix { get; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogCodeUniqueScope UniqueScope { get; } // ModelInterfaces.tt Line: 55
+    	EnumCodeType SequenceType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint MaxSequenceLength { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Prefix { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumCatalogCodeUniqueScope UniqueScope { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface ICatalog : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface ICatalog : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	int ShortId { get; } // ModelInterfaces.tt Line: 55
-    	bool UseTree { get; } // ModelInterfaces.tt Line: 55
-    	bool UseSeparateTreeForFolders { get; } // ModelInterfaces.tt Line: 55
-    	uint MaxTreeLevels { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	ICatalogCodePropertySettings CodePropertySettings { get; } // ModelInterfaces.tt Line: 59
-    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
-    	uint MaxNameLength { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
-    	uint MaxDescriptionLength { get; } // ModelInterfaces.tt Line: 55
-    	string IndexUniqueCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	string IndexRefFolderCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	string IndexRefTreeParentCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	string IndexNotUniqueCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogTreeIcon ItemIconType { get; } // ModelInterfaces.tt Line: 55
-    	EnumCatalogTreeIcon GroupIconType { get; } // ModelInterfaces.tt Line: 55
-    	string ViewListWideGuid { get; } // ModelInterfaces.tt Line: 55
-    	string ViewListNarrowGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyCodeGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyNameGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyDescriptionGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyIsFolderGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyRefSelfGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyRefFolderGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	ICatalogFolder Folder { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 59
-    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	int ShortId { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseTree { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseSeparateTreeForFolders { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint MaxTreeLevels { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseCodeProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	ICatalogCodePropertySettings CodePropertySettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	EnumUseType UseNameProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint MaxNameLength { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseDescriptionProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint MaxDescriptionLength { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string IndexUniqueCodeGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string IndexRefFolderCodeGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string IndexRefTreeParentCodeGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string IndexNotUniqueCodeGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumCatalogTreeIcon ItemIconType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumCatalogTreeIcon GroupIconType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ViewListWideGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ViewListNarrowGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyIdGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyCodeGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyNameGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyDescriptionGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyIsFolderGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyRefSelfGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyRefFolderGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyVersionGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	ICatalogFolder Folder { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListProperties GroupProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListDetails GroupDetails { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListForms GroupForms { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListReports GroupReports { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IReadOnlyList<IRoleCatalogAccess> ListRoleCatalogAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IGroupListCatalogs : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListCatalogs : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 55
-    	string ShortIdTypeForCacheKey { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<ICatalog> ListCatalogs { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PrefixForDbTables { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ShortIdTypeForCacheKey { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<ICatalog> ListCatalogs { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	ICatalog this[int index] { get; }
     	int Count();
-    	EnumUseType UseCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseNameProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDescriptionProperty { get; } // ModelInterfaces.tt Line: 55
-    	bool UseCodePropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 55
-    	bool UseNamePropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 55
-    	bool UseDescriptionPropertyInSeparateTree { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	EnumUseType UseCodeProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseNameProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseDescriptionProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseCodePropertyInSeparateTree { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseNamePropertyInSeparateTree { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool UseDescriptionPropertyInSeparateTree { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IGroupDocuments : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupDocuments : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	string PrefixForDbTables { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListProperties GroupSharedProperties { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListDocuments GroupListDocuments { get; } // ModelInterfaces.tt Line: 59
-    	EnumUseType UseDocCodeProperty { get; } // ModelInterfaces.tt Line: 55
-    	Google.Protobuf.WellKnownTypes.Timestamp MondayBeforeFirstDocDate { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PrefixForDbTables { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IGroupListProperties GroupSharedProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListDocuments GroupListDocuments { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	EnumUseType UseDocCodeProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	Google.Protobuf.WellKnownTypes.Timestamp MondayBeforeFirstDocDate { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseDocDateProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IDocumentNumberPropertySettings // ModelInterfaces.tt Line: 33
+    public partial interface IDocumentNumberPropertySettings //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	EnumCodeType SequenceType { get; } // ModelInterfaces.tt Line: 55
-    	uint MaxSequenceLength { get; } // ModelInterfaces.tt Line: 55
-    	string Prefix { get; } // ModelInterfaces.tt Line: 55
-    	string SequenceGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumDocNumberUniqueScope ScopeOfUnique { get; } // ModelInterfaces.tt Line: 55
-    	EnumMonths ScopePeriodStartMonth { get; } // ModelInterfaces.tt Line: 55
-    	uint ScopePeriodStartMonthDay { get; } // ModelInterfaces.tt Line: 55
+    	EnumCodeType SequenceType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint MaxSequenceLength { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Prefix { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string SequenceGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumDocNumberUniqueScope ScopeOfUnique { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumMonths ScopePeriodStartMonth { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint ScopePeriodStartMonthDay { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
     
-    public partial interface IDocument : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IDocument : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IGroupListProperties GroupProperties { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListDetails GroupDetails { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListForms GroupForms { get; } // ModelInterfaces.tt Line: 59
-    	IGroupListReports GroupReports { get; } // ModelInterfaces.tt Line: 59
-    	int ShortId { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType UseDocNumberProperty { get; } // ModelInterfaces.tt Line: 55
-    	IDocumentNumberPropertySettings DocNumberPropertySettings { get; } // ModelInterfaces.tt Line: 59
-    	EnumUseType UseDocDateProperty { get; } // ModelInterfaces.tt Line: 55
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IGroupListProperties GroupProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListDetails GroupDetails { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListForms GroupForms { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IGroupListReports GroupReports { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	int ShortId { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType UseDocNumberProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IDocumentNumberPropertySettings DocNumberPropertySettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	EnumUseType UseDocDateProperty { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// unique index of special field YEAR and DocNumber
     	// YEAR = DocDate.Year
-    	string IndexYearDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexYearDocNumberGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// unique index of special field QUATER and DocNumber
     	// QUATER = DocDate.Year * 4 + DocDate.Month / 3
-    	string IndexQuaterDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexQuaterDocNumberGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// unique index of special field MONTH and DocNumber
     	// MONTH = DocDate.Year * 12 + DocDate.Month
-    	string IndexMonthDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexMonthDocNumberGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// unique index of special field WEEK and DocNumber
     	// WEEK = DocDate.Year * (365???) + DocDate.Month / 3
-    	string IndexWeekDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
+    	string IndexWeekDocNumberGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// unique index of special field Day and DocNumber
     	// DAY = DocDate.Year * 365?? + DocDate.Day
-    	string IndexDayDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
-    	string IndexUniqueDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
-    	string IndexNotUniqueDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyIdGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyDocNumberGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyDocDateGuid { get; } // ModelInterfaces.tt Line: 55
-    	string PropertyVersionGuid { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	string IndexDayDocNumberGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string IndexUniqueDocNumberGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string IndexNotUniqueDocNumberGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyIdGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyDocNumberGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyDocDateGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string PropertyVersionGuid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IGroupListDocuments : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListDocuments : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	string ShortIdTypeForCacheKey { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string ShortIdTypeForCacheKey { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IDocument> ListDocuments { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IDocument this[int index] { get; }
     	int Count();
-    	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IRoleDocumentAccess> ListRoleDocumentAccessSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // J O U R N A L
     // @exclude
     // ####################################### J O U R N A L ##########################################
     
-    public partial interface IGroupListJournals : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListJournals : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// repeated proto_property list_shared_properties = 6;
-    	IReadOnlyList<IJournal> ListJournals { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IJournal> ListJournals { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IJournal this[int index] { get; }
     	int Count();
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IJournal : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IJournal : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// repeated proto_group_properties list_properties = 6;
-    	IReadOnlyList<IDocument> ListDocuments { get; } // ModelInterfaces.tt Line: 48
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortable { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridSortableCustom { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsGridFilterable { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IDocInJournal> ListSelectedDocsWithProperties { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IDocument> ListDocuments { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridSortableCustom { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsGridFilterable { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IDocInJournal> ListSelectedDocsWithProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IDocInJournal // ModelInterfaces.tt Line: 33
+    public partial interface IDocInJournal //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<string> ListPropertyGuids { get; } // ModelInterfaces.tt Line: 46
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<string> ListPropertyGuids { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
     }
     // F O R M S
     // @exclude
     // ####################################### F O R M S ##########################################
     
-    public partial interface IGroupListForms : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListForms : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// repeated proto_property list_shared_properties = 6;
-    	IReadOnlyList<IForm> ListForms { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IForm> ListForms { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IForm this[int index] { get; }
     	int Count();
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // Children collection can contain:
     //   - Children of Grid System
     
-    public partial interface IForm : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IForm : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseCode { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseName { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseDesc { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseFolderCode { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseFolderName { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseFolderDesc { get; } // ModelInterfaces.tt Line: 55
-    	EnumUseType IsUseDocDate { get; } // ModelInterfaces.tt Line: 55
-    	bool IsDummy { get; } // ModelInterfaces.tt Line: 55
-    	FormType EnumFormType { get; } // ModelInterfaces.tt Line: 55
-    	IFormGridSystem GridSystem { get; } // ModelInterfaces.tt Line: 59
-    	IReadOnlyList<string> ListGuidViewProperties { get; } // ModelInterfaces.tt Line: 46
-    	IReadOnlyList<string> ListGuidViewFolderProperties { get; } // ModelInterfaces.tt Line: 46
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsUseCode { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsUseName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsUseDesc { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsUseFolderCode { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsUseFolderName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsUseFolderDesc { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumUseType IsUseDocDate { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsDummy { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	FormType EnumFormType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IFormGridSystem GridSystem { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IReadOnlyList<string> ListGuidViewProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
+    	IReadOnlyList<string> ListGuidViewFolderProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // Children are collection of Grid System Rows 
     
-    public partial interface IFormGridSystem : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IFormGridSystem : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IFormGridSystemRow> ListRows { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IFormGridSystemRow> ListRows { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<string> ListGuidProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // Children are collection of Grid System Columns 
     
-    public partial interface IFormGridSystemRow : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IFormGridSystemRow : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IFormGridSystemColumn> ListColumns { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IFormGridSystemColumn> ListColumns { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // Children are collection of Auto Layout Block children
     
-    public partial interface IFormGridSystemColumn : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IFormGridSystemColumn : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	EnumHiddenType HideType { get; } // ModelInterfaces.tt Line: 55
-    	uint? WidthXs { get; } // ModelInterfaces.tt Line: 55
-    	uint? WidthSm { get; } // ModelInterfaces.tt Line: 55
-    	uint? WidthMd { get; } // ModelInterfaces.tt Line: 55
-    	uint? WidthLg { get; } // ModelInterfaces.tt Line: 55
-    	uint? WidthXl { get; } // ModelInterfaces.tt Line: 55
-    	uint? WidthXx { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IFormAutoLayoutBlock FormBlock { get; } // ModelInterfaces.tt Line: 59
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	EnumHiddenType HideType { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint? WidthXs { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint? WidthSm { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint? WidthMd { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint? WidthLg { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint? WidthXl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	uint? WidthXx { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IFormAutoLayoutBlock FormBlock { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // Children collection can contain:
     //   - Fields
@@ -1542,126 +1542,126 @@ namespace vSharpStudio.common // ModelInterfaces.tt Line: 13
     //   - Tab Controls
     //   - Auto Layout Blocks
     
-    public partial interface IFormAutoLayoutBlock : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IFormAutoLayoutBlock : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IFormAutoLayoutSubBlock> ListFormAutoLayoutSubBlock { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IFormAutoLayoutSubBlock> ListFormAutoLayoutSubBlock { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // https://learn.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-6.0
     
-    public partial interface IFormAutoLayoutSubBlock : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IFormAutoLayoutSubBlock : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IFormTabControl TabControl { get; } // ModelInterfaces.tt Line: 59
-    	IFormDataGrid DataGridControl { get; } // ModelInterfaces.tt Line: 59
-    	IFormAutoLayoutBlock AutoLayoutBlockControl { get; } // ModelInterfaces.tt Line: 59
-    	IFormField FieldControl { get; } // ModelInterfaces.tt Line: 59
-    	IFormGridSystem GridSystemControl { get; } // ModelInterfaces.tt Line: 59
-    	IFormTree TreeControl { get; } // ModelInterfaces.tt Line: 59
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IFormTabControl TabControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IFormDataGrid DataGridControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IFormAutoLayoutBlock AutoLayoutBlockControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IFormField FieldControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IFormGridSystem GridSystemControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IFormTree TreeControl { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IFormField : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IFormField : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // Children are collection of Auto Layout Block children
     
-    public partial interface IFormTabControlTab : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IFormTabControlTab : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
-    	IFormAutoLayoutBlock FormBlock { get; } // ModelInterfaces.tt Line: 59
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<string> ListGuidProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
+    	IFormAutoLayoutBlock FormBlock { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:60
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // Children are collection of Tab Control Tabs
     
-    public partial interface IFormTabControl : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IFormTabControl : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<IFormTabControlTab> ListTabs { get; } // ModelInterfaces.tt Line: 48
-    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<IFormTabControlTab> ListTabs { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
+    	IReadOnlyList<string> ListGuidProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // No Children
     
-    public partial interface IFormDataGrid : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IFormDataGrid : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<string> ListGuidProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // No Children
     
-    public partial interface IFormTree : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IFormTree : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
-    	IReadOnlyList<string> ListGuidProperties { get; } // ModelInterfaces.tt Line: 46
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	IReadOnlyList<string> ListGuidProperties { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:47
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     // R E P O R T S
     // @exclude
     // ####################################### R E P O R T S ##########################################
     
-    public partial interface IGroupListReports : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IGroupListReports : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// repeated proto_property list_shared_properties = 6;
-    	IReadOnlyList<IReport> ListReports { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IReport> ListReports { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     	IReport this[int index] { get; }
     	int Count();
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IReport : IGuid, IName // ModelInterfaces.tt Line: 33
+    public partial interface IReport : IGuid, IName //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); // ModelInterfaces.tt Line: 36
-    	string NameUi { get; } // ModelInterfaces.tt Line: 55
-    	string Description { get; } // ModelInterfaces.tt Line: 55
-    	bool IsNew { get; } // ModelInterfaces.tt Line: 55
-    	bool IsMarkedForDeletion { get; } // ModelInterfaces.tt Line: 55
+        //IvPluginGeneratorNodeSettings GetSettings(string guidAppPrjGen, string guidSettings); //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:37
+    	string NameUi { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Description { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsNew { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsMarkedForDeletion { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     	// repeated proto_group_properties list_properties = 6;
     	// repeated proto_document list_documents = 7;
-    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } // ModelInterfaces.tt Line: 48
+    	IReadOnlyList<IPluginGeneratorNodeSettings> ListNodeGeneratorsSettings { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:49
     }
     
-    public partial interface IModelRow // ModelInterfaces.tt Line: 33
+    public partial interface IModelRow //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:34
     {
-    	string GroupName { get; } // ModelInterfaces.tt Line: 55
-    	string Name { get; } // ModelInterfaces.tt Line: 55
-    	string Guid { get; } // ModelInterfaces.tt Line: 55
-    	bool IsIncluded { get; } // ModelInterfaces.tt Line: 55
+    	string GroupName { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Name { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	string Guid { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
+    	bool IsIncluded { get; } //  D:\dev\vSharpStudio.pro\submodules\vSharpStudio\generators\GenFromProto\ModelInterfaces.tt Line:56
     }
 }

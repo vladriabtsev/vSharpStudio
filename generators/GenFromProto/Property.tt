@@ -3,9 +3,10 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="vSharpStudio.common" #>
 
 <#= this.Doc.Comments #><#= this.Doc.Attributes #><# if (this.IsCollection) { var collType = CollectionName(field); #>
-public <#=collType#><<#= field.ToTypeCs() #>> <#=FieldName#> // <#=Helper.FilePos() #>
+public <#=collType#><<#= field.ToTypeCs() #>> <#=FieldName#> // <#=t4.FilePos() #>
 { 
     get { return this._<#=FieldName#>; }
     set
@@ -23,13 +24,13 @@ public <#=collType#><<#= field.ToTypeCs() #>> <#=FieldName#> // <#=Helper.FilePo
     }
 }
 private <#=collType#><<#= field.ToTypeCs() #>> _<#=FieldName#>;
-IReadOnlyList<<#if (!IsSimple) {#>I<#}#><#=FieldType#>> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=Helper.FilePos() #>
-partial void On<#=FieldName#>Changing(ObservableCollection<<#= field.ToTypeCs() #>> to); // <#=Helper.FilePos() #>
+IReadOnlyList<<#if (!IsSimple) {#>I<#}#><#=FieldType#>> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=t4.FilePos() #>
+partial void On<#=FieldName#>Changing(ObservableCollection<<#= field.ToTypeCs() #>> to); // <#=t4.FilePos() #>
 partial void On<#=FieldName#>Changed();
 <#   if (this.IsSelfCollection) { #>
 public <#= field.MessageType.Name.ToNameCs() #> this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#=FieldName#>[index]; } }
 I<#= field.MessageType.Name.ToNameCs() #> I<#= message.Name.ToNameCs() #>.this[int index] { get { return (<#= field.MessageType.Name.ToNameCs() #>)this.<#=FieldName#>[index]; } }
-public void Add(<#= field.MessageType.Name.ToNameCs() #> item) // <#=Helper.FilePos() #>
+public void Add(<#= field.MessageType.Name.ToNameCs() #> item) // <#=t4.FilePos() #>
 { 
     Debug.Assert(item != null);
     this.<#=FieldName#>.Add(item); 
@@ -52,7 +53,7 @@ public void Remove(<#= field.MessageType.Name.ToNameCs() #> item)
 }
 <#   } #>
 <# } else { //if (field.IsMessage() && !field.IsCsSimple() && !field.IsAny()) {#>
-public <#= field.ToTypeCs() #> <#=FieldName#> // <#=Helper.FilePos() #>
+public <#= field.ToTypeCs() #> <#=FieldName#> // <#=t4.FilePos() #>
 { 
     get { return this._<#=FieldName#>; }
     set
@@ -74,9 +75,9 @@ public <#= field.ToTypeCs() #> <#=FieldName#> // <#=Helper.FilePos() #>
 private <#= field.ToTypeCs() #> _<#=FieldName#><#=field.ToSetDefaultCs()#>;
 <# } #>
 <# if (IsMessage) { #>
-I<#=FieldType#> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=Helper.FilePos() #>
+I<#=FieldType#> I<#=ClassName#>.<#=FieldName#> { get { return (this as <#=ClassName#>).<#=FieldName#>; } } // <#=t4.FilePos() #>
 <# } #>
-partial void On<#=FieldName#>Changing(ref <#=FieldType#> to); // <#=Helper.FilePos() #>
+partial void On<#=FieldName#>Changing(ref <#=FieldType#> to); // <#=t4.FilePos() #>
 partial void On<#=FieldName#>Changed();
 <# if (field.IsMessage()) { #>
 <# if (!this.IsNullable) { #>//I<# } #><#=FieldType#> I<#=ClassName#>.<#=FieldName#> { get { return this._<#=FieldName#>; } }

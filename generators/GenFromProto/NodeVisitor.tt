@@ -3,8 +3,9 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="vSharpStudio.common" #>
 
-public partial class <#= root.Package.ToNameCs() #>Visitor : IVisitor<#= root.Package.ToNameCs() #>Node // <#=Helper.FilePos() #>
+public partial class <#= root.Package.ToNameCs() #>Visitor : IVisitor<#= root.Package.ToNameCs() #>Node // <#=t4.FilePos() #>
 {
     public CancellationToken Token { get { return _cancellationToken; } }
     protected CancellationToken _cancellationToken;
