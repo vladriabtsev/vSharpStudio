@@ -214,6 +214,13 @@ namespace vSharpStudio.vm.ViewModels
                     throw new NotImplementedException();
             }
         }
+        public EnumCodeType GetSequenceType()
+        {
+            if (string.IsNullOrWhiteSpace(this.SequenceGuid))
+                return this.SequenceType;
+            var seq = (EnumeratorSequence)this.ParentDocument.Cfg.DicNodes[this.SequenceGuid];
+            return seq.SequenceType;
+        }
         public string GetNextCodeProc()
         {
             var sb = new StringBuilder();

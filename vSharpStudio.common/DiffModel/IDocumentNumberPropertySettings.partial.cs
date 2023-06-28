@@ -11,5 +11,6 @@ namespace vSharpStudio.common
         string GetDocNumberClrTypeName();
         string GetNextCodeProc();
         string GetCodeCheckProc();
+        EnumCodeType GetSequenceType();
     }
 }
