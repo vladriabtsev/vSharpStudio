@@ -14,7 +14,7 @@ namespace Microsoft.Extensions.Logging
             sb.Append(line);
             return sb.ToString();
         }
-        public static string FilePos( [CallerFilePath] string file = "",
+        public static string FilePos([CallerFilePath] string file = "",
                                         [CallerMemberName] string member = "",
                                         [CallerLineNumber] int line = 0)
         {

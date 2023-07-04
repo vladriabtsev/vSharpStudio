@@ -14,7 +14,7 @@ namespace vSharpStudio.common
         bool IsComputed { get; set; }
         bool IsPKey { get; }
         bool IsDocShared { get; set; }
-        //bool IsRecordVersion { get; set; }
+        bool IsRecordVersion { get; }
 
         /// <summary>
         /// Is hidden on UI (special properties)
